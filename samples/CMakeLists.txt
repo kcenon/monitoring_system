@@ -25,3 +25,10 @@ target_link_libraries(advanced_analysis_example PRIVATE monitoring)
 set_target_properties(advanced_analysis_example PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
+
+# Optimization demo sample
+add_executable(optimization_demo optimization_demo.cpp)
+target_link_libraries(optimization_demo PRIVATE monitoring)
+set_target_properties(optimization_demo PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)

@@ -206,6 +206,49 @@ for (const auto& anomaly : anomalies) {
 std::string json_data = dashboard->export_json();
 ```
 
+### Performance Optimization
+
+```cpp
+#include <monitoring_system/performance_optimizer.h>
+
+// Configure optimization
+performance_optimizer::optimization_config opt_config;
+opt_config.enable_compression = true;
+opt_config.enable_batching = true;
+opt_config.enable_tiered_storage = true;
+opt_config.enable_adaptive_sampling = true;
+opt_config.batch_size = 100;
+
+auto optimizer = std::make_unique<performance_optimizer>(opt_config);
+
+// Process metrics with optimization
+optimizer->optimize_metric(snapshot);
+
+// Auto-scaling based on metrics
+auto_scaler::scaling_policy policy;
+policy.cpu_threshold_up = 80.0;
+policy.cpu_threshold_down = 30.0;
+policy.cooldown = std::chrono::seconds(60);
+
+auto scaler = std::make_unique<auto_scaler>(policy);
+auto decision = scaler->decide(current_metrics);
+
+if (decision.recommended_action == auto_scaler::scaling_decision::action::scale_up) {
+    std::cout << "Scale up recommended: " << decision.reason << std::endl;
+}
+
+// Distributed aggregation for multi-node systems
+distributed_aggregator::aggregation_config agg_config;
+agg_config.enable_parallel_aggregation = true;
+agg_config.worker_threads = 4;
+
+auto aggregator = std::make_unique<distributed_aggregator>(agg_config);
+aggregator->add_local_metrics("node1", node1_snapshot);
+aggregator->add_local_metrics("node2", node2_snapshot);
+
+auto global_metrics = aggregator->aggregate_global();
+```
+
 ### Custom Metrics Collection
 
 ```cpp
@@ -268,6 +311,16 @@ monitor->add_collector(std::make_unique<custom_collector>());
 - **Change Point Detection**: Identify significant metric changes
 - **Alert Management**: Configurable alerts with cooldown periods
 - **Health Scoring**: Comprehensive system and component health assessment
+
+### Performance Optimization
+- **Tiered Storage**: Hot/warm/cold data tiers with automatic aging
+- **Lock-free Queues**: High-performance lock-free data structures
+- **Compressed Storage**: Memory-efficient metric compression
+- **Batch Processing**: Efficient batch metric processing
+- **Adaptive Sampling**: Dynamic sampling rate based on system load
+- **Auto-scaling**: Automatic resource scaling based on metrics
+- **Distributed Aggregation**: Parallel metrics aggregation for multi-node systems
+- **Memory Optimization**: Tiered storage with compression for long-term retention
 
 ## Building
 

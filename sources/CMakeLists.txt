@@ -8,6 +8,8 @@ target_sources(monitoring
         monitoring/thread_pool_analyzer.cpp
         monitoring/trend_analyzer.cpp
         monitoring/analysis_dashboard.cpp
+        monitoring/optimized_storage.cpp
+        monitoring/performance_optimizer.cpp
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/monitoring.h>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/monitoring_interface.h>
@@ -15,6 +17,8 @@ target_sources(monitoring
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/thread_pool_analyzer.h>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/trend_analyzer.h>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/analysis_dashboard.h>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/optimized_storage.h>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/performance_optimizer.h>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interfaces/process_identifier.h>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interfaces/multi_process_monitoring_interface.h>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interfaces/monitoring_crash_safety.h>
