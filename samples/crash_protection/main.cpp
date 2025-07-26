@@ -91,7 +91,7 @@ void metrics_collection_task(int collector_id, std::shared_ptr<monitoring> monit
 }
 
 void thread_pool_monitoring_task(int monitor_id) {
-    std::cout << "🧵 Thread pool monitor " << monitor_id << " starting" << std::endl;
+    std::cout << "[THREAD] Thread pool monitor " << monitor_id << " starting" << std::endl;
     
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -365,7 +365,7 @@ int main() {
             std::cout << "  - " << alert << std::endl;
         }
     } else {
-        std::cout << "ℹ️ No recovery needed" << std::endl;
+        std::cout << "[INFO] No recovery needed" << std::endl;
     }
     
     // Step 11: Display preserved critical metrics
