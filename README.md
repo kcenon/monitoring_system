@@ -172,6 +172,40 @@ for (const auto& suggestion : suggestions) {
 }
 ```
 
+### Advanced Analysis Dashboard
+
+```cpp
+#include <monitoring_system/analysis_dashboard.h>
+
+// Create dashboard with configuration
+analysis_dashboard::dashboard_config config;
+config.trend_window_size = 60;
+config.anomaly_threshold = 3.0;
+config.enable_alerts = true;
+
+auto dashboard = std::make_unique<analysis_dashboard>(monitor, config);
+
+// Generate comprehensive health report
+auto health_report = dashboard->generate_health_report();
+std::cout << "System Health: " << health_report.health_status 
+          << " (" << health_report.overall_health_score << "%)" << std::endl;
+
+// Get performance predictions
+auto forecast = dashboard->generate_forecast(std::chrono::seconds(300));
+for (const auto& [metric, prediction] : forecast.cpu_predictions) {
+    std::cout << metric << " predicted: " << prediction.predicted_value << std::endl;
+}
+
+// Detect anomalies
+auto anomalies = dashboard->detect_real_time_anomalies();
+for (const auto& anomaly : anomalies) {
+    std::cout << "Anomaly: " << anomaly.description << std::endl;
+}
+
+// Export dashboard data
+std::string json_data = dashboard->export_json();
+```
+
 ### Custom Metrics Collection
 
 ```cpp
@@ -224,6 +258,16 @@ monitor->add_collector(std::make_unique<custom_collector>());
 - Pool type classification (CPU-bound, IO-bound, Balanced, Idle)
 - Comparative analysis between pools
 - Load balance scoring
+
+### Advanced Analytics
+- **Trend Analysis**: Linear regression, moving averages, seasonality detection
+- **Anomaly Detection**: Z-score based outlier detection with severity levels
+- **Predictive Analytics**: Linear predictions with confidence intervals
+- **Correlation Analysis**: Cross-metric correlation discovery
+- **Capacity Planning**: Resource exhaustion predictions
+- **Change Point Detection**: Identify significant metric changes
+- **Alert Management**: Configurable alerts with cooldown periods
+- **Health Scoring**: Comprehensive system and component health assessment
 
 ## Building
 

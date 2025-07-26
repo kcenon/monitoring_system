@@ -18,3 +18,10 @@ target_link_libraries(thread_pool_analysis_example PRIVATE monitoring)
 set_target_properties(thread_pool_analysis_example PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
+
+# Advanced analysis sample
+add_executable(advanced_analysis_example advanced_analysis_example.cpp)
+target_link_libraries(advanced_analysis_example PRIVATE monitoring)
+set_target_properties(advanced_analysis_example PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)
