@@ -132,7 +132,7 @@ void manual_metrics_example() {
     // Manually update metrics
     system_metrics sys_metrics;
     sys_metrics.cpu_usage_percent = 45;
-    sys_metrics.memory_usage_bytes = 2048 * 1024 * 1024; // 2GB
+    sys_metrics.memory_usage_bytes = 2048ULL * 1024 * 1024; // 2GB
     sys_metrics.active_threads = 8;
     monitor->update_system_metrics(sys_metrics);
     

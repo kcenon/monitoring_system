@@ -15,10 +15,9 @@ target_include_directories(monitoring
         $<INSTALL_INTERFACE:include/monitoring_system>
 )
 
-# Link with thread_system interfaces
+# Link with system libraries
 target_link_libraries(monitoring
     PUBLIC
-        ThreadSystemInterfaces
         Threads::Threads
 )
 

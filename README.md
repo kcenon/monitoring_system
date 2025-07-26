@@ -3,7 +3,54 @@
 [![CI](https://github.com/kcenon/monitoring_system/actions/workflows/ci.yml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-A real-time performance monitoring system for C++20 applications with low-overhead metrics collection.
+A real-time performance monitoring system for C++20 applications with low-overhead metrics collection. Part of the integrated threading ecosystem.
+
+## 🔗 Project Ecosystem Integration
+
+This monitoring system is a key component of a comprehensive threading and observability ecosystem:
+
+### Project Dependencies
+- **[thread_system](https://github.com/kcenon/thread_system)**: Core dependency providing monitoring interfaces
+  - Implements: `monitoring_interface::monitoring_interface`
+  - Provides: Interface contracts for metrics collection
+  - Role: Foundation interfaces for monitoring subsystem
+
+### Related Projects
+- **[logger_system](https://github.com/kcenon/logger_system)**: Complementary logging functionality
+  - Relationship: Both integrate with thread_system
+  - Synergy: Combined monitoring and logging for complete observability
+  - Integration: Can monitor logging performance and log monitoring events
+
+- **[integrated_thread_system](https://github.com/kcenon/integrated_thread_system)**: Complete integration examples
+  - Usage: Demonstrates monitoring_system integration patterns
+  - Benefits: Production-ready examples with full ecosystem
+  - Reference: Complete application templates with monitoring
+
+### Integration Architecture
+```
+┌─────────────────┐
+│  thread_system  │ ← Core interfaces (monitoring_interface)
+└─────────┬───────┘
+          │ implements
+┌─────────▼───────┐     ┌─────────────────┐
+│monitoring_system│ ◄──► │  logger_system  │
+└─────────────────┘     └─────────────────┘
+          │                       │
+          └───────┬───────────────┘
+                  ▼
+    ┌─────────────────────────┐
+    │integrated_thread_system │
+    └─────────────────────────┘
+```
+
+### Integration Benefits
+- **Thread pool metrics**: Real-time tracking of worker threads, queue depths, and performance
+- **System monitoring**: CPU, memory, and resource utilization tracking
+- **Lock-free collection**: High-performance metrics without impacting application performance
+- **Historical analysis**: Ring buffer storage for trend analysis and performance profiling
+- **Custom collectors**: Extensible architecture for domain-specific metrics
+
+> 📖 **[Complete Architecture Guide](../ARCHITECTURE.md)**: Comprehensive documentation of the entire ecosystem architecture, dependency relationships, and integration patterns.
 
 ## Features
 

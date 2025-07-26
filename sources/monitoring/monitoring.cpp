@@ -42,8 +42,8 @@ class monitoring::impl {
 public:
     impl(std::size_t history_size, std::uint32_t collection_interval_ms)
         : history_(history_size)
-        , collection_interval_ms_(collection_interval_ms)
         , active_(false)
+        , collection_interval_ms_(collection_interval_ms)
         , total_collections_(0)
         , dropped_snapshots_(0)
         , collector_errors_(0)

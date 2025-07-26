@@ -36,8 +36,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <atomic>
 #include <thread>
 
-// Import interface from thread_system
-#include <thread_system/interfaces/monitoring_interface.h>
+// Import interface from local copy
+#include "monitoring_interface.h"
 
 namespace monitoring_module {
 

@@ -51,16 +51,11 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 ##################################################
 # Dependencies
 ##################################################
+find_package(Threads REQUIRED)
 include(FetchContent)
 
-# Thread System Interface (for integration)
-FetchContent_Declare(
-    ThreadSystemInterfaces
-    GIT_REPOSITORY https://github.com/kcenon/thread_system.git
-    GIT_TAG main
-    SOURCE_SUBDIR sources/interfaces  # Only need interfaces
-)
-FetchContent_MakeAvailable(ThreadSystemInterfaces)
+# Thread System Interface (local copy)
+# Using local monitoring_interface.h instead of external dependency
 
 # Google Test (for unit tests)
 if (BUILD_TESTS)
@@ -94,7 +89,7 @@ if (BUILD_SAMPLES)
 endif()
 
 if (BUILD_TESTS)
-    add_subdirectory(tests)
+    add_subdirectory(unittest)
 endif()
 
 if (BUILD_BENCHMARKS)
