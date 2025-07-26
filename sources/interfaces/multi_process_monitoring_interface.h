@@ -25,6 +25,11 @@ struct process_thread_pool_metrics : public thread_pool_metrics {
     std::uint64_t cross_process_jobs{0};     // 프로세스간 작업수
     std::uint64_t memory_pool_usage_bytes{0}; // 메모리 풀 사용량
     std::vector<std::uint64_t> worker_load_distribution; // 워커별 부하 분산
+    
+    // Constructor for compatibility
+    process_thread_pool_metrics() = default;
+    process_thread_pool_metrics(const thread_pool_metrics& base) 
+        : thread_pool_metrics(base) {}
 };
 
 /**

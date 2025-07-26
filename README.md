@@ -146,6 +146,32 @@ multi_monitor->update_process_system_metrics(process1, sys_metrics);
 auto multi_snapshot = multi_monitor->get_multi_process_snapshot();
 ```
 
+### Thread Pool Analysis
+
+```cpp
+#include <monitoring_system/thread_pool_analyzer.h>
+
+// Analyze thread pool performance
+auto pool_metrics = multi_monitor->get_thread_pool_metrics(pool1);
+auto summary = thread_pool_analyzer::analyze_pool(pool_metrics);
+
+// Detect bottlenecks
+auto bottleneck = thread_pool_analyzer::detect_bottleneck(pool_metrics);
+if (bottleneck) {
+    std::cout << "Bottleneck detected: " << *bottleneck << std::endl;
+}
+
+// Compare two thread pools
+auto comparison = thread_pool_analyzer::compare_pools(pool1_metrics, pool2_metrics);
+std::cout << "Performance winner: " << comparison.performance_winner << std::endl;
+
+// Get optimization suggestions
+auto suggestions = thread_pool_analyzer::suggest_optimizations(pool_metrics);
+for (const auto& suggestion : suggestions) {
+    std::cout << "Suggestion: " << suggestion << std::endl;
+}
+```
+
 ### Custom Metrics Collection
 
 ```cpp
@@ -190,6 +216,14 @@ monitor->add_collector(std::make_unique<custom_collector>());
 - Per-process thread pool metrics
 - Cross-process performance comparison
 - Process-specific alert thresholds
+
+### Thread Pool Analysis
+- Pool performance scoring and health checks
+- Worker load distribution analysis
+- Bottleneck detection and optimization suggestions
+- Pool type classification (CPU-bound, IO-bound, Balanced, Idle)
+- Comparative analysis between pools
+- Load balance scoring
 
 ## Building
 
