@@ -61,6 +61,7 @@ namespace monitoring_interface {
     struct thread_pool_metrics {
         std::uint64_t jobs_completed{0};
         std::uint64_t jobs_pending{0};
+        std::uint64_t jobs_failed{0};
         std::uint64_t total_execution_time_ns{0};
         std::uint64_t average_latency_ns{0};
         std::uint64_t worker_threads{0};

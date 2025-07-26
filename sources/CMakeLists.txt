@@ -4,8 +4,14 @@ add_library(monitoring)
 target_sources(monitoring
     PRIVATE
         monitoring/monitoring.cpp
+        monitoring/multi_process_monitoring.cpp
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/monitoring.h>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/monitoring_interface.h>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/multi_process_monitoring.h>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interfaces/process_identifier.h>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interfaces/multi_process_monitoring_interface.h>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interfaces/monitoring_crash_safety.h>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/monitoring/storage/ring_buffer.h>
 )
 

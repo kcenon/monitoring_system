@@ -60,6 +60,9 @@ This monitoring system is a key component of a comprehensive threading and obser
 - **Thread-safe**: Lock-free operations where possible
 - **Extensible**: Easy to add custom metrics
 - **Integration Ready**: Works seamlessly with Thread System
+- **Multi-Process Support**: Monitor multiple processes and thread pools independently
+- **Process-based Monitoring**: Track metrics per process with unique identification
+- **Thread Pool Distinction**: Monitor multiple thread pools within each process
 
 ## Integration with Thread System
 
@@ -111,6 +114,38 @@ int main() {
 }
 ```
 
+### Multi-Process Monitoring
+
+```cpp
+#include <monitoring_system/multi_process_monitoring.h>
+
+// Create multi-process monitoring instance
+auto multi_monitor = std::make_shared<monitoring_module::multi_process_monitoring>();
+multi_monitor->start();
+
+// Register processes
+monitoring_interface::process_identifier process1{
+    .pid = getpid(),
+    .process_name = "main_process",
+    .start_time = std::chrono::steady_clock::now()
+};
+multi_monitor->register_process(process1);
+
+// Register thread pools
+monitoring_interface::thread_pool_identifier pool1{
+    .process_id = process1,
+    .pool_name = "worker_pool",
+    .instance_id = 1
+};
+multi_monitor->register_thread_pool(pool1);
+
+// Update process-specific metrics
+multi_monitor->update_process_system_metrics(process1, sys_metrics);
+
+// Get multi-process snapshot
+auto multi_snapshot = multi_monitor->get_multi_process_snapshot();
+```
+
 ### Custom Metrics Collection
 
 ```cpp
@@ -148,6 +183,13 @@ monitor->add_collector(std::make_unique<custom_collector>());
 - Processing time per worker
 - Idle time
 - Context switches
+
+### Multi-Process Metrics
+- Process identification (PID, name, start time)
+- Per-process system metrics
+- Per-process thread pool metrics
+- Cross-process performance comparison
+- Process-specific alert thresholds
 
 ## Building
 
