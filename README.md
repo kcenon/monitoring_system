@@ -1,5 +1,8 @@
 # Monitoring System
 
+[![CI](https://github.com/kcenon/monitoring_system/actions/workflows/ci.yml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
 A real-time performance monitoring system for C++20 applications with low-overhead metrics collection.
 
 ## Features
