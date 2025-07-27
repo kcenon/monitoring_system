@@ -411,8 +411,8 @@ void distributed_aggregator::parallel_aggregate(
 }
 
 void distributed_aggregator::incremental_aggregate(
-    const std::string& node_id,
-    const monitoring_interface::multi_process_metrics_snapshot& snapshot,
+    const std::string& /* node_id */,
+    const monitoring_interface::multi_process_metrics_snapshot& /* snapshot */,
     monitoring_interface::multi_process_metrics_snapshot& result) {
     
     // 증분 집계 구현

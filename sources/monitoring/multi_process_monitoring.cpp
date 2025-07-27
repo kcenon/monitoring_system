@@ -508,7 +508,7 @@ metrics_snapshot multi_process_monitoring::get_current_snapshot() const {
     return pimpl_->get_current_snapshot();
 }
 
-std::vector<metrics_snapshot> multi_process_monitoring::get_recent_snapshots(std::size_t count) const {
+std::vector<metrics_snapshot> multi_process_monitoring::get_recent_snapshots(std::size_t /* count */) const {
     // 간단한 구현 - 현재 스냅샷만 반환
     std::vector<metrics_snapshot> snapshots;
     snapshots.push_back(get_current_snapshot());
@@ -527,17 +527,17 @@ void multi_process_monitoring::stop() {
     pimpl_->stop();
 }
 
-double multi_process_monitoring::get_average_cpu_usage(std::chrono::steady_clock::duration duration) const {
+double multi_process_monitoring::get_average_cpu_usage(std::chrono::steady_clock::duration /* duration */) const {
     auto snapshot = get_current_snapshot();
     return snapshot.system.cpu_usage_percent;
 }
 
-std::uint64_t multi_process_monitoring::get_peak_memory_usage(std::chrono::steady_clock::duration duration) const {
+std::uint64_t multi_process_monitoring::get_peak_memory_usage(std::chrono::steady_clock::duration /* duration */) const {
     auto snapshot = get_current_snapshot();
     return snapshot.system.memory_usage_bytes;
 }
 
-double multi_process_monitoring::get_average_job_latency(std::chrono::steady_clock::duration duration) const {
+double multi_process_monitoring::get_average_job_latency(std::chrono::steady_clock::duration /* duration */) const {
     auto snapshot = get_current_snapshot();
     if (snapshot.thread_pool.jobs_completed > 0) {
         return static_cast<double>(snapshot.thread_pool.average_latency_ns) / 1000000.0; // to ms
@@ -625,25 +625,25 @@ std::unordered_map<std::string, double> multi_process_monitoring::compare_proces
     return pimpl_->compare_process_performance(process_ids);
 }
 
-void multi_process_monitoring::set_process_monitoring_enabled(const process_identifier& process_id, bool enabled) {
+void multi_process_monitoring::set_process_monitoring_enabled(const process_identifier& /* process_id */, bool /* enabled */) {
     // TODO: Implement
 }
 
-void multi_process_monitoring::set_thread_pool_monitoring_enabled(const thread_pool_identifier& pool_id, bool enabled) {
+void multi_process_monitoring::set_thread_pool_monitoring_enabled(const thread_pool_identifier& /* pool_id */, bool /* enabled */) {
     // TODO: Implement
 }
 
-void multi_process_monitoring::set_process_alert_thresholds(const process_identifier& process_id,
-                                                          double cpu_threshold,
-                                                          std::uint64_t memory_threshold,
-                                                          std::uint64_t latency_threshold_ns) {
+void multi_process_monitoring::set_process_alert_thresholds(const process_identifier& /* process_id */,
+                                                          double /* cpu_threshold */,
+                                                          std::uint64_t /* memory_threshold */,
+                                                          std::uint64_t /* latency_threshold_ns */) {
     // TODO: Implement
 }
 
-void multi_process_monitoring::set_thread_pool_alert_thresholds(const thread_pool_identifier& pool_id,
-                                                              std::uint64_t queue_size_threshold,
-                                                              std::uint64_t latency_threshold_ns,
-                                                              double worker_utilization_threshold) {
+void multi_process_monitoring::set_thread_pool_alert_thresholds(const thread_pool_identifier& /* pool_id */,
+                                                              std::uint64_t /* queue_size_threshold */,
+                                                              std::uint64_t /* latency_threshold_ns */,
+                                                              double /* worker_utilization_threshold */) {
     // TODO: Implement
 }
 

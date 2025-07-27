@@ -64,6 +64,9 @@ struct multi_process_metrics_snapshot {
 class multi_process_monitoring_interface : public monitoring_interface {
 public:
     virtual ~multi_process_monitoring_interface() = default;
+    
+    // Bring base class method into scope to avoid hiding
+    using monitoring_interface::update_thread_pool_metrics;
 
     /**
      * @brief 프로세스 등록

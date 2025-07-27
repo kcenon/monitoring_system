@@ -39,6 +39,9 @@ public:
     // 기존 인터페이스 지원 (하위 호환성)
     void update_system_metrics(const ::monitoring_interface::system_metrics& metrics) override;
     void update_thread_pool_metrics(const ::monitoring_interface::thread_pool_metrics& metrics) override;
+    
+    // Bring base class overloads into scope
+    using multi_process_monitoring_interface::update_thread_pool_metrics;
     void update_worker_metrics(std::size_t worker_id, const ::monitoring_interface::worker_metrics& metrics) override;
     ::monitoring_interface::metrics_snapshot get_current_snapshot() const override;
     std::vector<::monitoring_interface::metrics_snapshot> get_recent_snapshots(std::size_t count) const override;

@@ -188,12 +188,9 @@ void tiered_storage::perform_aging() {
     }
     
     // 웜 -> 콜드 이동 (1시간 이상 된 데이터)
-    auto now = std::chrono::steady_clock::now();
-    auto one_hour_ago = now - std::chrono::hours(1);
+    // TODO: 실제 구현에서는 웜 계층의 오래된 데이터를 콜드로 이동
     
-    // 실제 구현에서는 웜 계층의 오래된 데이터를 콜드로 이동
-    
-    last_aging_ = now;
+    last_aging_ = std::chrono::steady_clock::now();
 }
 
 tiered_storage::memory_stats tiered_storage::get_memory_stats() const {
