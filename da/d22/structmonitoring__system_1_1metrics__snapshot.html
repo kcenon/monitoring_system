@@ -129,7 +129,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Complete snapshot of metrics at a point in time. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00057">57</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00059">59</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abb50c7e1090acecc3fc4874b49255cfe" name="abb50c7e1090acecc3fc4874b49255cfe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb50c7e1090acecc3fc4874b49255cfe">&#9670;&#160;</a></span>metrics_snapshot()</h2>
@@ -154,9 +154,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00062">62</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   63</span>        : <a class="code hl_variable" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#a737e322cc8531fa1025656a7e42cebc5">capture_time</a>(std::chrono::system_clock::now()) {}</div>
-<div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html_a737e322cc8531fa1025656a7e42cebc5"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#a737e322cc8531fa1025656a7e42cebc5">monitoring_system::metrics_snapshot::capture_time</a></div><div class="ttdeci">std::chrono::system_clock::time_point capture_time</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00059">monitoring_interface.h:59</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00064">64</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>        : <a class="code hl_variable" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#a737e322cc8531fa1025656a7e42cebc5">capture_time</a>(std::chrono::system_clock::now()) {}</div>
+<div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html_a737e322cc8531fa1025656a7e42cebc5"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#a737e322cc8531fa1025656a7e42cebc5">monitoring_system::metrics_snapshot::capture_time</a></div><div class="ttdeci">std::chrono::system_clock::time_point capture_time</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00061">monitoring_interface.h:61</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -204,11 +204,11 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00070">70</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   70</span>                                                         {</div>
-<div class="line"><span class="lineno">   71</span>        <a class="code hl_variable" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">metrics</a>.emplace_back(name, value);</div>
-<div class="line"><span class="lineno">   72</span>    }</div>
-<div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html_aaa3a00f7d5d361796e8a8af597d2308d"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">monitoring_system::metrics_snapshot::metrics</a></div><div class="ttdeci">std::vector&lt; metric_value &gt; metrics</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00058">monitoring_interface.h:58</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00072">72</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>                                                         {</div>
+<div class="line"><span class="lineno">   73</span>        <a class="code hl_variable" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">metrics</a>.emplace_back(name, value);</div>
+<div class="line"><span class="lineno">   74</span>    }</div>
+<div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html_aaa3a00f7d5d361796e8a8af597d2308d"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">monitoring_system::metrics_snapshot::metrics</a></div><div class="ttdeci">std::vector&lt; metric_value &gt; metrics</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00060">monitoring_interface.h:60</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -257,15 +257,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Optional metric value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00079">79</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   79</span>                                                                {</div>
-<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">m</a> : <a class="code hl_variable" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">metrics</a>) {</div>
-<div class="line"><span class="lineno">   81</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">m</a>.name == name) {</div>
-<div class="line"><span class="lineno">   82</span>                <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">m</a>.value;</div>
-<div class="line"><span class="lineno">   83</span>            }</div>
-<div class="line"><span class="lineno">   84</span>        }</div>
-<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">return</span> std::nullopt;</div>
-<div class="line"><span class="lineno">   86</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00081">81</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>                                                                {</div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">m</a> : <a class="code hl_variable" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">metrics</a>) {</div>
+<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">m</a>.name == name) {</div>
+<div class="line"><span class="lineno">   84</span>                <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">m</a>.value;</div>
+<div class="line"><span class="lineno">   85</span>            }</div>
+<div class="line"><span class="lineno">   86</span>        }</div>
+<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><span class="lineno">   88</span>    }</div>
 <div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00243">result_types.h:243</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -294,7 +294,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00059">59</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00061">61</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -310,7 +310,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00058">58</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00060">60</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -326,7 +326,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00060">60</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00062">62</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -336,7 +336,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

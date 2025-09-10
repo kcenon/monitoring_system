@@ -89,9 +89,11 @@ Inheritance diagram for monitoring_system::metrics_collector:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d6/db1/classmonitoring__system_1_1metrics__collector__inherit__graph.png" border="0" usemap="#amonitoring__system_1_1metrics__collector_inherit__map" alt="Inheritance graph"/></div>
 <map name="amonitoring__system_1_1metrics__collector_inherit__map" id="amonitoring__system_1_1metrics__collector_inherit__map">
-<area shape="rect" title="Abstract base class for metric collectors." alt="" coords="31,5,192,205"/>
-<area shape="rect" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html" title="Collector that automatically includes thread context in metrics." alt="" coords="5,253,217,548"/>
-<area shape="poly" title=" " alt="" coords="114,219,114,253,109,253,109,219"/>
+<area shape="rect" title="Abstract base class for metric collectors." alt="" coords="104,5,265,205"/>
+<area shape="rect" href="../../d9/d8d/classmock__collector.html" title=" " alt="" coords="5,268,159,533"/>
+<area shape="poly" title=" " alt="" coords="148,219,131,269,126,267,143,217"/>
+<area shape="rect" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html" title="Collector that automatically includes thread context in metrics." alt="" coords="183,253,395,548"/>
+<area shape="poly" title=" " alt="" coords="227,217,239,252,234,254,222,219"/>
 </map>
 </div>
 <div class="dynheader">
@@ -129,7 +131,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract base class for metric collectors. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00201">201</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00240">240</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6a30856f37890aa8c83a55e2cad79ae7" name="a6a30856f37890aa8c83a55e2cad79ae7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a30856f37890aa8c83a55e2cad79ae7">&#9670;&#160;</a></span>~metrics_collector()</h2>
@@ -183,7 +185,7 @@ Public Member Functions</h2></td></tr>
 <p>Cleanup collector resources. </p>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success or cleanup error </dd></dl>
 
-<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ad56d6e487e48a980935a63430607b949">monitoring_system::context_metrics_collector</a>.</p>
+<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ad56d6e487e48a980935a63430607b949">monitoring_system::context_metrics_collector</a>, and <a class="el" href="../../d9/d8d/classmock__collector.html#adc19f7502f53b78fa6084d48df7e5890">mock_collector</a>.</p>
 
 </div>
 </div>
@@ -212,6 +214,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Collect metrics. </p>
 <dl class="section return"><dt>Returns</dt><dd>Result containing collected metrics or error </dd></dl>
+
+<p>Implemented in <a class="el" href="../../d9/d8d/classmock__collector.html#a46ac04a1f7411229ab3c0b990e1e1e5f">mock_collector</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -251,7 +255,7 @@ Here is the caller graph for this function:</div>
 <p>Get collector name. </p>
 <dl class="section return"><dt>Returns</dt><dd>Collector identifier </dd></dl>
 
-<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#af0d2123d1e47f2068b48eeed4a81301a">monitoring_system::context_metrics_collector</a>.</p>
+<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#af0d2123d1e47f2068b48eeed4a81301a">monitoring_system::context_metrics_collector</a>, and <a class="el" href="../../d9/d8d/classmock__collector.html#a5a27f7389857c19bc6b15525d5cd2763">mock_collector</a>.</p>
 
 </div>
 </div>
@@ -281,7 +285,7 @@ Here is the caller graph for this function:</div>
 <p>Initialize the collector. </p>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success or initialization error </dd></dl>
 
-<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#af923a62fe692341ea40e12190482df2c">monitoring_system::context_metrics_collector</a>.</p>
+<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#af923a62fe692341ea40e12190482df2c">monitoring_system::context_metrics_collector</a>, and <a class="el" href="../../d9/d8d/classmock__collector.html#a0ee080ef40d59e3afd56a42857a64147">mock_collector</a>.</p>
 
 </div>
 </div>
@@ -311,7 +315,7 @@ Here is the caller graph for this function:</div>
 <p>Check if collector is enabled. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if collector is active </dd></dl>
 
-<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#aaed2200e3b30e2dc3dee0e49cf0e04ac">monitoring_system::context_metrics_collector</a>.</p>
+<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#aaed2200e3b30e2dc3dee0e49cf0e04ac">monitoring_system::context_metrics_collector</a>, and <a class="el" href="../../d9/d8d/classmock__collector.html#ac8c8e8452bcb724a1612c12f7719e862">mock_collector</a>.</p>
 
 </div>
 </div>
@@ -348,7 +352,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success or error </dd></dl>
 
-<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#a005f1c8b8a7d19e00caa609d4285665a">monitoring_system::context_metrics_collector</a>.</p>
+<p>Implemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#a005f1c8b8a7d19e00caa609d4285665a">monitoring_system::context_metrics_collector</a>, and <a class="el" href="../../d9/d8d/classmock__collector.html#abfae59a8f08351ae15108fdae42cc979">mock_collector</a>.</p>
 
 </div>
 </div>
@@ -358,7 +362,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

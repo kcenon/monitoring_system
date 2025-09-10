@@ -118,7 +118,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Configuration for the monitoring system. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00122">122</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00161">161</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab049fd17d925cd7f2e7904744b3f9bf1" name="ab049fd17d925cd7f2e7904744b3f9bf1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab049fd17d925cd7f2e7904744b3f9bf1">&#9670;&#160;</a></span>validate()</h2>
@@ -146,28 +146,28 @@ Public Attributes</h2></td></tr>
 <p>Validate configuration parameters. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d1/d78/classmonitoring__system_1_1result__void.html" title="Specialization for operations with no return value.">result_void</a> indicating success or validation error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00134">134</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  134</span>                                 {</div>
-<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">history_size</a> == 0) {</div>
-<div class="line"><span class="lineno">  136</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccac751f227f0f658738546c7e3de996848">monitoring_error_code::invalid_capacity</a>,</div>
-<div class="line"><span class="lineno">  137</span>                             <span class="stringliteral">&quot;History size must be greater than 0&quot;</span>);</div>
-<div class="line"><span class="lineno">  138</span>        }</div>
-<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#a9b708014e60a34a833f59c6348eab7d8">collection_interval</a>.count() &lt; 10) {</div>
-<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccab151c2ca9013c134c93ab3b5709b3e7d">monitoring_error_code::invalid_interval</a>,</div>
-<div class="line"><span class="lineno">  141</span>                             <span class="stringliteral">&quot;Collection interval must be at least 10ms&quot;</span>);</div>
-<div class="line"><span class="lineno">  142</span>        }</div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7">buffer_size</a> &lt; <a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">history_size</a>) {</div>
-<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccac751f227f0f658738546c7e3de996848">monitoring_error_code::invalid_capacity</a>,</div>
-<div class="line"><span class="lineno">  145</span>                             <span class="stringliteral">&quot;Buffer size must be at least as large as history size&quot;</span>);</div>
-<div class="line"><span class="lineno">  146</span>        }</div>
-<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
-<div class="line"><span class="lineno">  148</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00173">173</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  173</span>                                 {</div>
+<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">history_size</a> == 0) {</div>
+<div class="line"><span class="lineno">  175</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccac751f227f0f658738546c7e3de996848">monitoring_error_code::invalid_capacity</a>,</div>
+<div class="line"><span class="lineno">  176</span>                             <span class="stringliteral">&quot;History size must be greater than 0&quot;</span>);</div>
+<div class="line"><span class="lineno">  177</span>        }</div>
+<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#a9b708014e60a34a833f59c6348eab7d8">collection_interval</a>.count() &lt; 10) {</div>
+<div class="line"><span class="lineno">  179</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccab151c2ca9013c134c93ab3b5709b3e7d">monitoring_error_code::invalid_interval</a>,</div>
+<div class="line"><span class="lineno">  180</span>                             <span class="stringliteral">&quot;Collection interval must be at least 10ms&quot;</span>);</div>
+<div class="line"><span class="lineno">  181</span>        }</div>
+<div class="line"><span class="lineno">  182</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7">buffer_size</a> &lt; <a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">history_size</a>) {</div>
+<div class="line"><span class="lineno">  183</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccac751f227f0f658738546c7e3de996848">monitoring_error_code::invalid_capacity</a>,</div>
+<div class="line"><span class="lineno">  184</span>                             <span class="stringliteral">&quot;Buffer size must be at least as large as history size&quot;</span>);</div>
+<div class="line"><span class="lineno">  185</span>        }</div>
+<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
+<div class="line"><span class="lineno">  187</span>    }</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result__void_html_a1f7754a11776a87f5ff310b960eaae25"><div class="ttname"><a href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">monitoring_system::result_void::success</a></div><div class="ttdeci">static result_void success()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00191">result_types.h:191</a></div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccab151c2ca9013c134c93ab3b5709b3e7d"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccab151c2ca9013c134c93ab3b5709b3e7d">monitoring_system::monitoring_error_code::invalid_interval</a></div><div class="ttdeci">@ invalid_interval</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccac751f227f0f658738546c7e3de996848"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccac751f227f0f658738546c7e3de996848">monitoring_system::monitoring_error_code::invalid_capacity</a></div><div class="ttdeci">@ invalid_capacity</div></div>
-<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_a9b708014e60a34a833f59c6348eab7d8"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#a9b708014e60a34a833f59c6348eab7d8">monitoring_system::monitoring_config::collection_interval</a></div><div class="ttdeci">std::chrono::milliseconds collection_interval</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00124">monitoring_interface.h:124</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_aa814a874c1adac91d0de5af146e63db7"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7">monitoring_system::monitoring_config::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00128">monitoring_interface.h:128</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_ac492e933bf5f7cfff2a20ffd21f1d862"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">monitoring_system::monitoring_config::history_size</a></div><div class="ttdeci">std::size_t history_size</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00123">monitoring_interface.h:123</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_a9b708014e60a34a833f59c6348eab7d8"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#a9b708014e60a34a833f59c6348eab7d8">monitoring_system::monitoring_config::collection_interval</a></div><div class="ttdeci">std::chrono::milliseconds collection_interval</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00163">monitoring_interface.h:163</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_aa814a874c1adac91d0de5af146e63db7"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7">monitoring_system::monitoring_config::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00167">monitoring_interface.h:167</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_ac492e933bf5f7cfff2a20ffd21f1d862"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">monitoring_system::monitoring_config::history_size</a></div><div class="ttdeci">std::size_t history_size</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00162">monitoring_interface.h:162</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -196,7 +196,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00128">128</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00167">167</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -212,8 +212,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00124">124</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  124</span>{1000};</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00163">163</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  163</span>{1000};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -229,7 +229,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00125">125</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00164">164</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -245,7 +245,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00126">126</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00165">165</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -261,7 +261,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00123">123</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00162">162</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -277,7 +277,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00127">127</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00166">166</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -287,7 +287,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

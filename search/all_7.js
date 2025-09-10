@@ -9,6 +9,7 @@ var searchData=
   ['health_5fcheck_5fresult_6',['health_check_result',['../dd/d7b/structmonitoring__system_1_1health__check__result.html',1,'monitoring_system::health_check_result'],['../dd/d7b/structmonitoring__system_1_1health__check__result.html#ad94b0f0298c857239d4840e71ed27763',1,'monitoring_system::health_check_result::health_check_result()']]],
   ['health_5fcheck_5ftimeout_7',['health_check_timeout',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca2f1d72f660002fb6712786b5eb9d8748',1,'monitoring_system']]],
   ['health_5fstatus_8',['health_status',['../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4',1,'monitoring_system']]],
-  ['healthy_9',['healthy',['../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12',1,'monitoring_system']]],
-  ['history_5fsize_10',['history_size',['../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862',1,'monitoring_system::monitoring_config']]]
+  ['healthmonitoringtest_9',['HealthMonitoringTest',['../da/d18/classHealthMonitoringTest.html',1,'']]],
+  ['healthy_10',['healthy',['../dd/d7b/structmonitoring__system_1_1health__check__result.html#ab3851b903296c65e49fb3b49b8be2188',1,'monitoring_system::health_check_result::healthy()'],['../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12',1,'monitoring_system::healthy']]],
+  ['history_5fsize_11',['history_size',['../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862',1,'monitoring_system::monitoring_config']]]
 ];

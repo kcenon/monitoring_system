@@ -120,7 +120,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a single metric value with metadata. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00041">41</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00043">43</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2056435eb7ed1801f25667ec1fdf7702" name="a2056435eb7ed1801f25667ec1fdf7702"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2056435eb7ed1801f25667ec1fdf7702">&#9670;&#160;</a></span>metric_value()</h2>
@@ -156,14 +156,14 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00047">47</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>        : <a class="code hl_variable" href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a72b4134b9d77db88c8d7462b5b1df7ad">name</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">n</a>)</div>
-<div class="line"><span class="lineno">   49</span>        , <a class="code hl_variable" href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a0919c815ca36fbb8baa96aadbd5de95a">value</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">v</a>)</div>
-<div class="line"><span class="lineno">   50</span>        , <a class="code hl_variable" href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a644e36e7e9401fa888a6697f7ff9c573">timestamp</a>(std::chrono::system_clock::now()) {}</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00049">49</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   50</span>        : <a class="code hl_variable" href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a72b4134b9d77db88c8d7462b5b1df7ad">name</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">n</a>)</div>
+<div class="line"><span class="lineno">   51</span>        , <a class="code hl_variable" href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a0919c815ca36fbb8baa96aadbd5de95a">value</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">v</a>)</div>
+<div class="line"><span class="lineno">   52</span>        , <a class="code hl_variable" href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a644e36e7e9401fa888a6697f7ff9c573">timestamp</a>(std::chrono::system_clock::now()) {}</div>
 <div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00243">result_types.h:243</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric__value_html_a0919c815ca36fbb8baa96aadbd5de95a"><div class="ttname"><a href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a0919c815ca36fbb8baa96aadbd5de95a">monitoring_system::metric_value::value</a></div><div class="ttdeci">double value</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00043">monitoring_interface.h:43</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric__value_html_a644e36e7e9401fa888a6697f7ff9c573"><div class="ttname"><a href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a644e36e7e9401fa888a6697f7ff9c573">monitoring_system::metric_value::timestamp</a></div><div class="ttdeci">std::chrono::system_clock::time_point timestamp</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00044">monitoring_interface.h:44</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric__value_html_a72b4134b9d77db88c8d7462b5b1df7ad"><div class="ttname"><a href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a72b4134b9d77db88c8d7462b5b1df7ad">monitoring_system::metric_value::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00042">monitoring_interface.h:42</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metric__value_html_a0919c815ca36fbb8baa96aadbd5de95a"><div class="ttname"><a href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a0919c815ca36fbb8baa96aadbd5de95a">monitoring_system::metric_value::value</a></div><div class="ttdeci">double value</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00045">monitoring_interface.h:45</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metric__value_html_a644e36e7e9401fa888a6697f7ff9c573"><div class="ttname"><a href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a644e36e7e9401fa888a6697f7ff9c573">monitoring_system::metric_value::timestamp</a></div><div class="ttdeci">std::chrono::system_clock::time_point timestamp</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00046">monitoring_interface.h:46</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metric__value_html_a72b4134b9d77db88c8d7462b5b1df7ad"><div class="ttname"><a href="../../dd/d1d/structmonitoring__system_1_1metric__value.html#a72b4134b9d77db88c8d7462b5b1df7ad">monitoring_system::metric_value::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00044">monitoring_interface.h:44</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -180,7 +180,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00042">42</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00044">44</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -196,7 +196,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00045">45</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00047">47</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -212,7 +212,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00044">44</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00046">46</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -228,7 +228,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00043">43</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00045">45</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
 
 </div>
 </div>
@@ -238,7 +238,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

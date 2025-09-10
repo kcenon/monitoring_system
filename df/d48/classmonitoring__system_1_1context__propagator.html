@@ -141,7 +141,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utility for propagating context across thread boundaries. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00302">302</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00301">301</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab49a84853f5c5b8da07ac2d14f936abd" name="ab49a84853f5c5b8da07ac2d14f936abd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab49a84853f5c5b8da07ac2d14f936abd">&#9670;&#160;</a></span>context_propagator()</h2>
@@ -197,16 +197,16 @@ Private Attributes</h2></td></tr>
 <p>Apply captured context to current thread. </p>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00335">335</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  335</span>                              {</div>
-<div class="line"><span class="lineno">  336</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>) {</div>
-<div class="line"><span class="lineno">  337</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c">monitoring_error_code::configuration_not_found</a>,</div>
-<div class="line"><span class="lineno">  338</span>                             <span class="stringliteral">&quot;No captured context to apply&quot;</span>);</div>
-<div class="line"><span class="lineno">  339</span>        }</div>
-<div class="line"><span class="lineno">  340</span>        </div>
-<div class="line"><span class="lineno">  341</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8">thread_context::copy_from</a>(*<a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>);</div>
-<div class="line"><span class="lineno">  342</span>    }</div>
-<div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html_ae6edcaaf3b5c7498b549cdb383044c6d"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">monitoring_system::context_propagator::captured_context_</a></div><div class="ttdeci">std::shared_ptr&lt; context_metadata &gt; captured_context_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00304">thread_context.h:304</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00334">334</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  334</span>                              {</div>
+<div class="line"><span class="lineno">  335</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>) {</div>
+<div class="line"><span class="lineno">  336</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c">monitoring_error_code::configuration_not_found</a>,</div>
+<div class="line"><span class="lineno">  337</span>                             <span class="stringliteral">&quot;No captured context to apply&quot;</span>);</div>
+<div class="line"><span class="lineno">  338</span>        }</div>
+<div class="line"><span class="lineno">  339</span>        </div>
+<div class="line"><span class="lineno">  340</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8">thread_context::copy_from</a>(*<a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>);</div>
+<div class="line"><span class="lineno">  341</span>    }</div>
+<div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html_ae6edcaaf3b5c7498b549cdb383044c6d"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">monitoring_system::context_propagator::captured_context_</a></div><div class="ttdeci">std::shared_ptr&lt; context_metadata &gt; captured_context_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00303">thread_context.h:303</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a38251e0671321cf05164d14e44c0d7a8"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8">monitoring_system::thread_context::copy_from</a></div><div class="ttdeci">static result_void copy_from(const context_metadata &amp;source)</div><div class="ttdoc">Copy context from another thread (for propagation)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00224">thread_context.h:224</a></div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c">monitoring_system::monitoring_error_code::configuration_not_found</a></div><div class="ttdeci">@ configuration_not_found</div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -255,21 +255,21 @@ Here is the call graph for this function:</div>
 <p>Capture current thread's context. </p>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00316">316</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  316</span>                          {</div>
-<div class="line"><span class="lineno">  317</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>()) {</div>
-<div class="line"><span class="lineno">  318</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c">monitoring_error_code::configuration_not_found</a>,</div>
-<div class="line"><span class="lineno">  319</span>                             <span class="stringliteral">&quot;No context to capture&quot;</span>);</div>
-<div class="line"><span class="lineno">  320</span>        }</div>
-<div class="line"><span class="lineno">  321</span>        </div>
-<div class="line"><span class="lineno">  322</span>        <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  323</span>            <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a> = std::make_shared&lt;context_metadata&gt;(*<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>());</div>
-<div class="line"><span class="lineno">  324</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
-<div class="line"><span class="lineno">  325</span>        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">e</a>) {</div>
-<div class="line"><span class="lineno">  326</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca5ea42cc8dbd653d9afd96c1d2fd147e2">monitoring_error_code::out_of_memory</a>,</div>
-<div class="line"><span class="lineno">  327</span>                             std::string(<span class="stringliteral">&quot;Failed to capture context: &quot;</span>) + <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">e</a>.what());</div>
-<div class="line"><span class="lineno">  328</span>        }</div>
-<div class="line"><span class="lineno">  329</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00315">315</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  315</span>                          {</div>
+<div class="line"><span class="lineno">  316</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>()) {</div>
+<div class="line"><span class="lineno">  317</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c">monitoring_error_code::configuration_not_found</a>,</div>
+<div class="line"><span class="lineno">  318</span>                             <span class="stringliteral">&quot;No context to capture&quot;</span>);</div>
+<div class="line"><span class="lineno">  319</span>        }</div>
+<div class="line"><span class="lineno">  320</span>        </div>
+<div class="line"><span class="lineno">  321</span>        <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  322</span>            <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a> = std::make_shared&lt;context_metadata&gt;(*<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>());</div>
+<div class="line"><span class="lineno">  323</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
+<div class="line"><span class="lineno">  324</span>        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">e</a>) {</div>
+<div class="line"><span class="lineno">  325</span>            <span class="keywordflow">return</span> result_void(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca5ea42cc8dbd653d9afd96c1d2fd147e2">monitoring_error_code::out_of_memory</a>,</div>
+<div class="line"><span class="lineno">  326</span>                             std::string(<span class="stringliteral">&quot;Failed to capture context: &quot;</span>) + <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">e</a>.what());</div>
+<div class="line"><span class="lineno">  327</span>        }</div>
+<div class="line"><span class="lineno">  328</span>    }</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result__void_html_a1f7754a11776a87f5ff310b960eaae25"><div class="ttname"><a href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">monitoring_system::result_void::success</a></div><div class="ttdeci">static result_void success()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00191">result_types.h:191</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a2412c2edfa6ffe5c09400072c4d7fb43"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">monitoring_system::thread_context::has_context</a></div><div class="ttdeci">static bool has_context()</div><div class="ttdoc">Check if current thread has a context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00188">thread_context.h:188</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a68216cb9ca2a789155dbc568858a041d"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">monitoring_system::thread_context::current</a></div><div class="ttdeci">static context_metadata * current()</div><div class="ttdoc">Get the current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00150">thread_context.h:150</a></div></div>
@@ -336,10 +336,10 @@ Here is the caller graph for this function:</div>
 
 <p>Clear captured context. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00363">363</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  363</span>                 {</div>
-<div class="line"><span class="lineno">  364</span>        <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>.reset();</div>
-<div class="line"><span class="lineno">  365</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00362">362</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  362</span>                 {</div>
+<div class="line"><span class="lineno">  363</span>        <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>.reset();</div>
+<div class="line"><span class="lineno">  364</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -369,12 +369,12 @@ Here is the caller graph for this function:</div>
 <p>Create a propagator with current context. </p>
 <dl class="section return"><dt>Returns</dt><dd>Propagator with captured context or empty on error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00371">371</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  371</span>                                             {</div>
-<div class="line"><span class="lineno">  372</span>        <a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ab49a84853f5c5b8da07ac2d14f936abd">context_propagator</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">prop</a>;</div>
-<div class="line"><span class="lineno">  373</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">prop</a>.capture(); <span class="comment">// Ignore error, will have empty propagator</span></div>
-<div class="line"><span class="lineno">  374</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">prop</a>;</div>
-<div class="line"><span class="lineno">  375</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00370">370</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  370</span>                                             {</div>
+<div class="line"><span class="lineno">  371</span>        <a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ab49a84853f5c5b8da07ac2d14f936abd">context_propagator</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">prop</a>;</div>
+<div class="line"><span class="lineno">  372</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">prop</a>.capture(); <span class="comment">// Ignore error, will have empty propagator</span></div>
+<div class="line"><span class="lineno">  373</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">prop</a>;</div>
+<div class="line"><span class="lineno">  374</span>    }</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html_ab49a84853f5c5b8da07ac2d14f936abd"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ab49a84853f5c5b8da07ac2d14f936abd">monitoring_system::context_propagator::context_propagator</a></div><div class="ttdeci">context_propagator()=default</div><div class="ttdoc">Default constructor.</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -437,10 +437,10 @@ Here is the caller graph for this function:</div>
 <p>Get the captured context. </p>
 <dl class="section return"><dt>Returns</dt><dd>Shared pointer to captured context or nullptr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00348">348</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  348</span>                                                         {</div>
-<div class="line"><span class="lineno">  349</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>;</div>
-<div class="line"><span class="lineno">  350</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00347">347</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  347</span>                                                         {</div>
+<div class="line"><span class="lineno">  348</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a>;</div>
+<div class="line"><span class="lineno">  349</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -470,10 +470,10 @@ Here is the caller graph for this function:</div>
 <p>Check if context has been captured. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if context is captured </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00356">356</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  356</span>                              {</div>
-<div class="line"><span class="lineno">  357</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a> != <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  358</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00355">355</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  355</span>                              {</div>
+<div class="line"><span class="lineno">  356</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#ae6edcaaf3b5c7498b549cdb383044c6d">captured_context_</a> != <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  357</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -498,7 +498,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00304">304</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00303">303</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 
 </div>
 </div>
@@ -508,7 +508,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

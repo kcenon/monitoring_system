@@ -107,7 +107,7 @@ Collaboration diagram for monitoring_system::context_scope:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72b038278cef4d113903336deefba86b" id="r_a72b038278cef4d113903336deefba86b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a72b038278cef4d113903336deefba86b">context_scope</a> (std::unique_ptr&lt; <a class="el" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> &gt; <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata</a>, <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">bool</a> <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">preserve_previous</a>=<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">false</a>)</td></tr>
+<tr class="memitem:a72b038278cef4d113903336deefba86b" id="r_a72b038278cef4d113903336deefba86b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a72b038278cef4d113903336deefba86b">context_scope</a> (std::unique_ptr&lt; <a class="el" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> &gt; metadata, <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">bool</a> <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">preserve_previous</a>=<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">false</a>)</td></tr>
 <tr class="memdesc:a72b038278cef4d113903336deefba86b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that sets new context.  <br /></td></tr>
 <tr class="separator:a72b038278cef4d113903336deefba86b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad80187790c41f9fcecf33f94aeefa3e2" id="r_ad80187790c41f9fcecf33f94aeefa3e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#ad80187790c41f9fcecf33f94aeefa3e2">context_scope</a> (<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">const</a> std::string &amp;request_id)</td></tr>
@@ -136,7 +136,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>RAII wrapper for managing thread context lifecycle. </p>
 <p>This class ensures that thread context is properly cleaned up when leaving a scope. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00246">246</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00245">245</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a72b038278cef4d113903336deefba86b" name="a72b038278cef4d113903336deefba86b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a72b038278cef4d113903336deefba86b">&#9670;&#160;</a></span>context_scope() <span class="overload">[1/4]</span></h2>
@@ -181,18 +181,18 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00257">257</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  259</span>        : <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">preserve_previous</a>) {</div>
-<div class="line"><span class="lineno">  260</span>        </div>
-<div class="line"><span class="lineno">  261</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a> &amp;&amp; <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>()) {</div>
-<div class="line"><span class="lineno">  262</span>            <span class="comment">// Save current context</span></div>
-<div class="line"><span class="lineno">  263</span>            <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">previous_context_</a> = std::make_unique&lt;context_metadata&gt;(*<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>());</div>
-<div class="line"><span class="lineno">  264</span>        }</div>
-<div class="line"><span class="lineno">  265</span>        </div>
-<div class="line"><span class="lineno">  266</span>        <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0">thread_context::set_current</a>(std::move(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata</a>));</div>
-<div class="line"><span class="lineno">  267</span>    }</div>
-<div class="ttc" id="aclassmonitoring__system_1_1context__scope_html_a57726b932d7605d4572fac07cf4a4657"><div class="ttname"><a href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">monitoring_system::context_scope::should_restore_</a></div><div class="ttdeci">bool should_restore_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00249">thread_context.h:249</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1context__scope_html_a5cd14a8da1a8fc7e6664f4373528ce8a"><div class="ttname"><a href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">monitoring_system::context_scope::previous_context_</a></div><div class="ttdeci">std::unique_ptr&lt; context_metadata &gt; previous_context_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00248">thread_context.h:248</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00256">256</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  258</span>        : <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">preserve_previous</a>) {</div>
+<div class="line"><span class="lineno">  259</span>        </div>
+<div class="line"><span class="lineno">  260</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a> &amp;&amp; <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>()) {</div>
+<div class="line"><span class="lineno">  261</span>            <span class="comment">// Save current context</span></div>
+<div class="line"><span class="lineno">  262</span>            <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">previous_context_</a> = std::make_unique&lt;context_metadata&gt;(*<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>());</div>
+<div class="line"><span class="lineno">  263</span>        }</div>
+<div class="line"><span class="lineno">  264</span>        </div>
+<div class="line"><span class="lineno">  265</span>        <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0">thread_context::set_current</a>(std::move(metadata));</div>
+<div class="line"><span class="lineno">  266</span>    }</div>
+<div class="ttc" id="aclassmonitoring__system_1_1context__scope_html_a57726b932d7605d4572fac07cf4a4657"><div class="ttname"><a href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">monitoring_system::context_scope::should_restore_</a></div><div class="ttdeci">bool should_restore_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00248">thread_context.h:248</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1context__scope_html_a5cd14a8da1a8fc7e6664f4373528ce8a"><div class="ttname"><a href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">monitoring_system::context_scope::previous_context_</a></div><div class="ttdeci">std::unique_ptr&lt; context_metadata &gt; previous_context_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00247">thread_context.h:247</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a2412c2edfa6ffe5c09400072c4d7fb43"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">monitoring_system::thread_context::has_context</a></div><div class="ttdeci">static bool has_context()</div><div class="ttdoc">Check if current thread has a context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00188">thread_context.h:188</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a53f347c89e98e0becc3da7ec016dfea0"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0">monitoring_system::thread_context::set_current</a></div><div class="ttdeci">static void set_current(std::unique_ptr&lt; context_metadata &gt; metadata)</div><div class="ttdoc">Set the current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00158">thread_context.h:158</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a68216cb9ca2a789155dbc568858a041d"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">monitoring_system::thread_context::current</a></div><div class="ttdeci">static context_metadata * current()</div><div class="ttdoc">Get the current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00150">thread_context.h:150</a></div></div>
@@ -202,17 +202,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/d82/classmonitoring__system_1_1context__scope_a72b038278cef4d113903336deefba86b_cgraph.png" border="0" usemap="#ad3/d82/classmonitoring__system_1_1context__scope_a72b038278cef4d113903336deefba86b_cgraph" alt=""/></div>
 <map name="ad3/d82/classmonitoring__system_1_1context__scope_a72b038278cef4d113903336deefba86b_cgraph" id="ad3/d82/classmonitoring__system_1_1context__scope_a72b038278cef4d113903336deefba86b_cgraph">
-<area shape="rect" title="Constructor that sets new context." alt="" coords="5,111,224,151"/>
+<area shape="rect" title="Constructor that sets new context." alt="" coords="5,77,224,117"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="272,5,447,45"/>
-<area shape="poly" title=" " alt="" coords="156,108,271,55,288,48,290,53,273,60,158,113"/>
+<area shape="poly" title=" " alt="" coords="183,75,277,47,278,52,184,80"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="281,70,437,125"/>
-<area shape="poly" title=" " alt="" coords="224,113,267,107,268,112,225,118"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="495,176,651,216"/>
-<area shape="poly" title=" " alt="" coords="225,144,482,180,481,186,224,149"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0" title="Set the current thread&#39;s context." alt="" coords="281,201,437,255"/>
-<area shape="poly" title=" " alt="" coords="167,148,278,193,276,198,165,153"/>
-<area shape="poly" title=" " alt="" coords="533,176,530,166,537,157,551,151,573,149,598,152,611,160,609,164,596,157,573,155,552,157,540,161,535,167,538,175"/>
-<area shape="poly" title=" " alt="" coords="438,214,480,207,481,212,438,219"/>
+<area shape="poly" title=" " alt="" coords="224,95,268,95,268,100,224,100"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0" title="Set the current thread&#39;s context." alt="" coords="281,149,437,203"/>
+<area shape="poly" title=" " alt="" coords="179,115,269,144,268,149,177,120"/>
 </map>
 </div>
 
@@ -250,25 +246,24 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00273">273</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  274</span>        : <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a>(<span class="keyword">false</span>) {</div>
-<div class="line"><span class="lineno">  275</span>        <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(request_id);</div>
-<div class="line"><span class="lineno">  276</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00272">272</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  273</span>        : <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a>(<span class="keyword">false</span>) {</div>
+<div class="line"><span class="lineno">  274</span>        <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(request_id);</div>
+<div class="line"><span class="lineno">  275</span>    }</div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_ab4cb8757a9825e44f51c204c05b94c45"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">monitoring_system::thread_context::create</a></div><div class="ttdeci">static context_metadata &amp; create(const std::string &amp;request_id=&quot;&quot;)</div><div class="ttdoc">Create and set a new context for the current thread.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00167">thread_context.h:167</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/d82/classmonitoring__system_1_1context__scope_ad80187790c41f9fcecf33f94aeefa3e2_cgraph.png" border="0" usemap="#ad3/d82/classmonitoring__system_1_1context__scope_ad80187790c41f9fcecf33f94aeefa3e2_cgraph" alt=""/></div>
 <map name="ad3/d82/classmonitoring__system_1_1context__scope_ad80187790c41f9fcecf33f94aeefa3e2_cgraph" id="ad3/d82/classmonitoring__system_1_1context__scope_ad80187790c41f9fcecf33f94aeefa3e2_cgraph">
-<area shape="rect" title="Constructor that creates new context with request ID." alt="" coords="5,46,224,86"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="272,46,441,86"/>
-<area shape="poly" title=" " alt="" coords="224,63,258,63,258,69,224,69"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="489,5,676,60"/>
-<area shape="poly" title=" " alt="" coords="441,51,475,46,476,51,442,56"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="724,46,880,86"/>
-<area shape="poly" title=" " alt="" coords="441,67,489,69,676,69,710,68,710,73,676,74,489,74,441,73"/>
-<area shape="poly" title=" " alt="" coords="677,44,711,49,710,55,676,50"/>
-<area shape="poly" title=" " alt="" coords="761,46,759,36,765,27,780,21,802,19,828,22,842,30,839,34,826,27,802,25,781,27,768,31,764,37,766,45"/>
+<area shape="rect" title="Constructor that creates new context with request ID." alt="" coords="5,29,224,69"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="272,29,441,69"/>
+<area shape="poly" title=" " alt="" coords="224,47,258,47,258,52,224,52"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="489,22,676,77"/>
+<area shape="poly" title=" " alt="" coords="442,47,476,47,476,52,442,52"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="724,29,880,69"/>
+<area shape="poly" title=" " alt="" coords="677,47,710,47,710,52,677,52"/>
+<area shape="poly" title=" " alt="" coords="761,30,759,20,765,10,780,5,802,3,828,6,842,13,839,18,826,11,802,8,781,10,768,15,764,21,766,28"/>
 </map>
 </div>
 
@@ -299,14 +294,14 @@ Here is the call graph for this function:</div>
 
 <p>Destructor - restores or clears context. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00281">281</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  281</span>                     {</div>
-<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a> &amp;&amp; <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">previous_context_</a>) {</div>
-<div class="line"><span class="lineno">  283</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0">thread_context::set_current</a>(std::move(<a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">previous_context_</a>));</div>
-<div class="line"><span class="lineno">  284</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  285</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9">thread_context::clear</a>();</div>
-<div class="line"><span class="lineno">  286</span>        }</div>
-<div class="line"><span class="lineno">  287</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00280">280</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  280</span>                     {</div>
+<div class="line"><span class="lineno">  281</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a57726b932d7605d4572fac07cf4a4657">should_restore_</a> &amp;&amp; <a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">previous_context_</a>) {</div>
+<div class="line"><span class="lineno">  282</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0">thread_context::set_current</a>(std::move(<a class="code hl_variable" href="../../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a">previous_context_</a>));</div>
+<div class="line"><span class="lineno">  283</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  284</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9">thread_context::clear</a>();</div>
+<div class="line"><span class="lineno">  285</span>        }</div>
+<div class="line"><span class="lineno">  286</span>    }</div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_acdb43e4cb4bdecbd1d9a75762e06d5b9"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9">monitoring_system::thread_context::clear</a></div><div class="ttdeci">static void clear()</div><div class="ttdoc">Clear the current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00180">thread_context.h:180</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -318,9 +313,6 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="235,42,269,37,270,42,235,47"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0" title="Set the current thread&#39;s context." alt="" coords="285,70,441,125"/>
 <area shape="poly" title=" " alt="" coords="235,76,271,81,270,86,235,81"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="491,77,647,117"/>
-<area shape="poly" title=" " alt="" coords="441,95,477,95,477,100,441,100"/>
-<area shape="poly" title=" " alt="" coords="530,78,528,68,534,59,548,53,569,51,593,54,606,61,603,66,591,59,569,56,549,58,537,63,533,69,535,76"/>
 </map>
 </div>
 
@@ -452,7 +444,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00248">248</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00247">247</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 
 </div>
 </div>
@@ -476,7 +468,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00249">249</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00248">248</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 
 </div>
 </div>
@@ -486,7 +478,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

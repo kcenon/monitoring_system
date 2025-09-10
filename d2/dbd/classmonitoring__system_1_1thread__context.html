@@ -112,7 +112,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a68216cb9ca2a789155dbc568858a041d" id="r_a68216cb9ca2a789155dbc568858a041d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">static</a> <a class="el" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">current</a> ()</td></tr>
 <tr class="memdesc:a68216cb9ca2a789155dbc568858a041d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current thread's context.  <br /></td></tr>
 <tr class="separator:a68216cb9ca2a789155dbc568858a041d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53f347c89e98e0becc3da7ec016dfea0" id="r_a53f347c89e98e0becc3da7ec016dfea0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">static</a> <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0">set_current</a> (std::unique_ptr&lt; <a class="el" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> &gt; <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata</a>)</td></tr>
+<tr class="memitem:a53f347c89e98e0becc3da7ec016dfea0" id="r_a53f347c89e98e0becc3da7ec016dfea0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">static</a> <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0">set_current</a> (std::unique_ptr&lt; <a class="el" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> &gt; metadata)</td></tr>
 <tr class="memdesc:a53f347c89e98e0becc3da7ec016dfea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current thread's context.  <br /></td></tr>
 <tr class="separator:a53f347c89e98e0becc3da7ec016dfea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4cb8757a9825e44f51c204c05b94c45" id="r_ab4cb8757a9825e44f51c204c05b94c45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">static</a> <a class="el" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">create</a> (<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">const</a> std::string &amp;request_id=&quot;&quot;)</td></tr>
@@ -309,12 +309,12 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00167">167</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  167</span>                                                                      {</div>
-<div class="line"><span class="lineno">  168</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata</a> = std::make_unique&lt;context_metadata&gt;(request_id);</div>
+<div class="line"><span class="lineno">  168</span>        <span class="keyword">auto</span> metadata = std::make_unique&lt;context_metadata&gt;(request_id);</div>
 <div class="line"><span class="lineno">  169</span>        <span class="keywordflow">if</span> (request_id.empty()) {</div>
 <div class="line"><span class="lineno">  170</span>            <span class="comment">// Generate a unique request ID if not provided</span></div>
-<div class="line"><span class="lineno">  171</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata</a>-&gt;request_id = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914">generate_request_id</a>();</div>
+<div class="line"><span class="lineno">  171</span>            metadata-&gt;request_id = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914">generate_request_id</a>();</div>
 <div class="line"><span class="lineno">  172</span>        }</div>
-<div class="line"><span class="lineno">  173</span>        <a class="code hl_variable" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a223e8918f1c17dec796b547024999632">current_context_</a> = std::move(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata</a>);</div>
+<div class="line"><span class="lineno">  173</span>        <a class="code hl_variable" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a223e8918f1c17dec796b547024999632">current_context_</a> = std::move(metadata);</div>
 <div class="line"><span class="lineno">  174</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a223e8918f1c17dec796b547024999632">current_context_</a>;</div>
 <div class="line"><span class="lineno">  175</span>    }</div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_ac8fb47251cea2f16af63c8980c817914"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914">monitoring_system::thread_context::generate_request_id</a></div><div class="ttdeci">static std::string generate_request_id()</div><div class="ttdoc">Generate a unique request ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00196">thread_context.h:196</a></div></div>
@@ -323,13 +323,12 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/dbd/classmonitoring__system_1_1thread__context_ab4cb8757a9825e44f51c204c05b94c45_cgraph.png" border="0" usemap="#ad2/dbd/classmonitoring__system_1_1thread__context_ab4cb8757a9825e44f51c204c05b94c45_cgraph" alt=""/></div>
 <map name="ad2/dbd/classmonitoring__system_1_1thread__context_ab4cb8757a9825e44f51c204c05b94c45_cgraph" id="ad2/dbd/classmonitoring__system_1_1thread__context_ab4cb8757a9825e44f51c204c05b94c45_cgraph">
-<area shape="rect" title="Create and set a new context for the current thread." alt="" coords="5,46,175,86"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="223,5,409,60"/>
-<area shape="poly" title=" " alt="" coords="175,51,209,46,210,51,176,56"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="457,46,613,86"/>
-<area shape="poly" title=" " alt="" coords="175,67,223,69,409,69,443,68,444,73,409,74,223,74,175,73"/>
-<area shape="poly" title=" " alt="" coords="410,44,444,49,443,55,409,50"/>
-<area shape="poly" title=" " alt="" coords="494,46,492,36,498,27,513,21,535,19,561,22,575,30,572,34,559,27,535,25,514,27,502,31,497,37,499,45"/>
+<area shape="rect" title="Create and set a new context for the current thread." alt="" coords="5,29,175,69"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="223,22,409,77"/>
+<area shape="poly" title=" " alt="" coords="175,47,209,47,209,52,175,52"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="457,29,613,69"/>
+<area shape="poly" title=" " alt="" coords="410,47,444,47,444,52,410,52"/>
+<area shape="poly" title=" " alt="" coords="494,30,492,20,498,10,513,5,535,3,561,6,575,13,572,18,559,11,535,8,514,10,502,15,497,21,499,28"/>
 </map>
 </div>
 <div class="dynheader">
@@ -678,20 +677,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00158">158</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  158</span>                                                                      {</div>
-<div class="line"><span class="lineno">  159</span>        <a class="code hl_variable" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a223e8918f1c17dec796b547024999632">current_context_</a> = std::move(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata</a>);</div>
+<div class="line"><span class="lineno">  159</span>        <a class="code hl_variable" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a223e8918f1c17dec796b547024999632">current_context_</a> = std::move(metadata);</div>
 <div class="line"><span class="lineno">  160</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/dbd/classmonitoring__system_1_1thread__context_a53f347c89e98e0becc3da7ec016dfea0_cgraph.png" border="0" usemap="#ad2/dbd/classmonitoring__system_1_1thread__context_a53f347c89e98e0becc3da7ec016dfea0_cgraph" alt=""/></div>
-<map name="ad2/dbd/classmonitoring__system_1_1thread__context_a53f347c89e98e0becc3da7ec016dfea0_cgraph" id="ad2/dbd/classmonitoring__system_1_1thread__context_a53f347c89e98e0becc3da7ec016dfea0_cgraph">
-<area shape="rect" title="Set the current thread&#39;s context." alt="" coords="5,22,161,77"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="209,29,365,69"/>
-<area shape="poly" title=" " alt="" coords="161,47,196,47,196,52,161,52"/>
-<area shape="poly" title=" " alt="" coords="249,30,247,20,253,11,267,5,287,3,311,6,324,13,321,18,309,11,287,8,268,10,256,15,252,21,254,28"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/dbd/classmonitoring__system_1_1thread__context_a53f347c89e98e0becc3da7ec016dfea0_icgraph.png" border="0" usemap="#ad2/dbd/classmonitoring__system_1_1thread__context_a53f347c89e98e0becc3da7ec016dfea0_icgraph" alt=""/></div>
@@ -722,7 +710,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -746,7 +734,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -755,13 +743,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>sources/monitoring/context/<a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a></li>
+<li>sources/monitoring/context/<a class="el" href="../../d0/d43/thread__context_8cpp_source.html">thread_context.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

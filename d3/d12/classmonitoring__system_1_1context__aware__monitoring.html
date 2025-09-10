@@ -117,7 +117,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for monitoring components that use thread context. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00382">382</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00381">381</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afb271212f082a0fe7a4a0247b9276c23" name="afb271212f082a0fe7a4a0247b9276c23"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb271212f082a0fe7a4a0247b9276c23">&#9670;&#160;</a></span>~context_aware_monitoring()</h2>
@@ -189,46 +189,46 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00392">392</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  394</span>                                                         {</div>
-<div class="line"><span class="lineno">  395</span>        </div>
-<div class="line"><span class="lineno">  396</span>        <span class="keyword">const</span> context_metadata* <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> = context;</div>
-<div class="line"><span class="lineno">  397</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>) {</div>
-<div class="line"><span class="lineno">  398</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>();</div>
-<div class="line"><span class="lineno">  399</span>        }</div>
-<div class="line"><span class="lineno">  400</span>        </div>
-<div class="line"><span class="lineno">  401</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>) {</div>
-<div class="line"><span class="lineno">  402</span>            <span class="comment">// No context available, not an error</span></div>
-<div class="line"><span class="lineno">  403</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
-<div class="line"><span class="lineno">  404</span>        }</div>
-<div class="line"><span class="lineno">  405</span>        </div>
-<div class="line"><span class="lineno">  406</span>        <span class="comment">// Add context metadata as tags</span></div>
-<div class="line"><span class="lineno">  407</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;request_id.empty()) {</div>
-<div class="line"><span class="lineno">  408</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;request_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;request_id);</div>
-<div class="line"><span class="lineno">  409</span>        }</div>
-<div class="line"><span class="lineno">  410</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;correlation_id.empty()) {</div>
-<div class="line"><span class="lineno">  411</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;correlation_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;correlation_id);</div>
-<div class="line"><span class="lineno">  412</span>        }</div>
-<div class="line"><span class="lineno">  413</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;user_id.empty()) {</div>
-<div class="line"><span class="lineno">  414</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;user_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;user_id);</div>
-<div class="line"><span class="lineno">  415</span>        }</div>
-<div class="line"><span class="lineno">  416</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;session_id.empty()) {</div>
-<div class="line"><span class="lineno">  417</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;session_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;session_id);</div>
-<div class="line"><span class="lineno">  418</span>        }</div>
-<div class="line"><span class="lineno">  419</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;trace_id.empty()) {</div>
-<div class="line"><span class="lineno">  420</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;trace_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;trace_id);</div>
-<div class="line"><span class="lineno">  421</span>        }</div>
-<div class="line"><span class="lineno">  422</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;span_id.empty()) {</div>
-<div class="line"><span class="lineno">  423</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;span_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;span_id);</div>
-<div class="line"><span class="lineno">  424</span>        }</div>
-<div class="line"><span class="lineno">  425</span>        </div>
-<div class="line"><span class="lineno">  426</span>        <span class="comment">// Add custom tags with prefix</span></div>
-<div class="line"><span class="lineno">  427</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">key</a>, value] : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;custom_tags) {</div>
-<div class="line"><span class="lineno">  428</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;ctx.&quot;</span> + <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">key</a>, value);</div>
-<div class="line"><span class="lineno">  429</span>        }</div>
-<div class="line"><span class="lineno">  430</span>        </div>
-<div class="line"><span class="lineno">  431</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
-<div class="line"><span class="lineno">  432</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00391">391</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  393</span>                                                         {</div>
+<div class="line"><span class="lineno">  394</span>        </div>
+<div class="line"><span class="lineno">  395</span>        <span class="keyword">const</span> context_metadata* <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> = context;</div>
+<div class="line"><span class="lineno">  396</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>) {</div>
+<div class="line"><span class="lineno">  397</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>();</div>
+<div class="line"><span class="lineno">  398</span>        }</div>
+<div class="line"><span class="lineno">  399</span>        </div>
+<div class="line"><span class="lineno">  400</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>) {</div>
+<div class="line"><span class="lineno">  401</span>            <span class="comment">// No context available, not an error</span></div>
+<div class="line"><span class="lineno">  402</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
+<div class="line"><span class="lineno">  403</span>        }</div>
+<div class="line"><span class="lineno">  404</span>        </div>
+<div class="line"><span class="lineno">  405</span>        <span class="comment">// Add context metadata as tags</span></div>
+<div class="line"><span class="lineno">  406</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;request_id.empty()) {</div>
+<div class="line"><span class="lineno">  407</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;request_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;request_id);</div>
+<div class="line"><span class="lineno">  408</span>        }</div>
+<div class="line"><span class="lineno">  409</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;correlation_id.empty()) {</div>
+<div class="line"><span class="lineno">  410</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;correlation_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;correlation_id);</div>
+<div class="line"><span class="lineno">  411</span>        }</div>
+<div class="line"><span class="lineno">  412</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;user_id.empty()) {</div>
+<div class="line"><span class="lineno">  413</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;user_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;user_id);</div>
+<div class="line"><span class="lineno">  414</span>        }</div>
+<div class="line"><span class="lineno">  415</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;session_id.empty()) {</div>
+<div class="line"><span class="lineno">  416</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;session_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;session_id);</div>
+<div class="line"><span class="lineno">  417</span>        }</div>
+<div class="line"><span class="lineno">  418</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;trace_id.empty()) {</div>
+<div class="line"><span class="lineno">  419</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;trace_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;trace_id);</div>
+<div class="line"><span class="lineno">  420</span>        }</div>
+<div class="line"><span class="lineno">  421</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;span_id.empty()) {</div>
+<div class="line"><span class="lineno">  422</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;span_id&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;span_id);</div>
+<div class="line"><span class="lineno">  423</span>        }</div>
+<div class="line"><span class="lineno">  424</span>        </div>
+<div class="line"><span class="lineno">  425</span>        <span class="comment">// Add custom tags with prefix</span></div>
+<div class="line"><span class="lineno">  426</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">key</a>, value] : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;custom_tags) {</div>
+<div class="line"><span class="lineno">  427</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;ctx.&quot;</span> + <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">key</a>, value);</div>
+<div class="line"><span class="lineno">  428</span>        }</div>
+<div class="line"><span class="lineno">  429</span>        </div>
+<div class="line"><span class="lineno">  430</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
+<div class="line"><span class="lineno">  431</span>    }</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result__void_html_a1f7754a11776a87f5ff310b960eaae25"><div class="ttname"><a href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">monitoring_system::result_void::success</a></div><div class="ttdeci">static result_void success()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00191">result_types.h:191</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a68216cb9ca2a789155dbc568858a041d"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">monitoring_system::thread_context::current</a></div><div class="ttdeci">static context_metadata * current()</div><div class="ttdoc">Get the current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00150">thread_context.h:150</a></div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00243">result_types.h:243</a></div></div>
@@ -292,10 +292,10 @@ Here is the caller graph for this function:</div>
 
 <p>Reimplemented in <a class="el" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#a351be04a34964c1bd55250692986549a">monitoring_system::context_metrics_collector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00438">438</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  438</span>                                                  {</div>
-<div class="line"><span class="lineno">  439</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  440</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dd1/thread__context_8h_source.html#l00437">437</a> of file <a class="el" href="../../dc/dd1/thread__context_8h_source.html">thread_context.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  437</span>                                                  {</div>
+<div class="line"><span class="lineno">  438</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  439</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -305,7 +305,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

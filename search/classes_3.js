@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['health_5fcheck_5fresult_0',['health_check_result',['../dd/d7b/structmonitoring__system_1_1health__check__result.html',1,'monitoring_system']]]
+  ['error_5finfo_0',['error_info',['../d0/d5c/structmonitoring__system_1_1error__info.html',1,'monitoring_system']]]
 ];

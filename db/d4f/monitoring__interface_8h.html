@@ -91,39 +91,44 @@ $(function() {
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;exception&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for monitoring_interface.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d1/d8f/monitoring__interface_8h__incl.png" border="0" usemap="#asources_2monitoring_2interfaces_2monitoring__interface_8h" alt=""/></div>
 <map name="asources_2monitoring_2interfaces_2monitoring__interface_8h" id="asources_2monitoring_2interfaces_2monitoring__interface_8h">
-<area shape="rect" title="Core monitoring system interface definitions." alt="" coords="715,5,881,60"/>
-<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="304,108,463,133"/>
-<area shape="poly" title=" " alt="" coords="715,54,453,108,452,103,714,49"/>
+<area shape="rect" title="Core monitoring system interface definitions." alt="" coords="707,5,873,60"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="328,108,487,133"/>
+<area shape="poly" title=" " alt="" coords="707,55,472,108,471,102,706,50"/>
 <area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="5,181,116,207"/>
-<area shape="poly" title=" " alt="" coords="715,44,520,67,406,86,292,111,187,144,100,178,98,173,185,139,291,105,404,81,519,61,714,38"/>
+<area shape="poly" title=" " alt="" coords="707,45,526,70,421,88,316,111,199,145,103,179,101,174,198,140,315,105,420,83,525,65,706,40"/>
 <area shape="rect" title=" " alt="" coords="125,255,183,280"/>
-<area shape="poly" title=" " alt="" coords="795,61,773,144,757,183,740,209,709,221,654,232,500,249,197,267,197,262,500,243,653,226,707,216,736,205,753,181,768,142,790,59"/>
-<area shape="rect" title=" " alt="" coords="649,181,726,207"/>
-<area shape="poly" title=" " alt="" coords="781,62,747,110,705,171,700,168,742,106,777,59"/>
-<area shape="rect" title=" " alt="" coords="801,108,864,133"/>
-<area shape="poly" title=" " alt="" coords="811,59,825,94,820,96,806,61"/>
-<area shape="rect" title=" " alt="" coords="889,108,955,133"/>
-<area shape="poly" title=" " alt="" coords="837,58,895,98,892,102,834,62"/>
-<area shape="rect" title=" " alt="" coords="980,108,1067,133"/>
-<area shape="poly" title=" " alt="" coords="868,58,982,101,980,106,866,63"/>
-<area shape="rect" title=" " alt="" coords="1091,108,1215,133"/>
-<area shape="poly" title=" " alt="" coords="882,52,1093,102,1092,107,881,57"/>
-<area shape="poly" title=" " alt="" coords="332,136,127,181,126,176,331,131"/>
-<area shape="poly" title=" " alt="" coords="304,130,272,136,239,147,208,162,181,183,172,196,165,211,158,242,153,240,160,209,167,193,177,179,205,158,237,142,271,131,303,125"/>
+<area shape="poly" title=" " alt="" coords="788,61,769,143,755,183,738,209,708,221,653,232,500,249,330,261,197,267,197,262,329,255,499,244,652,227,706,216,735,205,750,181,764,142,783,60"/>
+<area shape="rect" title=" " alt="" coords="549,181,623,207"/>
+<area shape="poly" title=" " alt="" coords="758,62,613,175,610,171,755,58"/>
+<area shape="rect" title=" " alt="" coords="647,181,725,207"/>
+<area shape="poly" title=" " alt="" coords="772,62,739,109,702,171,697,168,734,107,768,59"/>
+<area shape="rect" title=" " alt="" coords="793,108,856,133"/>
+<area shape="poly" title=" " alt="" coords="803,59,817,94,812,96,798,61"/>
+<area shape="rect" title=" " alt="" coords="881,108,947,133"/>
+<area shape="poly" title=" " alt="" coords="829,58,887,98,884,102,826,62"/>
+<area shape="rect" title=" " alt="" coords="972,108,1059,133"/>
+<area shape="poly" title=" " alt="" coords="860,58,974,101,972,106,858,63"/>
+<area shape="rect" title=" " alt="" coords="1083,108,1207,133"/>
+<area shape="poly" title=" " alt="" coords="874,52,1085,102,1084,107,873,57"/>
+<area shape="rect" title=" " alt="" coords="1231,108,1317,133"/>
+<area shape="poly" title=" " alt="" coords="874,45,1217,105,1217,110,873,50"/>
+<area shape="poly" title=" " alt="" coords="352,136,130,181,129,176,351,131"/>
+<area shape="poly" title=" " alt="" coords="328,126,290,132,251,143,214,159,181,183,171,196,165,211,158,241,153,240,160,209,167,193,177,179,211,155,249,138,289,127,327,121"/>
 <area shape="rect" title=" " alt="" coords="192,181,260,207"/>
-<area shape="poly" title=" " alt="" coords="359,136,265,178,263,173,357,131"/>
-<area shape="rect" title=" " alt="" coords="285,181,359,207"/>
-<area shape="poly" title=" " alt="" coords="375,135,343,173,339,169,371,132"/>
-<area shape="poly" title=" " alt="" coords="433,131,636,178,635,183,432,136"/>
-<area shape="rect" title=" " alt="" coords="384,181,508,207"/>
-<area shape="poly" title=" " alt="" coords="396,132,429,169,425,173,392,135"/>
-<area shape="rect" title=" " alt="" coords="532,181,624,207"/>
-<area shape="poly" title=" " alt="" coords="416,131,534,174,533,179,414,136"/>
+<area shape="poly" title=" " alt="" coords="379,136,269,179,267,174,377,131"/>
+<area shape="poly" title=" " alt="" coords="437,131,545,174,543,179,435,136"/>
+<area shape="poly" title=" " alt="" coords="453,131,635,177,634,182,451,136"/>
+<area shape="rect" title=" " alt="" coords="284,181,408,207"/>
+<area shape="poly" title=" " alt="" coords="399,135,367,173,363,169,395,132"/>
+<area shape="rect" title=" " alt="" coords="432,181,524,207"/>
+<area shape="poly" title=" " alt="" coords="421,132,459,170,455,174,417,136"/>
 <area shape="rect" title=" " alt="" coords="27,255,94,280"/>
 <area shape="poly" title=" " alt="" coords="63,207,63,241,58,241,58,207"/>
 <area shape="poly" title=" " alt="" coords="77,205,130,244,126,248,74,209"/>
@@ -141,8 +146,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="poly" title=" " alt="" coords="308,74,308,108,303,108,303,74"/>
 <area shape="rect" href="../../df/de8/test__result__types_8cpp.html" title=" " alt="" coords="424,115,621,141"/>
 <area shape="poly" title=" " alt="" coords="380,63,497,113,495,118,378,68"/>
-<area shape="rect" href="../../d4/ddd/test__thread__context_8cpp.html" title="Unit tests for thread context and metadata." alt="" coords="198,196,413,221"/>
-<area shape="poly" title=" " alt="" coords="308,162,308,196,303,196,303,162"/>
+<area shape="rect" href="../../d0/d43/thread__context_8cpp.html" title="Thread context implementation." alt="" coords="86,196,290,236"/>
+<area shape="poly" title=" " alt="" coords="270,158,216,198,212,194,267,154"/>
+<area shape="rect" href="../../d4/ddd/test__thread__context_8cpp.html" title="Unit tests for thread context and metadata." alt="" coords="314,203,529,229"/>
+<area shape="poly" title=" " alt="" coords="344,154,407,201,404,205,341,159"/>
 </map>
 </div>
 </div>
@@ -198,7 +205,7 @@ Enumerations</h2></td></tr>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

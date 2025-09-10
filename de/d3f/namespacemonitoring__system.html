@@ -200,7 +200,13 @@ Enumerations</h2></td></tr>
 , <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca2f1d72f660002fb6712786b5eb9d8748">health_check_timeout</a> = 7001
 , <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae70862bdaee3e93221ac776d656f5edf">health_check_not_registered</a> = 7002
 , <br />
-&#160;&#160;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca4e44c97a51e5519cd277f335de285ead">unknown_error</a> = 9999
+&#160;&#160;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae55d43eabeefe5a8271b4a3c898bd18f">invalid_argument</a> = 8000
+, <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca1528b2e7d0051d6d859b53639dd6f49c">invalid_state</a> = 8001
+, <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714">not_found</a> = 8002
+, <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7a6f43ded24333b44b8a5d5dc159c4ea">already_exists</a> = 8003
+, <br />
+&#160;&#160;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaf4c1197058f696c2a362915e5413633d">resource_exhausted</a> = 8004
+, <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca4e44c97a51e5519cd277f335de285ead">unknown_error</a> = 9999
 <br />
  }</td></tr>
 <tr class="memdesc:a22dca6fa0d74ff9143a6386fbd724ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comprehensive error codes for monitoring system operations.  <a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecc">More...</a><br /></td></tr>
@@ -275,13 +281,13 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a1a3c481170ef3603d18f608a94dc7ff4aad921d60486366258809553a3db49a4a" name="a1a3c481170ef3603d18f608a94dc7ff4aad921d60486366258809553a3db49a4a"></a>unknown&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00093">93</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   93</span>                         {</div>
-<div class="line"><span class="lineno">   94</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12">healthy</a>,</div>
-<div class="line"><span class="lineno">   95</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a8377f5fd94f84ea08829f36e1ded3b74">degraded</a>,</div>
-<div class="line"><span class="lineno">   96</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4ab7a582af4c2e181215b55161560713e5">unhealthy</a>,</div>
-<div class="line"><span class="lineno">   97</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4aad921d60486366258809553a3db49a4a">unknown</a></div>
-<div class="line"><span class="lineno">   98</span>};</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html#l00095">95</a> of file <a class="el" href="../../db/d4f/monitoring__interface_8h_source.html">monitoring_interface.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>                         {</div>
+<div class="line"><span class="lineno">   96</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12">healthy</a>,</div>
+<div class="line"><span class="lineno">   97</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a8377f5fd94f84ea08829f36e1ded3b74">degraded</a>,</div>
+<div class="line"><span class="lineno">   98</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4ab7a582af4c2e181215b55161560713e5">unhealthy</a>,</div>
+<div class="line"><span class="lineno">   99</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4aad921d60486366258809553a3db49a4a">unknown</a></div>
+<div class="line"><span class="lineno">  100</span>};</div>
 <div class="ttc" id="anamespacemonitoring__system_html_a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12">monitoring_system::health_status::healthy</a></div><div class="ttdeci">@ healthy</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a1a3c481170ef3603d18f608a94dc7ff4a8377f5fd94f84ea08829f36e1ded3b74"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a8377f5fd94f84ea08829f36e1ded3b74">monitoring_system::health_status::degraded</a></div><div class="ttdeci">@ degraded</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a1a3c481170ef3603d18f608a94dc7ff4aad921d60486366258809553a3db49a4a"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4aad921d60486366258809553a3db49a4a">monitoring_system::health_status::unknown</a></div><div class="ttdeci">@ unknown</div></div>
@@ -347,6 +353,11 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724eccae44828f7d5b40887652b344e729c5567" name="a22dca6fa0d74ff9143a6386fbd724eccae44828f7d5b40887652b344e729c5567"></a>health_check_failed&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724ecca2f1d72f660002fb6712786b5eb9d8748" name="a22dca6fa0d74ff9143a6386fbd724ecca2f1d72f660002fb6712786b5eb9d8748"></a>health_check_timeout&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724eccae70862bdaee3e93221ac776d656f5edf" name="a22dca6fa0d74ff9143a6386fbd724eccae70862bdaee3e93221ac776d656f5edf"></a>health_check_not_registered&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724eccae55d43eabeefe5a8271b4a3c898bd18f" name="a22dca6fa0d74ff9143a6386fbd724eccae55d43eabeefe5a8271b4a3c898bd18f"></a>invalid_argument&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724ecca1528b2e7d0051d6d859b53639dd6f49c" name="a22dca6fa0d74ff9143a6386fbd724ecca1528b2e7d0051d6d859b53639dd6f49c"></a>invalid_state&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714" name="a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714"></a>not_found&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724ecca7a6f43ded24333b44b8a5d5dc159c4ea" name="a22dca6fa0d74ff9143a6386fbd724ecca7a6f43ded24333b44b8a5d5dc159c4ea"></a>already_exists&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724eccaf4c1197058f696c2a362915e5413633d" name="a22dca6fa0d74ff9143a6386fbd724eccaf4c1197058f696c2a362915e5413633d"></a>resource_exhausted&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a22dca6fa0d74ff9143a6386fbd724ecca4e44c97a51e5519cd277f335de285ead" name="a22dca6fa0d74ff9143a6386fbd724ecca4e44c97a51e5519cd277f335de285ead"></a>unknown_error&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
@@ -404,10 +415,18 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   77</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca2f1d72f660002fb6712786b5eb9d8748">health_check_timeout</a> = 7001,</div>
 <div class="line"><span class="lineno">   78</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae70862bdaee3e93221ac776d656f5edf">health_check_not_registered</a> = 7002,</div>
 <div class="line"><span class="lineno">   79</span>    </div>
-<div class="line"><span class="lineno">   80</span>    <span class="comment">// Unknown error</span></div>
-<div class="line"><span class="lineno">   81</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca4e44c97a51e5519cd277f335de285ead">unknown_error</a> = 9999</div>
-<div class="line"><span class="lineno">   82</span>};</div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">// General errors (8000-8999)</span></div>
+<div class="line"><span class="lineno">   81</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae55d43eabeefe5a8271b4a3c898bd18f">invalid_argument</a> = 8000,</div>
+<div class="line"><span class="lineno">   82</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca1528b2e7d0051d6d859b53639dd6f49c">invalid_state</a> = 8001,</div>
+<div class="line"><span class="lineno">   83</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714">not_found</a> = 8002,</div>
+<div class="line"><span class="lineno">   84</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7a6f43ded24333b44b8a5d5dc159c4ea">already_exists</a> = 8003,</div>
+<div class="line"><span class="lineno">   85</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaf4c1197058f696c2a362915e5413633d">resource_exhausted</a> = 8004,</div>
+<div class="line"><span class="lineno">   86</span>    </div>
+<div class="line"><span class="lineno">   87</span>    <span class="comment">// Unknown error</span></div>
+<div class="line"><span class="lineno">   88</span>    <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca4e44c97a51e5519cd277f335de285ead">unknown_error</a> = 9999</div>
+<div class="line"><span class="lineno">   89</span>};</div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca11ac24db975287952025896dfdc87e48"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca11ac24db975287952025896dfdc87e48">monitoring_system::monitoring_error_code::storage_empty</a></div><div class="ttdeci">@ storage_empty</div></div>
+<div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca1528b2e7d0051d6d859b53639dd6f49c"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca1528b2e7d0051d6d859b53639dd6f49c">monitoring_system::monitoring_error_code::invalid_state</a></div><div class="ttdeci">@ invalid_state</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca2343e8697e507dc3a753362b643192be"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca2343e8697e507dc3a753362b643192be">monitoring_system::monitoring_error_code::logger_system_not_available</a></div><div class="ttdeci">@ logger_system_not_available</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca260ca9dd8a4577fc00b7bd5810298076"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca260ca9dd8a4577fc00b7bd5810298076">monitoring_system::monitoring_error_code::success</a></div><div class="ttdeci">@ success</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca28af6a88aa7a4ad6f5c2a2fb69dd355c">monitoring_system::monitoring_error_code::configuration_not_found</a></div><div class="ttdeci">@ configuration_not_found</div></div>
@@ -419,7 +438,9 @@ Functions</h2></td></tr>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca56d6e1482db93bec9f173a8a021b9735"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca56d6e1482db93bec9f173a8a021b9735">monitoring_system::monitoring_error_code::metric_not_found</a></div><div class="ttdeci">@ metric_not_found</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca5ea42cc8dbd653d9afd96c1d2fd147e2"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca5ea42cc8dbd653d9afd96c1d2fd147e2">monitoring_system::monitoring_error_code::out_of_memory</a></div><div class="ttdeci">@ out_of_memory</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca6ce19d8c1d08950b7e01833ce8e455e2"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca6ce19d8c1d08950b7e01833ce8e455e2">monitoring_system::monitoring_error_code::invalid_collector_config</a></div><div class="ttdeci">@ invalid_collector_config</div></div>
+<div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714">monitoring_system::monitoring_error_code::not_found</a></div><div class="ttdeci">@ not_found</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca75d09f728227eb1d99f333944eff3e12"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca75d09f728227eb1d99f333944eff3e12">monitoring_system::monitoring_error_code::invalid_metric_type</a></div><div class="ttdeci">@ invalid_metric_type</div></div>
+<div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca7a6f43ded24333b44b8a5d5dc159c4ea"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_system::monitoring_error_code::already_exists</a></div><div class="ttdeci">@ already_exists</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca7fdc68f8eeda2e843600e38c2471fc88"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7fdc68f8eeda2e843600e38c2471fc88">monitoring_system::monitoring_error_code::compression_failed</a></div><div class="ttdeci">@ compression_failed</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca85d5409043628bbf2abf45d6561797c7"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca85d5409043628bbf2abf45d6561797c7">monitoring_system::monitoring_error_code::collector_already_exists</a></div><div class="ttdeci">@ collector_already_exists</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724ecca8d6f9bc809558dc4a529c4a2dd18017c"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca8d6f9bc809558dc4a529c4a2dd18017c">monitoring_system::monitoring_error_code::collector_disabled</a></div><div class="ttdeci">@ collector_disabled</div></div>
@@ -437,6 +458,7 @@ Functions</h2></td></tr>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccad611c462410db25662c51847fedd0926"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccad611c462410db25662c51847fedd0926">monitoring_system::monitoring_error_code::metric_overflow</a></div><div class="ttdeci">@ metric_overflow</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccae2de689798d87076d1de69bf02ad89f7"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae2de689798d87076d1de69bf02ad89f7">monitoring_system::monitoring_error_code::storage_full</a></div><div class="ttdeci">@ storage_full</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccae44828f7d5b40887652b344e729c5567"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae44828f7d5b40887652b344e729c5567">monitoring_system::monitoring_error_code::health_check_failed</a></div><div class="ttdeci">@ health_check_failed</div></div>
+<div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccae55d43eabeefe5a8271b4a3c898bd18f"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae55d43eabeefe5a8271b4a3c898bd18f">monitoring_system::monitoring_error_code::invalid_argument</a></div><div class="ttdeci">@ invalid_argument</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccae70862bdaee3e93221ac776d656f5edf"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae70862bdaee3e93221ac776d656f5edf">monitoring_system::monitoring_error_code::health_check_not_registered</a></div><div class="ttdeci">@ health_check_not_registered</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccae844dc5bd67e42c521cf417f5db01f11"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae844dc5bd67e42c521cf417f5db01f11">monitoring_system::monitoring_error_code::monitoring_disabled</a></div><div class="ttdeci">@ monitoring_disabled</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccae8ee838822072f02738dbd7d97ea03fc"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae8ee838822072f02738dbd7d97ea03fc">monitoring_system::monitoring_error_code::permission_denied</a></div><div class="ttdeci">@ permission_denied</div></div>
@@ -444,6 +466,7 @@ Functions</h2></td></tr>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccaf22bd16f2f144d3fef8c3ce354c86faa"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaf22bd16f2f144d3fef8c3ce354c86faa">monitoring_system::monitoring_error_code::operation_cancelled</a></div><div class="ttdeci">@ operation_cancelled</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccaf3bdeec5f3099c3ea770a919e2538a53"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaf3bdeec5f3099c3ea770a919e2538a53">monitoring_system::monitoring_error_code::thread_system_not_available</a></div><div class="ttdeci">@ thread_system_not_available</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccaf4a8914f1b2e8cbddcc8680f344eb857"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaf4a8914f1b2e8cbddcc8680f344eb857">monitoring_system::monitoring_error_code::configuration_parse_error</a></div><div class="ttdeci">@ configuration_parse_error</div></div>
+<div class="ttc" id="anamespacemonitoring__system_html_a22dca6fa0d74ff9143a6386fbd724eccaf4c1197058f696c2a362915e5413633d"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaf4c1197058f696c2a362915e5413633d">monitoring_system::monitoring_error_code::resource_exhausted</a></div><div class="ttdeci">@ resource_exhausted</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -627,102 +650,114 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String representation of the error code </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d11/error__codes_8h_source.html#l00089">89</a> of file <a class="el" href="../../de/d11/error__codes_8h_source.html">error_codes.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   89</span>                                                                  {</div>
-<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">switch</span> (code) {</div>
-<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">case</span> monitoring_error_code::success:</div>
-<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Success&quot;</span>;</div>
-<div class="line"><span class="lineno">   93</span>            </div>
-<div class="line"><span class="lineno">   94</span>        <span class="comment">// Collection errors</span></div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_not_found:</div>
-<div class="line"><span class="lineno">   96</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector not found&quot;</span>;</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">case</span> monitoring_error_code::collection_failed:</div>
-<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collection failed&quot;</span>;</div>
-<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_initialization_failed:</div>
-<div class="line"><span class="lineno">  100</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector initialization failed&quot;</span>;</div>
-<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_already_exists:</div>
-<div class="line"><span class="lineno">  102</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector already exists&quot;</span>;</div>
-<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_disabled:</div>
-<div class="line"><span class="lineno">  104</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector is disabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  105</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_collector_config:</div>
-<div class="line"><span class="lineno">  106</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid collector configuration&quot;</span>;</div>
-<div class="line"><span class="lineno">  107</span>        <span class="keywordflow">case</span> monitoring_error_code::monitoring_disabled:</div>
-<div class="line"><span class="lineno">  108</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Monitoring is disabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  109</span>            </div>
-<div class="line"><span class="lineno">  110</span>        <span class="comment">// Storage errors</span></div>
-<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_full:</div>
-<div class="line"><span class="lineno">  112</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage is full&quot;</span>;</div>
-<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_corrupted:</div>
-<div class="line"><span class="lineno">  114</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage is corrupted&quot;</span>;</div>
-<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">case</span> monitoring_error_code::compression_failed:</div>
-<div class="line"><span class="lineno">  116</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Compression failed&quot;</span>;</div>
-<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_not_initialized:</div>
-<div class="line"><span class="lineno">  118</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage not initialized&quot;</span>;</div>
-<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_write_failed:</div>
-<div class="line"><span class="lineno">  120</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage write failed&quot;</span>;</div>
-<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_read_failed:</div>
-<div class="line"><span class="lineno">  122</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage read failed&quot;</span>;</div>
-<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_empty:</div>
-<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage is empty&quot;</span>;</div>
-<div class="line"><span class="lineno">  125</span>            </div>
-<div class="line"><span class="lineno">  126</span>        <span class="comment">// Configuration errors</span></div>
-<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_configuration:</div>
-<div class="line"><span class="lineno">  128</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid configuration&quot;</span>;</div>
-<div class="line"><span class="lineno">  129</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_interval:</div>
-<div class="line"><span class="lineno">  130</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid interval&quot;</span>;</div>
-<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_capacity:</div>
-<div class="line"><span class="lineno">  132</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid capacity&quot;</span>;</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">case</span> monitoring_error_code::configuration_not_found:</div>
-<div class="line"><span class="lineno">  134</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Configuration not found&quot;</span>;</div>
-<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">case</span> monitoring_error_code::configuration_parse_error:</div>
-<div class="line"><span class="lineno">  136</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Configuration parse error&quot;</span>;</div>
-<div class="line"><span class="lineno">  137</span>            </div>
-<div class="line"><span class="lineno">  138</span>        <span class="comment">// System errors</span></div>
-<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">case</span> monitoring_error_code::system_resource_unavailable:</div>
-<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;System resource unavailable&quot;</span>;</div>
-<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">case</span> monitoring_error_code::permission_denied:</div>
-<div class="line"><span class="lineno">  142</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Permission denied&quot;</span>;</div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">case</span> monitoring_error_code::out_of_memory:</div>
-<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Out of memory&quot;</span>;</div>
-<div class="line"><span class="lineno">  145</span>        <span class="keywordflow">case</span> monitoring_error_code::operation_timeout:</div>
-<div class="line"><span class="lineno">  146</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Operation timeout&quot;</span>;</div>
-<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">case</span> monitoring_error_code::operation_cancelled:</div>
-<div class="line"><span class="lineno">  148</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Operation cancelled&quot;</span>;</div>
-<div class="line"><span class="lineno">  149</span>            </div>
-<div class="line"><span class="lineno">  150</span>        <span class="comment">// Integration errors</span></div>
-<div class="line"><span class="lineno">  151</span>        <span class="keywordflow">case</span> monitoring_error_code::thread_system_not_available:</div>
-<div class="line"><span class="lineno">  152</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Thread system not available&quot;</span>;</div>
-<div class="line"><span class="lineno">  153</span>        <span class="keywordflow">case</span> monitoring_error_code::logger_system_not_available:</div>
-<div class="line"><span class="lineno">  154</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Logger system not available&quot;</span>;</div>
-<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">case</span> monitoring_error_code::incompatible_version:</div>
-<div class="line"><span class="lineno">  156</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Incompatible version&quot;</span>;</div>
-<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">case</span> monitoring_error_code::adapter_initialization_failed:</div>
-<div class="line"><span class="lineno">  158</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Adapter initialization failed&quot;</span>;</div>
-<div class="line"><span class="lineno">  159</span>            </div>
-<div class="line"><span class="lineno">  160</span>        <span class="comment">// Metrics errors</span></div>
-<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">case</span> monitoring_error_code::metric_not_found:</div>
-<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Metric not found&quot;</span>;</div>
-<div class="line"><span class="lineno">  163</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_metric_type:</div>
-<div class="line"><span class="lineno">  164</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid metric type&quot;</span>;</div>
-<div class="line"><span class="lineno">  165</span>        <span class="keywordflow">case</span> monitoring_error_code::metric_overflow:</div>
-<div class="line"><span class="lineno">  166</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Metric overflow&quot;</span>;</div>
-<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">case</span> monitoring_error_code::aggregation_failed:</div>
-<div class="line"><span class="lineno">  168</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Aggregation failed&quot;</span>;</div>
-<div class="line"><span class="lineno">  169</span>            </div>
-<div class="line"><span class="lineno">  170</span>        <span class="comment">// Health check errors</span></div>
-<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">case</span> monitoring_error_code::health_check_failed:</div>
-<div class="line"><span class="lineno">  172</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Health check failed&quot;</span>;</div>
-<div class="line"><span class="lineno">  173</span>        <span class="keywordflow">case</span> monitoring_error_code::health_check_timeout:</div>
-<div class="line"><span class="lineno">  174</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Health check timeout&quot;</span>;</div>
-<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">case</span> monitoring_error_code::health_check_not_registered:</div>
-<div class="line"><span class="lineno">  176</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Health check not registered&quot;</span>;</div>
-<div class="line"><span class="lineno">  177</span>            </div>
-<div class="line"><span class="lineno">  178</span>        <span class="comment">// Unknown error</span></div>
-<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">case</span> monitoring_error_code::unknown_error:</div>
-<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  181</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Unknown error&quot;</span>;</div>
-<div class="line"><span class="lineno">  182</span>    }</div>
-<div class="line"><span class="lineno">  183</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d11/error__codes_8h_source.html#l00096">96</a> of file <a class="el" href="../../de/d11/error__codes_8h_source.html">error_codes.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   96</span>                                                                  {</div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">switch</span> (code) {</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">case</span> monitoring_error_code::success:</div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Success&quot;</span>;</div>
+<div class="line"><span class="lineno">  100</span>            </div>
+<div class="line"><span class="lineno">  101</span>        <span class="comment">// Collection errors</span></div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_not_found:</div>
+<div class="line"><span class="lineno">  103</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector not found&quot;</span>;</div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">case</span> monitoring_error_code::collection_failed:</div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collection failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  106</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_initialization_failed:</div>
+<div class="line"><span class="lineno">  107</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector initialization failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_already_exists:</div>
+<div class="line"><span class="lineno">  109</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector already exists&quot;</span>;</div>
+<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_disabled:</div>
+<div class="line"><span class="lineno">  111</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Collector is disabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  112</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_collector_config:</div>
+<div class="line"><span class="lineno">  113</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid collector configuration&quot;</span>;</div>
+<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">case</span> monitoring_error_code::monitoring_disabled:</div>
+<div class="line"><span class="lineno">  115</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Monitoring is disabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  116</span>            </div>
+<div class="line"><span class="lineno">  117</span>        <span class="comment">// Storage errors</span></div>
+<div class="line"><span class="lineno">  118</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_full:</div>
+<div class="line"><span class="lineno">  119</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage is full&quot;</span>;</div>
+<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_corrupted:</div>
+<div class="line"><span class="lineno">  121</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage is corrupted&quot;</span>;</div>
+<div class="line"><span class="lineno">  122</span>        <span class="keywordflow">case</span> monitoring_error_code::compression_failed:</div>
+<div class="line"><span class="lineno">  123</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Compression failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_not_initialized:</div>
+<div class="line"><span class="lineno">  125</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage not initialized&quot;</span>;</div>
+<div class="line"><span class="lineno">  126</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_write_failed:</div>
+<div class="line"><span class="lineno">  127</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage write failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_read_failed:</div>
+<div class="line"><span class="lineno">  129</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage read failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  130</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_empty:</div>
+<div class="line"><span class="lineno">  131</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage is empty&quot;</span>;</div>
+<div class="line"><span class="lineno">  132</span>            </div>
+<div class="line"><span class="lineno">  133</span>        <span class="comment">// Configuration errors</span></div>
+<div class="line"><span class="lineno">  134</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_configuration:</div>
+<div class="line"><span class="lineno">  135</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid configuration&quot;</span>;</div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_interval:</div>
+<div class="line"><span class="lineno">  137</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid interval&quot;</span>;</div>
+<div class="line"><span class="lineno">  138</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_capacity:</div>
+<div class="line"><span class="lineno">  139</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid capacity&quot;</span>;</div>
+<div class="line"><span class="lineno">  140</span>        <span class="keywordflow">case</span> monitoring_error_code::configuration_not_found:</div>
+<div class="line"><span class="lineno">  141</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Configuration not found&quot;</span>;</div>
+<div class="line"><span class="lineno">  142</span>        <span class="keywordflow">case</span> monitoring_error_code::configuration_parse_error:</div>
+<div class="line"><span class="lineno">  143</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Configuration parse error&quot;</span>;</div>
+<div class="line"><span class="lineno">  144</span>            </div>
+<div class="line"><span class="lineno">  145</span>        <span class="comment">// System errors</span></div>
+<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">case</span> monitoring_error_code::system_resource_unavailable:</div>
+<div class="line"><span class="lineno">  147</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;System resource unavailable&quot;</span>;</div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">case</span> monitoring_error_code::permission_denied:</div>
+<div class="line"><span class="lineno">  149</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Permission denied&quot;</span>;</div>
+<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">case</span> monitoring_error_code::out_of_memory:</div>
+<div class="line"><span class="lineno">  151</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Out of memory&quot;</span>;</div>
+<div class="line"><span class="lineno">  152</span>        <span class="keywordflow">case</span> monitoring_error_code::operation_timeout:</div>
+<div class="line"><span class="lineno">  153</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Operation timeout&quot;</span>;</div>
+<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">case</span> monitoring_error_code::operation_cancelled:</div>
+<div class="line"><span class="lineno">  155</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Operation cancelled&quot;</span>;</div>
+<div class="line"><span class="lineno">  156</span>            </div>
+<div class="line"><span class="lineno">  157</span>        <span class="comment">// Integration errors</span></div>
+<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">case</span> monitoring_error_code::thread_system_not_available:</div>
+<div class="line"><span class="lineno">  159</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Thread system not available&quot;</span>;</div>
+<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">case</span> monitoring_error_code::logger_system_not_available:</div>
+<div class="line"><span class="lineno">  161</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Logger system not available&quot;</span>;</div>
+<div class="line"><span class="lineno">  162</span>        <span class="keywordflow">case</span> monitoring_error_code::incompatible_version:</div>
+<div class="line"><span class="lineno">  163</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Incompatible version&quot;</span>;</div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">case</span> monitoring_error_code::adapter_initialization_failed:</div>
+<div class="line"><span class="lineno">  165</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Adapter initialization failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  166</span>            </div>
+<div class="line"><span class="lineno">  167</span>        <span class="comment">// Metrics errors</span></div>
+<div class="line"><span class="lineno">  168</span>        <span class="keywordflow">case</span> monitoring_error_code::metric_not_found:</div>
+<div class="line"><span class="lineno">  169</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Metric not found&quot;</span>;</div>
+<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_metric_type:</div>
+<div class="line"><span class="lineno">  171</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid metric type&quot;</span>;</div>
+<div class="line"><span class="lineno">  172</span>        <span class="keywordflow">case</span> monitoring_error_code::metric_overflow:</div>
+<div class="line"><span class="lineno">  173</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Metric overflow&quot;</span>;</div>
+<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">case</span> monitoring_error_code::aggregation_failed:</div>
+<div class="line"><span class="lineno">  175</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Aggregation failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  176</span>            </div>
+<div class="line"><span class="lineno">  177</span>        <span class="comment">// Health check errors</span></div>
+<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">case</span> monitoring_error_code::health_check_failed:</div>
+<div class="line"><span class="lineno">  179</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Health check failed&quot;</span>;</div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">case</span> monitoring_error_code::health_check_timeout:</div>
+<div class="line"><span class="lineno">  181</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Health check timeout&quot;</span>;</div>
+<div class="line"><span class="lineno">  182</span>        <span class="keywordflow">case</span> monitoring_error_code::health_check_not_registered:</div>
+<div class="line"><span class="lineno">  183</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Health check not registered&quot;</span>;</div>
+<div class="line"><span class="lineno">  184</span>            </div>
+<div class="line"><span class="lineno">  185</span>        <span class="comment">// General errors</span></div>
+<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_argument:</div>
+<div class="line"><span class="lineno">  187</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid argument&quot;</span>;</div>
+<div class="line"><span class="lineno">  188</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_state:</div>
+<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Invalid state&quot;</span>;</div>
+<div class="line"><span class="lineno">  190</span>        <span class="keywordflow">case</span> monitoring_error_code::not_found:</div>
+<div class="line"><span class="lineno">  191</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Not found&quot;</span>;</div>
+<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">case</span> monitoring_error_code::already_exists:</div>
+<div class="line"><span class="lineno">  193</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Already exists&quot;</span>;</div>
+<div class="line"><span class="lineno">  194</span>        <span class="keywordflow">case</span> monitoring_error_code::resource_exhausted:</div>
+<div class="line"><span class="lineno">  195</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Resource exhausted&quot;</span>;</div>
+<div class="line"><span class="lineno">  196</span>            </div>
+<div class="line"><span class="lineno">  197</span>        <span class="comment">// Unknown error</span></div>
+<div class="line"><span class="lineno">  198</span>        <span class="keywordflow">case</span> monitoring_error_code::unknown_error:</div>
+<div class="line"><span class="lineno">  199</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  200</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Unknown error&quot;</span>;</div>
+<div class="line"><span class="lineno">  201</span>    }</div>
+<div class="line"><span class="lineno">  202</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -773,22 +808,22 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Detailed error message with suggestions </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d11/error__codes_8h_source.html#l00190">190</a> of file <a class="el" href="../../de/d11/error__codes_8h_source.html">error_codes.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  190</span>                                                               {</div>
-<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">switch</span> (code) {</div>
-<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_not_found:</div>
-<div class="line"><span class="lineno">  193</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;The specified collector was not found. Check collector name and ensure it&#39;s registered.&quot;</span>;</div>
-<div class="line"><span class="lineno">  194</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_full:</div>
-<div class="line"><span class="lineno">  195</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage capacity exceeded. Consider increasing buffer size or reducing collection frequency.&quot;</span>;</div>
-<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_configuration:</div>
-<div class="line"><span class="lineno">  197</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Configuration validation failed. Review configuration parameters and constraints.&quot;</span>;</div>
-<div class="line"><span class="lineno">  198</span>        <span class="keywordflow">case</span> monitoring_error_code::thread_system_not_available:</div>
-<div class="line"><span class="lineno">  199</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Thread system integration not available. Ensure thread_system is properly linked.&quot;</span>;</div>
-<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  201</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#afa3dc003b4c270274927fce989e0876d">error_code_to_string</a>(code);</div>
-<div class="line"><span class="lineno">  202</span>    }</div>
-<div class="line"><span class="lineno">  203</span>}</div>
-<div class="ttc" id="anamespacemonitoring__system_html_afa3dc003b4c270274927fce989e0876d"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#afa3dc003b4c270274927fce989e0876d">monitoring_system::error_code_to_string</a></div><div class="ttdeci">std::string error_code_to_string(monitoring_error_code code)</div><div class="ttdoc">Convert error code to string representation.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d11/error__codes_8h_source.html#l00089">error_codes.h:89</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d11/error__codes_8h_source.html#l00209">209</a> of file <a class="el" href="../../de/d11/error__codes_8h_source.html">error_codes.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  209</span>                                                               {</div>
+<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">switch</span> (code) {</div>
+<div class="line"><span class="lineno">  211</span>        <span class="keywordflow">case</span> monitoring_error_code::collector_not_found:</div>
+<div class="line"><span class="lineno">  212</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;The specified collector was not found. Check collector name and ensure it&#39;s registered.&quot;</span>;</div>
+<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">case</span> monitoring_error_code::storage_full:</div>
+<div class="line"><span class="lineno">  214</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Storage capacity exceeded. Consider increasing buffer size or reducing collection frequency.&quot;</span>;</div>
+<div class="line"><span class="lineno">  215</span>        <span class="keywordflow">case</span> monitoring_error_code::invalid_configuration:</div>
+<div class="line"><span class="lineno">  216</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Configuration validation failed. Review configuration parameters and constraints.&quot;</span>;</div>
+<div class="line"><span class="lineno">  217</span>        <span class="keywordflow">case</span> monitoring_error_code::thread_system_not_available:</div>
+<div class="line"><span class="lineno">  218</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Thread system integration not available. Ensure thread_system is properly linked.&quot;</span>;</div>
+<div class="line"><span class="lineno">  219</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  220</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#afa3dc003b4c270274927fce989e0876d">error_code_to_string</a>(code);</div>
+<div class="line"><span class="lineno">  221</span>    }</div>
+<div class="line"><span class="lineno">  222</span>}</div>
+<div class="ttc" id="anamespacemonitoring__system_html_afa3dc003b4c270274927fce989e0876d"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#afa3dc003b4c270274927fce989e0876d">monitoring_system::error_code_to_string</a></div><div class="ttdeci">std::string error_code_to_string(monitoring_error_code code)</div><div class="ttdoc">Convert error code to string representation.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d11/error__codes_8h_source.html#l00096">error_codes.h:96</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1004,7 +1039,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 14:31:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
