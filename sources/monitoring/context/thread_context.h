@@ -203,7 +203,7 @@ public:
         auto tid_hash = hasher(tid);
         
         char buffer[64];
-        snprintf(buffer, sizeof(buffer), "%lx-%llu-%llx", 
+        snprintf(buffer, sizeof(buffer), "%zx-%llu-%llx", 
                 tid_hash, counter, static_cast<unsigned long long>(timestamp));
         return std::string(buffer);
     }
