@@ -441,7 +441,4 @@ TEST_F(DIContainerTest, ThreadSystemAdapterFactory) {
     EXPECT_NE(service_result.value(), nullptr);
 }
 
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+// Main function provided by gtest_main

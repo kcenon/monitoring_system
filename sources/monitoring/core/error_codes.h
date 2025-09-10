@@ -35,6 +35,7 @@ enum class monitoring_error_code : std::uint32_t {
     collector_already_exists = 1003,
     collector_disabled = 1004,
     invalid_collector_config = 1005,
+    monitoring_disabled = 1006,
     
     // Storage errors (2000-2999)
     storage_full = 2000,
@@ -103,6 +104,8 @@ inline std::string error_code_to_string(monitoring_error_code code) {
             return "Collector is disabled";
         case monitoring_error_code::invalid_collector_config:
             return "Invalid collector configuration";
+        case monitoring_error_code::monitoring_disabled:
+            return "Monitoring is disabled";
             
         // Storage errors
         case monitoring_error_code::storage_full:

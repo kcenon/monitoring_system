@@ -18,6 +18,7 @@ endif()
 add_executable(monitoring_system_tests
     test_result_types.cpp
     test_di_container.cpp
+    test_monitorable_interface.cpp
 )
 
 target_link_libraries(monitoring_system_tests

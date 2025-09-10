@@ -8,7 +8,8 @@ A modern, high-performance monitoring system for C++ applications, integrating s
 - ✅ **Result Pattern Error Handling**: Explicit error handling without exceptions
 - ✅ **Comprehensive Error Codes**: Categorized error codes for all operations
 - ✅ **Dependency Injection**: Service container with lifetime management
-- 🚧 **Thread System Integration**: Adapter for thread_system metrics (upcoming)
+- ✅ **Monitorable Interface**: Standardized interface for component monitoring
+- 🚧 **Thread Context Integration**: Metadata enrichment from thread_system (upcoming)
 
 ## Building
 
@@ -56,6 +57,47 @@ make -j$(nproc)
 | `ENABLE_UBSAN` | OFF | Enable UndefinedBehaviorSanitizer |
 
 ## Usage
+
+### Monitorable Interface
+
+Components can expose their metrics using the monitorable interface:
+
+```cpp
+#include <monitoring/interfaces/monitorable_interface.h>
+
+using namespace monitoring_system;
+
+// Implement monitorable interface
+class my_service : public monitorable_component {
+public:
+    my_service() : monitorable_component("my_service") {}
+    
+    result<monitoring_data> get_monitoring_data() const override {
+        monitoring_data data(get_monitoring_id());
+        
+        // Add metrics
+        data.add_metric("request_count", request_count_);
+        data.add_metric("avg_latency_ms", avg_latency_);
+        
+        // Add tags
+        data.add_tag("version", "1.0.0");
+        data.add_tag("status", is_healthy() ? "healthy" : "degraded");
+        
+        return make_success(std::move(data));
+    }
+};
+
+// Aggregate metrics from multiple components
+monitoring_aggregator aggregator("system_aggregator");
+aggregator.add_component(std::make_shared<my_service>());
+aggregator.add_component(std::make_shared<database_service>());
+
+auto result = aggregator.collect_all();
+if (result) {
+    auto data = result.value();
+    // Process aggregated metrics
+}
+```
 
 ### Dependency Injection
 
@@ -171,7 +213,8 @@ monitoring_system/
 │       │   ├── error_codes.h  # Error code definitions
 │       │   └── result_types.h # Result pattern implementation
 │       ├── interfaces/        # Abstract interfaces
-│       │   └── monitoring_interface.h
+│       │   ├── monitoring_interface.h
+│       │   └── monitorable_interface.h
 │       ├── di/                # Dependency injection
 │       │   ├── service_container_interface.h
 │       │   ├── lightweight_container.h
@@ -189,7 +232,7 @@ monitoring_system/
 - [x] A1: Adopt thread_system's result<T> pattern
 - [x] A2: Define monitoring_error_code enum (extended)
 - [x] A3: Integrate with service_container
-- [ ] A4: Implement monitorable_interface
+- [x] A4: Implement monitorable_interface
 - [ ] A5: Add thread_context metadata
 
 ### Phase 2: Design Patterns (Week 3-4)
@@ -216,9 +259,10 @@ Run specific test:
 ```bash
 ./tests/monitoring_system_tests --gtest_filter=ResultTypesTest.*
 ./tests/monitoring_system_tests --gtest_filter=DIContainerTest.*
+./tests/monitoring_system_tests --gtest_filter=MonitorableInterfaceTest.*
 ```
 
-**Note**: 23 tests currently passing (2 tests temporarily disabled for further investigation)
+**Note**: 35 tests currently passing (2 tests temporarily disabled for further investigation)
 
 ## Contributing
 
