@@ -290,7 +290,7 @@ std::vector<std::string> adaptive_monitor::get_active_collectors() const {
     
     // Determine how many collectors to keep active based on load
     double avg_cpu = 0.0;
-    int active_count = sorted_collectors.size();
+    size_t active_count = sorted_collectors.size();
     
     // Calculate average CPU usage across all collectors
     for (const auto& [name, info] : impl_->collectors) {
@@ -306,15 +306,15 @@ std::vector<std::string> adaptive_monitor::get_active_collectors() const {
     
     // Determine how many collectors to keep active
     if (avg_cpu > 80.0) {
-        active_count = std::max(1, static_cast<int>(sorted_collectors.size() * 0.2));
+        active_count = std::max(size_t(1), static_cast<size_t>(sorted_collectors.size() * 0.2));
     } else if (avg_cpu > 60.0) {
-        active_count = std::max(2, static_cast<int>(sorted_collectors.size() * 0.5));
+        active_count = std::max(size_t(2), static_cast<size_t>(sorted_collectors.size() * 0.5));
     } else if (avg_cpu > 40.0) {
-        active_count = std::max(3, static_cast<int>(sorted_collectors.size() * 0.75));
+        active_count = std::max(size_t(3), static_cast<size_t>(sorted_collectors.size() * 0.75));
     }
     
     // Return top priority collectors up to active_count
-    for (int i = 0; i < std::min(active_count, static_cast<int>(sorted_collectors.size())); ++i) {
+    for (size_t i = 0; i < std::min(active_count, sorted_collectors.size()); ++i) {
         active.push_back(sorted_collectors[i]);
     }
     

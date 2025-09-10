@@ -176,7 +176,7 @@ std::vector<std::string> health_dependency_graph::topological_sort() const {
     std::lock_guard lock(graph_mutex_);
     
     std::vector<std::string> result;
-    std::unordered_map<std::string, int> in_degree;
+    std::unordered_map<std::string, size_t> in_degree;
     
     // Calculate in-degrees
     for (const auto& [name, node] : nodes_) {
