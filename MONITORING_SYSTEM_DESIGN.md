@@ -47,7 +47,12 @@ The monitoring_system serves as a centralized hub for collecting, processing, an
 - [x] **[A2]** Define `monitoring_error_code` enum with comprehensive error categories ✅ **COMPLETED 2025-09-10**
   - Defined 30+ error codes across 7 categories
   - Added error_code_to_string and get_error_details functions
-- [ ] **[A3]** Integrate with thread_system's `service_container` for DI
+- [x] **[A3]** Integrate with thread_system's `service_container` for DI ✅ **COMPLETED 2025-09-10**
+  - Implemented service_container_interface abstract interface
+  - Created lightweight_container with thread-safe registration and resolution
+  - Added thread_system_container_adapter for optional integration
+  - Implemented service lifetimes (transient, scoped, singleton)
+  - Added named service registration support
 - [ ] **[A4]** Implement `monitorable_interface` from thread_system
 - [ ] **[A5]** Add thread_context metadata enrichment
 

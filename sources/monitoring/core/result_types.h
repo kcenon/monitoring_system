@@ -22,6 +22,7 @@ All rights reserved.
 #include <memory>
 #include <string>
 #include <source_location>
+#include <type_traits>
 
 namespace monitoring_system {
 
@@ -227,8 +228,8 @@ public:
  * @return result<T> containing the value
  */
 template<typename T>
-result<T> make_success(T&& value) {
-    return result<T>(std::forward<T>(value));
+result<std::decay_t<T>> make_success(T&& value) {
+    return result<std::decay_t<T>>(std::forward<T>(value));
 }
 
 /**

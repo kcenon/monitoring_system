@@ -17,12 +17,14 @@ endif()
 # Create test executable
 add_executable(monitoring_system_tests
     test_result_types.cpp
+    test_di_container.cpp
 )
 
 target_link_libraries(monitoring_system_tests
     PRIVATE
         monitoring_system
         GTest::gtest_main
+        Threads::Threads
 )
 
 # Register tests
