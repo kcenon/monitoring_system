@@ -91,26 +91,29 @@ $(function() {
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;source_location&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for result_types.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/de0/result__types_8h__incl.png" border="0" usemap="#asources_2monitoring_2core_2result__types_8h" alt=""/></div>
 <map name="asources_2monitoring_2core_2result__types_8h" id="asources_2monitoring_2core_2result__types_8h">
-<area shape="rect" title="Result pattern type definitions for monitoring system." alt="" coords="247,5,397,45"/>
+<area shape="rect" title="Result pattern type definitions for monitoring system." alt="" coords="296,5,447,45"/>
 <area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="5,93,116,119"/>
-<area shape="poly" title=" " alt="" coords="260,48,113,92,111,87,259,43"/>
+<area shape="poly" title=" " alt="" coords="298,48,120,92,119,87,296,43"/>
 <area shape="rect" title=" " alt="" coords="121,167,179,192"/>
-<area shape="poly" title=" " alt="" coords="257,48,217,67,183,95,165,124,156,154,151,152,161,121,179,92,215,63,255,43"/>
+<area shape="poly" title=" " alt="" coords="297,40,236,60,208,75,183,95,165,123,156,154,151,152,160,121,179,92,205,71,234,55,295,35"/>
 <area shape="rect" title=" " alt="" coords="192,93,260,119"/>
-<area shape="poly" title=" " alt="" coords="300,48,252,87,249,82,297,43"/>
+<area shape="poly" title=" " alt="" coords="338,48,261,89,258,84,335,43"/>
 <area shape="rect" title=" " alt="" coords="285,93,359,119"/>
-<area shape="poly" title=" " alt="" coords="325,46,325,79,319,79,319,46"/>
+<area shape="poly" title=" " alt="" coords="362,47,339,83,334,80,357,44"/>
 <area shape="rect" title=" " alt="" coords="383,93,461,119"/>
-<area shape="poly" title=" " alt="" coords="348,43,398,82,395,87,345,48"/>
+<area shape="poly" title=" " alt="" coords="386,44,409,80,405,83,381,47"/>
 <area shape="rect" title=" " alt="" coords="485,93,609,119"/>
-<area shape="poly" title=" " alt="" coords="377,43,502,86,501,91,375,48"/>
+<area shape="poly" title=" " alt="" coords="415,43,510,85,508,90,412,48"/>
 <area shape="rect" title=" " alt="" coords="633,93,725,119"/>
-<area shape="poly" title=" " alt="" coords="398,41,620,89,619,94,397,46"/>
+<area shape="poly" title=" " alt="" coords="446,43,622,87,620,92,444,48"/>
+<area shape="rect" title=" " alt="" coords="749,93,836,119"/>
+<area shape="poly" title=" " alt="" coords="447,37,737,90,736,96,446,42"/>
 <area shape="rect" title=" " alt="" coords="27,167,94,192"/>
 <area shape="poly" title=" " alt="" coords="63,119,63,153,58,153,58,119"/>
 <area shape="poly" title=" " alt="" coords="77,117,126,156,123,160,73,121"/>
@@ -225,13 +228,13 @@ Functions</h2></td></tr>
 <div class="line">        } \</div>
 <div class="line">    } <span class="keywordflow">while</span>(0)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00266">266</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  267</span>       { \</div>
-<div class="line"><span class="lineno">  268</span>        <span class="keyword">auto</span> _result = (expr); \</div>
-<div class="line"><span class="lineno">  269</span>        if (!_result) { \</div>
-<div class="line"><span class="lineno">  270</span>            <span class="keywordflow">return</span> _result.get_error(); \</div>
-<div class="line"><span class="lineno">  271</span>        } \</div>
-<div class="line"><span class="lineno">  272</span>    } <span class="keywordflow">while</span>(0)</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00267">267</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  268</span>       { \</div>
+<div class="line"><span class="lineno">  269</span>        <span class="keyword">auto</span> _result = (expr); \</div>
+<div class="line"><span class="lineno">  270</span>        if (!_result) { \</div>
+<div class="line"><span class="lineno">  271</span>            <span class="keywordflow">return</span> _result.get_error(); \</div>
+<div class="line"><span class="lineno">  272</span>        } \</div>
+<div class="line"><span class="lineno">  273</span>    } <span class="keywordflow">while</span>(0)</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -266,18 +269,18 @@ Functions</h2></td></tr>
 <div class="line">    } \</div>
 <div class="line">    <span class="keyword">auto</span>&amp; var = *_result_##var;</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00274">274</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  276</span>                        { \</div>
-<div class="line"><span class="lineno">  277</span>        <span class="keywordflow">return</span> _result_##var.get_error(); \</div>
-<div class="line"><span class="lineno">  278</span>    } \</div>
-<div class="line"><span class="lineno">  279</span>    <span class="keyword">auto</span>&amp; var = *_result_##var;</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00275">275</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  277</span>                        { \</div>
+<div class="line"><span class="lineno">  278</span>        <span class="keywordflow">return</span> _result_##var.get_error(); \</div>
+<div class="line"><span class="lineno">  279</span>    } \</div>
+<div class="line"><span class="lineno">  280</span>    <span class="keyword">auto</span>&amp; var = *_result_##var;</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 10 2025 16:06:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 10 2025 16:15:08 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
