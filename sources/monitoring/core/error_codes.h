@@ -77,6 +77,13 @@ enum class monitoring_error_code : std::uint32_t {
     health_check_timeout = 7001,
     health_check_not_registered = 7002,
     
+    // General errors (8000-8999)
+    invalid_argument = 8000,
+    invalid_state = 8001,
+    not_found = 8002,
+    already_exists = 8003,
+    resource_exhausted = 8004,
+    
     // Unknown error
     unknown_error = 9999
 };
@@ -174,6 +181,18 @@ inline std::string error_code_to_string(monitoring_error_code code) {
             return "Health check timeout";
         case monitoring_error_code::health_check_not_registered:
             return "Health check not registered";
+            
+        // General errors
+        case monitoring_error_code::invalid_argument:
+            return "Invalid argument";
+        case monitoring_error_code::invalid_state:
+            return "Invalid state";
+        case monitoring_error_code::not_found:
+            return "Not found";
+        case monitoring_error_code::already_exists:
+            return "Already exists";
+        case monitoring_error_code::resource_exhausted:
+            return "Resource exhausted";
             
         // Unknown error
         case monitoring_error_code::unknown_error:
