@@ -23,6 +23,7 @@ All rights reserved.
 #include <string>
 #include <source_location>
 #include <type_traits>
+#include <stdexcept>
 
 namespace monitoring_system {
 

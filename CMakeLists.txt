@@ -91,11 +91,24 @@ if(ENABLE_UBSAN)
     target_link_options(monitoring_system_interface INTERFACE -fsanitize=undefined)
 endif()
 
-# Create monitoring_system library (currently header-only for Phase 1)
-add_library(monitoring_system INTERFACE)
-target_link_libraries(monitoring_system INTERFACE 
+# Create monitoring_system library
+add_library(monitoring_system STATIC
+    sources/monitoring/context/thread_context.cpp
+    sources/monitoring/tracing/distributed_tracer.cpp
+    sources/monitoring/performance/performance_monitor.cpp
+    sources/monitoring/adaptive/adaptive_monitor.cpp
+    sources/monitoring/health/health_monitor.cpp
+)
+
+target_link_libraries(monitoring_system PUBLIC
     monitoring_system_interface
     Threads::Threads
+)
+
+target_include_directories(monitoring_system
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
+        $<INSTALL_INTERFACE:include>
 )
 
 # Link optional dependencies

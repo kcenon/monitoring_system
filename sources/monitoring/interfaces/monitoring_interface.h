@@ -23,6 +23,8 @@ All rights reserved.
 #include <chrono>
 #include <functional>
 #include <unordered_map>
+#include <optional>
+#include <exception>
 
 namespace monitoring_system {
 
@@ -106,12 +108,49 @@ struct health_check_result {
     std::string message;
     std::vector<std::string> issues;
     std::chrono::system_clock::time_point check_time;
+    std::chrono::system_clock::time_point timestamp;
+    std::chrono::milliseconds check_duration{0};
+    std::unordered_map<std::string, std::string> metadata;
+    std::optional<std::exception_ptr> error;
     
     health_check_result()
-        : check_time(std::chrono::system_clock::now()) {}
+        : check_time(std::chrono::system_clock::now()),
+          timestamp(std::chrono::system_clock::now()) {}
     
     bool is_healthy() const {
         return status == health_status::healthy;
+    }
+    
+    bool is_operational() const {
+        return status == health_status::healthy || 
+               status == health_status::degraded;
+    }
+    
+    static health_check_result healthy(const std::string& msg = "OK") {
+        health_check_result result;
+        result.status = health_status::healthy;
+        result.message = msg;
+        result.timestamp = std::chrono::system_clock::now();
+        result.check_time = result.timestamp;
+        return result;
+    }
+    
+    static health_check_result unhealthy(const std::string& msg) {
+        health_check_result result;
+        result.status = health_status::unhealthy;
+        result.message = msg;
+        result.timestamp = std::chrono::system_clock::now();
+        result.check_time = result.timestamp;
+        return result;
+    }
+    
+    static health_check_result degraded(const std::string& msg) {
+        health_check_result result;
+        result.status = health_status::degraded;
+        result.message = msg;
+        result.timestamp = std::chrono::system_clock::now();
+        result.check_time = result.timestamp;
+        return result;
     }
 };
 
