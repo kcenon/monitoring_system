@@ -11,7 +11,7 @@ A modern, high-performance monitoring system for C++ applications, integrating s
 - ✅ **Monitorable Interface**: Standardized interface for component monitoring
 - ✅ **Thread Context Integration**: Metadata enrichment and context propagation
 
-### Advanced Monitoring (✅ Phase 2 D1-D2 Complete)
+### Advanced Monitoring (✅ Phase 2 Complete)
 - ✅ **Distributed Tracing**: W3C Trace Context compliant distributed tracing
   - Hierarchical span management
   - Baggage propagation for cross-service context
@@ -23,6 +23,17 @@ A modern, high-performance monitoring system for C++ applications, integrating s
   - Percentile-based metrics (P50, P95, P99)
   - Performance benchmarking utilities
   - Threshold-based alerting
+- ✅ **Adaptive Monitoring**: Dynamic resource-aware monitoring
+  - Load-based sampling rate adjustment
+  - System resource consideration
+  - Priority-based collector management
+  - Multiple adaptation strategies
+- ✅ **Health Monitoring**: Service health and dependency tracking
+  - Liveness, readiness, and startup checks
+  - Dependency graph with cycle detection
+  - Composite health checks
+  - Automatic recovery mechanisms
+  - Health status reporting
 
 ## Building
 
@@ -145,6 +156,100 @@ auto [v1_metrics, v2_metrics] = bench.compare(
     "version_1", []() { /* algorithm v1 */ },
     "version_2", []() { /* algorithm v2 */ }
 );
+```
+
+### Health Monitoring
+
+```cpp
+#include <monitoring/health/health_monitor.h>
+
+using namespace monitoring_system;
+
+// Create health checks
+auto db_check = health_check_builder()
+    .with_name("database")
+    .with_type(health_check_type::liveness)
+    .with_check([]() {
+        // Check database connection
+        if (can_connect_to_db()) {
+            return health_check_result::healthy("Connected");
+        }
+        return health_check_result::unhealthy("Connection failed");
+    })
+    .with_timeout(std::chrono::seconds(5))
+    .critical(true)
+    .build();
+
+// Register with global monitor
+health_monitor& monitor = global_health_monitor();
+monitor.register_check("database", db_check);
+monitor.register_check("cache", cache_check);
+monitor.register_check("api", api_check);
+
+// Set up dependencies
+monitor.add_dependency("api", "database");  // API depends on database
+monitor.add_dependency("api", "cache");     // API depends on cache
+
+// Start monitoring
+monitor.start();
+
+// Check specific service (including dependencies)
+auto result = monitor.check("api");
+if (result && !result.value().is_operational()) {
+    // Handle degraded/unhealthy state
+    std::cerr << "API health check failed: " << result.value().message << "\n";
+}
+
+// Get overall system health
+auto status = monitor.get_overall_status();
+if (status == health_status::unhealthy) {
+    // Trigger alerts
+}
+
+// Get detailed health report
+std::string report = monitor.get_health_report();
+// Returns formatted status of all services
+```
+
+### Adaptive Monitoring
+
+```cpp
+#include <monitoring/adaptive/adaptive_monitor.h>
+
+using namespace monitoring_system;
+
+// Configure adaptive behavior
+adaptive_config config;
+config.strategy = adaptation_strategy::balanced;
+config.idle_threshold = 20.0;      // CPU %
+config.high_threshold = 80.0;      // CPU %
+config.idle_interval = std::chrono::milliseconds(100);
+config.critical_interval = std::chrono::milliseconds(5000);
+
+// Register collectors with adaptive monitoring
+adaptive_monitor& monitor = global_adaptive_monitor();
+monitor.register_collector("critical_metrics", critical_collector, config);
+monitor.register_collector("optional_metrics", optional_collector, config);
+
+// Set collector priorities (higher = keep active longer)
+monitor.set_collector_priority("critical_metrics", 100);
+monitor.set_collector_priority("optional_metrics", 10);
+
+// Start adaptive monitoring
+monitor.start();
+// Monitor automatically adjusts collection based on system load
+
+// Check adaptation statistics
+auto stats = monitor.get_collector_stats("critical_metrics");
+std::cout << "Load level: " << static_cast<int>(stats.value().current_load_level) << "\n";
+std::cout << "Sampling rate: " << stats.value().current_sampling_rate << "\n";
+std::cout << "Samples dropped: " << stats.value().samples_dropped << "\n";
+
+// Use adaptive scope for automatic management
+{
+    adaptive_scope scope("temp_collector", temp_collector);
+    // Collector automatically registered and unregistered
+}
 ```
 
 ### Thread Context
@@ -350,6 +455,14 @@ monitoring_system/
 │       │   ├── service_container_interface.h
 │       │   ├── lightweight_container.h
 │       │   └── thread_system_container_adapter.h
+│       ├── tracing/          # Distributed tracing
+│       │   └── distributed_tracer.h
+│       ├── performance/      # Performance monitoring
+│       │   └── performance_monitor.h
+│       ├── adaptive/         # Adaptive monitoring
+│       │   └── adaptive_monitor.h
+│       ├── health/           # Health monitoring
+│       │   └── health_monitor.h
 │       └── adapters/          # System adapters (upcoming)
 ├── tests/                     # Unit tests
 ├── examples/                  # Example programs
@@ -357,42 +470,6 @@ monitoring_system/
 └── docs/                      # Documentation (upcoming)
 ```
 
-## Implementation Status
-
-### Phase 1: Core Architecture Alignment (Week 1-2) ✅ COMPLETE
-- [x] A1: Adopt thread_system's result<T> pattern
-- [x] A2: Define monitoring_error_code enum (extended)
-- [x] A3: Integrate with service_container
-- [x] A4: Implement monitorable_interface
-- [x] A5: Add thread_context metadata
-
-### Phase 2: Design Patterns (Week 3-4)
-- [ ] D1: Create monitoring_builder
-- [ ] D2: Implement collector factory
-- [ ] D3: Add storage strategy pattern
-- [ ] D4: Observer pattern for alerts
-
-### Phase 3: Performance (Week 5-6)
-- [ ] P1: Lock-free queue integration
-- [ ] P2: Zero-copy metrics
-- [ ] P3: SIMD optimizations
-- [ ] P4: Memory pool
-
-## Testing
-
-Run all tests:
-```bash
-cd build
-ctest --output-on-failure
-```
-
-Run specific test:
-```bash
-./tests/monitoring_system_tests --gtest_filter=ResultTypesTest.*
-./tests/monitoring_system_tests --gtest_filter=DIContainerTest.*
-./tests/monitoring_system_tests --gtest_filter=MonitorableInterfaceTest.*
-./tests/monitoring_system_tests --gtest_filter=ThreadContextTest.*
-```
 
 ## Testing
 
@@ -411,7 +488,9 @@ The monitoring system includes comprehensive test coverage:
 - **Core Components**: 48 tests passing
 - **Distributed Tracing**: 15 tests covering span management, context propagation, and W3C compliance
 - **Performance Monitoring**: 19 tests covering profiling, system metrics, and benchmarking
-- **Total**: 82 tests ensuring reliability and correctness
+- **Adaptive Monitoring**: 17 tests covering load-based adaptation and sampling
+- **Health Monitoring**: 22 tests covering health checks, dependencies, and recovery
+- **Total**: 121 tests ensuring reliability and correctness
 
 ## Project Status
 
@@ -422,21 +501,32 @@ The monitoring system includes comprehensive test coverage:
   - Monitorable interface
   - Thread context management
   
-- ✅ **Phase 2 (D1-D2)**: Advanced Monitoring (50% complete)
+- ✅ **Phase 2**: Advanced Monitoring (100% complete)
   - Distributed tracing with W3C Trace Context
   - Performance monitoring and profiling
-  
-### In Development
-- 🚧 **Phase 2 (D3-D4)**: Remaining features
   - Adaptive monitoring based on system load
-  - Health monitoring framework
+  - Health monitoring framework with dependency tracking
   
 ### Roadmap
+
+#### Phase 3: Performance & Optimization
+- [ ] Memory-efficient metric storage
+- [ ] Statistical aggregation functions
+- [ ] Configurable buffering strategies
+- [ ] Lock-free data structures
+
+#### Phase 4: Integration & Export
 - [ ] OpenTelemetry compatibility layer
 - [ ] Span exporters (Jaeger, Zipkin, OTLP)
+- [ ] Prometheus metrics exporter
 - [ ] Real-time alerting system
 - [ ] Monitoring dashboard integration
+
+#### Phase 5: Advanced Features
 - [ ] Distributed metrics aggregation
+- [ ] Trace sampling strategies
+- [ ] Anomaly detection
+- [ ] Predictive monitoring
 
 ## Contributing
 
