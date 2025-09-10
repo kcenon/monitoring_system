@@ -93,7 +93,9 @@ endif()
 
 # Create monitoring_system library
 add_library(monitoring_system STATIC
+    sources/monitoring/context/thread_context.cpp
     sources/monitoring/tracing/distributed_tracer.cpp
+    sources/monitoring/performance/performance_monitor.cpp
 )
 
 target_link_libraries(monitoring_system PUBLIC

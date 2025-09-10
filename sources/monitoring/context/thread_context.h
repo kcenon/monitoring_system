@@ -232,9 +232,8 @@ public:
     }
 };
 
-// Static member definitions
-inline thread_local std::unique_ptr<context_metadata> thread_context::current_context_ = nullptr;
-inline std::atomic<uint64_t> thread_context::context_counter_{0};
+// Static member declarations are in the class definition above
+// Definitions are in thread_context.cpp
 
 /**
  * @class context_scope

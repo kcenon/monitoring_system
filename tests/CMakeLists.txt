@@ -21,6 +21,7 @@ add_executable(monitoring_system_tests
     test_monitorable_interface.cpp
     test_thread_context.cpp
     test_distributed_tracing.cpp
+    test_performance_monitoring.cpp
 )
 
 target_link_libraries(monitoring_system_tests

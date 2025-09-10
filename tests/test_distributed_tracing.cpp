@@ -90,8 +90,9 @@ TEST_F(DistributedTracingTest, TraceContextPropagation) {
     span->baggage["user_id"] = "12345";
     span->baggage["request_type"] = "api";
     
-    // Extract context
-    auto context = tracer.extract_context(*span);
+    // Extract context - explicitly use const trace_span&
+    const trace_span& span_ref = *span;
+    auto context = tracer.extract_context(span_ref);
     EXPECT_EQ(context.trace_id, span->trace_id);
     EXPECT_EQ(context.span_id, span->span_id);
     EXPECT_EQ(context.baggage["user_id"], "12345");
@@ -132,7 +133,7 @@ TEST_F(DistributedTracingTest, InjectExtractContext) {
     EXPECT_TRUE(headers.contains("baggage-test_key"));
     
     // Extract from carrier
-    auto extracted_result = tracer.extract_context(headers);
+    auto extracted_result = tracer.extract_context_from_carrier(headers);
     ASSERT_TRUE(extracted_result.has_value());
     auto extracted = extracted_result.value();
     

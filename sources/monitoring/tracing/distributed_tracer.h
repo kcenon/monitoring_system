@@ -250,7 +250,7 @@ public:
      * @brief Extract trace context from carrier
      */
     template<typename Carrier>
-    monitoring_system::result<trace_context> extract_context(const Carrier& carrier) {
+    monitoring_system::result<trace_context> extract_context_from_carrier(const Carrier& carrier) {
         auto traceparent_it = carrier.find("traceparent");
         if (traceparent_it == carrier.end()) {
             return monitoring_system::make_error<trace_context>(monitoring_error_code::not_found);
