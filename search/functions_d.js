@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['service_5fregistration_0',['service_registration',['../db/d55/structmonitoring__system_1_1lightweight__container_1_1service__registration.html#ac355801fa6ffde2cdb486ca80f0d5fc4',1,'monitoring_system::lightweight_container::service_registration::service_registration(std::function&lt; std::any()&gt; f, service_lifetime l)'],['../db/d55/structmonitoring__system_1_1lightweight__container_1_1service__registration.html#a9de25e8152d39365ccfeaba7a17e73ce',1,'monitoring_system::lightweight_container::service_registration::service_registration()=default']]],
+  ['servicea_1',['ServiceA',['../d6/d19/classServiceA.html#ad9a5788ddbb79c60fcab49286cba6f28',1,'ServiceA']]],
+  ['serviceb_2',['ServiceB',['../dd/d93/classServiceB.html#a0ee05e7d0f4fd8cc0abf38cbfc59e500',1,'ServiceB']]],
+  ['set_5fcomponent_5fname_3',['set_component_name',['../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aef7c69e8915ac0b06bec55971af9edff',1,'monitoring_system::monitoring_data']]],
+  ['set_5fcontainer_4',['set_container',['../da/dd3/classmonitoring__system_1_1service__locator.html#adbe2d741e3a9a3c898e81ed0a8088ac1',1,'monitoring_system::service_locator']]],
+  ['set_5fcontext_5faware_5',['set_context_aware',['../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac4749d63db669de00a41cb0372ec63bb',1,'monitoring_system::context_metrics_collector']]],
+  ['set_5fcpu_5fusage_6',['set_cpu_usage',['../d9/db4/classtest__monitorable__component.html#a595ca930d54f9767e3607de774509c87',1,'test_monitorable_component']]],
+  ['set_5fcurrent_7',['set_current',['../d2/dbd/classmonitoring__system_1_1thread__context.html#a53f347c89e98e0becc3da7ec016dfea0',1,'monitoring_system::thread_context']]],
+  ['set_5fenabled_8',['set_enabled',['../da/d9b/classmonitoring__system_1_1metrics__collector.html#a77b11552c2fb83223f2fac931cf6261b',1,'monitoring_system::metrics_collector::set_enabled()'],['../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#a005f1c8b8a7d19e00caa609d4285665a',1,'monitoring_system::context_metrics_collector::set_enabled()']]],
+  ['set_5fmemory_5fusage_9',['set_memory_usage',['../d9/db4/classtest__monitorable__component.html#a0114739390502fcc663a306fcf69ac72',1,'test_monitorable_component']]],
+  ['set_5fmonitoring_5fenabled_10',['set_monitoring_enabled',['../df/db6/classmonitoring__system_1_1monitorable__interface.html#a53fa393d4bc0a3b0312261ec3c17353f',1,'monitoring_system::monitorable_interface::set_monitoring_enabled()'],['../df/de4/classmonitoring__system_1_1monitorable__component.html#a54624f9eda9dabb86904e4a8162a0bb9',1,'monitoring_system::monitorable_component::set_monitoring_enabled()']]],
+  ['set_5fstorage_5fbackend_11',['set_storage_backend',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html#ab6b034a9249b4467749aa92ae1300738',1,'monitoring_system::monitoring_interface']]],
+  ['setup_12',['setup',['../d9/da4/classDIContainerTest.html#a09cd2b3078e175b6edc90329c48eb7e3',1,'DIContainerTest::SetUp()'],['../d8/d4d/classMonitorableInterfaceTest.html#ae0253aeee63e359725910141786d0713',1,'MonitorableInterfaceTest::SetUp()'],['../d3/d70/classResultTypesTest.html#ac1234e9923260bf5d29e6678bd67c6e2',1,'ResultTypesTest::SetUp()'],['../d5/d8c/classThreadContextTest.html#af742052f6597f1409b695f76e40d75f2',1,'ThreadContextTest::SetUp()']]],
+  ['size_13',['size',['../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a117c8796e1f2b3b76f81d8911e60f681',1,'monitoring_system::monitoring_aggregator::size()'],['../da/dbc/classmonitoring__system_1_1storage__backend.html#ab6f28bc938176014ae2bb899d32fb205',1,'monitoring_system::storage_backend::size()']]],
+  ['start_14',['start',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html#aa998cd6501d6e7e49aae6ecedfebad20',1,'monitoring_system::monitoring_interface']]],
+  ['stop_15',['stop',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html#a67cc5dcb40287cc8df81c562b6748978',1,'monitoring_system::monitoring_interface']]],
+  ['store_16',['store',['../da/dbc/classmonitoring__system_1_1storage__backend.html#ab41cc2c7e3a05e91169f50fa90099155',1,'monitoring_system::storage_backend']]],
+  ['success_17',['success',['../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25',1,'monitoring_system::result_void']]]
+];
