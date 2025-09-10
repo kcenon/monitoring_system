@@ -356,9 +356,9 @@ distributed_tracer& global_tracer();
     )
 
 #define TRACE_CHILD_SPAN(parent, operation_name) \
-    auto _span_result = monitoring_system::global_tracer().start_child_span(parent, operation_name); \
-    monitoring_system::scoped_span _scoped_span( \
-        _span_result ? _span_result.value() : nullptr, \
+    auto _child_span_result = monitoring_system::global_tracer().start_child_span(parent, operation_name); \
+    monitoring_system::scoped_span _child_scoped_span( \
+        _child_span_result ? _child_span_result.value() : nullptr, \
         &monitoring_system::global_tracer() \
     )
 
