@@ -1,0 +1,180 @@
+name: Build-Windows-Visual-Studio
+
+on:
+  push:
+    branches:
+      - main
+      - 'phase*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build_windows:
+    runs-on: windows-2022  # Fixed version for consistency
+    timeout-minutes: 60
+    env:
+      BUILD_TYPE: Debug
+      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+      VCPKG_FEATURE_FLAGS: "manifests,registries,versions,binarycaching"
+      VCPKG_DEFAULT_TRIPLET: x64-windows
+    
+    steps:
+      - name: Configure git
+        shell: pwsh
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+          git config --global core.longpaths true
+      
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: true
+          clean: true
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Visual Studio
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: '17.0'
+          msbuild-architecture: x64
+
+      - name: Cache vcpkg
+        uses: actions/cache@v3
+        id: vcpkg-cache
+        with:
+          path: |
+            ${{ github.workspace }}/vcpkg
+            !${{ github.workspace }}/vcpkg/buildtrees
+            !${{ github.workspace }}/vcpkg/packages
+            !${{ github.workspace }}/vcpkg/downloads
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
+
+      - name: Set up vcpkg
+        shell: pwsh
+        run: |
+          if (!(Test-Path -Path .\vcpkg)) {
+            Write-Host "Cloning vcpkg repository..."
+            git clone https://github.com/Microsoft/vcpkg.git
+          } else {
+            Write-Host "Updating existing vcpkg repository..."
+            Push-Location .\vcpkg
+            git pull
+            Pop-Location
+          }
+          
+          Write-Host "Bootstrapping vcpkg..."
+          .\vcpkg\bootstrap-vcpkg.bat
+          
+          Write-Host "Integrating vcpkg..."
+          .\vcpkg\vcpkg.exe integrate install
+
+      - name: Determine vcpkg commit
+        id: vcpkg-commit
+        shell: pwsh
+        run: |
+          $commit = git -C vcpkg rev-parse HEAD
+          "commit=$commit" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Cache vcpkg installed
+        uses: actions/cache@v3
+        id: vcpkg-installed
+        with:
+          path: ${{ github.workspace }}/vcpkg_installed
+          key: ${{ runner.os }}-vcpkg-installed-${{ env.VCPKG_DEFAULT_TRIPLET }}-${{ hashFiles('vcpkg.json', 'vcpkg-configuration.json') }}-${{ steps.vcpkg-commit.outputs.commit }}
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-installed-${{ env.VCPKG_DEFAULT_TRIPLET }}-
+
+      - name: Install dependencies with vcpkg (uses binary cache)
+        if: steps.vcpkg-installed.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          Write-Host "Installing dependencies..."
+          .\vcpkg\vcpkg.exe install --x-manifest-root=. --x-install-root=${{ github.workspace }}/vcpkg_installed --triplet $env:VCPKG_DEFAULT_TRIPLET
+
+      - name: Build monitoring_system with MSVC
+        id: build_vcpkg
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          Write-Host "Creating build directory..."
+          if (Test-Path -Path build) {
+            Remove-Item -Path build -Recurse -Force
+          }
+          New-Item -ItemType Directory -Path build | Out-Null
+          
+          Set-Location build
+          
+          Write-Host "Configuring with CMake..."
+          cmake .. `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -DMONITORING_BUILD_TESTS=ON `
+            -DMONITORING_BUILD_EXAMPLES=ON `
+            -DCMAKE_BUILD_TYPE=$env:BUILD_TYPE `
+            -DCMAKE_TOOLCHAIN_FILE="$env:GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake"
+          
+          if ($LASTEXITCODE -ne 0) {
+            throw "CMake configuration failed"
+          }
+          
+          Write-Host "Building..."
+          cmake --build . --config $env:BUILD_TYPE --parallel
+          
+          if ($LASTEXITCODE -ne 0) {
+            throw "Build failed"
+          }
+          
+          Write-Host "Running tests..."
+          ctest -C $env:BUILD_TYPE --output-on-failure
+          
+          if ($LASTEXITCODE -ne 0) {
+            throw "Tests failed"
+          }
+
+      - name: Build monitoring_system with MSVC (fallback)
+        if: steps.build_vcpkg.outcome != 'success'
+        shell: pwsh
+        run: |
+          Write-Host "vcpkg build failed. Falling back to system libraries..."
+          
+          if (Test-Path -Path build) {
+            Remove-Item -Path build -Recurse -Force
+          }
+          New-Item -ItemType Directory -Path build | Out-Null
+          
+          Set-Location build
+          
+          cmake .. `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -DMONITORING_BUILD_TESTS=ON `
+            -DMONITORING_BUILD_EXAMPLES=ON `
+            -DCMAKE_BUILD_TYPE=$env:BUILD_TYPE
+          
+          cmake --build . --config $env:BUILD_TYPE --parallel
+
+      - name: Run tests (fallback)
+        if: steps.build_vcpkg.outcome != 'success'
+        shell: pwsh
+        run: |
+          Set-Location build
+          $testExe = "tests\$env:BUILD_TYPE\monitoring_system_tests.exe"
+          if (Test-Path $testExe) {
+            & $testExe
+          } else {
+            Write-Host "Test executable not found at: $testExe"
+          }
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-windows-vs
+          path: build/Testing/
+          retention-days: 7

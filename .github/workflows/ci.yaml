@@ -1,0 +1,174 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'phase*'
+      - 'feature/*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check C++ formatting
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-format
+          find sources tests examples -name '*.cpp' -o -name '*.h' | xargs clang-format --dry-run --Werror
+
+  build-matrix:
+    needs: format-check
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-2022, macos-latest]
+        compiler: [gcc, clang, msvc]
+        build_type: [Debug, Release]
+        exclude:
+          - os: ubuntu-latest
+            compiler: msvc
+          - os: windows-2022
+            compiler: gcc
+          - os: windows-2022
+            compiler: clang
+          - os: macos-latest
+            compiler: msvc
+          - os: macos-latest
+            compiler: gcc
+    
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.build_type }}
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup build environment (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build
+          if [ "${{ matrix.compiler }}" = "gcc" ]; then
+            sudo apt-get install -y g++
+          else
+            sudo apt-get install -y clang
+          fi
+
+      - name: Setup build environment (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew update
+          brew install cmake ninja
+
+      - name: Setup build environment (Windows)
+        if: runner.os == 'Windows'
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: '17.0'
+
+      - name: Configure CMake
+        shell: bash
+        run: |
+          mkdir -p build
+          cd build
+          
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            cmake .. \
+              -G "Visual Studio 17 2022" \
+              -A x64 \
+              -DMONITORING_BUILD_TESTS=ON \
+              -DMONITORING_BUILD_EXAMPLES=ON \
+              -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          else
+            COMPILER_FLAGS=""
+            if [ "${{ matrix.compiler }}" = "gcc" ]; then
+              COMPILER_FLAGS="-DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++"
+            elif [ "${{ matrix.compiler }}" = "clang" ]; then
+              COMPILER_FLAGS="-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
+            fi
+            
+            cmake .. \
+              -G Ninja \
+              -DMONITORING_BUILD_TESTS=ON \
+              -DMONITORING_BUILD_EXAMPLES=ON \
+              -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+              $COMPILER_FLAGS
+          fi
+
+      - name: Build
+        run: |
+          cd build
+          cmake --build . --config ${{ matrix.build_type }} --parallel
+
+      - name: Test
+        run: |
+          cd build
+          ctest -C ${{ matrix.build_type }} --output-on-failure
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.build_type }}
+          path: build/Testing/
+          retention-days: 7
+
+  coverage:
+    needs: build-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build g++ gcovr
+
+      - name: Build with coverage
+        run: |
+          mkdir -p build
+          cd build
+          cmake .. \
+            -G Ninja \
+            -DMONITORING_BUILD_TESTS=ON \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_CXX_FLAGS="--coverage" \
+            -DCMAKE_C_FLAGS="--coverage"
+          cmake --build .
+
+      - name: Run tests
+        run: |
+          cd build
+          ctest --output-on-failure
+
+      - name: Generate coverage report
+        run: |
+          cd build
+          gcovr -r .. --html --html-details -o coverage.html
+          gcovr -r .. --xml -o coverage.xml
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            build/coverage.html
+            build/coverage.xml
+          retention-days: 30
+
+  all-checks-passed:
+    needs: [format-check, build-matrix, coverage]
+    runs-on: ubuntu-latest
+    steps:
+      - name: All checks passed
+        run: echo "All CI checks passed successfully!"
