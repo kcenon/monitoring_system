@@ -22,6 +22,7 @@ add_executable(monitoring_system_tests
     test_thread_context.cpp
     test_distributed_tracing.cpp
     test_performance_monitoring.cpp
+    test_adaptive_monitoring.cpp
 )
 
 target_link_libraries(monitoring_system_tests
