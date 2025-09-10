@@ -7,7 +7,7 @@
 | Phase | Status | Progress | Completion Date |
 |-------|--------|----------|-----------------|
 | **Phase 1: Core Architecture** | ✅ Complete | 100% (5/5 tasks) | 2025-09-10 |
-| **Phase 2: Advanced Monitoring** | 🚧 In Progress | 75% (3/4 tasks) | 2025-09-11 |
+| **Phase 2: Advanced Monitoring** | ✅ Complete | 100% (4/4 tasks) | 2025-09-11 |
 | **Phase 3: Performance & Optimization** | ⏳ Pending | 0% (0/4 tasks) | - |
 | **Phase 4: Reliability & Safety** | ⏳ Pending | 0% (0/4 tasks) | - |
 | **Phase 5: Build & Integration** | ⏳ Pending | 0% (0/4 tasks) | - |
@@ -1519,7 +1519,7 @@ This comprehensive monitoring system design integrates the best practices from b
 - ✅ A4: Monitorable Interface
 - ✅ A5: Thread Context and Metadata
 
-### Phase 2: Advanced Monitoring Features (50% Complete)
+### Phase 2: Advanced Monitoring Features (100% Complete)
 - ✅ D1: Distributed Tracing Implementation (COMPLETED 2025-09-11)
   - Implemented W3C Trace Context propagation
   - Created trace span management system
@@ -1547,10 +1547,16 @@ This comprehensive monitoring system design integrates the best practices from b
   - Exponential smoothing for stability
   - 17 tests passing
   
-- 🚧 D4: Health Monitoring Framework (PENDING)
-  - Service health checks
-  - Dependency health tracking
-  - Automatic recovery mechanisms
+- ✅ D4: Health Monitoring Framework (COMPLETED 2025-09-11)
+  - Comprehensive health check system (liveness/readiness/startup)
+  - Dependency graph with cycle detection
+  - Topological sorting for ordered health checks
+  - Composite health checks with aggregation
+  - Automatic recovery mechanisms with retry policies
+  - Health check builder for easy configuration
+  - Cache-based optimization for performance
+  - Global health monitor singleton
+  - 22 tests passing
 
 ## Implemented Features
 
@@ -1630,6 +1636,72 @@ auto [fast, slow] = bench.compare(
 );
 ```
 
+### Health Monitoring API
+```cpp
+// Create health checks
+auto db_check = health_check_builder()
+    .with_name("database")
+    .with_type(health_check_type::liveness)
+    .with_check([]() {
+        // Check database connection
+        return can_connect_to_db() 
+            ? health_check_result::healthy("Connected")
+            : health_check_result::unhealthy("Connection failed");
+    })
+    .with_timeout(std::chrono::seconds(5))
+    .critical(true)
+    .build();
+
+// Register with monitor
+health_monitor& monitor = global_health_monitor();
+monitor.register_check("database", db_check);
+
+// Add dependencies
+monitor.add_dependency("api", "database");  // API depends on database
+monitor.add_dependency("api", "cache");     // API depends on cache
+
+// Check health
+auto result = monitor.check("api");  // Checks API and all dependencies
+if (!result.value().is_operational()) {
+    // Handle degraded or unhealthy state
+}
+
+// Composite health checks
+composite_health_check all_services("all", health_check_type::readiness);
+all_services.add_check(db_check);
+all_services.add_check(cache_check);
+all_services.add_check(api_check);
+
+// Get health report
+auto report = monitor.get_health_report();
+// Returns formatted health status of all services
+```
+
+### Adaptive Monitoring API
+```cpp
+// Configure adaptive behavior
+adaptive_config config;
+config.strategy = adaptation_strategy::balanced;
+config.idle_threshold = 20.0;  // CPU %
+config.high_threshold = 80.0;  // CPU %
+
+// Register collector with adaptive monitoring
+adaptive_monitor& monitor = global_adaptive_monitor();
+monitor.register_collector("metrics", collector, config);
+
+// Set priorities (higher = keep active longer under load)
+monitor.set_collector_priority("critical_metrics", 100);
+monitor.set_collector_priority("optional_metrics", 10);
+
+// Monitor automatically adjusts collection based on system load
+// No manual intervention needed
+
+// Get adaptation statistics
+auto stats = monitor.get_collector_stats("metrics");
+std::cout << "Current load level: " << stats.current_load_level << "\n";
+std::cout << "Sampling rate: " << stats.current_sampling_rate << "\n";
+```
+
 ## Architecture Components
 
 ### Core Components (Phase 1)
@@ -1642,8 +1714,8 @@ auto [fast, slow] = bench.compare(
 ### Advanced Features (Phase 2)
 - ✅ **Distributed Tracing**: Complete implementation with W3C compliance
 - ✅ **Performance Monitoring**: Comprehensive profiling and resource tracking
-- 🚧 **Adaptive Monitoring**: Dynamic adjustment based on system load (D3)
-- 🚧 **Health Monitoring**: Service health checks and diagnostics (D4)
+- ✅ **Adaptive Monitoring**: Dynamic adjustment based on system load
+- ✅ **Health Monitoring**: Service health checks with dependency tracking
 
 ## Testing Coverage
 - **Unit Tests**: Comprehensive test suites for all components
@@ -1652,9 +1724,10 @@ auto [fast, slow] = bench.compare(
 - **Platform Tests**: Cross-platform compatibility verification
 
 ## Next Steps
-### Immediate Tasks
-- Implement D3: Adaptive Monitoring
-- Implement D4: Health Monitoring Framework
+### Phase 3: Performance & Optimization
+- Implement memory-efficient metric storage
+- Add statistical aggregation functions
+- Create configurable buffering strategies
 - Add span exporters (Jaeger, Zipkin, OTLP)
 - Implement OpenTelemetry compatibility layer
 

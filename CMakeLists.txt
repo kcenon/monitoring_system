@@ -97,6 +97,7 @@ add_library(monitoring_system STATIC
     sources/monitoring/tracing/distributed_tracer.cpp
     sources/monitoring/performance/performance_monitor.cpp
     sources/monitoring/adaptive/adaptive_monitor.cpp
+    sources/monitoring/health/health_monitor.cpp
 )
 
 target_link_libraries(monitoring_system PUBLIC
