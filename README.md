@@ -4,12 +4,12 @@ A modern, high-performance monitoring system for C++ applications, integrating s
 
 ## Features
 
-### Phase 1: Core Architecture (In Progress)
+### Phase 1: Core Architecture (✅ Complete)
 - ✅ **Result Pattern Error Handling**: Explicit error handling without exceptions
 - ✅ **Comprehensive Error Codes**: Categorized error codes for all operations
 - ✅ **Dependency Injection**: Service container with lifetime management
 - ✅ **Monitorable Interface**: Standardized interface for component monitoring
-- 🚧 **Thread Context Integration**: Metadata enrichment from thread_system (upcoming)
+- ✅ **Thread Context Integration**: Metadata enrichment and context propagation
 
 ## Building
 
@@ -57,6 +57,46 @@ make -j$(nproc)
 | `ENABLE_UBSAN` | OFF | Enable UndefinedBehaviorSanitizer |
 
 ## Usage
+
+### Thread Context
+
+Thread-local context enables request tracing and correlation:
+
+```cpp
+#include <monitoring/context/thread_context.h>
+
+using namespace monitoring_system;
+
+// Set context for current thread
+thread_context::create("request-123");
+thread_context::current()->correlation_id = "corr-456";
+thread_context::current()->user_id = "user-789";
+thread_context::current()->add_tag("environment", "production");
+
+// Use RAII scope for automatic cleanup
+{
+    context_scope scope("scoped-request");
+    // Context automatically cleared when scope exits
+}
+
+// Propagate context across threads
+context_propagator propagator = context_propagator::from_current();
+
+std::thread worker([propagator]() {
+    propagator.apply();  // Apply parent thread's context
+    // Worker has same context as parent
+});
+
+// Context-aware monitoring
+class my_collector : public context_metrics_collector {
+public:
+    result<metrics_snapshot> collect() override {
+        auto snapshot = create_snapshot_with_context();
+        // Snapshot automatically includes thread context
+        return make_success(std::move(snapshot));
+    }
+};
+```
 
 ### Monitorable Interface
 
@@ -215,6 +255,8 @@ monitoring_system/
 │       ├── interfaces/        # Abstract interfaces
 │       │   ├── monitoring_interface.h
 │       │   └── monitorable_interface.h
+│       ├── context/           # Thread context
+│       │   └── thread_context.h
 │       ├── di/                # Dependency injection
 │       │   ├── service_container_interface.h
 │       │   ├── lightweight_container.h
@@ -228,12 +270,12 @@ monitoring_system/
 
 ## Implementation Status
 
-### Phase 1: Core Architecture Alignment (Week 1-2)
+### Phase 1: Core Architecture Alignment (Week 1-2) ✅ COMPLETE
 - [x] A1: Adopt thread_system's result<T> pattern
 - [x] A2: Define monitoring_error_code enum (extended)
 - [x] A3: Integrate with service_container
 - [x] A4: Implement monitorable_interface
-- [ ] A5: Add thread_context metadata
+- [x] A5: Add thread_context metadata
 
 ### Phase 2: Design Patterns (Week 3-4)
 - [ ] D1: Create monitoring_builder
@@ -260,9 +302,10 @@ Run specific test:
 ./tests/monitoring_system_tests --gtest_filter=ResultTypesTest.*
 ./tests/monitoring_system_tests --gtest_filter=DIContainerTest.*
 ./tests/monitoring_system_tests --gtest_filter=MonitorableInterfaceTest.*
+./tests/monitoring_system_tests --gtest_filter=ThreadContextTest.*
 ```
 
-**Note**: 35 tests currently passing (2 tests temporarily disabled for further investigation)
+**Note**: 48 tests currently passing (2 tests temporarily disabled for further investigation)
 
 ## Contributing
 
