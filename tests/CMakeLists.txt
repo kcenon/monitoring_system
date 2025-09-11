@@ -36,6 +36,7 @@ add_executable(monitoring_system_tests
     test_trace_exporters.cpp
     test_metric_exporters.cpp
     test_storage_backends.cpp
+    # test_integration_e2e.cpp # Temporarily disabled - API alignment needed
 )
 
 target_link_libraries(monitoring_system_tests
