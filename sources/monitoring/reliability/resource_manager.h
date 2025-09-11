@@ -650,9 +650,9 @@ private:
     
     std::chrono::milliseconds calculate_delay(double cpu_usage) {
         double excess = cpu_usage - config_.max_cpu_usage;
-        double delay_ms = std::min(
-            config_.max_delay.count(),
-            static_cast<long long>(excess * 1000.0)
+        double delay_ms = std::min<double>(
+            static_cast<double>(config_.max_delay.count()),
+            excess * 1000.0
         );
         return std::chrono::milliseconds(static_cast<long long>(delay_ms));
     }
