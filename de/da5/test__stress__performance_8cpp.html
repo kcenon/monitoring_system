@@ -326,7 +326,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  475</span>        <span class="keyword">auto</span> burst_duration = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(</div>
 <div class="line"><span class="lineno">  476</span>            burst_end - burst_start).count();</div>
 <div class="line"><span class="lineno">  477</span>        </div>
-<div class="line"><span class="lineno">  478</span>        burst_latencies.push_back(burst_duration);</div>
+<div class="line"><span class="lineno">  478</span>        burst_latencies.push_back(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(burst_duration));</div>
 <div class="line"><span class="lineno">  479</span>        </div>
 <div class="line"><span class="lineno">  480</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Burst &quot;</span> &lt;&lt; burst &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; successful &lt;&lt; <span class="stringliteral">&quot;/&quot;</span> &lt;&lt; BURST_SIZE </div>
 <div class="line"><span class="lineno">  481</span>                  &lt;&lt; <span class="stringliteral">&quot; successful, duration: &quot;</span> &lt;&lt; burst_duration &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
@@ -662,9 +662,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  168</span>    </div>
 <div class="line"><span class="lineno">  169</span>    <span class="comment">// Calculate percentiles</span></div>
 <div class="line"><span class="lineno">  170</span>    std::sort(latencies.begin(), latencies.end());</div>
-<div class="line"><span class="lineno">  171</span>    <span class="keywordtype">double</span> p50 = latencies.empty() ? 0 : latencies[latencies.size() * 0.5];</div>
-<div class="line"><span class="lineno">  172</span>    <span class="keywordtype">double</span> p95 = latencies.empty() ? 0 : latencies[latencies.size() * 0.95];</div>
-<div class="line"><span class="lineno">  173</span>    <span class="keywordtype">double</span> p99 = latencies.empty() ? 0 : latencies[latencies.size() * 0.99];</div>
+<div class="line"><span class="lineno">  171</span>    <span class="keywordtype">double</span> p50 = latencies.empty() ? 0 : latencies[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(latencies.size() * 0.5)];</div>
+<div class="line"><span class="lineno">  172</span>    <span class="keywordtype">double</span> p95 = latencies.empty() ? 0 : latencies[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(latencies.size() * 0.95)];</div>
+<div class="line"><span class="lineno">  173</span>    <span class="keywordtype">double</span> p99 = latencies.empty() ? 0 : latencies[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(latencies.size() * 0.99)];</div>
 <div class="line"><span class="lineno">  174</span>    </div>
 <div class="line"><span class="lineno">  175</span>    <span class="comment">// Calculate throughput</span></div>
 <div class="line"><span class="lineno">  176</span>    <span class="keywordtype">double</span> throughput = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(total_operations) / duration.count();</div>
@@ -1057,7 +1057,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 15:10:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 15:25:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
