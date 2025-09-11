@@ -86,6 +86,10 @@ enum class monitoring_error_code : std::uint32_t {
     operation_failed = 8003,
     network_error = 8004,
     service_unavailable = 8005,
+    service_degraded = 8006,
+    error_boundary_triggered = 8007,
+    fallback_failed = 8008,
+    recovery_failed = 8009,
     
     // General errors (8100-8999)
     invalid_argument = 8100,
@@ -207,6 +211,14 @@ inline std::string error_code_to_string(monitoring_error_code code) {
             return "Network error";
         case monitoring_error_code::service_unavailable:
             return "Service unavailable";
+        case monitoring_error_code::service_degraded:
+            return "Service operating in degraded mode";
+        case monitoring_error_code::error_boundary_triggered:
+            return "Error boundary triggered";
+        case monitoring_error_code::fallback_failed:
+            return "Fallback operation failed";
+        case monitoring_error_code::recovery_failed:
+            return "Recovery operation failed";
             
         // General errors
         case monitoring_error_code::invalid_argument:
@@ -248,6 +260,12 @@ inline std::string get_error_details(monitoring_error_code code) {
             return "All retry attempts have been exhausted. The operation failed permanently. Check service availability and error conditions.";
         case monitoring_error_code::operation_failed:
             return "The requested operation failed. Check service status, network connectivity, and input parameters.";
+        case monitoring_error_code::service_degraded:
+            return "Service is operating in degraded mode due to detected issues. Some features may be unavailable.";
+        case monitoring_error_code::error_boundary_triggered:
+            return "Error boundary has been triggered to prevent error propagation. Check upstream service health.";
+        case monitoring_error_code::fallback_failed:
+            return "Both primary operation and fallback mechanism failed. Check alternative service configurations.";
         default:
             return error_code_to_string(code);
     }

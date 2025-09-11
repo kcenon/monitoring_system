@@ -57,6 +57,25 @@ A modern, **high-performance monitoring system** for C++20 applications with **l
   - SIMD-accelerated aggregation functions for vectorized processing
   - Cross-platform optimization (AVX2/AVX512 for x64, NEON for ARM64)
 
+### Reliability & Safety (🚧 Phase 4 - 50% Complete)
+- ✅ **Fault Tolerance**: Advanced fault tolerance patterns
+  - Circuit Breaker pattern with configurable failure thresholds
+  - Advanced retry policies (exponential backoff, linear, fibonacci)
+  - Fault tolerance manager for coordinated fault handling
+  - Comprehensive fault tolerance metrics and health monitoring
+- ✅ **Error Boundaries**: Resilient error handling with graceful degradation
+  - Template-based error boundaries with four degradation levels
+  - Four error boundary policies (fail_fast, isolate, degrade, fallback)
+  - Fallback strategies (default value, cached value, alternative service)
+  - Automatic recovery mechanisms with configurable timeouts
+  - Error boundary registry for managing multiple boundaries
+- ✅ **Graceful Degradation**: Service priority-based degradation management
+  - Service priorities (critical, important, normal, optional)
+  - Degradation plans for coordinated multi-service degradation  
+  - Automatic degradation based on error rates and health checks
+  - Service recovery mechanisms with health monitoring integration
+  - Degradable service wrapper pattern for seamless integration
+
 ## Building
 
 ### Requirements
@@ -136,6 +155,57 @@ std::unordered_map<std::string, std::string> headers;
 auto context = tracer.extract_context(*span);
 tracer.inject_context(context, headers);
 // Send headers with HTTP request
+```
+
+### Error Boundaries and Graceful Degradation
+
+```cpp
+#include <monitoring/reliability/error_boundary.h>
+#include <monitoring/reliability/graceful_degradation.h>
+
+using namespace monitoring_system;
+
+// Create error boundary with degradation policy
+error_boundary_config config;
+config.policy = error_boundary_policy::degrade;
+config.error_threshold = 3;
+config.max_degradation = degradation_level::minimal;
+
+auto boundary = create_error_boundary<std::string>("api_service", config);
+
+// Execute operations within error boundary
+auto result = boundary->execute(
+    []() -> result<std::string> {
+        // Operation that might fail
+        return make_success("Normal response");
+    },
+    [](const error_info& error, degradation_level level) -> result<std::string> {
+        // Fallback based on degradation level
+        switch (level) {
+            case degradation_level::limited:
+                return make_success("Limited response");
+            case degradation_level::minimal:
+                return make_success("Basic response");
+            default:
+                return make_success("Emergency response");
+        }
+    }
+);
+
+// Graceful degradation manager for coordinated service degradation
+auto manager = create_degradation_manager("main_system");
+
+// Register services with priorities
+manager->register_service(create_service_config("database", 
+    service_priority::critical, 0.1));
+manager->register_service(create_service_config("cache", 
+    service_priority::important, 0.2));
+
+// Create and execute degradation plans
+auto plan = create_degradation_plan("emergency", 
+    {"cache"}, {"analytics"}, degradation_level::minimal);
+manager->add_degradation_plan(plan);
+manager->execute_plan("emergency", "High error rate detected");
 ```
 
 ### Performance Monitoring

@@ -29,6 +29,7 @@ add_executable(monitoring_system_tests
     test_buffering_strategies.cpp
     test_optimization.cpp
     test_fault_tolerance.cpp
+    test_error_boundaries.cpp
 )
 
 target_link_libraries(monitoring_system_tests
