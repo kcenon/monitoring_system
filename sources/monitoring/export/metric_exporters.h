@@ -154,9 +154,9 @@ struct prometheus_metric_data {
         if (!labels.empty()) {
             ss << "{";
             bool first = true;
-            for (const auto& [key, value] : labels) {
+            for (const auto& [key, label_value] : labels) {
                 if (!first) ss << ",";
-                ss << key << "=\"" << escape_label_value(value) << "\"";
+                ss << key << "=\"" << escape_label_value(label_value) << "\"";
                 first = false;
             }
             ss << "}";
@@ -176,12 +176,12 @@ struct prometheus_metric_data {
     }
     
 private:
-    std::string escape_label_value(const std::string& value) const {
-        std::string escaped = value;
+    std::string escape_label_value(const std::string& label_value) const {
+        std::string escaped = label_value;
         // Escape backslashes, quotes, and newlines
-        std::regex_replace(escaped, std::regex("\\\\"), "\\\\");
-        std::regex_replace(escaped, std::regex("\""), "\\\"");
-        std::regex_replace(escaped, std::regex("\n"), "\\n");
+        escaped = std::regex_replace(escaped, std::regex("\\\\"), "\\\\");
+        escaped = std::regex_replace(escaped, std::regex("\""), "\\\"");
+        escaped = std::regex_replace(escaped, std::regex("\n"), "\\n");
         return escaped;
     }
 };
@@ -223,9 +223,9 @@ struct statsd_metric_data {
         if (datadog_format && !tags.empty()) {
             ss << "|#";
             bool first = true;
-            for (const auto& [key, value] : tags) {
+            for (const auto& [key, tag_value] : tags) {
                 if (!first) ss << ",";
-                ss << key << ":" << value;
+                ss << key << ":" << tag_value;
                 first = false;
             }
         }
