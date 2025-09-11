@@ -35,6 +35,7 @@ add_executable(monitoring_system_tests
     test_opentelemetry_adapter.cpp
     test_trace_exporters.cpp
     test_metric_exporters.cpp
+    test_storage_backends.cpp
 )
 
 target_link_libraries(monitoring_system_tests
