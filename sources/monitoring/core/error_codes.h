@@ -98,6 +98,14 @@ enum class monitoring_error_code : std::uint32_t {
     already_exists = 8103,
     resource_exhausted = 8104,
     
+    // Resource management errors (8200-8299)
+    quota_exceeded = 8200,
+    rate_limit_exceeded = 8201,
+    cpu_throttled = 8202,
+    memory_quota_exceeded = 8203,
+    bandwidth_exceeded = 8204,
+    resource_unavailable = 8205,
+    
     // Unknown error
     unknown_error = 9999
 };
@@ -232,6 +240,20 @@ inline std::string error_code_to_string(monitoring_error_code code) {
         case monitoring_error_code::resource_exhausted:
             return "Resource exhausted";
             
+        // Resource management errors
+        case monitoring_error_code::quota_exceeded:
+            return "Quota exceeded";
+        case monitoring_error_code::rate_limit_exceeded:
+            return "Rate limit exceeded";
+        case monitoring_error_code::cpu_throttled:
+            return "CPU throttled";
+        case monitoring_error_code::memory_quota_exceeded:
+            return "Memory quota exceeded";
+        case monitoring_error_code::bandwidth_exceeded:
+            return "Bandwidth exceeded";
+        case monitoring_error_code::resource_unavailable:
+            return "Resource unavailable";
+            
         // Unknown error
         case monitoring_error_code::unknown_error:
         default:
@@ -266,6 +288,18 @@ inline std::string get_error_details(monitoring_error_code code) {
             return "Error boundary has been triggered to prevent error propagation. Check upstream service health.";
         case monitoring_error_code::fallback_failed:
             return "Both primary operation and fallback mechanism failed. Check alternative service configurations.";
+        case monitoring_error_code::quota_exceeded:
+            return "Resource quota has been exceeded. Reduce resource consumption or increase quota limits.";
+        case monitoring_error_code::rate_limit_exceeded:
+            return "Rate limit has been exceeded. Reduce request frequency or increase rate limits.";
+        case monitoring_error_code::cpu_throttled:
+            return "Operation has been throttled due to high CPU usage. Reduce system load or adjust CPU limits.";
+        case monitoring_error_code::memory_quota_exceeded:
+            return "Memory quota has been exceeded. Free memory or increase memory quota limits.";
+        case monitoring_error_code::bandwidth_exceeded:
+            return "Bandwidth quota has been exceeded. Reduce data transfer or increase bandwidth limits.";
+        case monitoring_error_code::resource_unavailable:
+            return "Required resource is currently unavailable. Try again later or check resource status.";
         default:
             return error_code_to_string(code);
     }
