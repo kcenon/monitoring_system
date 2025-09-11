@@ -124,7 +124,7 @@ TEST_F(StorageBackendsTest, StorageConfigValidation) {
 TEST_F(StorageBackendsTest, FileStorageBackendBasicOperations) {
     storage_config config;
     config.type = storage_backend_type::file_json;
-    config.path = test_dir_ / "test.json";
+    config.path = (test_dir_ / "test.json").string();
     config.max_capacity = 10;
     
     file_storage_backend backend(config);
@@ -163,7 +163,7 @@ TEST_F(StorageBackendsTest, FileStorageBackendBasicOperations) {
 TEST_F(StorageBackendsTest, FileStorageBackendCapacityLimit) {
     storage_config config;
     config.type = storage_backend_type::file_json;
-    config.path = test_dir_ / "capacity_test.json";
+    config.path = (test_dir_ / "capacity_test.json").string();
     config.max_capacity = 2; // Small capacity for testing
     
     file_storage_backend backend(config);
@@ -188,7 +188,7 @@ TEST_F(StorageBackendsTest, FileStorageBackendDifferentFormats) {
     {
         storage_config json_config;
         json_config.type = storage_backend_type::file_json;
-        json_config.path = test_dir_ / "test.json";
+        json_config.path = (test_dir_ / "test.json").string();
         json_config.max_capacity = 10;
         
         file_storage_backend json_backend(json_config);
@@ -203,7 +203,7 @@ TEST_F(StorageBackendsTest, FileStorageBackendDifferentFormats) {
     {
         storage_config binary_config;
         binary_config.type = storage_backend_type::file_binary;
-        binary_config.path = test_dir_ / "test.bin";
+        binary_config.path = (test_dir_ / "test.bin").string();
         binary_config.max_capacity = 10;
         
         file_storage_backend binary_backend(binary_config);
@@ -218,7 +218,7 @@ TEST_F(StorageBackendsTest, FileStorageBackendDifferentFormats) {
     {
         storage_config csv_config;
         csv_config.type = storage_backend_type::file_csv;
-        csv_config.path = test_dir_ / "test.csv";
+        csv_config.path = (test_dir_ / "test.csv").string();
         csv_config.max_capacity = 10;
         
         file_storage_backend csv_backend(csv_config);
@@ -263,7 +263,7 @@ TEST_F(StorageBackendsTest, MemoryStorageBackend) {
 TEST_F(StorageBackendsTest, DatabaseStorageBackendBasicOperations) {
     storage_config config;
     config.type = storage_backend_type::database_sqlite;
-    config.path = test_dir_ / "test.db";
+    config.path = (test_dir_ / "test.db").string();
     config.table_name = "test_metrics";
     config.max_capacity = 100;
     
@@ -310,7 +310,7 @@ TEST_F(StorageBackendsTest, DatabaseStorageBackendDifferentTypes) {
     {
         storage_config sqlite_config;
         sqlite_config.type = storage_backend_type::database_sqlite;
-        sqlite_config.path = test_dir_ / "sqlite.db";
+        sqlite_config.path = (test_dir_ / "sqlite.db").string();
         sqlite_config.max_capacity = 50;
         
         database_storage_backend sqlite_backend(sqlite_config);
@@ -433,7 +433,7 @@ TEST_F(StorageBackendsTest, StorageBackendFactory) {
     {
         storage_config file_config;
         file_config.type = storage_backend_type::file_json;
-        file_config.path = test_dir_ / "factory_test.json";
+        file_config.path = (test_dir_ / "factory_test.json").string();
         file_config.max_capacity = 50;
         
         auto backend = storage_backend_factory::create_backend(file_config);
@@ -447,7 +447,7 @@ TEST_F(StorageBackendsTest, StorageBackendFactory) {
     {
         storage_config db_config;
         db_config.type = storage_backend_type::database_sqlite;
-        db_config.path = test_dir_ / "factory_test.db";
+        db_config.path = (test_dir_ / "factory_test.db").string();
         db_config.max_capacity = 50;
         
         auto backend = storage_backend_factory::create_backend(db_config);
@@ -499,7 +499,7 @@ TEST_F(StorageBackendsTest, HelperFunctions) {
     // Test file storage helper
     {
         auto backend = create_file_storage(
-            test_dir_ / "helper_test.json",
+            (test_dir_ / "helper_test.json").string(),
             storage_backend_type::file_json,
             100);
         EXPECT_TRUE(backend);
@@ -512,7 +512,7 @@ TEST_F(StorageBackendsTest, HelperFunctions) {
     {
         auto backend = create_database_storage(
             storage_backend_type::database_sqlite,
-            test_dir_ / "helper_test.db",
+            (test_dir_ / "helper_test.db").string(),
             "test_table");
         EXPECT_TRUE(backend);
         
