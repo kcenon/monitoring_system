@@ -17,10 +17,14 @@ var searchData=
   ['copy_5ffrom_14',['copy_from',['../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8',1,'monitoring_system::thread_context']]],
   ['create_15',['create',['../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45',1,'monitoring_system::thread_context']]],
   ['create_5flightweight_5fcontainer_16',['create_lightweight_container',['../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3',1,'monitoring_system']]],
-  ['create_5fscope_17',['create_scope',['../d7/d05/classmonitoring__system_1_1lightweight__container.html#adcdedb79e0eab01d15a0d53dffb6152a',1,'monitoring_system::lightweight_container::create_scope()'],['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a05c22b6fee05040038f407b73e66e3dc',1,'monitoring_system::service_container_interface::create_scope()']]],
+  ['create_5fscope_17',['create_scope',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a05c22b6fee05040038f407b73e66e3dc',1,'monitoring_system::service_container_interface::create_scope()'],['../d7/d05/classmonitoring__system_1_1lightweight__container.html#adcdedb79e0eab01d15a0d53dffb6152a',1,'monitoring_system::lightweight_container::create_scope()']]],
   ['create_5fsnapshot_5fwith_5fcontext_18',['create_snapshot_with_context',['../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f',1,'monitoring_system::context_metrics_collector']]],
   ['create_5ftest_5fmetric_19',['create_test_metric',['../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b',1,'BufferingStrategiesTest']]],
   ['create_5ftest_5fmetrics_20',['create_test_metrics',['../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1',1,'BufferingStrategiesTest']]],
-  ['create_5fthread_5fsystem_5fadapter_21',['create_thread_system_adapter',['../de/d3f/namespacemonitoring__system.html#ad6d7697cfcb8978cc784acb0f1dd4fd4',1,'monitoring_system']]],
-  ['current_22',['current',['../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d',1,'monitoring_system::thread_context']]]
+  ['create_5ftest_5fmonitoring_5fdata_21',['create_test_monitoring_data',['../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961',1,'MetricExportersTest']]],
+  ['create_5ftest_5fsnapshot_22',['create_test_snapshot',['../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e',1,'MetricExportersTest']]],
+  ['create_5ftest_5fsnapshots_23',['create_test_snapshots',['../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192',1,'StorageBackendsTest']]],
+  ['create_5ftest_5fspans_24',['create_test_spans',['../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f',1,'TraceExportersTest']]],
+  ['create_5fthread_5fsystem_5fadapter_25',['create_thread_system_adapter',['../de/d3f/namespacemonitoring__system.html#ad6d7697cfcb8978cc784acb0f1dd4fd4',1,'monitoring_system']]],
+  ['current_26',['current',['../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d',1,'monitoring_system::thread_context']]]
 ];
