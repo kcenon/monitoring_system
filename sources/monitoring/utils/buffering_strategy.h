@@ -203,6 +203,18 @@ struct buffer_statistics {
     
     buffer_statistics() : creation_time(std::chrono::system_clock::now()) {}
     
+    // Copy constructor for result<buffer_statistics>
+    buffer_statistics(const buffer_statistics& other) 
+        : total_items_buffered(other.total_items_buffered.load())
+        , total_items_flushed(other.total_items_flushed.load())
+        , items_dropped_overflow(other.items_dropped_overflow.load())
+        , items_dropped_expired(other.items_dropped_expired.load())
+        , total_flushes(other.total_flushes.load())
+        , forced_flushes(other.forced_flushes.load())
+        , compression_operations(other.compression_operations.load())
+        , bytes_saved_compression(other.bytes_saved_compression.load())
+        , creation_time(other.creation_time) {}
+    
     /**
      * @brief Get buffer efficiency percentage
      */

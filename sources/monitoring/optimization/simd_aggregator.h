@@ -25,7 +25,7 @@ All rights reserved.
 #include <numeric>
 
 // Platform-specific SIMD headers
-#if defined(__x86_64__) || defined(_M_X64)
+#if defined(SIMD_AVX2_AVAILABLE) && (defined(__x86_64__) || defined(_M_X64))
     #include <immintrin.h>
     #define SIMD_AVAILABLE_AVX2
     #if defined(__AVX512F__)

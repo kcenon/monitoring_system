@@ -65,16 +65,26 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         -Werror=return-type
         -Werror=uninitialized
         -Werror=unused-result
-        -mavx2  # Enable AVX2 for SIMD optimizations
     )
+    
+    # Add AVX2 support if available (with fallback)
+    include(CheckCXXCompilerFlag)
+    check_cxx_compiler_flag("-mavx2" COMPILER_SUPPORTS_AVX2)
+    if(COMPILER_SUPPORTS_AVX2)
+        target_compile_options(monitoring_system_interface INTERFACE -mavx2)
+        target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
+    endif()
 elseif(MSVC)
     target_compile_options(monitoring_system_interface INTERFACE
         /W4
         /WX
         /permissive-
         /Zc:__cplusplus
-        /arch:AVX2  # Enable AVX2 for SIMD optimizations on MSVC
     )
+    
+    # Enable AVX2 on MSVC if supported
+    target_compile_options(monitoring_system_interface INTERFACE /arch:AVX2)
+    target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
 endif()
 
 # Sanitizers
