@@ -106,6 +106,16 @@ enum class monitoring_error_code : std::uint32_t {
     bandwidth_exceeded = 8204,
     resource_unavailable = 8205,
     
+    // Data consistency errors (8300-8399)
+    transaction_failed = 8300,
+    transaction_timeout = 8301,
+    transaction_aborted = 8302,
+    validation_failed = 8303,
+    data_corrupted = 8304,
+    state_inconsistent = 8305,
+    deadlock_detected = 8306,
+    rollback_failed = 8307,
+    
     // Unknown error
     unknown_error = 9999
 };
@@ -254,6 +264,24 @@ inline std::string error_code_to_string(monitoring_error_code code) {
         case monitoring_error_code::resource_unavailable:
             return "Resource unavailable";
             
+        // Data consistency errors
+        case monitoring_error_code::transaction_failed:
+            return "Transaction failed";
+        case monitoring_error_code::transaction_timeout:
+            return "Transaction timeout";
+        case monitoring_error_code::transaction_aborted:
+            return "Transaction aborted";
+        case monitoring_error_code::validation_failed:
+            return "Validation failed";
+        case monitoring_error_code::data_corrupted:
+            return "Data corrupted";
+        case monitoring_error_code::state_inconsistent:
+            return "State inconsistent";
+        case monitoring_error_code::deadlock_detected:
+            return "Deadlock detected";
+        case monitoring_error_code::rollback_failed:
+            return "Rollback failed";
+            
         // Unknown error
         case monitoring_error_code::unknown_error:
         default:
@@ -300,6 +328,22 @@ inline std::string get_error_details(monitoring_error_code code) {
             return "Bandwidth quota has been exceeded. Reduce data transfer or increase bandwidth limits.";
         case monitoring_error_code::resource_unavailable:
             return "Required resource is currently unavailable. Try again later or check resource status.";
+        case monitoring_error_code::transaction_failed:
+            return "Transaction failed to complete successfully. Check operation prerequisites and system state.";
+        case monitoring_error_code::transaction_timeout:
+            return "Transaction exceeded its timeout limit. Consider increasing timeout or reducing transaction scope.";
+        case monitoring_error_code::transaction_aborted:
+            return "Transaction was aborted due to conflicts or errors. Review transaction operations and retry.";
+        case monitoring_error_code::validation_failed:
+            return "Data validation failed. Check data integrity and consistency requirements.";
+        case monitoring_error_code::data_corrupted:
+            return "Data corruption detected. Run data repair operations or restore from backup.";
+        case monitoring_error_code::state_inconsistent:
+            return "System state is inconsistent across components. Synchronization or recovery needed.";
+        case monitoring_error_code::deadlock_detected:
+            return "Deadlock detected in transaction processing. Review locking strategy and transaction ordering.";
+        case monitoring_error_code::rollback_failed:
+            return "Transaction rollback failed. Manual cleanup may be required to restore consistent state.";
         default:
             return error_code_to_string(code);
     }

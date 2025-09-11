@@ -31,6 +31,7 @@ add_executable(monitoring_system_tests
     test_fault_tolerance.cpp
     test_error_boundaries.cpp
     test_resource_management.cpp
+    test_data_consistency.cpp
 )
 
 target_link_libraries(monitoring_system_tests
