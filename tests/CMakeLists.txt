@@ -24,6 +24,7 @@ add_executable(monitoring_system_tests
     test_performance_monitoring.cpp
     test_adaptive_monitoring.cpp
     test_health_monitoring.cpp
+    test_metric_storage.cpp
 )
 
 target_link_libraries(monitoring_system_tests
