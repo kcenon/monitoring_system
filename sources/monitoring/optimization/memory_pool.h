@@ -474,8 +474,11 @@ public:
      */
     template<typename T, typename... Args>
     result<T*> allocate_object(Args&&... args) {
-        static_assert(sizeof(T) <= config_.block_size, 
-                     "Object size exceeds block size");
+        // Runtime check since config_.block_size is not a compile-time constant
+        if (sizeof(T) > config_.block_size) {
+            return make_error<T*>(monitoring_error_code::invalid_configuration,
+                                "Object size exceeds block size");
+        }
         
         auto ptr_result = allocate();
         if (!ptr_result) {
