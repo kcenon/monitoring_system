@@ -169,6 +169,10 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result type for operations that may fail.  <a href="../../d8/dae/classmonitoring__system_1_1result.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d53/structmonitoring__system_1_1result_1_1success__tag.html">monitoring_system::result&lt; T &gt;::success_tag</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/db8/structmonitoring__system_1_1result_1_1error__tag.html">monitoring_system::result&lt; T &gt;::error_tag</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d78/classmonitoring__system_1_1result__void.html">monitoring_system::result_void</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization for operations with no return value.  <a href="../../d1/d78/classmonitoring__system_1_1result__void.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,13 +232,13 @@ Functions</h2></td></tr>
 <div class="line">        } \</div>
 <div class="line">    } <span class="keywordflow">while</span>(0)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00267">267</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  268</span>       { \</div>
-<div class="line"><span class="lineno">  269</span>        <span class="keyword">auto</span> _result = (expr); \</div>
-<div class="line"><span class="lineno">  270</span>        if (!_result) { \</div>
-<div class="line"><span class="lineno">  271</span>            <span class="keywordflow">return</span> _result.get_error(); \</div>
-<div class="line"><span class="lineno">  272</span>        } \</div>
-<div class="line"><span class="lineno">  273</span>    } <span class="keywordflow">while</span>(0)</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00271">271</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  272</span>       { \</div>
+<div class="line"><span class="lineno">  273</span>        <span class="keyword">auto</span> _result = (expr); \</div>
+<div class="line"><span class="lineno">  274</span>        if (!_result) { \</div>
+<div class="line"><span class="lineno">  275</span>            <span class="keywordflow">return</span> _result.get_error(); \</div>
+<div class="line"><span class="lineno">  276</span>        } \</div>
+<div class="line"><span class="lineno">  277</span>    } <span class="keywordflow">while</span>(0)</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -269,18 +273,18 @@ Functions</h2></td></tr>
 <div class="line">    } \</div>
 <div class="line">    <span class="keyword">auto</span>&amp; var = *_result_##var;</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00275">275</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  277</span>                        { \</div>
-<div class="line"><span class="lineno">  278</span>        <span class="keywordflow">return</span> _result_##var.get_error(); \</div>
-<div class="line"><span class="lineno">  279</span>    } \</div>
-<div class="line"><span class="lineno">  280</span>    <span class="keyword">auto</span>&amp; var = *_result_##var;</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00279">279</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  281</span>                        { \</div>
+<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">return</span> _result_##var.get_error(); \</div>
+<div class="line"><span class="lineno">  283</span>    } \</div>
+<div class="line"><span class="lineno">  284</span>    <span class="keyword">auto</span>&amp; var = *_result_##var;</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 02:37:11 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 05:54:15 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

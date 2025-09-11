@@ -9,5 +9,6 @@ var searchData=
   ['error_5f_6',['error_',['../d1/d78/classmonitoring__system_1_1result__void.html#a34820b5eb4ad23b42fd499934dfd5d04',1,'monitoring_system::result_void']]],
   ['error_5fcode_5fto_5fstring_7',['error_code_to_string',['../de/d3f/namespacemonitoring__system.html#afa3dc003b4c270274927fce989e0876d',1,'monitoring_system']]],
   ['error_5fcodes_2eh_8',['error_codes.h',['../de/d11/error__codes_8h.html',1,'']]],
-  ['error_5finfo_9',['error_info',['../d0/d5c/structmonitoring__system_1_1error__info.html',1,'monitoring_system::error_info'],['../d0/d5c/structmonitoring__system_1_1error__info.html#aa9aa2477095aa5d9145ce8008230a839',1,'monitoring_system::error_info::error_info()']]]
+  ['error_5finfo_9',['error_info',['../d0/d5c/structmonitoring__system_1_1error__info.html',1,'monitoring_system::error_info'],['../d0/d5c/structmonitoring__system_1_1error__info.html#aa9aa2477095aa5d9145ce8008230a839',1,'monitoring_system::error_info::error_info()']]],
+  ['error_5ftag_10',['error_tag',['../df/db8/structmonitoring__system_1_1result_1_1error__tag.html',1,'monitoring_system::result']]]
 ];

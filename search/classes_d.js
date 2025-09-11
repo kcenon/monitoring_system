@@ -6,5 +6,6 @@ var searchData=
   ['servicea_3',['ServiceA',['../d6/d19/classServiceA.html',1,'']]],
   ['serviceb_4',['ServiceB',['../dd/d93/classServiceB.html',1,'']]],
   ['storage_5fbackend_5',['storage_backend',['../da/dbc/classmonitoring__system_1_1storage__backend.html',1,'monitoring_system']]],
-  ['streamaggregationtest_6',['StreamAggregationTest',['../de/d8e/classStreamAggregationTest.html',1,'']]]
+  ['streamaggregationtest_6',['StreamAggregationTest',['../de/d8e/classStreamAggregationTest.html',1,'']]],
+  ['success_5ftag_7',['success_tag',['../d9/d53/structmonitoring__system_1_1result_1_1success__tag.html',1,'monitoring_system::result']]]
 ];
