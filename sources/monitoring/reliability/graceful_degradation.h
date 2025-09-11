@@ -75,6 +75,7 @@ struct graceful_degradation_metrics {
     std::atomic<std::size_t> services_currently_disabled{0};
     std::chrono::steady_clock::time_point last_degradation_time;
     std::chrono::steady_clock::time_point last_recovery_time;
+    std::string last_degradation_reason;
     
     // Copy constructor to handle atomic members
     graceful_degradation_metrics() = default;
@@ -88,7 +89,8 @@ struct graceful_degradation_metrics {
         , services_currently_degraded(other.services_currently_degraded.load())
         , services_currently_disabled(other.services_currently_disabled.load())
         , last_degradation_time(other.last_degradation_time)
-        , last_recovery_time(other.last_recovery_time) {}
+        , last_recovery_time(other.last_recovery_time)
+        , last_degradation_reason(other.last_degradation_reason) {}
     
     graceful_degradation_metrics& operator=(const graceful_degradation_metrics& other) {
         if (this != &other) {
@@ -101,6 +103,7 @@ struct graceful_degradation_metrics {
             services_currently_disabled = other.services_currently_disabled.load();
             last_degradation_time = other.last_degradation_time;
             last_recovery_time = other.last_recovery_time;
+            last_degradation_reason = other.last_degradation_reason;
         }
         return *this;
     }
@@ -191,6 +194,7 @@ public:
         metrics_.total_degradations++;
         metrics_.successful_degradations++;
         metrics_.last_degradation_time = std::chrono::steady_clock::now();
+        metrics_.last_degradation_reason = reason.empty() ? "Manual degradation" : reason;
         
         if (target_level > current_level) {
             metrics_.services_currently_degraded++;
@@ -246,6 +250,13 @@ public:
         {
             std::lock_guard<std::mutex> lock(services_mutex_);
             global_degradation_level_ = std::max(global_degradation_level_, plan.target_level);
+        }
+        
+        // Validate that at least some degradations were successful
+        if (successful_degradations == 0 && 
+            (!plan.services_to_degrade.empty() || !plan.services_to_disable.empty())) {
+            return result_void::error(monitoring_error_code::operation_failed,
+                                    "No services were successfully degraded");
         }
         
         return result_void::success();

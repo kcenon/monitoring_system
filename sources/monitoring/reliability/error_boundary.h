@@ -67,6 +67,7 @@ struct error_boundary_metrics {
     std::chrono::steady_clock::time_point creation_time{std::chrono::steady_clock::now()};
     std::chrono::steady_clock::time_point last_error_time;
     std::chrono::steady_clock::time_point last_recovery_time;
+    monitoring_error_code last_error_code{monitoring_error_code::success};
     
     // Copy constructor to handle atomic members
     error_boundary_metrics() = default;
@@ -81,7 +82,8 @@ struct error_boundary_metrics {
         , successful_recoveries(other.successful_recoveries.load())
         , creation_time(other.creation_time)
         , last_error_time(other.last_error_time)
-        , last_recovery_time(other.last_recovery_time) {}
+        , last_recovery_time(other.last_recovery_time)
+        , last_error_code(other.last_error_code) {}
     
     error_boundary_metrics& operator=(const error_boundary_metrics& other) {
         if (this != &other) {
@@ -95,6 +97,7 @@ struct error_boundary_metrics {
             creation_time = other.creation_time;
             last_error_time = other.last_error_time;
             last_recovery_time = other.last_recovery_time;
+            last_error_code = other.last_error_code;
         }
         return *this;
     }
@@ -349,6 +352,7 @@ private:
         std::lock_guard<std::mutex> lock(state_mutex_);
         metrics_.failed_operations++;
         metrics_.last_error_time = std::chrono::steady_clock::now();
+        metrics_.last_error_code = error.code;
         
         // Track consecutive errors in current window
         auto now = std::chrono::steady_clock::now();
