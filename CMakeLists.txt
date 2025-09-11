@@ -142,6 +142,11 @@ target_include_directories(monitoring_system
         $<INSTALL_INTERFACE:include>
 )
 
+# Setup formatting library (std::format, fmt, or basic fallback)
+if(COMMAND setup_monitoring_formatting)
+    setup_monitoring_formatting(monitoring_system)
+endif()
+
 # Link optional dependencies
 if(MONITORING_USE_THREAD_SYSTEM)
     target_link_libraries(monitoring_system INTERFACE thread_system::thread_system)

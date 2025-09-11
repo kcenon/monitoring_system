@@ -12,11 +12,42 @@
 #include <condition_variable>
 
 ##################################################
-// Threading Compatibility Layer
+// Runtime C++20 Feature Detection and Threading Compatibility
 ##################################################
 
-// std::jthread compatibility
-#ifdef MONITORING_HAS_STD_JTHREAD
+// Feature detection macros - check availability at compile time
+#if defined(__cpp_lib_jthread) && __cpp_lib_jthread >= 201911L
+    #define MONITORING_HAS_JTHREAD_BUILTIN 1
+#else
+    #define MONITORING_HAS_JTHREAD_BUILTIN 0
+#endif
+
+#if defined(__cpp_concepts) && __cpp_concepts >= 201907L
+    #define MONITORING_HAS_CONCEPTS_BUILTIN 1
+#else
+    #define MONITORING_HAS_CONCEPTS_BUILTIN 0
+#endif
+
+#if defined(__cpp_lib_span) && __cpp_lib_span >= 202002L
+    #define MONITORING_HAS_SPAN_BUILTIN 1
+#else
+    #define MONITORING_HAS_SPAN_BUILTIN 0
+#endif
+
+#if defined(__cpp_lib_atomic_wait) && __cpp_lib_atomic_wait >= 201907L
+    #define MONITORING_HAS_ATOMIC_WAIT_BUILTIN 1
+#else
+    #define MONITORING_HAS_ATOMIC_WAIT_BUILTIN 0
+#endif
+
+#if defined(__cpp_lib_barrier) && __cpp_lib_barrier >= 201907L
+    #define MONITORING_HAS_BARRIER_BUILTIN 1
+#else
+    #define MONITORING_HAS_BARRIER_BUILTIN 0
+#endif
+
+// std::jthread compatibility - use C++20 if available, fallback to custom implementation
+#if MONITORING_HAS_JTHREAD_BUILTIN && !defined(MONITORING_FORCE_CPP17_JTHREAD)
     #include <thread>
     #include <stop_token>
     namespace monitoring_compat {
@@ -26,6 +57,7 @@
         using std::stop_callback;
     }
     #define MONITORING_JTHREAD_AVAILABLE 1
+    #define MONITORING_USING_STD_JTHREAD 1
 #else
     #include <thread>
     #include <atomic>
@@ -169,16 +201,18 @@
         };
     }
     #define MONITORING_JTHREAD_AVAILABLE 0
+    #define MONITORING_USING_CUSTOM_JTHREAD 1
 #endif
 
-// std::span compatibility
-#ifdef MONITORING_HAS_STD_SPAN
+// std::span compatibility - use C++20 if available, fallback to custom implementation  
+#if MONITORING_HAS_SPAN_BUILTIN && !defined(MONITORING_FORCE_CPP17_SPAN)
     #include <span>
     namespace monitoring_compat {
         template<typename T, std::size_t Extent = std::dynamic_extent>
         using span = std::span<T, Extent>;
     }
     #define MONITORING_SPAN_AVAILABLE 1
+    #define MONITORING_USING_STD_SPAN 1
 #else
     #include <iterator>
     namespace monitoring_compat {
@@ -212,10 +246,11 @@
         };
     }
     #define MONITORING_SPAN_AVAILABLE 0
+    #define MONITORING_USING_CUSTOM_SPAN 1
 #endif
 
-// Atomic wait/notify compatibility
-#ifdef MONITORING_HAS_ATOMIC_WAIT
+// Atomic wait/notify compatibility - use C++20 if available, fallback to condition variables
+#if MONITORING_HAS_ATOMIC_WAIT_BUILTIN && !defined(MONITORING_FORCE_CPP17_ATOMIC)
     namespace monitoring_compat {
         template<typename T>
         void atomic_wait(const std::atomic<T>& atomic_obj, T old_value) {
@@ -233,6 +268,7 @@
         }
     }
     #define MONITORING_ATOMIC_WAIT_AVAILABLE 1
+    #define MONITORING_USING_STD_ATOMIC_WAIT 1
 #else
     #include <condition_variable>
     #include <mutex>
@@ -259,16 +295,18 @@
         }
     }
     #define MONITORING_ATOMIC_WAIT_AVAILABLE 0
+    #define MONITORING_USING_FALLBACK_ATOMIC 1
 #endif
 
-// std::barrier compatibility
-#ifdef MONITORING_HAS_STD_BARRIER
+// std::barrier compatibility - use C++20 if available, fallback to custom implementation
+#if MONITORING_HAS_BARRIER_BUILTIN && !defined(MONITORING_FORCE_CPP17_BARRIER)
     #include <barrier>
     namespace monitoring_compat {
         template<typename CompletionFunction = std::noop_coroutine_handle>
         using barrier = std::barrier<CompletionFunction>;
     }
     #define MONITORING_BARRIER_AVAILABLE 1
+    #define MONITORING_USING_STD_BARRIER 1
 #else
     #include <mutex>
     #include <condition_variable>
@@ -317,10 +355,11 @@
         };
     }
     #define MONITORING_BARRIER_AVAILABLE 0
+    #define MONITORING_USING_CUSTOM_BARRIER 1
 #endif
 
-// Concepts compatibility
-#ifdef MONITORING_HAS_CONCEPTS
+// Concepts compatibility - use C++20 if available, fallback to SFINAE
+#if MONITORING_HAS_CONCEPTS_BUILTIN && !defined(MONITORING_FORCE_CPP17_CONCEPTS)
     #include <concepts>
     namespace monitoring_compat {
         template<typename T>
@@ -339,6 +378,7 @@
         };
     }
     #define MONITORING_CONCEPTS_AVAILABLE 1
+    #define MONITORING_USING_STD_CONCEPTS 1
 #else
     namespace monitoring_compat {
         // SFINAE-based concept emulation
@@ -376,10 +416,34 @@
         inline constexpr bool Traceable = is_traceable<T>::value;
     }
     #define MONITORING_CONCEPTS_AVAILABLE 0
+    #define MONITORING_USING_SFINAE_CONCEPTS 1
 #endif
 
 ##################################################
-# Utility Macros
+// Feature-Specific Utility Macros  
+##################################################
+
+// Feature availability checks
+#define MONITORING_HAS_FEATURE(feature_name) MONITORING_HAS_##feature_name##_BUILTIN
+
+// Conditional compilation based on individual features
+#define MONITORING_IF_JTHREAD(code) \
+    do { if constexpr(MONITORING_HAS_JTHREAD_BUILTIN) { code } } while(0)
+
+#define MONITORING_IF_SPAN(code) \
+    do { if constexpr(MONITORING_HAS_SPAN_BUILTIN) { code } } while(0)
+
+#define MONITORING_IF_CONCEPTS(code) \
+    do { if constexpr(MONITORING_HAS_CONCEPTS_BUILTIN) { code } } while(0)
+
+#define MONITORING_IF_ATOMIC_WAIT(code) \
+    do { if constexpr(MONITORING_HAS_ATOMIC_WAIT_BUILTIN) { code } } while(0)
+
+#define MONITORING_IF_BARRIER(code) \
+    do { if constexpr(MONITORING_HAS_BARRIER_BUILTIN) { code } } while(0)
+
+##################################################
+// Legacy Utility Macros (backward compatibility)
 ##################################################
 
 #ifdef MONITORING_CPP17_MODE
@@ -394,12 +458,26 @@
     #define MONITORING_CONSTEVAL_CPP20 consteval
 #endif
 
-#ifdef MONITORING_HAS_CONCEPTS
+// Template parameter constraint macros - use C++20 concepts if available
+#if MONITORING_HAS_CONCEPTS_BUILTIN && !defined(MONITORING_FORCE_CPP17_CONCEPTS)
     #define MONITORING_REQUIRES(condition) requires condition
     #define MONITORING_CONCEPT_CHECK(concept_name, type) concept_name<type>
+    #define MONITORING_ENABLE_IF_CONCEPT(concept_name, type)
 #else
     #define MONITORING_REQUIRES(condition)
-    #define MONITORING_CONCEPT_CHECK(concept_name, type) std::enable_if_t<monitoring_compat::concept_name<type>>* = nullptr
+    #define MONITORING_CONCEPT_CHECK(concept_name, type)
+    #define MONITORING_ENABLE_IF_CONCEPT(concept_name, type) std::enable_if_t<monitoring_compat::concept_name<type>>* = nullptr
+#endif
+
+// Thread management macros - adapt based on available implementation
+#if MONITORING_HAS_JTHREAD_BUILTIN && !defined(MONITORING_FORCE_CPP17_JTHREAD)
+    #define MONITORING_JTHREAD monitoring_compat::jthread
+    #define MONITORING_STOP_TOKEN monitoring_compat::stop_token
+    #define MONITORING_STOP_SOURCE monitoring_compat::stop_source
+#else
+    #define MONITORING_JTHREAD monitoring_compat::jthread
+    #define MONITORING_STOP_TOKEN monitoring_compat::stop_token
+    #define MONITORING_STOP_SOURCE monitoring_compat::stop_source
 #endif
 
 // Performance optimization hints
