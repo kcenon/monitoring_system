@@ -409,10 +409,13 @@ public:
             return result_void{};
         }
         
-        // Flush any pending data
-        auto flush_result = flush();
+        // Flush any pending data without re-locking
+        // In a real implementation, this would send data to OpenTelemetry collectors
+        pending_spans_.clear();
+        pending_metrics_.clear();
+        
         initialized_ = false;
-        return flush_result;
+        return result_void{};
     }
     
     /**
