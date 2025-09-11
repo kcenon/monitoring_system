@@ -464,7 +464,7 @@ private:
             
             try {
                 validate();
-            } catch (const std::exception& e) {
+            } catch (const std::exception&) {
                 metrics_.validation_failures++;
             }
         }

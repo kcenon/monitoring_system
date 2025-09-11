@@ -94,7 +94,7 @@ public:
     }
     
     std::chrono::milliseconds calculate_delay(std::size_t attempt) {
-        std::chrono::milliseconds base_delay;
+        std::chrono::milliseconds base_delay{0};
         
         switch (config_.strategy) {
             case retry_strategy::fixed_delay:
