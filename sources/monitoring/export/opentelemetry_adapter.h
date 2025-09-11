@@ -174,8 +174,8 @@ struct otel_metric_data {
     std::chrono::system_clock::time_point timestamp;
     otel_resource resource;
     
-    void add_attribute(const std::string& key, const std::string& value) {
-        attributes.emplace_back(key, value);
+    void add_attribute(const std::string& key, const std::string& attribute_value) {
+        attributes.emplace_back(key, attribute_value);
     }
 };
 
