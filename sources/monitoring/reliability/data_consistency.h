@@ -436,7 +436,7 @@ public:
                     }
                 }
                 
-            } catch (const std::exception& e) {
+            } catch (const std::exception&) {
                 metrics_.validation_failures++;
                 results[rule_name] = validation_result::corrupted;
             }
