@@ -32,6 +32,7 @@ add_executable(monitoring_system_tests
     test_error_boundaries.cpp
     test_resource_management.cpp
     test_data_consistency.cpp
+    test_opentelemetry_adapter.cpp
 )
 
 target_link_libraries(monitoring_system_tests
