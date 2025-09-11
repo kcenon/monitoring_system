@@ -315,14 +315,14 @@ TEST_F(OptimizationTest, SIMDAggregatorLargeDataset) {
 
 TEST_F(OptimizationTest, SIMDAggregatorPerformanceComparison) {
     // Test SIMD vs scalar performance
-    simd_config simd_config;
-    simd_config.enable_simd = true;
+    simd_config simd_cfg;
+    simd_cfg.enable_simd = true;
     
-    simd_config scalar_config;
-    scalar_config.enable_simd = false;
+    simd_config scalar_cfg;
+    scalar_cfg.enable_simd = false;
     
-    simd_aggregator simd_agg(simd_config);
-    simd_aggregator scalar_agg(scalar_config);
+    simd_aggregator simd_agg(simd_cfg);
+    simd_aggregator scalar_agg(scalar_cfg);
     
     auto large_data = generate_test_data(50000, 0.0, 1000.0);
     

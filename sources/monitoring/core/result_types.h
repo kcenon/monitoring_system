@@ -76,16 +76,16 @@ private:
     
 public:
     // Constructors
-    result(T&& value) : value_(std::forward<T>(value)) {}
-    result(const T& value) : value_(value) {}
-    result(error_info&& error) : value_(std::move(error)) {}
-    result(const error_info& error) : value_(error) {}
+    result(T&& value) : value_(std::in_place_type<T>, std::forward<T>(value)) {}
+    result(const T& value) : value_(std::in_place_type<T>, value) {}
+    result(error_info&& error) : value_(std::in_place_type<error_info>, std::move(error)) {}
+    result(const error_info& error) : value_(std::in_place_type<error_info>, error) {}
     
     // Convenience constructor for error codes
     result(monitoring_error_code code, 
            const std::string& message = "",
            const std::source_location& loc = std::source_location::current())
-        : value_(error_info(code, message, loc)) {}
+        : value_(std::in_place_type<error_info>, code, message, loc) {}
     
     // Check if result contains a value
     bool has_value() const {

@@ -347,7 +347,12 @@ public:
      * @brief Reset statistics
      */
     void reset_stats() noexcept {
-        stats_ = ring_buffer_stats{};
+        stats_.total_writes.store(0);
+        stats_.total_reads.store(0);
+        stats_.overwrites.store(0);
+        stats_.failed_writes.store(0);
+        stats_.failed_reads.store(0);
+        stats_.creation_time = std::chrono::system_clock::now();
     }
 };
 
