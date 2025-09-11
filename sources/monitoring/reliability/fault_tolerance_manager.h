@@ -11,7 +11,7 @@ namespace monitoring_system {
 
 struct fault_tolerance_config {
     circuit_breaker_config circuit_config;
-    retry_config retry_config;
+    retry_config retry_cfg;
     bool enable_circuit_breaker{true};
     bool enable_retry{true};
     bool circuit_breaker_first{true}; // If true, circuit breaker wraps retry; otherwise retry wraps circuit breaker
@@ -23,7 +23,7 @@ struct fault_tolerance_config {
             }
         }
         if (enable_retry) {
-            if (auto validation = retry_config.validate(); !validation) {
+            if (auto validation = retry_cfg.validate(); !validation) {
                 return validation;
             }
         }
@@ -37,7 +37,7 @@ struct fault_tolerance_config {
 
 struct fault_tolerance_metrics {
     circuit_breaker_metrics circuit_metrics;
-    retry_metrics retry_metrics;
+    retry_metrics retry_mtx;
     std::size_t total_operations{0};
     std::size_t successful_operations{0};
     std::size_t failed_operations{0};
@@ -48,7 +48,7 @@ struct fault_tolerance_metrics {
     
     // Copy constructor to handle atomic members
     fault_tolerance_metrics(const fault_tolerance_metrics& other) 
-        : retry_metrics(other.retry_metrics)
+        : retry_mtx(other.retry_mtx)
         , total_operations(other.total_operations)
         , successful_operations(other.successful_operations) 
         , failed_operations(other.failed_operations)
@@ -66,7 +66,7 @@ struct fault_tolerance_metrics {
     // Assignment operator
     fault_tolerance_metrics& operator=(const fault_tolerance_metrics& other) {
         if (this != &other) {
-            retry_metrics = other.retry_metrics;
+            retry_mtx = other.retry_mtx;
             total_operations = other.total_operations;
             successful_operations = other.successful_operations;
             failed_operations = other.failed_operations;
@@ -117,7 +117,7 @@ public:
         
         if (config_.enable_retry) {
             retry_executor_ = std::make_unique<retry_executor<T>>(
-                name_ + "_retry_executor", config_.retry_config);
+                name_ + "_retry_executor", config_.retry_cfg);
         }
     }
     
@@ -172,7 +172,7 @@ public:
         }
         
         if (retry_executor_) {
-            combined_metrics.retry_metrics = retry_executor_->get_metrics();
+            combined_metrics.retry_mtx = retry_executor_->get_metrics();
         }
         
         return combined_metrics;
@@ -297,7 +297,7 @@ std::unique_ptr<fault_tolerance_manager<T>> create_resilient_manager(
     config.circuit_config.failure_threshold = failure_threshold;
     config.circuit_config.timeout = circuit_timeout;
     
-    config.retry_config = create_exponential_backoff_config(max_retries);
+    config.retry_cfg = create_exponential_backoff_config(max_retries);
     
     return create_fault_tolerance_manager<T>(std::move(name), std::move(config));
 }

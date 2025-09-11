@@ -258,7 +258,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerCircuitBreakerFirst) {
     config.enable_retry = true;
     config.circuit_breaker_first = true;
     config.circuit_config.failure_threshold = 2;
-    config.retry_config = create_exponential_backoff_config(2, std::chrono::milliseconds(10));
+    config.retry_cfg = create_exponential_backoff_config(2, std::chrono::milliseconds(10));
     
     fault_tolerance_manager<int> manager("test_manager", config);
     
@@ -277,7 +277,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerRetryFirst) {
     config.enable_retry = true;
     config.circuit_breaker_first = false;
     config.circuit_config.failure_threshold = 5;
-    config.retry_config = create_exponential_backoff_config(3, std::chrono::milliseconds(10));
+    config.retry_cfg = create_exponential_backoff_config(3, std::chrono::milliseconds(10));
     
     fault_tolerance_manager<int> manager("test_manager", config);
     
@@ -307,7 +307,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerOnlyRetry) {
     fault_tolerance_config config;
     config.enable_circuit_breaker = false;
     config.enable_retry = true;
-    config.retry_config = create_exponential_backoff_config(3, std::chrono::milliseconds(10));
+    config.retry_cfg = create_exponential_backoff_config(3, std::chrono::milliseconds(10));
     
     fault_tolerance_manager<int> manager("test_manager", config);
     
@@ -323,7 +323,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerWithTimeout) {
     fault_tolerance_config config;
     config.enable_circuit_breaker = false;
     config.enable_retry = true;
-    config.retry_config = create_exponential_backoff_config(2, std::chrono::milliseconds(10));
+    config.retry_cfg = create_exponential_backoff_config(2, std::chrono::milliseconds(10));
     
     fault_tolerance_manager<int> manager("test_manager", config);
     
@@ -341,7 +341,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerMetrics) {
     config.enable_circuit_breaker = true;
     config.enable_retry = true;
     config.circuit_config.failure_threshold = 5;
-    config.retry_config = create_exponential_backoff_config(2, std::chrono::milliseconds(10));
+    config.retry_cfg = create_exponential_backoff_config(2, std::chrono::milliseconds(10));
     
     fault_tolerance_manager<int> manager("test_manager", config);
     
