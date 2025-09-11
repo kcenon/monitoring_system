@@ -74,8 +74,12 @@ class result {
 private:
     std::variant<T, error_info> value_;
     
+    // Private tags for constructor disambiguation
+    struct success_tag {};
+    struct error_tag {};
+    
 public:
-    // Constructors
+    // Constructors - simple and compatible
     result(T&& value) : value_(std::forward<T>(value)) {}
     result(const T& value) : value_(value) {}
     result(error_info&& error) : value_(std::move(error)) {}

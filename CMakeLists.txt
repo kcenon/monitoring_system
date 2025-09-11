@@ -66,6 +66,14 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         -Werror=uninitialized
         -Werror=unused-result
     )
+    
+    # Add AVX2 support if available (with fallback)
+    include(CheckCXXCompilerFlag)
+    check_cxx_compiler_flag("-mavx2" COMPILER_SUPPORTS_AVX2)
+    if(COMPILER_SUPPORTS_AVX2)
+        target_compile_options(monitoring_system_interface INTERFACE -mavx2)
+        target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
+    endif()
 elseif(MSVC)
     target_compile_options(monitoring_system_interface INTERFACE
         /W4
@@ -73,6 +81,10 @@ elseif(MSVC)
         /permissive-
         /Zc:__cplusplus
     )
+    
+    # Enable AVX2 on MSVC if supported
+    target_compile_options(monitoring_system_interface INTERFACE /arch:AVX2)
+    target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
 endif()
 
 # Sanitizers
