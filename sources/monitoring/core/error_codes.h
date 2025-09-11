@@ -79,12 +79,20 @@ enum class monitoring_error_code : std::uint32_t {
     health_check_timeout = 7001,
     health_check_not_registered = 7002,
     
-    // General errors (8000-8999)
-    invalid_argument = 8000,
-    invalid_state = 8001,
-    not_found = 8002,
-    already_exists = 8003,
-    resource_exhausted = 8004,
+    // Fault tolerance errors (8000-8099)
+    circuit_breaker_open = 8000,
+    circuit_breaker_half_open = 8001,
+    retry_attempts_exhausted = 8002,
+    operation_failed = 8003,
+    network_error = 8004,
+    service_unavailable = 8005,
+    
+    // General errors (8100-8999)
+    invalid_argument = 8100,
+    invalid_state = 8101,
+    not_found = 8102,
+    already_exists = 8103,
+    resource_exhausted = 8104,
     
     // Unknown error
     unknown_error = 9999
@@ -186,6 +194,20 @@ inline std::string error_code_to_string(monitoring_error_code code) {
         case monitoring_error_code::health_check_not_registered:
             return "Health check not registered";
             
+        // Fault tolerance errors
+        case monitoring_error_code::circuit_breaker_open:
+            return "Circuit breaker is open";
+        case monitoring_error_code::circuit_breaker_half_open:
+            return "Circuit breaker is half-open";
+        case monitoring_error_code::retry_attempts_exhausted:
+            return "Retry attempts exhausted";
+        case monitoring_error_code::operation_failed:
+            return "Operation failed";
+        case monitoring_error_code::network_error:
+            return "Network error";
+        case monitoring_error_code::service_unavailable:
+            return "Service unavailable";
+            
         // General errors
         case monitoring_error_code::invalid_argument:
             return "Invalid argument";
@@ -220,6 +242,12 @@ inline std::string get_error_details(monitoring_error_code code) {
             return "Configuration validation failed. Review configuration parameters and constraints.";
         case monitoring_error_code::thread_system_not_available:
             return "Thread system integration not available. Ensure thread_system is properly linked.";
+        case monitoring_error_code::circuit_breaker_open:
+            return "Circuit breaker is open, rejecting calls to protect downstream services. Wait for recovery or check service health.";
+        case monitoring_error_code::retry_attempts_exhausted:
+            return "All retry attempts have been exhausted. The operation failed permanently. Check service availability and error conditions.";
+        case monitoring_error_code::operation_failed:
+            return "The requested operation failed. Check service status, network connectivity, and input parameters.";
         default:
             return error_code_to_string(code);
     }
