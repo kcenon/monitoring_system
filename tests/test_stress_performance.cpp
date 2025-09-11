@@ -168,9 +168,9 @@ TEST_F(StressPerformanceTest, HighLoadStressTest) {
     
     // Calculate percentiles
     std::sort(latencies.begin(), latencies.end());
-    double p50 = latencies.empty() ? 0 : latencies[latencies.size() * 0.5];
-    double p95 = latencies.empty() ? 0 : latencies[latencies.size() * 0.95];
-    double p99 = latencies.empty() ? 0 : latencies[latencies.size() * 0.99];
+    double p50 = latencies.empty() ? 0 : latencies[static_cast<size_t>(latencies.size() * 0.5)];
+    double p95 = latencies.empty() ? 0 : latencies[static_cast<size_t>(latencies.size() * 0.95)];
+    double p99 = latencies.empty() ? 0 : latencies[static_cast<size_t>(latencies.size() * 0.99)];
     
     // Calculate throughput
     double throughput = static_cast<double>(total_operations) / duration.count();
@@ -475,7 +475,7 @@ TEST_F(StressPerformanceTest, BurstLoadTest) {
         auto burst_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
             burst_end - burst_start).count();
         
-        burst_latencies.push_back(burst_duration);
+        burst_latencies.push_back(static_cast<double>(burst_duration));
         
         std::cout << "Burst " << burst << ": " << successful << "/" << BURST_SIZE 
                   << " successful, duration: " << burst_duration << "ms" << std::endl;
