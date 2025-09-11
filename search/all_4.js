@@ -12,5 +12,7 @@ var searchData=
   ['error_5fcodes_2eh_9',['error_codes.h',['../de/d11/error__codes_8h.html',1,'']]],
   ['error_5finfo_10',['error_info',['../d0/d5c/structmonitoring__system_1_1error__info.html#aa9aa2477095aa5d9145ce8008230a839',1,'monitoring_system::error_info::error_info()'],['../d0/d5c/structmonitoring__system_1_1error__info.html',1,'monitoring_system::error_info']]],
   ['error_5ftag_11',['error_tag',['../df/db8/structmonitoring__system_1_1result_1_1error__tag.html',1,'monitoring_system::result']]],
-  ['errorboundariestest_12',['ErrorBoundariesTest',['../db/d11/classErrorBoundariesTest.html',1,'']]]
+  ['errorboundariestest_12',['ErrorBoundariesTest',['../db/d11/classErrorBoundariesTest.html',1,'']]],
+  ['execute_5fquery_13',['execute_query',['../d2/d12/classDatabaseConnection.html#ae21b13ec0e2fe21ddbe7e3db3b9b64d0',1,'DatabaseConnection']]],
+  ['externalapiclient_14',['ExternalApiClient',['../d6/d98/classExternalApiClient.html',1,'']]]
 ];

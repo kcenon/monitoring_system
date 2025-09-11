@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../de/dfb/result__pattern__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'result_pattern_example.cpp']]],
+  ['main_0',['main',['../de/dfb/result__pattern__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;result_pattern_example.cpp'],['../d2/d84/health__reliability__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;health_reliability_example.cpp'],['../d4/d6c/distributed__tracing__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;distributed_tracing_example.cpp'],['../d0/d97/basic__monitoring__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;basic_monitoring_example.cpp'],['../de/da5/test__stress__performance_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;test_stress_performance.cpp'],['../d1/d9b/test__integration__e2e_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;test_integration_e2e.cpp']]],
   ['make_5ferror_1',['make_error',['../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764',1,'monitoring_system']]],
   ['make_5ferror_5fwith_5fcontext_2',['make_error_with_context',['../de/d3f/namespacemonitoring__system.html#a76d6c12c2a13f5eee52968a361016c23',1,'monitoring_system']]],
   ['make_5fsuccess_3',['make_success',['../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f',1,'monitoring_system']]],
@@ -12,5 +12,5 @@ var searchData=
   ['mock_5fcollector_9',['mock_collector',['../d9/d8d/classmock__collector.html#aaa09060aff1497d6e1d1e6199bca8e13',1,'mock_collector']]],
   ['monitorable_5fcomponent_10',['monitorable_component',['../df/de4/classmonitoring__system_1_1monitorable__component.html#ae52707e8db4837dd2114c1ad00484939',1,'monitoring_system::monitorable_component']]],
   ['monitoring_5faggregator_11',['monitoring_aggregator',['../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a349a596bf2082f4a8b0250f469f1a711',1,'monitoring_system::monitoring_aggregator']]],
-  ['monitoring_5fdata_12',['monitoring_data',['../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad5f0a8c200bb388b83501edf55b2652c',1,'monitoring_system::monitoring_data::monitoring_data()'],['../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aeb050f30b68cdd8d3039cd7703c6fe27',1,'monitoring_system::monitoring_data::monitoring_data(const std::string &amp;name)']]]
+  ['monitoring_5fdata_12',['monitoring_data',['../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aeb050f30b68cdd8d3039cd7703c6fe27',1,'monitoring_system::monitoring_data::monitoring_data(const std::string &amp;name)'],['../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad5f0a8c200bb388b83501edf55b2652c',1,'monitoring_system::monitoring_data::monitoring_data()']]]
 ];

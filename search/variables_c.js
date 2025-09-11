@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['request_5fid_0',['request_id',['../d7/d98/structmonitoring__system_1_1context__metadata.html#a0bfb78d1384b612017806367a3f8b088',1,'monitoring_system::context_metadata']]],
-  ['resource_1',['resource',['../d5/d90/classOpenTelemetryAdapterTest.html#a9452b63ee1524a2d48c6a6fff214ef0b',1,'OpenTelemetryAdapterTest']]],
-  ['rollback_5fcount_2',['rollback_count',['../d8/d07/classDataConsistencyTest.html#a22edd023d7ec11376560cb4dd04aa3bd',1,'DataConsistencyTest']]]
+  ['query_5fcount_5f_0',['query_count_',['../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2',1,'DatabaseConnection']]]
 ];

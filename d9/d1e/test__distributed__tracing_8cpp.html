@@ -181,46 +181,34 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00273">273</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  273</span>                                                   {</div>
-<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent_result</a> = tracer.start_span(<span class="stringliteral">&quot;parent&quot;</span>);</div>
-<div class="line"><span class="lineno">  275</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent_result</a>.value();</div>
+<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> parent_result = tracer.start_span(<span class="stringliteral">&quot;parent&quot;</span>);</div>
+<div class="line"><span class="lineno">  275</span>    ASSERT_TRUE(parent_result.has_value());</div>
+<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> parent = parent_result.value();</div>
 <div class="line"><span class="lineno">  277</span>    </div>
-<div class="line"><span class="lineno">  278</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a>-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>] = <span class="stringliteral">&quot;abc123&quot;</span>;</div>
-<div class="line"><span class="lineno">  279</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a>-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>] = <span class="stringliteral">&quot;enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  278</span>    parent-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>] = <span class="stringliteral">&quot;abc123&quot;</span>;</div>
+<div class="line"><span class="lineno">  279</span>    parent-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>] = <span class="stringliteral">&quot;enabled&quot;</span>;</div>
 <div class="line"><span class="lineno">  280</span>    </div>
-<div class="line"><span class="lineno">  281</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child_result</a> = tracer.start_child_span(*<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a>, <span class="stringliteral">&quot;child&quot;</span>);</div>
-<div class="line"><span class="lineno">  282</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  283</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child_result</a>.value();</div>
+<div class="line"><span class="lineno">  281</span>    <span class="keyword">auto</span> child_result = tracer.start_child_span(*parent, <span class="stringliteral">&quot;child&quot;</span>);</div>
+<div class="line"><span class="lineno">  282</span>    ASSERT_TRUE(child_result.has_value());</div>
+<div class="line"><span class="lineno">  283</span>    <span class="keyword">auto</span> child = child_result.value();</div>
 <div class="line"><span class="lineno">  284</span>    </div>
 <div class="line"><span class="lineno">  285</span>    <span class="comment">// Child should inherit baggage</span></div>
-<div class="line"><span class="lineno">  286</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
-<div class="line"><span class="lineno">  287</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
+<div class="line"><span class="lineno">  286</span>    EXPECT_EQ(child-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
+<div class="line"><span class="lineno">  287</span>    EXPECT_EQ(child-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
 <div class="line"><span class="lineno">  288</span>    </div>
 <div class="line"><span class="lineno">  289</span>    <span class="comment">// Child can add its own baggage</span></div>
-<div class="line"><span class="lineno">  290</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>] = <span class="stringliteral">&quot;xyz&quot;</span>;</div>
+<div class="line"><span class="lineno">  290</span>    child-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>] = <span class="stringliteral">&quot;xyz&quot;</span>;</div>
 <div class="line"><span class="lineno">  291</span>    </div>
-<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">grandchild_result</a> = tracer.start_child_span(*<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>, <span class="stringliteral">&quot;grandchild&quot;</span>);</div>
-<div class="line"><span class="lineno">  293</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">grandchild_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  294</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">grandchild</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">grandchild_result</a>.value();</div>
+<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> grandchild_result = tracer.start_child_span(*child, <span class="stringliteral">&quot;grandchild&quot;</span>);</div>
+<div class="line"><span class="lineno">  293</span>    ASSERT_TRUE(grandchild_result.has_value());</div>
+<div class="line"><span class="lineno">  294</span>    <span class="keyword">auto</span> grandchild = grandchild_result.value();</div>
 <div class="line"><span class="lineno">  295</span>    </div>
 <div class="line"><span class="lineno">  296</span>    <span class="comment">// Grandchild should have all baggage</span></div>
-<div class="line"><span class="lineno">  297</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">grandchild</a>-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
-<div class="line"><span class="lineno">  298</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">grandchild</a>-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
-<div class="line"><span class="lineno">  299</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">grandchild</a>-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>], <span class="stringliteral">&quot;xyz&quot;</span>);</div>
+<div class="line"><span class="lineno">  297</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
+<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
+<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>], <span class="stringliteral">&quot;xyz&quot;</span>);</div>
 <div class="line"><span class="lineno">  300</span>}</div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00248">result_types.h:248</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a2b6e8854921d877a014e8d3a4b58e500_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a2b6e8854921d877a014e8d3a4b58e500_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a2b6e8854921d877a014e8d3a4b58e500_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a2b6e8854921d877a014e8d3a4b58e500_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a689370a04562d8ab1383a8d020d230b5" name="a689370a04562d8ab1383a8d020d230b5"></a>
@@ -251,29 +239,18 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   71</span>                                                      {</div>
-<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   73</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   73</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">   74</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">   75</span>    </div>
-<div class="line"><span class="lineno">   76</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">first_finish</a> = tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">   77</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">first_finish</a>.has_value());</div>
+<div class="line"><span class="lineno">   76</span>    <span class="keyword">auto</span> first_finish = tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">   77</span>    ASSERT_TRUE(first_finish.has_value());</div>
 <div class="line"><span class="lineno">   78</span>    </div>
-<div class="line"><span class="lineno">   79</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">second_finish</a> = tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">   80</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">second_finish</a>.has_value());</div>
-<div class="line"><span class="lineno">   81</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">second_finish</a>.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">   79</span>    <span class="keyword">auto</span> second_finish = tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">   80</span>    ASSERT_FALSE(second_finish.has_value());</div>
+<div class="line"><span class="lineno">   81</span>    EXPECT_EQ(second_finish.get_error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">   82</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a689370a04562d8ab1383a8d020d230b5_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a689370a04562d8ab1383a8d020d230b5_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a689370a04562d8ab1383a8d020d230b5_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a689370a04562d8ab1383a8d020d230b5_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a375b8eb85d0c39cfd192e460c9a691ee" name="a375b8eb85d0c39cfd192e460c9a691ee"></a>
@@ -304,31 +281,20 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00040">40</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   40</span>                                                {</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent_result</a> = tracer.start_span(<span class="stringliteral">&quot;parent_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   42</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent_result</a>.has_value());</div>
-<div class="line"><span class="lineno">   43</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent_result</a>.value();</div>
+<div class="line"><span class="lineno">   41</span>    <span class="keyword">auto</span> parent_result = tracer.start_span(<span class="stringliteral">&quot;parent_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>    ASSERT_TRUE(parent_result.has_value());</div>
+<div class="line"><span class="lineno">   43</span>    <span class="keyword">auto</span> parent = parent_result.value();</div>
 <div class="line"><span class="lineno">   44</span>    </div>
-<div class="line"><span class="lineno">   45</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child_result</a> = tracer.start_child_span(*<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a>, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   46</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child_result</a>.has_value());</div>
-<div class="line"><span class="lineno">   47</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child_result</a>.value();</div>
+<div class="line"><span class="lineno">   45</span>    <span class="keyword">auto</span> child_result = tracer.start_child_span(*parent, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   46</span>    ASSERT_TRUE(child_result.has_value());</div>
+<div class="line"><span class="lineno">   47</span>    <span class="keyword">auto</span> child = child_result.value();</div>
 <div class="line"><span class="lineno">   48</span>    </div>
-<div class="line"><span class="lineno">   49</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>-&gt;trace_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a>-&gt;trace_id);</div>
-<div class="line"><span class="lineno">   50</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>-&gt;span_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a>-&gt;span_id);</div>
-<div class="line"><span class="lineno">   51</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>-&gt;parent_span_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parent</a>-&gt;span_id);</div>
-<div class="line"><span class="lineno">   52</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">child</a>-&gt;operation_name, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   49</span>    EXPECT_EQ(child-&gt;trace_id, parent-&gt;trace_id);</div>
+<div class="line"><span class="lineno">   50</span>    EXPECT_NE(child-&gt;span_id, parent-&gt;span_id);</div>
+<div class="line"><span class="lineno">   51</span>    EXPECT_EQ(child-&gt;parent_span_id, parent-&gt;span_id);</div>
+<div class="line"><span class="lineno">   52</span>    EXPECT_EQ(child-&gt;operation_name, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
 <div class="line"><span class="lineno">   53</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a375b8eb85d0c39cfd192e460c9a691ee_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a375b8eb85d0c39cfd192e460c9a691ee_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a375b8eb85d0c39cfd192e460c9a691ee_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a375b8eb85d0c39cfd192e460c9a691ee_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aee8b0e44acf25f99e01333bf333b7de2" name="aee8b0e44acf25f99e01333bf333b7de2"></a>
@@ -359,29 +325,18 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00027">27</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   27</span>                                               {</div>
-<div class="line"><span class="lineno">   28</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
-<div class="line"><span class="lineno">   29</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">   29</span>    ASSERT_TRUE(span_result.has_value());</div>
 <div class="line"><span class="lineno">   30</span>    </div>
-<div class="line"><span class="lineno">   31</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
-<div class="line"><span class="lineno">   32</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(span-&gt;trace_id.empty());</div>
-<div class="line"><span class="lineno">   33</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(span-&gt;span_id.empty());</div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(span-&gt;parent_span_id.empty());</div>
-<div class="line"><span class="lineno">   35</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;operation_name, <span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   36</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;service_name, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
-<div class="line"><span class="lineno">   37</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(span-&gt;is_finished());</div>
+<div class="line"><span class="lineno">   31</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">   32</span>    EXPECT_FALSE(span-&gt;trace_id.empty());</div>
+<div class="line"><span class="lineno">   33</span>    EXPECT_FALSE(span-&gt;span_id.empty());</div>
+<div class="line"><span class="lineno">   34</span>    EXPECT_TRUE(span-&gt;parent_span_id.empty());</div>
+<div class="line"><span class="lineno">   35</span>    EXPECT_EQ(span-&gt;operation_name, <span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   36</span>    EXPECT_EQ(span-&gt;service_name, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">   37</span>    EXPECT_FALSE(span-&gt;is_finished());</div>
 <div class="line"><span class="lineno">   38</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_aee8b0e44acf25f99e01333bf333b7de2_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_aee8b0e44acf25f99e01333bf333b7de2_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_aee8b0e44acf25f99e01333bf333b7de2_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_aee8b0e44acf25f99e01333bf333b7de2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a588d905783baa8148de51175623dc443" name="a588d905783baa8148de51175623dc443"></a>
@@ -412,43 +367,32 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00162">162</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  162</span>                                                      {</div>
-<div class="line"><span class="lineno">  163</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  163</span>    EXPECT_EQ(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  164</span>    </div>
-<div class="line"><span class="lineno">  165</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  166</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">  165</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  166</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">  168</span>    </div>
 <div class="line"><span class="lineno">  169</span>    tracer.set_current_span(span);</div>
-<div class="line"><span class="lineno">  170</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(tracer.get_current_span(), span);</div>
+<div class="line"><span class="lineno">  170</span>    EXPECT_EQ(tracer.get_current_span(), span);</div>
 <div class="line"><span class="lineno">  171</span>    </div>
 <div class="line"><span class="lineno">  172</span>    <span class="comment">// Different thread should have different current span</span></div>
-<div class="line"><span class="lineno">  173</span>    std::thread <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_thread</a>([&amp;]() {</div>
-<div class="line"><span class="lineno">  174</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  173</span>    std::thread other_thread([&amp;]() {</div>
+<div class="line"><span class="lineno">  174</span>        EXPECT_EQ(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  175</span>        </div>
-<div class="line"><span class="lineno">  176</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_span_result</a> = tracer.start_span(<span class="stringliteral">&quot;other_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  177</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  178</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_span</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_span_result</a>.value();</div>
+<div class="line"><span class="lineno">  176</span>        <span class="keyword">auto</span> other_span_result = tracer.start_span(<span class="stringliteral">&quot;other_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  177</span>        ASSERT_TRUE(other_span_result.has_value());</div>
+<div class="line"><span class="lineno">  178</span>        <span class="keyword">auto</span> other_span = other_span_result.value();</div>
 <div class="line"><span class="lineno">  179</span>        </div>
-<div class="line"><span class="lineno">  180</span>        tracer.set_current_span(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_span</a>);</div>
-<div class="line"><span class="lineno">  181</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(tracer.get_current_span(), <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_span</a>);</div>
+<div class="line"><span class="lineno">  180</span>        tracer.set_current_span(other_span);</div>
+<div class="line"><span class="lineno">  181</span>        EXPECT_EQ(tracer.get_current_span(), other_span);</div>
 <div class="line"><span class="lineno">  182</span>    });</div>
-<div class="line"><span class="lineno">  183</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">other_thread</a>.join();</div>
+<div class="line"><span class="lineno">  183</span>    other_thread.join();</div>
 <div class="line"><span class="lineno">  184</span>    </div>
 <div class="line"><span class="lineno">  185</span>    <span class="comment">// Original thread should still have its span</span></div>
-<div class="line"><span class="lineno">  186</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(tracer.get_current_span(), span);</div>
+<div class="line"><span class="lineno">  186</span>    EXPECT_EQ(tracer.get_current_span(), span);</div>
 <div class="line"><span class="lineno">  187</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a588d905783baa8148de51175623dc443_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a588d905783baa8148de51175623dc443_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a588d905783baa8148de51175623dc443_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a588d905783baa8148de51175623dc443_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a28718da98ec8d6fdb30af6fd5e9e34dc" name="a28718da98ec8d6fdb30af6fd5e9e34dc"></a>
@@ -479,41 +423,30 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00302">302</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  302</span>                                            {</div>
-<div class="line"><span class="lineno">  303</span>    std::vector&lt;trace_span&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans_to_export</a>;</div>
+<div class="line"><span class="lineno">  303</span>    std::vector&lt;trace_span&gt; spans_to_export;</div>
 <div class="line"><span class="lineno">  304</span>    </div>
 <div class="line"><span class="lineno">  305</span>    <span class="comment">// Create and finish spans</span></div>
-<div class="line"><span class="lineno">  306</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; 5; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  307</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>));</div>
-<div class="line"><span class="lineno">  308</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  309</span>        <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">  306</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">  307</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(i));</div>
+<div class="line"><span class="lineno">  308</span>        ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  309</span>        <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">  310</span>        </div>
 <div class="line"><span class="lineno">  311</span>        tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">  312</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans_to_export</a>.push_back(*span);</div>
+<div class="line"><span class="lineno">  312</span>        spans_to_export.push_back(*span);</div>
 <div class="line"><span class="lineno">  313</span>    }</div>
 <div class="line"><span class="lineno">  314</span>    </div>
-<div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a> = tracer.export_spans(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans_to_export</a>);</div>
-<div class="line"><span class="lineno">  316</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a>.has_value());</div>
+<div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> export_result = tracer.export_spans(spans_to_export);</div>
+<div class="line"><span class="lineno">  316</span>    ASSERT_TRUE(export_result.has_value());</div>
 <div class="line"><span class="lineno">  317</span>    </div>
 <div class="line"><span class="lineno">  318</span>    <span class="comment">// Verify spans were stored</span></div>
-<div class="line"><span class="lineno">  319</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_result</a> = tracer.get_trace(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans_to_export</a>[0].trace_id);</div>
-<div class="line"><span class="lineno">  320</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  321</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_result</a>.value();</div>
+<div class="line"><span class="lineno">  319</span>    <span class="keyword">auto</span> trace_result = tracer.get_trace(spans_to_export[0].trace_id);</div>
+<div class="line"><span class="lineno">  320</span>    ASSERT_TRUE(trace_result.has_value());</div>
+<div class="line"><span class="lineno">  321</span>    <span class="keyword">auto</span> trace = trace_result.value();</div>
 <div class="line"><span class="lineno">  322</span>    </div>
 <div class="line"><span class="lineno">  323</span>    <span class="comment">// Note: In this test, all spans have different trace IDs</span></div>
 <div class="line"><span class="lineno">  324</span>    <span class="comment">// In a real scenario, they might be part of the same trace</span></div>
 <div class="line"><span class="lineno">  325</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a28718da98ec8d6fdb30af6fd5e9e34dc_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a28718da98ec8d6fdb30af6fd5e9e34dc_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a28718da98ec8d6fdb30af6fd5e9e34dc_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a28718da98ec8d6fdb30af6fd5e9e34dc_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a64132f07682b86ab3a1677c171ded9b0" name="a64132f07682b86ab3a1677c171ded9b0"></a>
@@ -544,32 +477,21 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   55</span>                                           {</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">   58</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">   56</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   57</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">   59</span>    </div>
 <div class="line"><span class="lineno">   60</span>    <span class="comment">// Add some delay to have measurable duration</span></div>
 <div class="line"><span class="lineno">   61</span>    std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
 <div class="line"><span class="lineno">   62</span>    </div>
-<div class="line"><span class="lineno">   63</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">finish_result</a> = tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">   64</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">finish_result</a>.has_value());</div>
+<div class="line"><span class="lineno">   63</span>    <span class="keyword">auto</span> finish_result = tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">   64</span>    ASSERT_TRUE(finish_result.has_value());</div>
 <div class="line"><span class="lineno">   65</span>    </div>
-<div class="line"><span class="lineno">   66</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(span-&gt;is_finished());</div>
-<div class="line"><span class="lineno">   67</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_GT</a>(span-&gt;duration.count(), 0);</div>
-<div class="line"><span class="lineno">   68</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;status, trace_span::status_code::ok);</div>
+<div class="line"><span class="lineno">   66</span>    EXPECT_TRUE(span-&gt;is_finished());</div>
+<div class="line"><span class="lineno">   67</span>    EXPECT_GT(span-&gt;duration.count(), 0);</div>
+<div class="line"><span class="lineno">   68</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::ok);</div>
 <div class="line"><span class="lineno">   69</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a64132f07682b86ab3a1677c171ded9b0_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a64132f07682b86ab3a1677c171ded9b0_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a64132f07682b86ab3a1677c171ded9b0_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a64132f07682b86ab3a1677c171ded9b0_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aaa649e7182dfea7bddadd6b1842b8ae6" name="aaa649e7182dfea7bddadd6b1842b8ae6"></a>
@@ -600,48 +522,37 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00205">205</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  205</span>                                         {</div>
-<div class="line"><span class="lineno">  206</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1_result</a> = tracer.start_span(<span class="stringliteral">&quot;operation1&quot;</span>);</div>
-<div class="line"><span class="lineno">  207</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  208</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1_result</a>.value();</div>
+<div class="line"><span class="lineno">  206</span>    <span class="keyword">auto</span> span1_result = tracer.start_span(<span class="stringliteral">&quot;operation1&quot;</span>);</div>
+<div class="line"><span class="lineno">  207</span>    ASSERT_TRUE(span1_result.has_value());</div>
+<div class="line"><span class="lineno">  208</span>    <span class="keyword">auto</span> span1 = span1_result.value();</div>
 <div class="line"><span class="lineno">  209</span>    </div>
-<div class="line"><span class="lineno">  210</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span2_result</a> = tracer.start_child_span(*<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1</a>, <span class="stringliteral">&quot;operation2&quot;</span>);</div>
-<div class="line"><span class="lineno">  211</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span2_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span2_result</a>.value();</div>
+<div class="line"><span class="lineno">  210</span>    <span class="keyword">auto</span> span2_result = tracer.start_child_span(*span1, <span class="stringliteral">&quot;operation2&quot;</span>);</div>
+<div class="line"><span class="lineno">  211</span>    ASSERT_TRUE(span2_result.has_value());</div>
+<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> span2 = span2_result.value();</div>
 <div class="line"><span class="lineno">  213</span>    </div>
-<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span3_result</a> = tracer.start_child_span(*<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span2</a>, <span class="stringliteral">&quot;operation3&quot;</span>);</div>
-<div class="line"><span class="lineno">  215</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span3_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  216</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span3</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span3_result</a>.value();</div>
+<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> span3_result = tracer.start_child_span(*span2, <span class="stringliteral">&quot;operation3&quot;</span>);</div>
+<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(span3_result.has_value());</div>
+<div class="line"><span class="lineno">  216</span>    <span class="keyword">auto</span> span3 = span3_result.value();</div>
 <div class="line"><span class="lineno">  217</span>    </div>
 <div class="line"><span class="lineno">  218</span>    <span class="comment">// Finish all spans</span></div>
-<div class="line"><span class="lineno">  219</span>    tracer.finish_span(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1</a>);</div>
-<div class="line"><span class="lineno">  220</span>    tracer.finish_span(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span2</a>);</div>
-<div class="line"><span class="lineno">  221</span>    tracer.finish_span(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span3</a>);</div>
+<div class="line"><span class="lineno">  219</span>    tracer.finish_span(span1);</div>
+<div class="line"><span class="lineno">  220</span>    tracer.finish_span(span2);</div>
+<div class="line"><span class="lineno">  221</span>    tracer.finish_span(span3);</div>
 <div class="line"><span class="lineno">  222</span>    </div>
 <div class="line"><span class="lineno">  223</span>    <span class="comment">// Get all spans for the trace</span></div>
-<div class="line"><span class="lineno">  224</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_result</a> = tracer.get_trace(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1</a>-&gt;trace_id);</div>
-<div class="line"><span class="lineno">  225</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  226</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_result</a>.value();</div>
+<div class="line"><span class="lineno">  224</span>    <span class="keyword">auto</span> trace_result = tracer.get_trace(span1-&gt;trace_id);</div>
+<div class="line"><span class="lineno">  225</span>    ASSERT_TRUE(trace_result.has_value());</div>
+<div class="line"><span class="lineno">  226</span>    <span class="keyword">auto</span> trace = trace_result.value();</div>
 <div class="line"><span class="lineno">  227</span>    </div>
-<div class="line"><span class="lineno">  228</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace</a>.size(), 3);</div>
+<div class="line"><span class="lineno">  228</span>    EXPECT_EQ(trace.size(), 3);</div>
 <div class="line"><span class="lineno">  229</span>    </div>
 <div class="line"><span class="lineno">  230</span>    <span class="comment">// All spans should have the same trace ID</span></div>
-<div class="line"><span class="lineno">  231</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; span : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace</a>) {</div>
-<div class="line"><span class="lineno">  232</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span.trace_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span1</a>-&gt;trace_id);</div>
-<div class="line"><span class="lineno">  233</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(span.is_finished());</div>
+<div class="line"><span class="lineno">  231</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; span : trace) {</div>
+<div class="line"><span class="lineno">  232</span>        EXPECT_EQ(span.trace_id, span1-&gt;trace_id);</div>
+<div class="line"><span class="lineno">  233</span>        EXPECT_TRUE(span.is_finished());</div>
 <div class="line"><span class="lineno">  234</span>    }</div>
 <div class="line"><span class="lineno">  235</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_aaa649e7182dfea7bddadd6b1842b8ae6_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_aaa649e7182dfea7bddadd6b1842b8ae6_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_aaa649e7182dfea7bddadd6b1842b8ae6_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_aaa649e7182dfea7bddadd6b1842b8ae6_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a4cb2764ec3cf454ca680c305d6ee2638" name="a4cb2764ec3cf454ca680c305d6ee2638"></a>
@@ -672,41 +583,30 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  120</span>                                                     {</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  122</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  123</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  122</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  123</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">  124</span>    </div>
 <div class="line"><span class="lineno">  125</span>    span-&gt;baggage[<span class="stringliteral">&quot;test_key&quot;</span>] = <span class="stringliteral">&quot;test_value&quot;</span>;</div>
 <div class="line"><span class="lineno">  126</span>    </div>
 <div class="line"><span class="lineno">  127</span>    <span class="comment">// Inject into carrier (simulating HTTP headers)</span></div>
-<div class="line"><span class="lineno">  128</span>    std::unordered_map&lt;std::string, std::string&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">headers</a>;</div>
+<div class="line"><span class="lineno">  128</span>    std::unordered_map&lt;std::string, std::string&gt; headers;</div>
 <div class="line"><span class="lineno">  129</span>    <span class="keyword">auto</span> context = tracer.extract_context(*span);</div>
-<div class="line"><span class="lineno">  130</span>    tracer.inject_context(context, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">headers</a>);</div>
+<div class="line"><span class="lineno">  130</span>    tracer.inject_context(context, headers);</div>
 <div class="line"><span class="lineno">  131</span>    </div>
-<div class="line"><span class="lineno">  132</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">headers</a>.contains(<span class="stringliteral">&quot;traceparent&quot;</span>));</div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">headers</a>.contains(<span class="stringliteral">&quot;baggage-test_key&quot;</span>));</div>
+<div class="line"><span class="lineno">  132</span>    EXPECT_TRUE(headers.contains(<span class="stringliteral">&quot;traceparent&quot;</span>));</div>
+<div class="line"><span class="lineno">  133</span>    EXPECT_TRUE(headers.contains(<span class="stringliteral">&quot;baggage-test_key&quot;</span>));</div>
 <div class="line"><span class="lineno">  134</span>    </div>
 <div class="line"><span class="lineno">  135</span>    <span class="comment">// Extract from carrier</span></div>
-<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">extracted_result</a> = tracer.extract_context_from_carrier(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">headers</a>);</div>
-<div class="line"><span class="lineno">  137</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">extracted_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  138</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">extracted</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">extracted_result</a>.value();</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> extracted_result = tracer.extract_context_from_carrier(headers);</div>
+<div class="line"><span class="lineno">  137</span>    ASSERT_TRUE(extracted_result.has_value());</div>
+<div class="line"><span class="lineno">  138</span>    <span class="keyword">auto</span> extracted = extracted_result.value();</div>
 <div class="line"><span class="lineno">  139</span>    </div>
-<div class="line"><span class="lineno">  140</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">extracted</a>.trace_id, span-&gt;trace_id);</div>
-<div class="line"><span class="lineno">  141</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">extracted</a>.span_id, span-&gt;span_id);</div>
-<div class="line"><span class="lineno">  142</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">extracted</a>.baggage[<span class="stringliteral">&quot;test_key&quot;</span>], <span class="stringliteral">&quot;test_value&quot;</span>);</div>
+<div class="line"><span class="lineno">  140</span>    EXPECT_EQ(extracted.trace_id, span-&gt;trace_id);</div>
+<div class="line"><span class="lineno">  141</span>    EXPECT_EQ(extracted.span_id, span-&gt;span_id);</div>
+<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(extracted.baggage[<span class="stringliteral">&quot;test_key&quot;</span>], <span class="stringliteral">&quot;test_value&quot;</span>);</div>
 <div class="line"><span class="lineno">  143</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a4cb2764ec3cf454ca680c305d6ee2638_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a4cb2764ec3cf454ca680c305d6ee2638_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a4cb2764ec3cf454ca680c305d6ee2638_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a4cb2764ec3cf454ca680c305d6ee2638_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5e8ba8a326a76ffc75375bcb11fca745" name="a5e8ba8a326a76ffc75375bcb11fca745"></a>
@@ -738,12 +638,12 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  189</span>                                           {</div>
 <div class="line"><span class="lineno">  190</span>    {</div>
-<div class="line"><span class="lineno">  191</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;scoped_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  192</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  193</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scoped_span</a> <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value(), &amp;tracer);</div>
+<div class="line"><span class="lineno">  191</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;scoped_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  192</span>        ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  193</span>        scoped_span <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>(span_result.value(), &amp;tracer);</div>
 <div class="line"><span class="lineno">  194</span>        </div>
-<div class="line"><span class="lineno">  195</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(tracer.get_current_span(), <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value());</div>
-<div class="line"><span class="lineno">  196</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>-&gt;is_finished());</div>
+<div class="line"><span class="lineno">  195</span>        EXPECT_EQ(tracer.get_current_span(), span_result.value());</div>
+<div class="line"><span class="lineno">  196</span>        EXPECT_FALSE(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>-&gt;is_finished());</div>
 <div class="line"><span class="lineno">  197</span>        </div>
 <div class="line"><span class="lineno">  198</span>        <span class="comment">// Span should be accessible via scoped object</span></div>
 <div class="line"><span class="lineno">  199</span>        <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>-&gt;tags[<span class="stringliteral">&quot;custom_tag&quot;</span>] = <span class="stringliteral">&quot;custom_value&quot;</span>;</div>
@@ -752,18 +652,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  202</span>    <span class="comment">// Note: We can&#39;t directly check as the span is finished and stored</span></div>
 <div class="line"><span class="lineno">  203</span>}</div>
 <div class="ttc" id="anamespacemonitoring__system_html_a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">monitoring_system::service_lifetime::scoped</a></div><div class="ttdeci">@ scoped</div><div class="ttdoc">Single instance per scope.</div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a5e8ba8a326a76ffc75375bcb11fca745_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a5e8ba8a326a76ffc75375bcb11fca745_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a5e8ba8a326a76ffc75375bcb11fca745_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a5e8ba8a326a76ffc75375bcb11fca745_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a80a59a47ecc1244cc1b4bd9b090016d8" name="a80a59a47ecc1244cc1b4bd9b090016d8"></a>
@@ -794,11 +683,11 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00256">256</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  256</span>                                           {</div>
-<div class="line"><span class="lineno">  257</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;status_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  258</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">  257</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;status_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  258</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">  260</span>    </div>
-<div class="line"><span class="lineno">  261</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;status, trace_span::status_code::unset);</div>
+<div class="line"><span class="lineno">  261</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::unset);</div>
 <div class="line"><span class="lineno">  262</span>    </div>
 <div class="line"><span class="lineno">  263</span>    <span class="comment">// Set error status</span></div>
 <div class="line"><span class="lineno">  264</span>    span-&gt;status = trace_span::status_code::error;</div>
@@ -806,21 +695,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  266</span>    </div>
 <div class="line"><span class="lineno">  267</span>    tracer.finish_span(span);</div>
 <div class="line"><span class="lineno">  268</span>    </div>
-<div class="line"><span class="lineno">  269</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;status, trace_span::status_code::error);</div>
-<div class="line"><span class="lineno">  270</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;status_message, <span class="stringliteral">&quot;Operation failed due to timeout&quot;</span>);</div>
+<div class="line"><span class="lineno">  269</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::error);</div>
+<div class="line"><span class="lineno">  270</span>    EXPECT_EQ(span-&gt;status_message, <span class="stringliteral">&quot;Operation failed due to timeout&quot;</span>);</div>
 <div class="line"><span class="lineno">  271</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a80a59a47ecc1244cc1b4bd9b090016d8_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a80a59a47ecc1244cc1b4bd9b090016d8_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a80a59a47ecc1244cc1b4bd9b090016d8_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a80a59a47ecc1244cc1b4bd9b090016d8_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7dabca95049c91a35c785001f6571681" name="a7dabca95049c91a35c785001f6571681"></a>
@@ -851,35 +729,24 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00237">237</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  237</span>                                         {</div>
-<div class="line"><span class="lineno">  238</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;tagged_operation&quot;</span>, <span class="stringliteral">&quot;my_service&quot;</span>);</div>
-<div class="line"><span class="lineno">  239</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  240</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">  238</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;tagged_operation&quot;</span>, <span class="stringliteral">&quot;my_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  239</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  240</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">  241</span>    </div>
 <div class="line"><span class="lineno">  242</span>    <span class="comment">// Check default tags</span></div>
-<div class="line"><span class="lineno">  243</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;tags[<span class="stringliteral">&quot;span.kind&quot;</span>], <span class="stringliteral">&quot;internal&quot;</span>);</div>
-<div class="line"><span class="lineno">  244</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;tags[<span class="stringliteral">&quot;service.name&quot;</span>], <span class="stringliteral">&quot;my_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  243</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;span.kind&quot;</span>], <span class="stringliteral">&quot;internal&quot;</span>);</div>
+<div class="line"><span class="lineno">  244</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;service.name&quot;</span>], <span class="stringliteral">&quot;my_service&quot;</span>);</div>
 <div class="line"><span class="lineno">  245</span>    </div>
 <div class="line"><span class="lineno">  246</span>    <span class="comment">// Add custom tags</span></div>
 <div class="line"><span class="lineno">  247</span>    span-&gt;tags[<span class="stringliteral">&quot;http.method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
 <div class="line"><span class="lineno">  248</span>    span-&gt;tags[<span class="stringliteral">&quot;http.status_code&quot;</span>] = <span class="stringliteral">&quot;200&quot;</span>;</div>
 <div class="line"><span class="lineno">  249</span>    span-&gt;tags[<span class="stringliteral">&quot;user.id&quot;</span>] = <span class="stringliteral">&quot;user123&quot;</span>;</div>
 <div class="line"><span class="lineno">  250</span>    </div>
-<div class="line"><span class="lineno">  251</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;tags[<span class="stringliteral">&quot;http.method&quot;</span>], <span class="stringliteral">&quot;GET&quot;</span>);</div>
-<div class="line"><span class="lineno">  252</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;tags[<span class="stringliteral">&quot;http.status_code&quot;</span>], <span class="stringliteral">&quot;200&quot;</span>);</div>
-<div class="line"><span class="lineno">  253</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;tags[<span class="stringliteral">&quot;user.id&quot;</span>], <span class="stringliteral">&quot;user123&quot;</span>);</div>
+<div class="line"><span class="lineno">  251</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;http.method&quot;</span>], <span class="stringliteral">&quot;GET&quot;</span>);</div>
+<div class="line"><span class="lineno">  252</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;http.status_code&quot;</span>], <span class="stringliteral">&quot;200&quot;</span>);</div>
+<div class="line"><span class="lineno">  253</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;user.id&quot;</span>], <span class="stringliteral">&quot;user123&quot;</span>);</div>
 <div class="line"><span class="lineno">  254</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a7dabca95049c91a35c785001f6571681_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a7dabca95049c91a35c785001f6571681_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a7dabca95049c91a35c785001f6571681_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a7dabca95049c91a35c785001f6571681_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aeafd416e47eaaeab8daefe7cd31bcffb" name="aeafd416e47eaaeab8daefe7cd31bcffb"></a>
@@ -911,32 +778,21 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  145</span>                                                     {</div>
 <div class="line"><span class="lineno">  146</span>    <span class="comment">// Simulate incoming request with trace context</span></div>
-<div class="line"><span class="lineno">  147</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_context</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>;</div>
-<div class="line"><span class="lineno">  148</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
-<div class="line"><span class="lineno">  149</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
-<div class="line"><span class="lineno">  150</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>.baggage[<span class="stringliteral">&quot;user_id&quot;</span>] = <span class="stringliteral">&quot;67890&quot;</span>;</div>
+<div class="line"><span class="lineno">  147</span>    trace_context incoming_ctx;</div>
+<div class="line"><span class="lineno">  148</span>    incoming_ctx.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
+<div class="line"><span class="lineno">  149</span>    incoming_ctx.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
+<div class="line"><span class="lineno">  150</span>    incoming_ctx.baggage[<span class="stringliteral">&quot;user_id&quot;</span>] = <span class="stringliteral">&quot;67890&quot;</span>;</div>
 <div class="line"><span class="lineno">  151</span>    </div>
-<div class="line"><span class="lineno">  152</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span_from_context(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>, <span class="stringliteral">&quot;handle_request&quot;</span>);</div>
-<div class="line"><span class="lineno">  153</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  154</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">  152</span>    <span class="keyword">auto</span> span_result = tracer.start_span_from_context(incoming_ctx, <span class="stringliteral">&quot;handle_request&quot;</span>);</div>
+<div class="line"><span class="lineno">  153</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  154</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">  155</span>    </div>
-<div class="line"><span class="lineno">  156</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;trace_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>.trace_id);</div>
-<div class="line"><span class="lineno">  157</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(span-&gt;span_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>.span_id);  <span class="comment">// New span ID</span></div>
-<div class="line"><span class="lineno">  158</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;parent_span_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">incoming_ctx</a>.span_id);</div>
-<div class="line"><span class="lineno">  159</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span-&gt;baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;67890&quot;</span>);</div>
+<div class="line"><span class="lineno">  156</span>    EXPECT_EQ(span-&gt;trace_id, incoming_ctx.trace_id);</div>
+<div class="line"><span class="lineno">  157</span>    EXPECT_NE(span-&gt;span_id, incoming_ctx.span_id);  <span class="comment">// New span ID</span></div>
+<div class="line"><span class="lineno">  158</span>    EXPECT_EQ(span-&gt;parent_span_id, incoming_ctx.span_id);</div>
+<div class="line"><span class="lineno">  159</span>    EXPECT_EQ(span-&gt;baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;67890&quot;</span>);</div>
 <div class="line"><span class="lineno">  160</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_aeafd416e47eaaeab8daefe7cd31bcffb_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_aeafd416e47eaaeab8daefe7cd31bcffb_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_aeafd416e47eaaeab8daefe7cd31bcffb_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_aeafd416e47eaaeab8daefe7cd31bcffb_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a337198aad241f43e03e2461ae41c7b1a" name="a337198aad241f43e03e2461ae41c7b1a"></a>
@@ -967,34 +823,23 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00084">84</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   84</span>                                                        {</div>
-<div class="line"><span class="lineno">   85</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a> = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   86</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.has_value());</div>
-<div class="line"><span class="lineno">   87</span>    <span class="keyword">auto</span> span = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_result</a>.value();</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   86</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">   87</span>    <span class="keyword">auto</span> span = span_result.value();</div>
 <div class="line"><span class="lineno">   88</span>    </div>
 <div class="line"><span class="lineno">   89</span>    <span class="comment">// Add baggage</span></div>
 <div class="line"><span class="lineno">   90</span>    span-&gt;baggage[<span class="stringliteral">&quot;user_id&quot;</span>] = <span class="stringliteral">&quot;12345&quot;</span>;</div>
 <div class="line"><span class="lineno">   91</span>    span-&gt;baggage[<span class="stringliteral">&quot;request_type&quot;</span>] = <span class="stringliteral">&quot;api&quot;</span>;</div>
 <div class="line"><span class="lineno">   92</span>    </div>
 <div class="line"><span class="lineno">   93</span>    <span class="comment">// Extract context - explicitly use const trace_span&amp;</span></div>
-<div class="line"><span class="lineno">   94</span>    <span class="keyword">const</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_span</a>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_ref</a> = *span;</div>
-<div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> context = tracer.extract_context(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">span_ref</a>);</div>
-<div class="line"><span class="lineno">   96</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(context.trace_id, span-&gt;trace_id);</div>
-<div class="line"><span class="lineno">   97</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(context.span_id, span-&gt;span_id);</div>
-<div class="line"><span class="lineno">   98</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(context.baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;12345&quot;</span>);</div>
-<div class="line"><span class="lineno">   99</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(context.baggage[<span class="stringliteral">&quot;request_type&quot;</span>], <span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keyword">const</span> trace_span&amp; span_ref = *span;</div>
+<div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> context = tracer.extract_context(span_ref);</div>
+<div class="line"><span class="lineno">   96</span>    EXPECT_EQ(context.trace_id, span-&gt;trace_id);</div>
+<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(context.span_id, span-&gt;span_id);</div>
+<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(context.baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;12345&quot;</span>);</div>
+<div class="line"><span class="lineno">   99</span>    EXPECT_EQ(context.baggage[<span class="stringliteral">&quot;request_type&quot;</span>], <span class="stringliteral">&quot;api&quot;</span>);</div>
 <div class="line"><span class="lineno">  100</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a337198aad241f43e03e2461ae41c7b1a_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a337198aad241f43e03e2461ae41c7b1a_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a337198aad241f43e03e2461ae41c7b1a_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a337198aad241f43e03e2461ae41c7b1a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad754af09b5eea80ccefc7e3a2901d1c4" name="ad754af09b5eea80ccefc7e3a2901d1c4"></a>
@@ -1026,36 +871,25 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00328">328</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  328</span>                                            {</div>
 <div class="line"><span class="lineno">  329</span>    {</div>
-<div class="line"><span class="lineno">  330</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">TRACE_SPAN</a>(<span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  330</span>        TRACE_SPAN(<span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
 <div class="line"><span class="lineno">  331</span>        </div>
 <div class="line"><span class="lineno">  332</span>        <span class="comment">// The span should be active</span></div>
-<div class="line"><span class="lineno">  333</span>        <span class="keyword">auto</span> current = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">global_tracer</a>().get_current_span();</div>
-<div class="line"><span class="lineno">  334</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_NE</a>(current, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  335</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(current-&gt;operation_name, <span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  333</span>        <span class="keyword">auto</span> current = global_tracer().get_current_span();</div>
+<div class="line"><span class="lineno">  334</span>        ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  335</span>        EXPECT_EQ(current-&gt;operation_name, <span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
 <div class="line"><span class="lineno">  336</span>        </div>
 <div class="line"><span class="lineno">  337</span>        <span class="comment">// Nested span</span></div>
 <div class="line"><span class="lineno">  338</span>        {</div>
-<div class="line"><span class="lineno">  339</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">TRACE_CHILD_SPAN</a>(*current, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  340</span>            <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">nested</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">global_tracer</a>().get_current_span();</div>
-<div class="line"><span class="lineno">  341</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">nested</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  342</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">nested</a>-&gt;operation_name, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  343</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">nested</a>-&gt;parent_span_id, current-&gt;span_id);</div>
+<div class="line"><span class="lineno">  339</span>            TRACE_CHILD_SPAN(*current, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  340</span>            <span class="keyword">auto</span> nested = global_tracer().get_current_span();</div>
+<div class="line"><span class="lineno">  341</span>            ASSERT_NE(nested, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  342</span>            EXPECT_EQ(nested-&gt;operation_name, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  343</span>            EXPECT_EQ(nested-&gt;parent_span_id, current-&gt;span_id);</div>
 <div class="line"><span class="lineno">  344</span>        }</div>
 <div class="line"><span class="lineno">  345</span>    }</div>
 <div class="line"><span class="lineno">  346</span>    <span class="comment">// Spans should be finished after leaving scope</span></div>
 <div class="line"><span class="lineno">  347</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_ad754af09b5eea80ccefc7e3a2901d1c4_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_ad754af09b5eea80ccefc7e3a2901d1c4_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_ad754af09b5eea80ccefc7e3a2901d1c4_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_ad754af09b5eea80ccefc7e3a2901d1c4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a6fb29c5a64b3185e8a2ef31b046c4f6d" name="a6fb29c5a64b3185e8a2ef31b046c4f6d"></a>
@@ -1086,40 +920,29 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00102">102</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  102</span>                                                      {</div>
-<div class="line"><span class="lineno">  103</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_context</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>;</div>
-<div class="line"><span class="lineno">  104</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
-<div class="line"><span class="lineno">  105</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
-<div class="line"><span class="lineno">  106</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.trace_flags = <span class="stringliteral">&quot;01&quot;</span>;</div>
+<div class="line"><span class="lineno">  103</span>    trace_context ctx;</div>
+<div class="line"><span class="lineno">  104</span>    ctx.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
+<div class="line"><span class="lineno">  105</span>    ctx.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
+<div class="line"><span class="lineno">  106</span>    ctx.trace_flags = <span class="stringliteral">&quot;01&quot;</span>;</div>
 <div class="line"><span class="lineno">  107</span>    </div>
-<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">header</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.to_w3c_traceparent();</div>
-<div class="line"><span class="lineno">  109</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">header</a>, <span class="stringliteral">&quot;00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01&quot;</span>);</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> header = ctx.to_w3c_traceparent();</div>
+<div class="line"><span class="lineno">  109</span>    EXPECT_EQ(header, <span class="stringliteral">&quot;00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01&quot;</span>);</div>
 <div class="line"><span class="lineno">  110</span>    </div>
-<div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parsed_result</a> = trace_context::from_w3c_traceparent(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">header</a>);</div>
-<div class="line"><span class="lineno">  112</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parsed_result</a>.has_value());</div>
-<div class="line"><span class="lineno">  113</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parsed</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parsed_result</a>.value();</div>
+<div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> parsed_result = trace_context::from_w3c_traceparent(header);</div>
+<div class="line"><span class="lineno">  112</span>    ASSERT_TRUE(parsed_result.has_value());</div>
+<div class="line"><span class="lineno">  113</span>    <span class="keyword">auto</span> parsed = parsed_result.value();</div>
 <div class="line"><span class="lineno">  114</span>    </div>
-<div class="line"><span class="lineno">  115</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parsed</a>.trace_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.trace_id);</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parsed</a>.span_id, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.span_id);</div>
-<div class="line"><span class="lineno">  117</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">parsed</a>.trace_flags, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.trace_flags);</div>
+<div class="line"><span class="lineno">  115</span>    EXPECT_EQ(parsed.trace_id, ctx.trace_id);</div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(parsed.span_id, ctx.span_id);</div>
+<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(parsed.trace_flags, ctx.trace_flags);</div>
 <div class="line"><span class="lineno">  118</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/d1e/test__distributed__tracing_8cpp_a6fb29c5a64b3185e8a2ef31b046c4f6d_cgraph.png" border="0" usemap="#ad9/d1e/test__distributed__tracing_8cpp_a6fb29c5a64b3185e8a2ef31b046c4f6d_cgraph" alt=""/></div>
-<map name="ad9/d1e/test__distributed__tracing_8cpp_a6fb29c5a64b3185e8a2ef31b046c4f6d_cgraph" id="ad9/d1e/test__distributed__tracing_8cpp_a6fb29c5a64b3185e8a2ef31b046c4f6d_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 12:10:15 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 14:18:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

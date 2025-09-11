@@ -235,35 +235,23 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  328</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  329</span>    );</div>
 <div class="line"><span class="lineno">  330</span>    </div>
-<div class="line"><span class="lineno">  331</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
-<div class="line"><span class="lineno">  332</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;named&quot;</span>));</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
+<div class="line"><span class="lineno">  332</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;named&quot;</span>));</div>
 <div class="line"><span class="lineno">  333</span>    </div>
 <div class="line"><span class="lineno">  334</span>    <span class="comment">// Clear container</span></div>
-<div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">clear_result</a> = container_-&gt;clear();</div>
-<div class="line"><span class="lineno">  336</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">clear_result</a>);</div>
+<div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> clear_result = container_-&gt;clear();</div>
+<div class="line"><span class="lineno">  336</span>    ASSERT_TRUE(clear_result);</div>
 <div class="line"><span class="lineno">  337</span>    </div>
 <div class="line"><span class="lineno">  338</span>    <span class="comment">// Services should no longer be registered</span></div>
-<div class="line"><span class="lineno">  339</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
-<div class="line"><span class="lineno">  340</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;named&quot;</span>));</div>
+<div class="line"><span class="lineno">  339</span>    EXPECT_FALSE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
+<div class="line"><span class="lineno">  340</span>    EXPECT_FALSE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;named&quot;</span>));</div>
 <div class="line"><span class="lineno">  341</span>    </div>
 <div class="line"><span class="lineno">  342</span>    <span class="comment">// Resolution should fail</span></div>
-<div class="line"><span class="lineno">  343</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolve_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  344</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolve_result</a>);</div>
+<div class="line"><span class="lineno">  343</span>    <span class="keyword">auto</span> resolve_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  344</span>    EXPECT_FALSE(resolve_result);</div>
 <div class="line"><span class="lineno">  345</span>}</div>
 <div class="ttc" id="aclassIService_html"><div class="ttname"><a href="../../df/d8b/classIService.html">IService</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00026">test_di_container.cpp:26</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00248">result_types.h:248</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a1e60b9d36f5b7dbc5e83927bd9356849_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a1e60b9d36f5b7dbc5e83927bd9356849_cgraph" alt=""/></div>
-<map name="ad5/d1c/test__di__container_8cpp_a1e60b9d36f5b7dbc5e83927bd9356849_cgraph" id="ad5/d1c/test__di__container_8cpp_a1e60b9d36f5b7dbc5e83927bd9356849_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9d84b8bc4ac2a8df2e4a64e3612c9ac9" name="a9d84b8bc4ac2a8df2e4a64e3612c9ac9"></a>
@@ -304,43 +292,32 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  221</span>    <span class="comment">// Register service that depends on ServiceA</span></div>
 <div class="line"><span class="lineno">  222</span>    container_-&gt;register_factory&lt;<a class="code hl_class" href="../../dd/d93/classServiceB.html">ServiceB</a>&gt;(</div>
 <div class="line"><span class="lineno">  223</span>        [<span class="keyword">this</span>]() {</div>
-<div class="line"><span class="lineno">  224</span>            <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dep_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
-<div class="line"><span class="lineno">  225</span>            <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dep_result</a>) {</div>
+<div class="line"><span class="lineno">  224</span>            <span class="keyword">auto</span> dep_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
+<div class="line"><span class="lineno">  225</span>            <span class="keywordflow">if</span> (!dep_result) {</div>
 <div class="line"><span class="lineno">  226</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Failed to resolve dependency&quot;</span>);</div>
 <div class="line"><span class="lineno">  227</span>            }</div>
-<div class="line"><span class="lineno">  228</span>            <span class="keywordflow">return</span> std::make_shared&lt;ServiceB&gt;(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dep_result</a>.value());</div>
+<div class="line"><span class="lineno">  228</span>            <span class="keywordflow">return</span> std::make_shared&lt;ServiceB&gt;(dep_result.value());</div>
 <div class="line"><span class="lineno">  229</span>        },</div>
 <div class="line"><span class="lineno">  230</span>        service_lifetime::transient</div>
 <div class="line"><span class="lineno">  231</span>    );</div>
 <div class="line"><span class="lineno">  232</span>    </div>
 <div class="line"><span class="lineno">  233</span>    <span class="comment">// Resolve service with dependencies</span></div>
-<div class="line"><span class="lineno">  234</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../dd/d93/classServiceB.html">ServiceB</a>&gt;();</div>
-<div class="line"><span class="lineno">  235</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a>);</div>
-<div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a>.value();</div>
+<div class="line"><span class="lineno">  234</span>    <span class="keyword">auto</span> service_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../dd/d93/classServiceB.html">ServiceB</a>&gt;();</div>
+<div class="line"><span class="lineno">  235</span>    ASSERT_TRUE(service_result);</div>
+<div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> service = service_result.value();</div>
 <div class="line"><span class="lineno">  237</span>    </div>
-<div class="line"><span class="lineno">  238</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  239</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dependency</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service</a>-&gt;get_dependency();</div>
-<div class="line"><span class="lineno">  240</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dependency</a>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  238</span>    EXPECT_NE(service, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  239</span>    <span class="keyword">auto</span> dependency = service-&gt;get_dependency();</div>
+<div class="line"><span class="lineno">  240</span>    EXPECT_NE(dependency, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  241</span>    </div>
 <div class="line"><span class="lineno">  242</span>    <span class="comment">// Dependency should be singleton</span></div>
-<div class="line"><span class="lineno">  243</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dep_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
-<div class="line"><span class="lineno">  244</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dep_result</a>);</div>
-<div class="line"><span class="lineno">  245</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dependency</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">dep_result</a>.value());</div>
+<div class="line"><span class="lineno">  243</span>    <span class="keyword">auto</span> dep_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
+<div class="line"><span class="lineno">  244</span>    ASSERT_TRUE(dep_result);</div>
+<div class="line"><span class="lineno">  245</span>    EXPECT_EQ(dependency, dep_result.value());</div>
 <div class="line"><span class="lineno">  246</span>}</div>
 <div class="ttc" id="aclassServiceA_html"><div class="ttname"><a href="../../d6/d19/classServiceA.html">ServiceA</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00032">test_di_container.cpp:32</a></div></div>
 <div class="ttc" id="aclassServiceB_html"><div class="ttname"><a href="../../dd/d93/classServiceB.html">ServiceB</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00058">test_di_container.cpp:58</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a9d84b8bc4ac2a8df2e4a64e3612c9ac9_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a9d84b8bc4ac2a8df2e4a64e3612c9ac9_cgraph" alt=""/></div>
-<map name="ad5/d1c/test__di__container_8cpp_a9d84b8bc4ac2a8df2e4a64e3612c9ac9_cgraph" id="ad5/d1c/test__di__container_8cpp_a9d84b8bc4ac2a8df2e4a64e3612c9ac9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a052edb98297d52589614b94cfebfa4ad" name="a052edb98297d52589614b94cfebfa4ad"></a>
@@ -382,32 +359,32 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  358</span>    );</div>
 <div class="line"><span class="lineno">  359</span>    </div>
 <div class="line"><span class="lineno">  360</span>    <span class="comment">// Resolve from multiple threads</span></div>
-<div class="line"><span class="lineno">  361</span>    std::vector&lt;std::thread&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>;</div>
-<div class="line"><span class="lineno">  362</span>    std::vector&lt;std::shared_ptr&lt;IService&gt;&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>(10);</div>
+<div class="line"><span class="lineno">  361</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><span class="lineno">  362</span>    std::vector&lt;std::shared_ptr&lt;IService&gt;&gt; results(10);</div>
 <div class="line"><span class="lineno">  363</span>    </div>
-<div class="line"><span class="lineno">  364</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; 10; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  365</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>.emplace_back([<span class="keyword">this</span>, &amp;<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>]() {</div>
+<div class="line"><span class="lineno">  364</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><span class="lineno">  365</span>        threads.emplace_back([<span class="keyword">this</span>, &amp;results, i]() {</div>
 <div class="line"><span class="lineno">  366</span>            <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
 <div class="line"><span class="lineno">  367</span>            <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
-<div class="line"><span class="lineno">  368</span>                <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>[<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>] = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  368</span>                results[i] = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
 <div class="line"><span class="lineno">  369</span>            }</div>
 <div class="line"><span class="lineno">  370</span>        });</div>
 <div class="line"><span class="lineno">  371</span>    }</div>
 <div class="line"><span class="lineno">  372</span>    </div>
-<div class="line"><span class="lineno">  373</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">t</a> : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>) {</div>
-<div class="line"><span class="lineno">  374</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">t</a>.join();</div>
+<div class="line"><span class="lineno">  373</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
+<div class="line"><span class="lineno">  374</span>        t.join();</div>
 <div class="line"><span class="lineno">  375</span>    }</div>
 <div class="line"><span class="lineno">  376</span>    </div>
 <div class="line"><span class="lineno">  377</span>    <span class="comment">// All threads should get the same singleton instance</span></div>
-<div class="line"><span class="lineno">  378</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">first</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>[0];</div>
-<div class="line"><span class="lineno">  379</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">first</a>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  378</span>    <span class="keyword">auto</span> first = results[0];</div>
+<div class="line"><span class="lineno">  379</span>    EXPECT_NE(first, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  380</span>    </div>
-<div class="line"><span class="lineno">  381</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>) {</div>
-<div class="line"><span class="lineno">  382</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">first</a>);</div>
+<div class="line"><span class="lineno">  381</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> : results) {</div>
+<div class="line"><span class="lineno">  382</span>        EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>, first);</div>
 <div class="line"><span class="lineno">  383</span>    }</div>
 <div class="line"><span class="lineno">  384</span>    </div>
 <div class="line"><span class="lineno">  385</span>    <span class="comment">// Only one instance should have been created</span></div>
-<div class="line"><span class="lineno">  386</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0">ServiceA::get_instance_count</a>(), 1);</div>
+<div class="line"><span class="lineno">  386</span>    EXPECT_EQ(<a class="code hl_function" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0">ServiceA::get_instance_count</a>(), 1);</div>
 <div class="line"><span class="lineno">  387</span>}</div>
 <div class="ttc" id="aclassServiceA_html_a98abdbdf3963ec0a233db00c56be27b0"><div class="ttname"><a href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0">ServiceA::get_instance_count</a></div><div class="ttdeci">static int get_instance_count()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00047">test_di_container.cpp:47</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
@@ -417,18 +394,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a052edb98297d52589614b94cfebfa4ad_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a052edb98297d52589614b94cfebfa4ad_cgraph" alt=""/></div>
 <map name="ad5/d1c/test__di__container_8cpp_a052edb98297d52589614b94cfebfa4ad_cgraph" id="ad5/d1c/test__di__container_8cpp_a052edb98297d52589614b94cfebfa4ad_cgraph">
-<area shape="rect" title=" " alt="" coords="5,101,75,126"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
 <area shape="rect" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0" title=" " alt="" coords="123,5,293,45"/>
-<area shape="poly" title=" " alt="" coords="56,98,86,77,121,55,135,48,137,53,124,60,88,81,59,103"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="130,93,286,133"/>
-<area shape="poly" title=" " alt="" coords="75,111,116,111,116,116,75,116"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="130,157,286,197"/>
-<area shape="poly" title=" " alt="" coords="74,124,124,143,142,150,140,155,122,148,72,129"/>
-<area shape="poly" title=" " alt="" coords="176,94,174,84,179,75,191,69,208,67,228,70,239,77,236,81,226,75,208,72,192,74,183,79,179,85,181,92"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="341,125,497,165"/>
-<area shape="poly" title=" " alt="" coords="286,163,327,157,328,162,287,168"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="341,189,497,229"/>
-<area shape="poly" title=" " alt="" coords="287,187,328,193,327,198,286,192"/>
+<area shape="poly" title=" " alt="" coords="74,48,109,42,110,47,75,53"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="130,69,286,109"/>
+<area shape="poly" title=" " alt="" coords="75,61,117,69,116,75,74,66"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="341,37,497,77"/>
+<area shape="poly" title=" " alt="" coords="286,75,327,69,328,74,287,80"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="341,101,497,141"/>
+<area shape="poly" title=" " alt="" coords="287,99,328,105,327,110,286,104"/>
 </map>
 </div>
 
@@ -464,51 +438,40 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00175">175</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  175</span>                                                  {</div>
 <div class="line"><span class="lineno">  176</span>    <span class="comment">// Register multiple named services</span></div>
-<div class="line"><span class="lineno">  177</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a> = container_-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
+<div class="line"><span class="lineno">  177</span>    <span class="keyword">auto</span> result1 = container_-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
 <div class="line"><span class="lineno">  178</span>        <span class="stringliteral">&quot;primary&quot;</span>,</div>
 <div class="line"><span class="lineno">  179</span>        []() { <span class="keywordflow">return</span> std::make_shared&lt;ServiceA&gt;(); },</div>
 <div class="line"><span class="lineno">  180</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  181</span>    );</div>
 <div class="line"><span class="lineno">  182</span>    </div>
-<div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a> = container_-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
+<div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> result2 = container_-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
 <div class="line"><span class="lineno">  184</span>        <span class="stringliteral">&quot;secondary&quot;</span>,</div>
 <div class="line"><span class="lineno">  185</span>        []() { <span class="keywordflow">return</span> std::make_shared&lt;ServiceA&gt;(); },</div>
 <div class="line"><span class="lineno">  186</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  187</span>    );</div>
 <div class="line"><span class="lineno">  188</span>    </div>
-<div class="line"><span class="lineno">  189</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>);</div>
-<div class="line"><span class="lineno">  190</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>);</div>
+<div class="line"><span class="lineno">  189</span>    ASSERT_TRUE(result1);</div>
+<div class="line"><span class="lineno">  190</span>    ASSERT_TRUE(result2);</div>
 <div class="line"><span class="lineno">  191</span>    </div>
-<div class="line"><span class="lineno">  192</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;primary&quot;</span>));</div>
-<div class="line"><span class="lineno">  193</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;secondary&quot;</span>));</div>
-<div class="line"><span class="lineno">  194</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;unknown&quot;</span>));</div>
+<div class="line"><span class="lineno">  192</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;primary&quot;</span>));</div>
+<div class="line"><span class="lineno">  193</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;secondary&quot;</span>));</div>
+<div class="line"><span class="lineno">  194</span>    EXPECT_FALSE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;unknown&quot;</span>));</div>
 <div class="line"><span class="lineno">  195</span>    </div>
 <div class="line"><span class="lineno">  196</span>    <span class="comment">// Resolve named services</span></div>
-<div class="line"><span class="lineno">  197</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">primary_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;primary&quot;</span>);</div>
-<div class="line"><span class="lineno">  198</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">secondary_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;secondary&quot;</span>);</div>
+<div class="line"><span class="lineno">  197</span>    <span class="keyword">auto</span> primary_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;primary&quot;</span>);</div>
+<div class="line"><span class="lineno">  198</span>    <span class="keyword">auto</span> secondary_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;secondary&quot;</span>);</div>
 <div class="line"><span class="lineno">  199</span>    </div>
-<div class="line"><span class="lineno">  200</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">primary_result</a>);</div>
-<div class="line"><span class="lineno">  201</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">secondary_result</a>);</div>
+<div class="line"><span class="lineno">  200</span>    ASSERT_TRUE(primary_result);</div>
+<div class="line"><span class="lineno">  201</span>    ASSERT_TRUE(secondary_result);</div>
 <div class="line"><span class="lineno">  202</span>    </div>
-<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">primary</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">primary_result</a>.value();</div>
-<div class="line"><span class="lineno">  204</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">secondary</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">secondary_result</a>.value();</div>
+<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> primary = primary_result.value();</div>
+<div class="line"><span class="lineno">  204</span>    <span class="keyword">auto</span> secondary = secondary_result.value();</div>
 <div class="line"><span class="lineno">  205</span>    </div>
-<div class="line"><span class="lineno">  206</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">primary</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">secondary</a>);</div>
-<div class="line"><span class="lineno">  207</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">primary</a>-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
-<div class="line"><span class="lineno">  208</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">secondary</a>-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_2&quot;</span>);</div>
+<div class="line"><span class="lineno">  206</span>    EXPECT_NE(primary, secondary);</div>
+<div class="line"><span class="lineno">  207</span>    EXPECT_EQ(primary-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
+<div class="line"><span class="lineno">  208</span>    EXPECT_EQ(secondary-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_2&quot;</span>);</div>
 <div class="line"><span class="lineno">  209</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/d1c/test__di__container_8cpp_ae1b6c566253ef7c6e9a220e191c1d7db_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_ae1b6c566253ef7c6e9a220e191c1d7db_cgraph" alt=""/></div>
-<map name="ad5/d1c/test__di__container_8cpp_ae1b6c566253ef7c6e9a220e191c1d7db_cgraph" id="ad5/d1c/test__di__container_8cpp_ae1b6c566253ef7c6e9a220e191c1d7db_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a315a033f7701eb7735d6ff3c0070c109" name="a315a033f7701eb7735d6ff3c0070c109"></a>
@@ -546,35 +509,32 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  130</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  131</span>    );</div>
 <div class="line"><span class="lineno">  132</span>    </div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  133</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  134</span>    </div>
 <div class="line"><span class="lineno">  135</span>    <span class="comment">// Resolve multiple times</span></div>
-<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  137</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> service1_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  137</span>    <span class="keyword">auto</span> service2_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
 <div class="line"><span class="lineno">  138</span>    </div>
-<div class="line"><span class="lineno">  139</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1_result</a>);</div>
-<div class="line"><span class="lineno">  140</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2_result</a>);</div>
+<div class="line"><span class="lineno">  139</span>    ASSERT_TRUE(service1_result);</div>
+<div class="line"><span class="lineno">  140</span>    ASSERT_TRUE(service2_result);</div>
 <div class="line"><span class="lineno">  141</span>    </div>
-<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1_result</a>.value();</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2_result</a>.value();</div>
+<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span> service1 = service1_result.value();</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> service2 = service2_result.value();</div>
 <div class="line"><span class="lineno">  144</span>    </div>
 <div class="line"><span class="lineno">  145</span>    <span class="comment">// Singleton services should be the same instance</span></div>
-<div class="line"><span class="lineno">  146</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2</a>);</div>
-<div class="line"><span class="lineno">  147</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0">ServiceA::get_instance_count</a>(), 1);</div>
-<div class="line"><span class="lineno">  148</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1</a>-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
-<div class="line"><span class="lineno">  149</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2</a>-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
+<div class="line"><span class="lineno">  146</span>    EXPECT_EQ(service1, service2);</div>
+<div class="line"><span class="lineno">  147</span>    EXPECT_EQ(<a class="code hl_function" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0">ServiceA::get_instance_count</a>(), 1);</div>
+<div class="line"><span class="lineno">  148</span>    EXPECT_EQ(service1-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
+<div class="line"><span class="lineno">  149</span>    EXPECT_EQ(service2-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
 <div class="line"><span class="lineno">  150</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a315a033f7701eb7735d6ff3c0070c109_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a315a033f7701eb7735d6ff3c0070c109_cgraph" alt=""/></div>
 <map name="ad5/d1c/test__di__container_8cpp_a315a033f7701eb7735d6ff3c0070c109_cgraph" id="ad5/d1c/test__di__container_8cpp_a315a033f7701eb7735d6ff3c0070c109_cgraph">
-<area shape="rect" title=" " alt="" coords="5,57,75,82"/>
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
 <area shape="rect" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0" title=" " alt="" coords="123,5,293,45"/>
-<area shape="poly" title=" " alt="" coords="74,58,118,46,119,51,75,63"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="130,93,286,133"/>
-<area shape="poly" title=" " alt="" coords="75,76,119,87,118,92,74,81"/>
-<area shape="poly" title=" " alt="" coords="176,94,174,84,179,75,191,69,208,67,228,70,239,77,236,81,226,75,208,72,192,74,183,79,179,85,181,92"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
 </map>
 </div>
 
@@ -615,37 +575,34 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   99</span>        service_lifetime::transient</div>
 <div class="line"><span class="lineno">  100</span>    );</div>
 <div class="line"><span class="lineno">  101</span>    </div>
-<div class="line"><span class="lineno">  102</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  103</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
+<div class="line"><span class="lineno">  102</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  103</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
 <div class="line"><span class="lineno">  104</span>    </div>
 <div class="line"><span class="lineno">  105</span>    <span class="comment">// Resolve service multiple times</span></div>
-<div class="line"><span class="lineno">  106</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  107</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1_result</a>);</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1_result</a>.value();</div>
-<div class="line"><span class="lineno">  109</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  110</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1</a>-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keyword">auto</span> service1_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  107</span>    ASSERT_TRUE(service1_result);</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> service1 = service1_result.value();</div>
+<div class="line"><span class="lineno">  109</span>    EXPECT_NE(service1, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  110</span>    EXPECT_EQ(service1-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
 <div class="line"><span class="lineno">  111</span>    </div>
-<div class="line"><span class="lineno">  112</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  113</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2_result</a>);</div>
-<div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2_result</a>.value();</div>
-<div class="line"><span class="lineno">  115</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2</a>-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_2&quot;</span>);</div>
+<div class="line"><span class="lineno">  112</span>    <span class="keyword">auto</span> service2_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  113</span>    ASSERT_TRUE(service2_result);</div>
+<div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> service2 = service2_result.value();</div>
+<div class="line"><span class="lineno">  115</span>    EXPECT_NE(service2, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(service2-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_2&quot;</span>);</div>
 <div class="line"><span class="lineno">  117</span>    </div>
 <div class="line"><span class="lineno">  118</span>    <span class="comment">// Transient services should be different instances</span></div>
-<div class="line"><span class="lineno">  119</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service1</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service2</a>);</div>
-<div class="line"><span class="lineno">  120</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0">ServiceA::get_instance_count</a>(), 2);</div>
+<div class="line"><span class="lineno">  119</span>    EXPECT_NE(service1, service2);</div>
+<div class="line"><span class="lineno">  120</span>    EXPECT_EQ(<a class="code hl_function" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0">ServiceA::get_instance_count</a>(), 2);</div>
 <div class="line"><span class="lineno">  121</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1c/test__di__container_8cpp_adba85e0764b434b7d386ab27759dc8ee_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_adba85e0764b434b7d386ab27759dc8ee_cgraph" alt=""/></div>
 <map name="ad5/d1c/test__di__container_8cpp_adba85e0764b434b7d386ab27759dc8ee_cgraph" id="ad5/d1c/test__di__container_8cpp_adba85e0764b434b7d386ab27759dc8ee_cgraph">
-<area shape="rect" title=" " alt="" coords="5,57,75,82"/>
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
 <area shape="rect" href="../../d6/d19/classServiceA.html#a98abdbdf3963ec0a233db00c56be27b0" title=" " alt="" coords="123,5,293,45"/>
-<area shape="poly" title=" " alt="" coords="74,58,118,46,119,51,75,63"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="130,93,286,133"/>
-<area shape="poly" title=" " alt="" coords="75,76,119,87,118,92,74,81"/>
-<area shape="poly" title=" " alt="" coords="176,94,174,84,179,75,191,69,208,67,228,70,239,77,236,81,226,75,208,72,192,74,183,79,179,85,181,92"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
 </map>
 </div>
 
@@ -680,33 +637,22 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00155">155</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  155</span>                                                   {</div>
-<div class="line"><span class="lineno">  156</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">instance</a> = std::make_shared&lt;ServiceA&gt;();</div>
-<div class="line"><span class="lineno">  157</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">initial_name</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">instance</a>-&gt;get_name();</div>
+<div class="line"><span class="lineno">  156</span>    <span class="keyword">auto</span> instance = std::make_shared&lt;ServiceA&gt;();</div>
+<div class="line"><span class="lineno">  157</span>    <span class="keyword">auto</span> initial_name = instance-&gt;get_name();</div>
 <div class="line"><span class="lineno">  158</span>    </div>
 <div class="line"><span class="lineno">  159</span>    <span class="comment">// Register existing instance as singleton</span></div>
-<div class="line"><span class="lineno">  160</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = container_-&gt;register_singleton&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">instance</a>);</div>
-<div class="line"><span class="lineno">  161</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  160</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = container_-&gt;register_singleton&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(instance);</div>
+<div class="line"><span class="lineno">  161</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  162</span>    </div>
 <div class="line"><span class="lineno">  163</span>    <span class="comment">// Resolve should return the same instance</span></div>
-<div class="line"><span class="lineno">  164</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolved_result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  165</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolved_result</a>);</div>
-<div class="line"><span class="lineno">  166</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolved</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolved_result</a>.value();</div>
+<div class="line"><span class="lineno">  164</span>    <span class="keyword">auto</span> resolved_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  165</span>    ASSERT_TRUE(resolved_result);</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keyword">auto</span> resolved = resolved_result.value();</div>
 <div class="line"><span class="lineno">  167</span>    </div>
-<div class="line"><span class="lineno">  168</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolved</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">instance</a>);</div>
-<div class="line"><span class="lineno">  169</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resolved</a>-&gt;get_name(), <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">initial_name</a>);</div>
+<div class="line"><span class="lineno">  168</span>    EXPECT_EQ(resolved, instance);</div>
+<div class="line"><span class="lineno">  169</span>    EXPECT_EQ(resolved-&gt;get_name(), initial_name);</div>
 <div class="line"><span class="lineno">  170</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a05353fa13f5336ee6dc3672bf98a9bec_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a05353fa13f5336ee6dc3672bf98a9bec_cgraph" alt=""/></div>
-<map name="ad5/d1c/test__di__container_8cpp_a05353fa13f5336ee6dc3672bf98a9bec_cgraph" id="ad5/d1c/test__di__container_8cpp_a05353fa13f5336ee6dc3672bf98a9bec_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7f5433af42daf335d1477693bce408b5" name="a7f5433af42daf335d1477693bce408b5"></a>
@@ -747,8 +693,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  308</span>    <span class="comment">// Try to resolve with non-existent name</span></div>
 <div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
 <div class="line"><span class="lineno">  310</span>    </div>
-<div class="line"><span class="lineno">  311</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  312</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::collector_not_found);</div>
+<div class="line"><span class="lineno">  311</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  312</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::collector_not_found);</div>
 <div class="line"><span class="lineno">  313</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00125">result_types.h:125</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00035">result_types.h:35</a></div></div>
@@ -757,12 +703,9 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a7f5433af42daf335d1477693bce408b5_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a7f5433af42daf335d1477693bce408b5_cgraph" alt=""/></div>
 <map name="ad5/d1c/test__di__container_8cpp_a7f5433af42daf335d1477693bce408b5_cgraph" id="ad5/d1c/test__di__container_8cpp_a7f5433af42daf335d1477693bce408b5_cgraph">
-<area shape="rect" title=" " alt="" coords="5,57,75,82"/>
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
 <area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="74,57,114,46,115,52,76,63"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,93,279,133"/>
-<area shape="poly" title=" " alt="" coords="76,76,115,87,114,92,74,81"/>
-<area shape="poly" title=" " alt="" coords="170,93,168,84,173,75,184,69,201,67,220,70,230,77,227,81,218,75,201,72,186,74,177,78,173,85,175,92"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
 </map>
 </div>
 
@@ -800,20 +743,17 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  291</span>    <span class="comment">// Try to resolve unregistered service</span></div>
 <div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
 <div class="line"><span class="lineno">  293</span>    </div>
-<div class="line"><span class="lineno">  294</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  295</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::collector_not_found);</div>
+<div class="line"><span class="lineno">  294</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  295</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::collector_not_found);</div>
 <div class="line"><span class="lineno">  296</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1c/test__di__container_8cpp_aa057f8a0954b0c2ce9928b131120f23b_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_aa057f8a0954b0c2ce9928b131120f23b_cgraph" alt=""/></div>
 <map name="ad5/d1c/test__di__container_8cpp_aa057f8a0954b0c2ce9928b131120f23b_cgraph" id="ad5/d1c/test__di__container_8cpp_aa057f8a0954b0c2ce9928b131120f23b_cgraph">
-<area shape="rect" title=" " alt="" coords="5,57,75,82"/>
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
 <area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="74,57,114,46,115,52,76,63"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,93,279,133"/>
-<area shape="poly" title=" " alt="" coords="76,76,115,87,114,92,74,81"/>
-<area shape="poly" title=" " alt="" coords="170,93,168,84,173,75,184,69,201,67,220,70,230,77,227,81,218,75,201,72,186,74,177,78,173,85,175,92"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
 </map>
 </div>
 
@@ -855,45 +795,34 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  256</span>    );</div>
 <div class="line"><span class="lineno">  257</span>    </div>
 <div class="line"><span class="lineno">  258</span>    <span class="comment">// Create scoped container</span></div>
-<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a> = container_-&gt;create_scope();</div>
-<div class="line"><span class="lineno">  260</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> scope = container_-&gt;create_scope();</div>
+<div class="line"><span class="lineno">  260</span>    ASSERT_NE(scope, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  261</span>    </div>
 <div class="line"><span class="lineno">  262</span>    <span class="comment">// Scoped container should inherit parent registrations</span></div>
-<div class="line"><span class="lineno">  263</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_TRUE(scope-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
 <div class="line"><span class="lineno">  264</span>    </div>
 <div class="line"><span class="lineno">  265</span>    <span class="comment">// Resolve in scope should work</span></div>
-<div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  267</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a>);</div>
-<div class="line"><span class="lineno">  268</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a>.value(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> service_result = scope-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  267</span>    ASSERT_TRUE(service_result);</div>
+<div class="line"><span class="lineno">  268</span>    EXPECT_NE(service_result.value(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  269</span>    </div>
 <div class="line"><span class="lineno">  270</span>    <span class="comment">// Register scoped service</span></div>
-<div class="line"><span class="lineno">  271</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>-&gt;register_factory&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;(</div>
+<div class="line"><span class="lineno">  271</span>    scope-&gt;register_factory&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;(</div>
 <div class="line"><span class="lineno">  272</span>        []() { <span class="keywordflow">return</span> std::make_shared&lt;ServiceA&gt;(); },</div>
 <div class="line"><span class="lineno">  273</span>        service_lifetime::scoped</div>
 <div class="line"><span class="lineno">  274</span>    );</div>
 <div class="line"><span class="lineno">  275</span>    </div>
 <div class="line"><span class="lineno">  276</span>    <span class="comment">// Resolve scoped service</span></div>
-<div class="line"><span class="lineno">  277</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scoped_result1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
-<div class="line"><span class="lineno">  278</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scoped_result2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
+<div class="line"><span class="lineno">  277</span>    <span class="keyword">auto</span> scoped_result1 = scope-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
+<div class="line"><span class="lineno">  278</span>    <span class="keyword">auto</span> scoped_result2 = scope-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
 <div class="line"><span class="lineno">  279</span>    </div>
-<div class="line"><span class="lineno">  280</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scoped_result1</a>);</div>
-<div class="line"><span class="lineno">  281</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scoped_result2</a>);</div>
+<div class="line"><span class="lineno">  280</span>    ASSERT_TRUE(scoped_result1);</div>
+<div class="line"><span class="lineno">  281</span>    ASSERT_TRUE(scoped_result2);</div>
 <div class="line"><span class="lineno">  282</span>    </div>
 <div class="line"><span class="lineno">  283</span>    <span class="comment">// Should be same instance within scope</span></div>
-<div class="line"><span class="lineno">  284</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scoped_result1</a>.value(), <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scoped_result2</a>.value());</div>
+<div class="line"><span class="lineno">  284</span>    EXPECT_EQ(scoped_result1.value(), scoped_result2.value());</div>
 <div class="line"><span class="lineno">  285</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a15b3baa88350eae3565649f0a67e8951_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a15b3baa88350eae3565649f0a67e8951_cgraph" alt=""/></div>
-<map name="ad5/d1c/test__di__container_8cpp_a15b3baa88350eae3565649f0a67e8951_cgraph" id="ad5/d1c/test__di__container_8cpp_a15b3baa88350eae3565649f0a67e8951_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac99b85461046c737db6b9e8c488b7c90" name="ac99b85461046c737db6b9e8c488b7c90"></a>
@@ -926,33 +855,33 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00392">392</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  392</span>                                        {</div>
 <div class="line"><span class="lineno">  393</span>    <span class="comment">// Initially no container</span></div>
-<div class="line"><span class="lineno">  394</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#ad8168cd3f37e404b885f15e46a7c4a5d">service_locator::has_container</a>());</div>
-<div class="line"><span class="lineno">  395</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  394</span>    EXPECT_FALSE(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#ad8168cd3f37e404b885f15e46a7c4a5d">service_locator::has_container</a>());</div>
+<div class="line"><span class="lineno">  395</span>    EXPECT_EQ(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  396</span>    </div>
 <div class="line"><span class="lineno">  397</span>    <span class="comment">// Set container</span></div>
-<div class="line"><span class="lineno">  398</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">container</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3">create_lightweight_container</a>();</div>
-<div class="line"><span class="lineno">  399</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">container</a>-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
+<div class="line"><span class="lineno">  398</span>    <span class="keyword">auto</span> container = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3">create_lightweight_container</a>();</div>
+<div class="line"><span class="lineno">  399</span>    container-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
 <div class="line"><span class="lineno">  400</span>        []() { <span class="keywordflow">return</span> std::make_shared&lt;ServiceA&gt;(); },</div>
 <div class="line"><span class="lineno">  401</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  402</span>    );</div>
 <div class="line"><span class="lineno">  403</span>    </div>
-<div class="line"><span class="lineno">  404</span>    <a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#adbe2d741e3a9a3c898e81ed0a8088ac1">service_locator::set_container</a>(std::move(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">container</a>));</div>
+<div class="line"><span class="lineno">  404</span>    <a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#adbe2d741e3a9a3c898e81ed0a8088ac1">service_locator::set_container</a>(std::move(container));</div>
 <div class="line"><span class="lineno">  405</span>    </div>
 <div class="line"><span class="lineno">  406</span>    <span class="comment">// Should have container now</span></div>
-<div class="line"><span class="lineno">  407</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#ad8168cd3f37e404b885f15e46a7c4a5d">service_locator::has_container</a>());</div>
-<div class="line"><span class="lineno">  408</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  407</span>    EXPECT_TRUE(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#ad8168cd3f37e404b885f15e46a7c4a5d">service_locator::has_container</a>());</div>
+<div class="line"><span class="lineno">  408</span>    EXPECT_NE(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  409</span>    </div>
 <div class="line"><span class="lineno">  410</span>    <span class="comment">// Use container through locator</span></div>
-<div class="line"><span class="lineno">  411</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">locator_container</a> = <a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>();</div>
-<div class="line"><span class="lineno">  412</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">locator_container</a>-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
+<div class="line"><span class="lineno">  411</span>    <span class="keyword">auto</span> locator_container = <a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>();</div>
+<div class="line"><span class="lineno">  412</span>    EXPECT_TRUE(locator_container-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
 <div class="line"><span class="lineno">  413</span>    </div>
-<div class="line"><span class="lineno">  414</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">locator_container</a>-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  415</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  414</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = locator_container-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  415</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  416</span>    </div>
 <div class="line"><span class="lineno">  417</span>    <span class="comment">// Reset locator</span></div>
 <div class="line"><span class="lineno">  418</span>    <a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a4a207c629aa00a180e99c732fa680a8a">service_locator::reset</a>();</div>
-<div class="line"><span class="lineno">  419</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#ad8168cd3f37e404b885f15e46a7c4a5d">service_locator::has_container</a>());</div>
-<div class="line"><span class="lineno">  420</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  419</span>    EXPECT_FALSE(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#ad8168cd3f37e404b885f15e46a7c4a5d">service_locator::has_container</a>());</div>
+<div class="line"><span class="lineno">  420</span>    EXPECT_EQ(<a class="code hl_function" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">service_locator::get_container</a>(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  421</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1service__locator_html_a4a207c629aa00a180e99c732fa680a8a"><div class="ttname"><a href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a4a207c629aa00a180e99c732fa680a8a">monitoring_system::service_locator::reset</a></div><div class="ttdeci">static void reset()</div><div class="ttdoc">Reset the global container.</div><div class="ttdef"><b>Definition</b> <a href="../../df/da4/service__container__interface_8h_source.html#l00270">service_container_interface.h:270</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1service__locator_html_a751ef75b7cf9ff5d1374dc921a6b2b0b"><div class="ttname"><a href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b">monitoring_system::service_locator::get_container</a></div><div class="ttdeci">static service_container_interface * get_container()</div><div class="ttdoc">Get the global container.</div><div class="ttdef"><b>Definition</b> <a href="../../df/da4/service__container__interface_8h_source.html#l00255">service_container_interface.h:255</a></div></div>
@@ -964,21 +893,17 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1c/test__di__container_8cpp_ac99b85461046c737db6b9e8c488b7c90_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_ac99b85461046c737db6b9e8c488b7c90_cgraph" alt=""/></div>
 <map name="ad5/d1c/test__di__container_8cpp_ac99b85461046c737db6b9e8c488b7c90_cgraph" id="ad5/d1c/test__di__container_8cpp_ac99b85461046c737db6b9e8c488b7c90_cgraph">
-<area shape="rect" title=" " alt="" coords="5,197,75,222"/>
+<area shape="rect" title=" " alt="" coords="5,163,75,189"/>
 <area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3" title="Factory function to create a lightweight container." alt="" coords="123,5,333,45"/>
-<area shape="poly" title=" " alt="" coords="42,196,51,167,67,129,90,90,121,55,128,50,131,55,124,59,94,93,72,132,56,169,47,197"/>
+<area shape="poly" title=" " alt="" coords="44,162,72,110,94,81,121,55,130,49,133,54,124,59,98,84,76,113,49,164"/>
 <area shape="rect" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a751ef75b7cf9ff5d1374dc921a6b2b0b" title="Get the global container." alt="" coords="150,70,306,125"/>
-<area shape="poly" title=" " alt="" coords="51,194,81,164,121,134,136,126,139,130,124,138,85,168,55,198"/>
+<area shape="poly" title=" " alt="" coords="64,161,122,134,137,127,139,132,124,138,67,166"/>
 <area shape="rect" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#ad8168cd3f37e404b885f15e46a7c4a5d" title="Check if a global container is set." alt="" coords="150,149,306,203"/>
-<area shape="poly" title=" " alt="" coords="74,201,136,190,137,195,75,206"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="381,287,537,327"/>
-<area shape="poly" title=" " alt="" coords="75,212,190,232,334,264,388,280,386,285,333,269,189,238,74,217"/>
-<area shape="rect" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a4a207c629aa00a180e99c732fa680a8a" title="Reset the global container." alt="" coords="147,279,309,319"/>
-<area shape="poly" title=" " alt="" coords="61,220,124,258,155,271,153,276,121,262,58,224"/>
-<area shape="rect" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#adbe2d741e3a9a3c898e81ed0a8088ac1" title="Set the global container." alt="" coords="150,343,306,398"/>
-<area shape="poly" title=" " alt="" coords="49,221,77,273,98,303,124,329,139,339,136,343,121,333,94,306,72,276,44,223"/>
-<area shape="poly" title=" " alt="" coords="416,287,414,277,421,268,436,262,459,260,486,263,501,270,498,275,485,268,459,265,437,267,424,272,419,278,422,286"/>
-<area shape="poly" title=" " alt="" coords="305,347,372,328,374,333,307,352"/>
+<area shape="poly" title=" " alt="" coords="75,173,136,173,136,179,75,179"/>
+<area shape="rect" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#a4a207c629aa00a180e99c732fa680a8a" title="Reset the global container." alt="" coords="147,228,309,268"/>
+<area shape="poly" title=" " alt="" coords="67,186,124,212,148,221,146,226,122,217,65,191"/>
+<area shape="rect" href="../../da/dd3/classmonitoring__system_1_1service__locator.html#adbe2d741e3a9a3c898e81ed0a8088ac1" title="Set the global container." alt="" coords="150,293,306,347"/>
+<area shape="poly" title=" " alt="" coords="50,187,79,231,100,256,124,278,139,288,136,292,121,282,96,260,75,234,46,190"/>
 </map>
 </div>
 
@@ -1014,20 +939,20 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00426">426</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  426</span>                                                    {</div>
 <div class="line"><span class="lineno">  427</span>    <span class="comment">// Test factory without thread_system (should return lightweight container)</span></div>
-<div class="line"><span class="lineno">  428</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#ad6d7697cfcb8978cc784acb0f1dd4fd4">create_thread_system_adapter</a>();</div>
-<div class="line"><span class="lineno">  429</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  428</span>    <span class="keyword">auto</span> adapter = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#ad6d7697cfcb8978cc784acb0f1dd4fd4">create_thread_system_adapter</a>();</div>
+<div class="line"><span class="lineno">  429</span>    ASSERT_NE(adapter, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  430</span>    </div>
 <div class="line"><span class="lineno">  431</span>    <span class="comment">// Should work like a normal container</span></div>
-<div class="line"><span class="lineno">  432</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
+<div class="line"><span class="lineno">  432</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter-&gt;register_factory&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(</div>
 <div class="line"><span class="lineno">  433</span>        []() { <span class="keywordflow">return</span> std::make_shared&lt;ServiceA&gt;(); },</div>
 <div class="line"><span class="lineno">  434</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  435</span>    );</div>
 <div class="line"><span class="lineno">  436</span>    </div>
-<div class="line"><span class="lineno">  437</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  437</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  438</span>    </div>
-<div class="line"><span class="lineno">  439</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  440</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a>);</div>
-<div class="line"><span class="lineno">  441</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_result</a>.value(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  439</span>    <span class="keyword">auto</span> service_result = adapter-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
+<div class="line"><span class="lineno">  440</span>    ASSERT_TRUE(service_result);</div>
+<div class="line"><span class="lineno">  441</span>    EXPECT_NE(service_result.value(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  442</span>}</div>
 <div class="ttc" id="anamespacemonitoring__system_html_ad6d7697cfcb8978cc784acb0f1dd4fd4"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#ad6d7697cfcb8978cc784acb0f1dd4fd4">monitoring_system::create_thread_system_adapter</a></div><div class="ttdeci">std::unique_ptr&lt; service_container_interface &gt; create_thread_system_adapter(void *=nullptr)</div><div class="ttdoc">Stub for when thread_system is not available.</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d8e/thread__system__container__adapter_8h_source.html#l00272">thread_system_container_adapter.h:272</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -1035,14 +960,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1c/test__di__container_8cpp_a4a9f0c935e3e4459e7346c584b6aadc8_cgraph.png" border="0" usemap="#ad5/d1c/test__di__container_8cpp_a4a9f0c935e3e4459e7346c584b6aadc8_cgraph" alt=""/></div>
 <map name="ad5/d1c/test__di__container_8cpp_a4a9f0c935e3e4459e7346c584b6aadc8_cgraph" id="ad5/d1c/test__di__container_8cpp_a4a9f0c935e3e4459e7346c584b6aadc8_cgraph">
-<area shape="rect" title=" " alt="" coords="5,68,75,93"/>
+<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
 <area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#ad6d7697cfcb8978cc784acb0f1dd4fd4" title="Stub for when thread_system is not available." alt="" coords="123,5,289,60"/>
-<area shape="poly" title=" " alt="" coords="74,68,109,58,110,63,76,73"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="128,109,284,149"/>
-<area shape="poly" title=" " alt="" coords="76,88,124,102,123,107,74,93"/>
+<area shape="poly" title=" " alt="" coords="75,30,109,30,109,35,75,35"/>
 <area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3" title="Factory function to create a lightweight container." alt="" coords="337,13,548,53"/>
 <area shape="poly" title=" " alt="" coords="290,30,324,30,324,35,290,35"/>
-<area shape="poly" title=" " alt="" coords="174,109,172,99,178,90,189,84,206,82,226,85,236,92,233,97,224,90,206,87,190,89,181,94,178,100,180,108"/>
 </map>
 </div>
 
@@ -1051,7 +973,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 12:10:15 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 14:18:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -211,29 +211,17 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00054">54</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   54</span>                                                      {</div>
-<div class="line"><span class="lineno">   55</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_attribute</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>(<span class="stringliteral">&quot;test.key&quot;</span>, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
-<div class="line"><span class="lineno">   56</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>.key, <span class="stringliteral">&quot;test.key&quot;</span>);</div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>.value, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
+<div class="line"><span class="lineno">   55</span>    otel_attribute attr(<span class="stringliteral">&quot;test.key&quot;</span>, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
+<div class="line"><span class="lineno">   56</span>    EXPECT_EQ(attr.key, <span class="stringliteral">&quot;test.key&quot;</span>);</div>
+<div class="line"><span class="lineno">   57</span>    EXPECT_EQ(attr.value, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
 <div class="line"><span class="lineno">   58</span>    </div>
-<div class="line"><span class="lineno">   59</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_attribute</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr2</a>(<span class="stringliteral">&quot;test.key&quot;</span>, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
-<div class="line"><span class="lineno">   60</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr2</a>);</div>
+<div class="line"><span class="lineno">   59</span>    otel_attribute attr2(<span class="stringliteral">&quot;test.key&quot;</span>, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
+<div class="line"><span class="lineno">   60</span>    EXPECT_EQ(attr, attr2);</div>
 <div class="line"><span class="lineno">   61</span>    </div>
-<div class="line"><span class="lineno">   62</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_attribute</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr3</a>(<span class="stringliteral">&quot;different.key&quot;</span>, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
-<div class="line"><span class="lineno">   63</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr3</a>);</div>
+<div class="line"><span class="lineno">   62</span>    otel_attribute attr3(<span class="stringliteral">&quot;different.key&quot;</span>, <span class="stringliteral">&quot;test.value&quot;</span>);</div>
+<div class="line"><span class="lineno">   63</span>    EXPECT_NE(attr, attr3);</div>
 <div class="line"><span class="lineno">   64</span>}</div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00248">result_types.h:248</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a6f32d850c9d003638002104958c3de81_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a6f32d850c9d003638002104958c3de81_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a6f32d850c9d003638002104958c3de81_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a6f32d850c9d003638002104958c3de81_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="abc220d17b0eac9e7d30532a88cb82165" name="abc220d17b0eac9e7d30532a88cb82165"></a>
@@ -264,31 +252,20 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00239">239</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  239</span>                                                                   {</div>
-<div class="line"><span class="lineno">  240</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(compatibility_layer);</div>
+<div class="line"><span class="lineno">  240</span>    EXPECT_TRUE(compatibility_layer);</div>
 <div class="line"><span class="lineno">  241</span>    </div>
-<div class="line"><span class="lineno">  242</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">init_result</a> = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  243</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">init_result</a>);</div>
+<div class="line"><span class="lineno">  242</span>    <span class="keyword">auto</span> init_result = compatibility_layer-&gt;initialize();</div>
+<div class="line"><span class="lineno">  243</span>    EXPECT_TRUE(init_result);</div>
 <div class="line"><span class="lineno">  244</span>    </div>
 <div class="line"><span class="lineno">  245</span>    <span class="comment">// Double initialization should fail</span></div>
-<div class="line"><span class="lineno">  246</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">double_init</a> = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  247</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">double_init</a>);</div>
-<div class="line"><span class="lineno">  248</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">double_init</a>.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  246</span>    <span class="keyword">auto</span> double_init = compatibility_layer-&gt;initialize();</div>
+<div class="line"><span class="lineno">  247</span>    EXPECT_FALSE(double_init);</div>
+<div class="line"><span class="lineno">  248</span>    EXPECT_EQ(double_init.get_error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  249</span>    </div>
-<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">shutdown_result</a> = compatibility_layer-&gt;shutdown();</div>
-<div class="line"><span class="lineno">  251</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">shutdown_result</a>);</div>
+<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> shutdown_result = compatibility_layer-&gt;shutdown();</div>
+<div class="line"><span class="lineno">  251</span>    EXPECT_TRUE(shutdown_result);</div>
 <div class="line"><span class="lineno">  252</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_abc220d17b0eac9e7d30532a88cb82165_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_abc220d17b0eac9e7d30532a88cb82165_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_abc220d17b0eac9e7d30532a88cb82165_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_abc220d17b0eac9e7d30532a88cb82165_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aaf0b643fcba896ad942cc350b5ef71ef" name="aaf0b643fcba896ad942cc350b5ef71ef"></a>
@@ -319,25 +296,25 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  281</span>                                                                 {</div>
-<div class="line"><span class="lineno">  282</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">init_result</a> = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  283</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">init_result</a>);</div>
+<div class="line"><span class="lineno">  282</span>    <span class="keyword">auto</span> init_result = compatibility_layer-&gt;initialize();</div>
+<div class="line"><span class="lineno">  283</span>    ASSERT_TRUE(init_result);</div>
 <div class="line"><span class="lineno">  284</span>    </div>
-<div class="line"><span class="lineno">  285</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
-<div class="line"><span class="lineno">  286</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><span class="lineno">  287</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;test_tag&quot;</span>, <span class="stringliteral">&quot;test_value&quot;</span>);</div>
+<div class="line"><span class="lineno">  285</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
+<div class="line"><span class="lineno">  286</span>    data.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
+<div class="line"><span class="lineno">  287</span>    data.add_tag(<span class="stringliteral">&quot;test_tag&quot;</span>, <span class="stringliteral">&quot;test_value&quot;</span>);</div>
 <div class="line"><span class="lineno">  288</span>    </div>
-<div class="line"><span class="lineno">  289</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a> = compatibility_layer-&gt;export_metrics(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>);</div>
-<div class="line"><span class="lineno">  290</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a>);</div>
+<div class="line"><span class="lineno">  289</span>    <span class="keyword">auto</span> export_result = compatibility_layer-&gt;export_metrics(data);</div>
+<div class="line"><span class="lineno">  290</span>    EXPECT_TRUE(export_result);</div>
 <div class="line"><span class="lineno">  291</span>    </div>
-<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a> = compatibility_layer-&gt;get_stats();</div>
-<div class="line"><span class="lineno">  293</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a>.pending_metrics, 1);</div>
-<div class="line"><span class="lineno">  294</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a>.pending_spans, 0);</div>
+<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> stats = compatibility_layer-&gt;get_stats();</div>
+<div class="line"><span class="lineno">  293</span>    EXPECT_EQ(stats.pending_metrics, 1);</div>
+<div class="line"><span class="lineno">  294</span>    EXPECT_EQ(stats.pending_spans, 0);</div>
 <div class="line"><span class="lineno">  295</span>    </div>
-<div class="line"><span class="lineno">  296</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">flush_result</a> = compatibility_layer-&gt;flush();</div>
-<div class="line"><span class="lineno">  297</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">flush_result</a>);</div>
+<div class="line"><span class="lineno">  296</span>    <span class="keyword">auto</span> flush_result = compatibility_layer-&gt;flush();</div>
+<div class="line"><span class="lineno">  297</span>    EXPECT_TRUE(flush_result);</div>
 <div class="line"><span class="lineno">  298</span>    </div>
-<div class="line"><span class="lineno">  299</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a> = compatibility_layer-&gt;get_stats();</div>
-<div class="line"><span class="lineno">  300</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a>.pending_metrics, 0);</div>
+<div class="line"><span class="lineno">  299</span>    stats = compatibility_layer-&gt;get_stats();</div>
+<div class="line"><span class="lineno">  300</span>    EXPECT_EQ(stats.pending_metrics, 0);</div>
 <div class="line"><span class="lineno">  301</span>}</div>
 <div class="ttc" id="astructmonitoring__system_1_1monitoring__data_html"><div class="ttname"><a href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_system::monitoring_data</a></div><div class="ttdoc">Container for monitoring metrics from a component.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/db2/monitorable__interface_8h_source.html#l00038">monitorable_interface.h:38</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -345,10 +322,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_aaf0b643fcba896ad942cc350b5ef71ef_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_aaf0b643fcba896ad942cc350b5ef71ef_cgraph" alt=""/></div>
 <map name="ad5/dbf/test__opentelemetry__adapter_8cpp_aaf0b643fcba896ad942cc350b5ef71ef_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_aaf0b643fcba896ad942cc350b5ef71ef_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
+<area shape="rect" title=" " alt="" coords="5,56,75,81"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="137,5,298,60"/>
+<area shape="poly" title=" " alt="" coords="74,59,123,49,124,54,76,64"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="123,85,312,125"/>
+<area shape="poly" title=" " alt="" coords="76,73,110,80,109,85,74,78"/>
 </map>
 </div>
 
@@ -382,25 +360,14 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00318">318</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  318</span>                                                                   {</div>
-<div class="line"><span class="lineno">  319</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer_resource</a> = compatibility_layer-&gt;get_resource();</div>
-<div class="line"><span class="lineno">  320</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer_resource</a>.type, otel_resource_type::service);</div>
+<div class="line"><span class="lineno">  319</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; layer_resource = compatibility_layer-&gt;get_resource();</div>
+<div class="line"><span class="lineno">  320</span>    EXPECT_EQ(layer_resource.type, otel_resource_type::service);</div>
 <div class="line"><span class="lineno">  321</span>    </div>
-<div class="line"><span class="lineno">  322</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_name</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer_resource</a>.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">  323</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_name</a>);</div>
-<div class="line"><span class="lineno">  324</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_name</a>.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  322</span>    <span class="keyword">auto</span> service_name = layer_resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
+<div class="line"><span class="lineno">  323</span>    EXPECT_TRUE(service_name);</div>
+<div class="line"><span class="lineno">  324</span>    EXPECT_EQ(service_name.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
 <div class="line"><span class="lineno">  325</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a721904af4df0b41a81a712c077caf00e_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a721904af4df0b41a81a712c077caf00e_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a721904af4df0b41a81a712c077caf00e_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a721904af4df0b41a81a712c077caf00e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a14e44f04a4e99a436be228518abb5ff2" name="a14e44f04a4e99a436be228518abb5ff2"></a>
@@ -431,43 +398,32 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00254">254</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  254</span>                                                               {</div>
-<div class="line"><span class="lineno">  255</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">init_result</a> = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  256</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">init_result</a>);</div>
+<div class="line"><span class="lineno">  255</span>    <span class="keyword">auto</span> init_result = compatibility_layer-&gt;initialize();</div>
+<div class="line"><span class="lineno">  256</span>    ASSERT_TRUE(init_result);</div>
 <div class="line"><span class="lineno">  257</span>    </div>
-<div class="line"><span class="lineno">  258</span>    std::vector&lt;trace_span&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>;</div>
-<div class="line"><span class="lineno">  259</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_span</a> span;</div>
+<div class="line"><span class="lineno">  258</span>    std::vector&lt;trace_span&gt; spans;</div>
+<div class="line"><span class="lineno">  259</span>    trace_span span;</div>
 <div class="line"><span class="lineno">  260</span>    span.operation_name = <span class="stringliteral">&quot;test_operation&quot;</span>;</div>
 <div class="line"><span class="lineno">  261</span>    span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
 <div class="line"><span class="lineno">  262</span>    span.span_id = <span class="stringliteral">&quot;span456&quot;</span>;</div>
 <div class="line"><span class="lineno">  263</span>    span.start_time = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  264</span>    span.end_time = span.start_time + std::chrono::milliseconds(10);</div>
-<div class="line"><span class="lineno">  265</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>.push_back(span);</div>
+<div class="line"><span class="lineno">  265</span>    spans.push_back(span);</div>
 <div class="line"><span class="lineno">  266</span>    </div>
-<div class="line"><span class="lineno">  267</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a> = compatibility_layer-&gt;export_spans(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>);</div>
-<div class="line"><span class="lineno">  268</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a>);</div>
+<div class="line"><span class="lineno">  267</span>    <span class="keyword">auto</span> export_result = compatibility_layer-&gt;export_spans(spans);</div>
+<div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(export_result);</div>
 <div class="line"><span class="lineno">  269</span>    </div>
-<div class="line"><span class="lineno">  270</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a> = compatibility_layer-&gt;get_stats();</div>
-<div class="line"><span class="lineno">  271</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a>.pending_spans, 1);</div>
-<div class="line"><span class="lineno">  272</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a>.pending_metrics, 0);</div>
+<div class="line"><span class="lineno">  270</span>    <span class="keyword">auto</span> stats = compatibility_layer-&gt;get_stats();</div>
+<div class="line"><span class="lineno">  271</span>    EXPECT_EQ(stats.pending_spans, 1);</div>
+<div class="line"><span class="lineno">  272</span>    EXPECT_EQ(stats.pending_metrics, 0);</div>
 <div class="line"><span class="lineno">  273</span>    </div>
-<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">flush_result</a> = compatibility_layer-&gt;flush();</div>
-<div class="line"><span class="lineno">  275</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">flush_result</a>);</div>
+<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> flush_result = compatibility_layer-&gt;flush();</div>
+<div class="line"><span class="lineno">  275</span>    EXPECT_TRUE(flush_result);</div>
 <div class="line"><span class="lineno">  276</span>    </div>
-<div class="line"><span class="lineno">  277</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a> = compatibility_layer-&gt;get_stats();</div>
-<div class="line"><span class="lineno">  278</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">stats</a>.pending_spans, 0);</div>
+<div class="line"><span class="lineno">  277</span>    stats = compatibility_layer-&gt;get_stats();</div>
+<div class="line"><span class="lineno">  278</span>    EXPECT_EQ(stats.pending_spans, 0);</div>
 <div class="line"><span class="lineno">  279</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a14e44f04a4e99a436be228518abb5ff2_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a14e44f04a4e99a436be228518abb5ff2_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a14e44f04a4e99a436be228518abb5ff2_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a14e44f04a4e99a436be228518abb5ff2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af15454bf28088297fb63a04c1ed405a3" name="af15454bf28088297fb63a04c1ed405a3"></a>
@@ -498,31 +454,20 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00303">303</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  303</span>                                                                        {</div>
-<div class="line"><span class="lineno">  304</span>    std::vector&lt;trace_span&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>;</div>
-<div class="line"><span class="lineno">  305</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_span</a> span;</div>
-<div class="line"><span class="lineno">  306</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>.push_back(span);</div>
+<div class="line"><span class="lineno">  304</span>    std::vector&lt;trace_span&gt; spans;</div>
+<div class="line"><span class="lineno">  305</span>    trace_span span;</div>
+<div class="line"><span class="lineno">  306</span>    spans.push_back(span);</div>
 <div class="line"><span class="lineno">  307</span>    </div>
-<div class="line"><span class="lineno">  308</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a> = compatibility_layer-&gt;export_spans(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>);</div>
-<div class="line"><span class="lineno">  309</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a>);</div>
-<div class="line"><span class="lineno">  310</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">export_result</a>.get_error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><span class="lineno">  308</span>    <span class="keyword">auto</span> export_result = compatibility_layer-&gt;export_spans(spans);</div>
+<div class="line"><span class="lineno">  309</span>    EXPECT_FALSE(export_result);</div>
+<div class="line"><span class="lineno">  310</span>    EXPECT_EQ(export_result.get_error().code, monitoring_error_code::invalid_state);</div>
 <div class="line"><span class="lineno">  311</span>    </div>
-<div class="line"><span class="lineno">  312</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  313</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metrics_export_result</a> = compatibility_layer-&gt;export_metrics(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>);</div>
-<div class="line"><span class="lineno">  314</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metrics_export_result</a>);</div>
-<div class="line"><span class="lineno">  315</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metrics_export_result</a>.get_error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><span class="lineno">  312</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  313</span>    <span class="keyword">auto</span> metrics_export_result = compatibility_layer-&gt;export_metrics(data);</div>
+<div class="line"><span class="lineno">  314</span>    EXPECT_FALSE(metrics_export_result);</div>
+<div class="line"><span class="lineno">  315</span>    EXPECT_EQ(metrics_export_result.get_error().code, monitoring_error_code::invalid_state);</div>
 <div class="line"><span class="lineno">  316</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_af15454bf28088297fb63a04c1ed405a3_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_af15454bf28088297fb63a04c1ed405a3_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_af15454bf28088297fb63a04c1ed405a3_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_af15454bf28088297fb63a04c1ed405a3_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac4ec9cfe51d42700cdccabfa8c8fd026" name="ac4ec9cfe51d42700cdccabfa8c8fd026"></a>
@@ -553,52 +498,41 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00327">327</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  327</span>                                                           {</div>
-<div class="line"><span class="lineno">  328</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_exporter_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">valid_config</a>;</div>
-<div class="line"><span class="lineno">  329</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">valid_config</a>.endpoint = <span class="stringliteral">&quot;http://localhost:4317&quot;</span>;</div>
-<div class="line"><span class="lineno">  330</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">valid_config</a>.protocol = <span class="stringliteral">&quot;grpc&quot;</span>;</div>
-<div class="line"><span class="lineno">  331</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">valid_config</a>.timeout = std::chrono::milliseconds(5000);</div>
-<div class="line"><span class="lineno">  332</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">valid_config</a>.max_batch_size = 100;</div>
+<div class="line"><span class="lineno">  328</span>    opentelemetry_exporter_config valid_config;</div>
+<div class="line"><span class="lineno">  329</span>    valid_config.endpoint = <span class="stringliteral">&quot;http://localhost:4317&quot;</span>;</div>
+<div class="line"><span class="lineno">  330</span>    valid_config.protocol = <span class="stringliteral">&quot;grpc&quot;</span>;</div>
+<div class="line"><span class="lineno">  331</span>    valid_config.timeout = std::chrono::milliseconds(5000);</div>
+<div class="line"><span class="lineno">  332</span>    valid_config.max_batch_size = 100;</div>
 <div class="line"><span class="lineno">  333</span>    </div>
-<div class="line"><span class="lineno">  334</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">valid_config</a>.validate();</div>
-<div class="line"><span class="lineno">  335</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation</a>);</div>
+<div class="line"><span class="lineno">  334</span>    <span class="keyword">auto</span> validation = valid_config.validate();</div>
+<div class="line"><span class="lineno">  335</span>    EXPECT_TRUE(validation);</div>
 <div class="line"><span class="lineno">  336</span>    </div>
 <div class="line"><span class="lineno">  337</span>    <span class="comment">// Test invalid endpoint</span></div>
-<div class="line"><span class="lineno">  338</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_exporter_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_endpoint</a>;</div>
-<div class="line"><span class="lineno">  339</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_endpoint</a>.endpoint = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">endpoint_validation</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_endpoint</a>.validate();</div>
-<div class="line"><span class="lineno">  341</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">endpoint_validation</a>);</div>
-<div class="line"><span class="lineno">  342</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">endpoint_validation</a>.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">  338</span>    opentelemetry_exporter_config invalid_endpoint;</div>
+<div class="line"><span class="lineno">  339</span>    invalid_endpoint.endpoint = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> endpoint_validation = invalid_endpoint.validate();</div>
+<div class="line"><span class="lineno">  341</span>    EXPECT_FALSE(endpoint_validation);</div>
+<div class="line"><span class="lineno">  342</span>    EXPECT_EQ(endpoint_validation.get_error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><span class="lineno">  343</span>    </div>
 <div class="line"><span class="lineno">  344</span>    <span class="comment">// Test invalid protocol</span></div>
-<div class="line"><span class="lineno">  345</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_exporter_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_protocol</a>;</div>
-<div class="line"><span class="lineno">  346</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_protocol</a>.protocol = <span class="stringliteral">&quot;invalid&quot;</span>;</div>
-<div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">protocol_validation</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_protocol</a>.validate();</div>
-<div class="line"><span class="lineno">  348</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">protocol_validation</a>);</div>
+<div class="line"><span class="lineno">  345</span>    opentelemetry_exporter_config invalid_protocol;</div>
+<div class="line"><span class="lineno">  346</span>    invalid_protocol.protocol = <span class="stringliteral">&quot;invalid&quot;</span>;</div>
+<div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> protocol_validation = invalid_protocol.validate();</div>
+<div class="line"><span class="lineno">  348</span>    EXPECT_FALSE(protocol_validation);</div>
 <div class="line"><span class="lineno">  349</span>    </div>
 <div class="line"><span class="lineno">  350</span>    <span class="comment">// Test invalid timeout</span></div>
-<div class="line"><span class="lineno">  351</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_exporter_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_timeout</a>;</div>
-<div class="line"><span class="lineno">  352</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_timeout</a>.timeout = std::chrono::milliseconds(0);</div>
-<div class="line"><span class="lineno">  353</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">timeout_validation</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_timeout</a>.validate();</div>
-<div class="line"><span class="lineno">  354</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">timeout_validation</a>);</div>
+<div class="line"><span class="lineno">  351</span>    opentelemetry_exporter_config invalid_timeout;</div>
+<div class="line"><span class="lineno">  352</span>    invalid_timeout.timeout = std::chrono::milliseconds(0);</div>
+<div class="line"><span class="lineno">  353</span>    <span class="keyword">auto</span> timeout_validation = invalid_timeout.validate();</div>
+<div class="line"><span class="lineno">  354</span>    EXPECT_FALSE(timeout_validation);</div>
 <div class="line"><span class="lineno">  355</span>    </div>
 <div class="line"><span class="lineno">  356</span>    <span class="comment">// Test invalid batch size</span></div>
-<div class="line"><span class="lineno">  357</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_exporter_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_batch</a>;</div>
-<div class="line"><span class="lineno">  358</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_batch</a>.max_batch_size = 0;</div>
-<div class="line"><span class="lineno">  359</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">batch_validation</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_batch</a>.validate();</div>
-<div class="line"><span class="lineno">  360</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">batch_validation</a>);</div>
+<div class="line"><span class="lineno">  357</span>    opentelemetry_exporter_config invalid_batch;</div>
+<div class="line"><span class="lineno">  358</span>    invalid_batch.max_batch_size = 0;</div>
+<div class="line"><span class="lineno">  359</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
+<div class="line"><span class="lineno">  360</span>    EXPECT_FALSE(batch_validation);</div>
 <div class="line"><span class="lineno">  361</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_ac4ec9cfe51d42700cdccabfa8c8fd026_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_ac4ec9cfe51d42700cdccabfa8c8fd026_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_ac4ec9cfe51d42700cdccabfa8c8fd026_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_ac4ec9cfe51d42700cdccabfa8c8fd026_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a27d92f326c4c77049817a523df93855f" name="a27d92f326c4c77049817a523df93855f"></a>
@@ -630,41 +564,30 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00363">363</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  363</span>                                                   {</div>
 <div class="line"><span class="lineno">  364</span>    <span class="comment">// Test service resource creation</span></div>
-<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_resource</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_service_resource</a>(<span class="stringliteral">&quot;my_service&quot;</span>, <span class="stringliteral">&quot;2.0.0&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
-<div class="line"><span class="lineno">  366</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_resource</a>.type, otel_resource_type::service);</div>
+<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> service_resource = create_service_resource(<span class="stringliteral">&quot;my_service&quot;</span>, <span class="stringliteral">&quot;2.0.0&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">  366</span>    EXPECT_EQ(service_resource.type, otel_resource_type::service);</div>
 <div class="line"><span class="lineno">  367</span>    </div>
-<div class="line"><span class="lineno">  368</span>    <span class="keyword">auto</span> name = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_resource</a>.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">  369</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(name);</div>
-<div class="line"><span class="lineno">  370</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(name.value(), <span class="stringliteral">&quot;my_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  368</span>    <span class="keyword">auto</span> name = service_resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
+<div class="line"><span class="lineno">  369</span>    EXPECT_TRUE(name);</div>
+<div class="line"><span class="lineno">  370</span>    EXPECT_EQ(name.value(), <span class="stringliteral">&quot;my_service&quot;</span>);</div>
 <div class="line"><span class="lineno">  371</span>    </div>
-<div class="line"><span class="lineno">  372</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">version</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_resource</a>.get_attribute(<span class="stringliteral">&quot;service.version&quot;</span>);</div>
-<div class="line"><span class="lineno">  373</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">version</a>);</div>
-<div class="line"><span class="lineno">  374</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">version</a>.value(), <span class="stringliteral">&quot;2.0.0&quot;</span>);</div>
+<div class="line"><span class="lineno">  372</span>    <span class="keyword">auto</span> version = service_resource.get_attribute(<span class="stringliteral">&quot;service.version&quot;</span>);</div>
+<div class="line"><span class="lineno">  373</span>    EXPECT_TRUE(version);</div>
+<div class="line"><span class="lineno">  374</span>    EXPECT_EQ(version.value(), <span class="stringliteral">&quot;2.0.0&quot;</span>);</div>
 <div class="line"><span class="lineno">  375</span>    </div>
 <div class="line"><span class="lineno">  376</span>    <span class="comment">// Test compatibility layer factory functions</span></div>
-<div class="line"><span class="lineno">  377</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_opentelemetry_compatibility_layer</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_resource</a>);</div>
-<div class="line"><span class="lineno">  378</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer1</a>);</div>
+<div class="line"><span class="lineno">  377</span>    <span class="keyword">auto</span> layer1 = create_opentelemetry_compatibility_layer(service_resource);</div>
+<div class="line"><span class="lineno">  378</span>    EXPECT_TRUE(layer1);</div>
 <div class="line"><span class="lineno">  379</span>    </div>
-<div class="line"><span class="lineno">  380</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_opentelemetry_compatibility_layer</a>(<span class="stringliteral">&quot;test_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
-<div class="line"><span class="lineno">  381</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2</a>);</div>
+<div class="line"><span class="lineno">  380</span>    <span class="keyword">auto</span> layer2 = create_opentelemetry_compatibility_layer(<span class="stringliteral">&quot;test_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
+<div class="line"><span class="lineno">  381</span>    EXPECT_TRUE(layer2);</div>
 <div class="line"><span class="lineno">  382</span>    </div>
-<div class="line"><span class="lineno">  383</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2_resource</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2</a>-&gt;get_resource();</div>
-<div class="line"><span class="lineno">  384</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2_name</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2_resource</a>.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">  385</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2_name</a>);</div>
-<div class="line"><span class="lineno">  386</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">layer2_name</a>.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  383</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; layer2_resource = layer2-&gt;get_resource();</div>
+<div class="line"><span class="lineno">  384</span>    <span class="keyword">auto</span> layer2_name = layer2_resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
+<div class="line"><span class="lineno">  385</span>    EXPECT_TRUE(layer2_name);</div>
+<div class="line"><span class="lineno">  386</span>    EXPECT_EQ(layer2_name.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
 <div class="line"><span class="lineno">  387</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a27d92f326c4c77049817a523df93855f_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a27d92f326c4c77049817a523df93855f_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a27d92f326c4c77049817a523df93855f_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a27d92f326c4c77049817a523df93855f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a4d5ffa1a9649a687cb37a8a5d6f15c87" name="a4d5ffa1a9649a687cb37a8a5d6f15c87"></a>
@@ -695,34 +618,23 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00102">102</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  102</span>                                                       {</div>
-<div class="line"><span class="lineno">  103</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_metric_data</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>;</div>
-<div class="line"><span class="lineno">  104</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.name = <span class="stringliteral">&quot;cpu_usage&quot;</span>;</div>
-<div class="line"><span class="lineno">  105</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.description = <span class="stringliteral">&quot;CPU usage percentage&quot;</span>;</div>
-<div class="line"><span class="lineno">  106</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.unit = <span class="stringliteral">&quot;percent&quot;</span>;</div>
-<div class="line"><span class="lineno">  107</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.value = 75.5;</div>
-<div class="line"><span class="lineno">  108</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.timestamp = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  103</span>    otel_metric_data metric;</div>
+<div class="line"><span class="lineno">  104</span>    metric.name = <span class="stringliteral">&quot;cpu_usage&quot;</span>;</div>
+<div class="line"><span class="lineno">  105</span>    metric.description = <span class="stringliteral">&quot;CPU usage percentage&quot;</span>;</div>
+<div class="line"><span class="lineno">  106</span>    metric.unit = <span class="stringliteral">&quot;percent&quot;</span>;</div>
+<div class="line"><span class="lineno">  107</span>    metric.value = 75.5;</div>
+<div class="line"><span class="lineno">  108</span>    metric.timestamp = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  109</span>    </div>
-<div class="line"><span class="lineno">  110</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.add_attribute(<span class="stringliteral">&quot;host.name&quot;</span>, <span class="stringliteral">&quot;server01&quot;</span>);</div>
-<div class="line"><span class="lineno">  111</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.add_attribute(<span class="stringliteral">&quot;service.name&quot;</span>, <span class="stringliteral">&quot;web_server&quot;</span>);</div>
+<div class="line"><span class="lineno">  110</span>    metric.add_attribute(<span class="stringliteral">&quot;host.name&quot;</span>, <span class="stringliteral">&quot;server01&quot;</span>);</div>
+<div class="line"><span class="lineno">  111</span>    metric.add_attribute(<span class="stringliteral">&quot;service.name&quot;</span>, <span class="stringliteral">&quot;web_server&quot;</span>);</div>
 <div class="line"><span class="lineno">  112</span>    </div>
-<div class="line"><span class="lineno">  113</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.name, <span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
-<div class="line"><span class="lineno">  114</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.value, 75.5);</div>
-<div class="line"><span class="lineno">  115</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.attributes.size(), 2);</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.attributes[0].key, <span class="stringliteral">&quot;host.name&quot;</span>);</div>
-<div class="line"><span class="lineno">  117</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.attributes[0].value, <span class="stringliteral">&quot;server01&quot;</span>);</div>
+<div class="line"><span class="lineno">  113</span>    EXPECT_EQ(metric.name, <span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
+<div class="line"><span class="lineno">  114</span>    EXPECT_EQ(metric.value, 75.5);</div>
+<div class="line"><span class="lineno">  115</span>    EXPECT_EQ(metric.attributes.size(), 2);</div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(metric.attributes[0].key, <span class="stringliteral">&quot;host.name&quot;</span>);</div>
+<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(metric.attributes[0].value, <span class="stringliteral">&quot;server01&quot;</span>);</div>
 <div class="line"><span class="lineno">  118</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a4d5ffa1a9649a687cb37a8a5d6f15c87_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a4d5ffa1a9649a687cb37a8a5d6f15c87_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a4d5ffa1a9649a687cb37a8a5d6f15c87_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a4d5ffa1a9649a687cb37a8a5d6f15c87_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a77a1e0ee32c4c60d435c92823947b505" name="a77a1e0ee32c4c60d435c92823947b505"></a>
@@ -753,39 +665,39 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00203">203</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  203</span>                                                           {</div>
-<div class="line"><span class="lineno">  204</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_metrics_adapter</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>(resource);</div>
+<div class="line"><span class="lineno">  204</span>    opentelemetry_metrics_adapter adapter(resource);</div>
 <div class="line"><span class="lineno">  205</span>    </div>
-<div class="line"><span class="lineno">  206</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
-<div class="line"><span class="lineno">  207</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 75.5);</div>
-<div class="line"><span class="lineno">  208</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 1024.0);</div>
-<div class="line"><span class="lineno">  209</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
-<div class="line"><span class="lineno">  210</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_tag(<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-west-2&quot;</span>);</div>
+<div class="line"><span class="lineno">  206</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
+<div class="line"><span class="lineno">  207</span>    data.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 75.5);</div>
+<div class="line"><span class="lineno">  208</span>    data.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 1024.0);</div>
+<div class="line"><span class="lineno">  209</span>    data.add_tag(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">  210</span>    data.add_tag(<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-west-2&quot;</span>);</div>
 <div class="line"><span class="lineno">  211</span>    </div>
-<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>.convert_monitoring_data(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>);</div>
-<div class="line"><span class="lineno">  213</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_monitoring_data(data);</div>
+<div class="line"><span class="lineno">  213</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  214</span>    </div>
-<div class="line"><span class="lineno">  215</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_metrics</a> = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
-<div class="line"><span class="lineno">  216</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_metrics</a>.size(), 2);</div>
+<div class="line"><span class="lineno">  215</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_metrics = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  216</span>    EXPECT_EQ(otel_metrics.size(), 2);</div>
 <div class="line"><span class="lineno">  217</span>    </div>
 <div class="line"><span class="lineno">  218</span>    <span class="comment">// Find CPU usage metric</span></div>
-<div class="line"><span class="lineno">  219</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_cpu</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  220</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a> : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_metrics</a>) {</div>
-<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.name == <span class="stringliteral">&quot;cpu_usage&quot;</span>) {</div>
-<div class="line"><span class="lineno">  222</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.value, 75.5);</div>
-<div class="line"><span class="lineno">  223</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_cpu</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  219</span>    <span class="keywordtype">bool</span> found_cpu = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  220</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : otel_metrics) {</div>
+<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">if</span> (metric.name == <span class="stringliteral">&quot;cpu_usage&quot;</span>) {</div>
+<div class="line"><span class="lineno">  222</span>            EXPECT_EQ(metric.value, 75.5);</div>
+<div class="line"><span class="lineno">  223</span>            found_cpu = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  224</span>            </div>
 <div class="line"><span class="lineno">  225</span>            <span class="comment">// Check attributes include tags</span></div>
-<div class="line"><span class="lineno">  226</span>            <span class="keywordtype">bool</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_env</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a> : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attributes</a>) {</div>
-<div class="line"><span class="lineno">  228</span>                <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>.key == <span class="stringliteral">&quot;environment&quot;</span> &amp;&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>.value == <span class="stringliteral">&quot;production&quot;</span>) {</div>
-<div class="line"><span class="lineno">  229</span>                    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_env</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  226</span>            <span class="keywordtype">bool</span> found_env = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; attr : metric.attributes) {</div>
+<div class="line"><span class="lineno">  228</span>                <span class="keywordflow">if</span> (attr.key == <span class="stringliteral">&quot;environment&quot;</span> &amp;&amp; attr.value == <span class="stringliteral">&quot;production&quot;</span>) {</div>
+<div class="line"><span class="lineno">  229</span>                    found_env = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  230</span>                    <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  231</span>                }</div>
 <div class="line"><span class="lineno">  232</span>            }</div>
-<div class="line"><span class="lineno">  233</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_env</a>);</div>
+<div class="line"><span class="lineno">  233</span>            EXPECT_TRUE(found_env);</div>
 <div class="line"><span class="lineno">  234</span>        }</div>
 <div class="line"><span class="lineno">  235</span>    }</div>
-<div class="line"><span class="lineno">  236</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_cpu</a>);</div>
+<div class="line"><span class="lineno">  236</span>    EXPECT_TRUE(found_cpu);</div>
 <div class="line"><span class="lineno">  237</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00105">result_types.h:105</a></div></div>
@@ -794,16 +706,17 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph" alt=""/></div>
 <map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph">
-<area shape="rect" title=" " alt="" coords="5,69,75,94"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="74,72,109,65,110,70,75,77"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,93,279,133"/>
-<area shape="poly" title=" " alt="" coords="75,86,110,92,109,98,74,91"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,61,483,101"/>
-<area shape="poly" title=" " alt="" coords="278,99,313,93,314,98,279,104"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,125,483,165"/>
-<area shape="poly" title=" " alt="" coords="279,123,314,128,313,134,278,128"/>
+<area shape="rect" title=" " alt="" coords="5,92,75,117"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="137,5,298,60"/>
+<area shape="poly" title=" " alt="" coords="71,89,136,63,138,68,73,94"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="123,85,312,125"/>
+<area shape="poly" title=" " alt="" coords="75,102,109,102,109,107,75,107"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="139,149,295,189"/>
+<area shape="poly" title=" " alt="" coords="74,115,124,134,144,142,143,147,122,139,72,120"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="360,117,516,157"/>
+<area shape="poly" title=" " alt="" coords="295,155,346,147,347,153,296,160"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="360,181,516,221"/>
+<area shape="poly" title=" " alt="" coords="296,177,347,185,346,190,295,183"/>
 </map>
 </div>
 
@@ -837,36 +750,25 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00034">34</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   34</span>                                                   {</div>
-<div class="line"><span class="lineno">   35</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(resource.type, otel_resource_type::service);</div>
+<div class="line"><span class="lineno">   35</span>    EXPECT_EQ(resource.type, otel_resource_type::service);</div>
 <div class="line"><span class="lineno">   36</span>    </div>
-<div class="line"><span class="lineno">   37</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_name</a> = resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">   38</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_name</a>);</div>
-<div class="line"><span class="lineno">   39</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_name</a>.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">   37</span>    <span class="keyword">auto</span> service_name = resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
+<div class="line"><span class="lineno">   38</span>    ASSERT_TRUE(service_name);</div>
+<div class="line"><span class="lineno">   39</span>    EXPECT_EQ(service_name.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
 <div class="line"><span class="lineno">   40</span>    </div>
-<div class="line"><span class="lineno">   41</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_version</a> = resource.get_attribute(<span class="stringliteral">&quot;service.version&quot;</span>);</div>
-<div class="line"><span class="lineno">   42</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_version</a>);</div>
-<div class="line"><span class="lineno">   43</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_version</a>.value(), <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
+<div class="line"><span class="lineno">   41</span>    <span class="keyword">auto</span> service_version = resource.get_attribute(<span class="stringliteral">&quot;service.version&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>    ASSERT_TRUE(service_version);</div>
+<div class="line"><span class="lineno">   43</span>    EXPECT_EQ(service_version.value(), <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
 <div class="line"><span class="lineno">   44</span>    </div>
-<div class="line"><span class="lineno">   45</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_namespace</a> = resource.get_attribute(<span class="stringliteral">&quot;service.namespace&quot;</span>);</div>
-<div class="line"><span class="lineno">   46</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_namespace</a>);</div>
-<div class="line"><span class="lineno">   47</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">service_namespace</a>.value(), <span class="stringliteral">&quot;test_namespace&quot;</span>);</div>
+<div class="line"><span class="lineno">   45</span>    <span class="keyword">auto</span> service_namespace = resource.get_attribute(<span class="stringliteral">&quot;service.namespace&quot;</span>);</div>
+<div class="line"><span class="lineno">   46</span>    ASSERT_TRUE(service_namespace);</div>
+<div class="line"><span class="lineno">   47</span>    EXPECT_EQ(service_namespace.value(), <span class="stringliteral">&quot;test_namespace&quot;</span>);</div>
 <div class="line"><span class="lineno">   48</span>    </div>
-<div class="line"><span class="lineno">   49</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">sdk_name</a> = resource.get_attribute(<span class="stringliteral">&quot;telemetry.sdk.name&quot;</span>);</div>
-<div class="line"><span class="lineno">   50</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">sdk_name</a>);</div>
-<div class="line"><span class="lineno">   51</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">sdk_name</a>.value(), <span class="stringliteral">&quot;monitoring_system&quot;</span>);</div>
+<div class="line"><span class="lineno">   49</span>    <span class="keyword">auto</span> sdk_name = resource.get_attribute(<span class="stringliteral">&quot;telemetry.sdk.name&quot;</span>);</div>
+<div class="line"><span class="lineno">   50</span>    ASSERT_TRUE(sdk_name);</div>
+<div class="line"><span class="lineno">   51</span>    EXPECT_EQ(sdk_name.value(), <span class="stringliteral">&quot;monitoring_system&quot;</span>);</div>
 <div class="line"><span class="lineno">   52</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a9ad978d91c522bc99b2da2a2d593d27c_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a9ad978d91c522bc99b2da2a2d593d27c_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a9ad978d91c522bc99b2da2a2d593d27c_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a9ad978d91c522bc99b2da2a2d593d27c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9b52aa976e143aab1e4056a3d0c44956" name="a9b52aa976e143aab1e4056a3d0c44956"></a>
@@ -897,27 +799,16 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   66</span>                                                      {</div>
-<div class="line"><span class="lineno">   67</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span_context</a> context(<span class="stringliteral">&quot;trace123&quot;</span>, <span class="stringliteral">&quot;span456&quot;</span>);</div>
-<div class="line"><span class="lineno">   68</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(context.trace_id, <span class="stringliteral">&quot;trace123&quot;</span>);</div>
-<div class="line"><span class="lineno">   69</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(context.span_id, <span class="stringliteral">&quot;span456&quot;</span>);</div>
-<div class="line"><span class="lineno">   70</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(context.is_valid);</div>
-<div class="line"><span class="lineno">   71</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(context.is_remote);</div>
+<div class="line"><span class="lineno">   67</span>    otel_span_context context(<span class="stringliteral">&quot;trace123&quot;</span>, <span class="stringliteral">&quot;span456&quot;</span>);</div>
+<div class="line"><span class="lineno">   68</span>    EXPECT_EQ(context.trace_id, <span class="stringliteral">&quot;trace123&quot;</span>);</div>
+<div class="line"><span class="lineno">   69</span>    EXPECT_EQ(context.span_id, <span class="stringliteral">&quot;span456&quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span>    EXPECT_TRUE(context.is_valid);</div>
+<div class="line"><span class="lineno">   71</span>    EXPECT_FALSE(context.is_remote);</div>
 <div class="line"><span class="lineno">   72</span>    </div>
-<div class="line"><span class="lineno">   73</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span_context</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_context</a>;</div>
-<div class="line"><span class="lineno">   74</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">invalid_context</a>.is_valid);</div>
+<div class="line"><span class="lineno">   73</span>    otel_span_context invalid_context;</div>
+<div class="line"><span class="lineno">   74</span>    EXPECT_FALSE(invalid_context.is_valid);</div>
 <div class="line"><span class="lineno">   75</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a9b52aa976e143aab1e4056a3d0c44956_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a9b52aa976e143aab1e4056a3d0c44956_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a9b52aa976e143aab1e4056a3d0c44956_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a9b52aa976e143aab1e4056a3d0c44956_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab1849f88fb6949200f56015e4271e077" name="ab1849f88fb6949200f56015e4271e077"></a>
@@ -948,41 +839,30 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00077">77</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   77</span>                                                     {</div>
-<div class="line"><span class="lineno">   78</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span_data</a> span;</div>
+<div class="line"><span class="lineno">   78</span>    otel_span_data span;</div>
 <div class="line"><span class="lineno">   79</span>    span.name = <span class="stringliteral">&quot;test_operation&quot;</span>;</div>
 <div class="line"><span class="lineno">   80</span>    span.kind = otel_span_kind::server;</div>
 <div class="line"><span class="lineno">   81</span>    span.status_code = otel_status_code::ok;</div>
 <div class="line"><span class="lineno">   82</span>    span.start_time = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">   83</span>    </div>
-<div class="line"><span class="lineno">   84</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(span.is_ended());</div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span.duration().count(), 0);</div>
+<div class="line"><span class="lineno">   84</span>    EXPECT_FALSE(span.is_ended());</div>
+<div class="line"><span class="lineno">   85</span>    EXPECT_EQ(span.duration().count(), 0);</div>
 <div class="line"><span class="lineno">   86</span>    </div>
 <div class="line"><span class="lineno">   87</span>    std::this_thread::sleep_for(std::chrono::milliseconds(1));</div>
 <div class="line"><span class="lineno">   88</span>    span.end_time = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">   89</span>    </div>
-<div class="line"><span class="lineno">   90</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(span.is_ended());</div>
-<div class="line"><span class="lineno">   91</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_GT</a>(span.duration().count(), 0);</div>
+<div class="line"><span class="lineno">   90</span>    EXPECT_TRUE(span.is_ended());</div>
+<div class="line"><span class="lineno">   91</span>    EXPECT_GT(span.duration().count(), 0);</div>
 <div class="line"><span class="lineno">   92</span>    </div>
 <div class="line"><span class="lineno">   93</span>    span.add_attribute(<span class="stringliteral">&quot;http.method&quot;</span>, <span class="stringliteral">&quot;GET&quot;</span>);</div>
 <div class="line"><span class="lineno">   94</span>    span.add_event(<span class="stringliteral">&quot;request_started&quot;</span>);</div>
 <div class="line"><span class="lineno">   95</span>    </div>
-<div class="line"><span class="lineno">   96</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span.attributes.size(), 1);</div>
-<div class="line"><span class="lineno">   97</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span.events.size(), 1);</div>
-<div class="line"><span class="lineno">   98</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span.attributes[0].key, <span class="stringliteral">&quot;http.method&quot;</span>);</div>
-<div class="line"><span class="lineno">   99</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(span.attributes[0].value, <span class="stringliteral">&quot;GET&quot;</span>);</div>
+<div class="line"><span class="lineno">   96</span>    EXPECT_EQ(span.attributes.size(), 1);</div>
+<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(span.events.size(), 1);</div>
+<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(span.attributes[0].key, <span class="stringliteral">&quot;http.method&quot;</span>);</div>
+<div class="line"><span class="lineno">   99</span>    EXPECT_EQ(span.attributes[0].value, <span class="stringliteral">&quot;GET&quot;</span>);</div>
 <div class="line"><span class="lineno">  100</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_ab1849f88fb6949200f56015e4271e077_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_ab1849f88fb6949200f56015e4271e077_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_ab1849f88fb6949200f56015e4271e077_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_ab1849f88fb6949200f56015e4271e077_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aae0447838ae4948b67487729306c8297" name="aae0447838ae4948b67487729306c8297"></a>
@@ -1013,39 +893,36 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00157">157</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  157</span>                                                                   {</div>
-<div class="line"><span class="lineno">  158</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_tracer_adapter</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>(resource);</div>
+<div class="line"><span class="lineno">  158</span>    opentelemetry_tracer_adapter adapter(resource);</div>
 <div class="line"><span class="lineno">  159</span>    </div>
-<div class="line"><span class="lineno">  160</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_span</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>;</div>
-<div class="line"><span class="lineno">  161</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.operation_name = <span class="stringliteral">&quot;failed_operation&quot;</span>;</div>
-<div class="line"><span class="lineno">  162</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
-<div class="line"><span class="lineno">  163</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.span_id = <span class="stringliteral">&quot;span456&quot;</span>;</div>
-<div class="line"><span class="lineno">  164</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.start_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  165</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.end_time = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.start_time + std::chrono::milliseconds(50);</div>
-<div class="line"><span class="lineno">  166</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.tags[<span class="stringliteral">&quot;error&quot;</span>] = <span class="stringliteral">&quot;true&quot;</span>;</div>
-<div class="line"><span class="lineno">  167</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>.tags[<span class="stringliteral">&quot;error.message&quot;</span>] = <span class="stringliteral">&quot;Connection timeout&quot;</span>;</div>
+<div class="line"><span class="lineno">  160</span>    trace_span error_span;</div>
+<div class="line"><span class="lineno">  161</span>    error_span.operation_name = <span class="stringliteral">&quot;failed_operation&quot;</span>;</div>
+<div class="line"><span class="lineno">  162</span>    error_span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
+<div class="line"><span class="lineno">  163</span>    error_span.span_id = <span class="stringliteral">&quot;span456&quot;</span>;</div>
+<div class="line"><span class="lineno">  164</span>    error_span.start_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  165</span>    error_span.end_time = error_span.start_time + std::chrono::milliseconds(50);</div>
+<div class="line"><span class="lineno">  166</span>    error_span.tags[<span class="stringliteral">&quot;error&quot;</span>] = <span class="stringliteral">&quot;true&quot;</span>;</div>
+<div class="line"><span class="lineno">  167</span>    error_span.tags[<span class="stringliteral">&quot;error.message&quot;</span>] = <span class="stringliteral">&quot;Connection timeout&quot;</span>;</div>
 <div class="line"><span class="lineno">  168</span>    </div>
-<div class="line"><span class="lineno">  169</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>.convert_span(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">error_span</a>);</div>
-<div class="line"><span class="lineno">  170</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  169</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_span(error_span);</div>
+<div class="line"><span class="lineno">  170</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  171</span>    </div>
-<div class="line"><span class="lineno">  172</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a> = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
-<div class="line"><span class="lineno">  173</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.status_code, otel_status_code::error);</div>
-<div class="line"><span class="lineno">  174</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.status_message, <span class="stringliteral">&quot;Connection timeout&quot;</span>);</div>
+<div class="line"><span class="lineno">  172</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  173</span>    EXPECT_EQ(otel_span.status_code, otel_status_code::error);</div>
+<div class="line"><span class="lineno">  174</span>    EXPECT_EQ(otel_span.status_message, <span class="stringliteral">&quot;Connection timeout&quot;</span>);</div>
 <div class="line"><span class="lineno">  175</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph" alt=""/></div>
 <map name="ad5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph">
-<area shape="rect" title=" " alt="" coords="5,69,75,94"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="74,72,109,65,110,70,75,77"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,93,279,133"/>
-<area shape="poly" title=" " alt="" coords="75,86,110,92,109,98,74,91"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,61,483,101"/>
-<area shape="poly" title=" " alt="" coords="278,99,313,93,314,98,279,104"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,125,483,165"/>
-<area shape="poly" title=" " alt="" coords="279,123,314,128,313,134,278,128"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,37,279,77"/>
+<area shape="poly" title=" " alt="" coords="75,55,109,55,109,60,75,60"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,5,483,45"/>
+<area shape="poly" title=" " alt="" coords="278,43,313,37,314,42,279,48"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,69,483,109"/>
+<area shape="poly" title=" " alt="" coords="279,67,314,72,313,78,278,72"/>
 </map>
 </div>
 
@@ -1079,28 +956,28 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00177">177</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  177</span>                                                             {</div>
-<div class="line"><span class="lineno">  178</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_tracer_adapter</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>(resource);</div>
+<div class="line"><span class="lineno">  178</span>    opentelemetry_tracer_adapter adapter(resource);</div>
 <div class="line"><span class="lineno">  179</span>    </div>
-<div class="line"><span class="lineno">  180</span>    std::vector&lt;trace_span&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>;</div>
-<div class="line"><span class="lineno">  181</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; 3; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  182</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_span</a> span;</div>
-<div class="line"><span class="lineno">  183</span>        span.operation_name = <span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>);</div>
+<div class="line"><span class="lineno">  180</span>    std::vector&lt;trace_span&gt; spans;</div>
+<div class="line"><span class="lineno">  181</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
+<div class="line"><span class="lineno">  182</span>        trace_span span;</div>
+<div class="line"><span class="lineno">  183</span>        span.operation_name = <span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(i);</div>
 <div class="line"><span class="lineno">  184</span>        span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
-<div class="line"><span class="lineno">  185</span>        span.span_id = <span class="stringliteral">&quot;span&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>);</div>
+<div class="line"><span class="lineno">  185</span>        span.span_id = <span class="stringliteral">&quot;span&quot;</span> + std::to_string(i);</div>
 <div class="line"><span class="lineno">  186</span>        span.start_time = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  187</span>        span.end_time = span.start_time + std::chrono::milliseconds(10);</div>
-<div class="line"><span class="lineno">  188</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>.push_back(span);</div>
+<div class="line"><span class="lineno">  188</span>        spans.push_back(span);</div>
 <div class="line"><span class="lineno">  189</span>    }</div>
 <div class="line"><span class="lineno">  190</span>    </div>
-<div class="line"><span class="lineno">  191</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>.convert_spans(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">spans</a>);</div>
-<div class="line"><span class="lineno">  192</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  191</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_spans(spans);</div>
+<div class="line"><span class="lineno">  192</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  193</span>    </div>
-<div class="line"><span class="lineno">  194</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_spans</a> = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
-<div class="line"><span class="lineno">  195</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_spans</a>.size(), 3);</div>
+<div class="line"><span class="lineno">  194</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_spans = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  195</span>    EXPECT_EQ(otel_spans.size(), 3);</div>
 <div class="line"><span class="lineno">  196</span>    </div>
-<div class="line"><span class="lineno">  197</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_spans</a>.size(); ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  198</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_spans</a>[<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>].name, <span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>));</div>
-<div class="line"><span class="lineno">  199</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_spans</a>[<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>].context.span_id, <span class="stringliteral">&quot;span&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>));</div>
+<div class="line"><span class="lineno">  197</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; otel_spans.size(); ++i) {</div>
+<div class="line"><span class="lineno">  198</span>        EXPECT_EQ(otel_spans[i].name, <span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(i));</div>
+<div class="line"><span class="lineno">  199</span>        EXPECT_EQ(otel_spans[i].context.span_id, <span class="stringliteral">&quot;span&quot;</span> + std::to_string(i));</div>
 <div class="line"><span class="lineno">  200</span>    }</div>
 <div class="line"><span class="lineno">  201</span>}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -1108,16 +985,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph" alt=""/></div>
 <map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph">
-<area shape="rect" title=" " alt="" coords="5,69,75,94"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="74,72,109,65,110,70,75,77"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,93,279,133"/>
-<area shape="poly" title=" " alt="" coords="75,86,110,92,109,98,74,91"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,61,483,101"/>
-<area shape="poly" title=" " alt="" coords="278,99,313,93,314,98,279,104"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,125,483,165"/>
-<area shape="poly" title=" " alt="" coords="279,123,314,128,313,134,278,128"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,37,279,77"/>
+<area shape="poly" title=" " alt="" coords="75,55,109,55,109,60,75,60"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,5,483,45"/>
+<area shape="poly" title=" " alt="" coords="278,43,313,37,314,42,279,48"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,69,483,109"/>
+<area shape="poly" title=" " alt="" coords="279,67,314,72,313,78,278,72"/>
 </map>
 </div>
 
@@ -1151,56 +1025,53 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  120</span>                                                              {</div>
-<div class="line"><span class="lineno">  121</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">opentelemetry_tracer_adapter</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>(resource);</div>
+<div class="line"><span class="lineno">  121</span>    opentelemetry_tracer_adapter adapter(resource);</div>
 <div class="line"><span class="lineno">  122</span>    </div>
-<div class="line"><span class="lineno">  123</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">trace_span</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>;</div>
-<div class="line"><span class="lineno">  124</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.operation_name = <span class="stringliteral">&quot;database_query&quot;</span>;</div>
-<div class="line"><span class="lineno">  125</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
-<div class="line"><span class="lineno">  126</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.span_id = <span class="stringliteral">&quot;span456&quot;</span>;</div>
-<div class="line"><span class="lineno">  127</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.parent_span_id = <span class="stringliteral">&quot;parent789&quot;</span>;</div>
-<div class="line"><span class="lineno">  128</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.start_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  129</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.end_time = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.start_time + std::chrono::milliseconds(100);</div>
-<div class="line"><span class="lineno">  130</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.tags[<span class="stringliteral">&quot;span.kind&quot;</span>] = <span class="stringliteral">&quot;client&quot;</span>;</div>
-<div class="line"><span class="lineno">  131</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.tags[<span class="stringliteral">&quot;db.statement&quot;</span>] = <span class="stringliteral">&quot;SELECT * FROM users&quot;</span>;</div>
-<div class="line"><span class="lineno">  132</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>.tags[<span class="stringliteral">&quot;error&quot;</span>] = <span class="stringliteral">&quot;false&quot;</span>;</div>
+<div class="line"><span class="lineno">  123</span>    trace_span internal_span;</div>
+<div class="line"><span class="lineno">  124</span>    internal_span.operation_name = <span class="stringliteral">&quot;database_query&quot;</span>;</div>
+<div class="line"><span class="lineno">  125</span>    internal_span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
+<div class="line"><span class="lineno">  126</span>    internal_span.span_id = <span class="stringliteral">&quot;span456&quot;</span>;</div>
+<div class="line"><span class="lineno">  127</span>    internal_span.parent_span_id = <span class="stringliteral">&quot;parent789&quot;</span>;</div>
+<div class="line"><span class="lineno">  128</span>    internal_span.start_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  129</span>    internal_span.end_time = internal_span.start_time + std::chrono::milliseconds(100);</div>
+<div class="line"><span class="lineno">  130</span>    internal_span.tags[<span class="stringliteral">&quot;span.kind&quot;</span>] = <span class="stringliteral">&quot;client&quot;</span>;</div>
+<div class="line"><span class="lineno">  131</span>    internal_span.tags[<span class="stringliteral">&quot;db.statement&quot;</span>] = <span class="stringliteral">&quot;SELECT * FROM users&quot;</span>;</div>
+<div class="line"><span class="lineno">  132</span>    internal_span.tags[<span class="stringliteral">&quot;error&quot;</span>] = <span class="stringliteral">&quot;false&quot;</span>;</div>
 <div class="line"><span class="lineno">  133</span>    </div>
-<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">adapter</a>.convert_span(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">internal_span</a>);</div>
-<div class="line"><span class="lineno">  135</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_span(internal_span);</div>
+<div class="line"><span class="lineno">  135</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  136</span>    </div>
-<div class="line"><span class="lineno">  137</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a> = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
-<div class="line"><span class="lineno">  138</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.name, <span class="stringliteral">&quot;database_query&quot;</span>);</div>
-<div class="line"><span class="lineno">  139</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.context.trace_id, <span class="stringliteral">&quot;trace123&quot;</span>);</div>
-<div class="line"><span class="lineno">  140</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.context.span_id, <span class="stringliteral">&quot;span456&quot;</span>);</div>
-<div class="line"><span class="lineno">  141</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.parent_context.span_id, <span class="stringliteral">&quot;parent789&quot;</span>);</div>
-<div class="line"><span class="lineno">  142</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.kind, otel_span_kind::client);</div>
-<div class="line"><span class="lineno">  143</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.status_code, otel_status_code::ok);</div>
-<div class="line"><span class="lineno">  144</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.attributes.size(), 1);</div>
+<div class="line"><span class="lineno">  137</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  138</span>    EXPECT_EQ(otel_span.name, <span class="stringliteral">&quot;database_query&quot;</span>);</div>
+<div class="line"><span class="lineno">  139</span>    EXPECT_EQ(otel_span.context.trace_id, <span class="stringliteral">&quot;trace123&quot;</span>);</div>
+<div class="line"><span class="lineno">  140</span>    EXPECT_EQ(otel_span.context.span_id, <span class="stringliteral">&quot;span456&quot;</span>);</div>
+<div class="line"><span class="lineno">  141</span>    EXPECT_EQ(otel_span.parent_context.span_id, <span class="stringliteral">&quot;parent789&quot;</span>);</div>
+<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(otel_span.kind, otel_span_kind::client);</div>
+<div class="line"><span class="lineno">  143</span>    EXPECT_EQ(otel_span.status_code, otel_status_code::ok);</div>
+<div class="line"><span class="lineno">  144</span>    EXPECT_EQ(otel_span.attributes.size(), 1);</div>
 <div class="line"><span class="lineno">  145</span>    </div>
 <div class="line"><span class="lineno">  146</span>    <span class="comment">// Find db.statement attribute</span></div>
-<div class="line"><span class="lineno">  147</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_db_statement</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a> : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">otel_span</a>.<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attributes</a>) {</div>
-<div class="line"><span class="lineno">  149</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>.key == <span class="stringliteral">&quot;db.statement&quot;</span> &amp;&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">attr</a>.value == <span class="stringliteral">&quot;SELECT * FROM users&quot;</span>) {</div>
-<div class="line"><span class="lineno">  150</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_db_statement</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  147</span>    <span class="keywordtype">bool</span> found_db_statement = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; attr : otel_span.attributes) {</div>
+<div class="line"><span class="lineno">  149</span>        <span class="keywordflow">if</span> (attr.key == <span class="stringliteral">&quot;db.statement&quot;</span> &amp;&amp; attr.value == <span class="stringliteral">&quot;SELECT * FROM users&quot;</span>) {</div>
+<div class="line"><span class="lineno">  150</span>            found_db_statement = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  151</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  152</span>        }</div>
 <div class="line"><span class="lineno">  153</span>    }</div>
-<div class="line"><span class="lineno">  154</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">found_db_statement</a>);</div>
+<div class="line"><span class="lineno">  154</span>    EXPECT_TRUE(found_db_statement);</div>
 <div class="line"><span class="lineno">  155</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph" alt=""/></div>
 <map name="ad5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,69,75,94"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="74,72,109,65,110,70,75,77"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,93,279,133"/>
-<area shape="poly" title=" " alt="" coords="75,86,110,92,109,98,74,91"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,61,483,101"/>
-<area shape="poly" title=" " alt="" coords="278,99,313,93,314,98,279,104"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,125,483,165"/>
-<area shape="poly" title=" " alt="" coords="279,123,314,128,313,134,278,128"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,37,279,77"/>
+<area shape="poly" title=" " alt="" coords="75,55,109,55,109,60,75,60"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,5,483,45"/>
+<area shape="poly" title=" " alt="" coords="278,43,313,37,314,42,279,48"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,69,483,109"/>
+<area shape="poly" title=" " alt="" coords="279,67,314,72,313,78,278,72"/>
 </map>
 </div>
 
@@ -1209,7 +1080,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 12:10:15 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 14:18:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

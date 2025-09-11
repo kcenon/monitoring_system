@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['validate_0',['validate',['../df/dc1/structmonitoring__system_1_1monitoring__config.html#ab049fd17d925cd7f2e7904744b3f9bf1',1,'monitoring_system::monitoring_config']]],
-  ['validate_5frange_1',['validate_range',['../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323',1,'result_pattern_example.cpp']]],
-  ['value_2',['value',['../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195',1,'monitoring_system::result::value()'],['../d8/dae/classmonitoring__system_1_1result.html#a5e22d32fadcf190043fdf2b16d72d106',1,'monitoring_system::result::value() const']]],
-  ['value_5for_3',['value_or',['../d8/dae/classmonitoring__system_1_1result.html#a45d49924b6c35bca88965b12d54a0bb1',1,'monitoring_system::result']]]
+  ['unhealthy_0',['unhealthy',['../dd/d7b/structmonitoring__system_1_1health__check__result.html#a86ce3c02df298ec86cc5c8a7c579e3ed',1,'monitoring_system::health_check_result']]],
+  ['update_5fmetric_1',['update_metric',['../df/de4/classmonitoring__system_1_1monitorable__component.html#a242260f983e77007b28eabbde59e9f04',1,'monitoring_system::monitorable_component']]],
+  ['update_5ftag_2',['update_tag',['../df/de4/classmonitoring__system_1_1monitorable__component.html#a458fc6a4eaaf311e1ed293563694103e',1,'monitoring_system::monitorable_component']]]
 ];

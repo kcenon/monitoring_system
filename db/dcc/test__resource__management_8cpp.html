@@ -190,38 +190,26 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00361">361</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  361</span>                                                            {</div>
-<div class="line"><span class="lineno">  362</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_throttle_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
+<div class="line"><span class="lineno">  362</span>    cpu_throttle_config config;</div>
 <div class="line"><span class="lineno">  363</span>    </div>
 <div class="line"><span class="lineno">  364</span>    <span class="comment">// Valid config</span></div>
-<div class="line"><span class="lineno">  365</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.max_cpu_usage = 0.8;</div>
-<div class="line"><span class="lineno">  366</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.warning_threshold = 0.7;</div>
-<div class="line"><span class="lineno">  367</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate());</div>
+<div class="line"><span class="lineno">  365</span>    config.max_cpu_usage = 0.8;</div>
+<div class="line"><span class="lineno">  366</span>    config.warning_threshold = 0.7;</div>
+<div class="line"><span class="lineno">  367</span>    EXPECT_TRUE(config.validate());</div>
 <div class="line"><span class="lineno">  368</span>    </div>
 <div class="line"><span class="lineno">  369</span>    <span class="comment">// Invalid max CPU usage</span></div>
-<div class="line"><span class="lineno">  370</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.max_cpu_usage = 0.0;</div>
-<div class="line"><span class="lineno">  371</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate());</div>
+<div class="line"><span class="lineno">  370</span>    config.max_cpu_usage = 0.0;</div>
+<div class="line"><span class="lineno">  371</span>    EXPECT_FALSE(config.validate());</div>
 <div class="line"><span class="lineno">  372</span>    </div>
-<div class="line"><span class="lineno">  373</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.max_cpu_usage = 1.5;</div>
-<div class="line"><span class="lineno">  374</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate());</div>
+<div class="line"><span class="lineno">  373</span>    config.max_cpu_usage = 1.5;</div>
+<div class="line"><span class="lineno">  374</span>    EXPECT_FALSE(config.validate());</div>
 <div class="line"><span class="lineno">  375</span>    </div>
 <div class="line"><span class="lineno">  376</span>    <span class="comment">// Invalid warning threshold</span></div>
-<div class="line"><span class="lineno">  377</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.max_cpu_usage = 0.8;</div>
-<div class="line"><span class="lineno">  378</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.warning_threshold = 0.9;</div>
-<div class="line"><span class="lineno">  379</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate());</div>
+<div class="line"><span class="lineno">  377</span>    config.max_cpu_usage = 0.8;</div>
+<div class="line"><span class="lineno">  378</span>    config.warning_threshold = 0.9;</div>
+<div class="line"><span class="lineno">  379</span>    EXPECT_FALSE(config.validate());</div>
 <div class="line"><span class="lineno">  380</span>}</div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00248">result_types.h:248</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a493834ae5b88cb15e027607cec34095b_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a493834ae5b88cb15e027607cec34095b_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a493834ae5b88cb15e027607cec34095b_cgraph" id="adb/dcc/test__resource__management_8cpp_a493834ae5b88cb15e027607cec34095b_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a205d79a6b615b6002edb356b36123db4" name="a205d79a6b615b6002edb356b36123db4"></a>
@@ -252,17 +240,17 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00192">192</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  192</span>                                                           {</div>
-<div class="line"><span class="lineno">  193</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_throttle_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
-<div class="line"><span class="lineno">  194</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.max_cpu_usage = 0.8;</div>
-<div class="line"><span class="lineno">  195</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.strategy = throttling_strategy::reject;</div>
-<div class="line"><span class="lineno">  196</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.check_interval = std::chrono::milliseconds(10);</div>
+<div class="line"><span class="lineno">  193</span>    cpu_throttle_config config;</div>
+<div class="line"><span class="lineno">  194</span>    config.max_cpu_usage = 0.8;</div>
+<div class="line"><span class="lineno">  195</span>    config.strategy = throttling_strategy::reject;</div>
+<div class="line"><span class="lineno">  196</span>    config.check_interval = std::chrono::milliseconds(10);</div>
 <div class="line"><span class="lineno">  197</span>    </div>
-<div class="line"><span class="lineno">  198</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a> = std::make_unique&lt;cpu_throttler&gt;(<span class="stringliteral">&quot;test_cpu&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>);</div>
+<div class="line"><span class="lineno">  198</span>    <span class="keyword">auto</span> throttler = std::make_unique&lt;cpu_throttler&gt;(<span class="stringliteral">&quot;test_cpu&quot;</span>, config);</div>
 <div class="line"><span class="lineno">  199</span>    </div>
 <div class="line"><span class="lineno">  200</span>    <span class="comment">// Should execute when CPU usage is low</span></div>
-<div class="line"><span class="lineno">  201</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a>-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">  202</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  203</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
+<div class="line"><span class="lineno">  201</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = throttler-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><span class="lineno">  202</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  203</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
 <div class="line"><span class="lineno">  204</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00105">result_types.h:105</a></div></div>
@@ -271,16 +259,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph" alt=""/></div>
 <map name="adb/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph" id="adb/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,69,75,94"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="74,72,109,65,110,70,75,77"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,93,279,133"/>
-<area shape="poly" title=" " alt="" coords="75,86,110,92,109,98,74,91"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,61,483,101"/>
-<area shape="poly" title=" " alt="" coords="278,99,313,93,314,98,279,104"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,125,483,165"/>
-<area shape="poly" title=" " alt="" coords="279,123,314,128,313,134,278,128"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,37,279,77"/>
+<area shape="poly" title=" " alt="" coords="75,55,109,55,109,60,75,60"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,5,483,45"/>
+<area shape="poly" title=" " alt="" coords="278,43,313,37,314,42,279,48"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,69,483,109"/>
+<area shape="poly" title=" " alt="" coords="279,67,314,72,313,78,278,72"/>
 </map>
 </div>
 
@@ -314,30 +299,19 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00206">206</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  206</span>                                                    {</div>
-<div class="line"><span class="lineno">  207</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_throttle_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
-<div class="line"><span class="lineno">  208</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.max_cpu_usage = 0.8;</div>
-<div class="line"><span class="lineno">  209</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.strategy = throttling_strategy::delay;</div>
+<div class="line"><span class="lineno">  207</span>    cpu_throttle_config config;</div>
+<div class="line"><span class="lineno">  208</span>    config.max_cpu_usage = 0.8;</div>
+<div class="line"><span class="lineno">  209</span>    config.strategy = throttling_strategy::delay;</div>
 <div class="line"><span class="lineno">  210</span>    </div>
-<div class="line"><span class="lineno">  211</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a> = std::make_unique&lt;cpu_throttler&gt;(<span class="stringliteral">&quot;test_cpu&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>);</div>
+<div class="line"><span class="lineno">  211</span>    <span class="keyword">auto</span> throttler = std::make_unique&lt;cpu_throttler&gt;(<span class="stringliteral">&quot;test_cpu&quot;</span>, config);</div>
 <div class="line"><span class="lineno">  212</span>    </div>
 <div class="line"><span class="lineno">  213</span>    <span class="comment">// Execute operation and check metrics</span></div>
-<div class="line"><span class="lineno">  214</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a>-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><span class="lineno">  214</span>    throttler-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
 <div class="line"><span class="lineno">  215</span>    </div>
-<div class="line"><span class="lineno">  216</span>    <span class="keyword">auto</span> metrics = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a>-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  217</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metrics.total_allocations.load(), 1);</div>
+<div class="line"><span class="lineno">  216</span>    <span class="keyword">auto</span> metrics = throttler-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  217</span>    EXPECT_EQ(metrics.total_allocations.load(), 1);</div>
 <div class="line"><span class="lineno">  218</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_ad7abaafe50b2cb09e7798245cd0d249e_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_ad7abaafe50b2cb09e7798245cd0d249e_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_ad7abaafe50b2cb09e7798245cd0d249e_cgraph" id="adb/dcc/test__resource__management_8cpp_ad7abaafe50b2cb09e7798245cd0d249e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af05e9d6c0ff6db14ceeddae02f662019" name="af05e9d6c0ff6db14ceeddae02f662019"></a>
@@ -368,27 +342,16 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   82</span>                                                          {</div>
-<div class="line"><span class="lineno">   83</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_leaky_bucket_limiter</a>(<span class="stringliteral">&quot;test_limiter&quot;</span>, 10, 10);</div>
+<div class="line"><span class="lineno">   83</span>    <span class="keyword">auto</span> limiter = create_leaky_bucket_limiter(<span class="stringliteral">&quot;test_limiter&quot;</span>, 10, 10);</div>
 <div class="line"><span class="lineno">   84</span>    </div>
 <div class="line"><span class="lineno">   85</span>    <span class="comment">// Should be able to add items to bucket</span></div>
-<div class="line"><span class="lineno">   86</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
-<div class="line"><span class="lineno">   87</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(5));</div>
+<div class="line"><span class="lineno">   86</span>    EXPECT_TRUE(limiter-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">   87</span>    EXPECT_TRUE(limiter-&gt;try_acquire(5));</div>
 <div class="line"><span class="lineno">   88</span>    </div>
 <div class="line"><span class="lineno">   89</span>    <span class="comment">// Should fail when bucket is full</span></div>
-<div class="line"><span class="lineno">   90</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(10));</div>
+<div class="line"><span class="lineno">   90</span>    EXPECT_FALSE(limiter-&gt;try_acquire(10));</div>
 <div class="line"><span class="lineno">   91</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_af05e9d6c0ff6db14ceeddae02f662019_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_af05e9d6c0ff6db14ceeddae02f662019_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_af05e9d6c0ff6db14ceeddae02f662019_cgraph" id="adb/dcc/test__resource__management_8cpp_af05e9d6c0ff6db14ceeddae02f662019_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a8c6042378cfbcf80ca12e8e04933a603" name="a8c6042378cfbcf80ca12e8e04933a603"></a>
@@ -419,32 +382,21 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   93</span>                                                {</div>
-<div class="line"><span class="lineno">   94</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_leaky_bucket_limiter</a>(<span class="stringliteral">&quot;test_limiter&quot;</span>, 100, 5);</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keyword">auto</span> limiter = create_leaky_bucket_limiter(<span class="stringliteral">&quot;test_limiter&quot;</span>, 100, 5);</div>
 <div class="line"><span class="lineno">   95</span>    </div>
 <div class="line"><span class="lineno">   96</span>    <span class="comment">// Fill bucket completely</span></div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; 5; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">   98</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">   98</span>        EXPECT_TRUE(limiter-&gt;try_acquire(1));</div>
 <div class="line"><span class="lineno">   99</span>    }</div>
-<div class="line"><span class="lineno">  100</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">  100</span>    EXPECT_FALSE(limiter-&gt;try_acquire(1));</div>
 <div class="line"><span class="lineno">  101</span>    </div>
 <div class="line"><span class="lineno">  102</span>    <span class="comment">// Wait for leak</span></div>
 <div class="line"><span class="lineno">  103</span>    std::this_thread::sleep_for(std::chrono::milliseconds(100));</div>
 <div class="line"><span class="lineno">  104</span>    </div>
 <div class="line"><span class="lineno">  105</span>    <span class="comment">// Should have space again</span></div>
-<div class="line"><span class="lineno">  106</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">  106</span>    EXPECT_TRUE(limiter-&gt;try_acquire(1));</div>
 <div class="line"><span class="lineno">  107</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a8c6042378cfbcf80ca12e8e04933a603_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a8c6042378cfbcf80ca12e8e04933a603_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a8c6042378cfbcf80ca12e8e04933a603_cgraph" id="adb/dcc/test__resource__management_8cpp_a8c6042378cfbcf80ca12e8e04933a603_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a94a6992b87892cdb781f4dce05fbc532" name="a94a6992b87892cdb781f4dce05fbc532"></a>
@@ -475,36 +427,25 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00110">110</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  110</span>                                                           {</div>
-<div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_memory_quota_manager</a>(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024,</div>
+<div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> manager = create_memory_quota_manager(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024,</div>
 <div class="line"><span class="lineno">  112</span>        throttling_strategy::reject);</div>
 <div class="line"><span class="lineno">  113</span>    </div>
 <div class="line"><span class="lineno">  114</span>    <span class="comment">// Should allow allocation within quota</span></div>
-<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>);</div>
-<div class="line"><span class="lineno">  117</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;current_usage(), 512);</div>
+<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> result1 = manager-&gt;allocate(512);</div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_TRUE(result1);</div>
+<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(manager-&gt;current_usage(), 512);</div>
 <div class="line"><span class="lineno">  118</span>    </div>
 <div class="line"><span class="lineno">  119</span>    <span class="comment">// Should allow another allocation</span></div>
-<div class="line"><span class="lineno">  120</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(256);</div>
-<div class="line"><span class="lineno">  121</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>);</div>
-<div class="line"><span class="lineno">  122</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;current_usage(), 768);</div>
+<div class="line"><span class="lineno">  120</span>    <span class="keyword">auto</span> result2 = manager-&gt;allocate(256);</div>
+<div class="line"><span class="lineno">  121</span>    EXPECT_TRUE(result2);</div>
+<div class="line"><span class="lineno">  122</span>    EXPECT_EQ(manager-&gt;current_usage(), 768);</div>
 <div class="line"><span class="lineno">  123</span>    </div>
 <div class="line"><span class="lineno">  124</span>    <span class="comment">// Should reject when quota exceeded</span></div>
-<div class="line"><span class="lineno">  125</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result3</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  126</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result3</a>);</div>
-<div class="line"><span class="lineno">  127</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result3</a>.get_error().code, monitoring_error_code::resource_exhausted);</div>
+<div class="line"><span class="lineno">  125</span>    <span class="keyword">auto</span> result3 = manager-&gt;allocate(512);</div>
+<div class="line"><span class="lineno">  126</span>    EXPECT_FALSE(result3);</div>
+<div class="line"><span class="lineno">  127</span>    EXPECT_EQ(result3.get_error().code, monitoring_error_code::resource_exhausted);</div>
 <div class="line"><span class="lineno">  128</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a94a6992b87892cdb781f4dce05fbc532_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a94a6992b87892cdb781f4dce05fbc532_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a94a6992b87892cdb781f4dce05fbc532_cgraph" id="adb/dcc/test__resource__management_8cpp_a94a6992b87892cdb781f4dce05fbc532_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad79557a4ed668dc1861fc8ac575c941f" name="ad79557a4ed668dc1861fc8ac575c941f"></a>
@@ -535,18 +476,18 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00411">411</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  411</span>                                                       {</div>
-<div class="line"><span class="lineno">  412</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_memory_quota_manager</a>(<span class="stringliteral">&quot;concurrent_memory&quot;</span>, 10000,</div>
+<div class="line"><span class="lineno">  412</span>    <span class="keyword">auto</span> manager = create_memory_quota_manager(<span class="stringliteral">&quot;concurrent_memory&quot;</span>, 10000,</div>
 <div class="line"><span class="lineno">  413</span>        throttling_strategy::reject);</div>
 <div class="line"><span class="lineno">  414</span>    </div>
-<div class="line"><span class="lineno">  415</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_threads</a> = 5;</div>
-<div class="line"><span class="lineno">  416</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">allocations_per_thread</a> = 10;</div>
-<div class="line"><span class="lineno">  417</span>    std::atomic&lt;int&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">successful_allocations</a>{0};</div>
+<div class="line"><span class="lineno">  415</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 5;</div>
+<div class="line"><span class="lineno">  416</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> allocations_per_thread = 10;</div>
+<div class="line"><span class="lineno">  417</span>    std::atomic&lt;int&gt; successful_allocations{0};</div>
 <div class="line"><span class="lineno">  418</span>    </div>
-<div class="line"><span class="lineno">  419</span>    std::vector&lt;std::thread&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>;</div>
-<div class="line"><span class="lineno">  420</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_threads</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  421</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>.emplace_back([&amp;]() {</div>
-<div class="line"><span class="lineno">  422</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">j</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">j</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">allocations_per_thread</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">j</a>) {</div>
-<div class="line"><span class="lineno">  423</span>                <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(500)) {</div>
+<div class="line"><span class="lineno">  419</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><span class="lineno">  420</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
+<div class="line"><span class="lineno">  421</span>        threads.emplace_back([&amp;]() {</div>
+<div class="line"><span class="lineno">  422</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; allocations_per_thread; ++j) {</div>
+<div class="line"><span class="lineno">  423</span>                <span class="keywordflow">if</span> (manager-&gt;allocate(500)) {</div>
 <div class="line"><span class="lineno">  424</span>                    successful_allocations++;</div>
 <div class="line"><span class="lineno">  425</span>                    <span class="comment">// Simulate some work then deallocate</span></div>
 <div class="line"><span class="lineno">  426</span>                    simulate_work(std::chrono::milliseconds(1));</div>
@@ -556,25 +497,14 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  430</span>        });</div>
 <div class="line"><span class="lineno">  431</span>    }</div>
 <div class="line"><span class="lineno">  432</span>    </div>
-<div class="line"><span class="lineno">  433</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>) {</div>
+<div class="line"><span class="lineno">  433</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
 <div class="line"><span class="lineno">  434</span>        thread.join();</div>
 <div class="line"><span class="lineno">  435</span>    }</div>
 <div class="line"><span class="lineno">  436</span>    </div>
-<div class="line"><span class="lineno">  437</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_GT</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">successful_allocations</a>.load(), 0);</div>
-<div class="line"><span class="lineno">  438</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;current_usage(), 0); <span class="comment">// All should be deallocated</span></div>
+<div class="line"><span class="lineno">  437</span>    EXPECT_GT(successful_allocations.load(), 0);</div>
+<div class="line"><span class="lineno">  438</span>    EXPECT_EQ(manager-&gt;current_usage(), 0); <span class="comment">// All should be deallocated</span></div>
 <div class="line"><span class="lineno">  439</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_ad79557a4ed668dc1861fc8ac575c941f_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_ad79557a4ed668dc1861fc8ac575c941f_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_ad79557a4ed668dc1861fc8ac575c941f_cgraph" id="adb/dcc/test__resource__management_8cpp_ad79557a4ed668dc1861fc8ac575c941f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a2889983e9a3cc0d9f56f6abf3a372170" name="a2889983e9a3cc0d9f56f6abf3a372170"></a>
@@ -605,34 +535,23 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00130">130</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  130</span>                                                        {</div>
-<div class="line"><span class="lineno">  131</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_memory_quota_manager</a>(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024);</div>
+<div class="line"><span class="lineno">  131</span>    <span class="keyword">auto</span> manager = create_memory_quota_manager(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024);</div>
 <div class="line"><span class="lineno">  132</span>    </div>
 <div class="line"><span class="lineno">  133</span>    <span class="comment">// Allocate memory</span></div>
-<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  135</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  136</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;current_usage(), 512);</div>
+<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;allocate(512);</div>
+<div class="line"><span class="lineno">  135</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  136</span>    EXPECT_EQ(manager-&gt;current_usage(), 512);</div>
 <div class="line"><span class="lineno">  137</span>    </div>
 <div class="line"><span class="lineno">  138</span>    <span class="comment">// Deallocate memory</span></div>
-<div class="line"><span class="lineno">  139</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;deallocate(256);</div>
-<div class="line"><span class="lineno">  140</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;current_usage(), 256);</div>
+<div class="line"><span class="lineno">  139</span>    manager-&gt;deallocate(256);</div>
+<div class="line"><span class="lineno">  140</span>    EXPECT_EQ(manager-&gt;current_usage(), 256);</div>
 <div class="line"><span class="lineno">  141</span>    </div>
 <div class="line"><span class="lineno">  142</span>    <span class="comment">// Should be able to allocate again</span></div>
-<div class="line"><span class="lineno">  143</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  144</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  145</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;current_usage(), 768);</div>
+<div class="line"><span class="lineno">  143</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;allocate(512);</div>
+<div class="line"><span class="lineno">  144</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  145</span>    EXPECT_EQ(manager-&gt;current_usage(), 768);</div>
 <div class="line"><span class="lineno">  146</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a2889983e9a3cc0d9f56f6abf3a372170_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a2889983e9a3cc0d9f56f6abf3a372170_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a2889983e9a3cc0d9f56f6abf3a372170_cgraph" id="adb/dcc/test__resource__management_8cpp_a2889983e9a3cc0d9f56f6abf3a372170_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a1586c96dffbab2c1d72f92c89773dc88" name="a1586c96dffbab2c1d72f92c89773dc88"></a>
@@ -663,37 +582,26 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00170">170</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  170</span>                                                   {</div>
-<div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_memory_quota_manager</a>(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024);</div>
+<div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> manager = create_memory_quota_manager(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024);</div>
 <div class="line"><span class="lineno">  172</span>    </div>
 <div class="line"><span class="lineno">  173</span>    <span class="comment">// Check initial metrics</span></div>
-<div class="line"><span class="lineno">  174</span>    <span class="keyword">auto</span> metrics = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  175</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metrics.current_usage.load(), 0);</div>
-<div class="line"><span class="lineno">  176</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metrics.total_allocations.load(), 0);</div>
+<div class="line"><span class="lineno">  174</span>    <span class="keyword">auto</span> metrics = manager-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  175</span>    EXPECT_EQ(metrics.current_usage.load(), 0);</div>
+<div class="line"><span class="lineno">  176</span>    EXPECT_EQ(metrics.total_allocations.load(), 0);</div>
 <div class="line"><span class="lineno">  177</span>    </div>
 <div class="line"><span class="lineno">  178</span>    <span class="comment">// Allocate and check metrics</span></div>
-<div class="line"><span class="lineno">  179</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  180</span>    metrics = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  181</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metrics.current_usage.load(), 512);</div>
-<div class="line"><span class="lineno">  182</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metrics.total_allocations.load(), 1);</div>
-<div class="line"><span class="lineno">  183</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metrics.peak_usage.load(), 512);</div>
+<div class="line"><span class="lineno">  179</span>    manager-&gt;allocate(512);</div>
+<div class="line"><span class="lineno">  180</span>    metrics = manager-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  181</span>    EXPECT_EQ(metrics.current_usage.load(), 512);</div>
+<div class="line"><span class="lineno">  182</span>    EXPECT_EQ(metrics.total_allocations.load(), 1);</div>
+<div class="line"><span class="lineno">  183</span>    EXPECT_EQ(metrics.peak_usage.load(), 512);</div>
 <div class="line"><span class="lineno">  184</span>    </div>
 <div class="line"><span class="lineno">  185</span>    <span class="comment">// Allocate more and check peak</span></div>
-<div class="line"><span class="lineno">  186</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(256);</div>
-<div class="line"><span class="lineno">  187</span>    metrics = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  188</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metrics.peak_usage.load(), 768);</div>
+<div class="line"><span class="lineno">  186</span>    manager-&gt;allocate(256);</div>
+<div class="line"><span class="lineno">  187</span>    metrics = manager-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  188</span>    EXPECT_EQ(metrics.peak_usage.load(), 768);</div>
 <div class="line"><span class="lineno">  189</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a1586c96dffbab2c1d72f92c89773dc88_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a1586c96dffbab2c1d72f92c89773dc88_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a1586c96dffbab2c1d72f92c89773dc88_cgraph" id="adb/dcc/test__resource__management_8cpp_a1586c96dffbab2c1d72f92c89773dc88_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a31d1382f3e6966f78e6c46ed234f13b5" name="a31d1382f3e6966f78e6c46ed234f13b5"></a>
@@ -724,35 +632,24 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00460">460</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  460</span>                                                       {</div>
-<div class="line"><span class="lineno">  461</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_memory_quota_manager</a>(<span class="stringliteral">&quot;perf_memory&quot;</span>, 1000000);</div>
+<div class="line"><span class="lineno">  461</span>    <span class="keyword">auto</span> manager = create_memory_quota_manager(<span class="stringliteral">&quot;perf_memory&quot;</span>, 1000000);</div>
 <div class="line"><span class="lineno">  462</span>    </div>
-<div class="line"><span class="lineno">  463</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_operations</a> = 1000;</div>
+<div class="line"><span class="lineno">  463</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_operations = 1000;</div>
 <div class="line"><span class="lineno">  464</span>    <span class="keyword">auto</span> start = std::chrono::steady_clock::now();</div>
 <div class="line"><span class="lineno">  465</span>    </div>
-<div class="line"><span class="lineno">  466</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_operations</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  467</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(100);</div>
-<div class="line"><span class="lineno">  468</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;deallocate(100);</div>
+<div class="line"><span class="lineno">  466</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_operations; ++i) {</div>
+<div class="line"><span class="lineno">  467</span>        manager-&gt;allocate(100);</div>
+<div class="line"><span class="lineno">  468</span>        manager-&gt;deallocate(100);</div>
 <div class="line"><span class="lineno">  469</span>    }</div>
 <div class="line"><span class="lineno">  470</span>    </div>
-<div class="line"><span class="lineno">  471</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">end</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  472</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">duration</a> = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(</div>
-<div class="line"><span class="lineno">  473</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">end</a> - start);</div>
+<div class="line"><span class="lineno">  471</span>    <span class="keyword">auto</span> end = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  472</span>    <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(</div>
+<div class="line"><span class="lineno">  473</span>        end - start);</div>
 <div class="line"><span class="lineno">  474</span>    </div>
 <div class="line"><span class="lineno">  475</span>    <span class="comment">// Should complete operations reasonably quickly</span></div>
-<div class="line"><span class="lineno">  476</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_LT</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">duration</a>.count(), 50000); <span class="comment">// Less than 50ms</span></div>
+<div class="line"><span class="lineno">  476</span>    EXPECT_LT(duration.count(), 50000); <span class="comment">// Less than 50ms</span></div>
 <div class="line"><span class="lineno">  477</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a31d1382f3e6966f78e6c46ed234f13b5_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a31d1382f3e6966f78e6c46ed234f13b5_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a31d1382f3e6966f78e6c46ed234f13b5_cgraph" id="adb/dcc/test__resource__management_8cpp_a31d1382f3e6966f78e6c46ed234f13b5_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a12393913b0f2a4e47b6d9b2e72bf8315" name="a12393913b0f2a4e47b6d9b2e72bf8315"></a>
@@ -783,38 +680,27 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  148</span>                                                      {</div>
-<div class="line"><span class="lineno">  149</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resource_quota</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>(resource_type::memory, 1000, throttling_strategy::reject);</div>
-<div class="line"><span class="lineno">  150</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.warning_threshold = 700;</div>
-<div class="line"><span class="lineno">  151</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.critical_threshold = 900;</div>
+<div class="line"><span class="lineno">  149</span>    resource_quota quota(resource_type::memory, 1000, throttling_strategy::reject);</div>
+<div class="line"><span class="lineno">  150</span>    quota.warning_threshold = 700;</div>
+<div class="line"><span class="lineno">  151</span>    quota.critical_threshold = 900;</div>
 <div class="line"><span class="lineno">  152</span>    </div>
-<div class="line"><span class="lineno">  153</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = std::make_unique&lt;memory_quota_manager&gt;(<span class="stringliteral">&quot;test_memory&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>);</div>
+<div class="line"><span class="lineno">  153</span>    <span class="keyword">auto</span> manager = std::make_unique&lt;memory_quota_manager&gt;(<span class="stringliteral">&quot;test_memory&quot;</span>, quota);</div>
 <div class="line"><span class="lineno">  154</span>    </div>
 <div class="line"><span class="lineno">  155</span>    <span class="comment">// Should not be over thresholds initially</span></div>
-<div class="line"><span class="lineno">  156</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;is_over_warning_threshold());</div>
-<div class="line"><span class="lineno">  157</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;is_over_critical_threshold());</div>
+<div class="line"><span class="lineno">  156</span>    EXPECT_FALSE(manager-&gt;is_over_warning_threshold());</div>
+<div class="line"><span class="lineno">  157</span>    EXPECT_FALSE(manager-&gt;is_over_critical_threshold());</div>
 <div class="line"><span class="lineno">  158</span>    </div>
 <div class="line"><span class="lineno">  159</span>    <span class="comment">// Allocate to warning level</span></div>
-<div class="line"><span class="lineno">  160</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(750);</div>
-<div class="line"><span class="lineno">  161</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;is_over_warning_threshold());</div>
-<div class="line"><span class="lineno">  162</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;is_over_critical_threshold());</div>
+<div class="line"><span class="lineno">  160</span>    manager-&gt;allocate(750);</div>
+<div class="line"><span class="lineno">  161</span>    EXPECT_TRUE(manager-&gt;is_over_warning_threshold());</div>
+<div class="line"><span class="lineno">  162</span>    EXPECT_FALSE(manager-&gt;is_over_critical_threshold());</div>
 <div class="line"><span class="lineno">  163</span>    </div>
 <div class="line"><span class="lineno">  164</span>    <span class="comment">// Allocate to critical level</span></div>
-<div class="line"><span class="lineno">  165</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;allocate(150);</div>
-<div class="line"><span class="lineno">  166</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;is_over_warning_threshold());</div>
-<div class="line"><span class="lineno">  167</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;is_over_critical_threshold());</div>
+<div class="line"><span class="lineno">  165</span>    manager-&gt;allocate(150);</div>
+<div class="line"><span class="lineno">  166</span>    EXPECT_TRUE(manager-&gt;is_over_warning_threshold());</div>
+<div class="line"><span class="lineno">  167</span>    EXPECT_TRUE(manager-&gt;is_over_critical_threshold());</div>
 <div class="line"><span class="lineno">  168</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a12393913b0f2a4e47b6d9b2e72bf8315_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a12393913b0f2a4e47b6d9b2e72bf8315_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a12393913b0f2a4e47b6d9b2e72bf8315_cgraph" id="adb/dcc/test__resource__management_8cpp_a12393913b0f2a4e47b6d9b2e72bf8315_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aa09541599bdff5897e402301d460638f" name="aa09541599bdff5897e402301d460638f"></a>
@@ -845,34 +731,23 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00319">319</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  319</span>                                                          {</div>
-<div class="line"><span class="lineno">  320</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_limit_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
+<div class="line"><span class="lineno">  320</span>    rate_limit_config config;</div>
 <div class="line"><span class="lineno">  321</span>    </div>
 <div class="line"><span class="lineno">  322</span>    <span class="comment">// Valid config</span></div>
-<div class="line"><span class="lineno">  323</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.rate_per_second = 100;</div>
-<div class="line"><span class="lineno">  324</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.burst_capacity = 10;</div>
-<div class="line"><span class="lineno">  325</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate());</div>
+<div class="line"><span class="lineno">  323</span>    config.rate_per_second = 100;</div>
+<div class="line"><span class="lineno">  324</span>    config.burst_capacity = 10;</div>
+<div class="line"><span class="lineno">  325</span>    EXPECT_TRUE(config.validate());</div>
 <div class="line"><span class="lineno">  326</span>    </div>
 <div class="line"><span class="lineno">  327</span>    <span class="comment">// Invalid rate</span></div>
-<div class="line"><span class="lineno">  328</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.rate_per_second = 0;</div>
-<div class="line"><span class="lineno">  329</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate());</div>
+<div class="line"><span class="lineno">  328</span>    config.rate_per_second = 0;</div>
+<div class="line"><span class="lineno">  329</span>    EXPECT_FALSE(config.validate());</div>
 <div class="line"><span class="lineno">  330</span>    </div>
 <div class="line"><span class="lineno">  331</span>    <span class="comment">// Invalid burst capacity</span></div>
-<div class="line"><span class="lineno">  332</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.rate_per_second = 100;</div>
-<div class="line"><span class="lineno">  333</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.burst_capacity = 0;</div>
-<div class="line"><span class="lineno">  334</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate());</div>
+<div class="line"><span class="lineno">  332</span>    config.rate_per_second = 100;</div>
+<div class="line"><span class="lineno">  333</span>    config.burst_capacity = 0;</div>
+<div class="line"><span class="lineno">  334</span>    EXPECT_FALSE(config.validate());</div>
 <div class="line"><span class="lineno">  335</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_aa09541599bdff5897e402301d460638f_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_aa09541599bdff5897e402301d460638f_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_aa09541599bdff5897e402301d460638f_cgraph" id="adb/dcc/test__resource__management_8cpp_aa09541599bdff5897e402301d460638f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7bbd882b8983c6c54e6f0976c1ed3f44" name="a7bbd882b8983c6c54e6f0976c1ed3f44"></a>
@@ -903,44 +778,33 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00383">383</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  383</span>                                                       {</div>
-<div class="line"><span class="lineno">  384</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_token_bucket_limiter</a>(<span class="stringliteral">&quot;concurrent_test&quot;</span>, 1000, 100,</div>
+<div class="line"><span class="lineno">  384</span>    <span class="keyword">auto</span> limiter = create_token_bucket_limiter(<span class="stringliteral">&quot;concurrent_test&quot;</span>, 1000, 100,</div>
 <div class="line"><span class="lineno">  385</span>        throttling_strategy::reject);</div>
 <div class="line"><span class="lineno">  386</span>    </div>
-<div class="line"><span class="lineno">  387</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_threads</a> = 10;</div>
-<div class="line"><span class="lineno">  388</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">operations_per_thread</a> = 10;</div>
-<div class="line"><span class="lineno">  389</span>    std::atomic&lt;int&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">successful_operations</a>{0};</div>
+<div class="line"><span class="lineno">  387</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 10;</div>
+<div class="line"><span class="lineno">  388</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> operations_per_thread = 10;</div>
+<div class="line"><span class="lineno">  389</span>    std::atomic&lt;int&gt; successful_operations{0};</div>
 <div class="line"><span class="lineno">  390</span>    </div>
-<div class="line"><span class="lineno">  391</span>    std::vector&lt;std::thread&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>;</div>
-<div class="line"><span class="lineno">  392</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_threads</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  393</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>.emplace_back([&amp;]() {</div>
-<div class="line"><span class="lineno">  394</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">j</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">j</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">operations_per_thread</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">j</a>) {</div>
-<div class="line"><span class="lineno">  395</span>                <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1)) {</div>
+<div class="line"><span class="lineno">  391</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><span class="lineno">  392</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
+<div class="line"><span class="lineno">  393</span>        threads.emplace_back([&amp;]() {</div>
+<div class="line"><span class="lineno">  394</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread; ++j) {</div>
+<div class="line"><span class="lineno">  395</span>                <span class="keywordflow">if</span> (limiter-&gt;try_acquire(1)) {</div>
 <div class="line"><span class="lineno">  396</span>                    successful_operations++;</div>
 <div class="line"><span class="lineno">  397</span>                }</div>
 <div class="line"><span class="lineno">  398</span>            }</div>
 <div class="line"><span class="lineno">  399</span>        });</div>
 <div class="line"><span class="lineno">  400</span>    }</div>
 <div class="line"><span class="lineno">  401</span>    </div>
-<div class="line"><span class="lineno">  402</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>) {</div>
+<div class="line"><span class="lineno">  402</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
 <div class="line"><span class="lineno">  403</span>        thread.join();</div>
 <div class="line"><span class="lineno">  404</span>    }</div>
 <div class="line"><span class="lineno">  405</span>    </div>
 <div class="line"><span class="lineno">  406</span>    <span class="comment">// Should have some successful operations</span></div>
-<div class="line"><span class="lineno">  407</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_GT</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">successful_operations</a>.load(), 0);</div>
-<div class="line"><span class="lineno">  408</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_LE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">successful_operations</a>.load(), 100); <span class="comment">// Limited by burst capacity</span></div>
+<div class="line"><span class="lineno">  407</span>    EXPECT_GT(successful_operations.load(), 0);</div>
+<div class="line"><span class="lineno">  408</span>    EXPECT_LE(successful_operations.load(), 100); <span class="comment">// Limited by burst capacity</span></div>
 <div class="line"><span class="lineno">  409</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a7bbd882b8983c6c54e6f0976c1ed3f44_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a7bbd882b8983c6c54e6f0976c1ed3f44_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a7bbd882b8983c6c54e6f0976c1ed3f44_cgraph" id="adb/dcc/test__resource__management_8cpp_a7bbd882b8983c6c54e6f0976c1ed3f44_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a43a92edbac92abdfb360a89a6d6a9f21" name="a43a92edbac92abdfb360a89a6d6a9f21"></a>
@@ -971,34 +835,23 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00442">442</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  442</span>                                                       {</div>
-<div class="line"><span class="lineno">  443</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_token_bucket_limiter</a>(<span class="stringliteral">&quot;perf_test&quot;</span>, 10000, 1000);</div>
+<div class="line"><span class="lineno">  443</span>    <span class="keyword">auto</span> limiter = create_token_bucket_limiter(<span class="stringliteral">&quot;perf_test&quot;</span>, 10000, 1000);</div>
 <div class="line"><span class="lineno">  444</span>    </div>
-<div class="line"><span class="lineno">  445</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_operations</a> = 1000;</div>
+<div class="line"><span class="lineno">  445</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_operations = 1000;</div>
 <div class="line"><span class="lineno">  446</span>    <span class="keyword">auto</span> start = std::chrono::steady_clock::now();</div>
 <div class="line"><span class="lineno">  447</span>    </div>
-<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">num_operations</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  449</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1);</div>
+<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_operations; ++i) {</div>
+<div class="line"><span class="lineno">  449</span>        limiter-&gt;try_acquire(1);</div>
 <div class="line"><span class="lineno">  450</span>    }</div>
 <div class="line"><span class="lineno">  451</span>    </div>
-<div class="line"><span class="lineno">  452</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">end</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  453</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">duration</a> = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(</div>
-<div class="line"><span class="lineno">  454</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">end</a> - start);</div>
+<div class="line"><span class="lineno">  452</span>    <span class="keyword">auto</span> end = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  453</span>    <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(</div>
+<div class="line"><span class="lineno">  454</span>        end - start);</div>
 <div class="line"><span class="lineno">  455</span>    </div>
 <div class="line"><span class="lineno">  456</span>    <span class="comment">// Should complete operations reasonably quickly</span></div>
-<div class="line"><span class="lineno">  457</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_LT</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">duration</a>.count(), 100000); <span class="comment">// Less than 100ms</span></div>
+<div class="line"><span class="lineno">  457</span>    EXPECT_LT(duration.count(), 100000); <span class="comment">// Less than 100ms</span></div>
 <div class="line"><span class="lineno">  458</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a43a92edbac92abdfb360a89a6d6a9f21_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a43a92edbac92abdfb360a89a6d6a9f21_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a43a92edbac92abdfb360a89a6d6a9f21_cgraph" id="adb/dcc/test__resource__management_8cpp_a43a92edbac92abdfb360a89a6d6a9f21_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af5178b51def912910248bcd00557d501" name="af5178b51def912910248bcd00557d501"></a>
@@ -1029,31 +882,20 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00249">249</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  249</span>                                                            {</div>
-<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_resource_manager</a>(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
+<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> manager = create_resource_manager(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
 <div class="line"><span class="lineno">  251</span>    </div>
-<div class="line"><span class="lineno">  252</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_throttle_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
-<div class="line"><span class="lineno">  253</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.max_cpu_usage = 0.7;</div>
-<div class="line"><span class="lineno">  254</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.strategy = throttling_strategy::delay;</div>
+<div class="line"><span class="lineno">  252</span>    cpu_throttle_config config;</div>
+<div class="line"><span class="lineno">  253</span>    config.max_cpu_usage = 0.7;</div>
+<div class="line"><span class="lineno">  254</span>    config.strategy = throttling_strategy::delay;</div>
 <div class="line"><span class="lineno">  255</span>    </div>
-<div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>);</div>
-<div class="line"><span class="lineno">  257</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>, config);</div>
+<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  258</span>    </div>
-<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;get_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>);</div>
-<div class="line"><span class="lineno">  260</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  261</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">throttler</a>-&gt;get_name(), <span class="stringliteral">&quot;cpu_throttler&quot;</span>);</div>
+<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> throttler = manager-&gt;get_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>);</div>
+<div class="line"><span class="lineno">  260</span>    EXPECT_NE(throttler, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  261</span>    EXPECT_EQ(throttler-&gt;get_name(), <span class="stringliteral">&quot;cpu_throttler&quot;</span>);</div>
 <div class="line"><span class="lineno">  262</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_af5178b51def912910248bcd00557d501_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_af5178b51def912910248bcd00557d501_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_af5178b51def912910248bcd00557d501_cgraph" id="adb/dcc/test__resource__management_8cpp_af5178b51def912910248bcd00557d501_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af41641b70c6bd158cd09e7b520a6711f" name="af41641b70c6bd158cd09e7b520a6711f"></a>
@@ -1084,33 +926,22 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00264">264</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  264</span>                                                              {</div>
-<div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_resource_manager</a>(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
+<div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> manager = create_resource_manager(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
 <div class="line"><span class="lineno">  266</span>    </div>
-<div class="line"><span class="lineno">  267</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_limit_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
-<div class="line"><span class="lineno">  268</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.rate_per_second = 100;</div>
-<div class="line"><span class="lineno">  269</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.burst_capacity = 10;</div>
+<div class="line"><span class="lineno">  267</span>    rate_limit_config config;</div>
+<div class="line"><span class="lineno">  268</span>    config.rate_per_second = 100;</div>
+<div class="line"><span class="lineno">  269</span>    config.burst_capacity = 10;</div>
 <div class="line"><span class="lineno">  270</span>    </div>
 <div class="line"><span class="lineno">  271</span>    <span class="comment">// First addition should succeed</span></div>
-<div class="line"><span class="lineno">  272</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_rate_limiter(<span class="stringliteral">&quot;duplicate_name&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>);</div>
-<div class="line"><span class="lineno">  273</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>);</div>
+<div class="line"><span class="lineno">  272</span>    <span class="keyword">auto</span> result1 = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;duplicate_name&quot;</span>, config);</div>
+<div class="line"><span class="lineno">  273</span>    EXPECT_TRUE(result1);</div>
 <div class="line"><span class="lineno">  274</span>    </div>
 <div class="line"><span class="lineno">  275</span>    <span class="comment">// Second addition with same name should fail</span></div>
-<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_rate_limiter(<span class="stringliteral">&quot;duplicate_name&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>);</div>
-<div class="line"><span class="lineno">  277</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>);</div>
-<div class="line"><span class="lineno">  278</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> result2 = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;duplicate_name&quot;</span>, config);</div>
+<div class="line"><span class="lineno">  277</span>    EXPECT_FALSE(result2);</div>
+<div class="line"><span class="lineno">  278</span>    EXPECT_EQ(result2.get_error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  279</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_af41641b70c6bd158cd09e7b520a6711f_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_af41641b70c6bd158cd09e7b520a6711f_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_af41641b70c6bd158cd09e7b520a6711f_cgraph" id="adb/dcc/test__resource__management_8cpp_af41641b70c6bd158cd09e7b520a6711f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a34ac04a83c81e0ff4df4e506b6f8f146" name="a34ac04a83c81e0ff4df4e506b6f8f146"></a>
@@ -1141,33 +972,22 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  281</span>                                                           {</div>
-<div class="line"><span class="lineno">  282</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_resource_manager</a>(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
+<div class="line"><span class="lineno">  282</span>    <span class="keyword">auto</span> manager = create_resource_manager(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
 <div class="line"><span class="lineno">  283</span>    </div>
 <div class="line"><span class="lineno">  284</span>    <span class="comment">// Add components</span></div>
-<div class="line"><span class="lineno">  285</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resource_quota</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>(resource_type::memory, 1024, throttling_strategy::reject);</div>
-<div class="line"><span class="lineno">  286</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_memory_quota(<span class="stringliteral">&quot;memory&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>);</div>
+<div class="line"><span class="lineno">  285</span>    resource_quota quota(resource_type::memory, 1024, throttling_strategy::reject);</div>
+<div class="line"><span class="lineno">  286</span>    manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory&quot;</span>, quota);</div>
 <div class="line"><span class="lineno">  287</span>    </div>
-<div class="line"><span class="lineno">  288</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_throttle_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_config</a>;</div>
-<div class="line"><span class="lineno">  289</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_config</a>.max_cpu_usage = 0.8;</div>
-<div class="line"><span class="lineno">  290</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu_config</a>);</div>
+<div class="line"><span class="lineno">  288</span>    cpu_throttle_config cpu_config;</div>
+<div class="line"><span class="lineno">  289</span>    cpu_config.max_cpu_usage = 0.8;</div>
+<div class="line"><span class="lineno">  290</span>    manager-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu&quot;</span>, cpu_config);</div>
 <div class="line"><span class="lineno">  291</span>    </div>
 <div class="line"><span class="lineno">  292</span>    <span class="comment">// Should be healthy initially</span></div>
-<div class="line"><span class="lineno">  293</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">health</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;is_healthy();</div>
-<div class="line"><span class="lineno">  294</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">health</a>);</div>
-<div class="line"><span class="lineno">  295</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">health</a>.value());</div>
+<div class="line"><span class="lineno">  293</span>    <span class="keyword">auto</span> health = manager-&gt;is_healthy();</div>
+<div class="line"><span class="lineno">  294</span>    EXPECT_TRUE(health);</div>
+<div class="line"><span class="lineno">  295</span>    EXPECT_TRUE(health.value());</div>
 <div class="line"><span class="lineno">  296</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a34ac04a83c81e0ff4df4e506b6f8f146_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a34ac04a83c81e0ff4df4e506b6f8f146_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a34ac04a83c81e0ff4df4e506b6f8f146_cgraph" id="adb/dcc/test__resource__management_8cpp_a34ac04a83c81e0ff4df4e506b6f8f146_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac33309a2a07341b3470dc3869606b533" name="ac33309a2a07341b3470dc3869606b533"></a>
@@ -1198,29 +1018,18 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00236">236</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  236</span>                                                           {</div>
-<div class="line"><span class="lineno">  237</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_resource_manager</a>(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
+<div class="line"><span class="lineno">  237</span>    <span class="keyword">auto</span> manager = create_resource_manager(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
 <div class="line"><span class="lineno">  238</span>    </div>
-<div class="line"><span class="lineno">  239</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resource_quota</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>(resource_type::memory, 2048, throttling_strategy::reject);</div>
+<div class="line"><span class="lineno">  239</span>    resource_quota quota(resource_type::memory, 2048, throttling_strategy::reject);</div>
 <div class="line"><span class="lineno">  240</span>    </div>
-<div class="line"><span class="lineno">  241</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>);</div>
-<div class="line"><span class="lineno">  242</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  241</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>, quota);</div>
+<div class="line"><span class="lineno">  242</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  243</span>    </div>
-<div class="line"><span class="lineno">  244</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">memory_manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;get_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>);</div>
-<div class="line"><span class="lineno">  245</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">memory_manager</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  246</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">memory_manager</a>-&gt;get_name(), <span class="stringliteral">&quot;memory_quota&quot;</span>);</div>
+<div class="line"><span class="lineno">  244</span>    <span class="keyword">auto</span> memory_manager = manager-&gt;get_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>);</div>
+<div class="line"><span class="lineno">  245</span>    EXPECT_NE(memory_manager, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  246</span>    EXPECT_EQ(memory_manager-&gt;get_name(), <span class="stringliteral">&quot;memory_quota&quot;</span>);</div>
 <div class="line"><span class="lineno">  247</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_ac33309a2a07341b3470dc3869606b533_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_ac33309a2a07341b3470dc3869606b533_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_ac33309a2a07341b3470dc3869606b533_cgraph" id="adb/dcc/test__resource__management_8cpp_ac33309a2a07341b3470dc3869606b533_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a521f986c64662b0212edd9ef47295b8b" name="a521f986c64662b0212edd9ef47295b8b"></a>
@@ -1251,36 +1060,25 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00298">298</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  298</span>                                                       {</div>
-<div class="line"><span class="lineno">  299</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_resource_manager</a>(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
+<div class="line"><span class="lineno">  299</span>    <span class="keyword">auto</span> manager = create_resource_manager(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
 <div class="line"><span class="lineno">  300</span>    </div>
 <div class="line"><span class="lineno">  301</span>    <span class="comment">// Add rate limiter</span></div>
-<div class="line"><span class="lineno">  302</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_limit_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_config</a>;</div>
-<div class="line"><span class="lineno">  303</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_config</a>.rate_per_second = 100;</div>
-<div class="line"><span class="lineno">  304</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_config</a>.burst_capacity = 10;</div>
-<div class="line"><span class="lineno">  305</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_rate_limiter(<span class="stringliteral">&quot;rate&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_config</a>);</div>
+<div class="line"><span class="lineno">  302</span>    rate_limit_config rate_config;</div>
+<div class="line"><span class="lineno">  303</span>    rate_config.rate_per_second = 100;</div>
+<div class="line"><span class="lineno">  304</span>    rate_config.burst_capacity = 10;</div>
+<div class="line"><span class="lineno">  305</span>    manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;rate&quot;</span>, rate_config);</div>
 <div class="line"><span class="lineno">  306</span>    </div>
 <div class="line"><span class="lineno">  307</span>    <span class="comment">// Add memory quota</span></div>
-<div class="line"><span class="lineno">  308</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resource_quota</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>(resource_type::memory, 1024, throttling_strategy::reject);</div>
-<div class="line"><span class="lineno">  309</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_memory_quota(<span class="stringliteral">&quot;memory&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>);</div>
+<div class="line"><span class="lineno">  308</span>    resource_quota quota(resource_type::memory, 1024, throttling_strategy::reject);</div>
+<div class="line"><span class="lineno">  309</span>    manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory&quot;</span>, quota);</div>
 <div class="line"><span class="lineno">  310</span>    </div>
 <div class="line"><span class="lineno">  311</span>    <span class="comment">// Get all metrics</span></div>
-<div class="line"><span class="lineno">  312</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">all_metrics</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;get_all_metrics();</div>
-<div class="line"><span class="lineno">  313</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">all_metrics</a>.size(), 2);</div>
-<div class="line"><span class="lineno">  314</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">all_metrics</a>.find(<span class="stringliteral">&quot;rate_rate&quot;</span>) != <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">all_metrics</a>.end());</div>
-<div class="line"><span class="lineno">  315</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">all_metrics</a>.find(<span class="stringliteral">&quot;memory_memory&quot;</span>) != <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">all_metrics</a>.end());</div>
+<div class="line"><span class="lineno">  312</span>    <span class="keyword">auto</span> all_metrics = manager-&gt;get_all_metrics();</div>
+<div class="line"><span class="lineno">  313</span>    EXPECT_EQ(all_metrics.size(), 2);</div>
+<div class="line"><span class="lineno">  314</span>    EXPECT_TRUE(all_metrics.find(<span class="stringliteral">&quot;rate_rate&quot;</span>) != all_metrics.end());</div>
+<div class="line"><span class="lineno">  315</span>    EXPECT_TRUE(all_metrics.find(<span class="stringliteral">&quot;memory_memory&quot;</span>) != all_metrics.end());</div>
 <div class="line"><span class="lineno">  316</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a521f986c64662b0212edd9ef47295b8b_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a521f986c64662b0212edd9ef47295b8b_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a521f986c64662b0212edd9ef47295b8b_cgraph" id="adb/dcc/test__resource__management_8cpp_a521f986c64662b0212edd9ef47295b8b_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad076130e80025b484e3956e5013ff932" name="ad076130e80025b484e3956e5013ff932"></a>
@@ -1311,31 +1109,20 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00221">221</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  221</span>                                                           {</div>
-<div class="line"><span class="lineno">  222</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_resource_manager</a>(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
+<div class="line"><span class="lineno">  222</span>    <span class="keyword">auto</span> manager = create_resource_manager(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
 <div class="line"><span class="lineno">  223</span>    </div>
-<div class="line"><span class="lineno">  224</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">rate_limit_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
-<div class="line"><span class="lineno">  225</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.rate_per_second = 100;</div>
-<div class="line"><span class="lineno">  226</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.burst_capacity = 10;</div>
+<div class="line"><span class="lineno">  224</span>    rate_limit_config config;</div>
+<div class="line"><span class="lineno">  225</span>    config.rate_per_second = 100;</div>
+<div class="line"><span class="lineno">  226</span>    config.burst_capacity = 10;</div>
 <div class="line"><span class="lineno">  227</span>    </div>
-<div class="line"><span class="lineno">  228</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;add_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>);</div>
-<div class="line"><span class="lineno">  229</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  228</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>, config);</div>
+<div class="line"><span class="lineno">  229</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  230</span>    </div>
-<div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">manager</a>-&gt;get_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>);</div>
-<div class="line"><span class="lineno">  232</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  233</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;get_name(), <span class="stringliteral">&quot;api_limiter&quot;</span>);</div>
+<div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> limiter = manager-&gt;get_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>);</div>
+<div class="line"><span class="lineno">  232</span>    EXPECT_NE(limiter, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  233</span>    EXPECT_EQ(limiter-&gt;get_name(), <span class="stringliteral">&quot;api_limiter&quot;</span>);</div>
 <div class="line"><span class="lineno">  234</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_ad076130e80025b484e3956e5013ff932_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_ad076130e80025b484e3956e5013ff932_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_ad076130e80025b484e3956e5013ff932_cgraph" id="adb/dcc/test__resource__management_8cpp_ad076130e80025b484e3956e5013ff932_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a30e35792081d026e11141fc6a6fa823b" name="a30e35792081d026e11141fc6a6fa823b"></a>
@@ -1366,40 +1153,29 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00337">337</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  337</span>                                                        {</div>
-<div class="line"><span class="lineno">  338</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">resource_quota</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>;</div>
+<div class="line"><span class="lineno">  338</span>    resource_quota quota;</div>
 <div class="line"><span class="lineno">  339</span>    </div>
 <div class="line"><span class="lineno">  340</span>    <span class="comment">// Valid quota</span></div>
-<div class="line"><span class="lineno">  341</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.type = resource_type::memory;</div>
-<div class="line"><span class="lineno">  342</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.max_value = 1024;</div>
-<div class="line"><span class="lineno">  343</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.warning_threshold = 700;</div>
-<div class="line"><span class="lineno">  344</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.critical_threshold = 900;</div>
-<div class="line"><span class="lineno">  345</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.validate());</div>
+<div class="line"><span class="lineno">  341</span>    quota.type = resource_type::memory;</div>
+<div class="line"><span class="lineno">  342</span>    quota.max_value = 1024;</div>
+<div class="line"><span class="lineno">  343</span>    quota.warning_threshold = 700;</div>
+<div class="line"><span class="lineno">  344</span>    quota.critical_threshold = 900;</div>
+<div class="line"><span class="lineno">  345</span>    EXPECT_TRUE(quota.validate());</div>
 <div class="line"><span class="lineno">  346</span>    </div>
 <div class="line"><span class="lineno">  347</span>    <span class="comment">// Invalid max value</span></div>
-<div class="line"><span class="lineno">  348</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.max_value = 0;</div>
-<div class="line"><span class="lineno">  349</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.validate());</div>
+<div class="line"><span class="lineno">  348</span>    quota.max_value = 0;</div>
+<div class="line"><span class="lineno">  349</span>    EXPECT_FALSE(quota.validate());</div>
 <div class="line"><span class="lineno">  350</span>    </div>
 <div class="line"><span class="lineno">  351</span>    <span class="comment">// Invalid thresholds</span></div>
-<div class="line"><span class="lineno">  352</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.max_value = 1024;</div>
-<div class="line"><span class="lineno">  353</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.warning_threshold = 1100;</div>
-<div class="line"><span class="lineno">  354</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.validate());</div>
+<div class="line"><span class="lineno">  352</span>    quota.max_value = 1024;</div>
+<div class="line"><span class="lineno">  353</span>    quota.warning_threshold = 1100;</div>
+<div class="line"><span class="lineno">  354</span>    EXPECT_FALSE(quota.validate());</div>
 <div class="line"><span class="lineno">  355</span>    </div>
-<div class="line"><span class="lineno">  356</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.warning_threshold = 700;</div>
-<div class="line"><span class="lineno">  357</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.critical_threshold = 600;</div>
-<div class="line"><span class="lineno">  358</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">quota</a>.validate());</div>
+<div class="line"><span class="lineno">  356</span>    quota.warning_threshold = 700;</div>
+<div class="line"><span class="lineno">  357</span>    quota.critical_threshold = 600;</div>
+<div class="line"><span class="lineno">  358</span>    EXPECT_FALSE(quota.validate());</div>
 <div class="line"><span class="lineno">  359</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a30e35792081d026e11141fc6a6fa823b_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a30e35792081d026e11141fc6a6fa823b_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a30e35792081d026e11141fc6a6fa823b_cgraph" id="adb/dcc/test__resource__management_8cpp_a30e35792081d026e11141fc6a6fa823b_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9fb6141b38344cae0955e7f2296baa9a" name="a9fb6141b38344cae0955e7f2296baa9a"></a>
@@ -1430,27 +1206,16 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00037">37</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   37</span>                                                          {</div>
-<div class="line"><span class="lineno">   38</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_token_bucket_limiter</a>(<span class="stringliteral">&quot;test_limiter&quot;</span>, 10, 10);</div>
+<div class="line"><span class="lineno">   38</span>    <span class="keyword">auto</span> limiter = create_token_bucket_limiter(<span class="stringliteral">&quot;test_limiter&quot;</span>, 10, 10);</div>
 <div class="line"><span class="lineno">   39</span>    </div>
 <div class="line"><span class="lineno">   40</span>    <span class="comment">// Should be able to acquire tokens initially</span></div>
-<div class="line"><span class="lineno">   41</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
-<div class="line"><span class="lineno">   42</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(5));</div>
+<div class="line"><span class="lineno">   41</span>    EXPECT_TRUE(limiter-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">   42</span>    EXPECT_TRUE(limiter-&gt;try_acquire(5));</div>
 <div class="line"><span class="lineno">   43</span>    </div>
 <div class="line"><span class="lineno">   44</span>    <span class="comment">// Should fail when bucket is empty</span></div>
-<div class="line"><span class="lineno">   45</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(10));</div>
+<div class="line"><span class="lineno">   45</span>    EXPECT_FALSE(limiter-&gt;try_acquire(10));</div>
 <div class="line"><span class="lineno">   46</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a9fb6141b38344cae0955e7f2296baa9a_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a9fb6141b38344cae0955e7f2296baa9a_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a9fb6141b38344cae0955e7f2296baa9a_cgraph" id="adb/dcc/test__resource__management_8cpp_a9fb6141b38344cae0955e7f2296baa9a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aedfa25bb15a9a58c9afde17901a6ef23" name="aedfa25bb15a9a58c9afde17901a6ef23"></a>
@@ -1481,20 +1246,20 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   64</span>                                                   {</div>
-<div class="line"><span class="lineno">   65</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_token_bucket_limiter</a>(<span class="stringliteral">&quot;test_limiter&quot;</span>, 100, 5,</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keyword">auto</span> limiter = create_token_bucket_limiter(<span class="stringliteral">&quot;test_limiter&quot;</span>, 100, 5,</div>
 <div class="line"><span class="lineno">   66</span>        throttling_strategy::reject);</div>
 <div class="line"><span class="lineno">   67</span>    </div>
 <div class="line"><span class="lineno">   68</span>    <span class="comment">// Execute operations within limit</span></div>
-<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; 5; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">   70</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">   71</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">   72</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
+<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">   70</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><span class="lineno">   71</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">   72</span>        EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
 <div class="line"><span class="lineno">   73</span>    }</div>
 <div class="line"><span class="lineno">   74</span>    </div>
 <div class="line"><span class="lineno">   75</span>    <span class="comment">// Should reject when limit exceeded</span></div>
-<div class="line"><span class="lineno">   76</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">   77</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">   78</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::resource_exhausted);</div>
+<div class="line"><span class="lineno">   76</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><span class="lineno">   77</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">   78</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::resource_exhausted);</div>
 <div class="line"><span class="lineno">   79</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00125">result_types.h:125</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00035">result_types.h:35</a></div></div>
@@ -1503,17 +1268,14 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph" alt=""/></div>
 <map name="adb/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph" id="adb/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph">
-<area shape="rect" title=" " alt="" coords="5,62,75,87"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,15,483,55"/>
-<area shape="poly" title=" " alt="" coords="53,60,83,36,122,16,170,6,220,3,269,5,314,11,313,16,268,10,220,8,171,11,124,21,85,40,56,64"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,55,279,95"/>
-<area shape="poly" title=" " alt="" coords="75,72,109,72,109,77,75,77"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,119,279,159"/>
-<area shape="poly" title=" " alt="" coords="74,85,138,111,136,116,72,90"/>
-<area shape="poly" title=" " alt="" coords="170,55,168,45,173,36,184,30,201,28,220,31,230,38,227,43,218,36,201,33,186,35,177,40,173,46,175,54"/>
-<area shape="poly" title=" " alt="" coords="252,116,277,104,358,59,361,64,280,109,254,121"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,119,483,159"/>
-<area shape="poly" title=" " alt="" coords="279,136,313,136,313,141,279,141"/>
+<area shape="rect" title=" " alt="" coords="5,42,75,67"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,5,483,45"/>
+<area shape="poly" title=" " alt="" coords="75,49,313,30,313,35,75,55"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,63,279,103"/>
+<area shape="poly" title=" " alt="" coords="75,58,110,64,109,69,74,63"/>
+<area shape="poly" title=" " alt="" coords="272,60,319,47,321,52,273,65"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,69,483,109"/>
+<area shape="poly" title=" " alt="" coords="279,83,313,84,313,89,279,88"/>
 </map>
 </div>
 
@@ -1547,38 +1309,27 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00048">48</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   48</span>                                                  {</div>
-<div class="line"><span class="lineno">   49</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">create_token_bucket_limiter</a>(<span class="stringliteral">&quot;test_limiter&quot;</span>, 100, 10);</div>
+<div class="line"><span class="lineno">   49</span>    <span class="keyword">auto</span> limiter = create_token_bucket_limiter(<span class="stringliteral">&quot;test_limiter&quot;</span>, 100, 10);</div>
 <div class="line"><span class="lineno">   50</span>    </div>
 <div class="line"><span class="lineno">   51</span>    <span class="comment">// Exhaust all tokens</span></div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; 10; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">   53</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><span class="lineno">   53</span>        EXPECT_TRUE(limiter-&gt;try_acquire(1));</div>
 <div class="line"><span class="lineno">   54</span>    }</div>
-<div class="line"><span class="lineno">   55</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">   55</span>    EXPECT_FALSE(limiter-&gt;try_acquire(1));</div>
 <div class="line"><span class="lineno">   56</span>    </div>
 <div class="line"><span class="lineno">   57</span>    <span class="comment">// Wait for refill</span></div>
 <div class="line"><span class="lineno">   58</span>    std::this_thread::sleep_for(std::chrono::milliseconds(200));</div>
 <div class="line"><span class="lineno">   59</span>    </div>
 <div class="line"><span class="lineno">   60</span>    <span class="comment">// Should have tokens again</span></div>
-<div class="line"><span class="lineno">   61</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">limiter</a>-&gt;try_acquire(1));</div>
+<div class="line"><span class="lineno">   61</span>    EXPECT_TRUE(limiter-&gt;try_acquire(1));</div>
 <div class="line"><span class="lineno">   62</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a70c4bf2d19bab68c4344621a34395d95_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a70c4bf2d19bab68c4344621a34395d95_cgraph" alt=""/></div>
-<map name="adb/dcc/test__resource__management_8cpp_a70c4bf2d19bab68c4344621a34395d95_cgraph" id="adb/dcc/test__resource__management_8cpp_a70c4bf2d19bab68c4344621a34395d95_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 12:10:15 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 14:18:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -8,5 +8,6 @@ var searchData=
   ['storage_5fbackend_5',['storage_backend',['../da/dbc/classmonitoring__system_1_1storage__backend.html',1,'monitoring_system']]],
   ['storagebackendstest_6',['StorageBackendsTest',['../d4/dcd/classStorageBackendsTest.html',1,'']]],
   ['streamaggregationtest_7',['StreamAggregationTest',['../de/d8e/classStreamAggregationTest.html',1,'']]],
-  ['success_5ftag_8',['success_tag',['../d9/d53/structmonitoring__system_1_1result_1_1success__tag.html',1,'monitoring_system::result']]]
+  ['stressperformancetest_8',['StressPerformanceTest',['../d9/dbf/classStressPerformanceTest.html',1,'']]],
+  ['success_5ftag_9',['success_tag',['../d9/d53/structmonitoring__system_1_1result_1_1success__tag.html',1,'monitoring_system::result']]]
 ];

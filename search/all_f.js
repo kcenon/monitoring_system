@@ -12,7 +12,7 @@ var searchData=
   ['remove_5fcollector_9',['remove_collector',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html#a4e407c8e18c1303f717456b4825a173b',1,'monitoring_system::monitoring_interface']]],
   ['remove_5fcomponent_10',['remove_component',['../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a22bb67565267886c01c1e13cbc1ad828',1,'monitoring_system::monitoring_aggregator']]],
   ['request_5fid_11',['request_id',['../d7/d98/structmonitoring__system_1_1context__metadata.html#a0bfb78d1384b612017806367a3f8b088',1,'monitoring_system::context_metadata']]],
-  ['reset_12',['reset',['../da/dd3/classmonitoring__system_1_1service__locator.html#a4a207c629aa00a180e99c732fa680a8a',1,'monitoring_system::service_locator::reset()'],['../d7/db5/classmonitoring__system_1_1metrics__analyzer.html#abf182b537d368d9ac02a9a5fd50f09d8',1,'monitoring_system::metrics_analyzer::reset()']]],
+  ['reset_12',['reset',['../da/dd3/classmonitoring__system_1_1service__locator.html#a4a207c629aa00a180e99c732fa680a8a',1,'monitoring_system::service_locator::reset()'],['../d7/db5/classmonitoring__system_1_1metrics__analyzer.html#abf182b537d368d9ac02a9a5fd50f09d8',1,'monitoring_system::metrics_analyzer::reset()'],['../d6/d98/classExternalApiClient.html#a03fb01358ff3e42e7ef268ba5a7d147f',1,'ExternalApiClient::reset()']]],
   ['reset_5fcount_13',['reset_count',['../d9/d8d/classmock__collector.html#a7886d9ee6010c9ec8649c49d2eed617f',1,'mock_collector::reset_count()'],['../d6/d19/classServiceA.html#a734584d7be13ec84f66c8c18dd5ab7ae',1,'ServiceA::reset_count()']]],
   ['reset_5fmonitoring_14',['reset_monitoring',['../df/db6/classmonitoring__system_1_1monitorable__interface.html#a6b71db159b82303c8432962169098235',1,'monitoring_system::monitorable_interface::reset_monitoring()'],['../df/de4/classmonitoring__system_1_1monitorable__component.html#a8802f25a5ceea2b524d760baf64434a2',1,'monitoring_system::monitorable_component::reset_monitoring()']]],
   ['resolve_15',['resolve',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a30b9f6d50a8fe80b5e087b5d5b4162db',1,'monitoring_system::service_container_interface::resolve()'],['../d3/dff/classmonitoring__system_1_1service__container__interface.html#af1fc71e4c933e8a761d388edb25885c8',1,'monitoring_system::service_container_interface::resolve(const std::string &amp;name)']]],
@@ -31,7 +31,8 @@ var searchData=
   ['retrieve_28',['retrieve',['../da/dbc/classmonitoring__system_1_1storage__backend.html#aa56821c6edb7bc4f0c775919000e10b3',1,'monitoring_system::storage_backend']]],
   ['retrieve_5frange_29',['retrieve_range',['../da/dbc/classmonitoring__system_1_1storage__backend.html#a20555354b42077dc93e917e6b8e92859',1,'monitoring_system::storage_backend']]],
   ['retry_5fattempts_5fexhausted_30',['retry_attempts_exhausted',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca4ab077528cea6da0e59592e3fb2948aa',1,'monitoring_system']]],
-  ['rollback_5fcount_31',['rollback_count',['../d8/d07/classDataConsistencyTest.html#a22edd023d7ec11376560cb4dd04aa3bd',1,'DataConsistencyTest']]],
-  ['rollback_5ffailed_32',['rollback_failed',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca22643da2ef6b0753926c8fa6b5ad5f94',1,'monitoring_system']]],
-  ['rollback_5foperation_33',['rollback_operation',['../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57',1,'DataConsistencyTest']]]
+  ['rng_5f_31',['rng_',['../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed',1,'DatabaseConnection']]],
+  ['rollback_5fcount_32',['rollback_count',['../d8/d07/classDataConsistencyTest.html#a22edd023d7ec11376560cb4dd04aa3bd',1,'DataConsistencyTest']]],
+  ['rollback_5ffailed_33',['rollback_failed',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca22643da2ef6b0753926c8fa6b5ad5f94',1,'monitoring_system']]],
+  ['rollback_5foperation_34',['rollback_operation',['../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57',1,'DataConsistencyTest']]]
 ];

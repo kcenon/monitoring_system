@@ -177,27 +177,15 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00013">13</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   13</span>                                          {</div>
-<div class="line"><span class="lineno">   14</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">b</a> == 0) {</div>
-<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">make_error&lt;double&gt;</a>(</div>
+<div class="line"><span class="lineno">   14</span>    <span class="keywordflow">if</span> (b == 0) {</div>
+<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">return</span> make_error&lt;double&gt;(</div>
 <div class="line"><span class="lineno">   16</span>            monitoring_error_code::invalid_configuration,</div>
 <div class="line"><span class="lineno">   17</span>            <span class="stringliteral">&quot;Division by zero&quot;</span></div>
 <div class="line"><span class="lineno">   18</span>        );</div>
 <div class="line"><span class="lineno">   19</span>    }</div>
-<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">make_success&lt;double&gt;</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">a</a> / <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">b</a>);</div>
+<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">return</span> make_success&lt;double&gt;(a / b);</div>
 <div class="line"><span class="lineno">   21</span>}</div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00248">result_types.h:248</a></div></div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../de/dfb/result__pattern__example_8cpp_a9da2de03a893c5c66e063754edc6353c_cgraph.png" border="0" usemap="#ade/dfb/result__pattern__example_8cpp_a9da2de03a893c5c66e063754edc6353c_cgraph" alt=""/></div>
-<map name="ade/dfb/result__pattern__example_8cpp_a9da2de03a893c5c66e063754edc6353c_cgraph" id="ade/dfb/result__pattern__example_8cpp_a9da2de03a893c5c66e063754edc6353c_cgraph">
-<area shape="rect" title="Example demonstrating Result pattern usage." alt="" coords="5,37,68,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="116,29,272,69"/>
-<area shape="poly" title=" " alt="" coords="68,47,102,47,102,52,68,52"/>
-<area shape="poly" title=" " alt="" coords="164,29,162,20,167,11,178,5,194,3,213,6,223,13,220,17,211,11,194,8,179,10,171,14,167,21,169,28"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dfb/result__pattern__example_8cpp_a9da2de03a893c5c66e063754edc6353c_icgraph.png" border="0" usemap="#ade/dfb/result__pattern__example_8cpp_a9da2de03a893c5c66e063754edc6353c_icgraph" alt=""/></div>
@@ -234,98 +222,98 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">   49</span>    </div>
 <div class="line"><span class="lineno">   50</span>    <span class="comment">// Example 1: Successful operation</span></div>
 <div class="line"><span class="lineno">   51</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 1: Successful division&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a> = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 2.0);</div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>) {</div>
-<div class="line"><span class="lineno">   54</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   52</span>    <span class="keyword">auto</span> result1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 2.0);</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">if</span> (result1) {</div>
+<div class="line"><span class="lineno">   54</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result1.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   55</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   56</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   56</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   57</span>    }</div>
 <div class="line"><span class="lineno">   58</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   59</span>    </div>
 <div class="line"><span class="lineno">   60</span>    <span class="comment">// Example 2: Failed operation</span></div>
 <div class="line"><span class="lineno">   61</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 2: Division by zero&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   62</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a> = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 0.0);</div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>) {</div>
-<div class="line"><span class="lineno">   64</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keyword">auto</span> result2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 0.0);</div>
+<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">if</span> (result2) {</div>
+<div class="line"><span class="lineno">   64</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result2.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   65</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   66</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   66</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   67</span>    }</div>
 <div class="line"><span class="lineno">   68</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   69</span>    </div>
 <div class="line"><span class="lineno">   70</span>    <span class="comment">// Example 3: Using value_or</span></div>
 <div class="line"><span class="lineno">   71</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 3: Using value_or with default&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result3</a> = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(5.0, 0.0);</div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordtype">double</span> value = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result3</a>.value_or(-1.0);</div>
+<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> result3 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(5.0, 0.0);</div>
+<div class="line"><span class="lineno">   73</span>    <span class="keywordtype">double</span> value = result3.value_or(-1.0);</div>
 <div class="line"><span class="lineno">   74</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Value (with default): &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   75</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   76</span>    </div>
 <div class="line"><span class="lineno">   77</span>    <span class="comment">// Example 4: result_void usage</span></div>
 <div class="line"><span class="lineno">   78</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 4: Validation with result_void&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation1</a> = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(50.0, 0.0, 100.0);</div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation1</a>) {</div>
+<div class="line"><span class="lineno">   79</span>    <span class="keyword">auto</span> validation1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(50.0, 0.0, 100.0);</div>
+<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">if</span> (validation1) {</div>
 <div class="line"><span class="lineno">   81</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   82</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   83</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation1</a>.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   83</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   84</span>    }</div>
 <div class="line"><span class="lineno">   85</span>    </div>
-<div class="line"><span class="lineno">   86</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation2</a> = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(150.0, 0.0, 100.0);</div>
-<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation2</a>) {</div>
+<div class="line"><span class="lineno">   86</span>    <span class="keyword">auto</span> validation2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(150.0, 0.0, 100.0);</div>
+<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">if</span> (validation2) {</div>
 <div class="line"><span class="lineno">   88</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   89</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   90</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">validation2</a>.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   90</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   91</span>    }</div>
 <div class="line"><span class="lineno">   92</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   93</span>    </div>
 <div class="line"><span class="lineno">   94</span>    <span class="comment">// Example 5: Monadic operations</span></div>
 <div class="line"><span class="lineno">   95</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 5: Chaining operations&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   96</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result4</a> = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(4.0);</div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result4</a>) {</div>
-<div class="line"><span class="lineno">   98</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result4</a>.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keyword">auto</span> result4 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(4.0);</div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">if</span> (result4) {</div>
+<div class="line"><span class="lineno">   98</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result4.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   99</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  100</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result4</a>.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  100</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  101</span>    }</div>
 <div class="line"><span class="lineno">  102</span>    </div>
-<div class="line"><span class="lineno">  103</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result5</a> = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(1.0);</div>
-<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result5</a>) {</div>
-<div class="line"><span class="lineno">  105</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result5</a>.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  103</span>    <span class="keyword">auto</span> result5 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(1.0);</div>
+<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> (result5) {</div>
+<div class="line"><span class="lineno">  105</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result5.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  106</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  107</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result5</a>.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  107</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  108</span>    }</div>
 <div class="line"><span class="lineno">  109</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  110</span>    </div>
 <div class="line"><span class="lineno">  111</span>    <span class="comment">// Example 6: Metrics snapshot</span></div>
 <div class="line"><span class="lineno">  112</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 6: Metrics snapshot&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  113</span>    <a class="code hl_struct" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html">metrics_snapshot</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>;</div>
-<div class="line"><span class="lineno">  114</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>.<a class="code hl_function" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#ad05a857ee84e216b2f7f2d979a61a701">add_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 65.5);</div>
-<div class="line"><span class="lineno">  115</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 4096.0);</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>.add_metric(<span class="stringliteral">&quot;disk_io&quot;</span>, 150.25);</div>
+<div class="line"><span class="lineno">  113</span>    <a class="code hl_struct" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
+<div class="line"><span class="lineno">  114</span>    snapshot.<a class="code hl_function" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#ad05a857ee84e216b2f7f2d979a61a701">add_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 65.5);</div>
+<div class="line"><span class="lineno">  115</span>    snapshot.<a class="code hl_function" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#ad05a857ee84e216b2f7f2d979a61a701">add_metric</a>(<span class="stringliteral">&quot;memory_usage&quot;</span>, 4096.0);</div>
+<div class="line"><span class="lineno">  116</span>    snapshot.<a class="code hl_function" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#ad05a857ee84e216b2f7f2d979a61a701">add_metric</a>(<span class="stringliteral">&quot;disk_io&quot;</span>, 150.25);</div>
 <div class="line"><span class="lineno">  117</span>    </div>
-<div class="line"><span class="lineno">  118</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Metrics collected: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>.metrics.size() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  118</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Metrics collected: &quot;</span> &lt;&lt; snapshot.<a class="code hl_variable" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">metrics</a>.size() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  119</span>    </div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>.get_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>)) {</div>
-<div class="line"><span class="lineno">  121</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  CPU Usage: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">cpu</a>.value() &lt;&lt; <span class="stringliteral">&quot;%&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> cpu = snapshot.<a class="code hl_function" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#acd69e533fb53ad80e395a0fb00feb52a">get_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  121</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  CPU Usage: &quot;</span> &lt;&lt; cpu.value() &lt;&lt; <span class="stringliteral">&quot;%&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  122</span>    }</div>
 <div class="line"><span class="lineno">  123</span>    </div>
-<div class="line"><span class="lineno">  124</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">mem</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>.get_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>)) {</div>
-<div class="line"><span class="lineno">  125</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Memory Usage: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">mem</a>.value() &lt;&lt; <span class="stringliteral">&quot; MB&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  124</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> mem = snapshot.<a class="code hl_function" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#acd69e533fb53ad80e395a0fb00feb52a">get_metric</a>(<span class="stringliteral">&quot;memory_usage&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  125</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Memory Usage: &quot;</span> &lt;&lt; mem.value() &lt;&lt; <span class="stringliteral">&quot; MB&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  126</span>    }</div>
 <div class="line"><span class="lineno">  127</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  128</span>    </div>
 <div class="line"><span class="lineno">  129</span>    <span class="comment">// Example 7: Configuration validation</span></div>
 <div class="line"><span class="lineno">  130</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 7: Configuration validation&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  131</span>    <a class="code hl_struct" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html">monitoring_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>;</div>
-<div class="line"><span class="lineno">  132</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">history_size</a> = 1000;</div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.collection_interval = std::chrono::milliseconds(100);</div>
-<div class="line"><span class="lineno">  134</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.buffer_size = 5000;</div>
+<div class="line"><span class="lineno">  131</span>    <a class="code hl_struct" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html">monitoring_config</a> config;</div>
+<div class="line"><span class="lineno">  132</span>    config.<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">history_size</a> = 1000;</div>
+<div class="line"><span class="lineno">  133</span>    config.<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#a9b708014e60a34a833f59c6348eab7d8">collection_interval</a> = std::chrono::milliseconds(100);</div>
+<div class="line"><span class="lineno">  134</span>    config.<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7">buffer_size</a> = 5000;</div>
 <div class="line"><span class="lineno">  135</span>    </div>
-<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config_result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.validate();</div>
-<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config_result</a>) {</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> config_result = config.<a class="code hl_function" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ab049fd17d925cd7f2e7904744b3f9bf1">validate</a>();</div>
+<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">if</span> (config_result) {</div>
 <div class="line"><span class="lineno">  138</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration is valid&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  139</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - History size: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.history_size &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  140</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Collection interval: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.collection_interval.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  141</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Buffer size: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config</a>.buffer_size &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  139</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - History size: &quot;</span> &lt;&lt; config.<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">history_size</a> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  140</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Collection interval: &quot;</span> &lt;&lt; config.<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#a9b708014e60a34a833f59c6348eab7d8">collection_interval</a>.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  141</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Buffer size: &quot;</span> &lt;&lt; config.<a class="code hl_variable" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7">buffer_size</a> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  142</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  143</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">config_result</a>.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  143</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  144</span>    }</div>
 <div class="line"><span class="lineno">  145</span>    </div>
 <div class="line"><span class="lineno">  146</span>    <span class="keywordflow">return</span> 0;</div>
@@ -334,41 +322,45 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="aresult__pattern__example_8cpp_html_a92da1737d943d0e99e570c8ca59abc75"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a></div><div class="ttdeci">result&lt; std::string &gt; process_metric(double value)</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00035">result_pattern_example.cpp:35</a></div></div>
 <div class="ttc" id="aresult__pattern__example_8cpp_html_a9da2de03a893c5c66e063754edc6353c"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a></div><div class="ttdeci">result&lt; double &gt; divide(double a, double b)</div><div class="ttdoc">Example demonstrating Result pattern usage.</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00013">result_pattern_example.cpp:13</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html">monitoring_system::metrics_snapshot</a></div><div class="ttdoc">Complete snapshot of metrics at a point in time.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00059">monitoring_interface.h:59</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html_aaa3a00f7d5d361796e8a8af597d2308d"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#aaa3a00f7d5d361796e8a8af597d2308d">monitoring_system::metrics_snapshot::metrics</a></div><div class="ttdeci">std::vector&lt; metric_value &gt; metrics</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00060">monitoring_interface.h:60</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html_acd69e533fb53ad80e395a0fb00feb52a"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#acd69e533fb53ad80e395a0fb00feb52a">monitoring_system::metrics_snapshot::get_metric</a></div><div class="ttdeci">std::optional&lt; double &gt; get_metric(const std::string &amp;name) const</div><div class="ttdoc">Get a specific metric value.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00081">monitoring_interface.h:81</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1metrics__snapshot_html_ad05a857ee84e216b2f7f2d979a61a701"><div class="ttname"><a href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#ad05a857ee84e216b2f7f2d979a61a701">monitoring_system::metrics_snapshot::add_metric</a></div><div class="ttdeci">void add_metric(const std::string &amp;name, double value)</div><div class="ttdoc">Add a metric to the snapshot.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00072">monitoring_interface.h:72</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html">monitoring_system::monitoring_config</a></div><div class="ttdoc">Configuration for the monitoring system.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00161">monitoring_interface.h:161</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_a9b708014e60a34a833f59c6348eab7d8"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#a9b708014e60a34a833f59c6348eab7d8">monitoring_system::monitoring_config::collection_interval</a></div><div class="ttdeci">std::chrono::milliseconds collection_interval</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00163">monitoring_interface.h:163</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_aa814a874c1adac91d0de5af146e63db7"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7">monitoring_system::monitoring_config::buffer_size</a></div><div class="ttdeci">std::size_t buffer_size</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00167">monitoring_interface.h:167</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_ab049fd17d925cd7f2e7904744b3f9bf1"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ab049fd17d925cd7f2e7904744b3f9bf1">monitoring_system::monitoring_config::validate</a></div><div class="ttdeci">result_void validate() const</div><div class="ttdoc">Validate configuration parameters.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00173">monitoring_interface.h:173</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1monitoring__config_html_ac492e933bf5f7cfff2a20ffd21f1d862"><div class="ttname"><a href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862">monitoring_system::monitoring_config::history_size</a></div><div class="ttdeci">std::size_t history_size</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00162">monitoring_interface.h:162</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dfb/result__pattern__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph.png" border="0" usemap="#ade/dfb/result__pattern__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph" alt=""/></div>
 <map name="ade/dfb/result__pattern__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph" id="ade/dfb/result__pattern__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,174,60,199"/>
-<area shape="rect" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#ad05a857ee84e216b2f7f2d979a61a701" title="Add a metric to the snapshot." alt="" coords="108,45,277,99"/>
-<area shape="poly" title=" " alt="" coords="42,172,69,141,106,109,112,104,115,109,110,113,73,145,46,176"/>
-<area shape="rect" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c" title="Example demonstrating Result pattern usage." alt="" coords="372,174,435,199"/>
-<area shape="poly" title=" " alt="" coords="60,184,358,184,358,189,60,189"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="539,167,695,207"/>
-<area shape="poly" title=" " alt="" coords="61,188,133,197,237,207,358,212,481,208,525,202,525,208,482,213,358,218,237,212,132,203,60,193"/>
-<area shape="rect" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75" title=" " alt="" coords="132,123,253,149"/>
-<area shape="poly" title=" " alt="" coords="60,176,138,150,140,155,61,181"/>
-<area shape="rect" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323" title=" " alt="" coords="133,275,252,301"/>
-<area shape="poly" title=" " alt="" coords="47,198,74,226,109,254,137,268,135,273,107,258,70,229,43,201"/>
-<area shape="poly" title=" " alt="" coords="435,184,525,184,525,189,435,189"/>
-<area shape="poly" title=" " alt="" coords="577,167,574,157,581,148,595,142,617,140,642,143,655,150,653,155,640,148,617,145,596,147,584,152,579,158,582,166"/>
-<area shape="poly" title=" " alt="" coords="247,146,359,173,358,179,246,151"/>
-<area shape="poly" title=" " alt="" coords="254,137,360,145,482,159,526,166,525,171,481,164,360,150,253,142"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#abe9d36953fe4e9da887dd4f751496cf5" title=" " alt="" coords="325,59,481,99"/>
-<area shape="poly" title=" " alt="" coords="239,121,316,100,317,105,241,126"/>
-<area shape="poly" title=" " alt="" coords="446,96,483,115,566,158,563,163,480,120,444,101"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="539,5,695,45"/>
-<area shape="poly" title=" " alt="" coords="481,57,525,46,526,51,483,62"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="539,69,695,109"/>
-<area shape="poly" title=" " alt="" coords="482,80,525,82,525,87,482,85"/>
-<area shape="poly" title=" " alt="" coords="252,285,360,277,421,268,481,253,528,234,572,211,574,216,531,239,482,259,422,273,360,283,253,290"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="325,325,481,365"/>
-<area shape="poly" title=" " alt="" coords="241,298,317,319,316,324,239,303"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="529,325,704,365"/>
-<area shape="poly" title=" " alt="" coords="482,343,516,343,516,348,482,348"/>
+<area shape="rect" title=" " alt="" coords="5,183,60,208"/>
+<area shape="rect" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#ad05a857ee84e216b2f7f2d979a61a701" title="Add a metric to the snapshot." alt="" coords="123,5,293,60"/>
+<area shape="poly" title=" " alt="" coords="37,181,62,132,82,103,106,77,122,65,125,69,110,81,86,107,67,135,42,184"/>
+<area shape="rect" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c" title="Example demonstrating Result pattern usage." alt="" coords="403,109,465,135"/>
+<area shape="poly" title=" " alt="" coords="41,180,67,149,86,133,107,121,144,109,182,101,260,96,332,101,390,110,389,115,331,106,260,101,183,106,145,114,109,126,89,137,71,153,45,184"/>
+<area shape="rect" href="../../da/d22/structmonitoring__system_1_1metrics__snapshot.html#acd69e533fb53ad80e395a0fb00feb52a" title="Get a specific metric value." alt="" coords="125,136,291,191"/>
+<area shape="poly" title=" " alt="" coords="60,188,110,178,111,184,61,193"/>
+<area shape="rect" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75" title=" " alt="" coords="147,215,269,240"/>
+<area shape="poly" title=" " alt="" coords="61,198,134,211,133,216,60,203"/>
+<area shape="rect" href="../../df/dc1/structmonitoring__system_1_1monitoring__config.html#ab049fd17d925cd7f2e7904744b3f9bf1" title="Validate configuration parameters." alt="" coords="108,265,308,305"/>
+<area shape="poly" title=" " alt="" coords="50,206,77,228,109,249,126,257,124,262,107,254,74,232,47,211"/>
+<area shape="rect" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323" title=" " alt="" coords="149,329,267,355"/>
+<area shape="poly" title=" " alt="" coords="41,207,64,260,84,290,110,315,136,328,134,333,106,319,80,293,60,262,36,209"/>
+<area shape="poly" title=" " alt="" coords="268,213,307,200,400,140,403,145,309,204,270,218"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#abe9d36953fe4e9da887dd4f751496cf5" title=" " alt="" coords="356,207,512,247"/>
+<area shape="poly" title=" " alt="" coords="269,225,342,225,342,230,269,230"/>
+<area shape="poly" title=" " alt="" coords="394,208,392,198,398,188,412,183,434,181,459,184,473,191,470,196,457,189,434,186,414,188,401,193,397,199,399,206"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="569,169,725,209"/>
+<area shape="poly" title=" " alt="" coords="512,211,556,203,556,208,513,216"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="569,233,725,273"/>
+<area shape="poly" title=" " alt="" coords="513,234,556,239,555,244,512,239"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="356,297,512,337"/>
+<area shape="poly" title=" " alt="" coords="309,296,343,301,342,306,308,302"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="560,297,735,337"/>
+<area shape="poly" title=" " alt="" coords="513,314,546,314,546,319,513,319"/>
+<area shape="poly" title=" " alt="" coords="267,333,342,324,343,330,268,338"/>
 </map>
 </div>
 
@@ -394,12 +386,12 @@ Here is the call graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">   35</span>                                               {</div>
 <div class="line"><span class="lineno">   36</span>    <span class="comment">// Chain operations using map and and_then</span></div>
 <div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(100.0, value)</div>
-<div class="line"><span class="lineno">   38</span>        .map([](<span class="keywordtype">double</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">x</a>) { <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">x</a> * 2; })</div>
-<div class="line"><span class="lineno">   39</span>        .and_then([](<span class="keywordtype">double</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">x</a>) {</div>
-<div class="line"><span class="lineno">   40</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">x</a> &gt; 50) {</div>
-<div class="line"><span class="lineno">   41</span>                <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">make_success&lt;std::string&gt;</a>(<span class="stringliteral">&quot;High value: &quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">x</a>));</div>
+<div class="line"><span class="lineno">   38</span>        .map([](<span class="keywordtype">double</span> x) { <span class="keywordflow">return</span> x * 2; })</div>
+<div class="line"><span class="lineno">   39</span>        .and_then([](<span class="keywordtype">double</span> x) {</div>
+<div class="line"><span class="lineno">   40</span>            <span class="keywordflow">if</span> (x &gt; 50) {</div>
+<div class="line"><span class="lineno">   41</span>                <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;High value: &quot;</span> + std::to_string(x));</div>
 <div class="line"><span class="lineno">   42</span>            }</div>
-<div class="line"><span class="lineno">   43</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">make_success&lt;std::string&gt;</a>(<span class="stringliteral">&quot;Normal value: &quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">x</a>));</div>
+<div class="line"><span class="lineno">   43</span>            <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Normal value: &quot;</span> + std::to_string(x));</div>
 <div class="line"><span class="lineno">   44</span>        });</div>
 <div class="line"><span class="lineno">   45</span>}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -407,20 +399,16 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dfb/result__pattern__example_8cpp_a92da1737d943d0e99e570c8ca59abc75_cgraph.png" border="0" usemap="#ade/dfb/result__pattern__example_8cpp_a92da1737d943d0e99e570c8ca59abc75_cgraph" alt=""/></div>
 <map name="ade/dfb/result__pattern__example_8cpp_a92da1737d943d0e99e570c8ca59abc75_cgraph" id="ade/dfb/result__pattern__example_8cpp_a92da1737d943d0e99e570c8ca59abc75_cgraph">
-<area shape="rect" title=" " alt="" coords="5,56,127,81"/>
+<area shape="rect" title=" " alt="" coords="5,47,127,72"/>
 <area shape="rect" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c" title="Example demonstrating Result pattern usage." alt="" coords="221,5,284,31"/>
-<area shape="poly" title=" " alt="" coords="113,53,207,27,209,33,114,58"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="379,42,535,82"/>
-<area shape="poly" title=" " alt="" coords="127,65,365,61,365,66,127,70"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#abe9d36953fe4e9da887dd4f751496cf5" title=" " alt="" coords="175,106,331,146"/>
-<area shape="poly" title=" " alt="" coords="109,79,175,99,173,104,107,84"/>
-<area shape="poly" title=" " alt="" coords="285,22,366,40,365,45,284,27"/>
-<area shape="poly" title=" " alt="" coords="418,42,416,32,422,23,436,17,457,15,480,18,493,26,491,30,479,23,457,21,437,23,426,27,421,33,424,41"/>
-<area shape="poly" title=" " alt="" coords="316,103,378,84,380,89,318,108"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="379,106,535,146"/>
-<area shape="poly" title=" " alt="" coords="331,123,365,123,365,129,331,129"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="379,170,535,210"/>
-<area shape="poly" title=" " alt="" coords="318,144,380,163,378,168,316,149"/>
+<area shape="poly" title=" " alt="" coords="123,44,208,25,209,30,125,49"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#abe9d36953fe4e9da887dd4f751496cf5" title=" " alt="" coords="175,79,331,119"/>
+<area shape="poly" title=" " alt="" coords="127,69,162,77,160,82,125,75"/>
+<area shape="poly" title=" " alt="" coords="217,80,215,70,221,61,234,55,253,53,275,56,287,63,284,67,273,61,253,58,235,60,224,65,220,71,222,78"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="379,47,535,87"/>
+<area shape="poly" title=" " alt="" coords="330,85,365,79,366,84,331,90"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="379,111,535,151"/>
+<area shape="poly" title=" " alt="" coords="331,109,366,114,365,120,330,114"/>
 </map>
 </div>
 <div class="dynheader">
@@ -470,10 +458,10 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00024">24</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   24</span>                                                                 {</div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">value &lt; min || value &gt;</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">max</a>) {</div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">if</span> (value &lt; min || value &gt; max) {</div>
 <div class="line"><span class="lineno">   26</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="../../d1/d78/classmonitoring__system_1_1result__void.html">result_void</a>(</div>
 <div class="line"><span class="lineno">   27</span>            monitoring_error_code::invalid_configuration,</div>
-<div class="line"><span class="lineno">   28</span>            <span class="stringliteral">&quot;Value out of range [&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">min</a>) + <span class="stringliteral">&quot;, &quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">max</a>) + <span class="stringliteral">&quot;]&quot;</span></div>
+<div class="line"><span class="lineno">   28</span>            <span class="stringliteral">&quot;Value out of range [&quot;</span> + std::to_string(min) + <span class="stringliteral">&quot;, &quot;</span> + std::to_string(max) + <span class="stringliteral">&quot;]&quot;</span></div>
 <div class="line"><span class="lineno">   29</span>        );</div>
 <div class="line"><span class="lineno">   30</span>    }</div>
 <div class="line"><span class="lineno">   31</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25">result_void::success</a>();</div>
@@ -485,14 +473,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dfb/result__pattern__example_8cpp_a1836bc38e2f96e48678e749237c4d323_cgraph.png" border="0" usemap="#ade/dfb/result__pattern__example_8cpp_a1836bc38e2f96e48678e749237c4d323_cgraph" alt=""/></div>
 <map name="ade/dfb/result__pattern__example_8cpp_a1836bc38e2f96e48678e749237c4d323_cgraph" id="ade/dfb/result__pattern__example_8cpp_a1836bc38e2f96e48678e749237c4d323_cgraph">
-<area shape="rect" title=" " alt="" coords="5,69,124,94"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="172,29,328,69"/>
-<area shape="poly" title=" " alt="" coords="124,68,158,63,159,68,125,74"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="172,93,328,133"/>
-<area shape="poly" title=" " alt="" coords="125,89,159,95,158,100,124,94"/>
-<area shape="poly" title=" " alt="" coords="215,30,213,20,219,11,231,5,250,3,272,6,284,13,281,17,270,11,250,8,233,10,222,15,218,21,220,28"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="376,93,551,133"/>
-<area shape="poly" title=" " alt="" coords="329,111,362,111,362,116,329,116"/>
+<area shape="rect" title=" " alt="" coords="5,13,124,38"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="172,5,328,45"/>
+<area shape="poly" title=" " alt="" coords="124,23,158,23,158,28,124,28"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="376,5,551,45"/>
+<area shape="poly" title=" " alt="" coords="329,23,362,23,362,28,329,28"/>
 </map>
 </div>
 <div class="dynheader">
@@ -511,7 +496,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 12:10:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 14:18:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

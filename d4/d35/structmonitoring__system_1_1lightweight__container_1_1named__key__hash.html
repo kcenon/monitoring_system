@@ -90,7 +90,7 @@ Collaboration diagram for monitoring_system::lightweight_container::named_key_ha
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72c1868b8ee542dea90317148cc38ed1" id="r_a72c1868b8ee542dea90317148cc38ed1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d35/structmonitoring__system_1_1lightweight__container_1_1named__key__hash.html#a72c1868b8ee542dea90317148cc38ed1">operator()</a> (<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">const</a> <a class="el" href="../../d7/d05/classmonitoring__system_1_1lightweight__container.html#a1a8ccec469cf6e72d74c7d0bd4b8d98d">named_key</a> &amp;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">key</a>) <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">const</a></td></tr>
+<tr class="memitem:a72c1868b8ee542dea90317148cc38ed1" id="r_a72c1868b8ee542dea90317148cc38ed1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d35/structmonitoring__system_1_1lightweight__container_1_1named__key__hash.html#a72c1868b8ee542dea90317148cc38ed1">operator()</a> (const <a class="el" href="../../d7/d05/classmonitoring__system_1_1lightweight__container.html#a1a8ccec469cf6e72d74c7d0bd4b8d98d">named_key</a> &amp;key) const</td></tr>
 <tr class="separator:a72c1868b8ee542dea90317148cc38ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -109,7 +109,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">std::size_t monitoring_system::lightweight_container::named_key_hash::operator() </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">const</a> <a class="el" href="../../d7/d05/classmonitoring__system_1_1lightweight__container.html#a1a8ccec469cf6e72d74c7d0bd4b8d98d">named_key</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d05/classmonitoring__system_1_1lightweight__container.html#a1a8ccec469cf6e72d74c7d0bd4b8d98d">named_key</a> &amp;&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -123,23 +123,11 @@ Public Member Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/d14/lightweight__container_8h_source.html#l00049">49</a> of file <a class="el" href="../../d7/d14/lightweight__container_8h_source.html">lightweight_container.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   49</span>                                                         {</div>
-<div class="line"><span class="lineno">   50</span>            <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">h1</a> = std::hash&lt;std::type_index&gt;{}(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">key</a>.first);</div>
-<div class="line"><span class="lineno">   51</span>            <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">h2</a> = std::hash&lt;std::string&gt;{}(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">key</a>.second);</div>
-<div class="line"><span class="lineno">   52</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">h1</a> ^ (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">h2</a> &lt;&lt; 1);</div>
+<div class="line"><span class="lineno">   50</span>            <span class="keyword">auto</span> h1 = std::hash&lt;std::type_index&gt;{}(key.first);</div>
+<div class="line"><span class="lineno">   51</span>            <span class="keyword">auto</span> h2 = std::hash&lt;std::string&gt;{}(key.second);</div>
+<div class="line"><span class="lineno">   52</span>            <span class="keywordflow">return</span> h1 ^ (h2 &lt;&lt; 1);</div>
 <div class="line"><span class="lineno">   53</span>        }</div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00248">result_types.h:248</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/d35/structmonitoring__system_1_1lightweight__container_1_1named__key__hash_a72c1868b8ee542dea90317148cc38ed1_cgraph.png" border="0" usemap="#ad4/d35/structmonitoring__system_1_1lightweight__container_1_1named__key__hash_a72c1868b8ee542dea90317148cc38ed1_cgraph" alt=""/></div>
-<map name="ad4/d35/structmonitoring__system_1_1lightweight__container_1_1named__key__hash_a72c1868b8ee542dea90317148cc38ed1_cgraph" id="ad4/d35/structmonitoring__system_1_1lightweight__container_1_1named__key__hash_a72c1868b8ee542dea90317148cc38ed1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,22,221,77"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="269,29,425,69"/>
-<area shape="poly" title=" " alt="" coords="222,47,256,47,256,52,222,52"/>
-<area shape="poly" title=" " alt="" coords="304,30,301,20,308,10,324,5,347,3,374,6,389,13,387,18,373,11,347,8,325,10,312,15,307,21,309,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
@@ -148,7 +136,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 12:10:15 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 14:18:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

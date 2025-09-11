@@ -244,12 +244,12 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00315">315</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  315</span>                                                  {</div>
 <div class="line"><span class="lineno">  316</span>    <span class="comment">// Create test implementation</span></div>
-<div class="line"><span class="lineno">  317</span>    <span class="keyword">class </span><a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">test_context_aware</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d3/d12/classmonitoring__system_1_1context__aware__monitoring.html">context_aware_monitoring</a> {</div>
+<div class="line"><span class="lineno">  317</span>    <span class="keyword">class </span>test_context_aware : <span class="keyword">public</span> <a class="code hl_class" href="../../d3/d12/classmonitoring__system_1_1context__aware__monitoring.html">context_aware_monitoring</a> {</div>
 <div class="line"><span class="lineno">  318</span>    <span class="keyword">public</span>:</div>
 <div class="line"><span class="lineno">  319</span>        <span class="comment">// Use default implementation</span></div>
 <div class="line"><span class="lineno">  320</span>    };</div>
 <div class="line"><span class="lineno">  321</span>    </div>
-<div class="line"><span class="lineno">  322</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">test_context_aware</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">aware</a>;</div>
+<div class="line"><span class="lineno">  322</span>    test_context_aware aware;</div>
 <div class="line"><span class="lineno">  323</span>    </div>
 <div class="line"><span class="lineno">  324</span>    <span class="comment">// Create context</span></div>
 <div class="line"><span class="lineno">  325</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(<span class="stringliteral">&quot;enrich-request&quot;</span>);</div>
@@ -259,45 +259,44 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  329</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff">add_tag</a>(<span class="stringliteral">&quot;custom2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
 <div class="line"><span class="lineno">  330</span>    </div>
 <div class="line"><span class="lineno">  331</span>    <span class="comment">// Create monitoring data</span></div>
-<div class="line"><span class="lineno">  332</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>(<span class="stringliteral">&quot;test-component&quot;</span>);</div>
-<div class="line"><span class="lineno">  333</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.add_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 100.0);</div>
+<div class="line"><span class="lineno">  332</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test-component&quot;</span>);</div>
+<div class="line"><span class="lineno">  333</span>    data.add_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 100.0);</div>
 <div class="line"><span class="lineno">  334</span>    </div>
 <div class="line"><span class="lineno">  335</span>    <span class="comment">// Enrich with context</span></div>
-<div class="line"><span class="lineno">  336</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">aware</a>.enrich_with_context(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>);</div>
-<div class="line"><span class="lineno">  337</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  336</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = aware.enrich_with_context(data);</div>
+<div class="line"><span class="lineno">  337</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  338</span>    </div>
 <div class="line"><span class="lineno">  339</span>    <span class="comment">// Verify context was added as tags</span></div>
-<div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">req_id</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.get_tag(<span class="stringliteral">&quot;request_id&quot;</span>);</div>
-<div class="line"><span class="lineno">  341</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">req_id</a>.has_value());</div>
-<div class="line"><span class="lineno">  342</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">req_id</a>.value(), <span class="stringliteral">&quot;enrich-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> req_id = data.get_tag(<span class="stringliteral">&quot;request_id&quot;</span>);</div>
+<div class="line"><span class="lineno">  341</span>    ASSERT_TRUE(req_id.has_value());</div>
+<div class="line"><span class="lineno">  342</span>    EXPECT_EQ(req_id.value(), <span class="stringliteral">&quot;enrich-request&quot;</span>);</div>
 <div class="line"><span class="lineno">  343</span>    </div>
-<div class="line"><span class="lineno">  344</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.get_tag(<span class="stringliteral">&quot;correlation_id&quot;</span>);</div>
-<div class="line"><span class="lineno">  345</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id</a>.has_value());</div>
-<div class="line"><span class="lineno">  346</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id</a>.value(), <span class="stringliteral">&quot;enrich-corr&quot;</span>);</div>
+<div class="line"><span class="lineno">  344</span>    <span class="keyword">auto</span> corr_id = data.get_tag(<span class="stringliteral">&quot;correlation_id&quot;</span>);</div>
+<div class="line"><span class="lineno">  345</span>    ASSERT_TRUE(corr_id.has_value());</div>
+<div class="line"><span class="lineno">  346</span>    EXPECT_EQ(corr_id.value(), <span class="stringliteral">&quot;enrich-corr&quot;</span>);</div>
 <div class="line"><span class="lineno">  347</span>    </div>
-<div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> user_id = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.get_tag(<span class="stringliteral">&quot;user_id&quot;</span>);</div>
-<div class="line"><span class="lineno">  349</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(user_id.has_value());</div>
-<div class="line"><span class="lineno">  350</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(user_id.value(), <span class="stringliteral">&quot;enrich-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> user_id = data.get_tag(<span class="stringliteral">&quot;user_id&quot;</span>);</div>
+<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(user_id.has_value());</div>
+<div class="line"><span class="lineno">  350</span>    EXPECT_EQ(user_id.value(), <span class="stringliteral">&quot;enrich-user&quot;</span>);</div>
 <div class="line"><span class="lineno">  351</span>    </div>
 <div class="line"><span class="lineno">  352</span>    <span class="comment">// Custom tags should have &quot;ctx.&quot; prefix</span></div>
-<div class="line"><span class="lineno">  353</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">custom1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.get_tag(<span class="stringliteral">&quot;ctx.custom1&quot;</span>);</div>
-<div class="line"><span class="lineno">  354</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">custom1</a>.has_value());</div>
-<div class="line"><span class="lineno">  355</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">custom1</a>.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  353</span>    <span class="keyword">auto</span> custom1 = data.get_tag(<span class="stringliteral">&quot;ctx.custom1&quot;</span>);</div>
+<div class="line"><span class="lineno">  354</span>    ASSERT_TRUE(custom1.has_value());</div>
+<div class="line"><span class="lineno">  355</span>    EXPECT_EQ(custom1.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">  356</span>    </div>
-<div class="line"><span class="lineno">  357</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">custom2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.get_tag(<span class="stringliteral">&quot;ctx.custom2&quot;</span>);</div>
-<div class="line"><span class="lineno">  358</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">custom2</a>.has_value());</div>
-<div class="line"><span class="lineno">  359</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">custom2</a>.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
+<div class="line"><span class="lineno">  357</span>    <span class="keyword">auto</span> custom2 = data.get_tag(<span class="stringliteral">&quot;ctx.custom2&quot;</span>);</div>
+<div class="line"><span class="lineno">  358</span>    ASSERT_TRUE(custom2.has_value());</div>
+<div class="line"><span class="lineno">  359</span>    EXPECT_EQ(custom2.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
 <div class="line"><span class="lineno">  360</span>    </div>
 <div class="line"><span class="lineno">  361</span>    <span class="comment">// Original metric should remain</span></div>
-<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">data</a>.get_metric(<span class="stringliteral">&quot;metric1&quot;</span>);</div>
-<div class="line"><span class="lineno">  363</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.has_value());</div>
-<div class="line"><span class="lineno">  364</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_DOUBLE_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.value(), 100.0);</div>
+<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> metric = data.get_metric(<span class="stringliteral">&quot;metric1&quot;</span>);</div>
+<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(metric.has_value());</div>
+<div class="line"><span class="lineno">  364</span>    EXPECT_DOUBLE_EQ(metric.value(), 100.0);</div>
 <div class="line"><span class="lineno">  365</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__aware__monitoring_html"><div class="ttname"><a href="../../d3/d12/classmonitoring__system_1_1context__aware__monitoring.html">monitoring_system::context_aware_monitoring</a></div><div class="ttdoc">Interface for monitoring components that use thread context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00381">thread_context.h:381</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a68216cb9ca2a789155dbc568858a041d"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">monitoring_system::thread_context::current</a></div><div class="ttdeci">static context_metadata * current()</div><div class="ttdoc">Get the current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00150">thread_context.h:150</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_ab4cb8757a9825e44f51c204c05b94c45"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">monitoring_system::thread_context::create</a></div><div class="ttdeci">static context_metadata &amp; create(const std::string &amp;request_id=&quot;&quot;)</div><div class="ttdoc">Create and set a new context for the current thread.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00167">thread_context.h:167</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00248">result_types.h:248</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html_a2b9e9c1a2ffefce816a5863452eacaff"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff">monitoring_system::context_metadata::add_tag</a></div><div class="ttdeci">void add_tag(const std::string &amp;key, const std::string &amp;value)</div><div class="ttdoc">Add a custom tag.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00068">thread_context.h:68</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html_a33a44cf963bcdfaa546270ca929a2beb"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a33a44cf963bcdfaa546270ca929a2beb">monitoring_system::context_metadata::user_id</a></div><div class="ttdeci">std::string user_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00042">thread_context.h:42</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html_a404a8d244ca7459d64ab606ac36ce39e"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a404a8d244ca7459d64ab606ac36ce39e">monitoring_system::context_metadata::correlation_id</a></div><div class="ttdeci">std::string correlation_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00041">thread_context.h:41</a></div></div>
@@ -307,20 +306,21 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a74322c882b8a0b19859c4749717f404a_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a74322c882b8a0b19859c4749717f404a_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a74322c882b8a0b19859c4749717f404a_cgraph" id="ad4/ddd/test__thread__context_8cpp_a74322c882b8a0b19859c4749717f404a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,99,75,125"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="345,5,547,45"/>
-<area shape="poly" title=" " alt="" coords="57,97,86,78,122,61,174,47,228,36,331,25,332,30,229,41,175,52,124,67,89,83,60,101"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="595,63,751,103"/>
-<area shape="poly" title=" " alt="" coords="75,108,123,105,581,84,581,89,123,111,75,113"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="125,120,295,160"/>
-<area shape="poly" title=" " alt="" coords="75,115,112,121,111,126,74,120"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,184,297,224"/>
-<area shape="poly" title=" " alt="" coords="58,123,87,146,124,170,137,176,134,181,121,174,84,150,54,127"/>
-<area shape="poly" title=" " alt="" coords="526,43,582,57,581,62,525,48"/>
-<area shape="poly" title=" " alt="" coords="630,63,628,53,635,44,650,38,673,36,699,39,714,46,711,51,698,44,673,41,651,43,638,48,633,54,635,62"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="353,121,539,175"/>
-<area shape="poly" title=" " alt="" coords="295,140,339,142,339,147,295,146"/>
-<area shape="poly" title=" " alt="" coords="539,118,589,104,591,109,540,124"/>
+<area shape="rect" title=" " alt="" coords="5,188,75,213"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="143,5,304,60"/>
+<area shape="poly" title=" " alt="" coords="44,187,71,132,93,99,121,71,129,64,133,69,124,75,98,103,76,134,49,189"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="123,85,324,125"/>
+<area shape="poly" title=" " alt="" coords="53,186,83,160,121,134,135,128,138,132,124,139,86,164,56,190"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="139,149,308,189"/>
+<area shape="poly" title=" " alt="" coords="74,192,125,183,126,188,75,197"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="136,213,311,253"/>
+<area shape="poly" title=" " alt="" coords="75,204,123,212,122,218,74,209"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acb06d773222a0d1b569074bbf2fbd930" title="Get a metric value." alt="" coords="144,277,303,332"/>
+<area shape="poly" title=" " alt="" coords="57,212,87,237,124,262,136,269,134,274,121,267,84,241,54,216"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a5223476d68d251bd6daaa4c713c71ca4" title="Get a tag value." alt="" coords="130,357,317,397"/>
+<area shape="poly" title=" " alt="" coords="48,212,73,274,95,310,124,341,133,348,130,352,121,345,91,313,68,276,43,214"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="372,141,559,196"/>
+<area shape="poly" title=" " alt="" coords="308,166,358,166,358,171,308,171"/>
 </map>
 </div>
 
@@ -358,10 +358,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   42</span>    <a class="code hl_struct" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> metadata(<span class="stringliteral">&quot;req-123&quot;</span>);</div>
 <div class="line"><span class="lineno">   43</span>    </div>
 <div class="line"><span class="lineno">   44</span>    <span class="comment">// Check initial state</span></div>
-<div class="line"><span class="lineno">   45</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(metadata.request_id, <span class="stringliteral">&quot;req-123&quot;</span>);</div>
-<div class="line"><span class="lineno">   46</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(metadata.correlation_id.empty());</div>
-<div class="line"><span class="lineno">   47</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(metadata.user_id.empty());</div>
-<div class="line"><span class="lineno">   48</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(metadata.empty());</div>
+<div class="line"><span class="lineno">   45</span>    EXPECT_EQ(metadata.request_id, <span class="stringliteral">&quot;req-123&quot;</span>);</div>
+<div class="line"><span class="lineno">   46</span>    EXPECT_TRUE(metadata.correlation_id.empty());</div>
+<div class="line"><span class="lineno">   47</span>    EXPECT_TRUE(metadata.user_id.empty());</div>
+<div class="line"><span class="lineno">   48</span>    EXPECT_FALSE(metadata.empty());</div>
 <div class="line"><span class="lineno">   49</span>    </div>
 <div class="line"><span class="lineno">   50</span>    <span class="comment">// Set fields</span></div>
 <div class="line"><span class="lineno">   51</span>    metadata.correlation_id = <span class="stringliteral">&quot;corr-456&quot;</span>;</div>
@@ -375,22 +375,22 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   59</span>    metadata.add_tag(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
 <div class="line"><span class="lineno">   60</span>    </div>
 <div class="line"><span class="lineno">   61</span>    <span class="comment">// Verify tags</span></div>
-<div class="line"><span class="lineno">   62</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">env</a> = metadata.get_tag(<span class="stringliteral">&quot;environment&quot;</span>);</div>
-<div class="line"><span class="lineno">   63</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">env</a>.has_value());</div>
-<div class="line"><span class="lineno">   64</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">env</a>.value(), <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keyword">auto</span> env = metadata.get_tag(<span class="stringliteral">&quot;environment&quot;</span>);</div>
+<div class="line"><span class="lineno">   63</span>    ASSERT_TRUE(env.has_value());</div>
+<div class="line"><span class="lineno">   64</span>    EXPECT_EQ(env.value(), <span class="stringliteral">&quot;production&quot;</span>);</div>
 <div class="line"><span class="lineno">   65</span>    </div>
-<div class="line"><span class="lineno">   66</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ver</a> = metadata.get_tag(<span class="stringliteral">&quot;version&quot;</span>);</div>
-<div class="line"><span class="lineno">   67</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ver</a>.has_value());</div>
-<div class="line"><span class="lineno">   68</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ver</a>.value(), <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
+<div class="line"><span class="lineno">   66</span>    <span class="keyword">auto</span> ver = metadata.get_tag(<span class="stringliteral">&quot;version&quot;</span>);</div>
+<div class="line"><span class="lineno">   67</span>    ASSERT_TRUE(ver.has_value());</div>
+<div class="line"><span class="lineno">   68</span>    EXPECT_EQ(ver.value(), <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
 <div class="line"><span class="lineno">   69</span>    </div>
-<div class="line"><span class="lineno">   70</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">missing</a> = metadata.get_tag(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
-<div class="line"><span class="lineno">   71</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">missing</a>.has_value());</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keyword">auto</span> missing = metadata.get_tag(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
+<div class="line"><span class="lineno">   71</span>    EXPECT_FALSE(missing.has_value());</div>
 <div class="line"><span class="lineno">   72</span>    </div>
 <div class="line"><span class="lineno">   73</span>    <span class="comment">// Clear and verify</span></div>
 <div class="line"><span class="lineno">   74</span>    metadata.clear();</div>
-<div class="line"><span class="lineno">   75</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(metadata.empty());</div>
-<div class="line"><span class="lineno">   76</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(metadata.request_id.empty());</div>
-<div class="line"><span class="lineno">   77</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(metadata.custom_tags.empty());</div>
+<div class="line"><span class="lineno">   75</span>    EXPECT_TRUE(metadata.empty());</div>
+<div class="line"><span class="lineno">   76</span>    EXPECT_TRUE(metadata.request_id.empty());</div>
+<div class="line"><span class="lineno">   77</span>    EXPECT_TRUE(metadata.custom_tags.empty());</div>
 <div class="line"><span class="lineno">   78</span>}</div>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">monitoring_system::context_metadata</a></div><div class="ttdoc">Metadata that can be attached to thread contexts.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00039">thread_context.h:39</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -398,20 +398,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a3d59d38a9a179fd434b78f0f0f669da8_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a3d59d38a9a179fd434b78f0f0f669da8_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a3d59d38a9a179fd434b78f0f0f669da8_cgraph" id="ad4/ddd/test__thread__context_8cpp_a3d59d38a9a179fd434b78f0f0f669da8_cgraph">
-<area shape="rect" title=" " alt="" coords="5,127,75,153"/>
+<area shape="rect" title=" " alt="" coords="5,109,75,134"/>
 <area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="123,5,324,45"/>
-<area shape="poly" title=" " alt="" coords="50,125,80,94,121,62,146,48,149,53,124,66,84,98,54,129"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="372,63,528,103"/>
-<area shape="poly" title=" " alt="" coords="67,125,122,105,183,94,245,86,358,80,358,85,245,92,184,99,123,111,69,130"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a85c77ef1e204f2a2e25cbd73a2cfb511" title="Clear all metadata." alt="" coords="133,120,314,160"/>
-<area shape="poly" title=" " alt="" coords="75,137,119,137,119,143,75,143"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#ac3398d6de35f16066916afd546814b16" title="Check if metadata is empty." alt="" coords="128,184,319,224"/>
-<area shape="poly" title=" " alt="" coords="73,150,124,169,146,177,144,182,122,175,71,155"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="124,248,323,288"/>
-<area shape="poly" title=" " alt="" coords="51,152,80,192,101,215,124,234,134,240,131,244,121,238,97,218,76,196,47,155"/>
-<area shape="poly" title=" " alt="" coords="304,43,359,57,358,62,302,48"/>
-<area shape="poly" title=" " alt="" coords="408,63,405,53,412,44,427,38,450,36,476,39,491,46,488,51,475,44,450,41,428,43,415,48,410,54,413,62"/>
-<area shape="poly" title=" " alt="" coords="301,246,323,234,356,206,385,175,428,113,433,116,389,178,359,210,325,238,303,250"/>
+<area shape="poly" title=" " alt="" coords="53,106,83,81,121,55,135,48,138,53,124,60,86,85,56,110"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a85c77ef1e204f2a2e25cbd73a2cfb511" title="Clear all metadata." alt="" coords="133,69,314,109"/>
+<area shape="poly" title=" " alt="" coords="74,113,119,105,120,110,75,118"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#ac3398d6de35f16066916afd546814b16" title="Check if metadata is empty." alt="" coords="128,133,319,173"/>
+<area shape="poly" title=" " alt="" coords="75,125,115,132,114,137,74,130"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="124,197,323,237"/>
+<area shape="poly" title=" " alt="" coords="56,132,86,158,124,183,138,190,135,194,121,188,83,162,53,136"/>
 </map>
 </div>
 
@@ -446,51 +441,54 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   83</span>                                                {</div>
-<div class="line"><span class="lineno">   84</span>    <a class="code hl_struct" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>(<span class="stringliteral">&quot;req-1&quot;</span>);</div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.user_id = <span class="stringliteral">&quot;user-1&quot;</span>;</div>
-<div class="line"><span class="lineno">   86</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">   84</span>    <a class="code hl_struct" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> metadata1(<span class="stringliteral">&quot;req-1&quot;</span>);</div>
+<div class="line"><span class="lineno">   85</span>    metadata1.user_id = <span class="stringliteral">&quot;user-1&quot;</span>;</div>
+<div class="line"><span class="lineno">   86</span>    metadata1.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">   87</span>    </div>
-<div class="line"><span class="lineno">   88</span>    <a class="code hl_struct" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata2</a>(<span class="stringliteral">&quot;req-2&quot;</span>);</div>
-<div class="line"><span class="lineno">   89</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata2</a>.correlation_id = <span class="stringliteral">&quot;corr-2&quot;</span>;</div>
-<div class="line"><span class="lineno">   90</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata2</a>.user_id = <span class="stringliteral">&quot;user-2&quot;</span>;</div>
-<div class="line"><span class="lineno">   91</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata2</a>.add_tag(<span class="stringliteral">&quot;tag2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
+<div class="line"><span class="lineno">   88</span>    <a class="code hl_struct" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> metadata2(<span class="stringliteral">&quot;req-2&quot;</span>);</div>
+<div class="line"><span class="lineno">   89</span>    metadata2.correlation_id = <span class="stringliteral">&quot;corr-2&quot;</span>;</div>
+<div class="line"><span class="lineno">   90</span>    metadata2.user_id = <span class="stringliteral">&quot;user-2&quot;</span>;</div>
+<div class="line"><span class="lineno">   91</span>    metadata2.add_tag(<span class="stringliteral">&quot;tag2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
 <div class="line"><span class="lineno">   92</span>    </div>
 <div class="line"><span class="lineno">   93</span>    <span class="comment">// Merge without overwrite</span></div>
-<div class="line"><span class="lineno">   94</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.merge(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata2</a>, <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   94</span>    metadata1.merge(metadata2, <span class="keyword">false</span>);</div>
 <div class="line"><span class="lineno">   95</span>    </div>
 <div class="line"><span class="lineno">   96</span>    <span class="comment">// Should keep original values when not overwriting</span></div>
-<div class="line"><span class="lineno">   97</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.request_id, <span class="stringliteral">&quot;req-1&quot;</span>);</div>
-<div class="line"><span class="lineno">   98</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.user_id, <span class="stringliteral">&quot;user-1&quot;</span>);</div>
+<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(metadata1.request_id, <span class="stringliteral">&quot;req-1&quot;</span>);</div>
+<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(metadata1.user_id, <span class="stringliteral">&quot;user-1&quot;</span>);</div>
 <div class="line"><span class="lineno">   99</span>    </div>
 <div class="line"><span class="lineno">  100</span>    <span class="comment">// Should add missing values</span></div>
-<div class="line"><span class="lineno">  101</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.correlation_id, <span class="stringliteral">&quot;corr-2&quot;</span>);</div>
+<div class="line"><span class="lineno">  101</span>    EXPECT_EQ(metadata1.correlation_id, <span class="stringliteral">&quot;corr-2&quot;</span>);</div>
 <div class="line"><span class="lineno">  102</span>    </div>
 <div class="line"><span class="lineno">  103</span>    <span class="comment">// Should add new tags</span></div>
-<div class="line"><span class="lineno">  104</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.get_tag(<span class="stringliteral">&quot;tag2&quot;</span>);</div>
-<div class="line"><span class="lineno">  105</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag2</a>.has_value());</div>
-<div class="line"><span class="lineno">  106</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag2</a>.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
+<div class="line"><span class="lineno">  104</span>    <span class="keyword">auto</span> tag2 = metadata1.get_tag(<span class="stringliteral">&quot;tag2&quot;</span>);</div>
+<div class="line"><span class="lineno">  105</span>    ASSERT_TRUE(tag2.has_value());</div>
+<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(tag2.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
 <div class="line"><span class="lineno">  107</span>    </div>
 <div class="line"><span class="lineno">  108</span>    <span class="comment">// Original tag should remain</span></div>
-<div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
-<div class="line"><span class="lineno">  110</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag1</a>.has_value());</div>
-<div class="line"><span class="lineno">  111</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag1</a>.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> tag1 = metadata1.get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
+<div class="line"><span class="lineno">  110</span>    ASSERT_TRUE(tag1.has_value());</div>
+<div class="line"><span class="lineno">  111</span>    EXPECT_EQ(tag1.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">  112</span>    </div>
 <div class="line"><span class="lineno">  113</span>    <span class="comment">// Merge with overwrite</span></div>
-<div class="line"><span class="lineno">  114</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.merge(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata2</a>, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  114</span>    metadata1.merge(metadata2, <span class="keyword">true</span>);</div>
 <div class="line"><span class="lineno">  115</span>    </div>
 <div class="line"><span class="lineno">  116</span>    <span class="comment">// Should overwrite existing values</span></div>
-<div class="line"><span class="lineno">  117</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.request_id, <span class="stringliteral">&quot;req-2&quot;</span>);</div>
-<div class="line"><span class="lineno">  118</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metadata1</a>.user_id, <span class="stringliteral">&quot;user-2&quot;</span>);</div>
+<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(metadata1.request_id, <span class="stringliteral">&quot;req-2&quot;</span>);</div>
+<div class="line"><span class="lineno">  118</span>    EXPECT_EQ(metadata1.user_id, <span class="stringliteral">&quot;user-2&quot;</span>);</div>
 <div class="line"><span class="lineno">  119</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a5c82ca89bb444cc26e5ccdfe39462845_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a5c82ca89bb444cc26e5ccdfe39462845_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a5c82ca89bb444cc26e5ccdfe39462845_cgraph" id="ad4/ddd/test__thread__context_8cpp_a5c82ca89bb444cc26e5ccdfe39462845_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="123,29,279,69"/>
-<area shape="poly" title=" " alt="" coords="75,47,109,47,109,52,75,52"/>
-<area shape="poly" title=" " alt="" coords="170,29,168,20,173,11,184,5,201,3,220,6,230,13,227,17,218,11,201,8,186,10,177,14,173,21,175,28"/>
+<area shape="rect" title=" " alt="" coords="5,77,75,102"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="123,5,324,45"/>
+<area shape="poly" title=" " alt="" coords="71,74,122,55,144,47,146,52,124,60,73,79"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="124,69,323,109"/>
+<area shape="poly" title=" " alt="" coords="75,87,110,87,110,92,75,92"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a1e6125b29c210c9b3c263ebfe2a76971" title="Merge another metadata into this one." alt="" coords="128,133,319,173"/>
+<area shape="poly" title=" " alt="" coords="73,100,124,119,146,127,144,132,122,124,71,105"/>
 </map>
 </div>
 
@@ -526,45 +524,45 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00370">370</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  370</span>                                                   {</div>
 <div class="line"><span class="lineno">  371</span>    <span class="comment">// Create test collector</span></div>
-<div class="line"><span class="lineno">  372</span>    <span class="keyword">class </span><a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">test_collector</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">context_metrics_collector</a> {</div>
+<div class="line"><span class="lineno">  372</span>    <span class="keyword">class </span>test_collector : <span class="keyword">public</span> <a class="code hl_class" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">context_metrics_collector</a> {</div>
 <div class="line"><span class="lineno">  373</span>    <span class="keyword">public</span>:</div>
-<div class="line"><span class="lineno">  374</span>        <span class="keyword">explicit</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">test_collector</a>(<span class="keyword">const</span> std::string&amp; name)</div>
+<div class="line"><span class="lineno">  374</span>        <span class="keyword">explicit</span> test_collector(<span class="keyword">const</span> std::string&amp; name)</div>
 <div class="line"><span class="lineno">  375</span>            : <a class="code hl_class" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">context_metrics_collector</a>(name) {}</div>
 <div class="line"><span class="lineno">  376</span>        </div>
 <div class="line"><span class="lineno">  377</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;metrics_snapshot&gt;</a> <a class="code hl_function" href="../../da/d9b/classmonitoring__system_1_1metrics__collector.html#a18b34ca3347667d35ec15c385535f4ba">collect</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><span class="lineno">  378</span>            <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a> = <a class="code hl_function" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f">create_snapshot_with_context</a>();</div>
-<div class="line"><span class="lineno">  379</span>            <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><span class="lineno">  380</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(std::move(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot</a>));</div>
+<div class="line"><span class="lineno">  378</span>            <span class="keyword">auto</span> snapshot = <a class="code hl_function" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f">create_snapshot_with_context</a>();</div>
+<div class="line"><span class="lineno">  379</span>            snapshot.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
+<div class="line"><span class="lineno">  380</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(std::move(snapshot));</div>
 <div class="line"><span class="lineno">  381</span>        }</div>
 <div class="line"><span class="lineno">  382</span>    };</div>
 <div class="line"><span class="lineno">  383</span>    </div>
-<div class="line"><span class="lineno">  384</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">test_collector</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">collector</a>(<span class="stringliteral">&quot;test-collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  384</span>    test_collector collector(<span class="stringliteral">&quot;test-collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  385</span>    </div>
 <div class="line"><span class="lineno">  386</span>    <span class="comment">// Set thread context</span></div>
 <div class="line"><span class="lineno">  387</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(<span class="stringliteral">&quot;collector-request&quot;</span>);</div>
 <div class="line"><span class="lineno">  388</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_variable" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a33a44cf963bcdfaa546270ca929a2beb">user_id</a> = <span class="stringliteral">&quot;collector-user&quot;</span>;</div>
 <div class="line"><span class="lineno">  389</span>    </div>
 <div class="line"><span class="lineno">  390</span>    <span class="comment">// Collect with context awareness enabled</span></div>
-<div class="line"><span class="lineno">  391</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">collector</a>.set_context_aware(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  392</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">collector</a>.collect();</div>
-<div class="line"><span class="lineno">  393</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>);</div>
+<div class="line"><span class="lineno">  391</span>    collector.set_context_aware(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  392</span>    <span class="keyword">auto</span> result1 = collector.collect();</div>
+<div class="line"><span class="lineno">  393</span>    ASSERT_TRUE(result1);</div>
 <div class="line"><span class="lineno">  394</span>    </div>
-<div class="line"><span class="lineno">  395</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot1</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result1</a>.value();</div>
-<div class="line"><span class="lineno">  396</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot1</a>.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  395</span>    <span class="keyword">auto</span> snapshot1 = result1.value();</div>
+<div class="line"><span class="lineno">  396</span>    EXPECT_EQ(snapshot1.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  397</span>    </div>
 <div class="line"><span class="lineno">  398</span>    <span class="comment">// Verify metric</span></div>
-<div class="line"><span class="lineno">  399</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot1</a>.get_metric(<span class="stringliteral">&quot;test_metric&quot;</span>);</div>
-<div class="line"><span class="lineno">  400</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.has_value());</div>
-<div class="line"><span class="lineno">  401</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_DOUBLE_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">metric</a>.value(), 42.0);</div>
+<div class="line"><span class="lineno">  399</span>    <span class="keyword">auto</span> metric = snapshot1.get_metric(<span class="stringliteral">&quot;test_metric&quot;</span>);</div>
+<div class="line"><span class="lineno">  400</span>    ASSERT_TRUE(metric.has_value());</div>
+<div class="line"><span class="lineno">  401</span>    EXPECT_DOUBLE_EQ(metric.value(), 42.0);</div>
 <div class="line"><span class="lineno">  402</span>    </div>
 <div class="line"><span class="lineno">  403</span>    <span class="comment">// Collect with context awareness disabled</span></div>
-<div class="line"><span class="lineno">  404</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">collector</a>.set_context_aware(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">collector</a>.collect();</div>
-<div class="line"><span class="lineno">  406</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>);</div>
+<div class="line"><span class="lineno">  404</span>    collector.set_context_aware(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> result2 = collector.collect();</div>
+<div class="line"><span class="lineno">  406</span>    ASSERT_TRUE(result2);</div>
 <div class="line"><span class="lineno">  407</span>    </div>
 <div class="line"><span class="lineno">  408</span>    <span class="comment">// Should still work but without context</span></div>
-<div class="line"><span class="lineno">  409</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot2</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">result2</a>.value();</div>
-<div class="line"><span class="lineno">  410</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">snapshot2</a>.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  409</span>    <span class="keyword">auto</span> snapshot2 = result2.value();</div>
+<div class="line"><span class="lineno">  410</span>    EXPECT_EQ(snapshot2.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  411</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__metrics__collector_html"><div class="ttname"><a href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">monitoring_system::context_metrics_collector</a></div><div class="ttdoc">Collector that automatically includes thread context in metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00446">thread_context.h:447</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__metrics__collector_html_ac37ed2a997f51ab395af52f01f33237f"><div class="ttname"><a href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f">monitoring_system::context_metrics_collector::create_snapshot_with_context</a></div><div class="ttdeci">metrics_snapshot create_snapshot_with_context(const std::string &amp;source_id=&quot;&quot;)</div><div class="ttdoc">Helper to create snapshot with context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00525">thread_context.h:525</a></div></div>
@@ -575,35 +573,33 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph" id="ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,193,75,218"/>
+<area shape="rect" title=" " alt="" coords="5,134,75,159"/>
 <area shape="rect" href="../../da/d9b/classmonitoring__system_1_1metrics__collector.html#a18b34ca3347667d35ec15c385535f4ba" title="Collect metrics." alt="" coords="144,5,329,45"/>
-<area shape="poly" title=" " alt="" coords="42,192,51,163,67,127,90,88,121,55,130,49,133,53,124,59,94,91,72,129,56,165,47,193"/>
+<area shape="poly" title=" " alt="" coords="48,132,77,94,98,73,121,55,133,49,136,53,124,60,101,77,81,97,52,135"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="152,69,321,109"/>
-<area shape="poly" title=" " alt="" coords="50,191,80,159,121,126,148,112,150,117,124,130,83,163,54,194"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="652,152,808,192"/>
-<area shape="poly" title=" " alt="" coords="75,201,399,185,639,174,639,179,399,191,75,206"/>
-<area shape="rect" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f" title="Helper to create snapshot with context." alt="" coords="123,235,351,290"/>
-<area shape="poly" title=" " alt="" coords="75,213,130,229,129,234,74,218"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="643,387,817,427"/>
-<area shape="poly" title=" " alt="" coords="51,217,81,258,101,280,124,301,194,348,253,377,316,397,399,415,458,423,518,425,629,419,629,424,518,430,457,428,398,420,315,402,251,382,191,352,121,305,97,284,77,261,47,220"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="159,495,315,535"/>
-<area shape="poly" title=" " alt="" coords="44,218,47,265,57,334,67,371,82,409,100,443,125,474,148,491,145,496,121,478,96,446,77,411,62,373,52,335,41,266,39,218"/>
+<area shape="poly" title=" " alt="" coords="74,134,154,111,155,116,75,139"/>
+<area shape="rect" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f" title="Helper to create snapshot with context." alt="" coords="123,210,351,265"/>
+<area shape="poly" title=" " alt="" coords="70,157,165,202,163,206,68,162"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="650,177,825,217"/>
+<area shape="poly" title=" " alt="" coords="75,146,636,187,636,193,75,152"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="159,289,315,329"/>
+<area shape="poly" title=" " alt="" coords="48,159,74,215,96,248,124,275,147,288,144,293,121,279,92,251,70,218,43,161"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="403,54,590,109"/>
 <area shape="poly" title=" " alt="" coords="321,84,389,82,389,87,322,89"/>
-<area shape="poly" title=" " alt="" coords="569,106,666,145,664,150,567,111"/>
-<area shape="poly" title=" " alt="" coords="689,152,686,142,693,133,708,127,730,125,756,128,770,136,768,140,754,133,730,131,709,133,696,137,691,143,694,151"/>
-<area shape="poly" title=" " alt="" coords="342,233,398,220,523,198,638,181,639,186,524,203,399,225,343,238"/>
-<area shape="poly" title=" " alt="" coords="267,288,325,337,361,360,400,379,457,395,517,405,575,410,629,410,629,416,575,415,516,411,456,401,398,384,358,365,322,341,264,293"/>
+<area shape="poly" title=" " alt="" coords="351,224,398,220,636,202,636,207,399,225,351,229"/>
 <area shape="rect" href="../../d3/d12/classmonitoring__system_1_1context__aware__monitoring.html#a081b31e6168699bdd93578c744317a23" title="Enrich monitoring data with thread context." alt="" coords="399,235,595,290"/>
-<area shape="poly" title=" " alt="" coords="351,260,385,260,385,265,351,265"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="419,314,575,369"/>
-<area shape="poly" title=" " alt="" coords="328,288,406,311,405,316,327,293"/>
-<area shape="poly" title=" " alt="" coords="567,233,664,194,666,199,569,238"/>
-<area shape="poly" title=" " alt="" coords="572,288,596,300,652,338,698,376,695,380,648,342,593,305,569,292"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="652,243,808,283"/>
-<area shape="poly" title=" " alt="" coords="595,260,638,260,638,265,595,265"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="865,243,1040,283"/>
-<area shape="poly" title=" " alt="" coords="808,260,851,260,851,265,808,265"/>
+<area shape="poly" title=" " alt="" coords="351,246,386,249,385,254,351,251"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a0d6d6e6ad29859bf07ed987a3a9883f7" title="Get all tags." alt="" coords="400,315,593,355"/>
+<area shape="poly" title=" " alt="" coords="321,262,352,275,400,300,418,307,416,312,398,305,350,280,319,267"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="419,379,575,434"/>
+<area shape="poly" title=" " alt="" coords="334,263,353,275,370,298,377,321,384,343,401,365,409,371,405,375,397,369,379,345,372,322,366,301,349,279,331,267"/>
+<area shape="poly" title=" " alt="" coords="594,234,649,218,651,223,596,239"/>
+<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="643,243,832,283"/>
+<area shape="poly" title=" " alt="" coords="595,260,629,260,629,265,595,265"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="659,307,815,347"/>
+<area shape="poly" title=" " alt="" coords="595,286,649,301,648,306,594,291"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="880,307,1055,347"/>
+<area shape="poly" title=" " alt="" coords="816,324,866,324,866,329,816,329"/>
 </map>
 </div>
 
@@ -644,29 +640,31 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  245</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff">add_tag</a>(<span class="stringliteral">&quot;source&quot;</span>, <span class="stringliteral">&quot;main&quot;</span>);</div>
 <div class="line"><span class="lineno">  246</span>    </div>
 <div class="line"><span class="lineno">  247</span>    <span class="comment">// Capture context</span></div>
-<div class="line"><span class="lineno">  248</span>    <a class="code hl_class" href="../../df/d48/classmonitoring__system_1_1context__propagator.html">context_propagator</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">propagator</a>;</div>
-<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">capture_result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">propagator</a>.<a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a7c44a16ed220bdc04babece935f7aea9">capture</a>();</div>
-<div class="line"><span class="lineno">  250</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">capture_result</a>);</div>
-<div class="line"><span class="lineno">  251</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">propagator</a>.has_captured());</div>
+<div class="line"><span class="lineno">  248</span>    <a class="code hl_class" href="../../df/d48/classmonitoring__system_1_1context__propagator.html">context_propagator</a> propagator;</div>
+<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> capture_result = propagator.<a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a7c44a16ed220bdc04babece935f7aea9">capture</a>();</div>
+<div class="line"><span class="lineno">  250</span>    ASSERT_TRUE(capture_result);</div>
+<div class="line"><span class="lineno">  251</span>    EXPECT_TRUE(propagator.<a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a12695c7b57e698a6c6109bb66cd20132">has_captured</a>());</div>
 <div class="line"><span class="lineno">  252</span>    </div>
 <div class="line"><span class="lineno">  253</span>    <span class="comment">// Clear main thread context</span></div>
 <div class="line"><span class="lineno">  254</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9">thread_context::clear</a>();</div>
-<div class="line"><span class="lineno">  255</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  255</span>    EXPECT_FALSE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
 <div class="line"><span class="lineno">  256</span>    </div>
 <div class="line"><span class="lineno">  257</span>    <span class="comment">// Apply in same thread</span></div>
-<div class="line"><span class="lineno">  258</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">apply_result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">propagator</a>.apply();</div>
-<div class="line"><span class="lineno">  259</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">apply_result</a>);</div>
+<div class="line"><span class="lineno">  258</span>    <span class="keyword">auto</span> apply_result = propagator.<a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#acc2080b2cac3b23227ac601b6553fd5a">apply</a>();</div>
+<div class="line"><span class="lineno">  259</span>    ASSERT_TRUE(apply_result);</div>
 <div class="line"><span class="lineno">  260</span>    </div>
 <div class="line"><span class="lineno">  261</span>    <span class="comment">// Should have restored context</span></div>
-<div class="line"><span class="lineno">  262</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
-<div class="line"><span class="lineno">  263</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;main-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  264</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;main-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;source&quot;</span>);</div>
-<div class="line"><span class="lineno">  266</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.has_value());</div>
-<div class="line"><span class="lineno">  267</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  262</span>    EXPECT_TRUE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;main-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  264</span>    EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;main-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> tag = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;source&quot;</span>);</div>
+<div class="line"><span class="lineno">  266</span>    ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  267</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
 <div class="line"><span class="lineno">  268</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html">monitoring_system::context_propagator</a></div><div class="ttdoc">Utility for propagating context across thread boundaries.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00301">thread_context.h:301</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html_a12695c7b57e698a6c6109bb66cd20132"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a12695c7b57e698a6c6109bb66cd20132">monitoring_system::context_propagator::has_captured</a></div><div class="ttdeci">bool has_captured() const</div><div class="ttdoc">Check if context has been captured.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00355">thread_context.h:355</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html_a7c44a16ed220bdc04babece935f7aea9"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a7c44a16ed220bdc04babece935f7aea9">monitoring_system::context_propagator::capture</a></div><div class="ttdeci">result_void capture()</div><div class="ttdoc">Capture current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00315">thread_context.h:315</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html_acc2080b2cac3b23227ac601b6553fd5a"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html#acc2080b2cac3b23227ac601b6553fd5a">monitoring_system::context_propagator::apply</a></div><div class="ttdeci">result_void apply() const</div><div class="ttdoc">Apply captured context to current thread.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00334">thread_context.h:334</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a2412c2edfa6ffe5c09400072c4d7fb43"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">monitoring_system::thread_context::has_context</a></div><div class="ttdeci">static bool has_context()</div><div class="ttdoc">Check if current thread has a context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00188">thread_context.h:188</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_acdb43e4cb4bdecbd1d9a75762e06d5b9"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9">monitoring_system::thread_context::clear</a></div><div class="ttdeci">static void clear()</div><div class="ttdoc">Clear the current thread's context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00180">thread_context.h:180</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html_a49712f586d4e101e1e5af841ff352ee2"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">monitoring_system::context_metadata::get_tag</a></div><div class="ttdeci">std::optional&lt; std::string &gt; get_tag(const std::string &amp;key) const</div><div class="ttdoc">Get a custom tag.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00077">thread_context.h:77</a></div></div>
@@ -675,36 +673,36 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_ad7dd0e2cbb1dbe00ad97397d952a4c56_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_ad7dd0e2cbb1dbe00ad97397d952a4c56_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_ad7dd0e2cbb1dbe00ad97397d952a4c56_cgraph" id="ad4/ddd/test__thread__context_8cpp_ad7dd0e2cbb1dbe00ad97397d952a4c56_cgraph">
-<area shape="rect" title=" " alt="" coords="5,263,75,288"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="369,186,571,226"/>
-<area shape="poly" title=" " alt="" coords="74,267,355,222,356,227,75,273"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="628,129,784,169"/>
-<area shape="poly" title=" " alt="" coords="59,260,87,243,122,226,186,204,252,187,386,163,511,150,614,146,615,151,512,156,387,168,253,192,187,209,124,231,90,247,61,265"/>
-<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a7c44a16ed220bdc04babece935f7aea9" title="Capture current thread&#39;s context." alt="" coords="143,280,301,335"/>
-<area shape="poly" title=" " alt="" coords="76,279,130,288,129,294,75,284"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="383,365,557,405"/>
-<area shape="poly" title=" " alt="" coords="53,286,83,317,102,333,124,345,185,366,249,379,311,385,369,387,369,392,311,391,248,384,183,371,122,350,99,337,79,321,49,290"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="392,429,548,484"/>
-<area shape="poly" title=" " alt="" coords="49,287,75,338,97,367,124,390,168,409,233,424,378,445,378,450,232,429,167,414,121,395,93,371,71,341,44,289"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9" title="Clear the current thread&#39;s context." alt="" coords="142,461,302,501"/>
-<area shape="poly" title=" " alt="" coords="47,287,55,318,71,359,93,402,125,440,140,452,137,456,121,444,89,405,66,361,50,320,42,289"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="137,13,307,53"/>
-<area shape="poly" title=" " alt="" coords="40,262,46,223,59,170,83,113,100,86,121,63,126,59,129,63,125,67,104,89,88,115,64,172,51,224,45,263"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="123,77,321,117"/>
-<area shape="poly" title=" " alt="" coords="43,262,69,201,92,165,121,133,138,121,141,125,124,137,96,168,74,204,48,264"/>
-<area shape="poly" title=" " alt="" coords="552,183,614,168,615,173,554,189"/>
-<area shape="poly" title=" " alt="" coords="662,129,660,119,667,110,682,104,706,102,733,105,748,112,746,117,732,110,706,107,683,109,670,114,665,120,667,128"/>
-<area shape="poly" title=" " alt="" coords="300,293,450,266,520,251,570,236,623,207,668,175,671,180,626,212,572,240,521,256,451,272,301,298"/>
-<area shape="poly" title=" " alt="" coords="302,329,393,358,391,363,300,334"/>
-<area shape="poly" title=" " alt="" coords="257,333,309,374,371,414,383,421,381,426,368,419,306,378,254,337"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="392,301,548,341"/>
-<area shape="poly" title=" " alt="" coords="301,309,379,313,378,318,301,314"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="619,301,793,341"/>
-<area shape="poly" title=" " alt="" coords="548,318,605,318,605,323,548,323"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="377,5,563,60"/>
-<area shape="poly" title=" " alt="" coords="307,30,363,30,363,35,307,35"/>
-<area shape="poly" title=" " alt="" coords="532,58,572,77,656,120,654,125,569,82,530,63"/>
-<area shape="poly" title=" " alt="" coords="322,102,571,127,615,133,614,138,570,133,321,108"/>
+<area shape="rect" title=" " alt="" coords="5,265,75,290"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="123,5,324,45"/>
+<area shape="poly" title=" " alt="" coords="40,264,45,224,58,168,82,108,99,80,121,55,126,51,129,55,125,59,104,83,87,111,63,170,50,225,45,265"/>
+<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#acc2080b2cac3b23227ac601b6553fd5a" title="Apply captured context to current thread." alt="" coords="127,69,320,109"/>
+<area shape="poly" title=" " alt="" coords="42,264,68,199,91,160,121,126,138,114,141,118,124,130,95,163,73,201,47,266"/>
+<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a7c44a16ed220bdc04babece935f7aea9" title="Capture current thread&#39;s context." alt="" coords="145,185,302,239"/>
+<area shape="poly" title=" " alt="" coords="74,263,132,242,134,247,76,268"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="383,135,558,175"/>
+<area shape="poly" title=" " alt="" coords="45,263,72,216,94,190,121,170,182,146,247,135,311,132,370,136,369,141,311,138,248,140,184,152,124,174,98,194,76,219,49,266"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="393,250,549,305"/>
+<area shape="poly" title=" " alt="" coords="75,275,379,275,379,280,75,280"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9" title="Clear the current thread&#39;s context." alt="" coords="143,315,303,355"/>
+<area shape="poly" title=" " alt="" coords="76,285,147,308,145,313,74,291"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="139,379,308,419"/>
+<area shape="poly" title=" " alt="" coords="52,289,81,326,101,347,124,364,134,370,132,375,121,369,98,351,77,330,48,292"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="124,443,323,483"/>
+<area shape="poly" title=" " alt="" coords="47,289,56,318,72,356,94,395,124,429,131,433,127,438,121,433,90,398,67,358,51,320,42,291"/>
+<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a12695c7b57e698a6c6109bb66cd20132" title="Check if context has been captured." alt="" coords="145,507,302,562"/>
+<area shape="poly" title=" " alt="" coords="45,290,51,329,65,383,88,441,105,469,125,493,135,502,131,506,121,497,100,472,84,444,60,385,46,330,40,291"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8" title="Copy context from another thread (for propagation)" alt="" coords="372,71,569,111"/>
+<area shape="poly" title=" " alt="" coords="320,87,358,87,358,93,320,93"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="617,132,773,172"/>
+<area shape="poly" title=" " alt="" coords="545,108,609,126,608,131,544,113"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="821,132,996,172"/>
+<area shape="poly" title=" " alt="" coords="774,149,808,149,808,155,774,155"/>
+<area shape="poly" title=" " alt="" coords="302,208,428,201,569,184,617,173,619,178,570,189,428,206,302,213"/>
+<area shape="poly" title=" " alt="" coords="301,191,370,175,371,180,303,196"/>
+<area shape="poly" title=" " alt="" coords="303,230,380,251,379,256,301,235"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="377,371,564,426"/>
+<area shape="poly" title=" " alt="" coords="308,396,364,396,364,401,308,401"/>
 </map>
 </div>
 
@@ -740,21 +738,21 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00194">194</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  194</span>                                        {</div>
 <div class="line"><span class="lineno">  195</span>    <span class="comment">// No initial context</span></div>
-<div class="line"><span class="lineno">  196</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  196</span>    EXPECT_FALSE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
 <div class="line"><span class="lineno">  197</span>    </div>
 <div class="line"><span class="lineno">  198</span>    {</div>
 <div class="line"><span class="lineno">  199</span>        <span class="comment">// Create scope with new context</span></div>
-<div class="line"><span class="lineno">  200</span>        <a class="code hl_class" href="../../d3/d82/classmonitoring__system_1_1context__scope.html">context_scope</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  200</span>        <a class="code hl_class" href="../../d3/d82/classmonitoring__system_1_1context__scope.html">context_scope</a> scope(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
 <div class="line"><span class="lineno">  201</span>        </div>
-<div class="line"><span class="lineno">  202</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
-<div class="line"><span class="lineno">  203</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  202</span>        EXPECT_TRUE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  203</span>        EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
 <div class="line"><span class="lineno">  204</span>        </div>
 <div class="line"><span class="lineno">  205</span>        <span class="comment">// Modify context within scope</span></div>
 <div class="line"><span class="lineno">  206</span>        <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_variable" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a33a44cf963bcdfaa546270ca929a2beb">user_id</a> = <span class="stringliteral">&quot;scoped-user&quot;</span>;</div>
 <div class="line"><span class="lineno">  207</span>    }</div>
 <div class="line"><span class="lineno">  208</span>    </div>
 <div class="line"><span class="lineno">  209</span>    <span class="comment">// Context should be cleared after scope</span></div>
-<div class="line"><span class="lineno">  210</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  210</span>    EXPECT_FALSE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
 <div class="line"><span class="lineno">  211</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__scope_html"><div class="ttname"><a href="../../d3/d82/classmonitoring__system_1_1context__scope.html">monitoring_system::context_scope</a></div><div class="ttdoc">RAII wrapper for managing thread context lifecycle.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00245">thread_context.h:245</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -762,14 +760,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_afe668e3baac2aceecb4efecf3c2137fe_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_afe668e3baac2aceecb4efecf3c2137fe_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_afe668e3baac2aceecb4efecf3c2137fe_cgraph" id="ad4/ddd/test__thread__context_8cpp_afe668e3baac2aceecb4efecf3c2137fe_cgraph">
-<area shape="rect" title=" " alt="" coords="5,85,75,110"/>
+<area shape="rect" title=" " alt="" coords="5,49,75,74"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,5,297,45"/>
-<area shape="poly" title=" " alt="" coords="64,82,122,55,139,48,141,53,124,60,67,87"/>
+<area shape="poly" title=" " alt="" coords="74,52,109,44,110,49,75,57"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="132,70,288,125"/>
-<area shape="poly" title=" " alt="" coords="75,95,118,95,118,100,75,100"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="132,173,288,213"/>
-<area shape="poly" title=" " alt="" coords="65,108,163,164,160,169,62,112"/>
-<area shape="poly" title=" " alt="" coords="178,174,176,164,181,155,193,149,210,147,230,150,241,157,238,161,228,155,210,152,194,154,185,159,181,165,183,172"/>
+<area shape="poly" title=" " alt="" coords="75,66,119,75,118,81,74,71"/>
 </map>
 </div>
 
@@ -810,38 +805,34 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  220</span>    </div>
 <div class="line"><span class="lineno">  221</span>    {</div>
 <div class="line"><span class="lineno">  222</span>        <span class="comment">// Create scope that preserves previous context</span></div>
-<div class="line"><span class="lineno">  223</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">new_metadata</a> = std::make_unique&lt;context_metadata&gt;(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  224</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">new_metadata</a>-&gt;user_id = <span class="stringliteral">&quot;scoped-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  225</span>        <a class="code hl_class" href="../../d3/d82/classmonitoring__system_1_1context__scope.html">context_scope</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scope</a>(std::move(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">new_metadata</a>), <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  223</span>        <span class="keyword">auto</span> new_metadata = std::make_unique&lt;context_metadata&gt;(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  224</span>        new_metadata-&gt;user_id = <span class="stringliteral">&quot;scoped-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  225</span>        <a class="code hl_class" href="../../d3/d82/classmonitoring__system_1_1context__scope.html">context_scope</a> scope(std::move(new_metadata), <span class="keyword">true</span>);</div>
 <div class="line"><span class="lineno">  226</span>        </div>
 <div class="line"><span class="lineno">  227</span>        <span class="comment">// Should have new context</span></div>
-<div class="line"><span class="lineno">  228</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  229</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;scoped-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  228</span>        EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  229</span>        EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;scoped-user&quot;</span>);</div>
 <div class="line"><span class="lineno">  230</span>    }</div>
 <div class="line"><span class="lineno">  231</span>    </div>
 <div class="line"><span class="lineno">  232</span>    <span class="comment">// Should restore original context</span></div>
-<div class="line"><span class="lineno">  233</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
-<div class="line"><span class="lineno">  234</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;original-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  235</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;original-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  233</span>    EXPECT_TRUE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  234</span>    EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;original-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  235</span>    EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;original-user&quot;</span>);</div>
 <div class="line"><span class="lineno">  236</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_ac0be7cbc4400b5401d4ca8c6c4d867e7_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_ac0be7cbc4400b5401d4ca8c6c4d867e7_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_ac0be7cbc4400b5401d4ca8c6c4d867e7_cgraph" id="ad4/ddd/test__thread__context_8cpp_ac0be7cbc4400b5401d4ca8c6c4d867e7_cgraph">
-<area shape="rect" title=" " alt="" coords="5,115,75,140"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="125,17,295,57"/>
-<area shape="poly" title=" " alt="" coords="61,112,121,77,153,60,156,65,124,82,64,117"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="580,46,736,86"/>
-<area shape="poly" title=" " alt="" coords="75,121,566,72,566,78,75,127"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,135,297,175"/>
-<area shape="poly" title=" " alt="" coords="75,130,110,136,109,141,74,136"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="132,200,288,255"/>
-<area shape="poly" title=" " alt="" coords="58,138,124,185,135,191,133,196,121,190,55,142"/>
+<area shape="rect" title=" " alt="" coords="5,84,75,109"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="125,13,295,53"/>
+<area shape="poly" title=" " alt="" coords="72,81,122,62,140,55,142,60,124,67,74,86"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,77,297,117"/>
+<area shape="poly" title=" " alt="" coords="75,94,109,94,109,99,75,99"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="132,141,288,196"/>
+<area shape="poly" title=" " alt="" coords="72,107,133,133,131,138,70,112"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="345,5,532,60"/>
-<area shape="poly" title=" " alt="" coords="295,33,332,32,332,37,295,38"/>
-<area shape="poly" title=" " alt="" coords="533,44,567,49,566,55,532,50"/>
-<area shape="poly" title=" " alt="" coords="617,46,615,36,621,27,636,21,658,19,684,22,698,30,695,34,682,27,658,25,637,27,624,31,620,37,622,45"/>
+<area shape="poly" title=" " alt="" coords="295,30,332,30,332,35,295,35"/>
 </map>
 </div>
 
@@ -877,31 +868,31 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00468">468</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  468</span>                                           {</div>
 <div class="line"><span class="lineno">  469</span>    <span class="comment">// Create source context</span></div>
-<div class="line"><span class="lineno">  470</span>    <a class="code hl_struct" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">source</a>(<span class="stringliteral">&quot;source-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  471</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">source</a>.correlation_id = <span class="stringliteral">&quot;source-corr&quot;</span>;</div>
-<div class="line"><span class="lineno">  472</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">source</a>.user_id = <span class="stringliteral">&quot;source-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  473</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">source</a>.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  470</span>    <a class="code hl_struct" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html">context_metadata</a> source(<span class="stringliteral">&quot;source-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  471</span>    source.correlation_id = <span class="stringliteral">&quot;source-corr&quot;</span>;</div>
+<div class="line"><span class="lineno">  472</span>    source.user_id = <span class="stringliteral">&quot;source-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  473</span>    source.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">  474</span>    </div>
 <div class="line"><span class="lineno">  475</span>    <span class="comment">// Copy to current thread</span></div>
-<div class="line"><span class="lineno">  476</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8">thread_context::copy_from</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">source</a>);</div>
-<div class="line"><span class="lineno">  477</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  476</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8">thread_context::copy_from</a>(source);</div>
+<div class="line"><span class="lineno">  477</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  478</span>    </div>
 <div class="line"><span class="lineno">  479</span>    <span class="comment">// Verify copy</span></div>
-<div class="line"><span class="lineno">  480</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  480</span>    EXPECT_TRUE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
 <div class="line"><span class="lineno">  481</span>    <span class="keyword">auto</span>* current = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>();</div>
-<div class="line"><span class="lineno">  482</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_NE</a>(current, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  482</span>    ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  483</span>    </div>
-<div class="line"><span class="lineno">  484</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(current-&gt;request_id, <span class="stringliteral">&quot;source-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  485</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(current-&gt;correlation_id, <span class="stringliteral">&quot;source-corr&quot;</span>);</div>
-<div class="line"><span class="lineno">  486</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(current-&gt;user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  484</span>    EXPECT_EQ(current-&gt;request_id, <span class="stringliteral">&quot;source-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  485</span>    EXPECT_EQ(current-&gt;correlation_id, <span class="stringliteral">&quot;source-corr&quot;</span>);</div>
+<div class="line"><span class="lineno">  486</span>    EXPECT_EQ(current-&gt;user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
 <div class="line"><span class="lineno">  487</span>    </div>
-<div class="line"><span class="lineno">  488</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a> = current-&gt;get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
-<div class="line"><span class="lineno">  489</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.has_value());</div>
-<div class="line"><span class="lineno">  490</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  488</span>    <span class="keyword">auto</span> tag = current-&gt;get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
+<div class="line"><span class="lineno">  489</span>    ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  490</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">  491</span>    </div>
 <div class="line"><span class="lineno">  492</span>    <span class="comment">// Modifications shouldn&#39;t affect source</span></div>
 <div class="line"><span class="lineno">  493</span>    current-&gt;user_id = <span class="stringliteral">&quot;modified-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  494</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">source</a>.user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  494</span>    EXPECT_EQ(source.user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
 <div class="line"><span class="lineno">  495</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_a38251e0671321cf05164d14e44c0d7a8"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8">monitoring_system::thread_context::copy_from</a></div><div class="ttdeci">static result_void copy_from(const context_metadata &amp;source)</div><div class="ttdoc">Copy context from another thread (for propagation)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00224">thread_context.h:224</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -909,21 +900,19 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a5540c40d18b478e8e158e164b7c1072c_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a5540c40d18b478e8e158e164b7c1072c_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a5540c40d18b478e8e158e164b7c1072c_cgraph" id="ad4/ddd/test__thread__context_8cpp_a5540c40d18b478e8e158e164b7c1072c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,126,75,151"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8" title="Copy context from another thread (for propagation)" alt="" coords="123,87,320,127"/>
-<area shape="poly" title=" " alt="" coords="74,130,108,124,109,129,75,135"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="368,29,524,69"/>
-<area shape="poly" title=" " alt="" coords="51,124,81,96,122,72,180,55,241,45,301,40,354,40,354,45,301,46,242,50,181,60,124,77,84,101,55,128"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="134,151,309,191"/>
-<area shape="poly" title=" " alt="" coords="75,142,121,150,120,155,74,147"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="143,215,299,270"/>
-<area shape="poly" title=" " alt="" coords="57,150,87,175,124,200,136,207,133,211,121,205,84,179,54,154"/>
-<area shape="poly" title=" " alt="" coords="300,84,354,70,355,75,301,89"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="368,93,524,133"/>
-<area shape="poly" title=" " alt="" coords="320,107,354,108,354,113,320,112"/>
-<area shape="poly" title=" " alt="" coords="406,30,404,20,410,10,424,5,446,3,471,6,485,13,482,18,469,11,446,8,426,10,413,15,409,21,411,28"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="572,93,747,133"/>
-<area shape="poly" title=" " alt="" coords="525,111,558,111,558,116,525,116"/>
+<area shape="rect" title=" " alt="" coords="5,109,75,134"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="123,5,324,45"/>
+<area shape="poly" title=" " alt="" coords="53,106,83,81,121,55,135,48,138,53,124,60,86,85,56,110"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a38251e0671321cf05164d14e44c0d7a8" title="Copy context from another thread (for propagation)" alt="" coords="125,69,322,109"/>
+<area shape="poly" title=" " alt="" coords="74,113,111,106,112,112,75,118"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="136,133,311,173"/>
+<area shape="poly" title=" " alt="" coords="75,125,123,133,122,138,74,130"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="145,198,301,253"/>
+<area shape="poly" title=" " alt="" coords="57,132,87,157,124,183,136,190,134,194,121,188,84,162,54,137"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="372,69,528,109"/>
+<area shape="poly" title=" " alt="" coords="322,87,358,87,358,92,322,92"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="576,69,751,109"/>
+<area shape="poly" title=" " alt="" coords="529,87,562,87,562,92,529,92"/>
 </map>
 </div>
 
@@ -958,16 +947,16 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  178</span>                                                   {</div>
-<div class="line"><span class="lineno">  179</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id1</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#abc4e95b3147d4255c2a239c954044ec1">thread_context::generate_correlation_id</a>();</div>
-<div class="line"><span class="lineno">  180</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id2</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#abc4e95b3147d4255c2a239c954044ec1">thread_context::generate_correlation_id</a>();</div>
+<div class="line"><span class="lineno">  179</span>    <span class="keyword">auto</span> corr_id1 = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#abc4e95b3147d4255c2a239c954044ec1">thread_context::generate_correlation_id</a>();</div>
+<div class="line"><span class="lineno">  180</span>    <span class="keyword">auto</span> corr_id2 = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#abc4e95b3147d4255c2a239c954044ec1">thread_context::generate_correlation_id</a>();</div>
 <div class="line"><span class="lineno">  181</span>    </div>
-<div class="line"><span class="lineno">  182</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id1</a>.empty());</div>
-<div class="line"><span class="lineno">  183</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id2</a>.empty());</div>
-<div class="line"><span class="lineno">  184</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id1</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id2</a>);</div>
+<div class="line"><span class="lineno">  182</span>    EXPECT_FALSE(corr_id1.empty());</div>
+<div class="line"><span class="lineno">  183</span>    EXPECT_FALSE(corr_id2.empty());</div>
+<div class="line"><span class="lineno">  184</span>    EXPECT_NE(corr_id1, corr_id2);</div>
 <div class="line"><span class="lineno">  185</span>    </div>
 <div class="line"><span class="lineno">  186</span>    <span class="comment">// Should have &quot;corr-&quot; prefix</span></div>
-<div class="line"><span class="lineno">  187</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id1</a>.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
-<div class="line"><span class="lineno">  188</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">corr_id2</a>.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
+<div class="line"><span class="lineno">  187</span>    EXPECT_EQ(corr_id1.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
+<div class="line"><span class="lineno">  188</span>    EXPECT_EQ(corr_id2.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
 <div class="line"><span class="lineno">  189</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_abc4e95b3147d4255c2a239c954044ec1"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#abc4e95b3147d4255c2a239c954044ec1">monitoring_system::thread_context::generate_correlation_id</a></div><div class="ttdeci">static std::string generate_correlation_id()</div><div class="ttdoc">Generate a unique correlation ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00215">thread_context.h:215</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -975,15 +964,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_aa6835bc6a9e9a1e0fc74d409d25b4661_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_aa6835bc6a9e9a1e0fc74d409d25b4661_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_aa6835bc6a9e9a1e0fc74d409d25b4661_cgraph" id="ad4/ddd/test__thread__context_8cpp_aa6835bc6a9e9a1e0fc74d409d25b4661_cgraph">
-<area shape="rect" title=" " alt="" coords="5,53,75,79"/>
+<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#abc4e95b3147d4255c2a239c954044ec1" title="Generate a unique correlation ID." alt="" coords="123,5,309,60"/>
-<area shape="poly" title=" " alt="" coords="74,57,109,50,110,56,75,62"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="592,46,748,86"/>
-<area shape="poly" title=" " alt="" coords="75,67,123,70,333,75,544,70,578,69,578,74,544,75,333,80,123,75,75,72"/>
+<area shape="poly" title=" " alt="" coords="75,30,109,30,109,35,75,35"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="357,5,544,60"/>
 <area shape="poly" title=" " alt="" coords="309,30,344,30,344,35,309,35"/>
-<area shape="poly" title=" " alt="" coords="545,44,579,49,578,55,544,50"/>
-<area shape="poly" title=" " alt="" coords="629,46,627,36,633,27,648,21,670,19,696,22,710,30,707,34,694,27,670,25,649,27,636,31,632,37,634,45"/>
 </map>
 </div>
 
@@ -1024,36 +1009,36 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  277</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff">add_tag</a>(<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;main&quot;</span>);</div>
 <div class="line"><span class="lineno">  278</span>    </div>
 <div class="line"><span class="lineno">  279</span>    <span class="comment">// Capture for propagation</span></div>
-<div class="line"><span class="lineno">  280</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">propagator</a> = <a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a8aa40369bd7246c9684fd10cef209f65">context_propagator::from_current</a>();</div>
+<div class="line"><span class="lineno">  280</span>    <span class="keyword">auto</span> propagator = <a class="code hl_function" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a8aa40369bd7246c9684fd10cef209f65">context_propagator::from_current</a>();</div>
 <div class="line"><span class="lineno">  281</span>    </div>
 <div class="line"><span class="lineno">  282</span>    <span class="comment">// Verify in another thread</span></div>
-<div class="line"><span class="lineno">  283</span>    std::thread <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">worker</a>([<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">propagator</a>]() {</div>
+<div class="line"><span class="lineno">  283</span>    std::thread worker([propagator]() {</div>
 <div class="line"><span class="lineno">  284</span>        <span class="comment">// Initially no context in new thread</span></div>
-<div class="line"><span class="lineno">  285</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  285</span>        EXPECT_FALSE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
 <div class="line"><span class="lineno">  286</span>        </div>
 <div class="line"><span class="lineno">  287</span>        <span class="comment">// Apply captured context</span></div>
-<div class="line"><span class="lineno">  288</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">propagator</a>.apply();</div>
-<div class="line"><span class="lineno">  289</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  288</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = propagator.apply();</div>
+<div class="line"><span class="lineno">  289</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  290</span>        </div>
 <div class="line"><span class="lineno">  291</span>        <span class="comment">// Should have context from main thread</span></div>
-<div class="line"><span class="lineno">  292</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
-<div class="line"><span class="lineno">  293</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;main-thread-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  294</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;correlation_id, <span class="stringliteral">&quot;main-correlation&quot;</span>);</div>
+<div class="line"><span class="lineno">  292</span>        EXPECT_TRUE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  293</span>        EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;request_id, <span class="stringliteral">&quot;main-thread-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  294</span>        EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;correlation_id, <span class="stringliteral">&quot;main-correlation&quot;</span>);</div>
 <div class="line"><span class="lineno">  295</span>        </div>
-<div class="line"><span class="lineno">  296</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;thread&quot;</span>);</div>
-<div class="line"><span class="lineno">  297</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.has_value());</div>
-<div class="line"><span class="lineno">  298</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  296</span>        <span class="keyword">auto</span> tag = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;thread&quot;</span>);</div>
+<div class="line"><span class="lineno">  297</span>        ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  298</span>        EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
 <div class="line"><span class="lineno">  299</span>        </div>
 <div class="line"><span class="lineno">  300</span>        <span class="comment">// Modify in worker thread</span></div>
 <div class="line"><span class="lineno">  301</span>        <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff">add_tag</a>(<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;worker&quot;</span>);</div>
 <div class="line"><span class="lineno">  302</span>    });</div>
 <div class="line"><span class="lineno">  303</span>    </div>
-<div class="line"><span class="lineno">  304</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">worker</a>.join();</div>
+<div class="line"><span class="lineno">  304</span>    worker.join();</div>
 <div class="line"><span class="lineno">  305</span>    </div>
 <div class="line"><span class="lineno">  306</span>    <span class="comment">// Main thread context should be unchanged</span></div>
-<div class="line"><span class="lineno">  307</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">main_tag</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;thread&quot;</span>);</div>
-<div class="line"><span class="lineno">  308</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">main_tag</a>.has_value());</div>
-<div class="line"><span class="lineno">  309</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">main_tag</a>.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  307</span>    <span class="keyword">auto</span> main_tag = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;thread&quot;</span>);</div>
+<div class="line"><span class="lineno">  308</span>    ASSERT_TRUE(main_tag.has_value());</div>
+<div class="line"><span class="lineno">  309</span>    EXPECT_EQ(main_tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
 <div class="line"><span class="lineno">  310</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__propagator_html_a8aa40369bd7246c9684fd10cef209f65"><div class="ttname"><a href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a8aa40369bd7246c9684fd10cef209f65">monitoring_system::context_propagator::from_current</a></div><div class="ttdeci">static context_propagator from_current()</div><div class="ttdoc">Create a propagator with current context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00370">thread_context.h:370</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -1061,37 +1046,29 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a00f53bf20c5ca2585d0f896ac55e11fd_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a00f53bf20c5ca2585d0f896ac55e11fd_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a00f53bf20c5ca2585d0f896ac55e11fd_cgraph" id="ad4/ddd/test__thread__context_8cpp_a00f53bf20c5ca2585d0f896ac55e11fd_cgraph">
-<area shape="rect" title=" " alt="" coords="5,193,75,219"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="369,186,571,226"/>
-<area shape="poly" title=" " alt="" coords="75,203,356,203,356,209,75,209"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="628,158,784,198"/>
-<area shape="poly" title=" " alt="" coords="74,194,122,185,248,170,346,166,571,171,614,172,614,178,571,177,346,172,248,176,123,190,75,200"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="137,13,307,53"/>
-<area shape="poly" title=" " alt="" coords="43,192,69,130,91,94,121,63,128,58,131,62,124,67,96,97,73,133,48,194"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="619,353,793,393"/>
-<area shape="poly" title=" " alt="" coords="50,218,78,263,99,288,124,309,182,340,243,362,308,378,373,387,437,392,498,392,605,385,605,390,498,397,437,397,372,393,307,383,242,367,179,345,121,314,95,292,74,266,45,220"/>
-<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a8aa40369bd7246c9684fd10cef209f65" title="Create a propagator with current context." alt="" coords="143,244,301,299"/>
-<area shape="poly" title=" " alt="" coords="76,216,134,237,132,242,74,221"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="628,417,784,472"/>
-<area shape="poly" title=" " alt="" coords="45,218,52,253,65,298,89,346,105,366,124,384,182,418,245,442,310,458,377,467,443,470,506,469,614,459,615,464,506,474,443,476,377,472,309,463,243,447,180,423,121,388,101,370,84,349,60,300,47,254,40,219"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="123,77,321,117"/>
-<area shape="poly" title=" " alt="" coords="52,191,82,163,121,133,146,120,149,125,124,138,85,167,55,195"/>
-<area shape="poly" title=" " alt="" coords="571,191,614,186,615,191,571,197"/>
-<area shape="poly" title=" " alt="" coords="665,158,662,148,669,139,684,133,706,131,732,134,746,142,744,146,730,139,706,137,685,139,672,143,667,149,670,157"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="377,5,563,60"/>
-<area shape="poly" title=" " alt="" coords="307,30,363,30,363,35,307,35"/>
-<area shape="poly" title=" " alt="" coords="536,58,572,77,625,112,672,147,668,152,622,117,569,82,534,63"/>
-<area shape="poly" title=" " alt="" coords="301,268,428,260,500,250,570,235,614,220,655,202,657,207,616,225,571,241,501,256,429,265,301,274"/>
-<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a7c44a16ed220bdc04babece935f7aea9" title="Capture current thread&#39;s context." alt="" coords="391,301,549,356"/>
-<area shape="poly" title=" " alt="" coords="302,287,379,305,377,310,300,292"/>
-<area shape="poly" title=" " alt="" coords="534,299,569,280,623,242,670,205,673,209,627,247,572,284,537,303"/>
-<area shape="poly" title=" " alt="" coords="550,341,605,351,604,356,549,346"/>
-<area shape="poly" title=" " alt="" coords="524,354,620,402,634,409,631,414,617,407,522,358"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="628,289,784,329"/>
-<area shape="poly" title=" " alt="" coords="549,319,614,314,614,319,549,325"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="841,289,1016,329"/>
-<area shape="poly" title=" " alt="" coords="784,306,827,306,827,311,784,311"/>
-<area shape="poly" title=" " alt="" coords="322,97,442,107,571,127,646,150,644,156,570,133,441,112,321,102"/>
+<area shape="rect" title=" " alt="" coords="5,167,75,193"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff" title="Add a custom tag." alt="" coords="123,5,324,45"/>
+<area shape="poly" title=" " alt="" coords="44,166,71,113,94,82,121,55,129,50,132,54,124,59,98,85,76,116,49,168"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="139,69,308,109"/>
+<area shape="poly" title=" " alt="" coords="58,165,121,126,151,112,153,117,124,130,61,169"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="607,127,781,167"/>
+<area shape="poly" title=" " alt="" coords="75,174,122,169,377,155,593,147,593,152,377,160,123,175,75,179"/>
+<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a8aa40369bd7246c9684fd10cef209f65" title="Create a propagator with current context." alt="" coords="145,185,302,239"/>
+<area shape="poly" title=" " alt="" coords="75,183,132,193,131,199,74,189"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="616,255,772,310"/>
+<area shape="poly" title=" " alt="" coords="53,191,82,222,102,238,124,250,185,271,249,285,314,295,379,300,501,301,602,293,603,298,501,306,379,306,314,300,248,291,183,276,122,254,99,242,79,226,49,195"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="124,315,323,355"/>
+<area shape="poly" title=" " alt="" coords="50,192,78,241,99,269,124,294,144,306,141,311,121,298,95,273,73,244,45,194"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="372,54,559,109"/>
+<area shape="poly" title=" " alt="" coords="308,84,358,82,359,88,308,89"/>
+<area shape="rect" href="../../df/d48/classmonitoring__system_1_1context__propagator.html#a7c44a16ed220bdc04babece935f7aea9" title="Capture current thread&#39;s context." alt="" coords="387,185,544,239"/>
+<area shape="poly" title=" " alt="" coords="302,209,373,209,373,215,302,215"/>
+<area shape="poly" title=" " alt="" coords="544,187,610,168,611,173,545,192"/>
+<area shape="poly" title=" " alt="" coords="545,234,604,252,602,257,544,239"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="616,191,772,231"/>
+<area shape="poly" title=" " alt="" coords="544,209,602,209,602,214,544,214"/>
+<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="829,191,1004,231"/>
+<area shape="poly" title=" " alt="" coords="772,208,815,208,815,213,772,213"/>
 </map>
 </div>
 
@@ -1127,21 +1104,21 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  156</span>                                               {</div>
 <div class="line"><span class="lineno">  157</span>    <span class="comment">// Generate multiple IDs</span></div>
-<div class="line"><span class="lineno">  158</span>    std::set&lt;std::string&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ids</a>;</div>
-<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; 100; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  160</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ids</a>.insert(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914">thread_context::generate_request_id</a>());</div>
+<div class="line"><span class="lineno">  158</span>    std::set&lt;std::string&gt; ids;</div>
+<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
+<div class="line"><span class="lineno">  160</span>        ids.insert(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914">thread_context::generate_request_id</a>());</div>
 <div class="line"><span class="lineno">  161</span>    }</div>
 <div class="line"><span class="lineno">  162</span>    </div>
 <div class="line"><span class="lineno">  163</span>    <span class="comment">// All should be unique</span></div>
-<div class="line"><span class="lineno">  164</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ids</a>.size(), 100);</div>
+<div class="line"><span class="lineno">  164</span>    EXPECT_EQ(ids.size(), 100);</div>
 <div class="line"><span class="lineno">  165</span>    </div>
 <div class="line"><span class="lineno">  166</span>    <span class="comment">// Create context without request ID</span></div>
-<div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>();</div>
-<div class="line"><span class="lineno">  168</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.request_id.empty());</div>
+<div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span>&amp; ctx = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>();</div>
+<div class="line"><span class="lineno">  168</span>    EXPECT_FALSE(ctx.request_id.empty());</div>
 <div class="line"><span class="lineno">  169</span>    </div>
 <div class="line"><span class="lineno">  170</span>    <span class="comment">// Generated ID should be unique</span></div>
-<div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">generated_id</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.request_id;</div>
-<div class="line"><span class="lineno">  172</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ids</a>.find(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">generated_id</a>), <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ids</a>.end());</div>
+<div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> generated_id = ctx.request_id;</div>
+<div class="line"><span class="lineno">  172</span>    EXPECT_EQ(ids.find(generated_id), ids.end());</div>
 <div class="line"><span class="lineno">  173</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1thread__context_html_ac8fb47251cea2f16af63c8980c817914"><div class="ttname"><a href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914">monitoring_system::thread_context::generate_request_id</a></div><div class="ttdeci">static std::string generate_request_id()</div><div class="ttdoc">Generate a unique request ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00196">thread_context.h:196</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -1149,16 +1126,12 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a29e1537ef3bc0adfa076521a54ac99f4_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a29e1537ef3bc0adfa076521a54ac99f4_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a29e1537ef3bc0adfa076521a54ac99f4_cgraph" id="ad4/ddd/test__thread__context_8cpp_a29e1537ef3bc0adfa076521a54ac99f4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,70,75,95"/>
+<area shape="rect" title=" " alt="" coords="5,42,75,67"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="123,5,292,45"/>
-<area shape="poly" title=" " alt="" coords="74,68,135,47,136,52,76,73"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="340,41,527,95"/>
-<area shape="poly" title=" " alt="" coords="75,79,326,69,326,75,75,84"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="575,81,731,121"/>
-<area shape="poly" title=" " alt="" coords="75,84,192,94,340,104,433,106,527,104,561,103,561,108,527,109,433,111,340,109,192,100,75,89"/>
-<area shape="poly" title=" " alt="" coords="293,39,327,45,326,50,292,44"/>
-<area shape="poly" title=" " alt="" coords="528,80,561,85,561,90,527,85"/>
-<area shape="poly" title=" " alt="" coords="612,82,609,72,616,62,630,57,653,55,678,58,692,65,690,70,677,63,653,60,632,62,619,67,614,73,617,80"/>
+<area shape="poly" title=" " alt="" coords="75,46,109,40,110,45,76,51"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="340,27,527,82"/>
+<area shape="poly" title=" " alt="" coords="75,53,123,55,326,54,326,60,123,60,75,59"/>
+<area shape="poly" title=" " alt="" coords="293,34,327,38,326,43,292,39"/>
 </map>
 </div>
 
@@ -1194,55 +1167,50 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  124</span>                                                        {</div>
 <div class="line"><span class="lineno">  125</span>    <span class="comment">// Initially no context</span></div>
-<div class="line"><span class="lineno">  126</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
-<div class="line"><span class="lineno">  127</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  126</span>    EXPECT_FALSE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  127</span>    EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  128</span>    </div>
 <div class="line"><span class="lineno">  129</span>    <span class="comment">// Create context</span></div>
-<div class="line"><span class="lineno">  130</span>    <span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(<span class="stringliteral">&quot;test-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  131</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_TRUE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
-<div class="line"><span class="lineno">  132</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>(), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>.request_id, <span class="stringliteral">&quot;test-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  130</span>    <span class="keyword">auto</span>&amp; ctx = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(<span class="stringliteral">&quot;test-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  131</span>    EXPECT_TRUE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  132</span>    EXPECT_NE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  133</span>    EXPECT_EQ(ctx.request_id, <span class="stringliteral">&quot;test-request&quot;</span>);</div>
 <div class="line"><span class="lineno">  134</span>    </div>
 <div class="line"><span class="lineno">  135</span>    <span class="comment">// Modify current context</span></div>
 <div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span>* current = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>();</div>
-<div class="line"><span class="lineno">  137</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_NE</a>(current, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  137</span>    ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  138</span>    current-&gt;user_id = <span class="stringliteral">&quot;test-user&quot;</span>;</div>
 <div class="line"><span class="lineno">  139</span>    current-&gt;add_tag(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;value&quot;</span>);</div>
 <div class="line"><span class="lineno">  140</span>    </div>
 <div class="line"><span class="lineno">  141</span>    <span class="comment">// Verify modifications</span></div>
-<div class="line"><span class="lineno">  142</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;test-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  144</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ASSERT_TRUE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.has_value());</div>
-<div class="line"><span class="lineno">  145</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">tag</a>.value(), <span class="stringliteral">&quot;value&quot;</span>);</div>
+<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;user_id, <span class="stringliteral">&quot;test-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> tag = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_function" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2">get_tag</a>(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  144</span>    ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  145</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;value&quot;</span>);</div>
 <div class="line"><span class="lineno">  146</span>    </div>
 <div class="line"><span class="lineno">  147</span>    <span class="comment">// Clear context</span></div>
 <div class="line"><span class="lineno">  148</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9">thread_context::clear</a>();</div>
-<div class="line"><span class="lineno">  149</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_FALSE</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
-<div class="line"><span class="lineno">  150</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  149</span>    EXPECT_FALSE(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43">thread_context::has_context</a>());</div>
+<div class="line"><span class="lineno">  150</span>    EXPECT_EQ(<a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  151</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a6501d1b52b0629c5b3fe480ccc4dbdca_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a6501d1b52b0629c5b3fe480ccc4dbdca_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a6501d1b52b0629c5b3fe480ccc4dbdca_cgraph" id="ad4/ddd/test__thread__context_8cpp_a6501d1b52b0629c5b3fe480ccc4dbdca_cgraph">
-<area shape="rect" title=" " alt="" coords="5,163,75,189"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9" title="Clear the current thread&#39;s context." alt="" coords="130,5,290,45"/>
-<area shape="poly" title=" " alt="" coords="45,162,73,111,94,81,121,55,128,50,132,54,124,59,98,85,77,114,49,164"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="125,69,295,109"/>
-<area shape="poly" title=" " alt="" coords="60,161,121,126,147,113,150,118,124,130,63,165"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="592,127,748,167"/>
-<area shape="poly" title=" " alt="" coords="75,172,123,169,578,148,578,153,123,175,75,177"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,184,297,224"/>
-<area shape="poly" title=" " alt="" coords="75,179,110,185,109,190,74,184"/>
-<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="345,212,544,252"/>
-<area shape="poly" title=" " alt="" coords="55,187,85,212,124,234,175,246,229,251,282,252,331,248,332,254,282,257,228,257,174,251,122,238,82,217,52,191"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="132,299,288,354"/>
-<area shape="poly" title=" " alt="" coords="51,187,81,230,124,278,140,290,137,294,121,282,76,234,47,190"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="351,54,538,109"/>
-<area shape="poly" title=" " alt="" coords="295,84,337,82,338,88,295,89"/>
-<area shape="poly" title=" " alt="" coords="539,106,588,120,586,125,538,111"/>
-<area shape="poly" title=" " alt="" coords="628,127,626,117,632,108,647,102,670,100,696,103,710,110,708,115,695,108,670,105,648,107,636,112,631,118,633,126"/>
-<area shape="poly" title=" " alt="" coords="497,210,603,169,605,174,499,214"/>
+<area shape="rect" title=" " alt="" coords="5,141,75,166"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#acdb43e4cb4bdecbd1d9a75762e06d5b9" title="Clear the current thread&#39;s context." alt="" coords="142,5,302,45"/>
+<area shape="poly" title=" " alt="" coords="47,139,76,98,97,75,121,55,131,49,134,54,124,60,101,79,80,101,51,142"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="137,69,307,109"/>
+<area shape="poly" title=" " alt="" coords="71,138,122,119,143,111,145,116,124,124,73,143"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="135,133,309,173"/>
+<area shape="poly" title=" " alt="" coords="75,151,121,151,121,156,75,156"/>
+<area shape="rect" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a49712f586d4e101e1e5af841ff352ee2" title="Get a custom tag." alt="" coords="123,197,321,237"/>
+<area shape="poly" title=" " alt="" coords="73,164,124,183,145,190,143,195,122,188,71,169"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="144,262,300,317"/>
+<area shape="poly" title=" " alt="" coords="51,165,81,205,101,227,124,247,133,253,130,258,121,251,97,231,77,208,47,168"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="369,62,556,117"/>
+<area shape="poly" title=" " alt="" coords="307,87,355,87,355,92,307,92"/>
 </map>
 </div>
 
@@ -1277,51 +1245,51 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00416">416</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  416</span>                                           {</div>
-<div class="line"><span class="lineno">  417</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">thread_count</a> = 10;</div>
-<div class="line"><span class="lineno">  418</span>    std::vector&lt;std::thread&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>;</div>
-<div class="line"><span class="lineno">  419</span>    std::vector&lt;std::future&lt;std::string&gt;&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">futures</a>;</div>
+<div class="line"><span class="lineno">  417</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> thread_count = 10;</div>
+<div class="line"><span class="lineno">  418</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><span class="lineno">  419</span>    std::vector&lt;std::future&lt;std::string&gt;&gt; futures;</div>
 <div class="line"><span class="lineno">  420</span>    </div>
 <div class="line"><span class="lineno">  421</span>    <span class="comment">// Create threads with their own contexts</span></div>
-<div class="line"><span class="lineno">  422</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">thread_count</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  423</span>        std::promise&lt;std::string&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">promise</a>;</div>
-<div class="line"><span class="lineno">  424</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">futures</a>.push_back(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">promise</a>.get_future());</div>
+<div class="line"><span class="lineno">  422</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
+<div class="line"><span class="lineno">  423</span>        std::promise&lt;std::string&gt; promise;</div>
+<div class="line"><span class="lineno">  424</span>        futures.push_back(promise.get_future());</div>
 <div class="line"><span class="lineno">  425</span>        </div>
-<div class="line"><span class="lineno">  426</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>.emplace_back([<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">p</a> = std::move(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">promise</a>)]() <span class="keyword">mutable</span> {</div>
+<div class="line"><span class="lineno">  426</span>        threads.emplace_back([i, p = std::move(promise)]() <span class="keyword">mutable</span> {</div>
 <div class="line"><span class="lineno">  427</span>            <span class="comment">// Each thread creates its own context</span></div>
-<div class="line"><span class="lineno">  428</span>            <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">req_id</a> = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>);</div>
-<div class="line"><span class="lineno">  429</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">req_id</a>);</div>
-<div class="line"><span class="lineno">  430</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_variable" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a33a44cf963bcdfaa546270ca929a2beb">user_id</a> = <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>);</div>
+<div class="line"><span class="lineno">  428</span>            <span class="keyword">auto</span> req_id = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(i);</div>
+<div class="line"><span class="lineno">  429</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(req_id);</div>
+<div class="line"><span class="lineno">  430</span>            <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>()-&gt;<a class="code hl_variable" href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a33a44cf963bcdfaa546270ca929a2beb">user_id</a> = <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(i);</div>
 <div class="line"><span class="lineno">  431</span>            </div>
 <div class="line"><span class="lineno">  432</span>            <span class="comment">// Do some work</span></div>
 <div class="line"><span class="lineno">  433</span>            std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
 <div class="line"><span class="lineno">  434</span>            </div>
 <div class="line"><span class="lineno">  435</span>            <span class="comment">// Verify context is still correct</span></div>
-<div class="line"><span class="lineno">  436</span>            <span class="keyword">auto</span>* <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>();</div>
-<div class="line"><span class="lineno">  437</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a> &amp;&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;request_id == <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">req_id</a> &amp;&amp; </div>
-<div class="line"><span class="lineno">  438</span>                <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">ctx</a>-&gt;user_id == <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>)) {</div>
-<div class="line"><span class="lineno">  439</span>                <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">p</a>.set_value(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">req_id</a>);</div>
+<div class="line"><span class="lineno">  436</span>            <span class="keyword">auto</span>* ctx = <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d">thread_context::current</a>();</div>
+<div class="line"><span class="lineno">  437</span>            <span class="keywordflow">if</span> (ctx &amp;&amp; ctx-&gt;request_id == req_id &amp;&amp; </div>
+<div class="line"><span class="lineno">  438</span>                ctx-&gt;user_id == <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(i)) {</div>
+<div class="line"><span class="lineno">  439</span>                p.set_value(req_id);</div>
 <div class="line"><span class="lineno">  440</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  441</span>                <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">p</a>.set_value(<span class="stringliteral">&quot;error&quot;</span>);</div>
+<div class="line"><span class="lineno">  441</span>                p.set_value(<span class="stringliteral">&quot;error&quot;</span>);</div>
 <div class="line"><span class="lineno">  442</span>            }</div>
 <div class="line"><span class="lineno">  443</span>        });</div>
 <div class="line"><span class="lineno">  444</span>    }</div>
 <div class="line"><span class="lineno">  445</span>    </div>
 <div class="line"><span class="lineno">  446</span>    <span class="comment">// Collect results</span></div>
-<div class="line"><span class="lineno">  447</span>    std::set&lt;std::string&gt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>;</div>
-<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">future</a> : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">futures</a>) {</div>
-<div class="line"><span class="lineno">  449</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>.insert(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">future</a>.get());</div>
+<div class="line"><span class="lineno">  447</span>    std::set&lt;std::string&gt; results;</div>
+<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; future : futures) {</div>
+<div class="line"><span class="lineno">  449</span>        results.insert(future.get());</div>
 <div class="line"><span class="lineno">  450</span>    }</div>
 <div class="line"><span class="lineno">  451</span>    </div>
 <div class="line"><span class="lineno">  452</span>    <span class="comment">// Wait for threads</span></div>
-<div class="line"><span class="lineno">  453</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">t</a> : <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">threads</a>) {</div>
-<div class="line"><span class="lineno">  454</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">t</a>.join();</div>
+<div class="line"><span class="lineno">  453</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
+<div class="line"><span class="lineno">  454</span>        t.join();</div>
 <div class="line"><span class="lineno">  455</span>    }</div>
 <div class="line"><span class="lineno">  456</span>    </div>
 <div class="line"><span class="lineno">  457</span>    <span class="comment">// Each thread should have maintained its own context</span></div>
-<div class="line"><span class="lineno">  458</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_EQ</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>.size(), <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">thread_count</a>);</div>
-<div class="line"><span class="lineno">  459</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> = 0; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a> &lt; <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">thread_count</a>; ++<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>) {</div>
-<div class="line"><span class="lineno">  460</span>        <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">expected</a> = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">i</a>);</div>
-<div class="line"><span class="lineno">  461</span>        <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">EXPECT_NE</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>.find(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">expected</a>), <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">results</a>.end());</div>
+<div class="line"><span class="lineno">  458</span>    EXPECT_EQ(results.size(), thread_count);</div>
+<div class="line"><span class="lineno">  459</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
+<div class="line"><span class="lineno">  460</span>        <span class="keyword">auto</span> expected = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(i);</div>
+<div class="line"><span class="lineno">  461</span>        EXPECT_NE(results.find(expected), results.end());</div>
 <div class="line"><span class="lineno">  462</span>    }</div>
 <div class="line"><span class="lineno">  463</span>}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -1329,17 +1297,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a3563d2e932effe4b30cffb7e1675f884_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a3563d2e932effe4b30cffb7e1675f884_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a3563d2e932effe4b30cffb7e1675f884_cgraph" id="ad4/ddd/test__thread__context_8cpp_a3563d2e932effe4b30cffb7e1675f884_cgraph">
-<area shape="rect" title=" " alt="" coords="5,85,75,111"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="125,17,295,57"/>
-<area shape="poly" title=" " alt="" coords="74,83,140,59,141,64,76,88"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764" title="Create an error result." alt="" coords="580,46,736,86"/>
-<area shape="poly" title=" " alt="" coords="75,94,532,70,566,68,566,74,532,75,75,99"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,135,297,175"/>
-<area shape="poly" title=" " alt="" coords="76,107,138,128,137,133,74,112"/>
+<area shape="rect" title=" " alt="" coords="5,52,75,77"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="125,13,295,53"/>
+<area shape="poly" title=" " alt="" coords="74,56,111,49,112,54,75,61"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,77,297,117"/>
+<area shape="poly" title=" " alt="" coords="75,68,110,75,109,80,74,74"/>
 <area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="345,5,532,60"/>
-<area shape="poly" title=" " alt="" coords="295,33,332,32,332,37,295,38"/>
-<area shape="poly" title=" " alt="" coords="533,44,567,49,566,55,532,50"/>
-<area shape="poly" title=" " alt="" coords="617,46,615,36,621,27,636,21,658,19,684,22,698,30,695,34,682,27,658,25,637,27,624,31,620,37,622,45"/>
+<area shape="poly" title=" " alt="" coords="295,30,332,30,332,35,295,35"/>
 </map>
 </div>
 
@@ -1348,7 +1312,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 12:10:15 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 14:18:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
