@@ -57,8 +57,9 @@ enum class monitoring_error_code : std::uint32_t {
     system_resource_unavailable = 4000,
     permission_denied = 4001,
     out_of_memory = 4002,
-    operation_timeout = 4003,
-    operation_cancelled = 4004,
+    memory_allocation_failed = 4003,
+    operation_timeout = 4004,
+    operation_cancelled = 4005,
     
     // Integration errors (5000-5999)
     thread_system_not_available = 5000,
@@ -71,6 +72,7 @@ enum class monitoring_error_code : std::uint32_t {
     invalid_metric_type = 6001,
     metric_overflow = 6002,
     aggregation_failed = 6003,
+    processing_failed = 6004,
     
     // Health check errors (7000-7999)
     health_check_failed = 7000,
@@ -149,6 +151,8 @@ inline std::string error_code_to_string(monitoring_error_code code) {
             return "Permission denied";
         case monitoring_error_code::out_of_memory:
             return "Out of memory";
+        case monitoring_error_code::memory_allocation_failed:
+            return "Memory allocation failed";
         case monitoring_error_code::operation_timeout:
             return "Operation timeout";
         case monitoring_error_code::operation_cancelled:

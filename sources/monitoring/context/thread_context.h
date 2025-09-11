@@ -535,7 +535,7 @@ protected:
                 enrich_with_context(temp_data, ctx);
                 
                 // Copy tags to snapshot metrics as tags
-                for (const auto& [key, value] : temp_data.get_tags()) {
+                for ([[maybe_unused]] const auto& [key, value] : temp_data.get_tags()) {
                     // Add as metric tag (simplified approach)
                     // In real implementation, metrics would have individual tags
                 }
