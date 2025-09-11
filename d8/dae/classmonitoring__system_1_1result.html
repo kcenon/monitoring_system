@@ -181,7 +181,7 @@ template&lt;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00079">79</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   79</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(std::forward&lt;T&gt;(<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>)) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   79</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(std::in_place_type&lt;T&gt;, std::forward&lt;T&gt;(<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>)) {}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html_adf9ce2df3d04e6a48337d55d6ddbd4f5"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">monitoring_system::result::value_</a></div><div class="ttdeci">std::variant&lt; T, error_info &gt; value_</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00075">result_types.h:75</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00101">result_types.h:101</a></div></div>
 </div><!-- fragment -->
@@ -214,7 +214,7 @@ template&lt;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00080">80</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   80</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   80</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(std::in_place_type&lt;T&gt;, <a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -245,7 +245,7 @@ template&lt;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00081">81</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   81</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(std::move(error)) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(std::in_place_type&lt;error_info&gt;, std::move(error)) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -276,7 +276,7 @@ template&lt;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00082">82</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   82</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(error) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>: <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(std::in_place_type&lt;error_info&gt;, error) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,7 +323,7 @@ template&lt;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../d1/d7d/result__types_8h_source.html#l00085">85</a> of file <a class="el" href="../../d1/d7d/result__types_8h_source.html">result_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>        : <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(error_info(code, message, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">loc</a>)) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   88</span>        : <a class="code hl_variable" href="../../d8/dae/classmonitoring__system_1_1result.html#adf9ce2df3d04e6a48337d55d6ddbd4f5">value_</a>(std::in_place_type&lt;error_info&gt;, code, message, <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">loc</a>) {}</div>
 <div class="ttc" id="anamespacemonitoring__system_html_a8d7a684ef4a59d60062ce37baf1ee764"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">monitoring_system::make_error</a></div><div class="ttdeci">result&lt; T &gt; make_error(monitoring_error_code code, const std::string &amp;message=&quot;&quot;)</div><div class="ttdoc">Create an error result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00244">result_types.h:244</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1284,7 +1284,7 @@ template&lt;<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a8
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 02:31:54 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 02:37:11 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
