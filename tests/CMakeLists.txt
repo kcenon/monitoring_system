@@ -26,6 +26,7 @@ add_executable(monitoring_system_tests
     test_health_monitoring.cpp
     test_metric_storage.cpp
     test_stream_aggregation.cpp
+    test_buffering_strategies.cpp
 )
 
 target_link_libraries(monitoring_system_tests
