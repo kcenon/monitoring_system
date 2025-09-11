@@ -1048,14 +1048,14 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00316">316</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  316</span>                                                              {</div>
 <div class="line"><span class="lineno">  317</span>    <span class="comment">// Test SIMD vs scalar performance</span></div>
-<div class="line"><span class="lineno">  318</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_config</a>;</div>
-<div class="line"><span class="lineno">  319</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_config</a>.enable_simd = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  318</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_cfg</a>;</div>
+<div class="line"><span class="lineno">  319</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_cfg</a>.enable_simd = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  320</span>    </div>
-<div class="line"><span class="lineno">  321</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_config</a>;</div>
-<div class="line"><span class="lineno">  322</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_config</a>.enable_simd = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  321</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_config</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_cfg</a>;</div>
+<div class="line"><span class="lineno">  322</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_cfg</a>.enable_simd = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  323</span>    </div>
-<div class="line"><span class="lineno">  324</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_aggregator</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_agg</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_config</a>);</div>
-<div class="line"><span class="lineno">  325</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_aggregator</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_agg</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_config</a>);</div>
+<div class="line"><span class="lineno">  324</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_aggregator</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_agg</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_cfg</a>);</div>
+<div class="line"><span class="lineno">  325</span>    <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">simd_aggregator</a> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_agg</a>(<a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">scalar_cfg</a>);</div>
 <div class="line"><span class="lineno">  326</span>    </div>
 <div class="line"><span class="lineno">  327</span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a8d7a684ef4a59d60062ce37baf1ee764">large_data</a> = generate_test_data(50000, 0.0, 1000.0);</div>
 <div class="line"><span class="lineno">  328</span>    </div>
@@ -1110,7 +1110,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 11 2025 02:11:43 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 11 2025 02:22:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
