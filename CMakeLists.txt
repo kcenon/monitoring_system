@@ -65,6 +65,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         -Werror=return-type
         -Werror=uninitialized
         -Werror=unused-result
+        -mavx2  # Enable AVX2 for SIMD optimizations
     )
 elseif(MSVC)
     target_compile_options(monitoring_system_interface INTERFACE
@@ -72,6 +73,7 @@ elseif(MSVC)
         /WX
         /permissive-
         /Zc:__cplusplus
+        /arch:AVX2  # Enable AVX2 for SIMD optimizations on MSVC
     )
 endif()
 
