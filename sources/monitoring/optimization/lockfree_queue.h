@@ -128,6 +128,11 @@ struct lockfree_queue_node {
  * This implementation provides a thread-safe, lock-free queue suitable
  * for high-performance metric collection scenarios.
  */
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4324) // structure was padded due to alignment specifier
+#endif
+
 template<typename T>
 class lockfree_queue {
 private:
@@ -403,6 +408,10 @@ public:
         }
     }
 };
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 /**
  * @brief Factory function to create lock-free queue

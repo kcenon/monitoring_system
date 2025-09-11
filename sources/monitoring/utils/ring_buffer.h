@@ -95,6 +95,11 @@ struct ring_buffer_stats {
  * provides efficient circular buffer semantics with configurable
  * overflow behavior.
  */
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4324) // structure was padded due to alignment specifier
+#endif
+
 template<typename T>
 class ring_buffer {
 private:
@@ -355,6 +360,10 @@ public:
         stats_.creation_time = std::chrono::system_clock::now();
     }
 };
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 /**
  * @brief Helper function to create a ring buffer with default configuration

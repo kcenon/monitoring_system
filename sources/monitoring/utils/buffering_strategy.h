@@ -304,7 +304,7 @@ public:
         config_.strategy = buffering_strategy_type::immediate;
     }
     
-    result_void add_metric(buffered_metric&& metric) override {
+    result_void add_metric([[maybe_unused]] buffered_metric&& metric) override {
         std::lock_guard<std::mutex> lock(mutex_);
         
         // Immediate processing - no actual buffering
