@@ -308,7 +308,7 @@ storage_cfg.compression = compression_type::zstd;
 ### OpenTelemetry
 
 ```cpp
-#include <monitoring/adapters/opentelemetry_adapter.h>
+#include <monitoring/export/opentelemetry_adapter.h>
 
 opentelemetry_adapter adapter;
 adapter.export_traces(spans);
@@ -318,7 +318,7 @@ adapter.export_metrics(metrics);
 ### Prometheus
 
 ```cpp
-#include <monitoring/exporters/prometheus_exporter.h>
+#include <monitoring/export/metric_exporters.h>
 
 prometheus_exporter exporter;
 exporter.serve_metrics("/metrics", 9090);
@@ -327,7 +327,7 @@ exporter.serve_metrics("/metrics", 9090);
 ### Jaeger
 
 ```cpp
-#include <monitoring/exporters/trace_exporters.h>
+#include <monitoring/export/trace_exporters.h>
 
 jaeger_exporter exporter("http://localhost:14268/api/traces");
 exporter.export_spans(spans);

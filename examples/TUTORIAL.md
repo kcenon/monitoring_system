@@ -379,7 +379,7 @@ auto result = retry.execute([]() {
 Isolate errors to prevent system-wide failures:
 
 ```cpp
-#include <monitoring/reliability/error_boundaries.h>
+#include <monitoring/reliability/error_boundary.h>
 
 error_boundary boundary("critical_section");
 
@@ -669,7 +669,7 @@ public:
 #### Prometheus Integration
 
 ```cpp
-#include <monitoring/exporters/prometheus_exporter.h>
+#include <monitoring/export/metric_exporters.h>
 
 prometheus_exporter exporter;
 exporter.serve_metrics("/metrics", 9090);
