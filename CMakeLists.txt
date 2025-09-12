@@ -1,10 +1,29 @@
 cmake_minimum_required(VERSION 3.20)
 project(monitoring_system VERSION 2.0.0 LANGUAGES CXX)
 
-# C++20 is required for Result pattern and modern features
-set(CMAKE_CXX_STANDARD 20)
+# C++ standard requirements with graceful degradation
+# Default to C++20 but support graceful degradation to C++17
+option(FORCE_CPP17 "Force C++17 standard (disable C++20 features)" OFF)
+
+if(FORCE_CPP17)
+    set(CMAKE_CXX_STANDARD 17)
+    message(STATUS "Monitoring System: Forcing C++17 mode - C++20 features will be disabled")
+else()
+    set(CMAKE_CXX_STANDARD 20)
+    message(STATUS "Monitoring System: Using C++20 mode - Enhanced features enabled")
+endif()
+
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Include compatibility module for C++17/C++20 feature detection
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(MonitoringCompatibility)
+
+# Configure compatibility features based on C++ standard
+configure_monitoring_compatibility()
+setup_performance_features()
+setup_threading_features()
 
 # Options
 option(MONITORING_BUILD_TESTS "Build unit tests" ON)
@@ -122,6 +141,11 @@ target_include_directories(monitoring_system
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
         $<INSTALL_INTERFACE:include>
 )
+
+# Setup formatting library (std::format, fmt, or basic fallback)
+if(COMMAND setup_monitoring_formatting)
+    setup_monitoring_formatting(monitoring_system)
+endif()
 
 # Link optional dependencies
 if(MONITORING_USE_THREAD_SYSTEM)
