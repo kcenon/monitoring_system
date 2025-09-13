@@ -73,8 +73,8 @@ sudo make install
 ### Quick Example
 
 ```cpp
-#include "monitoring/alerting/rule_engine.h"
-#include "monitoring/web/metric_api.h"
+#include "alerting/rule_engine.h"
+#include "web/metric_api.h"
 #include "monitoring/collectors/system_resource_collector.h"
 
 using namespace monitoring_system;
@@ -262,30 +262,32 @@ monitoring_system/
 ## 📚 Documentation
 
 ### Core Documentation
-- [**Architecture Guide**](docs/ARCHITECTURE.md) - System design and patterns
+- [**Architecture Guide**](docs/ARCHITECTURE_GUIDE.md) - System design and patterns
 - [**API Reference**](docs/API_REFERENCE.md) - Complete API documentation
-- [**User Guide**](docs/USER_GUIDE.md) - Getting started and tutorials
-- [**Performance Guide**](docs/PERFORMANCE.md) - Optimization strategies
+- [**Performance Tuning**](docs/PERFORMANCE_TUNING.md) - Optimization strategies
+- [**Troubleshooting**](docs/TROUBLESHOOTING.md) - Common issues and solutions
 
 ### Phase Documentation
-- [**Phase 1: Event-Driven Architecture**](docs/PHASE1.md)
-- [**Phase 2: Distributed Metrics**](docs/PHASE2.md)
-- [**Phase 3: Alerting & Dashboard**](docs/PHASE3.md)
-- [**Dependency Improvement SRD**](DEPENDENCY_IMPROVEMENT_SRD.md)
+- [**Phase 3: Alerting & Dashboard**](docs/PHASE3.md) - Real-time alerting and web dashboard
+- [**Dependency Improvement SRD**](DEPENDENCY_IMPROVEMENT_SRD.md) - Project requirements and progress
 
 ### Examples & Tutorials
-- [**Basic Monitoring**](examples/basic_monitoring_example.cpp)
-- [**Alert Configuration**](examples/alert_configuration_example.cpp)
-- [**Dashboard Setup**](examples/dashboard_setup_example.cpp)
-- [**Distributed Tracing**](examples/distributed_tracing_example.cpp)
+- [**Tutorial Guide**](examples/TUTORIAL.md) - Step-by-step tutorials
+- [**Basic Monitoring**](examples/basic_monitoring_example.cpp) - Getting started example
+- [**Distributed Tracing**](examples/distributed_tracing_example.cpp) - Tracing implementation
+- [**Health & Reliability**](examples/health_reliability_example.cpp) - Circuit breakers and health checks
+- [**Result Pattern**](examples/result_pattern_example.cpp) - Error handling patterns
+- [**Event Bus**](examples/event_bus_example.cpp) - Event-driven communication
+- [**Plugin Collector**](examples/plugin_collector_example.cpp) - Custom metric collectors
+- [**Storage Backend**](examples/storage_example.cpp) - Storage configuration
 
 ## 🔧 Usage Examples
 
 ### Setting Up Alerting Rules
 
 ```cpp
-#include "monitoring/alerting/rule_engine.h"
-#include "monitoring/alerting/notification_manager.h"
+#include "alerting/rule_engine.h"
+#include "alerting/notification_manager.h"
 
 using namespace monitoring_system::alerting;
 
@@ -333,8 +335,8 @@ engine.start_background_evaluation();
 ### Creating a Custom Dashboard
 
 ```cpp
-#include "monitoring/web/dashboard_server.h"
-#include "monitoring/web/metric_api.h"
+#include "web/dashboard_server.h"
+#include "web/metric_api.h"
 
 using namespace monitoring_system::web;
 
