@@ -269,7 +269,6 @@ monitoring_system/
 
 ### Phase Documentation
 - [**Phase 3: Alerting & Dashboard**](docs/PHASE3.md) - Real-time alerting and web dashboard
-- [**Dependency Improvement SRD**](DEPENDENCY_IMPROVEMENT_SRD.md) - Project requirements and progress
 
 ### Examples & Tutorials
 - [**Tutorial Guide**](examples/TUTORIAL.md) - Step-by-step tutorials
