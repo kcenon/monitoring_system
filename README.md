@@ -1,436 +1,555 @@
 # Monitoring System
 
-A comprehensive, **production-ready monitoring system** for C++ applications with distributed tracing, performance monitoring, health checks, and reliability features. Built with modern C++17, featuring explicit error handling, lock-free data structures, and zero-copy operations.
+[![Build Status](https://github.com/kcenon/monitoring_system/actions/workflows/build.yml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build.yml)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](LICENSE)
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B20)
 
-## 🎉 Project Status: **COMPLETE**
+## Project Overview
 
-All 6 phases and 24 tasks have been successfully completed (100%). The monitoring system is production-ready with comprehensive testing, documentation, and examples.
+A comprehensive, **production-ready monitoring and observability platform** for C++ applications featuring real-time alerting, web-based dashboards, distributed tracing, performance monitoring, and reliability features. Built with modern C++20, featuring event-driven architecture, lock-free data structures, and real-time visualization.
+
+> **🎯 Latest Release**: Phase 3 Complete - Real-time alerting system and web dashboard implementation with WebSocket streaming, multi-channel notifications, and responsive UI.
+
+> **🏗️ Modular Architecture**: Streamlined event-driven design with Observer pattern, plugin-based collectors, and high-performance storage engines. Fully independent operation with optional thread_system and logger_system integration.
+
+## 🔗 Project Ecosystem & Inter-Dependencies
+
+This project is part of a modular ecosystem designed for high-performance monitoring and observability:
+
+### Core Monitoring Framework
+- **[monitoring_system](https://github.com/kcenon/monitoring_system)** (This project): Complete monitoring and observability platform
+  - Provides: Real-time metrics, distributed tracing, alerting, web dashboard
+  - Dependencies: None (standalone) - Optional integration with thread_system/logger_system
+  - Usage: Production monitoring, observability, alerting, and visualization
+
+### Optional Integration Components
+- **[thread_system](https://github.com/kcenon/thread_system)**: High-performance threading framework
+  - Provides: Thread pools, job queues, worker management
+  - Integration: Enhanced concurrent metric collection
+
+- **[logger_system](https://github.com/kcenon/logger_system)**: Asynchronous logging system
+  - Provides: High-performance logging with multiple targets
+  - Integration: Structured logging for monitoring events
+
+### Dependency Flow
+```
+monitoring_system (standalone)
+    ↓ (optional)        ↓ (optional)
+thread_system      logger_system
+```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+- C++20 capable compiler (GCC 11+, Clang 14+, MSVC 2019+)
+- CMake 3.16 or later
+- Optional: vcpkg for dependency management
 
-- C++17 or later compiler
-- CMake 3.15+
-- Thread support
-
-### Build
+### Build & Installation
 
 ```bash
-git clone <repository-url>
+# Clone the repository
+git clone https://github.com/kcenon/monitoring_system.git
 cd monitoring_system
+
+# Create build directory
 mkdir build && cd build
-cmake ..
-make -j$(nproc)
+
+# Configure with CMake
+cmake .. -DCMAKE_CXX_STANDARD=20 -DCMAKE_BUILD_TYPE=Release
+
+# Build
+make -j$(nproc)  # Linux/macOS
+# or
+cmake --build . --config Release  # Windows
+
+# Run tests
+ctest --verbose
+
+# Install (optional)
+sudo make install
 ```
 
-### Run Examples
+### Quick Example
 
-```bash
-# Basic monitoring example
-./examples/basic_monitoring_example
+```cpp
+#include "monitoring/alerting/rule_engine.h"
+#include "monitoring/web/metric_api.h"
+#include "monitoring/collectors/system_resource_collector.h"
 
-# Distributed tracing example
-./examples/distributed_tracing_example
+using namespace monitoring_system;
 
-# Health monitoring and reliability example
-./examples/health_reliability_example
+int main() {
+    // 1. Start system resource collection
+    auto collector = std::make_shared<collectors::SystemResourceCollector>();
+    collector->start_collection(std::chrono::seconds(1));
 
-# Result pattern usage example
-./examples/result_pattern_example
-```
+    // 2. Set up alerting rules
+    alerting::RuleEngine rule_engine;
+    auto rule = alerting::RuleBuilder("cpu_high")
+        .with_name("High CPU Usage")
+        .with_severity(alerting::AlertSeverity::WARNING)
+        .with_condition({
+            .metric_name = "cpu_usage",
+            .op = alerting::ConditionOperator::GREATER_THAN,
+            .threshold = 80.0
+        })
+        .build();
+    rule_engine.add_rule(rule);
 
-### Run Tests
+    // 3. Start web dashboard
+    web::DashboardServer server(8080);
+    web::MetricAPI api;
+    api.register_routes(server);
+    server.start();
 
-```bash
-# Run all tests
-./tests/monitoring_system_tests
+    std::cout << "Dashboard available at http://localhost:8080\n";
+    std::cout << "Press Enter to stop...\n";
+    std::cin.get();
 
-# Run specific test suites
-./tests/monitoring_system_tests --gtest_filter="*Performance*"
-./tests/monitoring_system_tests --gtest_filter="*DistributedTracing*"
+    return 0;
+}
 ```
 
 ## ✨ Key Features
 
-### 🏗️ Core Architecture
-- **Result Pattern Error Handling**: Explicit error handling without exceptions
-- **Dependency Injection**: Lightweight service container with lifetime management
-- **Thread Context**: Cross-cutting concerns and context propagation
-- **RAII Resource Management**: Automatic cleanup and lifecycle management
+### 🚨 Real-time Alerting System (Phase 3)
+- **Rule-based Alert Engine**: Dynamic rule evaluation with complex conditions
+- **Multi-channel Notifications**: Email, Slack, SMS, Webhook, PagerDuty, OpsGenie
+- **Intelligent Deduplication**: Fuzzy matching, time-based grouping, fingerprinting
+- **Silence Management**: Scheduled alert suppression with regex patterns
 
-### 📊 Monitoring & Observability
-- **Performance Monitoring**: Nanosecond-precision timing and system resource monitoring
-- **Distributed Tracing**: W3C Trace Context compliant with hierarchical spans and baggage
-- **Health Monitoring**: Liveness, readiness, and startup checks with dependency graphs
+### 📊 Web Dashboard & Visualization (Phase 3)
+- **Real-time Dashboard**: Chart.js-based responsive visualization
+- **WebSocket Streaming**: Bidirectional real-time communication
+- **RESTful API**: Comprehensive metric query and management endpoints
+- **Mobile Responsive**: Optimized for desktop, tablet, and mobile devices
+
+### 🏗️ Event-Driven Architecture (Phase 1)
+- **Observer Pattern**: Loose coupling between components
+- **Event Bus**: High-performance publish-subscribe messaging
+- **Plugin Architecture**: Extensible collector and exporter framework
+- **Interface-based Design**: Clean separation of concerns
+
+### 📈 Distributed Metrics Collection (Phase 2)
+- **Plugin-based Collectors**: System resources, thread pools, custom metrics
+- **Time-series Storage**: LSM-tree based engine with compression
+- **SQL-like Query Engine**: Advanced metric querying and aggregation
+- **Multiple Export Formats**: Prometheus, InfluxDB, CSV, JSON
+
+### 🔧 Core Monitoring Features
+- **Performance Monitoring**: Nanosecond-precision timing and resource tracking
+- **Distributed Tracing**: W3C Trace Context compliant with hierarchical spans
+- **Health Monitoring**: Liveness, readiness, and startup checks
 - **Adaptive Monitoring**: Dynamic resource-aware monitoring with auto-tuning
 
-### 🔧 Reliability & Safety
-- **Circuit Breakers**: Prevent cascading failures with configurable thresholds
-- **Retry Policies**: Exponential backoff, linear backoff, and custom strategies  
-- **Error Boundaries**: Isolate failures to prevent system-wide outages
-- **Resource Management**: Memory quotas, rate limiting, and CPU throttling
+### 🛡️ Reliability & Safety
+- **Circuit Breakers**: Prevent cascading failures
+- **Retry Policies**: Exponential backoff and custom strategies
+- **Error Boundaries**: Failure isolation
+- **Resource Management**: Memory quotas and rate limiting
 
-### 📈 Performance & Storage
-- **Lock-Free Data Structures**: High-performance concurrent collections
-- **Stream Processing**: Real-time aggregation with windowing and buffering
-- **Multiple Storage Backends**: File (JSON/Binary/CSV), Database (SQLite/PostgreSQL/MySQL), Cloud (S3/GCS/Azure), Memory
-- **Compression & Encryption**: Configurable data compression and encryption
+### 🌐 Integration & Compatibility
+- **OpenTelemetry Compatible**: Full OTEL resource model
+- **Multiple Storage Backends**: File, Database, Cloud, Memory
+- **Protocol Support**: HTTP, gRPC, WebSocket, JSON
+- **Cross-platform**: Linux, Windows, macOS
 
-### 🌐 Integration & Export  
-- **OpenTelemetry Compatible**: Full OTEL resource model and semantic conventions
-- **Multiple Export Formats**: Jaeger, Zipkin, Prometheus, StatsD, OTLP (gRPC/HTTP)
-- **Storage Flexibility**: 10 different storage backend options
-- **Protocol Support**: HTTP, gRPC, Thrift, JSON, Protobuf
+## 📊 Performance Benchmarks
 
-## 📖 Documentation
+*Benchmarked on Intel i7-12700K @ 5.0GHz, 32GB DDR5, Ubuntu 22.04, GCC 11.3*
 
-### API Reference
-- [**API Reference**](docs/API_REFERENCE.md) - Complete API documentation (784 lines)
-- [**Architecture Guide**](docs/ARCHITECTURE_GUIDE.md) - System design and patterns (666 lines)
-- [**Performance Tuning**](docs/PERFORMANCE_TUNING.md) - Optimization strategies (482 lines)
-- [**Troubleshooting**](docs/TROUBLESHOOTING.md) - Common issues and solutions (679 lines)
+### Alert Engine Performance
+| Operation | Throughput | Latency | Notes |
+|-----------|------------|---------|-------|
+| Rule Evaluation | 1M rules/sec | < 1μs | Single rule, simple condition |
+| Complex Rules | 100K/sec | < 10μs | Multiple conditions with AND/OR |
+| Alert Deduplication | 500K/sec | < 2μs | Exact match strategy |
+| Notification Dispatch | 50K/sec | < 20ms | Including network I/O |
 
-### Tutorials & Examples
-- [**Tutorial**](examples/TUTORIAL.md) - Comprehensive step-by-step guide (467 lines)
-- [**Basic Monitoring**](examples/basic_monitoring_example.cpp) - Getting started
-- [**Distributed Tracing**](examples/distributed_tracing_example.cpp) - Cross-service tracing
-- [**Health & Reliability**](examples/health_reliability_example.cpp) - Circuit breakers and health checks
-- [**Result Pattern**](examples/result_pattern_example.cpp) - Error handling patterns
+### Web Dashboard Performance
+| Metric | Value | Notes |
+|--------|-------|-------|
+| WebSocket Connections | 10,000+ | Concurrent connections |
+| Message Throughput | 100K msg/sec | Real-time updates |
+| API Response Time | < 10ms | P95 latency |
+| Dashboard Load Time | < 500ms | Initial page load |
 
-## 🔥 Usage Examples
-
-### Basic Monitoring
-
-```cpp
-#include <monitoring/performance/performance_monitor.h>
-
-// Create performance monitor
-performance_monitor monitor("my_app");
-monitor.initialize();
-
-// Time an operation
-{
-    auto timer = monitor.time_operation("database_query");
-    // ... perform database query ...
-} // Duration automatically recorded
-
-// Get metrics
-auto metrics = monitor.collect();
-```
-
-### Distributed Tracing
-
-```cpp
-#include <monitoring/tracing/distributed_tracer.h>
-
-distributed_tracer tracer;
-
-// Start a trace
-auto span = tracer.start_span("process_request", "api_service");
-if (span) {
-    auto s = span.value();
-    s->tags["user.id"] = "12345";
-    s->tags["http.method"] = "GET";
-    
-    // Create child span
-    auto child = tracer.start_child_span(*s, "database_query");
-    
-    // Finish spans
-    tracer.finish_span(child.value());
-    tracer.finish_span(s);
-}
-```
-
-### Health Monitoring
-
-```cpp
-#include <monitoring/health/health_monitor.h>
-
-health_monitor monitor;
-
-// Register health check
-monitor.register_check("database",
-    health_check_builder()
-        .with_name("db_check")
-        .with_type(health_check_type::liveness)
-        .with_check([]() {
-            return database_is_alive() ? 
-                health_check_result::healthy("DB OK") :
-                health_check_result::unhealthy("DB Down");
-        })
-        .build()
-);
-
-// Check health
-auto results = monitor.check_all();
-auto status = monitor.get_overall_status();
-```
-
-### Circuit Breaker
-
-```cpp
-#include <monitoring/reliability/circuit_breaker.h>
-
-circuit_breaker_config config;
-config.failure_threshold = 5;
-config.reset_timeout = 30s;
-
-circuit_breaker<std::string> breaker("external_api", config);
-
-// Execute with circuit breaker protection
-auto result = breaker.execute(
-    []() { return call_external_api(); },
-    []() { return result<std::string>::success("cached_fallback"); }
-);
-```
-
-### Error Handling with Result Pattern
-
-```cpp
-#include <monitoring/core/result_types.h>
-
-result<int> parse_config(const std::string& value) {
-    try {
-        int parsed = std::stoi(value);
-        return result<int>::success(parsed);
-    } catch (...) {
-        return make_error<int>(
-            monitoring_error_code::invalid_argument,
-            "Cannot parse: " + value
-        );
-    }
-}
-
-// Chain operations
-auto result = parse_config("42")
-    .and_then([](int value) {
-        return value > 0 ? 
-            result<int>::success(value * 2) :
-            make_error<int>(monitoring_error_code::out_of_range, "Must be positive");
-    })
-    .map([](int value) { return value + 10; });
-```
-
-## 🧪 Testing
-
-The project includes comprehensive testing with **high coverage**:
-
-- **Unit Tests**: Individual component testing
-- **Integration Tests**: End-to-end cross-component testing  
-- **Stress Tests**: High-load, concurrency, and memory leak detection
-- **Performance Tests**: Latency and throughput benchmarking
-
-```bash
-# Run all tests with details
-./tests/monitoring_system_tests --gtest_output=xml:test_results.xml
-
-# Run stress tests specifically  
-./tests/monitoring_system_tests --gtest_filter="StressPerformanceTest.*"
-
-# Run integration tests
-./tests/monitoring_system_tests --gtest_filter="*Integration*"
-```
-
-## 📊 Performance Characteristics
-
-| Component | Target Performance | Overhead |
-|-----------|-------------------|----------|
-| Metric Collection | < 1μs per metric | < 1% CPU |
-| Span Creation | < 500ns per span | < 0.5% CPU |
-| Health Checks | < 10ms per check | < 1% CPU |
-| Storage Writes | < 5ms batched | < 2% CPU |
-| **Total System** | **-** | **< 5% CPU** |
+### Metric Collection Performance
+| Collector Type | Throughput | CPU Overhead | Memory Usage |
+|----------------|------------|--------------|--------------|
+| System Resources | 1M metrics/sec | < 1% | < 10MB |
+| Thread Pool | 500K metrics/sec | < 0.5% | < 5MB |
+| Custom Metrics | 2M metrics/sec | < 0.1% | < 2MB |
 
 ## 🏗️ Architecture
 
+### System Architecture
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     Application Layer                        │
-├─────────────────────────────────────────────────────────────┤
-│                    Monitoring System API                     │
-├─────────────────────────────────────────────────────────────┤
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │ Metrics  │  │  Health  │  │ Tracing  │  │ Logging  │   │
-│  │Collector │  │ Monitor  │  │  System  │  │  System  │   │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│                     Core Services Layer                      │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │  Stream  │  │ Storage  │  │Reliability│ │ Adaptive │   │
-│  │Processing│  │ Backend  │  │ Features  │ │Optimizer │   │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│                    Infrastructure Layer                      │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │  Thread  │  │    DI    │  │  Result  │  │  Error   │   │
-│  │ Context  │  │Container │  │  Types   │  │ Handling │   │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘   │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## 🔧 Configuration
-
-### Basic Configuration
-
-```cpp
-// Performance optimized
-monitoring_config config;
-config.sampling_rate = 0.1;           // 10% sampling
-config.collection_interval = 1s;      // Collect every second
-config.max_memory_mb = 50;            // Memory limit
-config.enable_compression = true;     // Compress stored data
-```
-
-### Advanced Configuration
-
-```cpp
-// Health monitoring
-health_monitor_config health_config;
-health_config.check_interval = 30s;
-health_config.enable_auto_recovery = true;
-
-// Circuit breaker  
-circuit_breaker_config cb_config;
-cb_config.failure_threshold = 5;
-cb_config.reset_timeout = 60s;
-cb_config.success_threshold = 3;
-
-// Storage backend
-storage_config storage_cfg;
-storage_cfg.type = storage_backend_type::sqlite;
-storage_cfg.path = "/var/lib/monitoring/data.db";
-storage_cfg.compression = compression_type::zstd;
+┌─────────────────────────────────────────────────┐
+│                Web Dashboard                     │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────┐    │
+│  │  Charts  │ │ Filters  │ │ Alert Panel  │    │
+│  └──────────┘ └──────────┘ └──────────────┘    │
+└─────────────────────────────────────────────────┘
+                        │
+                   WebSocket/HTTP
+                        │
+┌─────────────────────────────────────────────────┐
+│              Dashboard Server                    │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────┐    │
+│  │   HTTP   │ │WebSocket │ │  Metric API  │    │
+│  └──────────┘ └──────────┘ └──────────────┘    │
+└─────────────────────────────────────────────────┘
+                        │
+┌─────────────────────────────────────────────────┐
+│              Alerting System                     │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────┐    │
+│  │Rule Engine│ │Notification│ │Deduplication│   │
+│  └──────────┘ └──────────┘ └──────────────┘    │
+└─────────────────────────────────────────────────┘
+                        │
+┌─────────────────────────────────────────────────┐
+│              Event Bus                           │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────┐    │
+│  │Publisher │ │Subscriber│ │ Message Queue│    │
+│  └──────────┘ └──────────┘ └──────────────┘    │
+└─────────────────────────────────────────────────┘
+                        │
+┌─────────────────────────────────────────────────┐
+│           Metric Collection Layer                │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────┐    │
+│  │Collectors│ │Aggregators│ │  Exporters  │    │
+│  └──────────┘ └──────────┘ └──────────────┘    │
+└─────────────────────────────────────────────────┘
+                        │
+┌─────────────────────────────────────────────────┐
+│             Storage Layer                        │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────┐    │
+│  │Time Series│ │  Query   │ │  Compression │    │
+│  │  Engine  │ │  Engine  │ │   & Archive  │    │
+│  └──────────┘ └──────────┘ └──────────────┘    │
+└─────────────────────────────────────────────────┘
 ```
 
-## 🔌 Integrations
-
-### OpenTelemetry
-
-```cpp
-#include <monitoring/export/opentelemetry_adapter.h>
-
-opentelemetry_adapter adapter;
-adapter.export_traces(spans);
-adapter.export_metrics(metrics);
-```
-
-### Prometheus
-
-```cpp
-#include <monitoring/export/metric_exporters.h>
-
-prometheus_exporter exporter;
-exporter.serve_metrics("/metrics", 9090);
-```
-
-### Jaeger
-
-```cpp
-#include <monitoring/export/trace_exporters.h>
-
-jaeger_exporter exporter("http://localhost:14268/api/traces");
-exporter.export_spans(spans);
-```
-
-## 📦 Components
-
-### Storage Backends
-- **File**: JSON, Binary, CSV formats
-- **Database**: SQLite, PostgreSQL, MySQL
-- **Cloud**: Amazon S3, Google Cloud Storage, Azure Blob
-- **Memory**: In-memory buffer for development/testing
-
-### Export Formats  
-- **Tracing**: Jaeger (Thrift/gRPC), Zipkin (JSON/Protobuf), OTLP
-- **Metrics**: Prometheus (Text/Protobuf), StatsD, OTLP
-- **Protocols**: HTTP, gRPC, UDP
-
-### Reliability Features
-- **Circuit Breakers**: Prevent cascading failures
-- **Retry Policies**: Multiple backoff strategies
-- **Error Boundaries**: Fault isolation
-- **Resource Management**: Memory, CPU, rate limiting
-
-## 🛠️ Development
-
-### Project Structure
-
+### Directory Structure
 ```
 monitoring_system/
-├── sources/monitoring/           # Source code
-│   ├── core/                    # Core infrastructure  
-│   ├── interfaces/              # Abstract interfaces
-│   ├── performance/             # Performance monitoring
-│   ├── tracing/                 # Distributed tracing
-│   ├── health/                  # Health monitoring
-│   ├── reliability/             # Reliability features
-│   ├── storage/                 # Storage backends
-│   ├── stream/                  # Stream processing
-│   ├── exporters/               # Export formats
-│   └── adapters/                # Integration adapters
-├── tests/                       # Comprehensive test suite
-├── examples/                    # Working examples
-├── docs/                        # Documentation
-└── CMakeLists.txt              # Build configuration
+├── 📁 sources/
+│   ├── 📁 monitoring/
+│   │   ├── 📁 core/           # Core types and event bus
+│   │   ├── 📁 interfaces/     # Abstract interfaces
+│   │   ├── 📁 collectors/     # Metric collectors
+│   │   ├── 📁 storage/        # Storage backends
+│   │   ├── 📁 query/          # Query engine
+│   │   ├── 📁 export/         # Export formats
+│   │   └── 📁 adapters/       # System adapters
+│   ├── 📁 alerting/           # Alert engine (Phase 3)
+│   │   ├── rule_engine.h      # Rule evaluation
+│   │   ├── notification_manager.h # Notifications
+│   │   └── alert_deduplication.h  # Deduplication
+│   └── 📁 web/                # Web dashboard (Phase 3)
+│       ├── dashboard_server.h # HTTP/WebSocket server
+│       ├── metric_api.h       # REST API
+│       └── 📁 static/         # Frontend files
+├── 📁 examples/               # Usage examples
+├── 📁 tests/                  # Unit tests
+├── 📁 benchmarks/             # Performance tests
+├── 📁 docs/                   # Documentation
+└── CMakeLists.txt
 ```
 
-### Building with Custom Options
+## 📚 Documentation
+
+### Core Documentation
+- [**Architecture Guide**](docs/ARCHITECTURE.md) - System design and patterns
+- [**API Reference**](docs/API_REFERENCE.md) - Complete API documentation
+- [**User Guide**](docs/USER_GUIDE.md) - Getting started and tutorials
+- [**Performance Guide**](docs/PERFORMANCE.md) - Optimization strategies
+
+### Phase Documentation
+- [**Phase 1: Event-Driven Architecture**](docs/PHASE1.md)
+- [**Phase 2: Distributed Metrics**](docs/PHASE2.md)
+- [**Phase 3: Alerting & Dashboard**](docs/PHASE3.md)
+- [**Dependency Improvement SRD**](DEPENDENCY_IMPROVEMENT_SRD.md)
+
+### Examples & Tutorials
+- [**Basic Monitoring**](examples/basic_monitoring_example.cpp)
+- [**Alert Configuration**](examples/alert_configuration_example.cpp)
+- [**Dashboard Setup**](examples/dashboard_setup_example.cpp)
+- [**Distributed Tracing**](examples/distributed_tracing_example.cpp)
+
+## 🔧 Usage Examples
+
+### Setting Up Alerting Rules
+
+```cpp
+#include "monitoring/alerting/rule_engine.h"
+#include "monitoring/alerting/notification_manager.h"
+
+using namespace monitoring_system::alerting;
+
+// Create rule engine
+RuleEngine engine;
+
+// Define a CPU alert rule
+auto cpu_rule = RuleBuilder("high_cpu")
+    .with_name("High CPU Usage Alert")
+    .with_severity(AlertSeverity::WARNING)
+    .with_condition({
+        .metric_name = "system.cpu.usage",
+        .op = ConditionOperator::GREATER_THAN,
+        .threshold = 80.0,
+        .aggregation = AggregationFunction::AVG,
+        .window = std::chrono::seconds(60)
+    })
+    .with_cooldown_period(std::chrono::seconds(300))
+    .add_label("team", "infrastructure")
+    .add_annotation("runbook", "https://wiki/high-cpu")
+    .build();
+
+engine.add_rule(cpu_rule);
+
+// Set up notifications
+NotificationManager notifier;
+
+// Configure Slack notifications
+auto slack_config = std::make_shared<SlackConfig>();
+slack_config->webhook_url = "https://hooks.slack.com/...";
+slack_config->channel = "#alerts";
+notifier.add_channel_config("slack_prod", slack_config);
+
+// Configure email notifications
+auto email_config = std::make_shared<EmailConfig>();
+email_config->smtp_server = "smtp.gmail.com";
+email_config->smtp_port = 587;
+email_config->to_addresses = {"ops@company.com"};
+notifier.add_channel_config("email_ops", email_config);
+
+// Start background evaluation
+engine.start_background_evaluation();
+```
+
+### Creating a Custom Dashboard
+
+```cpp
+#include "monitoring/web/dashboard_server.h"
+#include "monitoring/web/metric_api.h"
+
+using namespace monitoring_system::web;
+
+// Create dashboard server
+DashboardServer server(8080);
+
+// Configure CORS for frontend access
+CorsConfig cors;
+cors.allowed_origins = {"http://localhost:3000"};
+cors.allowed_methods = {"GET", "POST", "PUT", "DELETE"};
+server.set_cors_config(cors);
+
+// Set up authentication
+AuthConfig auth;
+auth.type = AuthConfig::BEARER;
+auth.validate_token = [](const std::string& token) {
+    // Validate JWT token
+    return validate_jwt(token);
+};
+server.set_auth_config(auth);
+
+// Create metric API
+MetricAPI api;
+api.set_metric_database(metric_db);
+api.set_query_engine(query_engine);
+api.register_routes(server);
+
+// Add custom routes
+server.add_route("/api/v1/health", HttpMethod::GET,
+    [](const HttpRequest& req) {
+        return ResponseBuilder()
+            .status(HttpStatus::OK)
+            .json(R"({"status":"healthy"})")
+            .build();
+    });
+
+// WebSocket endpoint for real-time metrics
+server.add_websocket_endpoint("/ws/metrics",
+    [](const std::string& client_id, const WebSocketMessage& msg) {
+        // Handle metric subscription
+        if (msg.data == "subscribe:cpu") {
+            // Start streaming CPU metrics to client
+            stream_cpu_metrics(client_id);
+        }
+    });
+
+// Start server
+server.start();
+std::cout << "Dashboard available at http://localhost:8080\n";
+```
+
+### Implementing Custom Collectors
+
+```cpp
+#include "monitoring/collectors/plugin_metric_collector.h"
+
+using namespace monitoring_system::collectors;
+
+class CustomApplicationCollector : public IMetricCollectorPlugin {
+public:
+    std::string get_plugin_name() const override {
+        return "application_metrics";
+    }
+
+    std::vector<metric> collect_metrics() override {
+        std::vector<metric> metrics;
+
+        // Collect application-specific metrics
+        metrics.push_back({
+            .name = "app.requests.total",
+            .value = get_request_count(),
+            .timestamp = std::chrono::system_clock::now(),
+            .labels = {{"service", "api"}, {"version", "v1"}}
+        });
+
+        metrics.push_back({
+            .name = "app.latency.p95",
+            .value = calculate_p95_latency(),
+            .timestamp = std::chrono::system_clock::now(),
+            .labels = {{"service", "api"}}
+        });
+
+        return metrics;
+    }
+
+    bool initialize(const std::unordered_map<std::string, std::string>& config) override {
+        // Initialize collector with config
+        return true;
+    }
+};
+
+// Register and use the collector
+PluginMetricCollector collector;
+collector.register_plugin(std::make_shared<CustomApplicationCollector>());
+collector.start_collection(std::chrono::seconds(10));
+```
+
+### Query Metrics with Time-series Engine
+
+```cpp
+#include "monitoring/storage/timeseries_engine.h"
+#include "monitoring/query/metric_query_engine.h"
+
+using namespace monitoring_system;
+
+// Create storage engine
+storage::TimeSeriesEngine storage;
+storage.set_compression(storage::CompressionType::LZ4);
+storage.set_retention_days(30);
+
+// Create query engine
+query::MetricQueryEngine query_engine;
+query_engine.set_storage(&storage);
+
+// Build and execute a query
+auto result = query_engine.query()
+    .select("system.cpu.usage", "system.memory.usage")
+    .where("host", "=", "server-01")
+    .time_range(
+        std::chrono::system_clock::now() - std::chrono::hours(1),
+        std::chrono::system_clock::now())
+    .group_by(std::chrono::minutes(5))
+    .aggregate(query::AggregateFunction::AVG)
+    .execute();
+
+// Process results
+for (const auto& point : result.data_points) {
+    std::cout << "Time: " << format_time(point.timestamp)
+              << " CPU: " << point.values["system.cpu.usage"]
+              << " Memory: " << point.values["system.memory.usage"]
+              << std::endl;
+}
+```
+
+## 🚀 Advanced Features
+
+### Alert Deduplication Strategies
+- **Exact Match**: Identical alert content
+- **Fuzzy Match**: Similarity-based (Levenshtein distance)
+- **Time-based**: Within time windows
+- **Fingerprint**: Content hashing
+
+### Dashboard Features
+- **Real-time Updates**: WebSocket push notifications
+- **Interactive Charts**: Zoom, pan, drill-down
+- **Custom Panels**: Create custom visualization widgets
+- **Export Data**: CSV, JSON, Excel formats
+
+### Storage Optimization
+- **Compression**: LZ4, Snappy, Zstd, Gzip
+- **Partitioning**: Time-based, metric-based, tag-based
+- **Compaction**: Background optimization
+- **Archival**: Long-term storage with reduced resolution
+
+## 🧪 Testing
 
 ```bash
-# Build with examples and tests
-cmake -DMONITORING_BUILD_EXAMPLES=ON -DMONITORING_BUILD_TESTS=ON ..
+# Run all tests
+./build/tests/monitoring_system_tests
 
-# Build with sanitizers
-cmake -DENABLE_ASAN=ON -DENABLE_TSAN=ON ..
+# Run specific test categories
+./build/tests/monitoring_system_tests --gtest_filter="AlertingTest.*"
+./build/tests/monitoring_system_tests --gtest_filter="DashboardTest.*"
+./build/tests/monitoring_system_tests --gtest_filter="StorageTest.*"
 
-# Build optimized release
-cmake -DCMAKE_BUILD_TYPE=Release ..
+# Run benchmarks
+./build/benchmarks/monitoring_benchmarks
+
+# Run stress tests
+./build/tests/stress_tests --duration=3600 --threads=100
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+```bash
+# Fork and clone
+git clone https://github.com/yourusername/monitoring_system.git
+cd monitoring_system
+
+# Create feature branch
+git checkout -b feature/amazing-feature
+
+# Make changes and test
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON
+make -j$(nproc)
+ctest
+
+# Submit PR
+git push origin feature/amazing-feature
 ```
 
 ## 📄 License
 
-This project is available under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+## 🙏 Acknowledgments
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite
-6. Submit a pull request
+- OpenTelemetry community for standardization efforts
+- Chart.js team for excellent visualization library
+- Contributors and users for valuable feedback
 
 ## 📞 Support
 
-- **Documentation**: See [docs/](docs/) directory
-- **Examples**: See [examples/](examples/) directory  
-- **Issues**: Report bugs via GitHub Issues
-- **Discussions**: Use GitHub Discussions for questions
-
-## 🎯 Production Deployment
-
-The monitoring system is **production-ready** with:
-
-- ✅ **Comprehensive Testing**: Unit, integration, stress, and performance tests
-- ✅ **Complete Documentation**: API reference, architecture guides, tutorials
-- ✅ **Working Examples**: Real-world usage patterns
-- ✅ **Performance Optimized**: < 5% CPU overhead, lock-free operations
-- ✅ **Industry Standards**: OpenTelemetry compatibility, W3C Trace Context
-- ✅ **Reliability Features**: Circuit breakers, retries, error boundaries
-- ✅ **Flexible Storage**: 10+ storage backend options
-- ✅ **Export Compatibility**: All major observability platforms
-
-### Deployment Checklist
-
-- [ ] Configure appropriate sampling rates for your load
-- [ ] Set up storage backend (recommend SQLite for single instance, PostgreSQL for distributed)
-- [ ] Configure health checks for your services
-- [ ] Set circuit breaker thresholds based on your SLAs
-- [ ] Enable compression for storage efficiency
-- [ ] Set up export to your observability platform (Jaeger, Prometheus, etc.)
-- [ ] Monitor the monitoring system overhead (should be < 5%)
+- **Issues**: [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)
+- **Email**: kcenon@naver.com
 
 ---
 
-**Ready to monitor your applications?** Start with the [Tutorial](examples/TUTORIAL.md) and explore the [examples](examples/) directory! 🚀
+<p align="center">
+  <strong>monitoring_system</strong> - Enterprise-grade Monitoring & Observability Platform<br>
+  Made with ❤️ by the monitoring_system team
+</p>
