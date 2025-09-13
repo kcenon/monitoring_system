@@ -1,13 +1,15 @@
 #pragma once
 
+#include <algorithm>
+#include <atomic>
+#include <chrono>
 #include <functional>
 #include <memory>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <atomic>
 #include <mutex>
-#include <chrono>
+#include <optional>
+#include <string>
+#include <unordered_map>
+#include <vector>
 #include <monitoring/reliability/error_boundary.h>
 #include <monitoring/core/result_types.h>
 #include <monitoring/core/error_codes.h>
