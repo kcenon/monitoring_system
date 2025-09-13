@@ -342,8 +342,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;test&quot;</span>, metric_type::gauge);</div>
 <div class="line"><span class="lineno">  148</span>    </div>
 <div class="line"><span class="lineno">  149</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  150</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  151</span>        batch.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  150</span>        compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  151</span>        batch.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  152</span>    }</div>
 <div class="line"><span class="lineno">  153</span>    </div>
 <div class="line"><span class="lineno">  154</span>    EXPECT_EQ(batch.size(), 5);</div>
@@ -353,6 +353,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  158</span>    batch.clear();</div>
 <div class="line"><span class="lineno">  159</span>    EXPECT_TRUE(batch.empty());</div>
 <div class="line"><span class="lineno">  160</span>}</div>
+<div class="ttc" id="astructmonitoring__system_1_1metric_html"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html">monitoring_system::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00027">metric_types_adapter.h:27</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -460,8 +461,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  286</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;batch_metric&quot;</span>, metric_type::gauge);</div>
 <div class="line"><span class="lineno">  287</span>    </div>
 <div class="line"><span class="lineno">  288</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
-<div class="line"><span class="lineno">  289</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  290</span>        batch.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  289</span>        compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  290</span>        batch.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  291</span>    }</div>
 <div class="line"><span class="lineno">  292</span>    </div>
 <div class="line"><span class="lineno">  293</span>    <span class="comment">// Store the batch</span></div>
@@ -944,7 +945,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 12 2025 01:26:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 13 2025 12:45:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,28 +1,4 @@
 var searchData=
 [
-  ['test_5fadaptive_5fmonitoring_2ecpp_0',['test_adaptive_monitoring.cpp',['../d2/dee/test__adaptive__monitoring_8cpp.html',1,'']]],
-  ['test_5fbuffering_5fstrategies_2ecpp_1',['test_buffering_strategies.cpp',['../d0/df8/test__buffering__strategies_8cpp.html',1,'']]],
-  ['test_5fdata_5fconsistency_2ecpp_2',['test_data_consistency.cpp',['../da/d14/test__data__consistency_8cpp.html',1,'']]],
-  ['test_5fdi_5fcontainer_2ecpp_3',['test_di_container.cpp',['../d5/d1c/test__di__container_8cpp.html',1,'']]],
-  ['test_5fdistributed_5ftracing_2ecpp_4',['test_distributed_tracing.cpp',['../d9/d1e/test__distributed__tracing_8cpp.html',1,'']]],
-  ['test_5ferror_5fboundaries_2ecpp_5',['test_error_boundaries.cpp',['../d6/d82/test__error__boundaries_8cpp.html',1,'']]],
-  ['test_5ffault_5ftolerance_2ecpp_6',['test_fault_tolerance.cpp',['../d3/d83/test__fault__tolerance_8cpp.html',1,'']]],
-  ['test_5fhealth_5fmonitoring_2ecpp_7',['test_health_monitoring.cpp',['../d9/de0/test__health__monitoring_8cpp.html',1,'']]],
-  ['test_5fintegration_5fe2e_2ecpp_8',['test_integration_e2e.cpp',['../d1/d9b/test__integration__e2e_8cpp.html',1,'']]],
-  ['test_5fmetric_5fexporters_2ecpp_9',['test_metric_exporters.cpp',['../dc/d07/test__metric__exporters_8cpp.html',1,'']]],
-  ['test_5fmetric_5fstorage_2ecpp_10',['test_metric_storage.cpp',['../d3/d9d/test__metric__storage_8cpp.html',1,'']]],
-  ['test_5fmonitorable_5finterface_2ecpp_11',['test_monitorable_interface.cpp',['../d0/de2/test__monitorable__interface_8cpp.html',1,'']]],
-  ['test_5fopentelemetry_5fadapter_2ecpp_12',['test_opentelemetry_adapter.cpp',['../d5/dbf/test__opentelemetry__adapter_8cpp.html',1,'']]],
-  ['test_5foptimization_2ecpp_13',['test_optimization.cpp',['../d9/da3/test__optimization_8cpp.html',1,'']]],
-  ['test_5fperformance_5fmonitoring_2ecpp_14',['test_performance_monitoring.cpp',['../dd/dd2/test__performance__monitoring_8cpp.html',1,'']]],
-  ['test_5fresource_5fmanagement_2ecpp_15',['test_resource_management.cpp',['../db/dcc/test__resource__management_8cpp.html',1,'']]],
-  ['test_5fresult_5ftypes_2ecpp_16',['test_result_types.cpp',['../df/de8/test__result__types_8cpp.html',1,'']]],
-  ['test_5fstorage_5fbackends_2ecpp_17',['test_storage_backends.cpp',['../d5/dec/test__storage__backends_8cpp.html',1,'']]],
-  ['test_5fstream_5faggregation_2ecpp_18',['test_stream_aggregation.cpp',['../db/d5e/test__stream__aggregation_8cpp.html',1,'']]],
-  ['test_5fstress_5fperformance_2ecpp_19',['test_stress_performance.cpp',['../de/da5/test__stress__performance_8cpp.html',1,'']]],
-  ['test_5fthread_5fcontext_2ecpp_20',['test_thread_context.cpp',['../d4/ddd/test__thread__context_8cpp.html',1,'']]],
-  ['test_5ftrace_5fexporters_2ecpp_21',['test_trace_exporters.cpp',['../dc/dbd/test__trace__exporters_8cpp.html',1,'']]],
-  ['thread_5fcontext_2ecpp_22',['thread_context.cpp',['../d0/d43/thread__context_8cpp.html',1,'']]],
-  ['thread_5fcontext_2eh_23',['thread_context.h',['../dc/dd1/thread__context_8h.html',1,'']]],
-  ['thread_5fsystem_5fcontainer_5fadapter_2eh_24',['thread_system_container_adapter.h',['../d5/d8e/thread__system__container__adapter_8h.html',1,'']]]
+  ['service_5fcontainer_5finterface_2eh_0',['service_container_interface.h',['../df/da4/service__container__interface_8h.html',1,'']]]
 ];

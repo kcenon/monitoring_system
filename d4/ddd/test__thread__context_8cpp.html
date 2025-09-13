@@ -289,9 +289,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  359</span>    EXPECT_EQ(custom2.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
 <div class="line"><span class="lineno">  360</span>    </div>
 <div class="line"><span class="lineno">  361</span>    <span class="comment">// Original metric should remain</span></div>
-<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> metric = data.get_metric(<span class="stringliteral">&quot;metric1&quot;</span>);</div>
-<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(metric.has_value());</div>
-<div class="line"><span class="lineno">  364</span>    EXPECT_DOUBLE_EQ(metric.value(), 100.0);</div>
+<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = data.get_metric(<span class="stringliteral">&quot;metric1&quot;</span>);</div>
+<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.has_value());</div>
+<div class="line"><span class="lineno">  364</span>    EXPECT_DOUBLE_EQ(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../dd/d06/structmonitoring__system_1_1metric.html#a1dde0531d6a63bec88b89652841408a2">value</a>(), 100.0);</div>
 <div class="line"><span class="lineno">  365</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__aware__monitoring_html"><div class="ttname"><a href="../../d3/d12/classmonitoring__system_1_1context__aware__monitoring.html">monitoring_system::context_aware_monitoring</a></div><div class="ttdoc">Interface for monitoring components that use thread context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00381">thread_context.h:381</a></div></div>
 <div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
@@ -300,6 +300,8 @@ Functions</h2></td></tr>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html_a2b9e9c1a2ffefce816a5863452eacaff"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a2b9e9c1a2ffefce816a5863452eacaff">monitoring_system::context_metadata::add_tag</a></div><div class="ttdeci">void add_tag(const std::string &amp;key, const std::string &amp;value)</div><div class="ttdoc">Add a custom tag.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00068">thread_context.h:68</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html_a33a44cf963bcdfaa546270ca929a2beb"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a33a44cf963bcdfaa546270ca929a2beb">monitoring_system::context_metadata::user_id</a></div><div class="ttdeci">std::string user_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00042">thread_context.h:42</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1context__metadata_html_a404a8d244ca7459d64ab606ac36ce39e"><div class="ttname"><a href="../../d7/d98/structmonitoring__system_1_1context__metadata.html#a404a8d244ca7459d64ab606ac36ce39e">monitoring_system::context_metadata::correlation_id</a></div><div class="ttdeci">std::string correlation_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00041">thread_context.h:41</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metric_html"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html">monitoring_system::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00027">metric_types_adapter.h:27</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metric_html_a1dde0531d6a63bec88b89652841408a2"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html#a1dde0531d6a63bec88b89652841408a2">monitoring_system::metric::value</a></div><div class="ttdeci">metric_value value</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00029">metric_types_adapter.h:29</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1monitoring__data_html"><div class="ttname"><a href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_system::monitoring_data</a></div><div class="ttdoc">Container for monitoring metrics from a component.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/db2/monitorable__interface_8h_source.html#l00038">monitorable_interface.h:38</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -524,19 +526,19 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00370">370</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  370</span>                                                   {</div>
 <div class="line"><span class="lineno">  371</span>    <span class="comment">// Create test collector</span></div>
-<div class="line"><span class="lineno">  372</span>    <span class="keyword">class </span>test_collector : <span class="keyword">public</span> <a class="code hl_class" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">context_metrics_collector</a> {</div>
+<div class="line"><span class="lineno">  372</span>    <span class="keyword">class </span><a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">context_metrics_collector</a> {</div>
 <div class="line"><span class="lineno">  373</span>    <span class="keyword">public</span>:</div>
-<div class="line"><span class="lineno">  374</span>        <span class="keyword">explicit</span> test_collector(<span class="keyword">const</span> std::string&amp; name)</div>
+<div class="line"><span class="lineno">  374</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a>(<span class="keyword">const</span> std::string&amp; name)</div>
 <div class="line"><span class="lineno">  375</span>            : <a class="code hl_class" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">context_metrics_collector</a>(name) {}</div>
 <div class="line"><span class="lineno">  376</span>        </div>
-<div class="line"><span class="lineno">  377</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;metrics_snapshot&gt;</a> <a class="code hl_function" href="../../da/d9b/classmonitoring__system_1_1metrics__collector.html#a18b34ca3347667d35ec15c385535f4ba">collect</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><span class="lineno">  378</span>            <span class="keyword">auto</span> snapshot = <a class="code hl_function" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f">create_snapshot_with_context</a>();</div>
+<div class="line"><span class="lineno">  377</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;metrics_snapshot&gt;</a> collect()<span class="keyword"> override </span>{</div>
+<div class="line"><span class="lineno">  378</span>            <span class="keyword">auto</span> snapshot = create_snapshot_with_context();</div>
 <div class="line"><span class="lineno">  379</span>            snapshot.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
 <div class="line"><span class="lineno">  380</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(std::move(snapshot));</div>
 <div class="line"><span class="lineno">  381</span>        }</div>
 <div class="line"><span class="lineno">  382</span>    };</div>
 <div class="line"><span class="lineno">  383</span>    </div>
-<div class="line"><span class="lineno">  384</span>    test_collector collector(<span class="stringliteral">&quot;test-collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  384</span>    <a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> collector(<span class="stringliteral">&quot;test-collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  385</span>    </div>
 <div class="line"><span class="lineno">  386</span>    <span class="comment">// Set thread context</span></div>
 <div class="line"><span class="lineno">  387</span>    <a class="code hl_function" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45">thread_context::create</a>(<span class="stringliteral">&quot;collector-request&quot;</span>);</div>
@@ -551,9 +553,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  396</span>    EXPECT_EQ(snapshot1.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  397</span>    </div>
 <div class="line"><span class="lineno">  398</span>    <span class="comment">// Verify metric</span></div>
-<div class="line"><span class="lineno">  399</span>    <span class="keyword">auto</span> metric = snapshot1.get_metric(<span class="stringliteral">&quot;test_metric&quot;</span>);</div>
-<div class="line"><span class="lineno">  400</span>    ASSERT_TRUE(metric.has_value());</div>
-<div class="line"><span class="lineno">  401</span>    EXPECT_DOUBLE_EQ(metric.value(), 42.0);</div>
+<div class="line"><span class="lineno">  399</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = snapshot1.get_metric(<span class="stringliteral">&quot;test_metric&quot;</span>);</div>
+<div class="line"><span class="lineno">  400</span>    ASSERT_TRUE(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.has_value());</div>
+<div class="line"><span class="lineno">  401</span>    EXPECT_DOUBLE_EQ(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../dd/d06/structmonitoring__system_1_1metric.html#a1dde0531d6a63bec88b89652841408a2">value</a>(), 42.0);</div>
 <div class="line"><span class="lineno">  402</span>    </div>
 <div class="line"><span class="lineno">  403</span>    <span class="comment">// Collect with context awareness disabled</span></div>
 <div class="line"><span class="lineno">  404</span>    collector.set_context_aware(<span class="keyword">false</span>);</div>
@@ -565,41 +567,22 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  410</span>    EXPECT_EQ(snapshot2.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  411</span>}</div>
 <div class="ttc" id="aclassmonitoring__system_1_1context__metrics__collector_html"><div class="ttname"><a href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html">monitoring_system::context_metrics_collector</a></div><div class="ttdoc">Collector that automatically includes thread context in metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00446">thread_context.h:447</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1context__metrics__collector_html_ac37ed2a997f51ab395af52f01f33237f"><div class="ttname"><a href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f">monitoring_system::context_metrics_collector::create_snapshot_with_context</a></div><div class="ttdeci">metrics_snapshot create_snapshot_with_context(const std::string &amp;source_id=&quot;&quot;)</div><div class="ttdoc">Helper to create snapshot with context.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00525">thread_context.h:525</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1metrics__collector_html_a18b34ca3347667d35ec15c385535f4ba"><div class="ttname"><a href="../../da/d9b/classmonitoring__system_1_1metrics__collector.html#a18b34ca3347667d35ec15c385535f4ba">monitoring_system::metrics_collector::collect</a></div><div class="ttdeci">virtual result&lt; metrics_snapshot &gt; collect()=0</div><div class="ttdoc">Collect metrics.</div></div>
+<div class="ttc" id="aclasstest__collector_html"><div class="ttname"><a href="../../d9/d71/classtest__collector.html">test_collector</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00034">test_interfaces_compile.cpp:34</a></div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_af97d143891084f454314b6bd03b8712f"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00236">result_types.h:236</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph" alt=""/></div>
 <map name="ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph" id="ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,134,75,159"/>
-<area shape="rect" href="../../da/d9b/classmonitoring__system_1_1metrics__collector.html#a18b34ca3347667d35ec15c385535f4ba" title="Collect metrics." alt="" coords="144,5,329,45"/>
-<area shape="poly" title=" " alt="" coords="48,132,77,94,98,73,121,55,133,49,136,53,124,60,101,77,81,97,52,135"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="152,69,321,109"/>
-<area shape="poly" title=" " alt="" coords="74,134,154,111,155,116,75,139"/>
-<area shape="rect" href="../../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#ac37ed2a997f51ab395af52f01f33237f" title="Helper to create snapshot with context." alt="" coords="123,210,351,265"/>
-<area shape="poly" title=" " alt="" coords="70,157,165,202,163,206,68,162"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="650,177,825,217"/>
-<area shape="poly" title=" " alt="" coords="75,146,636,187,636,193,75,152"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="159,289,315,329"/>
-<area shape="poly" title=" " alt="" coords="48,159,74,215,96,248,124,275,147,288,144,293,121,279,92,251,70,218,43,161"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="403,54,590,109"/>
-<area shape="poly" title=" " alt="" coords="321,84,389,82,389,87,322,89"/>
-<area shape="poly" title=" " alt="" coords="351,224,398,220,636,202,636,207,399,225,351,229"/>
-<area shape="rect" href="../../d3/d12/classmonitoring__system_1_1context__aware__monitoring.html#a081b31e6168699bdd93578c744317a23" title="Enrich monitoring data with thread context." alt="" coords="399,235,595,290"/>
-<area shape="poly" title=" " alt="" coords="351,246,386,249,385,254,351,251"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a0d6d6e6ad29859bf07ed987a3a9883f7" title="Get all tags." alt="" coords="400,315,593,355"/>
-<area shape="poly" title=" " alt="" coords="321,262,352,275,400,300,418,307,416,312,398,305,350,280,319,267"/>
-<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a2412c2edfa6ffe5c09400072c4d7fb43" title="Check if current thread has a context." alt="" coords="419,379,575,434"/>
-<area shape="poly" title=" " alt="" coords="334,263,353,275,370,298,377,321,384,343,401,365,409,371,405,375,397,369,379,345,372,322,366,301,349,279,331,267"/>
-<area shape="poly" title=" " alt="" coords="594,234,649,218,651,223,596,239"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="643,243,832,283"/>
-<area shape="poly" title=" " alt="" coords="595,260,629,260,629,265,595,265"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="659,307,815,347"/>
-<area shape="poly" title=" " alt="" coords="595,286,649,301,648,306,594,291"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="880,307,1055,347"/>
-<area shape="poly" title=" " alt="" coords="816,324,866,324,866,329,816,329"/>
+<area shape="rect" title=" " alt="" coords="5,84,75,109"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ab4cb8757a9825e44f51c204c05b94c45" title="Create and set a new context for the current thread." alt="" coords="125,13,295,53"/>
+<area shape="poly" title=" " alt="" coords="72,81,122,62,140,55,142,60,124,67,74,86"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#a68216cb9ca2a789155dbc568858a041d" title="Get the current thread&#39;s context." alt="" coords="123,77,297,117"/>
+<area shape="poly" title=" " alt="" coords="75,94,109,94,109,99,75,99"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="132,141,288,181"/>
+<area shape="poly" title=" " alt="" coords="74,107,124,126,142,133,140,138,122,131,72,112"/>
+<area shape="rect" href="../../d2/dbd/classmonitoring__system_1_1thread__context.html#ac8fb47251cea2f16af63c8980c817914" title="Generate a unique request ID." alt="" coords="345,5,532,60"/>
+<area shape="poly" title=" " alt="" coords="295,30,332,30,332,35,295,35"/>
 </map>
 </div>
 
@@ -1312,7 +1295,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 12 2025 01:26:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 13 2025 12:45:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -672,11 +672,11 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  278</span>    <span class="keywordtype">bool</span> found_perf_metric = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  279</span>    <span class="keywordtype">bool</span> found_sys_metric = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  280</span>    </div>
-<div class="line"><span class="lineno">  281</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : snapshot.metrics) {</div>
-<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">if</span> (metric.name.find(<span class="stringliteral">&quot;collect_test&quot;</span>) != std::string::npos) {</div>
+<div class="line"><span class="lineno">  281</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> : snapshot.metrics) {</div>
+<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">if</span> (<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../dd/d06/structmonitoring__system_1_1metric.html#ae15c9d2e6596a555061f5e46d81742e3">name</a>.find(<span class="stringliteral">&quot;collect_test&quot;</span>) != std::string::npos) {</div>
 <div class="line"><span class="lineno">  283</span>            found_perf_metric = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  284</span>        }</div>
-<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">if</span> (metric.name.find(<span class="stringliteral">&quot;system.&quot;</span>) == 0) {</div>
+<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">if</span> (<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../dd/d06/structmonitoring__system_1_1metric.html#ae15c9d2e6596a555061f5e46d81742e3">name</a>.find(<span class="stringliteral">&quot;system.&quot;</span>) == 0) {</div>
 <div class="line"><span class="lineno">  286</span>            found_sys_metric = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  287</span>        }</div>
 <div class="line"><span class="lineno">  288</span>    }</div>
@@ -684,6 +684,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  290</span>    EXPECT_TRUE(found_perf_metric);</div>
 <div class="line"><span class="lineno">  291</span>    EXPECT_TRUE(found_sys_metric);</div>
 <div class="line"><span class="lineno">  292</span>}</div>
+<div class="ttc" id="astructmonitoring__system_1_1metric_html"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html">monitoring_system::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00027">metric_types_adapter.h:27</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1metric_html_ae15c9d2e6596a555061f5e46d81742e3"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html#ae15c9d2e6596a555061f5e46d81742e3">monitoring_system::metric::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00028">metric_types_adapter.h:28</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1208,7 +1210,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 12 2025 01:26:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 13 2025 12:45:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['enable_5fcompression_0',['enable_compression',['../df/dc1/structmonitoring__system_1_1monitoring__config.html#a83e0a66f2582a298b97d0f56424273c3',1,'monitoring_system::monitoring_config']]],
-  ['enable_5fpersistence_1',['enable_persistence',['../df/dc1/structmonitoring__system_1_1monitoring__config.html#a43e0666f3c4ef1f94d6c17f0415b50c5',1,'monitoring_system::monitoring_config']]],
-  ['enabled_5f_2',['enabled_',['../dc/dc2/classmonitoring__system_1_1context__metrics__collector.html#a2de23be685588263b08f5713d77fc3a7',1,'monitoring_system::context_metrics_collector::enabled_'],['../d9/d8d/classmock__collector.html#ac9d94442a37340d5306d9c76c2630558',1,'mock_collector::enabled_']]],
-  ['error_3',['error',['../dd/d7b/structmonitoring__system_1_1health__check__result.html#ad093487909c1600d1aae6aabf5de5e77',1,'monitoring_system::health_check_result']]],
-  ['error_5f_4',['error_',['../d1/d78/classmonitoring__system_1_1result__void.html#a34820b5eb4ad23b42fd499934dfd5d04',1,'monitoring_system::result_void']]]
+  ['debug_5fcount_0',['debug_count',['../d6/d9d/structmonitoring__system_1_1logging__metric__event_1_1logging__stats.html#aaaecd6ef56a0e4684c777a05deabdf2c',1,'monitoring_system::logging_metric_event::logging_stats']]],
+  ['disk_5ftotal_5fbytes_1',['disk_total_bytes',['../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html#a99d54e20ce49f67254d2fd9073f4e15f',1,'monitoring_system::system_resource_event::resource_stats']]],
+  ['disk_5fused_5fbytes_2',['disk_used_bytes',['../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html#ab8af1ed0b75974c02c5aee5f0d50cf78',1,'monitoring_system::system_resource_event::resource_stats']]]
 ];

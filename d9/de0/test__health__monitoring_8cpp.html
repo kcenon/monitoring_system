@@ -497,7 +497,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  500</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html#ab3851b903296c65e49fb3b49b8be2188">health_check_result::healthy</a>(<span class="stringliteral">&quot;Built check OK&quot;</span>); </div>
 <div class="line"><span class="lineno">  501</span>        })</div>
 <div class="line"><span class="lineno">  502</span>        .with_timeout(std::chrono::milliseconds(1000))</div>
-<div class="line"><span class="lineno">  503</span>        .critical(<span class="keyword">false</span>)</div>
+<div class="line"><span class="lineno">  503</span>        .<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a30037fc2d9d552555ffc0d1e6a633084a7e85bcb66fb9a809d5ab4f62a8b8bea8">critical</a>(<span class="keyword">false</span>)</div>
 <div class="line"><span class="lineno">  504</span>        .build();</div>
 <div class="line"><span class="lineno">  505</span>    </div>
 <div class="line"><span class="lineno">  506</span>    EXPECT_EQ(check-&gt;get_name(), <span class="stringliteral">&quot;built_check&quot;</span>);</div>
@@ -509,6 +509,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  512</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
 <div class="line"><span class="lineno">  513</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.message, <span class="stringliteral">&quot;Built check OK&quot;</span>);</div>
 <div class="line"><span class="lineno">  514</span>}</div>
+<div class="ttc" id="anamespacemonitoring__system_html_a30037fc2d9d552555ffc0d1e6a633084a7e85bcb66fb9a809d5ab4f62a8b8bea8"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a30037fc2d9d552555ffc0d1e6a633084a7e85bcb66fb9a809d5ab4f62a8b8bea8">monitoring_system::event_priority::critical</a></div><div class="ttdeci">@ critical</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1504,7 +1505,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 12 2025 01:26:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 13 2025 12:45:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

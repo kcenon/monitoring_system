@@ -1,10 +1,19 @@
 var searchData=
 [
-  ['name_0',['name',['../dd/d1d/structmonitoring__system_1_1metric__value.html#a72b4134b9d77db88c8d7462b5b1df7ad',1,'monitoring_system::metric_value']]],
+  ['name_0',['name',['../dd/d06/structmonitoring__system_1_1metric.html#ae15c9d2e6596a555061f5e46d81742e3',1,'monitoring_system::metric::name'],['../dd/d1d/structmonitoring__system_1_1metric__value.html#a72b4134b9d77db88c8d7462b5b1df7ad',1,'monitoring_system::metric_value::name']]],
   ['name_5f_1',['name_',['../d9/d8d/classmock__collector.html#ae46143e0e7c82ade2c70c253b3814d02',1,'mock_collector::name_'],['../d2/dea/classtest__health__check.html#a939dd9d1cce3395bddd909e2e141a12c',1,'test_health_check::name_']]],
   ['named_5fkey_2',['named_key',['../d7/d05/classmonitoring__system_1_1lightweight__container.html#a1a8ccec469cf6e72d74c7d0bd4b8d98d',1,'monitoring_system::lightweight_container']]],
   ['named_5fkey_5fhash_3',['named_key_hash',['../d4/d35/structmonitoring__system_1_1lightweight__container_1_1named__key__hash.html',1,'monitoring_system::lightweight_container']]],
   ['named_5fregistrations_5f_4',['named_registrations_',['../d7/d05/classmonitoring__system_1_1lightweight__container.html#a7b1512e2dd9585b1c5e8d548f12e0f5b',1,'monitoring_system::lightweight_container']]],
   ['network_5ferror_5',['network_error',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca294ea92b1494a8527fab4be63404daec',1,'monitoring_system']]],
-  ['not_5ffound_6',['not_found',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714',1,'monitoring_system']]]
+  ['network_5frx_5fbytes_6',['network_rx_bytes',['../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html#ab55d93e7ab6ebbb4af130d645eaaf3bd',1,'monitoring_system::system_resource_event::resource_stats']]],
+  ['network_5ftx_5fbytes_7',['network_tx_bytes',['../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html#ad1e99239b74951744516f85863dae271',1,'monitoring_system::system_resource_event::resource_stats']]],
+  ['new_5fstate_8',['new_state',['../dd/df0/classmonitoring__system_1_1state__change__event.html#a42651501ad59961d4e87e82bbf9240e2',1,'monitoring_system::state_change_event']]],
+  ['new_5fstate_5f_9',['new_state_',['../dd/df0/classmonitoring__system_1_1state__change__event.html#a8bf4e60c55b1ea8e3f5700eda63fe7d5',1,'monitoring_system::state_change_event::new_state_'],['../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html#ac65a12fbc2a372b87cb74a8b9f5ee8f6',1,'monitoring_system::component_lifecycle_event::new_state_']]],
+  ['new_5fvalue_5f_10',['new_value_',['../d1/daa/classmonitoring__system_1_1configuration__change__event.html#a96ca30d9eabf9d6b6f09a3d4fa669b09',1,'monitoring_system::configuration_change_event']]],
+  ['normal_11',['normal',['../de/d3f/namespacemonitoring__system.html#a30037fc2d9d552555ffc0d1e6a633084afea087517c26fadd409bd4b9dc642555',1,'monitoring_system']]],
+  ['not_5ffound_12',['not_found',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca7500611bf7030bc99d25c354e7b64714',1,'monitoring_system']]],
+  ['notify_5fevent_13',['notify_event',['../d9/d8d/classmonitoring__system_1_1interface__observable.html#a738e39d3599a1a8db8d5817f11866bc2',1,'monitoring_system::interface_observable::notify_event()'],['../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb',1,'test_collector::notify_event()']]],
+  ['notify_5fmetric_14',['notify_metric',['../d9/d8d/classmonitoring__system_1_1interface__observable.html#a3a0e1b84015b43781f22576947f0d614',1,'monitoring_system::interface_observable::notify_metric()'],['../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63',1,'test_collector::notify_metric()']]],
+  ['notify_5fstate_5fchange_15',['notify_state_change',['../d9/d8d/classmonitoring__system_1_1interface__observable.html#a1b99931a2d206bb8f62c2465ce9112cc',1,'monitoring_system::interface_observable::notify_state_change()'],['../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9',1,'test_collector::notify_state_change()']]]
 ];

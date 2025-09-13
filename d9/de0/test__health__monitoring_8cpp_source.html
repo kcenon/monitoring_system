@@ -628,7 +628,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html#ab3851b903296c65e49fb3b49b8be2188">health_check_result::healthy</a>(<span class="stringliteral">&quot;Built check OK&quot;</span>); </div>
 <div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>        })</div>
 <div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>        .with_timeout(std::chrono::milliseconds(1000))</div>
-<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>        .critical(<span class="keyword">false</span>)</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>        .<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a30037fc2d9d552555ffc0d1e6a633084a7e85bcb66fb9a809d5ab4f62a8b8bea8">critical</a>(<span class="keyword">false</span>)</div>
 <div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>        .build();</div>
 <div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>    </div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>    EXPECT_EQ(check-&gt;get_name(), <span class="stringliteral">&quot;built_check&quot;</span>);</div>
@@ -755,6 +755,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="anamespacemonitoring__system_html_a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a741839f346d6e8126ae38ee76a96fd12">monitoring_system::health_status::healthy</a></div><div class="ttdeci">@ healthy</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a1a3c481170ef3603d18f608a94dc7ff4a8377f5fd94f84ea08829f36e1ded3b74"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4a8377f5fd94f84ea08829f36e1ded3b74">monitoring_system::health_status::degraded</a></div><div class="ttdeci">@ degraded</div></div>
 <div class="ttc" id="anamespacemonitoring__system_html_a1a3c481170ef3603d18f608a94dc7ff4ab7a582af4c2e181215b55161560713e5"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4ab7a582af4c2e181215b55161560713e5">monitoring_system::health_status::unhealthy</a></div><div class="ttdeci">@ unhealthy</div></div>
+<div class="ttc" id="anamespacemonitoring__system_html_a30037fc2d9d552555ffc0d1e6a633084a7e85bcb66fb9a809d5ab4f62a8b8bea8"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a30037fc2d9d552555ffc0d1e6a633084a7e85bcb66fb9a809d5ab4f62a8b8bea8">monitoring_system::event_priority::critical</a></div><div class="ttdeci">@ critical</div></div>
 <div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00035">result_types.h:35</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1health__check__result_html"><div class="ttname"><a href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html">monitoring_system::health_check_result</a></div><div class="ttdoc">Result of a health check operation.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00106">monitoring_interface.h:106</a></div></div>
 <div class="ttc" id="astructmonitoring__system_1_1health__check__result_html_a66d8fe0d8bd53da3ae2cc6388fbc1ba2"><div class="ttname"><a href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html#a66d8fe0d8bd53da3ae2cc6388fbc1ba2">monitoring_system::health_check_result::degraded</a></div><div class="ttdeci">static health_check_result degraded(const std::string &amp;msg)</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00147">monitoring_interface.h:147</a></div></div>
@@ -764,7 +765,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 12 2025 01:26:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 13 2025 12:45:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

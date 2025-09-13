@@ -1,5 +1,6 @@
 var searchData=
 [
   ['lightweight_5fcontainer_0',['lightweight_container',['../d7/d05/classmonitoring__system_1_1lightweight__container.html#adb60f79c14f128b04052a4f8dbc87603',1,'monitoring_system::lightweight_container::lightweight_container()=default'],['../d7/d05/classmonitoring__system_1_1lightweight__container.html#abe138605d4c4dd95fb38d3d5ed6cfcbb',1,'monitoring_system::lightweight_container::lightweight_container(lightweight_container *parent)'],['../d7/d05/classmonitoring__system_1_1lightweight__container.html#a6718ccf87f73532e711c6380d9106576',1,'monitoring_system::lightweight_container::lightweight_container(const lightweight_container &amp;)=delete'],['../d7/d05/classmonitoring__system_1_1lightweight__container.html#addc5b9dc11e89294ce9bfef97a3614d3',1,'monitoring_system::lightweight_container::lightweight_container(lightweight_container &amp;&amp;)=delete']]],
-  ['list_5fcollectors_1',['list_collectors',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html#a44987665b7263e80072273ceef32b378',1,'monitoring_system::monitoring_interface']]]
+  ['list_5fcollectors_1',['list_collectors',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html#a44987665b7263e80072273ceef32b378',1,'monitoring_system::monitoring_interface']]],
+  ['logging_5fmetric_5fevent_2',['logging_metric_event',['../dc/d5a/classmonitoring__system_1_1logging__metric__event.html#a045bbc1ab29e54f9621b1e5a91c486ab',1,'monitoring_system::logging_metric_event']]]
 ];

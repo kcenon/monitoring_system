@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['id_5f_0',['id_',['../d6/d19/classServiceA.html#afa90acf75767d422cb63b5a43a3f64ac',1,'ServiceA']]],
-  ['initial_5fmemory_5f_1',['initial_memory_',['../d9/dbf/classStressPerformanceTest.html#a8d51da4ee46350f609a1be56ab7e1d70',1,'StressPerformanceTest']]],
-  ['instance_5fcount_5f_2',['instance_count_',['../d6/d19/classServiceA.html#aff76bd64cdfd9181e1eacb8cba0df38f',1,'ServiceA']]],
-  ['is_5fhealthy_5f_3',['is_healthy_',['../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124',1,'DatabaseConnection']]],
-  ['issues_4',['issues',['../dd/d7b/structmonitoring__system_1_1health__check__result.html#a6c6f56d5a648d985b078466dd85d1e68',1,'monitoring_system::health_check_result']]]
+  ['handler_0',['handler',['../d5/d9c/structmonitoring__system_1_1event__handler__wrapper.html#a145d33192ce6afe6b130517b4954e7a7',1,'monitoring_system::event_handler_wrapper']]],
+  ['handler_5f_1',['handler_',['../d1/d5f/classmonitoring__system_1_1event__handler.html#a07a6c3383cab8620487c4ee2e48c4905',1,'monitoring_system::event_handler']]],
+  ['handler_5fid_5f_2',['handler_id_',['../d7/d74/classmonitoring__system_1_1subscription__token.html#a916b3033e260657a5010143fe76398be',1,'monitoring_system::subscription_token']]],
+  ['handlers_5f_3',['handlers_',['../dd/d62/classmonitoring__system_1_1event__bus.html#acbcab9deae307d09f3833aaf6e45b154',1,'monitoring_system::event_bus']]],
+  ['handlers_5fmutex_5f_4',['handlers_mutex_',['../dd/d62/classmonitoring__system_1_1event__bus.html#a8f2b65b1c4e514f43e67aefc284f37a3',1,'monitoring_system::event_bus']]],
+  ['history_5fsize_5',['history_size',['../df/dc1/structmonitoring__system_1_1monitoring__config.html#ac492e933bf5f7cfff2a20ffd21f1d862',1,'monitoring_system::monitoring_config']]]
 ];
