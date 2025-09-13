@@ -1,6 +1,11 @@
 #pragma once
 
+#include <atomic>
+#include <chrono>
+#include <functional>
 #include <memory>
+#include <mutex>
+#include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <monitoring/reliability/circuit_breaker.h>

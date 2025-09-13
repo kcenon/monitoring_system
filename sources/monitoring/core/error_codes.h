@@ -97,6 +97,8 @@ enum class monitoring_error_code : std::uint32_t {
     not_found = 8102,
     already_exists = 8103,
     resource_exhausted = 8104,
+    already_started = 8105,
+    dependency_missing = 8106,
     
     // Resource management errors (8200-8299)
     quota_exceeded = 8200,
@@ -249,7 +251,11 @@ inline std::string error_code_to_string(monitoring_error_code code) {
             return "Already exists";
         case monitoring_error_code::resource_exhausted:
             return "Resource exhausted";
-            
+        case monitoring_error_code::already_started:
+            return "Already started";
+        case monitoring_error_code::dependency_missing:
+            return "Dependency missing";
+
         // Resource management errors
         case monitoring_error_code::quota_exceeded:
             return "Quota exceeded";
