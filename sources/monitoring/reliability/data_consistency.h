@@ -21,18 +21,20 @@ All rights reserved.
 
 #include <monitoring/core/result_types.h>
 #include <monitoring/core/error_codes.h>
+#include <algorithm>
 #include <atomic>
 #include <chrono>
-#include <memory>
-#include <unordered_map>
-#include <mutex>
 #include <condition_variable>
-#include <thread>
 #include <functional>
-#include <vector>
+#include <memory>
+#include <mutex>
+#include <optional>
 #include <queue>
 #include <set>
-#include <optional>
+#include <string>
+#include <thread>
+#include <unordered_map>
+#include <vector>
 
 namespace monitoring_system {
 
