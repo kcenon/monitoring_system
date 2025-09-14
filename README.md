@@ -271,7 +271,7 @@ monitoring_system/
 - [**Phase 3: Alerting & Dashboard**](docs/PHASE3.md) - Real-time alerting and web dashboard
 
 ### Examples & Tutorials
-- [**Tutorial Guide**](examples/TUTORIAL.md) - Step-by-step tutorials
+- [**Tutorial Guide**](docs/guides/TUTORIAL.md) - Step-by-step tutorials
 - [**Basic Monitoring**](examples/basic_monitoring_example.cpp) - Getting started example
 - [**Distributed Tracing**](examples/distributed_tracing_example.cpp) - Tracing implementation
 - [**Health & Reliability**](examples/health_reliability_example.cpp) - Circuit breakers and health checks
@@ -510,7 +510,7 @@ for (const auto& point : result.data_points) {
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
 
 ### Development Setup
 
