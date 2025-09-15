@@ -73,35 +73,27 @@ sudo make install
 ### Quick Example
 
 ```cpp
-#include "alerting/rule_engine.h"
-#include "web/metric_api.h"
-#include "monitoring/collectors/system_resource_collector.h"
+#include <kcenon/monitoring/collectors/system_resource_collector.h>
+#include <kcenon/monitoring/core/event_bus.h>
+#include <kcenon/monitoring/exporters/metric_exporters.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 int main() {
     // 1. Start system resource collection
     auto collector = std::make_shared<collectors::SystemResourceCollector>();
     collector->start_collection(std::chrono::seconds(1));
 
-    // 2. Set up alerting rules
-    alerting::RuleEngine rule_engine;
-    auto rule = alerting::RuleBuilder("cpu_high")
-        .with_name("High CPU Usage")
-        .with_severity(alerting::AlertSeverity::WARNING)
-        .with_condition({
-            .metric_name = "cpu_usage",
-            .op = alerting::ConditionOperator::GREATER_THAN,
-            .threshold = 80.0
-        })
-        .build();
-    rule_engine.add_rule(rule);
+    // 2. Set up event bus for monitoring
+    auto event_bus = std::make_shared<event_bus>();
+    collector->attach_to_bus(event_bus);
 
-    // 3. Start web dashboard
-    web::DashboardServer server(8080);
-    web::MetricAPI api;
-    api.register_routes(server);
-    server.start();
+    // 3. Configure metric exporter
+    auto exporter = std::make_shared<metric_exporters>();
+    exporter->add_export_target("prometheus", "localhost:9090");
+
+    // 4. Start monitoring
+    collector->start();
 
     std::cout << "Dashboard available at http://localhost:8080\n";
     std::cout << "Press Enter to stop...\n";
