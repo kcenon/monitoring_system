@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['back_5fpressure_5fthreshold_0',['back_pressure_threshold',['../d6/dee/structmonitoring__system_1_1event__bus__config.html#a3ee0152f661267b8be2bee4f4bb40e59',1,'monitoring_system::event_bus_config']]],
-  ['batch_5fcollection_1',['batch_collection',['../d9/d42/structmonitoring__system_1_1collection__config.html#a7631a274ea9e4e1fccab6c35fedf4616',1,'monitoring_system::collection_config']]],
-  ['batch_5fsize_2',['batch_size',['../d9/d42/structmonitoring__system_1_1collection__config.html#aa5e81e8afad88c07937846efb2114ab3',1,'monitoring_system::collection_config']]],
-  ['buffer_5fsize_3',['buffer_size',['../df/dc1/structmonitoring__system_1_1monitoring__config.html#aa814a874c1adac91d0de5af146e63db7',1,'monitoring_system::monitoring_config']]],
-  ['buffer_5fusage_5fbytes_4',['buffer_usage_bytes',['../d6/d9d/structmonitoring__system_1_1logging__metric__event_1_1logging__stats.html#a45c688efb0028417a9a1439182e63652',1,'monitoring_system::logging_metric_event::logging_stats']]],
-  ['bus_5',['bus',['../d7/d12/classEventBusTest.html#aef1ae57c23ecf661d205c920005bc5b9',1,'EventBusTest']]],
-  ['bus_5fmutex_5f_6',['bus_mutex_',['../dd/d62/classmonitoring__system_1_1event__bus.html#a5bbcc7d1884db16f093ce11bf3771e71',1,'monitoring_system::event_bus']]]
+  ['call_5fcount_0',['call_count',['../d8/d07/classDataConsistencyTest.html#a3e871adb7c0e22de7bca259d3da96e8d',1,'DataConsistencyTest::call_count'],['../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74',1,'ErrorBoundariesTest::call_count'],['../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32',1,'FaultToleranceTest::call_count'],['../d7/d4c/classResourceManagementTest.html#a6a695f17e740a5f54b3e1b03f956dfc6',1,'ResourceManagementTest::call_count']]],
+  ['call_5fcount_5f_1',['call_count_',['../d6/d98/classExternalApiClient.html#a0bd0b42de67a37f21ac0d3cc97fbe4f7',1,'ExternalApiClient']]],
+  ['collect_5fcount_5f_2',['collect_count_',['../d9/d8d/classmock__collector.html#a6d5ae8721a95a117ecf34a83e6f7c848',1,'mock_collector']]],
+  ['compatibility_5flayer_3',['compatibility_layer',['../d5/d90/classOpenTelemetryAdapterTest.html#a8c01572062ef0523f1665749f06ca9d8',1,'OpenTelemetryAdapterTest']]],
+  ['container_5f_4',['container_',['../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811',1,'DIContainerTest']]],
+  ['cpu_5fusage_5f_5',['cpu_usage_',['../d9/db4/classtest__monitorable__component.html#a687cedeade5cbc3cffa37bb02f089cf5',1,'test_monitorable_component']]]
 ];

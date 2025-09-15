@@ -83,7 +83,7 @@ $(function() {
 <p>Unit tests for monitorable interface and monitoring data.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="../../d8/db2/monitorable__interface_8h_source.html">../sources/monitoring/interfaces/monitorable_interface.h</a>&quot;</code><br />
+<code>#include &quot;../sources/monitoring/interfaces/monitorable_interface.h&quot;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -91,50 +91,15 @@ Include dependency graph for test_monitorable_interface.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d9/d23/test__monitorable__interface_8cpp__incl.png" border="0" usemap="#atests_2test__monitorable__interface_8cpp" alt=""/></div>
 <map name="atests_2test__monitorable__interface_8cpp" id="atests_2test__monitorable__interface_8cpp">
-<area shape="rect" title="Unit tests for monitorable interface and monitoring data." alt="" coords="904,5,1073,45"/>
-<area shape="rect" title=" " alt="" coords="701,108,805,133"/>
-<area shape="poly" title=" " alt="" coords="941,48,819,96,795,105,793,100,817,91,939,43"/>
-<area shape="rect" href="../../d8/db2/monitorable__interface_8h.html" title="Interface for components that expose monitoring metrics." alt="" coords="829,93,1004,148"/>
-<area shape="poly" title=" " alt="" coords="976,47,947,84,943,81,972,44"/>
-<area shape="rect" title=" " alt="" coords="1029,108,1093,133"/>
-<area shape="poly" title=" " alt="" coords="1005,44,1045,95,1041,98,1001,47"/>
-<area shape="rect" title=" " alt="" coords="1117,108,1183,133"/>
-<area shape="poly" title=" " alt="" coords="1023,43,1120,99,1117,103,1020,48"/>
-<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="401,196,560,221"/>
-<area shape="poly" title=" " alt="" coords="830,148,817,151,687,176,569,196,568,191,686,171,816,145,828,143"/>
-<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="5,269,116,295"/>
-<area shape="poly" title=" " alt="" coords="830,148,817,151,740,162,674,168,561,171,449,176,384,184,308,199,194,231,101,267,99,262,192,226,307,193,383,179,449,171,561,166,674,163,739,157,816,145,829,143"/>
-<area shape="rect" title=" " alt="" coords="451,343,510,368"/>
-<area shape="poly" title=" " alt="" coords="910,149,879,236,863,275,851,297,825,311,790,322,700,339,604,350,524,355,523,350,604,344,699,334,788,317,823,306,847,293,858,273,874,234,905,147"/>
-<area shape="rect" title=" " alt="" coords="141,269,215,295"/>
-<area shape="poly" title=" " alt="" coords="830,148,817,151,697,166,602,170,508,176,453,185,389,199,293,231,214,266,212,261,291,226,388,193,452,179,507,171,602,165,696,161,816,145,829,143"/>
-<area shape="rect" title=" " alt="" coords="759,269,837,295"/>
-<area shape="poly" title=" " alt="" coords="892,150,851,198,813,259,808,256,847,194,888,147"/>
-<area shape="rect" title=" " alt="" coords="905,196,1029,221"/>
-<area shape="poly" title=" " alt="" coords="934,147,956,183,951,185,930,149"/>
-<area shape="rect" title=" " alt="" coords="1053,196,1116,221"/>
-<area shape="poly" title=" " alt="" coords="969,146,1051,187,1049,192,967,150"/>
-<area shape="rect" title=" " alt="" coords="1141,196,1207,221"/>
-<area shape="poly" title=" " alt="" coords="996,146,1128,189,1126,194,994,151"/>
-<area shape="rect" title=" " alt="" coords="1232,196,1279,221"/>
-<area shape="poly" title=" " alt="" coords="1005,142,1017,145,1116,168,1219,193,1218,199,1115,173,1016,151,1004,148"/>
-<area shape="rect" title=" " alt="" coords="1303,196,1389,221"/>
-<area shape="poly" title=" " alt="" coords="1005,143,1017,145,1152,170,1290,193,1289,198,1151,175,1016,151,1004,148"/>
-<area shape="poly" title=" " alt="" coords="414,224,131,272,130,266,413,219"/>
-<area shape="poly" title=" " alt="" coords="483,222,483,329,478,329,478,222"/>
-<area shape="rect" title=" " alt="" coords="519,269,587,295"/>
-<area shape="poly" title=" " alt="" coords="494,220,533,258,529,262,491,224"/>
-<area shape="poly" title=" " alt="" coords="433,224,229,271,228,266,431,219"/>
-<area shape="poly" title=" " alt="" coords="532,219,747,266,745,272,531,224"/>
-<area shape="rect" title=" " alt="" coords="611,269,735,295"/>
-<area shape="poly" title=" " alt="" coords="512,219,629,262,627,267,511,224"/>
-<area shape="rect" title=" " alt="" coords="240,269,332,295"/>
-<area shape="poly" title=" " alt="" coords="450,224,331,267,330,262,448,219"/>
-<area shape="rect" title=" " alt="" coords="356,269,443,295"/>
-<area shape="poly" title=" " alt="" coords="469,223,425,262,421,258,466,219"/>
-<area shape="rect" title=" " alt="" coords="27,343,94,368"/>
-<area shape="poly" title=" " alt="" coords="63,295,63,329,58,329,58,295"/>
-<area shape="poly" title=" " alt="" coords="116,290,438,344,437,349,116,295"/>
+<area shape="rect" title="Unit tests for monitorable interface and monitoring data." alt="" coords="209,5,378,45"/>
+<area shape="rect" title=" " alt="" coords="5,108,109,133"/>
+<area shape="poly" title=" " alt="" coords="245,48,122,96,99,105,97,100,120,91,243,43"/>
+<area shape="rect" title=" " alt="" coords="134,93,309,148"/>
+<area shape="poly" title=" " alt="" coords="281,47,252,84,248,81,277,44"/>
+<area shape="rect" title=" " alt="" coords="333,108,397,133"/>
+<area shape="poly" title=" " alt="" coords="310,44,350,95,346,98,306,47"/>
+<area shape="rect" title=" " alt="" coords="421,108,488,133"/>
+<area shape="poly" title=" " alt="" coords="327,43,424,99,422,103,325,48"/>
 </map>
 </div>
 </div>
@@ -208,7 +173,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00299">299</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  299</span>                                                            {</div>
-<div class="line"><span class="lineno">  300</span>    <a class="code hl_class" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;main_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  300</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;main_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  301</span>    </div>
 <div class="line"><span class="lineno">  302</span>    <span class="comment">// Create components</span></div>
 <div class="line"><span class="lineno">  303</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
@@ -250,24 +215,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  339</span>    ASSERT_NE(retrieved, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  340</span>    EXPECT_EQ(retrieved-&gt;get_monitoring_id(), <span class="stringliteral">&quot;comp2&quot;</span>);</div>
 <div class="line"><span class="lineno">  341</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1monitoring__aggregator_html"><div class="ttname"><a href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html">monitoring_system::monitoring_aggregator</a></div><div class="ttdoc">Utility class to aggregate metrics from multiple monitorable components.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/db2/monitorable__interface_8h_source.html#l00338">monitorable_interface.h:338</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,139,75,164"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a57d0379a8f91a380b2a815ff29ff7cb3" title="Add a component to monitor." alt="" coords="140,5,311,60"/>
-<area shape="poly" title=" " alt="" coords="50,137,80,103,121,69,129,64,132,69,124,74,83,107,54,140"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#ad29cd6bc252cf858b96b35cd5df9d638" title="Get a specific component by ID." alt="" coords="140,84,311,139"/>
-<area shape="poly" title=" " alt="" coords="74,141,126,130,127,135,75,147"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a615d84e4e8ab6befcb0eb52b6ff4d314" title="Get all component IDs." alt="" coords="140,163,311,217"/>
-<area shape="poly" title=" " alt="" coords="75,156,127,167,126,172,74,161"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a117c8796e1f2b3b76f81d8911e60f681" title="Get the number of registered components." alt="" coords="123,242,328,282"/>
-<area shape="poly" title=" " alt="" coords="54,162,83,194,124,226,138,234,136,239,121,231,80,198,50,166"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a0dd1aa70d779f10b00b636543db12132" name="a0dd1aa70d779f10b00b636543db12132"></a>
@@ -299,7 +247,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00423">423</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  423</span>                                                             {</div>
-<div class="line"><span class="lineno">  424</span>    <a class="code hl_class" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  424</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  425</span>    </div>
 <div class="line"><span class="lineno">  426</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
 <div class="line"><span class="lineno">  427</span>    <span class="keyword">auto</span> comp2 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp2&quot;</span>);</div>
@@ -331,25 +279,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  453</span>    aggregator.clear();</div>
 <div class="line"><span class="lineno">  454</span>    EXPECT_EQ(aggregator.size(), 0);</div>
 <div class="line"><span class="lineno">  455</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph">
-<area shape="rect" title=" " alt="" coords="5,177,75,203"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a57d0379a8f91a380b2a815ff29ff7cb3" title="Add a component to monitor." alt="" coords="140,5,311,60"/>
-<area shape="poly" title=" " alt="" coords="45,176,73,125,94,95,121,69,127,65,130,69,124,73,99,99,77,128,49,178"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#ad3508b76db20fa4c9fe70e5404d15582" title="Clear all components." alt="" coords="140,84,311,139"/>
-<area shape="poly" title=" " alt="" coords="64,175,122,148,136,142,138,146,124,152,67,180"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a615d84e4e8ab6befcb0eb52b6ff4d314" title="Get all component IDs." alt="" coords="140,163,311,217"/>
-<area shape="poly" title=" " alt="" coords="75,187,126,187,126,193,75,193"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a22bb67565267886c01c1e13cbc1ad828" title="Remove a component by ID." alt="" coords="140,241,311,296"/>
-<area shape="poly" title=" " alt="" coords="68,200,124,226,141,234,139,239,122,231,66,205"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a117c8796e1f2b3b76f81d8911e60f681" title="Get the number of registered components." alt="" coords="123,321,328,361"/>
-<area shape="poly" title=" " alt="" coords="49,202,77,252,98,281,124,305,135,312,132,316,121,309,94,284,72,255,45,204"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="abfa9581dde0223dd4aace47851ba97ad" name="abfa9581dde0223dd4aace47851ba97ad"></a>
@@ -381,7 +311,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00346">346</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  346</span>                                                           {</div>
-<div class="line"><span class="lineno">  347</span>    <a class="code hl_class" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  347</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  348</span>    </div>
 <div class="line"><span class="lineno">  349</span>    <span class="comment">// Create and configure components</span></div>
 <div class="line"><span class="lineno">  350</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
@@ -396,10 +326,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  359</span>    aggregator.add_component(comp2);</div>
 <div class="line"><span class="lineno">  360</span>    </div>
 <div class="line"><span class="lineno">  361</span>    <span class="comment">// Collect all data</span></div>
-<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = aggregator.collect_all();</div>
-<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> result = aggregator.collect_all();</div>
+<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  364</span>    </div>
-<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> aggregated = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> aggregated = result.value();</div>
 <div class="line"><span class="lineno">  366</span>    EXPECT_EQ(aggregated.get_component_name(), <span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  367</span>    </div>
 <div class="line"><span class="lineno">  368</span>    <span class="comment">// Check that metrics are prefixed</span></div>
@@ -416,39 +346,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  379</span>    ASSERT_TRUE(component_count.has_value());</div>
 <div class="line"><span class="lineno">  380</span>    EXPECT_DOUBLE_EQ(component_count.value(), 2.0);</div>
 <div class="line"><span class="lineno">  381</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00105">result_types.h:105</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph">
-<area shape="rect" title=" " alt="" coords="5,239,75,264"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a57d0379a8f91a380b2a815ff29ff7cb3" title="Add a component to monitor." alt="" coords="123,145,293,200"/>
-<area shape="poly" title=" " alt="" coords="66,236,122,209,133,204,135,208,124,214,68,241"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a3c4f8950a5d52ad89eba360609fdc6c7" title="Collect data from all components." alt="" coords="123,224,293,279"/>
-<area shape="poly" title=" " alt="" coords="75,249,109,249,109,254,75,254"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="375,391,531,431"/>
-<area shape="poly" title=" " alt="" coords="68,262,124,288,232,335,342,377,366,385,365,390,340,382,230,340,122,292,66,266"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="372,5,533,60"/>
-<area shape="poly" title=" " alt="" coords="277,222,291,210,304,192,310,175,314,141,318,106,326,89,339,71,358,56,362,60,343,75,330,91,323,108,319,142,315,176,308,195,295,213,281,226"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="358,85,547,125"/>
-<area shape="poly" title=" " alt="" coords="274,222,292,209,306,192,314,176,323,158,340,141,360,128,363,133,343,145,328,162,319,178,311,195,295,213,277,226"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="612,235,768,275"/>
-<area shape="poly" title=" " alt="" coords="266,222,292,209,315,195,341,185,403,172,453,167,503,171,565,185,611,202,651,225,648,230,608,207,563,190,502,176,453,172,404,177,342,190,318,200,295,214,268,226"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="375,199,531,239"/>
-<area shape="poly" title=" " alt="" coords="293,238,361,229,361,234,294,243"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#afc113ec75610a5267647ea5d60b7978c" title="Merge another monitoring_data into this one." alt="" coords="363,263,542,303"/>
-<area shape="poly" title=" " alt="" coords="294,260,350,267,349,273,293,265"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aacd2ef25514e70d59bc8cb79d6ca7fdc" title="Get the number of metrics." alt="" coords="341,327,564,367"/>
-<area shape="poly" title=" " alt="" coords="262,277,342,313,364,321,363,326,340,318,260,281"/>
-<area shape="poly" title=" " alt="" coords="242,277,295,327,318,354,328,366,343,377,363,387,360,392,340,382,324,370,314,358,291,330,238,281"/>
-<area shape="poly" title=" " alt="" coords="530,392,563,377,592,356,620,332,663,284,667,288,623,336,596,361,565,382,532,397"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="612,391,768,431"/>
-<area shape="poly" title=" " alt="" coords="531,409,598,409,598,414,531,414"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a39888f2b0fbe90a0bb503cd8dba9cae5" name="a39888f2b0fbe90a0bb503cd8dba9cae5"></a>
@@ -480,7 +378,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00386">386</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  386</span>                                                                   {</div>
-<div class="line"><span class="lineno">  387</span>    <a class="code hl_class" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  387</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  388</span>    </div>
 <div class="line"><span class="lineno">  389</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
 <div class="line"><span class="lineno">  390</span>    <span class="keyword">auto</span> comp2 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp2&quot;</span>);</div>
@@ -495,10 +393,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  399</span>    aggregator.add_component(comp2);</div>
 <div class="line"><span class="lineno">  400</span>    </div>
 <div class="line"><span class="lineno">  401</span>    <span class="comment">// Collect data</span></div>
-<div class="line"><span class="lineno">  402</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = aggregator.collect_all();</div>
-<div class="line"><span class="lineno">  403</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  402</span>    <span class="keyword">auto</span> result = aggregator.collect_all();</div>
+<div class="line"><span class="lineno">  403</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  404</span>    </div>
-<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> aggregated = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> aggregated = result.value();</div>
 <div class="line"><span class="lineno">  406</span>    </div>
 <div class="line"><span class="lineno">  407</span>    <span class="comment">// comp1 data should be present</span></div>
 <div class="line"><span class="lineno">  408</span>    <span class="keyword">auto</span> comp1_cpu = aggregated.get_metric(<span class="stringliteral">&quot;comp1.cpu_usage&quot;</span>);</div>
@@ -512,37 +410,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  416</span>    <span class="keyword">auto</span> comp2_error = aggregated.get_tag(<span class="stringliteral">&quot;comp2.error&quot;</span>);</div>
 <div class="line"><span class="lineno">  417</span>    EXPECT_FALSE(comp2_error.has_value());</div>
 <div class="line"><span class="lineno">  418</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph">
-<area shape="rect" title=" " alt="" coords="5,239,75,264"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a57d0379a8f91a380b2a815ff29ff7cb3" title="Add a component to monitor." alt="" coords="123,145,293,200"/>
-<area shape="poly" title=" " alt="" coords="66,236,122,209,133,204,135,208,124,214,68,241"/>
-<area shape="rect" href="../../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html#a3c4f8950a5d52ad89eba360609fdc6c7" title="Collect data from all components." alt="" coords="123,224,293,279"/>
-<area shape="poly" title=" " alt="" coords="75,249,109,249,109,254,75,254"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="375,391,531,431"/>
-<area shape="poly" title=" " alt="" coords="68,262,124,288,232,335,342,377,366,385,365,390,340,382,230,340,122,292,66,266"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="372,5,533,60"/>
-<area shape="poly" title=" " alt="" coords="277,222,291,210,304,192,310,175,314,141,318,106,326,89,339,71,358,56,362,60,343,75,330,91,323,108,319,142,315,176,308,195,295,213,281,226"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="358,85,547,125"/>
-<area shape="poly" title=" " alt="" coords="274,222,292,209,306,192,314,176,323,158,340,141,360,128,363,133,343,145,328,162,319,178,311,195,295,213,277,226"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="612,235,768,275"/>
-<area shape="poly" title=" " alt="" coords="266,222,292,209,315,195,341,185,403,172,453,167,503,171,565,185,611,202,651,225,648,230,608,207,563,190,502,176,453,172,404,177,342,190,318,200,295,214,268,226"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="375,199,531,239"/>
-<area shape="poly" title=" " alt="" coords="293,238,361,229,361,234,294,243"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#afc113ec75610a5267647ea5d60b7978c" title="Merge another monitoring_data into this one." alt="" coords="363,263,542,303"/>
-<area shape="poly" title=" " alt="" coords="294,260,350,267,349,273,293,265"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aacd2ef25514e70d59bc8cb79d6ca7fdc" title="Get the number of metrics." alt="" coords="341,327,564,367"/>
-<area shape="poly" title=" " alt="" coords="262,277,342,313,364,321,363,326,340,318,260,281"/>
-<area shape="poly" title=" " alt="" coords="242,277,295,327,318,354,328,366,343,377,363,387,360,392,340,382,324,370,314,358,291,330,238,281"/>
-<area shape="poly" title=" " alt="" coords="530,392,563,377,592,356,620,332,663,284,667,288,623,336,596,361,565,382,532,397"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="612,391,768,431"/>
-<area shape="poly" title=" " alt="" coords="531,409,598,409,598,414,531,414"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac57ab4be3e15aee2c3d48774595301c2" name="ac57ab4be3e15aee2c3d48774595301c2"></a>
@@ -587,10 +455,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  211</span>    component.set_memory_usage(2048.0);</div>
 <div class="line"><span class="lineno">  212</span>    </div>
 <div class="line"><span class="lineno">  213</span>    <span class="comment">// Get monitoring data</span></div>
-<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  216</span>    </div>
-<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> data = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> data = result.value();</div>
 <div class="line"><span class="lineno">  218</span>    EXPECT_EQ(data.get_component_name(), <span class="stringliteral">&quot;test_comp_1&quot;</span>);</div>
 <div class="line"><span class="lineno">  219</span>    </div>
 <div class="line"><span class="lineno">  220</span>    <span class="comment">// Verify metrics</span></div>
@@ -621,33 +489,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,336,75,361"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title="Get current monitoring data from the component." alt="" coords="123,155,336,195"/>
-<area shape="poly" title=" " alt="" coords="44,335,72,280,94,248,121,220,153,199,156,204,124,224,98,252,76,283,49,337"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#ad6e1934bcf1e02f2d0dd815d5510cc96" title="Get monitoring identifier." alt="" coords="388,213,569,268"/>
-<area shape="poly" title=" " alt="" coords="54,334,84,311,122,290,185,270,251,255,374,241,374,246,252,261,187,275,124,295,87,315,57,338"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#a871f247fcd25c0fc210e1ac9a11f7073" title="Check if monitoring is enabled." alt="" coords="388,292,569,347"/>
-<area shape="poly" title=" " alt="" coords="66,333,92,322,122,314,187,305,253,302,375,305,374,311,253,307,188,311,123,319,94,327,68,338"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,329,336,369"/>
-<area shape="poly" title=" " alt="" coords="75,346,109,346,109,351,75,351"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a595ca930d54f9767e3607de774509c87" title=" " alt="" coords="123,393,336,433"/>
-<area shape="poly" title=" " alt="" coords="73,359,124,378,147,386,145,391,122,383,71,364"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a0114739390502fcc663a306fcf69ac72" title=" " alt="" coords="123,457,336,497"/>
-<area shape="poly" title=" " alt="" coords="51,360,80,401,101,423,124,442,134,448,131,453,121,447,97,427,76,404,47,363"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="151,521,307,561"/>
-<area shape="poly" title=" " alt="" coords="47,361,55,391,71,430,93,471,124,507,140,517,137,522,121,511,89,474,66,432,50,393,42,362"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="398,5,559,60"/>
-<area shape="poly" title=" " alt="" coords="256,153,313,113,383,70,396,63,398,68,385,75,316,117,259,157"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="384,85,573,125"/>
-<area shape="poly" title=" " alt="" coords="300,153,393,126,395,131,301,158"/>
-<area shape="poly" title=" " alt="" coords="307,193,375,211,374,216,306,198"/>
-<area shape="poly" title=" " alt="" coords="258,193,315,234,385,277,398,284,396,289,383,282,313,238,255,198"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="401,149,557,189"/>
-<area shape="poly" title=" " alt="" coords="336,170,387,168,387,174,336,175"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="401,553,557,593"/>
-<area shape="poly" title=" " alt="" coords="308,548,387,558,386,564,307,553"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="401,489,557,529"/>
-<area shape="poly" title=" " alt="" coords="307,528,386,518,387,523,308,533"/>
+<area shape="rect" title=" " alt="" coords="5,109,75,134"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
+<area shape="poly" title=" " alt="" coords="53,106,83,80,121,55,136,48,139,53,124,60,86,85,56,110"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,69,336,109"/>
+<area shape="poly" title=" " alt="" coords="74,113,109,107,110,112,75,118"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a595ca930d54f9767e3607de774509c87" title=" " alt="" coords="123,133,336,173"/>
+<area shape="poly" title=" " alt="" coords="75,124,110,130,109,136,74,130"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a0114739390502fcc663a306fcf69ac72" title=" " alt="" coords="123,197,336,237"/>
+<area shape="poly" title=" " alt="" coords="56,132,86,158,124,183,139,190,136,195,121,188,83,162,53,136"/>
 </map>
 </div>
 
@@ -682,7 +532,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00091">91</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   91</span>                                                                {</div>
-<div class="line"><span class="lineno">   92</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
+<div class="line"><span class="lineno">   92</span>    monitoring_data data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
 <div class="line"><span class="lineno">   93</span>    </div>
 <div class="line"><span class="lineno">   94</span>    <span class="comment">// Test adding metrics</span></div>
 <div class="line"><span class="lineno">   95</span>    data.add_metric(<span class="stringliteral">&quot;cpu&quot;</span>, 75.5);</div>
@@ -721,32 +571,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  128</span>    <span class="comment">// Test component name</span></div>
 <div class="line"><span class="lineno">  129</span>    EXPECT_EQ(data.get_component_name(), <span class="stringliteral">&quot;test_component&quot;</span>);</div>
 <div class="line"><span class="lineno">  130</span>}</div>
-<div class="ttc" id="astructmonitoring__system_1_1monitoring__data_html"><div class="ttname"><a href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_system::monitoring_data</a></div><div class="ttdoc">Container for monitoring metrics from a component.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/db2/monitorable__interface_8h_source.html#l00038">monitorable_interface.h:38</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph">
-<area shape="rect" title=" " alt="" coords="5,268,75,293"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="153,5,315,60"/>
-<area shape="poly" title=" " alt="" coords="40,267,46,230,60,177,84,121,101,94,121,71,140,56,143,61,124,75,105,97,89,123,65,179,52,231,45,268"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="139,85,329,125"/>
-<area shape="poly" title=" " alt="" coords="42,267,68,204,91,167,121,135,128,130,131,134,124,139,95,170,73,206,47,269"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a39df0ed9ba0848537a4f0cc30911d826" title="Check if data is empty." alt="" coords="145,149,323,189"/>
-<area shape="poly" title=" " alt="" coords="49,266,79,232,121,198,134,192,136,196,124,203,82,236,53,270"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ac39d795665b72c4c9914e5ee456934bb" title="Get the component name." alt="" coords="155,213,313,268"/>
-<area shape="poly" title=" " alt="" coords="75,271,141,257,142,262,76,276"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acb06d773222a0d1b569074bbf2fbd930" title="Get a metric value." alt="" coords="155,292,313,347"/>
-<area shape="poly" title=" " alt="" coords="76,285,141,298,140,303,75,290"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a5223476d68d251bd6daaa4c713c71ca4" title="Get a tag value." alt="" coords="141,371,327,411"/>
-<area shape="poly" title=" " alt="" coords="53,292,83,324,124,356,139,364,137,368,121,360,79,328,50,295"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aacd2ef25514e70d59bc8cb79d6ca7fdc" title="Get the number of metrics." alt="" coords="123,435,345,475"/>
-<area shape="poly" title=" " alt="" coords="47,293,73,355,95,391,124,421,131,426,128,430,121,425,91,394,68,357,43,295"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a3d060994c07a2259ba95b04b0c8c5205" title="Get the number of tags." alt="" coords="133,499,335,539"/>
-<area shape="poly" title=" " alt="" coords="45,293,51,331,64,383,88,438,104,463,125,485,130,490,126,494,121,489,100,467,83,440,59,384,46,332,40,294"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a19bd4aaf40e0fc5ef5a4d355947a9d06" name="a19bd4aaf40e0fc5ef5a4d355947a9d06"></a>
@@ -778,7 +603,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  173</span>                                                              {</div>
-<div class="line"><span class="lineno">  174</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  174</span>    monitoring_data data(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  175</span>    </div>
 <div class="line"><span class="lineno">  176</span>    <span class="comment">// Initially empty</span></div>
 <div class="line"><span class="lineno">  177</span>    EXPECT_TRUE(data.empty());</div>
@@ -800,27 +625,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  193</span>    EXPECT_EQ(data.metric_count(), 0);</div>
 <div class="line"><span class="lineno">  194</span>    EXPECT_EQ(data.tag_count(), 0);</div>
 <div class="line"><span class="lineno">  195</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph">
-<area shape="rect" title=" " alt="" coords="5,188,75,213"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="153,5,315,60"/>
-<area shape="poly" title=" " alt="" coords="44,187,71,131,93,99,121,71,140,58,142,63,124,75,97,102,76,134,49,189"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="139,85,329,125"/>
-<area shape="poly" title=" " alt="" coords="53,186,83,160,121,134,136,127,139,132,124,139,86,164,56,190"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a5e2e043e9354a0abc5fd00ac2a192a8d" title="Clear all metrics and tags." alt="" coords="149,149,319,189"/>
-<area shape="poly" title=" " alt="" coords="75,192,135,182,136,188,76,198"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a39df0ed9ba0848537a4f0cc30911d826" title="Check if data is empty." alt="" coords="145,213,323,253"/>
-<area shape="poly" title=" " alt="" coords="76,204,132,213,131,218,75,209"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aacd2ef25514e70d59bc8cb79d6ca7fdc" title="Get the number of metrics." alt="" coords="123,277,345,317"/>
-<area shape="poly" title=" " alt="" coords="56,212,86,237,124,262,139,269,136,274,121,267,83,242,53,216"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a3d060994c07a2259ba95b04b0c8c5205" title="Get the number of tags." alt="" coords="133,341,335,381"/>
-<area shape="poly" title=" " alt="" coords="48,212,75,268,97,299,124,327,132,332,129,336,121,331,93,303,70,270,43,215"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a92398a105c943d409b4f1e498d2ff543" name="a92398a105c943d409b4f1e498d2ff543"></a>
@@ -852,11 +657,11 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00135">135</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  135</span>                                                      {</div>
-<div class="line"><span class="lineno">  136</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data1(<span class="stringliteral">&quot;component1&quot;</span>);</div>
+<div class="line"><span class="lineno">  136</span>    monitoring_data data1(<span class="stringliteral">&quot;component1&quot;</span>);</div>
 <div class="line"><span class="lineno">  137</span>    data1.add_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 10.0);</div>
 <div class="line"><span class="lineno">  138</span>    data1.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">  139</span>    </div>
-<div class="line"><span class="lineno">  140</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data2(<span class="stringliteral">&quot;component2&quot;</span>);</div>
+<div class="line"><span class="lineno">  140</span>    monitoring_data data2(<span class="stringliteral">&quot;component2&quot;</span>);</div>
 <div class="line"><span class="lineno">  141</span>    data2.add_metric(<span class="stringliteral">&quot;metric2&quot;</span>, 20.0);</div>
 <div class="line"><span class="lineno">  142</span>    data2.add_tag(<span class="stringliteral">&quot;tag2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
 <div class="line"><span class="lineno">  143</span>    </div>
@@ -871,7 +676,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  152</span>    EXPECT_DOUBLE_EQ(metric2.value(), 20.0);</div>
 <div class="line"><span class="lineno">  153</span>    </div>
 <div class="line"><span class="lineno">  154</span>    <span class="comment">// Merge with prefix</span></div>
-<div class="line"><span class="lineno">  155</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data3(<span class="stringliteral">&quot;component3&quot;</span>);</div>
+<div class="line"><span class="lineno">  155</span>    monitoring_data data3(<span class="stringliteral">&quot;component3&quot;</span>);</div>
 <div class="line"><span class="lineno">  156</span>    data3.add_metric(<span class="stringliteral">&quot;metric3&quot;</span>, 30.0);</div>
 <div class="line"><span class="lineno">  157</span>    data3.add_tag(<span class="stringliteral">&quot;tag3&quot;</span>, <span class="stringliteral">&quot;value3&quot;</span>);</div>
 <div class="line"><span class="lineno">  158</span>    </div>
@@ -885,29 +690,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  166</span>    ASSERT_TRUE(prefixed_tag.has_value());</div>
 <div class="line"><span class="lineno">  167</span>    EXPECT_EQ(prefixed_tag.value(), <span class="stringliteral">&quot;value3&quot;</span>);</div>
 <div class="line"><span class="lineno">  168</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph">
-<area shape="rect" title=" " alt="" coords="5,236,75,261"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="153,5,315,60"/>
-<area shape="poly" title=" " alt="" coords="41,235,49,202,64,158,88,112,121,71,139,57,143,61,125,75,92,115,69,160,54,204,46,236"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="139,85,329,125"/>
-<area shape="poly" title=" " alt="" coords="45,234,73,186,95,158,121,135,130,129,133,133,124,139,99,162,77,189,49,237"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acb06d773222a0d1b569074bbf2fbd930" title="Get a metric value." alt="" coords="155,149,313,204"/>
-<area shape="poly" title=" " alt="" coords="72,233,122,214,143,206,144,211,124,219,74,238"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a5223476d68d251bd6daaa4c713c71ca4" title="Get a tag value." alt="" coords="141,229,327,269"/>
-<area shape="poly" title=" " alt="" coords="75,246,127,246,127,251,75,251"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#afc113ec75610a5267647ea5d60b7978c" title="Merge another monitoring_data into this one." alt="" coords="145,293,323,333"/>
-<area shape="poly" title=" " alt="" coords="73,259,124,278,148,286,146,291,122,283,71,264"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aacd2ef25514e70d59bc8cb79d6ca7fdc" title="Get the number of metrics." alt="" coords="123,357,345,397"/>
-<area shape="poly" title=" " alt="" coords="51,260,80,301,101,323,124,342,134,348,132,353,121,347,97,327,76,305,47,264"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a3d060994c07a2259ba95b04b0c8c5205" title="Get the number of tags." alt="" coords="133,421,335,461"/>
-<area shape="poly" title=" " alt="" coords="47,261,55,291,70,330,93,371,124,407,131,411,128,416,121,411,89,375,66,333,50,293,42,262"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7f9e702c277011ff0e8a83345357030d" name="a7f9e702c277011ff0e8a83345357030d"></a>
@@ -941,7 +724,7 @@ Here is the call graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">  460</span>                                                          {</div>
 <div class="line"><span class="lineno">  461</span>    <span class="keyword">auto</span> start_time = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  462</span>    </div>
-<div class="line"><span class="lineno">  463</span>    <a class="code hl_struct" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  463</span>    monitoring_data data(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  464</span>    </div>
 <div class="line"><span class="lineno">  465</span>    <span class="keyword">auto</span> timestamp = data.get_timestamp();</div>
 <div class="line"><span class="lineno">  466</span>    <span class="keyword">auto</span> end_time = std::chrono::system_clock::now();</div>
@@ -950,17 +733,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  469</span>    EXPECT_GE(timestamp, start_time);</div>
 <div class="line"><span class="lineno">  470</span>    EXPECT_LE(timestamp, end_time);</div>
 <div class="line"><span class="lineno">  471</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph" alt=""/></div>
-<map name="ad0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph">
-<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a2045897fb8e6f909bef6585ee6ccdb5b" title="Get the timestamp." alt="" coords="123,5,281,60"/>
-<area shape="poly" title=" " alt="" coords="75,30,108,30,108,35,75,35"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a3db0137f428eba31280827c180b43df9" name="a3db0137f428eba31280827c180b43df9"></a>
@@ -997,8 +770,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  249</span>    <span class="comment">// Initially enabled</span></div>
 <div class="line"><span class="lineno">  250</span>    EXPECT_TRUE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  251</span>    </div>
-<div class="line"><span class="lineno">  252</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  252</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(result);</div>
 <div class="line"><span class="lineno">  254</span>    </div>
 <div class="line"><span class="lineno">  255</span>    <span class="comment">// Disable monitoring</span></div>
 <div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> disable_result = component.set_monitoring_enabled(<span class="keyword">false</span>);</div>
@@ -1006,9 +779,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  258</span>    EXPECT_FALSE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  259</span>    </div>
 <div class="line"><span class="lineno">  260</span>    <span class="comment">// Should return error when disabled</span></div>
-<div class="line"><span class="lineno">  261</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  262</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::monitoring_disabled);</div>
+<div class="line"><span class="lineno">  261</span>    result = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  262</span>    EXPECT_FALSE(result);</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::monitoring_disabled);</div>
 <div class="line"><span class="lineno">  264</span>    </div>
 <div class="line"><span class="lineno">  265</span>    <span class="comment">// Re-enable monitoring</span></div>
 <div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> enable_result = component.set_monitoring_enabled(<span class="keyword">true</span>);</div>
@@ -1016,38 +789,17 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  269</span>    </div>
 <div class="line"><span class="lineno">  270</span>    <span class="comment">// Should work again</span></div>
-<div class="line"><span class="lineno">  271</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  272</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  271</span>    result = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  272</span>    EXPECT_TRUE(result);</div>
 <div class="line"><span class="lineno">  273</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00125">result_types.h:125</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00035">result_types.h:35</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,265,75,291"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="151,165,307,205"/>
-<area shape="poly" title=" " alt="" coords="54,263,83,238,121,214,137,207,139,212,124,219,87,243,57,267"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title="Get current monitoring data from the component." alt="" coords="123,229,336,269"/>
-<area shape="poly" title=" " alt="" coords="74,270,109,265,110,270,75,275"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#a871f247fcd25c0fc210e1ac9a11f7073" title="Check if monitoring is enabled." alt="" coords="388,293,569,348"/>
-<area shape="poly" title=" " alt="" coords="75,279,374,308,374,313,75,284"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#a54624f9eda9dabb86904e4a8162a0bb9" title="Enable or disable monitoring." alt="" coords="136,355,323,409"/>
-<area shape="poly" title=" " alt="" coords="60,289,124,330,154,346,152,351,121,335,57,293"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="398,5,559,60"/>
-<area shape="poly" title=" " alt="" coords="319,226,334,215,348,198,355,181,358,145,361,109,368,90,382,71,386,67,390,71,386,74,373,92,367,110,364,146,360,182,352,200,338,219,322,231"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="384,85,573,125"/>
-<area shape="poly" title=" " alt="" coords="315,226,334,215,350,196,358,176,365,155,382,135,389,130,392,134,386,139,370,158,363,178,355,198,338,219,318,231"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#ad6e1934bcf1e02f2d0dd815d5510cc96" title="Get monitoring identifier." alt="" coords="388,149,569,204"/>
-<area shape="poly" title=" " alt="" coords="299,226,374,204,375,209,300,231"/>
-<area shape="poly" title=" " alt="" coords="300,266,375,288,374,293,299,271"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="401,229,557,269"/>
-<area shape="poly" title=" " alt="" coords="336,246,387,246,387,251,336,251"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="401,373,557,413"/>
-<area shape="poly" title=" " alt="" coords="323,383,387,386,387,391,323,389"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="621,373,796,413"/>
-<area shape="poly" title=" " alt="" coords="557,390,608,390,608,395,557,395"/>
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
 </map>
 </div>
 
@@ -1103,21 +855,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph">
-<area shape="rect" title=" " alt="" coords="5,77,75,102"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="71,74,122,55,145,47,147,52,124,60,73,79"/>
+<area shape="poly" title=" " alt="" coords="74,49,109,43,110,48,75,54"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,69,336,109"/>
-<area shape="poly" title=" " alt="" coords="75,87,109,87,109,92,75,92"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#a8802f25a5ceea2b524d760baf64434a2" title="Reset monitoring data." alt="" coords="139,134,320,189"/>
-<area shape="poly" title=" " alt="" coords="74,100,124,119,143,126,142,131,122,124,72,105"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#a5e2e043e9354a0abc5fd00ac2a192a8d" title="Clear all metrics and tags." alt="" coords="384,69,553,109"/>
-<area shape="poly" title=" " alt="" coords="319,132,387,111,389,116,321,137"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aef7c69e8915ac0b06bec55971af9edff" title="Set the component name." alt="" coords="390,134,547,189"/>
-<area shape="poly" title=" " alt="" coords="320,159,376,159,376,164,320,164"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a1f7754a11776a87f5ff310b960eaae25" title=" " alt="" coords="391,213,547,253"/>
-<area shape="poly" title=" " alt="" coords="321,186,389,207,387,212,319,191"/>
-<area shape="rect" href="../../d1/d78/classmonitoring__system_1_1result__void.html#a9735503a64ce0e048d20d8786856ae6f" title=" " alt="" coords="601,213,776,253"/>
-<area shape="poly" title=" " alt="" coords="547,231,588,231,588,236,547,236"/>
+<area shape="poly" title=" " alt="" coords="75,60,110,66,109,72,74,66"/>
 </map>
 </div>
 
@@ -1166,8 +908,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  488</span>                </div>
 <div class="line"><span class="lineno">  489</span>                <span class="comment">// Also get monitoring data periodically</span></div>
 <div class="line"><span class="lineno">  490</span>                <span class="keywordflow">if</span> (j % 100 == 0) {</div>
-<div class="line"><span class="lineno">  491</span>                    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  492</span>                    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  491</span>                    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  492</span>                    EXPECT_TRUE(result);</div>
 <div class="line"><span class="lineno">  493</span>                }</div>
 <div class="line"><span class="lineno">  494</span>            }</div>
 <div class="line"><span class="lineno">  495</span>        });</div>
@@ -1182,10 +924,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  504</span>    EXPECT_EQ(component.get_operation_count(), thread_count * operations_per_thread);</div>
 <div class="line"><span class="lineno">  505</span>    </div>
 <div class="line"><span class="lineno">  506</span>    <span class="comment">// Get final monitoring data</span></div>
-<div class="line"><span class="lineno">  507</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  508</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  507</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  508</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  509</span>    </div>
-<div class="line"><span class="lineno">  510</span>    <span class="keyword">auto</span> op_count = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>().get_metric(<span class="stringliteral">&quot;operation_count&quot;</span>);</div>
+<div class="line"><span class="lineno">  510</span>    <span class="keyword">auto</span> op_count = result.value().get_metric(<span class="stringliteral">&quot;operation_count&quot;</span>);</div>
 <div class="line"><span class="lineno">  511</span>    ASSERT_TRUE(op_count.has_value());</div>
 <div class="line"><span class="lineno">  512</span>    EXPECT_DOUBLE_EQ(op_count.value(), </div>
 <div class="line"><span class="lineno">  513</span>                     <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(thread_count * operations_per_thread));</div>
@@ -1195,29 +937,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph">
-<area shape="rect" title=" " alt="" coords="5,272,75,297"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title="Get current monitoring data from the component." alt="" coords="123,163,336,203"/>
-<area shape="poly" title=" " alt="" coords="53,270,83,244,121,218,147,206,149,211,124,223,86,248,56,274"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267" title=" " alt="" coords="123,233,336,273"/>
-<area shape="poly" title=" " alt="" coords="74,276,109,270,110,276,75,282"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,297,336,337"/>
-<area shape="poly" title=" " alt="" coords="75,288,110,294,109,299,74,293"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="151,371,307,411"/>
-<area shape="poly" title=" " alt="" coords="57,296,87,321,124,346,159,364,156,368,121,351,84,325,54,300"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#acf58820bb7294d22c5f2e94c66ff475e" title="Add a numeric metric." alt="" coords="398,5,559,60"/>
-<area shape="poly" title=" " alt="" coords="253,161,311,117,383,70,395,64,398,68,385,75,314,121,257,165"/>
-<area shape="rect" href="../../d0/d0a/structmonitoring__system_1_1monitoring__data.html#ad4201db38f5d1bffa1f26f68aaebffa3" title="Add a tag (string metadata)" alt="" coords="384,85,573,125"/>
-<area shape="poly" title=" " alt="" coords="293,161,401,126,402,131,294,166"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#ad6e1934bcf1e02f2d0dd815d5510cc96" title="Get monitoring identifier." alt="" coords="388,149,569,204"/>
-<area shape="poly" title=" " alt="" coords="336,178,374,177,374,182,336,183"/>
-<area shape="rect" href="../../df/de4/classmonitoring__system_1_1monitorable__component.html#a871f247fcd25c0fc210e1ac9a11f7073" title="Check if monitoring is enabled." alt="" coords="388,228,569,283"/>
-<area shape="poly" title=" " alt="" coords="300,201,375,223,374,228,299,206"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="401,307,557,347"/>
-<area shape="poly" title=" " alt="" coords="308,201,338,219,354,237,362,256,370,274,386,292,395,299,392,303,382,296,366,277,358,258,350,240,334,223,306,206"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="401,371,557,411"/>
-<area shape="poly" title=" " alt="" coords="307,389,387,389,387,394,307,394"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="401,435,557,475"/>
-<area shape="poly" title=" " alt="" coords="308,409,388,429,387,435,307,414"/>
+<area shape="rect" title=" " alt="" coords="5,77,75,102"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
+<area shape="poly" title=" " alt="" coords="71,74,122,55,145,47,147,52,124,60,73,79"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267" title=" " alt="" coords="123,69,336,109"/>
+<area shape="poly" title=" " alt="" coords="75,87,109,87,109,92,75,92"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,133,336,173"/>
+<area shape="poly" title=" " alt="" coords="73,100,124,119,147,127,145,132,122,124,71,105"/>
 </map>
 </div>
 
@@ -1226,7 +952,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

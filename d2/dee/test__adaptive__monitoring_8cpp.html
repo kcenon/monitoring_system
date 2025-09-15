@@ -298,8 +298,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   98</span>    adaptive_collector collector(mock, config);</div>
 <div class="line"><span class="lineno">   99</span>    </div>
 <div class="line"><span class="lineno">  100</span>    <span class="comment">// Should collect when sampling rate is 1.0</span></div>
-<div class="line"><span class="lineno">  101</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = collector.collect();</div>
-<div class="line"><span class="lineno">  102</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keyword">auto</span> result = collector.collect();</div>
+<div class="line"><span class="lineno">  102</span>    ASSERT_TRUE(result.has_value());</div>
 <div class="line"><span class="lineno">  103</span>    EXPECT_EQ(mock-&gt;get_collect_count(), 1);</div>
 <div class="line"><span class="lineno">  104</span>    </div>
 <div class="line"><span class="lineno">  105</span>    <span class="comment">// Change config to lower sampling rate</span></div>
@@ -314,19 +314,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> stats = collector.get_stats();</div>
 <div class="line"><span class="lineno">  115</span>    EXPECT_EQ(stats.current_load_level, load_level::critical);</div>
 <div class="line"><span class="lineno">  116</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_a4476cf160801c2dbfe2c00525190e544"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">monitoring_system::result::has_value</a></div><div class="ttdeci">bool has_value() const</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00095">result_types.h:95</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/dee/test__adaptive__monitoring_8cpp_a3bad1f25f33d6f487b783e09351269e5_cgraph.png" border="0" usemap="#ad2/dee/test__adaptive__monitoring_8cpp_a3bad1f25f33d6f487b783e09351269e5_cgraph" alt=""/></div>
-<map name="ad2/dee/test__adaptive__monitoring_8cpp_a3bad1f25f33d6f487b783e09351269e5_cgraph" id="ad2/dee/test__adaptive__monitoring_8cpp_a3bad1f25f33d6f487b783e09351269e5_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a595b5fbbcee10830ce03cdba8d572f74" name="a595b5fbbcee10830ce03cdba8d572f74"></a>
@@ -510,20 +498,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  336</span>    EXPECT_FALSE(collector.is_enabled());</div>
 <div class="line"><span class="lineno">  337</span>    </div>
 <div class="line"><span class="lineno">  338</span>    <span class="comment">// When disabled, should always sample</span></div>
-<div class="line"><span class="lineno">  339</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = collector.collect();</div>
-<div class="line"><span class="lineno">  340</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
+<div class="line"><span class="lineno">  339</span>    <span class="keyword">auto</span> result = collector.collect();</div>
+<div class="line"><span class="lineno">  340</span>    EXPECT_TRUE(result.has_value());</div>
 <div class="line"><span class="lineno">  341</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/dee/test__adaptive__monitoring_8cpp_a66ad347a032143da51778642f5fd3545_cgraph.png" border="0" usemap="#ad2/dee/test__adaptive__monitoring_8cpp_a66ad347a032143da51778642f5fd3545_cgraph" alt=""/></div>
-<map name="ad2/dee/test__adaptive__monitoring_8cpp_a66ad347a032143da51778642f5fd3545_cgraph" id="ad2/dee/test__adaptive__monitoring_8cpp_a66ad347a032143da51778642f5fd3545_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9aa81ac464d3960e95351c5ccebdea1d" name="a9aa81ac464d3960e95351c5ccebdea1d"></a>
@@ -713,23 +691,13 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  344</span>    <span class="keyword">auto</span>&amp; global = global_adaptive_monitor();</div>
 <div class="line"><span class="lineno">  345</span>    </div>
 <div class="line"><span class="lineno">  346</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
-<div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = global.register_collector(<span class="stringliteral">&quot;global_test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  348</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
+<div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> result = global.register_collector(<span class="stringliteral">&quot;global_test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  348</span>    ASSERT_TRUE(result.has_value());</div>
 <div class="line"><span class="lineno">  349</span>    </div>
 <div class="line"><span class="lineno">  350</span>    <span class="comment">// Cleanup</span></div>
 <div class="line"><span class="lineno">  351</span>    global.unregister_collector(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
 <div class="line"><span class="lineno">  352</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/dee/test__adaptive__monitoring_8cpp_a60e01ee9c9f3f99fddc28529a0e68711_cgraph.png" border="0" usemap="#ad2/dee/test__adaptive__monitoring_8cpp_a60e01ee9c9f3f99fddc28529a0e68711_cgraph" alt=""/></div>
-<map name="ad2/dee/test__adaptive__monitoring_8cpp_a60e01ee9c9f3f99fddc28529a0e68711_cgraph" id="ad2/dee/test__adaptive__monitoring_8cpp_a60e01ee9c9f3f99fddc28529a0e68711_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac88610d5078bd58dc6d20823738af08d" name="ac88610d5078bd58dc6d20823738af08d"></a>
@@ -767,25 +735,15 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  217</span>    monitor.set_global_strategy(adaptation_strategy::conservative);</div>
 <div class="line"><span class="lineno">  218</span>    </div>
 <div class="line"><span class="lineno">  219</span>    <span class="comment">// Force adaptation</span></div>
-<div class="line"><span class="lineno">  220</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.force_adaptation();</div>
-<div class="line"><span class="lineno">  221</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
+<div class="line"><span class="lineno">  220</span>    <span class="keyword">auto</span> result = monitor.force_adaptation();</div>
+<div class="line"><span class="lineno">  221</span>    ASSERT_TRUE(result.has_value());</div>
 <div class="line"><span class="lineno">  222</span>    </div>
 <div class="line"><span class="lineno">  223</span>    <span class="comment">// Check that strategy was applied</span></div>
 <div class="line"><span class="lineno">  224</span>    <span class="keyword">auto</span> stats_result = monitor.get_collector_stats(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  225</span>    ASSERT_TRUE(stats_result.has_value());</div>
 <div class="line"><span class="lineno">  226</span>    <span class="comment">// Strategy effects would be visible in adaptation behavior</span></div>
 <div class="line"><span class="lineno">  227</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/dee/test__adaptive__monitoring_8cpp_ac88610d5078bd58dc6d20823738af08d_cgraph.png" border="0" usemap="#ad2/dee/test__adaptive__monitoring_8cpp_ac88610d5078bd58dc6d20823738af08d_cgraph" alt=""/></div>
-<map name="ad2/dee/test__adaptive__monitoring_8cpp_ac88610d5078bd58dc6d20823738af08d_cgraph" id="ad2/dee/test__adaptive__monitoring_8cpp_ac88610d5078bd58dc6d20823738af08d_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7cd810efcb64618ab1737d5d7ab5eda5" name="a7cd810efcb64618ab1737d5d7ab5eda5"></a>
@@ -911,45 +869,26 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  148</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  149</span>    </div>
 <div class="line"><span class="lineno">  150</span>    <span class="comment">// Register collector</span></div>
-<div class="line"><span class="lineno">  151</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  152</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
-<div class="line"><span class="lineno">  153</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
+<div class="line"><span class="lineno">  151</span>    <span class="keyword">auto</span> result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  152</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  153</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  154</span>    </div>
 <div class="line"><span class="lineno">  155</span>    <span class="comment">// Try to register again (should fail)</span></div>
-<div class="line"><span class="lineno">  156</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  157</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
-<div class="line"><span class="lineno">  158</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  156</span>    result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  157</span>    ASSERT_FALSE(result.has_value());</div>
+<div class="line"><span class="lineno">  158</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  159</span>    </div>
 <div class="line"><span class="lineno">  160</span>    <span class="comment">// Unregister</span></div>
-<div class="line"><span class="lineno">  161</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  162</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
-<div class="line"><span class="lineno">  163</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
+<div class="line"><span class="lineno">  161</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  162</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  163</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  164</span>    </div>
 <div class="line"><span class="lineno">  165</span>    <span class="comment">// Try to unregister non-existent (should fail)</span></div>
-<div class="line"><span class="lineno">  166</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  167</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
-<div class="line"><span class="lineno">  168</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  166</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  167</span>    ASSERT_FALSE(result.has_value());</div>
+<div class="line"><span class="lineno">  168</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);</div>
 <div class="line"><span class="lineno">  169</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00125">result_types.h:125</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00105">result_types.h:105</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00035">result_types.h:35</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/dee/test__adaptive__monitoring_8cpp_a338593ea32ec1dadb7f047712205cff5_cgraph.png" border="0" usemap="#ad2/dee/test__adaptive__monitoring_8cpp_a338593ea32ec1dadb7f047712205cff5_cgraph" alt=""/></div>
-<map name="ad2/dee/test__adaptive__monitoring_8cpp_a338593ea32ec1dadb7f047712205cff5_cgraph" id="ad2/dee/test__adaptive__monitoring_8cpp_a338593ea32ec1dadb7f047712205cff5_cgraph">
-<area shape="rect" title=" " alt="" coords="5,57,75,82"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="327,5,483,45"/>
-<area shape="poly" title=" " alt="" coords="67,54,122,35,220,22,313,19,313,24,221,27,123,40,68,59"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="327,81,483,121"/>
-<area shape="poly" title=" " alt="" coords="68,80,94,91,123,99,171,105,221,109,313,107,313,112,221,114,171,111,122,104,92,96,66,85"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,49,279,89"/>
-<area shape="poly" title=" " alt="" coords="75,67,109,67,109,72,75,72"/>
-<area shape="poly" title=" " alt="" coords="278,50,313,42,314,48,279,55"/>
-<area shape="poly" title=" " alt="" coords="279,79,314,84,313,90,278,84"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a66dddb332f332daf564c20cf0ee6ab76" name="a66dddb332f332daf564c20cf0ee6ab76"></a>
@@ -1042,35 +981,25 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  174</span>    </div>
 <div class="line"><span class="lineno">  175</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  176</span>    </div>
-<div class="line"><span class="lineno">  177</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.start();</div>
-<div class="line"><span class="lineno">  178</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
+<div class="line"><span class="lineno">  177</span>    <span class="keyword">auto</span> result = monitor.start();</div>
+<div class="line"><span class="lineno">  178</span>    ASSERT_TRUE(result.has_value());</div>
 <div class="line"><span class="lineno">  179</span>    EXPECT_TRUE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  180</span>    </div>
 <div class="line"><span class="lineno">  181</span>    <span class="comment">// Start again (should succeed but do nothing)</span></div>
-<div class="line"><span class="lineno">  182</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.start();</div>
-<div class="line"><span class="lineno">  183</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
+<div class="line"><span class="lineno">  182</span>    result = monitor.start();</div>
+<div class="line"><span class="lineno">  183</span>    ASSERT_TRUE(result.has_value());</div>
 <div class="line"><span class="lineno">  184</span>    </div>
-<div class="line"><span class="lineno">  185</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.stop();</div>
-<div class="line"><span class="lineno">  186</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
+<div class="line"><span class="lineno">  185</span>    result = monitor.stop();</div>
+<div class="line"><span class="lineno">  186</span>    ASSERT_TRUE(result.has_value());</div>
 <div class="line"><span class="lineno">  187</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  188</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/dee/test__adaptive__monitoring_8cpp_a01ec1062d61d43c06e7dfff84e459796_cgraph.png" border="0" usemap="#ad2/dee/test__adaptive__monitoring_8cpp_a01ec1062d61d43c06e7dfff84e459796_cgraph" alt=""/></div>
-<map name="ad2/dee/test__adaptive__monitoring_8cpp_a01ec1062d61d43c06e7dfff84e459796_cgraph" id="ad2/dee/test__adaptive__monitoring_8cpp_a01ec1062d61d43c06e7dfff84e459796_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

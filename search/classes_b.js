@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['opentelemetryadaptertest_0',['OpenTelemetryAdapterTest',['../d5/d90/classOpenTelemetryAdapterTest.html',1,'']]],
-  ['optimizationtest_1',['OptimizationTest',['../db/d93/classOptimizationTest.html',1,'']]]
+  ['servicea_0',['ServiceA',['../d6/d19/classServiceA.html',1,'']]],
+  ['serviceb_1',['ServiceB',['../dd/d93/classServiceB.html',1,'']]],
+  ['storagebackendstest_2',['StorageBackendsTest',['../d4/dcd/classStorageBackendsTest.html',1,'']]],
+  ['streamaggregationtest_3',['StreamAggregationTest',['../de/d8e/classStreamAggregationTest.html',1,'']]],
+  ['stressperformancetest_4',['StressPerformanceTest',['../d9/dbf/classStressPerformanceTest.html',1,'']]]
 ];

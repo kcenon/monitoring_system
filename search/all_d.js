@@ -1,27 +1,5 @@
 var searchData=
 [
-  ['parent_5fcontainer_5f_0',['parent_container_',['../d7/d05/classmonitoring__system_1_1lightweight__container.html#a91d9a634e1db82bda23e112705f08c1f',1,'monitoring_system::lightweight_container']]],
-  ['paused_1',['paused',['../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html#af0e5cdc628cc70bb801509dd99d3bb13ad13c3f7baed576768b11a714ef4d90e2',1,'monitoring_system::component_lifecycle_event']]],
-  ['pausing_2',['pausing',['../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html#af0e5cdc628cc70bb801509dd99d3bb13ae487f07747533e59d596acd4c452d498',1,'monitoring_system::component_lifecycle_event']]],
-  ['payload_3',['payload',['../de/dce/structmonitoring__system_1_1event__envelope.html#a79e4ab88c0ff51dc6b6587f96fff7a65',1,'monitoring_system::event_envelope']]],
-  ['perform_5foperation_4',['perform_operation',['../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c',1,'test_monitorable_component']]],
-  ['performance_5falert_5fevent_5',['performance_alert_event',['../d7/da4/classmonitoring__system_1_1performance__alert__event.html#a763d59ccc0f22da30ae27be6a40c6862',1,'monitoring_system::performance_alert_event::performance_alert_event()'],['../d7/da4/classmonitoring__system_1_1performance__alert__event.html',1,'monitoring_system::performance_alert_event']]],
-  ['performancemonitoringtest_6',['PerformanceMonitoringTest',['../d7/dbe/classPerformanceMonitoringTest.html',1,'']]],
-  ['permission_5fdenied_7',['permission_denied',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae8ee838822072f02738dbd7d97ea03fc',1,'monitoring_system']]],
-  ['plugin_5fcollector_5fexample_2ecpp_8',['plugin_collector_example.cpp',['../dc/d7a/plugin__collector__example_8cpp.html',1,'']]],
-  ['pool_5fname_5f_9',['pool_name_',['../d5/d25/classmonitoring__system_1_1thread__pool__metric__event.html#aee007e309bf139e44bc9f081298cd9f7',1,'monitoring_system::thread_pool_metric_event']]],
-  ['previous_5fcontext_5f_10',['previous_context_',['../d3/d82/classmonitoring__system_1_1context__scope.html#a5cd14a8da1a8fc7e6664f4373528ce8a',1,'monitoring_system::context_scope']]],
-  ['priority_11',['priority',['../de/dce/structmonitoring__system_1_1event__envelope.html#aa0e204317187f0087499d63d5fe2ce34',1,'monitoring_system::event_envelope::priority'],['../d5/d9c/structmonitoring__system_1_1event__handler__wrapper.html#a1b1ac26bcfc4ee49be4a427edc44f2f5',1,'monitoring_system::event_handler_wrapper::priority']]],
-  ['priority_5f_12',['priority_',['../d1/d5f/classmonitoring__system_1_1event__handler.html#ace494539fe20524df58e147007adfd56',1,'monitoring_system::event_handler']]],
-  ['process_5fall_5fpending_13',['process_all_pending',['../dd/d62/classmonitoring__system_1_1event__bus.html#aef61e3ba48666b690827efa9b3f29a72',1,'monitoring_system::event_bus']]],
-  ['process_5fbusiness_5flogic_14',['process_business_logic',['../df/d65/classWebService.html#a596c1a2053455df6df50c850e3828532',1,'WebService']]],
-  ['process_5fcount_15',['process_count',['../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html#a1995a6286040e1a7e06496f031a1024d',1,'monitoring_system::system_resource_event::resource_stats']]],
-  ['process_5fevents_5fworker_16',['process_events_worker',['../dd/d62/classmonitoring__system_1_1event__bus.html#a3162f67e029aaba637f24283d6774ec9',1,'monitoring_system::event_bus']]],
-  ['process_5fmetric_17',['process_metric',['../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75',1,'result_pattern_example.cpp']]],
-  ['process_5fpending_5fevents_18',['process_pending_events',['../dd/d62/classmonitoring__system_1_1event__bus.html#af69a08821df952b8ea4c37256c67587e',1,'monitoring_system::event_bus::process_pending_events()'],['../d5/d1d/classmonitoring__system_1_1interface__event__bus.html#ad84fa2e3746c4a7c824325cbeef2a6a4',1,'monitoring_system::interface_event_bus::process_pending_events()']]],
-  ['processing_5ffailed_19',['processing_failed',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccad1d24eb94ee39e41e17b65cc63118672',1,'monitoring_system']]],
-  ['processing_5finterval_20',['processing_interval',['../d6/dee/structmonitoring__system_1_1event__bus__config.html#a9365792ddeaca9b7f0d2c4ad83bb0ec0',1,'monitoring_system::event_bus_config']]],
-  ['profiler_21',['profiler',['../d7/dbe/classPerformanceMonitoringTest.html#a47d07edd9fd1df796473642030bb2b24',1,'PerformanceMonitoringTest']]],
-  ['publish_5fevent_22',['publish_event',['../d5/d1d/classmonitoring__system_1_1interface__event__bus.html#ad1927cdc5ba04ec5c1c566604cc40ecf',1,'monitoring_system::interface_event_bus']]],
-  ['publish_5fevent_5fimpl_23',['publish_event_impl',['../dd/d62/classmonitoring__system_1_1event__bus.html#ac8b223b4b0d9a77ef9638e00efd8c650',1,'monitoring_system::event_bus::publish_event_impl()'],['../d5/d1d/classmonitoring__system_1_1interface__event__bus.html#a0194a9ff1556bc117ec222d36b470395',1,'monitoring_system::interface_event_bus::publish_event_impl()']]]
+  ['query_5fcount_5f_0',['query_count_',['../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2',1,'DatabaseConnection']]],
+  ['query_5fdatabase_1',['query_database',['../df/d65/classWebService.html#ae651172e1cc079ee5513156f9cac01d3',1,'WebService']]]
 ];

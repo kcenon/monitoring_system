@@ -1,22 +1,4 @@
 var searchData=
 [
-  ['metric_0',['metric',['../dd/d06/structmonitoring__system_1_1metric.html',1,'monitoring_system']]],
-  ['metric_5fcollection_5fevent_1',['metric_collection_event',['../de/d97/classmonitoring__system_1_1metric__collection__event.html',1,'monitoring_system']]],
-  ['metric_5fevent_2',['metric_event',['../d2/d86/classmonitoring__system_1_1metric__event.html',1,'monitoring_system']]],
-  ['metric_5ffilter_3',['metric_filter',['../d6/d39/classmonitoring__system_1_1metric__filter.html',1,'monitoring_system']]],
-  ['metric_5fstats_4',['metric_stats',['../d6/d80/structmonitoring__system_1_1metric__stats.html',1,'monitoring_system']]],
-  ['metric_5fvalue_5',['metric_value',['../dd/d1d/structmonitoring__system_1_1metric__value.html',1,'monitoring_system']]],
-  ['metricexporterstest_6',['MetricExportersTest',['../d9/d66/classMetricExportersTest.html',1,'']]],
-  ['metrics_5fanalyzer_7',['metrics_analyzer',['../d7/db5/classmonitoring__system_1_1metrics__analyzer.html',1,'monitoring_system']]],
-  ['metrics_5fcollector_8',['metrics_collector',['../da/d9b/classmonitoring__system_1_1metrics__collector.html',1,'monitoring_system']]],
-  ['metrics_5fsnapshot_9',['metrics_snapshot',['../da/d22/structmonitoring__system_1_1metrics__snapshot.html',1,'monitoring_system']]],
-  ['metricstoragetest_10',['MetricStorageTest',['../d6/d95/classMetricStorageTest.html',1,'']]],
-  ['mock_5fcollector_11',['mock_collector',['../d9/d8d/classmock__collector.html',1,'']]],
-  ['monitorable_5fcomponent_12',['monitorable_component',['../df/de4/classmonitoring__system_1_1monitorable__component.html',1,'monitoring_system']]],
-  ['monitorable_5finterface_13',['monitorable_interface',['../df/db6/classmonitoring__system_1_1monitorable__interface.html',1,'monitoring_system']]],
-  ['monitorableinterfacetest_14',['MonitorableInterfaceTest',['../d8/d4d/classMonitorableInterfaceTest.html',1,'']]],
-  ['monitoring_5faggregator_15',['monitoring_aggregator',['../dc/dd9/classmonitoring__system_1_1monitoring__aggregator.html',1,'monitoring_system']]],
-  ['monitoring_5fconfig_16',['monitoring_config',['../df/dc1/structmonitoring__system_1_1monitoring__config.html',1,'monitoring_system']]],
-  ['monitoring_5fdata_17',['monitoring_data',['../d0/d0a/structmonitoring__system_1_1monitoring__data.html',1,'monitoring_system']]],
-  ['monitoring_5finterface_18',['monitoring_interface',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html',1,'monitoring_system']]]
+  ['performancemonitoringtest_0',['PerformanceMonitoringTest',['../d7/dbe/classPerformanceMonitoringTest.html',1,'']]]
 ];

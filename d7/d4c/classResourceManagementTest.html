@@ -105,7 +105,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a245f3c97b271badefdb43dc1a244369f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbfca33743175a12f5910683d067c0c0" id="r_adbfca33743175a12f5910683d067c0c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#adbfca33743175a12f5910683d067c0c0">TearDown</a> () override</td></tr>
 <tr class="separator:adbfca33743175a12f5910683d067c0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3d265b01ce05886b4a9112e7d88c47c" id="r_aa3d265b01ce05886b4a9112e7d88c47c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">test_operation</a> ()</td></tr>
+<tr class="memitem:aa3d265b01ce05886b4a9112e7d88c47c" id="r_aa3d265b01ce05886b4a9112e7d88c47c"><td class="memItemLeft" align="right" valign="top">result&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">test_operation</a> ()</td></tr>
 <tr class="separator:aa3d265b01ce05886b4a9112e7d88c47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89282f04d90c42d01a8a9c3e4d640ab3" id="r_a89282f04d90c42d01a8a9c3e4d640ab3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#a89282f04d90c42d01a8a9c3e4d640ab3">simulate_work</a> (std::chrono::milliseconds duration=std::chrono::milliseconds(10))</td></tr>
 <tr class="separator:a89282f04d90c42d01a8a9c3e4d640ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,7 +225,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; int &gt; ResourceManagementTest::test_operation </td>
+          <td class="memname">result&lt; int &gt; ResourceManagementTest::test_operation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -242,20 +242,9 @@ Protected Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   24</span>                                 {</div>
 <div class="line"><span class="lineno">   25</span>        ++<a class="code hl_variable" href="../../d7/d4c/classResourceManagementTest.html#a6a695f17e740a5f54b3e1b03f956dfc6">call_count</a>;</div>
 <div class="line"><span class="lineno">   26</span>        ++<a class="code hl_variable" href="../../d7/d4c/classResourceManagementTest.html#a0a84e208e81abf4ead9ca8168afb5b1c">success_count</a>;</div>
-<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(42);</div>
+<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">return</span> make_success(42);</div>
 <div class="line"><span class="lineno">   28</span>    }</div>
-<div class="ttc" id="anamespacemonitoring__system_html_af97d143891084f454314b6bd03b8712f"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00236">result_types.h:236</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d7/d4c/classResourceManagementTest_aa3d265b01ce05886b4a9112e7d88c47c_cgraph.png" border="0" usemap="#ad7/d4c/classResourceManagementTest_aa3d265b01ce05886b4a9112e7d88c47c_cgraph" alt=""/></div>
-<map name="ad7/d4c/classResourceManagementTest_aa3d265b01ce05886b4a9112e7d88c47c_cgraph" id="ad7/d4c/classResourceManagementTest_aa3d265b01ce05886b4a9112e7d88c47c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,200,45"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f" title="Create a successful result." alt="" coords="248,5,404,45"/>
-<area shape="poly" title=" " alt="" coords="200,23,234,23,234,28,200,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -315,7 +304,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

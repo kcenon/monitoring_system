@@ -91,13 +91,11 @@ Collaboration diagram for DIContainerTest:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d6/d2a/classDIContainerTest__coll__graph.png" border="0" usemap="#aDIContainerTest_coll__map" alt="Collaboration graph"/></div>
 <map name="aDIContainerTest_coll__map" id="aDIContainerTest_coll__map">
-<area shape="rect" title=" " alt="" coords="47,739,164,824"/>
-<area shape="rect" title=" " alt="" coords="5,596,99,661"/>
-<area shape="poly" title=" " alt="" coords="70,673,93,737,88,739,65,675"/>
-<area shape="rect" title=" " alt="" coords="123,581,320,676"/>
-<area shape="poly" title=" " alt="" coords="188,678,150,727,146,724,183,675"/>
-<area shape="rect" href="../../d3/dff/classmonitoring__system_1_1service__container__interface.html" title="Abstract interface for dependency injection container." alt="" coords="123,5,320,519"/>
-<area shape="poly" title=" " alt="" coords="224,519,224,565,219,565,219,519"/>
+<area shape="rect" title=" " alt="" coords="72,148,189,233"/>
+<area shape="rect" title=" " alt="" coords="5,13,99,78"/>
+<area shape="poly" title=" " alt="" coords="78,89,110,146,105,149,74,92"/>
+<area shape="rect" title=" " alt="" coords="123,5,296,85"/>
+<area shape="poly" title=" " alt="" coords="190,87,164,135,159,132,186,84"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -110,7 +108,7 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:acbca56eea880ded9b3170eccb1288811" id="r_acbca56eea880ded9b3170eccb1288811"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../d3/dff/classmonitoring__system_1_1service__container__interface.html">service_container_interface</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811">container_</a></td></tr>
+<tr class="memitem:acbca56eea880ded9b3170eccb1288811" id="r_acbca56eea880ded9b3170eccb1288811"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; service_container_interface &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811">container_</a></td></tr>
 <tr class="separator:acbca56eea880ded9b3170eccb1288811"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -144,21 +142,18 @@ Protected Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   80</span>                          {</div>
 <div class="line"><span class="lineno">   81</span>        <a class="code hl_function" href="../../d6/d19/classServiceA.html#a734584d7be13ec84f66c8c18dd5ab7ae">ServiceA::reset_count</a>();</div>
-<div class="line"><span class="lineno">   82</span>        <a class="code hl_variable" href="../../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811">container_</a> = <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3">create_lightweight_container</a>();</div>
+<div class="line"><span class="lineno">   82</span>        <a class="code hl_variable" href="../../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811">container_</a> = create_lightweight_container();</div>
 <div class="line"><span class="lineno">   83</span>    }</div>
 <div class="ttc" id="aclassDIContainerTest_html_acbca56eea880ded9b3170eccb1288811"><div class="ttname"><a href="../../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811">DIContainerTest::container_</a></div><div class="ttdeci">std::unique_ptr&lt; service_container_interface &gt; container_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00089">test_di_container.cpp:89</a></div></div>
 <div class="ttc" id="aclassServiceA_html_a734584d7be13ec84f66c8c18dd5ab7ae"><div class="ttname"><a href="../../d6/d19/classServiceA.html#a734584d7be13ec84f66c8c18dd5ab7ae">ServiceA::reset_count</a></div><div class="ttdeci">static void reset_count()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00051">test_di_container.cpp:51</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html_a4b31b01577e903c4f209e7fce17cd2e3"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3">monitoring_system::create_lightweight_container</a></div><div class="ttdeci">std::unique_ptr&lt; service_container_interface &gt; create_lightweight_container()</div><div class="ttdoc">Factory function to create a lightweight container.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d14/lightweight__container_8h_source.html#l00328">lightweight_container.h:328</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d9/da4/classDIContainerTest_a09cd2b3078e175b6edc90329c48eb7e3_cgraph.png" border="0" usemap="#ad9/da4/classDIContainerTest_a09cd2b3078e175b6edc90329c48eb7e3_cgraph" alt=""/></div>
 <map name="ad9/da4/classDIContainerTest_a09cd2b3078e175b6edc90329c48eb7e3_cgraph" id="ad9/da4/classDIContainerTest_a09cd2b3078e175b6edc90329c48eb7e3_cgraph">
-<area shape="rect" title=" " alt="" coords="5,42,177,67"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3" title="Factory function to create a lightweight container." alt="" coords="225,5,436,45"/>
-<area shape="poly" title=" " alt="" coords="177,42,211,37,212,43,178,47"/>
-<area shape="rect" href="../../d6/d19/classServiceA.html#a734584d7be13ec84f66c8c18dd5ab7ae" title=" " alt="" coords="249,70,412,95"/>
-<area shape="poly" title=" " alt="" coords="178,62,236,69,235,74,177,67"/>
+<area shape="rect" title=" " alt="" coords="5,5,177,31"/>
+<area shape="rect" href="../../d6/d19/classServiceA.html#a734584d7be13ec84f66c8c18dd5ab7ae" title=" " alt="" coords="225,5,388,31"/>
+<area shape="poly" title=" " alt="" coords="178,15,212,15,212,21,178,21"/>
 </map>
 </div>
 
@@ -205,7 +200,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;<a class="el" href="../../d3/dff/classmonitoring__system_1_1service__container__interface.html">service_container_interface</a>&gt; DIContainerTest::container_</td>
+          <td class="memname">std::unique_ptr&lt;service_container_interface&gt; DIContainerTest::container_</td>
         </tr>
       </table>
   </td>
@@ -225,7 +220,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

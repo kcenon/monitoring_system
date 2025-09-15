@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['webservice_0',['WebService',['../df/d65/classWebService.html#a6f92342771e33bdec3ffb4fecd581801',1,'WebService']]]
+  ['_7eiservice_0',['~IService',['../df/d8b/classIService.html#a098c038e416a77d0f748f13b59d71a55',1,'IService']]],
+  ['_7eservicea_1',['~ServiceA',['../d6/d19/classServiceA.html#a0bde63ceecbc16f8f3cd57b35dfa41cd',1,'ServiceA']]]
 ];

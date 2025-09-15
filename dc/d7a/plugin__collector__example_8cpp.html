@@ -189,9 +189,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   66</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Collected &quot;</span> &lt;&lt; metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   67</span> </div>
 <div class="line"><span class="lineno">   68</span>        <span class="comment">// Display some metrics</span></div>
-<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> : metrics) {</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : metrics) {</div>
 <div class="line"><span class="lineno">   70</span>            <span class="keywordflow">if</span> (i == 0) {  <span class="comment">// Only show first iteration to avoid clutter</span></div>
-<div class="line"><span class="lineno">   71</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../dd/d06/structmonitoring__system_1_1metric.html#ae15c9d2e6596a555061f5e46d81742e3">name</a> &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../dd/d06/structmonitoring__system_1_1metric.html#a1dde0531d6a63bec88b89652841408a2">value</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>.unit &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   71</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; metric.name &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; metric.value &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; metric.unit &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   72</span>            }</div>
 <div class="line"><span class="lineno">   73</span>        }</div>
 <div class="line"><span class="lineno">   74</span>    }</div>
@@ -206,16 +206,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   83</span> </div>
 <div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><span class="lineno">   85</span>}</div>
-<div class="ttc" id="astructmonitoring__system_1_1metric_html"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html">monitoring_system::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00027">metric_types_adapter.h:27</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric_html_a1dde0531d6a63bec88b89652841408a2"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html#a1dde0531d6a63bec88b89652841408a2">monitoring_system::metric::value</a></div><div class="ttdeci">metric_value value</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00029">metric_types_adapter.h:29</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric_html_ae15c9d2e6596a555061f5e46d81742e3"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html#ae15c9d2e6596a555061f5e46d81742e3">monitoring_system::metric::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00028">metric_types_adapter.h:28</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:17 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

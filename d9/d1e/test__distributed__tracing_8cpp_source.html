@@ -88,7 +88,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;../sources/monitoring/tracing/distributed_tracer.h&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">using namespace </span>monitoring_system;</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="../../d9/d51/classDistributedTracingTest.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/d51/classDistributedTracingTest.html">DistributedTracingTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -294,13 +294,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    {</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;scoped_operation&quot;</span>);</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        scoped_span <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>(span_result.value(), &amp;tracer);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        scoped_span scoped(span_result.value(), &amp;tracer);</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        </div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        EXPECT_EQ(tracer.get_current_span(), span_result.value());</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        EXPECT_FALSE(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>-&gt;is_finished());</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        EXPECT_FALSE(scoped-&gt;is_finished());</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        </div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="comment">// Span should be accessible via scoped object</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>-&gt;tags[<span class="stringliteral">&quot;custom_tag&quot;</span>] = <span class="stringliteral">&quot;custom_value&quot;</span>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        scoped-&gt;tags[<span class="stringliteral">&quot;custom_tag&quot;</span>] = <span class="stringliteral">&quot;custom_value&quot;</span>;</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    }</div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// Span should be finished after leaving scope</span></div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// Note: We can&#39;t directly check as the span is finished and stored</span></div>
@@ -466,13 +466,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassDistributedTracingTest_html_a4cf8363d0111f45d87410c82a9de417c"><div class="ttname"><a href="../../d9/d51/classDistributedTracingTest.html#a4cf8363d0111f45d87410c82a9de417c">DistributedTracingTest::tracer</a></div><div class="ttdeci">distributed_tracer tracer</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00016">test_distributed_tracing.cpp:16</a></div></div>
 <div class="ttc" id="aclassDistributedTracingTest_html_a5fd122f3a4024ce4c92eb0fd3c5bbb3a"><div class="ttname"><a href="../../d9/d51/classDistributedTracingTest.html#a5fd122f3a4024ce4c92eb0fd3c5bbb3a">DistributedTracingTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00022">test_distributed_tracing.cpp:22</a></div></div>
 <div class="ttc" id="aclassDistributedTracingTest_html_acb2a89eb67e10578b77a9527ab4b839a"><div class="ttname"><a href="../../d9/d51/classDistributedTracingTest.html#acb2a89eb67e10578b77a9527ab4b839a">DistributedTracingTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00018">test_distributed_tracing.cpp:18</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../de/d11/error__codes_8h_source.html#l00021">error_codes.h:21</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">monitoring_system::service_lifetime::scoped</a></div><div class="ttdeci">@ scoped</div><div class="ttdoc">Single instance per scope.</div></div>
 <div class="ttc" id="atest__distributed__tracing_8cpp_html_aee8b0e44acf25f99e01333bf333b7de2"><div class="ttname"><a href="../../d9/d1e/test__distributed__tracing_8cpp.html#aee8b0e44acf25f99e01333bf333b7de2">TEST_F</a></div><div class="ttdeci">TEST_F(DistributedTracingTest, CreateRootSpan)</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00027">test_distributed_tracing.cpp:27</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:17 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

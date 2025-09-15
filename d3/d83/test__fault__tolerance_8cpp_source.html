@@ -89,7 +89,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;monitoring/reliability/retry_policy.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;monitoring/reliability/fault_tolerance_manager.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>monitoring_system;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d4/d91/classFaultToleranceTest.html">FaultToleranceTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -115,19 +115,19 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// Helper function that fails for the first N attempts</span></div>
 <div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#a4be8a69b1a71747b5ee9e6f896dadf4b">   29</a></span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;int&gt;</a> <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#a4be8a69b1a71747b5ee9e6f896dadf4b">failing_operation</a>() {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#a4be8a69b1a71747b5ee9e6f896dadf4b">   29</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#a4be8a69b1a71747b5ee9e6f896dadf4b">failing_operation</a>() {</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordtype">int</span> current_call = ++<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">call_count</a>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#a92bd18aa7262989508b775b9c7d42527">success_after_attempts</a> &gt; 0 &amp;&amp; current_call &lt;= <a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#a92bd18aa7262989508b775b9c7d42527">success_after_attempts</a>) {</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                                 <span class="stringliteral">&quot;Simulated failure on attempt &quot;</span> + std::to_string(current_call));</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        }</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(42);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> make_success(42);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
 </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// Helper function that always fails</span></div>
 <div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#a563068fc7bc366237513327221eac62e">   39</a></span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;int&gt;</a> <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#a563068fc7bc366237513327221eac62e">always_failing_operation</a>() {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#a563068fc7bc366237513327221eac62e">   39</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#a563068fc7bc366237513327221eac62e">always_failing_operation</a>() {</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        ++<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">call_count</a>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Always fails&quot;</span>);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
@@ -135,18 +135,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// Helper function that always succeeds</span></div>
 <div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#ab3b6292e1fd8587cd214d7d13ada095e">   45</a></span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;int&gt;</a> <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#ab3b6292e1fd8587cd214d7d13ada095e">always_succeeding_operation</a>() {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#ab3b6292e1fd8587cd214d7d13ada095e">   45</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#ab3b6292e1fd8587cd214d7d13ada095e">always_succeeding_operation</a>() {</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        ++<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">call_count</a>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(100);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> make_success(100);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
 </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// Slow operation for timeout testing</span></div>
 <div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#a83e1c79404b1ff611f8a11d88e96d1fe">   51</a></span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;int&gt;</a> <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#a83e1c79404b1ff611f8a11d88e96d1fe">slow_operation</a>(std::chrono::milliseconds delay) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../d4/d91/classFaultToleranceTest.html#a83e1c79404b1ff611f8a11d88e96d1fe">   51</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../d4/d91/classFaultToleranceTest.html#a83e1c79404b1ff611f8a11d88e96d1fe">slow_operation</a>(std::chrono::milliseconds delay) {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        ++<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">call_count</a>;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        std::this_thread::sleep_for(delay);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(200);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> make_success(200);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
@@ -162,9 +162,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    EXPECT_EQ(breaker.get_state(), circuit_state::closed);</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 100);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    EXPECT_EQ(result.value(), 100);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    EXPECT_EQ(breaker.get_state(), circuit_state::closed);</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
@@ -179,18 +179,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// First 3 failures should open the circuit</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        EXPECT_FALSE(result);</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    EXPECT_EQ(breaker.get_state(), circuit_state::open);</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    EXPECT_EQ(call_count.load(), 3);</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// Next call should be rejected without calling operation</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    EXPECT_FALSE(result);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    EXPECT_EQ(call_count.load(), 3); <span class="comment">// Should not increment</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::circuit_breaker_open);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::circuit_breaker_open);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}</div>
 </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
@@ -212,8 +212,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    std::this_thread::sleep_for(std::chrono::milliseconds(150));</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    </div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// Next call should transition to half-open</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    EXPECT_EQ(breaker.get_state(), circuit_state::half_open);</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
 </div>
@@ -238,8 +238,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    EXPECT_EQ(breaker.get_state(), circuit_state::half_open);</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    </div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">// One more success should close the circuit</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    EXPECT_EQ(breaker.get_state(), circuit_state::closed);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}</div>
 </div>
@@ -256,11 +256,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    EXPECT_EQ(breaker.get_state(), circuit_state::open);</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    </div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// Use fallback</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">auto</span> fallback = []() { <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(999); };</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); }, fallback);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">auto</span> fallback = []() { <span class="keywordflow">return</span> make_success(999); };</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); }, fallback);</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 999);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    EXPECT_EQ(result.value(), 999);</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>}</div>
 </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
@@ -292,10 +292,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    </div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    success_after_attempts = 2; <span class="comment">// Succeed on 3rd attempt</span></div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    </div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">auto</span> result = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    EXPECT_EQ(result.value(), 42);</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    EXPECT_EQ(call_count.load(), 3);</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    </div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">auto</span> metrics = executor.get_metrics();</div>
@@ -310,9 +310,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">auto</span> config = create_exponential_backoff_config(2, std::chrono::milliseconds(10));</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    retry_executor&lt;int&gt; executor(<span class="stringliteral">&quot;test_retry&quot;</span>, config);</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">auto</span> result = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    EXPECT_FALSE(result);</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    EXPECT_EQ(call_count.load(), 2);</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    </div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keyword">auto</span> metrics = executor.get_metrics();</div>
@@ -330,10 +330,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    success_after_attempts = 2;</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    </div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keyword">auto</span> start = std::chrono::steady_clock::now();</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">auto</span> result = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">auto</span> duration = std::chrono::steady_clock::now() - start;</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    EXPECT_GE(duration, std::chrono::milliseconds(100)); <span class="comment">// At least 2 delays</span></div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
 </div>
@@ -345,9 +345,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    </div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    success_after_attempts = 3;</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">auto</span> result = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    EXPECT_EQ(call_count.load(), 4);</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>}</div>
 </div>
@@ -355,7 +355,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="../../d3/d83/test__fault__tolerance_8cpp.html#a344bcc8a29ace3d574923eceb2a32b3b">  238</a></span><a class="code hl_function" href="../../d3/d83/test__fault__tolerance_8cpp.html#a5fc5e0d80d66bd405a7c20d88974f148">TEST_F</a>(<a class="code hl_class" href="../../d4/d91/classFaultToleranceTest.html">FaultToleranceTest</a>, RetryExecutorCustomShouldRetry) {</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    retry_config config = create_exponential_backoff_config(3);</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    config.should_retry = [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d0/d5c/structmonitoring__system_1_1error__info.html">error_info</a>&amp; error) {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    config.should_retry = [](<span class="keyword">const</span> error_info&amp; error) {</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="comment">// Only retry operation_timeout errors</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">return</span> error.code == monitoring_error_code::operation_timeout;</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    };</div>
@@ -363,9 +363,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    retry_executor&lt;int&gt; executor(<span class="stringliteral">&quot;test_retry&quot;</span>, config);</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    </div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="comment">// This should not retry because it&#39;s not a timeout error</span></div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keyword">auto</span> result = executor.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    EXPECT_FALSE(result);</div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    EXPECT_EQ(call_count.load(), 1); <span class="comment">// No retries</span></div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>}</div>
 </div>
@@ -384,10 +384,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    success_after_attempts = 1; <span class="comment">// Succeed on 2nd attempt</span></div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    </div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">auto</span> result = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    EXPECT_EQ(result.value(), 42);</div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    EXPECT_EQ(call_count.load(), 2); <span class="comment">// Retry executed</span></div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>}</div>
 </div>
@@ -405,9 +405,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    </div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    success_after_attempts = 2;</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    </div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">auto</span> result = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    </div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    EXPECT_EQ(call_count.load(), 3);</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>}</div>
 </div>
@@ -421,10 +421,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    </div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    fault_tolerance_manager&lt;int&gt; manager(<span class="stringliteral">&quot;test_manager&quot;</span>, config);</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    </div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keyword">auto</span> result = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 100);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    EXPECT_EQ(result.value(), 100);</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>}</div>
 </div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
@@ -439,9 +439,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    </div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    success_after_attempts = 2;</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    </div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keyword">auto</span> result = manager.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> failing_operation(); });</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    </div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    EXPECT_EQ(call_count.load(), 3);</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>}</div>
 </div>
@@ -455,13 +455,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    </div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    fault_tolerance_manager&lt;int&gt; manager(<span class="stringliteral">&quot;test_manager&quot;</span>, config);</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.execute_with_timeout(</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keyword">auto</span> result = manager.execute_with_timeout(</div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        [<span class="keyword">this</span>]() { <span class="keywordflow">return</span> slow_operation(std::chrono::milliseconds(100)); },</div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>        std::chrono::milliseconds(50)</div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    );</div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    </div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::operation_timeout);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    EXPECT_FALSE(result);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::operation_timeout);</div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
 </div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
@@ -653,8 +653,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>        threads.emplace_back([&amp;breaker, &amp;successful_operations, operations_per_thread]() {</div>
 <div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread; ++j) {</div>
-<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>                <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([]() { <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">make_success</a>(1); });</div>
-<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>                <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>                <span class="keyword">auto</span> result = breaker.execute([]() { <span class="keywordflow">return</span> make_success(1); });</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>                <span class="keywordflow">if</span> (result) {</div>
 <div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>                    successful_operations++;</div>
 <div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>                }</div>
 <div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>            }</div>
@@ -692,8 +692,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>    EXPECT_EQ(breaker.get_state(), circuit_state::closed);</div>
 <div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    </div>
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>    <span class="comment">// Should work normally now</span></div>
-<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
-<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>}</div>
 </div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span> </div>
@@ -727,18 +727,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassFaultToleranceTest_html_a92bd18aa7262989508b775b9c7d42527"><div class="ttname"><a href="../../d4/d91/classFaultToleranceTest.html#a92bd18aa7262989508b775b9c7d42527">FaultToleranceTest::success_after_attempts</a></div><div class="ttdeci">std::atomic&lt; int &gt; success_after_attempts</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d83/test__fault__tolerance_8cpp_source.html#l00026">test_fault_tolerance.cpp:26</a></div></div>
 <div class="ttc" id="aclassFaultToleranceTest_html_aa7698d71e738783355a6016ce09e4a32"><div class="ttname"><a href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">FaultToleranceTest::call_count</a></div><div class="ttdeci">std::atomic&lt; int &gt; call_count</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d83/test__fault__tolerance_8cpp_source.html#l00025">test_fault_tolerance.cpp:25</a></div></div>
 <div class="ttc" id="aclassFaultToleranceTest_html_ab3b6292e1fd8587cd214d7d13ada095e"><div class="ttname"><a href="../../d4/d91/classFaultToleranceTest.html#ab3b6292e1fd8587cd214d7d13ada095e">FaultToleranceTest::always_succeeding_operation</a></div><div class="ttdeci">result&lt; int &gt; always_succeeding_operation()</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d83/test__fault__tolerance_8cpp_source.html#l00045">test_fault_tolerance.cpp:45</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00125">result_types.h:125</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00105">result_types.h:105</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../de/d11/error__codes_8h_source.html#l00021">error_codes.h:21</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html_af97d143891084f454314b6bd03b8712f"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#af97d143891084f454314b6bd03b8712f">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00236">result_types.h:236</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1error__info_html"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html">monitoring_system::error_info</a></div><div class="ttdoc">Extended error information with context.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00034">result_types.h:34</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00035">result_types.h:35</a></div></div>
 <div class="ttc" id="atest__fault__tolerance_8cpp_html_a5fc5e0d80d66bd405a7c20d88974f148"><div class="ttname"><a href="../../d3/d83/test__fault__tolerance_8cpp.html#a5fc5e0d80d66bd405a7c20d88974f148">TEST_F</a></div><div class="ttdeci">TEST_F(FaultToleranceTest, CircuitBreakerClosedState)</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d83/test__fault__tolerance_8cpp_source.html#l00059">test_fault_tolerance.cpp:59</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:17 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

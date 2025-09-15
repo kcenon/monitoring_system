@@ -91,7 +91,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>monitoring_system;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d9/dee/classBufferingStrategiesTest.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/dee/classBufferingStrategiesTest.html">BufferingStrategiesTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -114,8 +114,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        std::hash&lt;std::string&gt; hasher;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        uint32_t name_hash = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(hasher(name));</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        metric_metadata metadata(name_hash, metric_type::gauge);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, value);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> buffered_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>), priority);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        compact_metric_value metric(metadata, value);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> buffered_metric(std::move(metric), priority);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
 </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    </div>
@@ -177,9 +177,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    EXPECT_FALSE(strategy.should_flush());</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// Add metric (should be processed immediately)</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// Size should still be 0 (no buffering)</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    EXPECT_EQ(strategy.size(), 0);</div>
@@ -210,9 +210,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// Add metrics up to threshold</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    EXPECT_EQ(strategy.size(), 3);</div>
@@ -220,9 +220,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    </div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// Add more metrics to test overflow</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 3; i &lt; 8; ++i) {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    </div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    EXPECT_EQ(strategy.size(), 5);  <span class="comment">// Should not exceed max size</span></div>
@@ -255,15 +255,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    </div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">// Fill buffer</span></div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    </div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    EXPECT_EQ(strategy.size(), 3);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// Try to add one more (should be dropped)</span></div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_overflow&quot;</span>, 999.0);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_overflow&quot;</span>, 999.0);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    </div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    EXPECT_EQ(strategy.size(), 3);  <span class="comment">// Size unchanged</span></div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    </div>
@@ -284,8 +284,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    </div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">// Add some metrics</span></div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    </div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    EXPECT_EQ(strategy.size(), 5);</div>
@@ -315,8 +315,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    </div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="comment">// Fill buffer beyond capacity</span></div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    }</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    </div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// Should trigger flush due to buffer full condition</span></div>
@@ -338,8 +338,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    std::vector&lt;uint8_t&gt; priorities = {100, 150, 250, 50, 220};</div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    </div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; priorities.size(); ++i) {</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    </div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    EXPECT_EQ(strategy.size(), 5);</div>
@@ -372,8 +372,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    std::vector&lt;uint8_t&gt; priorities = {100, 200, 150, 250, 50};</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    </div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; priorities.size(); ++i) {</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    </div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    EXPECT_EQ(strategy.size(), 3);  <span class="comment">// Should maintain max size</span></div>
@@ -405,16 +405,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    </div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="comment">// Add some metrics</span></div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 20; ++i) {</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    }</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    </div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    EXPECT_EQ(strategy.size(), 20);</div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    </div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="comment">// Add more metrics to increase load</span></div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 20; i &lt; 80; ++i) {</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        strategy.add_metric(std::move(metric));</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    }</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="comment">// Should adapt to high load</span></div>
@@ -481,10 +481,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="comment">// Add metrics for different metric names</span></div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;cpu_usage&quot;</span>, metric_type::gauge);</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, 50.0 + i);</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        compact_metric_value metric(metadata, 50.0 + i);</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>        </div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        <span class="keyword">auto</span> result = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(metric));</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    }</div>
 <div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    </div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <span class="comment">// Check buffer size</span></div>
@@ -513,9 +513,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric_name : metric_names) {</div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>            <span class="keyword">auto</span> metadata = create_metric_metadata(metric_name, metric_type::gauge);</div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>            compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>            compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>            </div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>            manager.add_metric(metric_name, std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>            manager.add_metric(metric_name, std::move(metric));</div>
 <div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        }</div>
 <div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    }</div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    </div>
@@ -550,17 +550,17 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    custom_config.max_buffer_size = 10;</div>
 <div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    custom_config.flush_priority_threshold = 200;</div>
 <div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    </div>
-<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
-<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    <span class="keyword">auto</span> result = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>    </div>
 <div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <span class="comment">// Add metrics with different priorities</span></div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    std::vector&lt;uint8_t&gt; priorities = {100, 250, 150};</div>
 <div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>    </div>
 <div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; priorities.size(); ++i) {</div>
 <div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, metric_type::counter);</div>
-<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>        </div>
-<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>        <span class="keyword">auto</span> add_result = manager.add_metric(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>), priorities[i]);</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>        <span class="keyword">auto</span> add_result = manager.add_metric(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, std::move(metric), priorities[i]);</div>
 <div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>        EXPECT_TRUE(add_result);</div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>    }</div>
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    </div>
@@ -595,9 +595,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span>    <span class="comment">// Add metrics</span></div>
 <div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>        <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;timed_metric&quot;</span>, metric_type::gauge);</div>
-<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>        compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>        </div>
-<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>        manager.add_metric(<span class="stringliteral">&quot;timed_metric&quot;</span>, std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>        manager.add_metric(<span class="stringliteral">&quot;timed_metric&quot;</span>, std::move(metric));</div>
 <div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>    }</div>
 <div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>    </div>
 <div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>    <span class="comment">// Wait for background flush</span></div>
@@ -629,9 +629,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>            </div>
 <div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; metrics_per_thread; ++i) {</div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>                <span class="keyword">auto</span> metadata = create_metric_metadata(metric_name, metric_type::counter);</div>
-<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>                compact_metric_value <a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>                compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>                </div>
-<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>                manager.add_metric(metric_name, std::move(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>));</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>                manager.add_metric(metric_name, std::move(metric));</div>
 <div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>                </div>
 <div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>                <span class="comment">// Small delay to increase chance of contention</span></div>
 <div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>                std::this_thread::sleep_for(std::chrono::microseconds(1));</div>
@@ -662,14 +662,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassBufferingStrategiesTest_html_a2f9012650c746215e4ab451ab536135b"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b">BufferingStrategiesTest::create_test_metric</a></div><div class="ttdeci">buffered_metric create_test_metric(const std::string &amp;name, double value, uint8_t priority=128)</div><div class="ttdoc">Create test metric.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00029">test_buffering_strategies.cpp:29</a></div></div>
 <div class="ttc" id="aclassBufferingStrategiesTest_html_a39533de57e9b166c8c7743d7891ca4e1"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1">BufferingStrategiesTest::create_test_metrics</a></div><div class="ttdeci">std::vector&lt; buffered_metric &gt; create_test_metrics(size_t count, const std::string &amp;base_name=&quot;test&quot;)</div><div class="ttdoc">Create multiple test metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00041">test_buffering_strategies.cpp:41</a></div></div>
 <div class="ttc" id="aclassBufferingStrategiesTest_html_ab584e8eb28be0f142bff7fbf453e6b46"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#ab584e8eb28be0f142bff7fbf453e6b46">BufferingStrategiesTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00022">test_buffering_strategies.cpp:22</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../de/d11/error__codes_8h_source.html#l00021">error_codes.h:21</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric_html"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html">monitoring_system::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00027">metric_types_adapter.h:27</a></div></div>
 <div class="ttc" id="atest__buffering__strategies_8cpp_html_a976caac12b1c6e3661317b5617ceaceb"><div class="ttname"><a href="../../d0/df8/test__buffering__strategies_8cpp.html#a976caac12b1c6e3661317b5617ceaceb">TEST_F</a></div><div class="ttdeci">TEST_F(BufferingStrategiesTest, BufferingConfigValidation)</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00055">test_buffering_strategies.cpp:55</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:17 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

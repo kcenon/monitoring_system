@@ -82,8 +82,8 @@ $(document).ready(function() { init_codefold(1); });
 </div><!--header-->
 <div class="contents">
 <a href="../../df/de1/test__event__bus_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="../../dd/d6d/event__bus_8h.html">monitoring/core/event_bus.h</a>&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="../../de/d0f/event__types_8h.html">monitoring/core/event_types.h</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;monitoring/core/event_bus.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;monitoring/core/event_types.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;monitoring/adapters/thread_system_adapter.h&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;monitoring/adapters/logger_system_adapter.h&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
@@ -91,7 +91,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span>monitoring_system;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using namespace </span>std::chrono_literals;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
@@ -99,10 +99,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">protected</span>:</div>
 <div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../d7/d12/classEventBusTest.html#ac4e0d2dd287e58ecc97ebe7683a1977f">   20</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/d12/classEventBusTest.html#ac4e0d2dd287e58ecc97ebe7683a1977f">SetUp</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_struct" href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html">event_bus::config</a> config;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        config.<a class="code hl_variable" href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html#aef42ca0407e7b595533f97e2c8cacb84">max_queue_size</a> = 1000;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        config.<a class="code hl_variable" href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html#a83a5135501062735483fa58e7887b9cc">worker_thread_count</a> = 2;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        config.<a class="code hl_variable" href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html#a8cae6b544c4d13b8054d59aae8b12a8a">auto_start</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        event_bus::config config;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        config.max_queue_size = 1000;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        config.worker_thread_count = 2;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        config.auto_start = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_variable" href="../../d7/d12/classEventBusTest.html#aef1ae57c23ecf661d205c920005bc5b9">bus</a> = std::make_shared&lt;event_bus&gt;(config);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
@@ -127,8 +127,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::string received_message;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// Subscribe to performance alerts</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d7/da4/classmonitoring__system_1_1performance__alert__event.html">performance_alert_event</a>&gt;(</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d7/da4/classmonitoring__system_1_1performance__alert__event.html">performance_alert_event</a>&amp; event) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;performance_alert_event&gt;(</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        [&amp;](<span class="keyword">const</span> performance_alert_event&amp; event) {</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            received_count++;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            received_message = <span class="keyword">event</span>.get_message();</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        }</div>
@@ -137,15 +137,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    ASSERT_TRUE(token.has_value());</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// Publish an event</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="../../d7/da4/classmonitoring__system_1_1performance__alert__event.html">performance_alert_event</a> alert(</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    performance_alert_event alert(</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        performance_alert_event::alert_type::high_cpu_usage,</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        performance_alert_event::alert_severity::warning,</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="stringliteral">&quot;test_component&quot;</span>,</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="stringliteral">&quot;CPU usage is high&quot;</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    );</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = bus-&gt;publish_event(alert);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">auto</span> result = bus-&gt;publish_event(alert);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    ASSERT_TRUE(result);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// Wait for event processing</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    std::this_thread::sleep_for(100ms);</div>
@@ -162,22 +162,22 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    std::atomic&lt;int&gt; subscriber2_count{0};</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Subscribe twice to the same event type</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d9/dfe/classmonitoring__system_1_1system__resource__event.html">system_resource_event</a>&gt;(</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d9/dfe/classmonitoring__system_1_1system__resource__event.html">system_resource_event</a>&amp; event) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    bus-&gt;subscribe_event&lt;system_resource_event&gt;(</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        [&amp;](<span class="keyword">const</span> system_resource_event&amp; event) {</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            subscriber1_count++;</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        }</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    );</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d9/dfe/classmonitoring__system_1_1system__resource__event.html">system_resource_event</a>&gt;(</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d9/dfe/classmonitoring__system_1_1system__resource__event.html">system_resource_event</a>&amp; event) {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    bus-&gt;subscribe_event&lt;system_resource_event&gt;(</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        [&amp;](<span class="keyword">const</span> system_resource_event&amp; event) {</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            subscriber2_count++;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    );</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// Publish event</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_struct" href="../../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html">system_resource_event::resource_stats</a> stats;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    stats.<a class="code hl_variable" href="../../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html#a99a69301765b13dd97fc9242a00b71f1">cpu_usage_percent</a> = 75.5;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_class" href="../../d9/dfe/classmonitoring__system_1_1system__resource__event.html">system_resource_event</a> event(stats);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    system_resource_event::resource_stats stats;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    stats.cpu_usage_percent = 75.5;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    system_resource_event event(stats);</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    bus-&gt;publish_event(event);</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
@@ -195,8 +195,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    std::mutex order_mutex;</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// Subscribe to configuration changes</span></div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d1/daa/classmonitoring__system_1_1configuration__change__event.html">configuration_change_event</a>&gt;(</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d1/daa/classmonitoring__system_1_1configuration__change__event.html">configuration_change_event</a>&amp; event) {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    bus-&gt;subscribe_event&lt;configuration_change_event&gt;(</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        [&amp;](<span class="keyword">const</span> configuration_change_event&amp; event) {</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            std::lock_guard&lt;std::mutex&gt; lock(order_mutex);</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keywordflow">if</span> (event.get_config_key() == <span class="stringliteral">&quot;high_priority&quot;</span>) {</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                processing_order.push_back(1);</div>
@@ -208,12 +208,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    );</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// Publish events with different priorities</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <a class="code hl_class" href="../../d1/daa/classmonitoring__system_1_1configuration__change__event.html">configuration_change_event</a> high_priority(</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    configuration_change_event high_priority(</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;high_priority&quot;</span>,</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        configuration_change_event::change_type::modified</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    );</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <a class="code hl_class" href="../../d1/daa/classmonitoring__system_1_1configuration__change__event.html">configuration_change_event</a> normal_priority(</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    configuration_change_event normal_priority(</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;normal_priority&quot;</span>,</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        configuration_change_event::change_type::modified</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    );</div>
@@ -239,8 +239,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#a7754778d4db28e5ffb0b6cf1fc6e561f">  147</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, Unsubscribe) {</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    std::atomic&lt;int&gt; received_count{0};</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d5/db8/classmonitoring__system_1_1health__check__event.html">health_check_event</a>&gt;(</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d5/db8/classmonitoring__system_1_1health__check__event.html">health_check_event</a>&amp; event) {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;health_check_event&gt;(</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        [&amp;](<span class="keyword">const</span> health_check_event&amp; event) {</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            received_count++;</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        }</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    );</div>
@@ -249,7 +249,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// Publish first event</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    std::vector&lt;health_check_event::health_check_result&gt; results;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_class" href="../../d5/db8/classmonitoring__system_1_1health__check__event.html">health_check_event</a> event1(<span class="stringliteral">&quot;component1&quot;</span>, results);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    health_check_event event1(<span class="stringliteral">&quot;component1&quot;</span>, results);</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    bus-&gt;publish_event(event1);</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    std::this_thread::sleep_for(100ms);</div>
@@ -259,7 +259,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    bus-&gt;unsubscribe_event(token.value());</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// Publish second event</span></div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_class" href="../../d5/db8/classmonitoring__system_1_1health__check__event.html">health_check_event</a> event2(<span class="stringliteral">&quot;component2&quot;</span>, results);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    health_check_event event2(<span class="stringliteral">&quot;component2&quot;</span>, results);</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    bus-&gt;publish_event(event2);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    std::this_thread::sleep_for(100ms);</div>
@@ -276,9 +276,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    EXPECT_FALSE(adapter.is_thread_system_available());</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">// Try to collect metrics (should return empty when not available)</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.collect_metrics();</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>().empty());</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    EXPECT_TRUE(result.value().empty());</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="comment">// Get supported metric types</span></div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keyword">auto</span> types = adapter.get_metric_types();</div>
@@ -295,9 +295,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    EXPECT_FALSE(adapter.is_logger_system_available());</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// Try to collect metrics</span></div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.collect_metrics();</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">has_value</a>());</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>().empty());</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    EXPECT_TRUE(result.value().empty());</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="comment">// Register a logger (won&#39;t do anything when system not available)</span></div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    adapter.register_logger(<span class="stringliteral">&quot;test_logger&quot;</span>);</div>
@@ -316,7 +316,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">// Publish some events</span></div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <a class="code hl_class" href="../../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html">component_lifecycle_event</a> event(</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        component_lifecycle_event event(</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>            <span class="stringliteral">&quot;test_component&quot;</span>,</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            component_lifecycle_event::lifecycle_state::started,</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>            component_lifecycle_event::lifecycle_state::running</div>
@@ -338,8 +338,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    std::atomic&lt;int&gt; received_count{0};</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="comment">// Subscribe to metric collection events</span></div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../de/d97/classmonitoring__system_1_1metric__collection__event.html">metric_collection_event</a>&gt;(</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../de/d97/classmonitoring__system_1_1metric__collection__event.html">metric_collection_event</a>&amp; event) {</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    bus-&gt;subscribe_event&lt;metric_collection_event&gt;(</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        [&amp;](<span class="keyword">const</span> metric_collection_event&amp; event) {</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            received_count.fetch_add(event.get_metric_count());</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        }</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    );</div>
@@ -353,14 +353,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        publishers.emplace_back([<span class="keyword">this</span>, t, events_per_thread]() {</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; events_per_thread; ++i) {</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                std::vector&lt;metric&gt; metrics;</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                metrics.push_back(<a class="code hl_struct" href="../../dd/d06/structmonitoring__system_1_1metric.html">metric</a>{</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                metrics.push_back(metric{</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                    <span class="stringliteral">&quot;test_metric&quot;</span>,</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                    <a class="code hl_struct" href="../../dd/d1d/structmonitoring__system_1_1metric__value.html">metric_value</a>{42.0},</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                    metric_value{42.0},</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                    {{<span class="stringliteral">&quot;thread&quot;</span>, std::to_string(t)}},</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                    metric_type::gauge</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                });</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                <a class="code hl_class" href="../../de/d97/classmonitoring__system_1_1metric__collection__event.html">metric_collection_event</a> event(<span class="stringliteral">&quot;test_collector&quot;</span>, std::move(metrics));</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                metric_collection_event event(<span class="stringliteral">&quot;test_collector&quot;</span>, std::move(metrics));</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                bus-&gt;publish_event(event);</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                std::this_thread::sleep_for(1ms);</div>
@@ -391,32 +391,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassEventBusTest_html_a4d568849ba4cc79eb8bc0968a30c05a4"><div class="ttname"><a href="../../d7/d12/classEventBusTest.html#a4d568849ba4cc79eb8bc0968a30c05a4">EventBusTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../df/de1/test__event__bus_8cpp_source.html#l00029">test_event_bus.cpp:29</a></div></div>
 <div class="ttc" id="aclassEventBusTest_html_ac4e0d2dd287e58ecc97ebe7683a1977f"><div class="ttname"><a href="../../d7/d12/classEventBusTest.html#ac4e0d2dd287e58ecc97ebe7683a1977f">EventBusTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../df/de1/test__event__bus_8cpp_source.html#l00020">test_event_bus.cpp:20</a></div></div>
 <div class="ttc" id="aclassEventBusTest_html_aef1ae57c23ecf661d205c920005bc5b9"><div class="ttname"><a href="../../d7/d12/classEventBusTest.html#aef1ae57c23ecf661d205c920005bc5b9">EventBusTest::bus</a></div><div class="ttdeci">std::shared_ptr&lt; event_bus &gt; bus</div><div class="ttdef"><b>Definition</b> <a href="../../df/de1/test__event__bus_8cpp_source.html#l00035">test_event_bus.cpp:35</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1component__lifecycle__event_html"><div class="ttname"><a href="../../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html">monitoring_system::component_lifecycle_event</a></div><div class="ttdoc">Event for component lifecycle changes.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00206">event_types.h:206</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1configuration__change__event_html"><div class="ttname"><a href="../../d1/daa/classmonitoring__system_1_1configuration__change__event.html">monitoring_system::configuration_change_event</a></div><div class="ttdoc">Event fired when configuration changes.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00168">event_types.h:168</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1health__check__event_html"><div class="ttname"><a href="../../d5/db8/classmonitoring__system_1_1health__check__event.html">monitoring_system::health_check_event</a></div><div class="ttdoc">Event for health check results.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00270">event_types.h:270</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1metric__collection__event_html"><div class="ttname"><a href="../../de/d97/classmonitoring__system_1_1metric__collection__event.html">monitoring_system::metric_collection_event</a></div><div class="ttdoc">Event containing collected metrics batch.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00247">event_types.h:247</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1performance__alert__event_html"><div class="ttname"><a href="../../d7/da4/classmonitoring__system_1_1performance__alert__event.html">monitoring_system::performance_alert_event</a></div><div class="ttdoc">Event for performance-related alerts.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00119">event_types.h:119</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_a4476cf160801c2dbfe2c00525190e544"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#a4476cf160801c2dbfe2c00525190e544">monitoring_system::result::has_value</a></div><div class="ttdeci">bool has_value() const</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00095">result_types.h:95</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00105">result_types.h:105</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1system__resource__event_html"><div class="ttname"><a href="../../d9/dfe/classmonitoring__system_1_1system__resource__event.html">monitoring_system::system_resource_event</a></div><div class="ttdoc">Event containing system resource metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00088">event_types.h:88</a></div></div>
-<div class="ttc" id="aevent__bus_8h_html"><div class="ttname"><a href="../../dd/d6d/event__bus_8h.html">event_bus.h</a></div><div class="ttdoc">Lightweight event bus implementation for monitoring system.</div></div>
-<div class="ttc" id="aevent__types_8h_html"><div class="ttname"><a href="../../de/d0f/event__types_8h.html">event_types.h</a></div><div class="ttdoc">Common event type definitions for monitoring system.</div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../de/d11/error__codes_8h_source.html#l00021">error_codes.h:21</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1event__bus__config_html"><div class="ttname"><a href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html">monitoring_system::event_bus_config</a></div><div class="ttdoc">Configuration for event bus.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d6d/event__bus_8h_source.html#l00082">event_bus.h:82</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1event__bus__config_html_a83a5135501062735483fa58e7887b9cc"><div class="ttname"><a href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html#a83a5135501062735483fa58e7887b9cc">monitoring_system::event_bus_config::worker_thread_count</a></div><div class="ttdeci">size_t worker_thread_count</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d6d/event__bus_8h_source.html#l00084">event_bus.h:84</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1event__bus__config_html_a8cae6b544c4d13b8054d59aae8b12a8a"><div class="ttname"><a href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html#a8cae6b544c4d13b8054d59aae8b12a8a">monitoring_system::event_bus_config::auto_start</a></div><div class="ttdeci">bool auto_start</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d6d/event__bus_8h_source.html#l00086">event_bus.h:86</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1event__bus__config_html_aef42ca0407e7b595533f97e2c8cacb84"><div class="ttname"><a href="../../d6/dee/structmonitoring__system_1_1event__bus__config.html#aef42ca0407e7b595533f97e2c8cacb84">monitoring_system::event_bus_config::max_queue_size</a></div><div class="ttdeci">size_t max_queue_size</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d6d/event__bus_8h_source.html#l00083">event_bus.h:83</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric__value_html"><div class="ttname"><a href="../../dd/d1d/structmonitoring__system_1_1metric__value.html">monitoring_system::metric_value</a></div><div class="ttdoc">Represents a single metric value with metadata.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00043">monitoring_interface.h:43</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1metric_html"><div class="ttname"><a href="../../dd/d06/structmonitoring__system_1_1metric.html">monitoring_system::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00027">metric_types_adapter.h:27</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1system__resource__event_1_1resource__stats_html"><div class="ttname"><a href="../../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html">monitoring_system::system_resource_event::resource_stats</a></div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00090">event_types.h:90</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1system__resource__event_1_1resource__stats_html_a99a69301765b13dd97fc9242a00b71f1"><div class="ttname"><a href="../../d4/df7/structmonitoring__system_1_1system__resource__event_1_1resource__stats.html#a99a69301765b13dd97fc9242a00b71f1">monitoring_system::system_resource_event::resource_stats::cpu_usage_percent</a></div><div class="ttdeci">double cpu_usage_percent</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00091">event_types.h:91</a></div></div>
 <div class="ttc" id="atest__event__bus_8cpp_html_a4a641825def781944b45efd04729b7bf"><div class="ttname"><a href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a></div><div class="ttdeci">TEST_F(EventBusTest, PublishSubscribe)</div><div class="ttdef"><b>Definition</b> <a href="../../df/de1/test__event__bus_8cpp_source.html#l00039">test_event_bus.cpp:39</a></div></div>
 <div class="ttc" id="atest__interfaces__compile_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00088">test_interfaces_compile.cpp:88</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:17 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

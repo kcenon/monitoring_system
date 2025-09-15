@@ -640,18 +640,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  190</span>    {</div>
 <div class="line"><span class="lineno">  191</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;scoped_operation&quot;</span>);</div>
 <div class="line"><span class="lineno">  192</span>        ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  193</span>        scoped_span <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>(span_result.value(), &amp;tracer);</div>
+<div class="line"><span class="lineno">  193</span>        scoped_span scoped(span_result.value(), &amp;tracer);</div>
 <div class="line"><span class="lineno">  194</span>        </div>
 <div class="line"><span class="lineno">  195</span>        EXPECT_EQ(tracer.get_current_span(), span_result.value());</div>
-<div class="line"><span class="lineno">  196</span>        EXPECT_FALSE(<a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>-&gt;is_finished());</div>
+<div class="line"><span class="lineno">  196</span>        EXPECT_FALSE(scoped-&gt;is_finished());</div>
 <div class="line"><span class="lineno">  197</span>        </div>
 <div class="line"><span class="lineno">  198</span>        <span class="comment">// Span should be accessible via scoped object</span></div>
-<div class="line"><span class="lineno">  199</span>        <a class="code hl_enumvalue" href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">scoped</a>-&gt;tags[<span class="stringliteral">&quot;custom_tag&quot;</span>] = <span class="stringliteral">&quot;custom_value&quot;</span>;</div>
+<div class="line"><span class="lineno">  199</span>        scoped-&gt;tags[<span class="stringliteral">&quot;custom_tag&quot;</span>] = <span class="stringliteral">&quot;custom_value&quot;</span>;</div>
 <div class="line"><span class="lineno">  200</span>    }</div>
 <div class="line"><span class="lineno">  201</span>    <span class="comment">// Span should be finished after leaving scope</span></div>
 <div class="line"><span class="lineno">  202</span>    <span class="comment">// Note: We can&#39;t directly check as the span is finished and stored</span></div>
 <div class="line"><span class="lineno">  203</span>}</div>
-<div class="ttc" id="anamespacemonitoring__system_html_a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9">monitoring_system::service_lifetime::scoped</a></div><div class="ttdeci">@ scoped</div><div class="ttdoc">Single instance per scope.</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -942,7 +941,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

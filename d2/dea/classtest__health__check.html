@@ -103,15 +103,15 @@ Collaboration diagram for test_health_check:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a455bab7978c88dafafa9c6749a7bcf7c" id="r_a455bab7978c88dafafa9c6749a7bcf7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a455bab7978c88dafafa9c6749a7bcf7c">test_health_check</a> (const std::string &amp;name, health_check_type type, <a class="el" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4">health_status</a> status=health_status::healthy, const std::string &amp;message=&quot;OK&quot;)</td></tr>
+<tr class="memitem:a455bab7978c88dafafa9c6749a7bcf7c" id="r_a455bab7978c88dafafa9c6749a7bcf7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a455bab7978c88dafafa9c6749a7bcf7c">test_health_check</a> (const std::string &amp;name, health_check_type type, health_status status=health_status::healthy, const std::string &amp;message=&quot;OK&quot;)</td></tr>
 <tr class="separator:a455bab7978c88dafafa9c6749a7bcf7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78257ec31906925dc79b3dfc27bed4b7" id="r_a78257ec31906925dc79b3dfc27bed4b7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a78257ec31906925dc79b3dfc27bed4b7">get_name</a> () const override</td></tr>
 <tr class="separator:a78257ec31906925dc79b3dfc27bed4b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af651386219b31c861c49034927a08946" id="r_af651386219b31c861c49034927a08946"><td class="memItemLeft" align="right" valign="top">health_check_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#af651386219b31c861c49034927a08946">get_type</a> () const override</td></tr>
 <tr class="separator:af651386219b31c861c49034927a08946"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a367e278d82a0eeca40ce0168d55cecf0" id="r_a367e278d82a0eeca40ce0168d55cecf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html">health_check_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a367e278d82a0eeca40ce0168d55cecf0">check</a> () override</td></tr>
+<tr class="memitem:a367e278d82a0eeca40ce0168d55cecf0" id="r_a367e278d82a0eeca40ce0168d55cecf0"><td class="memItemLeft" align="right" valign="top">health_check_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a367e278d82a0eeca40ce0168d55cecf0">check</a> () override</td></tr>
 <tr class="separator:a367e278d82a0eeca40ce0168d55cecf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6014110d47f91141cb45ee8ed73e085a" id="r_a6014110d47f91141cb45ee8ed73e085a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a6014110d47f91141cb45ee8ed73e085a">set_status</a> (<a class="el" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4">health_status</a> status)</td></tr>
+<tr class="memitem:a6014110d47f91141cb45ee8ed73e085a" id="r_a6014110d47f91141cb45ee8ed73e085a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a6014110d47f91141cb45ee8ed73e085a">set_status</a> (health_status status)</td></tr>
 <tr class="separator:a6014110d47f91141cb45ee8ed73e085a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad28d35bde30d6fa62108b562c855d471" id="r_ad28d35bde30d6fa62108b562c855d471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#ad28d35bde30d6fa62108b562c855d471">set_message</a> (const std::string &amp;msg)</td></tr>
 <tr class="separator:ad28d35bde30d6fa62108b562c855d471"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,7 +122,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a939dd9d1cce3395bddd909e2e141a12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3466e142b1f49d60d76f6806f67166dd" id="r_a3466e142b1f49d60d76f6806f67166dd"><td class="memItemLeft" align="right" valign="top">health_check_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a3466e142b1f49d60d76f6806f67166dd">type_</a></td></tr>
 <tr class="separator:a3466e142b1f49d60d76f6806f67166dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b66adec36dcefd9ce60685005f17911" id="r_a5b66adec36dcefd9ce60685005f17911"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4">health_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a5b66adec36dcefd9ce60685005f17911">status_</a></td></tr>
+<tr class="memitem:a5b66adec36dcefd9ce60685005f17911" id="r_a5b66adec36dcefd9ce60685005f17911"><td class="memItemLeft" align="right" valign="top">health_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a5b66adec36dcefd9ce60685005f17911">status_</a></td></tr>
 <tr class="separator:a5b66adec36dcefd9ce60685005f17911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6665381b3023736e737788a00815e19b" id="r_a6665381b3023736e737788a00815e19b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classtest__health__check.html#a6665381b3023736e737788a00815e19b">message_</a></td></tr>
 <tr class="separator:a6665381b3023736e737788a00815e19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,7 +155,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4">health_status</a>&#160;</td>
+          <td class="paramtype">health_status&#160;</td>
           <td class="paramname"><em>status</em> = <code>health_status::healthy</code>, </td>
         </tr>
         <tr>
@@ -197,7 +197,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html">health_check_result</a> test_health_check::check </td>
+          <td class="memname">health_check_result test_health_check::check </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -212,15 +212,13 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00033">33</a> of file <a class="el" href="../../d9/de0/test__health__monitoring_8cpp_source.html">test_health_monitoring.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   33</span>                                         {</div>
-<div class="line"><span class="lineno">   34</span>        <a class="code hl_struct" href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html">health_check_result</a> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>;</div>
-<div class="line"><span class="lineno">   35</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a5b66adec36dcefd9ce60685005f17911">status_</a>;</div>
-<div class="line"><span class="lineno">   36</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.message = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a6665381b3023736e737788a00815e19b">message_</a>;</div>
-<div class="line"><span class="lineno">   37</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.timestamp = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   38</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.check_duration = std::chrono::milliseconds(10);</div>
-<div class="line"><span class="lineno">   39</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>;</div>
+<div class="line"><span class="lineno">   34</span>        health_check_result result;</div>
+<div class="line"><span class="lineno">   35</span>        result.status = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a5b66adec36dcefd9ce60685005f17911">status_</a>;</div>
+<div class="line"><span class="lineno">   36</span>        result.message = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a6665381b3023736e737788a00815e19b">message_</a>;</div>
+<div class="line"><span class="lineno">   37</span>        result.timestamp = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   38</span>        result.check_duration = std::chrono::milliseconds(10);</div>
+<div class="line"><span class="lineno">   39</span>        <span class="keywordflow">return</span> result;</div>
 <div class="line"><span class="lineno">   40</span>    }</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdoc">Result type for operations that may fail.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00073">result_types.h:73</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1health__check__result_html"><div class="ttname"><a href="../../dd/d7b/structmonitoring__system_1_1health__check__result.html">monitoring_system::health_check_result</a></div><div class="ttdoc">Result of a health check operation.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d4f/monitoring__interface_8h_source.html#l00106">monitoring_interface.h:106</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -321,7 +319,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void test_health_check::set_status </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4">health_status</a>&#160;</td>
+          <td class="paramtype">health_status&#160;</td>
           <td class="paramname"><em>status</em></td><td>)</td>
           <td></td>
         </tr>
@@ -397,7 +395,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4">health_status</a> test_health_check::status_</td>
+          <td class="memname">health_status test_health_check::status_</td>
         </tr>
       </table>
   </td>
@@ -441,7 +439,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 14 2025 06:59:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
