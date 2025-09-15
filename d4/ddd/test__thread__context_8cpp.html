@@ -83,7 +83,6 @@ $(function() {
 <p>Unit tests for thread context and metadata.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &quot;../sources/monitoring/context/thread_context.h&quot;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;set&gt;</code><br />
@@ -93,19 +92,17 @@ Include dependency graph for test_thread_context.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../df/dfe/test__thread__context_8cpp__incl.png" border="0" usemap="#atests_2test__thread__context_8cpp" alt=""/></div>
 <map name="atests_2test__thread__context_8cpp" id="atests_2test__thread__context_8cpp">
-<area shape="rect" title="Unit tests for thread context and metadata." alt="" coords="315,5,530,31"/>
-<area shape="rect" title=" " alt="" coords="5,86,109,111"/>
-<area shape="poly" title=" " alt="" coords="356,33,246,54,122,81,108,85,107,80,121,76,245,49,355,28"/>
-<area shape="rect" title=" " alt="" coords="133,79,323,119"/>
-<area shape="poly" title=" " alt="" coords="395,33,288,76,286,71,393,28"/>
-<area shape="rect" title=" " alt="" coords="347,86,411,111"/>
-<area shape="poly" title=" " alt="" coords="418,32,394,75,390,73,414,30"/>
-<area shape="rect" title=" " alt="" coords="435,86,498,111"/>
-<area shape="poly" title=" " alt="" coords="431,30,456,73,451,75,427,32"/>
-<area shape="rect" title=" " alt="" coords="523,86,565,111"/>
-<area shape="poly" title=" " alt="" coords="442,29,516,76,513,81,439,33"/>
-<area shape="rect" title=" " alt="" coords="589,86,651,111"/>
-<area shape="poly" title=" " alt="" coords="455,28,578,76,583,78,581,83,576,81,453,33"/>
+<area shape="rect" title="Unit tests for thread context and metadata." alt="" coords="146,5,361,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,109,104"/>
+<area shape="poly" title=" " alt="" coords="223,33,103,76,101,71,221,28"/>
+<area shape="rect" title=" " alt="" coords="133,79,197,104"/>
+<area shape="poly" title=" " alt="" coords="241,33,192,72,189,68,238,29"/>
+<area shape="rect" title=" " alt="" coords="222,79,285,104"/>
+<area shape="poly" title=" " alt="" coords="256,31,256,65,251,65,251,31"/>
+<area shape="rect" title=" " alt="" coords="309,79,352,104"/>
+<area shape="poly" title=" " alt="" coords="268,29,310,67,306,71,264,33"/>
+<area shape="rect" title=" " alt="" coords="376,79,437,104"/>
+<area shape="poly" title=" " alt="" coords="279,28,370,70,368,75,277,33"/>
 </map>
 </div>
 </div>
@@ -177,58 +174,58 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context_aware_monitoring enrichment </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00315">315</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  315</span>                                                  {</div>
-<div class="line"><span class="lineno">  316</span>    <span class="comment">// Create test implementation</span></div>
-<div class="line"><span class="lineno">  317</span>    <span class="keyword">class </span>test_context_aware : <span class="keyword">public</span> context_aware_monitoring {</div>
-<div class="line"><span class="lineno">  318</span>    <span class="keyword">public</span>:</div>
-<div class="line"><span class="lineno">  319</span>        <span class="comment">// Use default implementation</span></div>
-<div class="line"><span class="lineno">  320</span>    };</div>
-<div class="line"><span class="lineno">  321</span>    </div>
-<div class="line"><span class="lineno">  322</span>    test_context_aware aware;</div>
-<div class="line"><span class="lineno">  323</span>    </div>
-<div class="line"><span class="lineno">  324</span>    <span class="comment">// Create context</span></div>
-<div class="line"><span class="lineno">  325</span>    thread_context::create(<span class="stringliteral">&quot;enrich-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  326</span>    thread_context::current()-&gt;correlation_id = <span class="stringliteral">&quot;enrich-corr&quot;</span>;</div>
-<div class="line"><span class="lineno">  327</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;enrich-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  328</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;custom1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
-<div class="line"><span class="lineno">  329</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;custom2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
-<div class="line"><span class="lineno">  330</span>    </div>
-<div class="line"><span class="lineno">  331</span>    <span class="comment">// Create monitoring data</span></div>
-<div class="line"><span class="lineno">  332</span>    monitoring_data data(<span class="stringliteral">&quot;test-component&quot;</span>);</div>
-<div class="line"><span class="lineno">  333</span>    data.add_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 100.0);</div>
-<div class="line"><span class="lineno">  334</span>    </div>
-<div class="line"><span class="lineno">  335</span>    <span class="comment">// Enrich with context</span></div>
-<div class="line"><span class="lineno">  336</span>    <span class="keyword">auto</span> result = aware.enrich_with_context(data);</div>
-<div class="line"><span class="lineno">  337</span>    ASSERT_TRUE(result);</div>
-<div class="line"><span class="lineno">  338</span>    </div>
-<div class="line"><span class="lineno">  339</span>    <span class="comment">// Verify context was added as tags</span></div>
-<div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> req_id = data.get_tag(<span class="stringliteral">&quot;request_id&quot;</span>);</div>
-<div class="line"><span class="lineno">  341</span>    ASSERT_TRUE(req_id.has_value());</div>
-<div class="line"><span class="lineno">  342</span>    EXPECT_EQ(req_id.value(), <span class="stringliteral">&quot;enrich-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  343</span>    </div>
-<div class="line"><span class="lineno">  344</span>    <span class="keyword">auto</span> corr_id = data.get_tag(<span class="stringliteral">&quot;correlation_id&quot;</span>);</div>
-<div class="line"><span class="lineno">  345</span>    ASSERT_TRUE(corr_id.has_value());</div>
-<div class="line"><span class="lineno">  346</span>    EXPECT_EQ(corr_id.value(), <span class="stringliteral">&quot;enrich-corr&quot;</span>);</div>
-<div class="line"><span class="lineno">  347</span>    </div>
-<div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> user_id = data.get_tag(<span class="stringliteral">&quot;user_id&quot;</span>);</div>
-<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(user_id.has_value());</div>
-<div class="line"><span class="lineno">  350</span>    EXPECT_EQ(user_id.value(), <span class="stringliteral">&quot;enrich-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  351</span>    </div>
-<div class="line"><span class="lineno">  352</span>    <span class="comment">// Custom tags should have &quot;ctx.&quot; prefix</span></div>
-<div class="line"><span class="lineno">  353</span>    <span class="keyword">auto</span> custom1 = data.get_tag(<span class="stringliteral">&quot;ctx.custom1&quot;</span>);</div>
-<div class="line"><span class="lineno">  354</span>    ASSERT_TRUE(custom1.has_value());</div>
-<div class="line"><span class="lineno">  355</span>    EXPECT_EQ(custom1.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
-<div class="line"><span class="lineno">  356</span>    </div>
-<div class="line"><span class="lineno">  357</span>    <span class="keyword">auto</span> custom2 = data.get_tag(<span class="stringliteral">&quot;ctx.custom2&quot;</span>);</div>
-<div class="line"><span class="lineno">  358</span>    ASSERT_TRUE(custom2.has_value());</div>
-<div class="line"><span class="lineno">  359</span>    EXPECT_EQ(custom2.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
-<div class="line"><span class="lineno">  360</span>    </div>
-<div class="line"><span class="lineno">  361</span>    <span class="comment">// Original metric should remain</span></div>
-<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> metric = data.get_metric(<span class="stringliteral">&quot;metric1&quot;</span>);</div>
-<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(metric.has_value());</div>
-<div class="line"><span class="lineno">  364</span>    EXPECT_DOUBLE_EQ(metric.value(), 100.0);</div>
-<div class="line"><span class="lineno">  365</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00316">316</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  316</span>                                                  {</div>
+<div class="line"><span class="lineno">  317</span>    <span class="comment">// Create test implementation</span></div>
+<div class="line"><span class="lineno">  318</span>    <span class="keyword">class </span>test_context_aware : <span class="keyword">public</span> context_aware_monitoring {</div>
+<div class="line"><span class="lineno">  319</span>    <span class="keyword">public</span>:</div>
+<div class="line"><span class="lineno">  320</span>        <span class="comment">// Use default implementation</span></div>
+<div class="line"><span class="lineno">  321</span>    };</div>
+<div class="line"><span class="lineno">  322</span>    </div>
+<div class="line"><span class="lineno">  323</span>    test_context_aware aware;</div>
+<div class="line"><span class="lineno">  324</span>    </div>
+<div class="line"><span class="lineno">  325</span>    <span class="comment">// Create context</span></div>
+<div class="line"><span class="lineno">  326</span>    thread_context::create(<span class="stringliteral">&quot;enrich-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  327</span>    thread_context::current()-&gt;correlation_id = <span class="stringliteral">&quot;enrich-corr&quot;</span>;</div>
+<div class="line"><span class="lineno">  328</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;enrich-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  329</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;custom1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  330</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;custom2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
+<div class="line"><span class="lineno">  331</span>    </div>
+<div class="line"><span class="lineno">  332</span>    <span class="comment">// Create monitoring data</span></div>
+<div class="line"><span class="lineno">  333</span>    monitoring_data data(<span class="stringliteral">&quot;test-component&quot;</span>);</div>
+<div class="line"><span class="lineno">  334</span>    data.add_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 100.0);</div>
+<div class="line"><span class="lineno">  335</span>    </div>
+<div class="line"><span class="lineno">  336</span>    <span class="comment">// Enrich with context</span></div>
+<div class="line"><span class="lineno">  337</span>    <span class="keyword">auto</span> result = aware.enrich_with_context(data);</div>
+<div class="line"><span class="lineno">  338</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  339</span>    </div>
+<div class="line"><span class="lineno">  340</span>    <span class="comment">// Verify context was added as tags</span></div>
+<div class="line"><span class="lineno">  341</span>    <span class="keyword">auto</span> req_id = data.get_tag(<span class="stringliteral">&quot;request_id&quot;</span>);</div>
+<div class="line"><span class="lineno">  342</span>    ASSERT_TRUE(req_id.has_value());</div>
+<div class="line"><span class="lineno">  343</span>    EXPECT_EQ(req_id.value(), <span class="stringliteral">&quot;enrich-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  344</span>    </div>
+<div class="line"><span class="lineno">  345</span>    <span class="keyword">auto</span> corr_id = data.get_tag(<span class="stringliteral">&quot;correlation_id&quot;</span>);</div>
+<div class="line"><span class="lineno">  346</span>    ASSERT_TRUE(corr_id.has_value());</div>
+<div class="line"><span class="lineno">  347</span>    EXPECT_EQ(corr_id.value(), <span class="stringliteral">&quot;enrich-corr&quot;</span>);</div>
+<div class="line"><span class="lineno">  348</span>    </div>
+<div class="line"><span class="lineno">  349</span>    <span class="keyword">auto</span> user_id = data.get_tag(<span class="stringliteral">&quot;user_id&quot;</span>);</div>
+<div class="line"><span class="lineno">  350</span>    ASSERT_TRUE(user_id.has_value());</div>
+<div class="line"><span class="lineno">  351</span>    EXPECT_EQ(user_id.value(), <span class="stringliteral">&quot;enrich-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  352</span>    </div>
+<div class="line"><span class="lineno">  353</span>    <span class="comment">// Custom tags should have &quot;ctx.&quot; prefix</span></div>
+<div class="line"><span class="lineno">  354</span>    <span class="keyword">auto</span> custom1 = data.get_tag(<span class="stringliteral">&quot;ctx.custom1&quot;</span>);</div>
+<div class="line"><span class="lineno">  355</span>    ASSERT_TRUE(custom1.has_value());</div>
+<div class="line"><span class="lineno">  356</span>    EXPECT_EQ(custom1.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  357</span>    </div>
+<div class="line"><span class="lineno">  358</span>    <span class="keyword">auto</span> custom2 = data.get_tag(<span class="stringliteral">&quot;ctx.custom2&quot;</span>);</div>
+<div class="line"><span class="lineno">  359</span>    ASSERT_TRUE(custom2.has_value());</div>
+<div class="line"><span class="lineno">  360</span>    EXPECT_EQ(custom2.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
+<div class="line"><span class="lineno">  361</span>    </div>
+<div class="line"><span class="lineno">  362</span>    <span class="comment">// Original metric should remain</span></div>
+<div class="line"><span class="lineno">  363</span>    <span class="keyword">auto</span> metric = data.get_metric(<span class="stringliteral">&quot;metric1&quot;</span>);</div>
+<div class="line"><span class="lineno">  364</span>    ASSERT_TRUE(metric.has_value());</div>
+<div class="line"><span class="lineno">  365</span>    EXPECT_DOUBLE_EQ(metric.value(), 100.0);</div>
+<div class="line"><span class="lineno">  366</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -259,45 +256,45 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context_metadata basic operations </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00041">41</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   41</span>                                                          {</div>
-<div class="line"><span class="lineno">   42</span>    context_metadata metadata(<span class="stringliteral">&quot;req-123&quot;</span>);</div>
-<div class="line"><span class="lineno">   43</span>    </div>
-<div class="line"><span class="lineno">   44</span>    <span class="comment">// Check initial state</span></div>
-<div class="line"><span class="lineno">   45</span>    EXPECT_EQ(metadata.request_id, <span class="stringliteral">&quot;req-123&quot;</span>);</div>
-<div class="line"><span class="lineno">   46</span>    EXPECT_TRUE(metadata.correlation_id.empty());</div>
-<div class="line"><span class="lineno">   47</span>    EXPECT_TRUE(metadata.user_id.empty());</div>
-<div class="line"><span class="lineno">   48</span>    EXPECT_FALSE(metadata.empty());</div>
-<div class="line"><span class="lineno">   49</span>    </div>
-<div class="line"><span class="lineno">   50</span>    <span class="comment">// Set fields</span></div>
-<div class="line"><span class="lineno">   51</span>    metadata.correlation_id = <span class="stringliteral">&quot;corr-456&quot;</span>;</div>
-<div class="line"><span class="lineno">   52</span>    metadata.user_id = <span class="stringliteral">&quot;user-789&quot;</span>;</div>
-<div class="line"><span class="lineno">   53</span>    metadata.session_id = <span class="stringliteral">&quot;session-abc&quot;</span>;</div>
-<div class="line"><span class="lineno">   54</span>    metadata.trace_id = <span class="stringliteral">&quot;trace-def&quot;</span>;</div>
-<div class="line"><span class="lineno">   55</span>    metadata.span_id = <span class="stringliteral">&quot;span-ghi&quot;</span>;</div>
-<div class="line"><span class="lineno">   56</span>    </div>
-<div class="line"><span class="lineno">   57</span>    <span class="comment">// Add custom tags</span></div>
-<div class="line"><span class="lineno">   58</span>    metadata.add_tag(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
-<div class="line"><span class="lineno">   59</span>    metadata.add_tag(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
-<div class="line"><span class="lineno">   60</span>    </div>
-<div class="line"><span class="lineno">   61</span>    <span class="comment">// Verify tags</span></div>
-<div class="line"><span class="lineno">   62</span>    <span class="keyword">auto</span> env = metadata.get_tag(<span class="stringliteral">&quot;environment&quot;</span>);</div>
-<div class="line"><span class="lineno">   63</span>    ASSERT_TRUE(env.has_value());</div>
-<div class="line"><span class="lineno">   64</span>    EXPECT_EQ(env.value(), <span class="stringliteral">&quot;production&quot;</span>);</div>
-<div class="line"><span class="lineno">   65</span>    </div>
-<div class="line"><span class="lineno">   66</span>    <span class="keyword">auto</span> ver = metadata.get_tag(<span class="stringliteral">&quot;version&quot;</span>);</div>
-<div class="line"><span class="lineno">   67</span>    ASSERT_TRUE(ver.has_value());</div>
-<div class="line"><span class="lineno">   68</span>    EXPECT_EQ(ver.value(), <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
-<div class="line"><span class="lineno">   69</span>    </div>
-<div class="line"><span class="lineno">   70</span>    <span class="keyword">auto</span> missing = metadata.get_tag(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
-<div class="line"><span class="lineno">   71</span>    EXPECT_FALSE(missing.has_value());</div>
-<div class="line"><span class="lineno">   72</span>    </div>
-<div class="line"><span class="lineno">   73</span>    <span class="comment">// Clear and verify</span></div>
-<div class="line"><span class="lineno">   74</span>    metadata.clear();</div>
-<div class="line"><span class="lineno">   75</span>    EXPECT_TRUE(metadata.empty());</div>
-<div class="line"><span class="lineno">   76</span>    EXPECT_TRUE(metadata.request_id.empty());</div>
-<div class="line"><span class="lineno">   77</span>    EXPECT_TRUE(metadata.custom_tags.empty());</div>
-<div class="line"><span class="lineno">   78</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00042">42</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>                                                          {</div>
+<div class="line"><span class="lineno">   43</span>    context_metadata metadata(<span class="stringliteral">&quot;req-123&quot;</span>);</div>
+<div class="line"><span class="lineno">   44</span>    </div>
+<div class="line"><span class="lineno">   45</span>    <span class="comment">// Check initial state</span></div>
+<div class="line"><span class="lineno">   46</span>    EXPECT_EQ(metadata.request_id, <span class="stringliteral">&quot;req-123&quot;</span>);</div>
+<div class="line"><span class="lineno">   47</span>    EXPECT_TRUE(metadata.correlation_id.empty());</div>
+<div class="line"><span class="lineno">   48</span>    EXPECT_TRUE(metadata.user_id.empty());</div>
+<div class="line"><span class="lineno">   49</span>    EXPECT_FALSE(metadata.empty());</div>
+<div class="line"><span class="lineno">   50</span>    </div>
+<div class="line"><span class="lineno">   51</span>    <span class="comment">// Set fields</span></div>
+<div class="line"><span class="lineno">   52</span>    metadata.correlation_id = <span class="stringliteral">&quot;corr-456&quot;</span>;</div>
+<div class="line"><span class="lineno">   53</span>    metadata.user_id = <span class="stringliteral">&quot;user-789&quot;</span>;</div>
+<div class="line"><span class="lineno">   54</span>    metadata.session_id = <span class="stringliteral">&quot;session-abc&quot;</span>;</div>
+<div class="line"><span class="lineno">   55</span>    metadata.trace_id = <span class="stringliteral">&quot;trace-def&quot;</span>;</div>
+<div class="line"><span class="lineno">   56</span>    metadata.span_id = <span class="stringliteral">&quot;span-ghi&quot;</span>;</div>
+<div class="line"><span class="lineno">   57</span>    </div>
+<div class="line"><span class="lineno">   58</span>    <span class="comment">// Add custom tags</span></div>
+<div class="line"><span class="lineno">   59</span>    metadata.add_tag(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">   60</span>    metadata.add_tag(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
+<div class="line"><span class="lineno">   61</span>    </div>
+<div class="line"><span class="lineno">   62</span>    <span class="comment">// Verify tags</span></div>
+<div class="line"><span class="lineno">   63</span>    <span class="keyword">auto</span> env = metadata.get_tag(<span class="stringliteral">&quot;environment&quot;</span>);</div>
+<div class="line"><span class="lineno">   64</span>    ASSERT_TRUE(env.has_value());</div>
+<div class="line"><span class="lineno">   65</span>    EXPECT_EQ(env.value(), <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">   66</span>    </div>
+<div class="line"><span class="lineno">   67</span>    <span class="keyword">auto</span> ver = metadata.get_tag(<span class="stringliteral">&quot;version&quot;</span>);</div>
+<div class="line"><span class="lineno">   68</span>    ASSERT_TRUE(ver.has_value());</div>
+<div class="line"><span class="lineno">   69</span>    EXPECT_EQ(ver.value(), <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span>    </div>
+<div class="line"><span class="lineno">   71</span>    <span class="keyword">auto</span> missing = metadata.get_tag(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
+<div class="line"><span class="lineno">   72</span>    EXPECT_FALSE(missing.has_value());</div>
+<div class="line"><span class="lineno">   73</span>    </div>
+<div class="line"><span class="lineno">   74</span>    <span class="comment">// Clear and verify</span></div>
+<div class="line"><span class="lineno">   75</span>    metadata.clear();</div>
+<div class="line"><span class="lineno">   76</span>    EXPECT_TRUE(metadata.empty());</div>
+<div class="line"><span class="lineno">   77</span>    EXPECT_TRUE(metadata.request_id.empty());</div>
+<div class="line"><span class="lineno">   78</span>    EXPECT_TRUE(metadata.custom_tags.empty());</div>
+<div class="line"><span class="lineno">   79</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -328,44 +325,44 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context_metadata merge </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   83</span>                                                {</div>
-<div class="line"><span class="lineno">   84</span>    context_metadata metadata1(<span class="stringliteral">&quot;req-1&quot;</span>);</div>
-<div class="line"><span class="lineno">   85</span>    metadata1.user_id = <span class="stringliteral">&quot;user-1&quot;</span>;</div>
-<div class="line"><span class="lineno">   86</span>    metadata1.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
-<div class="line"><span class="lineno">   87</span>    </div>
-<div class="line"><span class="lineno">   88</span>    context_metadata metadata2(<span class="stringliteral">&quot;req-2&quot;</span>);</div>
-<div class="line"><span class="lineno">   89</span>    metadata2.correlation_id = <span class="stringliteral">&quot;corr-2&quot;</span>;</div>
-<div class="line"><span class="lineno">   90</span>    metadata2.user_id = <span class="stringliteral">&quot;user-2&quot;</span>;</div>
-<div class="line"><span class="lineno">   91</span>    metadata2.add_tag(<span class="stringliteral">&quot;tag2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
-<div class="line"><span class="lineno">   92</span>    </div>
-<div class="line"><span class="lineno">   93</span>    <span class="comment">// Merge without overwrite</span></div>
-<div class="line"><span class="lineno">   94</span>    metadata1.merge(metadata2, <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   95</span>    </div>
-<div class="line"><span class="lineno">   96</span>    <span class="comment">// Should keep original values when not overwriting</span></div>
-<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(metadata1.request_id, <span class="stringliteral">&quot;req-1&quot;</span>);</div>
-<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(metadata1.user_id, <span class="stringliteral">&quot;user-1&quot;</span>);</div>
-<div class="line"><span class="lineno">   99</span>    </div>
-<div class="line"><span class="lineno">  100</span>    <span class="comment">// Should add missing values</span></div>
-<div class="line"><span class="lineno">  101</span>    EXPECT_EQ(metadata1.correlation_id, <span class="stringliteral">&quot;corr-2&quot;</span>);</div>
-<div class="line"><span class="lineno">  102</span>    </div>
-<div class="line"><span class="lineno">  103</span>    <span class="comment">// Should add new tags</span></div>
-<div class="line"><span class="lineno">  104</span>    <span class="keyword">auto</span> tag2 = metadata1.get_tag(<span class="stringliteral">&quot;tag2&quot;</span>);</div>
-<div class="line"><span class="lineno">  105</span>    ASSERT_TRUE(tag2.has_value());</div>
-<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(tag2.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
-<div class="line"><span class="lineno">  107</span>    </div>
-<div class="line"><span class="lineno">  108</span>    <span class="comment">// Original tag should remain</span></div>
-<div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> tag1 = metadata1.get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
-<div class="line"><span class="lineno">  110</span>    ASSERT_TRUE(tag1.has_value());</div>
-<div class="line"><span class="lineno">  111</span>    EXPECT_EQ(tag1.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
-<div class="line"><span class="lineno">  112</span>    </div>
-<div class="line"><span class="lineno">  113</span>    <span class="comment">// Merge with overwrite</span></div>
-<div class="line"><span class="lineno">  114</span>    metadata1.merge(metadata2, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  115</span>    </div>
-<div class="line"><span class="lineno">  116</span>    <span class="comment">// Should overwrite existing values</span></div>
-<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(metadata1.request_id, <span class="stringliteral">&quot;req-2&quot;</span>);</div>
-<div class="line"><span class="lineno">  118</span>    EXPECT_EQ(metadata1.user_id, <span class="stringliteral">&quot;user-2&quot;</span>);</div>
-<div class="line"><span class="lineno">  119</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00084">84</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>                                                {</div>
+<div class="line"><span class="lineno">   85</span>    context_metadata metadata1(<span class="stringliteral">&quot;req-1&quot;</span>);</div>
+<div class="line"><span class="lineno">   86</span>    metadata1.user_id = <span class="stringliteral">&quot;user-1&quot;</span>;</div>
+<div class="line"><span class="lineno">   87</span>    metadata1.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">   88</span>    </div>
+<div class="line"><span class="lineno">   89</span>    context_metadata metadata2(<span class="stringliteral">&quot;req-2&quot;</span>);</div>
+<div class="line"><span class="lineno">   90</span>    metadata2.correlation_id = <span class="stringliteral">&quot;corr-2&quot;</span>;</div>
+<div class="line"><span class="lineno">   91</span>    metadata2.user_id = <span class="stringliteral">&quot;user-2&quot;</span>;</div>
+<div class="line"><span class="lineno">   92</span>    metadata2.add_tag(<span class="stringliteral">&quot;tag2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
+<div class="line"><span class="lineno">   93</span>    </div>
+<div class="line"><span class="lineno">   94</span>    <span class="comment">// Merge without overwrite</span></div>
+<div class="line"><span class="lineno">   95</span>    metadata1.merge(metadata2, <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   96</span>    </div>
+<div class="line"><span class="lineno">   97</span>    <span class="comment">// Should keep original values when not overwriting</span></div>
+<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(metadata1.request_id, <span class="stringliteral">&quot;req-1&quot;</span>);</div>
+<div class="line"><span class="lineno">   99</span>    EXPECT_EQ(metadata1.user_id, <span class="stringliteral">&quot;user-1&quot;</span>);</div>
+<div class="line"><span class="lineno">  100</span>    </div>
+<div class="line"><span class="lineno">  101</span>    <span class="comment">// Should add missing values</span></div>
+<div class="line"><span class="lineno">  102</span>    EXPECT_EQ(metadata1.correlation_id, <span class="stringliteral">&quot;corr-2&quot;</span>);</div>
+<div class="line"><span class="lineno">  103</span>    </div>
+<div class="line"><span class="lineno">  104</span>    <span class="comment">// Should add new tags</span></div>
+<div class="line"><span class="lineno">  105</span>    <span class="keyword">auto</span> tag2 = metadata1.get_tag(<span class="stringliteral">&quot;tag2&quot;</span>);</div>
+<div class="line"><span class="lineno">  106</span>    ASSERT_TRUE(tag2.has_value());</div>
+<div class="line"><span class="lineno">  107</span>    EXPECT_EQ(tag2.value(), <span class="stringliteral">&quot;value2&quot;</span>);</div>
+<div class="line"><span class="lineno">  108</span>    </div>
+<div class="line"><span class="lineno">  109</span>    <span class="comment">// Original tag should remain</span></div>
+<div class="line"><span class="lineno">  110</span>    <span class="keyword">auto</span> tag1 = metadata1.get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
+<div class="line"><span class="lineno">  111</span>    ASSERT_TRUE(tag1.has_value());</div>
+<div class="line"><span class="lineno">  112</span>    EXPECT_EQ(tag1.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  113</span>    </div>
+<div class="line"><span class="lineno">  114</span>    <span class="comment">// Merge with overwrite</span></div>
+<div class="line"><span class="lineno">  115</span>    metadata1.merge(metadata2, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  116</span>    </div>
+<div class="line"><span class="lineno">  117</span>    <span class="comment">// Should overwrite existing values</span></div>
+<div class="line"><span class="lineno">  118</span>    EXPECT_EQ(metadata1.request_id, <span class="stringliteral">&quot;req-2&quot;</span>);</div>
+<div class="line"><span class="lineno">  119</span>    EXPECT_EQ(metadata1.user_id, <span class="stringliteral">&quot;user-2&quot;</span>);</div>
+<div class="line"><span class="lineno">  120</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -396,49 +393,49 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context_metrics_collector </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00370">370</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  370</span>                                                   {</div>
-<div class="line"><span class="lineno">  371</span>    <span class="comment">// Create test collector</span></div>
-<div class="line"><span class="lineno">  372</span>    <span class="keyword">class </span><a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> : <span class="keyword">public</span> context_metrics_collector {</div>
-<div class="line"><span class="lineno">  373</span>    <span class="keyword">public</span>:</div>
-<div class="line"><span class="lineno">  374</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a>(<span class="keyword">const</span> std::string&amp; name)</div>
-<div class="line"><span class="lineno">  375</span>            : context_metrics_collector(name) {}</div>
-<div class="line"><span class="lineno">  376</span>        </div>
-<div class="line"><span class="lineno">  377</span>        result&lt;metrics_snapshot&gt; collect()<span class="keyword"> override </span>{</div>
-<div class="line"><span class="lineno">  378</span>            <span class="keyword">auto</span> snapshot = create_snapshot_with_context();</div>
-<div class="line"><span class="lineno">  379</span>            snapshot.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><span class="lineno">  380</span>            <span class="keywordflow">return</span> make_success(std::move(snapshot));</div>
-<div class="line"><span class="lineno">  381</span>        }</div>
-<div class="line"><span class="lineno">  382</span>    };</div>
-<div class="line"><span class="lineno">  383</span>    </div>
-<div class="line"><span class="lineno">  384</span>    <a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> collector(<span class="stringliteral">&quot;test-collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  385</span>    </div>
-<div class="line"><span class="lineno">  386</span>    <span class="comment">// Set thread context</span></div>
-<div class="line"><span class="lineno">  387</span>    thread_context::create(<span class="stringliteral">&quot;collector-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  388</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;collector-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  389</span>    </div>
-<div class="line"><span class="lineno">  390</span>    <span class="comment">// Collect with context awareness enabled</span></div>
-<div class="line"><span class="lineno">  391</span>    collector.set_context_aware(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  392</span>    <span class="keyword">auto</span> result1 = collector.collect();</div>
-<div class="line"><span class="lineno">  393</span>    ASSERT_TRUE(result1);</div>
-<div class="line"><span class="lineno">  394</span>    </div>
-<div class="line"><span class="lineno">  395</span>    <span class="keyword">auto</span> snapshot1 = result1.value();</div>
-<div class="line"><span class="lineno">  396</span>    EXPECT_EQ(snapshot1.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  397</span>    </div>
-<div class="line"><span class="lineno">  398</span>    <span class="comment">// Verify metric</span></div>
-<div class="line"><span class="lineno">  399</span>    <span class="keyword">auto</span> metric = snapshot1.get_metric(<span class="stringliteral">&quot;test_metric&quot;</span>);</div>
-<div class="line"><span class="lineno">  400</span>    ASSERT_TRUE(metric.has_value());</div>
-<div class="line"><span class="lineno">  401</span>    EXPECT_DOUBLE_EQ(metric.value(), 42.0);</div>
-<div class="line"><span class="lineno">  402</span>    </div>
-<div class="line"><span class="lineno">  403</span>    <span class="comment">// Collect with context awareness disabled</span></div>
-<div class="line"><span class="lineno">  404</span>    collector.set_context_aware(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> result2 = collector.collect();</div>
-<div class="line"><span class="lineno">  406</span>    ASSERT_TRUE(result2);</div>
-<div class="line"><span class="lineno">  407</span>    </div>
-<div class="line"><span class="lineno">  408</span>    <span class="comment">// Should still work but without context</span></div>
-<div class="line"><span class="lineno">  409</span>    <span class="keyword">auto</span> snapshot2 = result2.value();</div>
-<div class="line"><span class="lineno">  410</span>    EXPECT_EQ(snapshot2.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  411</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00371">371</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  371</span>                                                   {</div>
+<div class="line"><span class="lineno">  372</span>    <span class="comment">// Create test collector</span></div>
+<div class="line"><span class="lineno">  373</span>    <span class="keyword">class </span><a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> : <span class="keyword">public</span> context_metrics_collector {</div>
+<div class="line"><span class="lineno">  374</span>    <span class="keyword">public</span>:</div>
+<div class="line"><span class="lineno">  375</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a>(<span class="keyword">const</span> std::string&amp; name)</div>
+<div class="line"><span class="lineno">  376</span>            : context_metrics_collector(name) {}</div>
+<div class="line"><span class="lineno">  377</span>        </div>
+<div class="line"><span class="lineno">  378</span>        result&lt;metrics_snapshot&gt; collect()<span class="keyword"> override </span>{</div>
+<div class="line"><span class="lineno">  379</span>            <span class="keyword">auto</span> snapshot = create_snapshot_with_context();</div>
+<div class="line"><span class="lineno">  380</span>            snapshot.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
+<div class="line"><span class="lineno">  381</span>            <span class="keywordflow">return</span> make_success(std::move(snapshot));</div>
+<div class="line"><span class="lineno">  382</span>        }</div>
+<div class="line"><span class="lineno">  383</span>    };</div>
+<div class="line"><span class="lineno">  384</span>    </div>
+<div class="line"><span class="lineno">  385</span>    <a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> collector(<span class="stringliteral">&quot;test-collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  386</span>    </div>
+<div class="line"><span class="lineno">  387</span>    <span class="comment">// Set thread context</span></div>
+<div class="line"><span class="lineno">  388</span>    thread_context::create(<span class="stringliteral">&quot;collector-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  389</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;collector-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  390</span>    </div>
+<div class="line"><span class="lineno">  391</span>    <span class="comment">// Collect with context awareness enabled</span></div>
+<div class="line"><span class="lineno">  392</span>    collector.set_context_aware(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  393</span>    <span class="keyword">auto</span> result1 = collector.collect();</div>
+<div class="line"><span class="lineno">  394</span>    ASSERT_TRUE(result1);</div>
+<div class="line"><span class="lineno">  395</span>    </div>
+<div class="line"><span class="lineno">  396</span>    <span class="keyword">auto</span> snapshot1 = result1.value();</div>
+<div class="line"><span class="lineno">  397</span>    EXPECT_EQ(snapshot1.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  398</span>    </div>
+<div class="line"><span class="lineno">  399</span>    <span class="comment">// Verify metric</span></div>
+<div class="line"><span class="lineno">  400</span>    <span class="keyword">auto</span> metric = snapshot1.get_metric(<span class="stringliteral">&quot;test_metric&quot;</span>);</div>
+<div class="line"><span class="lineno">  401</span>    ASSERT_TRUE(metric.has_value());</div>
+<div class="line"><span class="lineno">  402</span>    EXPECT_DOUBLE_EQ(metric.value(), 42.0);</div>
+<div class="line"><span class="lineno">  403</span>    </div>
+<div class="line"><span class="lineno">  404</span>    <span class="comment">// Collect with context awareness disabled</span></div>
+<div class="line"><span class="lineno">  405</span>    collector.set_context_aware(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  406</span>    <span class="keyword">auto</span> result2 = collector.collect();</div>
+<div class="line"><span class="lineno">  407</span>    ASSERT_TRUE(result2);</div>
+<div class="line"><span class="lineno">  408</span>    </div>
+<div class="line"><span class="lineno">  409</span>    <span class="comment">// Should still work but without context</span></div>
+<div class="line"><span class="lineno">  410</span>    <span class="keyword">auto</span> snapshot2 = result2.value();</div>
+<div class="line"><span class="lineno">  411</span>    EXPECT_EQ(snapshot2.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  412</span>}</div>
 <div class="ttc" id="aclasstest__collector_html"><div class="ttname"><a href="../../d9/d71/classtest__collector.html">test_collector</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00034">test_interfaces_compile.cpp:34</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -470,35 +467,35 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context_propagator </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00241">241</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  241</span>                                             {</div>
-<div class="line"><span class="lineno">  242</span>    <span class="comment">// Create context in main thread</span></div>
-<div class="line"><span class="lineno">  243</span>    thread_context::create(<span class="stringliteral">&quot;main-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  244</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;main-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  245</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;source&quot;</span>, <span class="stringliteral">&quot;main&quot;</span>);</div>
-<div class="line"><span class="lineno">  246</span>    </div>
-<div class="line"><span class="lineno">  247</span>    <span class="comment">// Capture context</span></div>
-<div class="line"><span class="lineno">  248</span>    context_propagator propagator;</div>
-<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> capture_result = propagator.capture();</div>
-<div class="line"><span class="lineno">  250</span>    ASSERT_TRUE(capture_result);</div>
-<div class="line"><span class="lineno">  251</span>    EXPECT_TRUE(propagator.has_captured());</div>
-<div class="line"><span class="lineno">  252</span>    </div>
-<div class="line"><span class="lineno">  253</span>    <span class="comment">// Clear main thread context</span></div>
-<div class="line"><span class="lineno">  254</span>    thread_context::clear();</div>
-<div class="line"><span class="lineno">  255</span>    EXPECT_FALSE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  256</span>    </div>
-<div class="line"><span class="lineno">  257</span>    <span class="comment">// Apply in same thread</span></div>
-<div class="line"><span class="lineno">  258</span>    <span class="keyword">auto</span> apply_result = propagator.apply();</div>
-<div class="line"><span class="lineno">  259</span>    ASSERT_TRUE(apply_result);</div>
-<div class="line"><span class="lineno">  260</span>    </div>
-<div class="line"><span class="lineno">  261</span>    <span class="comment">// Should have restored context</span></div>
-<div class="line"><span class="lineno">  262</span>    EXPECT_TRUE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;main-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  264</span>    EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;main-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;source&quot;</span>);</div>
-<div class="line"><span class="lineno">  266</span>    ASSERT_TRUE(tag.has_value());</div>
-<div class="line"><span class="lineno">  267</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
-<div class="line"><span class="lineno">  268</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00242">242</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  242</span>                                             {</div>
+<div class="line"><span class="lineno">  243</span>    <span class="comment">// Create context in main thread</span></div>
+<div class="line"><span class="lineno">  244</span>    thread_context::create(<span class="stringliteral">&quot;main-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  245</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;main-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  246</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;source&quot;</span>, <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  247</span>    </div>
+<div class="line"><span class="lineno">  248</span>    <span class="comment">// Capture context</span></div>
+<div class="line"><span class="lineno">  249</span>    context_propagator propagator;</div>
+<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> capture_result = propagator.capture();</div>
+<div class="line"><span class="lineno">  251</span>    ASSERT_TRUE(capture_result);</div>
+<div class="line"><span class="lineno">  252</span>    EXPECT_TRUE(propagator.has_captured());</div>
+<div class="line"><span class="lineno">  253</span>    </div>
+<div class="line"><span class="lineno">  254</span>    <span class="comment">// Clear main thread context</span></div>
+<div class="line"><span class="lineno">  255</span>    thread_context::clear();</div>
+<div class="line"><span class="lineno">  256</span>    EXPECT_FALSE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  257</span>    </div>
+<div class="line"><span class="lineno">  258</span>    <span class="comment">// Apply in same thread</span></div>
+<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> apply_result = propagator.apply();</div>
+<div class="line"><span class="lineno">  260</span>    ASSERT_TRUE(apply_result);</div>
+<div class="line"><span class="lineno">  261</span>    </div>
+<div class="line"><span class="lineno">  262</span>    <span class="comment">// Should have restored context</span></div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_TRUE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  264</span>    EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;main-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  265</span>    EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;main-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;source&quot;</span>);</div>
+<div class="line"><span class="lineno">  267</span>    ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  268</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  269</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -529,25 +526,25 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context_scope RAII wrapper </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00194">194</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  194</span>                                        {</div>
-<div class="line"><span class="lineno">  195</span>    <span class="comment">// No initial context</span></div>
-<div class="line"><span class="lineno">  196</span>    EXPECT_FALSE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  197</span>    </div>
-<div class="line"><span class="lineno">  198</span>    {</div>
-<div class="line"><span class="lineno">  199</span>        <span class="comment">// Create scope with new context</span></div>
-<div class="line"><span class="lineno">  200</span>        context_scope scope(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  201</span>        </div>
-<div class="line"><span class="lineno">  202</span>        EXPECT_TRUE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  203</span>        EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  204</span>        </div>
-<div class="line"><span class="lineno">  205</span>        <span class="comment">// Modify context within scope</span></div>
-<div class="line"><span class="lineno">  206</span>        thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;scoped-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  207</span>    }</div>
-<div class="line"><span class="lineno">  208</span>    </div>
-<div class="line"><span class="lineno">  209</span>    <span class="comment">// Context should be cleared after scope</span></div>
-<div class="line"><span class="lineno">  210</span>    EXPECT_FALSE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  211</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00195">195</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  195</span>                                        {</div>
+<div class="line"><span class="lineno">  196</span>    <span class="comment">// No initial context</span></div>
+<div class="line"><span class="lineno">  197</span>    EXPECT_FALSE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  198</span>    </div>
+<div class="line"><span class="lineno">  199</span>    {</div>
+<div class="line"><span class="lineno">  200</span>        <span class="comment">// Create scope with new context</span></div>
+<div class="line"><span class="lineno">  201</span>        context_scope scope(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  202</span>        </div>
+<div class="line"><span class="lineno">  203</span>        EXPECT_TRUE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  204</span>        EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  205</span>        </div>
+<div class="line"><span class="lineno">  206</span>        <span class="comment">// Modify context within scope</span></div>
+<div class="line"><span class="lineno">  207</span>        thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;scoped-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  208</span>    }</div>
+<div class="line"><span class="lineno">  209</span>    </div>
+<div class="line"><span class="lineno">  210</span>    <span class="comment">// Context should be cleared after scope</span></div>
+<div class="line"><span class="lineno">  211</span>    EXPECT_FALSE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  212</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -578,28 +575,28 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context_scope with preservation </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00216">216</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  216</span>                                                        {</div>
-<div class="line"><span class="lineno">  217</span>    <span class="comment">// Set initial context</span></div>
-<div class="line"><span class="lineno">  218</span>    thread_context::create(<span class="stringliteral">&quot;original-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  219</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;original-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  220</span>    </div>
-<div class="line"><span class="lineno">  221</span>    {</div>
-<div class="line"><span class="lineno">  222</span>        <span class="comment">// Create scope that preserves previous context</span></div>
-<div class="line"><span class="lineno">  223</span>        <span class="keyword">auto</span> new_metadata = std::make_unique&lt;context_metadata&gt;(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  224</span>        new_metadata-&gt;user_id = <span class="stringliteral">&quot;scoped-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  225</span>        context_scope scope(std::move(new_metadata), <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  226</span>        </div>
-<div class="line"><span class="lineno">  227</span>        <span class="comment">// Should have new context</span></div>
-<div class="line"><span class="lineno">  228</span>        EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  229</span>        EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;scoped-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  230</span>    }</div>
-<div class="line"><span class="lineno">  231</span>    </div>
-<div class="line"><span class="lineno">  232</span>    <span class="comment">// Should restore original context</span></div>
-<div class="line"><span class="lineno">  233</span>    EXPECT_TRUE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  234</span>    EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;original-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  235</span>    EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;original-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  236</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00217">217</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  217</span>                                                        {</div>
+<div class="line"><span class="lineno">  218</span>    <span class="comment">// Set initial context</span></div>
+<div class="line"><span class="lineno">  219</span>    thread_context::create(<span class="stringliteral">&quot;original-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  220</span>    thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;original-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  221</span>    </div>
+<div class="line"><span class="lineno">  222</span>    {</div>
+<div class="line"><span class="lineno">  223</span>        <span class="comment">// Create scope that preserves previous context</span></div>
+<div class="line"><span class="lineno">  224</span>        <span class="keyword">auto</span> new_metadata = std::make_unique&lt;context_metadata&gt;(<span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  225</span>        new_metadata-&gt;user_id = <span class="stringliteral">&quot;scoped-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  226</span>        context_scope scope(std::move(new_metadata), <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  227</span>        </div>
+<div class="line"><span class="lineno">  228</span>        <span class="comment">// Should have new context</span></div>
+<div class="line"><span class="lineno">  229</span>        EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;scoped-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  230</span>        EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;scoped-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  231</span>    }</div>
+<div class="line"><span class="lineno">  232</span>    </div>
+<div class="line"><span class="lineno">  233</span>    <span class="comment">// Should restore original context</span></div>
+<div class="line"><span class="lineno">  234</span>    EXPECT_TRUE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  235</span>    EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;original-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  236</span>    EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;original-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  237</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -630,35 +627,35 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test copy_from functionality </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00468">468</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  468</span>                                           {</div>
-<div class="line"><span class="lineno">  469</span>    <span class="comment">// Create source context</span></div>
-<div class="line"><span class="lineno">  470</span>    context_metadata source(<span class="stringliteral">&quot;source-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  471</span>    source.correlation_id = <span class="stringliteral">&quot;source-corr&quot;</span>;</div>
-<div class="line"><span class="lineno">  472</span>    source.user_id = <span class="stringliteral">&quot;source-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  473</span>    source.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
-<div class="line"><span class="lineno">  474</span>    </div>
-<div class="line"><span class="lineno">  475</span>    <span class="comment">// Copy to current thread</span></div>
-<div class="line"><span class="lineno">  476</span>    <span class="keyword">auto</span> result = thread_context::copy_from(source);</div>
-<div class="line"><span class="lineno">  477</span>    ASSERT_TRUE(result);</div>
-<div class="line"><span class="lineno">  478</span>    </div>
-<div class="line"><span class="lineno">  479</span>    <span class="comment">// Verify copy</span></div>
-<div class="line"><span class="lineno">  480</span>    EXPECT_TRUE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  481</span>    <span class="keyword">auto</span>* current = thread_context::current();</div>
-<div class="line"><span class="lineno">  482</span>    ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  483</span>    </div>
-<div class="line"><span class="lineno">  484</span>    EXPECT_EQ(current-&gt;request_id, <span class="stringliteral">&quot;source-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  485</span>    EXPECT_EQ(current-&gt;correlation_id, <span class="stringliteral">&quot;source-corr&quot;</span>);</div>
-<div class="line"><span class="lineno">  486</span>    EXPECT_EQ(current-&gt;user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  487</span>    </div>
-<div class="line"><span class="lineno">  488</span>    <span class="keyword">auto</span> tag = current-&gt;get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
-<div class="line"><span class="lineno">  489</span>    ASSERT_TRUE(tag.has_value());</div>
-<div class="line"><span class="lineno">  490</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
-<div class="line"><span class="lineno">  491</span>    </div>
-<div class="line"><span class="lineno">  492</span>    <span class="comment">// Modifications shouldn&#39;t affect source</span></div>
-<div class="line"><span class="lineno">  493</span>    current-&gt;user_id = <span class="stringliteral">&quot;modified-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  494</span>    EXPECT_EQ(source.user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  495</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00469">469</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  469</span>                                           {</div>
+<div class="line"><span class="lineno">  470</span>    <span class="comment">// Create source context</span></div>
+<div class="line"><span class="lineno">  471</span>    context_metadata source(<span class="stringliteral">&quot;source-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  472</span>    source.correlation_id = <span class="stringliteral">&quot;source-corr&quot;</span>;</div>
+<div class="line"><span class="lineno">  473</span>    source.user_id = <span class="stringliteral">&quot;source-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  474</span>    source.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  475</span>    </div>
+<div class="line"><span class="lineno">  476</span>    <span class="comment">// Copy to current thread</span></div>
+<div class="line"><span class="lineno">  477</span>    <span class="keyword">auto</span> result = thread_context::copy_from(source);</div>
+<div class="line"><span class="lineno">  478</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  479</span>    </div>
+<div class="line"><span class="lineno">  480</span>    <span class="comment">// Verify copy</span></div>
+<div class="line"><span class="lineno">  481</span>    EXPECT_TRUE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  482</span>    <span class="keyword">auto</span>* current = thread_context::current();</div>
+<div class="line"><span class="lineno">  483</span>    ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  484</span>    </div>
+<div class="line"><span class="lineno">  485</span>    EXPECT_EQ(current-&gt;request_id, <span class="stringliteral">&quot;source-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  486</span>    EXPECT_EQ(current-&gt;correlation_id, <span class="stringliteral">&quot;source-corr&quot;</span>);</div>
+<div class="line"><span class="lineno">  487</span>    EXPECT_EQ(current-&gt;user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  488</span>    </div>
+<div class="line"><span class="lineno">  489</span>    <span class="keyword">auto</span> tag = current-&gt;get_tag(<span class="stringliteral">&quot;tag1&quot;</span>);</div>
+<div class="line"><span class="lineno">  490</span>    ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  491</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;value1&quot;</span>);</div>
+<div class="line"><span class="lineno">  492</span>    </div>
+<div class="line"><span class="lineno">  493</span>    <span class="comment">// Modifications shouldn&#39;t affect source</span></div>
+<div class="line"><span class="lineno">  494</span>    current-&gt;user_id = <span class="stringliteral">&quot;modified-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  495</span>    EXPECT_EQ(source.user_id, <span class="stringliteral">&quot;source-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  496</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -689,19 +686,19 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test correlation ID generation </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  178</span>                                                   {</div>
-<div class="line"><span class="lineno">  179</span>    <span class="keyword">auto</span> corr_id1 = thread_context::generate_correlation_id();</div>
-<div class="line"><span class="lineno">  180</span>    <span class="keyword">auto</span> corr_id2 = thread_context::generate_correlation_id();</div>
-<div class="line"><span class="lineno">  181</span>    </div>
-<div class="line"><span class="lineno">  182</span>    EXPECT_FALSE(corr_id1.empty());</div>
-<div class="line"><span class="lineno">  183</span>    EXPECT_FALSE(corr_id2.empty());</div>
-<div class="line"><span class="lineno">  184</span>    EXPECT_NE(corr_id1, corr_id2);</div>
-<div class="line"><span class="lineno">  185</span>    </div>
-<div class="line"><span class="lineno">  186</span>    <span class="comment">// Should have &quot;corr-&quot; prefix</span></div>
-<div class="line"><span class="lineno">  187</span>    EXPECT_EQ(corr_id1.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
-<div class="line"><span class="lineno">  188</span>    EXPECT_EQ(corr_id2.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
-<div class="line"><span class="lineno">  189</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00179">179</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  179</span>                                                   {</div>
+<div class="line"><span class="lineno">  180</span>    <span class="keyword">auto</span> corr_id1 = thread_context::generate_correlation_id();</div>
+<div class="line"><span class="lineno">  181</span>    <span class="keyword">auto</span> corr_id2 = thread_context::generate_correlation_id();</div>
+<div class="line"><span class="lineno">  182</span>    </div>
+<div class="line"><span class="lineno">  183</span>    EXPECT_FALSE(corr_id1.empty());</div>
+<div class="line"><span class="lineno">  184</span>    EXPECT_FALSE(corr_id2.empty());</div>
+<div class="line"><span class="lineno">  185</span>    EXPECT_NE(corr_id1, corr_id2);</div>
+<div class="line"><span class="lineno">  186</span>    </div>
+<div class="line"><span class="lineno">  187</span>    <span class="comment">// Should have &quot;corr-&quot; prefix</span></div>
+<div class="line"><span class="lineno">  188</span>    EXPECT_EQ(corr_id1.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
+<div class="line"><span class="lineno">  189</span>    EXPECT_EQ(corr_id2.substr(0, 5), <span class="stringliteral">&quot;corr-&quot;</span>);</div>
+<div class="line"><span class="lineno">  190</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -732,45 +729,45 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test context propagation across threads </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00273">273</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  273</span>                                                  {</div>
-<div class="line"><span class="lineno">  274</span>    <span class="comment">// Create context in main thread</span></div>
-<div class="line"><span class="lineno">  275</span>    thread_context::create(<span class="stringliteral">&quot;main-thread-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  276</span>    thread_context::current()-&gt;correlation_id = <span class="stringliteral">&quot;main-correlation&quot;</span>;</div>
-<div class="line"><span class="lineno">  277</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;main&quot;</span>);</div>
-<div class="line"><span class="lineno">  278</span>    </div>
-<div class="line"><span class="lineno">  279</span>    <span class="comment">// Capture for propagation</span></div>
-<div class="line"><span class="lineno">  280</span>    <span class="keyword">auto</span> propagator = context_propagator::from_current();</div>
-<div class="line"><span class="lineno">  281</span>    </div>
-<div class="line"><span class="lineno">  282</span>    <span class="comment">// Verify in another thread</span></div>
-<div class="line"><span class="lineno">  283</span>    std::thread worker([propagator]() {</div>
-<div class="line"><span class="lineno">  284</span>        <span class="comment">// Initially no context in new thread</span></div>
-<div class="line"><span class="lineno">  285</span>        EXPECT_FALSE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  286</span>        </div>
-<div class="line"><span class="lineno">  287</span>        <span class="comment">// Apply captured context</span></div>
-<div class="line"><span class="lineno">  288</span>        <span class="keyword">auto</span> result = propagator.apply();</div>
-<div class="line"><span class="lineno">  289</span>        EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  290</span>        </div>
-<div class="line"><span class="lineno">  291</span>        <span class="comment">// Should have context from main thread</span></div>
-<div class="line"><span class="lineno">  292</span>        EXPECT_TRUE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  293</span>        EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;main-thread-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  294</span>        EXPECT_EQ(thread_context::current()-&gt;correlation_id, <span class="stringliteral">&quot;main-correlation&quot;</span>);</div>
-<div class="line"><span class="lineno">  295</span>        </div>
-<div class="line"><span class="lineno">  296</span>        <span class="keyword">auto</span> tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;thread&quot;</span>);</div>
-<div class="line"><span class="lineno">  297</span>        ASSERT_TRUE(tag.has_value());</div>
-<div class="line"><span class="lineno">  298</span>        EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
-<div class="line"><span class="lineno">  299</span>        </div>
-<div class="line"><span class="lineno">  300</span>        <span class="comment">// Modify in worker thread</span></div>
-<div class="line"><span class="lineno">  301</span>        thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;worker&quot;</span>);</div>
-<div class="line"><span class="lineno">  302</span>    });</div>
-<div class="line"><span class="lineno">  303</span>    </div>
-<div class="line"><span class="lineno">  304</span>    worker.join();</div>
-<div class="line"><span class="lineno">  305</span>    </div>
-<div class="line"><span class="lineno">  306</span>    <span class="comment">// Main thread context should be unchanged</span></div>
-<div class="line"><span class="lineno">  307</span>    <span class="keyword">auto</span> main_tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;thread&quot;</span>);</div>
-<div class="line"><span class="lineno">  308</span>    ASSERT_TRUE(main_tag.has_value());</div>
-<div class="line"><span class="lineno">  309</span>    EXPECT_EQ(main_tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
-<div class="line"><span class="lineno">  310</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00274">274</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  274</span>                                                  {</div>
+<div class="line"><span class="lineno">  275</span>    <span class="comment">// Create context in main thread</span></div>
+<div class="line"><span class="lineno">  276</span>    thread_context::create(<span class="stringliteral">&quot;main-thread-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  277</span>    thread_context::current()-&gt;correlation_id = <span class="stringliteral">&quot;main-correlation&quot;</span>;</div>
+<div class="line"><span class="lineno">  278</span>    thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  279</span>    </div>
+<div class="line"><span class="lineno">  280</span>    <span class="comment">// Capture for propagation</span></div>
+<div class="line"><span class="lineno">  281</span>    <span class="keyword">auto</span> propagator = context_propagator::from_current();</div>
+<div class="line"><span class="lineno">  282</span>    </div>
+<div class="line"><span class="lineno">  283</span>    <span class="comment">// Verify in another thread</span></div>
+<div class="line"><span class="lineno">  284</span>    std::thread worker([propagator]() {</div>
+<div class="line"><span class="lineno">  285</span>        <span class="comment">// Initially no context in new thread</span></div>
+<div class="line"><span class="lineno">  286</span>        EXPECT_FALSE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  287</span>        </div>
+<div class="line"><span class="lineno">  288</span>        <span class="comment">// Apply captured context</span></div>
+<div class="line"><span class="lineno">  289</span>        <span class="keyword">auto</span> result = propagator.apply();</div>
+<div class="line"><span class="lineno">  290</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  291</span>        </div>
+<div class="line"><span class="lineno">  292</span>        <span class="comment">// Should have context from main thread</span></div>
+<div class="line"><span class="lineno">  293</span>        EXPECT_TRUE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  294</span>        EXPECT_EQ(thread_context::current()-&gt;request_id, <span class="stringliteral">&quot;main-thread-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  295</span>        EXPECT_EQ(thread_context::current()-&gt;correlation_id, <span class="stringliteral">&quot;main-correlation&quot;</span>);</div>
+<div class="line"><span class="lineno">  296</span>        </div>
+<div class="line"><span class="lineno">  297</span>        <span class="keyword">auto</span> tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;thread&quot;</span>);</div>
+<div class="line"><span class="lineno">  298</span>        ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  299</span>        EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  300</span>        </div>
+<div class="line"><span class="lineno">  301</span>        <span class="comment">// Modify in worker thread</span></div>
+<div class="line"><span class="lineno">  302</span>        thread_context::current()-&gt;add_tag(<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;worker&quot;</span>);</div>
+<div class="line"><span class="lineno">  303</span>    });</div>
+<div class="line"><span class="lineno">  304</span>    </div>
+<div class="line"><span class="lineno">  305</span>    worker.join();</div>
+<div class="line"><span class="lineno">  306</span>    </div>
+<div class="line"><span class="lineno">  307</span>    <span class="comment">// Main thread context should be unchanged</span></div>
+<div class="line"><span class="lineno">  308</span>    <span class="keyword">auto</span> main_tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;thread&quot;</span>);</div>
+<div class="line"><span class="lineno">  309</span>    ASSERT_TRUE(main_tag.has_value());</div>
+<div class="line"><span class="lineno">  310</span>    EXPECT_EQ(main_tag.value(), <span class="stringliteral">&quot;main&quot;</span>);</div>
+<div class="line"><span class="lineno">  311</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -801,25 +798,25 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test automatic request ID generation </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  156</span>                                               {</div>
-<div class="line"><span class="lineno">  157</span>    <span class="comment">// Generate multiple IDs</span></div>
-<div class="line"><span class="lineno">  158</span>    std::set&lt;std::string&gt; ids;</div>
-<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
-<div class="line"><span class="lineno">  160</span>        ids.insert(thread_context::generate_request_id());</div>
-<div class="line"><span class="lineno">  161</span>    }</div>
-<div class="line"><span class="lineno">  162</span>    </div>
-<div class="line"><span class="lineno">  163</span>    <span class="comment">// All should be unique</span></div>
-<div class="line"><span class="lineno">  164</span>    EXPECT_EQ(ids.size(), 100);</div>
-<div class="line"><span class="lineno">  165</span>    </div>
-<div class="line"><span class="lineno">  166</span>    <span class="comment">// Create context without request ID</span></div>
-<div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span>&amp; ctx = thread_context::create();</div>
-<div class="line"><span class="lineno">  168</span>    EXPECT_FALSE(ctx.request_id.empty());</div>
-<div class="line"><span class="lineno">  169</span>    </div>
-<div class="line"><span class="lineno">  170</span>    <span class="comment">// Generated ID should be unique</span></div>
-<div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> generated_id = ctx.request_id;</div>
-<div class="line"><span class="lineno">  172</span>    EXPECT_EQ(ids.find(generated_id), ids.end());</div>
-<div class="line"><span class="lineno">  173</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00157">157</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  157</span>                                               {</div>
+<div class="line"><span class="lineno">  158</span>    <span class="comment">// Generate multiple IDs</span></div>
+<div class="line"><span class="lineno">  159</span>    std::set&lt;std::string&gt; ids;</div>
+<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
+<div class="line"><span class="lineno">  161</span>        ids.insert(thread_context::generate_request_id());</div>
+<div class="line"><span class="lineno">  162</span>    }</div>
+<div class="line"><span class="lineno">  163</span>    </div>
+<div class="line"><span class="lineno">  164</span>    <span class="comment">// All should be unique</span></div>
+<div class="line"><span class="lineno">  165</span>    EXPECT_EQ(ids.size(), 100);</div>
+<div class="line"><span class="lineno">  166</span>    </div>
+<div class="line"><span class="lineno">  167</span>    <span class="comment">// Create context without request ID</span></div>
+<div class="line"><span class="lineno">  168</span>    <span class="keyword">auto</span>&amp; ctx = thread_context::create();</div>
+<div class="line"><span class="lineno">  169</span>    EXPECT_FALSE(ctx.request_id.empty());</div>
+<div class="line"><span class="lineno">  170</span>    </div>
+<div class="line"><span class="lineno">  171</span>    <span class="comment">// Generated ID should be unique</span></div>
+<div class="line"><span class="lineno">  172</span>    <span class="keyword">auto</span> generated_id = ctx.request_id;</div>
+<div class="line"><span class="lineno">  173</span>    EXPECT_EQ(ids.find(generated_id), ids.end());</div>
+<div class="line"><span class="lineno">  174</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -850,35 +847,35 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test thread_context basic operations </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  124</span>                                                        {</div>
-<div class="line"><span class="lineno">  125</span>    <span class="comment">// Initially no context</span></div>
-<div class="line"><span class="lineno">  126</span>    EXPECT_FALSE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  127</span>    EXPECT_EQ(thread_context::current(), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  128</span>    </div>
-<div class="line"><span class="lineno">  129</span>    <span class="comment">// Create context</span></div>
-<div class="line"><span class="lineno">  130</span>    <span class="keyword">auto</span>&amp; ctx = thread_context::create(<span class="stringliteral">&quot;test-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  131</span>    EXPECT_TRUE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  132</span>    EXPECT_NE(thread_context::current(), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  133</span>    EXPECT_EQ(ctx.request_id, <span class="stringliteral">&quot;test-request&quot;</span>);</div>
-<div class="line"><span class="lineno">  134</span>    </div>
-<div class="line"><span class="lineno">  135</span>    <span class="comment">// Modify current context</span></div>
-<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span>* current = thread_context::current();</div>
-<div class="line"><span class="lineno">  137</span>    ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  138</span>    current-&gt;user_id = <span class="stringliteral">&quot;test-user&quot;</span>;</div>
-<div class="line"><span class="lineno">  139</span>    current-&gt;add_tag(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;value&quot;</span>);</div>
-<div class="line"><span class="lineno">  140</span>    </div>
-<div class="line"><span class="lineno">  141</span>    <span class="comment">// Verify modifications</span></div>
-<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;test-user&quot;</span>);</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  144</span>    ASSERT_TRUE(tag.has_value());</div>
-<div class="line"><span class="lineno">  145</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;value&quot;</span>);</div>
-<div class="line"><span class="lineno">  146</span>    </div>
-<div class="line"><span class="lineno">  147</span>    <span class="comment">// Clear context</span></div>
-<div class="line"><span class="lineno">  148</span>    thread_context::clear();</div>
-<div class="line"><span class="lineno">  149</span>    EXPECT_FALSE(thread_context::has_context());</div>
-<div class="line"><span class="lineno">  150</span>    EXPECT_EQ(thread_context::current(), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  151</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00125">125</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  125</span>                                                        {</div>
+<div class="line"><span class="lineno">  126</span>    <span class="comment">// Initially no context</span></div>
+<div class="line"><span class="lineno">  127</span>    EXPECT_FALSE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  128</span>    EXPECT_EQ(thread_context::current(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  129</span>    </div>
+<div class="line"><span class="lineno">  130</span>    <span class="comment">// Create context</span></div>
+<div class="line"><span class="lineno">  131</span>    <span class="keyword">auto</span>&amp; ctx = thread_context::create(<span class="stringliteral">&quot;test-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  132</span>    EXPECT_TRUE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  133</span>    EXPECT_NE(thread_context::current(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  134</span>    EXPECT_EQ(ctx.request_id, <span class="stringliteral">&quot;test-request&quot;</span>);</div>
+<div class="line"><span class="lineno">  135</span>    </div>
+<div class="line"><span class="lineno">  136</span>    <span class="comment">// Modify current context</span></div>
+<div class="line"><span class="lineno">  137</span>    <span class="keyword">auto</span>* current = thread_context::current();</div>
+<div class="line"><span class="lineno">  138</span>    ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  139</span>    current-&gt;user_id = <span class="stringliteral">&quot;test-user&quot;</span>;</div>
+<div class="line"><span class="lineno">  140</span>    current-&gt;add_tag(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;value&quot;</span>);</div>
+<div class="line"><span class="lineno">  141</span>    </div>
+<div class="line"><span class="lineno">  142</span>    <span class="comment">// Verify modifications</span></div>
+<div class="line"><span class="lineno">  143</span>    EXPECT_EQ(thread_context::current()-&gt;user_id, <span class="stringliteral">&quot;test-user&quot;</span>);</div>
+<div class="line"><span class="lineno">  144</span>    <span class="keyword">auto</span> tag = thread_context::current()-&gt;get_tag(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  145</span>    ASSERT_TRUE(tag.has_value());</div>
+<div class="line"><span class="lineno">  146</span>    EXPECT_EQ(tag.value(), <span class="stringliteral">&quot;value&quot;</span>);</div>
+<div class="line"><span class="lineno">  147</span>    </div>
+<div class="line"><span class="lineno">  148</span>    <span class="comment">// Clear context</span></div>
+<div class="line"><span class="lineno">  149</span>    thread_context::clear();</div>
+<div class="line"><span class="lineno">  150</span>    EXPECT_FALSE(thread_context::has_context());</div>
+<div class="line"><span class="lineno">  151</span>    EXPECT_EQ(thread_context::current(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  152</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -909,62 +906,62 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Test thread isolation </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00416">416</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  416</span>                                           {</div>
-<div class="line"><span class="lineno">  417</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> thread_count = 10;</div>
-<div class="line"><span class="lineno">  418</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  419</span>    std::vector&lt;std::future&lt;std::string&gt;&gt; futures;</div>
-<div class="line"><span class="lineno">  420</span>    </div>
-<div class="line"><span class="lineno">  421</span>    <span class="comment">// Create threads with their own contexts</span></div>
-<div class="line"><span class="lineno">  422</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
-<div class="line"><span class="lineno">  423</span>        std::promise&lt;std::string&gt; promise;</div>
-<div class="line"><span class="lineno">  424</span>        futures.push_back(promise.get_future());</div>
-<div class="line"><span class="lineno">  425</span>        </div>
-<div class="line"><span class="lineno">  426</span>        threads.emplace_back([i, p = std::move(promise)]() <span class="keyword">mutable</span> {</div>
-<div class="line"><span class="lineno">  427</span>            <span class="comment">// Each thread creates its own context</span></div>
-<div class="line"><span class="lineno">  428</span>            <span class="keyword">auto</span> req_id = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(i);</div>
-<div class="line"><span class="lineno">  429</span>            thread_context::create(req_id);</div>
-<div class="line"><span class="lineno">  430</span>            thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(i);</div>
-<div class="line"><span class="lineno">  431</span>            </div>
-<div class="line"><span class="lineno">  432</span>            <span class="comment">// Do some work</span></div>
-<div class="line"><span class="lineno">  433</span>            std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
-<div class="line"><span class="lineno">  434</span>            </div>
-<div class="line"><span class="lineno">  435</span>            <span class="comment">// Verify context is still correct</span></div>
-<div class="line"><span class="lineno">  436</span>            <span class="keyword">auto</span>* ctx = thread_context::current();</div>
-<div class="line"><span class="lineno">  437</span>            <span class="keywordflow">if</span> (ctx &amp;&amp; ctx-&gt;request_id == req_id &amp;&amp; </div>
-<div class="line"><span class="lineno">  438</span>                ctx-&gt;user_id == <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(i)) {</div>
-<div class="line"><span class="lineno">  439</span>                p.set_value(req_id);</div>
-<div class="line"><span class="lineno">  440</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  441</span>                p.set_value(<span class="stringliteral">&quot;error&quot;</span>);</div>
-<div class="line"><span class="lineno">  442</span>            }</div>
-<div class="line"><span class="lineno">  443</span>        });</div>
-<div class="line"><span class="lineno">  444</span>    }</div>
-<div class="line"><span class="lineno">  445</span>    </div>
-<div class="line"><span class="lineno">  446</span>    <span class="comment">// Collect results</span></div>
-<div class="line"><span class="lineno">  447</span>    std::set&lt;std::string&gt; results;</div>
-<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; future : futures) {</div>
-<div class="line"><span class="lineno">  449</span>        results.insert(future.get());</div>
-<div class="line"><span class="lineno">  450</span>    }</div>
-<div class="line"><span class="lineno">  451</span>    </div>
-<div class="line"><span class="lineno">  452</span>    <span class="comment">// Wait for threads</span></div>
-<div class="line"><span class="lineno">  453</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
-<div class="line"><span class="lineno">  454</span>        t.join();</div>
-<div class="line"><span class="lineno">  455</span>    }</div>
-<div class="line"><span class="lineno">  456</span>    </div>
-<div class="line"><span class="lineno">  457</span>    <span class="comment">// Each thread should have maintained its own context</span></div>
-<div class="line"><span class="lineno">  458</span>    EXPECT_EQ(results.size(), thread_count);</div>
-<div class="line"><span class="lineno">  459</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
-<div class="line"><span class="lineno">  460</span>        <span class="keyword">auto</span> expected = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(i);</div>
-<div class="line"><span class="lineno">  461</span>        EXPECT_NE(results.find(expected), results.end());</div>
-<div class="line"><span class="lineno">  462</span>    }</div>
-<div class="line"><span class="lineno">  463</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html#l00417">417</a> of file <a class="el" href="../../d4/ddd/test__thread__context_8cpp_source.html">test_thread_context.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  417</span>                                           {</div>
+<div class="line"><span class="lineno">  418</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> thread_count = 10;</div>
+<div class="line"><span class="lineno">  419</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><span class="lineno">  420</span>    std::vector&lt;std::future&lt;std::string&gt;&gt; futures;</div>
+<div class="line"><span class="lineno">  421</span>    </div>
+<div class="line"><span class="lineno">  422</span>    <span class="comment">// Create threads with their own contexts</span></div>
+<div class="line"><span class="lineno">  423</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
+<div class="line"><span class="lineno">  424</span>        std::promise&lt;std::string&gt; promise;</div>
+<div class="line"><span class="lineno">  425</span>        futures.push_back(promise.get_future());</div>
+<div class="line"><span class="lineno">  426</span>        </div>
+<div class="line"><span class="lineno">  427</span>        threads.emplace_back([i, p = std::move(promise)]() <span class="keyword">mutable</span> {</div>
+<div class="line"><span class="lineno">  428</span>            <span class="comment">// Each thread creates its own context</span></div>
+<div class="line"><span class="lineno">  429</span>            <span class="keyword">auto</span> req_id = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(i);</div>
+<div class="line"><span class="lineno">  430</span>            thread_context::create(req_id);</div>
+<div class="line"><span class="lineno">  431</span>            thread_context::current()-&gt;user_id = <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(i);</div>
+<div class="line"><span class="lineno">  432</span>            </div>
+<div class="line"><span class="lineno">  433</span>            <span class="comment">// Do some work</span></div>
+<div class="line"><span class="lineno">  434</span>            std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
+<div class="line"><span class="lineno">  435</span>            </div>
+<div class="line"><span class="lineno">  436</span>            <span class="comment">// Verify context is still correct</span></div>
+<div class="line"><span class="lineno">  437</span>            <span class="keyword">auto</span>* ctx = thread_context::current();</div>
+<div class="line"><span class="lineno">  438</span>            <span class="keywordflow">if</span> (ctx &amp;&amp; ctx-&gt;request_id == req_id &amp;&amp; </div>
+<div class="line"><span class="lineno">  439</span>                ctx-&gt;user_id == <span class="stringliteral">&quot;user-&quot;</span> + std::to_string(i)) {</div>
+<div class="line"><span class="lineno">  440</span>                p.set_value(req_id);</div>
+<div class="line"><span class="lineno">  441</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  442</span>                p.set_value(<span class="stringliteral">&quot;error&quot;</span>);</div>
+<div class="line"><span class="lineno">  443</span>            }</div>
+<div class="line"><span class="lineno">  444</span>        });</div>
+<div class="line"><span class="lineno">  445</span>    }</div>
+<div class="line"><span class="lineno">  446</span>    </div>
+<div class="line"><span class="lineno">  447</span>    <span class="comment">// Collect results</span></div>
+<div class="line"><span class="lineno">  448</span>    std::set&lt;std::string&gt; results;</div>
+<div class="line"><span class="lineno">  449</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; future : futures) {</div>
+<div class="line"><span class="lineno">  450</span>        results.insert(future.get());</div>
+<div class="line"><span class="lineno">  451</span>    }</div>
+<div class="line"><span class="lineno">  452</span>    </div>
+<div class="line"><span class="lineno">  453</span>    <span class="comment">// Wait for threads</span></div>
+<div class="line"><span class="lineno">  454</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
+<div class="line"><span class="lineno">  455</span>        t.join();</div>
+<div class="line"><span class="lineno">  456</span>    }</div>
+<div class="line"><span class="lineno">  457</span>    </div>
+<div class="line"><span class="lineno">  458</span>    <span class="comment">// Each thread should have maintained its own context</span></div>
+<div class="line"><span class="lineno">  459</span>    EXPECT_EQ(results.size(), thread_count);</div>
+<div class="line"><span class="lineno">  460</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
+<div class="line"><span class="lineno">  461</span>        <span class="keyword">auto</span> expected = <span class="stringliteral">&quot;thread-&quot;</span> + std::to_string(i);</div>
+<div class="line"><span class="lineno">  462</span>        EXPECT_NE(results.find(expected), results.end());</div>
+<div class="line"><span class="lineno">  463</span>    }</div>
+<div class="line"><span class="lineno">  464</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 14:45:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

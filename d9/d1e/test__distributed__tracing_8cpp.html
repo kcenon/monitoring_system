@@ -86,23 +86,20 @@ $(function() {
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
-<code>#include &quot;../sources/monitoring/tracing/distributed_tracer.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for test_distributed_tracing.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d4e/test__distributed__tracing_8cpp__incl.png" border="0" usemap="#atests_2test__distributed__tracing_8cpp" alt=""/></div>
 <map name="atests_2test__distributed__tracing_8cpp" id="atests_2test__distributed__tracing_8cpp">
-<area shape="rect" title="Unit tests for distributed tracing functionality." alt="" coords="175,5,335,45"/>
-<area shape="rect" title=" " alt="" coords="5,108,109,133"/>
-<area shape="poly" title=" " alt="" coords="216,48,95,105,93,100,214,43"/>
-<area shape="rect" title=" " alt="" coords="133,108,197,133"/>
-<area shape="poly" title=" " alt="" coords="239,47,188,100,184,96,235,44"/>
-<area shape="rect" title=" " alt="" coords="221,108,288,133"/>
-<area shape="poly" title=" " alt="" coords="257,45,257,94,252,94,252,45"/>
-<area shape="rect" title=" " alt="" coords="313,108,437,133"/>
-<area shape="poly" title=" " alt="" coords="281,43,351,98,348,102,277,48"/>
-<area shape="rect" title=" " alt="" coords="461,93,619,148"/>
-<area shape="poly" title=" " alt="" coords="313,43,448,87,446,92,312,48"/>
+<area shape="rect" title="Unit tests for distributed tracing functionality." alt="" coords="129,5,289,45"/>
+<area shape="rect" title=" " alt="" coords="5,93,109,119"/>
+<area shape="poly" title=" " alt="" coords="174,48,94,89,91,84,172,43"/>
+<area shape="rect" title=" " alt="" coords="133,93,197,119"/>
+<area shape="poly" title=" " alt="" coords="201,47,181,83,176,80,196,44"/>
+<area shape="rect" title=" " alt="" coords="221,93,288,119"/>
+<area shape="poly" title=" " alt="" coords="223,44,243,80,239,83,218,47"/>
+<area shape="rect" title=" " alt="" coords="313,93,437,119"/>
+<area shape="poly" title=" " alt="" coords="250,43,339,85,337,90,248,48"/>
 </map>
 </div>
 </div>
@@ -179,35 +176,35 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00273">273</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  273</span>                                                   {</div>
-<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> parent_result = tracer.start_span(<span class="stringliteral">&quot;parent&quot;</span>);</div>
-<div class="line"><span class="lineno">  275</span>    ASSERT_TRUE(parent_result.has_value());</div>
-<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> parent = parent_result.value();</div>
-<div class="line"><span class="lineno">  277</span>    </div>
-<div class="line"><span class="lineno">  278</span>    parent-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>] = <span class="stringliteral">&quot;abc123&quot;</span>;</div>
-<div class="line"><span class="lineno">  279</span>    parent-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>] = <span class="stringliteral">&quot;enabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  280</span>    </div>
-<div class="line"><span class="lineno">  281</span>    <span class="keyword">auto</span> child_result = tracer.start_child_span(*parent, <span class="stringliteral">&quot;child&quot;</span>);</div>
-<div class="line"><span class="lineno">  282</span>    ASSERT_TRUE(child_result.has_value());</div>
-<div class="line"><span class="lineno">  283</span>    <span class="keyword">auto</span> child = child_result.value();</div>
-<div class="line"><span class="lineno">  284</span>    </div>
-<div class="line"><span class="lineno">  285</span>    <span class="comment">// Child should inherit baggage</span></div>
-<div class="line"><span class="lineno">  286</span>    EXPECT_EQ(child-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
-<div class="line"><span class="lineno">  287</span>    EXPECT_EQ(child-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
-<div class="line"><span class="lineno">  288</span>    </div>
-<div class="line"><span class="lineno">  289</span>    <span class="comment">// Child can add its own baggage</span></div>
-<div class="line"><span class="lineno">  290</span>    child-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>] = <span class="stringliteral">&quot;xyz&quot;</span>;</div>
-<div class="line"><span class="lineno">  291</span>    </div>
-<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> grandchild_result = tracer.start_child_span(*child, <span class="stringliteral">&quot;grandchild&quot;</span>);</div>
-<div class="line"><span class="lineno">  293</span>    ASSERT_TRUE(grandchild_result.has_value());</div>
-<div class="line"><span class="lineno">  294</span>    <span class="keyword">auto</span> grandchild = grandchild_result.value();</div>
-<div class="line"><span class="lineno">  295</span>    </div>
-<div class="line"><span class="lineno">  296</span>    <span class="comment">// Grandchild should have all baggage</span></div>
-<div class="line"><span class="lineno">  297</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
-<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
-<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>], <span class="stringliteral">&quot;xyz&quot;</span>);</div>
-<div class="line"><span class="lineno">  300</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00274">274</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  274</span>                                                   {</div>
+<div class="line"><span class="lineno">  275</span>    <span class="keyword">auto</span> parent_result = tracer.start_span(<span class="stringliteral">&quot;parent&quot;</span>);</div>
+<div class="line"><span class="lineno">  276</span>    ASSERT_TRUE(parent_result.has_value());</div>
+<div class="line"><span class="lineno">  277</span>    <span class="keyword">auto</span> parent = parent_result.value();</div>
+<div class="line"><span class="lineno">  278</span>    </div>
+<div class="line"><span class="lineno">  279</span>    parent-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>] = <span class="stringliteral">&quot;abc123&quot;</span>;</div>
+<div class="line"><span class="lineno">  280</span>    parent-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>] = <span class="stringliteral">&quot;enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  281</span>    </div>
+<div class="line"><span class="lineno">  282</span>    <span class="keyword">auto</span> child_result = tracer.start_child_span(*parent, <span class="stringliteral">&quot;child&quot;</span>);</div>
+<div class="line"><span class="lineno">  283</span>    ASSERT_TRUE(child_result.has_value());</div>
+<div class="line"><span class="lineno">  284</span>    <span class="keyword">auto</span> child = child_result.value();</div>
+<div class="line"><span class="lineno">  285</span>    </div>
+<div class="line"><span class="lineno">  286</span>    <span class="comment">// Child should inherit baggage</span></div>
+<div class="line"><span class="lineno">  287</span>    EXPECT_EQ(child-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
+<div class="line"><span class="lineno">  288</span>    EXPECT_EQ(child-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
+<div class="line"><span class="lineno">  289</span>    </div>
+<div class="line"><span class="lineno">  290</span>    <span class="comment">// Child can add its own baggage</span></div>
+<div class="line"><span class="lineno">  291</span>    child-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>] = <span class="stringliteral">&quot;xyz&quot;</span>;</div>
+<div class="line"><span class="lineno">  292</span>    </div>
+<div class="line"><span class="lineno">  293</span>    <span class="keyword">auto</span> grandchild_result = tracer.start_child_span(*child, <span class="stringliteral">&quot;grandchild&quot;</span>);</div>
+<div class="line"><span class="lineno">  294</span>    ASSERT_TRUE(grandchild_result.has_value());</div>
+<div class="line"><span class="lineno">  295</span>    <span class="keyword">auto</span> grandchild = grandchild_result.value();</div>
+<div class="line"><span class="lineno">  296</span>    </div>
+<div class="line"><span class="lineno">  297</span>    <span class="comment">// Grandchild should have all baggage</span></div>
+<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;session_id&quot;</span>], <span class="stringliteral">&quot;abc123&quot;</span>);</div>
+<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;feature_flag&quot;</span>], <span class="stringliteral">&quot;enabled&quot;</span>);</div>
+<div class="line"><span class="lineno">  300</span>    EXPECT_EQ(grandchild-&gt;baggage[<span class="stringliteral">&quot;child_data&quot;</span>], <span class="stringliteral">&quot;xyz&quot;</span>);</div>
+<div class="line"><span class="lineno">  301</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -237,19 +234,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                      {</div>
-<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   73</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">   75</span>    </div>
-<div class="line"><span class="lineno">   76</span>    <span class="keyword">auto</span> first_finish = tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">   77</span>    ASSERT_TRUE(first_finish.has_value());</div>
-<div class="line"><span class="lineno">   78</span>    </div>
-<div class="line"><span class="lineno">   79</span>    <span class="keyword">auto</span> second_finish = tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">   80</span>    ASSERT_FALSE(second_finish.has_value());</div>
-<div class="line"><span class="lineno">   81</span>    EXPECT_EQ(second_finish.get_error().code, monitoring_error_code::already_exists);</div>
-<div class="line"><span class="lineno">   82</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00072">72</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>                                                      {</div>
+<div class="line"><span class="lineno">   73</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   74</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">   76</span>    </div>
+<div class="line"><span class="lineno">   77</span>    <span class="keyword">auto</span> first_finish = tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">   78</span>    ASSERT_TRUE(first_finish.has_value());</div>
+<div class="line"><span class="lineno">   79</span>    </div>
+<div class="line"><span class="lineno">   80</span>    <span class="keyword">auto</span> second_finish = tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">   81</span>    ASSERT_FALSE(second_finish.has_value());</div>
+<div class="line"><span class="lineno">   82</span>    EXPECT_EQ(second_finish.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">   83</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -279,21 +276,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00040">40</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   40</span>                                                {</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keyword">auto</span> parent_result = tracer.start_span(<span class="stringliteral">&quot;parent_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   42</span>    ASSERT_TRUE(parent_result.has_value());</div>
-<div class="line"><span class="lineno">   43</span>    <span class="keyword">auto</span> parent = parent_result.value();</div>
-<div class="line"><span class="lineno">   44</span>    </div>
-<div class="line"><span class="lineno">   45</span>    <span class="keyword">auto</span> child_result = tracer.start_child_span(*parent, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   46</span>    ASSERT_TRUE(child_result.has_value());</div>
-<div class="line"><span class="lineno">   47</span>    <span class="keyword">auto</span> child = child_result.value();</div>
-<div class="line"><span class="lineno">   48</span>    </div>
-<div class="line"><span class="lineno">   49</span>    EXPECT_EQ(child-&gt;trace_id, parent-&gt;trace_id);</div>
-<div class="line"><span class="lineno">   50</span>    EXPECT_NE(child-&gt;span_id, parent-&gt;span_id);</div>
-<div class="line"><span class="lineno">   51</span>    EXPECT_EQ(child-&gt;parent_span_id, parent-&gt;span_id);</div>
-<div class="line"><span class="lineno">   52</span>    EXPECT_EQ(child-&gt;operation_name, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   53</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00041">41</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>                                                {</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keyword">auto</span> parent_result = tracer.start_span(<span class="stringliteral">&quot;parent_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   43</span>    ASSERT_TRUE(parent_result.has_value());</div>
+<div class="line"><span class="lineno">   44</span>    <span class="keyword">auto</span> parent = parent_result.value();</div>
+<div class="line"><span class="lineno">   45</span>    </div>
+<div class="line"><span class="lineno">   46</span>    <span class="keyword">auto</span> child_result = tracer.start_child_span(*parent, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   47</span>    ASSERT_TRUE(child_result.has_value());</div>
+<div class="line"><span class="lineno">   48</span>    <span class="keyword">auto</span> child = child_result.value();</div>
+<div class="line"><span class="lineno">   49</span>    </div>
+<div class="line"><span class="lineno">   50</span>    EXPECT_EQ(child-&gt;trace_id, parent-&gt;trace_id);</div>
+<div class="line"><span class="lineno">   51</span>    EXPECT_NE(child-&gt;span_id, parent-&gt;span_id);</div>
+<div class="line"><span class="lineno">   52</span>    EXPECT_EQ(child-&gt;parent_span_id, parent-&gt;span_id);</div>
+<div class="line"><span class="lineno">   53</span>    EXPECT_EQ(child-&gt;operation_name, <span class="stringliteral">&quot;child_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   54</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,19 +320,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00027">27</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   27</span>                                               {</div>
-<div class="line"><span class="lineno">   28</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
-<div class="line"><span class="lineno">   29</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">   30</span>    </div>
-<div class="line"><span class="lineno">   31</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">   32</span>    EXPECT_FALSE(span-&gt;trace_id.empty());</div>
-<div class="line"><span class="lineno">   33</span>    EXPECT_FALSE(span-&gt;span_id.empty());</div>
-<div class="line"><span class="lineno">   34</span>    EXPECT_TRUE(span-&gt;parent_span_id.empty());</div>
-<div class="line"><span class="lineno">   35</span>    EXPECT_EQ(span-&gt;operation_name, <span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   36</span>    EXPECT_EQ(span-&gt;service_name, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
-<div class="line"><span class="lineno">   37</span>    EXPECT_FALSE(span-&gt;is_finished());</div>
-<div class="line"><span class="lineno">   38</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00028">28</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>                                               {</div>
+<div class="line"><span class="lineno">   29</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">   30</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">   31</span>    </div>
+<div class="line"><span class="lineno">   32</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">   33</span>    EXPECT_FALSE(span-&gt;trace_id.empty());</div>
+<div class="line"><span class="lineno">   34</span>    EXPECT_FALSE(span-&gt;span_id.empty());</div>
+<div class="line"><span class="lineno">   35</span>    EXPECT_TRUE(span-&gt;parent_span_id.empty());</div>
+<div class="line"><span class="lineno">   36</span>    EXPECT_EQ(span-&gt;operation_name, <span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   37</span>    EXPECT_EQ(span-&gt;service_name, <span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">   38</span>    EXPECT_FALSE(span-&gt;is_finished());</div>
+<div class="line"><span class="lineno">   39</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -365,33 +362,33 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00162">162</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  162</span>                                                      {</div>
-<div class="line"><span class="lineno">  163</span>    EXPECT_EQ(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  164</span>    </div>
-<div class="line"><span class="lineno">  165</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  166</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">  168</span>    </div>
-<div class="line"><span class="lineno">  169</span>    tracer.set_current_span(span);</div>
-<div class="line"><span class="lineno">  170</span>    EXPECT_EQ(tracer.get_current_span(), span);</div>
-<div class="line"><span class="lineno">  171</span>    </div>
-<div class="line"><span class="lineno">  172</span>    <span class="comment">// Different thread should have different current span</span></div>
-<div class="line"><span class="lineno">  173</span>    std::thread other_thread([&amp;]() {</div>
-<div class="line"><span class="lineno">  174</span>        EXPECT_EQ(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  175</span>        </div>
-<div class="line"><span class="lineno">  176</span>        <span class="keyword">auto</span> other_span_result = tracer.start_span(<span class="stringliteral">&quot;other_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  177</span>        ASSERT_TRUE(other_span_result.has_value());</div>
-<div class="line"><span class="lineno">  178</span>        <span class="keyword">auto</span> other_span = other_span_result.value();</div>
-<div class="line"><span class="lineno">  179</span>        </div>
-<div class="line"><span class="lineno">  180</span>        tracer.set_current_span(other_span);</div>
-<div class="line"><span class="lineno">  181</span>        EXPECT_EQ(tracer.get_current_span(), other_span);</div>
-<div class="line"><span class="lineno">  182</span>    });</div>
-<div class="line"><span class="lineno">  183</span>    other_thread.join();</div>
-<div class="line"><span class="lineno">  184</span>    </div>
-<div class="line"><span class="lineno">  185</span>    <span class="comment">// Original thread should still have its span</span></div>
-<div class="line"><span class="lineno">  186</span>    EXPECT_EQ(tracer.get_current_span(), span);</div>
-<div class="line"><span class="lineno">  187</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  163</span>                                                      {</div>
+<div class="line"><span class="lineno">  164</span>    EXPECT_EQ(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  165</span>    </div>
+<div class="line"><span class="lineno">  166</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  167</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  168</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">  169</span>    </div>
+<div class="line"><span class="lineno">  170</span>    tracer.set_current_span(span);</div>
+<div class="line"><span class="lineno">  171</span>    EXPECT_EQ(tracer.get_current_span(), span);</div>
+<div class="line"><span class="lineno">  172</span>    </div>
+<div class="line"><span class="lineno">  173</span>    <span class="comment">// Different thread should have different current span</span></div>
+<div class="line"><span class="lineno">  174</span>    std::thread other_thread([&amp;]() {</div>
+<div class="line"><span class="lineno">  175</span>        EXPECT_EQ(tracer.get_current_span(), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  176</span>        </div>
+<div class="line"><span class="lineno">  177</span>        <span class="keyword">auto</span> other_span_result = tracer.start_span(<span class="stringliteral">&quot;other_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  178</span>        ASSERT_TRUE(other_span_result.has_value());</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keyword">auto</span> other_span = other_span_result.value();</div>
+<div class="line"><span class="lineno">  180</span>        </div>
+<div class="line"><span class="lineno">  181</span>        tracer.set_current_span(other_span);</div>
+<div class="line"><span class="lineno">  182</span>        EXPECT_EQ(tracer.get_current_span(), other_span);</div>
+<div class="line"><span class="lineno">  183</span>    });</div>
+<div class="line"><span class="lineno">  184</span>    other_thread.join();</div>
+<div class="line"><span class="lineno">  185</span>    </div>
+<div class="line"><span class="lineno">  186</span>    <span class="comment">// Original thread should still have its span</span></div>
+<div class="line"><span class="lineno">  187</span>    EXPECT_EQ(tracer.get_current_span(), span);</div>
+<div class="line"><span class="lineno">  188</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -421,31 +418,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00302">302</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  302</span>                                            {</div>
-<div class="line"><span class="lineno">  303</span>    std::vector&lt;trace_span&gt; spans_to_export;</div>
-<div class="line"><span class="lineno">  304</span>    </div>
-<div class="line"><span class="lineno">  305</span>    <span class="comment">// Create and finish spans</span></div>
-<div class="line"><span class="lineno">  306</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  307</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(i));</div>
-<div class="line"><span class="lineno">  308</span>        ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  309</span>        <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">  310</span>        </div>
-<div class="line"><span class="lineno">  311</span>        tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">  312</span>        spans_to_export.push_back(*span);</div>
-<div class="line"><span class="lineno">  313</span>    }</div>
-<div class="line"><span class="lineno">  314</span>    </div>
-<div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> export_result = tracer.export_spans(spans_to_export);</div>
-<div class="line"><span class="lineno">  316</span>    ASSERT_TRUE(export_result.has_value());</div>
-<div class="line"><span class="lineno">  317</span>    </div>
-<div class="line"><span class="lineno">  318</span>    <span class="comment">// Verify spans were stored</span></div>
-<div class="line"><span class="lineno">  319</span>    <span class="keyword">auto</span> trace_result = tracer.get_trace(spans_to_export[0].trace_id);</div>
-<div class="line"><span class="lineno">  320</span>    ASSERT_TRUE(trace_result.has_value());</div>
-<div class="line"><span class="lineno">  321</span>    <span class="keyword">auto</span> trace = trace_result.value();</div>
-<div class="line"><span class="lineno">  322</span>    </div>
-<div class="line"><span class="lineno">  323</span>    <span class="comment">// Note: In this test, all spans have different trace IDs</span></div>
-<div class="line"><span class="lineno">  324</span>    <span class="comment">// In a real scenario, they might be part of the same trace</span></div>
-<div class="line"><span class="lineno">  325</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00303">303</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  303</span>                                            {</div>
+<div class="line"><span class="lineno">  304</span>    std::vector&lt;trace_span&gt; spans_to_export;</div>
+<div class="line"><span class="lineno">  305</span>    </div>
+<div class="line"><span class="lineno">  306</span>    <span class="comment">// Create and finish spans</span></div>
+<div class="line"><span class="lineno">  307</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">  308</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(i));</div>
+<div class="line"><span class="lineno">  309</span>        ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  310</span>        <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">  311</span>        </div>
+<div class="line"><span class="lineno">  312</span>        tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">  313</span>        spans_to_export.push_back(*span);</div>
+<div class="line"><span class="lineno">  314</span>    }</div>
+<div class="line"><span class="lineno">  315</span>    </div>
+<div class="line"><span class="lineno">  316</span>    <span class="keyword">auto</span> export_result = tracer.export_spans(spans_to_export);</div>
+<div class="line"><span class="lineno">  317</span>    ASSERT_TRUE(export_result.has_value());</div>
+<div class="line"><span class="lineno">  318</span>    </div>
+<div class="line"><span class="lineno">  319</span>    <span class="comment">// Verify spans were stored</span></div>
+<div class="line"><span class="lineno">  320</span>    <span class="keyword">auto</span> trace_result = tracer.get_trace(spans_to_export[0].trace_id);</div>
+<div class="line"><span class="lineno">  321</span>    ASSERT_TRUE(trace_result.has_value());</div>
+<div class="line"><span class="lineno">  322</span>    <span class="keyword">auto</span> trace = trace_result.value();</div>
+<div class="line"><span class="lineno">  323</span>    </div>
+<div class="line"><span class="lineno">  324</span>    <span class="comment">// Note: In this test, all spans have different trace IDs</span></div>
+<div class="line"><span class="lineno">  325</span>    <span class="comment">// In a real scenario, they might be part of the same trace</span></div>
+<div class="line"><span class="lineno">  326</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -475,22 +472,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   55</span>                                           {</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   57</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">   58</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">   59</span>    </div>
-<div class="line"><span class="lineno">   60</span>    <span class="comment">// Add some delay to have measurable duration</span></div>
-<div class="line"><span class="lineno">   61</span>    std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
-<div class="line"><span class="lineno">   62</span>    </div>
-<div class="line"><span class="lineno">   63</span>    <span class="keyword">auto</span> finish_result = tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">   64</span>    ASSERT_TRUE(finish_result.has_value());</div>
-<div class="line"><span class="lineno">   65</span>    </div>
-<div class="line"><span class="lineno">   66</span>    EXPECT_TRUE(span-&gt;is_finished());</div>
-<div class="line"><span class="lineno">   67</span>    EXPECT_GT(span-&gt;duration.count(), 0);</div>
-<div class="line"><span class="lineno">   68</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::ok);</div>
-<div class="line"><span class="lineno">   69</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00056">56</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>                                           {</div>
+<div class="line"><span class="lineno">   57</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   58</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">   59</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">   60</span>    </div>
+<div class="line"><span class="lineno">   61</span>    <span class="comment">// Add some delay to have measurable duration</span></div>
+<div class="line"><span class="lineno">   62</span>    std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
+<div class="line"><span class="lineno">   63</span>    </div>
+<div class="line"><span class="lineno">   64</span>    <span class="keyword">auto</span> finish_result = tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">   65</span>    ASSERT_TRUE(finish_result.has_value());</div>
+<div class="line"><span class="lineno">   66</span>    </div>
+<div class="line"><span class="lineno">   67</span>    EXPECT_TRUE(span-&gt;is_finished());</div>
+<div class="line"><span class="lineno">   68</span>    EXPECT_GT(span-&gt;duration.count(), 0);</div>
+<div class="line"><span class="lineno">   69</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::ok);</div>
+<div class="line"><span class="lineno">   70</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -520,38 +517,38 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00205">205</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  205</span>                                         {</div>
-<div class="line"><span class="lineno">  206</span>    <span class="keyword">auto</span> span1_result = tracer.start_span(<span class="stringliteral">&quot;operation1&quot;</span>);</div>
-<div class="line"><span class="lineno">  207</span>    ASSERT_TRUE(span1_result.has_value());</div>
-<div class="line"><span class="lineno">  208</span>    <span class="keyword">auto</span> span1 = span1_result.value();</div>
-<div class="line"><span class="lineno">  209</span>    </div>
-<div class="line"><span class="lineno">  210</span>    <span class="keyword">auto</span> span2_result = tracer.start_child_span(*span1, <span class="stringliteral">&quot;operation2&quot;</span>);</div>
-<div class="line"><span class="lineno">  211</span>    ASSERT_TRUE(span2_result.has_value());</div>
-<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> span2 = span2_result.value();</div>
-<div class="line"><span class="lineno">  213</span>    </div>
-<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> span3_result = tracer.start_child_span(*span2, <span class="stringliteral">&quot;operation3&quot;</span>);</div>
-<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(span3_result.has_value());</div>
-<div class="line"><span class="lineno">  216</span>    <span class="keyword">auto</span> span3 = span3_result.value();</div>
-<div class="line"><span class="lineno">  217</span>    </div>
-<div class="line"><span class="lineno">  218</span>    <span class="comment">// Finish all spans</span></div>
-<div class="line"><span class="lineno">  219</span>    tracer.finish_span(span1);</div>
-<div class="line"><span class="lineno">  220</span>    tracer.finish_span(span2);</div>
-<div class="line"><span class="lineno">  221</span>    tracer.finish_span(span3);</div>
-<div class="line"><span class="lineno">  222</span>    </div>
-<div class="line"><span class="lineno">  223</span>    <span class="comment">// Get all spans for the trace</span></div>
-<div class="line"><span class="lineno">  224</span>    <span class="keyword">auto</span> trace_result = tracer.get_trace(span1-&gt;trace_id);</div>
-<div class="line"><span class="lineno">  225</span>    ASSERT_TRUE(trace_result.has_value());</div>
-<div class="line"><span class="lineno">  226</span>    <span class="keyword">auto</span> trace = trace_result.value();</div>
-<div class="line"><span class="lineno">  227</span>    </div>
-<div class="line"><span class="lineno">  228</span>    EXPECT_EQ(trace.size(), 3);</div>
-<div class="line"><span class="lineno">  229</span>    </div>
-<div class="line"><span class="lineno">  230</span>    <span class="comment">// All spans should have the same trace ID</span></div>
-<div class="line"><span class="lineno">  231</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; span : trace) {</div>
-<div class="line"><span class="lineno">  232</span>        EXPECT_EQ(span.trace_id, span1-&gt;trace_id);</div>
-<div class="line"><span class="lineno">  233</span>        EXPECT_TRUE(span.is_finished());</div>
-<div class="line"><span class="lineno">  234</span>    }</div>
-<div class="line"><span class="lineno">  235</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00206">206</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  206</span>                                         {</div>
+<div class="line"><span class="lineno">  207</span>    <span class="keyword">auto</span> span1_result = tracer.start_span(<span class="stringliteral">&quot;operation1&quot;</span>);</div>
+<div class="line"><span class="lineno">  208</span>    ASSERT_TRUE(span1_result.has_value());</div>
+<div class="line"><span class="lineno">  209</span>    <span class="keyword">auto</span> span1 = span1_result.value();</div>
+<div class="line"><span class="lineno">  210</span>    </div>
+<div class="line"><span class="lineno">  211</span>    <span class="keyword">auto</span> span2_result = tracer.start_child_span(*span1, <span class="stringliteral">&quot;operation2&quot;</span>);</div>
+<div class="line"><span class="lineno">  212</span>    ASSERT_TRUE(span2_result.has_value());</div>
+<div class="line"><span class="lineno">  213</span>    <span class="keyword">auto</span> span2 = span2_result.value();</div>
+<div class="line"><span class="lineno">  214</span>    </div>
+<div class="line"><span class="lineno">  215</span>    <span class="keyword">auto</span> span3_result = tracer.start_child_span(*span2, <span class="stringliteral">&quot;operation3&quot;</span>);</div>
+<div class="line"><span class="lineno">  216</span>    ASSERT_TRUE(span3_result.has_value());</div>
+<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> span3 = span3_result.value();</div>
+<div class="line"><span class="lineno">  218</span>    </div>
+<div class="line"><span class="lineno">  219</span>    <span class="comment">// Finish all spans</span></div>
+<div class="line"><span class="lineno">  220</span>    tracer.finish_span(span1);</div>
+<div class="line"><span class="lineno">  221</span>    tracer.finish_span(span2);</div>
+<div class="line"><span class="lineno">  222</span>    tracer.finish_span(span3);</div>
+<div class="line"><span class="lineno">  223</span>    </div>
+<div class="line"><span class="lineno">  224</span>    <span class="comment">// Get all spans for the trace</span></div>
+<div class="line"><span class="lineno">  225</span>    <span class="keyword">auto</span> trace_result = tracer.get_trace(span1-&gt;trace_id);</div>
+<div class="line"><span class="lineno">  226</span>    ASSERT_TRUE(trace_result.has_value());</div>
+<div class="line"><span class="lineno">  227</span>    <span class="keyword">auto</span> trace = trace_result.value();</div>
+<div class="line"><span class="lineno">  228</span>    </div>
+<div class="line"><span class="lineno">  229</span>    EXPECT_EQ(trace.size(), 3);</div>
+<div class="line"><span class="lineno">  230</span>    </div>
+<div class="line"><span class="lineno">  231</span>    <span class="comment">// All spans should have the same trace ID</span></div>
+<div class="line"><span class="lineno">  232</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; span : trace) {</div>
+<div class="line"><span class="lineno">  233</span>        EXPECT_EQ(span.trace_id, span1-&gt;trace_id);</div>
+<div class="line"><span class="lineno">  234</span>        EXPECT_TRUE(span.is_finished());</div>
+<div class="line"><span class="lineno">  235</span>    }</div>
+<div class="line"><span class="lineno">  236</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -581,31 +578,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  120</span>                                                     {</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  122</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  123</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">  124</span>    </div>
-<div class="line"><span class="lineno">  125</span>    span-&gt;baggage[<span class="stringliteral">&quot;test_key&quot;</span>] = <span class="stringliteral">&quot;test_value&quot;</span>;</div>
-<div class="line"><span class="lineno">  126</span>    </div>
-<div class="line"><span class="lineno">  127</span>    <span class="comment">// Inject into carrier (simulating HTTP headers)</span></div>
-<div class="line"><span class="lineno">  128</span>    std::unordered_map&lt;std::string, std::string&gt; headers;</div>
-<div class="line"><span class="lineno">  129</span>    <span class="keyword">auto</span> context = tracer.extract_context(*span);</div>
-<div class="line"><span class="lineno">  130</span>    tracer.inject_context(context, headers);</div>
-<div class="line"><span class="lineno">  131</span>    </div>
-<div class="line"><span class="lineno">  132</span>    EXPECT_TRUE(headers.contains(<span class="stringliteral">&quot;traceparent&quot;</span>));</div>
-<div class="line"><span class="lineno">  133</span>    EXPECT_TRUE(headers.contains(<span class="stringliteral">&quot;baggage-test_key&quot;</span>));</div>
-<div class="line"><span class="lineno">  134</span>    </div>
-<div class="line"><span class="lineno">  135</span>    <span class="comment">// Extract from carrier</span></div>
-<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> extracted_result = tracer.extract_context_from_carrier(headers);</div>
-<div class="line"><span class="lineno">  137</span>    ASSERT_TRUE(extracted_result.has_value());</div>
-<div class="line"><span class="lineno">  138</span>    <span class="keyword">auto</span> extracted = extracted_result.value();</div>
-<div class="line"><span class="lineno">  139</span>    </div>
-<div class="line"><span class="lineno">  140</span>    EXPECT_EQ(extracted.trace_id, span-&gt;trace_id);</div>
-<div class="line"><span class="lineno">  141</span>    EXPECT_EQ(extracted.span_id, span-&gt;span_id);</div>
-<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(extracted.baggage[<span class="stringliteral">&quot;test_key&quot;</span>], <span class="stringliteral">&quot;test_value&quot;</span>);</div>
-<div class="line"><span class="lineno">  143</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00121">121</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>                                                     {</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  123</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  124</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">  125</span>    </div>
+<div class="line"><span class="lineno">  126</span>    span-&gt;baggage[<span class="stringliteral">&quot;test_key&quot;</span>] = <span class="stringliteral">&quot;test_value&quot;</span>;</div>
+<div class="line"><span class="lineno">  127</span>    </div>
+<div class="line"><span class="lineno">  128</span>    <span class="comment">// Inject into carrier (simulating HTTP headers)</span></div>
+<div class="line"><span class="lineno">  129</span>    std::unordered_map&lt;std::string, std::string&gt; headers;</div>
+<div class="line"><span class="lineno">  130</span>    <span class="keyword">auto</span> context = tracer.extract_context(*span);</div>
+<div class="line"><span class="lineno">  131</span>    tracer.inject_context(context, headers);</div>
+<div class="line"><span class="lineno">  132</span>    </div>
+<div class="line"><span class="lineno">  133</span>    EXPECT_TRUE(headers.contains(<span class="stringliteral">&quot;traceparent&quot;</span>));</div>
+<div class="line"><span class="lineno">  134</span>    EXPECT_TRUE(headers.contains(<span class="stringliteral">&quot;baggage-test_key&quot;</span>));</div>
+<div class="line"><span class="lineno">  135</span>    </div>
+<div class="line"><span class="lineno">  136</span>    <span class="comment">// Extract from carrier</span></div>
+<div class="line"><span class="lineno">  137</span>    <span class="keyword">auto</span> extracted_result = tracer.extract_context_from_carrier(headers);</div>
+<div class="line"><span class="lineno">  138</span>    ASSERT_TRUE(extracted_result.has_value());</div>
+<div class="line"><span class="lineno">  139</span>    <span class="keyword">auto</span> extracted = extracted_result.value();</div>
+<div class="line"><span class="lineno">  140</span>    </div>
+<div class="line"><span class="lineno">  141</span>    EXPECT_EQ(extracted.trace_id, span-&gt;trace_id);</div>
+<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(extracted.span_id, span-&gt;span_id);</div>
+<div class="line"><span class="lineno">  143</span>    EXPECT_EQ(extracted.baggage[<span class="stringliteral">&quot;test_key&quot;</span>], <span class="stringliteral">&quot;test_value&quot;</span>);</div>
+<div class="line"><span class="lineno">  144</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -635,22 +632,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  189</span>                                           {</div>
-<div class="line"><span class="lineno">  190</span>    {</div>
-<div class="line"><span class="lineno">  191</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;scoped_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  192</span>        ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  193</span>        scoped_span scoped(span_result.value(), &amp;tracer);</div>
-<div class="line"><span class="lineno">  194</span>        </div>
-<div class="line"><span class="lineno">  195</span>        EXPECT_EQ(tracer.get_current_span(), span_result.value());</div>
-<div class="line"><span class="lineno">  196</span>        EXPECT_FALSE(scoped-&gt;is_finished());</div>
-<div class="line"><span class="lineno">  197</span>        </div>
-<div class="line"><span class="lineno">  198</span>        <span class="comment">// Span should be accessible via scoped object</span></div>
-<div class="line"><span class="lineno">  199</span>        scoped-&gt;tags[<span class="stringliteral">&quot;custom_tag&quot;</span>] = <span class="stringliteral">&quot;custom_value&quot;</span>;</div>
-<div class="line"><span class="lineno">  200</span>    }</div>
-<div class="line"><span class="lineno">  201</span>    <span class="comment">// Span should be finished after leaving scope</span></div>
-<div class="line"><span class="lineno">  202</span>    <span class="comment">// Note: We can&#39;t directly check as the span is finished and stored</span></div>
-<div class="line"><span class="lineno">  203</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00190">190</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  190</span>                                           {</div>
+<div class="line"><span class="lineno">  191</span>    {</div>
+<div class="line"><span class="lineno">  192</span>        <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;scoped_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  193</span>        ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  194</span>        scoped_span scoped(span_result.value(), &amp;tracer);</div>
+<div class="line"><span class="lineno">  195</span>        </div>
+<div class="line"><span class="lineno">  196</span>        EXPECT_EQ(tracer.get_current_span(), span_result.value());</div>
+<div class="line"><span class="lineno">  197</span>        EXPECT_FALSE(scoped-&gt;is_finished());</div>
+<div class="line"><span class="lineno">  198</span>        </div>
+<div class="line"><span class="lineno">  199</span>        <span class="comment">// Span should be accessible via scoped object</span></div>
+<div class="line"><span class="lineno">  200</span>        scoped-&gt;tags[<span class="stringliteral">&quot;custom_tag&quot;</span>] = <span class="stringliteral">&quot;custom_value&quot;</span>;</div>
+<div class="line"><span class="lineno">  201</span>    }</div>
+<div class="line"><span class="lineno">  202</span>    <span class="comment">// Span should be finished after leaving scope</span></div>
+<div class="line"><span class="lineno">  203</span>    <span class="comment">// Note: We can&#39;t directly check as the span is finished and stored</span></div>
+<div class="line"><span class="lineno">  204</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -680,23 +677,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00256">256</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  256</span>                                           {</div>
-<div class="line"><span class="lineno">  257</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;status_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  258</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">  260</span>    </div>
-<div class="line"><span class="lineno">  261</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::unset);</div>
-<div class="line"><span class="lineno">  262</span>    </div>
-<div class="line"><span class="lineno">  263</span>    <span class="comment">// Set error status</span></div>
-<div class="line"><span class="lineno">  264</span>    span-&gt;status = trace_span::status_code::error;</div>
-<div class="line"><span class="lineno">  265</span>    span-&gt;status_message = <span class="stringliteral">&quot;Operation failed due to timeout&quot;</span>;</div>
-<div class="line"><span class="lineno">  266</span>    </div>
-<div class="line"><span class="lineno">  267</span>    tracer.finish_span(span);</div>
-<div class="line"><span class="lineno">  268</span>    </div>
-<div class="line"><span class="lineno">  269</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::error);</div>
-<div class="line"><span class="lineno">  270</span>    EXPECT_EQ(span-&gt;status_message, <span class="stringliteral">&quot;Operation failed due to timeout&quot;</span>);</div>
-<div class="line"><span class="lineno">  271</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00257">257</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  257</span>                                           {</div>
+<div class="line"><span class="lineno">  258</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;status_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  259</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  260</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">  261</span>    </div>
+<div class="line"><span class="lineno">  262</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::unset);</div>
+<div class="line"><span class="lineno">  263</span>    </div>
+<div class="line"><span class="lineno">  264</span>    <span class="comment">// Set error status</span></div>
+<div class="line"><span class="lineno">  265</span>    span-&gt;status = trace_span::status_code::error;</div>
+<div class="line"><span class="lineno">  266</span>    span-&gt;status_message = <span class="stringliteral">&quot;Operation failed due to timeout&quot;</span>;</div>
+<div class="line"><span class="lineno">  267</span>    </div>
+<div class="line"><span class="lineno">  268</span>    tracer.finish_span(span);</div>
+<div class="line"><span class="lineno">  269</span>    </div>
+<div class="line"><span class="lineno">  270</span>    EXPECT_EQ(span-&gt;status, trace_span::status_code::error);</div>
+<div class="line"><span class="lineno">  271</span>    EXPECT_EQ(span-&gt;status_message, <span class="stringliteral">&quot;Operation failed due to timeout&quot;</span>);</div>
+<div class="line"><span class="lineno">  272</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -726,25 +723,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00237">237</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  237</span>                                         {</div>
-<div class="line"><span class="lineno">  238</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;tagged_operation&quot;</span>, <span class="stringliteral">&quot;my_service&quot;</span>);</div>
-<div class="line"><span class="lineno">  239</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  240</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">  241</span>    </div>
-<div class="line"><span class="lineno">  242</span>    <span class="comment">// Check default tags</span></div>
-<div class="line"><span class="lineno">  243</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;span.kind&quot;</span>], <span class="stringliteral">&quot;internal&quot;</span>);</div>
-<div class="line"><span class="lineno">  244</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;service.name&quot;</span>], <span class="stringliteral">&quot;my_service&quot;</span>);</div>
-<div class="line"><span class="lineno">  245</span>    </div>
-<div class="line"><span class="lineno">  246</span>    <span class="comment">// Add custom tags</span></div>
-<div class="line"><span class="lineno">  247</span>    span-&gt;tags[<span class="stringliteral">&quot;http.method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
-<div class="line"><span class="lineno">  248</span>    span-&gt;tags[<span class="stringliteral">&quot;http.status_code&quot;</span>] = <span class="stringliteral">&quot;200&quot;</span>;</div>
-<div class="line"><span class="lineno">  249</span>    span-&gt;tags[<span class="stringliteral">&quot;user.id&quot;</span>] = <span class="stringliteral">&quot;user123&quot;</span>;</div>
-<div class="line"><span class="lineno">  250</span>    </div>
-<div class="line"><span class="lineno">  251</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;http.method&quot;</span>], <span class="stringliteral">&quot;GET&quot;</span>);</div>
-<div class="line"><span class="lineno">  252</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;http.status_code&quot;</span>], <span class="stringliteral">&quot;200&quot;</span>);</div>
-<div class="line"><span class="lineno">  253</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;user.id&quot;</span>], <span class="stringliteral">&quot;user123&quot;</span>);</div>
-<div class="line"><span class="lineno">  254</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00238">238</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  238</span>                                         {</div>
+<div class="line"><span class="lineno">  239</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;tagged_operation&quot;</span>, <span class="stringliteral">&quot;my_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  240</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  241</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">  242</span>    </div>
+<div class="line"><span class="lineno">  243</span>    <span class="comment">// Check default tags</span></div>
+<div class="line"><span class="lineno">  244</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;span.kind&quot;</span>], <span class="stringliteral">&quot;internal&quot;</span>);</div>
+<div class="line"><span class="lineno">  245</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;service.name&quot;</span>], <span class="stringliteral">&quot;my_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  246</span>    </div>
+<div class="line"><span class="lineno">  247</span>    <span class="comment">// Add custom tags</span></div>
+<div class="line"><span class="lineno">  248</span>    span-&gt;tags[<span class="stringliteral">&quot;http.method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><span class="lineno">  249</span>    span-&gt;tags[<span class="stringliteral">&quot;http.status_code&quot;</span>] = <span class="stringliteral">&quot;200&quot;</span>;</div>
+<div class="line"><span class="lineno">  250</span>    span-&gt;tags[<span class="stringliteral">&quot;user.id&quot;</span>] = <span class="stringliteral">&quot;user123&quot;</span>;</div>
+<div class="line"><span class="lineno">  251</span>    </div>
+<div class="line"><span class="lineno">  252</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;http.method&quot;</span>], <span class="stringliteral">&quot;GET&quot;</span>);</div>
+<div class="line"><span class="lineno">  253</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;http.status_code&quot;</span>], <span class="stringliteral">&quot;200&quot;</span>);</div>
+<div class="line"><span class="lineno">  254</span>    EXPECT_EQ(span-&gt;tags[<span class="stringliteral">&quot;user.id&quot;</span>], <span class="stringliteral">&quot;user123&quot;</span>);</div>
+<div class="line"><span class="lineno">  255</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -774,23 +771,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  145</span>                                                     {</div>
-<div class="line"><span class="lineno">  146</span>    <span class="comment">// Simulate incoming request with trace context</span></div>
-<div class="line"><span class="lineno">  147</span>    trace_context incoming_ctx;</div>
-<div class="line"><span class="lineno">  148</span>    incoming_ctx.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
-<div class="line"><span class="lineno">  149</span>    incoming_ctx.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
-<div class="line"><span class="lineno">  150</span>    incoming_ctx.baggage[<span class="stringliteral">&quot;user_id&quot;</span>] = <span class="stringliteral">&quot;67890&quot;</span>;</div>
-<div class="line"><span class="lineno">  151</span>    </div>
-<div class="line"><span class="lineno">  152</span>    <span class="keyword">auto</span> span_result = tracer.start_span_from_context(incoming_ctx, <span class="stringliteral">&quot;handle_request&quot;</span>);</div>
-<div class="line"><span class="lineno">  153</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">  154</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">  155</span>    </div>
-<div class="line"><span class="lineno">  156</span>    EXPECT_EQ(span-&gt;trace_id, incoming_ctx.trace_id);</div>
-<div class="line"><span class="lineno">  157</span>    EXPECT_NE(span-&gt;span_id, incoming_ctx.span_id);  <span class="comment">// New span ID</span></div>
-<div class="line"><span class="lineno">  158</span>    EXPECT_EQ(span-&gt;parent_span_id, incoming_ctx.span_id);</div>
-<div class="line"><span class="lineno">  159</span>    EXPECT_EQ(span-&gt;baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;67890&quot;</span>);</div>
-<div class="line"><span class="lineno">  160</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00146">146</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  146</span>                                                     {</div>
+<div class="line"><span class="lineno">  147</span>    <span class="comment">// Simulate incoming request with trace context</span></div>
+<div class="line"><span class="lineno">  148</span>    trace_context incoming_ctx;</div>
+<div class="line"><span class="lineno">  149</span>    incoming_ctx.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
+<div class="line"><span class="lineno">  150</span>    incoming_ctx.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
+<div class="line"><span class="lineno">  151</span>    incoming_ctx.baggage[<span class="stringliteral">&quot;user_id&quot;</span>] = <span class="stringliteral">&quot;67890&quot;</span>;</div>
+<div class="line"><span class="lineno">  152</span>    </div>
+<div class="line"><span class="lineno">  153</span>    <span class="keyword">auto</span> span_result = tracer.start_span_from_context(incoming_ctx, <span class="stringliteral">&quot;handle_request&quot;</span>);</div>
+<div class="line"><span class="lineno">  154</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">  155</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">  156</span>    </div>
+<div class="line"><span class="lineno">  157</span>    EXPECT_EQ(span-&gt;trace_id, incoming_ctx.trace_id);</div>
+<div class="line"><span class="lineno">  158</span>    EXPECT_NE(span-&gt;span_id, incoming_ctx.span_id);  <span class="comment">// New span ID</span></div>
+<div class="line"><span class="lineno">  159</span>    EXPECT_EQ(span-&gt;parent_span_id, incoming_ctx.span_id);</div>
+<div class="line"><span class="lineno">  160</span>    EXPECT_EQ(span-&gt;baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;67890&quot;</span>);</div>
+<div class="line"><span class="lineno">  161</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -820,24 +817,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00084">84</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   84</span>                                                        {</div>
-<div class="line"><span class="lineno">   85</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">   86</span>    ASSERT_TRUE(span_result.has_value());</div>
-<div class="line"><span class="lineno">   87</span>    <span class="keyword">auto</span> span = span_result.value();</div>
-<div class="line"><span class="lineno">   88</span>    </div>
-<div class="line"><span class="lineno">   89</span>    <span class="comment">// Add baggage</span></div>
-<div class="line"><span class="lineno">   90</span>    span-&gt;baggage[<span class="stringliteral">&quot;user_id&quot;</span>] = <span class="stringliteral">&quot;12345&quot;</span>;</div>
-<div class="line"><span class="lineno">   91</span>    span-&gt;baggage[<span class="stringliteral">&quot;request_type&quot;</span>] = <span class="stringliteral">&quot;api&quot;</span>;</div>
-<div class="line"><span class="lineno">   92</span>    </div>
-<div class="line"><span class="lineno">   93</span>    <span class="comment">// Extract context - explicitly use const trace_span&amp;</span></div>
-<div class="line"><span class="lineno">   94</span>    <span class="keyword">const</span> trace_span&amp; span_ref = *span;</div>
-<div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> context = tracer.extract_context(span_ref);</div>
-<div class="line"><span class="lineno">   96</span>    EXPECT_EQ(context.trace_id, span-&gt;trace_id);</div>
-<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(context.span_id, span-&gt;span_id);</div>
-<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(context.baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;12345&quot;</span>);</div>
-<div class="line"><span class="lineno">   99</span>    EXPECT_EQ(context.baggage[<span class="stringliteral">&quot;request_type&quot;</span>], <span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><span class="lineno">  100</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00085">85</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   85</span>                                                        {</div>
+<div class="line"><span class="lineno">   86</span>    <span class="keyword">auto</span> span_result = tracer.start_span(<span class="stringliteral">&quot;test_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">   87</span>    ASSERT_TRUE(span_result.has_value());</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keyword">auto</span> span = span_result.value();</div>
+<div class="line"><span class="lineno">   89</span>    </div>
+<div class="line"><span class="lineno">   90</span>    <span class="comment">// Add baggage</span></div>
+<div class="line"><span class="lineno">   91</span>    span-&gt;baggage[<span class="stringliteral">&quot;user_id&quot;</span>] = <span class="stringliteral">&quot;12345&quot;</span>;</div>
+<div class="line"><span class="lineno">   92</span>    span-&gt;baggage[<span class="stringliteral">&quot;request_type&quot;</span>] = <span class="stringliteral">&quot;api&quot;</span>;</div>
+<div class="line"><span class="lineno">   93</span>    </div>
+<div class="line"><span class="lineno">   94</span>    <span class="comment">// Extract context - explicitly use const trace_span&amp;</span></div>
+<div class="line"><span class="lineno">   95</span>    <span class="keyword">const</span> trace_span&amp; span_ref = *span;</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keyword">auto</span> context = tracer.extract_context(span_ref);</div>
+<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(context.trace_id, span-&gt;trace_id);</div>
+<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(context.span_id, span-&gt;span_id);</div>
+<div class="line"><span class="lineno">   99</span>    EXPECT_EQ(context.baggage[<span class="stringliteral">&quot;user_id&quot;</span>], <span class="stringliteral">&quot;12345&quot;</span>);</div>
+<div class="line"><span class="lineno">  100</span>    EXPECT_EQ(context.baggage[<span class="stringliteral">&quot;request_type&quot;</span>], <span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><span class="lineno">  101</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -867,27 +864,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00328">328</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  328</span>                                            {</div>
-<div class="line"><span class="lineno">  329</span>    {</div>
-<div class="line"><span class="lineno">  330</span>        TRACE_SPAN(<span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  331</span>        </div>
-<div class="line"><span class="lineno">  332</span>        <span class="comment">// The span should be active</span></div>
-<div class="line"><span class="lineno">  333</span>        <span class="keyword">auto</span> current = global_tracer().get_current_span();</div>
-<div class="line"><span class="lineno">  334</span>        ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  335</span>        EXPECT_EQ(current-&gt;operation_name, <span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  336</span>        </div>
-<div class="line"><span class="lineno">  337</span>        <span class="comment">// Nested span</span></div>
-<div class="line"><span class="lineno">  338</span>        {</div>
-<div class="line"><span class="lineno">  339</span>            TRACE_CHILD_SPAN(*current, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  340</span>            <span class="keyword">auto</span> nested = global_tracer().get_current_span();</div>
-<div class="line"><span class="lineno">  341</span>            ASSERT_NE(nested, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  342</span>            EXPECT_EQ(nested-&gt;operation_name, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
-<div class="line"><span class="lineno">  343</span>            EXPECT_EQ(nested-&gt;parent_span_id, current-&gt;span_id);</div>
-<div class="line"><span class="lineno">  344</span>        }</div>
-<div class="line"><span class="lineno">  345</span>    }</div>
-<div class="line"><span class="lineno">  346</span>    <span class="comment">// Spans should be finished after leaving scope</span></div>
-<div class="line"><span class="lineno">  347</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00329">329</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  329</span>                                            {</div>
+<div class="line"><span class="lineno">  330</span>    {</div>
+<div class="line"><span class="lineno">  331</span>        TRACE_SPAN(<span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  332</span>        </div>
+<div class="line"><span class="lineno">  333</span>        <span class="comment">// The span should be active</span></div>
+<div class="line"><span class="lineno">  334</span>        <span class="keyword">auto</span> current = global_tracer().get_current_span();</div>
+<div class="line"><span class="lineno">  335</span>        ASSERT_NE(current, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  336</span>        EXPECT_EQ(current-&gt;operation_name, <span class="stringliteral">&quot;macro_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  337</span>        </div>
+<div class="line"><span class="lineno">  338</span>        <span class="comment">// Nested span</span></div>
+<div class="line"><span class="lineno">  339</span>        {</div>
+<div class="line"><span class="lineno">  340</span>            TRACE_CHILD_SPAN(*current, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  341</span>            <span class="keyword">auto</span> nested = global_tracer().get_current_span();</div>
+<div class="line"><span class="lineno">  342</span>            ASSERT_NE(nested, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  343</span>            EXPECT_EQ(nested-&gt;operation_name, <span class="stringliteral">&quot;nested_operation&quot;</span>);</div>
+<div class="line"><span class="lineno">  344</span>            EXPECT_EQ(nested-&gt;parent_span_id, current-&gt;span_id);</div>
+<div class="line"><span class="lineno">  345</span>        }</div>
+<div class="line"><span class="lineno">  346</span>    }</div>
+<div class="line"><span class="lineno">  347</span>    <span class="comment">// Spans should be finished after leaving scope</span></div>
+<div class="line"><span class="lineno">  348</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -917,31 +914,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00102">102</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  102</span>                                                      {</div>
-<div class="line"><span class="lineno">  103</span>    trace_context ctx;</div>
-<div class="line"><span class="lineno">  104</span>    ctx.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
-<div class="line"><span class="lineno">  105</span>    ctx.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
-<div class="line"><span class="lineno">  106</span>    ctx.trace_flags = <span class="stringliteral">&quot;01&quot;</span>;</div>
-<div class="line"><span class="lineno">  107</span>    </div>
-<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> header = ctx.to_w3c_traceparent();</div>
-<div class="line"><span class="lineno">  109</span>    EXPECT_EQ(header, <span class="stringliteral">&quot;00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01&quot;</span>);</div>
-<div class="line"><span class="lineno">  110</span>    </div>
-<div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> parsed_result = trace_context::from_w3c_traceparent(header);</div>
-<div class="line"><span class="lineno">  112</span>    ASSERT_TRUE(parsed_result.has_value());</div>
-<div class="line"><span class="lineno">  113</span>    <span class="keyword">auto</span> parsed = parsed_result.value();</div>
-<div class="line"><span class="lineno">  114</span>    </div>
-<div class="line"><span class="lineno">  115</span>    EXPECT_EQ(parsed.trace_id, ctx.trace_id);</div>
-<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(parsed.span_id, ctx.span_id);</div>
-<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(parsed.trace_flags, ctx.trace_flags);</div>
-<div class="line"><span class="lineno">  118</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html#l00103">103</a> of file <a class="el" href="../../d9/d1e/test__distributed__tracing_8cpp_source.html">test_distributed_tracing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  103</span>                                                      {</div>
+<div class="line"><span class="lineno">  104</span>    trace_context ctx;</div>
+<div class="line"><span class="lineno">  105</span>    ctx.trace_id = <span class="stringliteral">&quot;0af7651916cd43dd8448eb211c80319c&quot;</span>;</div>
+<div class="line"><span class="lineno">  106</span>    ctx.span_id = <span class="stringliteral">&quot;b7ad6b7169203331&quot;</span>;</div>
+<div class="line"><span class="lineno">  107</span>    ctx.trace_flags = <span class="stringliteral">&quot;01&quot;</span>;</div>
+<div class="line"><span class="lineno">  108</span>    </div>
+<div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> header = ctx.to_w3c_traceparent();</div>
+<div class="line"><span class="lineno">  110</span>    EXPECT_EQ(header, <span class="stringliteral">&quot;00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01&quot;</span>);</div>
+<div class="line"><span class="lineno">  111</span>    </div>
+<div class="line"><span class="lineno">  112</span>    <span class="keyword">auto</span> parsed_result = trace_context::from_w3c_traceparent(header);</div>
+<div class="line"><span class="lineno">  113</span>    ASSERT_TRUE(parsed_result.has_value());</div>
+<div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> parsed = parsed_result.value();</div>
+<div class="line"><span class="lineno">  115</span>    </div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(parsed.trace_id, ctx.trace_id);</div>
+<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(parsed.span_id, ctx.span_id);</div>
+<div class="line"><span class="lineno">  118</span>    EXPECT_EQ(parsed.trace_flags, ctx.trace_flags);</div>
+<div class="line"><span class="lineno">  119</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 14:45:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

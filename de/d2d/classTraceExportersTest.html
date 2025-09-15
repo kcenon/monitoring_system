@@ -115,7 +115,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00017">17</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a80d31582763fe5daabdfa61cb08e5b6f" name="a80d31582763fe5daabdfa61cb08e5b6f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80d31582763fe5daabdfa61cb08e5b6f">&#9670;&#160;</a></span>create_test_spans()</h2>
@@ -140,39 +140,39 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00027">27</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   27</span>                                              {</div>
-<div class="line"><span class="lineno">   28</span>        std::vector&lt;trace_span&gt; spans;</div>
-<div class="line"><span class="lineno">   29</span>        </div>
-<div class="line"><span class="lineno">   30</span>        <span class="comment">// Root span</span></div>
-<div class="line"><span class="lineno">   31</span>        trace_span root_span;</div>
-<div class="line"><span class="lineno">   32</span>        root_span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
-<div class="line"><span class="lineno">   33</span>        root_span.span_id = <span class="stringliteral">&quot;span001&quot;</span>;</div>
-<div class="line"><span class="lineno">   34</span>        root_span.operation_name = <span class="stringliteral">&quot;http_request&quot;</span>;</div>
-<div class="line"><span class="lineno">   35</span>        root_span.service_name = <span class="stringliteral">&quot;web_service&quot;</span>;</div>
-<div class="line"><span class="lineno">   36</span>        root_span.start_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   37</span>        root_span.end_time = root_span.start_time + std::chrono::milliseconds(100);</div>
-<div class="line"><span class="lineno">   38</span>        root_span.tags[<span class="stringliteral">&quot;http.method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
-<div class="line"><span class="lineno">   39</span>        root_span.tags[<span class="stringliteral">&quot;http.url&quot;</span>] = <span class="stringliteral">&quot;/api/users&quot;</span>;</div>
-<div class="line"><span class="lineno">   40</span>        root_span.tags[<span class="stringliteral">&quot;span.kind&quot;</span>] = <span class="stringliteral">&quot;server&quot;</span>;</div>
-<div class="line"><span class="lineno">   41</span>        spans.push_back(root_span);</div>
-<div class="line"><span class="lineno">   42</span>        </div>
-<div class="line"><span class="lineno">   43</span>        <span class="comment">// Child span</span></div>
-<div class="line"><span class="lineno">   44</span>        trace_span child_span;</div>
-<div class="line"><span class="lineno">   45</span>        child_span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
-<div class="line"><span class="lineno">   46</span>        child_span.span_id = <span class="stringliteral">&quot;span002&quot;</span>;</div>
-<div class="line"><span class="lineno">   47</span>        child_span.parent_span_id = <span class="stringliteral">&quot;span001&quot;</span>;</div>
-<div class="line"><span class="lineno">   48</span>        child_span.operation_name = <span class="stringliteral">&quot;database_query&quot;</span>;</div>
-<div class="line"><span class="lineno">   49</span>        child_span.service_name = <span class="stringliteral">&quot;db_service&quot;</span>;</div>
-<div class="line"><span class="lineno">   50</span>        child_span.start_time = root_span.start_time + std::chrono::milliseconds(10);</div>
-<div class="line"><span class="lineno">   51</span>        child_span.end_time = root_span.start_time + std::chrono::milliseconds(80);</div>
-<div class="line"><span class="lineno">   52</span>        child_span.tags[<span class="stringliteral">&quot;db.statement&quot;</span>] = <span class="stringliteral">&quot;SELECT * FROM users WHERE id = ?&quot;</span>;</div>
-<div class="line"><span class="lineno">   53</span>        child_span.tags[<span class="stringliteral">&quot;db.type&quot;</span>] = <span class="stringliteral">&quot;postgresql&quot;</span>;</div>
-<div class="line"><span class="lineno">   54</span>        child_span.tags[<span class="stringliteral">&quot;span.kind&quot;</span>] = <span class="stringliteral">&quot;client&quot;</span>;</div>
-<div class="line"><span class="lineno">   55</span>        spans.push_back(child_span);</div>
-<div class="line"><span class="lineno">   56</span>        </div>
-<div class="line"><span class="lineno">   57</span>        <span class="keywordflow">return</span> spans;</div>
-<div class="line"><span class="lineno">   58</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00028">28</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>                                              {</div>
+<div class="line"><span class="lineno">   29</span>        std::vector&lt;trace_span&gt; spans;</div>
+<div class="line"><span class="lineno">   30</span>        </div>
+<div class="line"><span class="lineno">   31</span>        <span class="comment">// Root span</span></div>
+<div class="line"><span class="lineno">   32</span>        trace_span root_span;</div>
+<div class="line"><span class="lineno">   33</span>        root_span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
+<div class="line"><span class="lineno">   34</span>        root_span.span_id = <span class="stringliteral">&quot;span001&quot;</span>;</div>
+<div class="line"><span class="lineno">   35</span>        root_span.operation_name = <span class="stringliteral">&quot;http_request&quot;</span>;</div>
+<div class="line"><span class="lineno">   36</span>        root_span.service_name = <span class="stringliteral">&quot;web_service&quot;</span>;</div>
+<div class="line"><span class="lineno">   37</span>        root_span.start_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   38</span>        root_span.end_time = root_span.start_time + std::chrono::milliseconds(100);</div>
+<div class="line"><span class="lineno">   39</span>        root_span.tags[<span class="stringliteral">&quot;http.method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><span class="lineno">   40</span>        root_span.tags[<span class="stringliteral">&quot;http.url&quot;</span>] = <span class="stringliteral">&quot;/api/users&quot;</span>;</div>
+<div class="line"><span class="lineno">   41</span>        root_span.tags[<span class="stringliteral">&quot;span.kind&quot;</span>] = <span class="stringliteral">&quot;server&quot;</span>;</div>
+<div class="line"><span class="lineno">   42</span>        spans.push_back(root_span);</div>
+<div class="line"><span class="lineno">   43</span>        </div>
+<div class="line"><span class="lineno">   44</span>        <span class="comment">// Child span</span></div>
+<div class="line"><span class="lineno">   45</span>        trace_span child_span;</div>
+<div class="line"><span class="lineno">   46</span>        child_span.trace_id = <span class="stringliteral">&quot;trace123&quot;</span>;</div>
+<div class="line"><span class="lineno">   47</span>        child_span.span_id = <span class="stringliteral">&quot;span002&quot;</span>;</div>
+<div class="line"><span class="lineno">   48</span>        child_span.parent_span_id = <span class="stringliteral">&quot;span001&quot;</span>;</div>
+<div class="line"><span class="lineno">   49</span>        child_span.operation_name = <span class="stringliteral">&quot;database_query&quot;</span>;</div>
+<div class="line"><span class="lineno">   50</span>        child_span.service_name = <span class="stringliteral">&quot;db_service&quot;</span>;</div>
+<div class="line"><span class="lineno">   51</span>        child_span.start_time = root_span.start_time + std::chrono::milliseconds(10);</div>
+<div class="line"><span class="lineno">   52</span>        child_span.end_time = root_span.start_time + std::chrono::milliseconds(80);</div>
+<div class="line"><span class="lineno">   53</span>        child_span.tags[<span class="stringliteral">&quot;db.statement&quot;</span>] = <span class="stringliteral">&quot;SELECT * FROM users WHERE id = ?&quot;</span>;</div>
+<div class="line"><span class="lineno">   54</span>        child_span.tags[<span class="stringliteral">&quot;db.type&quot;</span>] = <span class="stringliteral">&quot;postgresql&quot;</span>;</div>
+<div class="line"><span class="lineno">   55</span>        child_span.tags[<span class="stringliteral">&quot;span.kind&quot;</span>] = <span class="stringliteral">&quot;client&quot;</span>;</div>
+<div class="line"><span class="lineno">   56</span>        spans.push_back(child_span);</div>
+<div class="line"><span class="lineno">   57</span>        </div>
+<div class="line"><span class="lineno">   58</span>        <span class="keywordflow">return</span> spans;</div>
+<div class="line"><span class="lineno">   59</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -209,17 +209,17 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00019">19</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>                          {</div>
-<div class="line"><span class="lineno">   20</span>        <span class="comment">// Create test spans</span></div>
-<div class="line"><span class="lineno">   21</span>        <a class="code hl_variable" href="../../de/d2d/classTraceExportersTest.html#aacbf223d478e0c8d96ed19210288ca4e">test_spans_</a> = <a class="code hl_function" href="../../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f">create_test_spans</a>();</div>
-<div class="line"><span class="lineno">   22</span>        </div>
-<div class="line"><span class="lineno">   23</span>        <span class="comment">// Create OTEL resource</span></div>
-<div class="line"><span class="lineno">   24</span>        <a class="code hl_variable" href="../../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472">otel_resource_</a> = create_service_resource(<span class="stringliteral">&quot;test_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>, <span class="stringliteral">&quot;test_namespace&quot;</span>);</div>
-<div class="line"><span class="lineno">   25</span>    }</div>
-<div class="ttc" id="aclassTraceExportersTest_html_a62450234e4656949c98e42e3bcbb8472"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472">TraceExportersTest::otel_resource_</a></div><div class="ttdeci">otel_resource otel_resource_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00061">test_trace_exporters.cpp:61</a></div></div>
-<div class="ttc" id="aclassTraceExportersTest_html_a80d31582763fe5daabdfa61cb08e5b6f"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f">TraceExportersTest::create_test_spans</a></div><div class="ttdeci">std::vector&lt; trace_span &gt; create_test_spans()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00027">test_trace_exporters.cpp:27</a></div></div>
-<div class="ttc" id="aclassTraceExportersTest_html_aacbf223d478e0c8d96ed19210288ca4e"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#aacbf223d478e0c8d96ed19210288ca4e">TraceExportersTest::test_spans_</a></div><div class="ttdeci">std::vector&lt; trace_span &gt; test_spans_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00060">test_trace_exporters.cpp:60</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00020">20</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>                          {</div>
+<div class="line"><span class="lineno">   21</span>        <span class="comment">// Create test spans</span></div>
+<div class="line"><span class="lineno">   22</span>        <a class="code hl_variable" href="../../de/d2d/classTraceExportersTest.html#aacbf223d478e0c8d96ed19210288ca4e">test_spans_</a> = <a class="code hl_function" href="../../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f">create_test_spans</a>();</div>
+<div class="line"><span class="lineno">   23</span>        </div>
+<div class="line"><span class="lineno">   24</span>        <span class="comment">// Create OTEL resource</span></div>
+<div class="line"><span class="lineno">   25</span>        <a class="code hl_variable" href="../../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472">otel_resource_</a> = create_service_resource(<span class="stringliteral">&quot;test_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>, <span class="stringliteral">&quot;test_namespace&quot;</span>);</div>
+<div class="line"><span class="lineno">   26</span>    }</div>
+<div class="ttc" id="aclassTraceExportersTest_html_a62450234e4656949c98e42e3bcbb8472"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472">TraceExportersTest::otel_resource_</a></div><div class="ttdeci">otel_resource otel_resource_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00062">test_trace_exporters.cpp:62</a></div></div>
+<div class="ttc" id="aclassTraceExportersTest_html_a80d31582763fe5daabdfa61cb08e5b6f"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f">TraceExportersTest::create_test_spans</a></div><div class="ttdeci">std::vector&lt; trace_span &gt; create_test_spans()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00028">test_trace_exporters.cpp:28</a></div></div>
+<div class="ttc" id="aclassTraceExportersTest_html_aacbf223d478e0c8d96ed19210288ca4e"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#aacbf223d478e0c8d96ed19210288ca4e">TraceExportersTest::test_spans_</a></div><div class="ttdeci">std::vector&lt; trace_span &gt; test_spans_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00061">test_trace_exporters.cpp:61</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -254,7 +254,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00062">62</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
 
 </div>
 </div>
@@ -278,7 +278,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../dc/dbd/test__trace__exporters_8cpp_source.html">test_trace_exporters.cpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +288,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 14:45:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

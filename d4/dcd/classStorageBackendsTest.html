@@ -117,7 +117,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00016">16</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00017">17</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a882ac0a6ba810ff1ce1442e652596192" name="a882ac0a6ba810ff1ce1442e652596192"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a882ac0a6ba810ff1ce1442e652596192">&#9670;&#160;</a></span>create_test_snapshots()</h2>
@@ -142,39 +142,39 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00034">34</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   34</span>                                                        {</div>
-<div class="line"><span class="lineno">   35</span>        std::vector&lt;metrics_snapshot&gt; snapshots;</div>
-<div class="line"><span class="lineno">   36</span>        </div>
-<div class="line"><span class="lineno">   37</span>        <span class="comment">// Create first snapshot</span></div>
-<div class="line"><span class="lineno">   38</span>        metrics_snapshot snap1;</div>
-<div class="line"><span class="lineno">   39</span>        snap1.source_id = <span class="stringliteral">&quot;web_server&quot;</span>;</div>
-<div class="line"><span class="lineno">   40</span>        snap1.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   41</span>        snap1.add_metric(<span class="stringliteral">&quot;requests_per_second&quot;</span>, 150.0);</div>
-<div class="line"><span class="lineno">   42</span>        snap1.add_metric(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 45.2);</div>
-<div class="line"><span class="lineno">   43</span>        snap1.add_metric(<span class="stringliteral">&quot;error_rate&quot;</span>, 0.02);</div>
-<div class="line"><span class="lineno">   44</span>        snapshots.push_back(snap1);</div>
-<div class="line"><span class="lineno">   45</span>        </div>
-<div class="line"><span class="lineno">   46</span>        <span class="comment">// Create second snapshot</span></div>
-<div class="line"><span class="lineno">   47</span>        metrics_snapshot snap2;</div>
-<div class="line"><span class="lineno">   48</span>        snap2.source_id = <span class="stringliteral">&quot;database&quot;</span>;</div>
-<div class="line"><span class="lineno">   49</span>        snap2.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   50</span>        snap2.add_metric(<span class="stringliteral">&quot;connections&quot;</span>, 25.0);</div>
-<div class="line"><span class="lineno">   51</span>        snap2.add_metric(<span class="stringliteral">&quot;query_time_ms&quot;</span>, 12.8);</div>
-<div class="line"><span class="lineno">   52</span>        snap2.add_metric(<span class="stringliteral">&quot;cache_hit_rate&quot;</span>, 0.95);</div>
-<div class="line"><span class="lineno">   53</span>        snapshots.push_back(snap2);</div>
-<div class="line"><span class="lineno">   54</span>        </div>
-<div class="line"><span class="lineno">   55</span>        <span class="comment">// Create third snapshot</span></div>
-<div class="line"><span class="lineno">   56</span>        metrics_snapshot snap3;</div>
-<div class="line"><span class="lineno">   57</span>        snap3.source_id = <span class="stringliteral">&quot;cache_server&quot;</span>;</div>
-<div class="line"><span class="lineno">   58</span>        snap3.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   59</span>        snap3.add_metric(<span class="stringliteral">&quot;memory_usage_mb&quot;</span>, 512.0);</div>
-<div class="line"><span class="lineno">   60</span>        snap3.add_metric(<span class="stringliteral">&quot;hit_rate&quot;</span>, 0.88);</div>
-<div class="line"><span class="lineno">   61</span>        snap3.add_metric(<span class="stringliteral">&quot;evictions_per_sec&quot;</span>, 2.1);</div>
-<div class="line"><span class="lineno">   62</span>        snapshots.push_back(snap3);</div>
-<div class="line"><span class="lineno">   63</span>        </div>
-<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> snapshots;</div>
-<div class="line"><span class="lineno">   65</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00035">35</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>                                                        {</div>
+<div class="line"><span class="lineno">   36</span>        std::vector&lt;metrics_snapshot&gt; snapshots;</div>
+<div class="line"><span class="lineno">   37</span>        </div>
+<div class="line"><span class="lineno">   38</span>        <span class="comment">// Create first snapshot</span></div>
+<div class="line"><span class="lineno">   39</span>        metrics_snapshot snap1;</div>
+<div class="line"><span class="lineno">   40</span>        snap1.source_id = <span class="stringliteral">&quot;web_server&quot;</span>;</div>
+<div class="line"><span class="lineno">   41</span>        snap1.capture_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   42</span>        snap1.add_metric(<span class="stringliteral">&quot;requests_per_second&quot;</span>, 150.0);</div>
+<div class="line"><span class="lineno">   43</span>        snap1.add_metric(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 45.2);</div>
+<div class="line"><span class="lineno">   44</span>        snap1.add_metric(<span class="stringliteral">&quot;error_rate&quot;</span>, 0.02);</div>
+<div class="line"><span class="lineno">   45</span>        snapshots.push_back(snap1);</div>
+<div class="line"><span class="lineno">   46</span>        </div>
+<div class="line"><span class="lineno">   47</span>        <span class="comment">// Create second snapshot</span></div>
+<div class="line"><span class="lineno">   48</span>        metrics_snapshot snap2;</div>
+<div class="line"><span class="lineno">   49</span>        snap2.source_id = <span class="stringliteral">&quot;database&quot;</span>;</div>
+<div class="line"><span class="lineno">   50</span>        snap2.capture_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   51</span>        snap2.add_metric(<span class="stringliteral">&quot;connections&quot;</span>, 25.0);</div>
+<div class="line"><span class="lineno">   52</span>        snap2.add_metric(<span class="stringliteral">&quot;query_time_ms&quot;</span>, 12.8);</div>
+<div class="line"><span class="lineno">   53</span>        snap2.add_metric(<span class="stringliteral">&quot;cache_hit_rate&quot;</span>, 0.95);</div>
+<div class="line"><span class="lineno">   54</span>        snapshots.push_back(snap2);</div>
+<div class="line"><span class="lineno">   55</span>        </div>
+<div class="line"><span class="lineno">   56</span>        <span class="comment">// Create third snapshot</span></div>
+<div class="line"><span class="lineno">   57</span>        metrics_snapshot snap3;</div>
+<div class="line"><span class="lineno">   58</span>        snap3.source_id = <span class="stringliteral">&quot;cache_server&quot;</span>;</div>
+<div class="line"><span class="lineno">   59</span>        snap3.capture_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   60</span>        snap3.add_metric(<span class="stringliteral">&quot;memory_usage_mb&quot;</span>, 512.0);</div>
+<div class="line"><span class="lineno">   61</span>        snap3.add_metric(<span class="stringliteral">&quot;hit_rate&quot;</span>, 0.88);</div>
+<div class="line"><span class="lineno">   62</span>        snap3.add_metric(<span class="stringliteral">&quot;evictions_per_sec&quot;</span>, 2.1);</div>
+<div class="line"><span class="lineno">   63</span>        snapshots.push_back(snap3);</div>
+<div class="line"><span class="lineno">   64</span>        </div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">return</span> snapshots;</div>
+<div class="line"><span class="lineno">   66</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -211,18 +211,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>                          {</div>
-<div class="line"><span class="lineno">   19</span>        <span class="comment">// Create test snapshots</span></div>
-<div class="line"><span class="lineno">   20</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">test_snapshots_</a> = <a class="code hl_function" href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">create_test_snapshots</a>();</div>
-<div class="line"><span class="lineno">   21</span>        </div>
-<div class="line"><span class="lineno">   22</span>        <span class="comment">// Create test directories</span></div>
-<div class="line"><span class="lineno">   23</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a> = std::filesystem::temp_directory_path() / <span class="stringliteral">&quot;monitoring_test&quot;</span>;</div>
-<div class="line"><span class="lineno">   24</span>        std::filesystem::create_directories(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
-<div class="line"><span class="lineno">   25</span>    }</div>
-<div class="ttc" id="aclassStorageBackendsTest_html_a882ac0a6ba810ff1ce1442e652596192"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">StorageBackendsTest::create_test_snapshots</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; create_test_snapshots()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00034">test_storage_backends.cpp:34</a></div></div>
-<div class="ttc" id="aclassStorageBackendsTest_html_a9a658822aa30b1e817ad2120503a6a45"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">StorageBackendsTest::test_snapshots_</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; test_snapshots_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00067">test_storage_backends.cpp:67</a></div></div>
-<div class="ttc" id="aclassStorageBackendsTest_html_afb5240a59494c52f7c24830ceb0c059b"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">StorageBackendsTest::test_dir_</a></div><div class="ttdeci">std::filesystem::path test_dir_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00068">test_storage_backends.cpp:68</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00019">19</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>                          {</div>
+<div class="line"><span class="lineno">   20</span>        <span class="comment">// Create test snapshots</span></div>
+<div class="line"><span class="lineno">   21</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">test_snapshots_</a> = <a class="code hl_function" href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">create_test_snapshots</a>();</div>
+<div class="line"><span class="lineno">   22</span>        </div>
+<div class="line"><span class="lineno">   23</span>        <span class="comment">// Create test directories</span></div>
+<div class="line"><span class="lineno">   24</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a> = std::filesystem::temp_directory_path() / <span class="stringliteral">&quot;monitoring_test&quot;</span>;</div>
+<div class="line"><span class="lineno">   25</span>        std::filesystem::create_directories(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
+<div class="line"><span class="lineno">   26</span>    }</div>
+<div class="ttc" id="aclassStorageBackendsTest_html_a882ac0a6ba810ff1ce1442e652596192"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">StorageBackendsTest::create_test_snapshots</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; create_test_snapshots()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00035">test_storage_backends.cpp:35</a></div></div>
+<div class="ttc" id="aclassStorageBackendsTest_html_a9a658822aa30b1e817ad2120503a6a45"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">StorageBackendsTest::test_snapshots_</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; test_snapshots_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00068">test_storage_backends.cpp:68</a></div></div>
+<div class="ttc" id="aclassStorageBackendsTest_html_afb5240a59494c52f7c24830ceb0c059b"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">StorageBackendsTest::test_dir_</a></div><div class="ttdeci">std::filesystem::path test_dir_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00069">test_storage_backends.cpp:69</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -259,13 +259,13 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00027">27</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   27</span>                             {</div>
-<div class="line"><span class="lineno">   28</span>        <span class="comment">// Clean up test files</span></div>
-<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">if</span> (std::filesystem::exists(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>)) {</div>
-<div class="line"><span class="lineno">   30</span>            std::filesystem::remove_all(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
-<div class="line"><span class="lineno">   31</span>        }</div>
-<div class="line"><span class="lineno">   32</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00028">28</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>                             {</div>
+<div class="line"><span class="lineno">   29</span>        <span class="comment">// Clean up test files</span></div>
+<div class="line"><span class="lineno">   30</span>        <span class="keywordflow">if</span> (std::filesystem::exists(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>)) {</div>
+<div class="line"><span class="lineno">   31</span>            std::filesystem::remove_all(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
+<div class="line"><span class="lineno">   32</span>        }</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -290,7 +290,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
 
 </div>
 </div>
@@ -314,7 +314,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
 
 </div>
 </div>
@@ -324,7 +324,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 15 2025 13:32:31 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 15 2025 14:45:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
