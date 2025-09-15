@@ -9,7 +9,7 @@
 #include <vector>
 #include <random>
 #include <set>
-#include "../sources/monitoring/performance/performance_monitor.h"
+#include <kcenon/monitoring/core/performance_monitor.h>
 
 using namespace monitoring_system;
 

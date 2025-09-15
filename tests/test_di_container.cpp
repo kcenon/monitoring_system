@@ -11,9 +11,10 @@ All rights reserved.
  */
 
 #include <gtest/gtest.h>
-#include "../sources/monitoring/di/service_container_interface.h"
-#include "../sources/monitoring/di/lightweight_container.h"
-#include "../sources/monitoring/di/thread_system_container_adapter.h"
+// Note: DI container headers do not exist in include directory
+// #include <kcenon/monitoring/di/service_container_interface.h>
+// #include <kcenon/monitoring/di/lightweight_container.h>
+// #include <kcenon/monitoring/di/thread_system_container_adapter.h>
 #include <thread>
 #include <atomic>
 #include <stdexcept>
