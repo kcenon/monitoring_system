@@ -26,7 +26,6 @@
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
 #include "../interfaces/monitoring_interface.h"
-#include "../tracing/distributed_tracer.h"
 
 namespace monitoring_system {
 

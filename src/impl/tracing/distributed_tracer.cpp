@@ -3,7 +3,7 @@
  * @brief Implementation of distributed tracing functionality
  */
 
-#include <kcenon/monitoring/tracing/distributed_tracer.h>
+#include "distributed_tracer.h"
 #include <thread>
 #include <algorithm>
 #include <shared_mutex>
