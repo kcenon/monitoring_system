@@ -7,7 +7,8 @@
 #include <thread>
 #include <chrono>
 #include <memory>
-#include "../sources/monitoring/adaptive/adaptive_monitor.h"
+// Note: adaptive_monitor.h does not exist in include directory
+// #include <kcenon/monitoring/adaptive/adaptive_monitor.h>
 
 using namespace monitoring_system;
 

@@ -6,9 +6,10 @@ All rights reserved.
 *****************************************************************************/
 
 #include <gtest/gtest.h>
-#include "../sources/monitoring/export/trace_exporters.h"
-#include "../sources/monitoring/tracing/distributed_tracer.h"
-#include "../sources/monitoring/export/opentelemetry_adapter.h"
+#include <kcenon/monitoring/exporters/trace_exporters.h>
+// Note: distributed_tracer.h does not exist in include directory
+// #include <kcenon/monitoring/tracing/distributed_tracer.h>
+#include <kcenon/monitoring/exporters/opentelemetry_adapter.h>
 #include <thread>
 #include <chrono>
 

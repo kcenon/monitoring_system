@@ -92,7 +92,7 @@ public:
 private:
     void process_business_logic(std::shared_ptr<trace_span> parent_span) {
         // Create a child span for business logic
-        auto span_result = tracer_.start_child_span(*parent_span, "business_logic");
+        auto span_result = tracer_.start_child_span(parent_span, "business_logic");
         if (!span_result) return;
         
         auto span = span_result.value();
@@ -111,7 +111,7 @@ private:
     
     void query_database(std::shared_ptr<trace_span> parent_span) {
         // Create a child span for database query
-        auto span_result = tracer_.start_child_span(*parent_span, "database_query");
+        auto span_result = tracer_.start_child_span(parent_span, "database_query");
         if (!span_result) return;
         
         auto span = span_result.value();
@@ -128,7 +128,7 @@ private:
     
     void call_downstream_service(std::shared_ptr<trace_span> parent_span) {
         // Create a child span for downstream call
-        auto span_result = tracer_.start_child_span(*parent_span, "downstream_call");
+        auto span_result = tracer_.start_child_span(parent_span, "downstream_call");
         if (!span_result) return;
         
         auto span = span_result.value();
@@ -136,11 +136,11 @@ private:
         span->tags["span.kind"] = "client";
         
         // Extract context to propagate to downstream service
-        auto context = tracer_.extract_context(*span);
+        auto context = tracer_.get_context_from_span(span);
         
         // Prepare headers for downstream call
         std::map<std::string, std::string> headers;
-        tracer_.inject_context(context, headers);
+        tracer_.inject_context_into_carrier(context, headers);
         
         std::cout << "[" << service_name_ << "] Calling downstream service..." << std::endl;
         std::cout << "  Propagating trace: " << context.trace_id << std::endl;
@@ -195,7 +195,7 @@ void analyze_traces(distributed_tracer& tracer) {
     std::vector<std::shared_ptr<trace_span>> child_spans;
     
     for (int i = 0; i < 5; ++i) {
-        auto child_result = tracer.start_child_span(*root_span, 
+        auto child_result = tracer.start_child_span(root_span, 
             "sub_operation_" + std::to_string(i));
         
         if (child_result) {
@@ -216,7 +216,7 @@ void analyze_traces(distributed_tracer& tracer) {
     }
     
     // Simulate an error in one operation
-    auto error_span_result = tracer.start_child_span(*root_span, "failing_operation");
+    auto error_span_result = tracer.start_child_span(root_span, "failing_operation");
     if (error_span_result) {
         auto error_span = error_span_result.value();
         error_span->status = trace_span::status_code::error;
@@ -239,12 +239,12 @@ void analyze_traces(distributed_tracer& tracer) {
         
         // Calculate total duration
         if (!spans.empty()) {
-            auto min_time = spans[0].start_time;
-            auto max_time = spans[0].end_time;
+            auto min_time = spans[0]->start_time;
+            auto max_time = spans[0]->end_time;
             
             for (const auto& span : spans) {
-                if (span.start_time < min_time) min_time = span.start_time;
-                if (span.end_time > max_time) max_time = span.end_time;
+                if (span->start_time < min_time) min_time = span->start_time;
+                if (span->end_time > max_time) max_time = span->end_time;
             }
             
             auto total_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -257,10 +257,10 @@ void analyze_traces(distributed_tracer& tracer) {
         // Count errors
         int error_count = 0;
         for (const auto& span : spans) {
-            if (span.status == trace_span::status_code::error) {
+            if (span->status == trace_span::status_code::error) {
                 error_count++;
-                std::cout << "Error in span: " << span.operation_name 
-                         << " - " << span.status_message << std::endl;
+                std::cout << "Error in span: " << span->operation_name 
+                         << " - " << span->status_message << std::endl;
             }
         }
         
@@ -302,8 +302,8 @@ int main() {
         // Create child spans
         std::cout << "\nCreating child spans..." << std::endl;
         
-        auto child1_result = tracer.start_child_span(*root_span, "child_operation_1");
-        auto child2_result = tracer.start_child_span(*root_span, "child_operation_2");
+        auto child1_result = tracer.start_child_span(root_span, "child_operation_1");
+        auto child2_result = tracer.start_child_span(root_span, "child_operation_2");
         
         if (child1_result && child2_result) {
             auto child1 = child1_result.value();
@@ -336,16 +336,15 @@ int main() {
         // Part 4: Context propagation demonstration
         std::cout << "\n--- Part 4: Context Propagation ---" << std::endl;
         
-        auto demo_span_result = tracer.start_span("propagation_demo");
-        if (demo_span_result) {
-            auto demo_span = demo_span_result.value();
+        auto demo_span = tracer.start_span("propagation_demo");
+        if (demo_span) {
             
             // Extract context for propagation
-            auto context = tracer.extract_context(*demo_span);
+            auto context = tracer.get_context_from_span(demo_span);
             
             // Simulate HTTP headers
             std::map<std::string, std::string> http_headers;
-            tracer.inject_context(context, http_headers);
+            tracer.inject_context_into_carrier(context, http_headers);
             
             std::cout << "Context injected into headers:" << std::endl;
             for (const auto& [key, value] : http_headers) {
