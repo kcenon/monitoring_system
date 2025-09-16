@@ -18,6 +18,97 @@ All rights reserved.
 #include <thread>
 #include <atomic>
 #include <stdexcept>
+#include <memory>
+#include <string>
+#include <functional>
+
+// Add monitoring system types for testing
+namespace monitoring_system {
+    // Forward declarations for result types
+    template<typename T> class result;
+
+    template<typename T>
+    result<T> make_success(T&& value) {
+        return result<T>(std::forward<T>(value));
+    }
+
+    template<typename T>
+    class result {
+    private:
+        bool success_;
+        T value_;
+    public:
+        result(T value) : success_(true), value_(std::move(value)) {}
+        result() : success_(false) {}
+
+        operator bool() const { return success_; }
+        T& value() { return value_; }
+        const T& value() const { return value_; }
+    };
+
+    // Stub enums and types for testing
+    enum class service_lifetime {
+        transient,
+        singleton,
+        scoped
+    };
+
+    // Stub interface for testing
+    class service_container_interface {
+    public:
+        virtual ~service_container_interface() = default;
+
+        template<typename TInterface>
+        result<bool> register_factory(
+            std::function<std::shared_ptr<TInterface>()> factory,
+            service_lifetime lifetime) {
+            (void)factory; (void)lifetime; // Suppress warnings
+            return make_success(true); // Stub implementation
+        }
+
+        template<typename TInterface>
+        result<bool> register_factory(
+            std::function<std::shared_ptr<TInterface>()> factory,
+            service_lifetime lifetime,
+            const std::string& name) {
+            (void)factory; (void)lifetime; (void)name; // Suppress warnings
+            return make_success(true); // Stub implementation
+        }
+
+        template<typename TInterface>
+        result<bool> register_singleton(std::shared_ptr<TInterface> instance) {
+            (void)instance; // Suppress warnings
+            return make_success(true); // Stub implementation
+        }
+
+        template<typename TInterface>
+        bool is_registered() const {
+            return true; // Stub implementation
+        }
+
+        template<typename TInterface>
+        bool is_registered(const std::string& name) const {
+            (void)name; // Suppress warnings
+            return true; // Stub implementation
+        }
+
+        template<typename TInterface>
+        result<std::shared_ptr<TInterface>> resolve() const {
+            return make_success(std::shared_ptr<TInterface>()); // Stub implementation
+        }
+
+        template<typename TInterface>
+        result<std::shared_ptr<TInterface>> resolve(const std::string& name) const {
+            (void)name; // Suppress warnings
+            return make_success(std::shared_ptr<TInterface>()); // Stub implementation
+        }
+    };
+
+    // Stub function for creating lightweight container
+    inline std::unique_ptr<service_container_interface> create_lightweight_container() {
+        return std::make_unique<service_container_interface>();
+    }
+}
 
 using namespace monitoring_system;
 

@@ -239,12 +239,12 @@ void analyze_traces(distributed_tracer& tracer) {
         
         // Calculate total duration
         if (!spans.empty()) {
-            auto min_time = spans[0].start_time;
-            auto max_time = spans[0].end_time;
+            auto min_time = spans[0]->start_time;
+            auto max_time = spans[0]->end_time;
             
             for (const auto& span : spans) {
-                if (span.start_time < min_time) min_time = span.start_time;
-                if (span.end_time > max_time) max_time = span.end_time;
+                if (span->start_time < min_time) min_time = span->start_time;
+                if (span->end_time > max_time) max_time = span->end_time;
             }
             
             auto total_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -257,10 +257,10 @@ void analyze_traces(distributed_tracer& tracer) {
         // Count errors
         int error_count = 0;
         for (const auto& span : spans) {
-            if (span.status == trace_span::status_code::error) {
+            if (span->status == trace_span::status_code::error) {
                 error_count++;
-                std::cout << "Error in span: " << span.operation_name 
-                         << " - " << span.status_message << std::endl;
+                std::cout << "Error in span: " << span->operation_name 
+                         << " - " << span->status_message << std::endl;
             }
         }
         
@@ -336,9 +336,8 @@ int main() {
         // Part 4: Context propagation demonstration
         std::cout << "\n--- Part 4: Context Propagation ---" << std::endl;
         
-        auto demo_span_result = tracer.start_span("propagation_demo");
-        if (demo_span_result) {
-            auto demo_span = demo_span_result.value();
+        auto demo_span = tracer.start_span("propagation_demo");
+        if (demo_span) {
             
             // Extract context for propagation
             auto context = tracer.get_context_from_span(demo_span);

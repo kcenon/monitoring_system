@@ -43,6 +43,9 @@ struct storage_config {
     std::chrono::milliseconds flush_interval{std::chrono::milliseconds(5000)};
 };
 
+// Use monitoring_system result types
+#include "monitoring/core/result_types.h"
+
 /**
  * @brief Basic key-value storage interface - stub
  */
@@ -52,6 +55,7 @@ public:
     virtual bool store(const std::string& key, const std::string& value) = 0;
     virtual std::string retrieve(const std::string& key) = 0;
     virtual bool remove(const std::string& key) = 0;
+    virtual result<bool> flush() { return make_success(true); }
 };
 
 /**
@@ -74,6 +78,38 @@ public:
     }
 
 private:
+    std::unordered_map<std::string, std::string> data_;
+};
+
+/**
+ * @brief File storage backend - stub implementation
+ */
+class file_storage_backend : public kv_storage_backend {
+public:
+    file_storage_backend() = default;
+    explicit file_storage_backend(const storage_config& config) : config_(config) {}
+
+    bool store(const std::string& key, const std::string& value) override {
+        data_[key] = value;
+        return true;
+    }
+
+    std::string retrieve(const std::string& key) override {
+        auto it = data_.find(key);
+        return it != data_.end() ? it->second : "";
+    }
+
+    bool remove(const std::string& key) override {
+        return data_.erase(key) > 0;
+    }
+
+    result<bool> flush() override {
+        // Stub implementation - just return success
+        return make_success(true);
+    }
+
+private:
+    storage_config config_;
     std::unordered_map<std::string, std::string> data_;
 };
 

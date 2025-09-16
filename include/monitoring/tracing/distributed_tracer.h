@@ -179,6 +179,17 @@ public:
         std::vector<std::shared_ptr<trace_span>> spans;
         return result<std::vector<std::shared_ptr<trace_span>>>(spans);
     }
+
+    // Get current span (stub implementation)
+    std::shared_ptr<trace_span> get_current_span() {
+        // Return null in stub implementation
+        return nullptr;
+    }
 };
+
+// Global tracer accessor function
+inline distributed_tracer& global_tracer() {
+    return distributed_tracer::instance();
+}
 
 } // namespace monitoring_system
