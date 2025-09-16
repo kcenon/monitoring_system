@@ -326,10 +326,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  359</span>    aggregator.add_component(comp2);</div>
 <div class="line"><span class="lineno">  360</span>    </div>
 <div class="line"><span class="lineno">  361</span>    <span class="comment">// Collect all data</span></div>
-<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> result = aggregator.collect_all();</div>
-<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = aggregator.collect_all();</div>
+<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  364</span>    </div>
-<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> aggregated = result.value();</div>
+<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> aggregated = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
 <div class="line"><span class="lineno">  366</span>    EXPECT_EQ(aggregated.get_component_name(), <span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  367</span>    </div>
 <div class="line"><span class="lineno">  368</span>    <span class="comment">// Check that metrics are prefixed</span></div>
@@ -346,7 +346,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  379</span>    ASSERT_TRUE(component_count.has_value());</div>
 <div class="line"><span class="lineno">  380</span>    EXPECT_DOUBLE_EQ(component_count.value(), 2.0);</div>
 <div class="line"><span class="lineno">  381</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a39888f2b0fbe90a0bb503cd8dba9cae5" name="a39888f2b0fbe90a0bb503cd8dba9cae5"></a>
@@ -393,10 +405,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  399</span>    aggregator.add_component(comp2);</div>
 <div class="line"><span class="lineno">  400</span>    </div>
 <div class="line"><span class="lineno">  401</span>    <span class="comment">// Collect data</span></div>
-<div class="line"><span class="lineno">  402</span>    <span class="keyword">auto</span> result = aggregator.collect_all();</div>
-<div class="line"><span class="lineno">  403</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  402</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = aggregator.collect_all();</div>
+<div class="line"><span class="lineno">  403</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  404</span>    </div>
-<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> aggregated = result.value();</div>
+<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> aggregated = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
 <div class="line"><span class="lineno">  406</span>    </div>
 <div class="line"><span class="lineno">  407</span>    <span class="comment">// comp1 data should be present</span></div>
 <div class="line"><span class="lineno">  408</span>    <span class="keyword">auto</span> comp1_cpu = aggregated.get_metric(<span class="stringliteral">&quot;comp1.cpu_usage&quot;</span>);</div>
@@ -410,7 +422,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  416</span>    <span class="keyword">auto</span> comp2_error = aggregated.get_tag(<span class="stringliteral">&quot;comp2.error&quot;</span>);</div>
 <div class="line"><span class="lineno">  417</span>    EXPECT_FALSE(comp2_error.has_value());</div>
 <div class="line"><span class="lineno">  418</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ac57ab4be3e15aee2c3d48774595301c2" name="ac57ab4be3e15aee2c3d48774595301c2"></a>
@@ -455,10 +477,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  211</span>    component.set_memory_usage(2048.0);</div>
 <div class="line"><span class="lineno">  212</span>    </div>
 <div class="line"><span class="lineno">  213</span>    <span class="comment">// Get monitoring data</span></div>
-<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  216</span>    </div>
-<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> data = result.value();</div>
+<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> data = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
 <div class="line"><span class="lineno">  218</span>    EXPECT_EQ(data.get_component_name(), <span class="stringliteral">&quot;test_comp_1&quot;</span>);</div>
 <div class="line"><span class="lineno">  219</span>    </div>
 <div class="line"><span class="lineno">  220</span>    <span class="comment">// Verify metrics</span></div>
@@ -489,15 +511,19 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,109,75,134"/>
+<area shape="rect" title=" " alt="" coords="5,141,75,166"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="53,106,83,80,121,55,136,48,139,53,124,60,86,85,56,110"/>
+<area shape="poly" title=" " alt="" coords="47,139,76,98,97,75,121,55,131,49,134,54,124,60,101,79,80,101,51,142"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,69,336,109"/>
-<area shape="poly" title=" " alt="" coords="74,113,109,107,110,112,75,118"/>
+<area shape="poly" title=" " alt="" coords="71,138,122,119,145,111,147,116,124,124,73,143"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a595ca930d54f9767e3607de774509c87" title=" " alt="" coords="123,133,336,173"/>
-<area shape="poly" title=" " alt="" coords="75,124,110,130,109,136,74,130"/>
+<area shape="poly" title=" " alt="" coords="75,151,109,151,109,156,75,156"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a0114739390502fcc663a306fcf69ac72" title=" " alt="" coords="123,197,336,237"/>
-<area shape="poly" title=" " alt="" coords="56,132,86,158,124,183,139,190,136,195,121,188,83,162,53,136"/>
+<area shape="poly" title=" " alt="" coords="73,164,124,183,147,191,145,196,122,188,71,169"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="151,261,307,301"/>
+<area shape="poly" title=" " alt="" coords="51,165,80,206,101,228,124,247,140,256,137,261,121,252,97,232,76,209,47,168"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265" title=" " alt="" coords="384,5,540,45"/>
+<area shape="poly" title=" " alt="" coords="336,23,370,23,370,28,336,28"/>
 </map>
 </div>
 
@@ -770,8 +796,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  249</span>    <span class="comment">// Initially enabled</span></div>
 <div class="line"><span class="lineno">  250</span>    EXPECT_TRUE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  251</span>    </div>
-<div class="line"><span class="lineno">  252</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  252</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  254</span>    </div>
 <div class="line"><span class="lineno">  255</span>    <span class="comment">// Disable monitoring</span></div>
 <div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> disable_result = component.set_monitoring_enabled(<span class="keyword">false</span>);</div>
@@ -779,9 +805,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  258</span>    EXPECT_FALSE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  259</span>    </div>
 <div class="line"><span class="lineno">  260</span>    <span class="comment">// Should return error when disabled</span></div>
-<div class="line"><span class="lineno">  261</span>    result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  262</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::monitoring_disabled);</div>
+<div class="line"><span class="lineno">  261</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  262</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::monitoring_disabled);</div>
 <div class="line"><span class="lineno">  264</span>    </div>
 <div class="line"><span class="lineno">  265</span>    <span class="comment">// Re-enable monitoring</span></div>
 <div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> enable_result = component.set_monitoring_enabled(<span class="keyword">true</span>);</div>
@@ -789,8 +815,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  269</span>    </div>
 <div class="line"><span class="lineno">  270</span>    <span class="comment">// Should work again</span></div>
-<div class="line"><span class="lineno">  271</span>    result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  272</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  271</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  272</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  273</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -800,6 +826,8 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,13,75,38"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
 <area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265" title=" " alt="" coords="384,5,540,45"/>
+<area shape="poly" title=" " alt="" coords="336,23,370,23,370,28,336,28"/>
 </map>
 </div>
 
@@ -908,8 +936,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  488</span>                </div>
 <div class="line"><span class="lineno">  489</span>                <span class="comment">// Also get monitoring data periodically</span></div>
 <div class="line"><span class="lineno">  490</span>                <span class="keywordflow">if</span> (j % 100 == 0) {</div>
-<div class="line"><span class="lineno">  491</span>                    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  492</span>                    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  491</span>                    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  492</span>                    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  493</span>                }</div>
 <div class="line"><span class="lineno">  494</span>            }</div>
 <div class="line"><span class="lineno">  495</span>        });</div>
@@ -924,10 +952,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  504</span>    EXPECT_EQ(component.get_operation_count(), thread_count * operations_per_thread);</div>
 <div class="line"><span class="lineno">  505</span>    </div>
 <div class="line"><span class="lineno">  506</span>    <span class="comment">// Get final monitoring data</span></div>
-<div class="line"><span class="lineno">  507</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  508</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  507</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  508</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  509</span>    </div>
-<div class="line"><span class="lineno">  510</span>    <span class="keyword">auto</span> op_count = result.value().get_metric(<span class="stringliteral">&quot;operation_count&quot;</span>);</div>
+<div class="line"><span class="lineno">  510</span>    <span class="keyword">auto</span> op_count = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>().get_metric(<span class="stringliteral">&quot;operation_count&quot;</span>);</div>
 <div class="line"><span class="lineno">  511</span>    ASSERT_TRUE(op_count.has_value());</div>
 <div class="line"><span class="lineno">  512</span>    EXPECT_DOUBLE_EQ(op_count.value(), </div>
 <div class="line"><span class="lineno">  513</span>                     <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(thread_count * operations_per_thread));</div>
@@ -937,13 +965,17 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph">
-<area shape="rect" title=" " alt="" coords="5,77,75,102"/>
+<area shape="rect" title=" " alt="" coords="5,109,75,134"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="71,74,122,55,145,47,147,52,124,60,73,79"/>
+<area shape="poly" title=" " alt="" coords="53,106,83,80,121,55,136,48,139,53,124,60,86,85,56,110"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267" title=" " alt="" coords="123,69,336,109"/>
-<area shape="poly" title=" " alt="" coords="75,87,109,87,109,92,75,92"/>
+<area shape="poly" title=" " alt="" coords="74,113,109,107,110,112,75,118"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,133,336,173"/>
-<area shape="poly" title=" " alt="" coords="73,100,124,119,147,127,145,132,122,124,71,105"/>
+<area shape="poly" title=" " alt="" coords="75,124,110,130,109,136,74,130"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="151,197,307,237"/>
+<area shape="poly" title=" " alt="" coords="56,132,86,158,124,183,140,190,137,195,121,188,83,162,53,136"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265" title=" " alt="" coords="384,5,540,45"/>
+<area shape="poly" title=" " alt="" coords="336,23,370,23,370,28,336,28"/>
 </map>
 </div>
 
@@ -952,7 +984,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

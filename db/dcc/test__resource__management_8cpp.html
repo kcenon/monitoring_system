@@ -248,11 +248,23 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  198</span>    <span class="keyword">auto</span> throttler = std::make_unique&lt;cpu_throttler&gt;(<span class="stringliteral">&quot;test_cpu&quot;</span>, config);</div>
 <div class="line"><span class="lineno">  199</span>    </div>
 <div class="line"><span class="lineno">  200</span>    <span class="comment">// Should execute when CPU usage is low</span></div>
-<div class="line"><span class="lineno">  201</span>    <span class="keyword">auto</span> result = throttler-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">  202</span>    EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  203</span>    EXPECT_EQ(result.value(), 42);</div>
+<div class="line"><span class="lineno">  201</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = throttler-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><span class="lineno">  202</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  203</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
 <div class="line"><span class="lineno">  204</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph" alt=""/></div>
+<map name="adb/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph" id="adb/dcc/test__resource__management_8cpp_a205d79a6b615b6002edb356b36123db4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad7abaafe50b2cb09e7798245cd0d249e" name="ad7abaafe50b2cb09e7798245cd0d249e"></a>
@@ -522,8 +534,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  131</span>    <span class="keyword">auto</span> manager = create_memory_quota_manager(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024);</div>
 <div class="line"><span class="lineno">  132</span>    </div>
 <div class="line"><span class="lineno">  133</span>    <span class="comment">// Allocate memory</span></div>
-<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> result = manager-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  135</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;allocate(512);</div>
+<div class="line"><span class="lineno">  135</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  136</span>    EXPECT_EQ(manager-&gt;current_usage(), 512);</div>
 <div class="line"><span class="lineno">  137</span>    </div>
 <div class="line"><span class="lineno">  138</span>    <span class="comment">// Deallocate memory</span></div>
@@ -531,8 +543,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  140</span>    EXPECT_EQ(manager-&gt;current_usage(), 256);</div>
 <div class="line"><span class="lineno">  141</span>    </div>
 <div class="line"><span class="lineno">  142</span>    <span class="comment">// Should be able to allocate again</span></div>
-<div class="line"><span class="lineno">  143</span>    result = manager-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  144</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  143</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;allocate(512);</div>
+<div class="line"><span class="lineno">  144</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  145</span>    EXPECT_EQ(manager-&gt;current_usage(), 768);</div>
 <div class="line"><span class="lineno">  146</span>}</div>
 </div><!-- fragment -->
@@ -872,8 +884,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  253</span>    config.max_cpu_usage = 0.7;</div>
 <div class="line"><span class="lineno">  254</span>    config.strategy = throttling_strategy::delay;</div>
 <div class="line"><span class="lineno">  255</span>    </div>
-<div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> result = manager-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>, config);</div>
-<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>, config);</div>
+<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  258</span>    </div>
 <div class="line"><span class="lineno">  259</span>    <span class="keyword">auto</span> throttler = manager-&gt;get_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>);</div>
 <div class="line"><span class="lineno">  260</span>    EXPECT_NE(throttler, <span class="keyword">nullptr</span>);</div>
@@ -1006,8 +1018,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  238</span>    </div>
 <div class="line"><span class="lineno">  239</span>    resource_quota quota(resource_type::memory, 2048, throttling_strategy::reject);</div>
 <div class="line"><span class="lineno">  240</span>    </div>
-<div class="line"><span class="lineno">  241</span>    <span class="keyword">auto</span> result = manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>, quota);</div>
-<div class="line"><span class="lineno">  242</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  241</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>, quota);</div>
+<div class="line"><span class="lineno">  242</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  243</span>    </div>
 <div class="line"><span class="lineno">  244</span>    <span class="keyword">auto</span> memory_manager = manager-&gt;get_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>);</div>
 <div class="line"><span class="lineno">  245</span>    EXPECT_NE(memory_manager, <span class="keyword">nullptr</span>);</div>
@@ -1099,8 +1111,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  225</span>    config.rate_per_second = 100;</div>
 <div class="line"><span class="lineno">  226</span>    config.burst_capacity = 10;</div>
 <div class="line"><span class="lineno">  227</span>    </div>
-<div class="line"><span class="lineno">  228</span>    <span class="keyword">auto</span> result = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>, config);</div>
-<div class="line"><span class="lineno">  229</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  228</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>, config);</div>
+<div class="line"><span class="lineno">  229</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  230</span>    </div>
 <div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> limiter = manager-&gt;get_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>);</div>
 <div class="line"><span class="lineno">  232</span>    EXPECT_NE(limiter, <span class="keyword">nullptr</span>);</div>
@@ -1235,17 +1247,27 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   67</span>    </div>
 <div class="line"><span class="lineno">   68</span>    <span class="comment">// Execute operations within limit</span></div>
 <div class="line"><span class="lineno">   69</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">   70</span>        <span class="keyword">auto</span> result = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">   71</span>        EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">   72</span>        EXPECT_EQ(result.value(), 42);</div>
+<div class="line"><span class="lineno">   70</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><span class="lineno">   71</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">   72</span>        EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
 <div class="line"><span class="lineno">   73</span>    }</div>
 <div class="line"><span class="lineno">   74</span>    </div>
 <div class="line"><span class="lineno">   75</span>    <span class="comment">// Should reject when limit exceeded</span></div>
-<div class="line"><span class="lineno">   76</span>    <span class="keyword">auto</span> result = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">   77</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">   78</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::resource_exhausted);</div>
+<div class="line"><span class="lineno">   76</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><span class="lineno">   77</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">   78</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::resource_exhausted);</div>
 <div class="line"><span class="lineno">   79</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph.png" border="0" usemap="#adb/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph" alt=""/></div>
+<map name="adb/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph" id="adb/dcc/test__resource__management_8cpp_aedfa25bb15a9a58c9afde17901a6ef23_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a70c4bf2d19bab68c4344621a34395d95" name="a70c4bf2d19bab68c4344621a34395d95"></a>
@@ -1296,7 +1318,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

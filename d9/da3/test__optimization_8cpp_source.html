@@ -91,7 +91,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>monitoring_system;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../db/d93/classOptimizationTest.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="../../db/d93/classOptimizationTest.html">OptimizationTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -141,8 +141,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// Push elements</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">auto</span> result = queue.push(i);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to push &quot;</span> &lt;&lt; i;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = queue.push(i);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to push &quot;</span> &lt;&lt; i;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    EXPECT_FALSE(queue.empty());</div>
@@ -150,9 +150,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// Pop elements</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">auto</span> result = queue.pop();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to pop element &quot;</span> &lt;&lt; i;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        EXPECT_EQ(result.value(), i);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = queue.pop();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to pop element &quot;</span> &lt;&lt; i;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), i);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    EXPECT_TRUE(queue.empty());</div>
@@ -239,17 +239,17 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// Allocate memory blocks</span></div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    std::vector&lt;void*&gt; allocated_blocks;</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 32; ++i) {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keyword">auto</span> result = pool.allocate();</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate block &quot;</span> &lt;&lt; i;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        allocated_blocks.push_back(result.value());</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = pool.allocate();</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate block &quot;</span> &lt;&lt; i;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        allocated_blocks.push_back(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    </div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    EXPECT_EQ(pool.available_blocks(), 32);  <span class="comment">// 64 - 32 = 32</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// Deallocate blocks</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_blocks) {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = pool.deallocate(ptr);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    </div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    EXPECT_EQ(pool.available_blocks(), 64);  <span class="comment">// All blocks returned</span></div>
@@ -279,10 +279,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// Allocate objects</span></div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    std::vector&lt;TestObject*&gt; objects;</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keyword">auto</span> result = pool.allocate_object&lt;TestObject&gt;(i, i * 0.5);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate object &quot;</span> &lt;&lt; i;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = pool.allocate_object&lt;TestObject&gt;(i, i * 0.5);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate object &quot;</span> &lt;&lt; i;</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keyword">auto</span>* obj = result.value();</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keyword">auto</span>* obj = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        EXPECT_EQ(obj-&gt;value, i);</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        EXPECT_DOUBLE_EQ(obj-&gt;data, i * 0.5);</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        </div>
@@ -291,8 +291,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    </div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// Deallocate objects</span></div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* obj : objects) {</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keyword">auto</span> result = pool.deallocate_object(obj);</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = pool.deallocate_object(obj);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    }</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>}</div>
 </div>
@@ -319,16 +319,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>            </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>            <span class="comment">// Allocate</span></div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; operations_per_thread; ++i) {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                <span class="keyword">auto</span> result = pool.allocate();</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                <span class="keywordflow">if</span> (result) {</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                    allocated_ptrs.push_back(result.value());</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = pool.allocate();</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                    allocated_ptrs.push_back(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                }</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            }</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            </div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <span class="comment">// Deallocate</span></div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_ptrs) {</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = pool.deallocate(ptr);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                    successful_operations.fetch_add(1);</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                }</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            }</div>
@@ -563,8 +563,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    <span class="keyword">auto</span> test_data = generate_test_data(1000);</div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>    </div>
 <div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : test_data) {</div>
-<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>        <span class="keyword">auto</span> result = queue.push(value);</div>
-<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = queue.push(value);</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    }</div>
 <div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>    </div>
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>    <span class="comment">// Pop data from queue and collect in vector</span></div>
@@ -572,9 +572,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    collected_data.reserve(test_data.size());</div>
 <div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    </div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    <span class="keywordflow">while</span> (!queue.empty()) {</div>
-<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>        <span class="keyword">auto</span> result = queue.pop();</div>
-<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        <span class="keywordflow">if</span> (result) {</div>
-<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>            collected_data.push_back(result.value());</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = queue.pop();</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>            collected_data.push_back(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>        }</div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>    }</div>
 <div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>    </div>
@@ -604,11 +604,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassOptimizationTest_html_a3ad5b17a9b8e8230cdd94ce91fa49ca1"><div class="ttname"><a href="../../db/d93/classOptimizationTest.html#a3ad5b17a9b8e8230cdd94ce91fa49ca1">OptimizationTest::generate_test_data</a></div><div class="ttdeci">std::vector&lt; double &gt; generate_test_data(size_t size, double min_val=0.0, double max_val=100.0)</div><div class="ttdoc">Generate test data.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/da3/test__optimization_8cpp_source.html#l00029">test_optimization.cpp:29</a></div></div>
 <div class="ttc" id="aclassOptimizationTest_html_a3fbc85b64211f86157f60dd0d4a5e499"><div class="ttname"><a href="../../db/d93/classOptimizationTest.html#a3fbc85b64211f86157f60dd0d4a5e499">OptimizationTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/da3/test__optimization_8cpp_source.html#l00022">test_optimization.cpp:22</a></div></div>
 <div class="ttc" id="aclassOptimizationTest_html_ad2cf1a3816cd0f8ae1d41f2511cf84e0"><div class="ttname"><a href="../../db/d93/classOptimizationTest.html#ad2cf1a3816cd0f8ae1d41f2511cf84e0">OptimizationTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/da3/test__optimization_8cpp_source.html#l00018">test_optimization.cpp:18</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00026">test_di_container.cpp:26</a></div></div>
 <div class="ttc" id="atest__optimization_8cpp_html_aea7ebea4b5faa7fb4d7421bcfda96680"><div class="ttname"><a href="../../d9/da3/test__optimization_8cpp.html#aea7ebea4b5faa7fb4d7421bcfda96680">TEST_F</a></div><div class="ttdeci">TEST_F(OptimizationTest, LockfreeQueueBasicOperations)</div><div class="ttdef"><b>Definition</b> <a href="../../d9/da3/test__optimization_8cpp_source.html#l00046">test_optimization.cpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

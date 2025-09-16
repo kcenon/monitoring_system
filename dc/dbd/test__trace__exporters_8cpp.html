@@ -173,13 +173,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  343</span>    config.format = trace_export_format::jaeger_grpc;</div>
 <div class="line"><span class="lineno">  344</span>    </div>
 <div class="line"><span class="lineno">  345</span>    jaeger_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  346</span>    <span class="keyword">auto</span> result = exporter.export_spans(empty_spans);</div>
-<div class="line"><span class="lineno">  347</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  346</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = exporter.export_spans(empty_spans);</div>
+<div class="line"><span class="lineno">  347</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  348</span>    </div>
 <div class="line"><span class="lineno">  349</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  350</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 0);</div>
 <div class="line"><span class="lineno">  351</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
 <div class="line"><span class="lineno">  352</span>}</div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -456,8 +457,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  371</span>    config.max_batch_size = 500; <span class="comment">// Smaller than batch size</span></div>
 <div class="line"><span class="lineno">  372</span>    </div>
 <div class="line"><span class="lineno">  373</span>    otlp_exporter exporter(config, otel_resource_);</div>
-<div class="line"><span class="lineno">  374</span>    <span class="keyword">auto</span> result = exporter.export_spans(large_batch);</div>
-<div class="line"><span class="lineno">  375</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  374</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = exporter.export_spans(large_batch);</div>
+<div class="line"><span class="lineno">  375</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  376</span>    </div>
 <div class="line"><span class="lineno">  377</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  378</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 1000);</div>
@@ -805,7 +806,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -89,7 +89,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// Note: health_monitor.h does not exist in include directory</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// #include &lt;kcenon/monitoring/health/health_monitor.h&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">using namespace </span>monitoring_system;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// Test health check implementations</span></div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
@@ -115,12 +115,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    </div>
 <div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../d2/dea/classtest__health__check.html#a367e278d82a0eeca40ce0168d55cecf0">   34</a></span>    health_check_result <a class="code hl_function" href="../../d2/dea/classtest__health__check.html#a367e278d82a0eeca40ce0168d55cecf0">check</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        health_check_result result;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        result.status = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a5b66adec36dcefd9ce60685005f17911">status_</a>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        result.message = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a6665381b3023736e737788a00815e19b">message_</a>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        result.timestamp = std::chrono::system_clock::now();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        result.check_duration = std::chrono::milliseconds(10);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        health_check_result <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a5b66adec36dcefd9ce60685005f17911">status_</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.message = <a class="code hl_variable" href="../../d2/dea/classtest__health__check.html#a6665381b3023736e737788a00815e19b">message_</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.timestamp = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.check_duration = std::chrono::milliseconds(10);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
 </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    </div>
@@ -186,9 +186,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    EXPECT_EQ(func_check.get_name(), <span class="stringliteral">&quot;lambda_check&quot;</span>);</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    EXPECT_EQ(func_check.get_type(), health_check_type::liveness);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">auto</span> result = func_check.check();</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    EXPECT_EQ(result.status, health_status::healthy);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    EXPECT_EQ(result.message, <span class="stringliteral">&quot;Lambda check passed&quot;</span>);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = func_check.check();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.message, <span class="stringliteral">&quot;Lambda check passed&quot;</span>);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
 </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
@@ -205,18 +205,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    composite.add_check(check3);</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    </div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="comment">// All healthy</span></div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">auto</span> result = composite.check();</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    EXPECT_EQ(result.status, health_status::healthy);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = composite.check();</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// One degraded</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    check2-&gt;set_status(health_status::degraded);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    result = composite.check();</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    EXPECT_EQ(result.status, health_status::degraded);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = composite.check();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::degraded);</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    </div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// One unhealthy</span></div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    check3-&gt;set_status(health_status::unhealthy);</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    result = composite.check();</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    EXPECT_EQ(result.status, health_status::unhealthy);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = composite.check();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::unhealthy);</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
 </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
@@ -231,18 +231,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    composite.add_check(check2);</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    </div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// All healthy</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">auto</span> result = composite.check();</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    EXPECT_EQ(result.status, health_status::healthy);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = composite.check();</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    </div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// One unhealthy, one healthy</span></div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    check1-&gt;set_status(health_status::unhealthy);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    result = composite.check();</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    EXPECT_EQ(result.status, health_status::healthy);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = composite.check();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    </div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// All unhealthy</span></div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    check2-&gt;set_status(health_status::unhealthy);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    result = composite.check();</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    EXPECT_EQ(result.status, health_status::unhealthy);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = composite.check();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::unhealthy);</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>}</div>
 </div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
@@ -251,15 +251,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    health_dependency_graph graph;</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    </div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">auto</span> check = std::make_shared&lt;test_health_check&gt;(<span class="stringliteral">&quot;database&quot;</span>, health_check_type::liveness);</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">auto</span> result = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    ASSERT_TRUE(result.has_value());</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    EXPECT_TRUE(result.value());</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// Try to add duplicate</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    result = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
 </div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
@@ -274,9 +274,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    graph.add_node(<span class="stringliteral">&quot;api&quot;</span>, api_check);</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    </div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// Add dependency: api depends on database</span></div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">auto</span> result = graph.add_dependency(<span class="stringliteral">&quot;api&quot;</span>, <span class="stringliteral">&quot;database&quot;</span>);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    ASSERT_TRUE(result.has_value());</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    EXPECT_TRUE(result.value());</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.add_dependency(<span class="stringliteral">&quot;api&quot;</span>, <span class="stringliteral">&quot;database&quot;</span>);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    </div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keyword">auto</span> deps = graph.get_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    EXPECT_EQ(deps.size(), 1);</div>
@@ -308,9 +308,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    EXPECT_TRUE(graph.would_create_cycle(<span class="stringliteral">&quot;C&quot;</span>, <span class="stringliteral">&quot;A&quot;</span>));</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    </div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="comment">// Try to add the cyclic dependency</span></div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">auto</span> result = graph.add_dependency(<span class="stringliteral">&quot;C&quot;</span>, <span class="stringliteral">&quot;A&quot;</span>);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.add_dependency(<span class="stringliteral">&quot;C&quot;</span>, <span class="stringliteral">&quot;A&quot;</span>);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::invalid_state);</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
 </div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
@@ -367,20 +367,20 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    graph.add_dependency(<span class="stringliteral">&quot;api&quot;</span>, <span class="stringliteral">&quot;cache&quot;</span>);</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    </div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="comment">// All healthy</span></div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keyword">auto</span> result = graph.check_with_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    EXPECT_EQ(result.status, health_status::healthy);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.check_with_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// Database unhealthy</span></div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    db_check-&gt;set_status(health_status::unhealthy);</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    result = graph.check_with_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    EXPECT_EQ(result.status, health_status::unhealthy);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.check_with_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::unhealthy);</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    </div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="comment">// Database healthy, cache degraded</span></div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    db_check-&gt;set_status(health_status::healthy);</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    cache_check-&gt;set_status(health_status::degraded);</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    result = graph.check_with_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.check_with_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">// When a dependency is degraded, the dependent becomes degraded too</span></div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    EXPECT_TRUE(result.status == health_status::degraded || result.status == health_status::healthy);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status == health_status::degraded || <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status == health_status::healthy);</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>}</div>
 </div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
@@ -423,24 +423,24 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keyword">auto</span> check = std::make_shared&lt;test_health_check&gt;(<span class="stringliteral">&quot;test_check&quot;</span>, health_check_type::liveness);</div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    </div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="comment">// Register check</span></div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keyword">auto</span> result = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    ASSERT_TRUE(result.has_value());</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    EXPECT_TRUE(result.value());</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    </div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="comment">// Try to register again</span></div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    result = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    </div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="comment">// Unregister</span></div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    ASSERT_TRUE(result.has_value());</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    EXPECT_TRUE(result.value());</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    </div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="comment">// Try to unregister non-existent</span></div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::not_found);</div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>}</div>
 </div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
@@ -451,16 +451,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    </div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    </div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="keyword">auto</span> result = monitor.start();</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.start();</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    EXPECT_TRUE(monitor.is_running());</div>
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    </div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <span class="comment">// Start again (should succeed)</span></div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    result = monitor.start();</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.start();</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    </div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    result = monitor.stop();</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.stop();</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>}</div>
 </div>
@@ -476,15 +476,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    </div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    monitor.register_check(<span class="stringliteral">&quot;specific&quot;</span>, check);</div>
 <div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    </div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keyword">auto</span> result = monitor.check(<span class="stringliteral">&quot;specific&quot;</span>);</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    ASSERT_TRUE(result.has_value());</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    EXPECT_EQ(result.value().status, health_status::healthy);</div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    EXPECT_EQ(result.value().message, <span class="stringliteral">&quot;Ready to serve&quot;</span>);</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.check(<span class="stringliteral">&quot;specific&quot;</span>);</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>().status, health_status::healthy);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>().message, <span class="stringliteral">&quot;Ready to serve&quot;</span>);</div>
 <div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    </div>
 <div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="comment">// Check non-existent</span></div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    result = monitor.check(<span class="stringliteral">&quot;non_existent&quot;</span>);</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.check(<span class="stringliteral">&quot;non_existent&quot;</span>);</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::not_found);</div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}</div>
 </div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
@@ -504,8 +504,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    EXPECT_TRUE(results.find(<span class="stringliteral">&quot;check2&quot;</span>) != results.end());</div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    EXPECT_TRUE(results.find(<span class="stringliteral">&quot;check3&quot;</span>) != results.end());</div>
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    </div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, result] : results) {</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        EXPECT_EQ(result.status, health_status::healthy);</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>] : results) {</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    }</div>
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>}</div>
 </div>
@@ -554,9 +554,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    monitor.register_check(<span class="stringliteral">&quot;api&quot;</span>, api_check);</div>
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    </div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    <span class="comment">// Add dependency: api depends on database</span></div>
-<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    <span class="keyword">auto</span> result = monitor.add_dependency(<span class="stringliteral">&quot;api&quot;</span>, <span class="stringliteral">&quot;database&quot;</span>);</div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    ASSERT_TRUE(result.has_value());</div>
-<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    EXPECT_TRUE(result.value());</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.add_dependency(<span class="stringliteral">&quot;api&quot;</span>, <span class="stringliteral">&quot;database&quot;</span>);</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>());</div>
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    </div>
 <div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    <span class="comment">// Database failure should affect api check</span></div>
 <div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    db_check-&gt;set_status(health_status::unhealthy);</div>
@@ -637,9 +637,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>    EXPECT_EQ(check-&gt;get_timeout(), std::chrono::milliseconds(1000));</div>
 <div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>    EXPECT_FALSE(check-&gt;is_critical());</div>
 <div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>    </div>
-<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    <span class="keyword">auto</span> result = check-&gt;check();</div>
-<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>    EXPECT_EQ(result.status, health_status::healthy);</div>
-<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>    EXPECT_EQ(result.message, <span class="stringliteral">&quot;Built check OK&quot;</span>);</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = check-&gt;check();</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::healthy);</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.message, <span class="stringliteral">&quot;Built check OK&quot;</span>);</div>
 <div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>}</div>
 </div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span> </div>
@@ -648,8 +648,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>    <span class="keyword">auto</span>&amp; global = global_health_monitor();</div>
 <div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    </div>
 <div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>    <span class="keyword">auto</span> check = std::make_shared&lt;test_health_check&gt;(<span class="stringliteral">&quot;global_check&quot;</span>, health_check_type::liveness);</div>
-<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>    <span class="keyword">auto</span> result = global.register_check(<span class="stringliteral">&quot;global_test&quot;</span>, check);</div>
-<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = global.register_check(<span class="stringliteral">&quot;global_test&quot;</span>, check);</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
 <div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>    </div>
 <div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>    <span class="comment">// Cleanup</span></div>
 <div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>    global.unregister_check(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
@@ -736,6 +736,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassHealthMonitoringTest_html_a43e72ce91b518f6ce5bc97045a4ef25f"><div class="ttname"><a href="../../da/d18/classHealthMonitoringTest.html#a43e72ce91b518f6ce5bc97045a4ef25f">HealthMonitoringTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00051">test_health_monitoring.cpp:51</a></div></div>
 <div class="ttc" id="aclassHealthMonitoringTest_html_a8dce341caff48d879664af96aa1b6a14"><div class="ttname"><a href="../../da/d18/classHealthMonitoringTest.html#a8dce341caff48d879664af96aa1b6a14">HealthMonitoringTest::monitor</a></div><div class="ttdeci">health_monitor monitor</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00049">test_health_monitoring.cpp:49</a></div></div>
 <div class="ttc" id="aclassHealthMonitoringTest_html_af2f0d3e5e4973b4d41773d16f0121d3b"><div class="ttname"><a href="../../da/d18/classHealthMonitoringTest.html#af2f0d3e5e4973b4d41773d16f0121d3b">HealthMonitoringTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00056">test_health_monitoring.cpp:56</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
 <div class="ttc" id="aclasstest__health__check_html"><div class="ttname"><a href="../../d2/dea/classtest__health__check.html">test_health_check</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00016">test_health_monitoring.cpp:16</a></div></div>
 <div class="ttc" id="aclasstest__health__check_html_a3466e142b1f49d60d76f6806f67166dd"><div class="ttname"><a href="../../d2/dea/classtest__health__check.html#a3466e142b1f49d60d76f6806f67166dd">test_health_check::type_</a></div><div class="ttdeci">health_check_type type_</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00019">test_health_monitoring.cpp:19</a></div></div>
 <div class="ttc" id="aclasstest__health__check_html_a367e278d82a0eeca40ce0168d55cecf0"><div class="ttname"><a href="../../d2/dea/classtest__health__check.html#a367e278d82a0eeca40ce0168d55cecf0">test_health_check::check</a></div><div class="ttdeci">health_check_result check() override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00034">test_health_monitoring.cpp:34</a></div></div>
@@ -747,11 +749,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclasstest__health__check_html_a939dd9d1cce3395bddd909e2e141a12c"><div class="ttname"><a href="../../d2/dea/classtest__health__check.html#a939dd9d1cce3395bddd909e2e141a12c">test_health_check::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00018">test_health_monitoring.cpp:18</a></div></div>
 <div class="ttc" id="aclasstest__health__check_html_ad28d35bde30d6fa62108b562c855d471"><div class="ttname"><a href="../../d2/dea/classtest__health__check.html#ad28d35bde30d6fa62108b562c855d471">test_health_check::set_message</a></div><div class="ttdeci">void set_message(const std::string &amp;msg)</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00044">test_health_monitoring.cpp:44</a></div></div>
 <div class="ttc" id="aclasstest__health__check_html_af651386219b31c861c49034927a08946"><div class="ttname"><a href="../../d2/dea/classtest__health__check.html#af651386219b31c861c49034927a08946">test_health_check::get_type</a></div><div class="ttdeci">health_check_type get_type() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00032">test_health_monitoring.cpp:32</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00026">test_di_container.cpp:26</a></div></div>
 <div class="ttc" id="atest__health__monitoring_8cpp_html_ad77df80a4e09cb31d87f4721fb743592"><div class="ttname"><a href="../../d9/de0/test__health__monitoring_8cpp.html#ad77df80a4e09cb31d87f4721fb743592">TEST_F</a></div><div class="ttdeci">TEST_F(HealthMonitoringTest, HealthCheckResultStaticFactories)</div><div class="ttdef"><b>Definition</b> <a href="../../d9/de0/test__health__monitoring_8cpp_source.html#l00061">test_health_monitoring.cpp:61</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -186,7 +186,7 @@ Private Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d4/d6c/distributed__tracing__example_8cpp_source.html#l00129">129</a> of file <a class="el" href="../../d4/d6c/distributed__tracing__example_8cpp_source.html">distributed_tracing_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  129</span>                                                                        {</div>
 <div class="line"><span class="lineno">  130</span>        <span class="comment">// Create a child span for downstream call</span></div>
-<div class="line"><span class="lineno">  131</span>        <span class="keyword">auto</span> span_result = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.start_child_span(*parent_span, <span class="stringliteral">&quot;downstream_call&quot;</span>);</div>
+<div class="line"><span class="lineno">  131</span>        <span class="keyword">auto</span> span_result = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.start_child_span(parent_span, <span class="stringliteral">&quot;downstream_call&quot;</span>);</div>
 <div class="line"><span class="lineno">  132</span>        <span class="keywordflow">if</span> (!span_result) <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  133</span>        </div>
 <div class="line"><span class="lineno">  134</span>        <span class="keyword">auto</span> span = span_result.value();</div>
@@ -194,11 +194,11 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  136</span>        span-&gt;tags[<span class="stringliteral">&quot;span.kind&quot;</span>] = <span class="stringliteral">&quot;client&quot;</span>;</div>
 <div class="line"><span class="lineno">  137</span>        </div>
 <div class="line"><span class="lineno">  138</span>        <span class="comment">// Extract context to propagate to downstream service</span></div>
-<div class="line"><span class="lineno">  139</span>        <span class="keyword">auto</span> context = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.extract_context(*span);</div>
+<div class="line"><span class="lineno">  139</span>        <span class="keyword">auto</span> context = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.get_context_from_span(span);</div>
 <div class="line"><span class="lineno">  140</span>        </div>
 <div class="line"><span class="lineno">  141</span>        <span class="comment">// Prepare headers for downstream call</span></div>
 <div class="line"><span class="lineno">  142</span>        std::map&lt;std::string, std::string&gt; headers;</div>
-<div class="line"><span class="lineno">  143</span>        <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.inject_context(context, headers);</div>
+<div class="line"><span class="lineno">  143</span>        <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.inject_context_into_carrier(context, headers);</div>
 <div class="line"><span class="lineno">  144</span>        </div>
 <div class="line"><span class="lineno">  145</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../df/d65/classWebService.html#a638af0384c35a233ccf6b30b8d525839">service_name_</a> &lt;&lt; <span class="stringliteral">&quot;] Calling downstream service...&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  146</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Propagating trace: &quot;</span> &lt;&lt; context.trace_id &lt;&lt; std::endl;</div>
@@ -374,7 +374,7 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/d6c/distributed__tracing__example_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../d4/d6c/distributed__tracing__example_8cpp_source.html">distributed_tracing_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   93</span>                                                                       {</div>
 <div class="line"><span class="lineno">   94</span>        <span class="comment">// Create a child span for business logic</span></div>
-<div class="line"><span class="lineno">   95</span>        <span class="keyword">auto</span> span_result = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.start_child_span(*parent_span, <span class="stringliteral">&quot;business_logic&quot;</span>);</div>
+<div class="line"><span class="lineno">   95</span>        <span class="keyword">auto</span> span_result = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.start_child_span(parent_span, <span class="stringliteral">&quot;business_logic&quot;</span>);</div>
 <div class="line"><span class="lineno">   96</span>        <span class="keywordflow">if</span> (!span_result) <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">   97</span>        </div>
 <div class="line"><span class="lineno">   98</span>        <span class="keyword">auto</span> span = span_result.value();</div>
@@ -445,7 +445,7 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d4/d6c/distributed__tracing__example_8cpp_source.html#l00112">112</a> of file <a class="el" href="../../d4/d6c/distributed__tracing__example_8cpp_source.html">distributed_tracing_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  112</span>                                                               {</div>
 <div class="line"><span class="lineno">  113</span>        <span class="comment">// Create a child span for database query</span></div>
-<div class="line"><span class="lineno">  114</span>        <span class="keyword">auto</span> span_result = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.start_child_span(*parent_span, <span class="stringliteral">&quot;database_query&quot;</span>);</div>
+<div class="line"><span class="lineno">  114</span>        <span class="keyword">auto</span> span_result = <a class="code hl_variable" href="../../df/d65/classWebService.html#a843507a6bb88cc9d45f4f8d59df6de5b">tracer_</a>.start_child_span(parent_span, <span class="stringliteral">&quot;database_query&quot;</span>);</div>
 <div class="line"><span class="lineno">  115</span>        <span class="keywordflow">if</span> (!span_result) <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  116</span>        </div>
 <div class="line"><span class="lineno">  117</span>        <span class="keyword">auto</span> span = span_result.value();</div>
@@ -533,7 +533,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

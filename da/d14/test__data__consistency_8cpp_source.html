@@ -87,7 +87,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;monitoring/reliability/data_consistency.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span>monitoring_system;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d8/d07/classDataConsistencyTest.html">DataConsistencyTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -168,8 +168,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    EXPECT_EQ(op-&gt;name(), <span class="stringliteral">&quot;test_op&quot;</span>);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    EXPECT_FALSE(op-&gt;is_executed());</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">auto</span> result = op-&gt;execute();</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = op-&gt;execute();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    EXPECT_TRUE(op-&gt;is_executed());</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    EXPECT_EQ(success_count.load(), 1);</div>
@@ -701,11 +701,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassDataConsistencyTest_html_ac6b460595d48414db0d100b08cc5e40f"><div class="ttname"><a href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">DataConsistencyTest::failing_operation</a></div><div class="ttdeci">result_void failing_operation()</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00033">test_data_consistency.cpp:33</a></div></div>
 <div class="ttc" id="aclassDataConsistencyTest_html_adbc101d4d09a65b152d04bcfbcbf1c32"><div class="ttname"><a href="../../d8/d07/classDataConsistencyTest.html#adbc101d4d09a65b152d04bcfbcbf1c32">DataConsistencyTest::test_repair</a></div><div class="ttdeci">result_void test_repair()</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00053">test_data_consistency.cpp:53</a></div></div>
 <div class="ttc" id="aclassDataConsistencyTest_html_ae30d973a47d94352c14d196569971ad2"><div class="ttname"><a href="../../d8/d07/classDataConsistencyTest.html#ae30d973a47d94352c14d196569971ad2">DataConsistencyTest::failing_validation</a></div><div class="ttdeci">validation_result failing_validation()</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00049">test_data_consistency.cpp:49</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00026">test_di_container.cpp:26</a></div></div>
 <div class="ttc" id="atest__data__consistency_8cpp_html_aed81538fab462fdcb5b24b5b044cf521"><div class="ttname"><a href="../../da/d14/test__data__consistency_8cpp.html#aed81538fab462fdcb5b24b5b044cf521">TEST_F</a></div><div class="ttdeci">TEST_F(DataConsistencyTest, TransactionOperationBasic)</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00059">test_data_consistency.cpp:59</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

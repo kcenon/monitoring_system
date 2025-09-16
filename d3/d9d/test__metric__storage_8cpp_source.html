@@ -91,7 +91,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>monitoring_system;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d6/d95/classMetricStorageTest.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d6/d95/classMetricStorageTest.html">MetricStorageTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -126,8 +126,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// Write elements</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 7; ++i) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">auto</span> result = buffer.write(std::move(i));</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to write &quot;</span> &lt;&lt; i;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = buffer.write(std::move(i));</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to write &quot;</span> &lt;&lt; i;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    EXPECT_EQ(buffer.size(), 7);</div>
@@ -135,8 +135,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    EXPECT_TRUE(buffer.full());  <span class="comment">// 7 elements in 8-capacity buffer means full</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// Try to write when full</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">auto</span> result = buffer.write(std::move(999));</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_FALSE(result);  <span class="comment">// Should fail as overwrite_old is false</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = buffer.write(std::move(999));</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);  <span class="comment">// Should fail as overwrite_old is false</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// Read elements</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">int</span> value;</div>
@@ -160,8 +160,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// Fill buffer completely</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 8; ++i) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">auto</span> result = buffer.write(std::move(i));</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = buffer.write(std::move(i));</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    </div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// Should have overwritten, so we should read the last 3 values</span></div>
@@ -204,8 +204,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    buffer.write(std::move(84));</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">int</span> value;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">auto</span> result = buffer.peek(value);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = buffer.peek(value);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    EXPECT_EQ(value, 42);</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// Size should not change after peek</span></div>
@@ -295,8 +295,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keyword">auto</span> timestamp = now + std::chrono::seconds(i);</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keyword">auto</span> result = series.add_point(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), timestamp);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = series.add_point(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), timestamp);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    </div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    EXPECT_EQ(series.size(), 10);</div>
@@ -327,10 +327,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    query.end_time = now + std::chrono::seconds(50);</div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    query.step = std::chrono::seconds(10);</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">auto</span> result = series.query(query);</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = series.query(query);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; agg_result = result.value();</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; agg_result = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    EXPECT_GT(agg_result.points.size(), 0);</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    EXPECT_GT(agg_result.total_samples, 0);</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    </div>
@@ -405,8 +405,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    </div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="comment">// Query the data</span></div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    time_series_query query;</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keyword">auto</span> result = storage.query_metric(<span class="stringliteral">&quot;batch_metric&quot;</span>, query);</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = storage.query_metric(<span class="stringliteral">&quot;batch_metric&quot;</span>, query);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>}</div>
 </div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
@@ -424,7 +424,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    EXPECT_TRUE(storage.store_metric(<span class="stringliteral">&quot;metric2&quot;</span>, 2.0));</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    </div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="comment">// This should fail due to capacity limit</span></div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keyword">auto</span> result = storage.store_metric(<span class="stringliteral">&quot;metric3&quot;</span>, 3.0);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = storage.store_metric(<span class="stringliteral">&quot;metric3&quot;</span>, 3.0);</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="comment">// Note: Might succeed if metrics are stored in ring buffer, depends on implementation</span></div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    </div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = storage.get_stats();</div>
@@ -509,11 +509,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassMetricStorageTest_html"><div class="ttname"><a href="../../d6/d95/classMetricStorageTest.html">MetricStorageTest</a></div><div class="ttdoc">Test suite for Phase 3 P1: Memory-efficient metric storage.</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00016">test_metric_storage.cpp:16</a></div></div>
 <div class="ttc" id="aclassMetricStorageTest_html_a905bc2105799738cc2c9758e022ac167"><div class="ttname"><a href="../../d6/d95/classMetricStorageTest.html#a905bc2105799738cc2c9758e022ac167">MetricStorageTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00022">test_metric_storage.cpp:22</a></div></div>
 <div class="ttc" id="aclassMetricStorageTest_html_a9a643f9f7c0cadba244e423a77707820"><div class="ttname"><a href="../../d6/d95/classMetricStorageTest.html#a9a643f9f7c0cadba244e423a77707820">MetricStorageTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00018">test_metric_storage.cpp:18</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00026">test_di_container.cpp:26</a></div></div>
 <div class="ttc" id="atest__metric__storage_8cpp_html_ae2e7e1cfff9099d512e615fa12501a42"><div class="ttname"><a href="../../d3/d9d/test__metric__storage_8cpp.html#ae2e7e1cfff9099d512e615fa12501a42">TEST_F</a></div><div class="ttdeci">TEST_F(MetricStorageTest, RingBufferBasicOperations)</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00028">test_metric_storage.cpp:28</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

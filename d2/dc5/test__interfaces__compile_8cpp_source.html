@@ -88,7 +88,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span>monitoring_system;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// Test implementation of observer interface</span></div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
@@ -119,8 +119,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html">   34</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> : <span class="keyword">public</span> interface_metric_collector {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">   36</a></span>    result&lt;std::vector&lt;metric&gt;&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> result&lt;std::vector&lt;metric&gt;&gt;(std::vector&lt;metric&gt;{});</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">   36</a></span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::vector&lt;metric&gt;</a>&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::vector&lt;metric&gt;</a>&gt;(std::vector&lt;metric&gt;{});</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
 </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
@@ -161,7 +161,7 @@ $(document).ready(function() { init_codefold(1); });
 </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">   64</a></span>    result&lt;std::vector&lt;metric&gt;&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">force_collect</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">   64</a></span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::vector&lt;metric&gt;</a>&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">force_collect</a>()<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a>();</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
 </div>
@@ -215,8 +215,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    observer-&gt;on_system_state_changed(sce);</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// Test collector interface</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">auto</span> result = collector-&gt;collect_metrics();</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = collector-&gt;collect_metrics();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metrics collected successfully&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
@@ -228,6 +228,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
 </div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
 <div class="ttc" id="aclasstest__collector_html"><div class="ttname"><a href="../../d9/d71/classtest__collector.html">test_collector</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00034">test_interfaces_compile.cpp:34</a></div></div>
 <div class="ttc" id="aclasstest__collector_html_a06064b6345f204ac2e3e96bac5d6b68a"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a06064b6345f204ac2e3e96bac5d6b68a">test_collector::get_config</a></div><div class="ttdeci">collection_config get_config() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00056">test_interfaces_compile.cpp:56</a></div></div>
 <div class="ttc" id="aclasstest__collector_html_a2782782765bd1c88227d2903c09aa726"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">test_collector::force_collect</a></div><div class="ttdeci">result&lt; std::vector&lt; metric &gt; &gt; force_collect() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00064">test_interfaces_compile.cpp:64</a></div></div>
@@ -248,11 +249,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclasstest__observer_html_a76914a7b6751ae48c64027a6ce63bc63"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63">test_observer::on_metric_collected</a></div><div class="ttdeci">void on_metric_collected(const metric_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00020">test_interfaces_compile.cpp:20</a></div></div>
 <div class="ttc" id="aclasstest__observer_html_a9b89e83bedd835019b3a4c5e77647171"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171">test_observer::on_event_occurred</a></div><div class="ttdeci">void on_event_occurred(const system_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00024">test_interfaces_compile.cpp:24</a></div></div>
 <div class="ttc" id="aclasstest__observer_html_aa93c6b8fa6a33f9fc25384c264b90358"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358">test_observer::on_system_state_changed</a></div><div class="ttdeci">void on_system_state_changed(const state_change_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00028">test_interfaces_compile.cpp:28</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00026">test_di_container.cpp:26</a></div></div>
 <div class="ttc" id="atest__interfaces__compile_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00088">test_interfaces_compile.cpp:88</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

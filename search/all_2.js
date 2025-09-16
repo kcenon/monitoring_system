@@ -12,10 +12,11 @@ var searchData=
   ['compatibility_5flayer_9',['compatibility_layer',['../d5/d90/classOpenTelemetryAdapterTest.html#a8c01572062ef0523f1665749f06ca9d8',1,'OpenTelemetryAdapterTest']]],
   ['container_5f_10',['container_',['../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811',1,'DIContainerTest']]],
   ['cpu_5fusage_5f_11',['cpu_usage_',['../d9/db4/classtest__monitorable__component.html#a687cedeade5cbc3cffa37bb02f089cf5',1,'test_monitorable_component']]],
-  ['create_5ftest_5fmetric_12',['create_test_metric',['../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b',1,'BufferingStrategiesTest']]],
-  ['create_5ftest_5fmetrics_13',['create_test_metrics',['../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1',1,'BufferingStrategiesTest']]],
-  ['create_5ftest_5fmonitoring_5fdata_14',['create_test_monitoring_data',['../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961',1,'MetricExportersTest']]],
-  ['create_5ftest_5fsnapshot_15',['create_test_snapshot',['../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e',1,'MetricExportersTest']]],
-  ['create_5ftest_5fsnapshots_16',['create_test_snapshots',['../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192',1,'StorageBackendsTest']]],
-  ['create_5ftest_5fspans_17',['create_test_spans',['../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f',1,'TraceExportersTest']]]
+  ['create_5flightweight_5fcontainer_12',['create_lightweight_container',['../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3',1,'monitoring_system']]],
+  ['create_5ftest_5fmetric_13',['create_test_metric',['../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b',1,'BufferingStrategiesTest']]],
+  ['create_5ftest_5fmetrics_14',['create_test_metrics',['../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1',1,'BufferingStrategiesTest']]],
+  ['create_5ftest_5fmonitoring_5fdata_15',['create_test_monitoring_data',['../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961',1,'MetricExportersTest']]],
+  ['create_5ftest_5fsnapshot_16',['create_test_snapshot',['../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e',1,'MetricExportersTest']]],
+  ['create_5ftest_5fsnapshots_17',['create_test_snapshots',['../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192',1,'StorageBackendsTest']]],
+  ['create_5ftest_5fspans_18',['create_test_spans',['../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f',1,'TraceExportersTest']]]
 ];

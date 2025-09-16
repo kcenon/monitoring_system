@@ -96,7 +96,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using namespace </span>monitoring_system;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="../../d9/d66/classMetricExportersTest.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -565,8 +565,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>    config.max_batch_size = 50; <span class="comment">// Smaller than batch size</span></div>
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    </div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    statsd_exporter exporter(config);</div>
-<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    <span class="keyword">auto</span> result = exporter.export_metrics(large_batch);</div>
-<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = exporter.export_metrics(large_batch);</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>    </div>
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 100);</div>
@@ -645,11 +645,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassMetricExportersTest_html_ab8564359a54e23d640804ec5f7b0fe4e"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e">MetricExportersTest::create_test_snapshot</a></div><div class="ttdeci">metrics_snapshot create_test_snapshot()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00045">test_metric_exporters.cpp:45</a></div></div>
 <div class="ttc" id="aclassMetricExportersTest_html_adaf1bb4ba527798f4b255d27c732ae84"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#adaf1bb4ba527798f4b255d27c732ae84">MetricExportersTest::test_snapshot_</a></div><div class="ttdeci">metrics_snapshot test_snapshot_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00067">test_metric_exporters.cpp:67</a></div></div>
 <div class="ttc" id="aclassMetricExportersTest_html_af31b9add2333027b1f78f00c3a329961"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961">MetricExportersTest::create_test_monitoring_data</a></div><div class="ttdeci">monitoring_data create_test_monitoring_data()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00031">test_metric_exporters.cpp:31</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00026">test_di_container.cpp:26</a></div></div>
 <div class="ttc" id="atest__metric__exporters_8cpp_html_ada39003921b23577bfb296109ee5cb17"><div class="ttname"><a href="../../dc/d07/test__metric__exporters_8cpp.html#ada39003921b23577bfb296109ee5cb17">TEST_F</a></div><div class="ttdeci">TEST_F(MetricExportersTest, MetricExportConfigValidation)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00071">test_metric_exporters.cpp:71</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

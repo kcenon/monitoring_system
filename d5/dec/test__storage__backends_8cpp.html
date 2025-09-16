@@ -320,8 +320,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  585</span>            snapshot.source_id = <span class="stringliteral">&quot;thread_&quot;</span> + std::to_string(i);</div>
 <div class="line"><span class="lineno">  586</span>            snapshot.add_metric(<span class="stringliteral">&quot;value&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  587</span>            </div>
-<div class="line"><span class="lineno">  588</span>            <span class="keyword">auto</span> result = backend.store(snapshot);</div>
-<div class="line"><span class="lineno">  589</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  588</span>            <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = backend.store(snapshot);</div>
+<div class="line"><span class="lineno">  589</span>            <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
 <div class="line"><span class="lineno">  590</span>                successful_stores++;</div>
 <div class="line"><span class="lineno">  591</span>            }</div>
 <div class="line"><span class="lineno">  592</span>        });</div>
@@ -340,8 +340,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  605</span>    </div>
 <div class="line"><span class="lineno">  606</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><span class="lineno">  607</span>        retrieve_threads.emplace_back([&amp;, i]() {</div>
-<div class="line"><span class="lineno">  608</span>            <span class="keyword">auto</span> result = backend.retrieve(i);</div>
-<div class="line"><span class="lineno">  609</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  608</span>            <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = backend.retrieve(i);</div>
+<div class="line"><span class="lineno">  609</span>            <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
 <div class="line"><span class="lineno">  610</span>                successful_retrievals++;</div>
 <div class="line"><span class="lineno">  611</span>            }</div>
 <div class="line"><span class="lineno">  612</span>        });</div>
@@ -353,6 +353,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  618</span>    </div>
 <div class="line"><span class="lineno">  619</span>    EXPECT_EQ(successful_retrievals.load(), 5);</div>
 <div class="line"><span class="lineno">  620</span>}</div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1159,7 +1160,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 02:21:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
