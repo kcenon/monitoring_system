@@ -326,4 +326,4 @@ private:
     size_t max_entries_ = 10000;
 };
 
-} // namespace kcenon::monitoring::alerting
+} // namespace monitoring_system::alerting

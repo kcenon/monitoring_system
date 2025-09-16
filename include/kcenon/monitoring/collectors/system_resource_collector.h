@@ -33,7 +33,7 @@
 
 #include "plugin_metric_collector.h"
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * System resource information structure
@@ -305,4 +305,4 @@ class resource_threshold_monitor {
                    alert::severity level, double value, double threshold, const std::string& message);
 };
 
-}  // namespace kcenon::monitoring
+}  // namespace monitoring_system

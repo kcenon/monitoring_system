@@ -21,7 +21,7 @@
 #include <kcenon/monitoring/storage/timeseries_engine.h>
 #include <kcenon/monitoring/utils/metric_types.h>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * Query expression types
@@ -431,4 +431,4 @@ class query_optimizer {
     double estimate_cost(const query_parser::parsed_query& query);
 };
 
-}  // namespace kcenon::monitoring
+}  // namespace monitoring_system

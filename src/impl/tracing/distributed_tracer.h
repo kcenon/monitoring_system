@@ -22,7 +22,7 @@
 #include <kcenon/monitoring/core/error_codes.h>
 #include <kcenon/monitoring/context/thread_context.h>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @brief Trace span representing a unit of work in distributed tracing
@@ -362,4 +362,4 @@ distributed_tracer& global_tracer();
         &monitoring_system::global_tracer() \
     )
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

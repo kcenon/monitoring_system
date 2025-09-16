@@ -20,7 +20,7 @@
 #include "../core/event_types.h"
 #include "plugin_metric_collector.h"
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * Log level enumeration
@@ -432,4 +432,4 @@ class log_storage_optimizer {
     double calculate_priority_score(size_t savings_bytes, double urgency) const;
 };
 
-}  // namespace kcenon::monitoring
+}  // namespace monitoring_system

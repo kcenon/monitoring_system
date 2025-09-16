@@ -6,17 +6,15 @@
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <shared_mutex>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
-using namespace monitoring_system;
-
-monitoring_system::result<bool> monitoring_system::performance_profiler::record_sample(
+result<bool> performance_profiler::record_sample(
     const std::string& operation_name,
     std::chrono::nanoseconds duration,
     bool success) {
 
     if (!enabled_) {
-        return monitoring_system::result<bool>(true);
+        return result<bool>(true);
     }
 
     std::unique_lock<std::shared_mutex> lock(profiles_mutex_);
@@ -83,17 +81,17 @@ monitoring_system::result<monitoring_system::performance_metrics> monitoring_sys
 
         metrics.min_duration = min_sample;
         metrics.max_duration = max_sample;
-        metrics.avg_duration = total / profile->samples.size();
-        metrics.sample_count = profile->samples.size();
+        metrics.mean_duration = total / profile->samples.size();
+        metrics.call_count = profile->samples.size();
     }
 
-    return monitoring_system::result<monitoring_system::performance_metrics>(metrics);
+    return result<performance_metrics>(metrics);
 }
 
 // Global instance
-monitoring_system::performance_monitor& global_performance_monitor() {
-    static monitoring_system::performance_monitor instance;
+performance_monitor& global_performance_monitor() {
+    static performance_monitor instance;
     return instance;
 }
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

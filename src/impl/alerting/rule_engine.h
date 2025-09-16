@@ -309,4 +309,4 @@ private:
     AlertRule rule_;
 };
 
-} // namespace kcenon::monitoring::alerting
+} // namespace monitoring_system::alerting

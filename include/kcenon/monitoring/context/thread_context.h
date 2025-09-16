@@ -4,7 +4,7 @@
 #include <chrono>
 #include <optional>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @brief Thread context information for distributed tracing
@@ -41,4 +41,4 @@ private:
     static thread_local std::optional<thread_context> current_context_;
 };
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

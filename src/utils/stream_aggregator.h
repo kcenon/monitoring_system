@@ -28,7 +28,7 @@ All rights reserved.
 #include <atomic>
 #include <mutex>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @struct stream_aggregator_config
@@ -694,4 +694,4 @@ inline double pearson_correlation(const std::vector<double>& x, const std::vecto
     return denominator != 0.0 ? numerator / denominator : 0.0;
 }
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

@@ -5,7 +5,7 @@
 #include <memory>
 #include <chrono>
 
-namespace kcenon::monitoring::adapters {
+namespace monitoring_system::adapters {
 
 /**
  * @brief Adapter to make performance_monitor compatible with IMonitorable interface
@@ -139,4 +139,4 @@ private:
     bool is_running_{false};
 };
 
-} // namespace kcenon::monitoring::adapters
+} // namespace monitoring_system::adapters

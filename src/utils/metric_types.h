@@ -23,7 +23,7 @@ All rights reserved.
 #include <variant>
 #include <cstdint>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @enum metric_type
@@ -357,4 +357,4 @@ inline metric_metadata create_metric_metadata(const std::string& name,
     );
 }
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

@@ -25,7 +25,7 @@ All rights reserved.
 #include <cstddef>
 #include <type_traits>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @struct ring_buffer_config
@@ -383,4 +383,4 @@ std::unique_ptr<ring_buffer<T>> make_ring_buffer(const ring_buffer_config& confi
     return std::make_unique<ring_buffer<T>>(config);
 }
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

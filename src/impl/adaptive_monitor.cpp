@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <shared_mutex>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 // Adaptive Monitor Implementation
 struct adaptive_monitor::monitor_impl {
@@ -346,4 +346,4 @@ adaptive_monitor& global_adaptive_monitor() {
     return instance;
 }
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

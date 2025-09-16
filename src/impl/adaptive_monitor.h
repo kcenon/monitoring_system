@@ -28,7 +28,7 @@
 #include <kcenon/monitoring/interfaces/monitoring_interface.h>
 #include <kcenon/monitoring/core/performance_monitor.h>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @brief Adaptation strategy for monitoring behavior
@@ -456,4 +456,4 @@ public:
     bool is_registered() const { return registered_; }
 };
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

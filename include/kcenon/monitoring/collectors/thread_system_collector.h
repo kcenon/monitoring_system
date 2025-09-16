@@ -18,7 +18,7 @@
 #include "../core/event_types.h"
 #include "plugin_metric_collector.h"
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * Thread pool statistics
@@ -358,4 +358,4 @@ class thread_pool_auto_scaler {
     size_t calculate_new_size(size_t current_size, scaling_decision::action action) const;
 };
 
-}  // namespace kcenon::monitoring
+}  // namespace monitoring_system

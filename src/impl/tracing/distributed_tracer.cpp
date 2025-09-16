@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <shared_mutex>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @brief Private implementation of distributed tracer
@@ -226,4 +226,4 @@ distributed_tracer& global_tracer() {
     return instance;
 }
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system

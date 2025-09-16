@@ -28,7 +28,7 @@ All rights reserved.
 #include <condition_variable>
 #include <functional>
 
-namespace kcenon::monitoring {
+namespace monitoring_system {
 
 /**
  * @struct buffer_manager_config
@@ -558,4 +558,4 @@ inline std::unique_ptr<buffer_manager> make_buffer_manager(
     return std::make_unique<buffer_manager>(config, storage);
 }
 
-} // namespace kcenon::monitoring
+} // namespace monitoring_system
