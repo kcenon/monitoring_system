@@ -11,8 +11,7 @@ All rights reserved.
  */
 
 #include <gtest/gtest.h>
-// Note: thread_context.h does not exist in include directory
-// #include <kcenon/monitoring/context/thread_context.h>
+#include <kcenon/monitoring/context/thread_context.h>
 #include <thread>
 #include <vector>
 #include <set>

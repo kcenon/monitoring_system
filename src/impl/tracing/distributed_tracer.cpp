@@ -7,6 +7,7 @@
 #include <thread>
 #include <algorithm>
 #include <shared_mutex>
+#include <sstream>
 
 namespace monitoring_system {
 
@@ -94,9 +95,10 @@ monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start
     // Get thread context if available
     auto ctx = thread_context_manager::get_context();
     if (ctx) {
-        // Thread ID from context metadata
-        // span->tags["thread.id"] = ctx->thread_id;
-        span->tags["thread.id"] = ctx->thread_id;
+        // Thread ID from current std::thread
+        std::stringstream ss;
+        ss << std::this_thread::get_id();
+        span->tags["thread.id"] = ss.str();
         if (!ctx->correlation_id.empty()) {
             span->tags["correlation.id"] = ctx->correlation_id;
         }
