@@ -27,7 +27,8 @@ public:
         size_t success_threshold = 3;
     };
 
-    explicit circuit_breaker(const config& cfg = config{}) : config_(cfg) {}
+    circuit_breaker() : config_() {}
+    explicit circuit_breaker(const config& cfg) : config_(cfg) {}
 
     template<typename Func>
     auto execute(Func&& func) -> decltype(func()) {

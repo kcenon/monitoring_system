@@ -17,7 +17,8 @@ public:
         double backoff_multiplier = 2.0;
     };
 
-    explicit retry_policy(const config& cfg = config{}) : config_(cfg) {}
+    retry_policy() : config_() {}
+    explicit retry_policy(const config& cfg) : config_(cfg) {}
 
     template<typename Func>
     auto execute(Func&& func) -> decltype(func()) {
