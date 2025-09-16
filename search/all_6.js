@@ -14,9 +14,11 @@ var searchData=
   ['get_5fmetric_5ftypes_11',['get_metric_types',['../d9/d71/classtest__collector.html#a9aa53936c18e756ac375ed78b595a314',1,'test_collector']]],
   ['get_5fmonitoring_5fdata_12',['get_monitoring_data',['../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d',1,'test_monitorable_component']]],
   ['get_5fname_13',['get_name',['../d9/d8d/classmock__collector.html#a5a27f7389857c19bc6b15525d5cd2763',1,'mock_collector::get_name()'],['../df/d8b/classIService.html#a240e88754be0c53be3c5cbed01763291',1,'IService::get_name()'],['../d6/d19/classServiceA.html#a466985c40572a83d1a41ec93ca94928e',1,'ServiceA::get_name()'],['../dd/d93/classServiceB.html#ab2ba2de3d982cb31cccfd54c3915f832',1,'ServiceB::get_name()'],['../d2/dea/classtest__health__check.html#a78257ec31906925dc79b3dfc27bed4b7',1,'test_health_check::get_name()']]],
-  ['get_5foperation_5fcount_14',['get_operation_count',['../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267',1,'test_monitorable_component']]],
-  ['get_5fquery_5fcount_15',['get_query_count',['../d2/d12/classDatabaseConnection.html#a8001aadd03d323b48fea2e745f705b29',1,'DatabaseConnection']]],
-  ['get_5fstats_16',['get_stats',['../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29',1,'test_collector']]],
-  ['get_5ftype_17',['get_type',['../d2/dea/classtest__health__check.html#af651386219b31c861c49034927a08946',1,'test_health_check']]],
-  ['getcurrentmemoryusage_18',['GetCurrentMemoryUsage',['../d9/dbf/classStressPerformanceTest.html#a6e543b7dc3f927f6e8e9d847fc2ce737',1,'StressPerformanceTest']]]
+  ['get_5fnamed_5fkey_14',['get_named_key',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#abefe3ce5047fd15326db71db9089d051',1,'monitoring_system::service_container_interface']]],
+  ['get_5foperation_5fcount_15',['get_operation_count',['../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267',1,'test_monitorable_component']]],
+  ['get_5fquery_5fcount_16',['get_query_count',['../d2/d12/classDatabaseConnection.html#a8001aadd03d323b48fea2e745f705b29',1,'DatabaseConnection']]],
+  ['get_5fstats_17',['get_stats',['../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29',1,'test_collector']]],
+  ['get_5ftype_18',['get_type',['../d2/dea/classtest__health__check.html#af651386219b31c861c49034927a08946',1,'test_health_check']]],
+  ['get_5ftype_5fkey_19',['get_type_key',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a0c984f496bd9b5b22cb4f418128d800a',1,'monitoring_system::service_container_interface']]],
+  ['getcurrentmemoryusage_20',['GetCurrentMemoryUsage',['../d9/dbf/classStressPerformanceTest.html#a6e543b7dc3f927f6e8e9d847fc2ce737',1,'StressPerformanceTest']]]
 ];

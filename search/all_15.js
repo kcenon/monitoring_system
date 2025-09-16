@@ -1,24 +1,6 @@
 var searchData=
 [
-  ['_7econtext_5faware_5fmonitoring_0',['~context_aware_monitoring',['../d3/d12/classmonitoring__system_1_1context__aware__monitoring.html#afb271212f082a0fe7a4a0247b9276c23',1,'monitoring_system::context_aware_monitoring']]],
-  ['_7econtext_5fscope_1',['~context_scope',['../d3/d82/classmonitoring__system_1_1context__scope.html#a185a74b99cd6263ade2760f2bf808deb',1,'monitoring_system::context_scope']]],
-  ['_7eevent_5fbase_2',['~event_base',['../d6/d1e/classmonitoring__system_1_1event__base.html#a19971870bb57186509b4477bf6efcef1',1,'monitoring_system::event_base']]],
-  ['_7eevent_5fbus_3',['~event_bus',['../dd/d62/classmonitoring__system_1_1event__bus.html#a47c6312b55fe85d0bd8ac94fd3fd77f3',1,'monitoring_system::event_bus']]],
-  ['_7einterface_5faggregated_5fcollector_4',['~interface_aggregated_collector',['../d1/d67/classmonitoring__system_1_1interface__aggregated__collector.html#a73189a1f5ac3a7ac3afd6443c61379ff',1,'monitoring_system::interface_aggregated_collector']]],
-  ['_7einterface_5fevent_5fbus_5',['~interface_event_bus',['../d5/d1d/classmonitoring__system_1_1interface__event__bus.html#a4a0fd4b67a191b2afbad0e61daf80dbd',1,'monitoring_system::interface_event_bus']]],
-  ['_7einterface_5fevent_5fpublisher_6',['~interface_event_publisher',['../dc/d65/classmonitoring__system_1_1interface__event__publisher.html#a0ff8f1c7d1c2080ca426155e1b3089bb',1,'monitoring_system::interface_event_publisher']]],
-  ['_7einterface_5fevent_5fsubscriber_7',['~interface_event_subscriber',['../d9/dde/classmonitoring__system_1_1interface__event__subscriber.html#a5ade8ac26fb2deff34b75b71d8fb6919',1,'monitoring_system::interface_event_subscriber']]],
-  ['_7einterface_5fmetric_5fcollector_8',['~interface_metric_collector',['../de/daa/classmonitoring__system_1_1interface__metric__collector.html#ab4853fa2688a39212c71cecb351ad4c8',1,'monitoring_system::interface_metric_collector']]],
-  ['_7einterface_5fmetric_5fsource_9',['~interface_metric_source',['../d3/d4e/classmonitoring__system_1_1interface__metric__source.html#a2948beea7d5786f5ac2f810cf7ddd14a',1,'monitoring_system::interface_metric_source']]],
-  ['_7einterface_5fmonitoring_5fobserver_10',['~interface_monitoring_observer',['../d9/d68/classmonitoring__system_1_1interface__monitoring__observer.html#aac02f739df1036237aed329f75ffcd7f',1,'monitoring_system::interface_monitoring_observer']]],
-  ['_7einterface_5fobservable_11',['~interface_observable',['../d9/d8d/classmonitoring__system_1_1interface__observable.html#a0409448bb802ab8302b8e154a8657e2b',1,'monitoring_system::interface_observable']]],
-  ['_7eiservice_12',['~IService',['../df/d8b/classIService.html#a098c038e416a77d0f748f13b59d71a55',1,'IService']]],
-  ['_7elightweight_5fcontainer_13',['~lightweight_container',['../d7/d05/classmonitoring__system_1_1lightweight__container.html#a60676ee12ec0612cc1f82e91315f0364',1,'monitoring_system::lightweight_container']]],
-  ['_7emetrics_5fanalyzer_14',['~metrics_analyzer',['../d7/db5/classmonitoring__system_1_1metrics__analyzer.html#ad268b7f9cf63171a81e795eff67620de',1,'monitoring_system::metrics_analyzer']]],
-  ['_7emetrics_5fcollector_15',['~metrics_collector',['../da/d9b/classmonitoring__system_1_1metrics__collector.html#a6a30856f37890aa8c83a55e2cad79ae7',1,'monitoring_system::metrics_collector']]],
-  ['_7emonitorable_5finterface_16',['~monitorable_interface',['../df/db6/classmonitoring__system_1_1monitorable__interface.html#a285bae2e333d85dc311544f582a795bd',1,'monitoring_system::monitorable_interface']]],
-  ['_7emonitoring_5finterface_17',['~monitoring_interface',['../d3/dd9/classmonitoring__system_1_1monitoring__interface.html#a0e3efdc7e5a5c9588835257d799fff71',1,'monitoring_system::monitoring_interface']]],
-  ['_7eservice_5fcontainer_5finterface_18',['~service_container_interface',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a94cc5d3e8b9bf4b3d04473421cf66e60',1,'monitoring_system::service_container_interface']]],
-  ['_7eservicea_19',['~ServiceA',['../d6/d19/classServiceA.html#a0bde63ceecbc16f8f3cd57b35dfa41cd',1,'ServiceA']]],
-  ['_7estorage_5fbackend_20',['~storage_backend',['../da/dbc/classmonitoring__system_1_1storage__backend.html#a021ac3629b3cc0c9bceee4e05140569a',1,'monitoring_system::storage_backend']]]
+  ['_7eiservice_0',['~IService',['../df/d8b/classIService.html#a098c038e416a77d0f748f13b59d71a55',1,'IService']]],
+  ['_7eservice_5fcontainer_5finterface_1',['~service_container_interface',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a94cc5d3e8b9bf4b3d04473421cf66e60',1,'monitoring_system::service_container_interface']]],
+  ['_7eservicea_2',['~ServiceA',['../d6/d19/classServiceA.html#a0bde63ceecbc16f8f3cd57b35dfa41cd',1,'ServiceA']]]
 ];

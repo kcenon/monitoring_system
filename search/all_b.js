@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['on_5fevent_5foccurred_0',['on_event_occurred',['../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171',1,'test_observer']]],
-  ['on_5fmetric_5fcollected_1',['on_metric_collected',['../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63',1,'test_observer']]],
-  ['on_5fsystem_5fstate_5fchanged_2',['on_system_state_changed',['../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358',1,'test_observer']]],
-  ['opentelemetryadaptertest_3',['OpenTelemetryAdapterTest',['../d5/d90/classOpenTelemetryAdapterTest.html',1,'']]],
-  ['operation_5fcount_5f_4',['operation_count_',['../d9/db4/classtest__monitorable__component.html#adfcec440e68ccc03b813f8a24e72cf89',1,'test_monitorable_component']]],
-  ['operator_20bool_5',['operator bool',['../d8/dae/classmonitoring__system_1_1result.html#a6ad5214f2626ea0d9c2d0cecab25b260',1,'monitoring_system::result']]],
-  ['optimizationtest_6',['OptimizationTest',['../db/d93/classOptimizationTest.html',1,'']]],
-  ['otel_5fresource_5f_7',['otel_resource_',['../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4',1,'MetricExportersTest::otel_resource_'],['../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472',1,'TraceExportersTest::otel_resource_']]]
+  ['name_5f_0',['name_',['../d9/d8d/classmock__collector.html#ae46143e0e7c82ade2c70c253b3814d02',1,'mock_collector::name_'],['../d2/dea/classtest__health__check.html#a939dd9d1cce3395bddd909e2e141a12c',1,'test_health_check::name_']]],
+  ['notify_5fevent_1',['notify_event',['../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb',1,'test_collector']]],
+  ['notify_5fmetric_2',['notify_metric',['../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63',1,'test_collector']]],
+  ['notify_5fstate_5fchange_3',['notify_state_change',['../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9',1,'test_collector']]]
 ];

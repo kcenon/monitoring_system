@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['query_5fcount_5f_0',['query_count_',['../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2',1,'DatabaseConnection']]],
-  ['query_5fdatabase_1',['query_database',['../df/d65/classWebService.html#ae651172e1cc079ee5513156f9cac01d3',1,'WebService']]]
+  ['perform_5foperation_0',['perform_operation',['../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c',1,'test_monitorable_component']]],
+  ['performancemonitoringtest_1',['PerformanceMonitoringTest',['../d7/dbe/classPerformanceMonitoringTest.html',1,'']]],
+  ['plugin_5fcollector_5fexample_2ecpp_2',['plugin_collector_example.cpp',['../dc/d7a/plugin__collector__example_8cpp.html',1,'']]],
+  ['process_5fbusiness_5flogic_3',['process_business_logic',['../df/d65/classWebService.html#a596c1a2053455df6df50c850e3828532',1,'WebService']]],
+  ['process_5fmetric_4',['process_metric',['../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75',1,'result_pattern_example.cpp']]],
+  ['profiler_5',['profiler',['../d7/dbe/classPerformanceMonitoringTest.html#a47d07edd9fd1df796473642030bb2b24',1,'PerformanceMonitoringTest']]]
 ];

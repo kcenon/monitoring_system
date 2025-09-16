@@ -1,7 +1,15 @@
 var searchData=
 [
-  ['name_5f_0',['name_',['../d9/d8d/classmock__collector.html#ae46143e0e7c82ade2c70c253b3814d02',1,'mock_collector::name_'],['../d2/dea/classtest__health__check.html#a939dd9d1cce3395bddd909e2e141a12c',1,'test_health_check::name_']]],
-  ['notify_5fevent_1',['notify_event',['../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb',1,'test_collector']]],
-  ['notify_5fmetric_2',['notify_metric',['../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63',1,'test_collector']]],
-  ['notify_5fstate_5fchange_3',['notify_state_change',['../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9',1,'test_collector']]]
+  ['main_0',['main',['../dc/d7a/plugin__collector__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;plugin_collector_example.cpp'],['../d0/d97/basic__monitoring__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;basic_monitoring_example.cpp'],['../de/da5/test__stress__performance_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;test_stress_performance.cpp'],['../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;test_interfaces_compile.cpp'],['../d1/d9b/test__integration__e2e_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;test_integration_e2e.cpp'],['../df/de1/test__event__bus_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;test_event_bus.cpp'],['../d4/d6c/distributed__tracing__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;distributed_tracing_example.cpp'],['../d4/d27/event__bus__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;event_bus_example.cpp'],['../d2/d84/health__reliability__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;health_reliability_example.cpp'],['../de/dfb/result__pattern__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;result_pattern_example.cpp'],['../d9/d8e/storage__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;storage_example.cpp']]],
+  ['make_5fsuccess_1',['make_success',['../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265',1,'monitoring_system']]],
+  ['memory_5fusage_5f_2',['memory_usage_',['../d9/db4/classtest__monitorable__component.html#a9cdd67742f000d3329615b65eeddd89a',1,'test_monitorable_component']]],
+  ['message_3',['message',['../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561',1,'monitoring_system::error_info']]],
+  ['message_5f_4',['message_',['../d2/dea/classtest__health__check.html#a6665381b3023736e737788a00815e19b',1,'test_health_check']]],
+  ['metricexporterstest_5',['MetricExportersTest',['../d9/d66/classMetricExportersTest.html',1,'']]],
+  ['metricstoragetest_6',['MetricStorageTest',['../d6/d95/classMetricStorageTest.html',1,'']]],
+  ['mock_5fcollector_7',['mock_collector',['../d9/d8d/classmock__collector.html#aaa09060aff1497d6e1d1e6199bca8e13',1,'mock_collector::mock_collector()'],['../d9/d8d/classmock__collector.html',1,'mock_collector']]],
+  ['monitor_8',['monitor',['../d7/dbe/classPerformanceMonitoringTest.html#a8de2dcbf72bdd30da483f8e22103a9d8',1,'PerformanceMonitoringTest::monitor'],['../da/d18/classHealthMonitoringTest.html#a8dce341caff48d879664af96aa1b6a14',1,'HealthMonitoringTest::monitor'],['../d9/dfa/classAdaptiveMonitoringTest.html#aceaab072099f7dcb237eaf50d87f1fe0',1,'AdaptiveMonitoringTest::monitor']]],
+  ['monitorableinterfacetest_9',['MonitorableInterfaceTest',['../d8/d4d/classMonitorableInterfaceTest.html',1,'']]],
+  ['monitoring_5ferror_5fcode_10',['monitoring_error_code',['../de/d3f/namespacemonitoring__system.html#a64c01c1e7387d98c248b06f9dc66667f',1,'monitoring_system']]],
+  ['monitoring_5fsystem_11',['monitoring_system',['../de/d3f/namespacemonitoring__system.html',1,'']]]
 ];

@@ -16,7 +16,7 @@ var searchData=
   ['container_5f_13',['container_',['../d9/da4/classDIContainerTest.html#acbca56eea880ded9b3170eccb1288811',1,'DIContainerTest::container_'],['../da/dd3/classmonitoring__system_1_1service__locator.html#a7145235167bd44212516ea9c5460a76b',1,'monitoring_system::service_locator::container_']]],
   ['cpu_5fusage_5f_14',['cpu_usage_',['../d9/db4/classtest__monitorable__component.html#a687cedeade5cbc3cffa37bb02f089cf5',1,'test_monitorable_component']]],
   ['create_5flightweight_5fcontainer_15',['create_lightweight_container',['../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3',1,'monitoring_system']]],
-  ['create_5fscope_16',['create_scope',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a173446e6b33af3d7b1319a3c3d955cdd',1,'monitoring_system::service_container_interface']]],
+  ['create_5fscope_16',['create_scope',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a8b90fb2ba8196d334e9b442d70696352',1,'monitoring_system::service_container_interface']]],
   ['create_5ftest_5fmetric_17',['create_test_metric',['../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b',1,'BufferingStrategiesTest']]],
   ['create_5ftest_5fmetrics_18',['create_test_metrics',['../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1',1,'BufferingStrategiesTest']]],
   ['create_5ftest_5fmonitoring_5fdata_19',['create_test_monitoring_data',['../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961',1,'MetricExportersTest']]],
