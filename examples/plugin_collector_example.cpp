@@ -2,10 +2,10 @@
 #include <iostream>
 #include <thread>
 
-#include "../sources/monitoring/collectors/logger_system_collector.h"
-#include "../sources/monitoring/collectors/plugin_metric_collector.h"
-#include "../sources/monitoring/collectors/system_resource_collector.h"
-#include "../sources/monitoring/collectors/thread_system_collector.h"
+#include <kcenon/monitoring/collectors/logger_system_collector.h>
+#include <kcenon/monitoring/collectors/plugin_metric_collector.h>
+#include <kcenon/monitoring/collectors/system_resource_collector.h>
+#include <kcenon/monitoring/collectors/thread_system_collector.h>
 
 using namespace monitoring_system;
 

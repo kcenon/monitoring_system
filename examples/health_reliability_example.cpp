@@ -18,6 +18,8 @@
 #include "monitoring/reliability/circuit_breaker.h"
 #include "monitoring/reliability/retry_policy.h"
 #include "monitoring/reliability/error_boundary.h"
+#include "monitoring/core/result_types.h"
+#include "monitoring/core/error_codes.h"
 
 using namespace monitoring_system;
 using namespace std::chrono_literals;

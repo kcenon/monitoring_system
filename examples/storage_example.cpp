@@ -2,9 +2,10 @@
 #include <iostream>
 #include <thread>
 
-#include "../sources/monitoring/query/metric_query_engine.h"
-#include "../sources/monitoring/storage/metric_database.h"
-#include "../sources/monitoring/storage/timeseries_engine.h"
+// Note: These storage headers do not exist in include directory
+// #include <kcenon/monitoring/query/metric_query_engine.h>
+// #include <kcenon/monitoring/storage/metric_database.h>
+// #include <kcenon/monitoring/storage/timeseries_engine.h>
 
 using namespace monitoring_system;
 

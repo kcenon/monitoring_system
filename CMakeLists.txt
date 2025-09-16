@@ -122,24 +122,74 @@ if(ENABLE_UBSAN)
     target_link_options(monitoring_system_interface INTERFACE -fsanitize=undefined)
 endif()
 
-# Create monitoring_system library
-add_library(monitoring_system STATIC
-    sources/monitoring/context/thread_context.cpp
-    sources/monitoring/tracing/distributed_tracer.cpp
-    sources/monitoring/performance/performance_monitor.cpp
-    sources/monitoring/adaptive/adaptive_monitor.cpp
-    sources/monitoring/health/health_monitor.cpp
-)
+# Check for new structure
+set(MONITORING_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set(MONITORING_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SOURCE_DIR})
+    message(STATUS "Monitoring System: Using new directory structure")
+
+    # Collect source files from new structure
+    file(GLOB_RECURSE MONITORING_HEADERS
+        ${MONITORING_INCLUDE_DIR}/kcenon/monitoring/*.h
+    )
+
+    file(GLOB_RECURSE MONITORING_SOURCES
+        ${MONITORING_SOURCE_DIR}/*.cpp
+    )
+
+    # Check if new structure has sources
+    list(LENGTH MONITORING_SOURCES SOURCE_COUNT)
+    if(SOURCE_COUNT GREATER 0)
+        # Create library with new structure
+        add_library(monitoring_system STATIC
+            ${MONITORING_SOURCES}
+            ${MONITORING_HEADERS}
+        )
+
+        target_include_directories(monitoring_system
+            PUBLIC
+                $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
+                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
+                $<INSTALL_INTERFACE:include>
+        )
+    else()
+        # Fall back to legacy structure
+        message(STATUS "Monitoring System: New structure incomplete, using src sources")
+        add_library(monitoring_system STATIC
+            src/context/thread_context.cpp
+            src/impl/tracing/distributed_tracer.cpp
+            src/core/performance_monitor.cpp
+            src/impl/adaptive_monitor.cpp
+        )
+
+        target_include_directories(monitoring_system
+            PUBLIC
+                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
+                $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
+                $<INSTALL_INTERFACE:include>
+        )
+    endif()
+else()
+    # Use legacy structure
+    message(STATUS "Monitoring System: Using legacy directory structure")
+    add_library(monitoring_system STATIC
+        src/context/thread_context.cpp
+        src/impl/tracing/distributed_tracer.cpp
+        src/core/performance_monitor.cpp
+        src/impl/adaptive_monitor.cpp
+    )
+
+    target_include_directories(monitoring_system
+        PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
+            $<INSTALL_INTERFACE:include>
+    )
+endif()
 
 target_link_libraries(monitoring_system PUBLIC
     monitoring_system_interface
     Threads::Threads
-)
-
-target_include_directories(monitoring_system
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
-        $<INSTALL_INTERFACE:include>
 )
 
 # Setup formatting library (std::format, fmt, or basic fallback)

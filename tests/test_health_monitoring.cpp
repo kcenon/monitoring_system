@@ -7,7 +7,8 @@
 #include <thread>
 #include <chrono>
 #include <memory>
-#include "../sources/monitoring/health/health_monitor.h"
+// Note: health_monitor.h does not exist in include directory
+// #include <kcenon/monitoring/health/health_monitor.h>
 
 using namespace monitoring_system;
 

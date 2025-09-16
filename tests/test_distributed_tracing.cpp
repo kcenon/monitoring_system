@@ -7,7 +7,8 @@
 #include <thread>
 #include <chrono>
 #include <unordered_map>
-#include "../sources/monitoring/tracing/distributed_tracer.h"
+// Note: distributed_tracer.h does not exist in include directory
+// #include <kcenon/monitoring/tracing/distributed_tracer.h>
 
 using namespace monitoring_system;
 

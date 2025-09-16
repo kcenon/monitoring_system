@@ -6,10 +6,10 @@ All rights reserved.
 *****************************************************************************/
 
 #include <gtest/gtest.h>
-#include "../sources/monitoring/export/metric_exporters.h"
-#include "../sources/monitoring/interfaces/monitorable_interface.h"
-#include "../sources/monitoring/interfaces/monitoring_interface.h"
-#include "../sources/monitoring/export/opentelemetry_adapter.h"
+#include <kcenon/monitoring/exporters/metric_exporters.h>
+#include <kcenon/monitoring/interfaces/monitorable_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/exporters/opentelemetry_adapter.h>
 #include <thread>
 #include <chrono>
 

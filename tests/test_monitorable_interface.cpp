@@ -11,7 +11,7 @@ All rights reserved.
  */
 
 #include <gtest/gtest.h>
-#include "../sources/monitoring/interfaces/monitorable_interface.h"
+#include <kcenon/monitoring/interfaces/monitorable_interface.h>
 #include <thread>
 #include <atomic>
 
