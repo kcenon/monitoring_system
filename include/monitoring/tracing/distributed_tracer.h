@@ -175,6 +175,7 @@ public:
 
     // Get trace information (returns vector of spans for a trace)
     result<std::vector<std::shared_ptr<trace_span>>> get_trace(const std::string& trace_id) {
+        (void)trace_id; // Suppress unused parameter warning
         // Stub implementation - return empty vector
         std::vector<std::shared_ptr<trace_span>> spans;
         return result<std::vector<std::shared_ptr<trace_span>>>(spans);
