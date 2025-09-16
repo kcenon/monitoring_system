@@ -1,6 +1,11 @@
 # Monitoring System
 
-[![Build Status](https://github.com/kcenon/monitoring_system/actions/workflows/build.yml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build.yml)
+[![Ubuntu-GCC](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-gcc.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-gcc.yaml)
+[![Ubuntu-Clang](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-clang.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-clang.yaml)
+[![Windows-VS](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-vs.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-vs.yaml)
+[![Windows-MSYS2](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-msys2.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-msys2.yaml)
+[![Doxygen](https://github.com/kcenon/monitoring_system/actions/workflows/build-Doxygen.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-Doxygen.yaml)
+
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](LICENSE)
 [![C++20](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B20)
 
