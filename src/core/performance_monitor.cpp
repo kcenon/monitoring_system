@@ -157,6 +157,7 @@ bool system_monitor::is_monitoring() const {
 }
 
 std::vector<system_metrics> system_monitor::get_history(std::chrono::seconds duration) const {
+    (void)duration; // Suppress unused parameter warning
     std::lock_guard<std::mutex> lock(impl_->history_mutex);
     return impl_->history; // Simplified stub
 }
