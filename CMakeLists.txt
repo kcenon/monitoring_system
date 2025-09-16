@@ -155,13 +155,12 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
         )
     else()
         # Fall back to legacy structure
-        message(STATUS "Monitoring System: New structure incomplete, using legacy sources")
+        message(STATUS "Monitoring System: New structure incomplete, using src sources")
         add_library(monitoring_system STATIC
-            sources/monitoring/context/thread_context.cpp
-            sources/monitoring/tracing/distributed_tracer.cpp
-            sources/monitoring/performance/performance_monitor.cpp
-            sources/monitoring/adaptive/adaptive_monitor.cpp
-            sources/monitoring/health/health_monitor.cpp
+            src/context/thread_context.cpp
+            src/impl/tracing/distributed_tracer.cpp
+            src/core/performance_monitor.cpp
+            src/impl/adaptive_monitor.cpp
         )
 
         target_include_directories(monitoring_system
@@ -175,11 +174,10 @@ else()
     # Use legacy structure
     message(STATUS "Monitoring System: Using legacy directory structure")
     add_library(monitoring_system STATIC
-        sources/monitoring/context/thread_context.cpp
-        sources/monitoring/tracing/distributed_tracer.cpp
-        sources/monitoring/performance/performance_monitor.cpp
-        sources/monitoring/adaptive/adaptive_monitor.cpp
-        sources/monitoring/health/health_monitor.cpp
+        src/context/thread_context.cpp
+        src/impl/tracing/distributed_tracer.cpp
+        src/core/performance_monitor.cpp
+        src/impl/adaptive_monitor.cpp
     )
 
     target_include_directories(monitoring_system

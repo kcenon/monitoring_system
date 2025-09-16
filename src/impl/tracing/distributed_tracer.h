@@ -95,7 +95,7 @@ struct trace_context {
     static monitoring_system::result<trace_context> from_w3c_traceparent(const std::string& header) {
         // Parse format: version-traceid-spanid-traceflags
         if (header.length() < 55) {  // Minimum valid length
-            return monitoring_system::make_error<trace_context>(monitoring_error_code::invalid_argument);
+            return monitoring_system::make_error<trace_context>(monitoring_system::monitoring_error_code::invalid_argument);
         }
         
         trace_context ctx;
@@ -106,7 +106,7 @@ struct trace_context {
         size_t dash3 = header.find('-', dash2 + 1);
         
         if (dash1 == std::string::npos || dash2 == std::string::npos || dash3 == std::string::npos) {
-            return monitoring_system::make_error<trace_context>(monitoring_error_code::invalid_argument);
+            return monitoring_system::make_error<trace_context>(monitoring_system::monitoring_error_code::invalid_argument);
         }
         
         ctx.trace_id = header.substr(dash1 + 1, dash2 - dash1 - 1);
@@ -157,10 +157,10 @@ public:
     
     trace_span build() {
         if (span_.span_id.empty()) {
-            span_.span_id = monitoring_system::thread_context::generate_request_id();
+            span_.span_id = thread_context_manager::generate_request_id();
         }
         if (span_.trace_id.empty()) {
-            span_.trace_id = monitoring_system::thread_context::generate_correlation_id();
+            span_.trace_id = thread_context_manager::generate_correlation_id();
         }
         span_.start_time = std::chrono::system_clock::now();
         return span_;
@@ -253,7 +253,7 @@ public:
     monitoring_system::result<trace_context> extract_context_from_carrier(const Carrier& carrier) {
         auto traceparent_it = carrier.find("traceparent");
         if (traceparent_it == carrier.end()) {
-            return monitoring_system::make_error<trace_context>(monitoring_error_code::not_found);
+            return monitoring_system::make_error<trace_context>(monitoring_system::monitoring_error_code::not_found);
         }
         
         auto ctx_result = trace_context::from_w3c_traceparent(traceparent_it->second);

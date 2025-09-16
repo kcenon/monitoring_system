@@ -29,7 +29,7 @@ struct distributed_tracer::tracer_impl {
     /**
      * @brief Store a span
      */
-    result<bool> store_span(const trace_span& span) {
+    monitoring_system::result<bool> store_span(const trace_span& span) {
         std::unique_lock lock(spans_mutex);
         
         auto& trace_spans = traces[span.trace_id];
@@ -76,7 +76,7 @@ distributed_tracer::~distributed_tracer() = default;
 distributed_tracer::distributed_tracer(distributed_tracer&&) noexcept = default;
 distributed_tracer& distributed_tracer::operator=(distributed_tracer&&) noexcept = default;
 
-result<std::shared_ptr<trace_span>> distributed_tracer::start_span(
+monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start_span(
     const std::string& operation_name,
     const std::string& service_name) {
     
@@ -105,7 +105,7 @@ result<std::shared_ptr<trace_span>> distributed_tracer::start_span(
     return span;
 }
 
-result<std::shared_ptr<trace_span>> distributed_tracer::start_child_span(
+monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start_child_span(
     const trace_span& parent,
     const std::string& operation_name) {
     
@@ -128,7 +128,7 @@ result<std::shared_ptr<trace_span>> distributed_tracer::start_child_span(
     return span;
 }
 
-result<std::shared_ptr<trace_span>> distributed_tracer::start_span_from_context(
+monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start_span_from_context(
     const trace_context& context,
     const std::string& operation_name) {
     
@@ -151,7 +151,7 @@ result<std::shared_ptr<trace_span>> distributed_tracer::start_span_from_context(
     return span;
 }
 
-result<bool> distributed_tracer::finish_span(std::shared_ptr<trace_span> span) {
+monitoring_system::result<bool> distributed_tracer::finish_span(std::shared_ptr<trace_span> span) {
     if (!span) {
         return make_error<bool>(monitoring_error_code::invalid_argument);
     }
@@ -189,7 +189,7 @@ trace_context distributed_tracer::extract_context(const trace_span& span) const 
     return ctx;
 }
 
-result<std::vector<trace_span>> distributed_tracer::get_trace(const std::string& trace_id) const {
+monitoring_system::result<std::vector<trace_span>> distributed_tracer::get_trace(const std::string& trace_id) const {
     std::shared_lock lock(impl_->spans_mutex);
     
     auto it = impl_->traces.find(trace_id);
@@ -200,7 +200,7 @@ result<std::vector<trace_span>> distributed_tracer::get_trace(const std::string&
     return it->second;
 }
 
-result<bool> distributed_tracer::export_spans(std::vector<trace_span> spans) {
+monitoring_system::result<bool> distributed_tracer::export_spans(std::vector<trace_span> spans) {
     // In a real implementation, this would export to Jaeger, Zipkin, etc.
     // For now, just validate the spans
     for (const auto& span : spans) {

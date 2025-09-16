@@ -134,7 +134,7 @@ struct adaptation_stats {
  */
 class adaptive_collector {
 private:
-    std::shared_ptr<metrics_collector> collector_;
+    std::shared_ptr<monitoring_system::metrics_collector> collector_;
     adaptive_config config_;
     adaptation_stats stats_;
     std::atomic<bool> enabled_{true};
@@ -143,7 +143,7 @@ private:
     
 public:
     adaptive_collector(
-        std::shared_ptr<metrics_collector> collector,
+        std::shared_ptr<monitoring_system::metrics_collector> collector,
         const adaptive_config& config = {}
     ) : collector_(collector), config_(config) {
         stats_.current_interval = config_.moderate_interval;
@@ -153,11 +153,11 @@ public:
     /**
      * @brief Collect metrics with adaptive sampling
      */
-    monitoring_system::result<metrics_snapshot> collect() {
+    monitoring_system::result<monitoring_system::metrics_snapshot> collect() {
         if (!should_sample()) {
             stats_.samples_dropped++;
-            return monitoring_system::make_error<metrics_snapshot>(
-                monitoring_error_code::operation_cancelled,
+            return monitoring_system::make_error<monitoring_system::metrics_snapshot>(
+                monitoring_system::monitoring_error_code::operation_cancelled,
                 "Sample dropped due to adaptive sampling"
             );
         }
@@ -169,7 +169,7 @@ public:
     /**
      * @brief Adapt collection behavior based on load
      */
-    void adapt(const system_metrics& sys_metrics) {
+    void adapt(const monitoring_system::system_metrics& sys_metrics) {
         std::lock_guard lock(stats_mutex_);
         
         // Initialize averages on first adaptation

@@ -103,7 +103,7 @@ monitoring_system::result<bool> adaptive_monitor::register_collector(
     
     if (!collector) {
         return monitoring_system::make_error<bool>(
-            monitoring_error_code::invalid_argument,
+            monitoring_system::monitoring_error_code::invalid_argument,
             "Collector cannot be null"
         );
     }
@@ -112,7 +112,7 @@ monitoring_system::result<bool> adaptive_monitor::register_collector(
     
     if (impl_->collectors.find(name) != impl_->collectors.end()) {
         return monitoring_system::make_error<bool>(
-            monitoring_error_code::already_exists,
+            monitoring_system::monitoring_error_code::already_exists,
             "Collector already registered: " + name
         );
     }
@@ -135,7 +135,7 @@ monitoring_system::result<bool> adaptive_monitor::unregister_collector(
     auto it = impl_->collectors.find(name);
     if (it == impl_->collectors.end()) {
         return monitoring_system::make_error<bool>(
-            monitoring_error_code::not_found,
+            monitoring_system::monitoring_error_code::not_found,
             "Collector not found: " + name
         );
     }
@@ -148,7 +148,7 @@ monitoring_system::result<bool> adaptive_monitor::unregister_collector(
 monitoring_system::result<bool> adaptive_monitor::start() {
     if (!impl_) {
         return monitoring_system::make_error<bool>(
-            monitoring_error_code::invalid_state,
+            monitoring_system::monitoring_error_code::invalid_state,
             "Adaptive monitor not initialized"
         );
     }
@@ -179,7 +179,7 @@ monitoring_system::result<bool> adaptive_monitor::start() {
 monitoring_system::result<bool> adaptive_monitor::stop() {
     if (!impl_) {
         return monitoring_system::make_error<bool>(
-            monitoring_error_code::invalid_state,
+            monitoring_system::monitoring_error_code::invalid_state,
             "Adaptive monitor not initialized"
         );
     }
@@ -205,14 +205,14 @@ monitoring_system::result<adaptation_stats> adaptive_monitor::get_collector_stat
     auto it = impl_->collectors.find(name);
     if (it == impl_->collectors.end()) {
         return monitoring_system::make_error<adaptation_stats>(
-            monitoring_error_code::not_found,
+            monitoring_system::monitoring_error_code::not_found,
             "Collector not found: " + name
         );
     }
     
     if (!it->second.collector) {
         return monitoring_system::make_error<adaptation_stats>(
-            monitoring_error_code::invalid_state,
+            monitoring_system::monitoring_error_code::invalid_state,
             "Collector is null"
         );
     }
@@ -251,7 +251,7 @@ void adaptive_monitor::set_global_strategy(adaptation_strategy strategy) {
 monitoring_system::result<bool> adaptive_monitor::force_adaptation() {
     if (!impl_->sys_monitor) {
         return monitoring_system::make_error<bool>(
-            monitoring_error_code::invalid_state,
+            monitoring_system::monitoring_error_code::invalid_state,
             "System monitor not initialized"
         );
     }
@@ -330,7 +330,7 @@ monitoring_system::result<bool> adaptive_monitor::set_collector_priority(
     auto it = impl_->collectors.find(name);
     if (it == impl_->collectors.end()) {
         return monitoring_system::make_error<bool>(
-            monitoring_error_code::not_found,
+            monitoring_system::monitoring_error_code::not_found,
             "Collector not found: " + name
         );
     }
