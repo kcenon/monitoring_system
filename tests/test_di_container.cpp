@@ -24,6 +24,11 @@ All rights reserved.
 
 // Add monitoring system types for testing
 namespace monitoring_system {
+    // Add monitoring_error_code for tests
+    enum class monitoring_error_code {
+        collector_not_found = 1000
+    };
+
     // Forward declarations for result types
     template<typename T> class result;
 
@@ -32,18 +37,26 @@ namespace monitoring_system {
         return result<T>(std::forward<T>(value));
     }
 
+    // Simple error info for tests
+    struct error_info {
+        monitoring_error_code code;
+        std::string message;
+    };
+
     template<typename T>
     class result {
     private:
         bool success_;
         T value_;
+        error_info error_;
     public:
         result(T value) : success_(true), value_(std::move(value)) {}
-        result() : success_(false) {}
+        result() : success_(false), error_{monitoring_error_code::collector_not_found, "Not found"} {}
 
         operator bool() const { return success_; }
         T& value() { return value_; }
         const T& value() const { return value_; }
+        const error_info& get_error() const { return error_; }
     };
 
     // Stub enums and types for testing
@@ -102,10 +115,46 @@ namespace monitoring_system {
             (void)name; // Suppress warnings
             return make_success(std::shared_ptr<TInterface>()); // Stub implementation
         }
+
+        // Additional methods needed by tests
+        virtual result<bool> clear() {
+            return make_success(true); // Stub implementation
+        }
+
+        virtual std::unique_ptr<void> create_scope() {
+            return std::make_unique<int>(0); // Stub implementation
+        }
     };
 
     // Stub function for creating lightweight container
     inline std::unique_ptr<service_container_interface> create_lightweight_container() {
+        return std::make_unique<service_container_interface>();
+    }
+
+    // Stub service_locator for testing
+    class service_locator {
+    private:
+        static inline std::unique_ptr<service_container_interface> container_;
+    public:
+        static bool has_container() {
+            return container_ != nullptr;
+        }
+
+        static service_container_interface* get_container() {
+            return container_.get();
+        }
+
+        static void set_container(std::unique_ptr<service_container_interface> container) {
+            container_ = std::move(container);
+        }
+
+        static void reset() {
+            container_.reset();
+        }
+    };
+
+    // Stub function for thread system adapter
+    inline std::unique_ptr<service_container_interface> create_thread_system_adapter() {
         return std::make_unique<service_container_interface>();
     }
 }
