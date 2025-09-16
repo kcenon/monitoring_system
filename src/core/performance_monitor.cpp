@@ -5,34 +5,12 @@
 
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <shared_mutex>
-#include <fstream>
-#include <sstream>
-#include <cstring>
 
 namespace kcenon::monitoring {
 
 using namespace monitoring_system;
 
-#ifdef _WIN32
-#include <windows.h>
-#include <psapi.h>
-#include <pdh.h>
-#include <tlhelp32.h>
-#pragma comment(lib, "pdh.lib")
-#pragma comment(lib, "psapi.lib")
-#elif __linux__
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/sysinfo.h>
-#include <unistd.h>
-#include <fcntl.h>
-#elif __APPLE__
-#include <mach/mach.h>
-#include <sys/sysctl.h>
-#include <sys/mount.h>
-#endif
-
-monitoring_system::result<bool> performance_profiler::record_sample(
+monitoring_system::result<bool> monitoring_system::performance_profiler::record_sample(
     const std::string& operation_name,
     std::chrono::nanoseconds duration,
     bool success) {
@@ -41,7 +19,7 @@ monitoring_system::result<bool> performance_profiler::record_sample(
         return monitoring_system::result<bool>(true);
     }
 
-    std::unique_lock lock(profiles_mutex_);
+    std::unique_lock<std::shared_mutex> lock(profiles_mutex_);
 
     auto& profile = profiles_[operation_name];
     if (!profile) {
@@ -70,10 +48,10 @@ monitoring_system::result<bool> performance_profiler::record_sample(
     return monitoring_system::result<bool>(true);
 }
 
-monitoring_system::result<monitoring_system::performance_metrics> performance_profiler::get_metrics(
+monitoring_system::result<monitoring_system::performance_metrics> monitoring_system::performance_profiler::get_metrics(
     const std::string& operation_name) const {
 
-    std::shared_lock lock(profiles_mutex_);
+    std::shared_lock<std::shared_mutex> lock(profiles_mutex_);
 
     auto it = profiles_.find(operation_name);
     if (it == profiles_.end()) {
@@ -113,8 +91,8 @@ monitoring_system::result<monitoring_system::performance_metrics> performance_pr
 }
 
 // Global instance
-performance_monitor& global_performance_monitor() {
-    static performance_monitor instance;
+monitoring_system::performance_monitor& global_performance_monitor() {
+    static monitoring_system::performance_monitor instance;
     return instance;
 }
 

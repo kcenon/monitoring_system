@@ -13,6 +13,7 @@ struct thread_context {
     std::string thread_id;
     std::string span_id;
     std::string trace_id;
+    std::string correlation_id;
     std::chrono::steady_clock::time_point start_time;
     std::optional<std::string> parent_span_id;
 

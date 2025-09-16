@@ -34,7 +34,7 @@ struct distributed_tracer::tracer_impl {
         
         auto& trace_spans = traces[span.trace_id];
         if (trace_spans.size() >= max_spans_per_trace) {
-            return make_error<bool>(monitoring_error_code::resource_exhausted);
+            return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::resource_exhausted);
         }
         
         trace_spans.push_back(span);
@@ -53,14 +53,14 @@ struct distributed_tracer::tracer_impl {
      * @brief Generate unique span ID
      */
     std::string generate_span_id() {
-        return thread_context::generate_request_id();
+        return thread_context_manager::generate_request_id();
     }
     
     /**
      * @brief Generate unique trace ID
      */
     std::string generate_trace_id() {
-        return thread_context::generate_correlation_id();
+        return thread_context_manager::generate_correlation_id();
     }
 };
 
@@ -92,11 +92,11 @@ monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start
     span->tags["service.name"] = span->service_name;
     
     // Get thread context if available
-    auto* ctx = thread_context::current();
+    auto ctx = thread_context_manager::get_context();
     if (ctx) {
         // Thread ID from context metadata
         // span->tags["thread.id"] = ctx->thread_id;
-        span->tags["request.id"] = ctx->request_id;
+        span->tags["thread.id"] = ctx->thread_id;
         if (!ctx->correlation_id.empty()) {
             span->tags["correlation.id"] = ctx->correlation_id;
         }
@@ -153,11 +153,11 @@ monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start
 
 monitoring_system::result<bool> distributed_tracer::finish_span(std::shared_ptr<trace_span> span) {
     if (!span) {
-        return make_error<bool>(monitoring_error_code::invalid_argument);
+        return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::invalid_argument);
     }
     
     if (span->is_finished()) {
-        return make_error<bool>(monitoring_error_code::already_exists);
+        return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::already_exists);
     }
     
     span->end_time = std::chrono::system_clock::now();
@@ -194,7 +194,7 @@ monitoring_system::result<std::vector<trace_span>> distributed_tracer::get_trace
     
     auto it = impl_->traces.find(trace_id);
     if (it == impl_->traces.end()) {
-        return make_error<std::vector<trace_span>>(monitoring_error_code::not_found);
+        return monitoring_system::make_error<std::vector<trace_span>>(monitoring_system::monitoring_error_code::not_found);
     }
     
     return it->second;
@@ -205,7 +205,7 @@ monitoring_system::result<bool> distributed_tracer::export_spans(std::vector<tra
     // For now, just validate the spans
     for (const auto& span : spans) {
         if (!span.is_finished()) {
-            return make_error<bool>(monitoring_error_code::invalid_state);
+            return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::invalid_state);
         }
     }
     
@@ -213,7 +213,7 @@ monitoring_system::result<bool> distributed_tracer::export_spans(std::vector<tra
     for (const auto& span : spans) {
         auto result = impl_->store_span(span);
         if (!result) {
-            return make_error<bool>(result.get_error().code);
+            return monitoring_system::make_error<bool>(result.get_error().code);
         }
     }
     

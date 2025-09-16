@@ -21,7 +21,7 @@ struct adaptive_monitor::monitor_impl {
     std::unordered_map<std::string, collector_info> collectors;
     mutable std::shared_mutex collectors_mutex;
     
-    std::unique_ptr<system_monitor> sys_monitor;
+    std::unique_ptr<monitoring_system::system_monitor> sys_monitor;
     std::atomic<bool> running{false};
     std::thread adaptation_thread;
     
@@ -88,7 +88,7 @@ struct adaptive_monitor::monitor_impl {
 
 adaptive_monitor::adaptive_monitor()
     : impl_(std::make_unique<monitor_impl>()) {
-    impl_->sys_monitor = std::make_unique<system_monitor>();
+    impl_->sys_monitor = std::make_unique<monitoring_system::system_monitor>();
 }
 
 adaptive_monitor::~adaptive_monitor() = default;

@@ -336,7 +336,7 @@ public:
      */
     monitoring_system::result<bool> register_collector(
         const std::string& name,
-        std::shared_ptr<metrics_collector> collector,
+        std::shared_ptr<monitoring_system::metrics_collector> collector,
         const adaptive_config& config = {}
     );
     
@@ -413,7 +413,7 @@ private:
 public:
     adaptive_scope(
         const std::string& name,
-        std::shared_ptr<metrics_collector> collector,
+        std::shared_ptr<monitoring_system::metrics_collector> collector,
         const adaptive_config& config = {}
     ) : monitor_(&global_adaptive_monitor()), collector_name_(name) {
         auto result = monitor_->register_collector(name, collector, config);
