@@ -177,7 +177,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   68</span>    EXPECT_TRUE(chained.has_value());</div>
 <div class="line"><span class="lineno">   69</span>    EXPECT_EQ(chained.value(), <span class="stringliteral">&quot;Large&quot;</span>);</div>
 <div class="line"><span class="lineno">   70</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00047">test_di_container.cpp:47</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -252,19 +252,21 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  100</span>    );</div>
 <div class="line"><span class="lineno">  101</span>    </div>
 <div class="line"><span class="lineno">  102</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
-<div class="line"><span class="lineno">  103</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::collection_failed);</div>
-<div class="line"><span class="lineno">  104</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().message, <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>);</div>
-<div class="line"><span class="lineno">  105</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().context.has_value());</div>
-<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().context.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), <span class="stringliteral">&quot;CPU collector timeout&quot;</span>);</div>
+<div class="line"><span class="lineno">  103</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::collection_failed);</div>
+<div class="line"><span class="lineno">  104</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">message</a>, <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>);</div>
+<div class="line"><span class="lineno">  105</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().context.has_value());</div>
+<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().context.value(), <span class="stringliteral">&quot;CPU collector timeout&quot;</span>);</div>
 <div class="line"><span class="lineno">  107</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00059">test_di_container.cpp:59</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1error__info_html_a203908afdb96835ad2a16954208d5561"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">monitoring_system::error_info::message</a></div><div class="ttdeci">std::string message</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00043">test_di_container.cpp:43</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00042">test_di_container.cpp:42</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../df/de8/test__result__types_8cpp_a62ac79fd617e0999d4feede1c8009d64_cgraph.png" border="0" usemap="#adf/de8/test__result__types_8cpp_a62ac79fd617e0999d4feede1c8009d64_cgraph" alt=""/></div>
 <map name="adf/de8/test__result__types_8cpp_a62ac79fd617e0999d4feede1c8009d64_cgraph" id="adf/de8/test__result__types_8cpp_a62ac79fd617e0999d4feede1c8009d64_cgraph">
 <area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
 <area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
 </map>
 </div>
@@ -303,10 +305,20 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   28</span>    </div>
 <div class="line"><span class="lineno">   29</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
 <div class="line"><span class="lineno">   30</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">   31</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::collector_not_found);</div>
-<div class="line"><span class="lineno">   32</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().message, <span class="stringliteral">&quot;Test error&quot;</span>);</div>
+<div class="line"><span class="lineno">   31</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::collector_not_found);</div>
+<div class="line"><span class="lineno">   32</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">message</a>, <span class="stringliteral">&quot;Test error&quot;</span>);</div>
 <div class="line"><span class="lineno">   33</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../df/de8/test__result__types_8cpp_a3b197e1052ec204e782294f39553f9a7_cgraph.png" border="0" usemap="#adf/de8/test__result__types_8cpp_a3b197e1052ec204e782294f39553f9a7_cgraph" alt=""/></div>
+<map name="adf/de8/test__result__types_8cpp_a3b197e1052ec204e782294f39553f9a7_cgraph" id="adf/de8/test__result__types_8cpp_a3b197e1052ec204e782294f39553f9a7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a3f5a85968f902ac838de1c26d6bd1be7" name="a3f5a85968f902ac838de1c26d6bd1be7"></a>
@@ -564,9 +576,19 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   82</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.is_success());</div>
 <div class="line"><span class="lineno">   83</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">   84</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.is_error(monitoring_error_code::storage_full));</div>
-<div class="line"><span class="lineno">   85</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::storage_full);</div>
+<div class="line"><span class="lineno">   85</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::storage_full);</div>
 <div class="line"><span class="lineno">   86</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../df/de8/test__result__types_8cpp_a18fb4caa1c073bc4d63b96d1b8115adf_cgraph.png" border="0" usemap="#adf/de8/test__result__types_8cpp_a18fb4caa1c073bc4d63b96d1b8115adf_cgraph" alt=""/></div>
+<map name="adf/de8/test__result__types_8cpp_a18fb4caa1c073bc4d63b96d1b8115adf_cgraph" id="adf/de8/test__result__types_8cpp_a18fb4caa1c073bc4d63b96d1b8115adf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ac38d910a56f1c8aa2c0b797868eb27d4" name="ac38d910a56f1c8aa2c0b797868eb27d4"></a>
@@ -640,6 +662,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   22</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 42);</div>
 <div class="line"><span class="lineno">   23</span>    EXPECT_EQ(*<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>, 42);</div>
 <div class="line"><span class="lineno">   24</span>}</div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00057">test_di_container.cpp:57</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -693,7 +716,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:23:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

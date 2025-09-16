@@ -84,7 +84,7 @@ Collaboration diagram for monitoring_system::service_container_interface:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d47/classmonitoring__system_1_1service__container__interface__coll__graph.png" border="0" usemap="#amonitoring__system_1_1service__container__interface_coll__map" alt="Collaboration graph"/></div>
 <map name="amonitoring__system_1_1service__container__interface_coll__map" id="amonitoring__system_1_1service__container__interface_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,200,240"/>
+<area shape="rect" title=" " alt="" coords="5,5,200,280"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -113,10 +113,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af59741f85e2e9deecd814ec758211b12" id="r_af59741f85e2e9deecd814ec758211b12"><td class="memTemplParams" colspan="2">template&lt;typename TInterface &gt; </td></tr>
 <tr class="memitem:af59741f85e2e9deecd814ec758211b12"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; std::shared_ptr&lt; TInterface &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/dff/classmonitoring__system_1_1service__container__interface.html#af59741f85e2e9deecd814ec758211b12">resolve</a> (const std::string &amp;name) const</td></tr>
 <tr class="separator:af59741f85e2e9deecd814ec758211b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac96f3721a95905be102faae420c57a50" id="r_ac96f3721a95905be102faae420c57a50"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dff/classmonitoring__system_1_1service__container__interface.html#ac96f3721a95905be102faae420c57a50">clear</a> ()</td></tr>
+<tr class="separator:ac96f3721a95905be102faae420c57a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a173446e6b33af3d7b1319a3c3d955cdd" id="r_a173446e6b33af3d7b1319a3c3d955cdd"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dff/classmonitoring__system_1_1service__container__interface.html#a173446e6b33af3d7b1319a3c3d955cdd">create_scope</a> ()</td></tr>
+<tr class="separator:a173446e6b33af3d7b1319a3c3d955cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00057">57</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a94cc5d3e8b9bf4b3d04473421cf66e60" name="a94cc5d3e8b9bf4b3d04473421cf66e60"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94cc5d3e8b9bf4b3d04473421cf66e60">&#9670;&#160;</a></span>~service_container_interface()</h2>
@@ -144,6 +148,77 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac96f3721a95905be102faae420c57a50" name="ac96f3721a95905be102faae420c57a50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac96f3721a95905be102faae420c57a50">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; bool &gt; monitoring_system::service_container_interface::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  120</span>                                     {</div>
+<div class="line"><span class="lineno">  121</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(<span class="keyword">true</span>); <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">  122</span>        }</div>
+<div class="ttc" id="anamespacemonitoring__system_html_a91abf3623da471b448536374048af265"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; T &gt; make_success(T &amp;&amp;value)</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/dff/classmonitoring__system_1_1service__container__interface_ac96f3721a95905be102faae420c57a50_cgraph.png" border="0" usemap="#ad3/dff/classmonitoring__system_1_1service__container__interface_ac96f3721a95905be102faae420c57a50_cgraph" alt=""/></div>
+<map name="ad3/dff/classmonitoring__system_1_1service__container__interface_ac96f3721a95905be102faae420c57a50_cgraph" id="ad3/dff/classmonitoring__system_1_1service__container__interface_ac96f3721a95905be102faae420c57a50_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,60"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265" title=" " alt="" coords="256,13,412,53"/>
+<area shape="poly" title=" " alt="" coords="209,30,242,30,242,35,209,35"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a173446e6b33af3d7b1319a3c3d955cdd" name="a173446e6b33af3d7b1319a3c3d955cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a173446e6b33af3d7b1319a3c3d955cdd">&#9670;&#160;</a></span>create_scope()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::unique_ptr&lt; void &gt; monitoring_system::service_container_interface::create_scope </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  124</span>                                                   {</div>
+<div class="line"><span class="lineno">  125</span>            <span class="keywordflow">return</span> std::make_unique&lt;int&gt;(0); <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">  126</span>        }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a4cfd867c73787786d6197d535535c61d" name="a4cfd867c73787786d6197d535535c61d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4cfd867c73787786d6197d535535c61d">&#9670;&#160;</a></span>is_registered() <span class="overload">[1/2]</span></h2>
 
@@ -169,10 +244,10 @@ template&lt;typename TInterface &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00085">85</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   85</span>                                   {</div>
-<div class="line"><span class="lineno">   86</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Stub implementation</span></div>
-<div class="line"><span class="lineno">   87</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   98</span>                                   {</div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">  100</span>        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -202,11 +277,11 @@ template&lt;typename TInterface &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   90</span>                                                        {</div>
-<div class="line"><span class="lineno">   91</span>            (void)name; <span class="comment">// Suppress warnings</span></div>
-<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Stub implementation</span></div>
-<div class="line"><span class="lineno">   93</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00103">103</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  103</span>                                                        {</div>
+<div class="line"><span class="lineno">  104</span>            (void)name; <span class="comment">// Suppress warnings</span></div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">  106</span>        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -246,12 +321,11 @@ template&lt;typename TInterface &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00062">62</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   64</span>                                       {</div>
-<div class="line"><span class="lineno">   65</span>            (void)factory; (void)lifetime; <span class="comment">// Suppress warnings</span></div>
-<div class="line"><span class="lineno">   66</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(<span class="keyword">true</span>); <span class="comment">// Stub implementation</span></div>
-<div class="line"><span class="lineno">   67</span>        }</div>
-<div class="ttc" id="anamespacemonitoring__system_html_a91abf3623da471b448536374048af265"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; T &gt; make_success(T &amp;&amp;value)</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00031">test_di_container.cpp:31</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00075">75</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>                                       {</div>
+<div class="line"><span class="lineno">   78</span>            (void)factory; (void)lifetime; <span class="comment">// Suppress warnings</span></div>
+<div class="line"><span class="lineno">   79</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(<span class="keyword">true</span>); <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">   80</span>        }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -307,11 +381,11 @@ template&lt;typename TInterface &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   73</span>                                   {</div>
-<div class="line"><span class="lineno">   74</span>            (void)factory; (void)lifetime; (void)name; <span class="comment">// Suppress warnings</span></div>
-<div class="line"><span class="lineno">   75</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(<span class="keyword">true</span>); <span class="comment">// Stub implementation</span></div>
-<div class="line"><span class="lineno">   76</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   86</span>                                   {</div>
+<div class="line"><span class="lineno">   87</span>            (void)factory; (void)lifetime; (void)name; <span class="comment">// Suppress warnings</span></div>
+<div class="line"><span class="lineno">   88</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(<span class="keyword">true</span>); <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">   89</span>        }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -351,11 +425,11 @@ template&lt;typename TInterface &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00079">79</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   79</span>                                                                            {</div>
-<div class="line"><span class="lineno">   80</span>            (void)instance; <span class="comment">// Suppress warnings</span></div>
-<div class="line"><span class="lineno">   81</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(<span class="keyword">true</span>); <span class="comment">// Stub implementation</span></div>
-<div class="line"><span class="lineno">   82</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   92</span>                                                                            {</div>
+<div class="line"><span class="lineno">   93</span>            (void)instance; <span class="comment">// Suppress warnings</span></div>
+<div class="line"><span class="lineno">   94</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(<span class="keyword">true</span>); <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">   95</span>        }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -394,10 +468,10 @@ template&lt;typename TInterface &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00096">96</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   96</span>                                                          {</div>
-<div class="line"><span class="lineno">   97</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(std::shared_ptr&lt;TInterface&gt;()); <span class="comment">// Stub implementation</span></div>
-<div class="line"><span class="lineno">   98</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00109">109</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  109</span>                                                          {</div>
+<div class="line"><span class="lineno">  110</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(std::shared_ptr&lt;TInterface&gt;()); <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">  111</span>        }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -437,11 +511,11 @@ template&lt;typename TInterface &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00101">101</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  101</span>                                                                               {</div>
-<div class="line"><span class="lineno">  102</span>            (void)name; <span class="comment">// Suppress warnings</span></div>
-<div class="line"><span class="lineno">  103</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(std::shared_ptr&lt;TInterface&gt;()); <span class="comment">// Stub implementation</span></div>
-<div class="line"><span class="lineno">  104</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../d5/d1c/test__di__container_8cpp_source.html">test_di_container.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  114</span>                                                                               {</div>
+<div class="line"><span class="lineno">  115</span>            (void)name; <span class="comment">// Suppress warnings</span></div>
+<div class="line"><span class="lineno">  116</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(std::shared_ptr&lt;TInterface&gt;()); <span class="comment">// Stub implementation</span></div>
+<div class="line"><span class="lineno">  117</span>        }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -461,7 +535,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:23:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

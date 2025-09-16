@@ -206,9 +206,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  228</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  229</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 888);</div>
 <div class="line"><span class="lineno">  230</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html_a91abf3623da471b448536374048af265"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; T &gt; make_success(T &amp;&amp;value)</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00031">test_di_container.cpp:31</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00047">test_di_container.cpp:47</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00057">test_di_container.cpp:57</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html_a91abf3623da471b448536374048af265"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; T &gt; make_success(T &amp;&amp;value)</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -622,10 +622,22 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  131</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> throwing_operation(); });</div>
 <div class="line"><span class="lineno">  132</span>    </div>
 <div class="line"><span class="lineno">  133</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  134</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::operation_failed);</div>
+<div class="line"><span class="lineno">  134</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::operation_failed);</div>
 <div class="line"><span class="lineno">  135</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><span class="lineno">  136</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00059">test_di_container.cpp:59</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00042">test_di_container.cpp:42</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d6/d82/test__error__boundaries_8cpp_ad597d844734aa941796602e584e169d9_cgraph.png" border="0" usemap="#ad6/d82/test__error__boundaries_8cpp_ad597d844734aa941796602e584e169d9_cgraph" alt=""/></div>
+<map name="ad6/d82/test__error__boundaries_8cpp_ad597d844734aa941796602e584e169d9_cgraph" id="ad6/d82/test__error__boundaries_8cpp_ad597d844734aa941796602e584e169d9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a0c70ba857c24631a4c307be9ebeb856e" name="a0c70ba857c24631a4c307be9ebeb856e"></a>
@@ -664,10 +676,20 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   73</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">   74</span>    </div>
 <div class="line"><span class="lineno">   75</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">   76</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::operation_failed);</div>
+<div class="line"><span class="lineno">   76</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::operation_failed);</div>
 <div class="line"><span class="lineno">   77</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><span class="lineno">   78</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d6/d82/test__error__boundaries_8cpp_a0c70ba857c24631a4c307be9ebeb856e_cgraph.png" border="0" usemap="#ad6/d82/test__error__boundaries_8cpp_a0c70ba857c24631a4c307be9ebeb856e_cgraph" alt=""/></div>
+<map name="ad6/d82/test__error__boundaries_8cpp_a0c70ba857c24631a4c307be9ebeb856e_cgraph" id="ad6/d82/test__error__boundaries_8cpp_a0c70ba857c24631a4c307be9ebeb856e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa60f91c0e0317ba33a5726ea14e208e9" name="aa60f91c0e0317ba33a5726ea14e208e9"></a>
@@ -758,10 +780,20 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   86</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">   87</span>    </div>
 <div class="line"><span class="lineno">   88</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">   89</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::service_degraded);</div>
+<div class="line"><span class="lineno">   89</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::service_degraded);</div>
 <div class="line"><span class="lineno">   90</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><span class="lineno">   91</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d6/d82/test__error__boundaries_8cpp_a22f7b3d2df585d010ee39c6b373a38e4_cgraph.png" border="0" usemap="#ad6/d82/test__error__boundaries_8cpp_a22f7b3d2df585d010ee39c6b373a38e4_cgraph" alt=""/></div>
+<map name="ad6/d82/test__error__boundaries_8cpp_a22f7b3d2df585d010ee39c6b373a38e4_cgraph" id="ad6/d82/test__error__boundaries_8cpp_a22f7b3d2df585d010ee39c6b373a38e4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ac7c3a8645600be23aec4edbc074a234f" name="ac7c3a8645600be23aec4edbc074a234f"></a>
@@ -997,7 +1029,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  115</span>    </div>
 <div class="line"><span class="lineno">  116</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><span class="lineno">  117</span>    </div>
-<div class="line"><span class="lineno">  118</span>    <span class="keyword">auto</span> fallback = [](<span class="keyword">const</span> error_info&amp;, degradation_level) {</div>
+<div class="line"><span class="lineno">  118</span>    <span class="keyword">auto</span> fallback = [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d0/d5c/structmonitoring__system_1_1error__info.html">error_info</a>&amp;, degradation_level) {</div>
 <div class="line"><span class="lineno">  119</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(999);</div>
 <div class="line"><span class="lineno">  120</span>    };</div>
 <div class="line"><span class="lineno">  121</span>    </div>
@@ -1006,6 +1038,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  124</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  125</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>(), 999);</div>
 <div class="line"><span class="lineno">  126</span>}</div>
+<div class="ttc" id="astructmonitoring__system_1_1error__info_html"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html">monitoring_system::error_info</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00041">test_di_container.cpp:41</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1344,7 +1377,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:23:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

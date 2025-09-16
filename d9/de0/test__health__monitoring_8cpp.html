@@ -216,7 +216,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  122</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = composite.check();</div>
 <div class="line"><span class="lineno">  123</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status, health_status::unhealthy);</div>
 <div class="line"><span class="lineno">  124</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00047">test_di_container.cpp:47</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -584,7 +584,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  184</span>    EXPECT_EQ(dependents.size(), 1);</div>
 <div class="line"><span class="lineno">  185</span>    EXPECT_EQ(dependents[0], <span class="stringliteral">&quot;api&quot;</span>);</div>
 <div class="line"><span class="lineno">  186</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00057">test_di_container.cpp:57</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -637,16 +637,20 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  159</span>    <span class="comment">// Try to add duplicate</span></div>
 <div class="line"><span class="lineno">  160</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
 <div class="line"><span class="lineno">  161</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
-<div class="line"><span class="lineno">  162</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  162</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  163</span>}</div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00059">test_di_container.cpp:59</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00042">test_di_container.cpp:42</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d9/de0/test__health__monitoring_8cpp_a2ea2ea17dc4cfe5635a253b006ff9b57_cgraph.png" border="0" usemap="#ad9/de0/test__health__monitoring_8cpp_a2ea2ea17dc4cfe5635a253b006ff9b57_cgraph" alt=""/></div>
 <map name="ad9/de0/test__health__monitoring_8cpp_a2ea2ea17dc4cfe5635a253b006ff9b57_cgraph" id="ad9/de0/test__health__monitoring_8cpp_a2ea2ea17dc4cfe5635a253b006ff9b57_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="74,48,109,41,110,46,75,53"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,69,279,109"/>
+<area shape="poly" title=" " alt="" coords="75,62,110,68,109,74,74,67"/>
 </map>
 </div>
 
@@ -761,9 +765,19 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  206</span>    <span class="comment">// Try to add the cyclic dependency</span></div>
 <div class="line"><span class="lineno">  207</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = graph.add_dependency(<span class="stringliteral">&quot;C&quot;</span>, <span class="stringliteral">&quot;A&quot;</span>);</div>
 <div class="line"><span class="lineno">  208</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
-<div class="line"><span class="lineno">  209</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><span class="lineno">  209</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::invalid_state);</div>
 <div class="line"><span class="lineno">  210</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d9/de0/test__health__monitoring_8cpp_a00f838ac84d71ac39007401693424550_cgraph.png" border="0" usemap="#ad9/de0/test__health__monitoring_8cpp_a00f838ac84d71ac39007401693424550_cgraph" alt=""/></div>
+<map name="ad9/de0/test__health__monitoring_8cpp_a00f838ac84d71ac39007401693424550_cgraph" id="ad9/de0/test__health__monitoring_8cpp_a00f838ac84d71ac39007401693424550_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a3b09b5d5f1d80a58a6562f783b3be099" name="a3b09b5d5f1d80a58a6562f783b3be099"></a>
@@ -984,16 +998,18 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  368</span>    <span class="comment">// Check non-existent</span></div>
 <div class="line"><span class="lineno">  369</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.check(<span class="stringliteral">&quot;non_existent&quot;</span>);</div>
 <div class="line"><span class="lineno">  370</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
-<div class="line"><span class="lineno">  371</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  371</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::not_found);</div>
 <div class="line"><span class="lineno">  372</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d9/de0/test__health__monitoring_8cpp_ae3cfb64dedb1ebe03023efa4bdab0c3c_cgraph.png" border="0" usemap="#ad9/de0/test__health__monitoring_8cpp_ae3cfb64dedb1ebe03023efa4bdab0c3c_cgraph" alt=""/></div>
 <map name="ad9/de0/test__health__monitoring_8cpp_ae3cfb64dedb1ebe03023efa4bdab0c3c_cgraph" id="ad9/de0/test__health__monitoring_8cpp_ae3cfb64dedb1ebe03023efa4bdab0c3c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="74,48,109,41,110,46,75,53"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,69,279,109"/>
+<area shape="poly" title=" " alt="" coords="75,62,110,68,109,74,74,67"/>
 </map>
 </div>
 
@@ -1212,7 +1228,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  318</span>    <span class="comment">// Try to register again</span></div>
 <div class="line"><span class="lineno">  319</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
 <div class="line"><span class="lineno">  320</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
-<div class="line"><span class="lineno">  321</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  321</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  322</span>    </div>
 <div class="line"><span class="lineno">  323</span>    <span class="comment">// Unregister</span></div>
 <div class="line"><span class="lineno">  324</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
@@ -1222,16 +1238,18 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  328</span>    <span class="comment">// Try to unregister non-existent</span></div>
 <div class="line"><span class="lineno">  329</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  330</span>    ASSERT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.has_value());</div>
-<div class="line"><span class="lineno">  331</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::not_found);</div>
 <div class="line"><span class="lineno">  332</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d9/de0/test__health__monitoring_8cpp_a383a16504374c4bc0c33a56cb9b65674_cgraph.png" border="0" usemap="#ad9/de0/test__health__monitoring_8cpp_a383a16504374c4bc0c33a56cb9b65674_cgraph" alt=""/></div>
 <map name="ad9/de0/test__health__monitoring_8cpp_a383a16504374c4bc0c33a56cb9b65674_cgraph" id="ad9/de0/test__health__monitoring_8cpp_a383a16504374c4bc0c33a56cb9b65674_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="123,5,279,45"/>
+<area shape="poly" title=" " alt="" coords="74,48,109,41,110,46,75,53"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,69,279,109"/>
+<area shape="poly" title=" " alt="" coords="75,62,110,68,109,74,74,67"/>
 </map>
 </div>
 
@@ -1397,7 +1415,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:23:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

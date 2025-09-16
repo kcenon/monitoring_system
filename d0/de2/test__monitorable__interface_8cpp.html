@@ -346,8 +346,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  379</span>    ASSERT_TRUE(component_count.has_value());</div>
 <div class="line"><span class="lineno">  380</span>    EXPECT_DOUBLE_EQ(component_count.value(), 2.0);</div>
 <div class="line"><span class="lineno">  381</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00036">test_di_container.cpp:36</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00047">test_di_container.cpp:47</a></div></div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00057">test_di_container.cpp:57</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -807,7 +807,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  260</span>    <span class="comment">// Should return error when disabled</span></div>
 <div class="line"><span class="lineno">  261</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
 <div class="line"><span class="lineno">  262</span>    EXPECT_FALSE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
-<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.get_error().code, monitoring_error_code::monitoring_disabled);</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a>, monitoring_error_code::monitoring_disabled);</div>
 <div class="line"><span class="lineno">  264</span>    </div>
 <div class="line"><span class="lineno">  265</span>    <span class="comment">// Re-enable monitoring</span></div>
 <div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> enable_result = component.set_monitoring_enabled(<span class="keyword">true</span>);</div>
@@ -818,16 +818,20 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  271</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = component.get_monitoring_data();</div>
 <div class="line"><span class="lineno">  272</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
 <div class="line"><span class="lineno">  273</span>}</div>
+<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00059">test_di_container.cpp:59</a></div></div>
+<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00042">test_di_container.cpp:42</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265" title=" " alt="" coords="384,5,540,45"/>
-<area shape="poly" title=" " alt="" coords="336,23,370,23,370,28,336,28"/>
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="151,5,307,45"/>
+<area shape="poly" title=" " alt="" coords="74,49,137,38,138,43,75,54"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,69,336,109"/>
+<area shape="poly" title=" " alt="" coords="75,60,110,66,109,72,74,66"/>
+<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265" title=" " alt="" coords="384,69,540,109"/>
+<area shape="poly" title=" " alt="" coords="336,87,370,87,370,92,336,92"/>
 </map>
 </div>
 
@@ -984,7 +988,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 04:06:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Sep 16 2025 04:23:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
