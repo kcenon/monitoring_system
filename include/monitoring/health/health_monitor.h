@@ -92,6 +92,11 @@ public:
         return health_check_result{};
     }
 
+    const std::string& get_name() const { return name_; }
+    health_check_type get_type() const { return type_; }
+    std::chrono::milliseconds get_timeout() const { return timeout_; }
+    bool is_critical() const { return critical_; }
+
 private:
     std::string name_;
     health_check_type type_;

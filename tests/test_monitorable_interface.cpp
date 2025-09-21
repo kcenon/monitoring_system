@@ -482,7 +482,7 @@ TEST_F(MonitorableInterfaceTest, ThreadSafetyMonitorableComponent) {
     
     // Launch threads that perform operations
     for (int i = 0; i < thread_count; ++i) {
-        threads.emplace_back([&component, operations_per_thread]() {
+        threads.emplace_back([&component]() {
             for (int j = 0; j < operations_per_thread; ++j) {
                 component.perform_operation();
                 
