@@ -561,7 +561,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span>    </div>
 <div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span>    <span class="comment">// Launch threads that perform operations</span></div>
 <div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
-<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>        threads.emplace_back([&amp;component, operations_per_thread]() {</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>        threads.emplace_back([&amp;component]() {</div>
 <div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread; ++j) {</div>
 <div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>                component.<a class="code hl_function" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c">perform_operation</a>();</div>
 <div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>                </div>
@@ -617,7 +617,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 08:46:54 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Sep 21 2025 01:10:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

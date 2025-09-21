@@ -934,7 +934,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  482</span>    </div>
 <div class="line"><span class="lineno">  483</span>    <span class="comment">// Launch threads that perform operations</span></div>
 <div class="line"><span class="lineno">  484</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; thread_count; ++i) {</div>
-<div class="line"><span class="lineno">  485</span>        threads.emplace_back([&amp;component, operations_per_thread]() {</div>
+<div class="line"><span class="lineno">  485</span>        threads.emplace_back([&amp;component]() {</div>
 <div class="line"><span class="lineno">  486</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread; ++j) {</div>
 <div class="line"><span class="lineno">  487</span>                component.perform_operation();</div>
 <div class="line"><span class="lineno">  488</span>                </div>
@@ -988,7 +988,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 16 2025 08:46:54 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Sep 21 2025 01:10:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
