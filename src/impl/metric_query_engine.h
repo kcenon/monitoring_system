@@ -17,9 +17,8 @@
 #include <variant>
 #include <vector>
 
-#include <kcenon/monitoring/storage/metric_database.h>
-#include <kcenon/monitoring/storage/timeseries_engine.h>
 #include <kcenon/monitoring/utils/metric_types.h>
+#include <kcenon/monitoring/utils/time_series.h>
 
 namespace monitoring_system {
 

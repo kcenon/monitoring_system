@@ -5,5 +5,5 @@
 
 // Alternative paths for src files
 #ifndef KCENON_MONITORING_UTILS_METRIC_TYPES_H
-#include "../../src/utils/metric_types.h"
+#include "../../../src/utils/metric_types.h"
 #endif
