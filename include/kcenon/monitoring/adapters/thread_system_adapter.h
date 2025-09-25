@@ -29,7 +29,17 @@
 #include "../interfaces/metric_types_adapter.h"
 
 // Optional thread_system integration
-#ifdef USE_THREAD_SYSTEM
+#if !defined(MONITORING_THREAD_SYSTEM_AVAILABLE)
+#  if defined(MONITORING_HAS_THREAD_SYSTEM)
+#    define MONITORING_THREAD_SYSTEM_AVAILABLE 1
+#  elif __has_include(<kcenon/thread/interfaces/monitorable_interface.h>)
+#    define MONITORING_THREAD_SYSTEM_AVAILABLE 1
+#  else
+#    define MONITORING_THREAD_SYSTEM_AVAILABLE 0
+#  endif
+#endif
+
+#if MONITORING_THREAD_SYSTEM_AVAILABLE
 #  include <kcenon/thread/interfaces/monitorable_interface.h>
 #  include <kcenon/thread/interfaces/service_container.h>
 #endif
@@ -49,7 +59,7 @@ public:
     // Returns true when thread_system headers are available and a monitorable
     // provider can be discovered at runtime (best‑effort).
     bool is_thread_system_available() const {
-#ifdef USE_THREAD_SYSTEM
+#if MONITORING_THREAD_SYSTEM_AVAILABLE
         // Dynamic discovery via service_container if present
         try {
             auto& container = kcenon::thread::service_container::global();
@@ -67,7 +77,7 @@ public:
     result<std::vector<metric>> collect_metrics() {
         std::vector<metric> out;
 
-#ifdef USE_THREAD_SYSTEM
+#if MONITORING_THREAD_SYSTEM_AVAILABLE
         try {
             auto& container = kcenon::thread::service_container::global();
             auto monitorable = container.resolve<kcenon::thread::monitorable_interface>();
@@ -100,7 +110,7 @@ public:
 
     // Supported metric names. Empty in fallback mode to satisfy tests.
     std::vector<std::string> get_metric_types() const {
-#ifdef USE_THREAD_SYSTEM
+#if MONITORING_THREAD_SYSTEM_AVAILABLE
         return {
             "thread.pool.jobs_pending",
             "thread.pool.jobs_completed",
@@ -157,4 +167,3 @@ private:
 } // namespace monitoring_system
 
 #endif // KCENON_MONITORING_ADAPTERS_THREAD_SYSTEM_ADAPTER_H
-
