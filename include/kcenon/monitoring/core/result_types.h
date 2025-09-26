@@ -17,7 +17,20 @@ All rights reserved.
  */
 
 #include "error_codes.h"
-#include <kcenon/common/patterns/result.h>
+
+// Try to include common system's result.h if available
+#if __has_include(<kcenon/common/patterns/result.h>)
+    #include <kcenon/common/patterns/result.h>
+    #define MONITORING_HAS_COMMON_RESULT 1
+#elif __has_include(<common/patterns/result.h>)
+    #include <common/patterns/result.h>
+    #define MONITORING_HAS_COMMON_RESULT 1
+    // Create namespace alias for compatibility
+    namespace kcenon::common = ::common;
+#else
+    #define MONITORING_HAS_COMMON_RESULT 0
+#endif
+
 #include <optional>
 #include <memory>
 #include <string>
@@ -63,6 +76,7 @@ struct error_info {
     }
 };
 
+#if MONITORING_HAS_COMMON_RESULT
 namespace detail {
 
 inline common::error_info to_common_error(const error_info& error) {
@@ -74,6 +88,7 @@ inline common::error_info to_common_error(const error_info& error) {
 }
 
 } // namespace detail
+#endif
 
 /**
  * @class result
@@ -86,6 +101,7 @@ inline common::error_info to_common_error(const error_info& error) {
 template<typename T>
 class result {
 public:
+#if MONITORING_HAS_COMMON_RESULT
     result(T&& value)
         : value_(common::ok<T>(std::forward<T>(value))) {}
 
@@ -97,31 +113,61 @@ public:
 
     result(const error_info& error)
         : value_(detail::to_common_error(error)), error_(error) {}
+#else
+    result(T&& value)
+        : value_(std::forward<T>(value)) {}
+
+    result(const T& value)
+        : value_(value) {}
+
+    result(error_info&& error)
+        : value_(std::move(error)) {}
+
+    result(const error_info& error)
+        : value_(error) {}
+#endif
 
     result(monitoring_error_code code,
            const std::string& message = "",
            const std::source_location& loc = std::source_location::current())
         : result(error_info(code, message, loc)) {}
 
+#if MONITORING_HAS_COMMON_RESULT
     bool has_value() const { return common::is_ok(value_); }
+#else
+    bool has_value() const { return std::holds_alternative<T>(value_); }
+#endif
 
     operator bool() const { return has_value(); }
 
     T& value() {
         ensure_value();
+#if MONITORING_HAS_COMMON_RESULT
         return common::get_value(value_);
+#else
+        return std::get<T>(value_);
+#endif
     }
 
     const T& value() const {
         ensure_value();
+#if MONITORING_HAS_COMMON_RESULT
         return common::get_value(value_);
+#else
+        return std::get<T>(value_);
+#endif
     }
 
     T value_or(T&& default_value) const {
+#if MONITORING_HAS_COMMON_RESULT
         return has_value() ? common::get_value(value_) : std::forward<T>(default_value);
+#else
+        return has_value() ? std::get<T>(value_) : std::forward<T>(default_value);
+#endif
     }
 
     const error_info& get_error() const {
+#if MONITORING_HAS_COMMON_RESULT
         if (!error_) {
             const auto& common_error = common::get_error(value_);
             error_.emplace(static_cast<monitoring_error_code>(common_error.code),
@@ -131,6 +177,9 @@ public:
             }
         }
         return *error_;
+#else
+        return std::get<error_info>(value_);
+#endif
     }
 
     T* operator->() { return &value(); }
@@ -165,7 +214,9 @@ public:
         return *this;
     }
 
+#if MONITORING_HAS_COMMON_RESULT
     const common::Result<T>& raw() const { return value_; }
+#endif
 
 private:
     void ensure_value() const {
@@ -174,8 +225,12 @@ private:
         }
     }
 
+#if MONITORING_HAS_COMMON_RESULT
     common::Result<T> value_;
     mutable std::optional<error_info> error_;
+#else
+    std::variant<T, error_info> value_;
+#endif
 };
 
 /**
@@ -186,11 +241,19 @@ class result_void {
 public:
     result_void() = default;
 
+#if MONITORING_HAS_COMMON_RESULT
     result_void(error_info&& error)
         : value_(detail::to_common_error(error)), error_(std::move(error)) {}
 
     result_void(const error_info& error)
         : value_(detail::to_common_error(error)), error_(error) {}
+#else
+    result_void(error_info&& error)
+        : error_(std::move(error)) {}
+
+    result_void(const error_info& error)
+        : error_(error) {}
+#endif
 
     result_void(monitoring_error_code code,
                 const std::string& message = "",
@@ -204,11 +267,16 @@ public:
         return result_void(code, message);
     }
 
+#if MONITORING_HAS_COMMON_RESULT
     bool is_success() const { return common::is_ok(value_); }
+#else
+    bool is_success() const { return !error_.has_value(); }
+#endif
 
     operator bool() const { return is_success(); }
 
     const error_info& get_error() const {
+#if MONITORING_HAS_COMMON_RESULT
         if (!error_) {
             const auto& common_error = common::get_error(value_);
             error_.emplace(static_cast<monitoring_error_code>(common_error.code),
@@ -218,17 +286,26 @@ public:
             }
         }
         return *error_;
+#else
+        return error_.value();
+#endif
     }
 
     bool is_error(monitoring_error_code code) const {
         return !is_success() && get_error().code == code;
     }
 
+#if MONITORING_HAS_COMMON_RESULT
     const common::VoidResult& raw() const { return value_; }
+#endif
 
 private:
+#if MONITORING_HAS_COMMON_RESULT
     common::VoidResult value_{std::monostate{}};
     mutable std::optional<error_info> error_;
+#else
+    std::optional<error_info> error_;
+#endif
 };
 
 // Helper functions for creating results
