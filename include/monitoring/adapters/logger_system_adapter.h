@@ -5,5 +5,5 @@
 
 // Alternative paths for src files
 #ifndef KCENON_MONITORING_ADAPTERS_LOGGER_SYSTEM_ADAPTER_H
-#include "../../src/adapters/logger_system_adapter.h"
+#include "../../../src/adapters/logger_system_adapter.h"
 #endif
