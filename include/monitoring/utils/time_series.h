@@ -5,5 +5,5 @@
 
 // Alternative paths for src files
 #ifndef KCENON_MONITORING_UTILS_TIME_SERIES_H
-#include "../../src/utils/time_series.h"
+#include "../../../src/utils/time_series.h"
 #endif

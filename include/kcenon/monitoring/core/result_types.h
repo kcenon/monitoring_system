@@ -17,13 +17,28 @@ All rights reserved.
  */
 
 #include "error_codes.h"
-#include <variant>
+
+// Try to include common system's result.h if available
+#if __has_include(<kcenon/common/patterns/result.h>)
+    #include <kcenon/common/patterns/result.h>
+    #define MONITORING_HAS_COMMON_RESULT 1
+#elif __has_include(<common/patterns/result.h>)
+    #include <common/patterns/result.h>
+    #define MONITORING_HAS_COMMON_RESULT 1
+    // Create namespace alias for compatibility
+    namespace kcenon::common = ::common;
+#else
+    #define MONITORING_HAS_COMMON_RESULT 0
+#endif
+
 #include <optional>
 #include <memory>
 #include <string>
 #include <source_location>
 #include <type_traits>
 #include <stdexcept>
+#include <utility>
+#include <variant>
 
 namespace monitoring_system {
 
@@ -61,6 +76,20 @@ struct error_info {
     }
 };
 
+#if MONITORING_HAS_COMMON_RESULT
+namespace detail {
+
+inline common::error_info to_common_error(const error_info& error) {
+    common::error_info info(static_cast<int>(error.code), error.message, "monitoring_system");
+    if (error.context) {
+        info.details = error.context;
+    }
+    return info;
+}
+
+} // namespace detail
+#endif
+
 /**
  * @class result
  * @brief Result type for operations that may fail
@@ -71,98 +100,112 @@ struct error_info {
  */
 template<typename T>
 class result {
-private:
-    std::variant<T, error_info> value_;
-    
-    // Private tags for constructor disambiguation
-    struct success_tag {};
-    struct error_tag {};
-    
 public:
-    // Constructors - simple and compatible
-    result(T&& value) : value_(std::forward<T>(value)) {}
-    result(const T& value) : value_(value) {}
-    result(error_info&& error) : value_(std::move(error)) {}
-    result(const error_info& error) : value_(error) {}
-    
-    // Convenience constructor for error codes
-    result(monitoring_error_code code, 
+#if MONITORING_HAS_COMMON_RESULT
+    result(T&& value)
+        : value_(common::ok<T>(std::forward<T>(value))) {}
+
+    result(const T& value)
+        : value_(common::ok<T>(value)) {}
+
+    result(error_info&& error)
+        : value_(detail::to_common_error(error)), error_(std::move(error)) {}
+
+    result(const error_info& error)
+        : value_(detail::to_common_error(error)), error_(error) {}
+#else
+    result(T&& value)
+        : value_(std::forward<T>(value)) {}
+
+    result(const T& value)
+        : value_(value) {}
+
+    result(error_info&& error)
+        : value_(std::move(error)) {}
+
+    result(const error_info& error)
+        : value_(error) {}
+#endif
+
+    result(monitoring_error_code code,
            const std::string& message = "",
            const std::source_location& loc = std::source_location::current())
-        : value_(error_info(code, message, loc)) {}
-    
-    // Check if result contains a value
-    bool has_value() const {
-        return std::holds_alternative<T>(value_);
-    }
-    
-    // Implicit bool conversion
-    operator bool() const {
-        return has_value();
-    }
-    
-    // Access the value (throws if error)
+        : result(error_info(code, message, loc)) {}
+
+#if MONITORING_HAS_COMMON_RESULT
+    bool has_value() const { return common::is_ok(value_); }
+#else
+    bool has_value() const { return std::holds_alternative<T>(value_); }
+#endif
+
+    operator bool() const { return has_value(); }
+
     T& value() {
-        if (!has_value()) {
-            throw std::runtime_error(get_error().to_string());
-        }
+        ensure_value();
+#if MONITORING_HAS_COMMON_RESULT
+        return common::get_value(value_);
+#else
         return std::get<T>(value_);
+#endif
     }
-    
+
     const T& value() const {
-        if (!has_value()) {
-            throw std::runtime_error(get_error().to_string());
-        }
+        ensure_value();
+#if MONITORING_HAS_COMMON_RESULT
+        return common::get_value(value_);
+#else
         return std::get<T>(value_);
+#endif
     }
-    
-    // Access the value with default
+
     T value_or(T&& default_value) const {
+#if MONITORING_HAS_COMMON_RESULT
+        return has_value() ? common::get_value(value_) : std::forward<T>(default_value);
+#else
         return has_value() ? std::get<T>(value_) : std::forward<T>(default_value);
+#endif
     }
-    
-    // Access the error
+
     const error_info& get_error() const {
+#if MONITORING_HAS_COMMON_RESULT
+        if (!error_) {
+            const auto& common_error = common::get_error(value_);
+            error_.emplace(static_cast<monitoring_error_code>(common_error.code),
+                           common_error.message);
+            if (common_error.details) {
+                error_->context = common_error.details;
+            }
+        }
+        return *error_;
+#else
         return std::get<error_info>(value_);
+#endif
     }
-    
-    // Operator-> for direct access
-    T* operator->() {
-        return &value();
-    }
-    
-    const T* operator->() const {
-        return &value();
-    }
-    
-    // Operator* for dereferencing
-    T& operator*() {
-        return value();
-    }
-    
-    const T& operator*() const {
-        return value();
-    }
-    
-    // Monadic operations
+
+    T* operator->() { return &value(); }
+    const T* operator->() const { return &value(); }
+
+    T& operator*() { return value(); }
+    const T& operator*() const { return value(); }
+
     template<typename F>
-    auto map(F&& f) -> result<decltype(f(std::declval<T>()))> {
-        using U = decltype(f(std::declval<T>()));
+    auto map(F&& f) -> result<std::decay_t<decltype(f(std::declval<T>()))>> {
+        using U = std::decay_t<decltype(f(std::declval<T>()))>;
         if (has_value()) {
-            return result<U>(f(std::get<T>(value_)));
+            return result<U>(f(value()));
         }
         return result<U>(get_error());
     }
-    
+
     template<typename F>
     auto and_then(F&& f) -> decltype(f(std::declval<T>())) {
         using U = decltype(f(std::declval<T>()));
         if (has_value()) {
-            return f(std::get<T>(value_));
+            return f(value());
         }
         return U(get_error());
     }
-    
+
     template<typename F>
     result or_else(F&& f) {
         if (!has_value()) {
@@ -170,6 +213,24 @@ public:
         }
         return *this;
     }
+
+#if MONITORING_HAS_COMMON_RESULT
+    const common::Result<T>& raw() const { return value_; }
+#endif
+
+private:
+    void ensure_value() const {
+        if (!has_value()) {
+            throw std::runtime_error(get_error().to_string());
+        }
+    }
+
+#if MONITORING_HAS_COMMON_RESULT
+    common::Result<T> value_;
+    mutable std::optional<error_info> error_;
+#else
+    std::variant<T, error_info> value_;
+#endif
 };
 
 /**
@@ -177,51 +238,74 @@ public:
  * @brief Specialization for operations with no return value
  */
 class result_void {
-private:
-    std::optional<error_info> error_;
-    
 public:
-    // Constructors
     result_void() = default;
-    result_void(error_info&& error) : error_(std::move(error)) {}
-    result_void(const error_info& error) : error_(error) {}
-    
-    // Convenience constructor for error codes
+
+#if MONITORING_HAS_COMMON_RESULT
+    result_void(error_info&& error)
+        : value_(detail::to_common_error(error)), error_(std::move(error)) {}
+
+    result_void(const error_info& error)
+        : value_(detail::to_common_error(error)), error_(error) {}
+#else
+    result_void(error_info&& error)
+        : error_(std::move(error)) {}
+
+    result_void(const error_info& error)
+        : error_(error) {}
+#endif
+
     result_void(monitoring_error_code code,
                 const std::string& message = "",
                 const std::source_location& loc = std::source_location::current())
-        : error_(error_info(code, message, loc)) {}
-    
-    // Static factory for success
-    static result_void success() {
-        return result_void();
-    }
-    
-    // Static factory for error
+        : result_void(error_info(code, message, loc)) {}
+
+    static result_void success() { return result_void(); }
+
     static result_void error(monitoring_error_code code,
                             const std::string& message = "") {
         return result_void(code, message);
     }
-    
-    // Check if operation succeeded
-    bool is_success() const {
-        return !error_.has_value();
-    }
-    
-    // Implicit bool conversion
-    operator bool() const {
-        return is_success();
-    }
-    
-    // Access the error
+
+#if MONITORING_HAS_COMMON_RESULT
+    bool is_success() const { return common::is_ok(value_); }
+#else
+    bool is_success() const { return !error_.has_value(); }
+#endif
+
+    operator bool() const { return is_success(); }
+
     const error_info& get_error() const {
+#if MONITORING_HAS_COMMON_RESULT
+        if (!error_) {
+            const auto& common_error = common::get_error(value_);
+            error_.emplace(static_cast<monitoring_error_code>(common_error.code),
+                           common_error.message);
+            if (common_error.details) {
+                error_->context = common_error.details;
+            }
+        }
+        return *error_;
+#else
         return error_.value();
+#endif
     }
-    
-    // Check for specific error
+
     bool is_error(monitoring_error_code code) const {
-        return error_.has_value() && error_->code == code;
+        return !is_success() && get_error().code == code;
     }
+
+#if MONITORING_HAS_COMMON_RESULT
+    const common::VoidResult& raw() const { return value_; }
+#endif
+
+private:
+#if MONITORING_HAS_COMMON_RESULT
+    common::VoidResult value_{std::monostate{}};
+    mutable std::optional<error_info> error_;
+#else
+    std::optional<error_info> error_;
+#endif
 };
 
 // Helper functions for creating results

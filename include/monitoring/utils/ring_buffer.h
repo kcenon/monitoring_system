@@ -5,5 +5,5 @@
 
 // Alternative paths for src files
 #ifndef KCENON_MONITORING_UTILS_RING_BUFFER_H
-#include "../../src/utils/ring_buffer.h"
+#include "../../../src/utils/ring_buffer.h"
 #endif

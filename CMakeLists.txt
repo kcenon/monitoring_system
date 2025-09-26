@@ -31,6 +31,7 @@ option(MONITORING_BUILD_EXAMPLES "Build example programs" ON)
 option(MONITORING_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(MONITORING_USE_THREAD_SYSTEM "Enable thread_system integration" OFF)
 option(MONITORING_USE_LOGGER_SYSTEM "Enable logger_system integration" OFF)
+option(MONITORING_USE_COMMON_SYSTEM "Enable common_system integration" ON)
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer" OFF)
 option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
@@ -71,6 +72,15 @@ target_include_directories(monitoring_system_interface
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
         $<INSTALL_INTERFACE:include>
 )
+
+if(MONITORING_USE_COMMON_SYSTEM)
+    message(STATUS "Monitoring System: Enabling common_system integration")
+    target_include_directories(monitoring_system_interface
+        INTERFACE
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include>
+    )
+    target_compile_definitions(monitoring_system_interface INTERFACE MONITORING_USE_COMMON_SYSTEM)
+endif()
 
 # Set compile features
 target_compile_features(monitoring_system_interface INTERFACE cxx_std_20)

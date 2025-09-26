@@ -5,5 +5,5 @@
 
 // Alternative paths for src files
 #ifndef KCENON_MONITORING_UTILS_AGGREGATION_PROCESSOR_H
-#include "../../src/utils/aggregation_processor.h"
+#include "../../../src/utils/aggregation_processor.h"
 #endif

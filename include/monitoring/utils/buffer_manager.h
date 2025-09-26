@@ -5,5 +5,5 @@
 
 // Alternative paths for src files
 #ifndef KCENON_MONITORING_UTILS_BUFFER_MANAGER_H
-#include "../../src/utils/buffer_manager.h"
+#include "../../../src/utils/buffer_manager.h"
 #endif

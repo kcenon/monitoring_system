@@ -18,11 +18,15 @@
 #include <map>
 #include <set>
 
-#include <kcenon/monitoring/web/dashboard_server.h>
+#include "dashboard_server.h"
 #include <kcenon/monitoring/utils/metric_types.h>
-#include <kcenon/monitoring/storage/metric_database.h>
-#include <kcenon/monitoring/query/metric_query_engine.h>
-#include <kcenon/monitoring/alerting/rule_engine.h>
+
+// Forward declarations to avoid depending on non-public headers
+namespace kcenon::monitoring {
+namespace storage { class MetricDatabase; }
+namespace query   { class MetricQueryEngine; }
+namespace alerting { class RuleEngine; struct Alert; }
+}
 
 namespace kcenon::monitoring::web {
 
