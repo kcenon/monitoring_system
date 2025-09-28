@@ -763,6 +763,7 @@ cmake -B build \
 
 # Integration options
 cmake -B build \
+  -DBUILD_WITH_COMMON_SYSTEM=ON \
   -DTHREAD_SYSTEM_INTEGRATION=ON \
   -DLOGGER_SYSTEM_INTEGRATION=ON
 ```
