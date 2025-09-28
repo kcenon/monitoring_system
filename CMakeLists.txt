@@ -79,7 +79,7 @@ if(MONITORING_USE_COMMON_SYSTEM)
         INTERFACE
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include>
     )
-    target_compile_definitions(monitoring_system_interface INTERFACE MONITORING_USE_COMMON_SYSTEM)
+    target_compile_definitions(monitoring_system_interface INTERFACE MONITORING_USE_COMMON_SYSTEM USE_COMMON_SYSTEM)
 endif()
 
 # Set compile features
