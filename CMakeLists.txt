@@ -265,6 +265,15 @@ write_basic_package_version_file(
     COMPATIBILITY SameMajorVersion
 )
 
+# Install adapter headers if BUILD_WITH_COMMON_SYSTEM is enabled
+if(BUILD_WITH_COMMON_SYSTEM)
+    install(FILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/monitoring/adapters/common_monitor_adapter.h
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/monitoring/adapters
+        COMPONENT Development
+    )
+endif()
+
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
