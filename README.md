@@ -62,6 +62,14 @@ This monitoring system is a component of a comprehensive threading and observabi
 
 > 📖 **[Complete Architecture Guide](docs/ARCHITECTURE.md)**: Comprehensive documentation of the entire ecosystem architecture, dependency relationships, and integration patterns.
 
+### Cross-System Tracing & Correlation
+- For end-to-end observability across network and database paths, propagate `trace_id`/`correlation_id` through:
+  1) network_system message metadata →
+  2) container_system serialization →
+  3) database_system query context →
+  4) logger_system structured fields.
+- Provide adapters or middleware to enrich spans and metrics at ingress/egress points.
+
 ## Project Purpose & Mission
 
 This project addresses the fundamental challenge faced by developers worldwide: **making application observability accessible, reliable, and actionable**. Traditional monitoring approaches often lack comprehensive insights, provide insufficient error handling, and struggle with performance overhead. Our mission is to provide a comprehensive solution that:
