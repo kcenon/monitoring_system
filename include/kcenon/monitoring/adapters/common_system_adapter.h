@@ -13,7 +13,7 @@ All rights reserved.
 #include <chrono>
 
 // Check if common_system is available
-#ifdef USE_COMMON_SYSTEM
+#ifdef BUILD_WITH_COMMON_SYSTEM
 #include <kcenon/common/interfaces/monitoring_interface.h>
 #include <kcenon/common/patterns/result.h>
 #endif
@@ -25,7 +25,7 @@ All rights reserved.
 namespace monitoring_system {
 namespace adapters {
 
-#ifdef USE_COMMON_SYSTEM
+#ifdef BUILD_WITH_COMMON_SYSTEM
 
 /**
  * @brief Adapter to expose monitoring_system as common::interfaces::IMonitor
@@ -349,7 +349,7 @@ public:
     }
 };
 
-#endif // USE_COMMON_SYSTEM
+#endif // BUILD_WITH_COMMON_SYSTEM
 
 } // namespace adapters
 } // namespace monitoring_system
