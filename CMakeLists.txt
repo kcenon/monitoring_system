@@ -42,6 +42,22 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Find dependencies
 find_package(Threads REQUIRED)
 
+# common_system dependency
+if(BUILD_WITH_COMMON_SYSTEM)
+    find_package(common_system CONFIG QUIET)
+    if(NOT common_system_FOUND)
+        # Check sibling directory
+        if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include/kcenon/common/interfaces/monitoring_interface.h")
+            message(STATUS "Found common_system as sibling directory")
+        else()
+            message(WARNING "common_system integration requested but not found - disabling")
+            set(BUILD_WITH_COMMON_SYSTEM OFF)
+        endif()
+    else()
+        message(STATUS "Found common_system package")
+    endif()
+endif()
+
 # Optional dependencies
 if(MONITORING_USE_THREAD_SYSTEM)
     find_package(thread_system CONFIG)
@@ -79,7 +95,16 @@ if(BUILD_WITH_COMMON_SYSTEM)
         INTERFACE
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include>
     )
-    target_compile_definitions(monitoring_system_interface INTERFACE BUILD_WITH_COMMON_SYSTEM)
+    target_compile_definitions(monitoring_system_interface
+        INTERFACE
+            BUILD_WITH_COMMON_SYSTEM
+            MONITORING_USING_COMMON_INTERFACES
+    )
+
+    # Link common_system if found as package
+    if(common_system_FOUND)
+        target_link_libraries(monitoring_system_interface INTERFACE kcenon::common_system)
+    endif()
 endif()
 
 # Set compile features
