@@ -227,6 +227,108 @@ void performance_profiler::clear_all_samples() {
     }
 }
 
+#ifdef MONITORING_USING_COMMON_INTERFACES
+// IMonitor interface implementation
+
+common::VoidResult performance_monitor::record_metric(const std::string& name, double value) {
+    // Record as a duration metric in nanoseconds
+    auto duration = std::chrono::nanoseconds(static_cast<std::int64_t>(value));
+    auto result = profiler_.record_sample(name, duration, true);
+
+    if (!result) {
+        return common::VoidResult::error(
+            static_cast<int>(result.get_error().code),
+            result.get_error().message
+        );
+    }
+
+    return common::VoidResult::success();
+}
+
+common::VoidResult performance_monitor::record_metric(
+    const std::string& name,
+    double value,
+    const std::unordered_map<std::string, std::string>& tags) {
+
+    // For now, record the metric without tag support
+    // Future enhancement: store tags in performance_profiler
+    return record_metric(name, value);
+}
+
+common::Result<common::interfaces::metrics_snapshot> performance_monitor::get_metrics() {
+    // Collect metrics from our internal profiler and system monitor
+    auto snapshot_result = collect();
+
+    if (!snapshot_result) {
+        return common::Result<common::interfaces::metrics_snapshot>::error(
+            static_cast<int>(snapshot_result.get_error().code),
+            snapshot_result.get_error().message
+        );
+    }
+
+    // Convert monitoring_system::metrics_snapshot to common::interfaces::metrics_snapshot
+    const auto& internal_snapshot = snapshot_result.value();
+    common::interfaces::metrics_snapshot common_snapshot;
+    common_snapshot.source_id = internal_snapshot.source_id;
+    common_snapshot.capture_time = internal_snapshot.capture_time;
+
+    // Convert metrics
+    for (const auto& metric : internal_snapshot.metrics) {
+        common::interfaces::metric_value common_metric;
+        common_metric.name = metric.name;
+        common_metric.value = metric.value;
+        common_metric.timestamp = metric.timestamp;
+        common_metric.tags = metric.tags;
+        common_snapshot.metrics.push_back(common_metric);
+    }
+
+    return common::Result<common::interfaces::metrics_snapshot>::success(common_snapshot);
+}
+
+common::Result<common::interfaces::health_check_result> performance_monitor::check_health() {
+    common::interfaces::health_check_result result;
+    result.timestamp = std::chrono::system_clock::now();
+    auto start_time = std::chrono::high_resolution_clock::now();
+
+    // Check if we're enabled
+    if (!is_enabled()) {
+        result.status = common::interfaces::health_status::unknown;
+        result.message = "Performance monitor is disabled";
+        auto end_time = std::chrono::high_resolution_clock::now();
+        result.check_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
+            end_time - start_time
+        );
+        return common::Result<common::interfaces::health_check_result>::success(result);
+    }
+
+    // Check thresholds
+    auto threshold_result = check_thresholds();
+
+    if (threshold_result && threshold_result.value()) {
+        // Thresholds exceeded
+        result.status = common::interfaces::health_status::degraded;
+        result.message = "Performance thresholds exceeded";
+    } else {
+        result.status = common::interfaces::health_status::healthy;
+        result.message = "Performance monitor operational";
+    }
+
+    auto end_time = std::chrono::high_resolution_clock::now();
+    result.check_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
+        end_time - start_time
+    );
+
+    return common::Result<common::interfaces::health_check_result>::success(result);
+}
+
+common::VoidResult performance_monitor::reset() {
+    // Clear all profiler samples
+    profiler_.clear_all_samples();
+
+    return common::VoidResult::success();
+}
+#endif // MONITORING_USING_COMMON_INTERFACES
+
 // Global instance
 performance_monitor& global_performance_monitor() {
     static performance_monitor instance;

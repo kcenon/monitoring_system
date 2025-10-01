@@ -27,6 +27,11 @@
 #include "../core/error_codes.h"
 #include "../interfaces/monitoring_interface.h"
 
+// Use common_system interfaces when available
+#ifdef MONITORING_USING_COMMON_INTERFACES
+    #include <kcenon/common/interfaces/monitoring_interface.h>
+#endif
+
 namespace monitoring_system {
 
 /**
@@ -280,8 +285,15 @@ public:
 
 /**
  * @brief Performance monitor combining profiling and system monitoring
+ *
+ * Implements both monitoring_system::metrics_collector and (optionally)
+ * common::interfaces::IMonitor for interoperability with common_system.
  */
+#ifdef MONITORING_USING_COMMON_INTERFACES
+class performance_monitor : public metrics_collector, public common::interfaces::IMonitor {
+#else
 class performance_monitor : public metrics_collector {
+#endif
 private:
     performance_profiler profiler_;
     system_monitor system_monitor_;
@@ -365,6 +377,48 @@ public:
      * @brief Check if any thresholds are exceeded
      */
     monitoring_system::result<bool> check_thresholds() const;
+
+#ifdef MONITORING_USING_COMMON_INTERFACES
+    // IMonitor interface implementation
+
+    /**
+     * @brief Record a metric value (IMonitor interface)
+     * @param name Metric name
+     * @param value Metric value
+     * @return VoidResult indicating success or error
+     */
+    common::VoidResult record_metric(const std::string& name, double value) override;
+
+    /**
+     * @brief Record a metric with tags (IMonitor interface)
+     * @param name Metric name
+     * @param value Metric value
+     * @param tags Additional metadata tags
+     * @return VoidResult indicating success or error
+     */
+    common::VoidResult record_metric(
+        const std::string& name,
+        double value,
+        const std::unordered_map<std::string, std::string>& tags) override;
+
+    /**
+     * @brief Get current metrics snapshot (IMonitor interface)
+     * @return Result containing metrics snapshot or error
+     */
+    common::Result<common::interfaces::metrics_snapshot> get_metrics() override;
+
+    /**
+     * @brief Perform health check (IMonitor interface)
+     * @return Result containing health check result or error
+     */
+    common::Result<common::interfaces::health_check_result> check_health() override;
+
+    /**
+     * @brief Reset all metrics (IMonitor interface)
+     * @return VoidResult indicating success or error
+     */
+    common::VoidResult reset() override;
+#endif
 };
 
 /**
