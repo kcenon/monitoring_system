@@ -236,13 +236,13 @@ common::VoidResult performance_monitor::record_metric(const std::string& name, d
     auto result = profiler_.record_sample(name, duration, true);
 
     if (!result) {
-        return common::VoidResult::error(
+        return common::error_info(
             static_cast<int>(result.get_error().code),
             result.get_error().message
         );
     }
 
-    return common::VoidResult::success();
+    return std::monostate{};
 }
 
 common::VoidResult performance_monitor::record_metric(
@@ -260,7 +260,7 @@ common::Result<common::interfaces::metrics_snapshot> performance_monitor::get_me
     auto snapshot_result = collect();
 
     if (!snapshot_result) {
-        return common::Result<common::interfaces::metrics_snapshot>::error(
+        return common::error_info(
             static_cast<int>(snapshot_result.get_error().code),
             snapshot_result.get_error().message
         );
@@ -282,7 +282,7 @@ common::Result<common::interfaces::metrics_snapshot> performance_monitor::get_me
         common_snapshot.metrics.push_back(common_metric);
     }
 
-    return common::Result<common::interfaces::metrics_snapshot>::success(common_snapshot);
+    return common_snapshot;
 }
 
 common::Result<common::interfaces::health_check_result> performance_monitor::check_health() {
@@ -298,7 +298,7 @@ common::Result<common::interfaces::health_check_result> performance_monitor::che
         result.check_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
             end_time - start_time
         );
-        return common::Result<common::interfaces::health_check_result>::success(result);
+        return result;
     }
 
     // Check thresholds
@@ -318,14 +318,14 @@ common::Result<common::interfaces::health_check_result> performance_monitor::che
         end_time - start_time
     );
 
-    return common::Result<common::interfaces::health_check_result>::success(result);
+    return result;
 }
 
 common::VoidResult performance_monitor::reset() {
     // Clear all profiler samples
     profiler_.clear_all_samples();
 
-    return common::VoidResult::success();
+    return std::monostate{};
 }
 #endif // MONITORING_USING_COMMON_INTERFACES
 
