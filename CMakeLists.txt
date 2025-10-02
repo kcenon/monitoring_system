@@ -44,8 +44,11 @@ find_package(Threads REQUIRED)
 find_package(common_system CONFIG QUIET)
 if(NOT common_system_FOUND)
     # Check sibling directory
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include/kcenon/common/interfaces/monitoring_interface.h")
+    set(_MONITORING_COMMON_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include/kcenon/common/interfaces/monitoring_interface.h")
+    if(EXISTS "${_MONITORING_COMMON_HEADER}")
         message(STATUS "Found common_system as sibling directory")
+        # Set include path for sibling directory
+        set(COMMON_SYSTEM_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include")
     else()
         message(FATAL_ERROR "common_system is required but was not found. Please ensure common_system is available.")
     endif()
@@ -75,20 +78,23 @@ target_include_directories(monitoring_system_interface
 
 # common_system integration is now mandatory (Phase 2.3)
 message(STATUS "Monitoring System: Using common_system interfaces")
-target_include_directories(monitoring_system_interface
-    INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include>
-)
+
+# Add common_system include path
+if(common_system_FOUND)
+    target_link_libraries(monitoring_system_interface INTERFACE kcenon::common_system)
+else()
+    # Use sibling directory
+    target_include_directories(monitoring_system_interface
+        INTERFACE
+            $<BUILD_INTERFACE:${COMMON_SYSTEM_INCLUDE_DIR}>
+    )
+endif()
+
 target_compile_definitions(monitoring_system_interface
     INTERFACE
         BUILD_WITH_COMMON_SYSTEM
         MONITORING_USING_COMMON_INTERFACES
 )
-
-# Link common_system if found as package
-if(common_system_FOUND)
-    target_link_libraries(monitoring_system_interface INTERFACE kcenon::common_system)
-endif()
 
 # Set compile features
 target_compile_features(monitoring_system_interface INTERFACE cxx_std_20)
