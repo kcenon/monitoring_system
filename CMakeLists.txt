@@ -22,6 +22,7 @@ setup_threading_features()
 option(MONITORING_BUILD_TESTS "Build unit tests" ON)
 option(MONITORING_BUILD_EXAMPLES "Build example programs" ON)
 option(MONITORING_BUILD_BENCHMARKS "Build benchmarks" OFF)
+option(BUILD_WITH_COMMON_SYSTEM "Enable common_system integration" ON)
 option(MONITORING_USE_THREAD_SYSTEM "Enable thread_system integration" OFF)
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer" OFF)
@@ -33,7 +34,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Find dependencies
 find_package(Threads REQUIRED)
 
-# common_system dependency (now mandatory - Phase 2.3)
+# common_system dependency (mandatory when BUILD_WITH_COMMON_SYSTEM is ON)
+if(BUILD_WITH_COMMON_SYSTEM)
 find_package(common_system CONFIG QUIET)
 if(NOT common_system_FOUND)
     # Check for common_system in multiple locations
@@ -56,6 +58,7 @@ if(NOT common_system_FOUND)
 else()
     message(STATUS "Found common_system package")
 endif()
+endif() # BUILD_WITH_COMMON_SYSTEM
 
 # Optional dependencies
 if(MONITORING_USE_THREAD_SYSTEM)
