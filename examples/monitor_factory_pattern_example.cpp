@@ -6,8 +6,8 @@
  * monitor providers, and aggregation strategies.
  */
 
-#include <monitoring/core/performance_monitor.h>
-#include <monitoring/core/result_types.h>
+#include <kcenon/monitoring/core/performance_monitor.h>
+#include <kcenon/monitoring/core/result_types.h>
 #include <kcenon/common/interfaces/logger_interface.h>
 #include <kcenon/common/interfaces/monitoring_interface.h>
 #include <iostream>
