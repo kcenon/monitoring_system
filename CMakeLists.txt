@@ -43,13 +43,21 @@ find_package(Threads REQUIRED)
 # common_system dependency (now mandatory - Phase 2.3)
 find_package(common_system CONFIG QUIET)
 if(NOT common_system_FOUND)
-    # Check sibling directory
-    set(_MONITORING_COMMON_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include/kcenon/common/interfaces/monitoring_interface.h")
-    if(EXISTS "${_MONITORING_COMMON_HEADER}")
-        message(STATUS "Found common_system as sibling directory")
-        # Set include path for sibling directory
-        set(COMMON_SYSTEM_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include")
-    else()
+    # Check for common_system in multiple locations
+    set(_MONITORING_COMMON_PATHS
+        "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/common_system/include"
+    )
+
+    foreach(_path ${_MONITORING_COMMON_PATHS})
+        if(EXISTS "${_path}/kcenon/common/interfaces/monitoring_interface.h")
+            message(STATUS "Found common_system at: ${_path}")
+            set(COMMON_SYSTEM_INCLUDE_DIR "${_path}")
+            break()
+        endif()
+    endforeach()
+
+    if(NOT DEFINED COMMON_SYSTEM_INCLUDE_DIR)
         message(FATAL_ERROR "common_system is required but was not found. Please ensure common_system is available.")
     endif()
 else()
