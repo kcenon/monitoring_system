@@ -27,10 +27,8 @@
 #include "../core/error_codes.h"
 #include "../interfaces/monitoring_interface.h"
 
-// Use common_system interfaces when available
-#ifdef MONITORING_USING_COMMON_INTERFACES
-    #include <kcenon/common/interfaces/monitoring_interface.h>
-#endif
+// Use common_system interfaces (Phase 2.3.4)
+#include <kcenon/common/interfaces/monitoring_interface.h>
 
 namespace monitoring_system {
 
@@ -289,11 +287,11 @@ public:
  * Implements both monitoring_system::metrics_collector and (optionally)
  * common::interfaces::IMonitor for interoperability with common_system.
  */
-#ifdef MONITORING_USING_COMMON_INTERFACES
-class performance_monitor : public metrics_collector, public common::interfaces::IMonitor {
-#else
-class performance_monitor : public metrics_collector {
-#endif
+/**
+ * @brief Performance monitor implementing IMonitor (Phase 2.3.4)
+ */
+class performance_monitor : public metrics_collector,
+                            public common::interfaces::IMonitor {
 private:
     performance_profiler profiler_;
     system_monitor system_monitor_;
@@ -378,8 +376,7 @@ public:
      */
     monitoring_system::result<bool> check_thresholds() const;
 
-#ifdef MONITORING_USING_COMMON_INTERFACES
-    // IMonitor interface implementation
+    // IMonitor interface implementation (Phase 2.3.4)
 
     /**
      * @brief Record a metric value (IMonitor interface)
@@ -418,7 +415,6 @@ public:
      * @return VoidResult indicating success or error
      */
     common::VoidResult reset() override;
-#endif
 };
 
 /**
