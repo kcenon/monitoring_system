@@ -250,6 +250,7 @@ common::VoidResult performance_monitor::record_metric(
     double value,
     const std::unordered_map<std::string, std::string>& tags) {
 
+    (void)tags;  // Suppress unused parameter warning on MSVC
     // For now, record the metric without tag support
     // Future enhancement: store tags in performance_profiler
     return record_metric(name, value);

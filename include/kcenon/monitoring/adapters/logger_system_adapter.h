@@ -9,9 +9,9 @@
  */
 
 // Module description:
-// Logger system adapter for monitoring_system. Provides a graceful fallback
-// implementation when logger_system is not present so unit tests and examples
-// can compile and run without optional dependencies.
+// Logger system adapter for monitoring_system (Phase 2.3.3).
+// Uses common_system interfaces for logger integration via dependency injection.
+// No direct dependency on logger_system - works with any ILogger implementation.
 
 #include <atomic>
 #include <chrono>
@@ -26,19 +26,18 @@
 #include "../core/result_types.h"
 #include "../interfaces/metric_types_adapter.h"
 
-// Use common_system interfaces for logger integration
-#ifdef BUILD_WITH_COMMON_SYSTEM
-#  include <kcenon/common/interfaces/logger_interface.h>
-#  include <kcenon/common/interfaces/monitoring_interface.h>
-#endif
+// Use common_system interfaces for logger integration (Phase 2.3.3)
+#include <kcenon/common/interfaces/logger_interface.h>
+#include <kcenon/common/interfaces/monitoring_interface.h>
 
 namespace monitoring_system {
 
 /**
- * @brief Logger system adapter using dependency injection
+ * @brief Logger system adapter using dependency injection (Phase 2.3.3)
  *
  * This adapter uses common::interfaces::ILogger instead of concrete logger_system
- * classes, removing compile-time dependency on logger_system.
+ * classes, removing compile-time dependency on logger_system. Works with any
+ * ILogger implementation through dependency injection.
  */
 class logger_system_adapter {
 public:
@@ -49,11 +48,7 @@ public:
      */
     explicit logger_system_adapter(
         std::shared_ptr<event_bus> bus,
-#ifdef BUILD_WITH_COMMON_SYSTEM
         std::shared_ptr<common::interfaces::ILogger> logger = nullptr
-#else
-        std::nullptr_t logger = nullptr
-#endif
     ) : bus_(std::move(bus)), logger_(std::move(logger)) {}
 
     /**
@@ -67,7 +62,6 @@ public:
      * @brief Set or replace the logger instance
      * @param logger New logger instance
      */
-#ifdef BUILD_WITH_COMMON_SYSTEM
     void set_logger(std::shared_ptr<common::interfaces::ILogger> logger) {
         logger_ = std::move(logger);
     }
@@ -78,14 +72,12 @@ public:
     std::shared_ptr<common::interfaces::ILogger> get_logger() const {
         return logger_;
     }
-#endif
 
     /**
-     * @brief Collect metrics from logger if available
+     * @brief Collect metrics from logger if available (Phase 2.3.3)
      */
     result<std::vector<metric>> collect_metrics() {
         std::vector<metric> out;
-#ifdef BUILD_WITH_COMMON_SYSTEM
         if (logger_) {
             // If logger implements IMonitorable, collect its metrics
             auto monitorable = std::dynamic_pointer_cast<common::interfaces::IMonitorable>(logger_);
@@ -104,7 +96,6 @@ public:
                 }
             }
         }
-#endif
         return make_success(std::move(out));
     }
 
@@ -120,7 +111,6 @@ public:
      * @brief Get current log rate (if logger supports metrics)
      */
     double get_current_log_rate() const {
-#ifdef BUILD_WITH_COMMON_SYSTEM
         if (logger_) {
             auto monitorable = std::dynamic_pointer_cast<common::interfaces::IMonitorable>(logger_);
             if (monitorable) {
@@ -136,17 +126,12 @@ public:
                 }
             }
         }
-#endif
         return 0.0;
     }
 
 private:
     std::shared_ptr<event_bus> bus_;
-#ifdef BUILD_WITH_COMMON_SYSTEM
-    std::shared_ptr<common::interfaces::ILogger> logger_;
-#else
-    std::nullptr_t logger_ = nullptr;
-#endif
+    std::shared_ptr<common::interfaces::ILogger> logger_;  // Phase 2.3.3
 };
 
 } // namespace monitoring_system
