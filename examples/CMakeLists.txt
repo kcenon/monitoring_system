@@ -3,6 +3,7 @@
 # Include directories for examples
 include_directories(
     ${CMAKE_SOURCE_DIR}/sources
+    ${CMAKE_SOURCE_DIR}/include
 )
 
 # Basic monitoring example

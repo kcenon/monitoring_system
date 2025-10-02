@@ -1,6 +1,6 @@
 #include <iostream>
-#include <monitoring/core/result_types.h>
-#include <monitoring/core/error_codes.h>
+#include <kcenon/monitoring/core/result_types.h>
+#include <kcenon/monitoring/core/error_codes.h>
 #include <monitoring/interfaces/monitoring_interface.h>
 
 using namespace monitoring_system;

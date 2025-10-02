@@ -1,17 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
 project(monitoring_system VERSION 2.0.0 LANGUAGES CXX)
 
-# C++ standard requirements with graceful degradation
-# Default to C++20 but support graceful degradation to C++17
-option(FORCE_CPP17 "Force C++17 standard (disable C++20 features)" OFF)
-
-if(FORCE_CPP17)
-    set(CMAKE_CXX_STANDARD 17)
-    message(STATUS "Monitoring System: Forcing C++17 mode - C++20 features will be disabled")
-else()
-    set(CMAKE_CXX_STANDARD 20)
-    message(STATUS "Monitoring System: Using C++20 mode - Enhanced features enabled")
-endif()
+# C++ standard requirements
+# C++20 is required (unified across all systems)
+set(CMAKE_CXX_STANDARD 20)
+message(STATUS "Monitoring System: Using C++20 mode - Enhanced features enabled")
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -29,6 +22,7 @@ setup_threading_features()
 option(MONITORING_BUILD_TESTS "Build unit tests" ON)
 option(MONITORING_BUILD_EXAMPLES "Build example programs" ON)
 option(MONITORING_BUILD_BENCHMARKS "Build benchmarks" OFF)
+option(BUILD_WITH_COMMON_SYSTEM "Enable common_system integration" ON)
 option(MONITORING_USE_THREAD_SYSTEM "Enable thread_system integration" OFF)
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer" OFF)
@@ -40,7 +34,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Find dependencies
 find_package(Threads REQUIRED)
 
-# common_system dependency (now mandatory - Phase 2.3)
+# common_system dependency (mandatory when BUILD_WITH_COMMON_SYSTEM is ON)
+if(BUILD_WITH_COMMON_SYSTEM)
 find_package(common_system CONFIG QUIET)
 if(NOT common_system_FOUND)
     # Check for common_system in multiple locations
@@ -63,6 +58,7 @@ if(NOT common_system_FOUND)
 else()
     message(STATUS "Found common_system package")
 endif()
+endif() # BUILD_WITH_COMMON_SYSTEM
 
 # Optional dependencies
 if(MONITORING_USE_THREAD_SYSTEM)
@@ -245,7 +241,9 @@ if(MONITORING_BUILD_TESTS)
 endif()
 
 # Examples
-if(MONITORING_BUILD_EXAMPLES)
+# Note: DI examples require Phase 2 interface unification to be complete
+# Temporarily disabled until logger interface is unified
+if(MONITORING_BUILD_EXAMPLES AND NOT BUILD_WITH_COMMON_SYSTEM)
     add_subdirectory(examples)
 endif()
 

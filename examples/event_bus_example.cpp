@@ -3,8 +3,8 @@
  * @brief Example demonstrating event-driven monitoring system
  */
 
-#include <monitoring/core/event_bus.h>
-#include <monitoring/core/event_types.h>
+#include <kcenon/monitoring/core/event_bus.h>
+#include <kcenon/monitoring/core/event_types.h>
 #include <monitoring/adapters/thread_system_adapter.h>
 #include <monitoring/adapters/logger_system_adapter.h>
 #include <iostream>
