@@ -30,8 +30,6 @@ option(MONITORING_BUILD_TESTS "Build unit tests" ON)
 option(MONITORING_BUILD_EXAMPLES "Build example programs" ON)
 option(MONITORING_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(MONITORING_USE_THREAD_SYSTEM "Enable thread_system integration" OFF)
-option(MONITORING_USE_LOGGER_SYSTEM "Enable logger_system integration" OFF)
-option(BUILD_WITH_COMMON_SYSTEM "Enable common_system integration" ON)
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer" OFF)
 option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
@@ -42,20 +40,17 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Find dependencies
 find_package(Threads REQUIRED)
 
-# common_system dependency
-if(BUILD_WITH_COMMON_SYSTEM)
-    find_package(common_system CONFIG QUIET)
-    if(NOT common_system_FOUND)
-        # Check sibling directory
-        if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include/kcenon/common/interfaces/monitoring_interface.h")
-            message(STATUS "Found common_system as sibling directory")
-        else()
-            message(WARNING "common_system integration requested but not found - disabling")
-            set(BUILD_WITH_COMMON_SYSTEM OFF)
-        endif()
+# common_system dependency (now mandatory - Phase 2.3)
+find_package(common_system CONFIG QUIET)
+if(NOT common_system_FOUND)
+    # Check sibling directory
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include/kcenon/common/interfaces/monitoring_interface.h")
+        message(STATUS "Found common_system as sibling directory")
     else()
-        message(STATUS "Found common_system package")
+        message(FATAL_ERROR "common_system is required but was not found. Please ensure common_system is available.")
     endif()
+else()
+    message(STATUS "Found common_system package")
 endif()
 
 # Optional dependencies
@@ -70,17 +65,6 @@ if(MONITORING_USE_THREAD_SYSTEM)
     endif()
 endif()
 
-if(MONITORING_USE_LOGGER_SYSTEM)
-    find_package(logger_system CONFIG)
-    if(logger_system_FOUND)
-        message(STATUS "Found logger_system: integration enabled")
-        add_compile_definitions(MONITORING_HAS_LOGGER_SYSTEM)
-    else()
-        message(WARNING "logger_system not found: integration disabled")
-        set(MONITORING_USE_LOGGER_SYSTEM OFF)
-    endif()
-endif()
-
 # Create interface library for headers
 add_library(monitoring_system_interface INTERFACE)
 target_include_directories(monitoring_system_interface
@@ -89,22 +73,21 @@ target_include_directories(monitoring_system_interface
         $<INSTALL_INTERFACE:include>
 )
 
-if(BUILD_WITH_COMMON_SYSTEM)
-    message(STATUS "Monitoring System: Enabling common_system integration")
-    target_include_directories(monitoring_system_interface
-        INTERFACE
-            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include>
-    )
-    target_compile_definitions(monitoring_system_interface
-        INTERFACE
-            BUILD_WITH_COMMON_SYSTEM
-            MONITORING_USING_COMMON_INTERFACES
-    )
+# common_system integration is now mandatory (Phase 2.3)
+message(STATUS "Monitoring System: Using common_system interfaces")
+target_include_directories(monitoring_system_interface
+    INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include>
+)
+target_compile_definitions(monitoring_system_interface
+    INTERFACE
+        BUILD_WITH_COMMON_SYSTEM
+        MONITORING_USING_COMMON_INTERFACES
+)
 
-    # Link common_system if found as package
-    if(common_system_FOUND)
-        target_link_libraries(monitoring_system_interface INTERFACE kcenon::common_system)
-    endif()
+# Link common_system if found as package
+if(common_system_FOUND)
+    target_link_libraries(monitoring_system_interface INTERFACE kcenon::common_system)
 endif()
 
 # Set compile features
