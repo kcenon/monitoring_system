@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['memory_5fusage_5f_0',['memory_usage_',['../d9/db4/classtest__monitorable__component.html#a9cdd67742f000d3329615b65eeddd89a',1,'test_monitorable_component']]],
-  ['message_1',['message',['../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561',1,'monitoring_system::error_info']]],
-  ['message_5f_2',['message_',['../d2/dea/classtest__health__check.html#a6665381b3023736e737788a00815e19b',1,'test_health_check']]],
-  ['message_5fcount_5f_3',['message_count_',['../d4/d06/classconsole__logger.html#a56fc62291a6840a8e24e3d8e5c198ca4',1,'console_logger']]],
-  ['min_5flevel_5f_4',['min_level_',['../dd/d02/classmock__logger.html#adea91ce10adfcf3e5eeddfff5f5352ae',1,'mock_logger::min_level_'],['../d4/d06/classconsole__logger.html#a8a939c3a540a482b47ffb3d4ac18bf96',1,'console_logger::min_level_']]],
-  ['monitor_5',['monitor',['../d9/dfa/classAdaptiveMonitoringTest.html#aceaab072099f7dcb237eaf50d87f1fe0',1,'AdaptiveMonitoringTest::monitor'],['../da/d18/classHealthMonitoringTest.html#a8dce341caff48d879664af96aa1b6a14',1,'HealthMonitoringTest::monitor'],['../d7/dbe/classPerformanceMonitoringTest.html#a8de2dcbf72bdd30da483f8e22103a9d8',1,'PerformanceMonitoringTest::monitor']]],
-  ['monitor_5f_6',['monitor_',['../d1/da6/classsimple__mock__logger.html#a24c45e46668a1adf543c4e7689fbe68d',1,'simple_mock_logger::monitor_'],['../d4/d06/classconsole__logger.html#a9ee65f26128484d5e51295bf53d990fe',1,'console_logger::monitor_']]]
+  ['lifetimes_5f_0',['lifetimes_',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a54bddee59095ff52277950d9053aae97',1,'monitoring_system::service_container_interface']]],
+  ['log_5fcount_5f_1',['log_count_',['../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db',1,'mock_logger::log_count_'],['../d1/da6/classsimple__mock__logger.html#af9d2b4009c9379612691c2d9c35472d0',1,'simple_mock_logger::log_count_'],['../d2/d10/classsimple__console__logger.html#a77a91a14643ea3fd64cb70d119a0a330',1,'simple_console_logger::log_count_']]]
 ];
