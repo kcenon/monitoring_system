@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['performancemonitoringtest_0',['PerformanceMonitoringTest',['../d7/dbe/classPerformanceMonitoringTest.html',1,'']]]
+  ['opentelemetryadaptertest_0',['OpenTelemetryAdapterTest',['../d5/d90/classOpenTelemetryAdapterTest.html',1,'']]],
+  ['optimizationtest_1',['OptimizationTest',['../db/d93/classOptimizationTest.html',1,'']]]
 ];
