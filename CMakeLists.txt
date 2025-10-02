@@ -1,17 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
 project(monitoring_system VERSION 2.0.0 LANGUAGES CXX)
 
-# C++ standard requirements with graceful degradation
-# Default to C++20 but support graceful degradation to C++17
-option(FORCE_CPP17 "Force C++17 standard (disable C++20 features)" OFF)
-
-if(FORCE_CPP17)
-    set(CMAKE_CXX_STANDARD 17)
-    message(STATUS "Monitoring System: Forcing C++17 mode - C++20 features will be disabled")
-else()
-    set(CMAKE_CXX_STANDARD 20)
-    message(STATUS "Monitoring System: Using C++20 mode - Enhanced features enabled")
-endif()
+# C++ standard requirements
+# C++20 is required (unified across all systems)
+set(CMAKE_CXX_STANDARD 20)
+message(STATUS "Monitoring System: Using C++20 mode - Enhanced features enabled")
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
