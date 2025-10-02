@@ -40,3 +40,26 @@ target_link_libraries(result_pattern_example
     PRIVATE monitoring_system
     Threads::Threads
 )
+
+# Phase 4 DI Pattern examples - available when common_system integration is enabled
+if(BUILD_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
+    # Logger DI Integration example
+    add_executable(logger_di_integration_example
+        logger_di_integration_example.cpp
+    )
+    target_link_libraries(logger_di_integration_example
+        PRIVATE monitoring_system
+        Threads::Threads
+    )
+
+    # Monitor Factory Pattern example
+    add_executable(monitor_factory_pattern_example
+        monitor_factory_pattern_example.cpp
+    )
+    target_link_libraries(monitor_factory_pattern_example
+        PRIVATE monitoring_system
+        Threads::Threads
+    )
+
+    message(STATUS "Phase 4 DI pattern examples enabled for monitoring_system")
+endif()
