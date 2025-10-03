@@ -17,7 +17,7 @@
 #include <vector>
 
 using namespace monitoring_system;
-using namespace kcenon::common::interfaces;
+using namespace common::interfaces;
 
 /**
  * @brief Monitor factory implementing singleton pattern with DI
@@ -47,18 +47,8 @@ public:
         std::lock_guard<std::mutex> lock(factory_mutex_);
         shared_logger_ = logger;
 
-        // Apply to existing monitors
-        if (default_monitor_) {
-            if (auto perf_mon = std::dynamic_pointer_cast<performance_monitor>(default_monitor_)) {
-                perf_mon->set_logger(shared_logger_);
-            }
-        }
-
-        for (auto& [name, monitor] : named_monitors_) {
-            if (auto perf_mon = std::dynamic_pointer_cast<performance_monitor>(monitor)) {
-                perf_mon->set_logger(shared_logger_);
-            }
-        }
+        // Note: Logger injection not available in performance_monitor yet
+        // Future enhancement: Add ILogger support to performance_monitor
     }
 
     // IMonitorProvider implementation
@@ -67,12 +57,6 @@ public:
 
         if (!default_monitor_) {
             default_monitor_ = std::make_shared<performance_monitor>();
-
-            if (shared_logger_) {
-                if (auto perf_mon = std::dynamic_pointer_cast<performance_monitor>(default_monitor_)) {
-                    perf_mon->set_logger(shared_logger_);
-                }
-            }
         }
 
         return default_monitor_;
@@ -87,13 +71,6 @@ public:
         }
 
         auto monitor = std::make_shared<performance_monitor>();
-
-        if (shared_logger_) {
-            if (auto perf_mon = std::dynamic_pointer_cast<performance_monitor>(monitor)) {
-                perf_mon->set_logger(shared_logger_);
-            }
-        }
-
         named_monitors_[name] = monitor;
         return monitor;
     }
@@ -132,6 +109,7 @@ class example_logger : public ILogger {
 private:
     std::string prefix_;
     std::atomic<size_t> count_{0};
+    log_level min_level_ = log_level::trace;
 
 public:
     explicit example_logger(const std::string& prefix = "LOG")
@@ -141,10 +119,35 @@ public:
         std::cout << "[" << prefix_ << "] [" << to_string(level) << "] "
                   << message << std::endl;
         count_++;
-        return common::VoidResult::success();
+        return common::ok();
     }
 
-    bool is_enabled(log_level) const override { return true; }
+    common::VoidResult log(log_level level, const std::string& message,
+                          const std::string&, int, const std::string&) override {
+        return log(level, message);
+    }
+
+    common::VoidResult log(const log_entry& entry) override {
+        return log(entry.level, entry.message);
+    }
+
+    bool is_enabled(log_level level) const override {
+        return static_cast<int>(level) >= static_cast<int>(min_level_);
+    }
+
+    common::VoidResult set_level(log_level level) override {
+        min_level_ = level;
+        return common::ok();
+    }
+
+    log_level get_level() const override {
+        return min_level_;
+    }
+
+    common::VoidResult flush() override {
+        std::cout << std::flush;
+        return common::ok();
+    }
 
     size_t count() const { return count_.load(); }
 };
@@ -306,7 +309,7 @@ public:
         for (auto& monitor : monitors_) {
             monitor->record_metric(name, value);
         }
-        return common::VoidResult::success();
+        return common::ok();
     }
 
     common::VoidResult record_metric(
@@ -318,7 +321,7 @@ public:
         for (auto& monitor : monitors_) {
             monitor->record_metric(name, value, tags);
         }
-        return common::VoidResult::success();
+        return common::ok();
     }
 
     common::Result<metrics_snapshot> get_metrics() override {
@@ -337,7 +340,7 @@ public:
             }
         }
 
-        return common::Result<metrics_snapshot>::success(std::move(combined));
+        return common::ok(std::move(combined));
     }
 
     common::Result<health_check_result> check_health() override {
@@ -346,7 +349,7 @@ public:
         result.status = health_status::healthy;
         result.message = "Aggregating monitor";
 
-        return common::Result<health_check_result>::success(std::move(result));
+        return common::ok(std::move(result));
     }
 
     common::VoidResult reset() override {
@@ -354,7 +357,7 @@ public:
         for (auto& monitor : monitors_) {
             monitor->reset();
         }
-        return common::VoidResult::success();
+        return common::ok();
     }
 
     size_t monitor_count() const {

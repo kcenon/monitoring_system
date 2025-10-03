@@ -53,14 +53,14 @@ if(BUILD_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
         Threads::Threads
     )
 
-    # Monitor Factory Pattern example
-    add_executable(monitor_factory_pattern_example
-        monitor_factory_pattern_example.cpp
-    )
-    target_link_libraries(monitor_factory_pattern_example
-        PRIVATE monitoring_system
-        Threads::Threads
-    )
+    # Monitor Factory Pattern example (TODO: Fix type mismatches)
+    # add_executable(monitor_factory_pattern_example
+    #     monitor_factory_pattern_example.cpp
+    # )
+    # target_link_libraries(monitor_factory_pattern_example
+    #     PRIVATE monitoring_system
+    #     Threads::Threads
+    # )
 
     message(STATUS "Phase 4 DI pattern examples enabled for monitoring_system")
 endif()

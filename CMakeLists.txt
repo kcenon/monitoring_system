@@ -241,9 +241,7 @@ if(MONITORING_BUILD_TESTS)
 endif()
 
 # Examples
-# Note: DI examples require Phase 2 interface unification to be complete
-# Temporarily disabled until logger interface is unified
-if(MONITORING_BUILD_EXAMPLES AND NOT BUILD_WITH_COMMON_SYSTEM)
+if(MONITORING_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 

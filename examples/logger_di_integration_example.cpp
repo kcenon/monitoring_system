@@ -1,9 +1,9 @@
 /**
  * @file logger_di_integration_example.cpp
- * @brief Logger integration example using DI pattern for Phase 4
+ * @brief Monitoring system integration example with Result pattern
  *
- * Demonstrates how monitoring_system integrates with logger_system
- * using only common_system interfaces (no circular dependencies).
+ * Demonstrates how monitoring_system uses common_system interfaces
+ * and Result<T> pattern for error handling.
  */
 
 #include <kcenon/monitoring/core/performance_monitor.h>
@@ -17,13 +17,10 @@
 #include <iomanip>
 
 using namespace monitoring_system;
-using namespace kcenon::common::interfaces;
+using namespace common::interfaces;
 
 /**
  * @brief Simple logger implementation for demonstration
- *
- * This demonstrates that monitoring_system can work with ANY ILogger
- * implementation without depending on specific logger_system code.
  */
 class simple_console_logger : public ILogger {
 private:
@@ -36,159 +33,121 @@ public:
 
     common::VoidResult log(log_level level, const std::string& message) override {
         if (!is_enabled(level)) {
-            return common::VoidResult::success();
+            return common::ok();
         }
 
         auto now = std::chrono::system_clock::now();
         auto time = std::chrono::system_clock::to_time_t(now);
 
-        std::cout << "[" << std::put_time(std::localtime(&time), "%H:%M:%S")
+        // Thread-safe time conversion
+        std::tm tm_buf;
+#ifdef _WIN32
+        localtime_s(&tm_buf, &time);
+#else
+        localtime_r(&time, &tm_buf);
+#endif
+
+        std::cout << "[" << std::put_time(&tm_buf, "%H:%M:%S")
                   << "] [" << to_string(level) << "] "
                   << message << std::endl;
 
         log_count_++;
-        return common::VoidResult::success();
+        return common::ok();
+    }
+
+    common::VoidResult log(log_level level, const std::string& message,
+                          const std::string& file, int line, const std::string& function) override {
+        return log(level, message + " [" + file + ":" + std::to_string(line) + " " + function + "]");
+    }
+
+    common::VoidResult log(const log_entry& entry) override {
+        return log(entry.level, entry.message, entry.file, entry.line, entry.function);
     }
 
     bool is_enabled(log_level level) const override {
         return static_cast<int>(level) >= static_cast<int>(min_level_);
     }
 
+    common::VoidResult set_level(log_level level) override {
+        min_level_ = level;
+        return common::ok();
+    }
+
+    log_level get_level() const override {
+        return min_level_;
+    }
+
+    common::VoidResult flush() override {
+        std::cout << std::flush;
+        return common::ok();
+    }
+
     size_t get_log_count() const { return log_count_.load(); }
 };
 
 /**
- * @brief Example 1: Basic logger injection into monitor
+ * @brief Example 1: Basic monitoring with Result pattern
  */
-void example_1_basic_logger_injection() {
-    std::cout << "\n=== Example 1: Basic Logger Injection ===" << std::endl;
+void example_1_basic_monitoring() {
+    std::cout << "\n=== Example 1: Basic Monitoring ===" << std::endl;
 
-    // Step 1: Create logger (any ILogger implementation)
-    auto logger = std::make_shared<simple_console_logger>(log_level::info);
-
-    // Step 2: Create monitor
+    // Create monitor
     auto monitor = std::make_shared<performance_monitor>();
 
-    // Step 3: Inject logger into monitor via DI
-    monitor->set_logger(logger);
+    std::cout << "\nRecording metrics..." << std::endl;
 
-    std::cout << "\nMonitor configured with logger. Recording metrics..." << std::endl;
-
-    // Step 4: Monitor operations automatically log events
-    monitor->record_metric("requests_total", 100.0);
-    monitor->record_metric("errors_total", 5.0);
-    monitor->record_metric("cpu_usage", 45.5);
-
-    std::cout << "\nLogger received " << logger->get_log_count()
-              << " log messages from monitor" << std::endl;
-}
-
-/**
- * @brief Example 2: Monitor without logger (optional dependency)
- */
-void example_2_optional_logger() {
-    std::cout << "\n=== Example 2: Optional Logger (No Logger) ===" << std::endl;
-
-    // Create monitor without logger
-    auto monitor = std::make_shared<performance_monitor>();
-
-    std::cout << "Monitor operates without logger (DI optional)" << std::endl;
-
-    // Monitor works fine without logger
-    auto result = monitor->record_metric("metric_1", 42.0);
-    if (result) {
-        std::cout << "✓ Metric recorded successfully without logger" << std::endl;
+    // Record metrics using Result pattern
+    auto result1 = monitor->record_metric("requests_total", 100.0);
+    if (common::is_ok(result1)) {
+        std::cout << "✓ Metric 'requests_total' recorded" << std::endl;
     }
 
-    // Get metrics
+    auto result2 = monitor->record_metric("errors_total", 5.0);
+    if (common::is_ok(result2)) {
+        std::cout << "✓ Metric 'errors_total' recorded" << std::endl;
+    }
+
+    // Get metrics snapshot
     auto metrics = monitor->get_metrics();
-    if (metrics) {
-        std::cout << "✓ Retrieved " << metrics.value().metrics.size()
-                  << " metrics without logger" << std::endl;
+    if (common::is_ok(metrics)) {
+        auto snapshot = common::get_value(metrics);
+        std::cout << "✓ Retrieved " << snapshot.metrics.size() << " metrics" << std::endl;
     }
 }
 
 /**
- * @brief Example 3: Runtime logger injection and swapping
+ * @brief Example 2: Error handling with Result pattern
  */
-void example_3_runtime_logger_management() {
-    std::cout << "\n=== Example 3: Runtime Logger Management ===" << std::endl;
+void example_2_error_handling() {
+    std::cout << "\n=== Example 2: Error Handling ===" << std::endl;
 
     auto monitor = std::make_shared<performance_monitor>();
-    auto logger1 = std::make_shared<simple_console_logger>(log_level::info);
-    auto logger2 = std::make_shared<simple_console_logger>(log_level::debug);
 
-    std::cout << "\nPhase 1: Operating without logger" << std::endl;
-    monitor->record_metric("phase1_metric", 10.0);
-
-    std::cout << "\nPhase 2: Inject logger at runtime" << std::endl;
-    monitor->set_logger(logger1);
-    monitor->record_metric("phase2_metric", 20.0);
-
-    std::cout << "\nPhase 3: Swap to different logger" << std::endl;
-    monitor->set_logger(logger2);
-    monitor->record_metric("phase3_metric", 30.0);
-
-    std::cout << "\nLogger 1 received: " << logger1->get_log_count() << " messages" << std::endl;
-    std::cout << "Logger 2 received: " << logger2->get_log_count() << " messages" << std::endl;
-}
-
-/**
- * @brief Example 4: Using IMonitorProvider interface
- */
-void example_4_monitor_provider_pattern() {
-    std::cout << "\n=== Example 4: IMonitorProvider Pattern ===" << std::endl;
-
-    auto logger = std::make_shared<simple_console_logger>();
-
-    // Create monitor that implements both IMonitor and IMonitorProvider
-    auto monitor = std::make_shared<performance_monitor>();
-    monitor->set_logger(logger);
-
-    // Use as IMonitorProvider
-    std::shared_ptr<IMonitorProvider> provider = monitor;
-
-    std::cout << "Obtaining monitor through IMonitorProvider interface..." << std::endl;
-
-    // Get monitor instance
-    auto monitor_instance = provider->get_monitor();
-    if (monitor_instance) {
-        std::cout << "✓ Retrieved monitor via provider interface" << std::endl;
-
-        // Use the monitor
-        monitor_instance->record_metric("provider_test", 99.0);
-
-        auto metrics = monitor_instance->get_metrics();
-        if (metrics) {
-            std::cout << "✓ Metrics available through provider: "
-                      << metrics.value().metrics.size() << std::endl;
-        }
-    }
-
-    // Create named monitor
-    auto named_monitor = provider->create_monitor("test_monitor");
-    if (named_monitor) {
-        std::cout << "✓ Created named monitor via provider" << std::endl;
+    // Record metric and check result
+    auto result = monitor->record_metric("cpu_usage", 45.5);
+    if (common::is_ok(result)) {
+        std::cout << "✓ Metric recorded successfully" << std::endl;
+    } else {
+        auto err = common::get_error(result);
+        std::cout << "✗ Error: " << err.message << std::endl;
     }
 }
 
 /**
- * @brief Example 5: Health monitoring with logger integration
+ * @brief Example 3: Health monitoring
  */
-void example_5_health_monitoring() {
-    std::cout << "\n=== Example 5: Health Monitoring with Logger ===" << std::endl;
+void example_3_health_monitoring() {
+    std::cout << "\n=== Example 3: Health Monitoring ===" << std::endl;
 
-    auto logger = std::make_shared<simple_console_logger>(log_level::info);
     auto monitor = std::make_shared<performance_monitor>();
-    monitor->set_logger(logger);
 
     std::cout << "\nPerforming health check..." << std::endl;
 
     // Perform health check
     auto health_result = monitor->check_health();
 
-    if (health_result) {
-        const auto& health = health_result.value();
+    if (common::is_ok(health_result)) {
+        const auto& health = common::get_value(health_result);
 
         std::cout << "\nHealth Check Results:" << std::endl;
         std::cout << "  Status: " << to_string(health.status) << std::endl;
@@ -202,100 +161,116 @@ void example_5_health_monitoring() {
             }
         }
     }
-
-    std::cout << "\nLogger captured health check events: "
-              << logger->get_log_count() << std::endl;
 }
 
 /**
- * @brief Example 6: Simulating bidirectional integration
+ * @brief Example 4: Multiple monitors
  */
-void example_6_bidirectional_integration() {
-    std::cout << "\n=== Example 6: Bidirectional Integration Simulation ===" << std::endl;
-    std::cout << "Demonstrates logger-monitor cooperation via interfaces" << std::endl;
+void example_4_multiple_monitors() {
+    std::cout << "\n=== Example 4: Multiple Monitors ===" << std::endl;
 
-    // Create components
-    auto logger = std::make_shared<simple_console_logger>();
+    // Create multiple monitors
+    auto monitor1 = std::make_shared<performance_monitor>();
+    auto monitor2 = std::make_shared<performance_monitor>();
+
+    std::cout << "\nMonitor 1 recording metrics..." << std::endl;
+    monitor1->record_metric("monitor1_metric", 100.0);
+
+    std::cout << "Monitor 2 recording metrics..." << std::endl;
+    monitor2->record_metric("monitor2_metric", 200.0);
+
+    // Get metrics from both
+    auto metrics1 = monitor1->get_metrics();
+    auto metrics2 = monitor2->get_metrics();
+
+    if (common::is_ok(metrics1) && common::is_ok(metrics2)) {
+        auto snapshot1 = common::get_value(metrics1);
+        auto snapshot2 = common::get_value(metrics2);
+        std::cout << "✓ Monitor 1: " << snapshot1.metrics.size() << " metrics" << std::endl;
+        std::cout << "✓ Monitor 2: " << snapshot2.metrics.size() << " metrics" << std::endl;
+    }
+}
+
+/**
+ * @brief Example 5: Metrics with tags
+ */
+void example_5_metrics_with_tags() {
+    std::cout << "\n=== Example 5: Metrics with Tags ===" << std::endl;
+
     auto monitor = std::make_shared<performance_monitor>();
 
-    // Setup bidirectional relationship via DI
-    monitor->set_logger(logger);  // Monitor -> Logger
+    // Record metrics with tags
+    std::unordered_map<std::string, std::string> tags{
+        {"service", "api"},
+        {"region", "us-east-1"},
+        {"instance", "i-12345"}
+    };
 
-    std::cout << "\nScenario: Application monitoring with logging" << std::endl;
+    auto result = monitor->record_metric("request_latency", 150.0, tags);
+    if (common::is_ok(result)) {
+        std::cout << "✓ Metric with tags recorded successfully" << std::endl;
+    }
+}
+
+/**
+ * @brief Example 6: Simulating monitoring workflow
+ */
+void example_6_monitoring_workflow() {
+    std::cout << "\n=== Example 6: Monitoring Workflow ===" << std::endl;
+
+    auto monitor = std::make_shared<performance_monitor>();
+    auto logger = std::make_shared<simple_console_logger>();
+
+    std::cout << "\nSimulating application workload..." << std::endl;
 
     // Simulate application metrics
-    std::cout << "\nRecording application metrics..." << std::endl;
     for (int i = 0; i < 5; ++i) {
-        monitor->record_metric("requests", static_cast<double>(i * 10));
+        auto result = monitor->record_metric("requests", static_cast<double>(i * 10));
+        if (common::is_ok(result)) {
+            logger->log(log_level::info, "Recorded metric: requests = " + std::to_string(i * 10));
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-    // Monitor can check its own health and log results
+    // Check health and log results
     auto health = monitor->check_health();
-    if (health) {
-        logger->log(log_level::info,
-            "Monitor health: " + to_string(health.value().status));
+    if (common::is_ok(health)) {
+        auto health_status = common::get_value(health);
+        logger->log(log_level::info, "Monitor health: " + to_string(health_status.status));
     }
 
     // Get metrics and log summary
     auto metrics = monitor->get_metrics();
-    if (metrics) {
-        logger->log(log_level::info,
-            "Collected " + std::to_string(metrics.value().metrics.size()) + " metrics");
+    if (common::is_ok(metrics)) {
+        auto snapshot = common::get_value(metrics);
+        logger->log(log_level::info, "Collected " + std::to_string(snapshot.metrics.size()) + " metrics");
     }
 
-    std::cout << "\n✓ Bidirectional integration successful" << std::endl;
-    std::cout << "  Monitor -> Logger: " << logger->get_log_count() << " events" << std::endl;
-    std::cout << "  No circular dependencies!" << std::endl;
-}
-
-/**
- * @brief Example 7: Multiple monitors with shared logger
- */
-void example_7_shared_logger() {
-    std::cout << "\n=== Example 7: Multiple Monitors, Shared Logger ===" << std::endl;
-
-    auto shared_logger = std::make_shared<simple_console_logger>();
-
-    // Create multiple monitors sharing the same logger
-    auto monitor1 = std::make_shared<performance_monitor>();
-    auto monitor2 = std::make_shared<performance_monitor>();
-
-    monitor1->set_logger(shared_logger);
-    monitor2->set_logger(shared_logger);
-
-    std::cout << "\nMonitor 1 and 2 share the same logger instance" << std::endl;
-
-    // Both monitors log to same logger
-    monitor1->record_metric("monitor1_metric", 100.0);
-    monitor2->record_metric("monitor2_metric", 200.0);
-
-    std::cout << "\nShared logger received " << shared_logger->get_log_count()
-              << " messages from all monitors" << std::endl;
+    std::cout << "\n✓ Workflow completed successfully" << std::endl;
+    std::cout << "  Logger events: " << logger->get_log_count() << std::endl;
 }
 
 int main() {
     std::cout << "========================================================" << std::endl;
-    std::cout << "Monitoring System - Logger DI Integration Examples" << std::endl;
-    std::cout << "Phase 4: Dependency Injection Pattern" << std::endl;
+    std::cout << "Monitoring System - Integration Examples" << std::endl;
+    std::cout << "Using common_system interfaces and Result<T> pattern" << std::endl;
     std::cout << "========================================================" << std::endl;
 
     try {
-        example_1_basic_logger_injection();
-        example_2_optional_logger();
-        example_3_runtime_logger_management();
-        example_4_monitor_provider_pattern();
-        example_5_health_monitoring();
-        example_6_bidirectional_integration();
-        example_7_shared_logger();
+        example_1_basic_monitoring();
+        example_2_error_handling();
+        example_3_health_monitoring();
+        example_4_multiple_monitors();
+        example_5_metrics_with_tags();
+        example_6_monitoring_workflow();
 
         std::cout << "\n========================================================" << std::endl;
-        std::cout << "All logger DI integration examples completed!" << std::endl;
+        std::cout << "All integration examples completed!" << std::endl;
         std::cout << "Key Points:" << std::endl;
-        std::cout << "  ✓ Zero circular dependencies" << std::endl;
+        std::cout << "  ✓ common_system interfaces used" << std::endl;
+        std::cout << "  ✓ Result<T> pattern for error handling" << std::endl;
         std::cout << "  ✓ Interface-based loose coupling" << std::endl;
-        std::cout << "  ✓ Optional logger support" << std::endl;
-        std::cout << "  ✓ Runtime configuration flexibility" << std::endl;
+        std::cout << "  ✓ Production-ready monitoring" << std::endl;
         std::cout << "========================================================" << std::endl;
 
     } catch (const std::exception& e) {
