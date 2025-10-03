@@ -189,11 +189,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00072">72</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   72</span>                                      {</div>
-<div class="line"><span class="lineno">   73</span>        std::cout &lt;&lt; std::flush;</div>
-<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">return</span> common::ok();</div>
-<div class="line"><span class="lineno">   75</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   80</span>                                      {</div>
+<div class="line"><span class="lineno">   81</span>        std::cout &lt;&lt; std::flush;</div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span> common::ok();</div>
+<div class="line"><span class="lineno">   83</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -220,10 +220,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>                                         {</div>
-<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a39f9d308b56aac1462c8ebcbf054509b">min_level_</a>;</div>
-<div class="line"><span class="lineno">   70</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>                                         {</div>
+<div class="line"><span class="lineno">   77</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a39f9d308b56aac1462c8ebcbf054509b">min_level_</a>;</div>
+<div class="line"><span class="lineno">   78</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,8 +250,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00077">77</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   77</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a77a91a14643ea3fd64cb70d119a0a330">log_count_</a>.load(); }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00085">85</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   85</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a77a91a14643ea3fd64cb70d119a0a330">log_count_</a>.load(); }</div>
 <div class="ttc" id="aclasssimple__console__logger_html_a77a91a14643ea3fd64cb70d119a0a330"><div class="ttname"><a href="../../d2/d10/classsimple__console__logger.html#a77a91a14643ea3fd64cb70d119a0a330">simple_console_logger::log_count_</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; log_count_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00028">logger_di_integration_example.cpp:28</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -280,10 +280,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00059">59</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>                                                    {</div>
-<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(level) &gt;= <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a39f9d308b56aac1462c8ebcbf054509b">min_level_</a>);</div>
-<div class="line"><span class="lineno">   61</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>                                                    {</div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(level) &gt;= <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a39f9d308b56aac1462c8ebcbf054509b">min_level_</a>);</div>
+<div class="line"><span class="lineno">   69</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -325,10 +325,10 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   55</span>                                                          {</div>
-<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d2/d10/classsimple__console__logger.html#a664af455689fa004c61bc0a7946fa29b">log</a>(entry.level, entry.message, entry.file, entry.line, entry.function);</div>
-<div class="line"><span class="lineno">   57</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>                                                          {</div>
+<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d2/d10/classsimple__console__logger.html#a664af455689fa004c61bc0a7946fa29b">log</a>(entry.level, entry.message, entry.file, entry.line, entry.function);</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
 <div class="ttc" id="aclasssimple__console__logger_html_a664af455689fa004c61bc0a7946fa29b"><div class="ttname"><a href="../../d2/d10/classsimple__console__logger.html#a664af455689fa004c61bc0a7946fa29b">simple_console_logger::log</a></div><div class="ttdeci">common::VoidResult log(log_level level, const std::string &amp;message) override</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00034">logger_di_integration_example.cpp:34</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -388,14 +388,22 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   39</span>        <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">   40</span>        <span class="keyword">auto</span> time = std::chrono::system_clock::to_time_t(now);</div>
 <div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; std::put_time(std::localtime(&amp;time), <span class="stringliteral">&quot;%H:%M:%S&quot;</span>)</div>
-<div class="line"><span class="lineno">   43</span>                  &lt;&lt; <span class="stringliteral">&quot;] [&quot;</span> &lt;&lt; to_string(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
-<div class="line"><span class="lineno">   44</span>                  &lt;&lt; message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>        <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a77a91a14643ea3fd64cb70d119a0a330">log_count_</a>++;</div>
-<div class="line"><span class="lineno">   47</span>        <span class="keywordflow">return</span> common::ok();</div>
-<div class="line"><span class="lineno">   48</span>    }</div>
-<div class="ttc" id="aclasssimple__console__logger_html_a611cd961fc5e5eb80e845030ebe2ba01"><div class="ttname"><a href="../../d2/d10/classsimple__console__logger.html#a611cd961fc5e5eb80e845030ebe2ba01">simple_console_logger::is_enabled</a></div><div class="ttdeci">bool is_enabled(log_level level) const override</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00059">logger_di_integration_example.cpp:59</a></div></div>
+<div class="line"><span class="lineno">   42</span>        <span class="comment">// Thread-safe time conversion</span></div>
+<div class="line"><span class="lineno">   43</span>        std::tm tm_buf;</div>
+<div class="line"><span class="lineno">   44</span><span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><span class="lineno">   45</span>        localtime_s(&amp;tm_buf, &amp;time);</div>
+<div class="line"><span class="lineno">   46</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">   47</span>        localtime_r(&amp;time, &amp;tm_buf);</div>
+<div class="line"><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; std::put_time(&amp;tm_buf, <span class="stringliteral">&quot;%H:%M:%S&quot;</span>)</div>
+<div class="line"><span class="lineno">   51</span>                  &lt;&lt; <span class="stringliteral">&quot;] [&quot;</span> &lt;&lt; to_string(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
+<div class="line"><span class="lineno">   52</span>                  &lt;&lt; message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a77a91a14643ea3fd64cb70d119a0a330">log_count_</a>++;</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">return</span> common::ok();</div>
+<div class="line"><span class="lineno">   56</span>    }</div>
+<div class="ttc" id="aclasssimple__console__logger_html_a611cd961fc5e5eb80e845030ebe2ba01"><div class="ttname"><a href="../../d2/d10/classsimple__console__logger.html#a611cd961fc5e5eb80e845030ebe2ba01">simple_console_logger::is_enabled</a></div><div class="ttdeci">bool is_enabled(log_level level) const override</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00067">logger_di_integration_example.cpp:67</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -473,10 +481,10 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00050">50</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   51</span>                                                                                               {</div>
-<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d2/d10/classsimple__console__logger.html#a664af455689fa004c61bc0a7946fa29b">log</a>(level, message + <span class="stringliteral">&quot; [&quot;</span> + file + <span class="stringliteral">&quot;:&quot;</span> + std::to_string(line) + <span class="stringliteral">&quot; &quot;</span> + function + <span class="stringliteral">&quot;]&quot;</span>);</div>
-<div class="line"><span class="lineno">   53</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   59</span>                                                                                               {</div>
+<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d2/d10/classsimple__console__logger.html#a664af455689fa004c61bc0a7946fa29b">log</a>(level, message + <span class="stringliteral">&quot; [&quot;</span> + file + <span class="stringliteral">&quot;:&quot;</span> + std::to_string(line) + <span class="stringliteral">&quot; &quot;</span> + function + <span class="stringliteral">&quot;]&quot;</span>);</div>
+<div class="line"><span class="lineno">   61</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -516,11 +524,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   63</span>                                                         {</div>
-<div class="line"><span class="lineno">   64</span>        <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a39f9d308b56aac1462c8ebcbf054509b">min_level_</a> = level;</div>
-<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">return</span> common::ok();</div>
-<div class="line"><span class="lineno">   66</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                         {</div>
+<div class="line"><span class="lineno">   72</span>        <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a39f9d308b56aac1462c8ebcbf054509b">min_level_</a> = level;</div>
+<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span> common::ok();</div>
+<div class="line"><span class="lineno">   74</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -580,7 +588,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 3 2025 01:13:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Oct 3 2025 01:51:07 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
