@@ -1,5 +1,3 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/kcenon/monitoring_system/badge)](https://www.codefactor.io/repository/github/kcenon/monitoring_system)
-
 [![Ubuntu-GCC](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-gcc.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-gcc.yaml)
 [![Ubuntu-Clang](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-clang.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-clang.yaml)
 [![Windows-MSYS2](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-msys2.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-msys2.yaml)
