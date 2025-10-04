@@ -7,6 +7,7 @@
 #include <map>
 #include <optional>
 #include <chrono>
+#include <vector>
 
 namespace monitoring_system {
 

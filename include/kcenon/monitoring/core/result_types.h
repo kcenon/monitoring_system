@@ -34,11 +34,18 @@ All rights reserved.
 #include <optional>
 #include <memory>
 #include <string>
-#include <source_location>
 #include <type_traits>
 #include <stdexcept>
 #include <utility>
 #include <variant>
+
+// Check for source_location support
+#if __has_include(<source_location>) && defined(__cpp_lib_source_location)
+    #include <source_location>
+    #define MONITORING_HAS_SOURCE_LOCATION 1
+#else
+    #define MONITORING_HAS_SOURCE_LOCATION 0
+#endif
 
 namespace monitoring_system {
 
@@ -49,10 +56,16 @@ namespace monitoring_system {
 struct error_info {
     monitoring_error_code code;
     std::string message;
+#if MONITORING_HAS_SOURCE_LOCATION
     std::source_location location;
+#else
+    const char* file = "";
+    int line = 0;
+#endif
     std::optional<std::string> context;
-    
-    error_info(monitoring_error_code c, 
+
+#if MONITORING_HAS_SOURCE_LOCATION
+    error_info(monitoring_error_code c,
                const std::string& msg = "",
                const std::source_location& loc = std::source_location::current(),
                const std::optional<std::string>& ctx = std::nullopt)
@@ -60,15 +73,33 @@ struct error_info {
         , message(msg.empty() ? error_code_to_string(c) : msg)
         , location(loc)
         , context(ctx) {}
-    
+#else
+    error_info(monitoring_error_code c,
+               const std::string& msg = "",
+               const char* f = __builtin_FILE(),
+               int l = __builtin_LINE(),
+               const std::optional<std::string>& ctx = std::nullopt)
+        : code(c)
+        , message(msg.empty() ? error_code_to_string(c) : msg)
+        , file(f)
+        , line(l)
+        , context(ctx) {}
+#endif
+
     /**
      * @brief Get formatted error string
      * @return Formatted error message with location information
      */
     std::string to_string() const {
         std::string result = "[" + error_code_to_string(code) + "] " + message;
-        result += " (at " + std::string(location.file_name()) + ":" + 
+#if MONITORING_HAS_SOURCE_LOCATION
+        result += " (at " + std::string(location.file_name()) + ":" +
                   std::to_string(location.line()) + ")";
+#else
+        if (file && file[0] != '\0') {
+            result += " (at " + std::string(file) + ":" + std::to_string(line) + ")";
+        }
+#endif
         if (context.has_value()) {
             result += " Context: " + context.value();
         }
@@ -127,10 +158,16 @@ public:
         : value_(error) {}
 #endif
 
+#if MONITORING_HAS_SOURCE_LOCATION
     result(monitoring_error_code code,
            const std::string& message = "",
            const std::source_location& loc = std::source_location::current())
         : result(error_info(code, message, loc)) {}
+#else
+    result(monitoring_error_code code,
+           const std::string& message = "")
+        : result(error_info(code, message)) {}
+#endif
 
 #if MONITORING_HAS_COMMON_RESULT
     bool has_value() const { return common::is_ok(value_); }
@@ -255,10 +292,16 @@ public:
         : error_(error) {}
 #endif
 
+#if MONITORING_HAS_SOURCE_LOCATION
     result_void(monitoring_error_code code,
                 const std::string& message = "",
                 const std::source_location& loc = std::source_location::current())
         : result_void(error_info(code, message, loc)) {}
+#else
+    result_void(monitoring_error_code code,
+                const std::string& message = "")
+        : result_void(error_info(code, message)) {}
+#endif
 
     static result_void success() { return result_void(); }
 
