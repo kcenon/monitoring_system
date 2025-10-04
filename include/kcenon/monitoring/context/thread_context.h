@@ -4,6 +4,7 @@
 #include <chrono>
 #include <optional>
 #include <unordered_map>
+#include <memory>
 
 namespace monitoring_system {
 

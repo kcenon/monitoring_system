@@ -13,6 +13,7 @@
 #include <thread>
 #include <future>
 #include <map>
+#include <vector>
 
 #include "monitoring/tracing/distributed_tracer.h"
 #include "monitoring/context/thread_context.h"
