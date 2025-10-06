@@ -1,8 +1,7 @@
-[![Ubuntu-GCC](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-gcc.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-gcc.yaml)
-[![Ubuntu-Clang](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-clang.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-ubuntu-clang.yaml)
-[![Windows-MSYS2](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-msys2.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-msys2.yaml)
-[![Windows-VisualStudio](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-vs.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-windows-vs.yaml)
-[![Doxygen](https://github.com/kcenon/monitoring_system/actions/workflows/build-Doxygen.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-Doxygen.yaml)
+[![CI](https://github.com/kcenon/monitoring_system/actions/workflows/ci.yml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/ci.yml)
+[![Code Coverage](https://github.com/kcenon/monitoring_system/actions/workflows/coverage.yml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/coverage.yml)
+[![Static Analysis](https://github.com/kcenon/monitoring_system/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/static-analysis.yml)
+[![Documentation](https://github.com/kcenon/monitoring_system/actions/workflows/build-Doxygen.yaml/badge.svg)](https://github.com/kcenon/monitoring_system/actions/workflows/build-Doxygen.yaml)
 
 # Monitoring System Project
 
