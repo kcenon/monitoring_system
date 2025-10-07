@@ -27,7 +27,7 @@ if(benchmark_FOUND OR BENCHMARK_FOUND)
 
     target_link_libraries(monitoring_benchmarks
         PRIVATE
-            kcenon::monitoring_system
+            monitoring_system
             benchmark::benchmark
             benchmark::benchmark_main
     )
@@ -35,7 +35,22 @@ if(benchmark_FOUND OR BENCHMARK_FOUND)
     target_include_directories(monitoring_benchmarks
         PRIVATE
             ${CMAKE_CURRENT_SOURCE_DIR}/../include
+            ${CMAKE_CURRENT_SOURCE_DIR}/../sources
     )
+
+    # Add common_system include path if available
+    if(TARGET monitoring_system_interface)
+        target_link_libraries(monitoring_benchmarks PRIVATE monitoring_system_interface)
+    endif()
+
+    if(DEFINED COMMON_SYSTEM_INCLUDE_DIR)
+        target_include_directories(monitoring_benchmarks
+            PRIVATE
+                ${COMMON_SYSTEM_INCLUDE_DIR}
+        )
+    elseif(TARGET kcenon::common_system)
+        target_link_libraries(monitoring_benchmarks PRIVATE kcenon::common_system)
+    endif()
 
     target_compile_features(monitoring_benchmarks PRIVATE cxx_std_20)
 
