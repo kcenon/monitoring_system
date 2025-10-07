@@ -62,7 +62,7 @@ struct error_info {
     const char* file = "";
     int line = 0;
 #endif
-    std::optional<std::string> context;
+    std::optional<std::string> context{std::nullopt};
 
 #if MONITORING_HAS_SOURCE_LOCATION
     error_info(monitoring_error_code c,
@@ -134,10 +134,10 @@ class result {
 public:
 #if MONITORING_HAS_COMMON_RESULT
     result(T&& value)
-        : value_(common::ok<T>(std::forward<T>(value))) {}
+        : value_(common::ok<T>(std::forward<T>(value))), error_(std::nullopt) {}
 
     result(const T& value)
-        : value_(common::ok<T>(value)) {}
+        : value_(common::ok<T>(value)), error_(std::nullopt) {}
 
     result(error_info&& error)
         : value_(detail::to_common_error(error)), error_(std::move(error)) {}
@@ -276,7 +276,11 @@ private:
  */
 class result_void {
 public:
-    result_void() = default;
+#if MONITORING_HAS_COMMON_RESULT
+    result_void() : value_(std::monostate{}), error_(std::nullopt) {}
+#else
+    result_void() : error_(std::nullopt) {}
+#endif
 
 #if MONITORING_HAS_COMMON_RESULT
     result_void(error_info&& error)
