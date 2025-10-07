@@ -623,10 +623,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  210</span>    data.add_tag(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
 <div class="line"><span class="lineno">  211</span>    data.add_tag(<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-west-2&quot;</span>);</div>
 <div class="line"><span class="lineno">  212</span>    </div>
-<div class="line"><span class="lineno">  213</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_monitoring_data(data);</div>
-<div class="line"><span class="lineno">  214</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  213</span>    <span class="keyword">auto</span> result = adapter.convert_monitoring_data(data);</div>
+<div class="line"><span class="lineno">  214</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  215</span>    </div>
-<div class="line"><span class="lineno">  216</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_metrics = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  216</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_metrics = result.value();</div>
 <div class="line"><span class="lineno">  217</span>    EXPECT_EQ(otel_metrics.size(), 2);</div>
 <div class="line"><span class="lineno">  218</span>    </div>
 <div class="line"><span class="lineno">  219</span>    <span class="comment">// Find CPU usage metric</span></div>
@@ -649,19 +649,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  236</span>    }</div>
 <div class="line"><span class="lineno">  237</span>    EXPECT_TRUE(found_cpu);</div>
 <div class="line"><span class="lineno">  238</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00049">test_di_container.cpp:49</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00059">test_di_container.cpp:59</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a77a1e0ee32c4c60d435c92823947b505_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a9ad978d91c522bc99b2da2a2d593d27c" name="a9ad978d91c522bc99b2da2a2d593d27c"></a>
@@ -846,24 +834,14 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  167</span>    error_span.tags[<span class="stringliteral">&quot;error&quot;</span>] = <span class="stringliteral">&quot;true&quot;</span>;</div>
 <div class="line"><span class="lineno">  168</span>    error_span.tags[<span class="stringliteral">&quot;error.message&quot;</span>] = <span class="stringliteral">&quot;Connection timeout&quot;</span>;</div>
 <div class="line"><span class="lineno">  169</span>    </div>
-<div class="line"><span class="lineno">  170</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_span(error_span);</div>
-<div class="line"><span class="lineno">  171</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  170</span>    <span class="keyword">auto</span> result = adapter.convert_span(error_span);</div>
+<div class="line"><span class="lineno">  171</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  172</span>    </div>
-<div class="line"><span class="lineno">  173</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  173</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = result.value();</div>
 <div class="line"><span class="lineno">  174</span>    EXPECT_EQ(otel_span.status_code, otel_status_code::error);</div>
 <div class="line"><span class="lineno">  175</span>    EXPECT_EQ(otel_span.status_message, <span class="stringliteral">&quot;Connection timeout&quot;</span>);</div>
 <div class="line"><span class="lineno">  176</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_aae0447838ae4948b67487729306c8297_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a209a531daf1f52b81fcdfc6707abeb79" name="a209a531daf1f52b81fcdfc6707abeb79"></a>
@@ -907,10 +885,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  189</span>        spans.push_back(span);</div>
 <div class="line"><span class="lineno">  190</span>    }</div>
 <div class="line"><span class="lineno">  191</span>    </div>
-<div class="line"><span class="lineno">  192</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_spans(spans);</div>
-<div class="line"><span class="lineno">  193</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  192</span>    <span class="keyword">auto</span> result = adapter.convert_spans(spans);</div>
+<div class="line"><span class="lineno">  193</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  194</span>    </div>
-<div class="line"><span class="lineno">  195</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_spans = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  195</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_spans = result.value();</div>
 <div class="line"><span class="lineno">  196</span>    EXPECT_EQ(otel_spans.size(), 3);</div>
 <div class="line"><span class="lineno">  197</span>    </div>
 <div class="line"><span class="lineno">  198</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; otel_spans.size(); ++i) {</div>
@@ -918,17 +896,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  200</span>        EXPECT_EQ(otel_spans[i].context.span_id, <span class="stringliteral">&quot;span&quot;</span> + std::to_string(i));</div>
 <div class="line"><span class="lineno">  201</span>    }</div>
 <div class="line"><span class="lineno">  202</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_a209a531daf1f52b81fcdfc6707abeb79_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac989888059022b3b2ba247532607a26a" name="ac989888059022b3b2ba247532607a26a"></a>
@@ -972,10 +940,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  132</span>    internal_span.tags[<span class="stringliteral">&quot;db.statement&quot;</span>] = <span class="stringliteral">&quot;SELECT * FROM users&quot;</span>;</div>
 <div class="line"><span class="lineno">  133</span>    internal_span.tags[<span class="stringliteral">&quot;error&quot;</span>] = <span class="stringliteral">&quot;false&quot;</span>;</div>
 <div class="line"><span class="lineno">  134</span>    </div>
-<div class="line"><span class="lineno">  135</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = adapter.convert_span(internal_span);</div>
-<div class="line"><span class="lineno">  136</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  135</span>    <span class="keyword">auto</span> result = adapter.convert_span(internal_span);</div>
+<div class="line"><span class="lineno">  136</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  137</span>    </div>
-<div class="line"><span class="lineno">  138</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>();</div>
+<div class="line"><span class="lineno">  138</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = result.value();</div>
 <div class="line"><span class="lineno">  139</span>    EXPECT_EQ(otel_span.name, <span class="stringliteral">&quot;database_query&quot;</span>);</div>
 <div class="line"><span class="lineno">  140</span>    EXPECT_EQ(otel_span.context.trace_id, <span class="stringliteral">&quot;trace123&quot;</span>);</div>
 <div class="line"><span class="lineno">  141</span>    EXPECT_EQ(otel_span.context.span_id, <span class="stringliteral">&quot;span456&quot;</span>);</div>
@@ -994,23 +962,13 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  154</span>    }</div>
 <div class="line"><span class="lineno">  155</span>    EXPECT_TRUE(found_db_statement);</div>
 <div class="line"><span class="lineno">  156</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph.png" border="0" usemap="#ad5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph" alt=""/></div>
-<map name="ad5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph" id="ad5/dbf/test__opentelemetry__adapter_8cpp_ac989888059022b3b2ba247532607a26a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2025 07:04:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 07:09:51 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

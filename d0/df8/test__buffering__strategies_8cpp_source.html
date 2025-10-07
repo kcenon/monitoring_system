@@ -178,8 +178,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// Add metric (should be processed immediately)</span></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = strategy.add_metric(std::move(metric));</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// Size should still be 0 (no buffering)</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    EXPECT_EQ(strategy.size(), 0);</div>
@@ -211,8 +211,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// Add metrics up to threshold</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = strategy.add_metric(std::move(metric));</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    EXPECT_EQ(strategy.size(), 3);</div>
@@ -221,8 +221,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// Add more metrics to test overflow</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 3; i &lt; 8; ++i) {</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = strategy.add_metric(std::move(metric));</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    </div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    EXPECT_EQ(strategy.size(), 5);  <span class="comment">// Should not exceed max size</span></div>
@@ -483,8 +483,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;cpu_usage&quot;</span>, metric_type::gauge);</div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        compact_metric_value metric(metadata, 50.0 + i);</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>        </div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(metric));</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        <span class="keyword">auto</span> result = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(metric));</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    }</div>
 <div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    </div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <span class="comment">// Check buffer size</span></div>
@@ -550,8 +550,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    custom_config.max_buffer_size = 10;</div>
 <div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    custom_config.flush_priority_threshold = 200;</div>
 <div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    </div>
-<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
-<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    <span class="keyword">auto</span> result = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>    </div>
 <div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <span class="comment">// Add metrics with different priorities</span></div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    std::vector&lt;uint8_t&gt; priorities = {100, 250, 150};</div>
@@ -662,13 +662,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassBufferingStrategiesTest_html_a2f9012650c746215e4ab451ab536135b"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b">BufferingStrategiesTest::create_test_metric</a></div><div class="ttdeci">buffered_metric create_test_metric(const std::string &amp;name, double value, uint8_t priority=128)</div><div class="ttdoc">Create test metric.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00029">test_buffering_strategies.cpp:29</a></div></div>
 <div class="ttc" id="aclassBufferingStrategiesTest_html_a39533de57e9b166c8c7743d7891ca4e1"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1">BufferingStrategiesTest::create_test_metrics</a></div><div class="ttdeci">std::vector&lt; buffered_metric &gt; create_test_metrics(size_t count, const std::string &amp;base_name=&quot;test&quot;)</div><div class="ttdoc">Create multiple test metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00041">test_buffering_strategies.cpp:41</a></div></div>
 <div class="ttc" id="aclassBufferingStrategiesTest_html_ab584e8eb28be0f142bff7fbf453e6b46"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#ab584e8eb28be0f142bff7fbf453e6b46">BufferingStrategiesTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00022">test_buffering_strategies.cpp:22</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00049">test_di_container.cpp:49</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00028">test_di_container.cpp:28</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
 <div class="ttc" id="atest__buffering__strategies_8cpp_html_a976caac12b1c6e3661317b5617ceaceb"><div class="ttname"><a href="../../d0/df8/test__buffering__strategies_8cpp.html#a976caac12b1c6e3661317b5617ceaceb">TEST_F</a></div><div class="ttdeci">TEST_F(BufferingStrategiesTest, BufferingConfigValidation)</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00055">test_buffering_strategies.cpp:55</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2025 07:04:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 07:09:51 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -199,8 +199,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  311</span>    data.add_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 100.0);</div>
 <div class="line"><span class="lineno">  312</span>    </div>
 <div class="line"><span class="lineno">  313</span>    <span class="comment">// Enrich with context</span></div>
-<div class="line"><span class="lineno">  314</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = aware.enrich_with_context(data);</div>
-<div class="line"><span class="lineno">  315</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  314</span>    <span class="keyword">auto</span> result = aware.enrich_with_context(data);</div>
+<div class="line"><span class="lineno">  315</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  316</span>    </div>
 <div class="line"><span class="lineno">  317</span>    <span class="comment">// Verify context was added as tags</span></div>
 <div class="line"><span class="lineno">  318</span>    <span class="keyword">auto</span> req_id = data.get_tag(<span class="stringliteral">&quot;request_id&quot;</span>);</div>
@@ -229,7 +229,6 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  341</span>    ASSERT_TRUE(metric.has_value());</div>
 <div class="line"><span class="lineno">  342</span>    EXPECT_DOUBLE_EQ(metric.value(), 100.0);</div>
 <div class="line"><span class="lineno">  343</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00049">test_di_container.cpp:49</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -333,10 +332,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  352</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a>(<span class="keyword">const</span> std::string&amp; name)</div>
 <div class="line"><span class="lineno">  353</span>            : context_metrics_collector(name) {}</div>
 <div class="line"><span class="lineno">  354</span>        </div>
-<div class="line"><span class="lineno">  355</span>        <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;metrics_snapshot&gt;</a> collect()<span class="keyword"> override </span>{</div>
+<div class="line"><span class="lineno">  355</span>        result&lt;metrics_snapshot&gt; collect()<span class="keyword"> override </span>{</div>
 <div class="line"><span class="lineno">  356</span>            <span class="keyword">auto</span> snapshot = create_snapshot_with_context();</div>
 <div class="line"><span class="lineno">  357</span>            snapshot.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><span class="lineno">  358</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">make_success</a>(std::move(snapshot));</div>
+<div class="line"><span class="lineno">  358</span>            <span class="keywordflow">return</span> make_success(std::move(snapshot));</div>
 <div class="line"><span class="lineno">  359</span>        }</div>
 <div class="line"><span class="lineno">  360</span>    };</div>
 <div class="line"><span class="lineno">  361</span>    </div>
@@ -369,18 +368,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  388</span>    EXPECT_EQ(snapshot2.source_id, <span class="stringliteral">&quot;test-collector&quot;</span>);</div>
 <div class="line"><span class="lineno">  389</span>}</div>
 <div class="ttc" id="aclasstest__collector_html"><div class="ttname"><a href="../../d9/d71/classtest__collector.html">test_collector</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00034">test_interfaces_compile.cpp:34</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html_a91abf3623da471b448536374048af265"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265">monitoring_system::make_success</a></div><div class="ttdeci">result&lt; T &gt; make_success(T &amp;&amp;value)</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00038">test_di_container.cpp:38</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph.png" border="0" usemap="#ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph" alt=""/></div>
-<map name="ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph" id="ad4/ddd/test__thread__context_8cpp_a7ba5da4fc3673e5e8d1b28d772ad7fd1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../de/d3f/namespacemonitoring__system.html#a91abf3623da471b448536374048af265" title=" " alt="" coords="123,5,279,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad7dd0e2cbb1dbe00ad97397d952a4c56" name="ad7dd0e2cbb1dbe00ad97397d952a4c56"></a>
@@ -579,8 +567,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  451</span>    source.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">  452</span>    </div>
 <div class="line"><span class="lineno">  453</span>    <span class="comment">// Copy to current thread</span></div>
-<div class="line"><span class="lineno">  454</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = thread_context::copy_from(source);</div>
-<div class="line"><span class="lineno">  455</span>    ASSERT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  454</span>    <span class="keyword">auto</span> result = thread_context::copy_from(source);</div>
+<div class="line"><span class="lineno">  455</span>    ASSERT_TRUE(result);</div>
 <div class="line"><span class="lineno">  456</span>    </div>
 <div class="line"><span class="lineno">  457</span>    <span class="comment">// Verify copy</span></div>
 <div class="line"><span class="lineno">  458</span>    EXPECT_TRUE(thread_context::has_context());</div>
@@ -688,8 +676,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  263</span>        EXPECT_FALSE(thread_context::has_context());</div>
 <div class="line"><span class="lineno">  264</span>        </div>
 <div class="line"><span class="lineno">  265</span>        <span class="comment">// Apply captured context</span></div>
-<div class="line"><span class="lineno">  266</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = propagator.apply();</div>
-<div class="line"><span class="lineno">  267</span>        EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  266</span>        <span class="keyword">auto</span> result = propagator.apply();</div>
+<div class="line"><span class="lineno">  267</span>        EXPECT_TRUE(result);</div>
 <div class="line"><span class="lineno">  268</span>        </div>
 <div class="line"><span class="lineno">  269</span>        <span class="comment">// Should have context from main thread</span></div>
 <div class="line"><span class="lineno">  270</span>        EXPECT_TRUE(thread_context::has_context());</div>
@@ -954,7 +942,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2025 07:04:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 07:09:51 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

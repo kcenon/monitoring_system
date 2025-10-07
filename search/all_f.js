@@ -10,10 +10,9 @@ var searchData=
   ['resolve_7',['resolve',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#af59741f85e2e9deecd814ec758211b12',1,'monitoring_system::service_container_interface::resolve(const std::string &amp;name) const'],['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a38cd2ab61516c80971a4439d5659bc22',1,'monitoring_system::service_container_interface::resolve() const']]],
   ['resource_8',['resource',['../d5/d90/classOpenTelemetryAdapterTest.html#a9452b63ee1524a2d48c6a6fff214ef0b',1,'OpenTelemetryAdapterTest']]],
   ['resourcemanagementtest_9',['ResourceManagementTest',['../d7/d4c/classResourceManagementTest.html',1,'']]],
-  ['result_10',['result',['../d8/dae/classmonitoring__system_1_1result.html#ad4e2bd4949ce5298dde5b1bc89651684',1,'monitoring_system::result::result(T value)'],['../d8/dae/classmonitoring__system_1_1result.html#a645fe99fe9402e8b08e4ecf6f93f88ca',1,'monitoring_system::result::result()'],['../d8/dae/classmonitoring__system_1_1result.html',1,'monitoring_system::result&lt; T &gt;']]],
-  ['result_5fpattern_5fexample_2ecpp_11',['result_pattern_example.cpp',['../de/dfb/result__pattern__example_8cpp.html',1,'']]],
-  ['resulttypestest_12',['ResultTypesTest',['../d3/d70/classResultTypesTest.html',1,'']]],
-  ['rng_5f_13',['rng_',['../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed',1,'DatabaseConnection']]],
-  ['rollback_5fcount_14',['rollback_count',['../d8/d07/classDataConsistencyTest.html#a22edd023d7ec11376560cb4dd04aa3bd',1,'DataConsistencyTest']]],
-  ['rollback_5foperation_15',['rollback_operation',['../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57',1,'DataConsistencyTest']]]
+  ['result_5fpattern_5fexample_2ecpp_10',['result_pattern_example.cpp',['../de/dfb/result__pattern__example_8cpp.html',1,'']]],
+  ['resulttypestest_11',['ResultTypesTest',['../d3/d70/classResultTypesTest.html',1,'']]],
+  ['rng_5f_12',['rng_',['../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed',1,'DatabaseConnection']]],
+  ['rollback_5fcount_13',['rollback_count',['../d8/d07/classDataConsistencyTest.html#a22edd023d7ec11376560cb4dd04aa3bd',1,'DataConsistencyTest']]],
+  ['rollback_5foperation_14',['rollback_operation',['../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57',1,'DataConsistencyTest']]]
 ];

@@ -453,8 +453,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    config.format = trace_export_format::jaeger_grpc;</div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    </div>
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    jaeger_exporter exporter(config);</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = exporter.export_spans(empty_spans);</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keyword">auto</span> result = exporter.export_spans(empty_spans);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    </div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 0);</div>
@@ -483,8 +483,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    config.max_batch_size = 500; <span class="comment">// Smaller than batch size</span></div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    </div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    otlp_exporter exporter(config, otel_resource_);</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = exporter.export_spans(large_batch);</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="keyword">auto</span> result = exporter.export_spans(large_batch);</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    EXPECT_TRUE(result);</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    </div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 1000);</div>
@@ -495,13 +495,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassTraceExportersTest_html_a80d31582763fe5daabdfa61cb08e5b6f"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f">TraceExportersTest::create_test_spans</a></div><div class="ttdeci">std::vector&lt; trace_span &gt; create_test_spans()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00028">test_trace_exporters.cpp:28</a></div></div>
 <div class="ttc" id="aclassTraceExportersTest_html_a8148a280d4bc6a963114233ef938c4a9"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#a8148a280d4bc6a963114233ef938c4a9">TraceExportersTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00020">test_trace_exporters.cpp:20</a></div></div>
 <div class="ttc" id="aclassTraceExportersTest_html_aacbf223d478e0c8d96ed19210288ca4e"><div class="ttname"><a href="../../de/d2d/classTraceExportersTest.html#aacbf223d478e0c8d96ed19210288ca4e">TraceExportersTest::test_spans_</a></div><div class="ttdeci">std::vector&lt; trace_span &gt; test_spans_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00061">test_trace_exporters.cpp:61</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00049">test_di_container.cpp:49</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00028">test_di_container.cpp:28</a></div></div>
+<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
 <div class="ttc" id="atest__trace__exporters_8cpp_html_a423b170cd64ad08da833da46408ba534"><div class="ttname"><a href="../../dc/dbd/test__trace__exporters_8cpp.html#a423b170cd64ad08da833da46408ba534">TEST_F</a></div><div class="ttdeci">TEST_F(TraceExportersTest, TraceExportConfigValidation)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00065">test_trace_exporters.cpp:65</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2025 07:04:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 07:09:51 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

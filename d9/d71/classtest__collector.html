@@ -98,7 +98,7 @@ Collaboration diagram for test_collector:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac72129342beb4bcfc7c4b7ce2ddc8a7a" id="r_ac72129342beb4bcfc7c4b7ce2ddc8a7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; std::vector&lt; metric &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a> () override</td></tr>
+<tr class="memitem:ac72129342beb4bcfc7c4b7ce2ddc8a7a" id="r_ac72129342beb4bcfc7c4b7ce2ddc8a7a"><td class="memItemLeft" align="right" valign="top">result&lt; std::vector&lt; metric &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a> () override</td></tr>
 <tr class="separator:ac72129342beb4bcfc7c4b7ce2ddc8a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcbb96c13f213df0cd6d855f0873b4ea" id="r_adcbb96c13f213df0cd6d855f0873b4ea"><td class="memItemLeft" align="right" valign="top">result_void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d71/classtest__collector.html#adcbb96c13f213df0cd6d855f0873b4ea">start_collection</a> (const collection_config &amp;config) override</td></tr>
 <tr class="separator:adcbb96c13f213df0cd6d855f0873b4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a06064b6345f204ac2e3e96bac5d6b68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb9bf4aeed39ff7b6fb283829a74d8d4" id="r_aeb9bf4aeed39ff7b6fb283829a74d8d4"><td class="memItemLeft" align="right" valign="top">result_void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d71/classtest__collector.html#aeb9bf4aeed39ff7b6fb283829a74d8d4">update_config</a> (const collection_config &amp;config) override</td></tr>
 <tr class="separator:aeb9bf4aeed39ff7b6fb283829a74d8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2782782765bd1c88227d2903c09aa726" id="r_a2782782765bd1c88227d2903c09aa726"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; std::vector&lt; metric &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">force_collect</a> () override</td></tr>
+<tr class="memitem:a2782782765bd1c88227d2903c09aa726" id="r_a2782782765bd1c88227d2903c09aa726"><td class="memItemLeft" align="right" valign="top">result&lt; std::vector&lt; metric &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">force_collect</a> () override</td></tr>
 <tr class="separator:a2782782765bd1c88227d2903c09aa726"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a460f7ce2ed85cc633fbddc4916785c29" id="r_a460f7ce2ed85cc633fbddc4916785c29"><td class="memItemLeft" align="right" valign="top">metric_stats&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29">get_stats</a> () const override</td></tr>
 <tr class="separator:a460f7ce2ed85cc633fbddc4916785c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; std::vector&lt; metric &gt; &gt; test_collector::collect_metrics </td>
+          <td class="memname">result&lt; std::vector&lt; metric &gt; &gt; test_collector::collect_metrics </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -158,9 +158,8 @@ Public Member Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00036">36</a> of file <a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp_source.html">test_interfaces_compile.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   36</span>                                                         {</div>
-<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::vector&lt;metric&gt;</a>&gt;(std::vector&lt;metric&gt;{});</div>
+<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">return</span> result&lt;std::vector&lt;metric&gt;&gt;(std::vector&lt;metric&gt;{});</div>
 <div class="line"><span class="lineno">   38</span>    }</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00049">test_di_container.cpp:49</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -184,7 +183,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>&lt; std::vector&lt; metric &gt; &gt; test_collector::force_collect </td>
+          <td class="memname">result&lt; std::vector&lt; metric &gt; &gt; test_collector::force_collect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -610,7 +609,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2025 07:04:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 07:09:51 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -191,12 +191,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  268</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Reset timeout: 2s&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  269</span>    </div>
 <div class="line"><span class="lineno">  270</span>    <span class="comment">// Define the operation</span></div>
-<div class="line"><span class="lineno">  271</span>    <span class="keyword">auto</span> api_operation = [api_client]() -&gt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::string&gt;</a> {</div>
+<div class="line"><span class="lineno">  271</span>    <span class="keyword">auto</span> api_operation = [api_client]() -&gt; result&lt;std::string&gt; {</div>
 <div class="line"><span class="lineno">  272</span>        <span class="keywordflow">return</span> api_client-&gt;call_api(<span class="stringliteral">&quot;/users&quot;</span>);</div>
 <div class="line"><span class="lineno">  273</span>    };</div>
 <div class="line"><span class="lineno">  274</span>    </div>
 <div class="line"><span class="lineno">  275</span>    <span class="comment">// Define fallback</span></div>
-<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> fallback = []() -&gt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::string&gt;</a> {</div>
+<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> fallback = []() -&gt; result&lt;std::string&gt; {</div>
 <div class="line"><span class="lineno">  277</span>        <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Cached response (fallback)&quot;</span>);</div>
 <div class="line"><span class="lineno">  278</span>    };</div>
 <div class="line"><span class="lineno">  279</span>    </div>
@@ -204,13 +204,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  281</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n1. Making API calls through circuit breaker:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  282</span>    </div>
 <div class="line"><span class="lineno">  283</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 10; ++i) {</div>
-<div class="line"><span class="lineno">  284</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute(api_operation, fallback);</div>
+<div class="line"><span class="lineno">  284</span>        <span class="keyword">auto</span> result = breaker.execute(api_operation, fallback);</div>
 <div class="line"><span class="lineno">  285</span>        </div>
 <div class="line"><span class="lineno">  286</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Call &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;: &quot;</span>;</div>
-<div class="line"><span class="lineno">  287</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
-<div class="line"><span class="lineno">  288</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;SUCCESS - &quot;</span> &lt;&lt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  287</span>        <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  288</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;SUCCESS - &quot;</span> &lt;&lt; result.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  289</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  290</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;FAILED - &quot;</span> &lt;&lt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">message</a> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  290</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;FAILED - &quot;</span> &lt;&lt; result.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  291</span>        }</div>
 <div class="line"><span class="lineno">  292</span>        </div>
 <div class="line"><span class="lineno">  293</span>        <span class="comment">// Check circuit state</span></div>
@@ -241,32 +241,16 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  318</span>    <span class="comment">// Try again after reset</span></div>
 <div class="line"><span class="lineno">  319</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n4. Trying after reset:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  320</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 3; ++i) {</div>
-<div class="line"><span class="lineno">  321</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = breaker.execute(api_operation, fallback);</div>
+<div class="line"><span class="lineno">  321</span>        <span class="keyword">auto</span> result = breaker.execute(api_operation, fallback);</div>
 <div class="line"><span class="lineno">  322</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Call &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;: &quot;</span>;</div>
-<div class="line"><span class="lineno">  323</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
+<div class="line"><span class="lineno">  323</span>        <span class="keywordflow">if</span> (result) {</div>
 <div class="line"><span class="lineno">  324</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;SUCCESS&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  325</span>        } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  326</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;FAILED&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  327</span>        }</div>
 <div class="line"><span class="lineno">  328</span>    }</div>
 <div class="line"><span class="lineno">  329</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00049">test_di_container.cpp:49</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ac966760f74d5cfdad8d6e20646c15f40"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">monitoring_system::result::get_error</a></div><div class="ttdeci">const error_info &amp; get_error() const</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00061">test_di_container.cpp:61</a></div></div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html_ae3cc8fb26f9f9ae7168a66148b42e195"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">monitoring_system::result::value</a></div><div class="ttdeci">T &amp; value()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00059">test_di_container.cpp:59</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1error__info_html_a203908afdb96835ad2a16954208d5561"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">monitoring_system::error_info::message</a></div><div class="ttdeci">std::string message</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00045">test_di_container.cpp:45</a></div></div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_a8bfc1a7efa3a960d500cf0f98f36d486_cgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_a8bfc1a7efa3a960d500cf0f98f36d486_cgraph" alt=""/></div>
-<map name="ad2/d84/health__reliability__example_8cpp_a8bfc1a7efa3a960d500cf0f98f36d486_cgraph" id="ad2/d84/health__reliability__example_8cpp_a8bfc1a7efa3a960d500cf0f98f36d486_cgraph">
-<area shape="rect" title=" " alt="" coords="5,37,157,77"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="205,5,361,45"/>
-<area shape="poly" title=" " alt="" coords="157,43,191,37,192,42,158,48"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="205,69,361,109"/>
-<area shape="poly" title=" " alt="" coords="158,67,192,72,191,77,157,72"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_a8bfc1a7efa3a960d500cf0f98f36d486_icgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_a8bfc1a7efa3a960d500cf0f98f36d486_icgraph" alt=""/></div>
@@ -307,8 +291,8 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  401</span>    error_boundary&lt;std::string&gt; boundary(<span class="stringliteral">&quot;critical_section&quot;</span>, config);  <span class="comment">// Specify template type</span></div>
 <div class="line"><span class="lineno">  402</span>    </div>
 <div class="line"><span class="lineno">  403</span>    <span class="comment">// Set error handler</span></div>
-<div class="line"><span class="lineno">  404</span>    boundary.set_error_handler([](<span class="keyword">const</span> <a class="code hl_struct" href="../../d0/d5c/structmonitoring__system_1_1error__info.html">error_info</a>&amp; error, degradation_level level) {</div>
-<div class="line"><span class="lineno">  405</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error handler called: &quot;</span> &lt;&lt; error.<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">message</a> </div>
+<div class="line"><span class="lineno">  404</span>    boundary.set_error_handler([](<span class="keyword">const</span> error_info&amp; error, degradation_level level) {</div>
+<div class="line"><span class="lineno">  405</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error handler called: &quot;</span> &lt;&lt; error.message </div>
 <div class="line"><span class="lineno">  406</span>                 &lt;&lt; <span class="stringliteral">&quot; (degradation level: &quot;</span> &lt;&lt; <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(level) &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  407</span>    });</div>
 <div class="line"><span class="lineno">  408</span>    </div>
@@ -320,7 +304,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  414</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n1. Executing operations within error boundary:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  415</span>    </div>
 <div class="line"><span class="lineno">  416</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 7; ++i) {</div>
-<div class="line"><span class="lineno">  417</span>        <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = boundary.execute([i]() -&gt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">::result&lt;std::string&gt;</a> {</div>
+<div class="line"><span class="lineno">  417</span>        <span class="keyword">auto</span> result = boundary.execute([i]() -&gt; ::result&lt;std::string&gt; {</div>
 <div class="line"><span class="lineno">  418</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;  Operation &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;: &quot;</span>;</div>
 <div class="line"><span class="lineno">  419</span>            </div>
 <div class="line"><span class="lineno">  420</span>            <span class="comment">// Simulate failures on odd numbers</span></div>
@@ -336,7 +320,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  430</span>            <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Result &quot;</span> + std::to_string(i));</div>
 <div class="line"><span class="lineno">  431</span>        });</div>
 <div class="line"><span class="lineno">  432</span>        </div>
-<div class="line"><span class="lineno">  433</span>        <span class="keywordflow">if</span> (!<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> &amp;&amp; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">code</a> == monitoring_error_code::circuit_breaker_open) {</div>
+<div class="line"><span class="lineno">  433</span>        <span class="keywordflow">if</span> (!result &amp;&amp; result.get_error().code == monitoring_error_code::circuit_breaker_open) {</div>
 <div class="line"><span class="lineno">  434</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;    [Error boundary triggered - too many errors]&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  435</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  436</span>        }</div>
@@ -352,19 +336,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  446</span>                 100.0 * (stats.total_operations - stats.failed_operations) / stats.total_operations : 0)</div>
 <div class="line"><span class="lineno">  447</span>             &lt;&lt; <span class="stringliteral">&quot;%&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  448</span>}</div>
-<div class="ttc" id="astructmonitoring__system_1_1error__info_html"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html">monitoring_system::error_info</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00043">test_di_container.cpp:43</a></div></div>
-<div class="ttc" id="astructmonitoring__system_1_1error__info_html_ab3f26d93d871f553dc771f2290f2e3e2"><div class="ttname"><a href="../../d0/d5c/structmonitoring__system_1_1error__info.html#ab3f26d93d871f553dc771f2290f2e3e2">monitoring_system::error_info::code</a></div><div class="ttdeci">monitoring_error_code code</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00044">test_di_container.cpp:44</a></div></div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_ae48b05d3deda002b02aec48a18444a5c_cgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_ae48b05d3deda002b02aec48a18444a5c_cgraph" alt=""/></div>
-<map name="ad2/d84/health__reliability__example_8cpp_ae48b05d3deda002b02aec48a18444a5c_cgraph" id="ad2/d84/health__reliability__example_8cpp_ae48b05d3deda002b02aec48a18444a5c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,228,38"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="276,5,432,45"/>
-<area shape="poly" title=" " alt="" coords="228,23,262,23,262,28,228,28"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_ae48b05d3deda002b02aec48a18444a5c_icgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_ae48b05d3deda002b02aec48a18444a5c_icgraph" alt=""/></div>
@@ -413,12 +385,12 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  126</span>            health_check_type::liveness,</div>
 <div class="line"><span class="lineno">  127</span>            [database]() -&gt; health_check_result {</div>
 <div class="line"><span class="lineno">  128</span>                <span class="comment">// Simple ping check</span></div>
-<div class="line"><span class="lineno">  129</span>                <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = database-&gt;execute_query(<span class="stringliteral">&quot;SELECT 1&quot;</span>);</div>
-<div class="line"><span class="lineno">  130</span>                <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
+<div class="line"><span class="lineno">  129</span>                <span class="keyword">auto</span> result = database-&gt;execute_query(<span class="stringliteral">&quot;SELECT 1&quot;</span>);</div>
+<div class="line"><span class="lineno">  130</span>                <span class="keywordflow">if</span> (result) {</div>
 <div class="line"><span class="lineno">  131</span>                    <span class="keywordflow">return</span> health_check_result::healthy(<span class="stringliteral">&quot;Database is alive&quot;</span>);</div>
 <div class="line"><span class="lineno">  132</span>                } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  133</span>                    <span class="keywordflow">return</span> health_check_result::unhealthy(</div>
-<div class="line"><span class="lineno">  134</span>                        <span class="stringliteral">&quot;Database unreachable: &quot;</span> + <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">message</a></div>
+<div class="line"><span class="lineno">  134</span>                        <span class="stringliteral">&quot;Database unreachable: &quot;</span> + result.get_error().message</div>
 <div class="line"><span class="lineno">  135</span>                    );</div>
 <div class="line"><span class="lineno">  136</span>                }</div>
 <div class="line"><span class="lineno">  137</span>            },</div>
@@ -434,8 +406,8 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  147</span>            health_check_type::readiness,</div>
 <div class="line"><span class="lineno">  148</span>            [database]() -&gt; health_check_result {</div>
 <div class="line"><span class="lineno">  149</span>                <span class="comment">// Check if database can handle queries</span></div>
-<div class="line"><span class="lineno">  150</span>                <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = database-&gt;execute_query(<span class="stringliteral">&quot;SELECT COUNT(*) FROM users&quot;</span>);</div>
-<div class="line"><span class="lineno">  151</span>                <span class="keywordflow">if</span> (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>) {</div>
+<div class="line"><span class="lineno">  150</span>                <span class="keyword">auto</span> result = database-&gt;execute_query(<span class="stringliteral">&quot;SELECT COUNT(*) FROM users&quot;</span>);</div>
+<div class="line"><span class="lineno">  151</span>                <span class="keywordflow">if</span> (result) {</div>
 <div class="line"><span class="lineno">  152</span>                    <span class="keywordtype">int</span> query_count = database-&gt;get_query_count();</div>
 <div class="line"><span class="lineno">  153</span>                    <span class="keywordflow">if</span> (query_count &gt; 100) {</div>
 <div class="line"><span class="lineno">  154</span>                        <span class="keywordflow">return</span> health_check_result::degraded(</div>
@@ -445,7 +417,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  158</span>                    <span class="keywordflow">return</span> health_check_result::healthy(<span class="stringliteral">&quot;Database ready&quot;</span>);</div>
 <div class="line"><span class="lineno">  159</span>                } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  160</span>                    <span class="keywordflow">return</span> health_check_result::unhealthy(</div>
-<div class="line"><span class="lineno">  161</span>                        <span class="stringliteral">&quot;Database not ready: &quot;</span> + <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">message</a></div>
+<div class="line"><span class="lineno">  161</span>                        <span class="stringliteral">&quot;Database not ready: &quot;</span> + result.get_error().message</div>
 <div class="line"><span class="lineno">  162</span>                    );</div>
 <div class="line"><span class="lineno">  163</span>                }</div>
 <div class="line"><span class="lineno">  164</span>            },</div>
@@ -479,11 +451,11 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  192</span>    <span class="comment">// Perform health checks</span></div>
 <div class="line"><span class="lineno">  193</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n1. Initial health check:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  194</span>    <span class="keyword">auto</span> all_checks = monitor.check_all();</div>
-<div class="line"><span class="lineno">  195</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>] : all_checks) {</div>
+<div class="line"><span class="lineno">  195</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, result] : all_checks) {</div>
 <div class="line"><span class="lineno">  196</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; name &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> </div>
-<div class="line"><span class="lineno">  197</span>                 &lt;&lt; (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status == health_status::healthy ? <span class="stringliteral">&quot;HEALTHY&quot;</span> :</div>
-<div class="line"><span class="lineno">  198</span>                     <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status == health_status::degraded ? <span class="stringliteral">&quot;DEGRADED&quot;</span> : <span class="stringliteral">&quot;UNHEALTHY&quot;</span>)</div>
-<div class="line"><span class="lineno">  199</span>                 &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  197</span>                 &lt;&lt; (result.status == health_status::healthy ? <span class="stringliteral">&quot;HEALTHY&quot;</span> :</div>
+<div class="line"><span class="lineno">  198</span>                     result.status == health_status::degraded ? <span class="stringliteral">&quot;DEGRADED&quot;</span> : <span class="stringliteral">&quot;UNHEALTHY&quot;</span>)</div>
+<div class="line"><span class="lineno">  199</span>                 &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; result.message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  200</span>    }</div>
 <div class="line"><span class="lineno">  201</span>    </div>
 <div class="line"><span class="lineno">  202</span>    <span class="comment">// Get overall status</span></div>
@@ -499,11 +471,11 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  212</span>    std::this_thread::sleep_for(1s);</div>
 <div class="line"><span class="lineno">  213</span>    </div>
 <div class="line"><span class="lineno">  214</span>    all_checks = monitor.check_all();</div>
-<div class="line"><span class="lineno">  215</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>] : all_checks) {</div>
+<div class="line"><span class="lineno">  215</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, result] : all_checks) {</div>
 <div class="line"><span class="lineno">  216</span>        <span class="keywordflow">if</span> (name.find(<span class="stringliteral">&quot;database&quot;</span>) != std::string::npos) {</div>
 <div class="line"><span class="lineno">  217</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; name &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> </div>
-<div class="line"><span class="lineno">  218</span>                     &lt;&lt; (<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.status == health_status::healthy ? <span class="stringliteral">&quot;HEALTHY&quot;</span> : <span class="stringliteral">&quot;UNHEALTHY&quot;</span>)</div>
-<div class="line"><span class="lineno">  219</span>                     &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>.message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  218</span>                     &lt;&lt; (result.status == health_status::healthy ? <span class="stringliteral">&quot;HEALTHY&quot;</span> : <span class="stringliteral">&quot;UNHEALTHY&quot;</span>)</div>
+<div class="line"><span class="lineno">  219</span>                     &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; result.message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  220</span>        }</div>
 <div class="line"><span class="lineno">  221</span>    }</div>
 <div class="line"><span class="lineno">  222</span>    </div>
@@ -533,16 +505,6 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  246</span>    monitor.stop();</div>
 <div class="line"><span class="lineno">  247</span>}</div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_a692c06c3076ca753e03b2f0e6a561bf4_cgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_a692c06c3076ca753e03b2f0e6a561bf4_cgraph" alt=""/></div>
-<map name="ad2/d84/health__reliability__example_8cpp_a692c06c3076ca753e03b2f0e6a561bf4_cgraph" id="ad2/d84/health__reliability__example_8cpp_a692c06c3076ca753e03b2f0e6a561bf4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,159,45"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="207,5,363,45"/>
-<area shape="poly" title=" " alt="" coords="159,23,193,23,193,28,159,28"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_a692c06c3076ca753e03b2f0e6a561bf4_icgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_a692c06c3076ca753e03b2f0e6a561bf4_icgraph" alt=""/></div>
@@ -591,7 +553,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  349</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n1. Executing flaky operation with manual retry:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  350</span>    </div>
 <div class="line"><span class="lineno">  351</span>    std::atomic&lt;int&gt; attempt_count{0};</div>
-<div class="line"><span class="lineno">  352</span>    <span class="keyword">auto</span> flaky_operation = [&amp;attempt_count]() -&gt; <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::string&gt;</a> {</div>
+<div class="line"><span class="lineno">  352</span>    <span class="keyword">auto</span> flaky_operation = [&amp;attempt_count]() -&gt; result&lt;std::string&gt; {</div>
 <div class="line"><span class="lineno">  353</span>        attempt_count++;</div>
 <div class="line"><span class="lineno">  354</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Attempt &quot;</span> &lt;&lt; attempt_count &lt;&lt; <span class="stringliteral">&quot;...&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  355</span>        </div>
@@ -606,7 +568,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  364</span>        <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Operation succeeded!&quot;</span>);</div>
 <div class="line"><span class="lineno">  365</span>    };</div>
 <div class="line"><span class="lineno">  366</span>    </div>
-<div class="line"><span class="lineno">  367</span>    <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result&lt;std::string&gt;</a> final_result = make_error&lt;std::string&gt;(</div>
+<div class="line"><span class="lineno">  367</span>    result&lt;std::string&gt; final_result = make_error&lt;std::string&gt;(</div>
 <div class="line"><span class="lineno">  368</span>        monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Initialization pending&quot;</span>);</div>
 <div class="line"><span class="lineno">  369</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; static_cast&lt;int&gt;(config.max_attempts); ++i) {</div>
 <div class="line"><span class="lineno">  370</span>        final_result = flaky_operation();</div>
@@ -622,26 +584,14 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  380</span>    }</div>
 <div class="line"><span class="lineno">  381</span>    </div>
 <div class="line"><span class="lineno">  382</span>    <span class="keywordflow">if</span> (final_result) {</div>
-<div class="line"><span class="lineno">  383</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Final result: SUCCESS - &quot;</span> &lt;&lt; final_result.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195">value</a>() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  383</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Final result: SUCCESS - &quot;</span> &lt;&lt; final_result.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  384</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  385</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Final result: FAILED - &quot;</span> &lt;&lt; final_result.<a class="code hl_function" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40">get_error</a>().<a class="code hl_variable" href="../../d0/d5c/structmonitoring__system_1_1error__info.html#a203908afdb96835ad2a16954208d5561">message</a> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  385</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Final result: FAILED - &quot;</span> &lt;&lt; final_result.get_error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  386</span>    }</div>
 <div class="line"><span class="lineno">  387</span>    </div>
 <div class="line"><span class="lineno">  388</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Total attempts: &quot;</span> &lt;&lt; attempt_count &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  389</span>}</div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_a8986ce2c81c9be59b174cb16acbfbc4a_cgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_a8986ce2c81c9be59b174cb16acbfbc4a_cgraph" alt=""/></div>
-<map name="ad2/d84/health__reliability__example_8cpp_a8986ce2c81c9be59b174cb16acbfbc4a_cgraph" id="ad2/d84/health__reliability__example_8cpp_a8986ce2c81c9be59b174cb16acbfbc4a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,45,195,70"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="243,5,399,45"/>
-<area shape="poly" title=" " alt="" coords="188,42,229,36,229,41,189,47"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="243,69,399,109"/>
-<area shape="poly" title=" " alt="" coords="189,67,229,73,229,79,188,73"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_a8986ce2c81c9be59b174cb16acbfbc4a_icgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_a8986ce2c81c9be59b174cb16acbfbc4a_icgraph" alt=""/></div>
@@ -704,23 +654,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d84/health__reliability__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph.png" border="0" usemap="#ad2/d84/health__reliability__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph" alt=""/></div>
 <map name="ad2/d84/health__reliability__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph" id="ad2/d84/health__reliability__example_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,95,60,120"/>
-<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a8bfc1a7efa3a960d500cf0f98f36d486" title=" " alt="" coords="143,119,295,159"/>
-<area shape="poly" title=" " alt="" coords="61,109,130,121,130,127,60,115"/>
-<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#ae48b05d3deda002b02aec48a18444a5c" title=" " alt="" coords="108,5,331,31"/>
-<area shape="poly" title=" " alt="" coords="43,93,70,66,107,41,126,33,129,37,109,46,74,70,47,96"/>
-<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a692c06c3076ca753e03b2f0e6a561bf4" title=" " alt="" coords="143,55,296,95"/>
-<area shape="poly" title=" " alt="" coords="60,100,128,88,129,93,61,105"/>
-<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a8986ce2c81c9be59b174cb16acbfbc4a" title=" " alt="" coords="125,184,314,209"/>
-<area shape="poly" title=" " alt="" coords="47,118,74,144,109,169,129,177,126,182,107,174,70,148,43,122"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ac966760f74d5cfdad8d6e20646c15f40" title=" " alt="" coords="379,70,535,110"/>
-<area shape="poly" title=" " alt="" coords="295,121,364,106,366,112,296,126"/>
-<area shape="rect" href="../../d8/dae/classmonitoring__system_1_1result.html#ae3cc8fb26f9f9ae7168a66148b42e195" title=" " alt="" coords="379,149,535,189"/>
-<area shape="poly" title=" " alt="" coords="296,146,365,155,365,160,295,151"/>
-<area shape="poly" title=" " alt="" coords="283,28,331,41,394,62,393,68,330,46,282,33"/>
-<area shape="poly" title=" " alt="" coords="296,77,365,82,364,87,296,83"/>
-<area shape="poly" title=" " alt="" coords="294,181,329,169,354,153,377,134,408,115,411,119,380,139,357,158,332,174,296,186"/>
-<area shape="poly" title=" " alt="" coords="314,183,364,177,365,182,314,188"/>
+<area shape="rect" title=" " alt="" coords="5,99,60,125"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a8bfc1a7efa3a960d500cf0f98f36d486" title=" " alt="" coords="143,5,295,45"/>
+<area shape="poly" title=" " alt="" coords="47,97,73,76,107,55,129,45,131,50,109,60,77,80,50,101"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#ae48b05d3deda002b02aec48a18444a5c" title=" " alt="" coords="108,70,331,95"/>
+<area shape="poly" title=" " alt="" coords="60,105,125,95,126,100,61,110"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a692c06c3076ca753e03b2f0e6a561bf4" title=" " alt="" coords="143,120,296,160"/>
+<area shape="poly" title=" " alt="" coords="61,113,129,124,129,129,60,119"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a8986ce2c81c9be59b174cb16acbfbc4a" title=" " alt="" coords="125,185,314,210"/>
+<area shape="poly" title=" " alt="" coords="48,123,75,147,109,170,130,178,128,183,107,174,72,151,45,127"/>
 </map>
 </div>
 
@@ -729,7 +671,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2025 07:04:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 07:09:51 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

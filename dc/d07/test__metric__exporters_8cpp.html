@@ -288,13 +288,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  449</span>    config.max_batch_size = 50; <span class="comment">// Smaller than batch size</span></div>
 <div class="line"><span class="lineno">  450</span>    </div>
 <div class="line"><span class="lineno">  451</span>    statsd_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  452</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a> = exporter.export_metrics(large_batch);</div>
-<div class="line"><span class="lineno">  453</span>    EXPECT_TRUE(<a class="code hl_class" href="../../d8/dae/classmonitoring__system_1_1result.html">result</a>);</div>
+<div class="line"><span class="lineno">  452</span>    <span class="keyword">auto</span> result = exporter.export_metrics(large_batch);</div>
+<div class="line"><span class="lineno">  453</span>    EXPECT_TRUE(result);</div>
 <div class="line"><span class="lineno">  454</span>    </div>
 <div class="line"><span class="lineno">  455</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  456</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 100);</div>
 <div class="line"><span class="lineno">  457</span>}</div>
-<div class="ttc" id="aclassmonitoring__system_1_1result_html"><div class="ttname"><a href="../../d8/dae/classmonitoring__system_1_1result.html">monitoring_system::result</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00049">test_di_container.cpp:49</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1039,7 +1038,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 7 2025 07:04:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 07:09:51 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['collector_5fnot_5ffound_0',['collector_not_found',['../de/d3f/namespacemonitoring__system.html#a64c01c1e7387d98c248b06f9dc66667faba649a2b3124a40a8a99732cf007eb3d',1,'monitoring_system']]]
+  ['scoped_0',['scoped',['../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9',1,'monitoring_system']]],
+  ['singleton_1',['singleton',['../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0a2ed500a3529637175e675a8791b7c56e',1,'monitoring_system']]]
 ];
