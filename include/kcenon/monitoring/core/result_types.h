@@ -62,7 +62,7 @@ struct error_info {
     const char* file = "";
     int line = 0;
 #endif
-    std::optional<std::string> context;
+    std::optional<std::string> context{std::nullopt};
 
 #if MONITORING_HAS_SOURCE_LOCATION
     error_info(monitoring_error_code c,
