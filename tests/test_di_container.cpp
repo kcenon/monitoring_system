@@ -52,8 +52,8 @@ namespace monitoring_system {
         T value_;
         error_info error_;
     public:
-        result(T value) : success_(true), value_(std::move(value)) {}
-        result() : success_(false), error_{monitoring_error_code::collector_not_found, "Not found"} {}
+        result(T value) : success_(true), value_(std::move(value)), error_{} {}
+        result() : success_(false), value_{}, error_{monitoring_error_code::collector_not_found, "Not found"} {}
 
         operator bool() const { return success_; }
         T& value() { return value_; }
