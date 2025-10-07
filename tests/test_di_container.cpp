@@ -11,6 +11,8 @@ All rights reserved.
  */
 
 #include <gtest/gtest.h>
+#include "monitoring/core/result_types.h"
+#include "monitoring/core/error_codes.h"
 // Note: DI container headers do not exist in include directory
 // #include <kcenon/monitoring/di/service_container_interface.h>
 // #include <kcenon/monitoring/di/lightweight_container.h>
@@ -26,41 +28,6 @@ All rights reserved.
 
 // Add monitoring system types for testing
 namespace monitoring_system {
-    // Add monitoring_error_code for tests
-    enum class monitoring_error_code {
-        collector_not_found = 1000
-    };
-
-    // Forward declarations for result types
-    template<typename T> class result;
-
-    template<typename T>
-    result<T> make_success(T&& value) {
-        return result<T>(std::forward<T>(value));
-    }
-
-    // Simple error info for tests
-    struct error_info {
-        monitoring_error_code code;
-        std::string message;
-    };
-
-    template<typename T>
-    class result {
-    private:
-        bool success_;
-        T value_;
-        error_info error_;
-    public:
-        result(T value) : success_(true), value_(std::move(value)), error_{} {}
-        result() : success_(false), value_{}, error_{monitoring_error_code::collector_not_found, "Not found"} {}
-
-        operator bool() const { return success_; }
-        T& value() { return value_; }
-        const T& value() const { return value_; }
-        const error_info& get_error() const { return error_; }
-    };
-
     // Stub enums and types for testing
     enum class service_lifetime {
         transient,
@@ -159,7 +126,8 @@ namespace monitoring_system {
                 }
             }
 
-            return result<std::shared_ptr<TInterface>>(); // Not found
+            return make_error<std::shared_ptr<TInterface>>(
+                monitoring_error_code::collector_not_found, "Service not found");
         }
 
         template<typename TInterface>
@@ -188,7 +156,8 @@ namespace monitoring_system {
                 }
             }
 
-            return result<std::shared_ptr<TInterface>>(); // Not found
+            return make_error<std::shared_ptr<TInterface>>(
+                monitoring_error_code::collector_not_found, "Named service not found");
         }
 
         // Additional methods needed by tests
