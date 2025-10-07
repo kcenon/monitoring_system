@@ -33,10 +33,18 @@ jobs:
         build_type: [Release]
 
     steps:
-    - name: Checkout code
+    - name: Checkout monitoring_system
       uses: actions/checkout@v4
       with:
         fetch-depth: 0  # Full history for comparison
+        path: monitoring_system
+
+    - name: Checkout common_system
+      uses: actions/checkout@v4
+      with:
+        repository: kcenon/common_system
+        path: common_system
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install dependencies (Ubuntu)
       if: runner.os == 'Linux'
@@ -56,6 +64,7 @@ jobs:
 
     - name: Configure CMake
       run: |
+        cd monitoring_system
         cmake -B build -S . \
           -GNinja \
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
@@ -64,11 +73,13 @@ jobs:
           -DMONITORING_STANDALONE=ON
 
     - name: Build benchmarks
-      run: cmake --build build --config ${{ matrix.build_type }} --target monitoring_benchmarks -j
+      run: |
+        cd monitoring_system
+        cmake --build build --config ${{ matrix.build_type }} --target monitoring_benchmarks -j
 
     - name: Run benchmarks
       run: |
-        cd build/benchmarks
+        cd monitoring_system/build/benchmarks
         ./monitoring_benchmarks \
           --benchmark_format=json \
           --benchmark_out=benchmark_results_${{ matrix.os }}.json \
@@ -77,28 +88,30 @@ jobs:
 
     - name: Run benchmarks (console output)
       run: |
-        cd build/benchmarks
+        cd monitoring_system/build/benchmarks
         ./monitoring_benchmarks \
-          --benchmark_filter="Write.*Info|Throughput.*NullWriter" \
+          --benchmark_filter="Profiler" \
           --benchmark_repetitions=3
 
     - name: Upload benchmark results
       uses: actions/upload-artifact@v4
       with:
         name: benchmark-results-${{ matrix.os }}
-        path: build/benchmarks/benchmark_results_${{ matrix.os }}.json
+        path: monitoring_system/build/benchmarks/benchmark_results_${{ matrix.os }}.json
         retention-days: 30
 
     - name: Save baseline (if requested)
       if: github.event.inputs.save_baseline == 'true' && github.ref == 'refs/heads/main'
       run: |
+        cd monitoring_system
         mkdir -p benchmarks/baselines
         cp build/benchmarks/benchmark_results_${{ matrix.os }}.json \
            benchmarks/baselines/baseline_${{ matrix.os }}_$(date +%Y%m%d).json
 
     - name: Compare with baseline (if exists)
-      if: hashFiles('benchmarks/baselines/baseline_${{ matrix.os }}_*.json') != ''
+      if: hashFiles('monitoring_system/benchmarks/baselines/baseline_${{ matrix.os }}_*.json') != ''
       run: |
+        cd monitoring_system
         echo "Comparing with baseline..."
         # Install compare.py from Google Benchmark tools
         pip3 install --user scipy
