@@ -49,6 +49,7 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
     // Subscribe to performance alerts
     auto token = bus->subscribe_event<performance_alert_event>(
         [&](const performance_alert_event& e) {
+            (void)e;  // Suppress unused parameter warning on MSVC
             ++events_received;
         }
     );
