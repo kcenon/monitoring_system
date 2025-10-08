@@ -6,9 +6,9 @@ All rights reserved.
 *****************************************************************************/
 
 #include <gtest/gtest.h>
-#include "kcenon/monitoring/core/event_bus.h"
-#include "kcenon/monitoring/collectors/metric_collector.h"
-#include "kcenon/monitoring/utils/time_series.h"
+#include <kcenon/monitoring/core/event_bus.h>
+#include <kcenon/monitoring/collectors/metric_collector.h>
+#include <kcenon/monitoring/utils/time_series.h>
 
 #include <thread>
 #include <vector>
