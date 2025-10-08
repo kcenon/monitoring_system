@@ -215,8 +215,8 @@ class system_resource_collector : public metric_collector_plugin {
     mutable std::mutex stats_mutex_;
     std::atomic<size_t> collection_count_{0};
     std::atomic<size_t> collection_errors_{0};
-    std::chrono::steady_clock::time_point init_time_;
-    system_resources last_resources_;
+    std::atomic<int64_t> init_time_ns_{0};  // Store as nanoseconds for atomic access
+    std::shared_ptr<system_resources> last_resources_;  // Use shared_ptr to avoid large struct copy
 
     // Helper methods
     metric create_metric(const std::string& name, double value, const std::string& unit = "",

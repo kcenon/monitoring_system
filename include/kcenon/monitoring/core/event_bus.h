@@ -217,21 +217,31 @@ public:
     };
 
     stats get_stats() const {
-        std::lock_guard<std::mutex> lock(queue_mutex_);
-        std::lock_guard<std::mutex> lock2(handlers_mutex_);
+        // Acquire locks separately to avoid potential deadlock with dispatch_event
+        // Lock ordering: queue_mutex before handlers_mutex (documented for consistency)
+        size_t queue_size;
+        bool back_pressure_active;
+        {
+            std::lock_guard<std::mutex> lock(queue_mutex_);
+            queue_size = event_queue_.size();
+            back_pressure_active = queue_size >= config_.back_pressure_threshold;
+        }
 
         size_t total_subscribers = 0;
-        for (const auto& [type, handlers] : handlers_) {
-            total_subscribers += handlers.size();
+        {
+            std::lock_guard<std::mutex> lock(handlers_mutex_);
+            for (const auto& [type, handlers] : handlers_) {
+                total_subscribers += handlers.size();
+            }
         }
 
         return {
             total_events_published_.load(),
             total_events_processed_.load(),
             total_events_dropped_.load(),
-            event_queue_.size(),
+            queue_size,
             total_subscribers,
-            event_queue_.size() >= config_.back_pressure_threshold
+            back_pressure_active
         };
     }
 
@@ -318,7 +328,8 @@ private:
             size_t batch_size = std::min(size_t(10), event_queue_.size());
 
             for (size_t i = 0; i < batch_size && !event_queue_.empty(); ++i) {
-                batch.push_back(std::move(const_cast<event_envelope&>(event_queue_.top())));
+                // Copy element then pop to avoid const_cast UB
+                batch.push_back(event_queue_.top());
                 event_queue_.pop();
             }
 
@@ -337,7 +348,8 @@ private:
         std::lock_guard<std::mutex> lock(queue_mutex_);
 
         while (!event_queue_.empty()) {
-            auto envelope = std::move(const_cast<event_envelope&>(event_queue_.top()));
+            // Copy element then pop to avoid const_cast UB
+            auto envelope = event_queue_.top();
             event_queue_.pop();
             dispatch_event(envelope);
             total_events_processed_.fetch_add(1);

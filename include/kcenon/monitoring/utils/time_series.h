@@ -209,6 +209,7 @@ private:
     std::vector<time_point_data> data_;
     time_series_config config_;
     std::string series_name_;
+    size_t insertion_count_ = 0;  // Track insertions for periodic maintenance
     
     /**
      * @brief Cleanup old data points
@@ -292,26 +293,34 @@ public:
     /**
      * @brief Add a data point
      */
-    result_void add_point(double value, 
-                         std::chrono::system_clock::time_point timestamp = 
+    result_void add_point(double value,
+                         std::chrono::system_clock::time_point timestamp =
                          std::chrono::system_clock::now()) {
         std::lock_guard<std::mutex> lock(mutex_);
-        
+
         time_point_data point(timestamp, value);
-        
-        // Insert in chronological order
-        auto it = std::upper_bound(data_.begin(), data_.end(), point,
-            [](const time_point_data& a, const time_point_data& b) {
-                return a.timestamp < b.timestamp;
-            });
-        
-        data_.insert(it, point);
-        
-        // Perform maintenance
-        cleanup_old_data();
-        compress_data();
-        enforce_size_limit();
-        
+
+        // Optimize: if timestamp is newest, append directly (O(1) vs O(n))
+        if (data_.empty() || point.timestamp >= data_.back().timestamp) {
+            data_.push_back(point);
+        } else {
+            // Insert in chronological order only when necessary
+            auto it = std::upper_bound(data_.begin(), data_.end(), point,
+                [](const time_point_data& a, const time_point_data& b) {
+                    return a.timestamp < b.timestamp;
+                });
+
+            data_.insert(it, point);
+        }
+
+        // Perform maintenance periodically (every 100 insertions) instead of every time
+        ++insertion_count_;
+        if (insertion_count_ % 100 == 0) {
+            cleanup_old_data();
+            compress_data();
+            enforce_size_limit();
+        }
+
         return result_void::success();
     }
     
@@ -320,21 +329,26 @@ public:
      */
     result_void add_points(const std::vector<time_point_data>& points) {
         std::lock_guard<std::mutex> lock(mutex_);
-        
+
         for (const auto& point : points) {
-            auto it = std::upper_bound(data_.begin(), data_.end(), point,
-                [](const time_point_data& a, const time_point_data& b) {
-                    return a.timestamp < b.timestamp;
-                });
-            
-            data_.insert(it, point);
+            // Optimize: if timestamp is newest, append directly
+            if (data_.empty() || point.timestamp >= data_.back().timestamp) {
+                data_.push_back(point);
+            } else {
+                auto it = std::upper_bound(data_.begin(), data_.end(), point,
+                    [](const time_point_data& a, const time_point_data& b) {
+                        return a.timestamp < b.timestamp;
+                    });
+
+                data_.insert(it, point);
+            }
         }
-        
-        // Perform maintenance
+
+        // Perform maintenance after batch insert
         cleanup_old_data();
         compress_data();
         enforce_size_limit();
-        
+
         return result_void::success();
     }
     
