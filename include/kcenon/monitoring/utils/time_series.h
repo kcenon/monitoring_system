@@ -18,7 +18,7 @@ All rights reserved.
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
 #include "metric_types.h"
-#include <monitoring/utils/ring_buffer.h>
+#include "../../../../src/utils/ring_buffer.h"
 #include <chrono>
 #include <vector>
 #include <algorithm>
