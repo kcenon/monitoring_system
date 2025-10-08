@@ -43,7 +43,19 @@ add_executable(monitoring_system_tests
     # test_stress_performance.cpp
 )
 
+# Thread safety tests (Phase 1 - Task 1.3)
+add_executable(monitoring_thread_safety_test
+    thread_safety_tests.cpp
+)
+
 target_link_libraries(monitoring_system_tests
+    PRIVATE
+        monitoring_system
+        GTest::gtest_main
+        Threads::Threads
+)
+
+target_link_libraries(monitoring_thread_safety_test
     PRIVATE
         monitoring_system
         GTest::gtest_main
@@ -53,3 +65,4 @@ target_link_libraries(monitoring_system_tests
 # Register tests
 include(GoogleTest)
 gtest_discover_tests(monitoring_system_tests)
+gtest_discover_tests(monitoring_thread_safety_test)
