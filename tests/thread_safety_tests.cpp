@@ -16,7 +16,7 @@ All rights reserved.
 #include <chrono>
 #include <barrier>
 
-using namespace kcenon::monitoring;
+using namespace monitoring_system;
 using namespace std::chrono_literals;
 
 class MonitoringThreadSafetyTest : public ::testing::Test {
