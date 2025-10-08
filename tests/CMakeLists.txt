@@ -5,6 +5,12 @@ find_package(GTest)
 
 if(NOT GTest_FOUND)
     message(STATUS "GTest not found, using FetchContent")
+
+    # Configure googletest options before fetching (fix Windows/MSVC pthread.h issue)
+    set(gtest_force_shared_crt ON CACHE BOOL "Always use shared runtime library" FORCE)
+    set(BUILD_GMOCK OFF CACHE BOOL "Disable GMock" FORCE)
+    set(INSTALL_GTEST OFF CACHE BOOL "Disable GTest installation" FORCE)
+
     include(FetchContent)
     FetchContent_Declare(
         googletest

@@ -366,6 +366,7 @@ private:
                 try {
                     wrapper.handler(envelope.payload);
                 } catch (const std::exception& e) {
+                    (void)e;  // Suppress unused variable warning
                     // Log error but continue processing
                     // In production, this would be logged properly
                 }
