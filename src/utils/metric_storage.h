@@ -118,29 +118,29 @@ private:
     struct metric_series_entry {
         std::unique_ptr<ring_buffer<compact_metric_value>> buffer;
         std::unique_ptr<time_series> series;
-        std::chrono::system_clock::time_point last_access;
+        std::atomic<std::chrono::system_clock::time_point> last_access;
         metric_metadata metadata;
-        
-        metric_series_entry(metric_metadata meta, const metric_storage_config& config) 
+
+        metric_series_entry(metric_metadata meta, const metric_storage_config& config)
             : last_access(std::chrono::system_clock::now()), metadata(meta) {
-            
+
             ring_buffer_config ring_config;
             ring_config.capacity = config.ring_buffer_capacity;
             ring_config.overwrite_old = true;
             ring_config.batch_size = config.batch_size;
-            
+
             buffer = std::make_unique<ring_buffer<compact_metric_value>>(ring_config);
-            
+
             time_series_config ts_config;
             ts_config.retention_period = config.retention_period;
             ts_config.enable_compression = config.enable_compression;
-            
+
             series = std::make_unique<time_series>("metric_" + std::to_string(meta.name_hash), ts_config);
         }
     };
-    
+
     mutable std::mutex storage_mutex_;
-    std::unordered_map<uint32_t, std::unique_ptr<metric_series_entry>> metric_series_;
+    std::unordered_map<uint32_t, std::shared_ptr<metric_series_entry>> metric_series_;
     metric_storage_config config_;
     metric_storage_stats stats_;
     
@@ -152,30 +152,31 @@ private:
     
     /**
      * @brief Get or create metric series entry
+     * @return shared_ptr to avoid dangling pointer when entry is deleted by another thread
      */
-    metric_series_entry* get_or_create_series(const metric_metadata& metadata) {
+    std::shared_ptr<metric_series_entry> get_or_create_series(const metric_metadata& metadata) {
         std::lock_guard<std::mutex> lock(storage_mutex_);
-        
+
         auto it = metric_series_.find(metadata.name_hash);
         if (it != metric_series_.end()) {
-            it->second->last_access = std::chrono::system_clock::now();
-            return it->second.get();
+            it->second->last_access.store(std::chrono::system_clock::now(),
+                                         std::memory_order_relaxed);
+            return it->second;
         }
-        
+
         // Check if we've reached the maximum number of metrics
         if (metric_series_.size() >= config_.max_metrics) {
             stats_.storage_errors.fetch_add(1, std::memory_order_relaxed);
             return nullptr;  // Storage full
         }
-        
+
         // Create new series
-        auto entry = std::make_unique<metric_series_entry>(metadata, config_);
-        auto* ptr = entry.get();
-        
-        metric_series_[metadata.name_hash] = std::move(entry);
+        auto entry = std::make_shared<metric_series_entry>(metadata, config_);
+
+        metric_series_[metadata.name_hash] = entry;
         stats_.active_metric_series.store(metric_series_.size(), std::memory_order_relaxed);
-        
-        return ptr;
+
+        return entry;
     }
     
     /**
@@ -206,43 +207,39 @@ private:
      * @brief Flush ring buffers to time series
      */
     void flush_ring_buffers_to_series() {
-        std::vector<uint32_t> series_to_flush;
-        
+        // Copy shared_ptrs under storage_mutex to avoid nested locking
+        std::vector<std::shared_ptr<metric_series_entry>> entries_to_flush;
+
         {
             std::lock_guard<std::mutex> lock(storage_mutex_);
-            series_to_flush.reserve(metric_series_.size());
-            
+            entries_to_flush.reserve(metric_series_.size());
+
             for (const auto& [hash, entry] : metric_series_) {
                 if (!entry->buffer->empty()) {
-                    series_to_flush.push_back(hash);
+                    entries_to_flush.push_back(entry);
                 }
             }
         }
-        
-        // Process each series outside the lock
-        for (uint32_t hash : series_to_flush) {
-            std::lock_guard<std::mutex> lock(storage_mutex_);
-            auto it = metric_series_.find(hash);
-            if (it == metric_series_.end()) continue;
-            
-            auto& entry = it->second;
+
+        // Process entries without holding storage_mutex to avoid deadlock
+        for (auto& entry : entries_to_flush) {
             std::vector<compact_metric_value> batch;
-            
+
             // Read batch from ring buffer
             size_t read_count = entry->buffer->read_batch(batch, config_.batch_size);
-            
+
             if (read_count > 0) {
                 // Convert and add to time series
                 std::vector<time_point_data> time_points;
                 time_points.reserve(read_count);
-                
+
                 for (const auto& metric : batch) {
                     time_points.emplace_back(
                         metric.get_timestamp(),
                         metric.as_double()
                     );
                 }
-                
+
                 entry->series->add_points(time_points);
             }
         }
@@ -254,20 +251,21 @@ private:
     void cleanup_old_series() {
         auto cutoff = std::chrono::system_clock::now() - config_.retention_period;
         std::vector<uint32_t> to_remove;
-        
+
         {
             std::lock_guard<std::mutex> lock(storage_mutex_);
-            
+
             for (const auto& [hash, entry] : metric_series_) {
-                if (entry->last_access < cutoff && entry->buffer->empty()) {
+                auto last_access = entry->last_access.load(std::memory_order_relaxed);
+                if (last_access < cutoff && entry->buffer->empty()) {
                     to_remove.push_back(hash);
                 }
             }
-            
+
             for (uint32_t hash : to_remove) {
                 metric_series_.erase(hash);
             }
-            
+
             stats_.active_metric_series.store(metric_series_.size(), std::memory_order_relaxed);
         }
     }
@@ -327,31 +325,31 @@ public:
     /**
      * @brief Store a metric value
      */
-    result_void store_metric(const std::string& name, 
+    result_void store_metric(const std::string& name,
                            double value,
                            metric_type type = metric_type::gauge,
-                           std::chrono::system_clock::time_point timestamp = 
+                           std::chrono::system_clock::time_point timestamp =
                            std::chrono::system_clock::now()) {
-        
+
         auto metadata = create_metric_metadata(name, type);
         compact_metric_value metric(metadata, value);
         metric.timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(
             timestamp.time_since_epoch()).count();
-        
-        auto* series = get_or_create_series(metadata);
+
+        auto series = get_or_create_series(metadata);
         if (!series) {
             stats_.total_metrics_dropped.fetch_add(1, std::memory_order_relaxed);
             return result_void(monitoring_error_code::storage_full,
                              "Storage capacity exceeded");
         }
-        
+
         auto result = series->buffer->write(std::move(metric));
         if (result) {
             stats_.total_metrics_stored.fetch_add(1, std::memory_order_relaxed);
         } else {
             stats_.total_metrics_dropped.fetch_add(1, std::memory_order_relaxed);
         }
-        
+
         return result;
     }
     
@@ -360,9 +358,9 @@ public:
      */
     size_t store_metrics_batch(const metric_batch& batch) {
         size_t stored_count = 0;
-        
+
         for (const auto& metric : batch.metrics) {
-            auto* series = get_or_create_series(metric.metadata);
+            auto series = get_or_create_series(metric.metadata);
             if (series) {
                 auto result = series->buffer->write(compact_metric_value(metric));
                 if (result) {
@@ -375,7 +373,7 @@ public:
                 stats_.total_metrics_dropped.fetch_add(1, std::memory_order_relaxed);
             }
         }
-        
+
         return stored_count;
     }
     

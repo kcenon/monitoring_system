@@ -368,29 +368,38 @@ private:
     struct timestamped_value {
         T value;
         std::chrono::system_clock::time_point timestamp;
-        
+
         timestamped_value(T v, std::chrono::system_clock::time_point ts)
             : value(v), timestamp(ts) {}
     };
-    
+
     std::deque<timestamped_value> window_;
     std::chrono::milliseconds window_duration_;
     size_t max_size_;
     mutable std::mutex mutex_;
+    size_t insertion_count_ = 0;  // Track insertions for periodic cleanup
     
     /**
-     * @brief Remove expired values
+     * @brief Remove expired values using batch erase for efficiency
      */
     void cleanup_expired() {
         auto now = std::chrono::system_clock::now();
         auto cutoff = now - window_duration_;
-        
-        while (!window_.empty() && window_.front().timestamp < cutoff) {
-            window_.pop_front();
+
+        // Find first non-expired element using batch erase instead of pop_front loop
+        auto it = std::find_if(window_.begin(), window_.end(),
+            [cutoff](const timestamped_value& val) {
+                return val.timestamp >= cutoff;
+            });
+
+        if (it != window_.begin()) {
+            window_.erase(window_.begin(), it);
         }
-        
-        while (window_.size() > max_size_) {
-            window_.pop_front();
+
+        // Enforce size limit with batch erase
+        if (window_.size() > max_size_) {
+            size_t remove_count = window_.size() - max_size_;
+            window_.erase(window_.begin(), window_.begin() + remove_count);
         }
     }
     
@@ -404,12 +413,17 @@ public:
     /**
      * @brief Add value to window
      */
-    void add_value(const T& value, 
-                   std::chrono::system_clock::time_point timestamp = 
+    void add_value(const T& value,
+                   std::chrono::system_clock::time_point timestamp =
                    std::chrono::system_clock::now()) {
         std::lock_guard<std::mutex> lock(mutex_);
         window_.emplace_back(value, timestamp);
-        cleanup_expired();
+
+        // Cleanup periodically (every 10 insertions) instead of every time
+        ++insertion_count_;
+        if (insertion_count_ % 10 == 0) {
+            cleanup_expired();
+        }
     }
     
     /**

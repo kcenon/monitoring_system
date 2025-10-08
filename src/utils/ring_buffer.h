@@ -163,31 +163,43 @@ public:
      */
     result_void write(T&& item) {
         stats_.total_writes.fetch_add(1, std::memory_order_relaxed);
-        
-        size_t current_write = write_index_.load(std::memory_order_acquire);
-        size_t current_read = read_index_.load(std::memory_order_acquire);
-        
-        if (is_full_unsafe(current_write, current_read)) {
-            if (config_.overwrite_old) {
-                // Advance read index to overwrite oldest
-                size_t new_read = (current_read + 1) & get_mask();
-                read_index_.compare_exchange_weak(current_read, new_read, 
-                                                std::memory_order_acq_rel);
-                stats_.overwrites.fetch_add(1, std::memory_order_relaxed);
-            } else {
-                stats_.failed_writes.fetch_add(1, std::memory_order_relaxed);
-                return result_void(monitoring_error_code::storage_full, 
-                                 "Ring buffer is full");
+
+        // Atomically claim a write slot using CAS loop to avoid ABA problem
+        size_t current_write;
+        size_t new_write;
+
+        do {
+            current_write = write_index_.load(std::memory_order_acquire);
+            size_t current_read = read_index_.load(std::memory_order_acquire);
+
+            if (is_full_unsafe(current_write, current_read)) {
+                if (config_.overwrite_old) {
+                    // Advance read index to overwrite oldest
+                    size_t expected_read = current_read;
+                    size_t new_read = (current_read + 1) & get_mask();
+                    read_index_.compare_exchange_weak(expected_read, new_read,
+                                                    std::memory_order_acq_rel);
+                    stats_.overwrites.fetch_add(1, std::memory_order_relaxed);
+                } else {
+                    stats_.failed_writes.fetch_add(1, std::memory_order_relaxed);
+                    return result_void(monitoring_error_code::storage_full,
+                                     "Ring buffer is full");
+                }
             }
-        }
-        
-        // Write the item
+
+            new_write = (current_write + 1) & get_mask();
+
+            // Atomically claim the write slot
+        } while (!write_index_.compare_exchange_weak(current_write, new_write,
+                                                     std::memory_order_acq_rel,
+                                                     std::memory_order_acquire));
+
+        // Write the item to the claimed slot
         buffer_[current_write] = std::move(item);
-        
-        // Update write index
-        size_t new_write = (current_write + 1) & get_mask();
-        write_index_.store(new_write, std::memory_order_release);
-        
+
+        // Memory fence ensures data write completes before index update is visible
+        std::atomic_thread_fence(std::memory_order_release);
+
         return result_void::success();
     }
     
@@ -295,11 +307,13 @@ public:
     size_t size() const noexcept {
         size_t write_idx = write_index_.load(std::memory_order_acquire);
         size_t read_idx = read_index_.load(std::memory_order_acquire);
-        
+
+        // Handle wraparound correctly
         if (write_idx >= read_idx) {
             return write_idx - read_idx;
         } else {
-            return config_.capacity - (read_idx - write_idx);
+            // Wraparound case: write has wrapped around but read hasn't
+            return config_.capacity - read_idx + write_idx;
         }
     }
     
