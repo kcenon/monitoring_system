@@ -34,6 +34,16 @@ jobs:
         path: common_system
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Build and install common_system
+      run: |
+        cd common_system
+        cmake -B build -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
+        cmake --build build --parallel
+        cmake --install build
+        cd ..
+
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -51,6 +61,7 @@ jobs:
         cmake -B build -S . \
           -GNinja \
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
           -DCMAKE_CXX_FLAGS="${SANITIZER_FLAGS}" \
           -DCMAKE_C_FLAGS="${SANITIZER_FLAGS}" \
           -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=${{ matrix.sanitizer }}" \
