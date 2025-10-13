@@ -324,8 +324,8 @@ TEST_F(MonitoringPerformanceTest, BatchProcessingPerformance) {
     std::cout << "Mean batch processing time: " << mean_duration_us << " us\n";
     std::cout << "Batch size: " << batch_size << "\n";
 
-    // Processing should be fast (relaxed for CI environments)
-    EXPECT_LT(mean_duration_us, 1500);  // < 1.5ms per batch
+    // Processing should be fast (relaxed for CI/Sanitizer environments)
+    EXPECT_LT(mean_duration_us, 3500);  // < 3.5ms per batch (generous for sanitizers)
 }
 
 /**
