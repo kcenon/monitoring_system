@@ -20,6 +20,7 @@ setup_threading_features()
 
 # Options
 option(MONITORING_BUILD_TESTS "Build unit tests" ON)
+option(MONITORING_BUILD_INTEGRATION_TESTS "Build integration tests" ON)
 option(MONITORING_BUILD_EXAMPLES "Build example programs" ON)
 option(MONITORING_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(BUILD_WITH_COMMON_SYSTEM "Enable common_system integration" ON)
@@ -27,6 +28,7 @@ option(MONITORING_USE_THREAD_SYSTEM "Enable thread_system integration" OFF)
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer" OFF)
 option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
+option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
 
 # Export compile commands for tools
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -250,6 +252,12 @@ if(MONITORING_BUILD_BENCHMARKS)
     add_subdirectory(benchmarks)
 endif()
 
+# Integration Tests
+if(MONITORING_BUILD_INTEGRATION_TESTS)
+    enable_testing()
+    add_subdirectory(integration_tests)
+endif()
+
 # Installation
 include(GNUInstallDirs)
 
@@ -304,10 +312,12 @@ message(STATUS "monitoring_system configuration:")
 message(STATUS "  Version: ${PROJECT_VERSION}")
 message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "  Build tests: ${MONITORING_BUILD_TESTS}")
+message(STATUS "  Build integration tests: ${MONITORING_BUILD_INTEGRATION_TESTS}")
 message(STATUS "  Build examples: ${MONITORING_BUILD_EXAMPLES}")
 message(STATUS "  Build benchmarks: ${MONITORING_BUILD_BENCHMARKS}")
 message(STATUS "  Thread system integration: ${MONITORING_USE_THREAD_SYSTEM}")
 message(STATUS "  Logger system integration: ${MONITORING_USE_LOGGER_SYSTEM}")
+message(STATUS "  Coverage reporting: ${ENABLE_COVERAGE}")
 message(STATUS "  AddressSanitizer: ${ENABLE_ASAN}")
 message(STATUS "  ThreadSanitizer: ${ENABLE_TSAN}")
 message(STATUS "  UBSanitizer: ${ENABLE_UBSAN}")
