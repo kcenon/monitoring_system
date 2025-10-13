@@ -21,16 +21,33 @@ jobs:
           - os: ubuntu-latest
             install_deps: |
               sudo apt-get update
-              sudo apt-get install -y lcov
+              sudo apt-get install -y ninja-build lcov
           - os: macos-latest
             install_deps: |
-              brew install lcov
+              brew install ninja lcov
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           submodules: recursive
+
+      - name: Checkout common_system
+        uses: actions/checkout@v4
+        with:
+          repository: kcenon/common_system
+          path: common_system
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and install common_system
+        run: |
+          cd common_system
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
+          cmake --build build --parallel
+          cmake --install build
+          cd ..
 
       - name: Install dependencies
         run: ${{ matrix.install_deps }}
@@ -47,6 +64,7 @@ jobs:
         run: |
           cmake -B build \
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+            -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
             -DMONITORING_BUILD_INTEGRATION_TESTS=ON \
             -DENABLE_COVERAGE=${{ matrix.build_type == 'Debug' && 'ON' || 'OFF' }}
 
