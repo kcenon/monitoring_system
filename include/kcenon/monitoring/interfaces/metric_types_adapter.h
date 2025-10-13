@@ -16,24 +16,19 @@
 namespace monitoring_system {
 
 /**
- * @brief Type alias for metric value
- */
-using metric_value = std::variant<double, int64_t, std::string>;
-
-/**
  * @struct metric
  * @brief Basic metric structure for interface compatibility
  */
 struct metric {
     std::string name;
-    metric_value value;
+    std::variant<double, int64_t, std::string> value;
     std::unordered_map<std::string, std::string> tags;
     metric_type type{metric_type::gauge};
     std::chrono::system_clock::time_point timestamp;
 
     metric() : timestamp(std::chrono::system_clock::now()) {}
 
-    metric(const std::string& n, const metric_value& v,
+    metric(const std::string& n, const std::variant<double, int64_t, std::string>& v,
            const std::unordered_map<std::string, std::string>& t,
            metric_type mt = metric_type::gauge)
         : name(n), value(v), tags(t), type(mt),

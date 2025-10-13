@@ -187,7 +187,7 @@ TEST_F(ErrorHandlingTest, AlertNotificationFailures) {
     // Set very strict thresholds
     monitor_->set_cpu_threshold(0.01);
     monitor_->set_memory_threshold(0.01);
-    monitor_->set_latency_threshold(std::chrono::nanoseconds(1));
+    monitor_->set_latency_threshold(std::chrono::milliseconds(1));
 
     // Record samples that will exceed thresholds
     RecordSample("alert_test", std::chrono::milliseconds(100));

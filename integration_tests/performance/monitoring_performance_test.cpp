@@ -64,7 +64,7 @@ TEST_F(MonitoringPerformanceTest, MetricCollectionThroughput) {
 
     timer.~ScopedTimer();
 
-    auto duration = std::chrono::nanoseconds(perf_metrics.mean());
+    auto duration = std::chrono::nanoseconds(static_cast<int64_t>(perf_metrics.mean()));
     double throughput = CalculateThroughput(num_metrics, duration);
 
     std::cout << "Metric collection throughput: " << throughput << " metrics/sec\n";
@@ -96,7 +96,7 @@ TEST_F(MonitoringPerformanceTest, LatencyMeasurementsP50) {
     auto p50_us = p50 / 1000;  // Convert to microseconds
 
     std::cout << "P50 latency: " << p50_us << " us\n";
-    std::cout << "P50 latency (formatted): " << FormatDuration(std::chrono::nanoseconds(p50)) << "\n";
+    std::cout << "P50 latency (formatted): " << FormatDuration(std::chrono::nanoseconds(static_cast<int64_t>(p50))) << "\n";
 
     // Target: < 1 microsecond
     EXPECT_LT(p50, 1'000'000);  // 1 microsecond in nanoseconds
@@ -124,7 +124,7 @@ TEST_F(MonitoringPerformanceTest, LatencyMeasurementsP95) {
     auto p95_us = p95 / 1000;  // Convert to microseconds
 
     std::cout << "P95 latency: " << p95_us << " us\n";
-    std::cout << "P95 latency (formatted): " << FormatDuration(std::chrono::nanoseconds(p95)) << "\n";
+    std::cout << "P95 latency (formatted): " << FormatDuration(std::chrono::nanoseconds(static_cast<int64_t>(p95))) << "\n";
 
     // Target: < 10 microseconds
     EXPECT_LT(p95, 10'000'000);  // 10 microseconds in nanoseconds

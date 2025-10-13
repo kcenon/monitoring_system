@@ -179,12 +179,7 @@ protected:
         }
 
         auto snapshot = result.value();
-        auto it = snapshot.metrics.find(name);
-        if (it != snapshot.metrics.end()) {
-            return it->second;
-        }
-
-        return std::nullopt;
+        return snapshot.get_metric(name);
     }
 
     /**
@@ -212,7 +207,7 @@ protected:
         }
 
         auto result = monitor_->get_profiler().record_sample(operation, duration);
-        return result.is_success();
+        return static_cast<bool>(result);
     }
 
     /**
