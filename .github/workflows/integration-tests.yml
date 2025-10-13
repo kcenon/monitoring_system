@@ -80,8 +80,8 @@ jobs:
         working-directory: build
         run: |
           lcov --capture --directory . --output-file coverage.info --ignore-errors mismatch --ignore-errors inconsistent --ignore-errors negative --ignore-errors format --ignore-errors unsupported
-          lcov --remove coverage.info '/usr/*' '*/tests/*' '*/googletest/*' '*/common_system_install/*' '/Applications/Xcode*/**' '/usr/local/include/*' --output-file coverage_filtered.info --ignore-errors unused
-          lcov --list coverage_filtered.info
+          lcov --remove coverage.info '/usr/*' '*/tests/*' '*/googletest/*' '*/common_system_install/*' '/Applications/Xcode*/**' '/usr/local/include/*' --output-file coverage_filtered.info --ignore-errors unused --ignore-errors inconsistent
+          lcov --list coverage_filtered.info --ignore-errors inconsistent
 
       - name: Upload Coverage to Codecov
         if: matrix.build_type == 'Debug'
