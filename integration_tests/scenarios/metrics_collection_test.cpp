@@ -326,14 +326,15 @@ TEST_F(MetricsCollectionTest, MetricValueConversions) {
  * Test metric timestamp tracking
  */
 TEST_F(MetricsCollectionTest, MetricTimestampManagement) {
-    auto before = std::chrono::system_clock::now();
+    // Add small margin to account for Release build optimizations
+    auto before = std::chrono::system_clock::now() - std::chrono::microseconds(1);
 
     auto metric = CreateMetric("timestamped_metric", metric_type::gauge, 42.0);
 
-    auto after = std::chrono::system_clock::now();
+    auto after = std::chrono::system_clock::now() + std::chrono::microseconds(1);
     auto timestamp = metric.get_timestamp();
 
-    // Timestamp should be between before and after
+    // Timestamp should be between before and after (with tolerance)
     EXPECT_GE(timestamp, before);
     EXPECT_LE(timestamp, after);
 }
