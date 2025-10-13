@@ -35,6 +35,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <chrono>
 #include <thread>
 #include <atomic>
+#include <mutex>
+#include <condition_variable>
 #include <vector>
 #include <functional>
 #include <random>
