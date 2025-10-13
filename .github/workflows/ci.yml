@@ -49,6 +49,29 @@ jobs:
         path: common_system
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Build and install common_system (Unix)
+      if: runner.os != 'Windows'
+      run: |
+        cd common_system
+        cmake -B build -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
+        cmake --build build --parallel
+        cmake --install build
+        cd ..
+
+    - name: Build and install common_system (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        cd common_system
+        cmake -B build -G "Visual Studio 17 2022" -A x64 `
+          -DCMAKE_BUILD_TYPE=Release `
+          -DCMAKE_INSTALL_PREFIX="${env:GITHUB_WORKSPACE}\common_system_install"
+        cmake --build build --config Release --parallel
+        cmake --install build --config Release
+        cd ..
+
     - name: Install dependencies (Ubuntu)
       if: runner.os == 'Linux'
       run: |
@@ -165,6 +188,7 @@ jobs:
         cmake .. \
           -G Ninja \
           -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
           -DCMAKE_TOOLCHAIN_FILE="${GITHUB_WORKSPACE}/vcpkg/scripts/buildsystems/vcpkg.cmake" \
           -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && 'gcc' || 'clang' }} \
           -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}
@@ -185,6 +209,7 @@ jobs:
           -G "Visual Studio 17 2022" `
           -A x64 `
           -DCMAKE_BUILD_TYPE=$env:BUILD_TYPE `
+          -DCMAKE_PREFIX_PATH="$env:GITHUB_WORKSPACE\common_system_install" `
           -DCMAKE_TOOLCHAIN_FILE="$env:GITHUB_WORKSPACE\vcpkg\scripts\buildsystems\vcpkg.cmake" `
           -DCMAKE_CXX_FLAGS="/std:c++20 /permissive- /Zc:__cplusplus /EHsc" `
           -DCMAKE_TRY_COMPILE_TARGET_TYPE="STATIC_LIBRARY"
@@ -202,6 +227,7 @@ jobs:
           -G Ninja \
           -DBUILD_THREADSYSTEM_AS_SUBMODULE=ON \
           -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
           -DUSE_STD_FORMAT=ON \
           -DCMAKE_TOOLCHAIN_FILE="" \
           -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && 'gcc' || 'clang' }} \
@@ -226,6 +252,7 @@ jobs:
           -A x64 `
           -DBUILD_THREADSYSTEM_AS_SUBMODULE=ON `
           -DCMAKE_BUILD_TYPE=$env:BUILD_TYPE `
+          -DCMAKE_PREFIX_PATH="$env:GITHUB_WORKSPACE\common_system_install" `
           -DUSE_STD_FORMAT=ON `
           -DCMAKE_TOOLCHAIN_FILE="" `
           -DCMAKE_CXX_FLAGS="/std:c++20 /permissive- /Zc:__cplusplus /EHsc" `
@@ -307,6 +334,16 @@ jobs:
         path: common_system
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Build and install common_system
+      run: |
+        cd common_system
+        cmake -B build -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
+        cmake --build build --parallel
+        cmake --install build
+        cd ..
+
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -317,6 +354,7 @@ jobs:
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Debug \
           -DBUILD_THREADSYSTEM_AS_SUBMODULE=ON \
+          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
           -DUSE_STD_FORMAT=ON \
           -DCMAKE_C_COMPILER=clang \
           -DCMAKE_CXX_COMPILER=clang++ \
