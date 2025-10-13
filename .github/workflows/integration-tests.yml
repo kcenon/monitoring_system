@@ -79,7 +79,7 @@ jobs:
         if: matrix.build_type == 'Debug'
         working-directory: build
         run: |
-          lcov --capture --directory . --output-file coverage.info --ignore-errors mismatch --ignore-errors inconsistent --ignore-errors negative
+          lcov --capture --directory . --output-file coverage.info --ignore-errors mismatch --ignore-errors inconsistent --ignore-errors negative --ignore-errors format --ignore-errors unsupported
           lcov --remove coverage.info '/usr/*' '*/tests/*' '*/googletest/*' --output-file coverage_filtered.info --ignore-errors unused
           lcov --list coverage_filtered.info
 
