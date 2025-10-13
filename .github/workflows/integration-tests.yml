@@ -96,7 +96,7 @@ jobs:
         if: matrix.build_type == 'Debug'
         working-directory: build
         run: |
-          genhtml coverage_filtered.info --output-directory coverage_html --ignore-errors source --ignore-errors inconsistent
+          genhtml coverage_filtered.info --output-directory coverage_html --ignore-errors source --ignore-errors inconsistent --ignore-errors category
 
       - name: Upload Coverage HTML
         if: matrix.build_type == 'Debug'
