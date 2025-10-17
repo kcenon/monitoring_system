@@ -116,6 +116,15 @@ public:
         stop();
     }
 
+    static std::shared_ptr<interface_event_bus> instance() {
+        static std::shared_ptr<event_bus> singleton = [] {
+            auto bus = std::make_shared<event_bus>();
+            (void)bus->start();
+            return bus;
+        }();
+        return singleton;
+    }
+
     // Start the event bus
     result_void start() override {
         std::lock_guard<std::mutex> lock(bus_mutex_);
@@ -249,26 +258,28 @@ protected:
     // Publish event implementation
     result_void publish_event_impl(std::type_index event_type,
                                   std::any event) override {
-        // Check for back pressure
-        if (config_.enable_back_pressure) {
-            std::lock_guard<std::mutex> lock(queue_mutex_);
-            if (event_queue_.size() >= config_.max_queue_size) {
-                total_events_dropped_.fetch_add(1);
-                return result_void::error(monitoring_error_code::resource_exhausted,
-                                        "Event queue is full");
-            }
+        bool should_sleep = false;
 
-            if (event_queue_.size() >= config_.back_pressure_threshold) {
-                // Apply back pressure - could implement adaptive strategies here
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
-            }
-        }
-
-        // Queue the event
         {
             std::lock_guard<std::mutex> lock(queue_mutex_);
+
+            if (config_.enable_back_pressure) {
+                const auto current_size = event_queue_.size();
+                if (current_size >= config_.max_queue_size) {
+                    total_events_dropped_.fetch_add(1);
+                    return result_void::error(
+                        monitoring_error_code::resource_exhausted,
+                        "Event queue is full");
+                }
+                should_sleep = current_size >= config_.back_pressure_threshold;
+            }
+
             event_queue_.emplace(event_type, std::move(event), event_priority::normal);
             total_events_published_.fetch_add(1);
+        }
+
+        if (should_sleep) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
 
         queue_cv_.notify_one();
@@ -345,12 +356,17 @@ private:
 
     // Process all pending events
     void process_all_pending() {
-        std::lock_guard<std::mutex> lock(queue_mutex_);
+        std::vector<event_envelope> pending;
+        {
+            std::lock_guard<std::mutex> lock(queue_mutex_);
+            pending.reserve(event_queue_.size());
+            while (!event_queue_.empty()) {
+                pending.push_back(event_queue_.top());
+                event_queue_.pop();
+            }
+        }
 
-        while (!event_queue_.empty()) {
-            // Copy element then pop to avoid const_cast UB
-            auto envelope = event_queue_.top();
-            event_queue_.pop();
+        for (auto& envelope : pending) {
             dispatch_event(envelope);
             total_events_processed_.fetch_add(1);
         }
