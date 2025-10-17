@@ -1,3 +1,35 @@
+/*****************************************************************************
+BSD 3-Clause License
+
+Copyright (c) 2025, 🍀☀🌕🌥 🌊
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*****************************************************************************/
+
 #pragma once
 
 /**
@@ -114,6 +146,15 @@ public:
 
     ~event_bus() {
         stop();
+    }
+
+    static std::shared_ptr<interface_event_bus> instance() {
+        static std::shared_ptr<event_bus> singleton = [] {
+            auto bus = std::make_shared<event_bus>();
+            (void)bus->start();
+            return bus;
+        }();
+        return singleton;
     }
 
     // Start the event bus
@@ -249,26 +290,28 @@ protected:
     // Publish event implementation
     result_void publish_event_impl(std::type_index event_type,
                                   std::any event) override {
-        // Check for back pressure
-        if (config_.enable_back_pressure) {
-            std::lock_guard<std::mutex> lock(queue_mutex_);
-            if (event_queue_.size() >= config_.max_queue_size) {
-                total_events_dropped_.fetch_add(1);
-                return result_void::error(monitoring_error_code::resource_exhausted,
-                                        "Event queue is full");
-            }
+        bool should_sleep = false;
 
-            if (event_queue_.size() >= config_.back_pressure_threshold) {
-                // Apply back pressure - could implement adaptive strategies here
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
-            }
-        }
-
-        // Queue the event
         {
             std::lock_guard<std::mutex> lock(queue_mutex_);
+
+            if (config_.enable_back_pressure) {
+                const auto current_size = event_queue_.size();
+                if (current_size >= config_.max_queue_size) {
+                    total_events_dropped_.fetch_add(1);
+                    return result_void::error(
+                        monitoring_error_code::resource_exhausted,
+                        "Event queue is full");
+                }
+                should_sleep = current_size >= config_.back_pressure_threshold;
+            }
+
             event_queue_.emplace(event_type, std::move(event), event_priority::normal);
             total_events_published_.fetch_add(1);
+        }
+
+        if (should_sleep) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
 
         queue_cv_.notify_one();
@@ -345,12 +388,17 @@ private:
 
     // Process all pending events
     void process_all_pending() {
-        std::lock_guard<std::mutex> lock(queue_mutex_);
+        std::vector<event_envelope> pending;
+        {
+            std::lock_guard<std::mutex> lock(queue_mutex_);
+            pending.reserve(event_queue_.size());
+            while (!event_queue_.empty()) {
+                pending.push_back(event_queue_.top());
+                event_queue_.pop();
+            }
+        }
 
-        while (!event_queue_.empty()) {
-            // Copy element then pop to avoid const_cast UB
-            auto envelope = event_queue_.top();
-            event_queue_.pop();
+        for (auto& envelope : pending) {
             dispatch_event(envelope);
             total_events_processed_.fetch_add(1);
         }
