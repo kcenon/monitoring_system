@@ -2,6 +2,40 @@
 
 > **Language:** **English** | [한국어](SECURITY_KO.md)
 
+## Table of Contents
+
+- [Supported Versions](#supported-versions)
+- [Reporting a Vulnerability](#reporting-a-vulnerability)
+  - [How to Report](#how-to-report)
+  - [Response Timeline](#response-timeline)
+  - [Disclosure Process](#disclosure-process)
+- [Security Considerations](#security-considerations)
+  - [Architecture Security](#architecture-security)
+    - [Data Protection](#data-protection)
+    - [Network Security](#network-security)
+    - [Access Control](#access-control)
+  - [Deployment Security](#deployment-security)
+    - [Configuration Security](#configuration-security)
+    - [Runtime Security](#runtime-security)
+  - [Code Security](#code-security)
+    - [Input Validation](#input-validation)
+    - [Memory Safety](#memory-safety)
+    - [Thread Safety](#thread-safety)
+  - [Known Security Considerations](#known-security-considerations)
+    - [Metric Data Exposure](#metric-data-exposure)
+    - [Dashboard Access](#dashboard-access)
+    - [Configuration Files](#configuration-files)
+    - [Log Files](#log-files)
+- [Security Hardening Guide](#security-hardening-guide)
+  - [Production Deployment](#production-deployment)
+  - [Security Checklist](#security-checklist)
+    - [Before Deployment](#before-deployment)
+    - [Regular Security Maintenance](#regular-security-maintenance)
+  - [Security Updates](#security-updates)
+  - [Compliance](#compliance)
+- [Contact](#contact)
+- [Attribution](#attribution)
+
 ## Supported Versions
 
 We actively support and provide security updates for the following versions:
@@ -236,3 +270,6 @@ For general issues and questions, please use:
 ## Attribution
 
 We appreciate the security research community and will provide appropriate credit for responsibly disclosed vulnerabilities. Contributors will be listed in our security acknowledgments unless they prefer to remain anonymous.
+---
+
+*Last Updated: 2025-10-20*

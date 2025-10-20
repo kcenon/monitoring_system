@@ -7,7 +7,7 @@
 
 > **Language:** **English** | [한국어](README_KO.md)
 
-## Project Overview
+## Overview
 
 The Monitoring System Project is a production-ready, comprehensive C++20 observability platform designed to provide enterprise-grade monitoring, tracing, and reliability capabilities for high-performance applications. Built with a modular, interface-based architecture and seamless integration with the thread system ecosystem, it delivers real-time insights with minimal overhead and maximum scalability.
 

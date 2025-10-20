@@ -779,3 +779,6 @@ You now have the knowledge to:
 Start with the basic example and gradually add more features as needed. Remember to measure the monitoring overhead and adjust configuration accordingly.
 
 Happy monitoring! 🎉
+---
+
+*Last Updated: 2025-10-20*

@@ -45,3 +45,7 @@ Build & Options
 - C++20, CMake. Optional flags: USE_THREAD_SYSTEM, BUILD_WITH_LOGGER_SYSTEM.
 - On macOS/Linux/Windows with vcpkg (optional) for third‑party libraries.
 
+
+---
+
+*Last Updated: 2025-10-20*

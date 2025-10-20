@@ -2,6 +2,53 @@
 
 > **Language:** **English** | [한국어](CHANGELOG_KO.md)
 
+## Table of Contents
+
+- [[Unreleased]](#unreleased)
+  - [Added](#added)
+  - [Changed](#changed)
+- [[4.0.0] - 2024-09-16](#400-2024-09-16)
+  - [Added - Phase 4: Core Foundation Stabilization](#added-phase-4-core-foundation-stabilization)
+    - [DI Container Implementation](#di-container-implementation)
+    - [Test Suite Stabilization](#test-suite-stabilization)
+    - [Cross-Platform Compatibility](#cross-platform-compatibility)
+    - [Build System Improvements](#build-system-improvements)
+    - [Core Architecture Enhancements](#core-architecture-enhancements)
+  - [Changed](#changed)
+  - [Fixed](#fixed)
+  - [Technical Details](#technical-details)
+- [[3.0.0] - 2024-09-14](#300-2024-09-14)
+  - [Added - Phase 3: Real-time Alerting System and Web Dashboard](#added-phase-3-real-time-alerting-system-and-web-dashboard)
+    - [Alerting System](#alerting-system)
+    - [Web Dashboard](#web-dashboard)
+    - [API Enhancements](#api-enhancements)
+    - [Performance Improvements](#performance-improvements)
+  - [Changed](#changed)
+  - [Fixed](#fixed)
+- [[2.0.0] - 2024-08-01](#200-2024-08-01)
+  - [Added - Phase 2: Advanced Monitoring Features](#added-phase-2-advanced-monitoring-features)
+    - [Distributed Tracing](#distributed-tracing)
+    - [Health Monitoring](#health-monitoring)
+    - [Reliability Features](#reliability-features)
+    - [Storage Enhancements](#storage-enhancements)
+  - [Changed](#changed)
+  - [Fixed](#fixed)
+- [[1.0.0] - 2024-06-01](#100-2024-06-01)
+  - [Added - Phase 1: Core Monitoring Foundation](#added-phase-1-core-monitoring-foundation)
+    - [Core Monitoring](#core-monitoring)
+    - [Plugin System](#plugin-system)
+    - [Configuration](#configuration)
+    - [Integration](#integration)
+  - [Dependencies](#dependencies)
+- [[0.9.0-beta] - 2024-05-01](#090-beta-2024-05-01)
+  - [Added](#added)
+  - [Known Issues](#known-issues)
+- [Version Numbering](#version-numbering)
+- [Migration Guides](#migration-guides)
+  - [Upgrading to v3.0.0](#upgrading-to-v300)
+  - [Upgrading to v2.0.0](#upgrading-to-v200)
+- [Support](#support)
+
 All notable changes to the Monitoring System will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -249,3 +296,6 @@ See [ARCHITECTURE_GUIDE.md](ARCHITECTURE_GUIDE.md) for detailed migration instru
 - **Issues**: [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)
 - **Security**: See [SECURITY.md](SECURITY.md) for security-related issues
+---
+
+*Last Updated: 2025-10-20*
