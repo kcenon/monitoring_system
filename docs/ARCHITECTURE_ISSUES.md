@@ -2,6 +2,37 @@
 
 > **Language:** **English** | [한국어](ARCHITECTURE_ISSUES_KO.md)
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Issue Categories](#issue-categories)
+  - [1. Testing & Quality](#1-testing-quality)
+    - [Issue ARC-001: Low Test Coverage](#issue-arc-001-low-test-coverage)
+    - [Issue ARC-002: Missing Performance Benchmarks](#issue-arc-002-missing-performance-benchmarks)
+  - [2. Concurrency & Thread Safety](#2-concurrency-thread-safety)
+    - [Issue ARC-003: Monitor Thread Safety Verification](#issue-arc-003-monitor-thread-safety-verification)
+  - [3. Performance & Optimization](#3-performance-optimization)
+    - [Issue ARC-004: Metric Collection Overhead](#issue-arc-004-metric-collection-overhead)
+    - [Issue ARC-005: Adaptive Monitor Threshold Tuning](#issue-arc-005-adaptive-monitor-threshold-tuning)
+  - [4. Features & Functionality](#4-features-functionality)
+    - [Issue ARC-006: Distributed Tracing Incomplete](#issue-arc-006-distributed-tracing-incomplete)
+    - [Issue ARC-007: Limited Metric Types](#issue-arc-007-limited-metric-types)
+  - [5. Documentation](#5-documentation)
+    - [Issue ARC-008: Incomplete API Documentation](#issue-arc-008-incomplete-api-documentation)
+    - [Issue ARC-009: Missing Integration Examples](#issue-arc-009-missing-integration-examples)
+  - [6. Integration](#6-integration)
+    - [Issue ARC-010: Common System Integration](#issue-arc-010-common-system-integration)
+- [Issue Tracking](#issue-tracking)
+  - [Phase 0 Actions](#phase-0-actions)
+  - [Phase 1 Actions](#phase-1-actions)
+  - [Phase 2 Actions](#phase-2-actions)
+  - [Phase 3 Actions](#phase-3-actions)
+  - [Phase 4 Actions](#phase-4-actions)
+  - [Phase 5 Actions](#phase-5-actions)
+  - [Phase 6 Actions](#phase-6-actions)
+- [Risk Assessment](#risk-assessment)
+- [References](#references)
+
 **Document Version**: 1.0
 **Date**: 2025-10-05
 **System**: monitoring_system
@@ -212,3 +243,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 **Document Maintainer**: Architecture Team
 **Next Review**: After each phase completion
+
+---
+
+*Last Updated: 2025-10-20*

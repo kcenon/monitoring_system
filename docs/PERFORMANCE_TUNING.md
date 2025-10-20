@@ -2,6 +2,56 @@
 
 > **Language:** **English** | [한국어](PERFORMANCE_TUNING_KO.md)
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Quick Start Checklist](#quick-start-checklist)
+- [Performance Targets](#performance-targets)
+- [Sampling Strategies](#sampling-strategies)
+  - [Trace Sampling](#trace-sampling)
+  - [Metric Sampling](#metric-sampling)
+- [Memory Optimization](#memory-optimization)
+  - [Object Pooling](#object-pooling)
+  - [Memory Limits](#memory-limits)
+  - [Buffer Tuning](#buffer-tuning)
+- [CPU Optimization](#cpu-optimization)
+  - [Thread Pool Configuration](#thread-pool-configuration)
+  - [Lock-Free Operations](#lock-free-operations)
+  - [Batch Processing](#batch-processing)
+- [Storage Optimization](#storage-optimization)
+  - [Backend Selection](#backend-selection)
+  - [Compression](#compression)
+  - [Write Optimization](#write-optimization)
+- [Network Optimization](#network-optimization)
+  - [Connection Pooling](#connection-pooling)
+  - [Protocol Selection](#protocol-selection)
+- [Adaptive Optimization](#adaptive-optimization)
+  - [Auto-Tuning](#auto-tuning)
+  - [Load-Based Adjustments](#load-based-adjustments)
+- [Profiling and Benchmarking](#profiling-and-benchmarking)
+  - [Built-in Profiler](#built-in-profiler)
+  - [Benchmarking](#benchmarking)
+- [Configuration Templates](#configuration-templates)
+  - [Low Overhead Configuration](#low-overhead-configuration)
+  - [Balanced Configuration](#balanced-configuration)
+  - [High Detail Configuration](#high-detail-configuration)
+- [Performance Monitoring Metrics](#performance-monitoring-metrics)
+  - [Key Metrics to Track](#key-metrics-to-track)
+- [Common Performance Issues](#common-performance-issues)
+  - [Issue: High CPU Usage](#issue-high-cpu-usage)
+  - [Issue: Memory Growth](#issue-memory-growth)
+  - [Issue: Storage Bottleneck](#issue-storage-bottleneck)
+- [Platform-Specific Tuning](#platform-specific-tuning)
+  - [Linux](#linux)
+  - [macOS](#macos)
+  - [Windows](#windows)
+- [Monitoring the Monitor](#monitoring-the-monitor)
+- [Best Practices](#best-practices)
+- [Troubleshooting Performance](#troubleshooting-performance)
+  - [Performance Profiling Checklist](#performance-profiling-checklist)
+  - [Performance Testing](#performance-testing)
+- [Conclusion](#conclusion)
+
 ## Overview
 
 This guide provides detailed instructions for optimizing the Monitoring System's performance in production environments. Follow these guidelines to achieve minimal overhead while maintaining comprehensive observability.
@@ -483,3 +533,6 @@ Optimal performance requires balancing observability needs with system resources
 - Regularly review and adjust configuration
 
 For more details, see the [Architecture Guide](ARCHITECTURE_GUIDE.md).
+---
+
+*Last Updated: 2025-10-20*

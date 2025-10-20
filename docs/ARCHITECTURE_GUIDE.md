@@ -797,3 +797,6 @@ The Monitoring System architecture is designed to be:
 
 For implementation details, see the [API Reference](API_REFERENCE.md).  
 For practical examples, see the [Examples Directory](../examples/).
+---
+
+*Last Updated: 2025-10-20*

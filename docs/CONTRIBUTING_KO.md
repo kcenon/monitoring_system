@@ -344,3 +344,7 @@ git push origin your-feature-branch
 - 연간 기여자 감사 게시물
 
 Monitoring System에 기여해 주셔서 감사합니다! 여러분의 노력이 모두를 위한 더 나은 관찰 가능성을 만듭니다.
+
+---
+
+*Last Updated: 2025-10-20*

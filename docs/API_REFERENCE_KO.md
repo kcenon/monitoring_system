@@ -451,3 +451,7 @@ Phase 4는 기능 완전성보다는 **핵심 기반 안정성**에 초점을 �
 - [아키텍처 가이드](ARCHITECTURE_GUIDE.md) - 시스템 설계 및 패턴
 - [예제](../examples/) - 작동하는 코드 예제
 - [변경 로그](CHANGELOG.md) - 버전 기록 및 변경 사항
+
+---
+
+*Last Updated: 2025-10-20*

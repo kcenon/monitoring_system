@@ -797,3 +797,7 @@ Monitoring System 아키텍처는 다음을 위해 설계되었습니다:
 
 구현 세부사항은 [API Reference](API_REFERENCE.md)를 참조하세요.
 실용적인 예제는 [Examples Directory](../examples/)를 참조하세요.
+
+---
+
+*Last Updated: 2025-10-20*

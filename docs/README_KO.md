@@ -162,3 +162,7 @@ README.md → PHASE3.md → API_REFERENCE.md → TROUBLESHOOTING.md
 *문서 마지막 업데이트: September 2024 - Monitoring System v3.0*
 
 *가장 최신 정보는 항상 이 문서의 최신 버전을 참조하세요.*
+
+---
+
+*Last Updated: 2025-10-20*

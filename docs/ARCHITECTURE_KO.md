@@ -44,3 +44,7 @@ Thread System 통합
 빌드 및 옵션
 - C++20, CMake. 선택적 플래그: USE_THREAD_SYSTEM, BUILD_WITH_LOGGER_SYSTEM.
 - macOS/Linux/Windows에서 vcpkg(선택적)를 사용하여 서드파티 라이브러리 지원.
+
+---
+
+*Last Updated: 2025-10-20*

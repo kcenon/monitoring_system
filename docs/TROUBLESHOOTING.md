@@ -2,6 +2,55 @@
 
 > **Language:** **English** | [한국어](TROUBLESHOOTING_KO.md)
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Quick Diagnostic Commands](#quick-diagnostic-commands)
+- [Common Issues](#common-issues)
+  - [1. Monitoring System Won't Start](#1-monitoring-system-wont-start)
+    - [Symptoms](#symptoms)
+    - [Diagnostic Steps](#diagnostic-steps)
+    - [Solutions](#solutions)
+  - [2. High Memory Usage](#2-high-memory-usage)
+    - [Symptoms](#symptoms)
+    - [Diagnostic Steps](#diagnostic-steps)
+    - [Solutions](#solutions)
+  - [3. High CPU Usage](#3-high-cpu-usage)
+    - [Symptoms](#symptoms)
+    - [Diagnostic Steps](#diagnostic-steps)
+    - [Solutions](#solutions)
+  - [4. Missing Metrics/Traces](#4-missing-metricstraces)
+    - [Symptoms](#symptoms)
+    - [Diagnostic Steps](#diagnostic-steps)
+    - [Solutions](#solutions)
+  - [5. Storage Issues](#5-storage-issues)
+    - [Symptoms](#symptoms)
+    - [Diagnostic Steps](#diagnostic-steps)
+    - [Solutions](#solutions)
+  - [6. Network Issues](#6-network-issues)
+    - [Symptoms](#symptoms)
+    - [Diagnostic Steps](#diagnostic-steps)
+    - [Solutions](#solutions)
+  - [7. Circuit Breaker Issues](#7-circuit-breaker-issues)
+    - [Symptoms](#symptoms)
+    - [Diagnostic Steps](#diagnostic-steps)
+    - [Solutions](#solutions)
+- [Debugging Tools](#debugging-tools)
+  - [Enable Debug Logging](#enable-debug-logging)
+  - [Memory Debugging](#memory-debugging)
+  - [Performance Debugging](#performance-debugging)
+- [Health Check Verification](#health-check-verification)
+- [Emergency Procedures](#emergency-procedures)
+  - [System Overload](#system-overload)
+  - [Data Recovery](#data-recovery)
+- [Monitoring System Logs](#monitoring-system-logs)
+  - [Log Locations](#log-locations)
+  - [Log Analysis](#log-analysis)
+- [Getting Help](#getting-help)
+  - [Diagnostic Information to Collect](#diagnostic-information-to-collect)
+  - [Support Channels](#support-channels)
+- [Conclusion](#conclusion)
+
 ## Overview
 
 This guide helps diagnose and resolve common issues with the Monitoring System. Each section includes symptoms, diagnostic steps, and solutions.
@@ -680,3 +729,6 @@ Most issues can be resolved by:
 5. Adjusting thresholds and limits
 
 For persistent issues, collect diagnostic information and consult the support channels.
+---
+
+*Last Updated: 2025-10-20*
