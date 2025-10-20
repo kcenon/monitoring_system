@@ -1,5 +1,7 @@
 # Contributing to Monitoring System
 
+> **Language:** **English** | [한국어](CONTRIBUTING_KO.md)
+
 We welcome contributions to the Monitoring System! This document provides guidelines for contributing to the project.
 
 ## Table of Contents

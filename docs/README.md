@@ -1,5 +1,7 @@
 # Monitoring System Documentation
 
+> **Language:** **English** | [한국어](README_KO.md)
+
 Welcome to the comprehensive documentation for the Monitoring System - a production-ready monitoring and observability platform for C++ applications.
 
 ## 📚 Documentation Structure

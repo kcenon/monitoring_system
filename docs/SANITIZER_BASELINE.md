@@ -1,5 +1,7 @@
 # monitoring_system Sanitizer Baseline
 
+> **Language:** **English** | [한국어](SANITIZER_BASELINE_KO.md)
+
 **Phase**: 0 - Foundation and Tooling
 **Task**: 0.1 - CI/CD Pipeline Enhancement
 **Date Created**: 2025-10-07

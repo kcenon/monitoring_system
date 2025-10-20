@@ -1,5 +1,7 @@
 # Monitoring System API Reference
 
+> **Language:** **English** | [한국어](API_REFERENCE_KO.md)
+
 **Phase 4 - Current Implementation Status**
 
 This document describes the **actually implemented** APIs and interfaces in the monitoring system Phase 4. Items marked with *(Stub Implementation)* provide functional interfaces but with simplified implementations as foundation for future development.

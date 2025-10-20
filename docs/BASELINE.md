@@ -1,5 +1,7 @@
 # monitoring_system Performance Baseline
 
+> **Language:** **English** | [한국어](BASELINE_KO.md)
+
 **Phase**: 0 - Foundation and Tooling
 **Task**: 0.2 - Baseline Performance Benchmarking
 **Date Created**: 2025-10-07

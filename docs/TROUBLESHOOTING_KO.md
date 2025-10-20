@@ -1,122 +1,122 @@
-# Troubleshooting Guide
+# 문제 해결 가이드
 
-> **Language:** **English** | [한국어](TROUBLESHOOTING_KO.md)
+> **Language:** [English](TROUBLESHOOTING.md) | **한국어**
 
-## Overview
+## 개요
 
-This guide helps diagnose and resolve common issues with the Monitoring System. Each section includes symptoms, diagnostic steps, and solutions.
+이 가이드는 Monitoring System의 일반적인 문제를 진단하고 해결하는 데 도움을 줍니다. 각 섹션에는 증상, 진단 단계 및 해결책이 포함되어 있습니다.
 
-## Quick Diagnostic Commands
+## 빠른 진단 명령어
 
 ```bash
-# Check system status
+# 시스템 상태 확인
 ./monitoring_cli status
 
-# View recent errors
+# 최근 오류 보기
 ./monitoring_cli errors --last 100
 
-# Check health
+# 헬스 확인
 ./monitoring_cli health --verbose
 
-# View configuration
+# 구성 보기
 ./monitoring_cli config --show
 
-# Test connectivity
+# 연결 테스트
 ./monitoring_cli test --component all
 ```
 
-## Common Issues
+## 일반적인 문제
 
-### 1. Monitoring System Won't Start
+### 1. 모니터링 시스템이 시작되지 않음
 
-#### Symptoms
-- Application crashes on startup
-- Error messages about initialization failure
-- Process exits immediately
+#### 증상
+- 시작 시 애플리케이션 크래시
+- 초기화 실패에 대한 오류 메시지
+- 프로세스가 즉시 종료됨
 
-#### Diagnostic Steps
+#### 진단 단계
 ```cpp
-// Enable debug logging
+// 디버그 로깅 활성화
 monitoring_config config;
 config.log_level = log_level::debug;
 config.enable_startup_diagnostics = true;
 
-// Check initialization result
+// 초기화 결과 확인
 auto result = monitoring_system.initialize();
 if (!result) {
     std::cerr << "Init failed: " << result.get_error().message << "\n";
 }
 ```
 
-#### Solutions
+#### 해결책
 
-**Missing Dependencies:**
+**의존성 누락:**
 ```bash
-# Check library dependencies
+# 라이브러리 의존성 확인
 ldd monitoring_system
 otool -L monitoring_system  # macOS
 
-# Install missing libraries
+# 누락된 라이브러리 설치
 apt-get install libstdc++6  # Linux
 brew install gcc            # macOS
 ```
 
-**Permission Issues:**
+**권한 문제:**
 ```bash
-# Check file permissions
+# 파일 권한 확인
 ls -la /var/log/monitoring/
 ls -la /var/lib/monitoring/
 
-# Fix permissions
+# 권한 수정
 sudo chown -R $USER:$USER /var/log/monitoring/
 sudo chmod 755 /var/log/monitoring/
 ```
 
-**Port Already in Use:**
+**포트가 이미 사용 중:**
 ```cpp
-// Change port
+// 포트 변경
 exporter_config config;
-config.port = 9091;  // Use different port
+config.port = 9091;  // 다른 포트 사용
 ```
 
-### 2. High Memory Usage
+### 2. 높은 메모리 사용량
 
-#### Symptoms
-- Continuously growing memory consumption
-- Out of memory errors
-- System becomes unresponsive
+#### 증상
+- 지속적으로 증가하는 메모리 소비
+- 메모리 부족 오류
+- 시스템이 응답하지 않음
 
-#### Diagnostic Steps
+#### 진단 단계
 ```cpp
-// Enable memory profiling
+// 메모리 프로파일링 활성화
 memory_profiler profiler;
 profiler.start();
 
-// Get memory stats
+// 메모리 통계 가져오기
 auto stats = monitoring_system.get_memory_stats();
 std::cout << "Total allocated: " << stats.total_allocated_mb << " MB\n";
 std::cout << "Active objects: " << stats.active_objects << "\n";
 std::cout << "Largest allocation: " << stats.largest_allocation_mb << " MB\n";
 
-// Check for leaks
+// 누수 확인
 auto leaks = profiler.detect_leaks();
 for (const auto& leak : leaks) {
-    std::cout << "Potential leak: " << leak.location << " (" 
+    std::cout << "Potential leak: " << leak.location << " ("
               << leak.size_bytes << " bytes)\n";
 }
 ```
 
-#### Solutions
+#### 해결책
 
-**Memory Leaks:**
+**메모리 누수:**
 ```cpp
-// Fix circular references
-std::weak_ptr<Component> weak_ref = component;  // Use weak_ptr
+// 순환 참조 수정
+std::weak_ptr<Component> weak_ref = component;  // weak_ptr 사용
 
-// Ensure proper cleanup
+// 적절한 정리 보장
 class Resource {
     ~Resource() {
-        // Always clean up
+        // 항상 정리
         if (buffer_) {
             delete[] buffer_;
             buffer_ = nullptr;
@@ -124,144 +124,144 @@ class Resource {
     }
 };
 
-// Use RAII
-auto resource = std::make_unique<Resource>();  // Automatic cleanup
+// RAII 사용
+auto resource = std::make_unique<Resource>();  // 자동 정리
 ```
 
-**Unbounded Queues:**
+**무제한 큐:**
 ```cpp
-// Set queue limits
+// 큐 제한 설정
 queue_config config;
 config.max_size = 10000;
 config.overflow_policy = overflow_policy::drop_oldest;
 
-// Monitor queue size
+// 큐 크기 모니터링
 if (queue.size() > config.max_size * 0.9) {
     log_warning("Queue near capacity: {}", queue.size());
 }
 ```
 
-**Retention Issues:**
+**보존 문제:**
 ```cpp
-// Configure retention
+// 보존 구성
 retention_config config;
 config.max_age = 24h;
 config.max_size_mb = 1000;
 config.cleanup_interval = 1h;
 ```
 
-### 3. High CPU Usage
+### 3. 높은 CPU 사용량
 
-#### Symptoms
-- CPU usage consistently > 10%
-- Application becomes sluggish
-- System load increases
+#### 증상
+- CPU 사용량이 지속적으로 > 10%
+- 애플리케이션이 느려짐
+- 시스템 부하 증가
 
-#### Diagnostic Steps
+#### 진단 단계
 ```cpp
-// Profile CPU usage
+// CPU 사용량 프로파일링
 cpu_profiler profiler;
 profiler.start();
 
-// Run for 60 seconds
+// 60초 동안 실행
 std::this_thread::sleep_for(60s);
 
-// Get hotspots
+// 핫스팟 가져오기
 auto hotspots = profiler.get_hotspots();
 for (const auto& hotspot : hotspots) {
-    std::cout << hotspot.function << ": " 
+    std::cout << hotspot.function << ": "
               << hotspot.cpu_percent << "%\n";
 }
 ```
 
-#### Solutions
+#### 해결책
 
-**Excessive Sampling:**
+**과도한 샘플링:**
 ```cpp
-// Reduce sampling rate
-config.sampling_rate = 0.01;  // 1% instead of 100%
+// 샘플링 비율 감소
+config.sampling_rate = 0.01;  // 100% 대신 1%
 
-// Use adaptive sampling
+// 적응형 샘플링 사용
 adaptive_sampler sampler;
-sampler.set_max_throughput(1000);  // Limit to 1000/sec
+sampler.set_max_throughput(1000);  // 1000/sec로 제한
 ```
 
-**Lock Contention:**
+**락 경합:**
 ```cpp
-// Use lock-free structures
-lock_free_queue<Data> queue;  // Instead of std::queue with mutex
+// lock-free 구조 사용
+lock_free_queue<Data> queue;  // mutex가 있는 std::queue 대신
 
-// Reduce lock scope
+// 락 범위 축소
 {
     std::lock_guard<std::mutex> lock(mutex_);
-    // Minimal work under lock
+    // 락 하에서 최소 작업
     data_ = new_data;
-}  // Lock released immediately
+}  // 락 즉시 해제
 
-// Use read-write locks
+// read-write 락 사용
 std::shared_mutex rw_mutex;
-// Multiple readers
+// 여러 리더
 std::shared_lock<std::shared_mutex> read_lock(rw_mutex);
-// Single writer
+// 단일 라이터
 std::unique_lock<std::shared_mutex> write_lock(rw_mutex);
 ```
 
-**Inefficient Algorithms:**
+**비효율적인 알고리즘:**
 ```cpp
-// Use efficient data structures
-std::unordered_map<Key, Value> map;  // O(1) instead of O(log n)
+// 효율적인 데이터 구조 사용
+std::unordered_map<Key, Value> map;  // O(log n) 대신 O(1)
 
-// Batch operations
+// 배치 작업
 std::vector<Data> batch;
 batch.reserve(1000);
-// Collect data...
-process_batch(batch);  // Process all at once
+// 데이터 수집...
+process_batch(batch);  // 한 번에 모두 처리
 ```
 
-### 4. Missing Metrics/Traces
+### 4. 메트릭/트레이스 누락
 
-#### Symptoms
-- No data in dashboards
-- Incomplete traces
-- Missing health checks
+#### 증상
+- 대시보드에 데이터 없음
+- 불완전한 트레이스
+- 누락된 헬스 체크
 
-#### Diagnostic Steps
+#### 진단 단계
 ```cpp
-// Check if collectors are enabled
+// 수집기가 활성화되어 있는지 확인
 for (const auto& collector : monitoring_system.get_collectors()) {
-    std::cout << collector->get_name() << ": " 
+    std::cout << collector->get_name() << ": "
               << (collector->is_enabled() ? "enabled" : "disabled") << "\n";
 }
 
-// Verify data flow
+// 데이터 흐름 확인
 auto stats = monitoring_system.get_pipeline_stats();
 std::cout << "Collected: " << stats.metrics_collected << "\n";
 std::cout << "Exported: " << stats.metrics_exported << "\n";
 std::cout << "Dropped: " << stats.metrics_dropped << "\n";
 ```
 
-#### Solutions
+#### 해결책
 
-**Sampling Issues:**
+**샘플링 문제:**
 ```cpp
-// Check sampling configuration
+// 샘플링 구성 확인
 if (config.sampling_rate < 0.01) {
     log_warning("Very low sampling rate: {}", config.sampling_rate);
 }
 
-// Temporarily disable sampling for debugging
-config.sampling_rate = 1.0;  // 100% sampling
+// 디버깅을 위해 일시적으로 샘플링 비활성화
+config.sampling_rate = 1.0;  // 100% 샘플링
 ```
 
-**Export Failures:**
+**내보내기 실패:**
 ```cpp
-// Check exporter status
+// 내보내기 상태 확인
 auto status = exporter.get_status();
 if (status.last_error) {
     std::cout << "Export error: " << status.last_error.message << "\n";
 }
 
-// Add retry logic
+// 재시도 로직 추가
 retry_policy<bool> retry;
 retry.with_max_attempts(3)
      .with_backoff(exponential_backoff{100ms, 2.0});
@@ -271,56 +271,56 @@ auto result = retry.execute([&]() {
 });
 ```
 
-**Context Propagation:**
+**컨텍스트 전파:**
 ```cpp
-// Ensure context is propagated
+// 컨텍스트가 전파되는지 확인
 auto span = tracer.start_span("operation");
 thread_context::set_current_span(span);
 
-// In child thread
+// 자식 스레드에서
 auto parent_span = thread_context::get_current_span();
 auto child_span = tracer.start_child_span(parent_span, "child_op");
 ```
 
-### 5. Storage Issues
+### 5. 스토리지 문제
 
-#### Symptoms
-- Failed writes to storage
-- Slow query performance
-- Data corruption
+#### 증상
+- 스토리지에 쓰기 실패
+- 느린 쿼리 성능
+- 데이터 손상
 
-#### Diagnostic Steps
+#### 진단 단계
 ```cpp
-// Test storage backend
+// 스토리지 백엔드 테스트
 storage_diagnostics diag(storage_backend);
 auto results = diag.run_tests();
 
 for (const auto& test : results) {
-    std::cout << test.name << ": " 
+    std::cout << test.name << ": "
               << (test.passed ? "PASS" : "FAIL") << "\n";
     if (!test.passed) {
         std::cout << "  Error: " << test.error_message << "\n";
     }
 }
 
-// Check storage stats
+// 스토리지 통계 확인
 auto stats = storage_backend.get_stats();
 std::cout << "Write latency: " << stats.avg_write_latency_ms << " ms\n";
 std::cout << "Read latency: " << stats.avg_read_latency_ms << " ms\n";
 std::cout << "Failed writes: " << stats.failed_writes << "\n";
 ```
 
-#### Solutions
+#### 해결책
 
-**Connection Issues:**
+**연결 문제:**
 ```cpp
-// Add connection pooling
+// 연결 풀링 추가
 connection_pool pool;
 pool.set_min_connections(5);
 pool.set_max_connections(20);
 pool.set_validation_query("SELECT 1");
 
-// Add reconnection logic
+// 재연결 로직 추가
 storage_backend.set_reconnect_policy(
     reconnect_policy{
         .max_attempts = 10,
@@ -330,86 +330,86 @@ storage_backend.set_reconnect_policy(
 );
 ```
 
-**Performance Issues:**
+**성능 문제:**
 ```cpp
-// Enable batching
+// 배치 활성화
 storage_config config;
 config.batch_size = 1000;
 config.flush_interval = 5s;
 
-// Add caching
+// 캐싱 추가
 cache_config cache_cfg;
 cache_cfg.max_size_mb = 100;
 cache_cfg.ttl = 60s;
 storage_backend.enable_cache(cache_cfg);
 
-// Use appropriate indexes
-// For SQL backends
+// 적절한 인덱스 사용
+// SQL 백엔드의 경우
 storage_backend.execute(
     "CREATE INDEX idx_timestamp ON metrics(timestamp)"
 );
 ```
 
-### 6. Network Issues
+### 6. 네트워크 문제
 
-#### Symptoms
-- Connection timeouts
-- Failed exports
-- High latency
+#### 증상
+- 연결 타임아웃
+- 내보내기 실패
+- 높은 지연시간
 
-#### Diagnostic Steps
+#### 진단 단계
 ```bash
-# Test connectivity
+# 연결 테스트
 ping monitoring-backend.example.com
 telnet monitoring-backend.example.com 4317
 curl -v https://monitoring-backend.example.com/health
 
-# Check DNS
+# DNS 확인
 nslookup monitoring-backend.example.com
 dig monitoring-backend.example.com
 
-# Trace route
+# 경로 추적
 traceroute monitoring-backend.example.com
 ```
 
-#### Solutions
+#### 해결책
 
-**Timeout Issues:**
+**타임아웃 문제:**
 ```cpp
-// Increase timeouts
+// 타임아웃 증가
 network_config config;
 config.connect_timeout = 10s;
 config.read_timeout = 30s;
 config.write_timeout = 30s;
 
-// Add keep-alive
+// keep-alive 추가
 config.keep_alive = true;
 config.keep_alive_interval = 30s;
 ```
 
-**SSL/TLS Issues:**
+**SSL/TLS 문제:**
 ```cpp
-// Configure TLS
+// TLS 구성
 tls_config config;
 config.verify_peer = true;
 config.ca_cert_path = "/path/to/ca.crt";
 config.client_cert_path = "/path/to/client.crt";
 config.client_key_path = "/path/to/client.key";
 
-// Disable verification for testing (NOT for production!)
+// 테스트용 검증 비활성화 (프로덕션에서는 안 됨!)
 config.verify_peer = false;
 ```
 
-### 7. Circuit Breaker Issues
+### 7. 서킷 브레이커 문제
 
-#### Symptoms
-- Circuit breaker always open
-- Circuit breaker never opens
-- Unexpected fallback behavior
+#### 증상
+- 서킷 브레이커가 항상 열림
+- 서킷 브레이커가 절대 열리지 않음
+- 예상치 못한 폴백 동작
 
-#### Diagnostic Steps
+#### 진단 단계
 ```cpp
-// Check circuit breaker state
+// 서킷 브레이커 상태 확인
 auto state = circuit_breaker.get_state();
 auto metrics = circuit_breaker.get_metrics();
 
@@ -419,34 +419,34 @@ std::cout << "Success calls: " << metrics.successful_calls << "\n";
 std::cout << "Rejected calls: " << metrics.rejected_calls << "\n";
 ```
 
-#### Solutions
+#### 해결책
 
-**Always Open:**
+**항상 열림:**
 ```cpp
-// Adjust thresholds
+// 임계값 조정
 circuit_breaker_config config;
-config.failure_threshold = 10;  // Increase threshold
-config.failure_ratio = 0.5;     // 50% failure rate
-config.reset_timeout = 30s;     // Shorter reset time
+config.failure_threshold = 10;  // 임계값 증가
+config.failure_ratio = 0.5;     // 50% 실패율
+config.reset_timeout = 30s;     // 더 짧은 리셋 시간
 
-// Manual reset
+// 수동 리셋
 circuit_breaker.reset();
 ```
 
-**Never Opens:**
+**절대 열리지 않음:**
 ```cpp
-// More sensitive configuration
-config.failure_threshold = 3;   // Lower threshold
-config.failure_ratio = 0.3;     // 30% failure rate
-config.timeout = 1s;            // Shorter timeout
+// 더 민감한 구성
+config.failure_threshold = 3;   // 더 낮은 임계값
+config.failure_ratio = 0.3;     // 30% 실패율
+config.timeout = 1s;            // 더 짧은 타임아웃
 ```
 
-## Debugging Tools
+## 디버깅 도구
 
-### Enable Debug Logging
+### 디버그 로깅 활성화
 
 ```cpp
-// Global debug mode
+// 전역 디버그 모드
 debug_config config;
 config.enable_all = true;
 config.log_level = log_level::trace;
@@ -456,26 +456,26 @@ config.include_thread_id = true;
 monitoring_system.enable_debug(config);
 ```
 
-### Memory Debugging
+### 메모리 디버깅
 
 ```cpp
-// Enable memory tracking
+// 메모리 추적 활성화
 #ifdef DEBUG
 class MemoryTracker {
     static std::unordered_map<void*, size_t> allocations_;
-    
+
 public:
     static void* allocate(size_t size) {
         void* ptr = malloc(size);
         allocations_[ptr] = size;
         return ptr;
     }
-    
+
     static void deallocate(void* ptr) {
         allocations_.erase(ptr);
         free(ptr);
     }
-    
+
     static void report_leaks() {
         for (const auto& [ptr, size] : allocations_) {
             std::cout << "Leak: " << ptr << " (" << size << " bytes)\n";
@@ -485,22 +485,22 @@ public:
 #endif
 ```
 
-### Performance Debugging
+### 성능 디버깅
 
 ```cpp
-// Timing macros
+// 타이밍 매크로
 #define TIME_BLOCK(name) \
     auto _timer_##name = monitoring_system::scoped_timer(#name);
 
-// Usage
+// 사용법
 void process_request() {
     TIME_BLOCK(process_request);
-    
+
     {
         TIME_BLOCK(validation);
         validate_input();
     }
-    
+
     {
         TIME_BLOCK(processing);
         do_work();
@@ -508,10 +508,10 @@ void process_request() {
 }
 ```
 
-## Health Check Verification
+## 헬스 체크 검증
 
 ```cpp
-// Comprehensive health check
+// 포괄적인 헬스 체크
 class SystemHealthCheck {
 public:
     struct HealthReport {
@@ -519,164 +519,164 @@ public:
         std::vector<std::string> issues;
         std::map<std::string, double> metrics;
     };
-    
+
     HealthReport check_all() {
         HealthReport report;
         report.is_healthy = true;
-        
-        // Check CPU
+
+        // CPU 확인
         auto cpu = get_cpu_usage();
         report.metrics["cpu_percent"] = cpu;
         if (cpu > 80.0) {
             report.issues.push_back("High CPU usage: " + std::to_string(cpu));
             report.is_healthy = false;
         }
-        
-        // Check memory
+
+        // 메모리 확인
         auto mem = get_memory_usage_mb();
         report.metrics["memory_mb"] = mem;
         if (mem > 1000.0) {
             report.issues.push_back("High memory usage: " + std::to_string(mem));
             report.is_healthy = false;
         }
-        
-        // Check queues
+
+        // 큐 확인
         auto queue_depth = get_queue_depth();
         report.metrics["queue_depth"] = queue_depth;
         if (queue_depth > 5000) {
             report.issues.push_back("Queue backlog: " + std::to_string(queue_depth));
             report.is_healthy = false;
         }
-        
+
         return report;
     }
 };
 ```
 
-## Emergency Procedures
+## 긴급 절차
 
-### System Overload
+### 시스템 과부하
 
 ```cpp
-// Emergency throttling
+// 긴급 조절
 void emergency_throttle() {
-    // Reduce sampling to minimum
+    // 샘플링을 최소로 축소
     config.sampling_rate = 0.001;  // 0.1%
-    
-    // Increase intervals
+
+    // 간격 증가
     config.collection_interval = 60s;
-    
-    // Disable non-critical features
+
+    // 중요하지 않은 기능 비활성화
     config.enable_tracing = false;
     config.enable_profiling = false;
-    
-    // Clear queues
+
+    // 큐 정리
     metric_queue.clear();
     trace_queue.clear();
-    
+
     log_error("Emergency throttling activated");
 }
 ```
 
-### Data Recovery
+### 데이터 복구
 
 ```cpp
-// Recover from corrupted storage
+// 손상된 스토리지에서 복구
 void recover_storage() {
-    // Backup existing data
+    // 기존 데이터 백업
     storage_backend.backup("/tmp/backup");
-    
-    // Attempt repair
+
+    // 복구 시도
     storage_backend.repair();
-    
-    // Validate data
+
+    // 데이터 검증
     auto validation = storage_backend.validate();
     if (!validation.is_valid) {
-        // Restore from backup
+        // 백업에서 복원
         storage_backend.restore("/tmp/backup");
     }
 }
 ```
 
-## Monitoring System Logs
+## 모니터링 시스템 로그
 
-### Log Locations
+### 로그 위치
 
 ```bash
-# Default log locations
-/var/log/monitoring/system.log     # System logs
-/var/log/monitoring/error.log      # Error logs
-/var/log/monitoring/metrics.log    # Metric logs
-/var/log/monitoring/trace.log      # Trace logs
+# 기본 로그 위치
+/var/log/monitoring/system.log     # 시스템 로그
+/var/log/monitoring/error.log      # 오류 로그
+/var/log/monitoring/metrics.log    # 메트릭 로그
+/var/log/monitoring/trace.log      # 트레이스 로그
 ```
 
-### Log Analysis
+### 로그 분석
 
 ```bash
-# Find errors
+# 오류 찾기
 grep ERROR /var/log/monitoring/system.log
 
-# Find warnings
+# 경고 찾기
 grep WARN /var/log/monitoring/system.log
 
-# Find specific component
+# 특정 컴포넌트 찾기
 grep "storage_backend" /var/log/monitoring/system.log
 
-# Tail logs
+# 로그 테일
 tail -f /var/log/monitoring/system.log
 
-# Analyze log patterns
+# 로그 패턴 분석
 awk '/ERROR/ {print $4}' system.log | sort | uniq -c | sort -rn
 ```
 
-## Getting Help
+## 도움 받기
 
-### Diagnostic Information to Collect
+### 수집할 진단 정보
 
-When reporting issues, include:
+문제 보고 시 다음을 포함하세요:
 
-1. **System Information:**
+1. **시스템 정보:**
 ```bash
 uname -a
 cat /etc/os-release
 g++ --version
 ```
 
-2. **Configuration:**
+2. **구성:**
 ```cpp
 monitoring_system.dump_config("/tmp/config.json");
 ```
 
-3. **Logs:**
+3. **로그:**
 ```bash
 tar -czf logs.tar.gz /var/log/monitoring/
 ```
 
-4. **Stack Trace:**
+4. **스택 추적:**
 ```bash
 gdb ./monitoring_app core
 (gdb) bt full
 ```
 
-5. **Performance Metrics:**
+5. **성능 메트릭:**
 ```cpp
 auto report = monitoring_system.generate_diagnostic_report();
 report.save("/tmp/diagnostic_report.json");
 ```
 
-### Support Channels
+### 지원 채널
 
-- GitHub Issues: [Report bugs and request features]
-- Documentation: [API Reference](API_REFERENCE.md)
-- Examples: [Code examples](../examples/)
+- GitHub Issues: [버그 보고 및 기능 요청]
+- 문서: [API Reference](API_REFERENCE.md)
+- 예제: [코드 예제](../examples/)
 
-## Conclusion
+## 결론
 
-Most issues can be resolved by:
-1. Checking logs for error messages
-2. Verifying configuration
-3. Ensuring sufficient resources
-4. Testing connectivity
-5. Adjusting thresholds and limits
+대부분의 문제는 다음을 통해 해결할 수 있습니다:
+1. 오류 메시지에 대한 로그 확인
+2. 구성 검증
+3. 충분한 리소스 보장
+4. 연결 테스트
+5. 임계값 및 제한 조정
 
-For persistent issues, collect diagnostic information and consult the support channels.
+지속적인 문제의 경우 진단 정보를 수집하고 지원 채널에 문의하세요.

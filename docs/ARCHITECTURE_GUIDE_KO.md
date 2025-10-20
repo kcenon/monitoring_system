@@ -1,84 +1,84 @@
-# Monitoring System Architecture Guide
+# Monitoring System 아키텍처 가이드
 
-> **Language:** **English** | [한국어](ARCHITECTURE_GUIDE_KO.md)
+> **Language:** [English](ARCHITECTURE_GUIDE.md) | **한국어**
 
-**Phase 4 - Current Implementation Architecture**
+**Phase 4 - 현재 구현 아키텍처**
 
-## Overview
+## 개요
 
-The Monitoring System is a modular and extensible framework designed for high-performance application monitoring. **Phase 4** provides a **solid foundation** with core components fully implemented and tested, while maintaining extensible interfaces for future development. Built with modern C++20, it emphasizes stability, testability, and incremental development.
+Monitoring System은 고성능 애플리케이션 모니터링을 위해 설계된 모듈식이고 확장 가능한 프레임워크입니다. **Phase 4**는 핵심 컴포넌트가 완전히 구현되고 테스트된 **탄탄한 기초**를 제공하며, 향후 개발을 위한 확장 가능한 인터페이스를 유지합니다. 최신 C++20으로 구축되었으며 안정성, 테스트 가능성 및 점진적 개발을 강조합니다.
 
-## Table of Contents
+## 목차
 
-1. [Architecture Principles](#architecture-principles)
-2. [Phase 4 Implementation Status](#phase-4-implementation-status)
-3. [Core Foundation Architecture](#core-foundation-architecture)
-4. [System Components](#system-components)
-5. [Design Patterns](#design-patterns)
-6. [Test Architecture](#test-architecture)
-7. [Build and Integration](#build-and-integration)
-8. [Future Architecture](#future-architecture)
-
----
-
-## Architecture Principles
-
-### 1. Foundation First (Phase 4 Focus)
-- **Core Stability**: Fully implement and test fundamental components before building features
-- **Incremental Development**: Build complex features on solid, tested foundations
-- **Quality Over Quantity**: 37 passing tests with 100% success rate vs. partially working features
-
-### 2. Clean Architecture
-- **Separation of Concerns**: Each component has a single, well-defined responsibility
-- **Interface Segregation**: Clean interfaces between components
-- **Dependency Inversion**: Depend on abstractions, not concrete implementations
-- **Result Pattern**: Comprehensive error handling without exceptions
-
-### 3. Modern C++ Best Practices
-- **RAII**: Resource management through smart pointers and scoped objects
-- **Template Metaprogramming**: Type-safe dependency injection and error handling
-- **Move Semantics**: Efficient resource transfer
-- **Concepts** (Future): Type constraints for better compile-time checking
-
-### 4. Testability and Reliability
-- **Test-Driven Approach**: All core functionality is thoroughly tested
-- **Stub Implementations**: Functional interfaces ready for future implementation
-- **Cross-Platform Compatibility**: Windows, Linux, macOS support verified
-- **Error Handling**: Comprehensive Result<T> pattern throughout
+1. [아키텍처 원칙](#아키텍처-원칙)
+2. [Phase 4 구현 상태](#phase-4-구현-상태)
+3. [핵심 기초 아키텍처](#핵심-기초-아키텍처)
+4. [시스템 컴포넌트](#시스템-컴포넌트)
+5. [설계 패턴](#설계-패턴)
+6. [테스트 아키텍처](#테스트-아키텍처)
+7. [빌드 및 통합](#빌드-및-통합)
+8. [미래 아키텍처](#미래-아키텍처)
 
 ---
 
-## Phase 4 Implementation Status
+## 아키텍처 원칙
 
-### ✅ Fully Implemented & Production Ready
-| Component | Status | Test Coverage | Description |
+### 1. 기초 우선 (Phase 4 초점)
+- **핵심 안정성**: 기능을 구축하기 전에 기본 컴포넌트를 완전히 구현하고 테스트
+- **점진적 개발**: 탄탄하고 테스트된 기초 위에 복잡한 기능 구축
+- **양보다 질**: 부분적으로 작동하는 기능보다 100% 성공률의 37개 통과 테스트
+
+### 2. 클린 아키텍처
+- **관심사 분리**: 각 컴포넌트는 단일하고 명확한 책임을 가짐
+- **인터페이스 분리**: 컴포넌트 간 깨끗한 인터페이스
+- **의존성 역전**: 구체적인 구현이 아닌 추상화에 의존
+- **Result 패턴**: 예외 없는 포괄적인 에러 처리
+
+### 3. 최신 C++ 모범 사례
+- **RAII**: 스마트 포인터와 스코프 객체를 통한 리소스 관리
+- **템플릿 메타프로그래밍**: 타입 안전한 의존성 주입 및 에러 처리
+- **Move Semantics**: 효율적인 리소스 전송
+- **Concepts** (향후): 더 나은 컴파일 타임 검사를 위한 타입 제약
+
+### 4. 테스트 가능성 및 신뢰성
+- **테스트 주도 접근**: 모든 핵심 기능은 철저히 테스트됨
+- **Stub 구현**: 향후 구현을 위한 기능적 인터페이스 준비
+- **크로스 플랫폼 호환성**: Windows, Linux, macOS 지원 검증됨
+- **에러 처리**: 전반적인 포괄적 Result<T> 패턴
+
+---
+
+## Phase 4 구현 상태
+
+### ✅ 완전히 구현 및 프로덕션 준비
+| 컴포넌트 | 상태 | 테스트 커버리지 | 설명 |
 |-----------|--------|---------------|-------------|
-| **Result Types** | ✅ Complete | 13 tests | Monadic error handling, comprehensive Result<T> implementation |
-| **DI Container** | ✅ Complete | 9 tests | Full dependency injection with singleton/transient lifecycles |
-| **Thread Context** | ✅ Complete | 6 tests | Thread-local context management with correlation IDs |
-| **Core Interfaces** | ✅ Complete | 9 tests | Basic monitoring abstractions and contracts |
+| **Result Types** | ✅ 완료 | 13 tests | Monadic 에러 처리, 포괄적 Result<T> 구현 |
+| **DI Container** | ✅ 완료 | 9 tests | singleton/transient 라이프사이클을 가진 완전한 의존성 주입 |
+| **Thread Context** | ✅ 완료 | 6 tests | correlation ID를 가진 스레드 로컬 컨텍스트 관리 |
+| **Core Interfaces** | ✅ 완료 | 9 tests | 기본 모니터링 추상화 및 계약 |
 
-### ⚠️ Stub Implementations (Interface Complete)
-| Component | Interface Status | Implementation | Future Development |
+### ⚠️ Stub 구현 (인터페이스 완료)
+| 컴포넌트 | 인터페이스 상태 | 구현 | 향후 개발 |
 |-----------|------------------|----------------|-------------------|
-| **Performance Monitor** | ✅ Complete | Basic stub | Advanced metrics collection |
-| **Distributed Tracing** | ✅ Complete | Basic stub | Full W3C Trace Context |
-| **Storage Backends** | ✅ Complete | File backend | Database, cloud storage |
-| **Health Monitoring** | ✅ Complete | Basic checks | Advanced dependency monitoring |
-| **Circuit Breakers** | ✅ Complete | State management | Advanced failure detection |
+| **Performance Monitor** | ✅ 완료 | 기본 stub | 고급 메트릭 수집 |
+| **Distributed Tracing** | ✅ 완료 | 기본 stub | 전체 W3C Trace Context |
+| **Storage Backends** | ✅ 완료 | File backend | 데이터베이스, 클라우드 스토리지 |
+| **Health Monitoring** | ✅ 완료 | 기본 검사 | 고급 의존성 모니터링 |
+| **Circuit Breakers** | ✅ 완료 | 상태 관리 | 고급 실패 감지 |
 
-### 🔄 Future Implementation
-- Real-time alerting system
-- Web dashboard with WebSocket streaming
-- Advanced storage engines
-- OpenTelemetry integration
-- Stream processing capabilities
+### 🔄 향후 구현
+- 실시간 알림 시스템
+- WebSocket 스트리밍을 가진 웹 대시보드
+- 고급 스토리지 엔진
+- OpenTelemetry 통합
+- 스트림 처리 기능
 
 ---
 
-## Core Foundation Architecture
+## 핵심 기초 아키텍처
 
-### Current Phase 4 Architecture
+### 현재 Phase 4 아키텍처
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -119,7 +119,7 @@ The Monitoring System is a modular and extensible framework designed for high-pe
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Component Interaction Flow
+### 컴포넌트 상호작용 흐름
 
 ```
 Application Code
@@ -145,37 +145,37 @@ Application Code
        ▼                   ▼                   ▼
 ┌─────────────────────────────────────────────────────┐
 │              Stub Implementations                   │
-│  (Ready for future feature development)             │
+│  (향후 기능 개발 준비)                                │
 └─────────────────────────────────────────────────────┘
 ```
 
-### Directory Structure (Phase 4)
+### 디렉토리 구조 (Phase 4)
 
 ```
 monitoring_system/
 ├── 📁 include/kcenon/monitoring/          # Public headers
-│   ├── 📁 core/                          # ✅ Core types (Result, errors)
-│   ├── 📁 di/                            # ✅ Dependency injection
-│   ├── 📁 context/                       # ✅ Thread context
-│   ├── 📁 interfaces/                    # ✅ Abstract interfaces
+│   ├── 📁 core/                          # ✅ 핵심 타입 (Result, errors)
+│   ├── 📁 di/                            # ✅ 의존성 주입
+│   ├── 📁 context/                       # ✅ 스레드 컨텍스트
+│   ├── 📁 interfaces/                    # ✅ 추상 인터페이스
 │   ├── 📁 collectors/                    # ⚠️ Collector stubs
 │   ├── 📁 performance/                   # ⚠️ Performance monitor stub
 │   ├── 📁 tracing/                       # ⚠️ Tracing stubs
 │   └── 📁 storage/                       # ⚠️ Storage stubs
-├── 📁 src/                               # Implementation files
-├── 📁 tests/                             # ✅ Comprehensive test suite
-├── 📁 examples/                          # ✅ Working examples
-├── 📁 docs/                              # ✅ Updated documentation
-└── CMakeLists.txt                        # ✅ Build configuration
+├── 📁 src/                               # 구현 파일
+├── 📁 tests/                             # ✅ 포괄적 테스트 스위트
+├── 📁 examples/                          # ✅ 작동하는 예제
+├── 📁 docs/                              # ✅ 업데이트된 문서
+└── CMakeLists.txt                        # ✅ 빌드 구성
 
-Legend:
-✅ Fully implemented and tested
-⚠️ Interface complete, stub implementation
+범례:
+✅ 완전히 구현되고 테스트됨
+⚠️ 인터페이스 완료, stub 구현
 ```
 
 ---
 
-## System Components
+## 시스템 컴포넌트
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -210,30 +210,30 @@ Legend:
 
 ---
 
-## Core Design Patterns
+## 핵심 설계 패턴
 
-### 1. Result Monad Pattern
-Eliminates exceptions in favor of explicit error handling:
+### 1. Result Monad 패턴
+예외 대신 명시적 에러 처리를 선호:
 
 ```cpp
 template<typename T>
 class result {
     std::variant<T, error_info> data_;
 public:
-    // Monadic bind operation
+    // Monadic bind 연산
     template<typename F>
     auto and_then(F&& f) -> result</*...*/>;
 };
 ```
 
-**Benefits:**
-- Explicit error propagation
-- Composable error handling
-- No hidden control flow
-- Better performance (no stack unwinding)
+**이점:**
+- 명시적 에러 전파
+- 합성 가능한 에러 처리
+- 숨겨진 제어 흐름 없음
+- 더 나은 성능 (스택 언와인딩 없음)
 
-### 2. Builder Pattern
-Used extensively for configuration:
+### 2. Builder 패턴
+구성에 광범위하게 사용:
 
 ```cpp
 monitoring_builder builder;
@@ -244,14 +244,14 @@ auto system = builder
     .build();
 ```
 
-**Benefits:**
+**이점:**
 - Fluent API
-- Optional parameters
-- Compile-time validation
-- Immutable configuration
+- 선택적 매개변수
+- 컴파일 타임 검증
+- 불변 구성
 
-### 3. Strategy Pattern
-For pluggable algorithms:
+### 3. Strategy 패턴
+플러그 가능한 알고리즘용:
 
 ```cpp
 class buffering_strategy {
@@ -260,13 +260,13 @@ class buffering_strategy {
 };
 ```
 
-**Implementations:**
+**구현:**
 - `time_based_buffer`
 - `size_based_buffer`
 - `adaptive_buffer`
 
-### 4. Observer Pattern
-For event notification:
+### 4. Observer 패턴
+이벤트 알림용:
 
 ```cpp
 class health_monitor {
@@ -275,22 +275,22 @@ class health_monitor {
 };
 ```
 
-### 5. RAII Pattern
-Resource management through object lifetime:
+### 5. RAII 패턴
+객체 수명을 통한 리소스 관리:
 
 ```cpp
 class scoped_timer {
     ~scoped_timer() {
-        // Automatically record duration
+        // 자동으로 기간 기록
     }
 };
 ```
 
 ---
 
-## Component Architecture
+## 컴포넌트 아키텍처
 
-### Metrics Collection Subsystem
+### 메트릭 수집 서브시스템
 
 ```
 ┌────────────────────────────────────┐
@@ -311,13 +311,13 @@ class scoped_timer {
 └───────────────┘ └───────────────┘
 ```
 
-**Key Features:**
-- Pluggable collectors
-- Async collection
-- Configurable intervals
-- Automatic aggregation
+**주요 기능:**
+- 플러그 가능한 collectors
+- 비동기 수집
+- 구성 가능한 간격
+- 자동 집계
 
-### Health Monitoring Subsystem
+### 건강 모니터링 서브시스템
 
 ```
 ┌─────────────────────────────────────┐
@@ -342,13 +342,13 @@ class scoped_timer {
 └─────────────────────────────────────┘
 ```
 
-**Dependency Resolution:**
-- Topological sorting
-- Cycle detection
-- Impact analysis
-- Cascading health checks
+**의존성 해결:**
+- 위상 정렬
+- 사이클 감지
+- 영향 분석
+- 계단식 건강 검사
 
-### Distributed Tracing Subsystem
+### 분산 추적 서브시스템
 
 ```
 ┌──────────────────────────┐
@@ -375,12 +375,12 @@ class scoped_timer {
 └──────────────────────────┘
 ```
 
-**Context Propagation:**
-- W3C Trace Context format
-- Baggage propagation
-- Cross-service correlation
+**컨텍스트 전파:**
+- W3C Trace Context 형식
+- Baggage 전파
+- 서비스 간 상관관계
 
-### Storage Backend Subsystem
+### 스토리지 백엔드 서브시스템
 
 ```
 ┌─────────────────────────────────────┐
@@ -401,17 +401,17 @@ class scoped_timer {
 └────────┘    └────────────┘ └─────────┘ └────────┘
 ```
 
-**Storage Strategies:**
-- Synchronous vs Asynchronous
-- Batching and buffering
-- Compression support
-- Retention policies
+**스토리지 전략:**
+- 동기 vs 비동기
+- 배칭 및 버퍼링
+- 압축 지원
+- 보존 정책
 
 ---
 
-## Data Flow
+## 데이터 흐름
 
-### Metric Collection Flow
+### 메트릭 수집 흐름
 
 ```
 Application Code
@@ -432,7 +432,7 @@ Application Code
               [Storage]   [Exporter]  [Analyzer]
 ```
 
-### Trace Collection Flow
+### 추적 수집 흐름
 
 ```
 [Request Start]
@@ -454,7 +454,7 @@ Application Code
 [Export to Backend]
 ```
 
-### Health Check Flow
+### 건강 검사 흐름
 
 ```
 [Health Check Trigger]
@@ -475,9 +475,9 @@ Application Code
 
 ---
 
-## Deployment Architecture
+## 배포 아키텍처
 
-### Single Process Deployment
+### 단일 프로세스 배포
 
 ```
 ┌─────────────────────────────────┐
@@ -495,7 +495,7 @@ Application Code
 └─────────────────────────────────┘
 ```
 
-### Distributed Deployment
+### 분산 배포
 
 ```
 ┌──────────────┐     ┌──────────────┐
@@ -517,7 +517,7 @@ Application Code
         └──────────────┘
 ```
 
-### High Availability Setup
+### 고가용성 설정
 
 ```
         Load Balancer
@@ -533,267 +533,267 @@ Application Code
     ┌────────┼────────┐
     ▼        ▼        ▼
 [Store-1] [Store-2] [Store-3]
-    (Replicated Storage)
+    (복제된 스토리지)
 ```
 
 ---
 
-## Integration Points
+## 통합 포인트
 
-### OpenTelemetry Integration
+### OpenTelemetry 통합
 
 ```cpp
-// Automatic conversion to OTLP
+// OTLP로 자동 변환
 opentelemetry_adapter adapter;
 adapter.export_traces(spans);
 adapter.export_metrics(metrics);
 ```
 
-### Prometheus Integration
+### Prometheus 통합
 
 ```cpp
-// Expose metrics endpoint
+// 메트릭 엔드포인트 노출
 prometheus_exporter exporter;
 exporter.serve_metrics("/metrics", 9090);
 ```
 
-### Custom Integration
+### 맞춤 통합
 
 ```cpp
-// Implement custom exporter
+// 맞춤 exporter 구현
 class custom_exporter : public metrics_exporter {
     result<bool> export_batch(const std::vector<metric_data>& metrics) override {
-        // Custom export logic
+        // 맞춤 export 로직
     }
 };
 ```
 
 ---
 
-## Performance Architecture
+## 성능 아키텍처
 
-### Memory Management
+### 메모리 관리
 
-1. **Object Pooling**: Reuse frequently allocated objects
-2. **Arena Allocation**: Bulk memory allocation for related objects
-3. **Copy-on-Write**: Minimize copying for read-heavy workloads
-4. **Smart Pointers**: Automatic memory management with shared_ptr/unique_ptr
+1. **Object Pooling**: 자주 할당되는 객체 재사용
+2. **Arena Allocation**: 관련 객체를 위한 대량 메모리 할당
+3. **Copy-on-Write**: 읽기 중심 워크로드를 위한 복사 최소화
+4. **Smart Pointers**: shared_ptr/unique_ptr를 사용한 자동 메모리 관리
 
-### Concurrency Model
+### 동시성 모델
 
-1. **Thread Pools**: Configurable worker threads
-2. **Lock-Free Queues**: For high-throughput metric collection
-3. **Read-Write Locks**: Optimize for read-heavy scenarios
-4. **Async I/O**: Non-blocking storage operations
+1. **Thread Pools**: 구성 가능한 워커 스레드
+2. **Lock-Free Queues**: 고처리량 메트릭 수집용
+3. **Read-Write Locks**: 읽기 중심 시나리오에 최적화
+4. **Async I/O**: 논블로킹 스토리지 연산
 
-### Optimization Strategies
+### 최적화 전략
 
-1. **Sampling**: Reduce overhead with configurable sampling rates
-2. **Batching**: Aggregate operations for efficiency
-3. **Caching**: Cache frequently accessed data
-4. **Lazy Evaluation**: Defer expensive computations
+1. **Sampling**: 구성 가능한 샘플링 비율로 오버헤드 감소
+2. **Batching**: 효율성을 위한 연산 집계
+3. **Caching**: 자주 접근하는 데이터 캐싱
+4. **Lazy Evaluation**: 비용이 많이 드는 계산 연기
 
-### Performance Metrics
+### 성능 메트릭
 
-Target performance characteristics:
-- **Metric Collection**: < 1μs per metric
-- **Span Creation**: < 500ns per span
-- **Health Check**: < 10ms per check
-- **Storage Write**: < 5ms batched write
-- **CPU Overhead**: < 5% total
-- **Memory Overhead**: < 50MB baseline
+목표 성능 특성:
+- **메트릭 수집**: < 1μs/메트릭
+- **Span 생성**: < 500ns/span
+- **건강 검사**: < 10ms/검사
+- **스토리지 쓰기**: < 5ms 배치 쓰기
+- **CPU 오버헤드**: < 5% 전체
+- **메모리 오버헤드**: < 50MB 기준선
 
 ---
 
-## Security Architecture
+## 보안 아키텍처
 
-### Data Protection
+### 데이터 보호
 
-1. **Encryption at Rest**: Optional encryption for stored metrics
-2. **Encryption in Transit**: TLS for network communication
-3. **Data Sanitization**: Remove sensitive information
-4. **Access Control**: Role-based access to metrics
+1. **저장 시 암호화**: 저장된 메트릭을 위한 선택적 암호화
+2. **전송 중 암호화**: 네트워크 통신을 위한 TLS
+3. **데이터 정제**: 민감한 정보 제거
+4. **접근 제어**: 메트릭에 대한 역할 기반 접근
 
-### Security Features
+### 보안 기능
 
 ```cpp
-// Mask sensitive data
+// 민감한 데이터 마스킹
 span->tags["password"] = mask_sensitive_data(password);
 
-// Secure storage
+// 안전한 스토리지
 storage_config config;
 config.encryption = encryption_type::aes_256;
 config.key_provider = std::make_unique<kms_provider>();
 ```
 
-### Threat Model
+### 위협 모델
 
-Protected against:
-- **Information Disclosure**: Masked sensitive data
-- **Denial of Service**: Rate limiting and circuit breakers
-- **Resource Exhaustion**: Bounded queues and timeouts
-- **Injection Attacks**: Input validation and sanitization
+다음으로부터 보호:
+- **정보 공개**: 마스킹된 민감 데이터
+- **서비스 거부**: 속도 제한 및 circuit breakers
+- **리소스 고갈**: 제한된 큐 및 타임아웃
+- **주입 공격**: 입력 검증 및 정제
 
 ---
 
-## Scalability Considerations
+## 확장성 고려사항
 
-### Horizontal Scaling
+### 수평 확장
 
-1. **Stateless Design**: No shared state between instances
-2. **Partitioning**: Shard metrics by key
-3. **Load Balancing**: Distribute load across collectors
-4. **Federation**: Aggregate metrics from multiple sources
+1. **무상태 설계**: 인스턴스 간 공유 상태 없음
+2. **파티셔닝**: 키로 메트릭 샤딩
+3. **로드 밸런싱**: collectors 간 부하 분산
+4. **연합**: 여러 소스에서 메트릭 집계
 
-### Vertical Scaling
+### 수직 확장
 
-1. **Adaptive Threading**: Scale thread pool with CPU cores
-2. **Memory Pooling**: Efficient memory usage
-3. **Batch Processing**: Process metrics in batches
-4. **Compression**: Reduce storage and network overhead
+1. **적응형 스레딩**: CPU 코어와 함께 스레드 풀 확장
+2. **메모리 풀링**: 효율적인 메모리 사용
+3. **배치 처리**: 메트릭을 배치로 처리
+4. **압축**: 스토리지 및 네트워크 오버헤드 감소
 
-### Scaling Strategies
+### 확장 전략
 
 ```cpp
-// Adaptive scaling
+// 적응형 확장
 adaptive_optimizer optimizer;
-optimizer.set_target_overhead(5.0); // 5% max overhead
+optimizer.set_target_overhead(5.0); // 최대 5% 오버헤드
 optimizer.enable_auto_scaling(true);
 
-// Partitioned storage
+// 파티션된 스토리지
 partitioned_storage storage;
 storage.add_partition("metrics_1", 0, 1000);
 storage.add_partition("metrics_2", 1001, 2000);
 ```
 
-### Capacity Planning
+### 용량 계획
 
-Typical capacity per instance:
-- **Metrics**: 100K metrics/second
-- **Traces**: 10K spans/second
-- **Health Checks**: 1K checks/second
-- **Storage**: 1GB/hour compressed
-- **Network**: 10Mbps average
+인스턴스당 일반적인 용량:
+- **메트릭**: 100K 메트릭/초
+- **추적**: 10K spans/초
+- **건강 검사**: 1K 검사/초
+- **스토리지**: 압축된 1GB/시간
+- **네트워크**: 평균 10Mbps
 
 ---
 
-## Anti-Patterns to Avoid
+## 피해야 할 안티패턴
 
-### 1. Synchronous Metrics Collection
-❌ **Don't:**
+### 1. 동기 메트릭 수집
+❌ **하지 마세요:**
 ```cpp
 void process_request() {
-    // Blocks request processing
+    // 요청 처리를 블록킹
     metrics.record_sync("latency", duration);
 }
 ```
 
-✅ **Do:**
+✅ **하세요:**
 ```cpp
 void process_request() {
-    // Non-blocking
+    // 논블로킹
     metrics.record_async("latency", duration);
 }
 ```
 
-### 2. Unbounded Queues
-❌ **Don't:**
+### 2. 무제한 큐
+❌ **하지 마세요:**
 ```cpp
-std::queue<metric_data> queue; // Can grow infinitely
+std::queue<metric_data> queue; // 무한정 증가 가능
 ```
 
-✅ **Do:**
+✅ **하세요:**
 ```cpp
-bounded_queue<metric_data> queue(10000); // Bounded size
+bounded_queue<metric_data> queue(10000); // 제한된 크기
 ```
 
-### 3. Global State
-❌ **Don't:**
+### 3. 전역 상태
+❌ **하지 마세요:**
 ```cpp
-global_metrics g_metrics; // Global mutable state
+global_metrics g_metrics; // 전역 가변 상태
 ```
 
-✅ **Do:**
+✅ **하세요:**
 ```cpp
-thread_local metrics t_metrics; // Thread-local state
+thread_local metrics t_metrics; // 스레드 로컬 상태
 ```
 
 ---
 
-## Troubleshooting Architecture Issues
+## 아키텍처 문제 해결
 
-### Performance Degradation
+### 성능 저하
 
-1. **Check sampling rates**: Increase sampling to reduce overhead
-2. **Review batch sizes**: Optimize batching parameters
-3. **Monitor queue depths**: Look for queue backpressure
-4. **Analyze lock contention**: Use profiler to find hotspots
+1. **샘플링 비율 확인**: 오버헤드를 줄이기 위해 샘플링 증가
+2. **배치 크기 검토**: 배칭 매개변수 최적화
+3. **큐 깊이 모니터링**: 큐 백프레셔 확인
+4. **락 경합 분석**: 프로파일러를 사용하여 핫스팟 찾기
 
-### Memory Leaks
+### 메모리 누수
 
-1. **Enable memory tracking**: Use built-in memory profiler
-2. **Check circular references**: Review shared_ptr usage
-3. **Monitor object pools**: Ensure proper object return
-4. **Validate cleanup**: Verify destructors are called
+1. **메모리 추적 활성화**: 내장 메모리 프로파일러 사용
+2. **순환 참조 확인**: shared_ptr 사용 검토
+3. **객체 풀 모니터링**: 적절한 객체 반환 확인
+4. **정리 검증**: 소멸자가 호출되는지 확인
 
-### Integration Failures
+### 통합 실패
 
-1. **Check network connectivity**: Validate endpoints are reachable
-2. **Review authentication**: Ensure credentials are valid
-3. **Validate data format**: Check serialization/deserialization
-4. **Monitor circuit breakers**: Look for open circuits
-
----
-
-## Future Architecture Directions
-
-### Planned Enhancements
-
-1. **Coroutine Support**: C++20 coroutines for async operations
-2. **GPU Acceleration**: CUDA/OpenCL for metric aggregation
-3. **Machine Learning**: Anomaly detection and prediction
-4. **Edge Computing**: Lightweight edge monitoring agents
-5. **WebAssembly**: Browser-based monitoring dashboards
-
-### Research Areas
-
-1. **Quantum-resistant Encryption**: Future-proof security
-2. **AI-driven Optimization**: Self-tuning monitoring
-3. **Blockchain Integration**: Immutable audit trails
-4. **5G Network Support**: Ultra-low latency monitoring
+1. **네트워크 연결 확인**: 엔드포인트에 도달 가능한지 확인
+2. **인증 검토**: 자격 증명이 유효한지 확인
+3. **데이터 형식 검증**: 직렬화/역직렬화 확인
+4. **Circuit breakers 모니터링**: 열린 circuits 확인
 
 ---
 
-## Architecture Decision Records (ADRs)
+## 미래 아키텍처 방향
 
-### ADR-001: Use Result Type Instead of Exceptions
-**Status**: Accepted  
-**Context**: Need explicit error handling without hidden control flow  
-**Decision**: Use monadic Result<T> type  
-**Consequences**: More verbose but safer error handling
+### 계획된 개선
 
-### ADR-002: Template-based Extensibility
-**Status**: Accepted  
-**Context**: Need compile-time polymorphism for performance  
-**Decision**: Use templates for generic components  
-**Consequences**: Longer compile times but better runtime performance
+1. **Coroutine 지원**: 비동기 연산을 위한 C++20 coroutines
+2. **GPU 가속**: 메트릭 집계를 위한 CUDA/OpenCL
+3. **머신 러닝**: 이상 감지 및 예측
+4. **Edge Computing**: 경량 edge 모니터링 에이전트
+5. **WebAssembly**: 브라우저 기반 모니터링 대시보드
 
-### ADR-003: Lock-free Data Structures
-**Status**: Accepted  
-**Context**: High-concurrency metric collection  
-**Decision**: Use atomic operations where possible  
-**Consequences**: Complex implementation but better scalability
+### 연구 분야
+
+1. **양자 저항 암호화**: 미래 대비 보안
+2. **AI 기반 최적화**: 자가 조정 모니터링
+3. **블록체인 통합**: 불변 감사 추적
+4. **5G 네트워크 지원**: 초저지연 모니터링
 
 ---
 
-## Conclusion
+## 아키텍처 결정 기록 (ADRs)
 
-The Monitoring System architecture is designed to be:
-- **Performant**: Minimal overhead on monitored applications
-- **Reliable**: Fault-tolerant with graceful degradation
-- **Scalable**: Horizontal and vertical scaling support
-- **Extensible**: Easy to add new features and integrations
-- **Maintainable**: Clean architecture with clear boundaries
+### ADR-001: 예외 대신 Result 타입 사용
+**상태**: 수락됨
+**맥락**: 숨겨진 제어 흐름 없이 명시적 에러 처리 필요
+**결정**: Monadic Result<T> 타입 사용
+**결과**: 더 장황하지만 더 안전한 에러 처리
 
-For implementation details, see the [API Reference](API_REFERENCE.md).  
-For practical examples, see the [Examples Directory](../examples/).
+### ADR-002: 템플릿 기반 확장성
+**상태**: 수락됨
+**맥락**: 성능을 위한 컴파일 타임 다형성 필요
+**결정**: 일반 컴포넌트에 템플릿 사용
+**결과**: 더 긴 컴파일 시간이지만 더 나은 런타임 성능
+
+### ADR-003: Lock-free 데이터 구조
+**상태**: 수락됨
+**맥락**: 높은 동시성 메트릭 수집
+**결정**: 가능한 곳에 atomic 연산 사용
+**결과**: 복잡한 구현이지만 더 나은 확장성
+
+---
+
+## 결론
+
+Monitoring System 아키텍처는 다음을 위해 설계되었습니다:
+- **고성능**: 모니터링되는 애플리케이션에 최소 오버헤드
+- **신뢰성**: 우아한 저하를 가진 내결함성
+- **확장 가능**: 수평 및 수직 확장 지원
+- **확장 가능**: 새로운 기능 및 통합을 쉽게 추가
+- **유지 관리 가능**: 명확한 경계를 가진 클린 아키텍처
+
+구현 세부사항은 [API Reference](API_REFERENCE.md)를 참조하세요.
+실용적인 예제는 [Examples Directory](../examples/)를 참조하세요.
