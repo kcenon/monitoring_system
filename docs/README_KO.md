@@ -146,7 +146,7 @@ README.md → PHASE3.md → API_REFERENCE.md → TROUBLESHOOTING.md
 ## 🔗 외부 리소스
 
 - **[GitHub Repository](https://github.com/kcenon/monitoring_system)** - 소스 코드 및 이슈
-- **[GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)** - 커뮤니티 지원
+- **[GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)** - 유지보수 지원
 - **[GitHub Actions](https://github.com/kcenon/monitoring_system/actions)** - 지속적 통합
 - **[Releases](https://github.com/kcenon/monitoring_system/releases)** - 버전 다운로드
 
