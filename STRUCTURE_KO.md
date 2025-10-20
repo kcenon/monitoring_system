@@ -1,8 +1,8 @@
-# Monitoring System - Project Structure
+# Monitoring System - 프로젝트 구조
 
-> **Language**: **English** | [한국어](STRUCTURE_KO.md)
+> **언어 선택 (Language)**: [English](STRUCTURE.md) | **한국어**
 
-## 📁 Directory Layout
+## 📁 디렉토리 레이아웃
 
 ```
 monitoring_system/
@@ -120,121 +120,121 @@ monitoring_system/
 └── 📄 README.md                  # Project overview & documentation
 ```
 
-## 🏗️ Namespace Structure
+## 🏗️ Namespace 구조
 
 ### Core Namespaces
-- **Root**: `kcenon::monitoring` - Main monitoring namespace
-- **Core functionality**: `kcenon::monitoring::core` - Essential monitoring components
-- **Interfaces**: `kcenon::monitoring::interfaces` - Abstract base classes
-- **Collectors**: `kcenon::monitoring::collectors` - Data collection implementations
-- **Exporters**: `kcenon::monitoring::exporters` - Data export implementations
-- **Storage**: `kcenon::monitoring::storage` - Data storage implementations
-- **Implementation details**: `kcenon::monitoring::impl` - Internal implementation classes
-- **Utilities**: `kcenon::monitoring::utils` - Helper functions and utilities
+- **Root**: `kcenon::monitoring` - 메인 모니터링 네임스페이스
+- **Core functionality**: `kcenon::monitoring::core` - 필수 모니터링 컴포넌트
+- **Interfaces**: `kcenon::monitoring::interfaces` - 추상 기본 클래스
+- **Collectors**: `kcenon::monitoring::collectors` - 데이터 수집 구현
+- **Exporters**: `kcenon::monitoring::exporters` - 데이터 내보내기 구현
+- **Storage**: `kcenon::monitoring::storage` - 데이터 저장소 구현
+- **Implementation details**: `kcenon::monitoring::impl` - 내부 구현 클래스
+- **Utilities**: `kcenon::monitoring::utils` - 헬퍼 함수 및 유틸리티
 
 ### Nested Namespaces
-- `kcenon::monitoring::impl::web` - Web dashboard components
-- `kcenon::monitoring::impl::alerting` - Alert system components
-- `kcenon::monitoring::impl::tracing` - Distributed tracing components
+- `kcenon::monitoring::impl::web` - Web dashboard 컴포넌트
+- `kcenon::monitoring::impl::alerting` - Alert 시스템 컴포넌트
+- `kcenon::monitoring::impl::tracing` - Distributed tracing 컴포넌트
 
-## 🔧 Key Components Overview
+## 🔧 주요 컴포넌트 개요
 
 ### 🎯 Public API Layer (`include/kcenon/monitoring/`)
-| Component | File | Purpose |
+| 컴포넌트 | 파일 | 목적 |
 |-----------|------|---------|
-| **Main Monitor** | `core/monitor.h` | Primary monitoring interface |
-| **Metrics Manager** | `core/metrics_manager.h` | Metrics collection coordination |
-| **Alert Manager** | `core/alert_manager.h` | Alert management and escalation |
-| **Dashboard** | `core/dashboard.h` | Web dashboard interface |
-| **Collector Interface** | `interfaces/collector_interface.h` | Base class for all collectors |
-| **Exporter Interface** | `interfaces/exporter_interface.h` | Base class for all exporters |
-| **System Collector** | `collectors/system_collector.h` | System metrics collection |
-| **Process Collector** | `collectors/process_collector.h` | Process metrics collection |
-| **Prometheus Exporter** | `exporters/prometheus_exporter.h` | Prometheus format export |
-| **InfluxDB Exporter** | `exporters/influxdb_exporter.h` | InfluxDB export |
+| **Main Monitor** | `core/monitor.h` | 주요 모니터링 인터페이스 |
+| **Metrics Manager** | `core/metrics_manager.h` | 메트릭 수집 조정 |
+| **Alert Manager** | `core/alert_manager.h` | 알림 관리 및 에스컬레이션 |
+| **Dashboard** | `core/dashboard.h` | Web dashboard 인터페이스 |
+| **Collector Interface** | `interfaces/collector_interface.h` | 모든 collector의 기본 클래스 |
+| **Exporter Interface** | `interfaces/exporter_interface.h` | 모든 exporter의 기본 클래스 |
+| **System Collector** | `collectors/system_collector.h` | 시스템 메트릭 수집 |
+| **Process Collector** | `collectors/process_collector.h` | 프로세스 메트릭 수집 |
+| **Prometheus Exporter** | `exporters/prometheus_exporter.h` | Prometheus 형식 내보내기 |
+| **InfluxDB Exporter** | `exporters/influxdb_exporter.h` | InfluxDB 내보내기 |
 
 ### ⚙️ Implementation Layer (`src/`)
-| Component | Directory | Purpose |
+| 컴포넌트 | 디렉토리 | 목적 |
 |-----------|-----------|---------|
-| **Collectors** | `impl/collectors/` | Real-time metric collection engines |
-| **Exporters** | `impl/exporters/` | Data export format implementations |
-| **Storage Engines** | `impl/storage/` | Time-series data storage systems |
-| **Web Dashboard** | `impl/web/` | Interactive monitoring dashboard |
-| **Alert System** | `impl/alerting/` | Rule-based alerting and notifications |
-| **Distributed Tracing** | `impl/tracing/` | Request tracing and span collection |
+| **Collectors** | `impl/collectors/` | 실시간 메트릭 수집 엔진 |
+| **Exporters** | `impl/exporters/` | 데이터 내보내기 형식 구현 |
+| **Storage Engines** | `impl/storage/` | 시계열 데이터 저장 시스템 |
+| **Web Dashboard** | `impl/web/` | 대화형 모니터링 대시보드 |
+| **Alert System** | `impl/alerting/` | 규칙 기반 알림 및 알림 |
+| **Distributed Tracing** | `impl/tracing/` | 요청 추적 및 span 수집 |
 
-## 📊 Performance Characteristics
+## 📊 성능 특성
 
-- **Collection Rate**: 10M+ operations/second (metrics collection)
-- **Storage Efficiency**: 90%+ compression for time-series data
-- **Dashboard Latency**: Sub-100ms query response times
-- **Alerting**: Real-time rule evaluation with <1s notification delay
-- **Distributed Tracing**: End-to-end request tracking with microsecond precision
+- **Collection Rate**: 초당 10M+ 작업 (메트릭 수집)
+- **Storage Efficiency**: 시계열 데이터에 대해 90%+ 압축
+- **Dashboard Latency**: 100ms 미만의 쿼리 응답 시간
+- **Alerting**: 1초 미만의 알림 지연으로 실시간 규칙 평가
+- **Distributed Tracing**: 마이크로초 정밀도의 end-to-end 요청 추적
 
-## 🚀 Core Features
+## 🚀 핵심 기능
 
-### 📈 Real-Time Monitoring
-- **System Metrics**: CPU, memory, disk, network usage
-- **Application Metrics**: Custom counters, gauges, histograms
-- **Performance Metrics**: Response times, throughput, error rates
-- **Health Monitoring**: Service availability and endpoint health
+### 📈 실시간 모니터링
+- **System Metrics**: CPU, 메모리, 디스크, 네트워크 사용량
+- **Application Metrics**: 사용자 정의 counter, gauge, histogram
+- **Performance Metrics**: 응답 시간, 처리량, 오류율
+- **Health Monitoring**: 서비스 가용성 및 endpoint 상태
 
 ### 📊 Web Dashboard
-- **Interactive Visualization**: Real-time charts and graphs
-- **Custom Dashboards**: Configurable monitoring views
-- **Alert Management**: Visual alert status and history
-- **API Endpoints**: RESTful API for metric queries
+- **Interactive Visualization**: 실시간 차트 및 그래프
+- **Custom Dashboards**: 구성 가능한 모니터링 뷰
+- **Alert Management**: 시각적 알림 상태 및 이력
+- **API Endpoints**: 메트릭 쿼리를 위한 RESTful API
 
 ### 🚨 Alerting System
-- **Rule-Based Alerts**: Threshold-based and pattern-based rules
-- **Multi-Channel Notifications**: Email, Slack, webhook integrations
-- **Escalation Policies**: Automatic escalation and on-call rotation
-- **Alert Correlation**: Intelligent grouping and deduplication
+- **Rule-Based Alerts**: 임계값 기반 및 패턴 기반 규칙
+- **Multi-Channel Notifications**: Email, Slack, webhook 통합
+- **Escalation Policies**: 자동 에스컬레이션 및 온콜 순환
+- **Alert Correlation**: 지능형 그룹화 및 중복 제거
 
 ### 🔍 Distributed Tracing
-- **Request Tracking**: End-to-end request flow visualization
-- **Performance Analysis**: Latency hotspot identification
-- **Error Tracking**: Distributed error propagation analysis
-- **Service Dependency**: Automatic service map generation
+- **Request Tracking**: End-to-end 요청 흐름 시각화
+- **Performance Analysis**: 지연 핫스팟 식별
+- **Error Tracking**: 분산 오류 전파 분석
+- **Service Dependency**: 자동 서비스 맵 생성
 
-## 🔄 Migration Guide
+## 🔄 마이그레이션 가이드
 
-### Step 1: Backup Current Setup
+### Step 1: 현재 설정 백업
 ```bash
-# Automatic backup of old structure
+# 이전 구조 자동 백업
 mkdir -p old_structure/
 cp -r include/ old_structure/include_backup/
 cp -r src/ old_structure/src_backup/
 cp -r web/ old_structure/web_backup/
 ```
 
-### Step 2: Update Include Paths
+### Step 2: Include 경로 업데이트
 ```cpp
-// Old style
+// 이전 방식
 #include "monitoring/monitor.h"
 
-// New style
+// 새로운 방식
 #include "kcenon/monitoring/core/monitor.h"
 ```
 
-### Step 3: Update Namespace Usage
+### Step 3: Namespace 사용 업데이트
 ```cpp
-// Old style
+// 이전 방식
 using namespace monitoring;
 
-// New style
+// 새로운 방식
 using namespace kcenon::monitoring::core;
 ```
 
-### Step 4: Run Migration Scripts
+### Step 4: 마이그레이션 스크립트 실행
 ```bash
-# Automated namespace migration
+# 자동화된 namespace 마이그레이션
 ./scripts/migrate_namespaces.sh
 ./scripts/update_cmake.sh
 ./scripts/deploy_dashboard.sh
 ```
 
-## 🚀 Quick Start with New Structure
+## 🚀 새로운 구조로 빠른 시작
 
 ```cpp
 #include "kcenon/monitoring/core/monitor.h"
@@ -244,7 +244,7 @@ using namespace kcenon::monitoring::core;
 int main() {
     using namespace kcenon::monitoring;
 
-    // Create monitoring system with new structure
+    // 새로운 구조로 모니터링 시스템 생성
     auto monitor = core::monitor_builder()
         .add_collector(std::make_shared<collectors::system_collector>())
         .add_exporter(std::make_shared<exporters::prometheus_exporter>(8080))
@@ -252,7 +252,7 @@ int main() {
         .enable_alerting(true)
         .build();
 
-    // Start monitoring with web dashboard at http://localhost:8080
+    // http://localhost:8080에서 web dashboard와 함께 모니터링 시작
     monitor->start();
     monitor->collect_metrics();
 
@@ -260,13 +260,13 @@ int main() {
 }
 ```
 
-## 🌐 Web Dashboard Integration
+## 🌐 Web Dashboard 통합
 
-The monitoring system includes a comprehensive web dashboard accessible at `http://localhost:8080` with the following features:
+모니터링 시스템은 `http://localhost:8080`에서 액세스할 수 있는 포괄적인 web dashboard를 포함하며 다음 기능을 제공합니다:
 
-- **Real-time Metrics Visualization**
-- **Interactive Charts and Graphs**
-- **Alert Management Interface**
-- **System Health Overview**
-- **Performance Analytics**
-- **Distributed Tracing Views**
+- **실시간 메트릭 시각화**
+- **대화형 차트 및 그래프**
+- **알림 관리 인터페이스**
+- **시스템 상태 개요**
+- **성능 분석**
+- **Distributed Tracing 뷰**

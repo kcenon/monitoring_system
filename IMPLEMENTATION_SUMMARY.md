@@ -1,5 +1,7 @@
 # Integration Testing Suite Implementation Summary
 
+> **Language**: **English** | [한국어](IMPLEMENTATION_SUMMARY_KO.md)
+
 ## Overview
 
 Comprehensive integration testing suite for monitoring_system has been successfully implemented following the established patterns from common_system PR #33, thread_system PR #47, and logger_system PR #45.
