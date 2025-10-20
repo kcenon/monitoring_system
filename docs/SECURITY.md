@@ -49,7 +49,7 @@ We actively support and provide security updates for the following versions:
 
 ## Reporting a Vulnerability
 
-The Monitoring System team takes security vulnerabilities seriously. We appreciate your efforts to responsibly disclose any issues you may find.
+The Monitoring System takes security vulnerabilities seriously. We appreciate your efforts to responsibly disclose any issues you may find.
 
 ### How to Report
 
