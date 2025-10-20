@@ -1,40 +1,40 @@
-# Monitoring System Tutorial
+# Monitoring System 튜토리얼
 
-> **Language:** **English** | [한국어](TUTORIAL_KO.md)
+> **Language:** [English](TUTORIAL.md) | **한국어**
 
-## Introduction
+## 소개
 
-Welcome to the Monitoring System tutorial! This guide will walk you through using the monitoring system in your applications, from basic setup to advanced features.
+Monitoring System 튜토리얼에 오신 것을 환영합니다! 이 가이드는 기본 설정부터 고급 기능까지 애플리케이션에서 모니터링 시스템을 사용하는 방법을 안내합니다.
 
-## Table of Contents
+## 목차
 
-1. [Getting Started](#getting-started)
-2. [Basic Monitoring](#basic-monitoring)
-3. [Distributed Tracing](#distributed-tracing)
-4. [Health Monitoring](#health-monitoring)
-5. [Reliability Features](#reliability-features)
-6. [Error Handling with Result Pattern](#error-handling-with-result-pattern)
-7. [Best Practices](#best-practices)
+1. [시작하기](#시작하기)
+2. [기본 모니터링](#기본-모니터링)
+3. [분산 추적](#분산-추적)
+4. [건강 모니터링](#건강-모니터링)
+5. [신뢰성 기능](#신뢰성-기능)
+6. [Result 패턴을 사용한 에러 처리](#result-패턴을-사용한-에러-처리)
+7. [모범 사례](#모범-사례)
 
 ---
 
-## Getting Started
+## 시작하기
 
-### Prerequisites
+### 전제 조건
 
-- C++17 or later compiler
-- CMake 3.15 or later
-- Thread support
+- C++17 이상 컴파일러
+- CMake 3.15 이상
+- 스레드 지원
 
-### Installation
+### 설치
 
-1. Clone the repository:
+1. 저장소 클론:
 ```bash
 git clone <repository-url>
 cd monitoring_system
 ```
 
-2. Build the project:
+2. 프로젝트 빌드:
 ```bash
 mkdir build
 cd build
@@ -42,20 +42,20 @@ cmake ..
 make
 ```
 
-3. Run tests:
+3. 테스트 실행:
 ```bash
 ./tests/monitoring_system_tests
 ```
 
-### Including in Your Project
+### 프로젝트에 포함
 
-Add to your CMakeLists.txt:
+CMakeLists.txt에 추가:
 ```cmake
 add_subdirectory(monitoring_system)
 target_link_libraries(your_app PRIVATE monitoring_system)
 ```
 
-Include headers in your code:
+코드에 헤더 포함:
 ```cpp
 #include <monitoring/monitoring.h>
 #include <monitoring/performance/performance_monitor.h>
@@ -63,21 +63,21 @@ Include headers in your code:
 
 ---
 
-## Basic Monitoring
+## 기본 모니터링
 
-### Step 1: Initialize the Monitoring System
+### 단계 1: 모니터링 시스템 초기화
 
 ```cpp
 #include <monitoring/monitoring.h>
 
 using namespace monitoring_system;
 
-// Configure monitoring
+// 모니터링 구성
 monitoring_config config;
 config.history_size = 1000;
 config.collection_interval = std::chrono::seconds(1);
 
-// Build monitoring instance
+// 모니터링 인스턴스 빌드
 monitoring_builder builder;
 auto monitoring_result = builder
     .with_history_size(config.history_size)
@@ -86,7 +86,7 @@ auto monitoring_result = builder
     .build();
 
 if (!monitoring_result) {
-    // Handle error
+    // 에러 처리
     std::cerr << "Failed: " << monitoring_result.get_error().message << std::endl;
     return;
 }
@@ -94,36 +94,36 @@ if (!monitoring_result) {
 auto& monitoring = *monitoring_result.value();
 ```
 
-### Step 2: Add Collectors
+### 단계 2: Collectors 추가
 
 ```cpp
-// Add performance monitor
+// 성능 모니터 추가
 auto perf_monitor = std::make_unique<performance_monitor>("my_app");
 monitoring.add_collector(std::move(perf_monitor));
 
-// Start monitoring
+// 모니터링 시작
 monitoring.start();
 ```
 
-### Step 3: Record Metrics
+### 단계 3: 메트릭 기록
 
 ```cpp
-// Record custom metrics
+// 맞춤 메트릭 기록
 monitoring.record_metric("request_count", 1.0, metric_unit::count);
 monitoring.record_metric("response_time", 45.3, metric_unit::milliseconds);
 monitoring.record_metric("memory_usage", 128.5, metric_unit::megabytes);
 
-// Use scoped timer for automatic duration measurement
+// 자동 기간 측정을 위한 스코프 타이머 사용
 {
     auto timer = perf_monitor->time_operation("database_query");
-    // ... perform database query ...
-} // Timer automatically records duration when destroyed
+    // ... 데이터베이스 쿼리 수행 ...
+} // 타이머가 소멸될 때 자동으로 기간 기록
 ```
 
-### Step 4: Query Metrics
+### 단계 4: 메트릭 쿼리
 
 ```cpp
-// Get snapshot of current metrics
+// 현재 메트릭의 스냅샷 가져오기
 auto snapshot = monitoring.get_snapshot();
 if (snapshot) {
     for (const auto& [name, data] : snapshot.value().metrics) {
@@ -131,121 +131,121 @@ if (snapshot) {
     }
 }
 
-// Get statistics
+// 통계 가져오기
 auto stats = monitoring.get_statistics();
 std::cout << "Metrics recorded: " << stats.metrics_recorded << std::endl;
 ```
 
-### Complete Example
+### 완전한 예제
 
-See [basic_monitoring_example.cpp](basic_monitoring_example.cpp) for a complete working example.
+완전한 작동 예제는 [basic_monitoring_example.cpp](basic_monitoring_example.cpp)를 참조하세요.
 
 ---
 
-## Distributed Tracing
+## 분산 추적
 
-### Creating Spans
+### Span 생성
 
 ```cpp
 #include <monitoring/tracing/distributed_tracer.h>
 
 distributed_tracer tracer;
 
-// Start a root span
+// 루트 span 시작
 auto root_span = tracer.start_span("process_request", "frontend_service");
 if (root_span) {
     auto span = root_span.value();
-    
-    // Add tags
+
+    // 태그 추가
     span->tags["http.method"] = "GET";
     span->tags["http.url"] = "/api/users";
     span->tags["user.id"] = "12345";
-    
-    // Add baggage (propagated to children)
+
+    // baggage 추가 (자식에게 전파됨)
     span->baggage["session.id"] = "abc123";
-    
-    // Finish span
+
+    // span 완료
     tracer.finish_span(span);
 }
 ```
 
-### Parent-Child Relationships
+### 부모-자식 관계
 
 ```cpp
-// Create child span
+// 자식 span 생성
 auto child_span = tracer.start_child_span(*parent_span, "database_query");
 if (child_span) {
     auto span = child_span.value();
     span->tags["db.type"] = "postgresql";
     span->tags["db.statement"] = "SELECT * FROM users";
-    
-    // Perform operation...
-    
+
+    // 연산 수행...
+
     tracer.finish_span(span);
 }
 ```
 
-### Context Propagation
+### 컨텍스트 전파
 
 ```cpp
-// Extract context for propagation
+// 전파를 위한 컨텍스트 추출
 auto context = tracer.extract_context(*span);
 
-// Inject into HTTP headers
+// HTTP 헤더에 주입
 std::map<std::string, std::string> headers;
 tracer.inject_context(context, headers);
 
-// In receiving service, extract context
+// 수신 서비스에서 컨텍스트 추출
 auto extracted = tracer.extract_context_from_carrier(headers);
 if (extracted) {
-    // Continue trace
+    // 추적 계속
     auto continued_span = tracer.start_span_from_context(
-        extracted.value(), 
+        extracted.value(),
         "continued_operation"
     );
 }
 ```
 
-### Using Macros for Convenience
+### 편의를 위한 매크로 사용
 
 ```cpp
 void process_request() {
     TRACE_SPAN("process_request");
-    
-    // Span automatically created and will be finished when function exits
-    
+
+    // Span이 자동으로 생성되며 함수 종료 시 완료됨
+
     validate_input();
-    
+
     {
         TRACE_CHILD_SPAN(*_scoped_span, "database_operation");
-        // Child span for this block
+        // 이 블록을 위한 자식 span
         query_database();
     }
 }
 ```
 
-### Complete Example
+### 완전한 예제
 
-See [distributed_tracing_example.cpp](distributed_tracing_example.cpp) for a complete working example.
+완전한 작동 예제는 [distributed_tracing_example.cpp](distributed_tracing_example.cpp)를 참조하세요.
 
 ---
 
-## Health Monitoring
+## 건강 모니터링
 
-### Setting Up Health Checks
+### 건강 검사 설정
 
 ```cpp
 #include <monitoring/health/health_monitor.h>
 
 health_monitor monitor;
 
-// Register a liveness check
+// liveness 검사 등록
 monitor.register_check("database",
     health_check_builder()
         .with_name("database_check")
         .with_type(health_check_type::liveness)
         .with_check([]() {
-            // Check database connection
+            // 데이터베이스 연결 확인
             if (can_connect_to_database()) {
                 return health_check_result::healthy("Database connected");
             }
@@ -256,13 +256,13 @@ monitor.register_check("database",
         .build()
 );
 
-// Register a readiness check
+// readiness 검사 등록
 monitor.register_check("api",
     health_check_builder()
         .with_name("api_check")
         .with_type(health_check_type::readiness)
         .with_check([]() {
-            // Check if API is ready
+            // API 준비 여부 확인
             if (api_initialized && !overloaded) {
                 return health_check_result::healthy("API ready");
             }
@@ -275,36 +275,36 @@ monitor.register_check("api",
 );
 ```
 
-### Health Dependencies
+### 건강 의존성
 
 ```cpp
-// Define dependencies between services
+// 서비스 간 의존성 정의
 monitor.add_dependency("api", "database");
 monitor.add_dependency("api", "cache");
 
-// Dependencies are checked in order
+// 의존성이 순서대로 확인됨
 auto results = monitor.check_all();
 ```
 
-### Recovery Handlers
+### 복구 핸들러
 
 ```cpp
-// Register automatic recovery
+// 자동 복구 등록
 monitor.register_recovery_handler("database",
     []() -> bool {
-        // Attempt to reconnect
+        // 재연결 시도
         return reconnect_to_database();
     }
 );
 ```
 
-### Health Endpoints
+### 건강 엔드포인트
 
 ```cpp
-// Create HTTP endpoint for health checks
+// 건강 검사를 위한 HTTP 엔드포인트 생성
 void health_endpoint(const http_request& req, http_response& res) {
     auto health = monitor.get_overall_status();
-    
+
     if (health == health_status::healthy) {
         res.status = 200;
         res.body = "OK";
@@ -318,50 +318,50 @@ void health_endpoint(const http_request& req, http_response& res) {
 }
 ```
 
-### Complete Example
+### 완전한 예제
 
-See [health_reliability_example.cpp](health_reliability_example.cpp) for a complete working example.
+완전한 작동 예제는 [health_reliability_example.cpp](health_reliability_example.cpp)를 참조하세요.
 
 ---
 
-## Reliability Features
+## 신뢰성 기능
 
 ### Circuit Breakers
 
-Prevent cascading failures by stopping calls to failing services:
+실패하는 서비스로의 호출을 중단하여 연쇄 실패를 방지:
 
 ```cpp
 #include <monitoring/reliability/circuit_breaker.h>
 
-// Configure circuit breaker
+// circuit breaker 구성
 circuit_breaker_config config;
-config.failure_threshold = 5;        // Open after 5 failures
-config.reset_timeout = 30s;          // Try again after 30 seconds
-config.success_threshold = 2;        // Need 2 successes to close
+config.failure_threshold = 5;        // 5번 실패 후 열림
+config.reset_timeout = 30s;          // 30초 후 재시도
+config.success_threshold = 2;        // 닫기 위해 2번 성공 필요
 
 circuit_breaker<std::string> breaker("external_api", config);
 
-// Use circuit breaker
+// circuit breaker 사용
 auto result = breaker.execute(
-    []() { 
-        // Call external service
-        return call_external_api(); 
+    []() {
+        // 외부 서비스 호출
+        return call_external_api();
     },
-    []() { 
-        // Fallback when circuit is open
-        return result<std::string>::success("cached_response"); 
+    []() {
+        // circuit이 열렸을 때 fallback
+        return result<std::string>::success("cached_response");
     }
 );
 ```
 
 ### Retry Policies
 
-Automatically retry failed operations:
+실패한 연산을 자동으로 재시도:
 
 ```cpp
 #include <monitoring/reliability/retry_policy.h>
 
-// Configure retry
+// retry 구성
 retry_config config;
 config.max_attempts = 3;
 config.strategy = retry_strategy::exponential_backoff;
@@ -370,7 +370,7 @@ config.max_delay = 5s;
 
 retry_policy<std::string> retry(config);
 
-// Execute with retry
+// retry와 함께 실행
 auto result = retry.execute([]() {
     return potentially_failing_operation();
 });
@@ -378,29 +378,29 @@ auto result = retry.execute([]() {
 
 ### Error Boundaries
 
-Isolate errors to prevent system-wide failures:
+시스템 전체 실패를 방지하기 위해 에러 격리:
 
 ```cpp
 #include <monitoring/reliability/error_boundary.h>
 
 error_boundary boundary("critical_section");
 
-// Set error handler
+// 에러 핸들러 설정
 boundary.set_error_handler([](const error_info& error) {
     log_error("Error in critical section: {}", error.message);
     send_alert(error);
 });
 
-// Execute within boundary
+// boundary 내에서 실행
 auto result = boundary.execute<int>([]() {
     return risky_operation();
 });
 ```
 
-### Combining Reliability Features
+### 신뢰성 기능 결합
 
 ```cpp
-// Layered reliability: retry → circuit breaker → error boundary
+// 계층화된 신뢰성: retry → circuit breaker → error boundary
 auto reliable_operation = [&]() {
     return error_boundary.execute<std::string>([&]() {
         return circuit_breaker.execute([&]() {
@@ -414,16 +414,16 @@ auto reliable_operation = [&]() {
 
 ---
 
-## Error Handling with Result Pattern
+## Result 패턴을 사용한 에러 처리
 
-### Basic Usage
+### 기본 사용
 
-The Result pattern provides explicit error handling without exceptions:
+Result 패턴은 예외 없이 명시적인 에러 처리를 제공합니다:
 
 ```cpp
 #include <monitoring/core/result_types.h>
 
-// Function that may fail
+// 실패할 수 있는 함수
 result<int> parse_config_value(const std::string& str) {
     try {
         int value = std::stoi(str);
@@ -436,7 +436,7 @@ result<int> parse_config_value(const std::string& str) {
     }
 }
 
-// Using the result
+// result 사용
 auto result = parse_config_value("42");
 if (result) {
     std::cout << "Value: " << result.value() << std::endl;
@@ -445,10 +445,10 @@ if (result) {
 }
 ```
 
-### Chaining Operations
+### 연산 체이닝
 
 ```cpp
-// Chain operations with and_then
+// and_then으로 연산 체인
 auto process = parse_config_value("100")
     .and_then([](int value) {
         if (value < 0) {
@@ -463,14 +463,14 @@ auto process = parse_config_value("100")
         return value + 10;
     });
 
-// Error recovery with or_else
+// or_else로 에러 복구
 auto with_default = parse_config_value("invalid")
     .or_else([](const error_info&) {
-        return result<int>::success(42); // Default value
+        return result<int>::success(42); // 기본값
     });
 ```
 
-### Result in APIs
+### API에서 Result
 
 ```cpp
 class DatabaseClient {
@@ -482,7 +482,7 @@ public:
                 "Database not connected"
             );
         }
-        
+
         auto query_result = execute_query("SELECT * FROM users WHERE id = ?", id);
         if (!query_result) {
             return make_error<User>(
@@ -490,64 +490,64 @@ public:
                 "Query failed: " + query_result.get_error().message
             );
         }
-        
+
         User user;
-        // ... parse user from query result ...
+        // ... 쿼리 결과에서 user 파싱 ...
         return result<User>::success(user);
     }
 };
 ```
 
-### Complete Example
+### 완전한 예제
 
-See [result_pattern_example.cpp](result_pattern_example.cpp) for more examples.
+더 많은 예제는 [result_pattern_example.cpp](result_pattern_example.cpp)를 참조하세요.
 
 ---
 
-## Best Practices
+## 모범 사례
 
-### 1. Resource Management
+### 1. 리소스 관리
 
-Always use RAII for automatic resource management:
+자동 리소스 관리를 위해 항상 RAII 사용:
 
 ```cpp
-// Good: Automatic cleanup
+// 좋음: 자동 정리
 {
     scoped_timer timer(&profiler, "operation");
     perform_operation();
-} // Timer automatically records duration
+} // 타이머가 자동으로 기간 기록
 
-// Good: Scoped span
+// 좋음: 스코프 span
 {
     TRACE_SPAN("process_batch");
     process_batch();
-} // Span automatically finished
+} // Span이 자동으로 완료됨
 ```
 
-### 2. Error Handling
+### 2. 에러 처리
 
-Always check Results:
+항상 Results 확인:
 
 ```cpp
-// Good: Check result
+// 좋음: result 확인
 auto result = operation();
 if (!result) {
     log_error("Operation failed: {}", result.get_error().message);
-    return result; // Propagate error
+    return result; // 에러 전파
 }
 use_value(result.value());
 
-// Bad: Ignore errors
-operation(); // Result ignored!
+// 나쁨: 에러 무시
+operation(); // Result 무시됨!
 ```
 
-### 3. Configuration
+### 3. 구성
 
-Validate configuration before use:
+사용 전에 구성 검증:
 
 ```cpp
 monitoring_config config;
-// ... set config values ...
+// ... config 값 설정 ...
 
 auto validation = config.validate();
 if (!validation) {
@@ -556,58 +556,58 @@ if (!validation) {
 }
 ```
 
-### 4. Performance
+### 4. 성능
 
-Start with conservative settings and tune based on measurements:
+보수적인 설정으로 시작하고 측정에 기반하여 조정:
 
 ```cpp
-// Start conservative
-config.sampling_rate = 0.01;  // 1% sampling
+// 보수적으로 시작
+config.sampling_rate = 0.01;  // 1% 샘플링
 config.collection_interval = 10s;
 
-// Monitor overhead
+// 오버헤드 모니터링
 auto overhead = monitor.get_overhead_percent();
 if (overhead < 2.0) {
-    // Can afford more detail
-    config.sampling_rate = 0.1;  // 10% sampling
+    // 더 많은 세부 정보 감당 가능
+    config.sampling_rate = 0.1;  // 10% 샘플링
 }
 ```
 
-### 5. Testing
+### 5. 테스트
 
-Test monitoring in your unit tests:
+단위 테스트에서 모니터링 테스트:
 
 ```cpp
 TEST(MyService, MetricsRecorded) {
     MyService service;
     service.process_request();
-    
+
     auto metrics = service.get_metrics();
     EXPECT_TRUE(metrics.has_value());
     EXPECT_GT(metrics.value().size(), 0);
 }
 ```
 
-### 6. Production Deployment
+### 6. 프로덕션 배포
 
-Use different configurations for different environments:
+환경별로 다른 구성 사용:
 
 ```cpp
 monitoring_config get_config(Environment env) {
     switch (env) {
         case Environment::Development:
-            return dev_config();      // Full detail, no sampling
+            return dev_config();      // 전체 세부 정보, 샘플링 없음
         case Environment::Staging:
-            return staging_config();   // Moderate detail
+            return staging_config();   // 중간 세부 정보
         case Environment::Production:
-            return production_config(); // Optimized for low overhead
+            return production_config(); // 낮은 오버헤드에 최적화
     }
 }
 ```
 
-### 7. Troubleshooting
+### 7. 문제 해결
 
-Enable debug logging when investigating issues:
+문제 조사 시 디버그 로깅 활성화:
 
 ```cpp
 #ifdef DEBUG
@@ -618,11 +618,11 @@ Enable debug logging when investigating issues:
 
 ---
 
-## Advanced Topics
+## 고급 주제
 
-### Custom Collectors
+### 맞춤 Collectors
 
-Create custom metric collectors:
+맞춤 메트릭 collectors 생성:
 
 ```cpp
 class CustomCollector : public metrics_collector {
@@ -630,34 +630,34 @@ public:
     std::string get_name() const override {
         return "custom_collector";
     }
-    
+
     result<metrics_snapshot> collect() override {
         metrics_snapshot snapshot;
-        
-        // Collect custom metrics
+
+        // 맞춤 메트릭 수집
         metric_data data;
         data.name = "custom_metric";
         data.unit = metric_unit::count;
         data.values.push_back({get_custom_value(), now()});
-        
+
         snapshot.metrics["custom_metric"] = data;
         return result<metrics_snapshot>::success(snapshot);
     }
 };
 
-// Register custom collector
+// 맞춤 collector 등록
 monitoring.add_collector(std::make_unique<CustomCollector>());
 ```
 
-### Custom Exporters
+### 맞춤 Exporters
 
-Create custom exporters for your backend:
+백엔드를 위한 맞춤 exporters 생성:
 
 ```cpp
 class CustomExporter : public metrics_exporter {
 public:
     result<bool> export_batch(const std::vector<metric_data>& metrics) override {
-        // Send metrics to your backend
+        // 백엔드로 메트릭 전송
         for (const auto& metric : metrics) {
             send_to_backend(metric);
         }
@@ -666,9 +666,9 @@ public:
 };
 ```
 
-### Integration with Existing Systems
+### 기존 시스템과 통합
 
-#### Prometheus Integration
+#### Prometheus 통합
 
 ```cpp
 #include <monitoring/export/metric_exporters.h>
@@ -676,10 +676,10 @@ public:
 prometheus_exporter exporter;
 exporter.serve_metrics("/metrics", 9090);
 
-// Metrics available at http://localhost:9090/metrics
+// http://localhost:9090/metrics에서 메트릭 사용 가능
 ```
 
-#### OpenTelemetry Integration
+#### OpenTelemetry 통합
 
 ```cpp
 #include <monitoring/adapters/opentelemetry_adapter.h>
@@ -691,91 +691,91 @@ adapter.export_metrics(metrics);
 
 ---
 
-## Troubleshooting
+## 문제 해결
 
-### High Memory Usage
+### 높은 메모리 사용량
 
-1. Check queue sizes:
+1. 큐 크기 확인:
 ```cpp
 auto stats = monitoring.get_queue_stats();
 if (stats.queue_depth > 10000) {
-    // Queue backing up - increase flush frequency
+    // 큐 백업 - flush 빈도 증가
     config.flush_interval = 1s;
 }
 ```
 
-2. Enable memory limits:
+2. 메모리 제한 활성화:
 ```cpp
 config.max_memory_mb = 50;
 config.memory_warning_threshold = 0.8;
 ```
 
-### Missing Metrics
+### 메트릭 누락
 
-1. Check if collectors are enabled:
+1. collectors가 활성화되었는지 확인:
 ```cpp
 for (const auto& collector : monitoring.get_collectors()) {
-    std::cout << collector->get_name() << ": " 
-              << (collector->is_enabled() ? "enabled" : "disabled") 
+    std::cout << collector->get_name() << ": "
+              << (collector->is_enabled() ? "enabled" : "disabled")
               << std::endl;
 }
 ```
 
-2. Verify sampling rate:
+2. 샘플링 비율 확인:
 ```cpp
 if (config.sampling_rate < 0.01) {
-    // Very low sampling - might miss events
+    // 매우 낮은 샘플링 - 이벤트를 놓칠 수 있음
     config.sampling_rate = 0.1;
 }
 ```
 
-### Performance Issues
+### 성능 문제
 
-1. Use adaptive optimization:
+1. 적응형 최적화 사용:
 ```cpp
 adaptive_optimizer optimizer;
-optimizer.set_target_overhead(5.0); // Max 5% CPU
+optimizer.set_target_overhead(5.0); // 최대 5% CPU
 optimizer.enable_auto_tuning(true);
 ```
 
-2. Profile the monitoring system:
+2. 모니터링 시스템 프로파일링:
 ```cpp
 auto profile = monitoring.profile_overhead();
 std::cout << "Monitoring overhead: " << profile.cpu_percent << "%" << std::endl;
 ```
 
-For more troubleshooting tips, see the [Troubleshooting Guide](../docs/TROUBLESHOOTING.md).
+더 많은 문제 해결 팁은 [Troubleshooting Guide](../docs/TROUBLESHOOTING.md)를 참조하세요.
 
 ---
 
-## Further Resources
+## 추가 리소스
 
-- [API Reference](../docs/API_REFERENCE.md) - Complete API documentation
-- [Architecture Guide](../docs/ARCHITECTURE_GUIDE.md) - System design and architecture
-- [Performance Tuning](../docs/PERFORMANCE_TUNING.md) - Optimization guide
-- [Examples](.) - Working code examples
-
----
-
-## Getting Help
-
-- Check the [documentation](../docs/)
-- Look at the [examples](.)
-- Review the [tests](../tests/) for usage patterns
-- Report issues on GitHub
+- [API Reference](../docs/API_REFERENCE.md) - 완전한 API 문서
+- [Architecture Guide](../docs/ARCHITECTURE_GUIDE.md) - 시스템 설계 및 아키텍처
+- [Performance Tuning](../docs/PERFORMANCE_TUNING.md) - 최적화 가이드
+- [Examples](.) - 작동하는 코드 예제
 
 ---
 
-## Conclusion
+## 도움 받기
 
-You now have the knowledge to:
-- ✅ Set up basic monitoring
-- ✅ Implement distributed tracing
-- ✅ Configure health checks
-- ✅ Use reliability features
-- ✅ Handle errors properly
-- ✅ Follow best practices
+- [문서](../docs/) 확인
+- [예제](.) 살펴보기
+- 사용 패턴을 위해 [테스트](../tests/) 검토
+- GitHub에 이슈 보고
 
-Start with the basic example and gradually add more features as needed. Remember to measure the monitoring overhead and adjust configuration accordingly.
+---
 
-Happy monitoring! 🎉
+## 결론
+
+이제 다음을 수행할 수 있는 지식을 갖추었습니다:
+- ✅ 기본 모니터링 설정
+- ✅ 분산 추적 구현
+- ✅ 건강 검사 구성
+- ✅ 신뢰성 기능 사용
+- ✅ 에러를 적절히 처리
+- ✅ 모범 사례 준수
+
+기본 예제로 시작하고 필요에 따라 점진적으로 더 많은 기능을 추가하세요. 모니터링 오버헤드를 측정하고 그에 따라 구성을 조정하는 것을 잊지 마세요.
+
+즐거운 모니터링 되세요! 🎉

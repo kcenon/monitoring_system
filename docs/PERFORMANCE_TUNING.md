@@ -1,5 +1,7 @@
 # Performance Tuning Guide
 
+> **Language:** **English** | [한국어](PERFORMANCE_TUNING_KO.md)
+
 ## Overview
 
 This guide provides detailed instructions for optimizing the Monitoring System's performance in production environments. Follow these guidelines to achieve minimal overhead while maintaining comprehensive observability.

@@ -1,5 +1,7 @@
 # Security Policy
 
+> **Language:** **English** | [한국어](SECURITY_KO.md)
+
 ## Supported Versions
 
 We actively support and provide security updates for the following versions:
