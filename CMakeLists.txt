@@ -73,7 +73,10 @@ if(BUILD_WITH_COMMON_SYSTEM)
 find_package(common_system CONFIG QUIET)
 if(NOT common_system_FOUND)
     # Check for common_system in multiple locations
+    # Priority: Sources/ directory (macOS/Linux), then relative paths as fallback
     set(_MONITORING_COMMON_PATHS
+        "/Users/dongcheolshin/Sources/common_system/include"
+        "/home/$ENV{USER}/Sources/common_system/include"
         "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include"
         "${CMAKE_CURRENT_SOURCE_DIR}/common_system/include"
     )
