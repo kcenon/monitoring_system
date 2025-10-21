@@ -9,7 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Find Google Test
-find_package(GTest REQUIRED)
+# Note: If not found, parent CMakeLists.txt may provide it via FetchContent
+find_package(GTest QUIET)
 include(GoogleTest)
 
 # Include directories
