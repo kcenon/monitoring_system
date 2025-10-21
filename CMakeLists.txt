@@ -30,6 +30,38 @@ option(ENABLE_TSAN "Enable ThreadSanitizer" OFF)
 option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
 option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
 
+# Backward compatibility: honour generic BUILD_* toggles if provided
+if(DEFINED BUILD_TESTS)
+    if(BUILD_TESTS)
+        set(_MONITORING_BUILD_TESTS_VALUE ON)
+    else()
+        set(_MONITORING_BUILD_TESTS_VALUE OFF)
+    endif()
+    set(MONITORING_BUILD_TESTS ${_MONITORING_BUILD_TESTS_VALUE} CACHE BOOL "Build unit tests" FORCE)
+endif()
+
+if(DEFINED BUILD_INTEGRATION_TESTS)
+    if(BUILD_INTEGRATION_TESTS)
+        set(_MONITORING_BUILD_IT_VALUE ON)
+    else()
+        set(_MONITORING_BUILD_IT_VALUE OFF)
+    endif()
+    set(MONITORING_BUILD_INTEGRATION_TESTS ${_MONITORING_BUILD_IT_VALUE} CACHE BOOL "Build integration tests" FORCE)
+endif()
+
+if(DEFINED BUILD_EXAMPLES)
+    if(BUILD_EXAMPLES)
+        set(_MONITORING_BUILD_EXAMPLES_VALUE ON)
+    else()
+        set(_MONITORING_BUILD_EXAMPLES_VALUE OFF)
+    endif()
+    set(MONITORING_BUILD_EXAMPLES ${_MONITORING_BUILD_EXAMPLES_VALUE} CACHE BOOL "Build example programs" FORCE)
+endif()
+
+unset(_MONITORING_BUILD_TESTS_VALUE)
+unset(_MONITORING_BUILD_IT_VALUE)
+unset(_MONITORING_BUILD_EXAMPLES_VALUE)
+
 # Export compile commands for tools
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -254,8 +286,12 @@ endif()
 
 # Integration Tests
 if(MONITORING_BUILD_INTEGRATION_TESTS)
-    enable_testing()
-    add_subdirectory(integration_tests)
+    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/integration_tests/CMakeLists.txt)
+        enable_testing()
+        add_subdirectory(integration_tests)
+    else()
+        message(STATUS "Integration tests requested, but CMakeLists.txt not found in integration_tests directory. Skipping.")
+    endif()
 endif()
 
 # Installation
