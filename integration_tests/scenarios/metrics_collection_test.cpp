@@ -216,8 +216,8 @@ TEST_F(MetricsCollectionTest, ConcurrentMetricUpdates) {
     std::vector<std::thread> threads;
 
     for (size_t t = 0; t < num_threads; ++t) {
-        threads.emplace_back([this, samples_per_thread]() {
-            for (size_t i = 0; i < samples_per_thread; ++i) {
+        threads.emplace_back([this, samples = samples_per_thread]() {
+            for (size_t i = 0; i < samples; ++i) {
                 auto duration = std::chrono::microseconds(100 + i);
                 RecordSample("concurrent_test", duration);
             }

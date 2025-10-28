@@ -200,8 +200,8 @@ TEST_F(MonitoringPerformanceTest, ConcurrentCollectionPerformance) {
     auto start = std::chrono::high_resolution_clock::now();
 
     for (size_t t = 0; t < num_threads; ++t) {
-        threads.emplace_back([this, metrics_per_thread, &total_collected, t]() {
-            for (size_t i = 0; i < metrics_per_thread; ++i) {
+        threads.emplace_back([this, &total_collected, t, metrics = metrics_per_thread]() {
+            for (size_t i = 0; i < metrics; ++i) {
                 RecordSample("concurrent_perf_" + std::to_string(t),
                            std::chrono::microseconds(100));
                 total_collected.fetch_add(1);
