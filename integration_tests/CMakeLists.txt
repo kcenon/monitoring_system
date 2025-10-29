@@ -67,7 +67,7 @@ gtest_discover_tests(monitoring_integration_tests
 )
 
 # Add custom target to run integration tests
-add_custom_target(run_integration_tests
+add_custom_target(monitoring_run_integration_tests
     COMMAND monitoring_integration_tests
     DEPENDS monitoring_integration_tests
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
@@ -92,7 +92,7 @@ if(ENABLE_COVERAGE)
             COMMAND lcov --capture --directory . --output-file coverage/integration.info --ignore-errors mismatch --ignore-errors inconsistent
             COMMAND lcov --remove coverage/integration.info '/usr/*' '*/tests/*' '*/examples/*' --output-file coverage/integration_filtered.info --ignore-errors unused
             COMMAND genhtml coverage/integration_filtered.info --output-directory coverage/integration_html --ignore-errors source
-            DEPENDS run_integration_tests
+            DEPENDS monitoring_run_integration_tests
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             COMMENT "Generating integration test coverage report"
         )
