@@ -8,9 +8,24 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Find Google Test
-# Note: If not found, parent CMakeLists.txt may provide it via FetchContent
+# Find or fetch Google Test
 find_package(GTest QUIET)
+
+if(NOT GTest_FOUND)
+    message(STATUS "GTest not found - fetching from GitHub")
+    include(FetchContent)
+    FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG v1.14.0
+        GIT_SHALLOW TRUE
+    )
+    # Prevent overriding the parent project's compiler/linker settings
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
+    message(STATUS "GTest fetched successfully")
+endif()
+
 include(GoogleTest)
 
 # Include directories
@@ -33,13 +48,25 @@ add_executable(monitoring_integration_tests
 )
 
 # Link against monitoring_system and Google Test
-target_link_libraries(monitoring_integration_tests
-    PRIVATE
-        monitoring_system
-        GTest::GTest
-        GTest::Main
-        Threads::Threads
-)
+if(TARGET GTest::GTest)
+    # Using system-installed GTest
+    target_link_libraries(monitoring_integration_tests
+        PRIVATE
+            monitoring_system
+            GTest::GTest
+            GTest::Main
+            Threads::Threads
+    )
+else()
+    # Using FetchContent GTest
+    target_link_libraries(monitoring_integration_tests
+        PRIVATE
+            monitoring_system
+            gtest
+            gtest_main
+            Threads::Threads
+    )
+endif()
 
 # Add compile options
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
