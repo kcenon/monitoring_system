@@ -148,6 +148,19 @@ public:
     // Evaluate compiled expression with context
     std::optional<double> evaluate(const ExpressionContext& context) const;
 
+    /**
+     * @brief Evaluate expression with timeout protection
+     * @param context Expression context with variable values
+     * @param timeout Maximum evaluation time (default: 100ms)
+     * @return Evaluation result or nullopt on timeout/error
+     *
+     * This method protects against ReDoS attacks and infinite loops
+     * by enforcing a configurable timeout.
+     */
+    std::optional<double> evaluate_with_timeout(
+        const ExpressionContext& context,
+        std::chrono::milliseconds timeout = std::chrono::milliseconds(100)) const;
+
     // Get compilation error message
     const std::string& get_error() const { return error_message_; }
 
@@ -156,7 +169,7 @@ private:
     using ExpressionNodePtr = std::shared_ptr<ExpressionNode>;
 
     ExpressionNodePtr root_;
-    std::string error_message_;
+    mutable std::string error_message_;  // mutable for timeout error reporting
 
     ExpressionNodePtr parse_expression(const std::string& expr);
     double evaluate_node(const ExpressionNodePtr& node, const ExpressionContext& context) const;

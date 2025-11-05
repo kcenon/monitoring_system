@@ -38,7 +38,8 @@ result<bool> performance_profiler::record_sample(
     // Limit samples to prevent unbounded growth
     if (profile->samples.size() >= max_samples_per_operation_) {
         // Remove oldest sample (simple ring buffer behavior)
-        profile->samples.erase(profile->samples.begin());
+        // Using deque::pop_front() for O(1) performance instead of vector::erase(begin()) which is O(n)
+        profile->samples.pop_front();
     }
 
     profile->samples.push_back(duration);

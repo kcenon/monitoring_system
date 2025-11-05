@@ -13,6 +13,7 @@
 #include <memory>
 #include <chrono>
 #include <vector>
+#include <deque>
 #include <unordered_map>
 #include <mutex>
 #include <atomic>
@@ -113,7 +114,9 @@ struct system_metrics {
 class performance_profiler {
 private:
     struct profile_data {
-        std::vector<std::chrono::nanoseconds> samples;
+        // Using deque instead of vector for O(1) pop_front performance
+        // when removing oldest samples in ring buffer behavior
+        std::deque<std::chrono::nanoseconds> samples;
         std::atomic<std::uint64_t> call_count{0};
         std::atomic<std::uint64_t> error_count{0};
         mutable std::mutex mutex;
