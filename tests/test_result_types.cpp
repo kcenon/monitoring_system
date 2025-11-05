@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include "monitoring/core/result_types.h"
-#include "monitoring/core/error_codes.h"
-#include "monitoring/interfaces/monitoring_interface.h"
+#include "kcenon/monitoring/core/result_types.h"
+#include "kcenon/monitoring/core/error_codes.h"
+#include "kcenon/monitoring/interfaces/monitoring_interface.h"
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * @brief Test basic Result pattern functionality

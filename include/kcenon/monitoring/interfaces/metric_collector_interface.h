@@ -18,7 +18,7 @@
 #include "metric_types_adapter.h"
 #include "../core/result_types.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @class metric_filter
@@ -209,4 +209,4 @@ public:
     virtual std::vector<std::string> get_registered_sources() const = 0;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

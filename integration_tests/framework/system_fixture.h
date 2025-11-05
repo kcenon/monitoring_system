@@ -76,7 +76,7 @@ protected:
         error_count_.store(0);
 
         // Create performance monitor
-        monitor_ = std::make_unique<monitoring_system::performance_monitor>("test_monitor");
+        monitor_ = std::make_unique<kcenon::monitoring::performance_monitor>("test_monitor");
     }
 
     void TearDown() override {
@@ -106,7 +106,7 @@ protected:
      * @brief Create a performance monitor with specified configuration
      */
     void CreateMonitor(const std::string& name = "test_monitor") {
-        monitor_ = std::make_unique<monitoring_system::performance_monitor>(name);
+        monitor_ = std::make_unique<kcenon::monitoring::performance_monitor>(name);
     }
 
     /**
@@ -156,13 +156,13 @@ protected:
     /**
      * @brief Create a metric with specified parameters
      */
-    monitoring_system::compact_metric_value CreateMetric(
+    kcenon::monitoring::compact_metric_value CreateMetric(
         const std::string& name,
-        monitoring_system::metric_type type,
+        kcenon::monitoring::metric_type type,
         double value) {
 
-        auto metadata = monitoring_system::create_metric_metadata(name, type);
-        return monitoring_system::compact_metric_value(metadata, value);
+        auto metadata = kcenon::monitoring::create_metric_metadata(name, type);
+        return kcenon::monitoring::compact_metric_value(metadata, value);
     }
 
     /**
@@ -213,7 +213,7 @@ protected:
     /**
      * @brief Get performance metrics for an operation
      */
-    std::optional<monitoring_system::performance_metrics> GetPerformanceMetrics(
+    std::optional<kcenon::monitoring::performance_metrics> GetPerformanceMetrics(
         const std::string& operation) {
 
         if (!monitor_) {
@@ -261,7 +261,7 @@ protected:
     }
 
     // Protected member variables
-    std::unique_ptr<monitoring_system::performance_monitor> monitor_;
+    std::unique_ptr<kcenon::monitoring::performance_monitor> monitor_;
     fs::path temp_dir_;
     std::vector<fs::path> temp_files_;
 
@@ -301,7 +301,7 @@ protected:
      */
     void CreateMultipleMonitors(size_t count) {
         for (size_t i = 0; i < count; ++i) {
-            auto monitor = std::make_unique<monitoring_system::performance_monitor>(
+            auto monitor = std::make_unique<kcenon::monitoring::performance_monitor>(
                 "monitor_" + std::to_string(i)
             );
 
@@ -326,7 +326,7 @@ protected:
         return true;
     }
 
-    std::vector<std::unique_ptr<monitoring_system::performance_monitor>> monitors_;
+    std::vector<std::unique_ptr<kcenon::monitoring::performance_monitor>> monitors_;
     fs::path temp_dir_;
 };
 

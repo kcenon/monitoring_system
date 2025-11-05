@@ -15,7 +15,7 @@ All rights reserved.
 #include <thread>
 #include <atomic>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * Test implementation of monitorable_interface

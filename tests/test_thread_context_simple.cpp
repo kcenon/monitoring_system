@@ -13,7 +13,7 @@ All rights reserved.
 #include <gtest/gtest.h>
 #include <kcenon/monitoring/context/thread_context.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * Test context_metadata basic functionality

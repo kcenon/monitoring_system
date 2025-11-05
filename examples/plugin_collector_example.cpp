@@ -7,7 +7,7 @@
 #include <kcenon/monitoring/collectors/system_resource_collector.h>
 #include <kcenon/monitoring/collectors/thread_system_collector.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 int main() {
     std::cout << "=== Plugin-based Metric Collector Example ===" << std::endl;

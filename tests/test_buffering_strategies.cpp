@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
-#include <monitoring/utils/buffering_strategy.h>
-#include <monitoring/utils/buffer_manager.h>
-#include <monitoring/utils/metric_storage.h>
+#include <kcenon/monitoring/utils/buffering_strategy.h>
+#include <kcenon/monitoring/utils/buffer_manager.h>
+#include <kcenon/monitoring/utils/metric_storage.h>
 #include <chrono>
 #include <thread>
 #include <vector>
 #include <random>
 #include <functional>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * @brief Test suite for Phase 3 P3: Configurable buffering strategies

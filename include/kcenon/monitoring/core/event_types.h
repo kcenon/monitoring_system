@@ -18,7 +18,7 @@
 #include "../interfaces/metric_types_adapter.h"
 #include "../interfaces/event_bus_interface.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @class thread_pool_metric_event
@@ -316,4 +316,4 @@ private:
     std::vector<health_check_result> results_;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

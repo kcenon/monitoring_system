@@ -29,7 +29,7 @@ All rights reserved.
 #include <mutex>
 #include <functional>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @struct aggregation_rule
@@ -527,4 +527,4 @@ inline std::vector<aggregation_rule> create_standard_aggregation_rules() {
     return rules;
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

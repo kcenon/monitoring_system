@@ -6,7 +6,7 @@
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <shared_mutex>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 result<bool> performance_profiler::record_sample(
     const std::string& operation_name,
@@ -58,18 +58,18 @@ result<bool> performance_profiler::record_sample(
 
     profile->samples.push_back(duration);
 
-    return monitoring_system::result<bool>(true);
+    return kcenon::monitoring::result<bool>(true);
 }
 
-monitoring_system::result<monitoring_system::performance_metrics> monitoring_system::performance_profiler::get_metrics(
+kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::monitoring::performance_profiler::get_metrics(
     const std::string& operation_name) const {
 
     std::shared_lock<std::shared_mutex> lock(profiles_mutex_);
 
     auto it = profiles_.find(operation_name);
     if (it == profiles_.end()) {
-        return monitoring_system::make_error<monitoring_system::performance_metrics>(
-            monitoring_system::monitoring_error_code::not_found,
+        return kcenon::monitoring::make_error<kcenon::monitoring::performance_metrics>(
+            kcenon::monitoring::monitoring_error_code::not_found,
             "Operation not found: " + operation_name
         );
     }
@@ -78,7 +78,7 @@ monitoring_system::result<monitoring_system::performance_metrics> monitoring_sys
 
     std::lock_guard sample_lock(profile->mutex);
 
-    monitoring_system::performance_metrics metrics;
+    kcenon::monitoring::performance_metrics metrics;
     metrics.operation_name = operation_name;
     metrics.call_count = profile->call_count.load();
     metrics.error_count = profile->error_count.load();
@@ -314,7 +314,7 @@ common::Result<common::interfaces::metrics_snapshot> performance_monitor::get_me
         );
     }
 
-    // Convert monitoring_system::metrics_snapshot to common::interfaces::metrics_snapshot
+    // Convert kcenon::monitoring::metrics_snapshot to common::interfaces::metrics_snapshot
     const auto& internal_snapshot = snapshot_result.value();
     common::interfaces::metrics_snapshot common_snapshot;
     common_snapshot.source_id = internal_snapshot.source_id;
@@ -383,4 +383,4 @@ performance_monitor& global_performance_monitor() {
     return instance;
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

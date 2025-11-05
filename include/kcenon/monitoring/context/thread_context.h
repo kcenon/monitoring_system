@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @brief Context metadata for thread-specific information
@@ -106,4 +106,4 @@ private:
     static thread_local std::optional<thread_context_data> current_context_;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

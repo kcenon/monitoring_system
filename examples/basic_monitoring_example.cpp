@@ -13,12 +13,12 @@
 #include <thread>
 #include <chrono>
 
-#include "monitoring/interfaces/monitoring_interface.h"
-#include "monitoring/performance/performance_monitor.h"
-#include "monitoring/storage/storage_backends.h"
-#include "monitoring/core/result_types.h"
+#include "kcenon/monitoring/interfaces/monitoring_interface.h"
+#include "kcenon/monitoring/performance/performance_monitor.h"
+#include "kcenon/monitoring/storage/storage_backends.h"
+#include "kcenon/monitoring/core/result_types.h"
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 int main() {

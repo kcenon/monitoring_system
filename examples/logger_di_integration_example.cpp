@@ -16,7 +16,7 @@
 #include <chrono>
 #include <iomanip>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace common::interfaces;
 
 /**

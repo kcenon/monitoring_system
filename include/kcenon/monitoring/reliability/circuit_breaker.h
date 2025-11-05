@@ -5,7 +5,7 @@
 #include <chrono>
 #include <functional>
 
-namespace monitoring_system {
+namespace kcenon::monitoring {
 
 /**
  * @brief Circuit breaker states
@@ -83,4 +83,4 @@ private:
     mutable circuit_breaker_metrics metrics_;
 };
 
-} // namespace monitoring_system
+} // namespace kcenon::monitoring

@@ -47,7 +47,7 @@ All rights reserved.
     #define MONITORING_HAS_SOURCE_LOCATION 0
 #endif
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @struct error_info
@@ -414,4 +414,4 @@ result<T> make_error_with_context(monitoring_error_code code,
     } \
     auto& var = *_result_##var;
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

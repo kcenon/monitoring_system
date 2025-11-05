@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <chrono>
 
-namespace monitoring_system {
+namespace kcenon::monitoring {
 
 /**
  * @brief Storage backend types
@@ -113,4 +113,4 @@ private:
     std::unordered_map<std::string, std::string> data_;
 };
 
-} // namespace monitoring_system
+} // namespace kcenon::monitoring

@@ -7,7 +7,7 @@
 #include <functional>
 #include <memory>
 
-namespace monitoring_system {
+namespace kcenon::monitoring {
 
 /**
  * @brief Basic health status enumeration
@@ -196,4 +196,4 @@ private:
     std::unordered_map<std::string, std::function<bool()>> recovery_handlers_;
 };
 
-} // namespace monitoring_system
+} // namespace kcenon::monitoring

@@ -8,7 +8,7 @@
 #include <sstream>
 #include <iomanip>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 // New thread_context implementation
 thread_local std::unique_ptr<thread_context_data> thread_context::current_context_;
@@ -91,4 +91,4 @@ std::string thread_context_manager::generate_correlation_id() {
     return ss.str();
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring
