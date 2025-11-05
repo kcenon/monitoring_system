@@ -17,19 +17,33 @@ result<bool> performance_profiler::record_sample(
         return result<bool>(true);
     }
 
-    std::unique_lock<std::shared_mutex> lock(profiles_mutex_);
+    profile_data* profile = nullptr;
 
-    auto& profile = profiles_[operation_name];
-    if (!profile) {
-        profile = std::make_unique<profile_data>();
+    // First, try read lock (hot path optimization)
+    {
+        std::shared_lock<std::shared_mutex> read_lock(profiles_mutex_);
+        auto it = profiles_.find(operation_name);
+        if (it != profiles_.end()) {
+            profile = it->second.get();
+        }
     }
 
-    lock.unlock();
+    // If not found, acquire write lock to create
+    if (!profile) {
+        std::unique_lock<std::shared_mutex> write_lock(profiles_mutex_);
+        // Double-check after acquiring write lock
+        auto& profile_ptr = profiles_[operation_name];
+        if (!profile_ptr) {
+            profile_ptr = std::make_unique<profile_data>();
+        }
+        profile = profile_ptr.get();
+    }
 
+    // Now use profile (which is guaranteed to be valid)
     // Update counters
-    profile->call_count.fetch_add(1);
+    profile->call_count.fetch_add(1, std::memory_order_relaxed);
     if (!success) {
-        profile->error_count.fetch_add(1);
+        profile->error_count.fetch_add(1, std::memory_order_relaxed);
     }
 
     // Record sample
@@ -83,7 +97,17 @@ monitoring_system::result<monitoring_system::performance_metrics> monitoring_sys
         metrics.min_duration = min_sample;
         metrics.max_duration = max_sample;
         metrics.mean_duration = total / profile->samples.size();
-        metrics.call_count = profile->samples.size();
+
+        // Calculate percentiles using sorted samples
+        std::vector<std::chrono::nanoseconds> sorted_samples(profile->samples.begin(), profile->samples.end());
+        std::sort(sorted_samples.begin(), sorted_samples.end());
+
+        metrics.median_duration = performance_metrics::calculate_percentile(sorted_samples, 50.0);
+        metrics.p95_duration = performance_metrics::calculate_percentile(sorted_samples, 95.0);
+        metrics.p99_duration = performance_metrics::calculate_percentile(sorted_samples, 99.0);
+
+        // Use atomic call_count, don't overwrite with samples.size()
+        metrics.call_count = profile->call_count.load(std::memory_order_acquire);
     }
 
     return result<performance_metrics>(metrics);
@@ -115,18 +139,15 @@ system_monitor::system_monitor(system_monitor&&) noexcept = default;
 system_monitor& system_monitor::operator=(system_monitor&&) noexcept = default;
 
 result<system_metrics> system_monitor::get_current_metrics() const {
-    system_metrics metrics;
-    metrics.timestamp = std::chrono::system_clock::now();
-
-    // Stub implementation - return dummy values
-    metrics.cpu_usage_percent = 10.0;
-    metrics.memory_usage_percent = 25.0;
-    metrics.memory_usage_bytes = 1024 * 1024 * 100; // 100MB
-    metrics.available_memory_bytes = 1024 * 1024 * 500; // 500MB
-    metrics.thread_count = 10;
-    metrics.handle_count = 50;
-
-    return make_success(metrics);
+    // TODO: Integrate with system_resource_collector or implement platform-specific metrics
+    // Platform-specific implementations should be added for:
+    // - Linux: /proc filesystem, sysinfo
+    // - Windows: Performance Counters, GetSystemInfo
+    // - macOS: sysctl, host_statistics
+    return make_error<system_metrics>(
+        monitoring_error_code::system_resource_unavailable,
+        "Platform-specific system metrics not implemented. "
+        "Please integrate with system_resource_collector or implement for this platform.");
 }
 
 result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval) {
@@ -136,6 +157,23 @@ result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval
 
     impl_->interval = interval;
     impl_->monitoring = true;
+
+    // Start background monitoring thread
+    impl_->monitor_thread = std::thread([this]() {
+        while (impl_->monitoring.load(std::memory_order_acquire)) {
+            auto metrics = get_current_metrics();
+            if (metrics) {
+                std::lock_guard<std::mutex> lock(impl_->history_mutex);
+                impl_->history.push_back(metrics.value());
+
+                // Trim history to prevent unbounded growth (keep last hour with 1s interval)
+                if (impl_->history.size() > 3600) {
+                    impl_->history.erase(impl_->history.begin());
+                }
+            }
+            std::this_thread::sleep_for(impl_->interval);
+        }
+    });
 
     return make_success(true);
 }
