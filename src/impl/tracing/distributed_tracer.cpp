@@ -17,11 +17,16 @@ namespace monitoring_system {
 struct distributed_tracer::tracer_impl {
     // Thread-local storage for current span
     static thread_local std::shared_ptr<trace_span> current_span;
-    
+
     // Storage for all spans
     mutable std::shared_mutex spans_mutex;
     std::unordered_map<std::string, std::vector<trace_span>> traces;  // trace_id -> spans
-    
+
+    // Export buffer for finished spans
+    std::vector<trace_span> finished_spans_;
+    std::mutex export_mutex_;
+    size_t export_batch_size_ = 100;
+
     // Configuration
     std::string default_service_name{"monitoring_system"};
     std::atomic<size_t> max_traces{10000};
@@ -157,20 +162,33 @@ monitoring_system::result<bool> distributed_tracer::finish_span(std::shared_ptr<
     if (!span) {
         return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::invalid_argument);
     }
-    
+
     if (span->is_finished()) {
         return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::already_exists);
     }
-    
+
     span->end_time = std::chrono::system_clock::now();
     span->calculate_duration();
-    
+
     // Set status if not already set
     if (span->status == trace_span::status_code::unset) {
         span->status = trace_span::status_code::ok;
     }
-    
-    // Store the span
+
+    // Store in export buffer
+    {
+        std::lock_guard<std::mutex> lock(impl_->export_mutex_);
+        impl_->finished_spans_.push_back(*span);
+
+        // Auto-flush when buffer reaches threshold
+        if (impl_->finished_spans_.size() >= impl_->export_batch_size_) {
+            // TODO: Implement actual export to external system (Jaeger, Zipkin, etc.)
+            // For now, just clear to prevent memory leak
+            impl_->finished_spans_.clear();
+        }
+    }
+
+    // Store the span in traces collection
     return impl_->store_span(*span);
 }
 

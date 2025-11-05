@@ -209,7 +209,9 @@ private:
     std::vector<time_point_data> data_;
     time_series_config config_;
     std::string series_name_;
-    
+    std::size_t inserts_since_maintenance_ = 0;
+    static constexpr std::size_t maintenance_interval = 100;
+
     /**
      * @brief Cleanup old data points
      */
@@ -271,47 +273,60 @@ private:
             data_.erase(data_.begin(), data_.begin() + remove_count);
         }
     }
-    
+
+    /**
+     * @brief Private constructor (use create() factory method)
+     */
+    time_series(const std::string& name, const time_series_config& config)
+        : config_(config), series_name_(name) {
+        data_.reserve(config_.max_points);
+    }
+
 public:
     /**
-     * @brief Constructor
+     * @brief Factory method to create time_series with validation
      */
-    explicit time_series(const std::string& name, 
-                        const time_series_config& config = {})
-        : config_(config), series_name_(name) {
-        
-        auto validation = config_.validate();
+    static result<std::unique_ptr<time_series>> create(
+        const std::string& name,
+        const time_series_config& config = {}) {
+
+        auto validation = config.validate();
         if (!validation) {
-            throw std::invalid_argument("Invalid time series configuration: " + 
-                                      validation.get_error().message);
+            return make_error<std::unique_ptr<time_series>>(
+                monitoring_error_code::invalid_configuration,
+                validation.get_error().message);
         }
-        
-        data_.reserve(config_.max_points);
+
+        return make_success(std::unique_ptr<time_series>(
+            new time_series(name, config)));
     }
     
     /**
      * @brief Add a data point
      */
-    result_void add_point(double value, 
-                         std::chrono::system_clock::time_point timestamp = 
+    result_void add_point(double value,
+                         std::chrono::system_clock::time_point timestamp =
                          std::chrono::system_clock::now()) {
         std::lock_guard<std::mutex> lock(mutex_);
-        
+
         time_point_data point(timestamp, value);
-        
+
         // Insert in chronological order
         auto it = std::upper_bound(data_.begin(), data_.end(), point,
             [](const time_point_data& a, const time_point_data& b) {
                 return a.timestamp < b.timestamp;
             });
-        
+
         data_.insert(it, point);
-        
-        // Perform maintenance
-        cleanup_old_data();
-        compress_data();
-        enforce_size_limit();
-        
+
+        // Perform maintenance only periodically to reduce overhead
+        if (++inserts_since_maintenance_ >= maintenance_interval) {
+            cleanup_old_data();
+            compress_data();
+            enforce_size_limit();
+            inserts_since_maintenance_ = 0;
+        }
+
         return result_void::success();
     }
     
@@ -470,17 +485,19 @@ public:
 
 /**
  * @brief Helper function to create a time series with default configuration
+ * @deprecated Use time_series::create() instead
  */
-inline std::unique_ptr<time_series> make_time_series(const std::string& name) {
-    return std::make_unique<time_series>(name);
+inline result<std::unique_ptr<time_series>> make_time_series(const std::string& name) {
+    return time_series::create(name);
 }
 
 /**
  * @brief Helper function to create a time series with custom configuration
+ * @deprecated Use time_series::create() instead
  */
-inline std::unique_ptr<time_series> make_time_series(const std::string& name,
+inline result<std::unique_ptr<time_series>> make_time_series(const std::string& name,
                                                     const time_series_config& config) {
-    return std::make_unique<time_series>(name, config);
+    return time_series::create(name, config);
 }
 
 } // namespace monitoring_system
