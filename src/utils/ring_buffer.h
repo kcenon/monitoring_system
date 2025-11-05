@@ -65,23 +65,58 @@ struct ring_buffer_stats {
     std::atomic<size_t> overwrites{0};
     std::atomic<size_t> failed_writes{0};
     std::atomic<size_t> failed_reads{0};
+    std::atomic<size_t> contention_retries{0};
     std::chrono::system_clock::time_point creation_time;
-    
+
     ring_buffer_stats() : creation_time(std::chrono::system_clock::now()) {}
-    
+
     /**
      * @brief Get current utilization percentage
      */
     double get_utilization(size_t current_size, size_t capacity) const {
         return capacity > 0 ? (static_cast<double>(current_size) / capacity) * 100.0 : 0.0;
     }
-    
+
     /**
      * @brief Get write success rate
      */
     double get_write_success_rate() const {
         auto total = total_writes.load();
         auto failed = failed_writes.load();
+        return total > 0 ? (1.0 - static_cast<double>(failed) / total) * 100.0 : 100.0;
+    }
+
+    /**
+     * @brief Get overflow rate (overwrites per total writes)
+     */
+    double get_overflow_rate() const {
+        auto total = total_writes.load();
+        auto overflows = overwrites.load();
+        return total > 0 ? (static_cast<double>(overflows) / total) * 100.0 : 0.0;
+    }
+
+    /**
+     * @brief Check if overflow rate is high (> 10%)
+     */
+    bool is_overflow_rate_high() const {
+        return get_overflow_rate() > 10.0;
+    }
+
+    /**
+     * @brief Get average contention (retries per write)
+     */
+    double get_avg_contention() const {
+        auto total = total_writes.load();
+        auto retries = contention_retries.load();
+        return total > 0 ? static_cast<double>(retries) / total : 0.0;
+    }
+
+    /**
+     * @brief Get read success rate
+     */
+    double get_read_success_rate() const {
+        auto total = total_reads.load();
+        auto failed = failed_reads.load();
         return total > 0 ? (1.0 - static_cast<double>(failed) / total) * 100.0 : 100.0;
     }
 };
@@ -167,27 +202,59 @@ public:
         // Atomically claim a write slot using CAS loop to avoid ABA problem
         size_t current_write;
         size_t new_write;
+        bool overflow_handled = false;
+        size_t retry_count = 0;
+        constexpr size_t max_retries = 100;
 
         do {
             current_write = write_index_.load(std::memory_order_acquire);
             size_t current_read = read_index_.load(std::memory_order_acquire);
 
+            // Check for buffer full condition
             if (is_full_unsafe(current_write, current_read)) {
                 if (config_.overwrite_old) {
-                    // Advance read index to overwrite oldest
+                    // Advance read index to overwrite oldest data
+                    // Use strong CAS in a loop to ensure it succeeds
                     size_t expected_read = current_read;
                     size_t new_read = (current_read + 1) & get_mask();
-                    read_index_.compare_exchange_weak(expected_read, new_read,
-                                                    std::memory_order_acq_rel);
-                    stats_.overwrites.fetch_add(1, std::memory_order_relaxed);
+
+                    // Try to advance read index with strong CAS
+                    // If it fails, another thread already advanced it, which is fine
+                    if (read_index_.compare_exchange_strong(expected_read, new_read,
+                                                           std::memory_order_acq_rel,
+                                                           std::memory_order_acquire)) {
+                        // Successfully advanced read index
+                        if (!overflow_handled) {
+                            stats_.overwrites.fetch_add(1, std::memory_order_relaxed);
+                            overflow_handled = true;
+                        }
+                    }
+                    // Continue to claim write slot even if CAS failed
+                    // (another thread may have already made space)
                 } else {
+                    // Buffer is full and overwrite is not allowed
                     stats_.failed_writes.fetch_add(1, std::memory_order_relaxed);
+
+                    // Provide more detailed error information
+                    size_t current_size = size();
                     return result_void(monitoring_error_code::storage_full,
-                                     "Ring buffer is full");
+                                     "Ring buffer is full (size: " +
+                                     std::to_string(current_size) +
+                                     "/" + std::to_string(config_.capacity) +
+                                     ", overwrites: " +
+                                     std::to_string(stats_.overwrites.load()) + ")");
                 }
             }
 
             new_write = (current_write + 1) & get_mask();
+
+            // Prevent infinite loop in case of extreme contention
+            if (++retry_count > max_retries) {
+                stats_.failed_writes.fetch_add(1, std::memory_order_relaxed);
+                return result_void(monitoring_error_code::collection_failed,
+                                 "Failed to write to ring buffer after " +
+                                 std::to_string(max_retries) + " retries (high contention)");
+            }
 
             // Atomically claim the write slot
         } while (!write_index_.compare_exchange_weak(current_write, new_write,
@@ -212,17 +279,23 @@ public:
         if (items.empty()) {
             return 0;
         }
-        
+
         size_t written = 0;
+        size_t failed = 0;
+
         for (auto& item : items) {
             auto result = write(std::move(item));
             if (result) {
                 ++written;
-            } else if (!config_.overwrite_old) {
-                break; // Stop on first failure if not overwriting
+            } else {
+                ++failed;
+                // Stop on first failure if not overwriting to prevent data loss
+                if (!config_.overwrite_old) {
+                    break;
+                }
             }
         }
-        
+
         return written;
     }
     
@@ -371,7 +444,23 @@ public:
         stats_.overwrites.store(0);
         stats_.failed_writes.store(0);
         stats_.failed_reads.store(0);
+        stats_.contention_retries.store(0);
         stats_.creation_time = std::chrono::system_clock::now();
+    }
+
+    /**
+     * @brief Check if buffer is experiencing high overflow
+     * @return true if overflow rate exceeds threshold
+     */
+    bool is_overflow_rate_high() const noexcept {
+        return stats_.is_overflow_rate_high();
+    }
+
+    /**
+     * @brief Get overflow rate percentage
+     */
+    double get_overflow_rate() const noexcept {
+        return stats_.get_overflow_rate();
     }
 };
 
