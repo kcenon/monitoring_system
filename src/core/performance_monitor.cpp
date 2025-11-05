@@ -219,6 +219,14 @@ result<metrics_snapshot> performance_monitor::collect() {
         snapshot.add_metric("thread_count", static_cast<double>(sys_metrics.thread_count));
     }
 
+    // Add profiler metrics
+    auto profiler_metrics = profiler_.get_all_metrics();
+    for (const auto& perf_metric : profiler_metrics) {
+        // Add the metric value (using mean duration as the primary metric)
+        snapshot.add_metric(perf_metric.operation_name,
+                          static_cast<double>(perf_metric.mean_duration.count()));
+    }
+
     return make_success(snapshot);
 }
 
