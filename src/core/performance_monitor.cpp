@@ -5,6 +5,7 @@
 
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <shared_mutex>
+#include <deque>
 
 // Platform-specific headers for system metrics
 #if defined(__APPLE__)
@@ -135,7 +136,7 @@ kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::moni
 struct system_monitor::monitor_impl {
     std::atomic<bool> monitoring{false};
     std::thread monitor_thread;
-    std::vector<system_metrics> history;
+    std::deque<system_metrics> history;  // Changed from vector for O(1) front removal
     mutable std::mutex history_mutex;
     std::chrono::milliseconds interval{1000};
 
@@ -292,8 +293,9 @@ result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval
                 impl_->history.push_back(metrics.value());
 
                 // Trim history to prevent unbounded growth (keep last hour with 1s interval)
+                // Using deque for O(1) front removal instead of O(n) vector::erase
                 if (impl_->history.size() > 3600) {
-                    impl_->history.erase(impl_->history.begin());
+                    impl_->history.pop_front();
                 }
             }
             std::this_thread::sleep_for(impl_->interval);
@@ -323,7 +325,8 @@ bool system_monitor::is_monitoring() const {
 std::vector<system_metrics> system_monitor::get_history(std::chrono::seconds duration) const {
     (void)duration; // Suppress unused parameter warning
     std::lock_guard<std::mutex> lock(impl_->history_mutex);
-    return impl_->history; // Simplified stub
+    // Convert deque to vector for API compatibility
+    return std::vector<system_metrics>(impl_->history.begin(), impl_->history.end());
 }
 
 // performance_monitor additional methods
