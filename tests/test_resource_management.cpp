@@ -2,9 +2,9 @@
 #include <thread>
 #include <chrono>
 #include <atomic>
-#include <monitoring/reliability/resource_manager.h>
+#include <kcenon/monitoring/reliability/resource_manager.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class ResourceManagementTest : public ::testing::Test {
 protected:

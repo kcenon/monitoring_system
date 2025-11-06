@@ -13,7 +13,7 @@ All rights reserved.
 #include <thread>
 #include <chrono>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class OpenTelemetryAdapterTest : public ::testing::Test {
 protected:

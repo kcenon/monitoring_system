@@ -5,7 +5,7 @@
 #include "retry_policy.h"
 #include "error_boundary.h"
 
-namespace monitoring_system {
+namespace kcenon::monitoring {
 
 /**
  * @brief Basic fault tolerance manager - stub implementation
@@ -34,4 +34,4 @@ private:
     std::unique_ptr<error_boundary> error_boundary_;
 };
 
-} // namespace monitoring_system
+} // namespace kcenon::monitoring

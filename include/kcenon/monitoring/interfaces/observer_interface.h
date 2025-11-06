@@ -16,7 +16,7 @@
 #include "metric_types_adapter.h"
 #include "../core/result_types.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 // Forward declarations
 class metric_event;
@@ -173,4 +173,4 @@ public:
     virtual void notify_state_change(const state_change_event& event) = 0;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

@@ -26,7 +26,7 @@ All rights reserved.
 #include <optional>
 #include <exception>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 // Forward declarations
 class metrics_collector;
@@ -371,4 +371,4 @@ public:
     virtual result_void reset() = 0;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

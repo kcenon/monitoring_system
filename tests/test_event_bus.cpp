@@ -3,16 +3,16 @@
  * @brief Test for event-driven communication system
  */
 
-#include <monitoring/core/event_bus.h>
-#include <monitoring/core/event_types.h>
-#include <monitoring/adapters/thread_system_adapter.h>
-#include <monitoring/adapters/logger_system_adapter.h>
+#include <kcenon/monitoring/core/event_bus.h>
+#include <kcenon/monitoring/core/event_types.h>
+#include <kcenon/monitoring/adapters/thread_system_adapter.h>
+#include <kcenon/monitoring/adapters/logger_system_adapter.h>
 #include <gtest/gtest.h>
 #include <atomic>
 #include <chrono>
 #include <thread>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 class EventBusTest : public ::testing::Test {

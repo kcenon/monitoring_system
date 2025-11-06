@@ -11,7 +11,7 @@
 #include <set>
 #include <kcenon/monitoring/core/performance_monitor.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class PerformanceMonitoringTest : public ::testing::Test {
 protected:

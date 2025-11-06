@@ -4,7 +4,7 @@
 #include <chrono>
 #include <functional>
 
-namespace monitoring_system {
+namespace kcenon::monitoring {
 
 /**
  * @brief Retry strategies
@@ -46,4 +46,4 @@ private:
     config config_;
 };
 
-} // namespace monitoring_system
+} // namespace kcenon::monitoring

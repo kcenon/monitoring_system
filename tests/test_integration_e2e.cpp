@@ -21,20 +21,20 @@ All rights reserved.
 #include <fstream>
 #include <filesystem>
 
-#include <monitoring/core/result_types.h>
-#include <monitoring/interfaces/monitoring_interface.h>
-#include <monitoring/tracing/distributed_tracer.h>
-#include <monitoring/performance/performance_monitor.h>
-#include <monitoring/adaptive/adaptive_monitor.h>
-#include <monitoring/health/health_monitor.h>
-#include <monitoring/reliability/circuit_breaker.h>
-#include <monitoring/reliability/retry_policy.h>
-#include <monitoring/reliability/fault_tolerance_manager.h>
-#include <monitoring/export/opentelemetry_adapter.h>
-#include <monitoring/export/trace_exporters.h>
-#include <monitoring/storage/storage_backends.h>
+#include <kcenon/monitoring/core/result_types.h>
+#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/tracing/distributed_tracer.h>
+#include <kcenon/monitoring/performance/performance_monitor.h>
+#include <kcenon/monitoring/adaptive/adaptive_monitor.h>
+#include <kcenon/monitoring/health/health_monitor.h>
+#include <kcenon/monitoring/reliability/circuit_breaker.h>
+#include <kcenon/monitoring/reliability/retry_policy.h>
+#include <kcenon/monitoring/reliability/fault_tolerance_manager.h>
+#include <kcenon/monitoring/export/opentelemetry_adapter.h>
+#include <kcenon/monitoring/export/trace_exporters.h>
+#include <kcenon/monitoring/storage/storage_backends.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class IntegrationE2ETest : public ::testing::Test {
 protected:

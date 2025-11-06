@@ -5,13 +5,13 @@
 
 #include <kcenon/monitoring/core/event_bus.h>
 #include <kcenon/monitoring/core/event_types.h>
-#include <monitoring/adapters/thread_system_adapter.h>
-#include <monitoring/adapters/logger_system_adapter.h>
+#include <kcenon/monitoring/adapters/thread_system_adapter.h>
+#include <kcenon/monitoring/adapters/logger_system_adapter.h>
 #include <iostream>
 #include <thread>
 #include <chrono>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 int main() {

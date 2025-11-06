@@ -14,14 +14,14 @@
 #include <random>
 #include <atomic>
 
-#include "monitoring/health/health_monitor.h"
-#include "monitoring/reliability/circuit_breaker.h"
-#include "monitoring/reliability/retry_policy.h"
-#include "monitoring/reliability/error_boundary.h"
-#include "monitoring/core/result_types.h"
-#include "monitoring/core/error_codes.h"
+#include "kcenon/monitoring/health/health_monitor.h"
+#include "kcenon/monitoring/reliability/circuit_breaker.h"
+#include "kcenon/monitoring/reliability/retry_policy.h"
+#include "kcenon/monitoring/reliability/error_boundary.h"
+#include "kcenon/monitoring/core/result_types.h"
+#include "kcenon/monitoring/core/error_codes.h"
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 // Simulate a database connection

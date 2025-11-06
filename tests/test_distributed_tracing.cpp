@@ -10,7 +10,7 @@
 // Note: distributed_tracer.h does not exist in include directory
 // #include <kcenon/monitoring/tracing/distributed_tracer.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class DistributedTracingTest : public ::testing::Test {
 protected:

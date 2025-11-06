@@ -30,7 +30,7 @@ All rights reserved.
 #include <atomic>
 #include <condition_variable>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @struct metric_storage_config
@@ -498,4 +498,4 @@ inline std::unique_ptr<metric_storage> make_metric_storage(const metric_storage_
     return std::make_unique<metric_storage>(config);
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

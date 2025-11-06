@@ -21,7 +21,7 @@
 #include <vector>
 #include "../core/result_types.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @class event_base
@@ -300,4 +300,4 @@ public:
     virtual std::vector<subscription_token> get_subscriptions() const = 0;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

@@ -15,10 +15,10 @@
 #include <map>
 #include <vector>
 
-#include "monitoring/tracing/distributed_tracer.h"
-#include "monitoring/context/thread_context.h"
+#include "kcenon/monitoring/tracing/distributed_tracer.h"
+#include "kcenon/monitoring/context/thread_context.h"
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 // Simulate a web service that processes requests

@@ -59,7 +59,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "result_types.h"
 #include "error_codes.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @class event_envelope
@@ -441,4 +441,4 @@ private:
     std::atomic<uint64_t> total_events_dropped_;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

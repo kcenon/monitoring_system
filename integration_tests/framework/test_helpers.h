@@ -293,7 +293,7 @@ class MockMetricExporter {
 public:
     MockMetricExporter() = default;
 
-    void export_metrics(const std::vector<monitoring_system::compact_metric_value>& metrics) {
+    void export_metrics(const std::vector<kcenon::monitoring::compact_metric_value>& metrics) {
         export_count_.fetch_add(1);
         last_export_size_ = metrics.size();
         total_exported_.fetch_add(metrics.size());
@@ -393,21 +393,21 @@ inline std::string GenerateRandomString(size_t length) {
 /**
  * @brief Create test metric with random value
  */
-inline monitoring_system::compact_metric_value CreateTestMetric(
+inline kcenon::monitoring::compact_metric_value CreateTestMetric(
     const std::string& name,
-    monitoring_system::metric_type type = monitoring_system::metric_type::gauge) {
+    kcenon::monitoring::metric_type type = kcenon::monitoring::metric_type::gauge) {
 
     static thread_local std::mt19937 gen(std::random_device{}());
     std::uniform_real_distribution<> dis(0.0, 100.0);
 
-    auto metadata = monitoring_system::create_metric_metadata(name, type);
-    return monitoring_system::compact_metric_value(metadata, dis(gen));
+    auto metadata = kcenon::monitoring::create_metric_metadata(name, type);
+    return kcenon::monitoring::compact_metric_value(metadata, dis(gen));
 }
 
 /**
  * @brief Verify metric value is within expected range
  */
-inline bool CheckMetricValue(const monitoring_system::compact_metric_value& metric,
+inline bool CheckMetricValue(const kcenon::monitoring::compact_metric_value& metric,
                             double expected,
                             double tolerance = 0.01) {
     double actual = metric.as_double();
@@ -418,8 +418,8 @@ inline bool CheckMetricValue(const monitoring_system::compact_metric_value& metr
  * @brief Count metrics by type
  */
 inline size_t CountMetricsByType(
-    const std::vector<monitoring_system::compact_metric_value>& metrics,
-    monitoring_system::metric_type type) {
+    const std::vector<kcenon::monitoring::compact_metric_value>& metrics,
+    kcenon::monitoring::metric_type type) {
 
     return std::count_if(metrics.begin(), metrics.end(),
         [type](const auto& metric) {
@@ -431,7 +431,7 @@ inline size_t CountMetricsByType(
  * @brief Calculate total memory footprint of metrics
  */
 inline size_t CalculateMetricsMemory(
-    const std::vector<monitoring_system::compact_metric_value>& metrics) {
+    const std::vector<kcenon::monitoring::compact_metric_value>& metrics) {
 
     size_t total = 0;
     for (const auto& metric : metrics) {
@@ -443,8 +443,8 @@ inline size_t CalculateMetricsMemory(
 /**
  * @brief Generate metric batch for testing
  */
-inline monitoring_system::metric_batch GenerateMetricBatch(size_t count) {
-    monitoring_system::metric_batch batch;
+inline kcenon::monitoring::metric_batch GenerateMetricBatch(size_t count) {
+    kcenon::monitoring::metric_batch batch;
     batch.reserve(count);
 
     for (size_t i = 0; i < count; ++i) {

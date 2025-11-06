@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <variant>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @struct metric
@@ -78,4 +78,4 @@ struct metric_stats {
     }
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

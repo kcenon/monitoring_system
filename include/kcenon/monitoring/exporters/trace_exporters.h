@@ -34,7 +34,7 @@ All rights reserved.
 #include <algorithm>
 #include <unordered_map>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @enum trace_export_format
@@ -594,4 +594,4 @@ inline std::unique_ptr<otlp_exporter> create_otlp_exporter(
     return std::make_unique<otlp_exporter>(config, resource);
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

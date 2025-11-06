@@ -22,7 +22,7 @@ All rights reserved.
 #include "../interfaces/monitorable_interface.h"
 #include "../core/result_types.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 namespace adapters {
 
 #ifdef BUILD_WITH_COMMON_SYSTEM
@@ -352,4 +352,4 @@ public:
 #endif // BUILD_WITH_COMMON_SYSTEM
 
 } // namespace adapters
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

@@ -17,7 +17,7 @@ All rights reserved.
 #include <set>
 #include <future>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * Test fixture for thread context tests

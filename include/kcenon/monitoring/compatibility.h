@@ -1,16 +1,15 @@
 #ifndef MONITORING_SYSTEM_COMPATIBILITY_H
 #define MONITORING_SYSTEM_COMPATIBILITY_H
 
-// Forward declare the legacy namespace so aliases compile without pulling
-// the full monitoring headers.
-namespace monitoring_system {}
+// Forward declare the canonical namespace
+namespace kcenon { namespace monitoring {} }
 
-// Backward compatibility namespace aliases
-// These will be removed in future versions
-namespace kcenon {
-namespace monitoring = ::monitoring_system;
-} // namespace kcenon
+// Backward compatibility namespace alias
+// Legacy code can use monitoring_system:: which maps to kcenon::monitoring::
+// This alias will be deprecated in future versions
+namespace monitoring_system = ::kcenon::monitoring;
 
-namespace monitoring_module = ::monitoring_system;
+// Additional legacy alias
+namespace monitoring_module = ::kcenon::monitoring;
 
 #endif // MONITORING_SYSTEM_COMPATIBILITY_H

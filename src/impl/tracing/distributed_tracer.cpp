@@ -9,7 +9,7 @@
 #include <shared_mutex>
 #include <sstream>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @brief Private implementation of distributed tracer
@@ -35,12 +35,12 @@ struct distributed_tracer::tracer_impl {
     /**
      * @brief Store a span
      */
-    monitoring_system::result<bool> store_span(const trace_span& span) {
+    kcenon::monitoring::result<bool> store_span(const trace_span& span) {
         std::unique_lock lock(spans_mutex);
         
         auto& trace_spans = traces[span.trace_id];
         if (trace_spans.size() >= max_spans_per_trace) {
-            return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::resource_exhausted);
+            return kcenon::monitoring::make_error<bool>(kcenon::monitoring::monitoring_error_code::resource_exhausted);
         }
         
         trace_spans.push_back(span);
@@ -82,7 +82,7 @@ distributed_tracer::~distributed_tracer() = default;
 distributed_tracer::distributed_tracer(distributed_tracer&&) noexcept = default;
 distributed_tracer& distributed_tracer::operator=(distributed_tracer&&) noexcept = default;
 
-monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start_span(
+kcenon::monitoring::result<std::shared_ptr<trace_span>> distributed_tracer::start_span(
     const std::string& operation_name,
     const std::string& service_name) {
     
@@ -112,7 +112,7 @@ monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start
     return span;
 }
 
-monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start_child_span(
+kcenon::monitoring::result<std::shared_ptr<trace_span>> distributed_tracer::start_child_span(
     const trace_span& parent,
     const std::string& operation_name) {
     
@@ -135,7 +135,7 @@ monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start
     return span;
 }
 
-monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start_span_from_context(
+kcenon::monitoring::result<std::shared_ptr<trace_span>> distributed_tracer::start_span_from_context(
     const trace_context& context,
     const std::string& operation_name) {
     
@@ -158,13 +158,13 @@ monitoring_system::result<std::shared_ptr<trace_span>> distributed_tracer::start
     return span;
 }
 
-monitoring_system::result<bool> distributed_tracer::finish_span(std::shared_ptr<trace_span> span) {
+kcenon::monitoring::result<bool> distributed_tracer::finish_span(std::shared_ptr<trace_span> span) {
     if (!span) {
-        return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::invalid_argument);
+        return kcenon::monitoring::make_error<bool>(kcenon::monitoring::monitoring_error_code::invalid_argument);
     }
 
     if (span->is_finished()) {
-        return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::already_exists);
+        return kcenon::monitoring::make_error<bool>(kcenon::monitoring::monitoring_error_code::already_exists);
     }
 
     span->end_time = std::chrono::system_clock::now();
@@ -209,23 +209,23 @@ trace_context distributed_tracer::extract_context(const trace_span& span) const 
     return ctx;
 }
 
-monitoring_system::result<std::vector<trace_span>> distributed_tracer::get_trace(const std::string& trace_id) const {
+kcenon::monitoring::result<std::vector<trace_span>> distributed_tracer::get_trace(const std::string& trace_id) const {
     std::shared_lock lock(impl_->spans_mutex);
     
     auto it = impl_->traces.find(trace_id);
     if (it == impl_->traces.end()) {
-        return monitoring_system::make_error<std::vector<trace_span>>(monitoring_system::monitoring_error_code::not_found);
+        return kcenon::monitoring::make_error<std::vector<trace_span>>(kcenon::monitoring::monitoring_error_code::not_found);
     }
     
     return it->second;
 }
 
-monitoring_system::result<bool> distributed_tracer::export_spans(std::vector<trace_span> spans) {
+kcenon::monitoring::result<bool> distributed_tracer::export_spans(std::vector<trace_span> spans) {
     // In a real implementation, this would export to Jaeger, Zipkin, etc.
     // For now, just validate the spans
     for (const auto& span : spans) {
         if (!span.is_finished()) {
-            return monitoring_system::make_error<bool>(monitoring_system::monitoring_error_code::invalid_state);
+            return kcenon::monitoring::make_error<bool>(kcenon::monitoring::monitoring_error_code::invalid_state);
         }
     }
     
@@ -233,7 +233,7 @@ monitoring_system::result<bool> distributed_tracer::export_spans(std::vector<tra
     for (const auto& span : spans) {
         auto result = impl_->store_span(span);
         if (!result) {
-            return monitoring_system::make_error<bool>(result.get_error().code);
+            return kcenon::monitoring::make_error<bool>(result.get_error().code);
         }
     }
     
@@ -246,4 +246,4 @@ distributed_tracer& global_tracer() {
     return instance;
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

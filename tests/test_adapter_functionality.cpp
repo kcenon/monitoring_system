@@ -16,7 +16,7 @@
 #include <memory>
 #include <atomic>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace common::interfaces;
 using common::VoidResult;
 using common::Result;

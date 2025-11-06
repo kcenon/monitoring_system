@@ -11,8 +11,8 @@ All rights reserved.
  */
 
 #include <gtest/gtest.h>
-#include "monitoring/core/result_types.h"
-#include "monitoring/core/error_codes.h"
+#include "kcenon/monitoring/core/result_types.h"
+#include "kcenon/monitoring/core/error_codes.h"
 // Note: DI container headers do not exist in include directory
 // #include <kcenon/monitoring/di/service_container_interface.h>
 // #include <kcenon/monitoring/di/lightweight_container.h>
@@ -27,7 +27,7 @@ All rights reserved.
 #include <typeinfo>
 
 // Add monitoring system types for testing
-namespace monitoring_system {
+namespace kcenon::monitoring {
     // Stub enums and types for testing
     enum class service_lifetime {
         transient,
@@ -206,7 +206,7 @@ namespace monitoring_system {
     }
 }
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * Test interfaces and implementations

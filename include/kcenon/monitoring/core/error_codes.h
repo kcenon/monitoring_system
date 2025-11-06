@@ -18,7 +18,7 @@ All rights reserved.
 #include <cstdint>
 #include <string>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @enum monitoring_error_code
@@ -355,4 +355,4 @@ inline std::string get_error_details(monitoring_error_code code) {
     }
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

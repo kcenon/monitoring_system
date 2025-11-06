@@ -30,7 +30,7 @@
 #include <kcenon/common/interfaces/logger_interface.h>
 #include <kcenon/common/interfaces/monitoring_interface.h>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @brief Logger system adapter using dependency injection (Phase 2.3.3)
@@ -134,7 +134,7 @@ private:
     std::shared_ptr<common::interfaces::ILogger> logger_;  // Phase 2.3.3
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring
 
 #endif // KCENON_MONITORING_ADAPTERS_LOGGER_SYSTEM_ADAPTER_H
 

@@ -10,7 +10,7 @@
 // Note: health_monitor.h does not exist in include directory
 // #include <kcenon/monitoring/health/health_monitor.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 // Test health check implementations
 class test_health_check : public health_check {

@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <shared_mutex>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 // Adaptive Monitor Implementation
 struct adaptive_monitor::monitor_impl {
@@ -21,7 +21,7 @@ struct adaptive_monitor::monitor_impl {
     std::unordered_map<std::string, collector_info> collectors;
     mutable std::shared_mutex collectors_mutex;
     
-    std::unique_ptr<monitoring_system::system_monitor> sys_monitor;
+    std::unique_ptr<kcenon::monitoring::system_monitor> sys_monitor;
     std::atomic<bool> running{false};
     std::thread adaptation_thread;
     
@@ -88,7 +88,7 @@ struct adaptive_monitor::monitor_impl {
 
 adaptive_monitor::adaptive_monitor()
     : impl_(std::make_unique<monitor_impl>()) {
-    impl_->sys_monitor = std::make_unique<monitoring_system::system_monitor>();
+    impl_->sys_monitor = std::make_unique<kcenon::monitoring::system_monitor>();
 }
 
 adaptive_monitor::~adaptive_monitor() = default;
@@ -96,14 +96,14 @@ adaptive_monitor::~adaptive_monitor() = default;
 adaptive_monitor::adaptive_monitor(adaptive_monitor&&) noexcept = default;
 adaptive_monitor& adaptive_monitor::operator=(adaptive_monitor&&) noexcept = default;
 
-monitoring_system::result<bool> adaptive_monitor::register_collector(
+kcenon::monitoring::result<bool> adaptive_monitor::register_collector(
     const std::string& name,
     std::shared_ptr<metrics_collector> collector,
     const adaptive_config& config) {
     
     if (!collector) {
-        return monitoring_system::make_error<bool>(
-            monitoring_system::monitoring_error_code::invalid_argument,
+        return kcenon::monitoring::make_error<bool>(
+            kcenon::monitoring::monitoring_error_code::invalid_argument,
             "Collector cannot be null"
         );
     }
@@ -111,8 +111,8 @@ monitoring_system::result<bool> adaptive_monitor::register_collector(
     std::unique_lock lock(impl_->collectors_mutex);
     
     if (impl_->collectors.find(name) != impl_->collectors.end()) {
-        return monitoring_system::make_error<bool>(
-            monitoring_system::monitoring_error_code::already_exists,
+        return kcenon::monitoring::make_error<bool>(
+            kcenon::monitoring::monitoring_error_code::already_exists,
             "Collector already registered: " + name
         );
     }
@@ -124,45 +124,45 @@ monitoring_system::result<bool> adaptive_monitor::register_collector(
     
     impl_->collectors[name] = info;
     
-    return monitoring_system::result<bool>(true);
+    return kcenon::monitoring::result<bool>(true);
 }
 
-monitoring_system::result<bool> adaptive_monitor::unregister_collector(
+kcenon::monitoring::result<bool> adaptive_monitor::unregister_collector(
     const std::string& name) {
     
     std::unique_lock lock(impl_->collectors_mutex);
     
     auto it = impl_->collectors.find(name);
     if (it == impl_->collectors.end()) {
-        return monitoring_system::make_error<bool>(
-            monitoring_system::monitoring_error_code::not_found,
+        return kcenon::monitoring::make_error<bool>(
+            kcenon::monitoring::monitoring_error_code::not_found,
             "Collector not found: " + name
         );
     }
     
     impl_->collectors.erase(it);
     
-    return monitoring_system::result<bool>(true);
+    return kcenon::monitoring::result<bool>(true);
 }
 
-monitoring_system::result<bool> adaptive_monitor::start() {
+kcenon::monitoring::result<bool> adaptive_monitor::start() {
     if (!impl_) {
-        return monitoring_system::make_error<bool>(
-            monitoring_system::monitoring_error_code::invalid_state,
+        return kcenon::monitoring::make_error<bool>(
+            kcenon::monitoring::monitoring_error_code::invalid_state,
             "Adaptive monitor not initialized"
         );
     }
     
     if (impl_->running.exchange(true)) {
         // Already running
-        return monitoring_system::result<bool>(true);
+        return kcenon::monitoring::result<bool>(true);
     }
     
     // Start system monitoring
     auto sys_result = impl_->sys_monitor->start_monitoring();
     if (!sys_result) {
         impl_->running = false;
-        return monitoring_system::make_error<bool>(
+        return kcenon::monitoring::make_error<bool>(
             sys_result.get_error().code,
             "Failed to start system monitoring: " + sys_result.get_error().message
         );
@@ -173,13 +173,13 @@ monitoring_system::result<bool> adaptive_monitor::start() {
         &monitor_impl::adaptation_loop, impl_.get()
     );
     
-    return monitoring_system::result<bool>(true);
+    return kcenon::monitoring::result<bool>(true);
 }
 
-monitoring_system::result<bool> adaptive_monitor::stop() {
+kcenon::monitoring::result<bool> adaptive_monitor::stop() {
     if (!impl_) {
-        return monitoring_system::make_error<bool>(
-            monitoring_system::monitoring_error_code::invalid_state,
+        return kcenon::monitoring::make_error<bool>(
+            kcenon::monitoring::monitoring_error_code::invalid_state,
             "Adaptive monitor not initialized"
         );
     }
@@ -190,29 +190,29 @@ monitoring_system::result<bool> adaptive_monitor::stop() {
         impl_->sys_monitor->stop_monitoring();
     }
     
-    return monitoring_system::result<bool>(true);
+    return kcenon::monitoring::result<bool>(true);
 }
 
 bool adaptive_monitor::is_running() const {
     return impl_ && impl_->running.load();
 }
 
-monitoring_system::result<adaptation_stats> adaptive_monitor::get_collector_stats(
+kcenon::monitoring::result<adaptation_stats> adaptive_monitor::get_collector_stats(
     const std::string& name) const {
     
     std::shared_lock lock(impl_->collectors_mutex);
     
     auto it = impl_->collectors.find(name);
     if (it == impl_->collectors.end()) {
-        return monitoring_system::make_error<adaptation_stats>(
-            monitoring_system::monitoring_error_code::not_found,
+        return kcenon::monitoring::make_error<adaptation_stats>(
+            kcenon::monitoring::monitoring_error_code::not_found,
             "Collector not found: " + name
         );
     }
     
     if (!it->second.collector) {
-        return monitoring_system::make_error<adaptation_stats>(
-            monitoring_system::monitoring_error_code::invalid_state,
+        return kcenon::monitoring::make_error<adaptation_stats>(
+            kcenon::monitoring::monitoring_error_code::invalid_state,
             "Collector is null"
         );
     }
@@ -248,17 +248,17 @@ void adaptive_monitor::set_global_strategy(adaptation_strategy strategy) {
     }
 }
 
-monitoring_system::result<bool> adaptive_monitor::force_adaptation() {
+kcenon::monitoring::result<bool> adaptive_monitor::force_adaptation() {
     if (!impl_->sys_monitor) {
-        return monitoring_system::make_error<bool>(
-            monitoring_system::monitoring_error_code::invalid_state,
+        return kcenon::monitoring::make_error<bool>(
+            kcenon::monitoring::monitoring_error_code::invalid_state,
             "System monitor not initialized"
         );
     }
     
     auto metrics_result = impl_->sys_monitor->get_current_metrics();
     if (!metrics_result) {
-        return monitoring_system::make_error<bool>(
+        return kcenon::monitoring::make_error<bool>(
             metrics_result.get_error().code,
             "Failed to get system metrics: " + metrics_result.get_error().message
         );
@@ -273,7 +273,7 @@ monitoring_system::result<bool> adaptive_monitor::force_adaptation() {
         }
     }
     
-    return monitoring_system::result<bool>(true);
+    return kcenon::monitoring::result<bool>(true);
 }
 
 std::vector<std::string> adaptive_monitor::get_active_collectors() const {
@@ -321,7 +321,7 @@ std::vector<std::string> adaptive_monitor::get_active_collectors() const {
     return active;
 }
 
-monitoring_system::result<bool> adaptive_monitor::set_collector_priority(
+kcenon::monitoring::result<bool> adaptive_monitor::set_collector_priority(
     const std::string& name,
     int priority) {
     
@@ -329,15 +329,15 @@ monitoring_system::result<bool> adaptive_monitor::set_collector_priority(
     
     auto it = impl_->collectors.find(name);
     if (it == impl_->collectors.end()) {
-        return monitoring_system::make_error<bool>(
-            monitoring_system::monitoring_error_code::not_found,
+        return kcenon::monitoring::make_error<bool>(
+            kcenon::monitoring::monitoring_error_code::not_found,
             "Collector not found: " + name
         );
     }
     
     it->second.priority = priority;
     
-    return monitoring_system::result<bool>(true);
+    return kcenon::monitoring::result<bool>(true);
 }
 
 // Global instance
@@ -346,4 +346,4 @@ adaptive_monitor& global_adaptive_monitor() {
     return instance;
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

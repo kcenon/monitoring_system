@@ -7,7 +7,7 @@
 // #include <kcenon/monitoring/storage/metric_database.h>
 // #include <kcenon/monitoring/storage/timeseries_engine.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 int main() {
     std::cout << "=== Time Series Storage Example ===" << std::endl;

@@ -2,9 +2,9 @@
 #include <thread>
 #include <chrono>
 #include <atomic>
-#include <monitoring/reliability/data_consistency.h>
+#include <kcenon/monitoring/reliability/data_consistency.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class DataConsistencyTest : public ::testing::Test {
 protected:

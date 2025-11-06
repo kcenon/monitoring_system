@@ -26,7 +26,7 @@ All rights reserved.
 #include <optional>
 #include <algorithm>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @struct monitoring_data
@@ -454,4 +454,4 @@ public:
     }
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

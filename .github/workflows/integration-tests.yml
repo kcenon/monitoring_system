@@ -64,6 +64,7 @@ jobs:
         run: |
           cmake -B build \
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+            -DBUILD_EXAMPLES=OFF \
             -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
             -DMONITORING_BUILD_INTEGRATION_TESTS=ON \
             -DENABLE_COVERAGE=${{ matrix.build_type == 'Debug' && 'ON' || 'OFF' }}

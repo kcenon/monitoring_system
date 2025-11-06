@@ -40,7 +40,7 @@ All rights reserved.
 #include <cctype>
 #include <cstdint>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @enum metric_export_format
@@ -885,4 +885,4 @@ inline std::unique_ptr<otlp_metrics_exporter> create_otlp_metrics_exporter(
     return std::make_unique<otlp_metrics_exporter>(config, resource);
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

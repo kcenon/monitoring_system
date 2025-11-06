@@ -27,7 +27,7 @@ All rights reserved.
 #include <memory>
 #include <mutex>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @struct time_series_config
@@ -500,4 +500,4 @@ inline result<std::unique_ptr<time_series>> make_time_series(const std::string& 
     return time_series::create(name, config);
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

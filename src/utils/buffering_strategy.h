@@ -29,7 +29,7 @@ All rights reserved.
 #include <functional>
 #include <algorithm>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @enum buffering_strategy_type
@@ -940,4 +940,4 @@ inline std::vector<buffering_config> create_default_buffering_configs() {
     return configs;
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

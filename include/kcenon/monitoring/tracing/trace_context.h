@@ -3,7 +3,7 @@
 #include <chrono>
 #include <optional>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 struct trace_context {
     std::string trace_id;

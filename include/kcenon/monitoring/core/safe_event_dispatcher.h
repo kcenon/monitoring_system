@@ -12,7 +12,7 @@ All rights reserved.
 #include <functional>
 #include <string>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @struct handler_error_info
@@ -287,4 +287,4 @@ private:
     std::vector<dead_letter_entry> dead_letter_queue_;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

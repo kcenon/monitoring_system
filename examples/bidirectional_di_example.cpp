@@ -20,7 +20,7 @@
 #include <chrono>
 #include <thread>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace common::interfaces;
 
 /**

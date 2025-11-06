@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "test_helpers.h"
 
 using namespace integration_tests;
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class MonitoringIntegrationTest : public MonitoringSystemFixture {};
 
