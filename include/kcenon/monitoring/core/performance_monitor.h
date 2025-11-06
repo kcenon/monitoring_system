@@ -31,7 +31,7 @@
 // Use common_system interfaces (Phase 2.3.4)
 #include <kcenon/common/interfaces/monitoring_interface.h>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @brief Performance metrics for a specific operation
@@ -131,7 +131,7 @@ public:
     /**
      * @brief Record a performance sample
      */
-    monitoring_system::result<bool> record_sample(
+    kcenon::monitoring::result<bool> record_sample(
         const std::string& operation_name,
         std::chrono::nanoseconds duration,
         bool success = true
@@ -140,7 +140,7 @@ public:
     /**
      * @brief Get performance metrics for an operation
      */
-    monitoring_system::result<performance_metrics> get_metrics(
+    kcenon::monitoring::result<performance_metrics> get_metrics(
         const std::string& operation_name
     ) const;
     
@@ -152,7 +152,7 @@ public:
     /**
      * @brief Clear samples for an operation
      */
-    monitoring_system::result<bool> clear_samples(const std::string& operation_name);
+    kcenon::monitoring::result<bool> clear_samples(const std::string& operation_name);
     
     /**
      * @brief Clear all samples
@@ -257,19 +257,19 @@ public:
     /**
      * @brief Get current system metrics
      */
-    monitoring_system::result<system_metrics> get_current_metrics() const;
+    kcenon::monitoring::result<system_metrics> get_current_metrics() const;
     
     /**
      * @brief Start monitoring system resources
      */
-    monitoring_system::result<bool> start_monitoring(
+    kcenon::monitoring::result<bool> start_monitoring(
         std::chrono::milliseconds interval = std::chrono::milliseconds(1000)
     );
     
     /**
      * @brief Stop monitoring
      */
-    monitoring_system::result<bool> stop_monitoring();
+    kcenon::monitoring::result<bool> stop_monitoring();
     
     /**
      * @brief Check if monitoring is active
@@ -287,7 +287,7 @@ public:
 /**
  * @brief Performance monitor combining profiling and system monitoring
  *
- * Implements both monitoring_system::metrics_collector and (optionally)
+ * Implements both kcenon::monitoring::metrics_collector and (optionally)
  * common::interfaces::IMonitor for interoperability with common_system.
  */
 /**
@@ -338,7 +338,7 @@ public:
         return result_void::success();
     }
     
-    monitoring_system::result<metrics_snapshot> collect() override;
+    kcenon::monitoring::result<metrics_snapshot> collect() override;
     
     /**
      * @brief Create a scoped timer for an operation
@@ -377,7 +377,7 @@ public:
     /**
      * @brief Check if any thresholds are exceeded
      */
-    monitoring_system::result<bool> check_thresholds() const;
+    kcenon::monitoring::result<bool> check_thresholds() const;
 
     // IMonitor interface implementation (Phase 2.3.4)
 
@@ -429,13 +429,13 @@ performance_monitor& global_performance_monitor();
  * @brief Helper macro for timing code sections
  */
 #define PERF_TIMER(operation_name) \
-    monitoring_system::scoped_timer _perf_timer( \
-        &monitoring_system::global_performance_monitor().get_profiler(), \
+    kcenon::monitoring::scoped_timer _perf_timer( \
+        &kcenon::monitoring::global_performance_monitor().get_profiler(), \
         operation_name \
     )
 
 #define PERF_TIMER_CUSTOM(profiler, operation_name) \
-    monitoring_system::scoped_timer _perf_timer(profiler, operation_name)
+    kcenon::monitoring::scoped_timer _perf_timer(profiler, operation_name)
 
 /**
  * @brief Performance benchmark utility
@@ -469,7 +469,7 @@ public:
      * @brief Run a benchmark
      */
     template<typename Func>
-    monitoring_system::result<performance_metrics> run(
+    kcenon::monitoring::result<performance_metrics> run(
         const std::string& operation_name,
         Func&& func
     ) {
@@ -508,7 +508,7 @@ public:
      * @brief Compare two operations
      */
     template<typename Func1, typename Func2>
-    monitoring_system::result<std::pair<performance_metrics, performance_metrics>> compare(
+    kcenon::monitoring::result<std::pair<performance_metrics, performance_metrics>> compare(
         const std::string& operation1_name,
         Func1&& func1,
         const std::string& operation2_name,
@@ -516,14 +516,14 @@ public:
     ) {
         auto result1 = run(operation1_name, std::forward<Func1>(func1));
         if (!result1) {
-            return monitoring_system::make_error<std::pair<performance_metrics, performance_metrics>>(
+            return kcenon::monitoring::make_error<std::pair<performance_metrics, performance_metrics>>(
                 result1.get_error().code
             );
         }
         
         auto result2 = run(operation2_name, std::forward<Func2>(func2));
         if (!result2) {
-            return monitoring_system::make_error<std::pair<performance_metrics, performance_metrics>>(
+            return kcenon::monitoring::make_error<std::pair<performance_metrics, performance_metrics>>(
                 result2.get_error().code
             );
         }
@@ -532,4 +532,4 @@ public:
     }
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

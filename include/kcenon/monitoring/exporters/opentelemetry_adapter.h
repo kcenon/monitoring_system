@@ -28,7 +28,7 @@ All rights reserved.
 #include <functional>
 #include <mutex>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @enum otel_resource_type
@@ -566,4 +566,4 @@ create_opentelemetry_compatibility_layer(const std::string& service_name,
     return create_opentelemetry_compatibility_layer(resource);
 }
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

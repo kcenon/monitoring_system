@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
-#include <monitoring/optimization/lockfree_queue.h>
-#include <monitoring/optimization/memory_pool.h>
-#include <monitoring/optimization/simd_aggregator.h>
+#include <kcenon/monitoring/optimization/lockfree_queue.h>
+#include <kcenon/monitoring/optimization/memory_pool.h>
+#include <kcenon/monitoring/optimization/simd_aggregator.h>
 #include <chrono>
 #include <thread>
 #include <vector>
 #include <random>
 #include <functional>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * @brief Test suite for Phase 3 P4: Lock-free data structures integration

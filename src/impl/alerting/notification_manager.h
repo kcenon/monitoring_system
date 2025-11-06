@@ -360,4 +360,4 @@ private:
     }
 };
 
-} // namespace monitoring_system::alerting
+} // namespace kcenon::monitoring::alerting

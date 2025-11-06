@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
-#include <monitoring/utils/stream_aggregator.h>
-#include <monitoring/utils/aggregation_processor.h>
-#include <monitoring/utils/metric_storage.h>
+#include <kcenon/monitoring/utils/stream_aggregator.h>
+#include <kcenon/monitoring/utils/aggregation_processor.h>
+#include <kcenon/monitoring/utils/metric_storage.h>
 #include <chrono>
 #include <thread>
 #include <vector>
 #include <random>
 #include <cmath>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * @brief Test suite for Phase 3 P2: Statistical aggregation functions

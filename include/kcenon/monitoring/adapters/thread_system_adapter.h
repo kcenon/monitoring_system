@@ -44,7 +44,7 @@
 #  include <kcenon/thread/interfaces/service_container.h>
 #endif
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 class thread_system_adapter {
 public:
@@ -164,6 +164,6 @@ private:
     std::thread worker_;
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring
 
 #endif // KCENON_MONITORING_ADAPTERS_THREAD_SYSTEM_ADAPTER_H

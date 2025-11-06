@@ -28,7 +28,7 @@
 #include <kcenon/monitoring/interfaces/monitoring_interface.h>
 #include <kcenon/monitoring/core/performance_monitor.h>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @brief Adaptation strategy for monitoring behavior
@@ -134,7 +134,7 @@ struct adaptation_stats {
  */
 class adaptive_collector {
 private:
-    std::shared_ptr<monitoring_system::metrics_collector> collector_;
+    std::shared_ptr<kcenon::monitoring::metrics_collector> collector_;
     adaptive_config config_;
     adaptation_stats stats_;
     std::atomic<bool> enabled_{true};
@@ -143,7 +143,7 @@ private:
     
 public:
     adaptive_collector(
-        std::shared_ptr<monitoring_system::metrics_collector> collector,
+        std::shared_ptr<kcenon::monitoring::metrics_collector> collector,
         const adaptive_config& config = {}
     ) : collector_(collector), config_(config) {
         stats_.current_interval = config_.moderate_interval;
@@ -153,11 +153,11 @@ public:
     /**
      * @brief Collect metrics with adaptive sampling
      */
-    monitoring_system::result<monitoring_system::metrics_snapshot> collect() {
+    kcenon::monitoring::result<kcenon::monitoring::metrics_snapshot> collect() {
         if (!should_sample()) {
             stats_.samples_dropped++;
-            return monitoring_system::make_error<monitoring_system::metrics_snapshot>(
-                monitoring_system::monitoring_error_code::operation_cancelled,
+            return kcenon::monitoring::make_error<kcenon::monitoring::metrics_snapshot>(
+                kcenon::monitoring::monitoring_error_code::operation_cancelled,
                 "Sample dropped due to adaptive sampling"
             );
         }
@@ -169,7 +169,7 @@ public:
     /**
      * @brief Adapt collection behavior based on load
      */
-    void adapt(const monitoring_system::system_metrics& sys_metrics) {
+    void adapt(const kcenon::monitoring::system_metrics& sys_metrics) {
         std::lock_guard lock(stats_mutex_);
         
         // Initialize averages on first adaptation
@@ -334,26 +334,26 @@ public:
     /**
      * @brief Register a collector for adaptive monitoring
      */
-    monitoring_system::result<bool> register_collector(
+    kcenon::monitoring::result<bool> register_collector(
         const std::string& name,
-        std::shared_ptr<monitoring_system::metrics_collector> collector,
+        std::shared_ptr<kcenon::monitoring::metrics_collector> collector,
         const adaptive_config& config = {}
     );
     
     /**
      * @brief Unregister a collector
      */
-    monitoring_system::result<bool> unregister_collector(const std::string& name);
+    kcenon::monitoring::result<bool> unregister_collector(const std::string& name);
     
     /**
      * @brief Start adaptive monitoring
      */
-    monitoring_system::result<bool> start();
+    kcenon::monitoring::result<bool> start();
     
     /**
      * @brief Stop adaptive monitoring
      */
-    monitoring_system::result<bool> stop();
+    kcenon::monitoring::result<bool> stop();
     
     /**
      * @brief Check if monitoring is active
@@ -363,7 +363,7 @@ public:
     /**
      * @brief Get adaptation statistics for a collector
      */
-    monitoring_system::result<adaptation_stats> get_collector_stats(
+    kcenon::monitoring::result<adaptation_stats> get_collector_stats(
         const std::string& name
     ) const;
     
@@ -380,7 +380,7 @@ public:
     /**
      * @brief Force adaptation cycle
      */
-    monitoring_system::result<bool> force_adaptation();
+    kcenon::monitoring::result<bool> force_adaptation();
     
     /**
      * @brief Get recommended collectors based on load
@@ -390,7 +390,7 @@ public:
     /**
      * @brief Set priority for a collector (higher priority = keep active longer)
      */
-    monitoring_system::result<bool> set_collector_priority(
+    kcenon::monitoring::result<bool> set_collector_priority(
         const std::string& name,
         int priority
     );
@@ -413,7 +413,7 @@ private:
 public:
     adaptive_scope(
         const std::string& name,
-        std::shared_ptr<monitoring_system::metrics_collector> collector,
+        std::shared_ptr<kcenon::monitoring::metrics_collector> collector,
         const adaptive_config& config = {}
     ) : monitor_(&global_adaptive_monitor()), collector_name_(name) {
         auto result = monitor_->register_collector(name, collector, config);
@@ -456,4 +456,4 @@ public:
     bool is_registered() const { return registered_; }
 };
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring

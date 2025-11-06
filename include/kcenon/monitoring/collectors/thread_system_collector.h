@@ -18,7 +18,7 @@
 #include "../core/event_types.h"
 #include "plugin_metric_collector.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * Thread pool statistics

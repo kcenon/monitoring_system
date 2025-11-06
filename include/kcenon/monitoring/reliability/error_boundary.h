@@ -5,9 +5,9 @@
 #include <functional>
 #include <string>
 #include <atomic>
-#include "monitoring/core/result_types.h"
+#include "kcenon/monitoring/core/result_types.h"
 
-namespace monitoring_system {
+namespace kcenon::monitoring {
 
 /**
  * @brief Degradation levels
@@ -77,4 +77,4 @@ private:
     mutable error_boundary_metrics metrics_;
 };
 
-} // namespace monitoring_system
+} // namespace kcenon::monitoring

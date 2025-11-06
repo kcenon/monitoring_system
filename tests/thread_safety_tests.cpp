@@ -6,8 +6,8 @@ All rights reserved.
 *****************************************************************************/
 
 #include <gtest/gtest.h>
-#include <monitoring/core/event_bus.h>
-#include <monitoring/core/event_types.h>
+#include <kcenon/monitoring/core/event_bus.h>
+#include <kcenon/monitoring/core/event_types.h>
 
 #include <thread>
 #include <vector>
@@ -15,7 +15,7 @@ All rights reserved.
 #include <chrono>
 #include <barrier>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 class MonitoringThreadSafetyTest : public ::testing::Test {

@@ -20,7 +20,7 @@
 #include <kcenon/monitoring/utils/metric_types.h>
 #include <kcenon/monitoring/utils/time_series.h>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * Query expression types

@@ -33,7 +33,7 @@
 
 #include "plugin_metric_collector.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * System resource information structure

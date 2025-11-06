@@ -2,11 +2,11 @@
 #include <thread>
 #include <chrono>
 #include <atomic>
-#include <monitoring/reliability/circuit_breaker.h>
-#include <monitoring/reliability/retry_policy.h>
-#include <monitoring/reliability/fault_tolerance_manager.h>
+#include <kcenon/monitoring/reliability/circuit_breaker.h>
+#include <kcenon/monitoring/reliability/retry_policy.h>
+#include <kcenon/monitoring/reliability/fault_tolerance_manager.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class FaultToleranceTest : public ::testing::Test {
 protected:

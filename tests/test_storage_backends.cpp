@@ -12,7 +12,7 @@ All rights reserved.
 #include <filesystem>
 #include <fstream>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class StorageBackendsTest : public ::testing::Test {
 protected:

@@ -6,13 +6,13 @@
  * and can be included without errors.
  */
 
-#include <monitoring/interfaces/observer_interface.h>
-#include <monitoring/interfaces/metric_collector_interface.h>
-#include <monitoring/interfaces/event_bus_interface.h>
+#include <kcenon/monitoring/interfaces/observer_interface.h>
+#include <kcenon/monitoring/interfaces/metric_collector_interface.h>
+#include <kcenon/monitoring/interfaces/event_bus_interface.h>
 #include <memory>
 #include <iostream>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 // Test implementation of observer interface
 class test_observer : public interface_monitoring_observer {

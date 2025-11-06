@@ -21,7 +21,7 @@
 #include "../interfaces/observer_interface.h"
 #include "../utils/metric_types.h"
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * Plugin interface for metric collectors

@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
-#include <monitoring/utils/ring_buffer.h>
-#include <monitoring/utils/metric_types.h>
-#include <monitoring/utils/time_series.h>
-#include <monitoring/utils/metric_storage.h>
+#include <kcenon/monitoring/utils/ring_buffer.h>
+#include <kcenon/monitoring/utils/metric_types.h>
+#include <kcenon/monitoring/utils/time_series.h>
+#include <kcenon/monitoring/utils/metric_storage.h>
 #include <chrono>
 #include <thread>
 #include <vector>
 #include <random>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 /**
  * @brief Test suite for Phase 3 P1: Memory-efficient metric storage

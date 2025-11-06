@@ -17,7 +17,7 @@
 #include <kcenon/common/interfaces/monitoring_interface.h>
 #include <memory>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 using namespace common::interfaces;
 using common::VoidResult;
 using common::Result;

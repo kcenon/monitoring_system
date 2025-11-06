@@ -2,10 +2,10 @@
 #include <thread>
 #include <chrono>
 #include <atomic>
-#include <monitoring/reliability/error_boundary.h>
-#include <monitoring/reliability/graceful_degradation.h>
+#include <kcenon/monitoring/reliability/error_boundary.h>
+#include <kcenon/monitoring/reliability/graceful_degradation.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 class ErrorBoundariesTest : public ::testing::Test {
 protected:

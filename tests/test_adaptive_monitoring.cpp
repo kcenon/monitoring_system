@@ -10,7 +10,7 @@
 // Note: adaptive_monitor.h does not exist in include directory
 // #include <kcenon/monitoring/adaptive/adaptive_monitor.h>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 // Mock collector for testing
 class mock_collector : public metrics_collector {
@@ -38,7 +38,7 @@ public:
         return result_void::success();
     }
     
-    monitoring_system::result<metrics_snapshot> collect() override {
+    kcenon::monitoring::result<metrics_snapshot> collect() override {
         collect_count_++;
         
         metrics_snapshot snapshot;

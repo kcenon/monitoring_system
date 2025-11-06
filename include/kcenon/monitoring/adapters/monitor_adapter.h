@@ -5,7 +5,7 @@
 #include <memory>
 #include <chrono>
 
-namespace monitoring_system::adapters {
+namespace kcenon::monitoring::adapters {
 
 /**
  * @brief Adapter to make performance_monitor compatible with IMonitorable interface
@@ -16,7 +16,7 @@ public:
      * @brief Constructor with performance monitor instance
      * @param monitor Performance monitor instance
      */
-    explicit monitor_adapter(std::shared_ptr<monitoring_system::performance_monitor> monitor)
+    explicit monitor_adapter(std::shared_ptr<kcenon::monitoring::performance_monitor> monitor)
         : monitor_(std::move(monitor)) {
     }
 
@@ -25,11 +25,11 @@ public:
      */
     monitor_adapter() {
         // Create default monitor configuration
-        monitoring_system::performance_monitor::config config;
+        kcenon::monitoring::performance_monitor::config config;
         config.enable_cpu_monitoring = true;
         config.enable_memory_monitoring = true;
         config.sampling_interval_ms = 1000;
-        monitor_ = std::make_shared<monitoring_system::performance_monitor>(config);
+        monitor_ = std::make_shared<kcenon::monitoring::performance_monitor>(config);
     }
 
     // IMonitorable interface
@@ -109,7 +109,7 @@ public:
      * @brief Get the underlying performance monitor
      * @return Performance monitor instance
      */
-    std::shared_ptr<monitoring_system::performance_monitor> get_monitor() const {
+    std::shared_ptr<kcenon::monitoring::performance_monitor> get_monitor() const {
         return monitor_;
     }
 
@@ -117,7 +117,7 @@ public:
      * @brief Set monitoring configuration
      * @param config Monitor configuration
      */
-    void set_config(const monitoring_system::performance_monitor::config& config) {
+    void set_config(const kcenon::monitoring::performance_monitor::config& config) {
         if (monitor_) {
             // Stop, reconfigure, and restart if running
             bool was_running = is_running_;
@@ -125,7 +125,7 @@ public:
                 monitor_->stop();
             }
 
-            monitor_ = std::make_shared<monitoring_system::performance_monitor>(config);
+            monitor_ = std::make_shared<kcenon::monitoring::performance_monitor>(config);
 
             if (was_running) {
                 monitor_->start();
@@ -134,9 +134,9 @@ public:
     }
 
 private:
-    std::shared_ptr<monitoring_system::performance_monitor> monitor_;
+    std::shared_ptr<kcenon::monitoring::performance_monitor> monitor_;
     bool metrics_enabled_{true};
     bool is_running_{false};
 };
 
-} // namespace monitoring_system::adapters
+} // namespace kcenon::monitoring::adapters

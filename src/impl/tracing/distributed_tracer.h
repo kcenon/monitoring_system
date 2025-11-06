@@ -22,7 +22,7 @@
 #include <kcenon/monitoring/core/error_codes.h>
 #include <kcenon/monitoring/context/thread_context.h>
 
-namespace monitoring_system {
+namespace kcenon { namespace monitoring {
 
 /**
  * @brief Trace span representing a unit of work in distributed tracing
@@ -92,10 +92,10 @@ struct trace_context {
     /**
      * @brief Parse from W3C Trace Context format
      */
-    static monitoring_system::result<trace_context> from_w3c_traceparent(const std::string& header) {
+    static kcenon::monitoring::result<trace_context> from_w3c_traceparent(const std::string& header) {
         // Parse format: version-traceid-spanid-traceflags
         if (header.length() < 55) {  // Minimum valid length
-            return monitoring_system::make_error<trace_context>(monitoring_system::monitoring_error_code::invalid_argument);
+            return kcenon::monitoring::make_error<trace_context>(kcenon::monitoring::monitoring_error_code::invalid_argument);
         }
         
         trace_context ctx;
@@ -106,7 +106,7 @@ struct trace_context {
         size_t dash3 = header.find('-', dash2 + 1);
         
         if (dash1 == std::string::npos || dash2 == std::string::npos || dash3 == std::string::npos) {
-            return monitoring_system::make_error<trace_context>(monitoring_system::monitoring_error_code::invalid_argument);
+            return kcenon::monitoring::make_error<trace_context>(kcenon::monitoring::monitoring_error_code::invalid_argument);
         }
         
         ctx.trace_id = header.substr(dash1 + 1, dash2 - dash1 - 1);
@@ -190,7 +190,7 @@ public:
     /**
      * @brief Start a new root span
      */
-    monitoring_system::result<std::shared_ptr<trace_span>> start_span(
+    kcenon::monitoring::result<std::shared_ptr<trace_span>> start_span(
         const std::string& operation_name,
         const std::string& service_name = "monitoring_system"
     );
@@ -198,7 +198,7 @@ public:
     /**
      * @brief Start a child span
      */
-    monitoring_system::result<std::shared_ptr<trace_span>> start_child_span(
+    kcenon::monitoring::result<std::shared_ptr<trace_span>> start_child_span(
         const trace_span& parent,
         const std::string& operation_name
     );
@@ -206,7 +206,7 @@ public:
     /**
      * @brief Start a span from trace context (for incoming requests)
      */
-    monitoring_system::result<std::shared_ptr<trace_span>> start_span_from_context(
+    kcenon::monitoring::result<std::shared_ptr<trace_span>> start_span_from_context(
         const trace_context& context,
         const std::string& operation_name
     );
@@ -214,7 +214,7 @@ public:
     /**
      * @brief Finish a span
      */
-    monitoring_system::result<bool> finish_span(std::shared_ptr<trace_span> span);
+    kcenon::monitoring::result<bool> finish_span(std::shared_ptr<trace_span> span);
     
     /**
      * @brief Get current active span for this thread
@@ -250,15 +250,15 @@ public:
      * @brief Extract trace context from carrier
      */
     template<typename Carrier>
-    monitoring_system::result<trace_context> extract_context_from_carrier(const Carrier& carrier) {
+    kcenon::monitoring::result<trace_context> extract_context_from_carrier(const Carrier& carrier) {
         auto traceparent_it = carrier.find("traceparent");
         if (traceparent_it == carrier.end()) {
-            return monitoring_system::make_error<trace_context>(monitoring_system::monitoring_error_code::not_found);
+            return kcenon::monitoring::make_error<trace_context>(kcenon::monitoring::monitoring_error_code::not_found);
         }
         
         auto ctx_result = trace_context::from_w3c_traceparent(traceparent_it->second);
         if (!ctx_result) {
-            return monitoring_system::make_error<trace_context>(ctx_result.get_error().code);
+            return kcenon::monitoring::make_error<trace_context>(ctx_result.get_error().code);
         }
         
         auto ctx = ctx_result.value();
@@ -282,12 +282,12 @@ public:
     /**
      * @brief Get all spans for a trace
      */
-    monitoring_system::result<std::vector<trace_span>> get_trace(const std::string& trace_id) const;
+    kcenon::monitoring::result<std::vector<trace_span>> get_trace(const std::string& trace_id) const;
     
     /**
      * @brief Export spans to external system
      */
-    monitoring_system::result<bool> export_spans(std::vector<trace_span> spans);
+    kcenon::monitoring::result<bool> export_spans(std::vector<trace_span> spans);
 };
 
 /**
@@ -349,17 +349,17 @@ distributed_tracer& global_tracer();
  * @brief Helper macro for creating a scoped span
  */
 #define TRACE_SPAN(operation_name) \
-    auto _span_result = monitoring_system::global_tracer().start_span(operation_name); \
-    monitoring_system::scoped_span _scoped_span( \
+    auto _span_result = kcenon::monitoring::global_tracer().start_span(operation_name); \
+    kcenon::monitoring::scoped_span _scoped_span( \
         _span_result ? _span_result.value() : nullptr, \
-        &monitoring_system::global_tracer() \
+        &kcenon::monitoring::global_tracer() \
     )
 
 #define TRACE_CHILD_SPAN(parent, operation_name) \
-    auto _child_span_result = monitoring_system::global_tracer().start_child_span(parent, operation_name); \
-    monitoring_system::scoped_span _child_scoped_span( \
+    auto _child_span_result = kcenon::monitoring::global_tracer().start_child_span(parent, operation_name); \
+    kcenon::monitoring::scoped_span _child_scoped_span( \
         _child_span_result ? _child_span_result.value() : nullptr, \
-        &monitoring_system::global_tracer() \
+        &kcenon::monitoring::global_tracer() \
     )
 
-} // namespace monitoring_system
+} } // namespace kcenon::monitoring
