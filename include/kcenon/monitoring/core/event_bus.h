@@ -258,22 +258,17 @@ public:
     };
 
     stats get_stats() const {
-        // Acquire locks separately to avoid potential deadlock with dispatch_event
-        // Lock ordering: queue_mutex before handlers_mutex (documented for consistency)
-        size_t queue_size;
-        bool back_pressure_active;
-        {
-            std::lock_guard<std::mutex> lock(queue_mutex_);
-            queue_size = event_queue_.size();
-            back_pressure_active = queue_size >= config_.back_pressure_threshold;
-        }
+        // Use scoped_lock to acquire both mutexes atomically with consistent ordering
+        // This prevents deadlock by acquiring locks in a deterministic order
+        // Lock ordering: queue_mutex before handlers_mutex (alphabetical for consistency)
+        std::scoped_lock lock(queue_mutex_, handlers_mutex_);
+
+        size_t queue_size = event_queue_.size();
+        bool back_pressure_active = queue_size >= config_.back_pressure_threshold;
 
         size_t total_subscribers = 0;
-        {
-            std::lock_guard<std::mutex> lock(handlers_mutex_);
-            for (const auto& [type, handlers] : handlers_) {
-                total_subscribers += handlers.size();
-            }
+        for (const auto& [type, handlers] : handlers_) {
+            total_subscribers += handlers.size();
         }
 
         return {
