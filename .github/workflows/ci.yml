@@ -358,6 +358,7 @@ jobs:
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Debug \
           -DBUILD_THREADSYSTEM_AS_SUBMODULE=ON \
+          -DBUILD_EXAMPLES=OFF \
           -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
           -DUSE_STD_FORMAT=ON \
           -DCMAKE_C_COMPILER=clang \
