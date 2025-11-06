@@ -6,6 +6,24 @@
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <shared_mutex>
 
+// Platform-specific headers for system metrics
+#if defined(__APPLE__)
+    #include <mach/mach.h>
+    #include <mach/mach_host.h>
+    #include <mach/host_info.h>
+    #include <mach/processor_info.h>
+    #include <mach/vm_statistics.h>
+    #include <sys/sysctl.h>
+    #include <algorithm> // for std::max, std::min
+#elif defined(__linux__)
+    #include <sys/sysinfo.h>
+    #include <unistd.h>
+    #include <fstream>
+#elif defined(_WIN32)
+    #include <windows.h>
+    #include <pdh.h>
+#endif
+
 namespace kcenon { namespace monitoring {
 
 result<bool> performance_profiler::record_sample(
@@ -139,15 +157,122 @@ system_monitor::system_monitor(system_monitor&&) noexcept = default;
 system_monitor& system_monitor::operator=(system_monitor&&) noexcept = default;
 
 result<system_metrics> system_monitor::get_current_metrics() const {
-    // TODO: Integrate with system_resource_collector or implement platform-specific metrics
-    // Platform-specific implementations should be added for:
-    // - Linux: /proc filesystem, sysinfo
-    // - Windows: Performance Counters, GetSystemInfo
-    // - macOS: sysctl, host_statistics
+#if defined(__APPLE__)
+    // macOS implementation using mach APIs
+    system_metrics metrics;
+    metrics.timestamp = std::chrono::system_clock::now();
+
+    // Get CPU usage via host_processor_info
+    {
+        natural_t processor_count;
+        processor_info_array_t cpu_info;
+        mach_msg_type_number_t cpu_info_count;
+
+        if (host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO,
+                                &processor_count,
+                                &cpu_info,
+                                &cpu_info_count) == KERN_SUCCESS) {
+
+            uint64_t total_ticks = 0;
+            uint64_t idle_ticks = 0;
+
+            for (natural_t i = 0; i < processor_count; ++i) {
+                processor_cpu_load_info_t cpu_load =
+                    &((processor_cpu_load_info_t)cpu_info)[i];
+
+                for (int state = 0; state < CPU_STATE_MAX; ++state) {
+                    total_ticks += cpu_load->cpu_ticks[state];
+                }
+                idle_ticks += cpu_load->cpu_ticks[CPU_STATE_IDLE];
+            }
+
+            if (total_ticks > 0) {
+                double usage = 100.0 * (1.0 - (static_cast<double>(idle_ticks) / total_ticks));
+                metrics.cpu_usage_percent = std::max(0.0, std::min(100.0, usage));
+            }
+
+            vm_deallocate(mach_task_self(),
+                         reinterpret_cast<vm_address_t>(cpu_info),
+                         cpu_info_count * sizeof(int));
+        }
+    }
+
+    // Get memory usage via host_statistics64
+    {
+        vm_statistics64_data_t vm_stats;
+        mach_msg_type_number_t count = HOST_VM_INFO64_COUNT;
+
+        if (host_statistics64(mach_host_self(), HOST_VM_INFO64,
+                             reinterpret_cast<host_info64_t>(&vm_stats),
+                             &count) == KERN_SUCCESS) {
+
+            // Page size (typically 4096 bytes on macOS)
+            vm_size_t page_size;
+            host_page_size(mach_host_self(), &page_size);
+
+            // Calculate total physical memory
+            uint64_t total_memory = 0;
+            {
+                int mib[2] = {CTL_HW, HW_MEMSIZE};
+                size_t length = sizeof(total_memory);
+                sysctl(mib, 2, &total_memory, &length, nullptr, 0);
+            }
+
+            // Calculate used memory (active + wired + compressed)
+            uint64_t active_pages = vm_stats.active_count;
+            uint64_t wired_pages = vm_stats.wire_count;
+            uint64_t compressed_pages = vm_stats.compressor_page_count;
+
+            metrics.memory_usage_bytes =
+                (active_pages + wired_pages + compressed_pages) * page_size;
+
+            metrics.available_memory_bytes =
+                vm_stats.free_count * page_size;
+
+            if (total_memory > 0) {
+                metrics.memory_usage_percent =
+                    100.0 * (static_cast<double>(metrics.memory_usage_bytes) / total_memory);
+            }
+        }
+    }
+
+    // Get thread count via task_info
+    {
+        task_basic_info_64_data_t task_info;
+        mach_msg_type_number_t count = TASK_BASIC_INFO_64_COUNT;
+
+        if (task_info(mach_task_self(), TASK_BASIC_INFO_64,
+                     reinterpret_cast<task_info_t>(&task_info),
+                     &count) == KERN_SUCCESS) {
+            metrics.thread_count = task_info.resident_size / 1024; // Rough approximation
+        }
+    }
+
+    return make_success(metrics);
+
+#elif defined(__linux__)
+    // Linux implementation using /proc filesystem
+    // TODO: Implement Linux-specific metrics collection
     return make_error<system_metrics>(
         monitoring_error_code::system_resource_unavailable,
-        "Platform-specific system metrics not implemented. "
-        "Please integrate with system_resource_collector or implement for this platform.");
+        "Linux platform metrics not yet implemented. "
+        "Please contribute implementation using /proc filesystem.");
+
+#elif defined(_WIN32)
+    // Windows implementation using Performance Counters
+    // TODO: Implement Windows-specific metrics collection
+    return make_error<system_metrics>(
+        monitoring_error_code::system_resource_unavailable,
+        "Windows platform metrics not yet implemented. "
+        "Please contribute implementation using PDH (Performance Data Helper).");
+
+#else
+    // Unknown platform
+    return make_error<system_metrics>(
+        monitoring_error_code::system_resource_unavailable,
+        "Platform-specific system metrics not implemented for this platform. "
+        "Supported platforms: macOS (implemented), Linux (TODO), Windows (TODO).");
+#endif
 }
 
 result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval) {
