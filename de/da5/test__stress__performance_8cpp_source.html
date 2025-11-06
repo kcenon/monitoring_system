@@ -106,18 +106,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;monitoring/core/result_types.h&gt;</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;monitoring/interfaces/monitoring_interface.h&gt;</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;monitoring/tracing/distributed_tracer.h&gt;</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &lt;monitoring/performance/performance_monitor.h&gt;</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &lt;monitoring/adaptive/adaptive_monitor.h&gt;</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &lt;monitoring/health/health_monitor.h&gt;</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &lt;monitoring/reliability/circuit_breaker.h&gt;</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#include &lt;monitoring/reliability/fault_tolerance_manager.h&gt;</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &lt;monitoring/export/opentelemetry_adapter.h&gt;</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &lt;monitoring/storage/storage_backends.h&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;kcenon/monitoring/core/result_types.h&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/monitoring_interface.h&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;kcenon/monitoring/tracing/distributed_tracer.h&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &lt;kcenon/monitoring/performance/performance_monitor.h&gt;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &lt;kcenon/monitoring/adaptive/adaptive_monitor.h&gt;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &lt;kcenon/monitoring/health/health_monitor.h&gt;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &lt;kcenon/monitoring/reliability/circuit_breaker.h&gt;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#include &lt;kcenon/monitoring/reliability/fault_tolerance_manager.h&gt;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &lt;kcenon/monitoring/export/opentelemetry_adapter.h&gt;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &lt;kcenon/monitoring/storage/storage_backends.h&gt;</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">using namespace </span>std::chrono_literals;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
@@ -720,13 +720,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassStressPerformanceTest_html_a6e543b7dc3f927f6e8e9d847fc2ce737"><div class="ttname"><a href="../../d9/dbf/classStressPerformanceTest.html#a6e543b7dc3f927f6e8e9d847fc2ce737">StressPerformanceTest::GetCurrentMemoryUsage</a></div><div class="ttdeci">size_t GetCurrentMemoryUsage()</div><div class="ttdef"><b>Definition</b> <a href="../../de/da5/test__stress__performance_8cpp_source.html#l00078">test_stress_performance.cpp:78</a></div></div>
 <div class="ttc" id="aclassStressPerformanceTest_html_a8d51da4ee46350f609a1be56ab7e1d70"><div class="ttname"><a href="../../d9/dbf/classStressPerformanceTest.html#a8d51da4ee46350f609a1be56ab7e1d70">StressPerformanceTest::initial_memory_</a></div><div class="ttdeci">size_t initial_memory_</div><div class="ttdef"><b>Definition</b> <a href="../../de/da5/test__stress__performance_8cpp_source.html#l00086">test_stress_performance.cpp:86</a></div></div>
 <div class="ttc" id="aclassStressPerformanceTest_html_a9b3834a9d51290eb0c22f3d5524d30e8"><div class="ttname"><a href="../../d9/dbf/classStressPerformanceTest.html#a9b3834a9d51290eb0c22f3d5524d30e8">StressPerformanceTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../de/da5/test__stress__performance_8cpp_source.html#l00054">test_stress_performance.cpp:54</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
 <div class="ttc" id="atest__interfaces__compile_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00088">test_interfaces_compile.cpp:88</a></div></div>
 <div class="ttc" id="atest__stress__performance_8cpp_html_a6932184c028f6ca85937d9981d0c8f66"><div class="ttname"><a href="../../de/da5/test__stress__performance_8cpp.html#a6932184c028f6ca85937d9981d0c8f66">TEST_F</a></div><div class="ttdeci">TEST_F(StressPerformanceTest, HighLoadStressTest)</div><div class="ttdef"><b>Definition</b> <a href="../../de/da5/test__stress__performance_8cpp_source.html#l00093">test_stress_performance.cpp:93</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 5 2025 23:17:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 6 2025 00:32:50 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

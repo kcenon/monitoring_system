@@ -97,20 +97,20 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;monitoring/core/result_types.h&gt;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;monitoring/interfaces/monitoring_interface.h&gt;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;monitoring/tracing/distributed_tracer.h&gt;</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;monitoring/performance/performance_monitor.h&gt;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;monitoring/adaptive/adaptive_monitor.h&gt;</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;monitoring/health/health_monitor.h&gt;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;monitoring/reliability/circuit_breaker.h&gt;</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;monitoring/reliability/retry_policy.h&gt;</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;monitoring/reliability/fault_tolerance_manager.h&gt;</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;monitoring/export/opentelemetry_adapter.h&gt;</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;monitoring/export/trace_exporters.h&gt;</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;monitoring/storage/storage_backends.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;kcenon/monitoring/core/result_types.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/monitoring_interface.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;kcenon/monitoring/tracing/distributed_tracer.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;kcenon/monitoring/performance/performance_monitor.h&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;kcenon/monitoring/adaptive/adaptive_monitor.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;kcenon/monitoring/health/health_monitor.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;kcenon/monitoring/reliability/circuit_breaker.h&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;kcenon/monitoring/reliability/retry_policy.h&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;kcenon/monitoring/reliability/fault_tolerance_manager.h&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;kcenon/monitoring/export/opentelemetry_adapter.h&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;kcenon/monitoring/export/trace_exporters.h&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;kcenon/monitoring/storage/storage_backends.h&gt;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d9/d92/classIntegrationE2ETest.html">   39</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/d92/classIntegrationE2ETest.html">IntegrationE2ETest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -618,13 +618,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassIntegrationE2ETest_html_a1e2731f3d0a125c6a9ca3003adc77041"><div class="ttname"><a href="../../d9/d92/classIntegrationE2ETest.html#a1e2731f3d0a125c6a9ca3003adc77041">IntegrationE2ETest::test_dir_</a></div><div class="ttdeci">std::filesystem::path test_dir_</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00054">test_integration_e2e.cpp:54</a></div></div>
 <div class="ttc" id="aclassIntegrationE2ETest_html_ab6d4416c17b8b9740896ef4ce79ae6f4"><div class="ttname"><a href="../../d9/d92/classIntegrationE2ETest.html#ab6d4416c17b8b9740896ef4ce79ae6f4">IntegrationE2ETest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00047">test_integration_e2e.cpp:47</a></div></div>
 <div class="ttc" id="aclassIntegrationE2ETest_html_ac1cf748fa9ed273c2f9d2158a23cea31"><div class="ttname"><a href="../../d9/d92/classIntegrationE2ETest.html#ac1cf748fa9ed273c2f9d2158a23cea31">IntegrationE2ETest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00041">test_integration_e2e.cpp:41</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
 <div class="ttc" id="atest__integration__e2e_8cpp_html_a488edffbb82c503b4fd8a79772a608c0"><div class="ttname"><a href="../../d1/d9b/test__integration__e2e_8cpp.html#a488edffbb82c503b4fd8a79772a608c0">TEST_F</a></div><div class="ttdeci">TEST_F(IntegrationE2ETest, StorageBackendIntegration)</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00061">test_integration_e2e.cpp:61</a></div></div>
 <div class="ttc" id="atest__interfaces__compile_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00088">test_interfaces_compile.cpp:88</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 5 2025 23:17:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 6 2025 00:32:50 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -5,18 +5,18 @@ var searchData=
   ['check_2',['check',['../d2/dea/classtest__health__check.html#a367e278d82a0eeca40ce0168d55cecf0',1,'test_health_check']]],
   ['check_5fhealth_3',['check_health',['../d7/d29/classaggregating__monitor.html#aa7a66237c7a764bda2aa22ff6a9e5dde',1,'aggregating_monitor']]],
   ['cleanup_4',['cleanup',['../d9/d8d/classmock__collector.html#adc19f7502f53b78fa6084d48df7e5890',1,'mock_collector']]],
-  ['clear_5',['clear',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#ac96f3721a95905be102faae420c57a50',1,'monitoring_system::service_container_interface']]],
+  ['clear_5',['clear',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#aad8e5b0e69a84815b1dfd20c5351fb51',1,'kcenon::monitoring::service_container_interface']]],
   ['collect_6',['collect',['../d9/d8d/classmock__collector.html#a46ac04a1f7411229ab3c0b990e1e1e5f',1,'mock_collector']]],
   ['collect_5fmetrics_7',['collect_metrics',['../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a',1,'test_collector']]],
   ['count_8',['count',['../d3/dfa/classexample__logger.html#aa12393026977ebb19b1a0c2fb3e61b97',1,'example_logger']]],
-  ['create_5flightweight_5fcontainer_9',['create_lightweight_container',['../de/d3f/namespacemonitoring__system.html#a4b31b01577e903c4f209e7fce17cd2e3',1,'monitoring_system']]],
+  ['create_5flightweight_5fcontainer_9',['create_lightweight_container',['../db/d50/namespacekcenon_1_1monitoring.html#a38656c671083061b5c65421a924df3d0',1,'kcenon::monitoring']]],
   ['create_5fmonitor_10',['create_monitor',['../da/db2/classmonitor__factory.html#a4033e3dfa29b32a477d5e0c4512b5b9d',1,'monitor_factory']]],
-  ['create_5fscope_11',['create_scope',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a8b90fb2ba8196d334e9b442d70696352',1,'monitoring_system::service_container_interface']]],
+  ['create_5fscope_11',['create_scope',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#a0a7fbf6406f36bb7472cf03b15ef8558',1,'kcenon::monitoring::service_container_interface']]],
   ['create_5ftest_5fmetric_12',['create_test_metric',['../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b',1,'BufferingStrategiesTest']]],
   ['create_5ftest_5fmetrics_13',['create_test_metrics',['../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1',1,'BufferingStrategiesTest']]],
   ['create_5ftest_5fmonitoring_5fdata_14',['create_test_monitoring_data',['../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961',1,'MetricExportersTest']]],
   ['create_5ftest_5fsnapshot_15',['create_test_snapshot',['../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e',1,'MetricExportersTest']]],
   ['create_5ftest_5fsnapshots_16',['create_test_snapshots',['../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192',1,'StorageBackendsTest']]],
   ['create_5ftest_5fspans_17',['create_test_spans',['../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f',1,'TraceExportersTest']]],
-  ['create_5fthread_5fsystem_5fadapter_18',['create_thread_system_adapter',['../de/d3f/namespacemonitoring__system.html#a087b88e157d99adf8714166872864e50',1,'monitoring_system']]]
+  ['create_5fthread_5fsystem_5fadapter_18',['create_thread_system_adapter',['../db/d50/namespacekcenon_1_1monitoring.html#adacc86dd068c121466fa2066441a052b',1,'kcenon::monitoring']]]
 ];

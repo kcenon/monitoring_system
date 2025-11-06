@@ -82,16 +82,16 @@ $(document).ready(function() { init_codefold(1); });
 </div><!--header-->
 <div class="contents">
 <a href="../../d0/df8/test__buffering__strategies_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;monitoring/utils/buffering_strategy.h&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;monitoring/utils/buffer_manager.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;monitoring/utils/metric_storage.h&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;kcenon/monitoring/utils/buffering_strategy.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;kcenon/monitoring/utils/buffer_manager.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;kcenon/monitoring/utils/metric_storage.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d9/dee/classBufferingStrategiesTest.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/dee/classBufferingStrategiesTest.html">BufferingStrategiesTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
@@ -662,12 +662,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassBufferingStrategiesTest_html_a2f9012650c746215e4ab451ab536135b"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b">BufferingStrategiesTest::create_test_metric</a></div><div class="ttdeci">buffered_metric create_test_metric(const std::string &amp;name, double value, uint8_t priority=128)</div><div class="ttdoc">Create test metric.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00029">test_buffering_strategies.cpp:29</a></div></div>
 <div class="ttc" id="aclassBufferingStrategiesTest_html_a39533de57e9b166c8c7743d7891ca4e1"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a39533de57e9b166c8c7743d7891ca4e1">BufferingStrategiesTest::create_test_metrics</a></div><div class="ttdeci">std::vector&lt; buffered_metric &gt; create_test_metrics(size_t count, const std::string &amp;base_name=&quot;test&quot;)</div><div class="ttdoc">Create multiple test metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00041">test_buffering_strategies.cpp:41</a></div></div>
 <div class="ttc" id="aclassBufferingStrategiesTest_html_ab584e8eb28be0f142bff7fbf453e6b46"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#ab584e8eb28be0f142bff7fbf453e6b46">BufferingStrategiesTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00022">test_buffering_strategies.cpp:22</a></div></div>
-<div class="ttc" id="anamespacemonitoring__system_html"><div class="ttname"><a href="../../de/d3f/namespacemonitoring__system.html">monitoring_system</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
 <div class="ttc" id="atest__buffering__strategies_8cpp_html_a976caac12b1c6e3661317b5617ceaceb"><div class="ttname"><a href="../../d0/df8/test__buffering__strategies_8cpp.html#a976caac12b1c6e3661317b5617ceaceb">TEST_F</a></div><div class="ttdeci">TEST_F(BufferingStrategiesTest, BufferingConfigValidation)</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00055">test_buffering_strategies.cpp:55</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 5 2025 23:17:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 6 2025 00:32:50 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,18 +1,5 @@
 var searchData=
 [
-  ['record_5fmetric_0',['record_metric',['../d7/d29/classaggregating__monitor.html#a2147b94c0a18eecc5bfddcbb0a001287',1,'aggregating_monitor::record_metric(const std::string &amp;name, double value) override'],['../d7/d29/classaggregating__monitor.html#aa562b70f4aebd9628a5bc13d3c9c3744',1,'aggregating_monitor::record_metric(const std::string &amp;name, double value, const std::unordered_map&lt; std::string, std::string &gt; &amp;tags) override']]],
-  ['register_5ffactory_1',['register_factory',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a3655c0c8d11987e248a30e4c1b3b78c2',1,'monitoring_system::service_container_interface::register_factory(std::function&lt; std::shared_ptr&lt; TInterface &gt;()&gt; factory, service_lifetime lifetime)'],['../d3/dff/classmonitoring__system_1_1service__container__interface.html#ac4664003815e13051cf51b4976165626',1,'monitoring_system::service_container_interface::register_factory(const std::string &amp;name, std::function&lt; std::shared_ptr&lt; TInterface &gt;()&gt; factory, service_lifetime lifetime)']]],
-  ['register_5fobserver_2',['register_observer',['../d9/d71/classtest__collector.html#a28c1e3beac3876b162159edccfa551c5',1,'test_collector']]],
-  ['register_5fsingleton_3',['register_singleton',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a17c6b0d6a44a1e4645ca610caec16d73',1,'monitoring_system::service_container_interface']]],
-  ['reset_4',['reset',['../da/dd3/classmonitoring__system_1_1service__locator.html#a4a207c629aa00a180e99c732fa680a8a',1,'monitoring_system::service_locator::reset()'],['../d6/d98/classExternalApiClient.html#a03fb01358ff3e42e7ef268ba5a7d147f',1,'ExternalApiClient::reset()'],['../da/db2/classmonitor__factory.html#a522eccd0fdbd4b0a8e704ba089b19bd5',1,'monitor_factory::reset()'],['../d7/d29/classaggregating__monitor.html#ae4d535beb4658aceac5a28cf358dd5c4',1,'aggregating_monitor::reset()']]],
-  ['reset_5fcount_5',['reset_count',['../d9/d8d/classmock__collector.html#a7886d9ee6010c9ec8649c49d2eed617f',1,'mock_collector::reset_count()'],['../d6/d19/classServiceA.html#a734584d7be13ec84f66c8c18dd5ab7ae',1,'ServiceA::reset_count()']]],
-  ['reset_5fstats_6',['reset_stats',['../d9/d71/classtest__collector.html#a2db66160ebf6003706c94994eebda5c6',1,'test_collector']]],
-  ['resolve_7',['resolve',['../d3/dff/classmonitoring__system_1_1service__container__interface.html#af59741f85e2e9deecd814ec758211b12',1,'monitoring_system::service_container_interface::resolve(const std::string &amp;name) const'],['../d3/dff/classmonitoring__system_1_1service__container__interface.html#a38cd2ab61516c80971a4439d5659bc22',1,'monitoring_system::service_container_interface::resolve() const']]],
-  ['resource_8',['resource',['../d5/d90/classOpenTelemetryAdapterTest.html#a9452b63ee1524a2d48c6a6fff214ef0b',1,'OpenTelemetryAdapterTest']]],
-  ['resourcemanagementtest_9',['ResourceManagementTest',['../d7/d4c/classResourceManagementTest.html',1,'']]],
-  ['result_5fpattern_5fexample_2ecpp_10',['result_pattern_example.cpp',['../de/dfb/result__pattern__example_8cpp.html',1,'']]],
-  ['resulttypestest_11',['ResultTypesTest',['../d3/d70/classResultTypesTest.html',1,'']]],
-  ['rng_5f_12',['rng_',['../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed',1,'DatabaseConnection']]],
-  ['rollback_5fcount_13',['rollback_count',['../d8/d07/classDataConsistencyTest.html#a22edd023d7ec11376560cb4dd04aa3bd',1,'DataConsistencyTest']]],
-  ['rollback_5foperation_14',['rollback_operation',['../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57',1,'DataConsistencyTest']]]
+  ['query_5fcount_5f_0',['query_count_',['../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2',1,'DatabaseConnection']]],
+  ['query_5fdatabase_1',['query_database',['../df/d65/classWebService.html#ae651172e1cc079ee5513156f9cac01d3',1,'WebService']]]
 ];
