@@ -5,7 +5,7 @@
 #include <functional>
 #include <string>
 #include <atomic>
-#include "monitoring/core/result_types.h"
+#include "kcenon/monitoring/core/result_types.h"
 
 namespace kcenon::monitoring {
 

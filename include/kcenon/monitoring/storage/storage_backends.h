@@ -43,8 +43,8 @@ struct storage_config {
     std::chrono::milliseconds flush_interval{std::chrono::milliseconds(5000)};
 };
 
-// Use monitoring_system result types
-#include "monitoring/core/result_types.h"
+// Use kcenon::monitoring result types
+#include "kcenon/monitoring/core/result_types.h"
 
 /**
  * @brief Basic key-value storage interface - stub

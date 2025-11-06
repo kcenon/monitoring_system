@@ -14,7 +14,7 @@
 #include <chrono>
 
 #include "kcenon/monitoring/interfaces/monitoring_interface.h"
-#include "kcenon/monitoring/performance/performance_monitor.h"
+#include "kcenon/monitoring/core/performance_monitor.h"
 #include "kcenon/monitoring/storage/storage_backends.h"
 #include "kcenon/monitoring/core/result_types.h"
 
