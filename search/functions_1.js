@@ -6,7 +6,7 @@ var searchData=
   ['check_5fhealth_3',['check_health',['../d7/d29/classaggregating__monitor.html#aa7a66237c7a764bda2aa22ff6a9e5dde',1,'aggregating_monitor']]],
   ['cleanup_4',['cleanup',['../d9/d8d/classmock__collector.html#adc19f7502f53b78fa6084d48df7e5890',1,'mock_collector']]],
   ['clear_5',['clear',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#aad8e5b0e69a84815b1dfd20c5351fb51',1,'kcenon::monitoring::service_container_interface']]],
-  ['collect_6',['collect',['../d9/d8d/classmock__collector.html#a46ac04a1f7411229ab3c0b990e1e1e5f',1,'mock_collector']]],
+  ['collect_6',['collect',['../d9/d8d/classmock__collector.html#a9de0a27c8ddf96c5d1f6c7441454e82a',1,'mock_collector']]],
   ['collect_5fmetrics_7',['collect_metrics',['../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a',1,'test_collector']]],
   ['count_8',['count',['../d3/dfa/classexample__logger.html#aa12393026977ebb19b1a0c2fb3e61b97',1,'example_logger']]],
   ['create_5flightweight_5fcontainer_9',['create_lightweight_container',['../db/d50/namespacekcenon_1_1monitoring.html#a38656c671083061b5c65421a924df3d0',1,'kcenon::monitoring']]],

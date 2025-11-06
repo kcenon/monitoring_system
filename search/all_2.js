@@ -8,7 +8,7 @@ var searchData=
   ['check_5fhealth_5',['check_health',['../d7/d29/classaggregating__monitor.html#aa7a66237c7a764bda2aa22ff6a9e5dde',1,'aggregating_monitor']]],
   ['cleanup_6',['cleanup',['../d9/d8d/classmock__collector.html#adc19f7502f53b78fa6084d48df7e5890',1,'mock_collector']]],
   ['clear_7',['clear',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#aad8e5b0e69a84815b1dfd20c5351fb51',1,'kcenon::monitoring::service_container_interface']]],
-  ['collect_8',['collect',['../d9/d8d/classmock__collector.html#a46ac04a1f7411229ab3c0b990e1e1e5f',1,'mock_collector']]],
+  ['collect_8',['collect',['../d9/d8d/classmock__collector.html#a9de0a27c8ddf96c5d1f6c7441454e82a',1,'mock_collector']]],
   ['collect_5fcount_5f_9',['collect_count_',['../d9/d8d/classmock__collector.html#a6d5ae8721a95a117ecf34a83e6f7c848',1,'mock_collector']]],
   ['collect_5fmetrics_10',['collect_metrics',['../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a',1,'test_collector']]],
   ['compatibility_5flayer_11',['compatibility_layer',['../d5/d90/classOpenTelemetryAdapterTest.html#a8c01572062ef0523f1665749f06ca9d8',1,'OpenTelemetryAdapterTest']]],
