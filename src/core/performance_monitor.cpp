@@ -238,13 +238,13 @@ result<system_metrics> system_monitor::get_current_metrics() const {
 
     // Get thread count via task_info
     {
-        task_basic_info_64_data_t task_info;
+        task_basic_info_64_data_t task_basic_info;
         mach_msg_type_number_t count = TASK_BASIC_INFO_64_COUNT;
 
         if (task_info(mach_task_self(), TASK_BASIC_INFO_64,
-                     reinterpret_cast<task_info_t>(&task_info),
+                     reinterpret_cast<task_info_t>(&task_basic_info),
                      &count) == KERN_SUCCESS) {
-            metrics.thread_count = task_info.resident_size / 1024; // Rough approximation
+            metrics.thread_count = task_basic_info.resident_size / 1024; // Rough approximation
         }
     }
 
