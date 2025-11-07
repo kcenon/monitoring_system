@@ -223,7 +223,7 @@ TEST_F(MonitoringIntegrationTest, IMonitorInterfaceIntegration) {
 
     // Record metric through IMonitor interface
     auto result = monitor_->record_metric("test_metric", 42.0);
-    EXPECT_TRUE(common::is_ok(result));
+    EXPECT_TRUE(kcenon::common::is_ok(result));
 
     // Record metric with tags
     std::unordered_map<std::string, std::string> tags = {
@@ -231,7 +231,7 @@ TEST_F(MonitoringIntegrationTest, IMonitorInterfaceIntegration) {
         {"version", "1.0"}
     };
     auto tagged_result = monitor_->record_metric("tagged_metric", 100.0, tags);
-    EXPECT_TRUE(common::is_ok(tagged_result));
+    EXPECT_TRUE(kcenon::common::is_ok(tagged_result));
 }
 
 /**
@@ -243,9 +243,9 @@ TEST_F(MonitoringIntegrationTest, HealthCheckIntegration) {
 
     // Perform health check
     auto health_result = monitor_->check_health();
-    ASSERT_TRUE(common::is_ok(health_result));
+    ASSERT_TRUE(kcenon::common::is_ok(health_result));
 
-    auto health = common::get_value(health_result);
+    auto health = kcenon::common::get_value(health_result);
     EXPECT_FALSE(health.message.empty());
 }
 
@@ -263,9 +263,9 @@ TEST_F(MonitoringIntegrationTest, MetricsSnapshotRetrieval) {
 
     // Get snapshot
     auto snapshot_result = monitor_->get_metrics();
-    ASSERT_TRUE(common::is_ok(snapshot_result));
+    ASSERT_TRUE(kcenon::common::is_ok(snapshot_result));
 
-    auto snapshot = common::get_value(snapshot_result);
+    auto snapshot = kcenon::common::get_value(snapshot_result);
     EXPECT_FALSE(snapshot.metrics.empty());
 }
 
@@ -282,7 +282,7 @@ TEST_F(MonitoringIntegrationTest, MonitorResetFunctionality) {
 
     // Reset monitor
     auto reset_result = monitor_->reset();
-    EXPECT_TRUE(common::is_ok(reset_result));
+    EXPECT_TRUE(kcenon::common::is_ok(reset_result));
 
     // Profiler should be cleared
     auto metrics = GetPerformanceMetrics("reset_op");

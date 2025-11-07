@@ -33,7 +33,7 @@ namespace adapters {
  * This adapter allows monitoring_system's monitor to be used through
  * the standard common_system monitoring interface.
  */
-class common_system_monitor_adapter : public ::common::interfaces::IMonitor {
+class common_system_monitor_adapter : public ::kcenon::common::interfaces::IMonitor {
 public:
     /**
      * @brief Construct adapter with monitoring_system monitor
@@ -48,12 +48,12 @@ public:
     /**
      * @brief Record a metric value
      */
-    ::common::VoidResult record_metric(
+    ::kcenon::common::VoidResult record_metric(
         const std::string& name,
         double value) override {
         if (!monitor_) {
-            return ::common::VoidResult(
-                ::common::error_info(1, "Monitor not initialized", "monitoring_system"));
+            return ::kcenon::common::VoidResult(
+                ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system"));
         }
 
         // Create metric value and add to current collection
@@ -63,43 +63,43 @@ public:
         // store locally and include in next collect
         pending_metrics_.push_back(metric);
 
-        return ::common::VoidResult(std::monostate{});
+        return ::kcenon::common::VoidResult(std::monostate{});
     }
 
     /**
      * @brief Record a metric with tags
      */
-    ::common::VoidResult record_metric(
+    ::kcenon::common::VoidResult record_metric(
         const std::string& name,
         double value,
         const std::unordered_map<std::string, std::string>& tags) override {
         if (!monitor_) {
-            return ::common::VoidResult(
-                ::common::error_info(1, "Monitor not initialized", "monitoring_system"));
+            return ::kcenon::common::VoidResult(
+                ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system"));
         }
 
         metric_value metric(name, value);
         metric.tags = tags;
         pending_metrics_.push_back(metric);
 
-        return ::common::VoidResult(std::monostate{});
+        return ::kcenon::common::VoidResult(std::monostate{});
     }
 
     /**
      * @brief Get current metrics snapshot
      */
-    ::common::Result<::common::interfaces::metrics_snapshot> get_metrics() override {
+    ::kcenon::common::Result<::kcenon::common::interfaces::metrics_snapshot> get_metrics() override {
         if (!monitor_) {
-            return ::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
         }
 
         auto result = monitor_->collect_now();
         if (!result) {
-            return ::common::error_info(2, "Failed to collect metrics", "monitoring_system");
+            return ::kcenon::common::error_info(2, "Failed to collect metrics", "monitoring_system");
         }
 
         // Convert monitoring_system snapshot to common snapshot
-        ::common::interfaces::metrics_snapshot snapshot;
+        ::kcenon::common::interfaces::metrics_snapshot snapshot;
         snapshot.capture_time = result.value().capture_time;
         snapshot.source_id = result.value().source_id;
 
@@ -120,31 +120,31 @@ public:
     /**
      * @brief Perform health check
      */
-    ::common::Result<::common::interfaces::health_check_result> check_health() override {
+    ::kcenon::common::Result<::kcenon::common::interfaces::health_check_result> check_health() override {
         if (!monitor_) {
-            return ::common::error_info(1, "Monitor not initialized", "monitoring_system");
+            return ::kcenon::common::error_info(1, "Monitor not initialized", "monitoring_system");
         }
 
         auto result = monitor_->check_health();
         if (!result) {
-            return ::common::error_info(2, "Health check failed", "monitoring_system");
+            return ::kcenon::common::error_info(2, "Health check failed", "monitoring_system");
         }
 
         // Convert monitoring_system health to common health
-        ::common::interfaces::health_check_result health;
+        ::kcenon::common::interfaces::health_check_result health;
 
         switch(result.value().status) {
             case health_status::healthy:
-                health.status = ::common::interfaces::health_status::healthy;
+                health.status = ::kcenon::common::interfaces::health_status::healthy;
                 break;
             case health_status::degraded:
-                health.status = ::common::interfaces::health_status::degraded;
+                health.status = ::kcenon::common::interfaces::health_status::degraded;
                 break;
             case health_status::unhealthy:
-                health.status = ::common::interfaces::health_status::unhealthy;
+                health.status = ::kcenon::common::interfaces::health_status::unhealthy;
                 break;
             default:
-                health.status = ::common::interfaces::health_status::unknown;
+                health.status = ::kcenon::common::interfaces::health_status::unknown;
         }
 
         health.message = result.value().message;
@@ -158,10 +158,10 @@ public:
     /**
      * @brief Reset all metrics
      */
-    ::common::VoidResult reset() override {
+    ::kcenon::common::VoidResult reset() override {
         pending_metrics_.clear();
         // monitoring_system doesn't have direct reset
-        return ::common::VoidResult(std::monostate{});
+        return ::kcenon::common::VoidResult(std::monostate{});
     }
 
 private:
@@ -183,7 +183,7 @@ public:
      * @param name Collector name
      */
     explicit monitor_from_common_adapter(
-        std::shared_ptr<::common::interfaces::IMonitor> common_monitor,
+        std::shared_ptr<::kcenon::common::interfaces::IMonitor> common_monitor,
         const std::string& name = "common_adapter")
         : common_monitor_(common_monitor), name_(name) {}
 
@@ -200,13 +200,13 @@ public:
         }
 
         auto common_result = common_monitor_->get_metrics();
-        if (::common::is_error(common_result)) {
+        if (::kcenon::common::is_error(common_result)) {
             return result<metrics_snapshot>(
                 monitoring_error_code::collection_failed,
-                ::common::get_error(common_result).message);
+                ::kcenon::common::get_error(common_result).message);
         }
 
-        const auto& common_snapshot = ::common::get_value(common_result);
+        const auto& common_snapshot = ::kcenon::common::get_value(common_result);
 
         // Convert common snapshot to monitoring_system snapshot
         metrics_snapshot snapshot;
@@ -260,7 +260,7 @@ public:
     }
 
 private:
-    std::shared_ptr<::common::interfaces::IMonitor> common_monitor_;
+    std::shared_ptr<::kcenon::common::interfaces::IMonitor> common_monitor_;
     std::string name_;
     bool enabled_ = true;
 };
@@ -268,7 +268,7 @@ private:
 /**
  * @brief Adapter to expose monitorable as common::interfaces::IMonitorable
  */
-class common_system_monitorable_adapter : public ::common::interfaces::IMonitorable {
+class common_system_monitorable_adapter : public ::kcenon::common::interfaces::IMonitorable {
 public:
     /**
      * @brief Construct adapter with monitoring_system monitorable
@@ -285,10 +285,10 @@ public:
     /**
      * @brief Get monitoring data
      */
-    ::common::Result<::common::interfaces::metrics_snapshot> get_monitoring_data() override {
+    ::kcenon::common::Result<::kcenon::common::interfaces::metrics_snapshot> get_monitoring_data() override {
         // monitoring_system monitorable doesn't have get_monitoring_data
         // Return empty snapshot
-        ::common::interfaces::metrics_snapshot snapshot;
+        ::kcenon::common::interfaces::metrics_snapshot snapshot;
         snapshot.source_id = component_name_;
         return snapshot;
     }
@@ -296,11 +296,11 @@ public:
     /**
      * @brief Check health status
      */
-    ::common::Result<::common::interfaces::health_check_result> health_check() override {
+    ::kcenon::common::Result<::kcenon::common::interfaces::health_check_result> health_check() override {
         // monitoring_system monitorable doesn't have health_check
         // Return healthy status
-        ::common::interfaces::health_check_result result;
-        result.status = ::common::interfaces::health_status::healthy;
+        ::kcenon::common::interfaces::health_check_result result;
+        result.status = ::kcenon::common::interfaces::health_status::healthy;
         result.message = "Component operational";
         return result;
     }
@@ -325,7 +325,7 @@ public:
     /**
      * @brief Create a common_system IMonitor from monitoring_system monitor
      */
-    static std::shared_ptr<::common::interfaces::IMonitor> create_common_monitor(
+    static std::shared_ptr<::kcenon::common::interfaces::IMonitor> create_common_monitor(
         std::shared_ptr<monitoring_interface> monitor) {
         return std::make_shared<common_system_monitor_adapter>(monitor);
     }
@@ -334,7 +334,7 @@ public:
      * @brief Create a monitoring_system collector that wraps common IMonitor
      */
     static std::shared_ptr<metrics_collector> create_from_common(
-        std::shared_ptr<::common::interfaces::IMonitor> common_monitor,
+        std::shared_ptr<::kcenon::common::interfaces::IMonitor> common_monitor,
         const std::string& name = "common_adapter") {
         return std::make_shared<monitor_from_common_adapter>(common_monitor, name);
     }
@@ -342,7 +342,7 @@ public:
     /**
      * @brief Create a common_system IMonitorable from monitoring_system monitorable
      */
-    static std::shared_ptr<::common::interfaces::IMonitorable> create_common_monitorable(
+    static std::shared_ptr<::kcenon::common::interfaces::IMonitorable> create_common_monitorable(
         std::shared_ptr<monitorable_interface> monitorable,
         const std::string& name = "monitoring_component") {
         return std::make_shared<common_system_monitorable_adapter>(monitorable, name);

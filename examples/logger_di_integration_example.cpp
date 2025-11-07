@@ -17,7 +17,7 @@
 #include <iomanip>
 
 using namespace kcenon::monitoring;
-using namespace common::interfaces;
+using namespace kcenon::common::interfaces;
 
 /**
  * @brief Simple logger implementation for demonstration
@@ -31,9 +31,9 @@ public:
     explicit simple_console_logger(log_level min = log_level::debug)
         : min_level_(min) {}
 
-    common::VoidResult log(log_level level, const std::string& message) override {
+    kcenon::common::VoidResult log(log_level level, const std::string& message) override {
         if (!is_enabled(level)) {
-            return common::ok();
+            return kcenon::common::ok();
         }
 
         auto now = std::chrono::system_clock::now();
@@ -52,15 +52,15 @@ public:
                   << message << std::endl;
 
         log_count_++;
-        return common::ok();
+        return kcenon::common::ok();
     }
 
-    common::VoidResult log(log_level level, const std::string& message,
+    kcenon::common::VoidResult log(log_level level, const std::string& message,
                           const std::string& file, int line, const std::string& function) override {
         return log(level, message + " [" + file + ":" + std::to_string(line) + " " + function + "]");
     }
 
-    common::VoidResult log(const log_entry& entry) override {
+    kcenon::common::VoidResult log(const log_entry& entry) override {
         return log(entry.level, entry.message, entry.file, entry.line, entry.function);
     }
 
@@ -68,18 +68,18 @@ public:
         return static_cast<int>(level) >= static_cast<int>(min_level_);
     }
 
-    common::VoidResult set_level(log_level level) override {
+    kcenon::common::VoidResult set_level(log_level level) override {
         min_level_ = level;
-        return common::ok();
+        return kcenon::common::ok();
     }
 
     log_level get_level() const override {
         return min_level_;
     }
 
-    common::VoidResult flush() override {
+    kcenon::common::VoidResult flush() override {
         std::cout << std::flush;
-        return common::ok();
+        return kcenon::common::ok();
     }
 
     size_t get_log_count() const { return log_count_.load(); }
@@ -98,19 +98,19 @@ void example_1_basic_monitoring() {
 
     // Record metrics using Result pattern
     auto result1 = monitor->record_metric("requests_total", 100.0);
-    if (common::is_ok(result1)) {
+    if (kcenon::common::is_ok(result1)) {
         std::cout << "✓ Metric 'requests_total' recorded" << std::endl;
     }
 
     auto result2 = monitor->record_metric("errors_total", 5.0);
-    if (common::is_ok(result2)) {
+    if (kcenon::common::is_ok(result2)) {
         std::cout << "✓ Metric 'errors_total' recorded" << std::endl;
     }
 
     // Get metrics snapshot
     auto metrics = monitor->get_metrics();
-    if (common::is_ok(metrics)) {
-        auto snapshot = common::get_value(metrics);
+    if (kcenon::common::is_ok(metrics)) {
+        auto snapshot = kcenon::common::get_value(metrics);
         std::cout << "✓ Retrieved " << snapshot.metrics.size() << " metrics" << std::endl;
     }
 }
@@ -125,10 +125,10 @@ void example_2_error_handling() {
 
     // Record metric and check result
     auto result = monitor->record_metric("cpu_usage", 45.5);
-    if (common::is_ok(result)) {
+    if (kcenon::common::is_ok(result)) {
         std::cout << "✓ Metric recorded successfully" << std::endl;
     } else {
-        auto err = common::get_error(result);
+        auto err = kcenon::common::get_error(result);
         std::cout << "✗ Error: " << err.message << std::endl;
     }
 }
@@ -146,8 +146,8 @@ void example_3_health_monitoring() {
     // Perform health check
     auto health_result = monitor->check_health();
 
-    if (common::is_ok(health_result)) {
-        const auto& health = common::get_value(health_result);
+    if (kcenon::common::is_ok(health_result)) {
+        const auto& health = kcenon::common::get_value(health_result);
 
         std::cout << "\nHealth Check Results:" << std::endl;
         std::cout << "  Status: " << to_string(health.status) << std::endl;
@@ -183,9 +183,9 @@ void example_4_multiple_monitors() {
     auto metrics1 = monitor1->get_metrics();
     auto metrics2 = monitor2->get_metrics();
 
-    if (common::is_ok(metrics1) && common::is_ok(metrics2)) {
-        auto snapshot1 = common::get_value(metrics1);
-        auto snapshot2 = common::get_value(metrics2);
+    if (kcenon::common::is_ok(metrics1) && kcenon::common::is_ok(metrics2)) {
+        auto snapshot1 = kcenon::common::get_value(metrics1);
+        auto snapshot2 = kcenon::common::get_value(metrics2);
         std::cout << "✓ Monitor 1: " << snapshot1.metrics.size() << " metrics" << std::endl;
         std::cout << "✓ Monitor 2: " << snapshot2.metrics.size() << " metrics" << std::endl;
     }
@@ -207,7 +207,7 @@ void example_5_metrics_with_tags() {
     };
 
     auto result = monitor->record_metric("request_latency", 150.0, tags);
-    if (common::is_ok(result)) {
+    if (kcenon::common::is_ok(result)) {
         std::cout << "✓ Metric with tags recorded successfully" << std::endl;
     }
 }
@@ -226,7 +226,7 @@ void example_6_monitoring_workflow() {
     // Simulate application metrics
     for (int i = 0; i < 5; ++i) {
         auto result = monitor->record_metric("requests", static_cast<double>(i * 10));
-        if (common::is_ok(result)) {
+        if (kcenon::common::is_ok(result)) {
             logger->log(log_level::info, "Recorded metric: requests = " + std::to_string(i * 10));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -234,15 +234,15 @@ void example_6_monitoring_workflow() {
 
     // Check health and log results
     auto health = monitor->check_health();
-    if (common::is_ok(health)) {
-        auto health_status = common::get_value(health);
+    if (kcenon::common::is_ok(health)) {
+        auto health_status = kcenon::common::get_value(health);
         logger->log(log_level::info, "Monitor health: " + to_string(health_status.status));
     }
 
     // Get metrics and log summary
     auto metrics = monitor->get_metrics();
-    if (common::is_ok(metrics)) {
-        auto snapshot = common::get_value(metrics);
+    if (kcenon::common::is_ok(metrics)) {
+        auto snapshot = kcenon::common::get_value(metrics);
         logger->log(log_level::info, "Collected " + std::to_string(snapshot.metrics.size()) + " metrics");
     }
 
