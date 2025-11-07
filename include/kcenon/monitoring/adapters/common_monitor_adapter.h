@@ -19,10 +19,12 @@ All rights reserved.
 #include <kcenon/common/patterns/result.h>
 #endif
 
-#include "../monitor.h"
-#include "../metrics_collector.h"
-#include "../health_monitor.h"
+// Include actual monitoring_system headers
+#include <kcenon/monitoring/core/performance_monitor.h>
+#include <kcenon/monitoring/health/health_monitor.h>
+#include <kcenon/monitoring/interfaces/monitoring_interface.h>
 
+namespace kcenon {
 namespace monitoring {
 namespace adapters {
 
@@ -418,3 +420,4 @@ public:
 
 } // namespace adapters
 } // namespace monitoring
+} // namespace kcenon
