@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['plugin_5fcollector_5fexample_2ecpp_0',['plugin_collector_example.cpp',['../dc/d7a/plugin__collector__example_8cpp.html',1,'']]]
+  ['monitor_5ffactory_5fpattern_5fexample_2ecpp_0',['monitor_factory_pattern_example.cpp',['../d3/df7/monitor__factory__pattern__example_8cpp.html',1,'']]]
 ];

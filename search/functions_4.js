@@ -1,7 +1,18 @@
 var searchData=
 [
-  ['failing_5foperation_0',['failing_operation',['../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f',1,'DataConsistencyTest::failing_operation()'],['../db/d11/classErrorBoundariesTest.html#afa1f47e0f9e489fcb446607e90ad70c5',1,'ErrorBoundariesTest::failing_operation()'],['../d4/d91/classFaultToleranceTest.html#a4be8a69b1a71747b5ee9e6f896dadf4b',1,'FaultToleranceTest::failing_operation()']]],
-  ['failing_5fvalidation_1',['failing_validation',['../d8/d07/classDataConsistencyTest.html#ae30d973a47d94352c14d196569971ad2',1,'DataConsistencyTest']]],
-  ['flush_2',['flush',['../dd/d02/classmock__logger.html#a439b5e80b1eeaf4cd84f7241b330302f',1,'mock_logger::flush()'],['../d1/da6/classsimple__mock__logger.html#a55bd00d9a52b41b3981c35be38d8b814',1,'simple_mock_logger::flush()'],['../d4/d06/classconsole__logger.html#a9b169d1d177244dfa2d12bdef495be4c',1,'console_logger::flush()'],['../d2/d10/classsimple__console__logger.html#affe696e67ade0ec01602fb52c695029b',1,'simple_console_logger::flush()'],['../d3/dfa/classexample__logger.html#ab43b7d5da16c7560660fcd0b55b17172',1,'example_logger::flush()']]],
-  ['force_5fcollect_3',['force_collect',['../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726',1,'test_collector']]]
+  ['example_5f1_5fbasic_5ffactory_0',['example_1_basic_factory',['../d3/df7/monitor__factory__pattern__example_8cpp.html#aa0e3064e3eb38b18a404d4398def2252',1,'monitor_factory_pattern_example.cpp']]],
+  ['example_5f1_5fbasic_5fmonitoring_1',['example_1_basic_monitoring',['../d0/d34/logger__di__integration__example_8cpp.html#a9f8d59cd2ad287dd9a1c8fffc91ce5e2',1,'logger_di_integration_example.cpp']]],
+  ['example_5f2_5ferror_5fhandling_2',['example_2_error_handling',['../d0/d34/logger__di__integration__example_8cpp.html#a67f7e0795baa415c624e1d85a984d408',1,'logger_di_integration_example.cpp']]],
+  ['example_5f2_5fnamed_5fmonitors_3',['example_2_named_monitors',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a083ab1bdc513a74f04aef7b4394ef123',1,'monitor_factory_pattern_example.cpp']]],
+  ['example_5f3_5ffactory_5fwith_5flogger_4',['example_3_factory_with_logger',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a8b7194ae4bbf51bd1e440ca1f4e4ba14',1,'monitor_factory_pattern_example.cpp']]],
+  ['example_5f3_5fhealth_5fmonitoring_5',['example_3_health_monitoring',['../d0/d34/logger__di__integration__example_8cpp.html#a8768bd981973968f2b86175457197699',1,'logger_di_integration_example.cpp']]],
+  ['example_5f4_5fmonitor_5freuse_6',['example_4_monitor_reuse',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a34b771a94af141919418400e378a738f',1,'monitor_factory_pattern_example.cpp']]],
+  ['example_5f4_5fmultiple_5fmonitors_7',['example_4_multiple_monitors',['../d0/d34/logger__di__integration__example_8cpp.html#a62d1725f5dde2728923f3132765dec74',1,'logger_di_integration_example.cpp']]],
+  ['example_5f5_5fmetrics_5fwith_5ftags_8',['example_5_metrics_with_tags',['../d0/d34/logger__di__integration__example_8cpp.html#a93af997917917a739fa4e2a33747761f',1,'logger_di_integration_example.cpp']]],
+  ['example_5f5_5fprovider_5finterface_9',['example_5_provider_interface',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a1cb7839e57a7ea78e4d2fd0e8e50b8dd',1,'monitor_factory_pattern_example.cpp']]],
+  ['example_5f6_5faggregating_5fpattern_10',['example_6_aggregating_pattern',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a2bfe43f46c9eaf038b242846aa26648e',1,'monitor_factory_pattern_example.cpp']]],
+  ['example_5f6_5fmonitoring_5fworkflow_11',['example_6_monitoring_workflow',['../d0/d34/logger__di__integration__example_8cpp.html#a77c61aed4fb242a397ecda1274fbb8ab',1,'logger_di_integration_example.cpp']]],
+  ['example_5f7_5ffactory_5flifecycle_12',['example_7_factory_lifecycle',['../d3/df7/monitor__factory__pattern__example_8cpp.html#ad272805948d6f72d3ca030bb7b088880',1,'monitor_factory_pattern_example.cpp']]],
+  ['example_5flogger_13',['example_logger',['../d3/dfa/classexample__logger.html#a95f71316714356b1a5cbbb8c20a8f875',1,'example_logger']]],
+  ['execute_5fquery_14',['execute_query',['../d2/d12/classDatabaseConnection.html#ae21b13ec0e2fe21ddbe7e3db3b9b64d0',1,'DatabaseConnection']]]
 ];

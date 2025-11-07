@@ -11,9 +11,12 @@ var searchData=
   ['demonstrate_5fcircuit_5fbreaker_8',['demonstrate_circuit_breaker',['../d2/d84/health__reliability__example_8cpp.html#a8bfc1a7efa3a960d500cf0f98f36d486',1,'health_reliability_example.cpp']]],
   ['demonstrate_5ferror_5fboundaries_9',['demonstrate_error_boundaries',['../d2/d84/health__reliability__example_8cpp.html#ae48b05d3deda002b02aec48a18444a5c',1,'health_reliability_example.cpp']]],
   ['demonstrate_5fhealth_5fmonitoring_10',['demonstrate_health_monitoring',['../d2/d84/health__reliability__example_8cpp.html#a692c06c3076ca753e03b2f0e6a561bf4',1,'health_reliability_example.cpp']]],
-  ['demonstrate_5fretry_5fpolicy_11',['demonstrate_retry_policy',['../d2/d84/health__reliability__example_8cpp.html#a8986ce2c81c9be59b174cb16acbfbc4a',1,'health_reliability_example.cpp']]],
-  ['dicontainertest_12',['DIContainerTest',['../d9/da4/classDIContainerTest.html',1,'']]],
-  ['distributed_5ftracing_5fexample_2ecpp_13',['distributed_tracing_example.cpp',['../d4/d6c/distributed__tracing__example_8cpp.html',1,'']]],
-  ['distributedtracingtest_14',['DistributedTracingTest',['../d9/d51/classDistributedTracingTest.html',1,'']]],
-  ['divide_15',['divide',['../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c',1,'result_pattern_example.cpp']]]
+  ['demonstrate_5fnew_5fapproach_11',['demonstrate_new_approach',['../d0/d69/facade__adapter__poc_8cpp.html#a9f7ee5b5c8a09fb639dadcc39cf7f854',1,'facade_adapter_poc.cpp']]],
+  ['demonstrate_5fold_5fapproach_12',['demonstrate_old_approach',['../d0/d69/facade__adapter__poc_8cpp.html#a09345127b09fbf5a6ad83351fa9354a9',1,'facade_adapter_poc.cpp']]],
+  ['demonstrate_5fretry_5fpolicy_13',['demonstrate_retry_policy',['../d2/d84/health__reliability__example_8cpp.html#a8986ce2c81c9be59b174cb16acbfbc4a',1,'health_reliability_example.cpp']]],
+  ['demonstrate_5ftesting_5fbenefits_14',['demonstrate_testing_benefits',['../d0/d69/facade__adapter__poc_8cpp.html#a8e7a395fce30109d8b662afed4cf6e93',1,'facade_adapter_poc.cpp']]],
+  ['dicontainertest_15',['DIContainerTest',['../d9/da4/classDIContainerTest.html',1,'']]],
+  ['distributed_5ftracing_5fexample_2ecpp_16',['distributed_tracing_example.cpp',['../d4/d6c/distributed__tracing__example_8cpp.html',1,'']]],
+  ['distributedtracingtest_17',['DistributedTracingTest',['../d9/d51/classDistributedTracingTest.html',1,'']]],
+  ['divide_18',['divide',['../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c',1,'result_pattern_example.cpp']]]
 ];
