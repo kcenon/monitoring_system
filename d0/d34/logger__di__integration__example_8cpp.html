@@ -183,19 +183,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   98</span> </div>
 <div class="line"><span class="lineno">   99</span>    <span class="comment">// Record metrics using Result pattern</span></div>
 <div class="line"><span class="lineno">  100</span>    <span class="keyword">auto</span> result1 = monitor-&gt;record_metric(<span class="stringliteral">&quot;requests_total&quot;</span>, 100.0);</div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">if</span> (common::is_ok(result1)) {</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result1)) {</div>
 <div class="line"><span class="lineno">  102</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric &#39;requests_total&#39; recorded&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  103</span>    }</div>
 <div class="line"><span class="lineno">  104</span> </div>
 <div class="line"><span class="lineno">  105</span>    <span class="keyword">auto</span> result2 = monitor-&gt;record_metric(<span class="stringliteral">&quot;errors_total&quot;</span>, 5.0);</div>
-<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">if</span> (common::is_ok(result2)) {</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result2)) {</div>
 <div class="line"><span class="lineno">  107</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric &#39;errors_total&#39; recorded&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  108</span>    }</div>
 <div class="line"><span class="lineno">  109</span> </div>
 <div class="line"><span class="lineno">  110</span>    <span class="comment">// Get metrics snapshot</span></div>
 <div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> metrics = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (common::is_ok(metrics)) {</div>
-<div class="line"><span class="lineno">  113</span>        <span class="keyword">auto</span> snapshot = common::get_value(metrics);</div>
+<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics)) {</div>
+<div class="line"><span class="lineno">  113</span>        <span class="keyword">auto</span> snapshot = kcenon::common::get_value(metrics);</div>
 <div class="line"><span class="lineno">  114</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Retrieved &quot;</span> &lt;&lt; snapshot.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  115</span>    }</div>
 <div class="line"><span class="lineno">  116</span>}</div>
@@ -237,10 +237,10 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  125</span> </div>
 <div class="line"><span class="lineno">  126</span>    <span class="comment">// Record metric and check result</span></div>
 <div class="line"><span class="lineno">  127</span>    <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 45.5);</div>
-<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">if</span> (common::is_ok(result)) {</div>
+<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
 <div class="line"><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric recorded successfully&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  130</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  131</span>        <span class="keyword">auto</span> err = common::get_error(result);</div>
+<div class="line"><span class="lineno">  131</span>        <span class="keyword">auto</span> err = kcenon::common::get_error(result);</div>
 <div class="line"><span class="lineno">  132</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✗ Error: &quot;</span> &lt;&lt; err.message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  133</span>    }</div>
 <div class="line"><span class="lineno">  134</span>}</div>
@@ -285,8 +285,8 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  146</span>    <span class="comment">// Perform health check</span></div>
 <div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> health_result = monitor-&gt;check_health();</div>
 <div class="line"><span class="lineno">  148</span> </div>
-<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span> (common::is_ok(health_result)) {</div>
-<div class="line"><span class="lineno">  150</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; health = common::get_value(health_result);</div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(health_result)) {</div>
+<div class="line"><span class="lineno">  150</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; health = kcenon::common::get_value(health_result);</div>
 <div class="line"><span class="lineno">  151</span> </div>
 <div class="line"><span class="lineno">  152</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\nHealth Check Results:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  153</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Status: &quot;</span> &lt;&lt; to_string(health.status) &lt;&lt; std::endl;</div>
@@ -349,9 +349,9 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> metrics1 = monitor1-&gt;get_metrics();</div>
 <div class="line"><span class="lineno">  184</span>    <span class="keyword">auto</span> metrics2 = monitor2-&gt;get_metrics();</div>
 <div class="line"><span class="lineno">  185</span> </div>
-<div class="line"><span class="lineno">  186</span>    <span class="keywordflow">if</span> (common::is_ok(metrics1) &amp;&amp; common::is_ok(metrics2)) {</div>
-<div class="line"><span class="lineno">  187</span>        <span class="keyword">auto</span> snapshot1 = common::get_value(metrics1);</div>
-<div class="line"><span class="lineno">  188</span>        <span class="keyword">auto</span> snapshot2 = common::get_value(metrics2);</div>
+<div class="line"><span class="lineno">  186</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics1) &amp;&amp; kcenon::common::is_ok(metrics2)) {</div>
+<div class="line"><span class="lineno">  187</span>        <span class="keyword">auto</span> snapshot1 = kcenon::common::get_value(metrics1);</div>
+<div class="line"><span class="lineno">  188</span>        <span class="keyword">auto</span> snapshot2 = kcenon::common::get_value(metrics2);</div>
 <div class="line"><span class="lineno">  189</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor 1: &quot;</span> &lt;&lt; snapshot1.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  190</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor 2: &quot;</span> &lt;&lt; snapshot2.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  191</span>    }</div>
@@ -400,7 +400,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  207</span>    };</div>
 <div class="line"><span class="lineno">  208</span> </div>
 <div class="line"><span class="lineno">  209</span>    <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;request_latency&quot;</span>, 150.0, tags);</div>
-<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">if</span> (common::is_ok(result)) {</div>
+<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
 <div class="line"><span class="lineno">  211</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric with tags recorded successfully&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  212</span>    }</div>
 <div class="line"><span class="lineno">  213</span>}</div>
@@ -446,7 +446,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  226</span>    <span class="comment">// Simulate application metrics</span></div>
 <div class="line"><span class="lineno">  227</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><span class="lineno">  228</span>        <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;requests&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i * 10));</div>
-<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">if</span> (common::is_ok(result)) {</div>
+<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
 <div class="line"><span class="lineno">  230</span>            logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Recorded metric: requests = &quot;</span> + std::to_string(i * 10));</div>
 <div class="line"><span class="lineno">  231</span>        }</div>
 <div class="line"><span class="lineno">  232</span>        std::this_thread::sleep_for(std::chrono::milliseconds(100));</div>
@@ -454,15 +454,15 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  234</span> </div>
 <div class="line"><span class="lineno">  235</span>    <span class="comment">// Check health and log results</span></div>
 <div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> health = monitor-&gt;check_health();</div>
-<div class="line"><span class="lineno">  237</span>    <span class="keywordflow">if</span> (common::is_ok(health)) {</div>
-<div class="line"><span class="lineno">  238</span>        <span class="keyword">auto</span> health_status = common::get_value(health);</div>
+<div class="line"><span class="lineno">  237</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(health)) {</div>
+<div class="line"><span class="lineno">  238</span>        <span class="keyword">auto</span> health_status = kcenon::common::get_value(health);</div>
 <div class="line"><span class="lineno">  239</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Monitor health: &quot;</span> + to_string(health_status.status));</div>
 <div class="line"><span class="lineno">  240</span>    }</div>
 <div class="line"><span class="lineno">  241</span> </div>
 <div class="line"><span class="lineno">  242</span>    <span class="comment">// Get metrics and log summary</span></div>
 <div class="line"><span class="lineno">  243</span>    <span class="keyword">auto</span> metrics = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">if</span> (common::is_ok(metrics)) {</div>
-<div class="line"><span class="lineno">  245</span>        <span class="keyword">auto</span> snapshot = common::get_value(metrics);</div>
+<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics)) {</div>
+<div class="line"><span class="lineno">  245</span>        <span class="keyword">auto</span> snapshot = kcenon::common::get_value(metrics);</div>
 <div class="line"><span class="lineno">  246</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Collected &quot;</span> + std::to_string(snapshot.metrics.size()) + <span class="stringliteral">&quot; metrics&quot;</span>);</div>
 <div class="line"><span class="lineno">  247</span>    }</div>
 <div class="line"><span class="lineno">  248</span> </div>
@@ -560,7 +560,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 7 2025 20:39:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Nov 7 2025 20:48:53 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
