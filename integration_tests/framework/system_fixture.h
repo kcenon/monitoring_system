@@ -48,6 +48,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <kcenon/monitoring/core/error_codes.h>
 #include <kcenon/monitoring/utils/metric_types.h>
 #include <kcenon/monitoring/interfaces/metric_collector_interface.h>
+#include <kcenon/monitoring/adapters/performance_monitor_adapter.h>
 
 namespace integration_tests {
 
@@ -77,6 +78,11 @@ protected:
 
         // Create performance monitor
         monitor_ = std::make_unique<kcenon::monitoring::performance_monitor>("test_monitor");
+
+        // Create adapter for IMonitor interface compatibility
+        monitor_adapter_ = std::make_shared<kcenon::monitoring::performance_monitor_adapter>(
+            std::shared_ptr<kcenon::monitoring::performance_monitor>(monitor_.get(), [](auto*){})
+        );
     }
 
     void TearDown() override {
@@ -262,6 +268,7 @@ protected:
 
     // Protected member variables
     std::unique_ptr<kcenon::monitoring::performance_monitor> monitor_;
+    std::shared_ptr<kcenon::monitoring::performance_monitor_adapter> monitor_adapter_;
     fs::path temp_dir_;
     std::vector<fs::path> temp_files_;
 

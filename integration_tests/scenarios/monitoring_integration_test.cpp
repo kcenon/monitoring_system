@@ -217,12 +217,13 @@ TEST_F(MonitoringIntegrationTest, MonitoringDataPersistence) {
 /**
  * Test 9: IMonitor Interface Integration
  * Test integration with common_system IMonitor interface
+ * Uses performance_monitor_adapter to test IMonitor interface compatibility
  */
 TEST_F(MonitoringIntegrationTest, IMonitorInterfaceIntegration) {
     ASSERT_TRUE(StartMonitoring());
 
-    // Record metric through IMonitor interface
-    auto result = monitor_->record_metric("test_metric", 42.0);
+    // Record metric through IMonitor interface using adapter
+    auto result = monitor_adapter_->record_metric("test_metric", 42.0);
     EXPECT_TRUE(result.is_ok());
 
     // Record metric with tags
@@ -230,43 +231,50 @@ TEST_F(MonitoringIntegrationTest, IMonitorInterfaceIntegration) {
         {"env", "test"},
         {"version", "1.0"}
     };
-    auto tagged_result = monitor_->record_metric("tagged_metric", 100.0, tags);
+    auto tagged_result = monitor_adapter_->record_metric("tagged_metric", 100.0, tags);
     EXPECT_TRUE(tagged_result.is_ok());
 }
 
 /**
  * Test 10: Health Check Integration
  * Test health check through IMonitor interface
+ * Uses performance_monitor_adapter to test IMonitor interface compatibility
  */
 TEST_F(MonitoringIntegrationTest, HealthCheckIntegration) {
     ASSERT_TRUE(StartMonitoring());
 
-    // Perform health check
-    auto health_result = monitor_->check_health();
+    // Perform health check through adapter
+    auto health_result = monitor_adapter_->check_health();
     ASSERT_TRUE(health_result.is_ok());
 
     auto health = health_result.value();
     EXPECT_FALSE(health.message.empty());
+    EXPECT_EQ(health.status, kcenon::common::interfaces::health_status::healthy);
 }
 
 /**
  * Test 11: Metrics Snapshot Retrieval
  * Test retrieving complete metrics snapshot
+ * Uses performance_monitor_adapter to test IMonitor interface compatibility
  */
 TEST_F(MonitoringIntegrationTest, MetricsSnapshotRetrieval) {
     ASSERT_TRUE(StartMonitoring());
 
-    // Record various metrics
-    monitor_->record_metric("metric_1", 10.0);
-    monitor_->record_metric("metric_2", 20.0);
-    monitor_->record_metric("metric_3", 30.0);
+    // Record various performance samples (adapter's record_metric is no-op for timing monitor)
+    ASSERT_TRUE(RecordSample("operation_1", std::chrono::microseconds(100)));
+    ASSERT_TRUE(RecordSample("operation_2", std::chrono::microseconds(200)));
+    ASSERT_TRUE(RecordSample("operation_3", std::chrono::microseconds(300)));
 
-    // Get snapshot
-    auto snapshot_result = monitor_->get_metrics();
+    // Get snapshot through adapter
+    auto snapshot_result = monitor_adapter_->get_metrics();
     ASSERT_TRUE(snapshot_result.is_ok());
 
     auto snapshot = snapshot_result.value();
     EXPECT_FALSE(snapshot.metrics.empty());
+
+    // Verify snapshot contains metrics for the operations we recorded
+    // Each operation produces multiple metrics (min, max, mean, median, p95, p99, call_count, error_count)
+    EXPECT_GE(snapshot.metrics.size(), 3 * 8);  // At least 8 metrics per operation
 }
 
 /**
@@ -276,16 +284,22 @@ TEST_F(MonitoringIntegrationTest, MetricsSnapshotRetrieval) {
 TEST_F(MonitoringIntegrationTest, MonitorResetFunctionality) {
     ASSERT_TRUE(StartMonitoring());
 
-    // Record some metrics
-    monitor_->record_metric("reset_test", 42.0);
+    // Record some samples
     ASSERT_TRUE(RecordSample("reset_op", std::chrono::microseconds(100)));
+    ASSERT_TRUE(RecordSample("reset_op", std::chrono::microseconds(200)));
+
+    // Verify metrics exist
+    auto metrics_before = GetPerformanceMetrics("reset_op");
+    ASSERT_TRUE(metrics_before.has_value());
+    EXPECT_GT(metrics_before->call_count, 0);
 
     // Reset monitor
-    auto reset_result = monitor_->reset();
-    EXPECT_TRUE(reset_result.is_ok());
+    monitor_->reset();
 
-    // Profiler should be cleared
-    auto metrics = GetPerformanceMetrics("reset_op");
-    // After reset, metrics might not be available or should be reset
-    // Behavior depends on implementation
+    // After reset, samples should be cleared
+    auto metrics_after = GetPerformanceMetrics("reset_op");
+    // After reset, metrics might not be available or call_count should be 0
+    if (metrics_after.has_value()) {
+        EXPECT_EQ(metrics_after->call_count, 0);
+    }
 }

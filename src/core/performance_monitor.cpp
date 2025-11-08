@@ -6,6 +6,7 @@
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <shared_mutex>
 #include <deque>
+#include <limits>
 
 // Platform-specific headers for system metrics
 #if defined(__APPLE__)
@@ -53,10 +54,37 @@ result<bool> performance_profiler::record_sample(
         // Double-check after acquiring write lock
         auto& profile_ptr = profiles_[operation_name];
         if (!profile_ptr) {
+            // Check if we've exceeded the max profiles limit
+            if (profiles_.size() >= max_profiles_) {
+                // Find and evict the least recently used profile
+                auto lru_it = profiles_.end();
+                auto oldest_time = (std::numeric_limits<std::chrono::steady_clock::rep>::max)();
+
+                for (auto it = profiles_.begin(); it != profiles_.end(); ++it) {
+                    if (it->second) {
+                        auto access_time = it->second->last_access_time.load(std::memory_order_relaxed);
+                        if (access_time < oldest_time) {
+                            oldest_time = access_time;
+                            lru_it = it;
+                        }
+                    }
+                }
+
+                if (lru_it != profiles_.end()) {
+                    profiles_.erase(lru_it);
+                }
+            }
+
             profile_ptr = std::make_unique<profile_data>();
         }
         profile = profile_ptr.get();
     }
+
+    // Update last access time atomically (thread-safe without locks)
+    profile->last_access_time.store(
+        std::chrono::steady_clock::now().time_since_epoch().count(),
+        std::memory_order_relaxed
+    );
 
     // Now use profile (which is guaranteed to be valid)
     // Update counters
@@ -94,6 +122,12 @@ kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::moni
     }
 
     const auto& profile = it->second;
+
+    // Update last access time atomically (for LRU tracking)
+    profile->last_access_time.store(
+        std::chrono::steady_clock::now().time_since_epoch().count(),
+        std::memory_order_relaxed
+    );
 
     std::lock_guard sample_lock(profile->mutex);
 
@@ -189,7 +223,7 @@ result<system_metrics> system_monitor::get_current_metrics() const {
 
             if (total_ticks > 0) {
                 double usage = 100.0 * (1.0 - (static_cast<double>(idle_ticks) / total_ticks));
-                metrics.cpu_usage_percent = std::max(0.0, std::min(100.0, usage));
+                metrics.cpu_usage_percent = (std::max)(0.0, (std::min)(100.0, usage));
             }
 
             vm_deallocate(mach_task_self(),
@@ -402,108 +436,7 @@ void performance_profiler::clear_all_samples() {
     }
 }
 
-#ifdef MONITORING_USING_COMMON_INTERFACES
-// IMonitor interface implementation
-
-common::VoidResult performance_monitor::record_metric(const std::string& name, double value) {
-    // Record as a duration metric in nanoseconds
-    auto duration = std::chrono::nanoseconds(static_cast<std::int64_t>(value));
-    auto result = profiler_.record_sample(name, duration, true);
-
-    if (result.is_err()) {
-        return common::error_info(
-            static_cast<int>(result.error().code),
-            result.error().message
-        );
-    }
-
-    return std::monostate{};
-}
-
-common::VoidResult performance_monitor::record_metric(
-    const std::string& name,
-    double value,
-    const std::unordered_map<std::string, std::string>& tags) {
-
-    (void)tags;  // Suppress unused parameter warning on MSVC
-    // For now, record the metric without tag support
-    // Future enhancement: store tags in performance_profiler
-    return record_metric(name, value);
-}
-
-common::Result<common::interfaces::metrics_snapshot> performance_monitor::get_metrics() {
-    // Collect metrics from our internal profiler and system monitor
-    auto snapshot_result = collect();
-
-    if (snapshot_result.is_err()) {
-        return common::error_info(
-            static_cast<int>(snapshot_result.error().code),
-            snapshot_result.error().message
-        );
-    }
-
-    // Convert kcenon::monitoring::metrics_snapshot to common::interfaces::metrics_snapshot
-    const auto& internal_snapshot = snapshot_result.value();
-    common::interfaces::metrics_snapshot common_snapshot;
-    common_snapshot.source_id = internal_snapshot.source_id;
-    common_snapshot.capture_time = internal_snapshot.capture_time;
-
-    // Convert metrics
-    for (const auto& metric : internal_snapshot.metrics) {
-        common::interfaces::metric_value common_metric;
-        common_metric.name = metric.name;
-        common_metric.value = metric.value;
-        common_metric.timestamp = metric.timestamp;
-        common_metric.tags = metric.tags;
-        common_snapshot.metrics.push_back(common_metric);
-    }
-
-    return common_snapshot;
-}
-
-common::Result<common::interfaces::health_check_result> performance_monitor::check_health() {
-    common::interfaces::health_check_result result;
-    result.timestamp = std::chrono::system_clock::now();
-    auto start_time = std::chrono::high_resolution_clock::now();
-
-    // Check if we're enabled
-    if (!is_enabled()) {
-        result.status = common::interfaces::health_status::unknown;
-        result.message = "Performance monitor is disabled";
-        auto end_time = std::chrono::high_resolution_clock::now();
-        result.check_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
-            end_time - start_time
-        );
-        return result;
-    }
-
-    // Check thresholds
-    auto threshold_result = check_thresholds();
-
-    if (threshold_result.is_ok() && threshold_result.value()) {
-        // Thresholds exceeded
-        result.status = common::interfaces::health_status::degraded;
-        result.message = "Performance thresholds exceeded";
-    } else {
-        result.status = common::interfaces::health_status::healthy;
-        result.message = "Performance monitor operational";
-    }
-
-    auto end_time = std::chrono::high_resolution_clock::now();
-    result.check_duration = std::chrono::duration_cast<std::chrono::milliseconds>(
-        end_time - start_time
-    );
-
-    return result;
-}
-
-common::VoidResult performance_monitor::reset() {
-    // Clear all profiler samples
-    profiler_.clear_all_samples();
-
-    return std::monostate{};
-}
-#endif // MONITORING_USING_COMMON_INTERFACES
+// IMonitor interface implementations removed (use performance_monitor_adapter instead)
 
 // Global instance
 performance_monitor& global_performance_monitor() {

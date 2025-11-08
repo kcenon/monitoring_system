@@ -119,13 +119,16 @@ private:
         std::deque<std::chrono::nanoseconds> samples;
         std::atomic<std::uint64_t> call_count{0};
         std::atomic<std::uint64_t> error_count{0};
+        // Store time as atomic integer for thread-safe access without locks
+        std::atomic<std::chrono::steady_clock::rep> last_access_time{std::chrono::steady_clock::now().time_since_epoch().count()};
         mutable std::mutex mutex;
     };
-    
+
     std::unordered_map<std::string, std::unique_ptr<profile_data>> profiles_;
     mutable std::shared_mutex profiles_mutex_;
     std::atomic<bool> enabled_{true};
     std::size_t max_samples_per_operation_{10000};
+    std::size_t max_profiles_{10000};  // LRU eviction threshold
     
 public:
     /**
@@ -287,14 +290,12 @@ public:
 /**
  * @brief Performance monitor combining profiling and system monitoring
  *
- * Implements both kcenon::monitoring::metrics_collector and (optionally)
- * common::interfaces::IMonitor for interoperability with common_system.
+ * Implements kcenon::monitoring::metrics_collector for internal monitoring.
+ * For interoperability with common::interfaces::IMonitor, use performance_monitor_adapter.
+ *
+ * @see performance_monitor_adapter For bridging to common::interfaces::IMonitor
  */
-/**
- * @brief Performance monitor implementing IMonitor (Phase 2.3.4)
- */
-class performance_monitor : public metrics_collector,
-                            public common::interfaces::IMonitor {
+class performance_monitor : public metrics_collector {
 private:
     performance_profiler profiler_;
     system_monitor system_monitor_;
@@ -384,42 +385,12 @@ public:
     // IMonitor interface implementation (Phase 2.3.4)
 
     /**
-     * @brief Record a metric value (IMonitor interface)
-     * @param name Metric name
-     * @param value Metric value
-     * @return VoidResult indicating success or error
+     * @brief Reset all performance profiler samples and system metrics
+     * @note For IMonitor interface compatibility, use performance_monitor_adapter
      */
-    common::VoidResult record_metric(const std::string& name, double value) override;
-
-    /**
-     * @brief Record a metric with tags (IMonitor interface)
-     * @param name Metric name
-     * @param value Metric value
-     * @param tags Additional metadata tags
-     * @return VoidResult indicating success or error
-     */
-    common::VoidResult record_metric(
-        const std::string& name,
-        double value,
-        const std::unordered_map<std::string, std::string>& tags) override;
-
-    /**
-     * @brief Get current metrics snapshot (IMonitor interface)
-     * @return Result containing metrics snapshot or error
-     */
-    common::Result<common::interfaces::metrics_snapshot> get_metrics() override;
-
-    /**
-     * @brief Perform health check (IMonitor interface)
-     * @return Result containing health check result or error
-     */
-    common::Result<common::interfaces::health_check_result> check_health() override;
-
-    /**
-     * @brief Reset all metrics (IMonitor interface)
-     * @return VoidResult indicating success or error
-     */
-    common::VoidResult reset() override;
+    void reset() {
+        profiler_.clear_all_samples();
+    }
 };
 
 /**
