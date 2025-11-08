@@ -119,7 +119,8 @@ private:
         std::deque<std::chrono::nanoseconds> samples;
         std::atomic<std::uint64_t> call_count{0};
         std::atomic<std::uint64_t> error_count{0};
-        std::chrono::steady_clock::time_point last_access_time{std::chrono::steady_clock::now()};
+        // Store time as atomic integer for thread-safe access without locks
+        std::atomic<std::chrono::steady_clock::rep> last_access_time{std::chrono::steady_clock::now().time_since_epoch().count()};
         mutable std::mutex mutex;
     };
 

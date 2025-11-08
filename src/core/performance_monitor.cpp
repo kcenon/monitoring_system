@@ -6,6 +6,7 @@
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <shared_mutex>
 #include <deque>
+#include <limits>
 
 // Platform-specific headers for system metrics
 #if defined(__APPLE__)
@@ -57,12 +58,15 @@ result<bool> performance_profiler::record_sample(
             if (profiles_.size() >= max_profiles_) {
                 // Find and evict the least recently used profile
                 auto lru_it = profiles_.end();
-                auto oldest_time = (std::chrono::steady_clock::time_point::max)();
+                auto oldest_time = (std::numeric_limits<std::chrono::steady_clock::rep>::max)();
 
                 for (auto it = profiles_.begin(); it != profiles_.end(); ++it) {
-                    if (it->second && it->second->last_access_time < oldest_time) {
-                        oldest_time = it->second->last_access_time;
-                        lru_it = it;
+                    if (it->second) {
+                        auto access_time = it->second->last_access_time.load(std::memory_order_relaxed);
+                        if (access_time < oldest_time) {
+                            oldest_time = access_time;
+                            lru_it = it;
+                        }
                     }
                 }
 
@@ -76,8 +80,11 @@ result<bool> performance_profiler::record_sample(
         profile = profile_ptr.get();
     }
 
-    // Update last access time
-    profile->last_access_time = std::chrono::steady_clock::now();
+    // Update last access time atomically (thread-safe without locks)
+    profile->last_access_time.store(
+        std::chrono::steady_clock::now().time_since_epoch().count(),
+        std::memory_order_relaxed
+    );
 
     // Now use profile (which is guaranteed to be valid)
     // Update counters
@@ -116,8 +123,11 @@ kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::moni
 
     const auto& profile = it->second;
 
-    // Update last access time (for LRU tracking)
-    profile->last_access_time = std::chrono::steady_clock::now();
+    // Update last access time atomically (for LRU tracking)
+    profile->last_access_time.store(
+        std::chrono::steady_clock::now().time_since_epoch().count(),
+        std::memory_order_relaxed
+    );
 
     std::lock_guard sample_lock(profile->mutex);
 
