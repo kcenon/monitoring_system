@@ -276,16 +276,22 @@ TEST_F(MonitoringIntegrationTest, MetricsSnapshotRetrieval) {
 TEST_F(MonitoringIntegrationTest, MonitorResetFunctionality) {
     ASSERT_TRUE(StartMonitoring());
 
-    // Record some metrics
-    monitor_->record_metric("reset_test", 42.0);
+    // Record some samples
     ASSERT_TRUE(RecordSample("reset_op", std::chrono::microseconds(100)));
+    ASSERT_TRUE(RecordSample("reset_op", std::chrono::microseconds(200)));
+
+    // Verify metrics exist
+    auto metrics_before = GetPerformanceMetrics("reset_op");
+    ASSERT_TRUE(metrics_before.is_ok());
+    EXPECT_GT(metrics_before.value().call_count, 0);
 
     // Reset monitor
-    auto reset_result = monitor_->reset();
-    EXPECT_TRUE(reset_result.is_ok());
+    monitor_->reset();
 
-    // Profiler should be cleared
-    auto metrics = GetPerformanceMetrics("reset_op");
-    // After reset, metrics might not be available or should be reset
-    // Behavior depends on implementation
+    // After reset, samples should be cleared
+    auto metrics_after = GetPerformanceMetrics("reset_op");
+    // After reset, metrics might not be available or call_count should be 0
+    if (metrics_after.is_ok()) {
+        EXPECT_EQ(metrics_after.value().call_count, 0);
+    }
 }
