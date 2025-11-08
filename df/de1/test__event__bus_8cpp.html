@@ -364,7 +364,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  200</span> </div>
 <div class="line"><span class="lineno">  201</span>    <span class="comment">// Try to collect metrics</span></div>
 <div class="line"><span class="lineno">  202</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
-<div class="line"><span class="lineno">  203</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  203</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  204</span>    EXPECT_TRUE(result.value().empty());</div>
 <div class="line"><span class="lineno">  205</span> </div>
 <div class="line"><span class="lineno">  206</span>    <span class="comment">// Register a logger (won&#39;t do anything when system not available)</span></div>
@@ -582,7 +582,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  183</span> </div>
 <div class="line"><span class="lineno">  184</span>    <span class="comment">// Try to collect metrics (should return empty when not available)</span></div>
 <div class="line"><span class="lineno">  185</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
-<div class="line"><span class="lineno">  186</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  186</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  187</span>    EXPECT_TRUE(result.value().empty());</div>
 <div class="line"><span class="lineno">  188</span> </div>
 <div class="line"><span class="lineno">  189</span>    <span class="comment">// Get supported metric types</span></div>
@@ -654,7 +654,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

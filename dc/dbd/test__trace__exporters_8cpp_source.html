@@ -422,7 +422,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    jaeger_exporter jaeger_exporter(invalid_jaeger_config);</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keyword">auto</span> jaeger_result = jaeger_exporter.export_spans(test_spans_);</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    EXPECT_FALSE(jaeger_result);</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    trace_export_config invalid_zipkin_config;</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    invalid_zipkin_config.endpoint = <span class="stringliteral">&quot;http://zipkin:9411&quot;</span>;</div>
@@ -431,7 +431,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    zipkin_exporter zipkin_exporter(invalid_zipkin_config);</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keyword">auto</span> zipkin_result = zipkin_exporter.export_spans(test_spans_);</div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    EXPECT_FALSE(zipkin_result);</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    </div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    trace_export_config invalid_otlp_config;</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    invalid_otlp_config.endpoint = <span class="stringliteral">&quot;http://otlp:4317&quot;</span>;</div>
@@ -440,7 +440,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);</div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keyword">auto</span> otlp_result = otlp_exporter.export_spans(test_spans_);</div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    EXPECT_FALSE(otlp_result);</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>}</div>
 </div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
@@ -500,7 +500,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -410,12 +410,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  308</span>    </div>
 <div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> export_result = compatibility_layer-&gt;export_spans(spans);</div>
 <div class="line"><span class="lineno">  310</span>    EXPECT_FALSE(export_result);</div>
-<div class="line"><span class="lineno">  311</span>    EXPECT_EQ(export_result.get_error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><span class="lineno">  311</span>    EXPECT_EQ(export_result.error().code, monitoring_error_code::invalid_state);</div>
 <div class="line"><span class="lineno">  312</span>    </div>
 <div class="line"><span class="lineno">  313</span>    monitoring_data data(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  314</span>    <span class="keyword">auto</span> metrics_export_result = compatibility_layer-&gt;export_metrics(data);</div>
 <div class="line"><span class="lineno">  315</span>    EXPECT_FALSE(metrics_export_result);</div>
-<div class="line"><span class="lineno">  316</span>    EXPECT_EQ(metrics_export_result.get_error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><span class="lineno">  316</span>    EXPECT_EQ(metrics_export_result.error().code, monitoring_error_code::invalid_state);</div>
 <div class="line"><span class="lineno">  317</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -968,7 +968,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

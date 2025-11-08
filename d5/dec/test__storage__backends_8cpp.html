@@ -321,7 +321,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  586</span>            snapshot.add_metric(<span class="stringliteral">&quot;value&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  587</span>            </div>
 <div class="line"><span class="lineno">  588</span>            <span class="keyword">auto</span> result = backend.store(snapshot);</div>
-<div class="line"><span class="lineno">  589</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  589</span>            <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><span class="lineno">  590</span>                successful_stores++;</div>
 <div class="line"><span class="lineno">  591</span>            }</div>
 <div class="line"><span class="lineno">  592</span>        });</div>
@@ -341,7 +341,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  606</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><span class="lineno">  607</span>        retrieve_threads.emplace_back([&amp;, i]() {</div>
 <div class="line"><span class="lineno">  608</span>            <span class="keyword">auto</span> result = backend.retrieve(i);</div>
-<div class="line"><span class="lineno">  609</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  609</span>            <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><span class="lineno">  610</span>                successful_retrievals++;</div>
 <div class="line"><span class="lineno">  611</span>            }</div>
 <div class="line"><span class="lineno">  612</span>        });</div>
@@ -563,7 +563,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  564</span>        </div>
 <div class="line"><span class="lineno">  565</span>        <span class="keyword">auto</span> retrieve_result = backend.retrieve(999);</div>
 <div class="line"><span class="lineno">  566</span>        EXPECT_FALSE(retrieve_result);</div>
-<div class="line"><span class="lineno">  567</span>        EXPECT_EQ(retrieve_result.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  567</span>        EXPECT_EQ(retrieve_result.error().code, monitoring_error_code::not_found);</div>
 <div class="line"><span class="lineno">  568</span>    }</div>
 <div class="line"><span class="lineno">  569</span>}</div>
 </div><!-- fragment -->
@@ -1159,7 +1159,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

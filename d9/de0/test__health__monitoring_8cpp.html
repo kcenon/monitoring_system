@@ -427,7 +427,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  519</span>    </div>
 <div class="line"><span class="lineno">  520</span>    <span class="keyword">auto</span> check = std::make_shared&lt;test_health_check&gt;(<span class="stringliteral">&quot;global_check&quot;</span>, health_check_type::liveness);</div>
 <div class="line"><span class="lineno">  521</span>    <span class="keyword">auto</span> result = global.register_check(<span class="stringliteral">&quot;global_test&quot;</span>, check);</div>
-<div class="line"><span class="lineno">  522</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  522</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  523</span>    </div>
 <div class="line"><span class="lineno">  524</span>    <span class="comment">// Cleanup</span></div>
 <div class="line"><span class="lineno">  525</span>    global.unregister_check(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
@@ -572,7 +572,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  173</span>    </div>
 <div class="line"><span class="lineno">  174</span>    <span class="comment">// Add dependency: api depends on database</span></div>
 <div class="line"><span class="lineno">  175</span>    <span class="keyword">auto</span> result = graph.add_dependency(<span class="stringliteral">&quot;api&quot;</span>, <span class="stringliteral">&quot;database&quot;</span>);</div>
-<div class="line"><span class="lineno">  176</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  176</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  177</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  178</span>    </div>
 <div class="line"><span class="lineno">  179</span>    <span class="keyword">auto</span> deps = graph.get_dependencies(<span class="stringliteral">&quot;api&quot;</span>);</div>
@@ -619,13 +619,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  153</span>    <span class="keyword">auto</span> check = std::make_shared&lt;test_health_check&gt;(<span class="stringliteral">&quot;database&quot;</span>, health_check_type::liveness);</div>
 <div class="line"><span class="lineno">  154</span>    <span class="keyword">auto</span> result = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
 <div class="line"><span class="lineno">  155</span>    </div>
-<div class="line"><span class="lineno">  156</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  156</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  157</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  158</span>    </div>
 <div class="line"><span class="lineno">  159</span>    <span class="comment">// Try to add duplicate</span></div>
 <div class="line"><span class="lineno">  160</span>    result = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
-<div class="line"><span class="lineno">  161</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><span class="lineno">  162</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  161</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  162</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  163</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -738,8 +738,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  205</span>    </div>
 <div class="line"><span class="lineno">  206</span>    <span class="comment">// Try to add the cyclic dependency</span></div>
 <div class="line"><span class="lineno">  207</span>    <span class="keyword">auto</span> result = graph.add_dependency(<span class="stringliteral">&quot;C&quot;</span>, <span class="stringliteral">&quot;A&quot;</span>);</div>
-<div class="line"><span class="lineno">  208</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><span class="lineno">  209</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><span class="lineno">  208</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  209</span>    EXPECT_EQ(result.error().code, monitoring_error_code::invalid_state);</div>
 <div class="line"><span class="lineno">  210</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -955,14 +955,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  361</span>    monitor.register_check(<span class="stringliteral">&quot;specific&quot;</span>, check);</div>
 <div class="line"><span class="lineno">  362</span>    </div>
 <div class="line"><span class="lineno">  363</span>    <span class="keyword">auto</span> result = monitor.check(<span class="stringliteral">&quot;specific&quot;</span>);</div>
-<div class="line"><span class="lineno">  364</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  364</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  365</span>    EXPECT_EQ(result.value().status, health_status::healthy);</div>
 <div class="line"><span class="lineno">  366</span>    EXPECT_EQ(result.value().message, <span class="stringliteral">&quot;Ready to serve&quot;</span>);</div>
 <div class="line"><span class="lineno">  367</span>    </div>
 <div class="line"><span class="lineno">  368</span>    <span class="comment">// Check non-existent</span></div>
 <div class="line"><span class="lineno">  369</span>    result = monitor.check(<span class="stringliteral">&quot;non_existent&quot;</span>);</div>
-<div class="line"><span class="lineno">  370</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><span class="lineno">  371</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  370</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  371</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
 <div class="line"><span class="lineno">  372</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1003,13 +1003,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  433</span>    </div>
 <div class="line"><span class="lineno">  434</span>    <span class="comment">// Add dependency: api depends on database</span></div>
 <div class="line"><span class="lineno">  435</span>    <span class="keyword">auto</span> result = monitor.add_dependency(<span class="stringliteral">&quot;api&quot;</span>, <span class="stringliteral">&quot;database&quot;</span>);</div>
-<div class="line"><span class="lineno">  436</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  436</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  437</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  438</span>    </div>
 <div class="line"><span class="lineno">  439</span>    <span class="comment">// Database failure should affect api check</span></div>
 <div class="line"><span class="lineno">  440</span>    db_check-&gt;set_status(health_status::unhealthy);</div>
 <div class="line"><span class="lineno">  441</span>    <span class="keyword">auto</span> check_result = monitor.check(<span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><span class="lineno">  442</span>    ASSERT_TRUE(check_result.has_value());</div>
+<div class="line"><span class="lineno">  442</span>    ASSERT_TRUE(check_result.is_ok());</div>
 <div class="line"><span class="lineno">  443</span>    <span class="comment">// API should be affected by database failure</span></div>
 <div class="line"><span class="lineno">  444</span>}</div>
 </div><!-- fragment -->
@@ -1164,23 +1164,23 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  312</span>    </div>
 <div class="line"><span class="lineno">  313</span>    <span class="comment">// Register check</span></div>
 <div class="line"><span class="lineno">  314</span>    <span class="keyword">auto</span> result = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
-<div class="line"><span class="lineno">  315</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  315</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  316</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  317</span>    </div>
 <div class="line"><span class="lineno">  318</span>    <span class="comment">// Try to register again</span></div>
 <div class="line"><span class="lineno">  319</span>    result = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
-<div class="line"><span class="lineno">  320</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><span class="lineno">  321</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  320</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  321</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  322</span>    </div>
 <div class="line"><span class="lineno">  323</span>    <span class="comment">// Unregister</span></div>
 <div class="line"><span class="lineno">  324</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  325</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  325</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  326</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  327</span>    </div>
 <div class="line"><span class="lineno">  328</span>    <span class="comment">// Try to unregister non-existent</span></div>
 <div class="line"><span class="lineno">  329</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  330</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><span class="lineno">  331</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  330</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
 <div class="line"><span class="lineno">  332</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1275,15 +1275,15 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  338</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  339</span>    </div>
 <div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> result = monitor.start();</div>
-<div class="line"><span class="lineno">  341</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  341</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  342</span>    EXPECT_TRUE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  343</span>    </div>
 <div class="line"><span class="lineno">  344</span>    <span class="comment">// Start again (should succeed)</span></div>
 <div class="line"><span class="lineno">  345</span>    result = monitor.start();</div>
-<div class="line"><span class="lineno">  346</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  346</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  347</span>    </div>
 <div class="line"><span class="lineno">  348</span>    result = monitor.stop();</div>
-<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  350</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  351</span>}</div>
 </div><!-- fragment -->
@@ -1345,7 +1345,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

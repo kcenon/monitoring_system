@@ -240,7 +240,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  521</span>    </div>
 <div class="line"><span class="lineno">  522</span>    <span class="comment">// Clear container</span></div>
 <div class="line"><span class="lineno">  523</span>    <span class="keyword">auto</span> clear_result = container_-&gt;clear();</div>
-<div class="line"><span class="lineno">  524</span>    ASSERT_TRUE(clear_result);</div>
+<div class="line"><span class="lineno">  524</span>    ASSERT_TRUE(clear_result.is_ok());</div>
 <div class="line"><span class="lineno">  525</span>    </div>
 <div class="line"><span class="lineno">  526</span>    <span class="comment">// Services should no longer be registered</span></div>
 <div class="line"><span class="lineno">  527</span>    EXPECT_FALSE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
@@ -248,7 +248,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  529</span>    </div>
 <div class="line"><span class="lineno">  530</span>    <span class="comment">// Resolution should fail</span></div>
 <div class="line"><span class="lineno">  531</span>    <span class="keyword">auto</span> resolve_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  532</span>    EXPECT_FALSE(resolve_result);</div>
+<div class="line"><span class="lineno">  532</span>    EXPECT_TRUE(resolve_result.is_err());</div>
 <div class="line"><span class="lineno">  533</span>}</div>
 <div class="ttc" id="aclassIService_html"><div class="ttname"><a href="../../df/d8b/classIService.html">IService</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00214">test_di_container.cpp:214</a></div></div>
 </div><!-- fragment -->
@@ -298,7 +298,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  452</span> </div>
 <div class="line"><span class="lineno">  453</span>    <span class="comment">// Resolve in scope should work</span></div>
 <div class="line"><span class="lineno">  454</span>    <span class="keyword">auto</span> service_result = scope-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  455</span>    ASSERT_TRUE(service_result);</div>
+<div class="line"><span class="lineno">  455</span>    ASSERT_TRUE(service_result.is_ok());</div>
 <div class="line"><span class="lineno">  456</span>    EXPECT_NE(service_result.value(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  457</span> </div>
 <div class="line"><span class="lineno">  458</span>    <span class="comment">// Register scoped service</span></div>
@@ -311,8 +311,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  465</span>    <span class="keyword">auto</span> scoped_result1 = scope-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
 <div class="line"><span class="lineno">  466</span>    <span class="keyword">auto</span> scoped_result2 = scope-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
 <div class="line"><span class="lineno">  467</span> </div>
-<div class="line"><span class="lineno">  468</span>    ASSERT_TRUE(scoped_result1);</div>
-<div class="line"><span class="lineno">  469</span>    ASSERT_TRUE(scoped_result2);</div>
+<div class="line"><span class="lineno">  468</span>    ASSERT_TRUE(scoped_result1.is_ok());</div>
+<div class="line"><span class="lineno">  469</span>    ASSERT_TRUE(scoped_result2.is_ok());</div>
 <div class="line"><span class="lineno">  470</span> </div>
 <div class="line"><span class="lineno">  471</span>    <span class="comment">// Should be same instance within scope</span></div>
 <div class="line"><span class="lineno">  472</span>    EXPECT_EQ(scoped_result1.value(), scoped_result2.value());</div>
@@ -360,7 +360,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  410</span>    container_-&gt;register_factory&lt;<a class="code hl_class" href="../../dd/d93/classServiceB.html">ServiceB</a>&gt;(</div>
 <div class="line"><span class="lineno">  411</span>        [<span class="keyword">this</span>]() {</div>
 <div class="line"><span class="lineno">  412</span>            <span class="keyword">auto</span> dep_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
-<div class="line"><span class="lineno">  413</span>            <span class="keywordflow">if</span> (!dep_result) {</div>
+<div class="line"><span class="lineno">  413</span>            <span class="keywordflow">if</span> (dep_result.is_err()) {</div>
 <div class="line"><span class="lineno">  414</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Failed to resolve dependency&quot;</span>);</div>
 <div class="line"><span class="lineno">  415</span>            }</div>
 <div class="line"><span class="lineno">  416</span>            <span class="keywordflow">return</span> std::make_shared&lt;ServiceB&gt;(dep_result.value());</div>
@@ -370,7 +370,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  420</span>    </div>
 <div class="line"><span class="lineno">  421</span>    <span class="comment">// Resolve service with dependencies</span></div>
 <div class="line"><span class="lineno">  422</span>    <span class="keyword">auto</span> service_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../dd/d93/classServiceB.html">ServiceB</a>&gt;();</div>
-<div class="line"><span class="lineno">  423</span>    ASSERT_TRUE(service_result);</div>
+<div class="line"><span class="lineno">  423</span>    ASSERT_TRUE(service_result.is_ok());</div>
 <div class="line"><span class="lineno">  424</span>    <span class="keyword">auto</span> service = service_result.value();</div>
 <div class="line"><span class="lineno">  425</span>    </div>
 <div class="line"><span class="lineno">  426</span>    EXPECT_NE(service, <span class="keyword">nullptr</span>);</div>
@@ -379,7 +379,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  429</span>    </div>
 <div class="line"><span class="lineno">  430</span>    <span class="comment">// Dependency should be singleton</span></div>
 <div class="line"><span class="lineno">  431</span>    <span class="keyword">auto</span> dep_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../d6/d19/classServiceA.html">ServiceA</a>&gt;();</div>
-<div class="line"><span class="lineno">  432</span>    ASSERT_TRUE(dep_result);</div>
+<div class="line"><span class="lineno">  432</span>    ASSERT_TRUE(dep_result.is_ok());</div>
 <div class="line"><span class="lineno">  433</span>    EXPECT_EQ(dependency, dep_result.value());</div>
 <div class="line"><span class="lineno">  434</span>}</div>
 <div class="ttc" id="aclassServiceB_html"><div class="ttname"><a href="../../dd/d93/classServiceB.html">ServiceB</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00246">test_di_container.cpp:246</a></div></div>
@@ -431,7 +431,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  552</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 10; ++i) {</div>
 <div class="line"><span class="lineno">  553</span>        threads.emplace_back([<span class="keyword">this</span>, &amp;results, i]() {</div>
 <div class="line"><span class="lineno">  554</span>            <span class="keyword">auto</span> result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  555</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  555</span>            <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><span class="lineno">  556</span>                results[i] = result.value();</div>
 <div class="line"><span class="lineno">  557</span>            }</div>
 <div class="line"><span class="lineno">  558</span>        });</div>
@@ -508,9 +508,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  374</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  375</span>    );</div>
 <div class="line"><span class="lineno">  376</span>    </div>
-<div class="line"><span class="lineno">  377</span>    ASSERT_TRUE(result1);</div>
-<div class="line"><span class="lineno">  378</span>    ASSERT_TRUE(result2);</div>
-<div class="line"><span class="lineno">  379</span>    </div>
+<div class="line"><span class="lineno">  377</span>    ASSERT_TRUE(result1.is_ok());</div>
+<div class="line"><span class="lineno">  378</span>    ASSERT_TRUE(result2.is_ok());</div>
+<div class="line"><span class="lineno">  379</span> </div>
 <div class="line"><span class="lineno">  380</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;primary&quot;</span>));</div>
 <div class="line"><span class="lineno">  381</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;secondary&quot;</span>));</div>
 <div class="line"><span class="lineno">  382</span>    EXPECT_FALSE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;unknown&quot;</span>));</div>
@@ -519,8 +519,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  385</span>    <span class="keyword">auto</span> primary_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;primary&quot;</span>);</div>
 <div class="line"><span class="lineno">  386</span>    <span class="keyword">auto</span> secondary_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;secondary&quot;</span>);</div>
 <div class="line"><span class="lineno">  387</span>    </div>
-<div class="line"><span class="lineno">  388</span>    ASSERT_TRUE(primary_result);</div>
-<div class="line"><span class="lineno">  389</span>    ASSERT_TRUE(secondary_result);</div>
+<div class="line"><span class="lineno">  388</span>    ASSERT_TRUE(primary_result.is_ok());</div>
+<div class="line"><span class="lineno">  389</span>    ASSERT_TRUE(secondary_result.is_ok());</div>
 <div class="line"><span class="lineno">  390</span>    </div>
 <div class="line"><span class="lineno">  391</span>    <span class="keyword">auto</span> primary = primary_result.value();</div>
 <div class="line"><span class="lineno">  392</span>    <span class="keyword">auto</span> secondary = secondary_result.value();</div>
@@ -567,14 +567,14 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  318</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  319</span>    );</div>
 <div class="line"><span class="lineno">  320</span>    </div>
-<div class="line"><span class="lineno">  321</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  321</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  322</span>    </div>
 <div class="line"><span class="lineno">  323</span>    <span class="comment">// Resolve multiple times</span></div>
 <div class="line"><span class="lineno">  324</span>    <span class="keyword">auto</span> service1_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
 <div class="line"><span class="lineno">  325</span>    <span class="keyword">auto</span> service2_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
 <div class="line"><span class="lineno">  326</span>    </div>
-<div class="line"><span class="lineno">  327</span>    ASSERT_TRUE(service1_result);</div>
-<div class="line"><span class="lineno">  328</span>    ASSERT_TRUE(service2_result);</div>
+<div class="line"><span class="lineno">  327</span>    ASSERT_TRUE(service1_result.is_ok());</div>
+<div class="line"><span class="lineno">  328</span>    ASSERT_TRUE(service2_result.is_ok());</div>
 <div class="line"><span class="lineno">  329</span>    </div>
 <div class="line"><span class="lineno">  330</span>    <span class="keyword">auto</span> service1 = service1_result.value();</div>
 <div class="line"><span class="lineno">  331</span>    <span class="keyword">auto</span> service2 = service2_result.value();</div>
@@ -633,18 +633,18 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  287</span>        service_lifetime::transient</div>
 <div class="line"><span class="lineno">  288</span>    );</div>
 <div class="line"><span class="lineno">  289</span>    </div>
-<div class="line"><span class="lineno">  290</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  290</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  291</span>    EXPECT_TRUE(container_-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
 <div class="line"><span class="lineno">  292</span>    </div>
 <div class="line"><span class="lineno">  293</span>    <span class="comment">// Resolve service multiple times</span></div>
 <div class="line"><span class="lineno">  294</span>    <span class="keyword">auto</span> service1_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  295</span>    ASSERT_TRUE(service1_result);</div>
+<div class="line"><span class="lineno">  295</span>    ASSERT_TRUE(service1_result.is_ok());</div>
 <div class="line"><span class="lineno">  296</span>    <span class="keyword">auto</span> service1 = service1_result.value();</div>
 <div class="line"><span class="lineno">  297</span>    EXPECT_NE(service1, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  298</span>    EXPECT_EQ(service1-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_1&quot;</span>);</div>
 <div class="line"><span class="lineno">  299</span>    </div>
 <div class="line"><span class="lineno">  300</span>    <span class="keyword">auto</span> service2_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  301</span>    ASSERT_TRUE(service2_result);</div>
+<div class="line"><span class="lineno">  301</span>    ASSERT_TRUE(service2_result.is_ok());</div>
 <div class="line"><span class="lineno">  302</span>    <span class="keyword">auto</span> service2 = service2_result.value();</div>
 <div class="line"><span class="lineno">  303</span>    EXPECT_NE(service2, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  304</span>    EXPECT_EQ(service2-&gt;get_name(), <span class="stringliteral">&quot;ServiceA_2&quot;</span>);</div>
@@ -700,11 +700,11 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  346</span>    </div>
 <div class="line"><span class="lineno">  347</span>    <span class="comment">// Register existing instance as singleton</span></div>
 <div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> result = container_-&gt;register_singleton&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(instance);</div>
-<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  350</span>    </div>
 <div class="line"><span class="lineno">  351</span>    <span class="comment">// Resolve should return the same instance</span></div>
 <div class="line"><span class="lineno">  352</span>    <span class="keyword">auto</span> resolved_result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  353</span>    ASSERT_TRUE(resolved_result);</div>
+<div class="line"><span class="lineno">  353</span>    ASSERT_TRUE(resolved_result.is_ok());</div>
 <div class="line"><span class="lineno">  354</span>    <span class="keyword">auto</span> resolved = resolved_result.value();</div>
 <div class="line"><span class="lineno">  355</span>    </div>
 <div class="line"><span class="lineno">  356</span>    EXPECT_EQ(resolved, instance);</div>
@@ -750,9 +750,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  495</span>    </div>
 <div class="line"><span class="lineno">  496</span>    <span class="comment">// Try to resolve with non-existent name</span></div>
 <div class="line"><span class="lineno">  497</span>    <span class="keyword">auto</span> result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
-<div class="line"><span class="lineno">  498</span>    </div>
-<div class="line"><span class="lineno">  499</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  500</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::collector_not_found);</div>
+<div class="line"><span class="lineno">  498</span> </div>
+<div class="line"><span class="lineno">  499</span>    EXPECT_TRUE(result.is_err());</div>
+<div class="line"><span class="lineno">  500</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collector_not_found);</div>
 <div class="line"><span class="lineno">  501</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -788,9 +788,9 @@ Here is the call graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">  478</span>                                                    {</div>
 <div class="line"><span class="lineno">  479</span>    <span class="comment">// Try to resolve unregistered service</span></div>
 <div class="line"><span class="lineno">  480</span>    <span class="keyword">auto</span> result = container_-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  481</span>    </div>
-<div class="line"><span class="lineno">  482</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  483</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::collector_not_found);</div>
+<div class="line"><span class="lineno">  481</span> </div>
+<div class="line"><span class="lineno">  482</span>    EXPECT_TRUE(result.is_err());</div>
+<div class="line"><span class="lineno">  483</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collector_not_found);</div>
 <div class="line"><span class="lineno">  484</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -846,7 +846,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  600</span>    EXPECT_TRUE(locator_container-&gt;is_registered&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;());</div>
 <div class="line"><span class="lineno">  601</span>    </div>
 <div class="line"><span class="lineno">  602</span>    <span class="keyword">auto</span> result = locator_container-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  603</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  603</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  604</span>    </div>
 <div class="line"><span class="lineno">  605</span>    <span class="comment">// Reset locator</span></div>
 <div class="line"><span class="lineno">  606</span>    <a class="code hl_function" href="../../db/db6/classkcenon_1_1monitoring_1_1service__locator.html#ad9c2e80ea516589d50f6b3173b8be1ad">service_locator::reset</a>();</div>
@@ -918,10 +918,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  622</span>        service_lifetime::singleton</div>
 <div class="line"><span class="lineno">  623</span>    );</div>
 <div class="line"><span class="lineno">  624</span>    </div>
-<div class="line"><span class="lineno">  625</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  625</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  626</span>    </div>
 <div class="line"><span class="lineno">  627</span>    <span class="keyword">auto</span> service_result = adapter-&gt;resolve&lt;<a class="code hl_class" href="../../df/d8b/classIService.html">IService</a>&gt;();</div>
-<div class="line"><span class="lineno">  628</span>    ASSERT_TRUE(service_result);</div>
+<div class="line"><span class="lineno">  628</span>    ASSERT_TRUE(service_result.is_ok());</div>
 <div class="line"><span class="lineno">  629</span>    EXPECT_NE(service_result.value(), <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  630</span>}</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_adacc86dd068c121466fa2066441a052b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#adacc86dd068c121466fa2066441a052b">kcenon::monitoring::create_thread_system_adapter</a></div><div class="ttdeci">std::unique_ptr&lt; service_container_interface &gt; create_thread_system_adapter()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00204">test_di_container.cpp:204</a></div></div>
@@ -941,7 +941,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

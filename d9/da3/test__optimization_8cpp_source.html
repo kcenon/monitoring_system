@@ -194,7 +194,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        consumers.emplace_back([&amp;queue, &amp;total_consumed, &amp;producers_done]() {</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <span class="keywordflow">while</span> (!producers_done.load() || !queue.empty()) {</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                auto result = queue.pop();</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                if (result) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                if (result.is_ok()) {</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                    total_consumed.fetch_add(1);</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                    std::this_thread::yield();</div>
@@ -320,7 +320,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>            <span class="comment">// Allocate</span></div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; operations_per_thread; ++i) {</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                <span class="keyword">auto</span> result = pool.allocate();</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                    allocated_ptrs.push_back(result.value());</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                }</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            }</div>
@@ -328,7 +328,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <span class="comment">// Deallocate</span></div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_ptrs) {</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                    successful_operations.fetch_add(1);</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                }</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            }</div>
@@ -573,7 +573,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    </div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    <span class="keywordflow">while</span> (!queue.empty()) {</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>        <span class="keyword">auto</span> result = queue.pop();</div>
-<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>            collected_data.push_back(result.value());</div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>        }</div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>    }</div>
@@ -609,7 +609,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

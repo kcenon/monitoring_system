@@ -680,7 +680,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>        </div>
 <div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>        <span class="keyword">auto</span> retrieve_result = backend.retrieve(999);</div>
 <div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>        EXPECT_FALSE(retrieve_result);</div>
-<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>        EXPECT_EQ(retrieve_result.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>        EXPECT_EQ(retrieve_result.error().code, monitoring_error_code::not_found);</div>
 <div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    }</div>
 <div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>}</div>
 </div>
@@ -704,7 +704,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>            snapshot.add_metric(<span class="stringliteral">&quot;value&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>            </div>
 <div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>            <span class="keyword">auto</span> result = backend.store(snapshot);</div>
-<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>            <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>                successful_stores++;</div>
 <div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>            }</div>
 <div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>        });</div>
@@ -724,7 +724,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>        retrieve_threads.emplace_back([&amp;, i]() {</div>
 <div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>            <span class="keyword">auto</span> result = backend.retrieve(i);</div>
-<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>            <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>                successful_retrievals++;</div>
 <div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>            }</div>
 <div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>        });</div>
@@ -780,7 +780,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -296,7 +296,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  100</span>    </div>
 <div class="line"><span class="lineno">  101</span>    <span class="comment">// Should collect when sampling rate is 1.0</span></div>
 <div class="line"><span class="lineno">  102</span>    <span class="keyword">auto</span> result = collector.collect();</div>
-<div class="line"><span class="lineno">  103</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  103</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  104</span>    EXPECT_EQ(mock-&gt;get_collect_count(), 1);</div>
 <div class="line"><span class="lineno">  105</span>    </div>
 <div class="line"><span class="lineno">  106</span>    <span class="comment">// Change config to lower sampling rate</span></div>
@@ -496,7 +496,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  338</span>    </div>
 <div class="line"><span class="lineno">  339</span>    <span class="comment">// When disabled, should always sample</span></div>
 <div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> result = collector.collect();</div>
-<div class="line"><span class="lineno">  341</span>    EXPECT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  341</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  342</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -689,7 +689,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  346</span>    </div>
 <div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
 <div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> result = global.register_collector(<span class="stringliteral">&quot;global_test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  350</span>    </div>
 <div class="line"><span class="lineno">  351</span>    <span class="comment">// Cleanup</span></div>
 <div class="line"><span class="lineno">  352</span>    global.unregister_collector(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
@@ -733,11 +733,11 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  219</span>    </div>
 <div class="line"><span class="lineno">  220</span>    <span class="comment">// Force adaptation</span></div>
 <div class="line"><span class="lineno">  221</span>    <span class="keyword">auto</span> result = monitor.force_adaptation();</div>
-<div class="line"><span class="lineno">  222</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  222</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  223</span>    </div>
 <div class="line"><span class="lineno">  224</span>    <span class="comment">// Check that strategy was applied</span></div>
 <div class="line"><span class="lineno">  225</span>    <span class="keyword">auto</span> stats_result = monitor.get_collector_stats(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  226</span>    ASSERT_TRUE(stats_result.has_value());</div>
+<div class="line"><span class="lineno">  226</span>    ASSERT_TRUE(stats_result.is_ok());</div>
 <div class="line"><span class="lineno">  227</span>    <span class="comment">// Strategy effects would be visible in adaptation behavior</span></div>
 <div class="line"><span class="lineno">  228</span>}</div>
 </div><!-- fragment -->
@@ -867,23 +867,23 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  150</span>    </div>
 <div class="line"><span class="lineno">  151</span>    <span class="comment">// Register collector</span></div>
 <div class="line"><span class="lineno">  152</span>    <span class="keyword">auto</span> result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  153</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  153</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  154</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  155</span>    </div>
 <div class="line"><span class="lineno">  156</span>    <span class="comment">// Try to register again (should fail)</span></div>
 <div class="line"><span class="lineno">  157</span>    result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  158</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><span class="lineno">  159</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  158</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  159</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  160</span>    </div>
 <div class="line"><span class="lineno">  161</span>    <span class="comment">// Unregister</span></div>
 <div class="line"><span class="lineno">  162</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  163</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  163</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  164</span>    EXPECT_TRUE(result.value());</div>
 <div class="line"><span class="lineno">  165</span>    </div>
 <div class="line"><span class="lineno">  166</span>    <span class="comment">// Try to unregister non-existent (should fail)</span></div>
 <div class="line"><span class="lineno">  167</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  168</span>    ASSERT_FALSE(result.has_value());</div>
-<div class="line"><span class="lineno">  169</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  168</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  169</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
 <div class="line"><span class="lineno">  170</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -979,15 +979,15 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  176</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  177</span>    </div>
 <div class="line"><span class="lineno">  178</span>    <span class="keyword">auto</span> result = monitor.start();</div>
-<div class="line"><span class="lineno">  179</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  179</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  180</span>    EXPECT_TRUE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  181</span>    </div>
 <div class="line"><span class="lineno">  182</span>    <span class="comment">// Start again (should succeed but do nothing)</span></div>
 <div class="line"><span class="lineno">  183</span>    result = monitor.start();</div>
-<div class="line"><span class="lineno">  184</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  184</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  185</span>    </div>
 <div class="line"><span class="lineno">  186</span>    result = monitor.stop();</div>
-<div class="line"><span class="lineno">  187</span>    ASSERT_TRUE(result.has_value());</div>
+<div class="line"><span class="lineno">  187</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  188</span>    EXPECT_FALSE(monitor.is_running());</div>
 <div class="line"><span class="lineno">  189</span>}</div>
 </div><!-- fragment -->
@@ -996,7 +996,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

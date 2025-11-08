@@ -264,7 +264,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  314</span>    jaeger_exporter jaeger_exporter(invalid_jaeger_config);</div>
 <div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> jaeger_result = jaeger_exporter.export_spans(test_spans_);</div>
 <div class="line"><span class="lineno">  316</span>    EXPECT_FALSE(jaeger_result);</div>
-<div class="line"><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><span class="lineno">  318</span>    </div>
 <div class="line"><span class="lineno">  319</span>    trace_export_config invalid_zipkin_config;</div>
 <div class="line"><span class="lineno">  320</span>    invalid_zipkin_config.endpoint = <span class="stringliteral">&quot;http://zipkin:9411&quot;</span>;</div>
@@ -273,7 +273,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  323</span>    zipkin_exporter zipkin_exporter(invalid_zipkin_config);</div>
 <div class="line"><span class="lineno">  324</span>    <span class="keyword">auto</span> zipkin_result = zipkin_exporter.export_spans(test_spans_);</div>
 <div class="line"><span class="lineno">  325</span>    EXPECT_FALSE(zipkin_result);</div>
-<div class="line"><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><span class="lineno">  327</span>    </div>
 <div class="line"><span class="lineno">  328</span>    trace_export_config invalid_otlp_config;</div>
 <div class="line"><span class="lineno">  329</span>    invalid_otlp_config.endpoint = <span class="stringliteral">&quot;http://otlp:4317&quot;</span>;</div>
@@ -282,7 +282,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  332</span>    otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);</div>
 <div class="line"><span class="lineno">  333</span>    <span class="keyword">auto</span> otlp_result = otlp_exporter.export_spans(test_spans_);</div>
 <div class="line"><span class="lineno">  334</span>    EXPECT_FALSE(otlp_result);</div>
-<div class="line"><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><span class="lineno">  336</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -805,7 +805,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

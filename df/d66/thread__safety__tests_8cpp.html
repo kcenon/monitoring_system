@@ -179,7 +179,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   54</span>        }</div>
 <div class="line"><span class="lineno">   55</span>    );</div>
 <div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>    ASSERT_TRUE(token.has_value());</div>
+<div class="line"><span class="lineno">   57</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><span class="lineno">   58</span> </div>
 <div class="line"><span class="lineno">   59</span>    std::vector&lt;std::thread&gt; threads;</div>
 <div class="line"><span class="lineno">   60</span>    std::barrier sync_point(num_publishers);</div>
@@ -198,7 +198,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   73</span>                    );</div>
 <div class="line"><span class="lineno">   74</span> </div>
 <div class="line"><span class="lineno">   75</span>                    <span class="keyword">auto</span> result = bus-&gt;publish_event(alert);</div>
-<div class="line"><span class="lineno">   76</span>                    <span class="keywordflow">if</span> (!result) {</div>
+<div class="line"><span class="lineno">   76</span>                    <span class="keywordflow">if</span> (result.is_err()) {</div>
 <div class="line"><span class="lineno">   77</span>                        ++errors;</div>
 <div class="line"><span class="lineno">   78</span>                    }</div>
 <div class="line"><span class="lineno">   79</span>                } <span class="keywordflow">catch</span> (...) {</div>
@@ -294,7 +294,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  286</span>                        }</div>
 <div class="line"><span class="lineno">  287</span>                    );</div>
 <div class="line"><span class="lineno">  288</span> </div>
-<div class="line"><span class="lineno">  289</span>                    <span class="keywordflow">if</span> (token.has_value()) {</div>
+<div class="line"><span class="lineno">  289</span>                    <span class="keywordflow">if</span> (token.is_ok()) {</div>
 <div class="line"><span class="lineno">  290</span>                        std::this_thread::sleep_for(20ms);</div>
 <div class="line"><span class="lineno">  291</span>                        bus-&gt;unsubscribe_event(token.value());</div>
 <div class="line"><span class="lineno">  292</span>                    }</div>
@@ -371,9 +371,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  335</span>        event_priority::low</div>
 <div class="line"><span class="lineno">  336</span>    );</div>
 <div class="line"><span class="lineno">  337</span> </div>
-<div class="line"><span class="lineno">  338</span>    ASSERT_TRUE(high_token.has_value());</div>
-<div class="line"><span class="lineno">  339</span>    ASSERT_TRUE(normal_token.has_value());</div>
-<div class="line"><span class="lineno">  340</span>    ASSERT_TRUE(low_token.has_value());</div>
+<div class="line"><span class="lineno">  338</span>    ASSERT_TRUE(high_token.is_ok());</div>
+<div class="line"><span class="lineno">  339</span>    ASSERT_TRUE(normal_token.is_ok());</div>
+<div class="line"><span class="lineno">  340</span>    ASSERT_TRUE(low_token.is_ok());</div>
 <div class="line"><span class="lineno">  341</span> </div>
 <div class="line"><span class="lineno">  342</span>    std::vector&lt;std::thread&gt; threads;</div>
 <div class="line"><span class="lineno">  343</span> </div>
@@ -454,7 +454,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  390</span>        }</div>
 <div class="line"><span class="lineno">  391</span>    );</div>
 <div class="line"><span class="lineno">  392</span> </div>
-<div class="line"><span class="lineno">  393</span>    ASSERT_TRUE(token.has_value());</div>
+<div class="line"><span class="lineno">  393</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><span class="lineno">  394</span> </div>
 <div class="line"><span class="lineno">  395</span>    std::vector&lt;std::thread&gt; threads;</div>
 <div class="line"><span class="lineno">  396</span>    std::barrier sync_point(num_threads);</div>
@@ -550,7 +550,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  458</span>                [](<span class="keyword">const</span> system_resource_event&amp;) {}</div>
 <div class="line"><span class="lineno">  459</span>            );</div>
 <div class="line"><span class="lineno">  460</span> </div>
-<div class="line"><span class="lineno">  461</span>            <span class="keywordflow">if</span> (token.has_value()) {</div>
+<div class="line"><span class="lineno">  461</span>            <span class="keywordflow">if</span> (token.is_ok()) {</div>
 <div class="line"><span class="lineno">  462</span>                tokens.push_back(token.value());</div>
 <div class="line"><span class="lineno">  463</span>            }</div>
 <div class="line"><span class="lineno">  464</span>        }</div>
@@ -639,9 +639,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  123</span>        [&amp;](<span class="keyword">const</span> thread_pool_metric_event&amp;) { ++thread_pool_events; }</div>
 <div class="line"><span class="lineno">  124</span>    );</div>
 <div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    ASSERT_TRUE(perf_token.has_value());</div>
-<div class="line"><span class="lineno">  127</span>    ASSERT_TRUE(resource_token.has_value());</div>
-<div class="line"><span class="lineno">  128</span>    ASSERT_TRUE(pool_token.has_value());</div>
+<div class="line"><span class="lineno">  126</span>    ASSERT_TRUE(perf_token.is_ok());</div>
+<div class="line"><span class="lineno">  127</span>    ASSERT_TRUE(resource_token.is_ok());</div>
+<div class="line"><span class="lineno">  128</span>    ASSERT_TRUE(pool_token.is_ok());</div>
 <div class="line"><span class="lineno">  129</span> </div>
 <div class="line"><span class="lineno">  130</span>    std::vector&lt;std::thread&gt; threads;</div>
 <div class="line"><span class="lineno">  131</span> </div>
@@ -745,7 +745,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  201</span>            }</div>
 <div class="line"><span class="lineno">  202</span>        );</div>
 <div class="line"><span class="lineno">  203</span> </div>
-<div class="line"><span class="lineno">  204</span>        ASSERT_TRUE(token.has_value());</div>
+<div class="line"><span class="lineno">  204</span>        ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><span class="lineno">  205</span>        tokens.push_back(token.value());</div>
 <div class="line"><span class="lineno">  206</span>    }</div>
 <div class="line"><span class="lineno">  207</span> </div>
@@ -761,7 +761,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  217</span>                    system_resource_event event(stats);</div>
 <div class="line"><span class="lineno">  218</span> </div>
 <div class="line"><span class="lineno">  219</span>                    <span class="keyword">auto</span> result = bus-&gt;publish_event(event);</div>
-<div class="line"><span class="lineno">  220</span>                    <span class="keywordflow">if</span> (!result) {</div>
+<div class="line"><span class="lineno">  220</span>                    <span class="keywordflow">if</span> (result.is_err()) {</div>
 <div class="line"><span class="lineno">  221</span>                        ++errors;</div>
 <div class="line"><span class="lineno">  222</span>                    }</div>
 <div class="line"><span class="lineno">  223</span>                } <span class="keywordflow">catch</span> (...) {</div>
@@ -794,7 +794,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

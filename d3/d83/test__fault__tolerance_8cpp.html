@@ -261,7 +261,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  508</span>        threads.emplace_back([&amp;breaker, &amp;successful_operations, operations_per_thread]() {</div>
 <div class="line"><span class="lineno">  509</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread; ++j) {</div>
 <div class="line"><span class="lineno">  510</span>                <span class="keyword">auto</span> result = breaker.execute([]() { <span class="keywordflow">return</span> make_success(1); });</div>
-<div class="line"><span class="lineno">  511</span>                <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  511</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><span class="lineno">  512</span>                    successful_operations++;</div>
 <div class="line"><span class="lineno">  513</span>                }</div>
 <div class="line"><span class="lineno">  514</span>            }</div>
@@ -526,7 +526,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   90</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">   91</span>    EXPECT_FALSE(result);</div>
 <div class="line"><span class="lineno">   92</span>    EXPECT_EQ(call_count.load(), 3); <span class="comment">// Should not increment</span></div>
-<div class="line"><span class="lineno">   93</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::circuit_breaker_open);</div>
+<div class="line"><span class="lineno">   93</span>    EXPECT_EQ(result.error().code, monitoring_error_code::circuit_breaker_open);</div>
 <div class="line"><span class="lineno">   94</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1047,7 +1047,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  333</span>    );</div>
 <div class="line"><span class="lineno">  334</span>    </div>
 <div class="line"><span class="lineno">  335</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  336</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::operation_timeout);</div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_EQ(result.error().code, monitoring_error_code::operation_timeout);</div>
 <div class="line"><span class="lineno">  337</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1466,7 +1466,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

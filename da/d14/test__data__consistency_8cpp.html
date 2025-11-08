@@ -452,7 +452,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  367</span>    <span class="comment">// Should fail to add duplicate</span></div>
 <div class="line"><span class="lineno">  368</span>    <span class="keyword">auto</span> duplicate_result = consistency_manager.add_transaction_manager(<span class="stringliteral">&quot;tx_manager&quot;</span>, tx_config);</div>
 <div class="line"><span class="lineno">  369</span>    EXPECT_FALSE(duplicate_result);</div>
-<div class="line"><span class="lineno">  370</span>    EXPECT_EQ(duplicate_result.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  370</span>    EXPECT_EQ(duplicate_result.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  371</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1281,7 +1281,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

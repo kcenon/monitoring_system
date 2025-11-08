@@ -577,7 +577,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  131</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> throwing_operation(); });</div>
 <div class="line"><span class="lineno">  132</span>    </div>
 <div class="line"><span class="lineno">  133</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  134</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::operation_failed);</div>
+<div class="line"><span class="lineno">  134</span>    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);</div>
 <div class="line"><span class="lineno">  135</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><span class="lineno">  136</span>}</div>
 </div><!-- fragment -->
@@ -619,7 +619,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   73</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">   74</span>    </div>
 <div class="line"><span class="lineno">   75</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">   76</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::operation_failed);</div>
+<div class="line"><span class="lineno">   76</span>    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);</div>
 <div class="line"><span class="lineno">   77</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><span class="lineno">   78</span>}</div>
 </div><!-- fragment -->
@@ -713,7 +713,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   86</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">   87</span>    </div>
 <div class="line"><span class="lineno">   88</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">   89</span>    EXPECT_EQ(result.get_error().code, monitoring_error_code::service_degraded);</div>
+<div class="line"><span class="lineno">   89</span>    EXPECT_EQ(result.error().code, monitoring_error_code::service_degraded);</div>
 <div class="line"><span class="lineno">   90</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><span class="lineno">   91</span>}</div>
 </div><!-- fragment -->
@@ -1277,7 +1277,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2025 00:49:35 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Nov 8 2025 12:50:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
