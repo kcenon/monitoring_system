@@ -53,10 +53,31 @@ result<bool> performance_profiler::record_sample(
         // Double-check after acquiring write lock
         auto& profile_ptr = profiles_[operation_name];
         if (!profile_ptr) {
+            // Check if we've exceeded the max profiles limit
+            if (profiles_.size() >= max_profiles_) {
+                // Find and evict the least recently used profile
+                auto lru_it = profiles_.end();
+                auto oldest_time = std::chrono::steady_clock::time_point::max();
+
+                for (auto it = profiles_.begin(); it != profiles_.end(); ++it) {
+                    if (it->second && it->second->last_access_time < oldest_time) {
+                        oldest_time = it->second->last_access_time;
+                        lru_it = it;
+                    }
+                }
+
+                if (lru_it != profiles_.end()) {
+                    profiles_.erase(lru_it);
+                }
+            }
+
             profile_ptr = std::make_unique<profile_data>();
         }
         profile = profile_ptr.get();
     }
+
+    // Update last access time
+    profile->last_access_time = std::chrono::steady_clock::now();
 
     // Now use profile (which is guaranteed to be valid)
     // Update counters
@@ -94,6 +115,9 @@ kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::moni
     }
 
     const auto& profile = it->second;
+
+    // Update last access time (for LRU tracking)
+    profile->last_access_time = std::chrono::steady_clock::now();
 
     std::lock_guard sample_lock(profile->mutex);
 

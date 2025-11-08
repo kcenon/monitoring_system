@@ -119,13 +119,15 @@ private:
         std::deque<std::chrono::nanoseconds> samples;
         std::atomic<std::uint64_t> call_count{0};
         std::atomic<std::uint64_t> error_count{0};
+        std::chrono::steady_clock::time_point last_access_time{std::chrono::steady_clock::now()};
         mutable std::mutex mutex;
     };
-    
+
     std::unordered_map<std::string, std::unique_ptr<profile_data>> profiles_;
     mutable std::shared_mutex profiles_mutex_;
     std::atomic<bool> enabled_{true};
     std::size_t max_samples_per_operation_{10000};
+    std::size_t max_profiles_{10000};  // LRU eviction threshold
     
 public:
     /**
