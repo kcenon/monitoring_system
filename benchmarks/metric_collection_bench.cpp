@@ -19,7 +19,7 @@
 #include <thread>
 #include <atomic>
 
-using namespace monitoring_system;
+using namespace kcenon::monitoring;
 
 //-----------------------------------------------------------------------------
 // Metric Recording Latency
