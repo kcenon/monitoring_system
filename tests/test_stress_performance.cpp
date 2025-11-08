@@ -347,7 +347,7 @@ TEST_F(StressPerformanceTest, ResourceExhaustionTest) {
         snapshot.add_metric("test_metric", i);
         
         auto result = storage->store(snapshot);
-        if (result) {
+        if (result.is_ok()) {
             successful_stores++;
         } else {
             failed_stores++;

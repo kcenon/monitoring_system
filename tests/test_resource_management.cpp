@@ -75,7 +75,7 @@ TEST_F(ResourceManagementTest, TokenBucketExecute) {
     // Should reject when limit exceeded
     auto result = limiter->execute([this]() { return test_operation(); });
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::resource_exhausted);
+    EXPECT_EQ(result.error().code, monitoring_error_code::resource_exhausted);
 }
 
 // Leaky Bucket Rate Limiter Tests  

@@ -27,7 +27,7 @@ protected:
 
 TEST_F(DistributedTracingTest, CreateRootSpan) {
     auto span_result = tracer.start_span("test_operation", "test_service");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     
     auto span = span_result.value();
     EXPECT_FALSE(span->trace_id.empty());
@@ -40,11 +40,11 @@ TEST_F(DistributedTracingTest, CreateRootSpan) {
 
 TEST_F(DistributedTracingTest, CreateChildSpan) {
     auto parent_result = tracer.start_span("parent_operation");
-    ASSERT_TRUE(parent_result.has_value());
+    ASSERT_TRUE(parent_result.is_ok());
     auto parent = parent_result.value();
     
     auto child_result = tracer.start_child_span(*parent, "child_operation");
-    ASSERT_TRUE(child_result.has_value());
+    ASSERT_TRUE(child_result.is_ok());
     auto child = child_result.value();
     
     EXPECT_EQ(child->trace_id, parent->trace_id);
@@ -55,14 +55,14 @@ TEST_F(DistributedTracingTest, CreateChildSpan) {
 
 TEST_F(DistributedTracingTest, FinishSpan) {
     auto span_result = tracer.start_span("test_operation");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     // Add some delay to have measurable duration
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
     
     auto finish_result = tracer.finish_span(span);
-    ASSERT_TRUE(finish_result.has_value());
+    ASSERT_TRUE(finish_result.is_ok());
     
     EXPECT_TRUE(span->is_finished());
     EXPECT_GT(span->duration.count(), 0);
@@ -71,7 +71,7 @@ TEST_F(DistributedTracingTest, FinishSpan) {
 
 TEST_F(DistributedTracingTest, CannotFinishSpanTwice) {
     auto span_result = tracer.start_span("test_operation");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     auto first_finish = tracer.finish_span(span);
@@ -84,7 +84,7 @@ TEST_F(DistributedTracingTest, CannotFinishSpanTwice) {
 
 TEST_F(DistributedTracingTest, TraceContextPropagation) {
     auto span_result = tracer.start_span("test_operation");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     // Add baggage
@@ -110,7 +110,7 @@ TEST_F(DistributedTracingTest, W3CTraceContextFormat) {
     EXPECT_EQ(header, "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01");
     
     auto parsed_result = trace_context::from_w3c_traceparent(header);
-    ASSERT_TRUE(parsed_result.has_value());
+    ASSERT_TRUE(parsed_result.is_ok());
     auto parsed = parsed_result.value();
     
     EXPECT_EQ(parsed.trace_id, ctx.trace_id);
@@ -120,7 +120,7 @@ TEST_F(DistributedTracingTest, W3CTraceContextFormat) {
 
 TEST_F(DistributedTracingTest, InjectExtractContext) {
     auto span_result = tracer.start_span("test_operation");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     span->baggage["test_key"] = "test_value";
@@ -135,7 +135,7 @@ TEST_F(DistributedTracingTest, InjectExtractContext) {
     
     // Extract from carrier
     auto extracted_result = tracer.extract_context_from_carrier(headers);
-    ASSERT_TRUE(extracted_result.has_value());
+    ASSERT_TRUE(extracted_result.is_ok());
     auto extracted = extracted_result.value();
     
     EXPECT_EQ(extracted.trace_id, span->trace_id);
@@ -151,7 +151,7 @@ TEST_F(DistributedTracingTest, StartSpanFromContext) {
     incoming_ctx.baggage["user_id"] = "67890";
     
     auto span_result = tracer.start_span_from_context(incoming_ctx, "handle_request");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     EXPECT_EQ(span->trace_id, incoming_ctx.trace_id);
@@ -164,7 +164,7 @@ TEST_F(DistributedTracingTest, CurrentSpanManagement) {
     EXPECT_EQ(tracer.get_current_span(), nullptr);
     
     auto span_result = tracer.start_span("test_operation");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     tracer.set_current_span(span);
@@ -175,7 +175,7 @@ TEST_F(DistributedTracingTest, CurrentSpanManagement) {
         EXPECT_EQ(tracer.get_current_span(), nullptr);
         
         auto other_span_result = tracer.start_span("other_operation");
-        ASSERT_TRUE(other_span_result.has_value());
+        ASSERT_TRUE(other_span_result.is_ok());
         auto other_span = other_span_result.value();
         
         tracer.set_current_span(other_span);
@@ -190,7 +190,7 @@ TEST_F(DistributedTracingTest, CurrentSpanManagement) {
 TEST_F(DistributedTracingTest, ScopedSpan) {
     {
         auto span_result = tracer.start_span("scoped_operation");
-        ASSERT_TRUE(span_result.has_value());
+        ASSERT_TRUE(span_result.is_ok());
         scoped_span scoped(span_result.value(), &tracer);
         
         EXPECT_EQ(tracer.get_current_span(), span_result.value());
@@ -205,15 +205,15 @@ TEST_F(DistributedTracingTest, ScopedSpan) {
 
 TEST_F(DistributedTracingTest, GetTrace) {
     auto span1_result = tracer.start_span("operation1");
-    ASSERT_TRUE(span1_result.has_value());
+    ASSERT_TRUE(span1_result.is_ok());
     auto span1 = span1_result.value();
     
     auto span2_result = tracer.start_child_span(*span1, "operation2");
-    ASSERT_TRUE(span2_result.has_value());
+    ASSERT_TRUE(span2_result.is_ok());
     auto span2 = span2_result.value();
     
     auto span3_result = tracer.start_child_span(*span2, "operation3");
-    ASSERT_TRUE(span3_result.has_value());
+    ASSERT_TRUE(span3_result.is_ok());
     auto span3 = span3_result.value();
     
     // Finish all spans
@@ -223,7 +223,7 @@ TEST_F(DistributedTracingTest, GetTrace) {
     
     // Get all spans for the trace
     auto trace_result = tracer.get_trace(span1->trace_id);
-    ASSERT_TRUE(trace_result.has_value());
+    ASSERT_TRUE(trace_result.is_ok());
     auto trace = trace_result.value();
     
     EXPECT_EQ(trace.size(), 3);
@@ -237,7 +237,7 @@ TEST_F(DistributedTracingTest, GetTrace) {
 
 TEST_F(DistributedTracingTest, SpanTags) {
     auto span_result = tracer.start_span("tagged_operation", "my_service");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     // Check default tags
@@ -256,7 +256,7 @@ TEST_F(DistributedTracingTest, SpanTags) {
 
 TEST_F(DistributedTracingTest, SpanStatus) {
     auto span_result = tracer.start_span("status_operation");
-    ASSERT_TRUE(span_result.has_value());
+    ASSERT_TRUE(span_result.is_ok());
     auto span = span_result.value();
     
     EXPECT_EQ(span->status, trace_span::status_code::unset);
@@ -273,14 +273,14 @@ TEST_F(DistributedTracingTest, SpanStatus) {
 
 TEST_F(DistributedTracingTest, BaggagePropagation) {
     auto parent_result = tracer.start_span("parent");
-    ASSERT_TRUE(parent_result.has_value());
+    ASSERT_TRUE(parent_result.is_ok());
     auto parent = parent_result.value();
     
     parent->baggage["session_id"] = "abc123";
     parent->baggage["feature_flag"] = "enabled";
     
     auto child_result = tracer.start_child_span(*parent, "child");
-    ASSERT_TRUE(child_result.has_value());
+    ASSERT_TRUE(child_result.is_ok());
     auto child = child_result.value();
     
     // Child should inherit baggage
@@ -291,7 +291,7 @@ TEST_F(DistributedTracingTest, BaggagePropagation) {
     child->baggage["child_data"] = "xyz";
     
     auto grandchild_result = tracer.start_child_span(*child, "grandchild");
-    ASSERT_TRUE(grandchild_result.has_value());
+    ASSERT_TRUE(grandchild_result.is_ok());
     auto grandchild = grandchild_result.value();
     
     // Grandchild should have all baggage
@@ -306,7 +306,7 @@ TEST_F(DistributedTracingTest, ExportSpans) {
     // Create and finish spans
     for (int i = 0; i < 5; ++i) {
         auto span_result = tracer.start_span("operation_" + std::to_string(i));
-        ASSERT_TRUE(span_result.has_value());
+        ASSERT_TRUE(span_result.is_ok());
         auto span = span_result.value();
         
         tracer.finish_span(span);
@@ -314,11 +314,11 @@ TEST_F(DistributedTracingTest, ExportSpans) {
     }
     
     auto export_result = tracer.export_spans(spans_to_export);
-    ASSERT_TRUE(export_result.has_value());
+    ASSERT_TRUE(export_result.is_ok());
     
     // Verify spans were stored
     auto trace_result = tracer.get_trace(spans_to_export[0].trace_id);
-    ASSERT_TRUE(trace_result.has_value());
+    ASSERT_TRUE(trace_result.is_ok());
     auto trace = trace_result.value();
     
     // Note: In this test, all spans have different trace IDs

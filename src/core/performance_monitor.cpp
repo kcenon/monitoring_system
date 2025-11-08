@@ -288,7 +288,7 @@ result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval
     impl_->monitor_thread = std::thread([this]() {
         while (impl_->monitoring.load(std::memory_order_acquire)) {
             auto metrics = get_current_metrics();
-            if (metrics) {
+            if (metrics.is_ok()) {
                 std::lock_guard<std::mutex> lock(impl_->history_mutex);
                 impl_->history.push_back(metrics.value());
 
@@ -337,7 +337,7 @@ result<metrics_snapshot> performance_monitor::collect() {
 
     // Add system metrics
     auto system_metrics_result = system_monitor_.get_current_metrics();
-    if (system_metrics_result) {
+    if (system_metrics_result.is_ok()) {
         auto& sys_metrics = system_metrics_result.value();
 
         // Convert system metrics to metric_value format
@@ -369,7 +369,7 @@ std::vector<performance_metrics> performance_profiler::get_all_metrics() const {
 
     for (const auto& [name, profile] : profiles_) {
         auto metrics_result = get_metrics(name);
-        if (metrics_result) {
+        if (metrics_result.is_ok()) {
             result.push_back(metrics_result.value());
         }
     }
@@ -410,10 +410,10 @@ common::VoidResult performance_monitor::record_metric(const std::string& name, d
     auto duration = std::chrono::nanoseconds(static_cast<std::int64_t>(value));
     auto result = profiler_.record_sample(name, duration, true);
 
-    if (!result) {
+    if (result.is_err()) {
         return common::error_info(
-            static_cast<int>(result.get_error().code),
-            result.get_error().message
+            static_cast<int>(result.error().code),
+            result.error().message
         );
     }
 
@@ -435,10 +435,10 @@ common::Result<common::interfaces::metrics_snapshot> performance_monitor::get_me
     // Collect metrics from our internal profiler and system monitor
     auto snapshot_result = collect();
 
-    if (!snapshot_result) {
+    if (snapshot_result.is_err()) {
         return common::error_info(
-            static_cast<int>(snapshot_result.get_error().code),
-            snapshot_result.get_error().message
+            static_cast<int>(snapshot_result.error().code),
+            snapshot_result.error().message
         );
     }
 
@@ -480,7 +480,7 @@ common::Result<common::interfaces::health_check_result> performance_monitor::che
     // Check thresholds
     auto threshold_result = check_thresholds();
 
-    if (threshold_result && threshold_result.value()) {
+    if (threshold_result.is_ok() && threshold_result.value()) {
         // Thresholds exceeded
         result.status = common::interfaces::health_status::degraded;
         result.message = "Performance thresholds exceeded";

@@ -314,7 +314,7 @@ TEST_F(TraceExportersTest, InvalidFormatHandling) {
     jaeger_exporter jaeger_exporter(invalid_jaeger_config);
     auto jaeger_result = jaeger_exporter.export_spans(test_spans_);
     EXPECT_FALSE(jaeger_result);
-    EXPECT_EQ(jaeger_result.get_error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(jaeger_result.error().code, monitoring_error_code::invalid_configuration);
     
     trace_export_config invalid_zipkin_config;
     invalid_zipkin_config.endpoint = "http://zipkin:9411";
@@ -323,7 +323,7 @@ TEST_F(TraceExportersTest, InvalidFormatHandling) {
     zipkin_exporter zipkin_exporter(invalid_zipkin_config);
     auto zipkin_result = zipkin_exporter.export_spans(test_spans_);
     EXPECT_FALSE(zipkin_result);
-    EXPECT_EQ(zipkin_result.get_error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(zipkin_result.error().code, monitoring_error_code::invalid_configuration);
     
     trace_export_config invalid_otlp_config;
     invalid_otlp_config.endpoint = "http://otlp:4317";
@@ -332,7 +332,7 @@ TEST_F(TraceExportersTest, InvalidFormatHandling) {
     otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);
     auto otlp_result = otlp_exporter.export_spans(test_spans_);
     EXPECT_FALSE(otlp_result);
-    EXPECT_EQ(otlp_result.get_error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(otlp_result.error().code, monitoring_error_code::invalid_configuration);
 }
 
 TEST_F(TraceExportersTest, EmptySpansHandling) {

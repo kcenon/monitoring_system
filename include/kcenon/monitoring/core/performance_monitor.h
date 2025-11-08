@@ -319,23 +319,25 @@ public:
     result_void set_enabled(bool enable) override {
         enabled_ = enable;
         profiler_.set_enabled(enable);
-        return result_void::success();
+        return make_void_success();
     }
-    
+
     result_void initialize() override {
         auto result = system_monitor_.start_monitoring();
-        if (!result) {
-            return result_void(result.get_error().code, result.get_error().message);
+        if (result.is_err()) {
+            auto& err = result.error();
+            return make_void_error(static_cast<monitoring_error_code>(err.code), err.message);
         }
-        return result_void::success();
+        return make_void_success();
     }
-    
+
     result_void cleanup() override {
         auto result = system_monitor_.stop_monitoring();
-        if (!result) {
-            return result_void(result.get_error().code, result.get_error().message);
+        if (result.is_err()) {
+            auto& err = result.error();
+            return make_void_error(static_cast<monitoring_error_code>(err.code), err.message);
         }
-        return result_void::success();
+        return make_void_success();
     }
     
     kcenon::monitoring::result<metrics_snapshot> collect() override;

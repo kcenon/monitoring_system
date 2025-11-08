@@ -240,7 +240,7 @@ public:
     virtual result_void set_monitoring_enabled(bool enable) {
         // Default implementation - can be overridden
         (void)enable; // Suppress unused parameter warning
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -249,7 +249,7 @@ public:
      */
     virtual result_void reset_monitoring() {
         // Default implementation - can be overridden
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -298,7 +298,7 @@ public:
      */
     result_void set_monitoring_enabled(bool enable) override {
         monitoring_enabled_ = enable;
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -308,7 +308,7 @@ public:
     result_void reset_monitoring() override {
         cached_data_.clear();
         cached_data_.set_component_name(monitoring_id_);
-        return result_void::success();
+        return make_void_success();
     }
     
 protected:
@@ -389,13 +389,13 @@ public:
             }
             
             auto result = component->get_monitoring_data();
-            if (result) {
+            if (result.is_ok()) {
                 aggregated.merge(result.value(), component->get_monitoring_id());
             } else {
                 // Log error but continue with other components
                 aggregated.add_tag(
                     component->get_monitoring_id() + ".error",
-                    result.get_error().message
+                    result.error().message
                 );
             }
         }

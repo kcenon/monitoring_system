@@ -183,7 +183,7 @@ TEST_F(EventBusTest, ThreadSystemAdapter) {
 
     // Try to collect metrics (should return empty when not available)
     auto result = adapter.collect_metrics();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value().empty());
 
     // Get supported metric types
@@ -200,7 +200,7 @@ TEST_F(EventBusTest, LoggerSystemAdapter) {
 
     // Try to collect metrics
     auto result = adapter.collect_metrics();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value().empty());
 
     // Register a logger (won't do anything when system not available)

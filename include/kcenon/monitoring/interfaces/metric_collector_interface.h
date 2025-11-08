@@ -69,14 +69,14 @@ struct collection_config {
 
     result_void validate() const {
         if (interval.count() <= 0) {
-            return result_void::error(monitoring_error_code::invalid_configuration,
+            return make_void_error(monitoring_error_code::invalid_configuration,
                                     "Collection interval must be positive");
         }
         if (batch_collection && batch_size == 0) {
-            return result_void::error(monitoring_error_code::invalid_configuration,
+            return make_void_error(monitoring_error_code::invalid_configuration,
                                     "Batch size must be positive when batch collection is enabled");
         }
-        return result_void::success();
+        return make_void_success();
     }
 };
 

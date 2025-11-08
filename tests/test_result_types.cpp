@@ -16,20 +16,19 @@ protected:
 
 TEST_F(ResultTypesTest, SuccessResultContainsValue) {
     auto result = make_success<int>(42);
-    
-    EXPECT_TRUE(result.has_value());
-    EXPECT_TRUE(result);
+
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_FALSE(result.is_err());
     EXPECT_EQ(result.value(), 42);
-    EXPECT_EQ(*result, 42);
 }
 
 TEST_F(ResultTypesTest, ErrorResultContainsError) {
     auto result = make_error<int>(monitoring_error_code::collector_not_found, "Test error");
-    
-    EXPECT_FALSE(result.has_value());
-    EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::collector_not_found);
-    EXPECT_EQ(result.get_error().message, "Test error");
+
+    EXPECT_FALSE(result.is_ok());
+    EXPECT_TRUE(result.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::collector_not_found);
+    EXPECT_EQ(result.error().message, "Test error");
 }
 
 TEST_F(ResultTypesTest, ValueOrReturnsDefaultOnError) {
@@ -43,17 +42,17 @@ TEST_F(ResultTypesTest, ValueOrReturnsDefaultOnError) {
 TEST_F(ResultTypesTest, MapTransformsSuccessValue) {
     auto result = make_success<int>(10);
     auto mapped = result.map([](int x) { return x * 2; });
-    
-    EXPECT_TRUE(mapped.has_value());
+
+    EXPECT_TRUE(mapped.is_ok());
     EXPECT_EQ(mapped.value(), 20);
 }
 
 TEST_F(ResultTypesTest, MapPropagatesError) {
     auto result = make_error<int>(monitoring_error_code::invalid_configuration);
     auto mapped = result.map([](int x) { return x * 2; });
-    
-    EXPECT_FALSE(mapped.has_value());
-    EXPECT_EQ(mapped.get_error().code, monitoring_error_code::invalid_configuration);
+
+    EXPECT_FALSE(mapped.is_ok());
+    EXPECT_EQ(static_cast<monitoring_error_code>(mapped.error().code), monitoring_error_code::invalid_configuration);
 }
 
 TEST_F(ResultTypesTest, AndThenChainsOperations) {
@@ -64,25 +63,24 @@ TEST_F(ResultTypesTest, AndThenChainsOperations) {
         }
         return make_error<std::string>(monitoring_error_code::invalid_configuration);
     });
-    
-    EXPECT_TRUE(chained.has_value());
+
+    EXPECT_TRUE(chained.is_ok());
     EXPECT_EQ(chained.value(), "Large");
 }
 
 TEST_F(ResultTypesTest, ResultVoidSuccess) {
-    auto result = result_void::success();
-    
-    EXPECT_TRUE(result.is_success());
-    EXPECT_TRUE(result);
+    auto result = make_void_success();
+
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_FALSE(result.is_err());
 }
 
 TEST_F(ResultTypesTest, ResultVoidError) {
-    auto result = result_void::error(monitoring_error_code::storage_full, "Storage is full");
-    
-    EXPECT_FALSE(result.is_success());
-    EXPECT_FALSE(result);
-    EXPECT_TRUE(result.is_error(monitoring_error_code::storage_full));
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::storage_full);
+    auto result = make_void_error(monitoring_error_code::storage_full, "Storage is full");
+
+    EXPECT_FALSE(result.is_ok());
+    EXPECT_TRUE(result.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::storage_full);
 }
 
 TEST_F(ResultTypesTest, ErrorCodeToString) {
@@ -98,12 +96,12 @@ TEST_F(ResultTypesTest, ErrorInfoWithContext) {
         "Failed to collect metrics",
         "CPU collector timeout"
     );
-    
-    EXPECT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::collection_failed);
-    EXPECT_EQ(result.get_error().message, "Failed to collect metrics");
-    EXPECT_TRUE(result.get_error().context.has_value());
-    EXPECT_EQ(result.get_error().context.value(), "CPU collector timeout");
+
+    EXPECT_FALSE(result.is_ok());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::collection_failed);
+    EXPECT_EQ(result.error().message, "Failed to collect metrics");
+    EXPECT_TRUE(result.error().details.has_value());
+    EXPECT_EQ(result.error().details.value(), "CPU collector timeout");
 }
 
 TEST_F(ResultTypesTest, MetricsSnapshotOperations) {
@@ -123,33 +121,33 @@ TEST_F(ResultTypesTest, MetricsSnapshotOperations) {
 
 TEST_F(ResultTypesTest, MonitoringConfigValidation) {
     monitoring_config config;
-    
+
     // Valid configuration
     config.history_size = 100;
     config.collection_interval = std::chrono::milliseconds(100);
     config.buffer_size = 1000;
     auto result = config.validate();
-    EXPECT_TRUE(result.is_success());
-    
+    EXPECT_TRUE(result.is_ok());
+
     // Invalid history size
     config.history_size = 0;
     result = config.validate();
-    EXPECT_FALSE(result.is_success());
-    EXPECT_TRUE(result.is_error(monitoring_error_code::invalid_capacity));
-    
+    EXPECT_FALSE(result.is_ok());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::invalid_capacity);
+
     // Invalid interval
     config.history_size = 100;
     config.collection_interval = std::chrono::milliseconds(5);
     result = config.validate();
-    EXPECT_FALSE(result.is_success());
-    EXPECT_TRUE(result.is_error(monitoring_error_code::invalid_interval));
-    
+    EXPECT_FALSE(result.is_ok());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::invalid_interval);
+
     // Invalid buffer size
     config.collection_interval = std::chrono::milliseconds(100);
     config.buffer_size = 50; // Less than history_size
     result = config.validate();
-    EXPECT_FALSE(result.is_success());
-    EXPECT_TRUE(result.is_error(monitoring_error_code::invalid_capacity));
+    EXPECT_FALSE(result.is_ok());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::invalid_capacity);
 }
 
 TEST_F(ResultTypesTest, HealthCheckResult) {

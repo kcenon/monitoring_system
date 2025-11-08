@@ -75,7 +75,7 @@ TEST_F(MonitoringIntegrationTest, ResourceUsageTrackingCPU) {
 
     // System metrics should be collected
     auto result = monitor_->get_system_monitor().get_current_metrics();
-    if (result) {
+    if (result.is_ok()) {
         auto metrics = result.value();
         EXPECT_GE(metrics.cpu_usage_percent, 0.0);
         EXPECT_LE(metrics.cpu_usage_percent, 100.0);
@@ -98,7 +98,7 @@ TEST_F(MonitoringIntegrationTest, ResourceUsageTrackingMemory) {
     WaitForCollection(std::chrono::milliseconds(200));
 
     auto result = monitor_->get_system_monitor().get_current_metrics();
-    if (result) {
+    if (result.is_ok()) {
         auto metrics = result.value();
         EXPECT_GT(metrics.memory_usage_bytes, 0);
         EXPECT_GE(metrics.memory_usage_percent, 0.0);
@@ -144,7 +144,7 @@ TEST_F(MonitoringIntegrationTest, AlertTriggeringAndNotification) {
     // Check if threshold is exceeded
     auto result = monitor_->check_thresholds();
     // The result indicates whether any threshold was exceeded
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
 }
 
 /**
@@ -223,7 +223,7 @@ TEST_F(MonitoringIntegrationTest, IMonitorInterfaceIntegration) {
 
     // Record metric through IMonitor interface
     auto result = monitor_->record_metric("test_metric", 42.0);
-    EXPECT_TRUE(kcenon::common::is_ok(result));
+    EXPECT_TRUE(result.is_ok());
 
     // Record metric with tags
     std::unordered_map<std::string, std::string> tags = {
@@ -231,7 +231,7 @@ TEST_F(MonitoringIntegrationTest, IMonitorInterfaceIntegration) {
         {"version", "1.0"}
     };
     auto tagged_result = monitor_->record_metric("tagged_metric", 100.0, tags);
-    EXPECT_TRUE(kcenon::common::is_ok(tagged_result));
+    EXPECT_TRUE(tagged_result.is_ok());
 }
 
 /**
@@ -243,9 +243,9 @@ TEST_F(MonitoringIntegrationTest, HealthCheckIntegration) {
 
     // Perform health check
     auto health_result = monitor_->check_health();
-    ASSERT_TRUE(kcenon::common::is_ok(health_result));
+    ASSERT_TRUE(health_result.is_ok());
 
-    auto health = kcenon::common::get_value(health_result);
+    auto health = health_result.value();
     EXPECT_FALSE(health.message.empty());
 }
 
@@ -263,9 +263,9 @@ TEST_F(MonitoringIntegrationTest, MetricsSnapshotRetrieval) {
 
     // Get snapshot
     auto snapshot_result = monitor_->get_metrics();
-    ASSERT_TRUE(kcenon::common::is_ok(snapshot_result));
+    ASSERT_TRUE(snapshot_result.is_ok());
 
-    auto snapshot = kcenon::common::get_value(snapshot_result);
+    auto snapshot = snapshot_result.value();
     EXPECT_FALSE(snapshot.metrics.empty());
 }
 
@@ -282,7 +282,7 @@ TEST_F(MonitoringIntegrationTest, MonitorResetFunctionality) {
 
     // Reset monitor
     auto reset_result = monitor_->reset();
-    EXPECT_TRUE(kcenon::common::is_ok(reset_result));
+    EXPECT_TRUE(reset_result.is_ok());
 
     // Profiler should be cleared
     auto metrics = GetPerformanceMetrics("reset_op");

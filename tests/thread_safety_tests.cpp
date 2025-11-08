@@ -54,7 +54,7 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
         }
     );
 
-    ASSERT_TRUE(token.has_value());
+    ASSERT_TRUE(token.is_ok());
 
     std::vector<std::thread> threads;
     std::barrier sync_point(num_publishers);
@@ -73,7 +73,7 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
                     );
 
                     auto result = bus->publish_event(alert);
-                    if (!result) {
+                    if (result.is_err()) {
                         ++errors;
                     }
                 } catch (...) {
@@ -123,9 +123,9 @@ TEST_F(MonitoringThreadSafetyTest, MultipleEventTypesConcurrent) {
         [&](const thread_pool_metric_event&) { ++thread_pool_events; }
     );
 
-    ASSERT_TRUE(perf_token.has_value());
-    ASSERT_TRUE(resource_token.has_value());
-    ASSERT_TRUE(pool_token.has_value());
+    ASSERT_TRUE(perf_token.is_ok());
+    ASSERT_TRUE(resource_token.is_ok());
+    ASSERT_TRUE(pool_token.is_ok());
 
     std::vector<std::thread> threads;
 
@@ -201,7 +201,7 @@ TEST_F(MonitoringThreadSafetyTest, MultipleSubscribersConcurrent) {
             }
         );
 
-        ASSERT_TRUE(token.has_value());
+        ASSERT_TRUE(token.is_ok());
         tokens.push_back(token.value());
     }
 
@@ -217,7 +217,7 @@ TEST_F(MonitoringThreadSafetyTest, MultipleSubscribersConcurrent) {
                     system_resource_event event(stats);
 
                     auto result = bus->publish_event(event);
-                    if (!result) {
+                    if (result.is_err()) {
                         ++errors;
                     }
                 } catch (...) {
@@ -286,7 +286,7 @@ TEST_F(MonitoringThreadSafetyTest, DynamicSubscriptionChanges) {
                         }
                     );
 
-                    if (token.has_value()) {
+                    if (token.is_ok()) {
                         std::this_thread::sleep_for(20ms);
                         bus->unsubscribe_event(token.value());
                     }
@@ -335,9 +335,9 @@ TEST_F(MonitoringThreadSafetyTest, EventPriorityConcurrent) {
         event_priority::low
     );
 
-    ASSERT_TRUE(high_token.has_value());
-    ASSERT_TRUE(normal_token.has_value());
-    ASSERT_TRUE(low_token.has_value());
+    ASSERT_TRUE(high_token.is_ok());
+    ASSERT_TRUE(normal_token.is_ok());
+    ASSERT_TRUE(low_token.is_ok());
 
     std::vector<std::thread> threads;
 
@@ -390,7 +390,7 @@ TEST_F(MonitoringThreadSafetyTest, HighVolumeStressTest) {
         }
     );
 
-    ASSERT_TRUE(token.has_value());
+    ASSERT_TRUE(token.is_ok());
 
     std::vector<std::thread> threads;
     std::barrier sync_point(num_threads);
@@ -458,7 +458,7 @@ TEST_F(MonitoringThreadSafetyTest, MemorySafetyTest) {
                 [](const system_resource_event&) {}
             );
 
-            if (token.has_value()) {
+            if (token.is_ok()) {
                 tokens.push_back(token.value());
             }
         }

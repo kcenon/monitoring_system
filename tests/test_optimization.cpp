@@ -106,7 +106,7 @@ TEST_F(OptimizationTest, LockfreeQueueConcurrentAccess) {
         consumers.emplace_back([&queue, &total_consumed, &producers_done]() {
             while (!producers_done.load() || !queue.empty()) {
                 auto result = queue.pop();
-                if (result) {
+                if (result.is_ok()) {
                     total_consumed.fetch_add(1);
                 } else {
                     std::this_thread::yield();
@@ -226,7 +226,7 @@ TEST_F(OptimizationTest, MemoryPoolConcurrentAccess) {
             // Allocate
             for (int i = 0; i < operations_per_thread; ++i) {
                 auto result = pool.allocate();
-                if (result) {
+                if (result.is_ok()) {
                     allocated_ptrs.push_back(result.value());
                 }
             }
@@ -234,7 +234,7 @@ TEST_F(OptimizationTest, MemoryPoolConcurrentAccess) {
             // Deallocate
             for (auto* ptr : allocated_ptrs) {
                 auto result = pool.deallocate(ptr);
-                if (result) {
+                if (result.is_ok()) {
                     successful_operations.fetch_add(1);
                 }
             }
@@ -465,7 +465,7 @@ TEST_F(OptimizationTest, IntegrationTest) {
     
     while (!queue.empty()) {
         auto result = queue.pop();
-        if (result) {
+        if (result.is_ok()) {
             collected_data.push_back(result.value());
         }
     }

@@ -73,7 +73,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryFailFastPolicy) {
     auto result = boundary.execute([this]() { return always_failing_operation(); });
     
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::operation_failed);
+    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
 }
 
@@ -86,7 +86,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryIsolatePolicy) {
     auto result = boundary.execute([this]() { return always_failing_operation(); });
     
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::service_degraded);
+    EXPECT_EQ(result.error().code, monitoring_error_code::service_degraded);
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
 }
 
@@ -131,7 +131,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryExceptionHandling) {
     auto result = boundary.execute([this]() { return throwing_operation(); });
     
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::operation_failed);
+    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);
     EXPECT_EQ(call_count.load(), 1);
 }
 

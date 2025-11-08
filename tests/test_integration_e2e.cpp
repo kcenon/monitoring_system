@@ -88,7 +88,7 @@ TEST_F(IntegrationE2ETest, StorageBackendIntegration) {
     threads.emplace_back([&file_backend, &snapshots, &success_count]() {
         for (const auto& snapshot : snapshots) {
             auto result = file_backend->store(snapshot);
-            if (result) success_count++;
+            if (result.is_ok()) success_count++;
         }
     });
     
@@ -96,7 +96,7 @@ TEST_F(IntegrationE2ETest, StorageBackendIntegration) {
     threads.emplace_back([&memory_backend, &snapshots, &success_count]() {
         for (const auto& snapshot : snapshots) {
             auto result = memory_backend->store(snapshot);
-            if (result) success_count++;
+            if (result.is_ok()) success_count++;
         }
     });
     

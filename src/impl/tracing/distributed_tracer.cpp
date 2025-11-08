@@ -232,8 +232,11 @@ kcenon::monitoring::result<bool> distributed_tracer::export_spans(std::vector<tr
     // Store spans
     for (const auto& span : spans) {
         auto result = impl_->store_span(span);
-        if (!result) {
-            return kcenon::monitoring::make_error<bool>(result.get_error().code);
+        if (result.is_err()) {
+            auto& err = result.error();
+            return kcenon::monitoring::make_error<bool>(
+                static_cast<monitoring_error_code>(err.code)
+            );
         }
     }
     

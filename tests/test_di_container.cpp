@@ -287,18 +287,18 @@ TEST_F(DIContainerTest, RegisterAndResolveTransient) {
         service_lifetime::transient
     );
     
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(container_->is_registered<IService>());
     
     // Resolve service multiple times
     auto service1_result = container_->resolve<IService>();
-    ASSERT_TRUE(service1_result);
+    ASSERT_TRUE(service1_result.is_ok());
     auto service1 = service1_result.value();
     EXPECT_NE(service1, nullptr);
     EXPECT_EQ(service1->get_name(), "ServiceA_1");
     
     auto service2_result = container_->resolve<IService>();
-    ASSERT_TRUE(service2_result);
+    ASSERT_TRUE(service2_result.is_ok());
     auto service2 = service2_result.value();
     EXPECT_NE(service2, nullptr);
     EXPECT_EQ(service2->get_name(), "ServiceA_2");
@@ -318,14 +318,14 @@ TEST_F(DIContainerTest, RegisterAndResolveSingleton) {
         service_lifetime::singleton
     );
     
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     // Resolve multiple times
     auto service1_result = container_->resolve<IService>();
     auto service2_result = container_->resolve<IService>();
     
-    ASSERT_TRUE(service1_result);
-    ASSERT_TRUE(service2_result);
+    ASSERT_TRUE(service1_result.is_ok());
+    ASSERT_TRUE(service2_result.is_ok());
     
     auto service1 = service1_result.value();
     auto service2 = service2_result.value();
@@ -346,11 +346,11 @@ TEST_F(DIContainerTest, RegisterSingletonInstance) {
     
     // Register existing instance as singleton
     auto result = container_->register_singleton<IService>(instance);
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     // Resolve should return the same instance
     auto resolved_result = container_->resolve<IService>();
-    ASSERT_TRUE(resolved_result);
+    ASSERT_TRUE(resolved_result.is_ok());
     auto resolved = resolved_result.value();
     
     EXPECT_EQ(resolved, instance);
@@ -374,9 +374,9 @@ TEST_F(DIContainerTest, NamedServiceRegistration) {
         service_lifetime::singleton
     );
     
-    ASSERT_TRUE(result1);
-    ASSERT_TRUE(result2);
-    
+    ASSERT_TRUE(result1.is_ok());
+    ASSERT_TRUE(result2.is_ok());
+
     EXPECT_TRUE(container_->is_registered<IService>("primary"));
     EXPECT_TRUE(container_->is_registered<IService>("secondary"));
     EXPECT_FALSE(container_->is_registered<IService>("unknown"));
@@ -385,8 +385,8 @@ TEST_F(DIContainerTest, NamedServiceRegistration) {
     auto primary_result = container_->resolve<IService>("primary");
     auto secondary_result = container_->resolve<IService>("secondary");
     
-    ASSERT_TRUE(primary_result);
-    ASSERT_TRUE(secondary_result);
+    ASSERT_TRUE(primary_result.is_ok());
+    ASSERT_TRUE(secondary_result.is_ok());
     
     auto primary = primary_result.value();
     auto secondary = secondary_result.value();
@@ -410,7 +410,7 @@ TEST_F(DIContainerTest, DISABLED_ServiceWithDependencies) {
     container_->register_factory<ServiceB>(
         [this]() {
             auto dep_result = container_->resolve<ServiceA>();
-            if (!dep_result) {
+            if (dep_result.is_err()) {
                 throw std::runtime_error("Failed to resolve dependency");
             }
             return std::make_shared<ServiceB>(dep_result.value());
@@ -420,7 +420,7 @@ TEST_F(DIContainerTest, DISABLED_ServiceWithDependencies) {
     
     // Resolve service with dependencies
     auto service_result = container_->resolve<ServiceB>();
-    ASSERT_TRUE(service_result);
+    ASSERT_TRUE(service_result.is_ok());
     auto service = service_result.value();
     
     EXPECT_NE(service, nullptr);
@@ -429,7 +429,7 @@ TEST_F(DIContainerTest, DISABLED_ServiceWithDependencies) {
     
     // Dependency should be singleton
     auto dep_result = container_->resolve<ServiceA>();
-    ASSERT_TRUE(dep_result);
+    ASSERT_TRUE(dep_result.is_ok());
     EXPECT_EQ(dependency, dep_result.value());
 }
 
@@ -452,7 +452,7 @@ TEST_F(DIContainerTest, DISABLED_ScopedContainer) {
 
     // Resolve in scope should work
     auto service_result = scope->resolve<IService>();
-    ASSERT_TRUE(service_result);
+    ASSERT_TRUE(service_result.is_ok());
     EXPECT_NE(service_result.value(), nullptr);
 
     // Register scoped service
@@ -465,8 +465,8 @@ TEST_F(DIContainerTest, DISABLED_ScopedContainer) {
     auto scoped_result1 = scope->resolve<ServiceA>();
     auto scoped_result2 = scope->resolve<ServiceA>();
 
-    ASSERT_TRUE(scoped_result1);
-    ASSERT_TRUE(scoped_result2);
+    ASSERT_TRUE(scoped_result1.is_ok());
+    ASSERT_TRUE(scoped_result2.is_ok());
 
     // Should be same instance within scope
     EXPECT_EQ(scoped_result1.value(), scoped_result2.value());
@@ -478,9 +478,9 @@ TEST_F(DIContainerTest, DISABLED_ScopedContainer) {
 TEST_F(DIContainerTest, ResolveUnregisteredService) {
     // Try to resolve unregistered service
     auto result = container_->resolve<IService>();
-    
-    EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::collector_not_found);
+
+    EXPECT_TRUE(result.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::collector_not_found);
 }
 
 /**
@@ -495,9 +495,9 @@ TEST_F(DIContainerTest, ResolveUnregisteredNamedService) {
     
     // Try to resolve with non-existent name
     auto result = container_->resolve<IService>("nonexistent");
-    
-    EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::collector_not_found);
+
+    EXPECT_TRUE(result.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::collector_not_found);
 }
 
 /**
@@ -521,7 +521,7 @@ TEST_F(DIContainerTest, ClearContainer) {
     
     // Clear container
     auto clear_result = container_->clear();
-    ASSERT_TRUE(clear_result);
+    ASSERT_TRUE(clear_result.is_ok());
     
     // Services should no longer be registered
     EXPECT_FALSE(container_->is_registered<IService>());
@@ -529,7 +529,7 @@ TEST_F(DIContainerTest, ClearContainer) {
     
     // Resolution should fail
     auto resolve_result = container_->resolve<IService>();
-    EXPECT_FALSE(resolve_result);
+    EXPECT_TRUE(resolve_result.is_err());
 }
 
 /**
@@ -552,7 +552,7 @@ TEST_F(DIContainerTest, DISABLED_ThreadSafety) {
     for (size_t i = 0; i < 10; ++i) {
         threads.emplace_back([this, &results, i]() {
             auto result = container_->resolve<IService>();
-            if (result) {
+            if (result.is_ok()) {
                 results[i] = result.value();
             }
         });
@@ -600,7 +600,7 @@ TEST_F(DIContainerTest, ServiceLocator) {
     EXPECT_TRUE(locator_container->is_registered<IService>());
     
     auto result = locator_container->resolve<IService>();
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     // Reset locator
     service_locator::reset();
@@ -622,10 +622,10 @@ TEST_F(DIContainerTest, ThreadSystemAdapterFactory) {
         service_lifetime::singleton
     );
     
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     auto service_result = adapter->resolve<IService>();
-    ASSERT_TRUE(service_result);
+    ASSERT_TRUE(service_result.is_ok());
     EXPECT_NE(service_result.value(), nullptr);
 }
 
