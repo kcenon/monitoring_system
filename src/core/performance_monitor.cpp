@@ -57,7 +57,7 @@ result<bool> performance_profiler::record_sample(
             if (profiles_.size() >= max_profiles_) {
                 // Find and evict the least recently used profile
                 auto lru_it = profiles_.end();
-                auto oldest_time = std::chrono::steady_clock::time_point::max();
+                auto oldest_time = (std::chrono::steady_clock::time_point::max)();
 
                 for (auto it = profiles_.begin(); it != profiles_.end(); ++it) {
                     if (it->second && it->second->last_access_time < oldest_time) {
@@ -213,7 +213,7 @@ result<system_metrics> system_monitor::get_current_metrics() const {
 
             if (total_ticks > 0) {
                 double usage = 100.0 * (1.0 - (static_cast<double>(idle_ticks) / total_ticks));
-                metrics.cpu_usage_percent = std::max(0.0, std::min(100.0, usage));
+                metrics.cpu_usage_percent = (std::max)(0.0, (std::min)(100.0, usage));
             }
 
             vm_deallocate(mach_task_self(),
