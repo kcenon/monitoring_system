@@ -109,8 +109,8 @@ public:
             snapshot.source_id = monitor_->get_name();
             snapshot.capture_time = std::chrono::system_clock::now();
 
-            // Get performance metrics from the monitor
-            const auto& perf_metrics = monitor_->get_all_metrics();
+            // Get performance metrics from the monitor's profiler
+            const auto& perf_metrics = monitor_->get_profiler().get_all_metrics();
 
             // Convert each performance_metrics (operation timing) into multiple metric_value entries
             for (const auto& perf : perf_metrics) {
