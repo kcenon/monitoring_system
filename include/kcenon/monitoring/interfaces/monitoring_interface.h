@@ -172,18 +172,18 @@ struct monitoring_config {
      */
     result_void validate() const {
         if (history_size == 0) {
-            return result_void(monitoring_error_code::invalid_capacity,
-                             "History size must be greater than 0");
+            return make_void_error(monitoring_error_code::invalid_capacity,
+                                 "History size must be greater than 0");
         }
         if (collection_interval.count() < 10) {
-            return result_void(monitoring_error_code::invalid_interval,
-                             "Collection interval must be at least 10ms");
+            return make_void_error(monitoring_error_code::invalid_interval,
+                                 "Collection interval must be at least 10ms");
         }
         if (buffer_size < history_size) {
-            return result_void(monitoring_error_code::invalid_capacity,
-                             "Buffer size must be at least as large as history size");
+            return make_void_error(monitoring_error_code::invalid_capacity,
+                                 "Buffer size must be at least as large as history size");
         }
-        return result_void::success();
+        return make_void_success();
     }
 };
 

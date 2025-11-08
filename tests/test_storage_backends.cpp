@@ -564,7 +564,7 @@ TEST_F(StorageBackendsTest, ErrorHandling) {
         
         auto retrieve_result = backend.retrieve(999);
         EXPECT_FALSE(retrieve_result);
-        EXPECT_EQ(retrieve_result.get_error().code, monitoring_error_code::not_found);
+        EXPECT_EQ(retrieve_result.error().code, monitoring_error_code::not_found);
     }
 }
 
@@ -586,7 +586,7 @@ TEST_F(StorageBackendsTest, ConcurrentOperations) {
             snapshot.add_metric("value", static_cast<double>(i));
             
             auto result = backend.store(snapshot);
-            if (result) {
+            if (result.is_ok()) {
                 successful_stores++;
             }
         });
@@ -606,7 +606,7 @@ TEST_F(StorageBackendsTest, ConcurrentOperations) {
     for (int i = 0; i < 5; ++i) {
         retrieve_threads.emplace_back([&, i]() {
             auto result = backend.retrieve(i);
-            if (result) {
+            if (result.is_ok()) {
                 successful_retrievals++;
             }
         });

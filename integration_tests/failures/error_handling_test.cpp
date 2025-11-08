@@ -196,7 +196,7 @@ TEST_F(ErrorHandlingTest, AlertNotificationFailures) {
     auto result = monitor_->check_thresholds();
 
     // Should return a result even if notifications fail
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
 }
 
 /**
@@ -242,19 +242,19 @@ TEST_F(ErrorHandlingTest, InvalidConfigurationErrors) {
     config.interval = std::chrono::seconds(1);
     config.batch_size = 100;
     auto result1 = config.validate();
-    EXPECT_TRUE(result1.is_success());
+    EXPECT_TRUE(result1.is_ok());
 
     // Invalid interval
     config.interval = std::chrono::milliseconds(-1);
     auto result2 = config.validate();
-    EXPECT_FALSE(result2.is_success());
+    EXPECT_FALSE(result2.is_ok());
 
     // Invalid batch size
     config.interval = std::chrono::seconds(1);
     config.batch_collection = true;
     config.batch_size = 0;
     auto result3 = config.validate();
-    EXPECT_FALSE(result3.is_success());
+    EXPECT_FALSE(result3.is_ok());
 }
 
 /**

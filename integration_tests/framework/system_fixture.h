@@ -118,7 +118,7 @@ protected:
         }
 
         auto result = monitor_->initialize();
-        return result.is_success();
+        return result.is_ok();
     }
 
     /**
@@ -174,7 +174,7 @@ protected:
         }
 
         auto result = monitor_->collect();
-        if (!result) {
+        if (result.is_err()) {
             return std::nullopt;
         }
 
@@ -191,7 +191,7 @@ protected:
         }
 
         auto result = monitor_->collect();
-        if (!result) {
+        if (result.is_err()) {
             return 0;
         }
 
@@ -207,7 +207,7 @@ protected:
         }
 
         auto result = monitor_->get_profiler().record_sample(operation, duration);
-        return static_cast<bool>(result);
+        return result.is_ok();
     }
 
     /**
@@ -221,7 +221,7 @@ protected:
         }
 
         auto result = monitor_->get_profiler().get_metrics(operation);
-        if (!result) {
+        if (result.is_err()) {
             return std::nullopt;
         }
 

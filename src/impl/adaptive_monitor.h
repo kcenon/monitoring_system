@@ -417,7 +417,7 @@ public:
         const adaptive_config& config = {}
     ) : monitor_(&global_adaptive_monitor()), collector_name_(name) {
         auto result = monitor_->register_collector(name, collector, config);
-        registered_ = result.has_value() && result.value();
+        registered_ = result.is_ok() && result.value();
     }
     
     ~adaptive_scope() {

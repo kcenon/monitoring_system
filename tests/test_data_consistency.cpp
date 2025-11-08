@@ -367,7 +367,7 @@ TEST_F(DataConsistencyTest, DataConsistencyManagerTransactionManagers) {
     // Should fail to add duplicate
     auto duplicate_result = consistency_manager.add_transaction_manager("tx_manager", tx_config);
     EXPECT_FALSE(duplicate_result);
-    EXPECT_EQ(duplicate_result.get_error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(duplicate_result.error().code, monitoring_error_code::already_exists);
 }
 
 TEST_F(DataConsistencyTest, DataConsistencyManagerStateValidators) {
