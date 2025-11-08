@@ -100,7 +100,7 @@ TEST_F(AdaptiveMonitoringTest, AdaptiveCollectorSampling) {
     
     // Should collect when sampling rate is 1.0
     auto result = collector.collect();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_EQ(mock->get_collect_count(), 1);
     
     // Change config to lower sampling rate
@@ -150,23 +150,23 @@ TEST_F(AdaptiveMonitoringTest, RegisterUnregisterCollector) {
     
     // Register collector
     auto result = monitor.register_collector("test", mock);
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     // Try to register again (should fail)
     result = monitor.register_collector("test", mock);
-    ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);
+    ASSERT_FALSE(result.is_ok());
+    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);
     
     // Unregister
     result = monitor.unregister_collector("test");
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     // Try to unregister non-existent (should fail)
     result = monitor.unregister_collector("test");
-    ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);
+    ASSERT_FALSE(result.is_ok());
+    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);
 }
 
 TEST_F(AdaptiveMonitoringTest, StartStopMonitoring) {
@@ -176,15 +176,15 @@ TEST_F(AdaptiveMonitoringTest, StartStopMonitoring) {
     EXPECT_FALSE(monitor.is_running());
     
     auto result = monitor.start();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(monitor.is_running());
     
     // Start again (should succeed but do nothing)
     result = monitor.start();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     result = monitor.stop();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_FALSE(monitor.is_running());
 }
 
@@ -219,11 +219,11 @@ TEST_F(AdaptiveMonitoringTest, GlobalStrategy) {
     
     // Force adaptation
     auto result = monitor.force_adaptation();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     // Check that strategy was applied
     auto stats_result = monitor.get_collector_stats("test");
-    ASSERT_TRUE(stats_result.has_value());
+    ASSERT_TRUE(stats_result.is_ok());
     // Strategy effects would be visible in adaptation behavior
 }
 
@@ -338,7 +338,7 @@ TEST_F(AdaptiveMonitoringTest, CollectorEnableDisable) {
     
     // When disabled, should always sample
     auto result = collector.collect();
-    EXPECT_TRUE(result.has_value());
+    EXPECT_TRUE(result.is_ok());
 }
 
 TEST_F(AdaptiveMonitoringTest, GlobalAdaptiveMonitor) {
@@ -346,7 +346,7 @@ TEST_F(AdaptiveMonitoringTest, GlobalAdaptiveMonitor) {
     
     auto mock = std::make_shared<mock_collector>("global_test");
     auto result = global.register_collector("global_test", mock);
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     // Cleanup
     global.unregister_collector("global_test");

@@ -107,7 +107,7 @@ int main() {
 
     // Test collector interface
     auto result = collector->collect_metrics();
-    if (result) {
+    if (result.is_ok()) {
         std::cout << "Metrics collected successfully" << std::endl;
     }
 

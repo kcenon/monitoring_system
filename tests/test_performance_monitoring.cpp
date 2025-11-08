@@ -40,11 +40,11 @@ TEST_F(PerformanceMonitoringTest, RecordSingleSample) {
         true
     );
     
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     auto metrics_result = profiler.get_metrics("test_operation");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.operation_name, "test_operation");
@@ -67,7 +67,7 @@ TEST_F(PerformanceMonitoringTest, RecordMultipleSamples) {
     }
     
     auto metrics_result = profiler.get_metrics("multi_operation");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, 5);
@@ -85,7 +85,7 @@ TEST_F(PerformanceMonitoringTest, RecordErrorSamples) {
     profiler.record_sample("error_operation", std::chrono::nanoseconds(4000000), true);
     
     auto metrics_result = profiler.get_metrics("error_operation");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, 4);
@@ -99,7 +99,7 @@ TEST_F(PerformanceMonitoringTest, ScopedTimer) {
     }
     
     auto metrics_result = profiler.get_metrics("scoped_operation");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, 1);
@@ -114,7 +114,7 @@ TEST_F(PerformanceMonitoringTest, ScopedTimerWithError) {
     }
     
     auto metrics_result = profiler.get_metrics("error_scoped_operation");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, 1);
@@ -132,7 +132,7 @@ TEST_F(PerformanceMonitoringTest, PercentileCalculation) {
     }
     
     auto metrics_result = profiler.get_metrics("percentile_test");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, 100);
@@ -161,7 +161,7 @@ TEST_F(PerformanceMonitoringTest, ThroughputCalculation) {
     }
     
     auto metrics_result = profiler.get_metrics("throughput_test");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     // Total time: 10 * 100ms = 1 second
@@ -173,12 +173,12 @@ TEST_F(PerformanceMonitoringTest, ClearSamples) {
     profiler.record_sample("clear_test", std::chrono::nanoseconds(1000000), true);
     
     auto result = profiler.clear_samples("clear_test");
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     auto metrics_result = profiler.get_metrics("clear_test");
-    ASSERT_FALSE(metrics_result.has_value());
-    EXPECT_EQ(metrics_result.get_error().code, monitoring_error_code::not_found);
+    ASSERT_FALSE(metrics_result.is_ok());
+    EXPECT_EQ(metrics_result.error().code, monitoring_error_code::not_found);
 }
 
 TEST_F(PerformanceMonitoringTest, GetAllMetrics) {
@@ -207,24 +207,24 @@ TEST_F(PerformanceMonitoringTest, ProfilerEnableDisable) {
         std::chrono::nanoseconds(1000000),
         true
     );
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     // Sample should not be recorded when disabled
     auto metrics_result = profiler.get_metrics("disabled_test");
-    ASSERT_FALSE(metrics_result.has_value());
+    ASSERT_FALSE(metrics_result.is_ok());
     
     profiler.set_enabled(true);
     profiler.record_sample("enabled_test", std::chrono::nanoseconds(1000000), true);
     
     metrics_result = profiler.get_metrics("enabled_test");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
 }
 
 TEST_F(PerformanceMonitoringTest, SystemMetrics) {
     system_monitor sys_monitor;
     
     auto result = sys_monitor.get_current_metrics();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     auto metrics = result.value();
     
@@ -243,7 +243,7 @@ TEST_F(PerformanceMonitoringTest, SystemMonitoringHistory) {
     system_monitor sys_monitor;
     
     auto start_result = sys_monitor.start_monitoring(std::chrono::milliseconds(100));
-    ASSERT_TRUE(start_result.has_value());
+    ASSERT_TRUE(start_result.is_ok());
     
     // Let it collect some samples
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -257,7 +257,7 @@ TEST_F(PerformanceMonitoringTest, SystemMonitoringHistory) {
     }
     
     auto stop_result = sys_monitor.stop_monitoring();
-    ASSERT_TRUE(stop_result.has_value());
+    ASSERT_TRUE(stop_result.is_ok());
 }
 
 TEST_F(PerformanceMonitoringTest, PerformanceMonitorCollect) {
@@ -265,10 +265,10 @@ TEST_F(PerformanceMonitoringTest, PerformanceMonitorCollect) {
     monitor.get_profiler().record_sample("collect_test", std::chrono::nanoseconds(5000000), true);
     
     auto init_result = monitor.initialize();
-    ASSERT_TRUE(init_result.is_success());
+    ASSERT_TRUE(init_result.is_ok());
     
     auto snapshot_result = monitor.collect();
-    ASSERT_TRUE(snapshot_result.has_value());
+    ASSERT_TRUE(snapshot_result.is_ok());
     
     auto snapshot = snapshot_result.value();
     EXPECT_EQ(snapshot.source_id, "performance_monitor");
@@ -304,10 +304,10 @@ TEST_F(PerformanceMonitoringTest, ThresholdChecking) {
     );
     
     auto init_result = monitor.initialize();
-    ASSERT_TRUE(init_result.is_success());
+    ASSERT_TRUE(init_result.is_ok());
     
     auto threshold_result = monitor.check_thresholds();
-    ASSERT_TRUE(threshold_result.has_value());
+    ASSERT_TRUE(threshold_result.is_ok());
     EXPECT_TRUE(threshold_result.value()); // Should exceed thresholds
 }
 
@@ -320,7 +320,7 @@ TEST_F(PerformanceMonitoringTest, GlobalPerformanceMonitor) {
     }
     
     auto metrics_result = global.get_profiler().get_metrics("global_test_operation");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, 1);
@@ -340,7 +340,7 @@ TEST_F(PerformanceMonitoringTest, PerformanceBenchmark) {
         }
     });
     
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     auto metrics = result.value();
     EXPECT_EQ(metrics.call_count, 100);
@@ -370,7 +370,7 @@ TEST_F(PerformanceMonitoringTest, BenchmarkComparison) {
         }
     );
     
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     auto [fast_metrics, slow_metrics] = result.value();
     
@@ -394,7 +394,7 @@ TEST_F(PerformanceMonitoringTest, MaxSamplesLimit) {
     }
     
     auto metrics_result = profiler.get_metrics("limit_test");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     // Call count should still be 20
@@ -428,7 +428,7 @@ TEST_F(PerformanceMonitoringTest, ConcurrentRecording) {
     }
     
     auto metrics_result = profiler.get_metrics("concurrent_test");
-    ASSERT_TRUE(metrics_result.has_value());
+    ASSERT_TRUE(metrics_result.is_ok());
     
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, num_threads * samples_per_thread);

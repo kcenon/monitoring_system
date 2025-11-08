@@ -212,7 +212,7 @@ TEST_F(MonitorableInterfaceTest, MonitorableComponentBasic) {
     
     // Get monitoring data
     auto result = component.get_monitoring_data();
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     auto data = result.value();
     EXPECT_EQ(data.get_component_name(), "test_comp_1");
@@ -250,26 +250,26 @@ TEST_F(MonitorableInterfaceTest, MonitoringEnableDisable) {
     EXPECT_TRUE(component.is_monitoring_enabled());
     
     auto result = component.get_monitoring_data();
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     // Disable monitoring
     auto disable_result = component.set_monitoring_enabled(false);
-    EXPECT_TRUE(disable_result);
+    EXPECT_TRUE(disable_result.is_ok());
     EXPECT_FALSE(component.is_monitoring_enabled());
     
     // Should return error when disabled
     result = component.get_monitoring_data();
-    EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::monitoring_disabled);
+    EXPECT_TRUE(result.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::monitoring_disabled);
     
     // Re-enable monitoring
     auto enable_result = component.set_monitoring_enabled(true);
-    EXPECT_TRUE(enable_result);
+    EXPECT_TRUE(enable_result.is_ok());
     EXPECT_TRUE(component.is_monitoring_enabled());
     
     // Should work again
     result = component.get_monitoring_data();
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
 }
 
 /**
@@ -287,7 +287,7 @@ TEST_F(MonitorableInterfaceTest, MonitoringReset) {
     
     // Reset monitoring (note: our test implementation doesn't reset internal counters)
     auto reset_result = component.reset_monitoring();
-    EXPECT_TRUE(reset_result);
+    EXPECT_TRUE(reset_result.is_ok());
     
     // Internal state remains (as we didn't override reset_monitoring to clear it)
     EXPECT_EQ(component.get_operation_count(), 3);
@@ -360,7 +360,7 @@ TEST_F(MonitorableInterfaceTest, AggregatorDataCollection) {
     
     // Collect all data
     auto result = aggregator.collect_all();
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     auto aggregated = result.value();
     EXPECT_EQ(aggregated.get_component_name(), "test_aggregator");
@@ -400,7 +400,7 @@ TEST_F(MonitorableInterfaceTest, AggregatorWithDisabledComponents) {
     
     // Collect data
     auto result = aggregator.collect_all();
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     auto aggregated = result.value();
     
@@ -489,7 +489,7 @@ TEST_F(MonitorableInterfaceTest, ThreadSafetyMonitorableComponent) {
                 // Also get monitoring data periodically
                 if (j % 100 == 0) {
                     auto result = component.get_monitoring_data();
-                    EXPECT_TRUE(result);
+                    EXPECT_TRUE(result.is_ok());
                 }
             }
         });
@@ -505,7 +505,7 @@ TEST_F(MonitorableInterfaceTest, ThreadSafetyMonitorableComponent) {
     
     // Get final monitoring data
     auto result = component.get_monitoring_data();
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     auto op_count = result.value().get_metric("operation_count");
     ASSERT_TRUE(op_count.has_value());

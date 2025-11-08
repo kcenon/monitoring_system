@@ -153,13 +153,13 @@ TEST_F(HealthMonitoringTest, HealthDependencyGraphAddNode) {
     auto check = std::make_shared<test_health_check>("database", health_check_type::liveness);
     auto result = graph.add_node("database", check);
     
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     // Try to add duplicate
     result = graph.add_node("database", check);
-    ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);
+    ASSERT_FALSE(result.is_ok());
+    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);
 }
 
 TEST_F(HealthMonitoringTest, HealthDependencyGraphAddDependency) {
@@ -173,7 +173,7 @@ TEST_F(HealthMonitoringTest, HealthDependencyGraphAddDependency) {
     
     // Add dependency: api depends on database
     auto result = graph.add_dependency("api", "database");
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     auto deps = graph.get_dependencies("api");
@@ -205,8 +205,8 @@ TEST_F(HealthMonitoringTest, HealthDependencyGraphCycleDetection) {
     
     // Try to add the cyclic dependency
     auto result = graph.add_dependency("C", "A");
-    ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::invalid_state);
+    ASSERT_FALSE(result.is_ok());
+    EXPECT_EQ(result.error().code, monitoring_error_code::invalid_state);
 }
 
 TEST_F(HealthMonitoringTest, HealthDependencyGraphTopologicalSort) {
@@ -312,23 +312,23 @@ TEST_F(HealthMonitoringTest, HealthMonitorRegisterUnregister) {
     
     // Register check
     auto result = monitor.register_check("test", check);
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     // Try to register again
     result = monitor.register_check("test", check);
-    ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::already_exists);
+    ASSERT_FALSE(result.is_ok());
+    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);
     
     // Unregister
     result = monitor.unregister_check("test");
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     // Try to unregister non-existent
     result = monitor.unregister_check("test");
-    ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);
+    ASSERT_FALSE(result.is_ok());
+    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);
 }
 
 TEST_F(HealthMonitoringTest, HealthMonitorStartStop) {
@@ -338,15 +338,15 @@ TEST_F(HealthMonitoringTest, HealthMonitorStartStop) {
     EXPECT_FALSE(monitor.is_running());
     
     auto result = monitor.start();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(monitor.is_running());
     
     // Start again (should succeed)
     result = monitor.start();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     result = monitor.stop();
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_FALSE(monitor.is_running());
 }
 
@@ -361,14 +361,14 @@ TEST_F(HealthMonitoringTest, HealthMonitorCheckSpecific) {
     monitor.register_check("specific", check);
     
     auto result = monitor.check("specific");
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_EQ(result.value().status, health_status::healthy);
     EXPECT_EQ(result.value().message, "Ready to serve");
     
     // Check non-existent
     result = monitor.check("non_existent");
-    ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::not_found);
+    ASSERT_FALSE(result.is_ok());
+    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);
 }
 
 TEST_F(HealthMonitoringTest, HealthMonitorCheckAll) {
@@ -433,13 +433,13 @@ TEST_F(HealthMonitoringTest, HealthMonitorDependencies) {
     
     // Add dependency: api depends on database
     auto result = monitor.add_dependency("api", "database");
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     EXPECT_TRUE(result.value());
     
     // Database failure should affect api check
     db_check->set_status(health_status::unhealthy);
     auto check_result = monitor.check("api");
-    ASSERT_TRUE(check_result.has_value());
+    ASSERT_TRUE(check_result.is_ok());
     // API should be affected by database failure
 }
 
@@ -519,7 +519,7 @@ TEST_F(HealthMonitoringTest, GlobalHealthMonitor) {
     
     auto check = std::make_shared<test_health_check>("global_check", health_check_type::liveness);
     auto result = global.register_check("global_test", check);
-    ASSERT_TRUE(result.has_value());
+    ASSERT_TRUE(result.is_ok());
     
     // Cleanup
     global.unregister_check("global_test");

@@ -308,12 +308,12 @@ TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerUninitializedExport) {
     
     auto export_result = compatibility_layer->export_spans(spans);
     EXPECT_FALSE(export_result);
-    EXPECT_EQ(export_result.get_error().code, monitoring_error_code::invalid_state);
+    EXPECT_EQ(export_result.error().code, monitoring_error_code::invalid_state);
     
     monitoring_data data("test");
     auto metrics_export_result = compatibility_layer->export_metrics(data);
     EXPECT_FALSE(metrics_export_result);
-    EXPECT_EQ(metrics_export_result.get_error().code, monitoring_error_code::invalid_state);
+    EXPECT_EQ(metrics_export_result.error().code, monitoring_error_code::invalid_state);
 }
 
 TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerResourceAccess) {

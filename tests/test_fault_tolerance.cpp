@@ -90,7 +90,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerOpensAfterFailures) {
     auto result = breaker.execute([this]() { return always_failing_operation(); });
     EXPECT_FALSE(result);
     EXPECT_EQ(call_count.load(), 3); // Should not increment
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::circuit_breaker_open);
+    EXPECT_EQ(result.error().code, monitoring_error_code::circuit_breaker_open);
 }
 
 TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenTransition) {
@@ -333,7 +333,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerWithTimeout) {
     );
     
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.get_error().code, monitoring_error_code::operation_timeout);
+    EXPECT_EQ(result.error().code, monitoring_error_code::operation_timeout);
 }
 
 TEST_F(FaultToleranceTest, FaultToleranceManagerMetrics) {
@@ -508,7 +508,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerConcurrency) {
         threads.emplace_back([&breaker, &successful_operations, operations_per_thread]() {
             for (int j = 0; j < operations_per_thread; ++j) {
                 auto result = breaker.execute([]() { return make_success(1); });
-                if (result) {
+                if (result.is_ok()) {
                     successful_operations++;
                 }
             }

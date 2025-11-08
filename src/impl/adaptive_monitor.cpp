@@ -45,7 +45,7 @@ struct adaptive_monitor::monitor_impl {
             // Get current system metrics
             if (sys_monitor) {
                 auto metrics_result = sys_monitor->get_current_metrics();
-                if (metrics_result) {
+                if (metrics_result.is_ok()) {
                     const auto& sys_metrics = metrics_result.value();
                     
                     // Adapt all collectors
@@ -160,11 +160,12 @@ kcenon::monitoring::result<bool> adaptive_monitor::start() {
     
     // Start system monitoring
     auto sys_result = impl_->sys_monitor->start_monitoring();
-    if (!sys_result) {
+    if (sys_result.is_err()) {
         impl_->running = false;
+        auto& err = sys_result.error();
         return kcenon::monitoring::make_error<bool>(
-            sys_result.get_error().code,
-            "Failed to start system monitoring: " + sys_result.get_error().message
+            static_cast<monitoring_error_code>(err.code),
+            "Failed to start system monitoring: " + err.message
         );
     }
     
@@ -257,10 +258,11 @@ kcenon::monitoring::result<bool> adaptive_monitor::force_adaptation() {
     }
     
     auto metrics_result = impl_->sys_monitor->get_current_metrics();
-    if (!metrics_result) {
+    if (metrics_result.is_err()) {
+        auto& err = metrics_result.error();
         return kcenon::monitoring::make_error<bool>(
-            metrics_result.get_error().code,
-            "Failed to get system metrics: " + metrics_result.get_error().message
+            static_cast<monitoring_error_code>(err.code),
+            "Failed to get system metrics: " + err.message
         );
     }
     
