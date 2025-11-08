@@ -158,8 +158,81 @@ jobs:
 
     - name: Check for performance regression
       run: |
-        echo "Performance regression detection: TBD"
-        echo "Will be implemented in Phase 1 with baseline establishment"
+        cd monitoring_system
+        echo "# Performance Regression Analysis" | tee -a $GITHUB_STEP_SUMMARY
+        echo "" | tee -a $GITHUB_STEP_SUMMARY
+
+        # Extract key metrics from benchmark results
+        RESULTS="build/benchmarks/benchmark_results_${{ matrix.os }}.json"
+
+        if [ -f "$RESULTS" ]; then
+          # Define regression thresholds (based on docs/PERFORMANCE_BASELINE.md)
+          # Recording (single): 292 ns baseline, 350 ns max (20% regression)
+          # Recording (concurrent): 1094 ns baseline, 1200 ns max (10% regression)
+          # Scoped timer: 326 ns baseline, 400 ns max (23% regression)
+
+          # Extract mean values using jq
+          RECORDING_SINGLE=$(jq -r '.benchmarks[] | select(.name == "BM_ProfilerRecording_Single_mean") | .cpu_time' "$RESULTS" || echo "0")
+          RECORDING_CONCURRENT=$(jq -r '.benchmarks[] | select(.name == "BM_ProfilerRecording_Concurrent/threads:4_mean") | .cpu_time' "$RESULTS" || echo "0")
+          SCOPED_TIMER=$(jq -r '.benchmarks[] | select(.name == "BM_ScopedTimer_Overhead_mean") | .cpu_time' "$RESULTS" || echo "0")
+
+          echo "## Measured Performance (${{ matrix.os }})" | tee -a $GITHUB_STEP_SUMMARY
+          echo "" | tee -a $GITHUB_STEP_SUMMARY
+          echo "| Metric | Current | Baseline | Threshold | Status |" | tee -a $GITHUB_STEP_SUMMARY
+          echo "|--------|---------|----------|-----------|--------|" | tee -a $GITHUB_STEP_SUMMARY
+
+          REGRESSION_DETECTED=0
+
+          # Check Recording Single
+          if [ "$RECORDING_SINGLE" != "0" ]; then
+            echo -n "| Recording (single) | ${RECORDING_SINGLE} ns | 292 ns | 350 ns | " | tee -a $GITHUB_STEP_SUMMARY
+            if (( $(echo "$RECORDING_SINGLE > 350" | bc -l) )); then
+              echo "❌ **REGRESSION**" | tee -a $GITHUB_STEP_SUMMARY
+              REGRESSION_DETECTED=1
+            else
+              echo "✅ Pass |" | tee -a $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+          # Check Recording Concurrent
+          if [ "$RECORDING_CONCURRENT" != "0" ]; then
+            echo -n "| Recording (concurrent) | ${RECORDING_CONCURRENT} ns | 921 ns | 1200 ns | " | tee -a $GITHUB_STEP_SUMMARY
+            if (( $(echo "$RECORDING_CONCURRENT > 1200" | bc -l) )); then
+              echo "❌ **REGRESSION** |" | tee -a $GITHUB_STEP_SUMMARY
+              REGRESSION_DETECTED=1
+            else
+              echo "✅ Pass |" | tee -a $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+          # Check Scoped Timer
+          if [ "$SCOPED_TIMER" != "0" ]; then
+            echo -n "| Scoped timer | ${SCOPED_TIMER} ns | 326 ns | 400 ns | " | tee -a $GITHUB_STEP_SUMMARY
+            if (( $(echo "$SCOPED_TIMER > 400" | bc -l) )); then
+              echo "❌ **REGRESSION** |" | tee -a $GITHUB_STEP_SUMMARY
+              REGRESSION_DETECTED=1
+            else
+              echo "✅ Pass |" | tee -a $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+          echo "" | tee -a $GITHUB_STEP_SUMMARY
+
+          if [ $REGRESSION_DETECTED -eq 1 ]; then
+            echo "## ⚠️ Performance Regression Detected!" | tee -a $GITHUB_STEP_SUMMARY
+            echo "" | tee -a $GITHUB_STEP_SUMMARY
+            echo "One or more benchmarks exceeded regression thresholds." | tee -a $GITHUB_STEP_SUMMARY
+            echo "Review changes and optimize before merging." | tee -a $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "## ✅ No Performance Regression Detected" | tee -a $GITHUB_STEP_SUMMARY
+            echo "" | tee -a $GITHUB_STEP_SUMMARY
+            echo "All benchmarks within acceptable thresholds." | tee -a $GITHUB_STEP_SUMMARY
+          fi
+        else
+          echo "❌ Benchmark results file not found" | tee -a $GITHUB_STEP_SUMMARY
+          exit 1
+        fi
 
   report:
     name: Generate Benchmark Report
@@ -192,6 +265,7 @@ jobs:
         done
 
         echo "## Next Steps" >> $GITHUB_STEP_SUMMARY
-        echo "- Review benchmark results" >> $GITHUB_STEP_SUMMARY
-        echo "- Document baseline in docs/BASELINE.md" >> $GITHUB_STEP_SUMMARY
-        echo "- Set performance targets for Phase 1" >> $GITHUB_STEP_SUMMARY
+        echo "- Review benchmark results in artifacts" >> $GITHUB_STEP_SUMMARY
+        echo "- Baseline documented in docs/PERFORMANCE_BASELINE.md" >> $GITHUB_STEP_SUMMARY
+        echo "- Performance regression detection active" >> $GITHUB_STEP_SUMMARY
+        echo "- Sprint 2 optimization targets defined" >> $GITHUB_STEP_SUMMARY
