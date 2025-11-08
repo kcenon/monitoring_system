@@ -539,12 +539,23 @@ private:
   - Enabled Google Benchmark integration
   - Fixed namespace issues in benchmark files
   - Successfully built monitoring_benchmarks target
-- [ ] **Task 1.3**: Baseline performance measurement
-- [ ] **Task 1.4**: Integrate benchmarks into CI
+- [x] **Task 1.3**: Baseline performance measurement ✅ (2025-11-08)
+  - Executed comprehensive benchmark suite with 3 repetitions
+  - Created docs/PERFORMANCE_BASELINE.md with detailed metrics
+  - Single-threaded recording: 292 ns (~3.43M ops/sec)
+  - Concurrent recording (4 threads): 1,094 ns real / 921 ns CPU
+  - Scoped timer overhead: 326 ns (~3.07M ops/sec)
+  - Established Sprint 2 optimization targets (>5M ops/sec)
+- [x] **Task 1.4**: Integrate benchmarks into CI ✅ (2025-11-08)
+  - Enhanced .github/workflows/benchmarks.yml with regression detection
+  - Implemented automatic threshold checks (20% for single, 10% for concurrent)
+  - CI will fail on performance regression beyond thresholds
+  - Baseline documented: Recording <350ns, Concurrent <1200ns, Timer <400ns
+  - Multi-platform support (Ubuntu, macOS)
 
 **Resources**: 1 developer (Senior)
 **Risk Level**: Low
-**Status**: 50% Complete (2/4 tasks done)
+**Status**: ✅ **100% COMPLETE** (4/4 tasks done)
 
 ---
 
