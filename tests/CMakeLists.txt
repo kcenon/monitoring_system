@@ -27,6 +27,7 @@ add_executable(monitoring_system_tests
     test_di_container.cpp
     test_monitorable_interface.cpp
     test_thread_context_simple.cpp
+    test_lock_free_collector.cpp  # Sprint 3-4: Lock-free collector integration tests
 
     # Other tests temporarily disabled due to missing implementations
     # test_distributed_tracing.cpp
