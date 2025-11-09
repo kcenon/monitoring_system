@@ -129,6 +129,9 @@ private:
     std::atomic<bool> enabled_{true};
     std::size_t max_samples_per_operation_{10000};
     std::size_t max_profiles_{10000};  // LRU eviction threshold
+
+    // Lock-free collection path (Sprint 3-4)
+    bool use_lock_free_path_{false};
     
 public:
     /**
@@ -177,6 +180,27 @@ public:
      */
     void set_max_samples(std::size_t max_samples) {
         max_samples_per_operation_ = max_samples;
+    }
+
+    /**
+     * @brief Enable lock-free collection path (Sprint 3-4)
+     *
+     * When enabled, uses thread-local buffers for lock-free metric collection.
+     * This provides significantly better performance under high concurrency.
+     *
+     * @param enable true to enable lock-free path, false for legacy path
+     * @note Lock-free path is experimental in Sprint 3-4
+     */
+    void set_lock_free_mode(bool enable) {
+        use_lock_free_path_ = enable;
+    }
+
+    /**
+     * @brief Check if lock-free mode is enabled
+     * @return true if lock-free mode is active
+     */
+    bool is_lock_free_mode() const {
+        return use_lock_free_path_;
     }
 };
 

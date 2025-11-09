@@ -224,6 +224,8 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
             src/context/thread_context.cpp
             src/impl/tracing/distributed_tracer.cpp
             src/core/performance_monitor.cpp
+            src/core/thread_local_buffer.cpp
+            src/core/central_collector.cpp
             src/impl/adaptive_monitor.cpp
         )
 
@@ -241,6 +243,8 @@ else()
         src/context/thread_context.cpp
         src/impl/tracing/distributed_tracer.cpp
         src/core/performance_monitor.cpp
+        src/core/thread_local_buffer.cpp
+        src/core/central_collector.cpp
         src/impl/adaptive_monitor.cpp
     )
 
