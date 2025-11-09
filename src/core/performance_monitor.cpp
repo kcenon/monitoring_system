@@ -287,19 +287,11 @@ result<system_metrics> system_monitor::get_current_metrics() const {
 
 #elif defined(__linux__)
     // Linux implementation using /proc filesystem
-    // TODO: Implement Linux-specific metrics collection
-    return make_error<system_metrics>(
-        monitoring_error_code::system_resource_unavailable,
-        "Linux platform metrics not yet implemented. "
-        "Please contribute implementation using /proc filesystem.");
+    return get_linux_system_metrics();
 
 #elif defined(_WIN32)
-    // Windows implementation using Performance Counters
-    // TODO: Implement Windows-specific metrics collection
-    return make_error<system_metrics>(
-        monitoring_error_code::system_resource_unavailable,
-        "Windows platform metrics not yet implemented. "
-        "Please contribute implementation using PDH (Performance Data Helper).");
+    // Windows implementation using PDH (Performance Data Helper)
+    return get_windows_system_metrics();
 
 #else
     // Unknown platform
