@@ -2,6 +2,11 @@
 
 #if defined(_WIN32)
 
+// Define NOMINMAX before including windows.h to prevent min/max macro conflicts
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 #include <windows.h>
 #include <pdh.h>
 #include <pdhmsg.h>
@@ -9,6 +14,7 @@
 #include <tlhelp32.h>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 // Link with Pdh.lib for PDH functions
 #pragma comment(lib, "pdh.lib")
