@@ -623,13 +623,19 @@ private:
   - Implemented thread counting via /proc/self/task
   - All tests passing (44 unit + 49 integration)
   - **Commit**: 84f96f52b "feat: implement Linux platform support for system metrics"
-- [ ] **Task 5.2**: Integrate Windows PDH API
-- [ ] **Task 5.3**: Platform abstraction layer
+- [x] **Task 5.2**: Integrate Windows PDH API ✅ (2025-11-09)
+  - Created src/platform/windows_metrics.cpp with full Windows support
+  - Implemented CPU usage via PDH Performance Counters
+  - Implemented memory metrics via GlobalMemoryStatusEx
+  - Implemented thread counting via CreateToolhelp32Snapshot
+  - All tests passing (44 unit + 49 integration)
+  - **Commit**: f9e6fc4a6 "feat: implement Windows platform support for system metrics"
+- [ ] **Task 5.3**: Platform abstraction layer (Optional - already well separated)
 - [ ] **Task 5.4**: Expand CI matrix (Ubuntu, Windows)
 
 **Resources**: 2 developers (1 Linux expert, 1 Windows expert)
 **Risk Level**: Medium
-**Status**: ⚠️ **IN PROGRESS** (Task 5.1 completed)
+**Status**: ⚠️ **IN PROGRESS** (Task 5.1-5.2 completed)
 
 ---
 
