@@ -6,6 +6,7 @@
 #include <kcenon/monitoring/core/central_collector.h>
 #include <algorithm>
 #include <limits>
+#include <mutex>
 
 namespace kcenon { namespace monitoring {
 
