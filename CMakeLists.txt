@@ -227,6 +227,8 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
             src/core/thread_local_buffer.cpp
             src/core/central_collector.cpp
             src/impl/adaptive_monitor.cpp
+            src/platform/linux_metrics.cpp
+            src/platform/windows_metrics.cpp
         )
 
         target_include_directories(monitoring_system
@@ -246,6 +248,8 @@ else()
         src/core/thread_local_buffer.cpp
         src/core/central_collector.cpp
         src/impl/adaptive_monitor.cpp
+        src/platform/linux_metrics.cpp
+        src/platform/windows_metrics.cpp
     )
 
     target_include_directories(monitoring_system
