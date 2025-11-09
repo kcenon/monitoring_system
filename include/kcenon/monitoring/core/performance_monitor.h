@@ -529,4 +529,21 @@ public:
     }
 };
 
+// Platform-specific system metrics collection functions
+#if defined(__linux__)
+/**
+ * @brief Get system metrics on Linux using /proc filesystem
+ * @return System metrics or error
+ */
+result<system_metrics> get_linux_system_metrics();
+#endif
+
+#if defined(_WIN32)
+/**
+ * @brief Get system metrics on Windows using PDH API
+ * @return System metrics or error
+ */
+result<system_metrics> get_windows_system_metrics();
+#endif
+
 } } // namespace kcenon::monitoring
