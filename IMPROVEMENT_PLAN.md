@@ -616,13 +616,20 @@ private:
 ### Sprint 5-6: Platform Support (Week 9-12)
 **Goal**: Linux/Windows support
 
-- [ ] **Task 5.1**: Implement Linux /proc parsing
+- [x] **Task 5.1**: Implement Linux /proc parsing ✅ (2025-11-09)
+  - Created src/platform/linux_metrics.cpp with full Linux support
+  - Implemented CPU usage via /proc/stat
+  - Implemented memory metrics via /proc/meminfo
+  - Implemented thread counting via /proc/self/task
+  - All tests passing (44 unit + 49 integration)
+  - **Commit**: 84f96f52b "feat: implement Linux platform support for system metrics"
 - [ ] **Task 5.2**: Integrate Windows PDH API
 - [ ] **Task 5.3**: Platform abstraction layer
 - [ ] **Task 5.4**: Expand CI matrix (Ubuntu, Windows)
 
 **Resources**: 2 developers (1 Linux expert, 1 Windows expert)
 **Risk Level**: Medium
+**Status**: ⚠️ **IN PROGRESS** (Task 5.1 completed)
 
 ---
 
