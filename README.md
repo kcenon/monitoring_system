@@ -9,7 +9,7 @@
 
 ## Overview
 
-The Monitoring System Project is a production-ready, comprehensive C++20 observability platform designed to provide enterprise-grade monitoring, tracing, and reliability capabilities for high-performance applications. Built with a modular, interface-based architecture and seamless integration with the thread system ecosystem, it delivers real-time insights with minimal overhead and maximum scalability.
+The Monitoring System Project is a production-ready, comprehensive C++17 observability platform with optional C++20 features, designed to provide enterprise-grade monitoring, tracing, and reliability capabilities for high-performance applications. Built with a modular, interface-based architecture and seamless integration with the thread system ecosystem, it delivers real-time insights with minimal overhead and maximum scalability.
 
 > **🏗️ Modular Architecture**: Comprehensive monitoring platform with pluggable components for metrics, tracing, health checks, and reliability patterns.
 
@@ -79,7 +79,7 @@ This project addresses the fundamental challenge faced by developers worldwide: 
 ### 🌐 **Cross-Platform Compatibility**
 - **Universal support**: Works on Windows, Linux, and macOS
 - **Compiler flexibility**: Compatible with GCC, Clang, and MSVC
-- **C++ standard adaptation**: Leverages C++20 features with graceful fallback
+- **C++ standard adaptation**: C++17 minimum with optional C++20 feature detection
 - **Architecture independence**: Optimized for both x86 and ARM processors
 
 ### 📈 **Enterprise-Ready Features**
@@ -140,7 +140,7 @@ This project addresses the fundamental challenge faced by developers worldwide: 
 - **Dependency Injection**: Complete container with lifecycle management
 
 ### 🔧 Technical Highlights
-- **Modern C++20**: Leverages latest language features (concepts, coroutines, std::format)
+- **Modern C++17**: C++17 minimum with optional C++20 features (automatic feature detection)
 - **Cross-Platform**: Windows, Linux, and macOS support
 - **Thread-Safe**: Concurrent operations with atomic counters and locks
 - **Modular Design**: Plugin-based architecture with optional integrations
@@ -208,7 +208,7 @@ ILogger injection (runtime DI)
 ## Technology Stack & Architecture
 
 ### 🏗️ **Modern C++ Foundation**
-- **C++20 features**: Concepts, coroutines, `std::format`, and ranges for enhanced performance
+- **C++17 compatibility**: C++17 minimum with optional C++20 feature detection (std::format, concepts, jthread)
 - **Template metaprogramming**: Type-safe, compile-time optimizations
 - **Memory management**: Smart pointers and RAII for automatic resource cleanup
 - **Exception safety**: Strong exception safety guarantees throughout
@@ -568,7 +568,7 @@ Our samples demonstrate real-world usage patterns and best practices:
 ### 🛠️ **Build & Integration**
 
 #### Prerequisites
-- **Compiler**: C++20 capable (GCC 11+, Clang 14+, MSVC 2019+)
+- **Compiler**: C++17 capable (GCC 7+, Clang 5+, MSVC 2017+) - C++20 recommended for enhanced features
 - **Build System**: CMake 3.16+
 - **Testing**: Google Test (automatically fetched)
 
