@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.20)
 project(monitoring_system VERSION 2.0.0 LANGUAGES CXX)
 
 # C++ standard requirements
-# C++20 is required (unified across all systems)
-set(CMAKE_CXX_STANDARD 20)
-message(STATUS "Monitoring System: Using C++20 mode - Enhanced features enabled")
+# C++17 minimum with optional C++20 features
+set(CMAKE_CXX_STANDARD 17)
+message(STATUS "Monitoring System: Using C++17 mode with optional C++20 feature detection")
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
