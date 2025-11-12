@@ -164,19 +164,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   58</span>                                                 {</div>
-<div class="line"><span class="lineno">   59</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(10);</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keyword">auto</span> chained = result.and_then([](<span class="keywordtype">int</span> x) {</div>
-<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">if</span> (x &gt; 5) {</div>
-<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Large&quot;</span>);</div>
-<div class="line"><span class="lineno">   63</span>        }</div>
-<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> make_error&lt;std::string&gt;(monitoring_error_code::invalid_configuration);</div>
-<div class="line"><span class="lineno">   65</span>    });</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    EXPECT_TRUE(chained.is_ok());</div>
-<div class="line"><span class="lineno">   68</span>    EXPECT_EQ(chained.value(), <span class="stringliteral">&quot;Large&quot;</span>);</div>
-<div class="line"><span class="lineno">   69</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00087">87</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   87</span>                                                 {</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(10);</div>
+<div class="line"><span class="lineno">   89</span>    <span class="keyword">auto</span> chained = result.and_then([](<span class="keywordtype">int</span> x) {</div>
+<div class="line"><span class="lineno">   90</span>        <span class="keywordflow">if</span> (x &gt; 5) {</div>
+<div class="line"><span class="lineno">   91</span>            <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Large&quot;</span>);</div>
+<div class="line"><span class="lineno">   92</span>        }</div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">return</span> make_error&lt;std::string&gt;(monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">   94</span>    });</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>    EXPECT_TRUE(chained.is_ok());</div>
+<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(chained.value(), <span class="stringliteral">&quot;Large&quot;</span>);</div>
+<div class="line"><span class="lineno">   98</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -206,13 +206,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   86</span>                                           {</div>
-<div class="line"><span class="lineno">   87</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::success), <span class="stringliteral">&quot;Success&quot;</span>);</div>
-<div class="line"><span class="lineno">   88</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::collector_not_found), <span class="stringliteral">&quot;Collector not found&quot;</span>);</div>
-<div class="line"><span class="lineno">   89</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::storage_full), <span class="stringliteral">&quot;Storage is full&quot;</span>);</div>
-<div class="line"><span class="lineno">   90</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;Invalid configuration&quot;</span>);</div>
-<div class="line"><span class="lineno">   91</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00115">115</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>                                           {</div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::success), <span class="stringliteral">&quot;Success&quot;</span>);</div>
+<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::collector_not_found), <span class="stringliteral">&quot;Collector not found&quot;</span>);</div>
+<div class="line"><span class="lineno">  118</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::storage_full), <span class="stringliteral">&quot;Storage is full&quot;</span>);</div>
+<div class="line"><span class="lineno">  119</span>    EXPECT_EQ(error_code_to_string(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;Invalid configuration&quot;</span>);</div>
+<div class="line"><span class="lineno">  120</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,20 +242,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   93</span>                                              {</div>
-<div class="line"><span class="lineno">   94</span>    <span class="keyword">auto</span> result = make_error_with_context&lt;int&gt;(</div>
-<div class="line"><span class="lineno">   95</span>        monitoring_error_code::collection_failed,</div>
-<div class="line"><span class="lineno">   96</span>        <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>,</div>
-<div class="line"><span class="lineno">   97</span>        <span class="stringliteral">&quot;CPU collector timeout&quot;</span></div>
-<div class="line"><span class="lineno">   98</span>    );</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  101</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collection_failed);</div>
-<div class="line"><span class="lineno">  102</span>    EXPECT_EQ(result.error().message, <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>);</div>
-<div class="line"><span class="lineno">  103</span>    EXPECT_TRUE(result.error().details.has_value());</div>
-<div class="line"><span class="lineno">  104</span>    EXPECT_EQ(result.error().details.value(), <span class="stringliteral">&quot;CPU collector timeout&quot;</span>);</div>
-<div class="line"><span class="lineno">  105</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00122">122</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  122</span>                                              {</div>
+<div class="line"><span class="lineno">  123</span>    <span class="keyword">auto</span> result = make_error_with_context&lt;int&gt;(</div>
+<div class="line"><span class="lineno">  124</span>        monitoring_error_code::collection_failed,</div>
+<div class="line"><span class="lineno">  125</span>        <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>,</div>
+<div class="line"><span class="lineno">  126</span>        <span class="stringliteral">&quot;CPU collector timeout&quot;</span></div>
+<div class="line"><span class="lineno">  127</span>    );</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  130</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collection_failed);</div>
+<div class="line"><span class="lineno">  131</span>    EXPECT_EQ(result.error().message, <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>);</div>
+<div class="line"><span class="lineno">  132</span>    EXPECT_TRUE(result.error().details.has_value());</div>
+<div class="line"><span class="lineno">  133</span>    EXPECT_EQ(result.error().details.value(), <span class="stringliteral">&quot;CPU collector timeout&quot;</span>);</div>
+<div class="line"><span class="lineno">  134</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -285,15 +285,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00025">25</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   25</span>                                                  {</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keyword">auto</span> result = make_error&lt;int&gt;(monitoring_error_code::collector_not_found, <span class="stringliteral">&quot;Test error&quot;</span>);</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">   29</span>    EXPECT_TRUE(result.is_err());</div>
-<div class="line"><span class="lineno">   30</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collector_not_found);</div>
-<div class="line"><span class="lineno">   31</span>    EXPECT_EQ(result.error().message, <span class="stringliteral">&quot;Test error&quot;</span>);</div>
-<div class="line"><span class="lineno">   32</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00054">54</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>                                                  {</div>
+<div class="line"><span class="lineno">   55</span>    <span class="keyword">auto</span> result = make_error&lt;int&gt;(monitoring_error_code::collector_not_found, <span class="stringliteral">&quot;Test error&quot;</span>);</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">   58</span>    EXPECT_TRUE(result.is_err());</div>
+<div class="line"><span class="lineno">   59</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collector_not_found);</div>
+<div class="line"><span class="lineno">   60</span>    EXPECT_EQ(result.error().message, <span class="stringliteral">&quot;Test error&quot;</span>);</div>
+<div class="line"><span class="lineno">   61</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,21 +323,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  153</span>                                           {</div>
-<div class="line"><span class="lineno">  154</span>    health_check_result health;</div>
-<div class="line"><span class="lineno">  155</span>    </div>
-<div class="line"><span class="lineno">  156</span>    EXPECT_EQ(health.status, health_status::unknown);</div>
-<div class="line"><span class="lineno">  157</span>    EXPECT_FALSE(health.is_healthy());</div>
-<div class="line"><span class="lineno">  158</span>    </div>
-<div class="line"><span class="lineno">  159</span>    health.status = health_status::healthy;</div>
-<div class="line"><span class="lineno">  160</span>    EXPECT_TRUE(health.is_healthy());</div>
-<div class="line"><span class="lineno">  161</span>    </div>
-<div class="line"><span class="lineno">  162</span>    health.status = health_status::degraded;</div>
-<div class="line"><span class="lineno">  163</span>    health.issues.push_back(<span class="stringliteral">&quot;High memory usage&quot;</span>);</div>
-<div class="line"><span class="lineno">  164</span>    EXPECT_FALSE(health.is_healthy());</div>
-<div class="line"><span class="lineno">  165</span>    EXPECT_EQ(health.issues.size(), 1);</div>
-<div class="line"><span class="lineno">  166</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00182">182</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  182</span>                                           {</div>
+<div class="line"><span class="lineno">  183</span>    health_check_result health;</div>
+<div class="line"><span class="lineno">  184</span>    </div>
+<div class="line"><span class="lineno">  185</span>    EXPECT_EQ(health.status, health_status::unknown);</div>
+<div class="line"><span class="lineno">  186</span>    EXPECT_FALSE(health.is_healthy());</div>
+<div class="line"><span class="lineno">  187</span>    </div>
+<div class="line"><span class="lineno">  188</span>    health.status = health_status::healthy;</div>
+<div class="line"><span class="lineno">  189</span>    EXPECT_TRUE(health.is_healthy());</div>
+<div class="line"><span class="lineno">  190</span>    </div>
+<div class="line"><span class="lineno">  191</span>    health.status = health_status::degraded;</div>
+<div class="line"><span class="lineno">  192</span>    health.issues.push_back(<span class="stringliteral">&quot;High memory usage&quot;</span>);</div>
+<div class="line"><span class="lineno">  193</span>    EXPECT_FALSE(health.is_healthy());</div>
+<div class="line"><span class="lineno">  194</span>    EXPECT_EQ(health.issues.size(), 1);</div>
+<div class="line"><span class="lineno">  195</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -367,14 +367,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00050">50</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   50</span>                                            {</div>
-<div class="line"><span class="lineno">   51</span>    <span class="keyword">auto</span> result = make_error&lt;int&gt;(monitoring_error_code::invalid_configuration);</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keyword">auto</span> mapped = result.map([](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span> x * 2; });</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    EXPECT_FALSE(mapped.is_ok());</div>
-<div class="line"><span class="lineno">   55</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(mapped.error().code), monitoring_error_code::invalid_configuration);</div>
-<div class="line"><span class="lineno">   56</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00079">79</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   79</span>                                            {</div>
+<div class="line"><span class="lineno">   80</span>    <span class="keyword">auto</span> result = make_error&lt;int&gt;(monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keyword">auto</span> mapped = result.map([](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span> x * 2; });</div>
+<div class="line"><span class="lineno">   82</span> </div>
+<div class="line"><span class="lineno">   83</span>    EXPECT_FALSE(mapped.is_ok());</div>
+<div class="line"><span class="lineno">   84</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(mapped.error().code), monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">   85</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -404,14 +404,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00042">42</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   42</span>                                                   {</div>
-<div class="line"><span class="lineno">   43</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(10);</div>
-<div class="line"><span class="lineno">   44</span>    <span class="keyword">auto</span> mapped = result.map([](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span> x * 2; });</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    EXPECT_TRUE(mapped.is_ok());</div>
-<div class="line"><span class="lineno">   47</span>    EXPECT_EQ(mapped.value(), 20);</div>
-<div class="line"><span class="lineno">   48</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                   {</div>
+<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(10);</div>
+<div class="line"><span class="lineno">   73</span>    <span class="keyword">auto</span> mapped = result.map([](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span> x * 2; });</div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>    EXPECT_TRUE(mapped.is_ok());</div>
+<div class="line"><span class="lineno">   76</span>    EXPECT_EQ(mapped.value(), 20);</div>
+<div class="line"><span class="lineno">   77</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -441,21 +441,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00107">107</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  107</span>                                                   {</div>
-<div class="line"><span class="lineno">  108</span>    metrics_snapshot snapshot;</div>
-<div class="line"><span class="lineno">  109</span>    snapshot.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 45.5);</div>
-<div class="line"><span class="lineno">  110</span>    snapshot.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 2048.0);</div>
-<div class="line"><span class="lineno">  111</span>    </div>
-<div class="line"><span class="lineno">  112</span>    EXPECT_EQ(snapshot.metrics.size(), 2);</div>
-<div class="line"><span class="lineno">  113</span>    </div>
-<div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> cpu = snapshot.get_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
-<div class="line"><span class="lineno">  115</span>    EXPECT_TRUE(cpu.has_value());</div>
-<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(cpu.value(), 45.5);</div>
-<div class="line"><span class="lineno">  117</span>    </div>
-<div class="line"><span class="lineno">  118</span>    <span class="keyword">auto</span> unknown = snapshot.get_metric(<span class="stringliteral">&quot;unknown_metric&quot;</span>);</div>
-<div class="line"><span class="lineno">  119</span>    EXPECT_FALSE(unknown.has_value());</div>
-<div class="line"><span class="lineno">  120</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00136">136</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  136</span>                                                   {</div>
+<div class="line"><span class="lineno">  137</span>    metrics_snapshot snapshot;</div>
+<div class="line"><span class="lineno">  138</span>    snapshot.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 45.5);</div>
+<div class="line"><span class="lineno">  139</span>    snapshot.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 2048.0);</div>
+<div class="line"><span class="lineno">  140</span>    </div>
+<div class="line"><span class="lineno">  141</span>    EXPECT_EQ(snapshot.metrics.size(), 2);</div>
+<div class="line"><span class="lineno">  142</span>    </div>
+<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> cpu = snapshot.get_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
+<div class="line"><span class="lineno">  144</span>    EXPECT_TRUE(cpu.has_value());</div>
+<div class="line"><span class="lineno">  145</span>    EXPECT_EQ(cpu.value(), 45.5);</div>
+<div class="line"><span class="lineno">  146</span>    </div>
+<div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> unknown = snapshot.get_metric(<span class="stringliteral">&quot;unknown_metric&quot;</span>);</div>
+<div class="line"><span class="lineno">  148</span>    EXPECT_FALSE(unknown.has_value());</div>
+<div class="line"><span class="lineno">  149</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -485,37 +485,37 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00122">122</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  122</span>                                                    {</div>
-<div class="line"><span class="lineno">  123</span>    monitoring_config config;</div>
-<div class="line"><span class="lineno">  124</span> </div>
-<div class="line"><span class="lineno">  125</span>    <span class="comment">// Valid configuration</span></div>
-<div class="line"><span class="lineno">  126</span>    config.history_size = 100;</div>
-<div class="line"><span class="lineno">  127</span>    config.collection_interval = std::chrono::milliseconds(100);</div>
-<div class="line"><span class="lineno">  128</span>    config.buffer_size = 1000;</div>
-<div class="line"><span class="lineno">  129</span>    <span class="keyword">auto</span> result = config.validate();</div>
-<div class="line"><span class="lineno">  130</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    <span class="comment">// Invalid history size</span></div>
-<div class="line"><span class="lineno">  133</span>    config.history_size = 0;</div>
-<div class="line"><span class="lineno">  134</span>    result = config.validate();</div>
-<div class="line"><span class="lineno">  135</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  136</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
-<div class="line"><span class="lineno">  137</span> </div>
-<div class="line"><span class="lineno">  138</span>    <span class="comment">// Invalid interval</span></div>
-<div class="line"><span class="lineno">  139</span>    config.history_size = 100;</div>
-<div class="line"><span class="lineno">  140</span>    config.collection_interval = std::chrono::milliseconds(5);</div>
-<div class="line"><span class="lineno">  141</span>    result = config.validate();</div>
-<div class="line"><span class="lineno">  142</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  143</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_interval);</div>
-<div class="line"><span class="lineno">  144</span> </div>
-<div class="line"><span class="lineno">  145</span>    <span class="comment">// Invalid buffer size</span></div>
-<div class="line"><span class="lineno">  146</span>    config.collection_interval = std::chrono::milliseconds(100);</div>
-<div class="line"><span class="lineno">  147</span>    config.buffer_size = 50; <span class="comment">// Less than history_size</span></div>
-<div class="line"><span class="lineno">  148</span>    result = config.validate();</div>
-<div class="line"><span class="lineno">  149</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  150</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
-<div class="line"><span class="lineno">  151</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00151">151</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  151</span>                                                    {</div>
+<div class="line"><span class="lineno">  152</span>    monitoring_config config;</div>
+<div class="line"><span class="lineno">  153</span> </div>
+<div class="line"><span class="lineno">  154</span>    <span class="comment">// Valid configuration</span></div>
+<div class="line"><span class="lineno">  155</span>    config.history_size = 100;</div>
+<div class="line"><span class="lineno">  156</span>    config.collection_interval = std::chrono::milliseconds(100);</div>
+<div class="line"><span class="lineno">  157</span>    config.buffer_size = 1000;</div>
+<div class="line"><span class="lineno">  158</span>    <span class="keyword">auto</span> result = config.validate();</div>
+<div class="line"><span class="lineno">  159</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  160</span> </div>
+<div class="line"><span class="lineno">  161</span>    <span class="comment">// Invalid history size</span></div>
+<div class="line"><span class="lineno">  162</span>    config.history_size = 0;</div>
+<div class="line"><span class="lineno">  163</span>    result = config.validate();</div>
+<div class="line"><span class="lineno">  164</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  165</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
+<div class="line"><span class="lineno">  166</span> </div>
+<div class="line"><span class="lineno">  167</span>    <span class="comment">// Invalid interval</span></div>
+<div class="line"><span class="lineno">  168</span>    config.history_size = 100;</div>
+<div class="line"><span class="lineno">  169</span>    config.collection_interval = std::chrono::milliseconds(5);</div>
+<div class="line"><span class="lineno">  170</span>    result = config.validate();</div>
+<div class="line"><span class="lineno">  171</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  172</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_interval);</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>    <span class="comment">// Invalid buffer size</span></div>
+<div class="line"><span class="lineno">  175</span>    config.collection_interval = std::chrono::milliseconds(100);</div>
+<div class="line"><span class="lineno">  176</span>    config.buffer_size = 50; <span class="comment">// Less than history_size</span></div>
+<div class="line"><span class="lineno">  177</span>    result = config.validate();</div>
+<div class="line"><span class="lineno">  178</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  179</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
+<div class="line"><span class="lineno">  180</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -545,14 +545,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00078">78</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   78</span>                                         {</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keyword">auto</span> result = make_void_error(monitoring_error_code::storage_full, <span class="stringliteral">&quot;Storage is full&quot;</span>);</div>
-<div class="line"><span class="lineno">   80</span> </div>
-<div class="line"><span class="lineno">   81</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">   82</span>    EXPECT_TRUE(result.is_err());</div>
-<div class="line"><span class="lineno">   83</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::storage_full);</div>
-<div class="line"><span class="lineno">   84</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00107">107</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  107</span>                                         {</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> result = make_void_error(monitoring_error_code::storage_full, <span class="stringliteral">&quot;Storage is full&quot;</span>);</div>
+<div class="line"><span class="lineno">  109</span> </div>
+<div class="line"><span class="lineno">  110</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  111</span>    EXPECT_TRUE(result.is_err());</div>
+<div class="line"><span class="lineno">  112</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::storage_full);</div>
+<div class="line"><span class="lineno">  113</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -582,13 +582,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>                                           {</div>
-<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> result = make_void_success();</div>
-<div class="line"><span class="lineno">   73</span> </div>
-<div class="line"><span class="lineno">   74</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">   75</span>    EXPECT_FALSE(result.is_err());</div>
-<div class="line"><span class="lineno">   76</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00100">100</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>                                           {</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keyword">auto</span> result = make_void_success();</div>
+<div class="line"><span class="lineno">  102</span> </div>
+<div class="line"><span class="lineno">  103</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  104</span>    EXPECT_FALSE(result.is_err());</div>
+<div class="line"><span class="lineno">  105</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -618,14 +618,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00017">17</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   17</span>                                                    {</div>
-<div class="line"><span class="lineno">   18</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(42);</div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">   21</span>    EXPECT_FALSE(result.is_err());</div>
-<div class="line"><span class="lineno">   22</span>    EXPECT_EQ(result.value(), 42);</div>
-<div class="line"><span class="lineno">   23</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00046">46</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>                                                    {</div>
+<div class="line"><span class="lineno">   47</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(42);</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">   50</span>    EXPECT_FALSE(result.is_err());</div>
+<div class="line"><span class="lineno">   51</span>    EXPECT_EQ(result.value(), 42);</div>
+<div class="line"><span class="lineno">   52</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -655,21 +655,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00034">34</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   34</span>                                                      {</div>
-<div class="line"><span class="lineno">   35</span>    <span class="keyword">auto</span> error_result = make_error&lt;int&gt;(monitoring_error_code::unknown_error);</div>
-<div class="line"><span class="lineno">   36</span>    EXPECT_EQ(error_result.value_or(100), 100);</div>
-<div class="line"><span class="lineno">   37</span>    </div>
-<div class="line"><span class="lineno">   38</span>    <span class="keyword">auto</span> success_result = make_success&lt;int&gt;(42);</div>
-<div class="line"><span class="lineno">   39</span>    EXPECT_EQ(success_result.value_or(100), 42);</div>
-<div class="line"><span class="lineno">   40</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../df/de8/test__result__types_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../df/de8/test__result__types_8cpp_source.html">test_result_types.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>                                                      {</div>
+<div class="line"><span class="lineno">   64</span>    <span class="keyword">auto</span> error_result = make_error&lt;int&gt;(monitoring_error_code::unknown_error);</div>
+<div class="line"><span class="lineno">   65</span>    EXPECT_EQ(error_result.value_or(100), 100);</div>
+<div class="line"><span class="lineno">   66</span>    </div>
+<div class="line"><span class="lineno">   67</span>    <span class="keyword">auto</span> success_result = make_success&lt;int&gt;(42);</div>
+<div class="line"><span class="lineno">   68</span>    EXPECT_EQ(success_result.value_or(100), 42);</div>
+<div class="line"><span class="lineno">   69</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

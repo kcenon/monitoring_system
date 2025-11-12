@@ -133,7 +133,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Example 6: Aggregating monitor pattern. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00296">296</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00325">325</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a4f7f53e822d5e513c7bab75cedaf66a5" name="a4f7f53e822d5e513c7bab75cedaf66a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4f7f53e822d5e513c7bab75cedaf66a5">&#9670;&#160;</a></span>add_monitor()</h2>
@@ -159,13 +159,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00302">302</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  302</span>                                                      {</div>
-<div class="line"><span class="lineno">  303</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
-<div class="line"><span class="lineno">  304</span>        <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>.push_back(monitor);</div>
-<div class="line"><span class="lineno">  305</span>    }</div>
-<div class="ttc" id="aclassaggregating__monitor_html_a3293413df2e5d33cde9fb33bc333e875"><div class="ttname"><a href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">aggregating_monitor::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00299">monitor_factory_pattern_example.cpp:299</a></div></div>
-<div class="ttc" id="aclassaggregating__monitor_html_aca517a13f261a1d2b0ec93d2d40c296f"><div class="ttname"><a href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">aggregating_monitor::monitors_</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; IMonitor &gt; &gt; monitors_</div><div class="ttdef"><b>Definition</b> <a href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00298">monitor_factory_pattern_example.cpp:298</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00331">331</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  331</span>                                                      {</div>
+<div class="line"><span class="lineno">  332</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
+<div class="line"><span class="lineno">  333</span>        <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>.push_back(monitor);</div>
+<div class="line"><span class="lineno">  334</span>    }</div>
+<div class="ttc" id="aclassaggregating__monitor_html_a3293413df2e5d33cde9fb33bc333e875"><div class="ttname"><a href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">aggregating_monitor::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00328">monitor_factory_pattern_example.cpp:328</a></div></div>
+<div class="ttc" id="aclassaggregating__monitor_html_aca517a13f261a1d2b0ec93d2d40c296f"><div class="ttname"><a href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">aggregating_monitor::monitors_</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; IMonitor &gt; &gt; monitors_</div><div class="ttdef"><b>Definition</b> <a href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00327">monitor_factory_pattern_example.cpp:327</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -192,15 +192,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00346">346</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  346</span>                                                              {</div>
-<div class="line"><span class="lineno">  347</span>        health_check_result result;</div>
-<div class="line"><span class="lineno">  348</span>        result.timestamp = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  349</span>        result.status = health_status::healthy;</div>
-<div class="line"><span class="lineno">  350</span>        result.message = <span class="stringliteral">&quot;Aggregating monitor&quot;</span>;</div>
-<div class="line"><span class="lineno">  351</span> </div>
-<div class="line"><span class="lineno">  352</span>        <span class="keywordflow">return</span> common::ok(std::move(result));</div>
-<div class="line"><span class="lineno">  353</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00375">375</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  375</span>                                                              {</div>
+<div class="line"><span class="lineno">  376</span>        health_check_result result;</div>
+<div class="line"><span class="lineno">  377</span>        result.timestamp = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  378</span>        result.status = health_status::healthy;</div>
+<div class="line"><span class="lineno">  379</span>        result.message = <span class="stringliteral">&quot;Aggregating monitor&quot;</span>;</div>
+<div class="line"><span class="lineno">  380</span> </div>
+<div class="line"><span class="lineno">  381</span>        <span class="keywordflow">return</span> common::ok(std::move(result));</div>
+<div class="line"><span class="lineno">  382</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -227,25 +227,25 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00327">327</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  327</span>                                                          {</div>
-<div class="line"><span class="lineno">  328</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
-<div class="line"><span class="lineno">  329</span> </div>
-<div class="line"><span class="lineno">  330</span>        metrics_snapshot combined;</div>
-<div class="line"><span class="lineno">  331</span>        combined.source_id = <span class="stringliteral">&quot;aggregating_monitor&quot;</span>;</div>
-<div class="line"><span class="lineno">  332</span>        combined.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  333</span> </div>
-<div class="line"><span class="lineno">  334</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
-<div class="line"><span class="lineno">  335</span>            <span class="keyword">auto</span> result = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  336</span>            <span class="keywordflow">if</span> (result) {</div>
-<div class="line"><span class="lineno">  337</span>                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : result.value().metrics) {</div>
-<div class="line"><span class="lineno">  338</span>                    combined.metrics.push_back(metric);</div>
-<div class="line"><span class="lineno">  339</span>                }</div>
-<div class="line"><span class="lineno">  340</span>            }</div>
-<div class="line"><span class="lineno">  341</span>        }</div>
-<div class="line"><span class="lineno">  342</span> </div>
-<div class="line"><span class="lineno">  343</span>        <span class="keywordflow">return</span> common::ok(std::move(combined));</div>
-<div class="line"><span class="lineno">  344</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00356">356</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  356</span>                                                          {</div>
+<div class="line"><span class="lineno">  357</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
+<div class="line"><span class="lineno">  358</span> </div>
+<div class="line"><span class="lineno">  359</span>        metrics_snapshot combined;</div>
+<div class="line"><span class="lineno">  360</span>        combined.source_id = <span class="stringliteral">&quot;aggregating_monitor&quot;</span>;</div>
+<div class="line"><span class="lineno">  361</span>        combined.capture_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  362</span> </div>
+<div class="line"><span class="lineno">  363</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
+<div class="line"><span class="lineno">  364</span>            <span class="keyword">auto</span> result = monitor-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  365</span>            <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><span class="lineno">  366</span>                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : result.value().metrics) {</div>
+<div class="line"><span class="lineno">  367</span>                    combined.metrics.push_back(metric);</div>
+<div class="line"><span class="lineno">  368</span>                }</div>
+<div class="line"><span class="lineno">  369</span>            }</div>
+<div class="line"><span class="lineno">  370</span>        }</div>
+<div class="line"><span class="lineno">  371</span> </div>
+<div class="line"><span class="lineno">  372</span>        <span class="keywordflow">return</span> common::ok(std::move(combined));</div>
+<div class="line"><span class="lineno">  373</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -272,11 +272,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00363">363</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  363</span>                                 {</div>
-<div class="line"><span class="lineno">  364</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
-<div class="line"><span class="lineno">  365</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>.size();</div>
-<div class="line"><span class="lineno">  366</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00392">392</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  392</span>                                 {</div>
+<div class="line"><span class="lineno">  393</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
+<div class="line"><span class="lineno">  394</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>.size();</div>
+<div class="line"><span class="lineno">  395</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -314,14 +314,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00307">307</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  307</span>                                                                                 {</div>
-<div class="line"><span class="lineno">  308</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
-<div class="line"><span class="lineno">  309</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
-<div class="line"><span class="lineno">  310</span>            monitor-&gt;record_metric(name, value);</div>
-<div class="line"><span class="lineno">  311</span>        }</div>
-<div class="line"><span class="lineno">  312</span>        <span class="keywordflow">return</span> common::ok();</div>
-<div class="line"><span class="lineno">  313</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00336">336</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  336</span>                                                                                 {</div>
+<div class="line"><span class="lineno">  337</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
+<div class="line"><span class="lineno">  338</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
+<div class="line"><span class="lineno">  339</span>            monitor-&gt;record_metric(name, value);</div>
+<div class="line"><span class="lineno">  340</span>        }</div>
+<div class="line"><span class="lineno">  341</span>        <span class="keywordflow">return</span> common::ok();</div>
+<div class="line"><span class="lineno">  342</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -365,14 +365,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00315">315</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  319</span>    {</div>
-<div class="line"><span class="lineno">  320</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
-<div class="line"><span class="lineno">  321</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
-<div class="line"><span class="lineno">  322</span>            monitor-&gt;record_metric(name, value, tags);</div>
-<div class="line"><span class="lineno">  323</span>        }</div>
-<div class="line"><span class="lineno">  324</span>        <span class="keywordflow">return</span> common::ok();</div>
-<div class="line"><span class="lineno">  325</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00344">344</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  348</span>    {</div>
+<div class="line"><span class="lineno">  349</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
+<div class="line"><span class="lineno">  350</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
+<div class="line"><span class="lineno">  351</span>            monitor-&gt;record_metric(name, value, tags);</div>
+<div class="line"><span class="lineno">  352</span>        }</div>
+<div class="line"><span class="lineno">  353</span>        <span class="keywordflow">return</span> common::ok();</div>
+<div class="line"><span class="lineno">  354</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -399,14 +399,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00355">355</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  355</span>                                      {</div>
-<div class="line"><span class="lineno">  356</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
-<div class="line"><span class="lineno">  357</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
-<div class="line"><span class="lineno">  358</span>            monitor-&gt;reset();</div>
-<div class="line"><span class="lineno">  359</span>        }</div>
-<div class="line"><span class="lineno">  360</span>        <span class="keywordflow">return</span> common::ok();</div>
-<div class="line"><span class="lineno">  361</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00384">384</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  384</span>                                      {</div>
+<div class="line"><span class="lineno">  385</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#a3293413df2e5d33cde9fb33bc333e875">mutex_</a>);</div>
+<div class="line"><span class="lineno">  386</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; monitor : <a class="code hl_variable" href="../../d7/d29/classaggregating__monitor.html#aca517a13f261a1d2b0ec93d2d40c296f">monitors_</a>) {</div>
+<div class="line"><span class="lineno">  387</span>            monitor-&gt;reset();</div>
+<div class="line"><span class="lineno">  388</span>        }</div>
+<div class="line"><span class="lineno">  389</span>        <span class="keywordflow">return</span> common::ok();</div>
+<div class="line"><span class="lineno">  390</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -431,7 +431,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00298">298</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00327">327</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
 
 </div>
 </div>
@@ -455,7 +455,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00299">299</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00328">328</a> of file <a class="el" href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html">monitor_factory_pattern_example.cpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +465,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

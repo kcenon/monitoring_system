@@ -141,47 +141,47 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00088">88</a> of file <a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp_source.html">test_interfaces_compile.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>           {</div>
-<div class="line"><span class="lineno">   89</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Interface Compilation Test ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   90</span> </div>
-<div class="line"><span class="lineno">   91</span>    <span class="comment">// Test that interfaces can be instantiated through implementations</span></div>
-<div class="line"><span class="lineno">   92</span>    <span class="keyword">auto</span> observer = std::make_shared&lt;test_observer&gt;();</div>
-<div class="line"><span class="lineno">   93</span>    <span class="keyword">auto</span> collector = std::make_shared&lt;test_collector&gt;();</div>
-<div class="line"><span class="lineno">   94</span> </div>
-<div class="line"><span class="lineno">   95</span>    <span class="comment">// Test that interfaces can be used</span></div>
-<div class="line"><span class="lineno">   96</span>    metric m{<span class="stringliteral">&quot;test&quot;</span>, metric_value{42.0}, {}};</div>
-<div class="line"><span class="lineno">   97</span>    metric_event me(<span class="stringliteral">&quot;test_source&quot;</span>, m);</div>
-<div class="line"><span class="lineno">   98</span>    observer-&gt;on_metric_collected(me);</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>    system_event se(system_event::event_type::component_started, <span class="stringliteral">&quot;test_component&quot;</span>, <span class="stringliteral">&quot;Started&quot;</span>);</div>
-<div class="line"><span class="lineno">  101</span>    observer-&gt;on_event_occurred(se);</div>
-<div class="line"><span class="lineno">  102</span> </div>
-<div class="line"><span class="lineno">  103</span>    state_change_event sce(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
-<div class="line"><span class="lineno">  104</span>                          state_change_event::state::healthy,</div>
-<div class="line"><span class="lineno">  105</span>                          state_change_event::state::degraded);</div>
-<div class="line"><span class="lineno">  106</span>    observer-&gt;on_system_state_changed(sce);</div>
-<div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>    <span class="comment">// Test collector interface</span></div>
-<div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> result = collector-&gt;collect_metrics();</div>
-<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">if</span> (result.is_ok()) {</div>
-<div class="line"><span class="lineno">  111</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metrics collected successfully&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  112</span>    }</div>
-<div class="line"><span class="lineno">  113</span> </div>
-<div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> types = collector-&gt;get_metric_types();</div>
-<div class="line"><span class="lineno">  115</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collector supports &quot;</span> &lt;&lt; types.size() &lt;&lt; <span class="stringliteral">&quot; metric type(s)&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  116</span> </div>
-<div class="line"><span class="lineno">  117</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;✅ All interface compilation tests passed!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  118</span> </div>
-<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  120</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00117">117</a> of file <a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp_source.html">test_interfaces_compile.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>           {</div>
+<div class="line"><span class="lineno">  118</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Interface Compilation Test ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>    <span class="comment">// Test that interfaces can be instantiated through implementations</span></div>
+<div class="line"><span class="lineno">  121</span>    <span class="keyword">auto</span> observer = std::make_shared&lt;test_observer&gt;();</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keyword">auto</span> collector = std::make_shared&lt;test_collector&gt;();</div>
+<div class="line"><span class="lineno">  123</span> </div>
+<div class="line"><span class="lineno">  124</span>    <span class="comment">// Test that interfaces can be used</span></div>
+<div class="line"><span class="lineno">  125</span>    metric m{<span class="stringliteral">&quot;test&quot;</span>, metric_value{42.0}, {}};</div>
+<div class="line"><span class="lineno">  126</span>    metric_event me(<span class="stringliteral">&quot;test_source&quot;</span>, m);</div>
+<div class="line"><span class="lineno">  127</span>    observer-&gt;on_metric_collected(me);</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>    system_event se(system_event::event_type::component_started, <span class="stringliteral">&quot;test_component&quot;</span>, <span class="stringliteral">&quot;Started&quot;</span>);</div>
+<div class="line"><span class="lineno">  130</span>    observer-&gt;on_event_occurred(se);</div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>    state_change_event sce(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
+<div class="line"><span class="lineno">  133</span>                          state_change_event::state::healthy,</div>
+<div class="line"><span class="lineno">  134</span>                          state_change_event::state::degraded);</div>
+<div class="line"><span class="lineno">  135</span>    observer-&gt;on_system_state_changed(sce);</div>
+<div class="line"><span class="lineno">  136</span> </div>
+<div class="line"><span class="lineno">  137</span>    <span class="comment">// Test collector interface</span></div>
+<div class="line"><span class="lineno">  138</span>    <span class="keyword">auto</span> result = collector-&gt;collect_metrics();</div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><span class="lineno">  140</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metrics collected successfully&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  141</span>    }</div>
+<div class="line"><span class="lineno">  142</span> </div>
+<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> types = collector-&gt;get_metric_types();</div>
+<div class="line"><span class="lineno">  144</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collector supports &quot;</span> &lt;&lt; types.size() &lt;&lt; <span class="stringliteral">&quot; metric type(s)&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  145</span> </div>
+<div class="line"><span class="lineno">  146</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;✅ All interface compilation tests passed!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  147</span> </div>
+<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  149</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

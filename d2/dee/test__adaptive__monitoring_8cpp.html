@@ -180,25 +180,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00311">311</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  311</span>                                                   {</div>
-<div class="line"><span class="lineno">  312</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  313</span>    </div>
-<div class="line"><span class="lineno">  314</span>    adaptive_config config;</div>
-<div class="line"><span class="lineno">  315</span>    config.adaptation_interval = std::chrono::seconds(1);</div>
-<div class="line"><span class="lineno">  316</span>    </div>
-<div class="line"><span class="lineno">  317</span>    monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock, config);</div>
-<div class="line"><span class="lineno">  318</span>    monitor.start();</div>
-<div class="line"><span class="lineno">  319</span>    </div>
-<div class="line"><span class="lineno">  320</span>    <span class="comment">// Wait for at least one adaptation cycle</span></div>
-<div class="line"><span class="lineno">  321</span>    std::this_thread::sleep_for(std::chrono::milliseconds(1500));</div>
-<div class="line"><span class="lineno">  322</span>    </div>
-<div class="line"><span class="lineno">  323</span>    <span class="keyword">auto</span> stats = monitor.get_collector_stats(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  324</span>    ASSERT_TRUE(stats.has_value());</div>
-<div class="line"><span class="lineno">  325</span>    </div>
-<div class="line"><span class="lineno">  326</span>    <span class="comment">// Should have adapted at least once</span></div>
-<div class="line"><span class="lineno">  327</span>    EXPECT_GE(stats.value().total_adaptations, 0);</div>
-<div class="line"><span class="lineno">  328</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00340">340</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  340</span>                                                   {</div>
+<div class="line"><span class="lineno">  341</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  342</span>    </div>
+<div class="line"><span class="lineno">  343</span>    adaptive_config config;</div>
+<div class="line"><span class="lineno">  344</span>    config.adaptation_interval = std::chrono::seconds(1);</div>
+<div class="line"><span class="lineno">  345</span>    </div>
+<div class="line"><span class="lineno">  346</span>    monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock, config);</div>
+<div class="line"><span class="lineno">  347</span>    monitor.start();</div>
+<div class="line"><span class="lineno">  348</span>    </div>
+<div class="line"><span class="lineno">  349</span>    <span class="comment">// Wait for at least one adaptation cycle</span></div>
+<div class="line"><span class="lineno">  350</span>    std::this_thread::sleep_for(std::chrono::milliseconds(1500));</div>
+<div class="line"><span class="lineno">  351</span>    </div>
+<div class="line"><span class="lineno">  352</span>    <span class="keyword">auto</span> stats = monitor.get_collector_stats(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  353</span>    ASSERT_TRUE(stats.has_value());</div>
+<div class="line"><span class="lineno">  354</span>    </div>
+<div class="line"><span class="lineno">  355</span>    <span class="comment">// Should have adapted at least once</span></div>
+<div class="line"><span class="lineno">  356</span>    EXPECT_GE(stats.value().total_adaptations, 0);</div>
+<div class="line"><span class="lineno">  357</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -228,35 +228,35 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00119">119</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>                                                     {</div>
-<div class="line"><span class="lineno">  120</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  121</span>    adaptive_collector collector(mock);</div>
-<div class="line"><span class="lineno">  122</span>    </div>
-<div class="line"><span class="lineno">  123</span>    <span class="comment">// Simulate load changes</span></div>
-<div class="line"><span class="lineno">  124</span>    system_metrics low_load;</div>
-<div class="line"><span class="lineno">  125</span>    low_load.cpu_usage_percent = 30.0;</div>
-<div class="line"><span class="lineno">  126</span>    low_load.memory_usage_percent = 40.0;</div>
-<div class="line"><span class="lineno">  127</span>    </div>
-<div class="line"><span class="lineno">  128</span>    system_metrics high_load;</div>
-<div class="line"><span class="lineno">  129</span>    high_load.cpu_usage_percent = 85.0;</div>
-<div class="line"><span class="lineno">  130</span>    high_load.memory_usage_percent = 70.0;</div>
-<div class="line"><span class="lineno">  131</span>    </div>
-<div class="line"><span class="lineno">  132</span>    <span class="comment">// Adapt to low load</span></div>
-<div class="line"><span class="lineno">  133</span>    collector.adapt(low_load);</div>
-<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> stats = collector.get_stats();</div>
-<div class="line"><span class="lineno">  135</span>    EXPECT_EQ(stats.current_load_level, load_level::low);</div>
-<div class="line"><span class="lineno">  136</span>    </div>
-<div class="line"><span class="lineno">  137</span>    <span class="comment">// Adapt to high load</span></div>
-<div class="line"><span class="lineno">  138</span>    collector.adapt(high_load);</div>
-<div class="line"><span class="lineno">  139</span>    stats = collector.get_stats();</div>
-<div class="line"><span class="lineno">  140</span>    <span class="comment">// After smoothing with default factor 0.7, the effective CPU would be:</span></div>
-<div class="line"><span class="lineno">  141</span>    <span class="comment">// 0.7 * 85 + 0.3 * 30 = 59.5 + 9 = 68.5 (high, not critical)</span></div>
-<div class="line"><span class="lineno">  142</span>    <span class="comment">// But memory is 70%, which should elevate it</span></div>
-<div class="line"><span class="lineno">  143</span>    EXPECT_GE(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(stats.current_load_level), <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(load_level::high));</div>
-<div class="line"><span class="lineno">  144</span>    EXPECT_GT(stats.total_adaptations, 0);</div>
-<div class="line"><span class="lineno">  145</span>    EXPECT_GT(stats.downscale_count, 0);</div>
-<div class="line"><span class="lineno">  146</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  148</span>                                                     {</div>
+<div class="line"><span class="lineno">  149</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  150</span>    adaptive_collector collector(mock);</div>
+<div class="line"><span class="lineno">  151</span>    </div>
+<div class="line"><span class="lineno">  152</span>    <span class="comment">// Simulate load changes</span></div>
+<div class="line"><span class="lineno">  153</span>    system_metrics low_load;</div>
+<div class="line"><span class="lineno">  154</span>    low_load.cpu_usage_percent = 30.0;</div>
+<div class="line"><span class="lineno">  155</span>    low_load.memory_usage_percent = 40.0;</div>
+<div class="line"><span class="lineno">  156</span>    </div>
+<div class="line"><span class="lineno">  157</span>    system_metrics high_load;</div>
+<div class="line"><span class="lineno">  158</span>    high_load.cpu_usage_percent = 85.0;</div>
+<div class="line"><span class="lineno">  159</span>    high_load.memory_usage_percent = 70.0;</div>
+<div class="line"><span class="lineno">  160</span>    </div>
+<div class="line"><span class="lineno">  161</span>    <span class="comment">// Adapt to low load</span></div>
+<div class="line"><span class="lineno">  162</span>    collector.adapt(low_load);</div>
+<div class="line"><span class="lineno">  163</span>    <span class="keyword">auto</span> stats = collector.get_stats();</div>
+<div class="line"><span class="lineno">  164</span>    EXPECT_EQ(stats.current_load_level, load_level::low);</div>
+<div class="line"><span class="lineno">  165</span>    </div>
+<div class="line"><span class="lineno">  166</span>    <span class="comment">// Adapt to high load</span></div>
+<div class="line"><span class="lineno">  167</span>    collector.adapt(high_load);</div>
+<div class="line"><span class="lineno">  168</span>    stats = collector.get_stats();</div>
+<div class="line"><span class="lineno">  169</span>    <span class="comment">// After smoothing with default factor 0.7, the effective CPU would be:</span></div>
+<div class="line"><span class="lineno">  170</span>    <span class="comment">// 0.7 * 85 + 0.3 * 30 = 59.5 + 9 = 68.5 (high, not critical)</span></div>
+<div class="line"><span class="lineno">  171</span>    <span class="comment">// But memory is 70%, which should elevate it</span></div>
+<div class="line"><span class="lineno">  172</span>    EXPECT_GE(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(stats.current_load_level), <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(load_level::high));</div>
+<div class="line"><span class="lineno">  173</span>    EXPECT_GT(stats.total_adaptations, 0);</div>
+<div class="line"><span class="lineno">  174</span>    EXPECT_GT(stats.downscale_count, 0);</div>
+<div class="line"><span class="lineno">  175</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -286,31 +286,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   94</span>                                                          {</div>
-<div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   96</span>    </div>
-<div class="line"><span class="lineno">   97</span>    adaptive_config config;</div>
-<div class="line"><span class="lineno">   98</span>    config.idle_sampling_rate = 1.0;  <span class="comment">// Always sample</span></div>
-<div class="line"><span class="lineno">   99</span>    adaptive_collector collector(mock, config);</div>
-<div class="line"><span class="lineno">  100</span>    </div>
-<div class="line"><span class="lineno">  101</span>    <span class="comment">// Should collect when sampling rate is 1.0</span></div>
-<div class="line"><span class="lineno">  102</span>    <span class="keyword">auto</span> result = collector.collect();</div>
-<div class="line"><span class="lineno">  103</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  104</span>    EXPECT_EQ(mock-&gt;get_collect_count(), 1);</div>
-<div class="line"><span class="lineno">  105</span>    </div>
-<div class="line"><span class="lineno">  106</span>    <span class="comment">// Change config to lower sampling rate</span></div>
-<div class="line"><span class="lineno">  107</span>    config.critical_sampling_rate = 0.0;  <span class="comment">// Never sample</span></div>
-<div class="line"><span class="lineno">  108</span>    collector.set_config(config);</div>
-<div class="line"><span class="lineno">  109</span>    </div>
-<div class="line"><span class="lineno">  110</span>    <span class="comment">// Force adaptation to critical level</span></div>
-<div class="line"><span class="lineno">  111</span>    system_metrics sys_metrics;</div>
-<div class="line"><span class="lineno">  112</span>    sys_metrics.cpu_usage_percent = 90.0;  <span class="comment">// Critical load</span></div>
-<div class="line"><span class="lineno">  113</span>    collector.adapt(sys_metrics);</div>
-<div class="line"><span class="lineno">  114</span>    </div>
-<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> stats = collector.get_stats();</div>
-<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(stats.current_load_level, load_level::critical);</div>
-<div class="line"><span class="lineno">  117</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00123">123</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  123</span>                                                          {</div>
+<div class="line"><span class="lineno">  124</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  125</span>    </div>
+<div class="line"><span class="lineno">  126</span>    adaptive_config config;</div>
+<div class="line"><span class="lineno">  127</span>    config.idle_sampling_rate = 1.0;  <span class="comment">// Always sample</span></div>
+<div class="line"><span class="lineno">  128</span>    adaptive_collector collector(mock, config);</div>
+<div class="line"><span class="lineno">  129</span>    </div>
+<div class="line"><span class="lineno">  130</span>    <span class="comment">// Should collect when sampling rate is 1.0</span></div>
+<div class="line"><span class="lineno">  131</span>    <span class="keyword">auto</span> result = collector.collect();</div>
+<div class="line"><span class="lineno">  132</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  133</span>    EXPECT_EQ(mock-&gt;get_collect_count(), 1);</div>
+<div class="line"><span class="lineno">  134</span>    </div>
+<div class="line"><span class="lineno">  135</span>    <span class="comment">// Change config to lower sampling rate</span></div>
+<div class="line"><span class="lineno">  136</span>    config.critical_sampling_rate = 0.0;  <span class="comment">// Never sample</span></div>
+<div class="line"><span class="lineno">  137</span>    collector.set_config(config);</div>
+<div class="line"><span class="lineno">  138</span>    </div>
+<div class="line"><span class="lineno">  139</span>    <span class="comment">// Force adaptation to critical level</span></div>
+<div class="line"><span class="lineno">  140</span>    system_metrics sys_metrics;</div>
+<div class="line"><span class="lineno">  141</span>    sys_metrics.cpu_usage_percent = 90.0;  <span class="comment">// Critical load</span></div>
+<div class="line"><span class="lineno">  142</span>    collector.adapt(sys_metrics);</div>
+<div class="line"><span class="lineno">  143</span>    </div>
+<div class="line"><span class="lineno">  144</span>    <span class="keyword">auto</span> stats = collector.get_stats();</div>
+<div class="line"><span class="lineno">  145</span>    EXPECT_EQ(stats.current_load_level, load_level::critical);</div>
+<div class="line"><span class="lineno">  146</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -340,18 +340,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   70</span>                                                       {</div>
-<div class="line"><span class="lineno">   71</span>    adaptive_config config;</div>
-<div class="line"><span class="lineno">   72</span>    </div>
-<div class="line"><span class="lineno">   73</span>    EXPECT_EQ(config.idle_threshold, 20.0);</div>
-<div class="line"><span class="lineno">   74</span>    EXPECT_EQ(config.low_threshold, 40.0);</div>
-<div class="line"><span class="lineno">   75</span>    EXPECT_EQ(config.moderate_threshold, 60.0);</div>
-<div class="line"><span class="lineno">   76</span>    EXPECT_EQ(config.high_threshold, 80.0);</div>
-<div class="line"><span class="lineno">   77</span>    </div>
-<div class="line"><span class="lineno">   78</span>    EXPECT_EQ(config.strategy, adaptation_strategy::balanced);</div>
-<div class="line"><span class="lineno">   79</span>    EXPECT_EQ(config.smoothing_factor, 0.7);</div>
-<div class="line"><span class="lineno">   80</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00099">99</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>                                                       {</div>
+<div class="line"><span class="lineno">  100</span>    adaptive_config config;</div>
+<div class="line"><span class="lineno">  101</span>    </div>
+<div class="line"><span class="lineno">  102</span>    EXPECT_EQ(config.idle_threshold, 20.0);</div>
+<div class="line"><span class="lineno">  103</span>    EXPECT_EQ(config.low_threshold, 40.0);</div>
+<div class="line"><span class="lineno">  104</span>    EXPECT_EQ(config.moderate_threshold, 60.0);</div>
+<div class="line"><span class="lineno">  105</span>    EXPECT_EQ(config.high_threshold, 80.0);</div>
+<div class="line"><span class="lineno">  106</span>    </div>
+<div class="line"><span class="lineno">  107</span>    EXPECT_EQ(config.strategy, adaptation_strategy::balanced);</div>
+<div class="line"><span class="lineno">  108</span>    EXPECT_EQ(config.smoothing_factor, 0.7);</div>
+<div class="line"><span class="lineno">  109</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -381,24 +381,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00243">243</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  243</span>                                              {</div>
-<div class="line"><span class="lineno">  244</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;scoped&quot;</span>);</div>
-<div class="line"><span class="lineno">  245</span>    </div>
-<div class="line"><span class="lineno">  246</span>    {</div>
-<div class="line"><span class="lineno">  247</span>        adaptive_scope scope(<span class="stringliteral">&quot;scoped&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  248</span>        EXPECT_TRUE(scope.is_registered());</div>
-<div class="line"><span class="lineno">  249</span>        </div>
-<div class="line"><span class="lineno">  250</span>        <span class="comment">// Collector should be registered  </span></div>
-<div class="line"><span class="lineno">  251</span>        <span class="comment">// Use the monitor member instead of global monitor</span></div>
-<div class="line"><span class="lineno">  252</span>        <span class="keyword">auto</span> stats = global_adaptive_monitor().get_collector_stats(<span class="stringliteral">&quot;scoped&quot;</span>);</div>
-<div class="line"><span class="lineno">  253</span>        EXPECT_TRUE(stats.has_value());</div>
-<div class="line"><span class="lineno">  254</span>    }</div>
-<div class="line"><span class="lineno">  255</span>    <span class="comment">// Scope destroyed, collector should be unregistered</span></div>
-<div class="line"><span class="lineno">  256</span>    </div>
-<div class="line"><span class="lineno">  257</span>    <span class="keyword">auto</span> stats = global_adaptive_monitor().get_collector_stats(<span class="stringliteral">&quot;scoped&quot;</span>);</div>
-<div class="line"><span class="lineno">  258</span>    EXPECT_FALSE(stats.has_value());</div>
-<div class="line"><span class="lineno">  259</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00272">272</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  272</span>                                              {</div>
+<div class="line"><span class="lineno">  273</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;scoped&quot;</span>);</div>
+<div class="line"><span class="lineno">  274</span>    </div>
+<div class="line"><span class="lineno">  275</span>    {</div>
+<div class="line"><span class="lineno">  276</span>        adaptive_scope scope(<span class="stringliteral">&quot;scoped&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  277</span>        EXPECT_TRUE(scope.is_registered());</div>
+<div class="line"><span class="lineno">  278</span>        </div>
+<div class="line"><span class="lineno">  279</span>        <span class="comment">// Collector should be registered  </span></div>
+<div class="line"><span class="lineno">  280</span>        <span class="comment">// Use the monitor member instead of global monitor</span></div>
+<div class="line"><span class="lineno">  281</span>        <span class="keyword">auto</span> stats = global_adaptive_monitor().get_collector_stats(<span class="stringliteral">&quot;scoped&quot;</span>);</div>
+<div class="line"><span class="lineno">  282</span>        EXPECT_TRUE(stats.has_value());</div>
+<div class="line"><span class="lineno">  283</span>    }</div>
+<div class="line"><span class="lineno">  284</span>    <span class="comment">// Scope destroyed, collector should be unregistered</span></div>
+<div class="line"><span class="lineno">  285</span>    </div>
+<div class="line"><span class="lineno">  286</span>    <span class="keyword">auto</span> stats = global_adaptive_monitor().get_collector_stats(<span class="stringliteral">&quot;scoped&quot;</span>);</div>
+<div class="line"><span class="lineno">  287</span>    EXPECT_FALSE(stats.has_value());</div>
+<div class="line"><span class="lineno">  288</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -428,33 +428,33 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00355">355</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  355</span>                                                   {</div>
-<div class="line"><span class="lineno">  356</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  357</span>    </div>
-<div class="line"><span class="lineno">  358</span>    <span class="comment">// Test conservative strategy</span></div>
-<div class="line"><span class="lineno">  359</span>    adaptive_config conservative_config;</div>
-<div class="line"><span class="lineno">  360</span>    conservative_config.strategy = adaptation_strategy::conservative;</div>
-<div class="line"><span class="lineno">  361</span>    adaptive_collector conservative_collector(mock, conservative_config);</div>
-<div class="line"><span class="lineno">  362</span>    </div>
-<div class="line"><span class="lineno">  363</span>    system_metrics metrics;</div>
-<div class="line"><span class="lineno">  364</span>    metrics.cpu_usage_percent = 50.0;  <span class="comment">// Moderate load</span></div>
-<div class="line"><span class="lineno">  365</span>    </div>
-<div class="line"><span class="lineno">  366</span>    conservative_collector.adapt(metrics);</div>
-<div class="line"><span class="lineno">  367</span>    <span class="keyword">auto</span> conservative_stats = conservative_collector.get_stats();</div>
-<div class="line"><span class="lineno">  368</span>    </div>
-<div class="line"><span class="lineno">  369</span>    <span class="comment">// Test aggressive strategy</span></div>
-<div class="line"><span class="lineno">  370</span>    adaptive_config aggressive_config;</div>
-<div class="line"><span class="lineno">  371</span>    aggressive_config.strategy = adaptation_strategy::aggressive;</div>
-<div class="line"><span class="lineno">  372</span>    adaptive_collector aggressive_collector(mock, aggressive_config);</div>
-<div class="line"><span class="lineno">  373</span>    </div>
-<div class="line"><span class="lineno">  374</span>    aggressive_collector.adapt(metrics);</div>
-<div class="line"><span class="lineno">  375</span>    <span class="keyword">auto</span> aggressive_stats = aggressive_collector.get_stats();</div>
-<div class="line"><span class="lineno">  376</span>    </div>
-<div class="line"><span class="lineno">  377</span>    <span class="comment">// Conservative should have lower load level than aggressive</span></div>
-<div class="line"><span class="lineno">  378</span>    EXPECT_LE(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(conservative_stats.current_load_level),</div>
-<div class="line"><span class="lineno">  379</span>              <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(aggressive_stats.current_load_level));</div>
-<div class="line"><span class="lineno">  380</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00384">384</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  384</span>                                                   {</div>
+<div class="line"><span class="lineno">  385</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  386</span>    </div>
+<div class="line"><span class="lineno">  387</span>    <span class="comment">// Test conservative strategy</span></div>
+<div class="line"><span class="lineno">  388</span>    adaptive_config conservative_config;</div>
+<div class="line"><span class="lineno">  389</span>    conservative_config.strategy = adaptation_strategy::conservative;</div>
+<div class="line"><span class="lineno">  390</span>    adaptive_collector conservative_collector(mock, conservative_config);</div>
+<div class="line"><span class="lineno">  391</span>    </div>
+<div class="line"><span class="lineno">  392</span>    system_metrics metrics;</div>
+<div class="line"><span class="lineno">  393</span>    metrics.cpu_usage_percent = 50.0;  <span class="comment">// Moderate load</span></div>
+<div class="line"><span class="lineno">  394</span>    </div>
+<div class="line"><span class="lineno">  395</span>    conservative_collector.adapt(metrics);</div>
+<div class="line"><span class="lineno">  396</span>    <span class="keyword">auto</span> conservative_stats = conservative_collector.get_stats();</div>
+<div class="line"><span class="lineno">  397</span>    </div>
+<div class="line"><span class="lineno">  398</span>    <span class="comment">// Test aggressive strategy</span></div>
+<div class="line"><span class="lineno">  399</span>    adaptive_config aggressive_config;</div>
+<div class="line"><span class="lineno">  400</span>    aggressive_config.strategy = adaptation_strategy::aggressive;</div>
+<div class="line"><span class="lineno">  401</span>    adaptive_collector aggressive_collector(mock, aggressive_config);</div>
+<div class="line"><span class="lineno">  402</span>    </div>
+<div class="line"><span class="lineno">  403</span>    aggressive_collector.adapt(metrics);</div>
+<div class="line"><span class="lineno">  404</span>    <span class="keyword">auto</span> aggressive_stats = aggressive_collector.get_stats();</div>
+<div class="line"><span class="lineno">  405</span>    </div>
+<div class="line"><span class="lineno">  406</span>    <span class="comment">// Conservative should have lower load level than aggressive</span></div>
+<div class="line"><span class="lineno">  407</span>    EXPECT_LE(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(conservative_stats.current_load_level),</div>
+<div class="line"><span class="lineno">  408</span>              <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(aggressive_stats.current_load_level));</div>
+<div class="line"><span class="lineno">  409</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -484,20 +484,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00330">330</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  330</span>                                                       {</div>
-<div class="line"><span class="lineno">  331</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  332</span>    adaptive_collector collector(mock);</div>
-<div class="line"><span class="lineno">  333</span>    </div>
-<div class="line"><span class="lineno">  334</span>    EXPECT_TRUE(collector.is_enabled());</div>
-<div class="line"><span class="lineno">  335</span>    </div>
-<div class="line"><span class="lineno">  336</span>    collector.set_enabled(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  337</span>    EXPECT_FALSE(collector.is_enabled());</div>
-<div class="line"><span class="lineno">  338</span>    </div>
-<div class="line"><span class="lineno">  339</span>    <span class="comment">// When disabled, should always sample</span></div>
-<div class="line"><span class="lineno">  340</span>    <span class="keyword">auto</span> result = collector.collect();</div>
-<div class="line"><span class="lineno">  341</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  342</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00359">359</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  359</span>                                                       {</div>
+<div class="line"><span class="lineno">  360</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  361</span>    adaptive_collector collector(mock);</div>
+<div class="line"><span class="lineno">  362</span>    </div>
+<div class="line"><span class="lineno">  363</span>    EXPECT_TRUE(collector.is_enabled());</div>
+<div class="line"><span class="lineno">  364</span>    </div>
+<div class="line"><span class="lineno">  365</span>    collector.set_enabled(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  366</span>    EXPECT_FALSE(collector.is_enabled());</div>
+<div class="line"><span class="lineno">  367</span>    </div>
+<div class="line"><span class="lineno">  368</span>    <span class="comment">// When disabled, should always sample</span></div>
+<div class="line"><span class="lineno">  369</span>    <span class="keyword">auto</span> result = collector.collect();</div>
+<div class="line"><span class="lineno">  370</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  371</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -527,28 +527,28 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00191">191</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  191</span>                                                  {</div>
-<div class="line"><span class="lineno">  192</span>    <span class="keyword">auto</span> high_priority = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;high&quot;</span>);</div>
-<div class="line"><span class="lineno">  193</span>    <span class="keyword">auto</span> medium_priority = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;medium&quot;</span>);</div>
-<div class="line"><span class="lineno">  194</span>    <span class="keyword">auto</span> low_priority = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;low&quot;</span>);</div>
-<div class="line"><span class="lineno">  195</span>    </div>
-<div class="line"><span class="lineno">  196</span>    monitor.register_collector(<span class="stringliteral">&quot;high&quot;</span>, high_priority);</div>
-<div class="line"><span class="lineno">  197</span>    monitor.register_collector(<span class="stringliteral">&quot;medium&quot;</span>, medium_priority);</div>
-<div class="line"><span class="lineno">  198</span>    monitor.register_collector(<span class="stringliteral">&quot;low&quot;</span>, low_priority);</div>
-<div class="line"><span class="lineno">  199</span>    </div>
-<div class="line"><span class="lineno">  200</span>    <span class="comment">// Set priorities</span></div>
-<div class="line"><span class="lineno">  201</span>    monitor.set_collector_priority(<span class="stringliteral">&quot;high&quot;</span>, 100);</div>
-<div class="line"><span class="lineno">  202</span>    monitor.set_collector_priority(<span class="stringliteral">&quot;medium&quot;</span>, 50);</div>
-<div class="line"><span class="lineno">  203</span>    monitor.set_collector_priority(<span class="stringliteral">&quot;low&quot;</span>, 10);</div>
-<div class="line"><span class="lineno">  204</span>    </div>
-<div class="line"><span class="lineno">  205</span>    <span class="comment">// Get active collectors (should be ordered by priority)</span></div>
-<div class="line"><span class="lineno">  206</span>    <span class="keyword">auto</span> active = monitor.get_active_collectors();</div>
-<div class="line"><span class="lineno">  207</span>    EXPECT_GE(active.size(), 1);</div>
-<div class="line"><span class="lineno">  208</span>    <span class="keywordflow">if</span> (active.size() &gt; 0) {</div>
-<div class="line"><span class="lineno">  209</span>        EXPECT_EQ(active[0], <span class="stringliteral">&quot;high&quot;</span>);</div>
-<div class="line"><span class="lineno">  210</span>    }</div>
-<div class="line"><span class="lineno">  211</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00220">220</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  220</span>                                                  {</div>
+<div class="line"><span class="lineno">  221</span>    <span class="keyword">auto</span> high_priority = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;high&quot;</span>);</div>
+<div class="line"><span class="lineno">  222</span>    <span class="keyword">auto</span> medium_priority = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;medium&quot;</span>);</div>
+<div class="line"><span class="lineno">  223</span>    <span class="keyword">auto</span> low_priority = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;low&quot;</span>);</div>
+<div class="line"><span class="lineno">  224</span>    </div>
+<div class="line"><span class="lineno">  225</span>    monitor.register_collector(<span class="stringliteral">&quot;high&quot;</span>, high_priority);</div>
+<div class="line"><span class="lineno">  226</span>    monitor.register_collector(<span class="stringliteral">&quot;medium&quot;</span>, medium_priority);</div>
+<div class="line"><span class="lineno">  227</span>    monitor.register_collector(<span class="stringliteral">&quot;low&quot;</span>, low_priority);</div>
+<div class="line"><span class="lineno">  228</span>    </div>
+<div class="line"><span class="lineno">  229</span>    <span class="comment">// Set priorities</span></div>
+<div class="line"><span class="lineno">  230</span>    monitor.set_collector_priority(<span class="stringliteral">&quot;high&quot;</span>, 100);</div>
+<div class="line"><span class="lineno">  231</span>    monitor.set_collector_priority(<span class="stringliteral">&quot;medium&quot;</span>, 50);</div>
+<div class="line"><span class="lineno">  232</span>    monitor.set_collector_priority(<span class="stringliteral">&quot;low&quot;</span>, 10);</div>
+<div class="line"><span class="lineno">  233</span>    </div>
+<div class="line"><span class="lineno">  234</span>    <span class="comment">// Get active collectors (should be ordered by priority)</span></div>
+<div class="line"><span class="lineno">  235</span>    <span class="keyword">auto</span> active = monitor.get_active_collectors();</div>
+<div class="line"><span class="lineno">  236</span>    EXPECT_GE(active.size(), 1);</div>
+<div class="line"><span class="lineno">  237</span>    <span class="keywordflow">if</span> (active.size() &gt; 0) {</div>
+<div class="line"><span class="lineno">  238</span>        EXPECT_EQ(active[0], <span class="stringliteral">&quot;high&quot;</span>);</div>
+<div class="line"><span class="lineno">  239</span>    }</div>
+<div class="line"><span class="lineno">  240</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -578,40 +578,40 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00382">382</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  382</span>                                                          {</div>
-<div class="line"><span class="lineno">  383</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 10;</div>
-<div class="line"><span class="lineno">  384</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> collectors_per_thread = 5;</div>
-<div class="line"><span class="lineno">  385</span>    </div>
-<div class="line"><span class="lineno">  386</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  387</span>    </div>
-<div class="line"><span class="lineno">  388</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
-<div class="line"><span class="lineno">  389</span>        threads.emplace_back([<span class="keyword">this</span>, t, collectors_per_thread]() {</div>
-<div class="line"><span class="lineno">  390</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; collectors_per_thread; ++c) {</div>
-<div class="line"><span class="lineno">  391</span>                std::string name = <span class="stringliteral">&quot;collector_&quot;</span> + std::to_string(t) + <span class="stringliteral">&quot;_&quot;</span> + std::to_string(c);</div>
-<div class="line"><span class="lineno">  392</span>                <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(name);</div>
-<div class="line"><span class="lineno">  393</span>                </div>
-<div class="line"><span class="lineno">  394</span>                monitor.register_collector(name, mock);</div>
-<div class="line"><span class="lineno">  395</span>                </div>
-<div class="line"><span class="lineno">  396</span>                <span class="comment">// Random operations</span></div>
-<div class="line"><span class="lineno">  397</span>                <span class="keywordflow">if</span> (c % 2 == 0) {</div>
-<div class="line"><span class="lineno">  398</span>                    monitor.set_collector_priority(name, t * 10 + c);</div>
-<div class="line"><span class="lineno">  399</span>                }</div>
-<div class="line"><span class="lineno">  400</span>                </div>
-<div class="line"><span class="lineno">  401</span>                <span class="keywordflow">if</span> (c % 3 == 0) {</div>
-<div class="line"><span class="lineno">  402</span>                    monitor.get_collector_stats(name);</div>
-<div class="line"><span class="lineno">  403</span>                }</div>
-<div class="line"><span class="lineno">  404</span>            }</div>
-<div class="line"><span class="lineno">  405</span>        });</div>
-<div class="line"><span class="lineno">  406</span>    }</div>
-<div class="line"><span class="lineno">  407</span>    </div>
-<div class="line"><span class="lineno">  408</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
-<div class="line"><span class="lineno">  409</span>        thread.join();</div>
-<div class="line"><span class="lineno">  410</span>    }</div>
-<div class="line"><span class="lineno">  411</span>    </div>
-<div class="line"><span class="lineno">  412</span>    <span class="keyword">auto</span> all_stats = monitor.get_all_stats();</div>
-<div class="line"><span class="lineno">  413</span>    EXPECT_EQ(all_stats.size(), num_threads * collectors_per_thread);</div>
-<div class="line"><span class="lineno">  414</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00411">411</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  411</span>                                                          {</div>
+<div class="line"><span class="lineno">  412</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 10;</div>
+<div class="line"><span class="lineno">  413</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> collectors_per_thread = 5;</div>
+<div class="line"><span class="lineno">  414</span>    </div>
+<div class="line"><span class="lineno">  415</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><span class="lineno">  416</span>    </div>
+<div class="line"><span class="lineno">  417</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
+<div class="line"><span class="lineno">  418</span>        threads.emplace_back([<span class="keyword">this</span>, t, collectors_per_thread]() {</div>
+<div class="line"><span class="lineno">  419</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; collectors_per_thread; ++c) {</div>
+<div class="line"><span class="lineno">  420</span>                std::string name = <span class="stringliteral">&quot;collector_&quot;</span> + std::to_string(t) + <span class="stringliteral">&quot;_&quot;</span> + std::to_string(c);</div>
+<div class="line"><span class="lineno">  421</span>                <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(name);</div>
+<div class="line"><span class="lineno">  422</span>                </div>
+<div class="line"><span class="lineno">  423</span>                monitor.register_collector(name, mock);</div>
+<div class="line"><span class="lineno">  424</span>                </div>
+<div class="line"><span class="lineno">  425</span>                <span class="comment">// Random operations</span></div>
+<div class="line"><span class="lineno">  426</span>                <span class="keywordflow">if</span> (c % 2 == 0) {</div>
+<div class="line"><span class="lineno">  427</span>                    monitor.set_collector_priority(name, t * 10 + c);</div>
+<div class="line"><span class="lineno">  428</span>                }</div>
+<div class="line"><span class="lineno">  429</span>                </div>
+<div class="line"><span class="lineno">  430</span>                <span class="keywordflow">if</span> (c % 3 == 0) {</div>
+<div class="line"><span class="lineno">  431</span>                    monitor.get_collector_stats(name);</div>
+<div class="line"><span class="lineno">  432</span>                }</div>
+<div class="line"><span class="lineno">  433</span>            }</div>
+<div class="line"><span class="lineno">  434</span>        });</div>
+<div class="line"><span class="lineno">  435</span>    }</div>
+<div class="line"><span class="lineno">  436</span>    </div>
+<div class="line"><span class="lineno">  437</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
+<div class="line"><span class="lineno">  438</span>        thread.join();</div>
+<div class="line"><span class="lineno">  439</span>    }</div>
+<div class="line"><span class="lineno">  440</span>    </div>
+<div class="line"><span class="lineno">  441</span>    <span class="keyword">auto</span> all_stats = monitor.get_all_stats();</div>
+<div class="line"><span class="lineno">  442</span>    EXPECT_EQ(all_stats.size(), num_threads * collectors_per_thread);</div>
+<div class="line"><span class="lineno">  443</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -641,19 +641,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00230">230</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  230</span>                                            {</div>
-<div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> mock1 = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;collector1&quot;</span>);</div>
-<div class="line"><span class="lineno">  232</span>    <span class="keyword">auto</span> mock2 = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;collector2&quot;</span>);</div>
-<div class="line"><span class="lineno">  233</span>    </div>
-<div class="line"><span class="lineno">  234</span>    monitor.register_collector(<span class="stringliteral">&quot;collector1&quot;</span>, mock1);</div>
-<div class="line"><span class="lineno">  235</span>    monitor.register_collector(<span class="stringliteral">&quot;collector2&quot;</span>, mock2);</div>
-<div class="line"><span class="lineno">  236</span>    </div>
-<div class="line"><span class="lineno">  237</span>    <span class="keyword">auto</span> all_stats = monitor.get_all_stats();</div>
-<div class="line"><span class="lineno">  238</span>    EXPECT_EQ(all_stats.size(), 2);</div>
-<div class="line"><span class="lineno">  239</span>    EXPECT_TRUE(all_stats.find(<span class="stringliteral">&quot;collector1&quot;</span>) != all_stats.end());</div>
-<div class="line"><span class="lineno">  240</span>    EXPECT_TRUE(all_stats.find(<span class="stringliteral">&quot;collector2&quot;</span>) != all_stats.end());</div>
-<div class="line"><span class="lineno">  241</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00259">259</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  259</span>                                            {</div>
+<div class="line"><span class="lineno">  260</span>    <span class="keyword">auto</span> mock1 = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;collector1&quot;</span>);</div>
+<div class="line"><span class="lineno">  261</span>    <span class="keyword">auto</span> mock2 = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;collector2&quot;</span>);</div>
+<div class="line"><span class="lineno">  262</span>    </div>
+<div class="line"><span class="lineno">  263</span>    monitor.register_collector(<span class="stringliteral">&quot;collector1&quot;</span>, mock1);</div>
+<div class="line"><span class="lineno">  264</span>    monitor.register_collector(<span class="stringliteral">&quot;collector2&quot;</span>, mock2);</div>
+<div class="line"><span class="lineno">  265</span>    </div>
+<div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> all_stats = monitor.get_all_stats();</div>
+<div class="line"><span class="lineno">  267</span>    EXPECT_EQ(all_stats.size(), 2);</div>
+<div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(all_stats.find(<span class="stringliteral">&quot;collector1&quot;</span>) != all_stats.end());</div>
+<div class="line"><span class="lineno">  269</span>    EXPECT_TRUE(all_stats.find(<span class="stringliteral">&quot;collector2&quot;</span>) != all_stats.end());</div>
+<div class="line"><span class="lineno">  270</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -683,17 +683,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00344">344</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  344</span>                                                      {</div>
-<div class="line"><span class="lineno">  345</span>    <span class="keyword">auto</span>&amp; global = global_adaptive_monitor();</div>
-<div class="line"><span class="lineno">  346</span>    </div>
-<div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
-<div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> result = global.register_collector(<span class="stringliteral">&quot;global_test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  349</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  350</span>    </div>
-<div class="line"><span class="lineno">  351</span>    <span class="comment">// Cleanup</span></div>
-<div class="line"><span class="lineno">  352</span>    global.unregister_collector(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
-<div class="line"><span class="lineno">  353</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00373">373</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  373</span>                                                      {</div>
+<div class="line"><span class="lineno">  374</span>    <span class="keyword">auto</span>&amp; global = global_adaptive_monitor();</div>
+<div class="line"><span class="lineno">  375</span>    </div>
+<div class="line"><span class="lineno">  376</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
+<div class="line"><span class="lineno">  377</span>    <span class="keyword">auto</span> result = global.register_collector(<span class="stringliteral">&quot;global_test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  378</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  379</span>    </div>
+<div class="line"><span class="lineno">  380</span>    <span class="comment">// Cleanup</span></div>
+<div class="line"><span class="lineno">  381</span>    global.unregister_collector(<span class="stringliteral">&quot;global_test&quot;</span>);</div>
+<div class="line"><span class="lineno">  382</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -723,23 +723,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00213">213</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  213</span>                                               {</div>
-<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  215</span>    monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  216</span>    </div>
-<div class="line"><span class="lineno">  217</span>    <span class="comment">// Set global strategy</span></div>
-<div class="line"><span class="lineno">  218</span>    monitor.set_global_strategy(adaptation_strategy::conservative);</div>
-<div class="line"><span class="lineno">  219</span>    </div>
-<div class="line"><span class="lineno">  220</span>    <span class="comment">// Force adaptation</span></div>
-<div class="line"><span class="lineno">  221</span>    <span class="keyword">auto</span> result = monitor.force_adaptation();</div>
-<div class="line"><span class="lineno">  222</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  223</span>    </div>
-<div class="line"><span class="lineno">  224</span>    <span class="comment">// Check that strategy was applied</span></div>
-<div class="line"><span class="lineno">  225</span>    <span class="keyword">auto</span> stats_result = monitor.get_collector_stats(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  226</span>    ASSERT_TRUE(stats_result.is_ok());</div>
-<div class="line"><span class="lineno">  227</span>    <span class="comment">// Strategy effects would be visible in adaptation behavior</span></div>
-<div class="line"><span class="lineno">  228</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00242">242</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  242</span>                                               {</div>
+<div class="line"><span class="lineno">  243</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  244</span>    monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  245</span>    </div>
+<div class="line"><span class="lineno">  246</span>    <span class="comment">// Set global strategy</span></div>
+<div class="line"><span class="lineno">  247</span>    monitor.set_global_strategy(adaptation_strategy::conservative);</div>
+<div class="line"><span class="lineno">  248</span>    </div>
+<div class="line"><span class="lineno">  249</span>    <span class="comment">// Force adaptation</span></div>
+<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> result = monitor.force_adaptation();</div>
+<div class="line"><span class="lineno">  251</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  252</span>    </div>
+<div class="line"><span class="lineno">  253</span>    <span class="comment">// Check that strategy was applied</span></div>
+<div class="line"><span class="lineno">  254</span>    <span class="keyword">auto</span> stats_result = monitor.get_collector_stats(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  255</span>    ASSERT_TRUE(stats_result.is_ok());</div>
+<div class="line"><span class="lineno">  256</span>    <span class="comment">// Strategy effects would be visible in adaptation behavior</span></div>
+<div class="line"><span class="lineno">  257</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -769,18 +769,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   82</span>                                                     {</div>
-<div class="line"><span class="lineno">   83</span>    adaptive_config config;</div>
-<div class="line"><span class="lineno">   84</span>    </div>
-<div class="line"><span class="lineno">   85</span>    EXPECT_EQ(config.get_interval_for_load(load_level::idle), </div>
-<div class="line"><span class="lineno">   86</span>              std::chrono::milliseconds(100));</div>
-<div class="line"><span class="lineno">   87</span>    EXPECT_EQ(config.get_interval_for_load(load_level::critical), </div>
-<div class="line"><span class="lineno">   88</span>              std::chrono::milliseconds(5000));</div>
-<div class="line"><span class="lineno">   89</span>    </div>
-<div class="line"><span class="lineno">   90</span>    EXPECT_EQ(config.get_sampling_rate_for_load(load_level::idle), 1.0);</div>
-<div class="line"><span class="lineno">   91</span>    EXPECT_EQ(config.get_sampling_rate_for_load(load_level::critical), 0.1);</div>
-<div class="line"><span class="lineno">   92</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00111">111</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  111</span>                                                     {</div>
+<div class="line"><span class="lineno">  112</span>    adaptive_config config;</div>
+<div class="line"><span class="lineno">  113</span>    </div>
+<div class="line"><span class="lineno">  114</span>    EXPECT_EQ(config.get_interval_for_load(load_level::idle), </div>
+<div class="line"><span class="lineno">  115</span>              std::chrono::milliseconds(100));</div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(config.get_interval_for_load(load_level::critical), </div>
+<div class="line"><span class="lineno">  117</span>              std::chrono::milliseconds(5000));</div>
+<div class="line"><span class="lineno">  118</span>    </div>
+<div class="line"><span class="lineno">  119</span>    EXPECT_EQ(config.get_sampling_rate_for_load(load_level::idle), 1.0);</div>
+<div class="line"><span class="lineno">  120</span>    EXPECT_EQ(config.get_sampling_rate_for_load(load_level::critical), 0.1);</div>
+<div class="line"><span class="lineno">  121</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -810,28 +810,28 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  261</span>                                                         {</div>
-<div class="line"><span class="lineno">  262</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  263</span>    </div>
-<div class="line"><span class="lineno">  264</span>    adaptive_config config;</div>
-<div class="line"><span class="lineno">  265</span>    config.memory_warning_threshold = 70.0;</div>
-<div class="line"><span class="lineno">  266</span>    config.memory_critical_threshold = 85.0;</div>
-<div class="line"><span class="lineno">  267</span>    </div>
-<div class="line"><span class="lineno">  268</span>    adaptive_collector collector(mock, config);</div>
-<div class="line"><span class="lineno">  269</span>    </div>
-<div class="line"><span class="lineno">  270</span>    <span class="comment">// High memory usage should affect load level</span></div>
-<div class="line"><span class="lineno">  271</span>    system_metrics metrics;</div>
-<div class="line"><span class="lineno">  272</span>    metrics.cpu_usage_percent = 30.0;  <span class="comment">// Low CPU</span></div>
-<div class="line"><span class="lineno">  273</span>    metrics.memory_usage_percent = 90.0;  <span class="comment">// Critical memory</span></div>
-<div class="line"><span class="lineno">  274</span>    </div>
-<div class="line"><span class="lineno">  275</span>    collector.adapt(metrics);</div>
-<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> stats = collector.get_stats();</div>
-<div class="line"><span class="lineno">  277</span>    </div>
-<div class="line"><span class="lineno">  278</span>    <span class="comment">// Should be at least high load due to memory pressure</span></div>
-<div class="line"><span class="lineno">  279</span>    EXPECT_GE(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(stats.current_load_level), </div>
-<div class="line"><span class="lineno">  280</span>              <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(load_level::high));</div>
-<div class="line"><span class="lineno">  281</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00290">290</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  290</span>                                                         {</div>
+<div class="line"><span class="lineno">  291</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  292</span>    </div>
+<div class="line"><span class="lineno">  293</span>    adaptive_config config;</div>
+<div class="line"><span class="lineno">  294</span>    config.memory_warning_threshold = 70.0;</div>
+<div class="line"><span class="lineno">  295</span>    config.memory_critical_threshold = 85.0;</div>
+<div class="line"><span class="lineno">  296</span>    </div>
+<div class="line"><span class="lineno">  297</span>    adaptive_collector collector(mock, config);</div>
+<div class="line"><span class="lineno">  298</span>    </div>
+<div class="line"><span class="lineno">  299</span>    <span class="comment">// High memory usage should affect load level</span></div>
+<div class="line"><span class="lineno">  300</span>    system_metrics metrics;</div>
+<div class="line"><span class="lineno">  301</span>    metrics.cpu_usage_percent = 30.0;  <span class="comment">// Low CPU</span></div>
+<div class="line"><span class="lineno">  302</span>    metrics.memory_usage_percent = 90.0;  <span class="comment">// Critical memory</span></div>
+<div class="line"><span class="lineno">  303</span>    </div>
+<div class="line"><span class="lineno">  304</span>    collector.adapt(metrics);</div>
+<div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> stats = collector.get_stats();</div>
+<div class="line"><span class="lineno">  306</span>    </div>
+<div class="line"><span class="lineno">  307</span>    <span class="comment">// Should be at least high load due to memory pressure</span></div>
+<div class="line"><span class="lineno">  308</span>    EXPECT_GE(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(stats.current_load_level), </div>
+<div class="line"><span class="lineno">  309</span>              <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(load_level::high));</div>
+<div class="line"><span class="lineno">  310</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -861,30 +861,30 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  148</span>                                                            {</div>
-<div class="line"><span class="lineno">  149</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  150</span>    </div>
-<div class="line"><span class="lineno">  151</span>    <span class="comment">// Register collector</span></div>
-<div class="line"><span class="lineno">  152</span>    <span class="keyword">auto</span> result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  153</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  154</span>    EXPECT_TRUE(result.value());</div>
-<div class="line"><span class="lineno">  155</span>    </div>
-<div class="line"><span class="lineno">  156</span>    <span class="comment">// Try to register again (should fail)</span></div>
-<div class="line"><span class="lineno">  157</span>    result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  158</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  159</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
-<div class="line"><span class="lineno">  160</span>    </div>
-<div class="line"><span class="lineno">  161</span>    <span class="comment">// Unregister</span></div>
-<div class="line"><span class="lineno">  162</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  163</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  164</span>    EXPECT_TRUE(result.value());</div>
-<div class="line"><span class="lineno">  165</span>    </div>
-<div class="line"><span class="lineno">  166</span>    <span class="comment">// Try to unregister non-existent (should fail)</span></div>
-<div class="line"><span class="lineno">  167</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  168</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  169</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
-<div class="line"><span class="lineno">  170</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00177">177</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  177</span>                                                            {</div>
+<div class="line"><span class="lineno">  178</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  179</span>    </div>
+<div class="line"><span class="lineno">  180</span>    <span class="comment">// Register collector</span></div>
+<div class="line"><span class="lineno">  181</span>    <span class="keyword">auto</span> result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  182</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  183</span>    EXPECT_TRUE(result.value());</div>
+<div class="line"><span class="lineno">  184</span>    </div>
+<div class="line"><span class="lineno">  185</span>    <span class="comment">// Try to register again (should fail)</span></div>
+<div class="line"><span class="lineno">  186</span>    result = monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  187</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  188</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  189</span>    </div>
+<div class="line"><span class="lineno">  190</span>    <span class="comment">// Unregister</span></div>
+<div class="line"><span class="lineno">  191</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  192</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  193</span>    EXPECT_TRUE(result.value());</div>
+<div class="line"><span class="lineno">  194</span>    </div>
+<div class="line"><span class="lineno">  195</span>    <span class="comment">// Try to unregister non-existent (should fail)</span></div>
+<div class="line"><span class="lineno">  196</span>    result = monitor.unregister_collector(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  197</span>    ASSERT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  198</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  199</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -914,34 +914,34 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00283">283</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  283</span>                                                {</div>
-<div class="line"><span class="lineno">  284</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  285</span>    </div>
-<div class="line"><span class="lineno">  286</span>    adaptive_config config;</div>
-<div class="line"><span class="lineno">  287</span>    config.smoothing_factor = 0.5;  <span class="comment">// Equal weight to old and new</span></div>
-<div class="line"><span class="lineno">  288</span>    </div>
-<div class="line"><span class="lineno">  289</span>    adaptive_collector collector(mock, config);</div>
-<div class="line"><span class="lineno">  290</span>    </div>
-<div class="line"><span class="lineno">  291</span>    <span class="comment">// First adaptation</span></div>
-<div class="line"><span class="lineno">  292</span>    system_metrics metrics1;</div>
-<div class="line"><span class="lineno">  293</span>    metrics1.cpu_usage_percent = 20.0;</div>
-<div class="line"><span class="lineno">  294</span>    collector.adapt(metrics1);</div>
-<div class="line"><span class="lineno">  295</span>    </div>
-<div class="line"><span class="lineno">  296</span>    <span class="keyword">auto</span> stats1 = collector.get_stats();</div>
-<div class="line"><span class="lineno">  297</span>    <span class="comment">// First adaptation sets initial value</span></div>
-<div class="line"><span class="lineno">  298</span>    EXPECT_NEAR(stats1.average_cpu_usage, 20.0, 1.0);</div>
-<div class="line"><span class="lineno">  299</span>    </div>
-<div class="line"><span class="lineno">  300</span>    <span class="comment">// Second adaptation</span></div>
-<div class="line"><span class="lineno">  301</span>    system_metrics metrics2;</div>
-<div class="line"><span class="lineno">  302</span>    metrics2.cpu_usage_percent = 60.0;</div>
-<div class="line"><span class="lineno">  303</span>    collector.adapt(metrics2);</div>
-<div class="line"><span class="lineno">  304</span>    </div>
-<div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> stats2 = collector.get_stats();</div>
-<div class="line"><span class="lineno">  306</span>    <span class="comment">// Should be smoothed: 0.5 * 60 + 0.5 * (previous average)</span></div>
-<div class="line"><span class="lineno">  307</span>    EXPECT_GT(stats2.average_cpu_usage, 20.0);</div>
-<div class="line"><span class="lineno">  308</span>    EXPECT_LT(stats2.average_cpu_usage, 60.0);</div>
-<div class="line"><span class="lineno">  309</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00312">312</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  312</span>                                                {</div>
+<div class="line"><span class="lineno">  313</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  314</span>    </div>
+<div class="line"><span class="lineno">  315</span>    adaptive_config config;</div>
+<div class="line"><span class="lineno">  316</span>    config.smoothing_factor = 0.5;  <span class="comment">// Equal weight to old and new</span></div>
+<div class="line"><span class="lineno">  317</span>    </div>
+<div class="line"><span class="lineno">  318</span>    adaptive_collector collector(mock, config);</div>
+<div class="line"><span class="lineno">  319</span>    </div>
+<div class="line"><span class="lineno">  320</span>    <span class="comment">// First adaptation</span></div>
+<div class="line"><span class="lineno">  321</span>    system_metrics metrics1;</div>
+<div class="line"><span class="lineno">  322</span>    metrics1.cpu_usage_percent = 20.0;</div>
+<div class="line"><span class="lineno">  323</span>    collector.adapt(metrics1);</div>
+<div class="line"><span class="lineno">  324</span>    </div>
+<div class="line"><span class="lineno">  325</span>    <span class="keyword">auto</span> stats1 = collector.get_stats();</div>
+<div class="line"><span class="lineno">  326</span>    <span class="comment">// First adaptation sets initial value</span></div>
+<div class="line"><span class="lineno">  327</span>    EXPECT_NEAR(stats1.average_cpu_usage, 20.0, 1.0);</div>
+<div class="line"><span class="lineno">  328</span>    </div>
+<div class="line"><span class="lineno">  329</span>    <span class="comment">// Second adaptation</span></div>
+<div class="line"><span class="lineno">  330</span>    system_metrics metrics2;</div>
+<div class="line"><span class="lineno">  331</span>    metrics2.cpu_usage_percent = 60.0;</div>
+<div class="line"><span class="lineno">  332</span>    collector.adapt(metrics2);</div>
+<div class="line"><span class="lineno">  333</span>    </div>
+<div class="line"><span class="lineno">  334</span>    <span class="keyword">auto</span> stats2 = collector.get_stats();</div>
+<div class="line"><span class="lineno">  335</span>    <span class="comment">// Should be smoothed: 0.5 * 60 + 0.5 * (previous average)</span></div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_GT(stats2.average_cpu_usage, 20.0);</div>
+<div class="line"><span class="lineno">  337</span>    EXPECT_LT(stats2.average_cpu_usage, 60.0);</div>
+<div class="line"><span class="lineno">  338</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -971,32 +971,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00172">172</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  172</span>                                                    {</div>
-<div class="line"><span class="lineno">  173</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  174</span>    monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
-<div class="line"><span class="lineno">  175</span>    </div>
-<div class="line"><span class="lineno">  176</span>    EXPECT_FALSE(monitor.is_running());</div>
-<div class="line"><span class="lineno">  177</span>    </div>
-<div class="line"><span class="lineno">  178</span>    <span class="keyword">auto</span> result = monitor.start();</div>
-<div class="line"><span class="lineno">  179</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  180</span>    EXPECT_TRUE(monitor.is_running());</div>
-<div class="line"><span class="lineno">  181</span>    </div>
-<div class="line"><span class="lineno">  182</span>    <span class="comment">// Start again (should succeed but do nothing)</span></div>
-<div class="line"><span class="lineno">  183</span>    result = monitor.start();</div>
-<div class="line"><span class="lineno">  184</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  185</span>    </div>
-<div class="line"><span class="lineno">  186</span>    result = monitor.stop();</div>
-<div class="line"><span class="lineno">  187</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  188</span>    EXPECT_FALSE(monitor.is_running());</div>
-<div class="line"><span class="lineno">  189</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00201">201</a> of file <a class="el" href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html">test_adaptive_monitoring.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  201</span>                                                    {</div>
+<div class="line"><span class="lineno">  202</span>    <span class="keyword">auto</span> mock = std::make_shared&lt;mock_collector&gt;(<span class="stringliteral">&quot;test_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  203</span>    monitor.register_collector(<span class="stringliteral">&quot;test&quot;</span>, mock);</div>
+<div class="line"><span class="lineno">  204</span>    </div>
+<div class="line"><span class="lineno">  205</span>    EXPECT_FALSE(monitor.is_running());</div>
+<div class="line"><span class="lineno">  206</span>    </div>
+<div class="line"><span class="lineno">  207</span>    <span class="keyword">auto</span> result = monitor.start();</div>
+<div class="line"><span class="lineno">  208</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  209</span>    EXPECT_TRUE(monitor.is_running());</div>
+<div class="line"><span class="lineno">  210</span>    </div>
+<div class="line"><span class="lineno">  211</span>    <span class="comment">// Start again (should succeed but do nothing)</span></div>
+<div class="line"><span class="lineno">  212</span>    result = monitor.start();</div>
+<div class="line"><span class="lineno">  213</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  214</span>    </div>
+<div class="line"><span class="lineno">  215</span>    result = monitor.stop();</div>
+<div class="line"><span class="lineno">  216</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  217</span>    EXPECT_FALSE(monitor.is_running());</div>
+<div class="line"><span class="lineno">  218</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

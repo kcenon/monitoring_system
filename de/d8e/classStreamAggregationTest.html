@@ -115,7 +115,7 @@ Protected Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Test suite for Phase 3 P2: Statistical aggregation functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00016">16</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00045">45</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab6070093a6f77c1b41183cfd5725441f" name="ab6070093a6f77c1b41183cfd5725441f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab6070093a6f77c1b41183cfd5725441f">&#9670;&#160;</a></span>generate_normal_samples()</h2>
@@ -159,21 +159,21 @@ Protected Member Functions</h2></td></tr>
 
 <p>Generate normal distribution samples. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00029">29</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   29</span>                                                                                                    {</div>
-<div class="line"><span class="lineno">   30</span>        std::random_device rd;</div>
-<div class="line"><span class="lineno">   31</span>        std::mt19937 gen(rd());</div>
-<div class="line"><span class="lineno">   32</span>        std::normal_distribution&lt;&gt; dis(mean, stddev);</div>
-<div class="line"><span class="lineno">   33</span>        </div>
-<div class="line"><span class="lineno">   34</span>        std::vector&lt;double&gt; samples;</div>
-<div class="line"><span class="lineno">   35</span>        samples.reserve(count);</div>
-<div class="line"><span class="lineno">   36</span>        </div>
-<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; ++i) {</div>
-<div class="line"><span class="lineno">   38</span>            samples.push_back(dis(gen));</div>
-<div class="line"><span class="lineno">   39</span>        }</div>
-<div class="line"><span class="lineno">   40</span>        </div>
-<div class="line"><span class="lineno">   41</span>        <span class="keywordflow">return</span> samples;</div>
-<div class="line"><span class="lineno">   42</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>                                                                                                    {</div>
+<div class="line"><span class="lineno">   59</span>        std::random_device rd;</div>
+<div class="line"><span class="lineno">   60</span>        std::mt19937 gen(rd());</div>
+<div class="line"><span class="lineno">   61</span>        std::normal_distribution&lt;&gt; dis(mean, stddev);</div>
+<div class="line"><span class="lineno">   62</span>        </div>
+<div class="line"><span class="lineno">   63</span>        std::vector&lt;double&gt; samples;</div>
+<div class="line"><span class="lineno">   64</span>        samples.reserve(count);</div>
+<div class="line"><span class="lineno">   65</span>        </div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; ++i) {</div>
+<div class="line"><span class="lineno">   67</span>            samples.push_back(dis(gen));</div>
+<div class="line"><span class="lineno">   68</span>        }</div>
+<div class="line"><span class="lineno">   69</span>        </div>
+<div class="line"><span class="lineno">   70</span>        <span class="keywordflow">return</span> samples;</div>
+<div class="line"><span class="lineno">   71</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -219,21 +219,21 @@ Protected Member Functions</h2></td></tr>
 
 <p>Generate uniform distribution samples. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00047">47</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>                                                                                                 {</div>
-<div class="line"><span class="lineno">   48</span>        std::random_device rd;</div>
-<div class="line"><span class="lineno">   49</span>        std::mt19937 gen(rd());</div>
-<div class="line"><span class="lineno">   50</span>        std::uniform_real_distribution&lt;&gt; dis(min, max);</div>
-<div class="line"><span class="lineno">   51</span>        </div>
-<div class="line"><span class="lineno">   52</span>        std::vector&lt;double&gt; samples;</div>
-<div class="line"><span class="lineno">   53</span>        samples.reserve(count);</div>
-<div class="line"><span class="lineno">   54</span>        </div>
-<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; ++i) {</div>
-<div class="line"><span class="lineno">   56</span>            samples.push_back(dis(gen));</div>
-<div class="line"><span class="lineno">   57</span>        }</div>
-<div class="line"><span class="lineno">   58</span>        </div>
-<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">return</span> samples;</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>                                                                                                 {</div>
+<div class="line"><span class="lineno">   77</span>        std::random_device rd;</div>
+<div class="line"><span class="lineno">   78</span>        std::mt19937 gen(rd());</div>
+<div class="line"><span class="lineno">   79</span>        std::uniform_real_distribution&lt;&gt; dis(min, max);</div>
+<div class="line"><span class="lineno">   80</span>        </div>
+<div class="line"><span class="lineno">   81</span>        std::vector&lt;double&gt; samples;</div>
+<div class="line"><span class="lineno">   82</span>        samples.reserve(count);</div>
+<div class="line"><span class="lineno">   83</span>        </div>
+<div class="line"><span class="lineno">   84</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; ++i) {</div>
+<div class="line"><span class="lineno">   85</span>            samples.push_back(dis(gen));</div>
+<div class="line"><span class="lineno">   86</span>        }</div>
+<div class="line"><span class="lineno">   87</span>        </div>
+<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">return</span> samples;</div>
+<div class="line"><span class="lineno">   89</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -260,10 +260,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>                          {</div>
-<div class="line"><span class="lineno">   19</span>        <span class="comment">// Common setup for tests</span></div>
-<div class="line"><span class="lineno">   20</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00047">47</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>                          {</div>
+<div class="line"><span class="lineno">   48</span>        <span class="comment">// Common setup for tests</span></div>
+<div class="line"><span class="lineno">   49</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -290,10 +290,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00022">22</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>                             {</div>
-<div class="line"><span class="lineno">   23</span>        <span class="comment">// Common cleanup for tests</span></div>
-<div class="line"><span class="lineno">   24</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00051">51</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>                             {</div>
+<div class="line"><span class="lineno">   52</span>        <span class="comment">// Common cleanup for tests</span></div>
+<div class="line"><span class="lineno">   53</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -303,7 +303,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -132,7 +132,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00192">192</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2e7908e172914e3fb2e238b7cb5764ec" name="a2e7908e172914e3fb2e238b7cb5764ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e7908e172914e3fb2e238b7cb5764ec">&#9670;&#160;</a></span>performance_monitor_facade()</h2>
@@ -158,18 +158,18 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  165</span>                                                               {</div>
-<div class="line"><span class="lineno">  166</span>        <span class="comment">// Create core implementation</span></div>
-<div class="line"><span class="lineno">  167</span>        <a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a> = std::make_shared&lt;performance_monitor_impl&gt;(name);</div>
-<div class="line"><span class="lineno">  168</span> </div>
-<div class="line"><span class="lineno">  169</span>        <span class="comment">// Create adapters</span></div>
-<div class="line"><span class="lineno">  170</span>        <a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a680b330192df7a29d096ea1094561a8b">metrics_adapter_</a> = std::make_shared&lt;metrics_collector_adapter&gt;(<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a>);</div>
-<div class="line"><span class="lineno">  171</span>        <a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a3deb81a71b2a6388aa6387660f917408">imonitor_adapter_</a> = std::make_shared&lt;imonitor_adapter&gt;(<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a>);</div>
-<div class="line"><span class="lineno">  172</span>    }</div>
-<div class="ttc" id="aclassperformance__monitor__facade_html_a1fd2c2ef1ac7f38d650eebeb3c64be5a"><div class="ttname"><a href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">performance_monitor_facade::impl_</a></div><div class="ttdeci">std::shared_ptr&lt; performance_monitor_impl &gt; impl_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00189">facade_adapter_poc.cpp:189</a></div></div>
-<div class="ttc" id="aclassperformance__monitor__facade_html_a3deb81a71b2a6388aa6387660f917408"><div class="ttname"><a href="../../d9/d17/classperformance__monitor__facade.html#a3deb81a71b2a6388aa6387660f917408">performance_monitor_facade::imonitor_adapter_</a></div><div class="ttdeci">std::shared_ptr&lt; imonitor_adapter &gt; imonitor_adapter_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00191">facade_adapter_poc.cpp:191</a></div></div>
-<div class="ttc" id="aclassperformance__monitor__facade_html_a680b330192df7a29d096ea1094561a8b"><div class="ttname"><a href="../../d9/d17/classperformance__monitor__facade.html#a680b330192df7a29d096ea1094561a8b">performance_monitor_facade::metrics_adapter_</a></div><div class="ttdeci">std::shared_ptr&lt; metrics_collector_adapter &gt; metrics_adapter_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00190">facade_adapter_poc.cpp:190</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00194">194</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  194</span>                                                               {</div>
+<div class="line"><span class="lineno">  195</span>        <span class="comment">// Create core implementation</span></div>
+<div class="line"><span class="lineno">  196</span>        <a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a> = std::make_shared&lt;performance_monitor_impl&gt;(name);</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span>        <span class="comment">// Create adapters</span></div>
+<div class="line"><span class="lineno">  199</span>        <a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a680b330192df7a29d096ea1094561a8b">metrics_adapter_</a> = std::make_shared&lt;metrics_collector_adapter&gt;(<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a>);</div>
+<div class="line"><span class="lineno">  200</span>        <a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a3deb81a71b2a6388aa6387660f917408">imonitor_adapter_</a> = std::make_shared&lt;imonitor_adapter&gt;(<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a>);</div>
+<div class="line"><span class="lineno">  201</span>    }</div>
+<div class="ttc" id="aclassperformance__monitor__facade_html_a1fd2c2ef1ac7f38d650eebeb3c64be5a"><div class="ttname"><a href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">performance_monitor_facade::impl_</a></div><div class="ttdeci">std::shared_ptr&lt; performance_monitor_impl &gt; impl_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00218">facade_adapter_poc.cpp:218</a></div></div>
+<div class="ttc" id="aclassperformance__monitor__facade_html_a3deb81a71b2a6388aa6387660f917408"><div class="ttname"><a href="../../d9/d17/classperformance__monitor__facade.html#a3deb81a71b2a6388aa6387660f917408">performance_monitor_facade::imonitor_adapter_</a></div><div class="ttdeci">std::shared_ptr&lt; imonitor_adapter &gt; imonitor_adapter_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00220">facade_adapter_poc.cpp:220</a></div></div>
+<div class="ttc" id="aclassperformance__monitor__facade_html_a680b330192df7a29d096ea1094561a8b"><div class="ttname"><a href="../../d9/d17/classperformance__monitor__facade.html#a680b330192df7a29d096ea1094561a8b">performance_monitor_facade::metrics_adapter_</a></div><div class="ttdeci">std::shared_ptr&lt; metrics_collector_adapter &gt; metrics_adapter_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00219">facade_adapter_poc.cpp:219</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -197,10 +197,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00179">179</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  179</span>                                      {</div>
-<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a3deb81a71b2a6388aa6387660f917408">imonitor_adapter_</a>;</div>
-<div class="line"><span class="lineno">  181</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00208">208</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  208</span>                                      {</div>
+<div class="line"><span class="lineno">  209</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a3deb81a71b2a6388aa6387660f917408">imonitor_adapter_</a>;</div>
+<div class="line"><span class="lineno">  210</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -242,10 +242,10 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00175">175</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  175</span>                                                        {</div>
-<div class="line"><span class="lineno">  176</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a680b330192df7a29d096ea1094561a8b">metrics_adapter_</a>;</div>
-<div class="line"><span class="lineno">  177</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00204">204</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  204</span>                                                        {</div>
+<div class="line"><span class="lineno">  205</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a680b330192df7a29d096ea1094561a8b">metrics_adapter_</a>;</div>
+<div class="line"><span class="lineno">  206</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -284,10 +284,10 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00184">184</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  184</span>                                     {</div>
-<div class="line"><span class="lineno">  185</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a>;</div>
-<div class="line"><span class="lineno">  186</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00213">213</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  213</span>                                     {</div>
+<div class="line"><span class="lineno">  214</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="../../d9/d17/classperformance__monitor__facade.html#a1fd2c2ef1ac7f38d650eebeb3c64be5a">impl_</a>;</div>
+<div class="line"><span class="lineno">  215</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -324,7 +324,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00191">191</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00220">220</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
 
 </div>
 </div>
@@ -348,7 +348,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00218">218</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00190">190</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00219">219</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
 
 </div>
 </div>
@@ -382,7 +382,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

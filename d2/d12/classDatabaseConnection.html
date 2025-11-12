@@ -109,7 +109,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00028">28</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00057">57</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae21b13ec0e2fe21ddbe7e3db3b9b64d0" name="ae21b13ec0e2fe21ddbe7e3db3b9b64d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae21b13ec0e2fe21ddbe7e3db3b9b64d0">&#9670;&#160;</a></span>execute_query()</h2>
@@ -135,35 +135,35 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00039">39</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>                                                            {</div>
-<div class="line"><span class="lineno">   40</span>        <a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2">query_count_</a>++;</div>
-<div class="line"><span class="lineno">   41</span>        </div>
-<div class="line"><span class="lineno">   42</span>        <span class="comment">// Simulate latency</span></div>
-<div class="line"><span class="lineno">   43</span>        std::this_thread::sleep_for(10ms);</div>
-<div class="line"><span class="lineno">   44</span>        </div>
-<div class="line"><span class="lineno">   45</span>        <span class="comment">// Simulate failures</span></div>
-<div class="line"><span class="lineno">   46</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124">is_healthy_</a>) {</div>
-<div class="line"><span class="lineno">   47</span>            <span class="keywordflow">return</span> make_error&lt;std::string&gt;(</div>
-<div class="line"><span class="lineno">   48</span>                monitoring_error_code::service_unavailable,</div>
-<div class="line"><span class="lineno">   49</span>                <span class="stringliteral">&quot;Database connection lost&quot;</span></div>
-<div class="line"><span class="lineno">   50</span>            );</div>
-<div class="line"><span class="lineno">   51</span>        }</div>
-<div class="line"><span class="lineno">   52</span>        </div>
-<div class="line"><span class="lineno">   53</span>        <span class="comment">// Random transient failures (10% chance)</span></div>
-<div class="line"><span class="lineno">   54</span>        std::uniform_int_distribution&lt;&gt; dist(1, 10);</div>
-<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">if</span> (dist(<a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed">rng_</a>) == 1) {</div>
-<div class="line"><span class="lineno">   56</span>            <span class="keywordflow">return</span> make_error&lt;std::string&gt;(</div>
-<div class="line"><span class="lineno">   57</span>                monitoring_error_code::operation_timeout,</div>
-<div class="line"><span class="lineno">   58</span>                <span class="stringliteral">&quot;Query timeout&quot;</span></div>
-<div class="line"><span class="lineno">   59</span>            );</div>
-<div class="line"><span class="lineno">   60</span>        }</div>
-<div class="line"><span class="lineno">   61</span>        </div>
-<div class="line"><span class="lineno">   62</span>        <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Query result for: &quot;</span> + query);</div>
-<div class="line"><span class="lineno">   63</span>    }</div>
-<div class="ttc" id="aclassDatabaseConnection_html_a05b95b59dad5bb5f3edb1c3801d23ce2"><div class="ttname"><a href="../../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2">DatabaseConnection::query_count_</a></div><div class="ttdeci">std::atomic&lt; int &gt; query_count_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d84/health__reliability__example_8cpp_source.html#l00031">health_reliability_example.cpp:31</a></div></div>
-<div class="ttc" id="aclassDatabaseConnection_html_a4a52bd7e2486aaffeb57af1e4ada07ed"><div class="ttname"><a href="../../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed">DatabaseConnection::rng_</a></div><div class="ttdeci">std::mt19937 rng_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d84/health__reliability__example_8cpp_source.html#l00032">health_reliability_example.cpp:32</a></div></div>
-<div class="ttc" id="aclassDatabaseConnection_html_a9cb9d08e2f878567ada537db02998124"><div class="ttname"><a href="../../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124">DatabaseConnection::is_healthy_</a></div><div class="ttdeci">std::atomic&lt; bool &gt; is_healthy_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d84/health__reliability__example_8cpp_source.html#l00030">health_reliability_example.cpp:30</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>                                                            {</div>
+<div class="line"><span class="lineno">   69</span>        <a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2">query_count_</a>++;</div>
+<div class="line"><span class="lineno">   70</span>        </div>
+<div class="line"><span class="lineno">   71</span>        <span class="comment">// Simulate latency</span></div>
+<div class="line"><span class="lineno">   72</span>        std::this_thread::sleep_for(10ms);</div>
+<div class="line"><span class="lineno">   73</span>        </div>
+<div class="line"><span class="lineno">   74</span>        <span class="comment">// Simulate failures</span></div>
+<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124">is_healthy_</a>) {</div>
+<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">return</span> make_error&lt;std::string&gt;(</div>
+<div class="line"><span class="lineno">   77</span>                monitoring_error_code::service_unavailable,</div>
+<div class="line"><span class="lineno">   78</span>                <span class="stringliteral">&quot;Database connection lost&quot;</span></div>
+<div class="line"><span class="lineno">   79</span>            );</div>
+<div class="line"><span class="lineno">   80</span>        }</div>
+<div class="line"><span class="lineno">   81</span>        </div>
+<div class="line"><span class="lineno">   82</span>        <span class="comment">// Random transient failures (10% chance)</span></div>
+<div class="line"><span class="lineno">   83</span>        std::uniform_int_distribution&lt;&gt; dist(1, 10);</div>
+<div class="line"><span class="lineno">   84</span>        <span class="keywordflow">if</span> (dist(<a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed">rng_</a>) == 1) {</div>
+<div class="line"><span class="lineno">   85</span>            <span class="keywordflow">return</span> make_error&lt;std::string&gt;(</div>
+<div class="line"><span class="lineno">   86</span>                monitoring_error_code::operation_timeout,</div>
+<div class="line"><span class="lineno">   87</span>                <span class="stringliteral">&quot;Query timeout&quot;</span></div>
+<div class="line"><span class="lineno">   88</span>            );</div>
+<div class="line"><span class="lineno">   89</span>        }</div>
+<div class="line"><span class="lineno">   90</span>        </div>
+<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Query result for: &quot;</span> + query);</div>
+<div class="line"><span class="lineno">   92</span>    }</div>
+<div class="ttc" id="aclassDatabaseConnection_html_a05b95b59dad5bb5f3edb1c3801d23ce2"><div class="ttname"><a href="../../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2">DatabaseConnection::query_count_</a></div><div class="ttdeci">std::atomic&lt; int &gt; query_count_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d84/health__reliability__example_8cpp_source.html#l00060">health_reliability_example.cpp:60</a></div></div>
+<div class="ttc" id="aclassDatabaseConnection_html_a4a52bd7e2486aaffeb57af1e4ada07ed"><div class="ttname"><a href="../../d2/d12/classDatabaseConnection.html#a4a52bd7e2486aaffeb57af1e4ada07ed">DatabaseConnection::rng_</a></div><div class="ttdeci">std::mt19937 rng_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d84/health__reliability__example_8cpp_source.html#l00061">health_reliability_example.cpp:61</a></div></div>
+<div class="ttc" id="aclassDatabaseConnection_html_a9cb9d08e2f878567ada537db02998124"><div class="ttname"><a href="../../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124">DatabaseConnection::is_healthy_</a></div><div class="ttdeci">std::atomic&lt; bool &gt; is_healthy_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d84/health__reliability__example_8cpp_source.html#l00059">health_reliability_example.cpp:59</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -190,8 +190,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   65</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2">query_count_</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2">query_count_</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -219,10 +219,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00035">35</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>                                   {</div>
-<div class="line"><span class="lineno">   36</span>        <a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124">is_healthy_</a> = healthy;</div>
-<div class="line"><span class="lineno">   37</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>                                   {</div>
+<div class="line"><span class="lineno">   65</span>        <a class="code hl_variable" href="../../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124">is_healthy_</a> = healthy;</div>
+<div class="line"><span class="lineno">   66</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -247,8 +247,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00030">30</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>{<span class="keyword">true</span>};</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00059">59</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   59</span>{<span class="keyword">true</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -272,8 +272,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00031">31</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   31</span>{0};</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   60</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -297,8 +297,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00032">32</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>{std::random_device{}()};</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../d2/d84/health__reliability__example_8cpp_source.html">health_reliability_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   61</span>{std::random_device{}()};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -308,7 +308,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

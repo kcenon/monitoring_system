@@ -81,179 +81,207 @@ $(document).ready(function() { init_codefold(1); });
   <div class="headertitle"><div class="title">test_interfaces_compile.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="../../d2/dc5/test__interfaces__compile_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/observer_interface.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/metric_collector_interface.h&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/event_bus_interface.h&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// Test implementation of observer interface</span></div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d2/da5/classtest__observer.html">test_observer</a> : <span class="keyword">public</span> interface_monitoring_observer {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63">   20</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63">on_metric_collected</a>(<span class="keyword">const</span> metric_event&amp; event)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metric collected from: &quot;</span> &lt;&lt; <span class="keyword">event</span>.source() &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
-</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171">   24</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171">on_event_occurred</a>(<span class="keyword">const</span> system_event&amp; event)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;System event from: &quot;</span> &lt;&lt; <span class="keyword">event</span>.component() &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358">   28</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358">on_system_state_changed</a>(<span class="keyword">const</span> state_change_event&amp; event)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;State change in: &quot;</span> &lt;&lt; <span class="keyword">event</span>.component() &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
-</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
-</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// Test that interfaces can be used as base classes</span></div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html">   34</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> : <span class="keyword">public</span> interface_metric_collector {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">   36</a></span>    result&lt;std::vector&lt;metric&gt;&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> result&lt;std::vector&lt;metric&gt;&gt;(std::vector&lt;metric&gt;{});</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
-</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#adcbb96c13f213df0cd6d855f0873b4ea">   40</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#adcbb96c13f213df0cd6d855f0873b4ea">start_collection</a>(<span class="keyword">const</span> collection_config&amp; config)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> result_void::success();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
-</div>
+<a href="../../d2/dc5/test__interfaces__compile_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// BSD 3-Clause License</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 1. Redistributions of source code must retain the above copyright notice, this</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//    list of conditions and the following disclaimer.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 2. Redistributions in binary form must reproduce the above copyright notice,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//    this list of conditions and the following disclaimer in the documentation</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//    and/or other materials provided with the distribution.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 3. Neither the name of the copyright holder nor the names of its</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//    contributors may be used to endorse or promote products derived from</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//    this software without specific prior written permission.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/observer_interface.h&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/metric_collector_interface.h&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/event_bus_interface.h&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a937f2cc895d8ef5faf228df10f55ac19">   44</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a937f2cc895d8ef5faf228df10f55ac19">stop_collection</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> result_void::success();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">// Test implementation of observer interface</span></div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html">   47</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d2/da5/classtest__observer.html">test_observer</a> : <span class="keyword">public</span> interface_monitoring_observer {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63">on_metric_collected</a>(<span class="keyword">const</span> metric_event&amp; event)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metric collected from: &quot;</span> &lt;&lt; <span class="keyword">event</span>.source() &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a7c85592f15113deef5b8365dcbda9509">   48</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a7c85592f15113deef5b8365dcbda9509">is_collecting</a>()<span class="keyword"> const override </span>{</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171">   53</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171">on_event_occurred</a>(<span class="keyword">const</span> system_event&amp; event)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;System event from: &quot;</span> &lt;&lt; <span class="keyword">event</span>.component() &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a9aa53936c18e756ac375ed78b595a314">   52</a></span>    std::vector&lt;std::string&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a9aa53936c18e756ac375ed78b595a314">get_metric_types</a>()<span class="keyword"> const override </span>{</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> {<span class="stringliteral">&quot;test_metric&quot;</span>};</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358">   57</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358">on_system_state_changed</a>(<span class="keyword">const</span> state_change_event&amp; event)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;State change in: &quot;</span> &lt;&lt; <span class="keyword">event</span>.component() &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a06064b6345f204ac2e3e96bac5d6b68a">   56</a></span>    collection_config <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a06064b6345f204ac2e3e96bac5d6b68a">get_config</a>()<span class="keyword"> const override </span>{</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> collection_config{};</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#aeb9bf4aeed39ff7b6fb283829a74d8d4">   60</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#aeb9bf4aeed39ff7b6fb283829a74d8d4">update_config</a>(<span class="keyword">const</span> collection_config&amp; config)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> result_void::success();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// Test that interfaces can be used as base classes</span></div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html">   63</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d9/d71/classtest__collector.html">test_collector</a> : <span class="keyword">public</span> interface_metric_collector {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">   65</a></span>    result&lt;std::vector&lt;metric&gt;&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> result&lt;std::vector&lt;metric&gt;&gt;(std::vector&lt;metric&gt;{});</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">   64</a></span>    result&lt;std::vector&lt;metric&gt;&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">force_collect</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a>();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#adcbb96c13f213df0cd6d855f0873b4ea">   69</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#adcbb96c13f213df0cd6d855f0873b4ea">start_collection</a>(<span class="keyword">const</span> collection_config&amp; config)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29">   68</a></span>    metric_stats <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29">get_stats</a>()<span class="keyword"> const override </span>{</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">return</span> metric_stats{};</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a937f2cc895d8ef5faf228df10f55ac19">   73</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a937f2cc895d8ef5faf228df10f55ac19">stop_collection</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
 </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a2db66160ebf6003706c94994eebda5c6">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a2db66160ebf6003706c94994eebda5c6">reset_stats</a>()<span class="keyword"> override </span>{}</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Observable interface methods</span></div>
-<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a28c1e3beac3876b162159edccfa551c5">   75</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a28c1e3beac3876b162159edccfa551c5">register_observer</a>(std::shared_ptr&lt;interface_monitoring_observer&gt; observer)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">return</span> result_void::success();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a7c85592f15113deef5b8365dcbda9509">   77</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a7c85592f15113deef5b8365dcbda9509">is_collecting</a>()<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#ae0fb3983b239a21747e6499c575e94f2">   79</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ae0fb3983b239a21747e6499c575e94f2">unregister_observer</a>(std::shared_ptr&lt;interface_monitoring_observer&gt; observer)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">return</span> result_void::success();</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a9aa53936c18e756ac375ed78b595a314">   81</a></span>    std::vector&lt;std::string&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a9aa53936c18e756ac375ed78b595a314">get_metric_types</a>()<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> {<span class="stringliteral">&quot;test_metric&quot;</span>};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
 </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63">   83</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63">notify_metric</a>(<span class="keyword">const</span> metric_event&amp; event)<span class="keyword"> override </span>{}</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb">   84</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb">notify_event</a>(<span class="keyword">const</span> system_event&amp; event)<span class="keyword"> override </span>{}</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9">   85</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9">notify_state_change</a>(<span class="keyword">const</span> state_change_event&amp; event)<span class="keyword"> override </span>{}</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a06064b6345f204ac2e3e96bac5d6b68a">   85</a></span>    collection_config <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a06064b6345f204ac2e3e96bac5d6b68a">get_config</a>()<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">return</span> collection_config{};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
 </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   88</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Interface Compilation Test ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// Test that interfaces can be instantiated through implementations</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">auto</span> observer = std::make_shared&lt;test_observer&gt;();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">auto</span> collector = std::make_shared&lt;test_collector&gt;();</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// Test that interfaces can be used</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    metric m{<span class="stringliteral">&quot;test&quot;</span>, metric_value{42.0}, {}};</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    metric_event me(<span class="stringliteral">&quot;test_source&quot;</span>, m);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    observer-&gt;on_metric_collected(me);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    system_event se(system_event::event_type::component_started, <span class="stringliteral">&quot;test_component&quot;</span>, <span class="stringliteral">&quot;Started&quot;</span>);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    observer-&gt;on_event_occurred(se);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#aeb9bf4aeed39ff7b6fb283829a74d8d4">   89</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#aeb9bf4aeed39ff7b6fb283829a74d8d4">update_config</a>(<span class="keyword">const</span> collection_config&amp; config)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="foldopen" id="foldopen00093" data-start="{" data-end="}">
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">   93</a></span>    result&lt;std::vector&lt;metric&gt;&gt; <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">force_collect</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">collect_metrics</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29">   97</a></span>    metric_stats <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29">get_stats</a>()<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> metric_stats{};</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a2db66160ebf6003706c94994eebda5c6">  101</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a2db66160ebf6003706c94994eebda5c6">reset_stats</a>()<span class="keyword"> override </span>{}</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    state_change_event sce(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                          state_change_event::state::healthy,</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                          state_change_event::state::degraded);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    observer-&gt;on_system_state_changed(sce);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// Test collector interface</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">auto</span> result = collector-&gt;collect_metrics();</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">if</span> (result.is_ok()) {</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metrics collected successfully&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">auto</span> types = collector-&gt;get_metric_types();</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collector supports &quot;</span> &lt;&lt; types.size() &lt;&lt; <span class="stringliteral">&quot; metric type(s)&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;✅ All interface compilation tests passed!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// Observable interface methods</span></div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a28c1e3beac3876b162159edccfa551c5">  104</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a28c1e3beac3876b162159edccfa551c5">register_observer</a>(std::shared_ptr&lt;interface_monitoring_observer&gt; observer)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
 </div>
-<div class="ttc" id="aclasstest__collector_html"><div class="ttname"><a href="../../d9/d71/classtest__collector.html">test_collector</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00034">test_interfaces_compile.cpp:34</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a06064b6345f204ac2e3e96bac5d6b68a"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a06064b6345f204ac2e3e96bac5d6b68a">test_collector::get_config</a></div><div class="ttdeci">collection_config get_config() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00056">test_interfaces_compile.cpp:56</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a2782782765bd1c88227d2903c09aa726"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">test_collector::force_collect</a></div><div class="ttdeci">result&lt; std::vector&lt; metric &gt; &gt; force_collect() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00064">test_interfaces_compile.cpp:64</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a28c1e3beac3876b162159edccfa551c5"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a28c1e3beac3876b162159edccfa551c5">test_collector::register_observer</a></div><div class="ttdeci">result_void register_observer(std::shared_ptr&lt; interface_monitoring_observer &gt; observer) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00075">test_interfaces_compile.cpp:75</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a2db66160ebf6003706c94994eebda5c6"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a2db66160ebf6003706c94994eebda5c6">test_collector::reset_stats</a></div><div class="ttdeci">void reset_stats() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00072">test_interfaces_compile.cpp:72</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a460f7ce2ed85cc633fbddc4916785c29"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29">test_collector::get_stats</a></div><div class="ttdeci">metric_stats get_stats() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00068">test_interfaces_compile.cpp:68</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a478809530c06ed9233514ba477ef4ae9"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9">test_collector::notify_state_change</a></div><div class="ttdeci">void notify_state_change(const state_change_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00085">test_interfaces_compile.cpp:85</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a7823bce5d71fa98f7ea4d88e52e80a63"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63">test_collector::notify_metric</a></div><div class="ttdeci">void notify_metric(const metric_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00083">test_interfaces_compile.cpp:83</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a7c85592f15113deef5b8365dcbda9509"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a7c85592f15113deef5b8365dcbda9509">test_collector::is_collecting</a></div><div class="ttdeci">bool is_collecting() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00048">test_interfaces_compile.cpp:48</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a937f2cc895d8ef5faf228df10f55ac19"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a937f2cc895d8ef5faf228df10f55ac19">test_collector::stop_collection</a></div><div class="ttdeci">result_void stop_collection() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00044">test_interfaces_compile.cpp:44</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_a9aa53936c18e756ac375ed78b595a314"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a9aa53936c18e756ac375ed78b595a314">test_collector::get_metric_types</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_metric_types() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00052">test_interfaces_compile.cpp:52</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_abfe6b3ebc7ba8221d871212374a886fb"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb">test_collector::notify_event</a></div><div class="ttdeci">void notify_event(const system_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00084">test_interfaces_compile.cpp:84</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_ac72129342beb4bcfc7c4b7ce2ddc8a7a"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">test_collector::collect_metrics</a></div><div class="ttdeci">result&lt; std::vector&lt; metric &gt; &gt; collect_metrics() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00036">test_interfaces_compile.cpp:36</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_adcbb96c13f213df0cd6d855f0873b4ea"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#adcbb96c13f213df0cd6d855f0873b4ea">test_collector::start_collection</a></div><div class="ttdeci">result_void start_collection(const collection_config &amp;config) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00040">test_interfaces_compile.cpp:40</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_ae0fb3983b239a21747e6499c575e94f2"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#ae0fb3983b239a21747e6499c575e94f2">test_collector::unregister_observer</a></div><div class="ttdeci">result_void unregister_observer(std::shared_ptr&lt; interface_monitoring_observer &gt; observer) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00079">test_interfaces_compile.cpp:79</a></div></div>
-<div class="ttc" id="aclasstest__collector_html_aeb9bf4aeed39ff7b6fb283829a74d8d4"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#aeb9bf4aeed39ff7b6fb283829a74d8d4">test_collector::update_config</a></div><div class="ttdeci">result_void update_config(const collection_config &amp;config) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00060">test_interfaces_compile.cpp:60</a></div></div>
-<div class="ttc" id="aclasstest__observer_html"><div class="ttname"><a href="../../d2/da5/classtest__observer.html">test_observer</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00018">test_interfaces_compile.cpp:18</a></div></div>
-<div class="ttc" id="aclasstest__observer_html_a76914a7b6751ae48c64027a6ce63bc63"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63">test_observer::on_metric_collected</a></div><div class="ttdeci">void on_metric_collected(const metric_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00020">test_interfaces_compile.cpp:20</a></div></div>
-<div class="ttc" id="aclasstest__observer_html_a9b89e83bedd835019b3a4c5e77647171"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171">test_observer::on_event_occurred</a></div><div class="ttdeci">void on_event_occurred(const system_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00024">test_interfaces_compile.cpp:24</a></div></div>
-<div class="ttc" id="aclasstest__observer_html_aa93c6b8fa6a33f9fc25384c264b90358"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358">test_observer::on_system_state_changed</a></div><div class="ttdeci">void on_system_state_changed(const state_change_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00028">test_interfaces_compile.cpp:28</a></div></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#ae0fb3983b239a21747e6499c575e94f2">  108</a></span>    result_void <a class="code hl_function" href="../../d9/d71/classtest__collector.html#ae0fb3983b239a21747e6499c575e94f2">unregister_observer</a>(std::shared_ptr&lt;interface_monitoring_observer&gt; observer)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63">  112</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63">notify_metric</a>(<span class="keyword">const</span> metric_event&amp; event)<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb">  113</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb">notify_event</a>(<span class="keyword">const</span> system_event&amp; event)<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="../../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9">  114</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9">notify_state_change</a>(<span class="keyword">const</span> state_change_event&amp; event)<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">  117</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Interface Compilation Test ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// Test that interfaces can be instantiated through implementations</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">auto</span> observer = std::make_shared&lt;test_observer&gt;();</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">auto</span> collector = std::make_shared&lt;test_collector&gt;();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// Test that interfaces can be used</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    metric m{<span class="stringliteral">&quot;test&quot;</span>, metric_value{42.0}, {}};</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    metric_event me(<span class="stringliteral">&quot;test_source&quot;</span>, m);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    observer-&gt;on_metric_collected(me);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    system_event se(system_event::event_type::component_started, <span class="stringliteral">&quot;test_component&quot;</span>, <span class="stringliteral">&quot;Started&quot;</span>);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    observer-&gt;on_event_occurred(se);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    state_change_event sce(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                          state_change_event::state::healthy,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                          state_change_event::state::degraded);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    observer-&gt;on_system_state_changed(sce);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// Test collector interface</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keyword">auto</span> result = collector-&gt;collect_metrics();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metrics collected successfully&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keyword">auto</span> types = collector-&gt;get_metric_types();</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collector supports &quot;</span> &lt;&lt; types.size() &lt;&lt; <span class="stringliteral">&quot; metric type(s)&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;✅ All interface compilation tests passed!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>}</div>
+</div>
+<div class="ttc" id="aclasstest__collector_html"><div class="ttname"><a href="../../d9/d71/classtest__collector.html">test_collector</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00063">test_interfaces_compile.cpp:63</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a06064b6345f204ac2e3e96bac5d6b68a"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a06064b6345f204ac2e3e96bac5d6b68a">test_collector::get_config</a></div><div class="ttdeci">collection_config get_config() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00085">test_interfaces_compile.cpp:85</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a2782782765bd1c88227d2903c09aa726"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a2782782765bd1c88227d2903c09aa726">test_collector::force_collect</a></div><div class="ttdeci">result&lt; std::vector&lt; metric &gt; &gt; force_collect() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00093">test_interfaces_compile.cpp:93</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a28c1e3beac3876b162159edccfa551c5"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a28c1e3beac3876b162159edccfa551c5">test_collector::register_observer</a></div><div class="ttdeci">result_void register_observer(std::shared_ptr&lt; interface_monitoring_observer &gt; observer) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00104">test_interfaces_compile.cpp:104</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a2db66160ebf6003706c94994eebda5c6"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a2db66160ebf6003706c94994eebda5c6">test_collector::reset_stats</a></div><div class="ttdeci">void reset_stats() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00101">test_interfaces_compile.cpp:101</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a460f7ce2ed85cc633fbddc4916785c29"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a460f7ce2ed85cc633fbddc4916785c29">test_collector::get_stats</a></div><div class="ttdeci">metric_stats get_stats() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00097">test_interfaces_compile.cpp:97</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a478809530c06ed9233514ba477ef4ae9"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a478809530c06ed9233514ba477ef4ae9">test_collector::notify_state_change</a></div><div class="ttdeci">void notify_state_change(const state_change_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00114">test_interfaces_compile.cpp:114</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a7823bce5d71fa98f7ea4d88e52e80a63"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a7823bce5d71fa98f7ea4d88e52e80a63">test_collector::notify_metric</a></div><div class="ttdeci">void notify_metric(const metric_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00112">test_interfaces_compile.cpp:112</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a7c85592f15113deef5b8365dcbda9509"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a7c85592f15113deef5b8365dcbda9509">test_collector::is_collecting</a></div><div class="ttdeci">bool is_collecting() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00077">test_interfaces_compile.cpp:77</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a937f2cc895d8ef5faf228df10f55ac19"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a937f2cc895d8ef5faf228df10f55ac19">test_collector::stop_collection</a></div><div class="ttdeci">result_void stop_collection() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00073">test_interfaces_compile.cpp:73</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_a9aa53936c18e756ac375ed78b595a314"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#a9aa53936c18e756ac375ed78b595a314">test_collector::get_metric_types</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_metric_types() const override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00081">test_interfaces_compile.cpp:81</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_abfe6b3ebc7ba8221d871212374a886fb"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#abfe6b3ebc7ba8221d871212374a886fb">test_collector::notify_event</a></div><div class="ttdeci">void notify_event(const system_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00113">test_interfaces_compile.cpp:113</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_ac72129342beb4bcfc7c4b7ce2ddc8a7a"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a">test_collector::collect_metrics</a></div><div class="ttdeci">result&lt; std::vector&lt; metric &gt; &gt; collect_metrics() override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00065">test_interfaces_compile.cpp:65</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_adcbb96c13f213df0cd6d855f0873b4ea"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#adcbb96c13f213df0cd6d855f0873b4ea">test_collector::start_collection</a></div><div class="ttdeci">result_void start_collection(const collection_config &amp;config) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00069">test_interfaces_compile.cpp:69</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_ae0fb3983b239a21747e6499c575e94f2"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#ae0fb3983b239a21747e6499c575e94f2">test_collector::unregister_observer</a></div><div class="ttdeci">result_void unregister_observer(std::shared_ptr&lt; interface_monitoring_observer &gt; observer) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00108">test_interfaces_compile.cpp:108</a></div></div>
+<div class="ttc" id="aclasstest__collector_html_aeb9bf4aeed39ff7b6fb283829a74d8d4"><div class="ttname"><a href="../../d9/d71/classtest__collector.html#aeb9bf4aeed39ff7b6fb283829a74d8d4">test_collector::update_config</a></div><div class="ttdeci">result_void update_config(const collection_config &amp;config) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00089">test_interfaces_compile.cpp:89</a></div></div>
+<div class="ttc" id="aclasstest__observer_html"><div class="ttname"><a href="../../d2/da5/classtest__observer.html">test_observer</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00047">test_interfaces_compile.cpp:47</a></div></div>
+<div class="ttc" id="aclasstest__observer_html_a76914a7b6751ae48c64027a6ce63bc63"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#a76914a7b6751ae48c64027a6ce63bc63">test_observer::on_metric_collected</a></div><div class="ttdeci">void on_metric_collected(const metric_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00049">test_interfaces_compile.cpp:49</a></div></div>
+<div class="ttc" id="aclasstest__observer_html_a9b89e83bedd835019b3a4c5e77647171"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#a9b89e83bedd835019b3a4c5e77647171">test_observer::on_event_occurred</a></div><div class="ttdeci">void on_event_occurred(const system_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00053">test_interfaces_compile.cpp:53</a></div></div>
+<div class="ttc" id="aclasstest__observer_html_aa93c6b8fa6a33f9fc25384c264b90358"><div class="ttname"><a href="../../d2/da5/classtest__observer.html#aa93c6b8fa6a33f9fc25384c264b90358">test_observer::on_system_state_changed</a></div><div class="ttdeci">void on_system_state_changed(const state_change_event &amp;event) override</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00057">test_interfaces_compile.cpp:57</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00030">test_di_container.cpp:30</a></div></div>
-<div class="ttc" id="atest__interfaces__compile_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00088">test_interfaces_compile.cpp:88</a></div></div>
+<div class="ttc" id="atest__interfaces__compile_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00117">test_interfaces_compile.cpp:117</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

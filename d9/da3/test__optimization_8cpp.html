@@ -177,39 +177,39 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00365">365</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  365</span>                                                  {</div>
-<div class="line"><span class="lineno">  366</span>    <span class="comment">// Test lockfree queue config validation</span></div>
-<div class="line"><span class="lineno">  367</span>    lockfree_queue_config invalid_queue_config;</div>
-<div class="line"><span class="lineno">  368</span>    invalid_queue_config.initial_capacity = 0;  <span class="comment">// Invalid</span></div>
-<div class="line"><span class="lineno">  369</span>    EXPECT_FALSE(invalid_queue_config.validate());</div>
-<div class="line"><span class="lineno">  370</span>    </div>
-<div class="line"><span class="lineno">  371</span>    lockfree_queue_config valid_queue_config;</div>
-<div class="line"><span class="lineno">  372</span>    valid_queue_config.initial_capacity = 1024;</div>
-<div class="line"><span class="lineno">  373</span>    valid_queue_config.max_capacity = 4096;</div>
-<div class="line"><span class="lineno">  374</span>    EXPECT_TRUE(valid_queue_config.validate());</div>
-<div class="line"><span class="lineno">  375</span>    </div>
-<div class="line"><span class="lineno">  376</span>    <span class="comment">// Test memory pool config validation</span></div>
-<div class="line"><span class="lineno">  377</span>    memory_pool_config invalid_pool_config;</div>
-<div class="line"><span class="lineno">  378</span>    invalid_pool_config.block_size = 7;  <span class="comment">// Not 8-byte aligned</span></div>
-<div class="line"><span class="lineno">  379</span>    EXPECT_FALSE(invalid_pool_config.validate());</div>
-<div class="line"><span class="lineno">  380</span>    </div>
-<div class="line"><span class="lineno">  381</span>    memory_pool_config valid_pool_config;</div>
-<div class="line"><span class="lineno">  382</span>    valid_pool_config.initial_blocks = 256;</div>
-<div class="line"><span class="lineno">  383</span>    valid_pool_config.max_blocks = 1024;</div>
-<div class="line"><span class="lineno">  384</span>    valid_pool_config.block_size = 64;</div>
-<div class="line"><span class="lineno">  385</span>    EXPECT_TRUE(valid_pool_config.validate());</div>
-<div class="line"><span class="lineno">  386</span>    </div>
-<div class="line"><span class="lineno">  387</span>    <span class="comment">// Test SIMD config validation</span></div>
-<div class="line"><span class="lineno">  388</span>    simd_config invalid_simd_config;</div>
-<div class="line"><span class="lineno">  389</span>    invalid_simd_config.vector_size = 7;  <span class="comment">// Not power of 2</span></div>
-<div class="line"><span class="lineno">  390</span>    EXPECT_FALSE(invalid_simd_config.validate());</div>
-<div class="line"><span class="lineno">  391</span>    </div>
-<div class="line"><span class="lineno">  392</span>    simd_config valid_simd_config;</div>
-<div class="line"><span class="lineno">  393</span>    valid_simd_config.vector_size = 8;</div>
-<div class="line"><span class="lineno">  394</span>    valid_simd_config.alignment = 32;</div>
-<div class="line"><span class="lineno">  395</span>    EXPECT_TRUE(valid_simd_config.validate());</div>
-<div class="line"><span class="lineno">  396</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00394">394</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  394</span>                                                  {</div>
+<div class="line"><span class="lineno">  395</span>    <span class="comment">// Test lockfree queue config validation</span></div>
+<div class="line"><span class="lineno">  396</span>    lockfree_queue_config invalid_queue_config;</div>
+<div class="line"><span class="lineno">  397</span>    invalid_queue_config.initial_capacity = 0;  <span class="comment">// Invalid</span></div>
+<div class="line"><span class="lineno">  398</span>    EXPECT_FALSE(invalid_queue_config.validate());</div>
+<div class="line"><span class="lineno">  399</span>    </div>
+<div class="line"><span class="lineno">  400</span>    lockfree_queue_config valid_queue_config;</div>
+<div class="line"><span class="lineno">  401</span>    valid_queue_config.initial_capacity = 1024;</div>
+<div class="line"><span class="lineno">  402</span>    valid_queue_config.max_capacity = 4096;</div>
+<div class="line"><span class="lineno">  403</span>    EXPECT_TRUE(valid_queue_config.validate());</div>
+<div class="line"><span class="lineno">  404</span>    </div>
+<div class="line"><span class="lineno">  405</span>    <span class="comment">// Test memory pool config validation</span></div>
+<div class="line"><span class="lineno">  406</span>    memory_pool_config invalid_pool_config;</div>
+<div class="line"><span class="lineno">  407</span>    invalid_pool_config.block_size = 7;  <span class="comment">// Not 8-byte aligned</span></div>
+<div class="line"><span class="lineno">  408</span>    EXPECT_FALSE(invalid_pool_config.validate());</div>
+<div class="line"><span class="lineno">  409</span>    </div>
+<div class="line"><span class="lineno">  410</span>    memory_pool_config valid_pool_config;</div>
+<div class="line"><span class="lineno">  411</span>    valid_pool_config.initial_blocks = 256;</div>
+<div class="line"><span class="lineno">  412</span>    valid_pool_config.max_blocks = 1024;</div>
+<div class="line"><span class="lineno">  413</span>    valid_pool_config.block_size = 64;</div>
+<div class="line"><span class="lineno">  414</span>    EXPECT_TRUE(valid_pool_config.validate());</div>
+<div class="line"><span class="lineno">  415</span>    </div>
+<div class="line"><span class="lineno">  416</span>    <span class="comment">// Test SIMD config validation</span></div>
+<div class="line"><span class="lineno">  417</span>    simd_config invalid_simd_config;</div>
+<div class="line"><span class="lineno">  418</span>    invalid_simd_config.vector_size = 7;  <span class="comment">// Not power of 2</span></div>
+<div class="line"><span class="lineno">  419</span>    EXPECT_FALSE(invalid_simd_config.validate());</div>
+<div class="line"><span class="lineno">  420</span>    </div>
+<div class="line"><span class="lineno">  421</span>    simd_config valid_simd_config;</div>
+<div class="line"><span class="lineno">  422</span>    valid_simd_config.vector_size = 8;</div>
+<div class="line"><span class="lineno">  423</span>    valid_simd_config.alignment = 32;</div>
+<div class="line"><span class="lineno">  424</span>    EXPECT_TRUE(valid_simd_config.validate());</div>
+<div class="line"><span class="lineno">  425</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -239,32 +239,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00421">421</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  421</span>                                                {</div>
-<div class="line"><span class="lineno">  422</span>    <span class="comment">// Test default queue configurations</span></div>
-<div class="line"><span class="lineno">  423</span>    <span class="keyword">auto</span> queue_configs = create_default_queue_configs();</div>
-<div class="line"><span class="lineno">  424</span>    EXPECT_GE(queue_configs.size(), 3);</div>
-<div class="line"><span class="lineno">  425</span>    </div>
-<div class="line"><span class="lineno">  426</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; config : queue_configs) {</div>
-<div class="line"><span class="lineno">  427</span>        EXPECT_TRUE(config.validate());</div>
-<div class="line"><span class="lineno">  428</span>    }</div>
-<div class="line"><span class="lineno">  429</span>    </div>
-<div class="line"><span class="lineno">  430</span>    <span class="comment">// Test default pool configurations</span></div>
-<div class="line"><span class="lineno">  431</span>    <span class="keyword">auto</span> pool_configs = create_default_pool_configs();</div>
-<div class="line"><span class="lineno">  432</span>    EXPECT_GE(pool_configs.size(), 3);</div>
-<div class="line"><span class="lineno">  433</span>    </div>
-<div class="line"><span class="lineno">  434</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; config : pool_configs) {</div>
-<div class="line"><span class="lineno">  435</span>        EXPECT_TRUE(config.validate());</div>
-<div class="line"><span class="lineno">  436</span>    }</div>
-<div class="line"><span class="lineno">  437</span>    </div>
-<div class="line"><span class="lineno">  438</span>    <span class="comment">// Test default SIMD configurations</span></div>
-<div class="line"><span class="lineno">  439</span>    <span class="keyword">auto</span> simd_configs = create_default_simd_configs();</div>
-<div class="line"><span class="lineno">  440</span>    EXPECT_GE(simd_configs.size(), 3);</div>
-<div class="line"><span class="lineno">  441</span>    </div>
-<div class="line"><span class="lineno">  442</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; config : simd_configs) {</div>
-<div class="line"><span class="lineno">  443</span>        EXPECT_TRUE(config.validate());</div>
-<div class="line"><span class="lineno">  444</span>    }</div>
-<div class="line"><span class="lineno">  445</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00450">450</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  450</span>                                                {</div>
+<div class="line"><span class="lineno">  451</span>    <span class="comment">// Test default queue configurations</span></div>
+<div class="line"><span class="lineno">  452</span>    <span class="keyword">auto</span> queue_configs = create_default_queue_configs();</div>
+<div class="line"><span class="lineno">  453</span>    EXPECT_GE(queue_configs.size(), 3);</div>
+<div class="line"><span class="lineno">  454</span>    </div>
+<div class="line"><span class="lineno">  455</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; config : queue_configs) {</div>
+<div class="line"><span class="lineno">  456</span>        EXPECT_TRUE(config.validate());</div>
+<div class="line"><span class="lineno">  457</span>    }</div>
+<div class="line"><span class="lineno">  458</span>    </div>
+<div class="line"><span class="lineno">  459</span>    <span class="comment">// Test default pool configurations</span></div>
+<div class="line"><span class="lineno">  460</span>    <span class="keyword">auto</span> pool_configs = create_default_pool_configs();</div>
+<div class="line"><span class="lineno">  461</span>    EXPECT_GE(pool_configs.size(), 3);</div>
+<div class="line"><span class="lineno">  462</span>    </div>
+<div class="line"><span class="lineno">  463</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; config : pool_configs) {</div>
+<div class="line"><span class="lineno">  464</span>        EXPECT_TRUE(config.validate());</div>
+<div class="line"><span class="lineno">  465</span>    }</div>
+<div class="line"><span class="lineno">  466</span>    </div>
+<div class="line"><span class="lineno">  467</span>    <span class="comment">// Test default SIMD configurations</span></div>
+<div class="line"><span class="lineno">  468</span>    <span class="keyword">auto</span> simd_configs = create_default_simd_configs();</div>
+<div class="line"><span class="lineno">  469</span>    EXPECT_GE(simd_configs.size(), 3);</div>
+<div class="line"><span class="lineno">  470</span>    </div>
+<div class="line"><span class="lineno">  471</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; config : simd_configs) {</div>
+<div class="line"><span class="lineno">  472</span>        EXPECT_TRUE(config.validate());</div>
+<div class="line"><span class="lineno">  473</span>    }</div>
+<div class="line"><span class="lineno">  474</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -294,27 +294,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00399">399</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  399</span>                                           {</div>
-<div class="line"><span class="lineno">  400</span>    <span class="comment">// Test lockfree queue factory</span></div>
-<div class="line"><span class="lineno">  401</span>    <span class="keyword">auto</span> queue = make_lockfree_queue&lt;int&gt;();</div>
-<div class="line"><span class="lineno">  402</span>    EXPECT_NE(queue, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  403</span>    EXPECT_TRUE(queue-&gt;empty());</div>
-<div class="line"><span class="lineno">  404</span>    </div>
-<div class="line"><span class="lineno">  405</span>    <span class="comment">// Test memory pool factory</span></div>
-<div class="line"><span class="lineno">  406</span>    <span class="keyword">auto</span> pool = make_memory_pool();</div>
-<div class="line"><span class="lineno">  407</span>    EXPECT_NE(pool, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  408</span>    EXPECT_GT(pool-&gt;available_blocks(), 0);</div>
-<div class="line"><span class="lineno">  409</span>    </div>
-<div class="line"><span class="lineno">  410</span>    <span class="comment">// Test SIMD aggregator factory</span></div>
-<div class="line"><span class="lineno">  411</span>    <span class="keyword">auto</span> aggregator = make_simd_aggregator();</div>
-<div class="line"><span class="lineno">  412</span>    EXPECT_NE(aggregator, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  413</span>    </div>
-<div class="line"><span class="lineno">  414</span>    <span class="comment">// Test SIMD functionality</span></div>
-<div class="line"><span class="lineno">  415</span>    <span class="keyword">auto</span> test_result = aggregator-&gt;test_simd();</div>
-<div class="line"><span class="lineno">  416</span>    EXPECT_TRUE(test_result);</div>
-<div class="line"><span class="lineno">  417</span>    EXPECT_TRUE(test_result.value());</div>
-<div class="line"><span class="lineno">  418</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00428">428</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  428</span>                                           {</div>
+<div class="line"><span class="lineno">  429</span>    <span class="comment">// Test lockfree queue factory</span></div>
+<div class="line"><span class="lineno">  430</span>    <span class="keyword">auto</span> queue = make_lockfree_queue&lt;int&gt;();</div>
+<div class="line"><span class="lineno">  431</span>    EXPECT_NE(queue, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  432</span>    EXPECT_TRUE(queue-&gt;empty());</div>
+<div class="line"><span class="lineno">  433</span>    </div>
+<div class="line"><span class="lineno">  434</span>    <span class="comment">// Test memory pool factory</span></div>
+<div class="line"><span class="lineno">  435</span>    <span class="keyword">auto</span> pool = make_memory_pool();</div>
+<div class="line"><span class="lineno">  436</span>    EXPECT_NE(pool, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  437</span>    EXPECT_GT(pool-&gt;available_blocks(), 0);</div>
+<div class="line"><span class="lineno">  438</span>    </div>
+<div class="line"><span class="lineno">  439</span>    <span class="comment">// Test SIMD aggregator factory</span></div>
+<div class="line"><span class="lineno">  440</span>    <span class="keyword">auto</span> aggregator = make_simd_aggregator();</div>
+<div class="line"><span class="lineno">  441</span>    EXPECT_NE(aggregator, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  442</span>    </div>
+<div class="line"><span class="lineno">  443</span>    <span class="comment">// Test SIMD functionality</span></div>
+<div class="line"><span class="lineno">  444</span>    <span class="keyword">auto</span> test_result = aggregator-&gt;test_simd();</div>
+<div class="line"><span class="lineno">  445</span>    EXPECT_TRUE(test_result);</div>
+<div class="line"><span class="lineno">  446</span>    EXPECT_TRUE(test_result.value());</div>
+<div class="line"><span class="lineno">  447</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -344,53 +344,53 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00448">448</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  448</span>                                          {</div>
-<div class="line"><span class="lineno">  449</span>    <span class="comment">// Test integration of all optimization components</span></div>
-<div class="line"><span class="lineno">  450</span>    lockfree_queue&lt;double&gt; queue;</div>
-<div class="line"><span class="lineno">  451</span>    memory_pool pool;</div>
-<div class="line"><span class="lineno">  452</span>    simd_aggregator aggregator;</div>
-<div class="line"><span class="lineno">  453</span>    </div>
-<div class="line"><span class="lineno">  454</span>    <span class="comment">// Generate data and push to queue</span></div>
-<div class="line"><span class="lineno">  455</span>    <span class="keyword">auto</span> test_data = generate_test_data(1000);</div>
-<div class="line"><span class="lineno">  456</span>    </div>
-<div class="line"><span class="lineno">  457</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : test_data) {</div>
-<div class="line"><span class="lineno">  458</span>        <span class="keyword">auto</span> result = queue.push(value);</div>
-<div class="line"><span class="lineno">  459</span>        EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  460</span>    }</div>
-<div class="line"><span class="lineno">  461</span>    </div>
-<div class="line"><span class="lineno">  462</span>    <span class="comment">// Pop data from queue and collect in vector</span></div>
-<div class="line"><span class="lineno">  463</span>    std::vector&lt;double&gt; collected_data;</div>
-<div class="line"><span class="lineno">  464</span>    collected_data.reserve(test_data.size());</div>
-<div class="line"><span class="lineno">  465</span>    </div>
-<div class="line"><span class="lineno">  466</span>    <span class="keywordflow">while</span> (!queue.empty()) {</div>
-<div class="line"><span class="lineno">  467</span>        <span class="keyword">auto</span> result = queue.pop();</div>
-<div class="line"><span class="lineno">  468</span>        <span class="keywordflow">if</span> (result.is_ok()) {</div>
-<div class="line"><span class="lineno">  469</span>            collected_data.push_back(result.value());</div>
-<div class="line"><span class="lineno">  470</span>        }</div>
-<div class="line"><span class="lineno">  471</span>    }</div>
-<div class="line"><span class="lineno">  472</span>    </div>
-<div class="line"><span class="lineno">  473</span>    EXPECT_EQ(collected_data.size(), test_data.size());</div>
-<div class="line"><span class="lineno">  474</span>    </div>
-<div class="line"><span class="lineno">  475</span>    <span class="comment">// Use SIMD aggregator to process collected data</span></div>
-<div class="line"><span class="lineno">  476</span>    <span class="keyword">auto</span> summary = aggregator.compute_summary(collected_data);</div>
-<div class="line"><span class="lineno">  477</span>    EXPECT_TRUE(summary);</div>
-<div class="line"><span class="lineno">  478</span>    </div>
-<div class="line"><span class="lineno">  479</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = summary.value();</div>
-<div class="line"><span class="lineno">  480</span>    EXPECT_EQ(stats.count, test_data.size());</div>
-<div class="line"><span class="lineno">  481</span>    EXPECT_GT(stats.sum, 0.0);</div>
-<div class="line"><span class="lineno">  482</span>    EXPECT_GT(stats.mean, 0.0);</div>
-<div class="line"><span class="lineno">  483</span>    </div>
-<div class="line"><span class="lineno">  484</span>    <span class="comment">// Verify statistics from all components</span></div>
-<div class="line"><span class="lineno">  485</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; queue_stats = queue.get_statistics();</div>
-<div class="line"><span class="lineno">  486</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pool_stats = pool.get_statistics();</div>
-<div class="line"><span class="lineno">  487</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; simd_stats = aggregator.get_statistics();</div>
-<div class="line"><span class="lineno">  488</span>    </div>
-<div class="line"><span class="lineno">  489</span>    EXPECT_GT(queue_stats.get_push_success_rate(), 99.0);</div>
-<div class="line"><span class="lineno">  490</span>    EXPECT_GT(queue_stats.get_pop_success_rate(), 99.0);</div>
-<div class="line"><span class="lineno">  491</span>    EXPECT_GT(pool_stats.get_allocation_success_rate(), 99.0);</div>
-<div class="line"><span class="lineno">  492</span>    EXPECT_GT(simd_stats.total_elements_processed.load(), 0);</div>
-<div class="line"><span class="lineno">  493</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00477">477</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  477</span>                                          {</div>
+<div class="line"><span class="lineno">  478</span>    <span class="comment">// Test integration of all optimization components</span></div>
+<div class="line"><span class="lineno">  479</span>    lockfree_queue&lt;double&gt; queue;</div>
+<div class="line"><span class="lineno">  480</span>    memory_pool pool;</div>
+<div class="line"><span class="lineno">  481</span>    simd_aggregator aggregator;</div>
+<div class="line"><span class="lineno">  482</span>    </div>
+<div class="line"><span class="lineno">  483</span>    <span class="comment">// Generate data and push to queue</span></div>
+<div class="line"><span class="lineno">  484</span>    <span class="keyword">auto</span> test_data = generate_test_data(1000);</div>
+<div class="line"><span class="lineno">  485</span>    </div>
+<div class="line"><span class="lineno">  486</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : test_data) {</div>
+<div class="line"><span class="lineno">  487</span>        <span class="keyword">auto</span> result = queue.push(value);</div>
+<div class="line"><span class="lineno">  488</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  489</span>    }</div>
+<div class="line"><span class="lineno">  490</span>    </div>
+<div class="line"><span class="lineno">  491</span>    <span class="comment">// Pop data from queue and collect in vector</span></div>
+<div class="line"><span class="lineno">  492</span>    std::vector&lt;double&gt; collected_data;</div>
+<div class="line"><span class="lineno">  493</span>    collected_data.reserve(test_data.size());</div>
+<div class="line"><span class="lineno">  494</span>    </div>
+<div class="line"><span class="lineno">  495</span>    <span class="keywordflow">while</span> (!queue.empty()) {</div>
+<div class="line"><span class="lineno">  496</span>        <span class="keyword">auto</span> result = queue.pop();</div>
+<div class="line"><span class="lineno">  497</span>        <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><span class="lineno">  498</span>            collected_data.push_back(result.value());</div>
+<div class="line"><span class="lineno">  499</span>        }</div>
+<div class="line"><span class="lineno">  500</span>    }</div>
+<div class="line"><span class="lineno">  501</span>    </div>
+<div class="line"><span class="lineno">  502</span>    EXPECT_EQ(collected_data.size(), test_data.size());</div>
+<div class="line"><span class="lineno">  503</span>    </div>
+<div class="line"><span class="lineno">  504</span>    <span class="comment">// Use SIMD aggregator to process collected data</span></div>
+<div class="line"><span class="lineno">  505</span>    <span class="keyword">auto</span> summary = aggregator.compute_summary(collected_data);</div>
+<div class="line"><span class="lineno">  506</span>    EXPECT_TRUE(summary);</div>
+<div class="line"><span class="lineno">  507</span>    </div>
+<div class="line"><span class="lineno">  508</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = summary.value();</div>
+<div class="line"><span class="lineno">  509</span>    EXPECT_EQ(stats.count, test_data.size());</div>
+<div class="line"><span class="lineno">  510</span>    EXPECT_GT(stats.sum, 0.0);</div>
+<div class="line"><span class="lineno">  511</span>    EXPECT_GT(stats.mean, 0.0);</div>
+<div class="line"><span class="lineno">  512</span>    </div>
+<div class="line"><span class="lineno">  513</span>    <span class="comment">// Verify statistics from all components</span></div>
+<div class="line"><span class="lineno">  514</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; queue_stats = queue.get_statistics();</div>
+<div class="line"><span class="lineno">  515</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pool_stats = pool.get_statistics();</div>
+<div class="line"><span class="lineno">  516</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; simd_stats = aggregator.get_statistics();</div>
+<div class="line"><span class="lineno">  517</span>    </div>
+<div class="line"><span class="lineno">  518</span>    EXPECT_GT(queue_stats.get_push_success_rate(), 99.0);</div>
+<div class="line"><span class="lineno">  519</span>    EXPECT_GT(queue_stats.get_pop_success_rate(), 99.0);</div>
+<div class="line"><span class="lineno">  520</span>    EXPECT_GT(pool_stats.get_allocation_success_rate(), 99.0);</div>
+<div class="line"><span class="lineno">  521</span>    EXPECT_GT(simd_stats.total_elements_processed.load(), 0);</div>
+<div class="line"><span class="lineno">  522</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -420,36 +420,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00046">46</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   46</span>                                                       {</div>
-<div class="line"><span class="lineno">   47</span>    lockfree_queue_config config;</div>
-<div class="line"><span class="lineno">   48</span>    config.initial_capacity = 16;</div>
-<div class="line"><span class="lineno">   49</span>    config.max_capacity = 64;</div>
-<div class="line"><span class="lineno">   50</span>    </div>
-<div class="line"><span class="lineno">   51</span>    lockfree_queue&lt;int&gt; queue(config);</div>
-<div class="line"><span class="lineno">   52</span>    </div>
-<div class="line"><span class="lineno">   53</span>    EXPECT_TRUE(queue.empty());</div>
-<div class="line"><span class="lineno">   54</span>    EXPECT_EQ(queue.size(), 0);</div>
-<div class="line"><span class="lineno">   55</span>    </div>
-<div class="line"><span class="lineno">   56</span>    <span class="comment">// Push elements</span></div>
-<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">   58</span>        <span class="keyword">auto</span> result = queue.push(i);</div>
-<div class="line"><span class="lineno">   59</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to push &quot;</span> &lt;&lt; i;</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
-<div class="line"><span class="lineno">   61</span>    </div>
-<div class="line"><span class="lineno">   62</span>    EXPECT_FALSE(queue.empty());</div>
-<div class="line"><span class="lineno">   63</span>    EXPECT_EQ(queue.size(), 10);</div>
-<div class="line"><span class="lineno">   64</span>    </div>
-<div class="line"><span class="lineno">   65</span>    <span class="comment">// Pop elements</span></div>
-<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">   67</span>        <span class="keyword">auto</span> result = queue.pop();</div>
-<div class="line"><span class="lineno">   68</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to pop element &quot;</span> &lt;&lt; i;</div>
-<div class="line"><span class="lineno">   69</span>        EXPECT_EQ(result.value(), i);</div>
-<div class="line"><span class="lineno">   70</span>    }</div>
-<div class="line"><span class="lineno">   71</span>    </div>
-<div class="line"><span class="lineno">   72</span>    EXPECT_TRUE(queue.empty());</div>
-<div class="line"><span class="lineno">   73</span>    EXPECT_EQ(queue.size(), 0);</div>
-<div class="line"><span class="lineno">   74</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00075">75</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   75</span>                                                       {</div>
+<div class="line"><span class="lineno">   76</span>    lockfree_queue_config config;</div>
+<div class="line"><span class="lineno">   77</span>    config.initial_capacity = 16;</div>
+<div class="line"><span class="lineno">   78</span>    config.max_capacity = 64;</div>
+<div class="line"><span class="lineno">   79</span>    </div>
+<div class="line"><span class="lineno">   80</span>    lockfree_queue&lt;int&gt; queue(config);</div>
+<div class="line"><span class="lineno">   81</span>    </div>
+<div class="line"><span class="lineno">   82</span>    EXPECT_TRUE(queue.empty());</div>
+<div class="line"><span class="lineno">   83</span>    EXPECT_EQ(queue.size(), 0);</div>
+<div class="line"><span class="lineno">   84</span>    </div>
+<div class="line"><span class="lineno">   85</span>    <span class="comment">// Push elements</span></div>
+<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><span class="lineno">   87</span>        <span class="keyword">auto</span> result = queue.push(i);</div>
+<div class="line"><span class="lineno">   88</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to push &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">   89</span>    }</div>
+<div class="line"><span class="lineno">   90</span>    </div>
+<div class="line"><span class="lineno">   91</span>    EXPECT_FALSE(queue.empty());</div>
+<div class="line"><span class="lineno">   92</span>    EXPECT_EQ(queue.size(), 10);</div>
+<div class="line"><span class="lineno">   93</span>    </div>
+<div class="line"><span class="lineno">   94</span>    <span class="comment">// Pop elements</span></div>
+<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><span class="lineno">   96</span>        <span class="keyword">auto</span> result = queue.pop();</div>
+<div class="line"><span class="lineno">   97</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to pop element &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">   98</span>        EXPECT_EQ(result.value(), i);</div>
+<div class="line"><span class="lineno">   99</span>    }</div>
+<div class="line"><span class="lineno">  100</span>    </div>
+<div class="line"><span class="lineno">  101</span>    EXPECT_TRUE(queue.empty());</div>
+<div class="line"><span class="lineno">  102</span>    EXPECT_EQ(queue.size(), 0);</div>
+<div class="line"><span class="lineno">  103</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -479,67 +479,67 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>                                                        {</div>
-<div class="line"><span class="lineno">   77</span>    lockfree_queue_config config;</div>
-<div class="line"><span class="lineno">   78</span>    config.initial_capacity = 1024;</div>
-<div class="line"><span class="lineno">   79</span>    config.max_capacity = 4096;</div>
-<div class="line"><span class="lineno">   80</span>    </div>
-<div class="line"><span class="lineno">   81</span>    lockfree_queue&lt;int&gt; queue(config);</div>
-<div class="line"><span class="lineno">   82</span>    </div>
-<div class="line"><span class="lineno">   83</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_producers = 4;</div>
-<div class="line"><span class="lineno">   84</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_consumers = 2;</div>
-<div class="line"><span class="lineno">   85</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> items_per_producer = 1000;</div>
-<div class="line"><span class="lineno">   86</span>    </div>
-<div class="line"><span class="lineno">   87</span>    std::vector&lt;std::thread&gt; producers;</div>
-<div class="line"><span class="lineno">   88</span>    std::vector&lt;std::thread&gt; consumers;</div>
-<div class="line"><span class="lineno">   89</span>    std::atomic&lt;int&gt; total_consumed{0};</div>
-<div class="line"><span class="lineno">   90</span>    std::atomic&lt;bool&gt; producers_done{<span class="keyword">false</span>};</div>
-<div class="line"><span class="lineno">   91</span>    </div>
-<div class="line"><span class="lineno">   92</span>    <span class="comment">// Start producers</span></div>
-<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> p = 0; p &lt; num_producers; ++p) {</div>
-<div class="line"><span class="lineno">   94</span>        producers.emplace_back([&amp;queue, p, items_per_producer]() {</div>
-<div class="line"><span class="lineno">   95</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; items_per_producer; ++i) {</div>
-<div class="line"><span class="lineno">   96</span>                <span class="keywordtype">int</span> value = p * items_per_producer + i;</div>
-<div class="line"><span class="lineno">   97</span>                <span class="keywordflow">while</span> (!queue.push(value)) {</div>
-<div class="line"><span class="lineno">   98</span>                    std::this_thread::yield();</div>
-<div class="line"><span class="lineno">   99</span>                }</div>
-<div class="line"><span class="lineno">  100</span>            }</div>
-<div class="line"><span class="lineno">  101</span>        });</div>
-<div class="line"><span class="lineno">  102</span>    }</div>
-<div class="line"><span class="lineno">  103</span>    </div>
-<div class="line"><span class="lineno">  104</span>    <span class="comment">// Start consumers</span></div>
-<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; num_consumers; ++c) {</div>
-<div class="line"><span class="lineno">  106</span>        consumers.emplace_back([&amp;queue, &amp;total_consumed, &amp;producers_done]() {</div>
-<div class="line"><span class="lineno">  107</span>            <span class="keywordflow">while</span> (!producers_done.load() || !queue.empty()) {</div>
-<div class="line"><span class="lineno">  108</span>                auto result = queue.pop();</div>
-<div class="line"><span class="lineno">  109</span>                if (result.is_ok()) {</div>
-<div class="line"><span class="lineno">  110</span>                    total_consumed.fetch_add(1);</div>
-<div class="line"><span class="lineno">  111</span>                } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  112</span>                    std::this_thread::yield();</div>
-<div class="line"><span class="lineno">  113</span>                }</div>
-<div class="line"><span class="lineno">  114</span>            }</div>
-<div class="line"><span class="lineno">  115</span>        });</div>
-<div class="line"><span class="lineno">  116</span>    }</div>
-<div class="line"><span class="lineno">  117</span>    </div>
-<div class="line"><span class="lineno">  118</span>    <span class="comment">// Wait for producers</span></div>
-<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; producer : producers) {</div>
-<div class="line"><span class="lineno">  120</span>        producer.join();</div>
-<div class="line"><span class="lineno">  121</span>    }</div>
-<div class="line"><span class="lineno">  122</span>    producers_done.store(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  123</span>    </div>
-<div class="line"><span class="lineno">  124</span>    <span class="comment">// Wait for consumers</span></div>
-<div class="line"><span class="lineno">  125</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; consumer : consumers) {</div>
-<div class="line"><span class="lineno">  126</span>        consumer.join();</div>
-<div class="line"><span class="lineno">  127</span>    }</div>
-<div class="line"><span class="lineno">  128</span>    </div>
-<div class="line"><span class="lineno">  129</span>    EXPECT_EQ(total_consumed.load(), num_producers * items_per_producer);</div>
-<div class="line"><span class="lineno">  130</span>    EXPECT_TRUE(queue.empty());</div>
-<div class="line"><span class="lineno">  131</span>    </div>
-<div class="line"><span class="lineno">  132</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = queue.get_statistics();</div>
-<div class="line"><span class="lineno">  133</span>    EXPECT_GT(stats.get_push_success_rate(), 99.0);</div>
-<div class="line"><span class="lineno">  134</span>    EXPECT_GT(stats.get_pop_success_rate(), 99.0);</div>
-<div class="line"><span class="lineno">  135</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00105">105</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  105</span>                                                        {</div>
+<div class="line"><span class="lineno">  106</span>    lockfree_queue_config config;</div>
+<div class="line"><span class="lineno">  107</span>    config.initial_capacity = 1024;</div>
+<div class="line"><span class="lineno">  108</span>    config.max_capacity = 4096;</div>
+<div class="line"><span class="lineno">  109</span>    </div>
+<div class="line"><span class="lineno">  110</span>    lockfree_queue&lt;int&gt; queue(config);</div>
+<div class="line"><span class="lineno">  111</span>    </div>
+<div class="line"><span class="lineno">  112</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_producers = 4;</div>
+<div class="line"><span class="lineno">  113</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_consumers = 2;</div>
+<div class="line"><span class="lineno">  114</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> items_per_producer = 1000;</div>
+<div class="line"><span class="lineno">  115</span>    </div>
+<div class="line"><span class="lineno">  116</span>    std::vector&lt;std::thread&gt; producers;</div>
+<div class="line"><span class="lineno">  117</span>    std::vector&lt;std::thread&gt; consumers;</div>
+<div class="line"><span class="lineno">  118</span>    std::atomic&lt;int&gt; total_consumed{0};</div>
+<div class="line"><span class="lineno">  119</span>    std::atomic&lt;bool&gt; producers_done{<span class="keyword">false</span>};</div>
+<div class="line"><span class="lineno">  120</span>    </div>
+<div class="line"><span class="lineno">  121</span>    <span class="comment">// Start producers</span></div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> p = 0; p &lt; num_producers; ++p) {</div>
+<div class="line"><span class="lineno">  123</span>        producers.emplace_back([&amp;queue, p, items_per_producer]() {</div>
+<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; items_per_producer; ++i) {</div>
+<div class="line"><span class="lineno">  125</span>                <span class="keywordtype">int</span> value = p * items_per_producer + i;</div>
+<div class="line"><span class="lineno">  126</span>                <span class="keywordflow">while</span> (!queue.push(value)) {</div>
+<div class="line"><span class="lineno">  127</span>                    std::this_thread::yield();</div>
+<div class="line"><span class="lineno">  128</span>                }</div>
+<div class="line"><span class="lineno">  129</span>            }</div>
+<div class="line"><span class="lineno">  130</span>        });</div>
+<div class="line"><span class="lineno">  131</span>    }</div>
+<div class="line"><span class="lineno">  132</span>    </div>
+<div class="line"><span class="lineno">  133</span>    <span class="comment">// Start consumers</span></div>
+<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; num_consumers; ++c) {</div>
+<div class="line"><span class="lineno">  135</span>        consumers.emplace_back([&amp;queue, &amp;total_consumed, &amp;producers_done]() {</div>
+<div class="line"><span class="lineno">  136</span>            <span class="keywordflow">while</span> (!producers_done.load() || !queue.empty()) {</div>
+<div class="line"><span class="lineno">  137</span>                auto result = queue.pop();</div>
+<div class="line"><span class="lineno">  138</span>                if (result.is_ok()) {</div>
+<div class="line"><span class="lineno">  139</span>                    total_consumed.fetch_add(1);</div>
+<div class="line"><span class="lineno">  140</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  141</span>                    std::this_thread::yield();</div>
+<div class="line"><span class="lineno">  142</span>                }</div>
+<div class="line"><span class="lineno">  143</span>            }</div>
+<div class="line"><span class="lineno">  144</span>        });</div>
+<div class="line"><span class="lineno">  145</span>    }</div>
+<div class="line"><span class="lineno">  146</span>    </div>
+<div class="line"><span class="lineno">  147</span>    <span class="comment">// Wait for producers</span></div>
+<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; producer : producers) {</div>
+<div class="line"><span class="lineno">  149</span>        producer.join();</div>
+<div class="line"><span class="lineno">  150</span>    }</div>
+<div class="line"><span class="lineno">  151</span>    producers_done.store(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  152</span>    </div>
+<div class="line"><span class="lineno">  153</span>    <span class="comment">// Wait for consumers</span></div>
+<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; consumer : consumers) {</div>
+<div class="line"><span class="lineno">  155</span>        consumer.join();</div>
+<div class="line"><span class="lineno">  156</span>    }</div>
+<div class="line"><span class="lineno">  157</span>    </div>
+<div class="line"><span class="lineno">  158</span>    EXPECT_EQ(total_consumed.load(), num_producers * items_per_producer);</div>
+<div class="line"><span class="lineno">  159</span>    EXPECT_TRUE(queue.empty());</div>
+<div class="line"><span class="lineno">  160</span>    </div>
+<div class="line"><span class="lineno">  161</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = queue.get_statistics();</div>
+<div class="line"><span class="lineno">  162</span>    EXPECT_GT(stats.get_push_success_rate(), 99.0);</div>
+<div class="line"><span class="lineno">  163</span>    EXPECT_GT(stats.get_pop_success_rate(), 99.0);</div>
+<div class="line"><span class="lineno">  164</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -569,41 +569,41 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00138">138</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  138</span>                                                    {</div>
-<div class="line"><span class="lineno">  139</span>    memory_pool_config config;</div>
-<div class="line"><span class="lineno">  140</span>    config.initial_blocks = 64;</div>
-<div class="line"><span class="lineno">  141</span>    config.max_blocks = 256;</div>
-<div class="line"><span class="lineno">  142</span>    config.block_size = 128;</div>
-<div class="line"><span class="lineno">  143</span>    </div>
-<div class="line"><span class="lineno">  144</span>    memory_pool pool(config);</div>
-<div class="line"><span class="lineno">  145</span>    </div>
-<div class="line"><span class="lineno">  146</span>    EXPECT_GT(pool.available_blocks(), 0);</div>
-<div class="line"><span class="lineno">  147</span>    EXPECT_EQ(pool.total_blocks(), 64);</div>
-<div class="line"><span class="lineno">  148</span>    </div>
-<div class="line"><span class="lineno">  149</span>    <span class="comment">// Allocate memory blocks</span></div>
-<div class="line"><span class="lineno">  150</span>    std::vector&lt;void*&gt; allocated_blocks;</div>
-<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 32; ++i) {</div>
-<div class="line"><span class="lineno">  152</span>        <span class="keyword">auto</span> result = pool.allocate();</div>
-<div class="line"><span class="lineno">  153</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate block &quot;</span> &lt;&lt; i;</div>
-<div class="line"><span class="lineno">  154</span>        allocated_blocks.push_back(result.value());</div>
-<div class="line"><span class="lineno">  155</span>    }</div>
-<div class="line"><span class="lineno">  156</span>    </div>
-<div class="line"><span class="lineno">  157</span>    EXPECT_EQ(pool.available_blocks(), 32);  <span class="comment">// 64 - 32 = 32</span></div>
-<div class="line"><span class="lineno">  158</span>    </div>
-<div class="line"><span class="lineno">  159</span>    <span class="comment">// Deallocate blocks</span></div>
-<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_blocks) {</div>
-<div class="line"><span class="lineno">  161</span>        <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><span class="lineno">  162</span>        EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  163</span>    }</div>
-<div class="line"><span class="lineno">  164</span>    </div>
-<div class="line"><span class="lineno">  165</span>    EXPECT_EQ(pool.available_blocks(), 64);  <span class="comment">// All blocks returned</span></div>
-<div class="line"><span class="lineno">  166</span>    </div>
-<div class="line"><span class="lineno">  167</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = pool.get_statistics();</div>
-<div class="line"><span class="lineno">  168</span>    EXPECT_EQ(stats.total_allocations.load(), 32);</div>
-<div class="line"><span class="lineno">  169</span>    EXPECT_EQ(stats.total_deallocations.load(), 32);</div>
-<div class="line"><span class="lineno">  170</span>    EXPECT_GT(stats.get_allocation_success_rate(), 99.0);</div>
-<div class="line"><span class="lineno">  171</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00167">167</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  167</span>                                                    {</div>
+<div class="line"><span class="lineno">  168</span>    memory_pool_config config;</div>
+<div class="line"><span class="lineno">  169</span>    config.initial_blocks = 64;</div>
+<div class="line"><span class="lineno">  170</span>    config.max_blocks = 256;</div>
+<div class="line"><span class="lineno">  171</span>    config.block_size = 128;</div>
+<div class="line"><span class="lineno">  172</span>    </div>
+<div class="line"><span class="lineno">  173</span>    memory_pool pool(config);</div>
+<div class="line"><span class="lineno">  174</span>    </div>
+<div class="line"><span class="lineno">  175</span>    EXPECT_GT(pool.available_blocks(), 0);</div>
+<div class="line"><span class="lineno">  176</span>    EXPECT_EQ(pool.total_blocks(), 64);</div>
+<div class="line"><span class="lineno">  177</span>    </div>
+<div class="line"><span class="lineno">  178</span>    <span class="comment">// Allocate memory blocks</span></div>
+<div class="line"><span class="lineno">  179</span>    std::vector&lt;void*&gt; allocated_blocks;</div>
+<div class="line"><span class="lineno">  180</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 32; ++i) {</div>
+<div class="line"><span class="lineno">  181</span>        <span class="keyword">auto</span> result = pool.allocate();</div>
+<div class="line"><span class="lineno">  182</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate block &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">  183</span>        allocated_blocks.push_back(result.value());</div>
+<div class="line"><span class="lineno">  184</span>    }</div>
+<div class="line"><span class="lineno">  185</span>    </div>
+<div class="line"><span class="lineno">  186</span>    EXPECT_EQ(pool.available_blocks(), 32);  <span class="comment">// 64 - 32 = 32</span></div>
+<div class="line"><span class="lineno">  187</span>    </div>
+<div class="line"><span class="lineno">  188</span>    <span class="comment">// Deallocate blocks</span></div>
+<div class="line"><span class="lineno">  189</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_blocks) {</div>
+<div class="line"><span class="lineno">  190</span>        <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
+<div class="line"><span class="lineno">  191</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  192</span>    }</div>
+<div class="line"><span class="lineno">  193</span>    </div>
+<div class="line"><span class="lineno">  194</span>    EXPECT_EQ(pool.available_blocks(), 64);  <span class="comment">// All blocks returned</span></div>
+<div class="line"><span class="lineno">  195</span>    </div>
+<div class="line"><span class="lineno">  196</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = pool.get_statistics();</div>
+<div class="line"><span class="lineno">  197</span>    EXPECT_EQ(stats.total_allocations.load(), 32);</div>
+<div class="line"><span class="lineno">  198</span>    EXPECT_EQ(stats.total_deallocations.load(), 32);</div>
+<div class="line"><span class="lineno">  199</span>    EXPECT_GT(stats.get_allocation_success_rate(), 99.0);</div>
+<div class="line"><span class="lineno">  200</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -633,53 +633,53 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00207">207</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  207</span>                                                     {</div>
-<div class="line"><span class="lineno">  208</span>    memory_pool_config config;</div>
-<div class="line"><span class="lineno">  209</span>    config.initial_blocks = 1024;</div>
-<div class="line"><span class="lineno">  210</span>    config.max_blocks = 4096;</div>
-<div class="line"><span class="lineno">  211</span>    config.block_size = 64;</div>
-<div class="line"><span class="lineno">  212</span>    config.use_thread_local_cache = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  213</span>    </div>
-<div class="line"><span class="lineno">  214</span>    memory_pool pool(config);</div>
-<div class="line"><span class="lineno">  215</span>    </div>
-<div class="line"><span class="lineno">  216</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 8;</div>
-<div class="line"><span class="lineno">  217</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> operations_per_thread = 500;</div>
-<div class="line"><span class="lineno">  218</span>    </div>
-<div class="line"><span class="lineno">  219</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  220</span>    std::atomic&lt;int&gt; successful_operations{0};</div>
-<div class="line"><span class="lineno">  221</span>    </div>
-<div class="line"><span class="lineno">  222</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
-<div class="line"><span class="lineno">  223</span>        threads.emplace_back([&amp;pool, &amp;successful_operations, operations_per_thread]() {</div>
-<div class="line"><span class="lineno">  224</span>            std::vector&lt;void*&gt; allocated_ptrs;</div>
-<div class="line"><span class="lineno">  225</span>            </div>
-<div class="line"><span class="lineno">  226</span>            <span class="comment">// Allocate</span></div>
-<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; operations_per_thread; ++i) {</div>
-<div class="line"><span class="lineno">  228</span>                <span class="keyword">auto</span> result = pool.allocate();</div>
-<div class="line"><span class="lineno">  229</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
-<div class="line"><span class="lineno">  230</span>                    allocated_ptrs.push_back(result.value());</div>
-<div class="line"><span class="lineno">  231</span>                }</div>
-<div class="line"><span class="lineno">  232</span>            }</div>
-<div class="line"><span class="lineno">  233</span>            </div>
-<div class="line"><span class="lineno">  234</span>            <span class="comment">// Deallocate</span></div>
-<div class="line"><span class="lineno">  235</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_ptrs) {</div>
-<div class="line"><span class="lineno">  236</span>                <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><span class="lineno">  237</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
-<div class="line"><span class="lineno">  238</span>                    successful_operations.fetch_add(1);</div>
-<div class="line"><span class="lineno">  239</span>                }</div>
-<div class="line"><span class="lineno">  240</span>            }</div>
-<div class="line"><span class="lineno">  241</span>        });</div>
-<div class="line"><span class="lineno">  242</span>    }</div>
-<div class="line"><span class="lineno">  243</span>    </div>
-<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
-<div class="line"><span class="lineno">  245</span>        thread.join();</div>
-<div class="line"><span class="lineno">  246</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00236">236</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  236</span>                                                     {</div>
+<div class="line"><span class="lineno">  237</span>    memory_pool_config config;</div>
+<div class="line"><span class="lineno">  238</span>    config.initial_blocks = 1024;</div>
+<div class="line"><span class="lineno">  239</span>    config.max_blocks = 4096;</div>
+<div class="line"><span class="lineno">  240</span>    config.block_size = 64;</div>
+<div class="line"><span class="lineno">  241</span>    config.use_thread_local_cache = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  242</span>    </div>
+<div class="line"><span class="lineno">  243</span>    memory_pool pool(config);</div>
+<div class="line"><span class="lineno">  244</span>    </div>
+<div class="line"><span class="lineno">  245</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 8;</div>
+<div class="line"><span class="lineno">  246</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> operations_per_thread = 500;</div>
 <div class="line"><span class="lineno">  247</span>    </div>
-<div class="line"><span class="lineno">  248</span>    EXPECT_GT(successful_operations.load(), num_threads * operations_per_thread * 0.95);</div>
-<div class="line"><span class="lineno">  249</span>    </div>
-<div class="line"><span class="lineno">  250</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = pool.get_statistics();</div>
-<div class="line"><span class="lineno">  251</span>    EXPECT_GT(stats.get_allocation_success_rate(), 95.0);</div>
-<div class="line"><span class="lineno">  252</span>}</div>
+<div class="line"><span class="lineno">  248</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><span class="lineno">  249</span>    std::atomic&lt;int&gt; successful_operations{0};</div>
+<div class="line"><span class="lineno">  250</span>    </div>
+<div class="line"><span class="lineno">  251</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
+<div class="line"><span class="lineno">  252</span>        threads.emplace_back([&amp;pool, &amp;successful_operations, operations_per_thread]() {</div>
+<div class="line"><span class="lineno">  253</span>            std::vector&lt;void*&gt; allocated_ptrs;</div>
+<div class="line"><span class="lineno">  254</span>            </div>
+<div class="line"><span class="lineno">  255</span>            <span class="comment">// Allocate</span></div>
+<div class="line"><span class="lineno">  256</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; operations_per_thread; ++i) {</div>
+<div class="line"><span class="lineno">  257</span>                <span class="keyword">auto</span> result = pool.allocate();</div>
+<div class="line"><span class="lineno">  258</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><span class="lineno">  259</span>                    allocated_ptrs.push_back(result.value());</div>
+<div class="line"><span class="lineno">  260</span>                }</div>
+<div class="line"><span class="lineno">  261</span>            }</div>
+<div class="line"><span class="lineno">  262</span>            </div>
+<div class="line"><span class="lineno">  263</span>            <span class="comment">// Deallocate</span></div>
+<div class="line"><span class="lineno">  264</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_ptrs) {</div>
+<div class="line"><span class="lineno">  265</span>                <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
+<div class="line"><span class="lineno">  266</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><span class="lineno">  267</span>                    successful_operations.fetch_add(1);</div>
+<div class="line"><span class="lineno">  268</span>                }</div>
+<div class="line"><span class="lineno">  269</span>            }</div>
+<div class="line"><span class="lineno">  270</span>        });</div>
+<div class="line"><span class="lineno">  271</span>    }</div>
+<div class="line"><span class="lineno">  272</span>    </div>
+<div class="line"><span class="lineno">  273</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
+<div class="line"><span class="lineno">  274</span>        thread.join();</div>
+<div class="line"><span class="lineno">  275</span>    }</div>
+<div class="line"><span class="lineno">  276</span>    </div>
+<div class="line"><span class="lineno">  277</span>    EXPECT_GT(successful_operations.load(), num_threads * operations_per_thread * 0.95);</div>
+<div class="line"><span class="lineno">  278</span>    </div>
+<div class="line"><span class="lineno">  279</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = pool.get_statistics();</div>
+<div class="line"><span class="lineno">  280</span>    EXPECT_GT(stats.get_allocation_success_rate(), 95.0);</div>
+<div class="line"><span class="lineno">  281</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -709,40 +709,40 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  173</span>                                                     {</div>
-<div class="line"><span class="lineno">  174</span>    memory_pool_config config;</div>
-<div class="line"><span class="lineno">  175</span>    config.initial_blocks = 128;</div>
-<div class="line"><span class="lineno">  176</span>    config.block_size = 64;  <span class="comment">// Enough for test objects</span></div>
-<div class="line"><span class="lineno">  177</span>    </div>
-<div class="line"><span class="lineno">  178</span>    memory_pool pool(config);</div>
-<div class="line"><span class="lineno">  179</span>    </div>
-<div class="line"><span class="lineno">  180</span>    <span class="keyword">struct </span>TestObject {</div>
-<div class="line"><span class="lineno">  181</span>        <span class="keywordtype">int</span> value;</div>
-<div class="line"><span class="lineno">  182</span>        <span class="keywordtype">double</span> data;</div>
-<div class="line"><span class="lineno">  183</span>        </div>
-<div class="line"><span class="lineno">  184</span>        TestObject(<span class="keywordtype">int</span> v, <span class="keywordtype">double</span> d) : value(v), data(d) {}</div>
-<div class="line"><span class="lineno">  185</span>    };</div>
-<div class="line"><span class="lineno">  186</span>    </div>
-<div class="line"><span class="lineno">  187</span>    <span class="comment">// Allocate objects</span></div>
-<div class="line"><span class="lineno">  188</span>    std::vector&lt;TestObject*&gt; objects;</div>
-<div class="line"><span class="lineno">  189</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
-<div class="line"><span class="lineno">  190</span>        <span class="keyword">auto</span> result = pool.allocate_object&lt;TestObject&gt;(i, i * 0.5);</div>
-<div class="line"><span class="lineno">  191</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate object &quot;</span> &lt;&lt; i;</div>
-<div class="line"><span class="lineno">  192</span>        </div>
-<div class="line"><span class="lineno">  193</span>        <span class="keyword">auto</span>* obj = result.value();</div>
-<div class="line"><span class="lineno">  194</span>        EXPECT_EQ(obj-&gt;value, i);</div>
-<div class="line"><span class="lineno">  195</span>        EXPECT_DOUBLE_EQ(obj-&gt;data, i * 0.5);</div>
-<div class="line"><span class="lineno">  196</span>        </div>
-<div class="line"><span class="lineno">  197</span>        objects.push_back(obj);</div>
-<div class="line"><span class="lineno">  198</span>    }</div>
-<div class="line"><span class="lineno">  199</span>    </div>
-<div class="line"><span class="lineno">  200</span>    <span class="comment">// Deallocate objects</span></div>
-<div class="line"><span class="lineno">  201</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* obj : objects) {</div>
-<div class="line"><span class="lineno">  202</span>        <span class="keyword">auto</span> result = pool.deallocate_object(obj);</div>
-<div class="line"><span class="lineno">  203</span>        EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  204</span>    }</div>
-<div class="line"><span class="lineno">  205</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00202">202</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  202</span>                                                     {</div>
+<div class="line"><span class="lineno">  203</span>    memory_pool_config config;</div>
+<div class="line"><span class="lineno">  204</span>    config.initial_blocks = 128;</div>
+<div class="line"><span class="lineno">  205</span>    config.block_size = 64;  <span class="comment">// Enough for test objects</span></div>
+<div class="line"><span class="lineno">  206</span>    </div>
+<div class="line"><span class="lineno">  207</span>    memory_pool pool(config);</div>
+<div class="line"><span class="lineno">  208</span>    </div>
+<div class="line"><span class="lineno">  209</span>    <span class="keyword">struct </span>TestObject {</div>
+<div class="line"><span class="lineno">  210</span>        <span class="keywordtype">int</span> value;</div>
+<div class="line"><span class="lineno">  211</span>        <span class="keywordtype">double</span> data;</div>
+<div class="line"><span class="lineno">  212</span>        </div>
+<div class="line"><span class="lineno">  213</span>        TestObject(<span class="keywordtype">int</span> v, <span class="keywordtype">double</span> d) : value(v), data(d) {}</div>
+<div class="line"><span class="lineno">  214</span>    };</div>
+<div class="line"><span class="lineno">  215</span>    </div>
+<div class="line"><span class="lineno">  216</span>    <span class="comment">// Allocate objects</span></div>
+<div class="line"><span class="lineno">  217</span>    std::vector&lt;TestObject*&gt; objects;</div>
+<div class="line"><span class="lineno">  218</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
+<div class="line"><span class="lineno">  219</span>        <span class="keyword">auto</span> result = pool.allocate_object&lt;TestObject&gt;(i, i * 0.5);</div>
+<div class="line"><span class="lineno">  220</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate object &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">  221</span>        </div>
+<div class="line"><span class="lineno">  222</span>        <span class="keyword">auto</span>* obj = result.value();</div>
+<div class="line"><span class="lineno">  223</span>        EXPECT_EQ(obj-&gt;value, i);</div>
+<div class="line"><span class="lineno">  224</span>        EXPECT_DOUBLE_EQ(obj-&gt;data, i * 0.5);</div>
+<div class="line"><span class="lineno">  225</span>        </div>
+<div class="line"><span class="lineno">  226</span>        objects.push_back(obj);</div>
+<div class="line"><span class="lineno">  227</span>    }</div>
+<div class="line"><span class="lineno">  228</span>    </div>
+<div class="line"><span class="lineno">  229</span>    <span class="comment">// Deallocate objects</span></div>
+<div class="line"><span class="lineno">  230</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* obj : objects) {</div>
+<div class="line"><span class="lineno">  231</span>        <span class="keyword">auto</span> result = pool.deallocate_object(obj);</div>
+<div class="line"><span class="lineno">  232</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  233</span>    }</div>
+<div class="line"><span class="lineno">  234</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -772,37 +772,37 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00255">255</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  255</span>                                                        {</div>
-<div class="line"><span class="lineno">  256</span>    simd_config config;</div>
-<div class="line"><span class="lineno">  257</span>    simd_aggregator aggregator(config);</div>
-<div class="line"><span class="lineno">  258</span>    </div>
-<div class="line"><span class="lineno">  259</span>    std::vector&lt;double&gt; data = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};</div>
-<div class="line"><span class="lineno">  260</span>    </div>
-<div class="line"><span class="lineno">  261</span>    <span class="comment">// Test sum</span></div>
-<div class="line"><span class="lineno">  262</span>    <span class="keyword">auto</span> sum_result = aggregator.sum(data);</div>
-<div class="line"><span class="lineno">  263</span>    EXPECT_TRUE(sum_result);</div>
-<div class="line"><span class="lineno">  264</span>    EXPECT_DOUBLE_EQ(sum_result.value(), 36.0);</div>
-<div class="line"><span class="lineno">  265</span>    </div>
-<div class="line"><span class="lineno">  266</span>    <span class="comment">// Test mean</span></div>
-<div class="line"><span class="lineno">  267</span>    <span class="keyword">auto</span> mean_result = aggregator.mean(data);</div>
-<div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(mean_result);</div>
-<div class="line"><span class="lineno">  269</span>    EXPECT_DOUBLE_EQ(mean_result.value(), 4.5);</div>
-<div class="line"><span class="lineno">  270</span>    </div>
-<div class="line"><span class="lineno">  271</span>    <span class="comment">// Test min/max</span></div>
-<div class="line"><span class="lineno">  272</span>    <span class="keyword">auto</span> min_result = aggregator.min(data);</div>
-<div class="line"><span class="lineno">  273</span>    EXPECT_TRUE(min_result);</div>
-<div class="line"><span class="lineno">  274</span>    EXPECT_DOUBLE_EQ(min_result.value(), 1.0);</div>
-<div class="line"><span class="lineno">  275</span>    </div>
-<div class="line"><span class="lineno">  276</span>    <span class="keyword">auto</span> max_result = aggregator.max(data);</div>
-<div class="line"><span class="lineno">  277</span>    EXPECT_TRUE(max_result);</div>
-<div class="line"><span class="lineno">  278</span>    EXPECT_DOUBLE_EQ(max_result.value(), 8.0);</div>
-<div class="line"><span class="lineno">  279</span>    </div>
-<div class="line"><span class="lineno">  280</span>    <span class="comment">// Test variance</span></div>
-<div class="line"><span class="lineno">  281</span>    <span class="keyword">auto</span> var_result = aggregator.variance(data);</div>
-<div class="line"><span class="lineno">  282</span>    EXPECT_TRUE(var_result);</div>
-<div class="line"><span class="lineno">  283</span>    EXPECT_GT(var_result.value(), 0.0);  <span class="comment">// Should be positive for this dataset</span></div>
-<div class="line"><span class="lineno">  284</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00284">284</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  284</span>                                                        {</div>
+<div class="line"><span class="lineno">  285</span>    simd_config config;</div>
+<div class="line"><span class="lineno">  286</span>    simd_aggregator aggregator(config);</div>
+<div class="line"><span class="lineno">  287</span>    </div>
+<div class="line"><span class="lineno">  288</span>    std::vector&lt;double&gt; data = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};</div>
+<div class="line"><span class="lineno">  289</span>    </div>
+<div class="line"><span class="lineno">  290</span>    <span class="comment">// Test sum</span></div>
+<div class="line"><span class="lineno">  291</span>    <span class="keyword">auto</span> sum_result = aggregator.sum(data);</div>
+<div class="line"><span class="lineno">  292</span>    EXPECT_TRUE(sum_result);</div>
+<div class="line"><span class="lineno">  293</span>    EXPECT_DOUBLE_EQ(sum_result.value(), 36.0);</div>
+<div class="line"><span class="lineno">  294</span>    </div>
+<div class="line"><span class="lineno">  295</span>    <span class="comment">// Test mean</span></div>
+<div class="line"><span class="lineno">  296</span>    <span class="keyword">auto</span> mean_result = aggregator.mean(data);</div>
+<div class="line"><span class="lineno">  297</span>    EXPECT_TRUE(mean_result);</div>
+<div class="line"><span class="lineno">  298</span>    EXPECT_DOUBLE_EQ(mean_result.value(), 4.5);</div>
+<div class="line"><span class="lineno">  299</span>    </div>
+<div class="line"><span class="lineno">  300</span>    <span class="comment">// Test min/max</span></div>
+<div class="line"><span class="lineno">  301</span>    <span class="keyword">auto</span> min_result = aggregator.min(data);</div>
+<div class="line"><span class="lineno">  302</span>    EXPECT_TRUE(min_result);</div>
+<div class="line"><span class="lineno">  303</span>    EXPECT_DOUBLE_EQ(min_result.value(), 1.0);</div>
+<div class="line"><span class="lineno">  304</span>    </div>
+<div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> max_result = aggregator.max(data);</div>
+<div class="line"><span class="lineno">  306</span>    EXPECT_TRUE(max_result);</div>
+<div class="line"><span class="lineno">  307</span>    EXPECT_DOUBLE_EQ(max_result.value(), 8.0);</div>
+<div class="line"><span class="lineno">  308</span>    </div>
+<div class="line"><span class="lineno">  309</span>    <span class="comment">// Test variance</span></div>
+<div class="line"><span class="lineno">  310</span>    <span class="keyword">auto</span> var_result = aggregator.variance(data);</div>
+<div class="line"><span class="lineno">  311</span>    EXPECT_TRUE(var_result);</div>
+<div class="line"><span class="lineno">  312</span>    EXPECT_GT(var_result.value(), 0.0);  <span class="comment">// Should be positive for this dataset</span></div>
+<div class="line"><span class="lineno">  313</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -832,36 +832,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00286">286</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  286</span>                                                     {</div>
-<div class="line"><span class="lineno">  287</span>    simd_config config;</div>
-<div class="line"><span class="lineno">  288</span>    config.enable_simd = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  289</span>    simd_aggregator aggregator(config);</div>
-<div class="line"><span class="lineno">  290</span>    </div>
-<div class="line"><span class="lineno">  291</span>    <span class="comment">// Generate large dataset</span></div>
-<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> data = generate_test_data(10000, 0.0, 100.0);</div>
-<div class="line"><span class="lineno">  293</span>    </div>
-<div class="line"><span class="lineno">  294</span>    <span class="comment">// Test statistical summary</span></div>
-<div class="line"><span class="lineno">  295</span>    <span class="keyword">auto</span> summary_result = aggregator.compute_summary(data);</div>
-<div class="line"><span class="lineno">  296</span>    EXPECT_TRUE(summary_result);</div>
-<div class="line"><span class="lineno">  297</span>    </div>
-<div class="line"><span class="lineno">  298</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; summary = summary_result.value();</div>
-<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(summary.count, 10000);</div>
-<div class="line"><span class="lineno">  300</span>    EXPECT_GT(summary.sum, 0.0);</div>
-<div class="line"><span class="lineno">  301</span>    EXPECT_GT(summary.mean, 0.0);</div>
-<div class="line"><span class="lineno">  302</span>    EXPECT_LT(summary.mean, 100.0);</div>
-<div class="line"><span class="lineno">  303</span>    EXPECT_GT(summary.variance, 0.0);</div>
-<div class="line"><span class="lineno">  304</span>    EXPECT_GT(summary.std_dev, 0.0);</div>
-<div class="line"><span class="lineno">  305</span>    EXPECT_GE(summary.min_val, 0.0);</div>
-<div class="line"><span class="lineno">  306</span>    EXPECT_LE(summary.max_val, 100.0);</div>
-<div class="line"><span class="lineno">  307</span>    EXPECT_LT(summary.min_val, summary.max_val);</div>
-<div class="line"><span class="lineno">  308</span>    </div>
-<div class="line"><span class="lineno">  309</span>    <span class="comment">// Check SIMD utilization</span></div>
-<div class="line"><span class="lineno">  310</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = aggregator.get_statistics();</div>
-<div class="line"><span class="lineno">  311</span>    <span class="keywordflow">if</span> (aggregator.get_capabilities().avx2_available || aggregator.get_capabilities().neon_available) {</div>
-<div class="line"><span class="lineno">  312</span>        EXPECT_GT(stats.get_simd_utilization(), 0.0);</div>
-<div class="line"><span class="lineno">  313</span>    }</div>
-<div class="line"><span class="lineno">  314</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00315">315</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  315</span>                                                     {</div>
+<div class="line"><span class="lineno">  316</span>    simd_config config;</div>
+<div class="line"><span class="lineno">  317</span>    config.enable_simd = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  318</span>    simd_aggregator aggregator(config);</div>
+<div class="line"><span class="lineno">  319</span>    </div>
+<div class="line"><span class="lineno">  320</span>    <span class="comment">// Generate large dataset</span></div>
+<div class="line"><span class="lineno">  321</span>    <span class="keyword">auto</span> data = generate_test_data(10000, 0.0, 100.0);</div>
+<div class="line"><span class="lineno">  322</span>    </div>
+<div class="line"><span class="lineno">  323</span>    <span class="comment">// Test statistical summary</span></div>
+<div class="line"><span class="lineno">  324</span>    <span class="keyword">auto</span> summary_result = aggregator.compute_summary(data);</div>
+<div class="line"><span class="lineno">  325</span>    EXPECT_TRUE(summary_result);</div>
+<div class="line"><span class="lineno">  326</span>    </div>
+<div class="line"><span class="lineno">  327</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; summary = summary_result.value();</div>
+<div class="line"><span class="lineno">  328</span>    EXPECT_EQ(summary.count, 10000);</div>
+<div class="line"><span class="lineno">  329</span>    EXPECT_GT(summary.sum, 0.0);</div>
+<div class="line"><span class="lineno">  330</span>    EXPECT_GT(summary.mean, 0.0);</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_LT(summary.mean, 100.0);</div>
+<div class="line"><span class="lineno">  332</span>    EXPECT_GT(summary.variance, 0.0);</div>
+<div class="line"><span class="lineno">  333</span>    EXPECT_GT(summary.std_dev, 0.0);</div>
+<div class="line"><span class="lineno">  334</span>    EXPECT_GE(summary.min_val, 0.0);</div>
+<div class="line"><span class="lineno">  335</span>    EXPECT_LE(summary.max_val, 100.0);</div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_LT(summary.min_val, summary.max_val);</div>
+<div class="line"><span class="lineno">  337</span>    </div>
+<div class="line"><span class="lineno">  338</span>    <span class="comment">// Check SIMD utilization</span></div>
+<div class="line"><span class="lineno">  339</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = aggregator.get_statistics();</div>
+<div class="line"><span class="lineno">  340</span>    <span class="keywordflow">if</span> (aggregator.get_capabilities().avx2_available || aggregator.get_capabilities().neon_available) {</div>
+<div class="line"><span class="lineno">  341</span>        EXPECT_GT(stats.get_simd_utilization(), 0.0);</div>
+<div class="line"><span class="lineno">  342</span>    }</div>
+<div class="line"><span class="lineno">  343</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -891,61 +891,61 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00316">316</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  316</span>                                                              {</div>
-<div class="line"><span class="lineno">  317</span>    <span class="comment">// Test SIMD vs scalar performance</span></div>
-<div class="line"><span class="lineno">  318</span>    simd_config simd_cfg;</div>
-<div class="line"><span class="lineno">  319</span>    simd_cfg.enable_simd = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  320</span>    </div>
-<div class="line"><span class="lineno">  321</span>    simd_config scalar_cfg;</div>
-<div class="line"><span class="lineno">  322</span>    scalar_cfg.enable_simd = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  323</span>    </div>
-<div class="line"><span class="lineno">  324</span>    simd_aggregator simd_agg(simd_cfg);</div>
-<div class="line"><span class="lineno">  325</span>    simd_aggregator scalar_agg(scalar_cfg);</div>
-<div class="line"><span class="lineno">  326</span>    </div>
-<div class="line"><span class="lineno">  327</span>    <span class="keyword">auto</span> large_data = generate_test_data(50000, 0.0, 1000.0);</div>
-<div class="line"><span class="lineno">  328</span>    </div>
-<div class="line"><span class="lineno">  329</span>    <span class="comment">// Measure SIMD performance</span></div>
-<div class="line"><span class="lineno">  330</span>    <span class="keyword">auto</span> start_simd = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  331</span>    <span class="keyword">auto</span> simd_summary = simd_agg.compute_summary(large_data);</div>
-<div class="line"><span class="lineno">  332</span>    <span class="keyword">auto</span> end_simd = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  333</span>    </div>
-<div class="line"><span class="lineno">  334</span>    <span class="comment">// Measure scalar performance</span></div>
-<div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> start_scalar = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  336</span>    <span class="keyword">auto</span> scalar_summary = scalar_agg.compute_summary(large_data);</div>
-<div class="line"><span class="lineno">  337</span>    <span class="keyword">auto</span> end_scalar = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  338</span>    </div>
-<div class="line"><span class="lineno">  339</span>    EXPECT_TRUE(simd_summary);</div>
-<div class="line"><span class="lineno">  340</span>    EXPECT_TRUE(scalar_summary);</div>
-<div class="line"><span class="lineno">  341</span>    </div>
-<div class="line"><span class="lineno">  342</span>    <span class="comment">// Results should be approximately equal</span></div>
-<div class="line"><span class="lineno">  343</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; simd_result = simd_summary.value();</div>
-<div class="line"><span class="lineno">  344</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; scalar_result = scalar_summary.value();</div>
-<div class="line"><span class="lineno">  345</span>    </div>
-<div class="line"><span class="lineno">  346</span>    EXPECT_NEAR(simd_result.sum, scalar_result.sum, 1e-6);</div>
-<div class="line"><span class="lineno">  347</span>    EXPECT_NEAR(simd_result.mean, scalar_result.mean, 1e-6);</div>
-<div class="line"><span class="lineno">  348</span>    EXPECT_NEAR(simd_result.min_val, scalar_result.min_val, 1e-6);</div>
-<div class="line"><span class="lineno">  349</span>    EXPECT_NEAR(simd_result.max_val, scalar_result.max_val, 1e-6);</div>
-<div class="line"><span class="lineno">  350</span>    </div>
-<div class="line"><span class="lineno">  351</span>    <span class="keyword">auto</span> simd_duration = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(end_simd - start_simd);</div>
-<div class="line"><span class="lineno">  352</span>    <span class="keyword">auto</span> scalar_duration = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(end_scalar - start_scalar);</div>
-<div class="line"><span class="lineno">  353</span>    </div>
-<div class="line"><span class="lineno">  354</span>    <span class="comment">// SIMD should be faster or at least comparable (depending on data size and CPU)</span></div>
-<div class="line"><span class="lineno">  355</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;SIMD duration: &quot;</span> &lt;&lt; simd_duration.count() &lt;&lt; <span class="stringliteral">&quot; μs&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  356</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Scalar duration: &quot;</span> &lt;&lt; scalar_duration.count() &lt;&lt; <span class="stringliteral">&quot; μs&quot;</span> &lt;&lt; std::endl;</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html#l00345">345</a> of file <a class="el" href="../../d9/da3/test__optimization_8cpp_source.html">test_optimization.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  345</span>                                                              {</div>
+<div class="line"><span class="lineno">  346</span>    <span class="comment">// Test SIMD vs scalar performance</span></div>
+<div class="line"><span class="lineno">  347</span>    simd_config simd_cfg;</div>
+<div class="line"><span class="lineno">  348</span>    simd_cfg.enable_simd = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  349</span>    </div>
+<div class="line"><span class="lineno">  350</span>    simd_config scalar_cfg;</div>
+<div class="line"><span class="lineno">  351</span>    scalar_cfg.enable_simd = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  352</span>    </div>
+<div class="line"><span class="lineno">  353</span>    simd_aggregator simd_agg(simd_cfg);</div>
+<div class="line"><span class="lineno">  354</span>    simd_aggregator scalar_agg(scalar_cfg);</div>
+<div class="line"><span class="lineno">  355</span>    </div>
+<div class="line"><span class="lineno">  356</span>    <span class="keyword">auto</span> large_data = generate_test_data(50000, 0.0, 1000.0);</div>
 <div class="line"><span class="lineno">  357</span>    </div>
-<div class="line"><span class="lineno">  358</span>    <span class="keywordflow">if</span> (simd_agg.get_capabilities().avx2_available || simd_agg.get_capabilities().neon_available) {</div>
-<div class="line"><span class="lineno">  359</span>        <span class="comment">// SIMD should provide some benefit for large datasets</span></div>
-<div class="line"><span class="lineno">  360</span>        EXPECT_LE(simd_duration.count(), scalar_duration.count() * 1.2);  <span class="comment">// Allow 20% tolerance</span></div>
-<div class="line"><span class="lineno">  361</span>    }</div>
-<div class="line"><span class="lineno">  362</span>}</div>
+<div class="line"><span class="lineno">  358</span>    <span class="comment">// Measure SIMD performance</span></div>
+<div class="line"><span class="lineno">  359</span>    <span class="keyword">auto</span> start_simd = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  360</span>    <span class="keyword">auto</span> simd_summary = simd_agg.compute_summary(large_data);</div>
+<div class="line"><span class="lineno">  361</span>    <span class="keyword">auto</span> end_simd = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  362</span>    </div>
+<div class="line"><span class="lineno">  363</span>    <span class="comment">// Measure scalar performance</span></div>
+<div class="line"><span class="lineno">  364</span>    <span class="keyword">auto</span> start_scalar = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> scalar_summary = scalar_agg.compute_summary(large_data);</div>
+<div class="line"><span class="lineno">  366</span>    <span class="keyword">auto</span> end_scalar = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  367</span>    </div>
+<div class="line"><span class="lineno">  368</span>    EXPECT_TRUE(simd_summary);</div>
+<div class="line"><span class="lineno">  369</span>    EXPECT_TRUE(scalar_summary);</div>
+<div class="line"><span class="lineno">  370</span>    </div>
+<div class="line"><span class="lineno">  371</span>    <span class="comment">// Results should be approximately equal</span></div>
+<div class="line"><span class="lineno">  372</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; simd_result = simd_summary.value();</div>
+<div class="line"><span class="lineno">  373</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; scalar_result = scalar_summary.value();</div>
+<div class="line"><span class="lineno">  374</span>    </div>
+<div class="line"><span class="lineno">  375</span>    EXPECT_NEAR(simd_result.sum, scalar_result.sum, 1e-6);</div>
+<div class="line"><span class="lineno">  376</span>    EXPECT_NEAR(simd_result.mean, scalar_result.mean, 1e-6);</div>
+<div class="line"><span class="lineno">  377</span>    EXPECT_NEAR(simd_result.min_val, scalar_result.min_val, 1e-6);</div>
+<div class="line"><span class="lineno">  378</span>    EXPECT_NEAR(simd_result.max_val, scalar_result.max_val, 1e-6);</div>
+<div class="line"><span class="lineno">  379</span>    </div>
+<div class="line"><span class="lineno">  380</span>    <span class="keyword">auto</span> simd_duration = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(end_simd - start_simd);</div>
+<div class="line"><span class="lineno">  381</span>    <span class="keyword">auto</span> scalar_duration = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(end_scalar - start_scalar);</div>
+<div class="line"><span class="lineno">  382</span>    </div>
+<div class="line"><span class="lineno">  383</span>    <span class="comment">// SIMD should be faster or at least comparable (depending on data size and CPU)</span></div>
+<div class="line"><span class="lineno">  384</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;SIMD duration: &quot;</span> &lt;&lt; simd_duration.count() &lt;&lt; <span class="stringliteral">&quot; μs&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  385</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Scalar duration: &quot;</span> &lt;&lt; scalar_duration.count() &lt;&lt; <span class="stringliteral">&quot; μs&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  386</span>    </div>
+<div class="line"><span class="lineno">  387</span>    <span class="keywordflow">if</span> (simd_agg.get_capabilities().avx2_available || simd_agg.get_capabilities().neon_available) {</div>
+<div class="line"><span class="lineno">  388</span>        <span class="comment">// SIMD should provide some benefit for large datasets</span></div>
+<div class="line"><span class="lineno">  389</span>        EXPECT_LE(simd_duration.count(), scalar_duration.count() * 1.2);  <span class="comment">// Allow 20% tolerance</span></div>
+<div class="line"><span class="lineno">  390</span>    }</div>
+<div class="line"><span class="lineno">  391</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

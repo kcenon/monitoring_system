@@ -144,123 +144,123 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d97/basic__monitoring__example_8cpp_source.html#l00024">24</a> of file <a class="el" href="../../d0/d97/basic__monitoring__example_8cpp_source.html">basic_monitoring_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>           {</div>
-<div class="line"><span class="lineno">   25</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Basic Monitoring Example ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   26</span>    </div>
-<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">   28</span>        <span class="comment">// Step 1: Configure the monitoring system</span></div>
-<div class="line"><span class="lineno">   29</span>        monitoring_config config;</div>
-<div class="line"><span class="lineno">   30</span>        config.history_size = 1000;</div>
-<div class="line"><span class="lineno">   31</span>        config.collection_interval = std::chrono::milliseconds(1000);</div>
-<div class="line"><span class="lineno">   32</span>        config.enable_compression = <span class="keyword">false</span>;  <span class="comment">// Keep it simple for this example</span></div>
-<div class="line"><span class="lineno">   33</span>        </div>
-<div class="line"><span class="lineno">   34</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;1. Creating monitoring system with configuration:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   35</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   - History size: &quot;</span> &lt;&lt; config.history_size &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   36</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   - Collection interval: 1000ms&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   37</span>        </div>
-<div class="line"><span class="lineno">   38</span>        <span class="comment">// Step 2: Create performance monitor directly (simplified for example)</span></div>
-<div class="line"><span class="lineno">   39</span>        performance_monitor perf_monitor(<span class="stringliteral">&quot;example_monitor&quot;</span>);</div>
-<div class="line"><span class="lineno">   40</span>        </div>
-<div class="line"><span class="lineno">   41</span>        <span class="comment">// Step 3: Initialize performance monitor</span></div>
-<div class="line"><span class="lineno">   42</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> result = perf_monitor.initialize(); !result) {</div>
-<div class="line"><span class="lineno">   43</span>            std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to initialize performance monitor: &quot;</span> </div>
-<div class="line"><span class="lineno">   44</span>                     &lt;&lt; result.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   45</span>            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">   46</span>        }</div>
-<div class="line"><span class="lineno">   47</span>        </div>
-<div class="line"><span class="lineno">   48</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;2. Initialized performance monitor&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   49</span>        </div>
-<div class="line"><span class="lineno">   50</span>        <span class="comment">// Step 4: Configure and add storage backend</span></div>
-<div class="line"><span class="lineno">   51</span>        storage_config storage_cfg;</div>
-<div class="line"><span class="lineno">   52</span>        storage_cfg.type = storage_backend_type::file_json;</div>
-<div class="line"><span class="lineno">   53</span>        storage_cfg.path = <span class="stringliteral">&quot;monitoring_data.json&quot;</span>;</div>
-<div class="line"><span class="lineno">   54</span>        </div>
-<div class="line"><span class="lineno">   55</span>        <span class="keyword">auto</span> storage = std::make_unique&lt;file_storage_backend&gt;(storage_cfg);</div>
-<div class="line"><span class="lineno">   56</span>        </div>
-<div class="line"><span class="lineno">   57</span>        <span class="comment">// Storage backend is ready to use</span></div>
-<div class="line"><span class="lineno">   58</span>        </div>
-<div class="line"><span class="lineno">   59</span>        <span class="comment">// Storage is configured and ready to use</span></div>
-<div class="line"><span class="lineno">   60</span>        </div>
-<div class="line"><span class="lineno">   61</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;3. Configured JSON file storage backend&quot;</span> &lt;&lt; std::endl;</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d97/basic__monitoring__example_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../d0/d97/basic__monitoring__example_8cpp_source.html">basic_monitoring_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>           {</div>
+<div class="line"><span class="lineno">   54</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Basic Monitoring Example ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   55</span>    </div>
+<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">   57</span>        <span class="comment">// Step 1: Configure the monitoring system</span></div>
+<div class="line"><span class="lineno">   58</span>        monitoring_config config;</div>
+<div class="line"><span class="lineno">   59</span>        config.history_size = 1000;</div>
+<div class="line"><span class="lineno">   60</span>        config.collection_interval = std::chrono::milliseconds(1000);</div>
+<div class="line"><span class="lineno">   61</span>        config.enable_compression = <span class="keyword">false</span>;  <span class="comment">// Keep it simple for this example</span></div>
 <div class="line"><span class="lineno">   62</span>        </div>
-<div class="line"><span class="lineno">   63</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;4. Monitoring system ready&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   64</span>        std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   65</span>        </div>
-<div class="line"><span class="lineno">   66</span>        <span class="comment">// Step 6: Simulate some application work and collect metrics</span></div>
-<div class="line"><span class="lineno">   67</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;5. Simulating application workload...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   68</span>        </div>
-<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">   70</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   Iteration &quot;</span> &lt;&lt; (i + 1) &lt;&lt; <span class="stringliteral">&quot;/10&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   71</span>            </div>
-<div class="line"><span class="lineno">   72</span>            <span class="comment">// Simulate timing an operation</span></div>
-<div class="line"><span class="lineno">   73</span>            {</div>
-<div class="line"><span class="lineno">   74</span>                <span class="keyword">auto</span> timer = perf_monitor.time_operation(<span class="stringliteral">&quot;iteration_&quot;</span> + std::to_string(i));</div>
-<div class="line"><span class="lineno">   75</span>                std::this_thread::sleep_for(100ms);</div>
-<div class="line"><span class="lineno">   76</span>            }</div>
-<div class="line"><span class="lineno">   77</span>            </div>
-<div class="line"><span class="lineno">   78</span>            <span class="comment">// Simulate some work</span></div>
-<div class="line"><span class="lineno">   79</span>            std::this_thread::sleep_for(500ms);</div>
-<div class="line"><span class="lineno">   80</span>            </div>
-<div class="line"><span class="lineno">   81</span>            <span class="comment">// Get current system metrics</span></div>
-<div class="line"><span class="lineno">   82</span>            <span class="keyword">auto</span> system_metrics = perf_monitor.get_system_monitor().get_current_metrics();</div>
-<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">if</span> (system_metrics) {</div>
-<div class="line"><span class="lineno">   84</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;   CPU: &quot;</span> &lt;&lt; system_metrics.value().cpu_usage_percent </div>
-<div class="line"><span class="lineno">   85</span>                         &lt;&lt; <span class="stringliteral">&quot;%, Memory: &quot;</span> &lt;&lt; (system_metrics.value().memory_usage_bytes / (1024.0 * 1024.0)) &lt;&lt; <span class="stringliteral">&quot; MB&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   86</span>            }</div>
-<div class="line"><span class="lineno">   87</span>        }</div>
-<div class="line"><span class="lineno">   88</span>        </div>
-<div class="line"><span class="lineno">   89</span>        std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   90</span>        </div>
-<div class="line"><span class="lineno">   91</span>        <span class="comment">// Step 7: Collect and display metrics</span></div>
-<div class="line"><span class="lineno">   92</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;6. Collecting metrics:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   93</span>        </div>
-<div class="line"><span class="lineno">   94</span>        <span class="keyword">auto</span> metrics_result = perf_monitor.collect();</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">if</span> (metrics_result) {</div>
-<div class="line"><span class="lineno">   96</span>            <span class="keyword">auto</span>&amp; snapshot = metrics_result.value();</div>
-<div class="line"><span class="lineno">   97</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   Total metrics collected: &quot;</span> &lt;&lt; snapshot.metrics.size() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   98</span>            </div>
-<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : snapshot.metrics) {</div>
-<div class="line"><span class="lineno">  100</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;   - Metric: &quot;</span> &lt;&lt; metric.name &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  101</span>            }</div>
-<div class="line"><span class="lineno">  102</span>        }</div>
-<div class="line"><span class="lineno">  103</span>        </div>
-<div class="line"><span class="lineno">  104</span>        std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  105</span>        </div>
-<div class="line"><span class="lineno">  106</span>        <span class="comment">// Step 8: Cleanup</span></div>
-<div class="line"><span class="lineno">  107</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> result = perf_monitor.cleanup(); !result) {</div>
-<div class="line"><span class="lineno">  108</span>            std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to cleanup: &quot;</span> </div>
-<div class="line"><span class="lineno">  109</span>                     &lt;&lt; result.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  110</span>            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  111</span>        }</div>
-<div class="line"><span class="lineno">  112</span>        </div>
-<div class="line"><span class="lineno">  113</span>        <span class="comment">// Flush storage</span></div>
-<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> result = storage-&gt;flush(); !result) {</div>
-<div class="line"><span class="lineno">  115</span>            std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to flush storage: &quot;</span> </div>
-<div class="line"><span class="lineno">  116</span>                     &lt;&lt; result.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  117</span>        }</div>
-<div class="line"><span class="lineno">  118</span>        </div>
-<div class="line"><span class="lineno">  119</span>        std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  120</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;7. Monitoring completed successfully&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  121</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   Data saved to: monitoring_data.json&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   63</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;1. Creating monitoring system with configuration:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   64</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   - History size: &quot;</span> &lt;&lt; config.history_size &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   65</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   - Collection interval: 1000ms&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   66</span>        </div>
+<div class="line"><span class="lineno">   67</span>        <span class="comment">// Step 2: Create performance monitor directly (simplified for example)</span></div>
+<div class="line"><span class="lineno">   68</span>        performance_monitor perf_monitor(<span class="stringliteral">&quot;example_monitor&quot;</span>);</div>
+<div class="line"><span class="lineno">   69</span>        </div>
+<div class="line"><span class="lineno">   70</span>        <span class="comment">// Step 3: Initialize performance monitor</span></div>
+<div class="line"><span class="lineno">   71</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> result = perf_monitor.initialize(); !result) {</div>
+<div class="line"><span class="lineno">   72</span>            std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to initialize performance monitor: &quot;</span> </div>
+<div class="line"><span class="lineno">   73</span>                     &lt;&lt; result.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   74</span>            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   75</span>        }</div>
+<div class="line"><span class="lineno">   76</span>        </div>
+<div class="line"><span class="lineno">   77</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;2. Initialized performance monitor&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   78</span>        </div>
+<div class="line"><span class="lineno">   79</span>        <span class="comment">// Step 4: Configure and add storage backend</span></div>
+<div class="line"><span class="lineno">   80</span>        storage_config storage_cfg;</div>
+<div class="line"><span class="lineno">   81</span>        storage_cfg.type = storage_backend_type::file_json;</div>
+<div class="line"><span class="lineno">   82</span>        storage_cfg.path = <span class="stringliteral">&quot;monitoring_data.json&quot;</span>;</div>
+<div class="line"><span class="lineno">   83</span>        </div>
+<div class="line"><span class="lineno">   84</span>        <span class="keyword">auto</span> storage = std::make_unique&lt;file_storage_backend&gt;(storage_cfg);</div>
+<div class="line"><span class="lineno">   85</span>        </div>
+<div class="line"><span class="lineno">   86</span>        <span class="comment">// Storage backend is ready to use</span></div>
+<div class="line"><span class="lineno">   87</span>        </div>
+<div class="line"><span class="lineno">   88</span>        <span class="comment">// Storage is configured and ready to use</span></div>
+<div class="line"><span class="lineno">   89</span>        </div>
+<div class="line"><span class="lineno">   90</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;3. Configured JSON file storage backend&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   91</span>        </div>
+<div class="line"><span class="lineno">   92</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;4. Monitoring system ready&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   93</span>        std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   94</span>        </div>
+<div class="line"><span class="lineno">   95</span>        <span class="comment">// Step 6: Simulate some application work and collect metrics</span></div>
+<div class="line"><span class="lineno">   96</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;5. Simulating application workload...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   97</span>        </div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><span class="lineno">   99</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   Iteration &quot;</span> &lt;&lt; (i + 1) &lt;&lt; <span class="stringliteral">&quot;/10&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  100</span>            </div>
+<div class="line"><span class="lineno">  101</span>            <span class="comment">// Simulate timing an operation</span></div>
+<div class="line"><span class="lineno">  102</span>            {</div>
+<div class="line"><span class="lineno">  103</span>                <span class="keyword">auto</span> timer = perf_monitor.time_operation(<span class="stringliteral">&quot;iteration_&quot;</span> + std::to_string(i));</div>
+<div class="line"><span class="lineno">  104</span>                std::this_thread::sleep_for(100ms);</div>
+<div class="line"><span class="lineno">  105</span>            }</div>
+<div class="line"><span class="lineno">  106</span>            </div>
+<div class="line"><span class="lineno">  107</span>            <span class="comment">// Simulate some work</span></div>
+<div class="line"><span class="lineno">  108</span>            std::this_thread::sleep_for(500ms);</div>
+<div class="line"><span class="lineno">  109</span>            </div>
+<div class="line"><span class="lineno">  110</span>            <span class="comment">// Get current system metrics</span></div>
+<div class="line"><span class="lineno">  111</span>            <span class="keyword">auto</span> system_metrics = perf_monitor.get_system_monitor().get_current_metrics();</div>
+<div class="line"><span class="lineno">  112</span>            <span class="keywordflow">if</span> (system_metrics) {</div>
+<div class="line"><span class="lineno">  113</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;   CPU: &quot;</span> &lt;&lt; system_metrics.value().cpu_usage_percent </div>
+<div class="line"><span class="lineno">  114</span>                         &lt;&lt; <span class="stringliteral">&quot;%, Memory: &quot;</span> &lt;&lt; (system_metrics.value().memory_usage_bytes / (1024.0 * 1024.0)) &lt;&lt; <span class="stringliteral">&quot; MB&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  115</span>            }</div>
+<div class="line"><span class="lineno">  116</span>        }</div>
+<div class="line"><span class="lineno">  117</span>        </div>
+<div class="line"><span class="lineno">  118</span>        std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  119</span>        </div>
+<div class="line"><span class="lineno">  120</span>        <span class="comment">// Step 7: Collect and display metrics</span></div>
+<div class="line"><span class="lineno">  121</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;6. Collecting metrics:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  122</span>        </div>
-<div class="line"><span class="lineno">  123</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><span class="lineno">  124</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Exception: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  126</span>    }</div>
-<div class="line"><span class="lineno">  127</span>    </div>
-<div class="line"><span class="lineno">  128</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  129</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Example completed successfully ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  130</span>    </div>
-<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  132</span>}</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keyword">auto</span> metrics_result = perf_monitor.collect();</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">if</span> (metrics_result) {</div>
+<div class="line"><span class="lineno">  125</span>            <span class="keyword">auto</span>&amp; snapshot = metrics_result.value();</div>
+<div class="line"><span class="lineno">  126</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;   Total metrics collected: &quot;</span> &lt;&lt; snapshot.metrics.size() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  127</span>            </div>
+<div class="line"><span class="lineno">  128</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : snapshot.metrics) {</div>
+<div class="line"><span class="lineno">  129</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;   - Metric: &quot;</span> &lt;&lt; metric.name &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  130</span>            }</div>
+<div class="line"><span class="lineno">  131</span>        }</div>
+<div class="line"><span class="lineno">  132</span>        </div>
+<div class="line"><span class="lineno">  133</span>        std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  134</span>        </div>
+<div class="line"><span class="lineno">  135</span>        <span class="comment">// Step 8: Cleanup</span></div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> result = perf_monitor.cleanup(); !result) {</div>
+<div class="line"><span class="lineno">  137</span>            std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to cleanup: &quot;</span> </div>
+<div class="line"><span class="lineno">  138</span>                     &lt;&lt; result.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  139</span>            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  140</span>        }</div>
+<div class="line"><span class="lineno">  141</span>        </div>
+<div class="line"><span class="lineno">  142</span>        <span class="comment">// Flush storage</span></div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> result = storage-&gt;flush(); !result) {</div>
+<div class="line"><span class="lineno">  144</span>            std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to flush storage: &quot;</span> </div>
+<div class="line"><span class="lineno">  145</span>                     &lt;&lt; result.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  146</span>        }</div>
+<div class="line"><span class="lineno">  147</span>        </div>
+<div class="line"><span class="lineno">  148</span>        std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  149</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;7. Monitoring completed successfully&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  150</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;   Data saved to: monitoring_data.json&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  151</span>        </div>
+<div class="line"><span class="lineno">  152</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><span class="lineno">  153</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Exception: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  155</span>    }</div>
+<div class="line"><span class="lineno">  156</span>    </div>
+<div class="line"><span class="lineno">  157</span>    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  158</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Example completed successfully ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  159</span>    </div>
+<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  161</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

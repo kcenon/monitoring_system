@@ -115,7 +115,7 @@ Protected Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Test suite for Phase 3 P3: Configurable buffering strategies. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00016">16</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00045">45</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2f9012650c746215e4ab451ab536135b" name="a2f9012650c746215e4ab451ab536135b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f9012650c746215e4ab451ab536135b">&#9670;&#160;</a></span>create_test_metric()</h2>
@@ -159,15 +159,15 @@ Protected Member Functions</h2></td></tr>
 
 <p>Create test metric. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00029">29</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   29</span>                                                                                                    {</div>
-<div class="line"><span class="lineno">   30</span>        <span class="comment">// Create metadata with hash of name</span></div>
-<div class="line"><span class="lineno">   31</span>        std::hash&lt;std::string&gt; hasher;</div>
-<div class="line"><span class="lineno">   32</span>        uint32_t name_hash = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(hasher(name));</div>
-<div class="line"><span class="lineno">   33</span>        metric_metadata metadata(name_hash, metric_type::gauge);</div>
-<div class="line"><span class="lineno">   34</span>        compact_metric_value metric(metadata, value);</div>
-<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">return</span> buffered_metric(std::move(metric), priority);</div>
-<div class="line"><span class="lineno">   36</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>                                                                                                    {</div>
+<div class="line"><span class="lineno">   59</span>        <span class="comment">// Create metadata with hash of name</span></div>
+<div class="line"><span class="lineno">   60</span>        std::hash&lt;std::string&gt; hasher;</div>
+<div class="line"><span class="lineno">   61</span>        uint32_t name_hash = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(hasher(name));</div>
+<div class="line"><span class="lineno">   62</span>        metric_metadata metadata(name_hash, metric_type::gauge);</div>
+<div class="line"><span class="lineno">   63</span>        compact_metric_value metric(metadata, value);</div>
+<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> buffered_metric(std::move(metric), priority);</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -217,19 +217,19 @@ Here is the caller graph for this function:</div>
 
 <p>Create multiple test metrics. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00041">41</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   41</span>                                                                                                      {</div>
-<div class="line"><span class="lineno">   42</span>        std::vector&lt;buffered_metric&gt; metrics;</div>
-<div class="line"><span class="lineno">   43</span>        metrics.reserve(count);</div>
-<div class="line"><span class="lineno">   44</span>        </div>
-<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; ++i) {</div>
-<div class="line"><span class="lineno">   46</span>            std::string name = base_name + <span class="stringliteral">&quot;_&quot;</span> + std::to_string(i);</div>
-<div class="line"><span class="lineno">   47</span>            metrics.push_back(<a class="code hl_function" href="../../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b">create_test_metric</a>(name, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i)));</div>
-<div class="line"><span class="lineno">   48</span>        }</div>
-<div class="line"><span class="lineno">   49</span>        </div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">return</span> metrics;</div>
-<div class="line"><span class="lineno">   51</span>    }</div>
-<div class="ttc" id="aclassBufferingStrategiesTest_html_a2f9012650c746215e4ab451ab536135b"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b">BufferingStrategiesTest::create_test_metric</a></div><div class="ttdeci">buffered_metric create_test_metric(const std::string &amp;name, double value, uint8_t priority=128)</div><div class="ttdoc">Create test metric.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00029">test_buffering_strategies.cpp:29</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   70</span>                                                                                                      {</div>
+<div class="line"><span class="lineno">   71</span>        std::vector&lt;buffered_metric&gt; metrics;</div>
+<div class="line"><span class="lineno">   72</span>        metrics.reserve(count);</div>
+<div class="line"><span class="lineno">   73</span>        </div>
+<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; ++i) {</div>
+<div class="line"><span class="lineno">   75</span>            std::string name = base_name + <span class="stringliteral">&quot;_&quot;</span> + std::to_string(i);</div>
+<div class="line"><span class="lineno">   76</span>            metrics.push_back(<a class="code hl_function" href="../../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b">create_test_metric</a>(name, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i)));</div>
+<div class="line"><span class="lineno">   77</span>        }</div>
+<div class="line"><span class="lineno">   78</span>        </div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span> metrics;</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
+<div class="ttc" id="aclassBufferingStrategiesTest_html_a2f9012650c746215e4ab451ab536135b"><div class="ttname"><a href="../../d9/dee/classBufferingStrategiesTest.html#a2f9012650c746215e4ab451ab536135b">BufferingStrategiesTest::create_test_metric</a></div><div class="ttdeci">buffered_metric create_test_metric(const std::string &amp;name, double value, uint8_t priority=128)</div><div class="ttdoc">Create test metric.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00058">test_buffering_strategies.cpp:58</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -266,10 +266,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>                          {</div>
-<div class="line"><span class="lineno">   19</span>        <span class="comment">// Common setup for tests</span></div>
-<div class="line"><span class="lineno">   20</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00047">47</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>                          {</div>
+<div class="line"><span class="lineno">   48</span>        <span class="comment">// Common setup for tests</span></div>
+<div class="line"><span class="lineno">   49</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -296,10 +296,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00022">22</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>                             {</div>
-<div class="line"><span class="lineno">   23</span>        <span class="comment">// Common cleanup for tests</span></div>
-<div class="line"><span class="lineno">   24</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00051">51</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>                             {</div>
+<div class="line"><span class="lineno">   52</span>        <span class="comment">// Common cleanup for tests</span></div>
+<div class="line"><span class="lineno">   53</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -309,7 +309,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

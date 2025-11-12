@@ -172,33 +172,33 @@ Functions</h2></td></tr>
 
 <p>Example 1: Basic monitoring with Result pattern. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00091">91</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   91</span>                                  {</div>
-<div class="line"><span class="lineno">   92</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 1: Basic Monitoring ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>    <span class="comment">// Create monitor</span></div>
-<div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nRecording metrics...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   98</span> </div>
-<div class="line"><span class="lineno">   99</span>    <span class="comment">// Record metrics using Result pattern</span></div>
-<div class="line"><span class="lineno">  100</span>    <span class="keyword">auto</span> result1 = monitor-&gt;record_metric(<span class="stringliteral">&quot;requests_total&quot;</span>, 100.0);</div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result1)) {</div>
-<div class="line"><span class="lineno">  102</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric &#39;requests_total&#39; recorded&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  103</span>    }</div>
-<div class="line"><span class="lineno">  104</span> </div>
-<div class="line"><span class="lineno">  105</span>    <span class="keyword">auto</span> result2 = monitor-&gt;record_metric(<span class="stringliteral">&quot;errors_total&quot;</span>, 5.0);</div>
-<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result2)) {</div>
-<div class="line"><span class="lineno">  107</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric &#39;errors_total&#39; recorded&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  108</span>    }</div>
-<div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>    <span class="comment">// Get metrics snapshot</span></div>
-<div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> metrics = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics)) {</div>
-<div class="line"><span class="lineno">  113</span>        <span class="keyword">auto</span> snapshot = kcenon::common::get_value(metrics);</div>
-<div class="line"><span class="lineno">  114</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Retrieved &quot;</span> &lt;&lt; snapshot.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  115</span>    }</div>
-<div class="line"><span class="lineno">  116</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  120</span>                                  {</div>
+<div class="line"><span class="lineno">  121</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 1: Basic Monitoring ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>    <span class="comment">// Create monitor</span></div>
+<div class="line"><span class="lineno">  124</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nRecording metrics...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  127</span> </div>
+<div class="line"><span class="lineno">  128</span>    <span class="comment">// Record metrics using Result pattern</span></div>
+<div class="line"><span class="lineno">  129</span>    <span class="keyword">auto</span> result1 = monitor-&gt;record_metric(<span class="stringliteral">&quot;requests_total&quot;</span>, 100.0);</div>
+<div class="line"><span class="lineno">  130</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result1)) {</div>
+<div class="line"><span class="lineno">  131</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric &#39;requests_total&#39; recorded&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  132</span>    }</div>
+<div class="line"><span class="lineno">  133</span> </div>
+<div class="line"><span class="lineno">  134</span>    <span class="keyword">auto</span> result2 = monitor-&gt;record_metric(<span class="stringliteral">&quot;errors_total&quot;</span>, 5.0);</div>
+<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result2)) {</div>
+<div class="line"><span class="lineno">  136</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric &#39;errors_total&#39; recorded&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  137</span>    }</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>    <span class="comment">// Get metrics snapshot</span></div>
+<div class="line"><span class="lineno">  140</span>    <span class="keyword">auto</span> metrics = monitor-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics)) {</div>
+<div class="line"><span class="lineno">  142</span>        <span class="keyword">auto</span> snapshot = kcenon::common::get_value(metrics);</div>
+<div class="line"><span class="lineno">  143</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Retrieved &quot;</span> &lt;&lt; snapshot.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  144</span>    }</div>
+<div class="line"><span class="lineno">  145</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -229,21 +229,21 @@ Here is the caller graph for this function:</div>
 
 <p>Example 2: Error handling with Result pattern. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00121">121</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  121</span>                                {</div>
-<div class="line"><span class="lineno">  122</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 2: Error Handling ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    <span class="comment">// Record metric and check result</span></div>
-<div class="line"><span class="lineno">  127</span>    <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 45.5);</div>
-<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
-<div class="line"><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric recorded successfully&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  130</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  131</span>        <span class="keyword">auto</span> err = kcenon::common::get_error(result);</div>
-<div class="line"><span class="lineno">  132</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✗ Error: &quot;</span> &lt;&lt; err.message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  133</span>    }</div>
-<div class="line"><span class="lineno">  134</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00150">150</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  150</span>                                {</div>
+<div class="line"><span class="lineno">  151</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 2: Error Handling ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  152</span> </div>
+<div class="line"><span class="lineno">  153</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>    <span class="comment">// Record metric and check result</span></div>
+<div class="line"><span class="lineno">  156</span>    <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 45.5);</div>
+<div class="line"><span class="lineno">  157</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
+<div class="line"><span class="lineno">  158</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric recorded successfully&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  159</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  160</span>        <span class="keyword">auto</span> err = kcenon::common::get_error(result);</div>
+<div class="line"><span class="lineno">  161</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✗ Error: &quot;</span> &lt;&lt; err.message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  162</span>    }</div>
+<div class="line"><span class="lineno">  163</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -274,33 +274,33 @@ Here is the caller graph for this function:</div>
 
 <p>Example 3: Health monitoring. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00139">139</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  139</span>                                   {</div>
-<div class="line"><span class="lineno">  140</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 3: Health Monitoring ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  141</span> </div>
-<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  143</span> </div>
-<div class="line"><span class="lineno">  144</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nPerforming health check...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  145</span> </div>
-<div class="line"><span class="lineno">  146</span>    <span class="comment">// Perform health check</span></div>
-<div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> health_result = monitor-&gt;check_health();</div>
-<div class="line"><span class="lineno">  148</span> </div>
-<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(health_result)) {</div>
-<div class="line"><span class="lineno">  150</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; health = kcenon::common::get_value(health_result);</div>
-<div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\nHealth Check Results:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  153</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Status: &quot;</span> &lt;&lt; to_string(health.status) &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  154</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Message: &quot;</span> &lt;&lt; health.message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  155</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Duration: &quot;</span> &lt;&lt; health.check_duration.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">if</span> (!health.metadata.empty()) {</div>
-<div class="line"><span class="lineno">  158</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;  Metadata:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  159</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : health.metadata) {</div>
-<div class="line"><span class="lineno">  160</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;    &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  161</span>            }</div>
-<div class="line"><span class="lineno">  162</span>        }</div>
-<div class="line"><span class="lineno">  163</span>    }</div>
-<div class="line"><span class="lineno">  164</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  168</span>                                   {</div>
+<div class="line"><span class="lineno">  169</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 3: Health Monitoring ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  172</span> </div>
+<div class="line"><span class="lineno">  173</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nPerforming health check...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  174</span> </div>
+<div class="line"><span class="lineno">  175</span>    <span class="comment">// Perform health check</span></div>
+<div class="line"><span class="lineno">  176</span>    <span class="keyword">auto</span> health_result = monitor-&gt;check_health();</div>
+<div class="line"><span class="lineno">  177</span> </div>
+<div class="line"><span class="lineno">  178</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(health_result)) {</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; health = kcenon::common::get_value(health_result);</div>
+<div class="line"><span class="lineno">  180</span> </div>
+<div class="line"><span class="lineno">  181</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\nHealth Check Results:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  182</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Status: &quot;</span> &lt;&lt; to_string(health.status) &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  183</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Message: &quot;</span> &lt;&lt; health.message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  184</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Duration: &quot;</span> &lt;&lt; health.check_duration.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  185</span> </div>
+<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">if</span> (!health.metadata.empty()) {</div>
+<div class="line"><span class="lineno">  187</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;  Metadata:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : health.metadata) {</div>
+<div class="line"><span class="lineno">  189</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;    &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  190</span>            }</div>
+<div class="line"><span class="lineno">  191</span>        }</div>
+<div class="line"><span class="lineno">  192</span>    }</div>
+<div class="line"><span class="lineno">  193</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -331,31 +331,31 @@ Here is the caller graph for this function:</div>
 
 <p>Example 4: Multiple monitors. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00169">169</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  169</span>                                   {</div>
-<div class="line"><span class="lineno">  170</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 4: Multiple Monitors ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  171</span> </div>
-<div class="line"><span class="lineno">  172</span>    <span class="comment">// Create multiple monitors</span></div>
-<div class="line"><span class="lineno">  173</span>    <span class="keyword">auto</span> monitor1 = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  174</span>    <span class="keyword">auto</span> monitor2 = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  175</span> </div>
-<div class="line"><span class="lineno">  176</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nMonitor 1 recording metrics...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  177</span>    monitor1-&gt;record_metric(<span class="stringliteral">&quot;monitor1_metric&quot;</span>, 100.0);</div>
-<div class="line"><span class="lineno">  178</span> </div>
-<div class="line"><span class="lineno">  179</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Monitor 2 recording metrics...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  180</span>    monitor2-&gt;record_metric(<span class="stringliteral">&quot;monitor2_metric&quot;</span>, 200.0);</div>
-<div class="line"><span class="lineno">  181</span> </div>
-<div class="line"><span class="lineno">  182</span>    <span class="comment">// Get metrics from both</span></div>
-<div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> metrics1 = monitor1-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  184</span>    <span class="keyword">auto</span> metrics2 = monitor2-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  185</span> </div>
-<div class="line"><span class="lineno">  186</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics1) &amp;&amp; kcenon::common::is_ok(metrics2)) {</div>
-<div class="line"><span class="lineno">  187</span>        <span class="keyword">auto</span> snapshot1 = kcenon::common::get_value(metrics1);</div>
-<div class="line"><span class="lineno">  188</span>        <span class="keyword">auto</span> snapshot2 = kcenon::common::get_value(metrics2);</div>
-<div class="line"><span class="lineno">  189</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor 1: &quot;</span> &lt;&lt; snapshot1.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  190</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor 2: &quot;</span> &lt;&lt; snapshot2.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  191</span>    }</div>
-<div class="line"><span class="lineno">  192</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00198">198</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  198</span>                                   {</div>
+<div class="line"><span class="lineno">  199</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 4: Multiple Monitors ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  200</span> </div>
+<div class="line"><span class="lineno">  201</span>    <span class="comment">// Create multiple monitors</span></div>
+<div class="line"><span class="lineno">  202</span>    <span class="keyword">auto</span> monitor1 = std::make_shared&lt;performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> monitor2 = std::make_shared&lt;performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  204</span> </div>
+<div class="line"><span class="lineno">  205</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nMonitor 1 recording metrics...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  206</span>    monitor1-&gt;record_metric(<span class="stringliteral">&quot;monitor1_metric&quot;</span>, 100.0);</div>
+<div class="line"><span class="lineno">  207</span> </div>
+<div class="line"><span class="lineno">  208</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Monitor 2 recording metrics...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  209</span>    monitor2-&gt;record_metric(<span class="stringliteral">&quot;monitor2_metric&quot;</span>, 200.0);</div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>    <span class="comment">// Get metrics from both</span></div>
+<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> metrics1 = monitor1-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  213</span>    <span class="keyword">auto</span> metrics2 = monitor2-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  214</span> </div>
+<div class="line"><span class="lineno">  215</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics1) &amp;&amp; kcenon::common::is_ok(metrics2)) {</div>
+<div class="line"><span class="lineno">  216</span>        <span class="keyword">auto</span> snapshot1 = kcenon::common::get_value(metrics1);</div>
+<div class="line"><span class="lineno">  217</span>        <span class="keyword">auto</span> snapshot2 = kcenon::common::get_value(metrics2);</div>
+<div class="line"><span class="lineno">  218</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor 1: &quot;</span> &lt;&lt; snapshot1.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  219</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor 2: &quot;</span> &lt;&lt; snapshot2.metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  220</span>    }</div>
+<div class="line"><span class="lineno">  221</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -386,24 +386,24 @@ Here is the caller graph for this function:</div>
 
 <p>Example 5: Metrics with tags. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00197">197</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  197</span>                                   {</div>
-<div class="line"><span class="lineno">  198</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 5: Metrics with Tags ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  199</span> </div>
-<div class="line"><span class="lineno">  200</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  201</span> </div>
-<div class="line"><span class="lineno">  202</span>    <span class="comment">// Record metrics with tags</span></div>
-<div class="line"><span class="lineno">  203</span>    std::unordered_map&lt;std::string, std::string&gt; tags{</div>
-<div class="line"><span class="lineno">  204</span>        {<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>},</div>
-<div class="line"><span class="lineno">  205</span>        {<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-east-1&quot;</span>},</div>
-<div class="line"><span class="lineno">  206</span>        {<span class="stringliteral">&quot;instance&quot;</span>, <span class="stringliteral">&quot;i-12345&quot;</span>}</div>
-<div class="line"><span class="lineno">  207</span>    };</div>
-<div class="line"><span class="lineno">  208</span> </div>
-<div class="line"><span class="lineno">  209</span>    <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;request_latency&quot;</span>, 150.0, tags);</div>
-<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
-<div class="line"><span class="lineno">  211</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric with tags recorded successfully&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  212</span>    }</div>
-<div class="line"><span class="lineno">  213</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00226">226</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  226</span>                                   {</div>
+<div class="line"><span class="lineno">  227</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 5: Metrics with Tags ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  230</span> </div>
+<div class="line"><span class="lineno">  231</span>    <span class="comment">// Record metrics with tags</span></div>
+<div class="line"><span class="lineno">  232</span>    std::unordered_map&lt;std::string, std::string&gt; tags{</div>
+<div class="line"><span class="lineno">  233</span>        {<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>},</div>
+<div class="line"><span class="lineno">  234</span>        {<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-east-1&quot;</span>},</div>
+<div class="line"><span class="lineno">  235</span>        {<span class="stringliteral">&quot;instance&quot;</span>, <span class="stringliteral">&quot;i-12345&quot;</span>}</div>
+<div class="line"><span class="lineno">  236</span>    };</div>
+<div class="line"><span class="lineno">  237</span> </div>
+<div class="line"><span class="lineno">  238</span>    <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;request_latency&quot;</span>, 150.0, tags);</div>
+<div class="line"><span class="lineno">  239</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
+<div class="line"><span class="lineno">  240</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Metric with tags recorded successfully&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  241</span>    }</div>
+<div class="line"><span class="lineno">  242</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -434,41 +434,41 @@ Here is the caller graph for this function:</div>
 
 <p>Example 6: Simulating monitoring workflow. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00218">218</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  218</span>                                     {</div>
-<div class="line"><span class="lineno">  219</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 6: Monitoring Workflow ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  220</span> </div>
-<div class="line"><span class="lineno">  221</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  222</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_console_logger&gt;();</div>
-<div class="line"><span class="lineno">  223</span> </div>
-<div class="line"><span class="lineno">  224</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nSimulating application workload...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  225</span> </div>
-<div class="line"><span class="lineno">  226</span>    <span class="comment">// Simulate application metrics</span></div>
-<div class="line"><span class="lineno">  227</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  228</span>        <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;requests&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i * 10));</div>
-<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
-<div class="line"><span class="lineno">  230</span>            logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Recorded metric: requests = &quot;</span> + std::to_string(i * 10));</div>
-<div class="line"><span class="lineno">  231</span>        }</div>
-<div class="line"><span class="lineno">  232</span>        std::this_thread::sleep_for(std::chrono::milliseconds(100));</div>
-<div class="line"><span class="lineno">  233</span>    }</div>
-<div class="line"><span class="lineno">  234</span> </div>
-<div class="line"><span class="lineno">  235</span>    <span class="comment">// Check health and log results</span></div>
-<div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> health = monitor-&gt;check_health();</div>
-<div class="line"><span class="lineno">  237</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(health)) {</div>
-<div class="line"><span class="lineno">  238</span>        <span class="keyword">auto</span> health_status = kcenon::common::get_value(health);</div>
-<div class="line"><span class="lineno">  239</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Monitor health: &quot;</span> + to_string(health_status.status));</div>
-<div class="line"><span class="lineno">  240</span>    }</div>
-<div class="line"><span class="lineno">  241</span> </div>
-<div class="line"><span class="lineno">  242</span>    <span class="comment">// Get metrics and log summary</span></div>
-<div class="line"><span class="lineno">  243</span>    <span class="keyword">auto</span> metrics = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics)) {</div>
-<div class="line"><span class="lineno">  245</span>        <span class="keyword">auto</span> snapshot = kcenon::common::get_value(metrics);</div>
-<div class="line"><span class="lineno">  246</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Collected &quot;</span> + std::to_string(snapshot.metrics.size()) + <span class="stringliteral">&quot; metrics&quot;</span>);</div>
-<div class="line"><span class="lineno">  247</span>    }</div>
-<div class="line"><span class="lineno">  248</span> </div>
-<div class="line"><span class="lineno">  249</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n✓ Workflow completed successfully&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  250</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Logger events: &quot;</span> &lt;&lt; logger-&gt;get_log_count() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  251</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00247">247</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  247</span>                                     {</div>
+<div class="line"><span class="lineno">  248</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Example 6: Monitoring Workflow ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  249</span> </div>
+<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  251</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_console_logger&gt;();</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nSimulating application workload...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  254</span> </div>
+<div class="line"><span class="lineno">  255</span>    <span class="comment">// Simulate application metrics</span></div>
+<div class="line"><span class="lineno">  256</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">  257</span>        <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;requests&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i * 10));</div>
+<div class="line"><span class="lineno">  258</span>        <span class="keywordflow">if</span> (kcenon::common::is_ok(result)) {</div>
+<div class="line"><span class="lineno">  259</span>            logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Recorded metric: requests = &quot;</span> + std::to_string(i * 10));</div>
+<div class="line"><span class="lineno">  260</span>        }</div>
+<div class="line"><span class="lineno">  261</span>        std::this_thread::sleep_for(std::chrono::milliseconds(100));</div>
+<div class="line"><span class="lineno">  262</span>    }</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>    <span class="comment">// Check health and log results</span></div>
+<div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> health = monitor-&gt;check_health();</div>
+<div class="line"><span class="lineno">  266</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(health)) {</div>
+<div class="line"><span class="lineno">  267</span>        <span class="keyword">auto</span> health_status = kcenon::common::get_value(health);</div>
+<div class="line"><span class="lineno">  268</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Monitor health: &quot;</span> + to_string(health_status.status));</div>
+<div class="line"><span class="lineno">  269</span>    }</div>
+<div class="line"><span class="lineno">  270</span> </div>
+<div class="line"><span class="lineno">  271</span>    <span class="comment">// Get metrics and log summary</span></div>
+<div class="line"><span class="lineno">  272</span>    <span class="keyword">auto</span> metrics = monitor-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  273</span>    <span class="keywordflow">if</span> (kcenon::common::is_ok(metrics)) {</div>
+<div class="line"><span class="lineno">  274</span>        <span class="keyword">auto</span> snapshot = kcenon::common::get_value(metrics);</div>
+<div class="line"><span class="lineno">  275</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Collected &quot;</span> + std::to_string(snapshot.metrics.size()) + <span class="stringliteral">&quot; metrics&quot;</span>);</div>
+<div class="line"><span class="lineno">  276</span>    }</div>
+<div class="line"><span class="lineno">  277</span> </div>
+<div class="line"><span class="lineno">  278</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n✓ Workflow completed successfully&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  279</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Logger events: &quot;</span> &lt;&lt; logger-&gt;get_log_count() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  280</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -497,43 +497,43 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00253">253</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  253</span>           {</div>
-<div class="line"><span class="lineno">  254</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;========================================================&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  255</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Monitoring System - Integration Examples&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  256</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Using common_system interfaces and Result&lt;T&gt; pattern&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  257</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;========================================================&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  258</span> </div>
-<div class="line"><span class="lineno">  259</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  260</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a9f8d59cd2ad287dd9a1c8fffc91ce5e2">example_1_basic_monitoring</a>();</div>
-<div class="line"><span class="lineno">  261</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a67f7e0795baa415c624e1d85a984d408">example_2_error_handling</a>();</div>
-<div class="line"><span class="lineno">  262</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a8768bd981973968f2b86175457197699">example_3_health_monitoring</a>();</div>
-<div class="line"><span class="lineno">  263</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a62d1725f5dde2728923f3132765dec74">example_4_multiple_monitors</a>();</div>
-<div class="line"><span class="lineno">  264</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a93af997917917a739fa4e2a33747761f">example_5_metrics_with_tags</a>();</div>
-<div class="line"><span class="lineno">  265</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a77c61aed4fb242a397ecda1274fbb8ab">example_6_monitoring_workflow</a>();</div>
-<div class="line"><span class="lineno">  266</span> </div>
-<div class="line"><span class="lineno">  267</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\n========================================================&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  268</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;All integration examples completed!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  269</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Key Points:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  270</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ common_system interfaces used&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  271</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ Result&lt;T&gt; pattern for error handling&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  272</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ Interface-based loose coupling&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  273</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ Production-ready monitoring&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  274</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;========================================================&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  275</span> </div>
-<div class="line"><span class="lineno">  276</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><span class="lineno">  277</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Error: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  278</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  279</span>    }</div>
-<div class="line"><span class="lineno">  280</span> </div>
-<div class="line"><span class="lineno">  281</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  282</span>}</div>
-<div class="ttc" id="alogger__di__integration__example_8cpp_html_a62d1725f5dde2728923f3132765dec74"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a62d1725f5dde2728923f3132765dec74">example_4_multiple_monitors</a></div><div class="ttdeci">void example_4_multiple_monitors()</div><div class="ttdoc">Example 4: Multiple monitors.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00169">logger_di_integration_example.cpp:169</a></div></div>
-<div class="ttc" id="alogger__di__integration__example_8cpp_html_a67f7e0795baa415c624e1d85a984d408"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a67f7e0795baa415c624e1d85a984d408">example_2_error_handling</a></div><div class="ttdeci">void example_2_error_handling()</div><div class="ttdoc">Example 2: Error handling with Result pattern.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00121">logger_di_integration_example.cpp:121</a></div></div>
-<div class="ttc" id="alogger__di__integration__example_8cpp_html_a77c61aed4fb242a397ecda1274fbb8ab"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a77c61aed4fb242a397ecda1274fbb8ab">example_6_monitoring_workflow</a></div><div class="ttdeci">void example_6_monitoring_workflow()</div><div class="ttdoc">Example 6: Simulating monitoring workflow.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00218">logger_di_integration_example.cpp:218</a></div></div>
-<div class="ttc" id="alogger__di__integration__example_8cpp_html_a8768bd981973968f2b86175457197699"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a8768bd981973968f2b86175457197699">example_3_health_monitoring</a></div><div class="ttdeci">void example_3_health_monitoring()</div><div class="ttdoc">Example 3: Health monitoring.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00139">logger_di_integration_example.cpp:139</a></div></div>
-<div class="ttc" id="alogger__di__integration__example_8cpp_html_a93af997917917a739fa4e2a33747761f"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a93af997917917a739fa4e2a33747761f">example_5_metrics_with_tags</a></div><div class="ttdeci">void example_5_metrics_with_tags()</div><div class="ttdoc">Example 5: Metrics with tags.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00197">logger_di_integration_example.cpp:197</a></div></div>
-<div class="ttc" id="alogger__di__integration__example_8cpp_html_a9f8d59cd2ad287dd9a1c8fffc91ce5e2"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a9f8d59cd2ad287dd9a1c8fffc91ce5e2">example_1_basic_monitoring</a></div><div class="ttdeci">void example_1_basic_monitoring()</div><div class="ttdoc">Example 1: Basic monitoring with Result pattern.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00091">logger_di_integration_example.cpp:91</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d0/d34/logger__di__integration__example_8cpp_source.html">logger_di_integration_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  282</span>           {</div>
+<div class="line"><span class="lineno">  283</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;========================================================&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  284</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Monitoring System - Integration Examples&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  285</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Using common_system interfaces and Result&lt;T&gt; pattern&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  286</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;========================================================&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  287</span> </div>
+<div class="line"><span class="lineno">  288</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  289</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a9f8d59cd2ad287dd9a1c8fffc91ce5e2">example_1_basic_monitoring</a>();</div>
+<div class="line"><span class="lineno">  290</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a67f7e0795baa415c624e1d85a984d408">example_2_error_handling</a>();</div>
+<div class="line"><span class="lineno">  291</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a8768bd981973968f2b86175457197699">example_3_health_monitoring</a>();</div>
+<div class="line"><span class="lineno">  292</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a62d1725f5dde2728923f3132765dec74">example_4_multiple_monitors</a>();</div>
+<div class="line"><span class="lineno">  293</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a93af997917917a739fa4e2a33747761f">example_5_metrics_with_tags</a>();</div>
+<div class="line"><span class="lineno">  294</span>        <a class="code hl_function" href="../../d0/d34/logger__di__integration__example_8cpp.html#a77c61aed4fb242a397ecda1274fbb8ab">example_6_monitoring_workflow</a>();</div>
+<div class="line"><span class="lineno">  295</span> </div>
+<div class="line"><span class="lineno">  296</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\n========================================================&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  297</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;All integration examples completed!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  298</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Key Points:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  299</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ common_system interfaces used&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  300</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ Result&lt;T&gt; pattern for error handling&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  301</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ Interface-based loose coupling&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  302</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  ✓ Production-ready monitoring&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  303</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;========================================================&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  304</span> </div>
+<div class="line"><span class="lineno">  305</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><span class="lineno">  306</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Error: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  307</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  308</span>    }</div>
+<div class="line"><span class="lineno">  309</span> </div>
+<div class="line"><span class="lineno">  310</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  311</span>}</div>
+<div class="ttc" id="alogger__di__integration__example_8cpp_html_a62d1725f5dde2728923f3132765dec74"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a62d1725f5dde2728923f3132765dec74">example_4_multiple_monitors</a></div><div class="ttdeci">void example_4_multiple_monitors()</div><div class="ttdoc">Example 4: Multiple monitors.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00198">logger_di_integration_example.cpp:198</a></div></div>
+<div class="ttc" id="alogger__di__integration__example_8cpp_html_a67f7e0795baa415c624e1d85a984d408"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a67f7e0795baa415c624e1d85a984d408">example_2_error_handling</a></div><div class="ttdeci">void example_2_error_handling()</div><div class="ttdoc">Example 2: Error handling with Result pattern.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00150">logger_di_integration_example.cpp:150</a></div></div>
+<div class="ttc" id="alogger__di__integration__example_8cpp_html_a77c61aed4fb242a397ecda1274fbb8ab"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a77c61aed4fb242a397ecda1274fbb8ab">example_6_monitoring_workflow</a></div><div class="ttdeci">void example_6_monitoring_workflow()</div><div class="ttdoc">Example 6: Simulating monitoring workflow.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00247">logger_di_integration_example.cpp:247</a></div></div>
+<div class="ttc" id="alogger__di__integration__example_8cpp_html_a8768bd981973968f2b86175457197699"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a8768bd981973968f2b86175457197699">example_3_health_monitoring</a></div><div class="ttdeci">void example_3_health_monitoring()</div><div class="ttdoc">Example 3: Health monitoring.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00168">logger_di_integration_example.cpp:168</a></div></div>
+<div class="ttc" id="alogger__di__integration__example_8cpp_html_a93af997917917a739fa4e2a33747761f"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a93af997917917a739fa4e2a33747761f">example_5_metrics_with_tags</a></div><div class="ttdeci">void example_5_metrics_with_tags()</div><div class="ttdoc">Example 5: Metrics with tags.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00226">logger_di_integration_example.cpp:226</a></div></div>
+<div class="ttc" id="alogger__di__integration__example_8cpp_html_a9f8d59cd2ad287dd9a1c8fffc91ce5e2"><div class="ttname"><a href="../../d0/d34/logger__di__integration__example_8cpp.html#a9f8d59cd2ad287dd9a1c8fffc91ce5e2">example_1_basic_monitoring</a></div><div class="ttdeci">void example_1_basic_monitoring()</div><div class="ttdoc">Example 1: Basic monitoring with Result pattern.</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00120">logger_di_integration_example.cpp:120</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -560,7 +560,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

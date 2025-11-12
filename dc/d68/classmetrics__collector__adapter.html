@@ -129,7 +129,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00119">119</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a08c9fe7ca53c66c55103d928daed2f30" name="a08c9fe7ca53c66c55103d928daed2f30"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a08c9fe7ca53c66c55103d928daed2f30">&#9670;&#160;</a></span>metrics_collector_adapter()</h2>
@@ -155,9 +155,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00121">121</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  122</span>        : <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>(std::move(impl)) {}</div>
-<div class="ttc" id="aclassmetrics__collector__adapter_html_ac8e25267d78c17e71ee6d9da60d975aa"><div class="ttname"><a href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">metrics_collector_adapter::impl_</a></div><div class="ttdeci">std::shared_ptr&lt; performance_monitor_impl &gt; impl_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00139">facade_adapter_poc.cpp:139</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00150">150</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  151</span>        : <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>(std::move(impl)) {}</div>
+<div class="ttc" id="aclassmetrics__collector__adapter_html_ac8e25267d78c17e71ee6d9da60d975aa"><div class="ttname"><a href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">metrics_collector_adapter::impl_</a></div><div class="ttdeci">std::shared_ptr&lt; performance_monitor_impl &gt; impl_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00168">facade_adapter_poc.cpp:168</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -187,11 +187,11 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="../../df/d8a/classmetrics__collector__interface.html#a152adbf65495f3a7de783632da23ae64">metrics_collector_interface</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00133">133</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  133</span>                                    {</div>
-<div class="line"><span class="lineno">  134</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[Adapter:MetricsCollector] Delegating collect_metrics...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  135</span>        <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>-&gt;collect_metrics_internal();</div>
-<div class="line"><span class="lineno">  136</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00162">162</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  162</span>                                    {</div>
+<div class="line"><span class="lineno">  163</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[Adapter:MetricsCollector] Delegating collect_metrics...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  164</span>        <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>-&gt;collect_metrics_internal();</div>
+<div class="line"><span class="lineno">  165</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -220,10 +220,10 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="../../df/d8a/classmetrics__collector__interface.html#a89bdb58ae11ea4ac08a95f46512c1fd4">metrics_collector_interface</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  124</span>                                        {</div>
-<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>-&gt;get_name();</div>
-<div class="line"><span class="lineno">  126</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  153</span>                                        {</div>
+<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>-&gt;get_name();</div>
+<div class="line"><span class="lineno">  155</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -252,11 +252,11 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="../../df/d8a/classmetrics__collector__interface.html#af938bf612135c4afe6f5cf4757bee5a1">metrics_collector_interface</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00128">128</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  128</span>                               {</div>
-<div class="line"><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[Adapter:MetricsCollector] Delegating initialize...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  130</span>        <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>-&gt;initialize_internal();</div>
-<div class="line"><span class="lineno">  131</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00157">157</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  157</span>                               {</div>
+<div class="line"><span class="lineno">  158</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[Adapter:MetricsCollector] Delegating initialize...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  159</span>        <a class="code hl_variable" href="../../dc/d68/classmetrics__collector__adapter.html#ac8e25267d78c17e71ee6d9da60d975aa">impl_</a>-&gt;initialize_internal();</div>
+<div class="line"><span class="lineno">  160</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -281,7 +281,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00139">139</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../d0/d69/facade__adapter__poc_8cpp_source.html">facade_adapter_poc.cpp</a>.</p>
 
 </div>
 </div>
@@ -291,7 +291,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

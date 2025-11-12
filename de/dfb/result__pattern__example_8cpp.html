@@ -142,16 +142,16 @@ Functions</h2></td></tr>
 
 <p>Example demonstrating Result pattern usage. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00013">13</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   13</span>                                          {</div>
-<div class="line"><span class="lineno">   14</span>    <span class="keywordflow">if</span> (b == 0) {</div>
-<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">return</span> make_error&lt;double&gt;(</div>
-<div class="line"><span class="lineno">   16</span>            monitoring_error_code::invalid_configuration,</div>
-<div class="line"><span class="lineno">   17</span>            <span class="stringliteral">&quot;Division by zero&quot;</span></div>
-<div class="line"><span class="lineno">   18</span>        );</div>
-<div class="line"><span class="lineno">   19</span>    }</div>
-<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">return</span> make_success&lt;double&gt;(a / b);</div>
-<div class="line"><span class="lineno">   21</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00042">42</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>                                          {</div>
+<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">if</span> (b == 0) {</div>
+<div class="line"><span class="lineno">   44</span>        <span class="keywordflow">return</span> make_error&lt;double&gt;(</div>
+<div class="line"><span class="lineno">   45</span>            monitoring_error_code::invalid_configuration,</div>
+<div class="line"><span class="lineno">   46</span>            <span class="stringliteral">&quot;Division by zero&quot;</span></div>
+<div class="line"><span class="lineno">   47</span>        );</div>
+<div class="line"><span class="lineno">   48</span>    }</div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">return</span> make_success&lt;double&gt;(a / b);</div>
+<div class="line"><span class="lineno">   50</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -183,111 +183,111 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00047">47</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>           {</div>
-<div class="line"><span class="lineno">   48</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Result Pattern Example ===&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   49</span>    </div>
-<div class="line"><span class="lineno">   50</span>    <span class="comment">// Example 1: Successful operation</span></div>
-<div class="line"><span class="lineno">   51</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 1: Successful division&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keyword">auto</span> result1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 2.0);</div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">if</span> (result1) {</div>
-<div class="line"><span class="lineno">   54</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result1.value() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   55</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   56</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   57</span>    }</div>
-<div class="line"><span class="lineno">   58</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   59</span>    </div>
-<div class="line"><span class="lineno">   60</span>    <span class="comment">// Example 2: Failed operation</span></div>
-<div class="line"><span class="lineno">   61</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 2: Division by zero&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   62</span>    <span class="keyword">auto</span> result2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 0.0);</div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">if</span> (result2) {</div>
-<div class="line"><span class="lineno">   64</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result2.value() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   65</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   66</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   67</span>    }</div>
-<div class="line"><span class="lineno">   68</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   69</span>    </div>
-<div class="line"><span class="lineno">   70</span>    <span class="comment">// Example 3: Using value_or</span></div>
-<div class="line"><span class="lineno">   71</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 3: Using value_or with default&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> result3 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(5.0, 0.0);</div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordtype">double</span> value = result3.value_or(-1.0);</div>
-<div class="line"><span class="lineno">   74</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Value (with default): &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   75</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   76</span>    </div>
-<div class="line"><span class="lineno">   77</span>    <span class="comment">// Example 4: result_void usage</span></div>
-<div class="line"><span class="lineno">   78</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 4: Validation with result_void&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keyword">auto</span> validation1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(50.0, 0.0, 100.0);</div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">if</span> (validation1) {</div>
-<div class="line"><span class="lineno">   81</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   82</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   83</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   84</span>    }</div>
-<div class="line"><span class="lineno">   85</span>    </div>
-<div class="line"><span class="lineno">   86</span>    <span class="keyword">auto</span> validation2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(150.0, 0.0, 100.0);</div>
-<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">if</span> (validation2) {</div>
-<div class="line"><span class="lineno">   88</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   89</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   90</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   91</span>    }</div>
-<div class="line"><span class="lineno">   92</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   93</span>    </div>
-<div class="line"><span class="lineno">   94</span>    <span class="comment">// Example 5: Monadic operations</span></div>
-<div class="line"><span class="lineno">   95</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 5: Chaining operations&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   96</span>    <span class="keyword">auto</span> result4 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(4.0);</div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">if</span> (result4) {</div>
-<div class="line"><span class="lineno">   98</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result4.value() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   99</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  100</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  101</span>    }</div>
-<div class="line"><span class="lineno">  102</span>    </div>
-<div class="line"><span class="lineno">  103</span>    <span class="keyword">auto</span> result5 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(1.0);</div>
-<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> (result5) {</div>
-<div class="line"><span class="lineno">  105</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result5.value() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  106</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  107</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  108</span>    }</div>
-<div class="line"><span class="lineno">  109</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  110</span>    </div>
-<div class="line"><span class="lineno">  111</span>    <span class="comment">// Example 6: Metrics snapshot</span></div>
-<div class="line"><span class="lineno">  112</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 6: Metrics snapshot&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  113</span>    metrics_snapshot snapshot;</div>
-<div class="line"><span class="lineno">  114</span>    snapshot.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 65.5);</div>
-<div class="line"><span class="lineno">  115</span>    snapshot.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 4096.0);</div>
-<div class="line"><span class="lineno">  116</span>    snapshot.add_metric(<span class="stringliteral">&quot;disk_io&quot;</span>, 150.25);</div>
-<div class="line"><span class="lineno">  117</span>    </div>
-<div class="line"><span class="lineno">  118</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Metrics collected: &quot;</span> &lt;&lt; snapshot.metrics.size() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  119</span>    </div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> cpu = snapshot.get_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>)) {</div>
-<div class="line"><span class="lineno">  121</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  CPU Usage: &quot;</span> &lt;&lt; cpu.value() &lt;&lt; <span class="stringliteral">&quot;%&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  122</span>    }</div>
-<div class="line"><span class="lineno">  123</span>    </div>
-<div class="line"><span class="lineno">  124</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> mem = snapshot.get_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>)) {</div>
-<div class="line"><span class="lineno">  125</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Memory Usage: &quot;</span> &lt;&lt; mem.value() &lt;&lt; <span class="stringliteral">&quot; MB&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  126</span>    }</div>
-<div class="line"><span class="lineno">  127</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  128</span>    </div>
-<div class="line"><span class="lineno">  129</span>    <span class="comment">// Example 7: Configuration validation</span></div>
-<div class="line"><span class="lineno">  130</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 7: Configuration validation&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  131</span>    monitoring_config config;</div>
-<div class="line"><span class="lineno">  132</span>    config.history_size = 1000;</div>
-<div class="line"><span class="lineno">  133</span>    config.collection_interval = std::chrono::milliseconds(100);</div>
-<div class="line"><span class="lineno">  134</span>    config.buffer_size = 5000;</div>
-<div class="line"><span class="lineno">  135</span>    </div>
-<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> config_result = config.validate();</div>
-<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">if</span> (config_result) {</div>
-<div class="line"><span class="lineno">  138</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration is valid&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  139</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - History size: &quot;</span> &lt;&lt; config.history_size &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  140</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Collection interval: &quot;</span> &lt;&lt; config.collection_interval.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  141</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Buffer size: &quot;</span> &lt;&lt; config.buffer_size &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  142</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  143</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.get_error().message &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  144</span>    }</div>
-<div class="line"><span class="lineno">  145</span>    </div>
-<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  147</span>}</div>
-<div class="ttc" id="aresult__pattern__example_8cpp_html_a1836bc38e2f96e48678e749237c4d323"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a></div><div class="ttdeci">result_void validate_range(double value, double min, double max)</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00024">result_pattern_example.cpp:24</a></div></div>
-<div class="ttc" id="aresult__pattern__example_8cpp_html_a92da1737d943d0e99e570c8ca59abc75"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a></div><div class="ttdeci">result&lt; std::string &gt; process_metric(double value)</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00035">result_pattern_example.cpp:35</a></div></div>
-<div class="ttc" id="aresult__pattern__example_8cpp_html_a9da2de03a893c5c66e063754edc6353c"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a></div><div class="ttdeci">result&lt; double &gt; divide(double a, double b)</div><div class="ttdoc">Example demonstrating Result pattern usage.</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00013">result_pattern_example.cpp:13</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>           {</div>
+<div class="line"><span class="lineno">   77</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Result Pattern Example ===&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   78</span>    </div>
+<div class="line"><span class="lineno">   79</span>    <span class="comment">// Example 1: Successful operation</span></div>
+<div class="line"><span class="lineno">   80</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 1: Successful division&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keyword">auto</span> result1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 2.0);</div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span> (result1) {</div>
+<div class="line"><span class="lineno">   83</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result1.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   84</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   85</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
+<div class="line"><span class="lineno">   87</span>    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   88</span>    </div>
+<div class="line"><span class="lineno">   89</span>    <span class="comment">// Example 2: Failed operation</span></div>
+<div class="line"><span class="lineno">   90</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 2: Division by zero&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   91</span>    <span class="keyword">auto</span> result2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 0.0);</div>
+<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">if</span> (result2) {</div>
+<div class="line"><span class="lineno">   93</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result2.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   94</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   96</span>    }</div>
+<div class="line"><span class="lineno">   97</span>    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   98</span>    </div>
+<div class="line"><span class="lineno">   99</span>    <span class="comment">// Example 3: Using value_or</span></div>
+<div class="line"><span class="lineno">  100</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 3: Using value_or with default&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keyword">auto</span> result3 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(5.0, 0.0);</div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordtype">double</span> value = result3.value_or(-1.0);</div>
+<div class="line"><span class="lineno">  103</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Value (with default): &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  104</span>    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  105</span>    </div>
+<div class="line"><span class="lineno">  106</span>    <span class="comment">// Example 4: result_void usage</span></div>
+<div class="line"><span class="lineno">  107</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 4: Validation with result_void&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> validation1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(50.0, 0.0, 100.0);</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (validation1) {</div>
+<div class="line"><span class="lineno">  110</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  111</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  112</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  113</span>    }</div>
+<div class="line"><span class="lineno">  114</span>    </div>
+<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> validation2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(150.0, 0.0, 100.0);</div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">if</span> (validation2) {</div>
+<div class="line"><span class="lineno">  117</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  118</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  119</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  120</span>    }</div>
+<div class="line"><span class="lineno">  121</span>    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  122</span>    </div>
+<div class="line"><span class="lineno">  123</span>    <span class="comment">// Example 5: Monadic operations</span></div>
+<div class="line"><span class="lineno">  124</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 5: Chaining operations&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  125</span>    <span class="keyword">auto</span> result4 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(4.0);</div>
+<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">if</span> (result4) {</div>
+<div class="line"><span class="lineno">  127</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result4.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  128</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  130</span>    }</div>
+<div class="line"><span class="lineno">  131</span>    </div>
+<div class="line"><span class="lineno">  132</span>    <span class="keyword">auto</span> result5 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(1.0);</div>
+<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">if</span> (result5) {</div>
+<div class="line"><span class="lineno">  134</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result5.value() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  135</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  136</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  137</span>    }</div>
+<div class="line"><span class="lineno">  138</span>    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  139</span>    </div>
+<div class="line"><span class="lineno">  140</span>    <span class="comment">// Example 6: Metrics snapshot</span></div>
+<div class="line"><span class="lineno">  141</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 6: Metrics snapshot&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  142</span>    metrics_snapshot snapshot;</div>
+<div class="line"><span class="lineno">  143</span>    snapshot.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 65.5);</div>
+<div class="line"><span class="lineno">  144</span>    snapshot.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 4096.0);</div>
+<div class="line"><span class="lineno">  145</span>    snapshot.add_metric(<span class="stringliteral">&quot;disk_io&quot;</span>, 150.25);</div>
+<div class="line"><span class="lineno">  146</span>    </div>
+<div class="line"><span class="lineno">  147</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Metrics collected: &quot;</span> &lt;&lt; snapshot.metrics.size() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  148</span>    </div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> cpu = snapshot.get_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  150</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  CPU Usage: &quot;</span> &lt;&lt; cpu.value() &lt;&lt; <span class="stringliteral">&quot;%&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  151</span>    }</div>
+<div class="line"><span class="lineno">  152</span>    </div>
+<div class="line"><span class="lineno">  153</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> mem = snapshot.get_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  154</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Memory Usage: &quot;</span> &lt;&lt; mem.value() &lt;&lt; <span class="stringliteral">&quot; MB&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  155</span>    }</div>
+<div class="line"><span class="lineno">  156</span>    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  157</span>    </div>
+<div class="line"><span class="lineno">  158</span>    <span class="comment">// Example 7: Configuration validation</span></div>
+<div class="line"><span class="lineno">  159</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 7: Configuration validation&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  160</span>    monitoring_config config;</div>
+<div class="line"><span class="lineno">  161</span>    config.history_size = 1000;</div>
+<div class="line"><span class="lineno">  162</span>    config.collection_interval = std::chrono::milliseconds(100);</div>
+<div class="line"><span class="lineno">  163</span>    config.buffer_size = 5000;</div>
+<div class="line"><span class="lineno">  164</span>    </div>
+<div class="line"><span class="lineno">  165</span>    <span class="keyword">auto</span> config_result = config.validate();</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keywordflow">if</span> (config_result) {</div>
+<div class="line"><span class="lineno">  167</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration is valid&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  168</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - History size: &quot;</span> &lt;&lt; config.history_size &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  169</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Collection interval: &quot;</span> &lt;&lt; config.collection_interval.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  170</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Buffer size: &quot;</span> &lt;&lt; config.buffer_size &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  171</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  172</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  173</span>    }</div>
+<div class="line"><span class="lineno">  174</span>    </div>
+<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  176</span>}</div>
+<div class="ttc" id="aresult__pattern__example_8cpp_html_a1836bc38e2f96e48678e749237c4d323"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a></div><div class="ttdeci">result_void validate_range(double value, double min, double max)</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00053">result_pattern_example.cpp:53</a></div></div>
+<div class="ttc" id="aresult__pattern__example_8cpp_html_a92da1737d943d0e99e570c8ca59abc75"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a></div><div class="ttdeci">result&lt; std::string &gt; process_metric(double value)</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00064">result_pattern_example.cpp:64</a></div></div>
+<div class="ttc" id="aresult__pattern__example_8cpp_html_a9da2de03a893c5c66e063754edc6353c"><div class="ttname"><a href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a></div><div class="ttdeci">result&lt; double &gt; divide(double a, double b)</div><div class="ttdoc">Example demonstrating Result pattern usage.</div><div class="ttdef"><b>Definition</b> <a href="../../de/dfb/result__pattern__example_8cpp_source.html#l00042">result_pattern_example.cpp:42</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -322,18 +322,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00035">35</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>                                               {</div>
-<div class="line"><span class="lineno">   36</span>    <span class="comment">// Chain operations using map and and_then</span></div>
-<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(100.0, value)</div>
-<div class="line"><span class="lineno">   38</span>        .map([](<span class="keywordtype">double</span> x) { <span class="keywordflow">return</span> x * 2; })</div>
-<div class="line"><span class="lineno">   39</span>        .and_then([](<span class="keywordtype">double</span> x) {</div>
-<div class="line"><span class="lineno">   40</span>            <span class="keywordflow">if</span> (x &gt; 50) {</div>
-<div class="line"><span class="lineno">   41</span>                <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;High value: &quot;</span> + std::to_string(x));</div>
-<div class="line"><span class="lineno">   42</span>            }</div>
-<div class="line"><span class="lineno">   43</span>            <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Normal value: &quot;</span> + std::to_string(x));</div>
-<div class="line"><span class="lineno">   44</span>        });</div>
-<div class="line"><span class="lineno">   45</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>                                               {</div>
+<div class="line"><span class="lineno">   65</span>    <span class="comment">// Chain operations using map and and_then</span></div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(100.0, value)</div>
+<div class="line"><span class="lineno">   67</span>        .map([](<span class="keywordtype">double</span> x) { <span class="keywordflow">return</span> x * 2; })</div>
+<div class="line"><span class="lineno">   68</span>        .and_then([](<span class="keywordtype">double</span> x) {</div>
+<div class="line"><span class="lineno">   69</span>            <span class="keywordflow">if</span> (x &gt; 50) {</div>
+<div class="line"><span class="lineno">   70</span>                <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;High value: &quot;</span> + std::to_string(x));</div>
+<div class="line"><span class="lineno">   71</span>            }</div>
+<div class="line"><span class="lineno">   72</span>            <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Normal value: &quot;</span> + std::to_string(x));</div>
+<div class="line"><span class="lineno">   73</span>        });</div>
+<div class="line"><span class="lineno">   74</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -389,16 +389,16 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00024">24</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                                 {</div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">if</span> (value &lt; min || value &gt; max) {</div>
-<div class="line"><span class="lineno">   26</span>        <span class="keywordflow">return</span> result_void(</div>
-<div class="line"><span class="lineno">   27</span>            monitoring_error_code::invalid_configuration,</div>
-<div class="line"><span class="lineno">   28</span>            <span class="stringliteral">&quot;Value out of range [&quot;</span> + std::to_string(min) + <span class="stringliteral">&quot;, &quot;</span> + std::to_string(max) + <span class="stringliteral">&quot;]&quot;</span></div>
-<div class="line"><span class="lineno">   29</span>        );</div>
-<div class="line"><span class="lineno">   30</span>    }</div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">return</span> result_void::success();</div>
-<div class="line"><span class="lineno">   32</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                                 {</div>
+<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">if</span> (value &lt; min || value &gt; max) {</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">return</span> result_void(</div>
+<div class="line"><span class="lineno">   56</span>            monitoring_error_code::invalid_configuration,</div>
+<div class="line"><span class="lineno">   57</span>            <span class="stringliteral">&quot;Value out of range [&quot;</span> + std::to_string(min) + <span class="stringliteral">&quot;, &quot;</span> + std::to_string(max) + <span class="stringliteral">&quot;]&quot;</span></div>
+<div class="line"><span class="lineno">   58</span>        );</div>
+<div class="line"><span class="lineno">   59</span>    }</div>
+<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><span class="lineno">   61</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -415,7 +415,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

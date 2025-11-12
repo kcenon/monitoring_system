@@ -131,88 +131,88 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d7a/plugin__collector__example_8cpp_source.html#l00012">12</a> of file <a class="el" href="../../dc/d7a/plugin__collector__example_8cpp_source.html">plugin_collector_example.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>           {</div>
-<div class="line"><span class="lineno">   13</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Plugin-based Metric Collector Example ===&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   14</span> </div>
-<div class="line"><span class="lineno">   15</span>    <span class="comment">// Create plugin collector with configuration</span></div>
-<div class="line"><span class="lineno">   16</span>    plugin_collector_config config;</div>
-<div class="line"><span class="lineno">   17</span>    config.collection_interval = std::chrono::milliseconds(1000);</div>
-<div class="line"><span class="lineno">   18</span>    config.enable_caching = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   19</span>    config.enable_streaming = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   20</span>    config.worker_threads = 2;</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    <span class="keyword">auto</span> collector = std::make_unique&lt;plugin_metric_collector&gt;(config);</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    <span class="comment">// Create and register system resource collector</span></div>
-<div class="line"><span class="lineno">   25</span>    <span class="keyword">auto</span> sys_collector = std::make_unique&lt;system_resource_collector&gt;();</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">if</span> (sys_collector-&gt;initialize({})) {</div>
-<div class="line"><span class="lineno">   27</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;System resource collector initialized&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   28</span>        collector-&gt;register_plugin(std::move(sys_collector));</div>
-<div class="line"><span class="lineno">   29</span>    }</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    <span class="comment">// Create and register thread system collector</span></div>
-<div class="line"><span class="lineno">   32</span>    <span class="keyword">auto</span> thread_collector = std::make_unique&lt;thread_system_collector&gt;();</div>
-<div class="line"><span class="lineno">   33</span>    <span class="keywordflow">if</span> (thread_collector-&gt;initialize({})) {</div>
-<div class="line"><span class="lineno">   34</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Thread system collector initialized&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   35</span>        collector-&gt;register_plugin(std::move(thread_collector));</div>
-<div class="line"><span class="lineno">   36</span>    }</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>    <span class="comment">// Create and register logger system collector</span></div>
-<div class="line"><span class="lineno">   39</span>    <span class="keyword">auto</span> logger_collector = std::make_unique&lt;logger_system_collector&gt;();</div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">if</span> (logger_collector-&gt;initialize({})) {</div>
-<div class="line"><span class="lineno">   41</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Logger system collector initialized&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   42</span>        collector-&gt;register_plugin(std::move(logger_collector));</div>
-<div class="line"><span class="lineno">   43</span>    }</div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    <span class="comment">// List registered plugins</span></div>
-<div class="line"><span class="lineno">   46</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nRegistered plugins:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; plugin_name : collector-&gt;get_registered_plugins()) {</div>
-<div class="line"><span class="lineno">   48</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - &quot;</span> &lt;&lt; plugin_name &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   49</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d7a/plugin__collector__example_8cpp_source.html#l00041">41</a> of file <a class="el" href="../../dc/d7a/plugin__collector__example_8cpp_source.html">plugin_collector_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>           {</div>
+<div class="line"><span class="lineno">   42</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Plugin-based Metric Collector Example ===&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <span class="comment">// Create plugin collector with configuration</span></div>
+<div class="line"><span class="lineno">   45</span>    plugin_collector_config config;</div>
+<div class="line"><span class="lineno">   46</span>    config.collection_interval = std::chrono::milliseconds(1000);</div>
+<div class="line"><span class="lineno">   47</span>    config.enable_caching = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   48</span>    config.enable_streaming = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   49</span>    config.worker_threads = 2;</div>
 <div class="line"><span class="lineno">   50</span> </div>
-<div class="line"><span class="lineno">   51</span>    <span class="comment">// Start collection</span></div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">if</span> (collector-&gt;start()) {</div>
-<div class="line"><span class="lineno">   53</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\nCollection started successfully&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   54</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   55</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to start collection&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">   57</span>    }</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>    <span class="comment">// Run for a few seconds and collect metrics</span></div>
-<div class="line"><span class="lineno">   60</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nCollecting metrics for 5 seconds...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">   62</span>        std::this_thread::sleep_for(std::chrono::seconds(1));</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>        <span class="comment">// Force immediate collection</span></div>
-<div class="line"><span class="lineno">   65</span>        <span class="keyword">auto</span> metrics = collector-&gt;force_collect();</div>
-<div class="line"><span class="lineno">   66</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Collected &quot;</span> &lt;&lt; metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>        <span class="comment">// Display some metrics</span></div>
-<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : metrics) {</div>
-<div class="line"><span class="lineno">   70</span>            <span class="keywordflow">if</span> (i == 0) {  <span class="comment">// Only show first iteration to avoid clutter</span></div>
-<div class="line"><span class="lineno">   71</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; metric.name &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; metric.value &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; metric.unit &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   72</span>            }</div>
-<div class="line"><span class="lineno">   73</span>        }</div>
-<div class="line"><span class="lineno">   74</span>    }</div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>    <span class="comment">// Get cached metrics</span></div>
-<div class="line"><span class="lineno">   77</span>    <span class="keyword">auto</span> cached = collector-&gt;get_cached_metrics();</div>
-<div class="line"><span class="lineno">   78</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nTotal cached metrics: &quot;</span> &lt;&lt; cached.size() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   51</span>    <span class="keyword">auto</span> collector = std::make_unique&lt;plugin_metric_collector&gt;(config);</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>    <span class="comment">// Create and register system resource collector</span></div>
+<div class="line"><span class="lineno">   54</span>    <span class="keyword">auto</span> sys_collector = std::make_unique&lt;system_resource_collector&gt;();</div>
+<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">if</span> (sys_collector-&gt;initialize({})) {</div>
+<div class="line"><span class="lineno">   56</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;System resource collector initialized&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   57</span>        collector-&gt;register_plugin(std::move(sys_collector));</div>
+<div class="line"><span class="lineno">   58</span>    }</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>    <span class="comment">// Create and register thread system collector</span></div>
+<div class="line"><span class="lineno">   61</span>    <span class="keyword">auto</span> thread_collector = std::make_unique&lt;thread_system_collector&gt;();</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">if</span> (thread_collector-&gt;initialize({})) {</div>
+<div class="line"><span class="lineno">   63</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Thread system collector initialized&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   64</span>        collector-&gt;register_plugin(std::move(thread_collector));</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
+<div class="line"><span class="lineno">   66</span> </div>
+<div class="line"><span class="lineno">   67</span>    <span class="comment">// Create and register logger system collector</span></div>
+<div class="line"><span class="lineno">   68</span>    <span class="keyword">auto</span> logger_collector = std::make_unique&lt;logger_system_collector&gt;();</div>
+<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">if</span> (logger_collector-&gt;initialize({})) {</div>
+<div class="line"><span class="lineno">   70</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Logger system collector initialized&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   71</span>        collector-&gt;register_plugin(std::move(logger_collector));</div>
+<div class="line"><span class="lineno">   72</span>    }</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    <span class="comment">// List registered plugins</span></div>
+<div class="line"><span class="lineno">   75</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nRegistered plugins:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; plugin_name : collector-&gt;get_registered_plugins()) {</div>
+<div class="line"><span class="lineno">   77</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - &quot;</span> &lt;&lt; plugin_name &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   78</span>    }</div>
 <div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>    <span class="comment">// Stop collection</span></div>
-<div class="line"><span class="lineno">   81</span>    collector-&gt;stop();</div>
-<div class="line"><span class="lineno">   82</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collection stopped&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">   85</span>}</div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">// Start collection</span></div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span> (collector-&gt;start()) {</div>
+<div class="line"><span class="lineno">   82</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;\nCollection started successfully&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   83</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   84</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to start collection&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>    <span class="comment">// Run for a few seconds and collect metrics</span></div>
+<div class="line"><span class="lineno">   89</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nCollecting metrics for 5 seconds...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">   91</span>        std::this_thread::sleep_for(std::chrono::seconds(1));</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>        <span class="comment">// Force immediate collection</span></div>
+<div class="line"><span class="lineno">   94</span>        <span class="keyword">auto</span> metrics = collector-&gt;force_collect();</div>
+<div class="line"><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Collected &quot;</span> &lt;&lt; metrics.size() &lt;&lt; <span class="stringliteral">&quot; metrics&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>        <span class="comment">// Display some metrics</span></div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : metrics) {</div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">if</span> (i == 0) {  <span class="comment">// Only show first iteration to avoid clutter</span></div>
+<div class="line"><span class="lineno">  100</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; metric.name &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; metric.value &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; metric.unit &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  101</span>            }</div>
+<div class="line"><span class="lineno">  102</span>        }</div>
+<div class="line"><span class="lineno">  103</span>    }</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>    <span class="comment">// Get cached metrics</span></div>
+<div class="line"><span class="lineno">  106</span>    <span class="keyword">auto</span> cached = collector-&gt;get_cached_metrics();</div>
+<div class="line"><span class="lineno">  107</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nTotal cached metrics: &quot;</span> &lt;&lt; cached.size() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  108</span> </div>
+<div class="line"><span class="lineno">  109</span>    <span class="comment">// Stop collection</span></div>
+<div class="line"><span class="lineno">  110</span>    collector-&gt;stop();</div>
+<div class="line"><span class="lineno">  111</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collection stopped&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  114</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

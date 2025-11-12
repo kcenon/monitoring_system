@@ -181,23 +181,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00127">127</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  127</span>                                              {</div>
-<div class="line"><span class="lineno">  128</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;test_metric&quot;</span>, metric_type::counter);</div>
-<div class="line"><span class="lineno">  129</span>    </div>
-<div class="line"><span class="lineno">  130</span>    compact_metric_value metric_double(metadata, 3.14159);</div>
-<div class="line"><span class="lineno">  131</span>    EXPECT_EQ(metric_double.as_double(), 3.14159);</div>
-<div class="line"><span class="lineno">  132</span>    EXPECT_TRUE(metric_double.is_numeric());</div>
-<div class="line"><span class="lineno">  133</span>    </div>
-<div class="line"><span class="lineno">  134</span>    compact_metric_value metric_int(metadata, int64_t(42));</div>
-<div class="line"><span class="lineno">  135</span>    EXPECT_EQ(metric_int.as_int64(), 42);</div>
-<div class="line"><span class="lineno">  136</span>    EXPECT_EQ(metric_int.as_double(), 42.0);</div>
-<div class="line"><span class="lineno">  137</span>    EXPECT_TRUE(metric_int.is_numeric());</div>
-<div class="line"><span class="lineno">  138</span>    </div>
-<div class="line"><span class="lineno">  139</span>    compact_metric_value metric_string(metadata, std::string(<span class="stringliteral">&quot;test&quot;</span>));</div>
-<div class="line"><span class="lineno">  140</span>    EXPECT_EQ(metric_string.as_string(), <span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  141</span>    EXPECT_FALSE(metric_string.is_numeric());</div>
-<div class="line"><span class="lineno">  142</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  156</span>                                              {</div>
+<div class="line"><span class="lineno">  157</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;test_metric&quot;</span>, metric_type::counter);</div>
+<div class="line"><span class="lineno">  158</span>    </div>
+<div class="line"><span class="lineno">  159</span>    compact_metric_value metric_double(metadata, 3.14159);</div>
+<div class="line"><span class="lineno">  160</span>    EXPECT_EQ(metric_double.as_double(), 3.14159);</div>
+<div class="line"><span class="lineno">  161</span>    EXPECT_TRUE(metric_double.is_numeric());</div>
+<div class="line"><span class="lineno">  162</span>    </div>
+<div class="line"><span class="lineno">  163</span>    compact_metric_value metric_int(metadata, int64_t(42));</div>
+<div class="line"><span class="lineno">  164</span>    EXPECT_EQ(metric_int.as_int64(), 42);</div>
+<div class="line"><span class="lineno">  165</span>    EXPECT_EQ(metric_int.as_double(), 42.0);</div>
+<div class="line"><span class="lineno">  166</span>    EXPECT_TRUE(metric_int.is_numeric());</div>
+<div class="line"><span class="lineno">  167</span>    </div>
+<div class="line"><span class="lineno">  168</span>    compact_metric_value metric_string(metadata, std::string(<span class="stringliteral">&quot;test&quot;</span>));</div>
+<div class="line"><span class="lineno">  169</span>    EXPECT_EQ(metric_string.as_string(), <span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  170</span>    EXPECT_FALSE(metric_string.is_numeric());</div>
+<div class="line"><span class="lineno">  171</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -227,36 +227,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00366">366</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  366</span>                                                   {</div>
-<div class="line"><span class="lineno">  367</span>    <span class="comment">// Test invalid ring buffer capacity (not power of 2)</span></div>
-<div class="line"><span class="lineno">  368</span>    ring_buffer_config invalid_ring_config;</div>
-<div class="line"><span class="lineno">  369</span>    invalid_ring_config.capacity = 1000;  <span class="comment">// Not a power of 2</span></div>
-<div class="line"><span class="lineno">  370</span>    </div>
-<div class="line"><span class="lineno">  371</span>    <span class="keyword">auto</span> validation = invalid_ring_config.validate();</div>
-<div class="line"><span class="lineno">  372</span>    EXPECT_FALSE(validation);</div>
-<div class="line"><span class="lineno">  373</span>    </div>
-<div class="line"><span class="lineno">  374</span>    <span class="comment">// Test valid configuration</span></div>
-<div class="line"><span class="lineno">  375</span>    ring_buffer_config valid_ring_config;</div>
-<div class="line"><span class="lineno">  376</span>    valid_ring_config.capacity = 1024;  <span class="comment">// Power of 2</span></div>
-<div class="line"><span class="lineno">  377</span>    </div>
-<div class="line"><span class="lineno">  378</span>    validation = valid_ring_config.validate();</div>
-<div class="line"><span class="lineno">  379</span>    EXPECT_TRUE(validation);</div>
-<div class="line"><span class="lineno">  380</span>    </div>
-<div class="line"><span class="lineno">  381</span>    <span class="comment">// Test invalid time series configuration</span></div>
-<div class="line"><span class="lineno">  382</span>    time_series_config invalid_ts_config;</div>
-<div class="line"><span class="lineno">  383</span>    invalid_ts_config.retention_period = std::chrono::seconds(-1);</div>
-<div class="line"><span class="lineno">  384</span>    </div>
-<div class="line"><span class="lineno">  385</span>    validation = invalid_ts_config.validate();</div>
-<div class="line"><span class="lineno">  386</span>    EXPECT_FALSE(validation);</div>
-<div class="line"><span class="lineno">  387</span>    </div>
-<div class="line"><span class="lineno">  388</span>    <span class="comment">// Test invalid metric storage configuration</span></div>
-<div class="line"><span class="lineno">  389</span>    metric_storage_config invalid_storage_config;</div>
-<div class="line"><span class="lineno">  390</span>    invalid_storage_config.max_metrics = 0;</div>
-<div class="line"><span class="lineno">  391</span>    </div>
-<div class="line"><span class="lineno">  392</span>    validation = invalid_storage_config.validate();</div>
-<div class="line"><span class="lineno">  393</span>    EXPECT_FALSE(validation);</div>
-<div class="line"><span class="lineno">  394</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00395">395</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  395</span>                                                   {</div>
+<div class="line"><span class="lineno">  396</span>    <span class="comment">// Test invalid ring buffer capacity (not power of 2)</span></div>
+<div class="line"><span class="lineno">  397</span>    ring_buffer_config invalid_ring_config;</div>
+<div class="line"><span class="lineno">  398</span>    invalid_ring_config.capacity = 1000;  <span class="comment">// Not a power of 2</span></div>
+<div class="line"><span class="lineno">  399</span>    </div>
+<div class="line"><span class="lineno">  400</span>    <span class="keyword">auto</span> validation = invalid_ring_config.validate();</div>
+<div class="line"><span class="lineno">  401</span>    EXPECT_FALSE(validation);</div>
+<div class="line"><span class="lineno">  402</span>    </div>
+<div class="line"><span class="lineno">  403</span>    <span class="comment">// Test valid configuration</span></div>
+<div class="line"><span class="lineno">  404</span>    ring_buffer_config valid_ring_config;</div>
+<div class="line"><span class="lineno">  405</span>    valid_ring_config.capacity = 1024;  <span class="comment">// Power of 2</span></div>
+<div class="line"><span class="lineno">  406</span>    </div>
+<div class="line"><span class="lineno">  407</span>    validation = valid_ring_config.validate();</div>
+<div class="line"><span class="lineno">  408</span>    EXPECT_TRUE(validation);</div>
+<div class="line"><span class="lineno">  409</span>    </div>
+<div class="line"><span class="lineno">  410</span>    <span class="comment">// Test invalid time series configuration</span></div>
+<div class="line"><span class="lineno">  411</span>    time_series_config invalid_ts_config;</div>
+<div class="line"><span class="lineno">  412</span>    invalid_ts_config.retention_period = std::chrono::seconds(-1);</div>
+<div class="line"><span class="lineno">  413</span>    </div>
+<div class="line"><span class="lineno">  414</span>    validation = invalid_ts_config.validate();</div>
+<div class="line"><span class="lineno">  415</span>    EXPECT_FALSE(validation);</div>
+<div class="line"><span class="lineno">  416</span>    </div>
+<div class="line"><span class="lineno">  417</span>    <span class="comment">// Test invalid metric storage configuration</span></div>
+<div class="line"><span class="lineno">  418</span>    metric_storage_config invalid_storage_config;</div>
+<div class="line"><span class="lineno">  419</span>    invalid_storage_config.max_metrics = 0;</div>
+<div class="line"><span class="lineno">  420</span>    </div>
+<div class="line"><span class="lineno">  421</span>    validation = invalid_storage_config.validate();</div>
+<div class="line"><span class="lineno">  422</span>    EXPECT_FALSE(validation);</div>
+<div class="line"><span class="lineno">  423</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -286,26 +286,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00162">162</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  162</span>                                         {</div>
-<div class="line"><span class="lineno">  163</span>    histogram_data hist;</div>
-<div class="line"><span class="lineno">  164</span>    hist.init_standard_buckets();</div>
-<div class="line"><span class="lineno">  165</span>    </div>
-<div class="line"><span class="lineno">  166</span>    <span class="comment">// Add some samples</span></div>
-<div class="line"><span class="lineno">  167</span>    std::vector&lt;double&gt; samples = {0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 5.0, 10.0};</div>
-<div class="line"><span class="lineno">  168</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> sample : samples) {</div>
-<div class="line"><span class="lineno">  169</span>        hist.add_sample(sample);</div>
-<div class="line"><span class="lineno">  170</span>    }</div>
-<div class="line"><span class="lineno">  171</span>    </div>
-<div class="line"><span class="lineno">  172</span>    EXPECT_EQ(hist.total_count, samples.size());</div>
-<div class="line"><span class="lineno">  173</span>    EXPECT_GT(hist.sum, 0);</div>
-<div class="line"><span class="lineno">  174</span>    EXPECT_GT(hist.mean(), 0);</div>
-<div class="line"><span class="lineno">  175</span>    </div>
-<div class="line"><span class="lineno">  176</span>    <span class="comment">// Check bucket counts</span></div>
-<div class="line"><span class="lineno">  177</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bucket : hist.buckets) {</div>
-<div class="line"><span class="lineno">  178</span>        EXPECT_GE(bucket.count, 0);</div>
-<div class="line"><span class="lineno">  179</span>    }</div>
-<div class="line"><span class="lineno">  180</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00191">191</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  191</span>                                         {</div>
+<div class="line"><span class="lineno">  192</span>    histogram_data hist;</div>
+<div class="line"><span class="lineno">  193</span>    hist.init_standard_buckets();</div>
+<div class="line"><span class="lineno">  194</span>    </div>
+<div class="line"><span class="lineno">  195</span>    <span class="comment">// Add some samples</span></div>
+<div class="line"><span class="lineno">  196</span>    std::vector&lt;double&gt; samples = {0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 5.0, 10.0};</div>
+<div class="line"><span class="lineno">  197</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> sample : samples) {</div>
+<div class="line"><span class="lineno">  198</span>        hist.add_sample(sample);</div>
+<div class="line"><span class="lineno">  199</span>    }</div>
+<div class="line"><span class="lineno">  200</span>    </div>
+<div class="line"><span class="lineno">  201</span>    EXPECT_EQ(hist.total_count, samples.size());</div>
+<div class="line"><span class="lineno">  202</span>    EXPECT_GT(hist.sum, 0);</div>
+<div class="line"><span class="lineno">  203</span>    EXPECT_GT(hist.mean(), 0);</div>
+<div class="line"><span class="lineno">  204</span>    </div>
+<div class="line"><span class="lineno">  205</span>    <span class="comment">// Check bucket counts</span></div>
+<div class="line"><span class="lineno">  206</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bucket : hist.buckets) {</div>
+<div class="line"><span class="lineno">  207</span>        EXPECT_GE(bucket.count, 0);</div>
+<div class="line"><span class="lineno">  208</span>    }</div>
+<div class="line"><span class="lineno">  209</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -335,24 +335,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  144</span>                                       {</div>
-<div class="line"><span class="lineno">  145</span>    metric_batch batch(1);</div>
-<div class="line"><span class="lineno">  146</span>    </div>
-<div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;test&quot;</span>, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  148</span>    </div>
-<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  150</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  151</span>        batch.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  152</span>    }</div>
-<div class="line"><span class="lineno">  153</span>    </div>
-<div class="line"><span class="lineno">  154</span>    EXPECT_EQ(batch.size(), 5);</div>
-<div class="line"><span class="lineno">  155</span>    EXPECT_FALSE(batch.empty());</div>
-<div class="line"><span class="lineno">  156</span>    EXPECT_GT(batch.memory_footprint(), 0);</div>
-<div class="line"><span class="lineno">  157</span>    </div>
-<div class="line"><span class="lineno">  158</span>    batch.clear();</div>
-<div class="line"><span class="lineno">  159</span>    EXPECT_TRUE(batch.empty());</div>
-<div class="line"><span class="lineno">  160</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  173</span>                                       {</div>
+<div class="line"><span class="lineno">  174</span>    metric_batch batch(1);</div>
+<div class="line"><span class="lineno">  175</span>    </div>
+<div class="line"><span class="lineno">  176</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;test&quot;</span>, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  177</span>    </div>
+<div class="line"><span class="lineno">  178</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">  179</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  180</span>        batch.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  181</span>    }</div>
+<div class="line"><span class="lineno">  182</span>    </div>
+<div class="line"><span class="lineno">  183</span>    EXPECT_EQ(batch.size(), 5);</div>
+<div class="line"><span class="lineno">  184</span>    EXPECT_FALSE(batch.empty());</div>
+<div class="line"><span class="lineno">  185</span>    EXPECT_GT(batch.memory_footprint(), 0);</div>
+<div class="line"><span class="lineno">  186</span>    </div>
+<div class="line"><span class="lineno">  187</span>    batch.clear();</div>
+<div class="line"><span class="lineno">  188</span>    EXPECT_TRUE(batch.empty());</div>
+<div class="line"><span class="lineno">  189</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -382,46 +382,46 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00241">241</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  241</span>                                                        {</div>
-<div class="line"><span class="lineno">  242</span>    metric_storage_config config;</div>
-<div class="line"><span class="lineno">  243</span>    config.ring_buffer_capacity = 64;</div>
-<div class="line"><span class="lineno">  244</span>    config.max_metrics = 100;</div>
-<div class="line"><span class="lineno">  245</span>    config.enable_background_processing = <span class="keyword">false</span>;  <span class="comment">// Disable for testing</span></div>
-<div class="line"><span class="lineno">  246</span>    </div>
-<div class="line"><span class="lineno">  247</span>    metric_storage storage(config);</div>
-<div class="line"><span class="lineno">  248</span>    </div>
-<div class="line"><span class="lineno">  249</span>    <span class="comment">// Store some metrics</span></div>
-<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> result1 = storage.store_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 65.5, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  251</span>    EXPECT_TRUE(result1);</div>
-<div class="line"><span class="lineno">  252</span>    </div>
-<div class="line"><span class="lineno">  253</span>    <span class="keyword">auto</span> result2 = storage.store_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 4096.0, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  254</span>    EXPECT_TRUE(result2);</div>
-<div class="line"><span class="lineno">  255</span>    </div>
-<div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> result3 = storage.store_metric(<span class="stringliteral">&quot;request_count&quot;</span>, 100, metric_type::counter);</div>
-<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(result3);</div>
-<div class="line"><span class="lineno">  258</span>    </div>
-<div class="line"><span class="lineno">  259</span>    <span class="comment">// Flush to time series</span></div>
-<div class="line"><span class="lineno">  260</span>    storage.flush();</div>
-<div class="line"><span class="lineno">  261</span>    </div>
-<div class="line"><span class="lineno">  262</span>    <span class="comment">// Query latest values</span></div>
-<div class="line"><span class="lineno">  263</span>    <span class="keyword">auto</span> cpu = storage.get_latest_value(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
-<div class="line"><span class="lineno">  264</span>    EXPECT_TRUE(cpu);</div>
-<div class="line"><span class="lineno">  265</span>    EXPECT_EQ(cpu.value(), 65.5);</div>
-<div class="line"><span class="lineno">  266</span>    </div>
-<div class="line"><span class="lineno">  267</span>    <span class="keyword">auto</span> memory = storage.get_latest_value(<span class="stringliteral">&quot;memory_usage&quot;</span>);</div>
-<div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(memory);</div>
-<div class="line"><span class="lineno">  269</span>    EXPECT_EQ(memory.value(), 4096.0);</div>
-<div class="line"><span class="lineno">  270</span>    </div>
-<div class="line"><span class="lineno">  271</span>    <span class="comment">// Get metric names</span></div>
-<div class="line"><span class="lineno">  272</span>    <span class="keyword">auto</span> names = storage.get_metric_names();</div>
-<div class="line"><span class="lineno">  273</span>    EXPECT_GE(names.size(), 3);</div>
-<div class="line"><span class="lineno">  274</span>    </div>
-<div class="line"><span class="lineno">  275</span>    <span class="comment">// Check statistics</span></div>
-<div class="line"><span class="lineno">  276</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = storage.get_stats();</div>
-<div class="line"><span class="lineno">  277</span>    EXPECT_GE(stats.total_metrics_stored.load(), 3);</div>
-<div class="line"><span class="lineno">  278</span>    EXPECT_EQ(stats.total_metrics_dropped.load(), 0);</div>
-<div class="line"><span class="lineno">  279</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00270">270</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  270</span>                                                        {</div>
+<div class="line"><span class="lineno">  271</span>    metric_storage_config config;</div>
+<div class="line"><span class="lineno">  272</span>    config.ring_buffer_capacity = 64;</div>
+<div class="line"><span class="lineno">  273</span>    config.max_metrics = 100;</div>
+<div class="line"><span class="lineno">  274</span>    config.enable_background_processing = <span class="keyword">false</span>;  <span class="comment">// Disable for testing</span></div>
+<div class="line"><span class="lineno">  275</span>    </div>
+<div class="line"><span class="lineno">  276</span>    metric_storage storage(config);</div>
+<div class="line"><span class="lineno">  277</span>    </div>
+<div class="line"><span class="lineno">  278</span>    <span class="comment">// Store some metrics</span></div>
+<div class="line"><span class="lineno">  279</span>    <span class="keyword">auto</span> result1 = storage.store_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 65.5, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  280</span>    EXPECT_TRUE(result1);</div>
+<div class="line"><span class="lineno">  281</span>    </div>
+<div class="line"><span class="lineno">  282</span>    <span class="keyword">auto</span> result2 = storage.store_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 4096.0, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  283</span>    EXPECT_TRUE(result2);</div>
+<div class="line"><span class="lineno">  284</span>    </div>
+<div class="line"><span class="lineno">  285</span>    <span class="keyword">auto</span> result3 = storage.store_metric(<span class="stringliteral">&quot;request_count&quot;</span>, 100, metric_type::counter);</div>
+<div class="line"><span class="lineno">  286</span>    EXPECT_TRUE(result3);</div>
+<div class="line"><span class="lineno">  287</span>    </div>
+<div class="line"><span class="lineno">  288</span>    <span class="comment">// Flush to time series</span></div>
+<div class="line"><span class="lineno">  289</span>    storage.flush();</div>
+<div class="line"><span class="lineno">  290</span>    </div>
+<div class="line"><span class="lineno">  291</span>    <span class="comment">// Query latest values</span></div>
+<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> cpu = storage.get_latest_value(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
+<div class="line"><span class="lineno">  293</span>    EXPECT_TRUE(cpu);</div>
+<div class="line"><span class="lineno">  294</span>    EXPECT_EQ(cpu.value(), 65.5);</div>
+<div class="line"><span class="lineno">  295</span>    </div>
+<div class="line"><span class="lineno">  296</span>    <span class="keyword">auto</span> memory = storage.get_latest_value(<span class="stringliteral">&quot;memory_usage&quot;</span>);</div>
+<div class="line"><span class="lineno">  297</span>    EXPECT_TRUE(memory);</div>
+<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(memory.value(), 4096.0);</div>
+<div class="line"><span class="lineno">  299</span>    </div>
+<div class="line"><span class="lineno">  300</span>    <span class="comment">// Get metric names</span></div>
+<div class="line"><span class="lineno">  301</span>    <span class="keyword">auto</span> names = storage.get_metric_names();</div>
+<div class="line"><span class="lineno">  302</span>    EXPECT_GE(names.size(), 3);</div>
+<div class="line"><span class="lineno">  303</span>    </div>
+<div class="line"><span class="lineno">  304</span>    <span class="comment">// Check statistics</span></div>
+<div class="line"><span class="lineno">  305</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = storage.get_stats();</div>
+<div class="line"><span class="lineno">  306</span>    EXPECT_GE(stats.total_metrics_stored.load(), 3);</div>
+<div class="line"><span class="lineno">  307</span>    EXPECT_EQ(stats.total_metrics_dropped.load(), 0);</div>
+<div class="line"><span class="lineno">  308</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -451,30 +451,30 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  281</span>                                                        {</div>
-<div class="line"><span class="lineno">  282</span>    metric_storage storage;</div>
-<div class="line"><span class="lineno">  283</span>    </div>
-<div class="line"><span class="lineno">  284</span>    <span class="comment">// Create a batch of metrics</span></div>
-<div class="line"><span class="lineno">  285</span>    metric_batch batch;</div>
-<div class="line"><span class="lineno">  286</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;batch_metric&quot;</span>, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  287</span>    </div>
-<div class="line"><span class="lineno">  288</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
-<div class="line"><span class="lineno">  289</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  290</span>        batch.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  291</span>    }</div>
-<div class="line"><span class="lineno">  292</span>    </div>
-<div class="line"><span class="lineno">  293</span>    <span class="comment">// Store the batch</span></div>
-<div class="line"><span class="lineno">  294</span>    <span class="keywordtype">size_t</span> stored = storage.store_metrics_batch(batch);</div>
-<div class="line"><span class="lineno">  295</span>    EXPECT_EQ(stored, 50);</div>
-<div class="line"><span class="lineno">  296</span>    </div>
-<div class="line"><span class="lineno">  297</span>    storage.flush();</div>
-<div class="line"><span class="lineno">  298</span>    </div>
-<div class="line"><span class="lineno">  299</span>    <span class="comment">// Query the data</span></div>
-<div class="line"><span class="lineno">  300</span>    time_series_query query;</div>
-<div class="line"><span class="lineno">  301</span>    <span class="keyword">auto</span> result = storage.query_metric(<span class="stringliteral">&quot;batch_metric&quot;</span>, query);</div>
-<div class="line"><span class="lineno">  302</span>    EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  303</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00310">310</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  310</span>                                                        {</div>
+<div class="line"><span class="lineno">  311</span>    metric_storage storage;</div>
+<div class="line"><span class="lineno">  312</span>    </div>
+<div class="line"><span class="lineno">  313</span>    <span class="comment">// Create a batch of metrics</span></div>
+<div class="line"><span class="lineno">  314</span>    metric_batch batch;</div>
+<div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;batch_metric&quot;</span>, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  316</span>    </div>
+<div class="line"><span class="lineno">  317</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
+<div class="line"><span class="lineno">  318</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  319</span>        batch.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  320</span>    }</div>
+<div class="line"><span class="lineno">  321</span>    </div>
+<div class="line"><span class="lineno">  322</span>    <span class="comment">// Store the batch</span></div>
+<div class="line"><span class="lineno">  323</span>    <span class="keywordtype">size_t</span> stored = storage.store_metrics_batch(batch);</div>
+<div class="line"><span class="lineno">  324</span>    EXPECT_EQ(stored, 50);</div>
+<div class="line"><span class="lineno">  325</span>    </div>
+<div class="line"><span class="lineno">  326</span>    storage.flush();</div>
+<div class="line"><span class="lineno">  327</span>    </div>
+<div class="line"><span class="lineno">  328</span>    <span class="comment">// Query the data</span></div>
+<div class="line"><span class="lineno">  329</span>    time_series_query query;</div>
+<div class="line"><span class="lineno">  330</span>    <span class="keyword">auto</span> result = storage.query_metric(<span class="stringliteral">&quot;batch_metric&quot;</span>, query);</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  332</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -504,26 +504,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00305">305</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  305</span>                                                       {</div>
-<div class="line"><span class="lineno">  306</span>    metric_storage_config config;</div>
-<div class="line"><span class="lineno">  307</span>    config.max_metrics = 2;  <span class="comment">// Very low limit for testing</span></div>
-<div class="line"><span class="lineno">  308</span>    config.ring_buffer_capacity = 8;</div>
-<div class="line"><span class="lineno">  309</span>    config.enable_background_processing = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  310</span>    </div>
-<div class="line"><span class="lineno">  311</span>    metric_storage storage(config);</div>
-<div class="line"><span class="lineno">  312</span>    </div>
-<div class="line"><span class="lineno">  313</span>    <span class="comment">// Store metrics up to the limit</span></div>
-<div class="line"><span class="lineno">  314</span>    EXPECT_TRUE(storage.store_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 1.0));</div>
-<div class="line"><span class="lineno">  315</span>    EXPECT_TRUE(storage.store_metric(<span class="stringliteral">&quot;metric2&quot;</span>, 2.0));</div>
-<div class="line"><span class="lineno">  316</span>    </div>
-<div class="line"><span class="lineno">  317</span>    <span class="comment">// This should fail due to capacity limit</span></div>
-<div class="line"><span class="lineno">  318</span>    <span class="keyword">auto</span> result = storage.store_metric(<span class="stringliteral">&quot;metric3&quot;</span>, 3.0);</div>
-<div class="line"><span class="lineno">  319</span>    <span class="comment">// Note: Might succeed if metrics are stored in ring buffer, depends on implementation</span></div>
-<div class="line"><span class="lineno">  320</span>    </div>
-<div class="line"><span class="lineno">  321</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = storage.get_stats();</div>
-<div class="line"><span class="lineno">  322</span>    EXPECT_LE(stats.active_metric_series.load(), 2);</div>
-<div class="line"><span class="lineno">  323</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00334">334</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  334</span>                                                       {</div>
+<div class="line"><span class="lineno">  335</span>    metric_storage_config config;</div>
+<div class="line"><span class="lineno">  336</span>    config.max_metrics = 2;  <span class="comment">// Very low limit for testing</span></div>
+<div class="line"><span class="lineno">  337</span>    config.ring_buffer_capacity = 8;</div>
+<div class="line"><span class="lineno">  338</span>    config.enable_background_processing = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  339</span>    </div>
+<div class="line"><span class="lineno">  340</span>    metric_storage storage(config);</div>
+<div class="line"><span class="lineno">  341</span>    </div>
+<div class="line"><span class="lineno">  342</span>    <span class="comment">// Store metrics up to the limit</span></div>
+<div class="line"><span class="lineno">  343</span>    EXPECT_TRUE(storage.store_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 1.0));</div>
+<div class="line"><span class="lineno">  344</span>    EXPECT_TRUE(storage.store_metric(<span class="stringliteral">&quot;metric2&quot;</span>, 2.0));</div>
+<div class="line"><span class="lineno">  345</span>    </div>
+<div class="line"><span class="lineno">  346</span>    <span class="comment">// This should fail due to capacity limit</span></div>
+<div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> result = storage.store_metric(<span class="stringliteral">&quot;metric3&quot;</span>, 3.0);</div>
+<div class="line"><span class="lineno">  348</span>    <span class="comment">// Note: Might succeed if metrics are stored in ring buffer, depends on implementation</span></div>
+<div class="line"><span class="lineno">  349</span>    </div>
+<div class="line"><span class="lineno">  350</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = storage.get_stats();</div>
+<div class="line"><span class="lineno">  351</span>    EXPECT_LE(stats.active_metric_series.load(), 2);</div>
+<div class="line"><span class="lineno">  352</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -553,46 +553,46 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00325">325</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  325</span>                                                     {</div>
-<div class="line"><span class="lineno">  326</span>    metric_storage storage;</div>
-<div class="line"><span class="lineno">  327</span>    </div>
-<div class="line"><span class="lineno">  328</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 4;</div>
-<div class="line"><span class="lineno">  329</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> metrics_per_thread = 100;</div>
-<div class="line"><span class="lineno">  330</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  331</span>    </div>
-<div class="line"><span class="lineno">  332</span>    <span class="comment">// Launch multiple threads writing metrics</span></div>
-<div class="line"><span class="lineno">  333</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
-<div class="line"><span class="lineno">  334</span>        threads.emplace_back([&amp;storage, t, metrics_per_thread]() {</div>
-<div class="line"><span class="lineno">  335</span>            std::random_device rd;</div>
-<div class="line"><span class="lineno">  336</span>            std::mt19937 gen(rd());</div>
-<div class="line"><span class="lineno">  337</span>            std::uniform_real_distribution&lt;&gt; dis(0.0, 100.0);</div>
-<div class="line"><span class="lineno">  338</span>            </div>
-<div class="line"><span class="lineno">  339</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; metrics_per_thread; ++i) {</div>
-<div class="line"><span class="lineno">  340</span>                std::string metric_name = <span class="stringliteral">&quot;thread_&quot;</span> + std::to_string(t) + <span class="stringliteral">&quot;_metric_&quot;</span> + std::to_string(i);</div>
-<div class="line"><span class="lineno">  341</span>                <span class="keywordtype">double</span> value = dis(gen);</div>
-<div class="line"><span class="lineno">  342</span>                storage.store_metric(metric_name, value);</div>
-<div class="line"><span class="lineno">  343</span>                </div>
-<div class="line"><span class="lineno">  344</span>                <span class="comment">// Small delay to increase chance of contention</span></div>
-<div class="line"><span class="lineno">  345</span>                std::this_thread::sleep_for(std::chrono::microseconds(1));</div>
-<div class="line"><span class="lineno">  346</span>            }</div>
-<div class="line"><span class="lineno">  347</span>        });</div>
-<div class="line"><span class="lineno">  348</span>    }</div>
-<div class="line"><span class="lineno">  349</span>    </div>
-<div class="line"><span class="lineno">  350</span>    <span class="comment">// Wait for all threads to complete</span></div>
-<div class="line"><span class="lineno">  351</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
-<div class="line"><span class="lineno">  352</span>        thread.join();</div>
-<div class="line"><span class="lineno">  353</span>    }</div>
-<div class="line"><span class="lineno">  354</span>    </div>
-<div class="line"><span class="lineno">  355</span>    storage.flush();</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00354">354</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  354</span>                                                     {</div>
+<div class="line"><span class="lineno">  355</span>    metric_storage storage;</div>
 <div class="line"><span class="lineno">  356</span>    </div>
-<div class="line"><span class="lineno">  357</span>    <span class="comment">// Verify we stored a reasonable number of metrics</span></div>
-<div class="line"><span class="lineno">  358</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = storage.get_stats();</div>
-<div class="line"><span class="lineno">  359</span>    EXPECT_GT(stats.total_metrics_stored.load(), num_threads * metrics_per_thread * 0.8);</div>
+<div class="line"><span class="lineno">  357</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 4;</div>
+<div class="line"><span class="lineno">  358</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> metrics_per_thread = 100;</div>
+<div class="line"><span class="lineno">  359</span>    std::vector&lt;std::thread&gt; threads;</div>
 <div class="line"><span class="lineno">  360</span>    </div>
-<div class="line"><span class="lineno">  361</span>    <span class="keyword">auto</span> names = storage.get_metric_names();</div>
-<div class="line"><span class="lineno">  362</span>    EXPECT_GT(names.size(), 0);</div>
-<div class="line"><span class="lineno">  363</span>}</div>
+<div class="line"><span class="lineno">  361</span>    <span class="comment">// Launch multiple threads writing metrics</span></div>
+<div class="line"><span class="lineno">  362</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
+<div class="line"><span class="lineno">  363</span>        threads.emplace_back([&amp;storage, t, metrics_per_thread]() {</div>
+<div class="line"><span class="lineno">  364</span>            std::random_device rd;</div>
+<div class="line"><span class="lineno">  365</span>            std::mt19937 gen(rd());</div>
+<div class="line"><span class="lineno">  366</span>            std::uniform_real_distribution&lt;&gt; dis(0.0, 100.0);</div>
+<div class="line"><span class="lineno">  367</span>            </div>
+<div class="line"><span class="lineno">  368</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; metrics_per_thread; ++i) {</div>
+<div class="line"><span class="lineno">  369</span>                std::string metric_name = <span class="stringliteral">&quot;thread_&quot;</span> + std::to_string(t) + <span class="stringliteral">&quot;_metric_&quot;</span> + std::to_string(i);</div>
+<div class="line"><span class="lineno">  370</span>                <span class="keywordtype">double</span> value = dis(gen);</div>
+<div class="line"><span class="lineno">  371</span>                storage.store_metric(metric_name, value);</div>
+<div class="line"><span class="lineno">  372</span>                </div>
+<div class="line"><span class="lineno">  373</span>                <span class="comment">// Small delay to increase chance of contention</span></div>
+<div class="line"><span class="lineno">  374</span>                std::this_thread::sleep_for(std::chrono::microseconds(1));</div>
+<div class="line"><span class="lineno">  375</span>            }</div>
+<div class="line"><span class="lineno">  376</span>        });</div>
+<div class="line"><span class="lineno">  377</span>    }</div>
+<div class="line"><span class="lineno">  378</span>    </div>
+<div class="line"><span class="lineno">  379</span>    <span class="comment">// Wait for all threads to complete</span></div>
+<div class="line"><span class="lineno">  380</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : threads) {</div>
+<div class="line"><span class="lineno">  381</span>        thread.join();</div>
+<div class="line"><span class="lineno">  382</span>    }</div>
+<div class="line"><span class="lineno">  383</span>    </div>
+<div class="line"><span class="lineno">  384</span>    storage.flush();</div>
+<div class="line"><span class="lineno">  385</span>    </div>
+<div class="line"><span class="lineno">  386</span>    <span class="comment">// Verify we stored a reasonable number of metrics</span></div>
+<div class="line"><span class="lineno">  387</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = storage.get_stats();</div>
+<div class="line"><span class="lineno">  388</span>    EXPECT_GT(stats.total_metrics_stored.load(), num_threads * metrics_per_thread * 0.8);</div>
+<div class="line"><span class="lineno">  389</span>    </div>
+<div class="line"><span class="lineno">  390</span>    <span class="keyword">auto</span> names = storage.get_metric_names();</div>
+<div class="line"><span class="lineno">  391</span>    EXPECT_GT(names.size(), 0);</div>
+<div class="line"><span class="lineno">  392</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -622,43 +622,43 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00028">28</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>                                                     {</div>
-<div class="line"><span class="lineno">   29</span>    ring_buffer_config config;</div>
-<div class="line"><span class="lineno">   30</span>    config.capacity = 8;  <span class="comment">// Small capacity for testing</span></div>
-<div class="line"><span class="lineno">   31</span>    config.overwrite_old = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   32</span>    </div>
-<div class="line"><span class="lineno">   33</span>    ring_buffer&lt;int&gt; buffer(config);</div>
-<div class="line"><span class="lineno">   34</span>    </div>
-<div class="line"><span class="lineno">   35</span>    EXPECT_EQ(buffer.capacity(), 8);</div>
-<div class="line"><span class="lineno">   36</span>    EXPECT_TRUE(buffer.empty());</div>
-<div class="line"><span class="lineno">   37</span>    EXPECT_FALSE(buffer.full());</div>
-<div class="line"><span class="lineno">   38</span>    EXPECT_EQ(buffer.size(), 0);</div>
-<div class="line"><span class="lineno">   39</span>    </div>
-<div class="line"><span class="lineno">   40</span>    <span class="comment">// Write elements</span></div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 7; ++i) {</div>
-<div class="line"><span class="lineno">   42</span>        <span class="keyword">auto</span> result = buffer.write(std::move(i));</div>
-<div class="line"><span class="lineno">   43</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to write &quot;</span> &lt;&lt; i;</div>
-<div class="line"><span class="lineno">   44</span>    }</div>
-<div class="line"><span class="lineno">   45</span>    </div>
-<div class="line"><span class="lineno">   46</span>    EXPECT_EQ(buffer.size(), 7);</div>
-<div class="line"><span class="lineno">   47</span>    EXPECT_FALSE(buffer.empty());</div>
-<div class="line"><span class="lineno">   48</span>    EXPECT_TRUE(buffer.full());  <span class="comment">// 7 elements in 8-capacity buffer means full</span></div>
-<div class="line"><span class="lineno">   49</span>    </div>
-<div class="line"><span class="lineno">   50</span>    <span class="comment">// Try to write when full</span></div>
-<div class="line"><span class="lineno">   51</span>    <span class="keyword">auto</span> result = buffer.write(std::move(999));</div>
-<div class="line"><span class="lineno">   52</span>    EXPECT_FALSE(result);  <span class="comment">// Should fail as overwrite_old is false</span></div>
-<div class="line"><span class="lineno">   53</span>    </div>
-<div class="line"><span class="lineno">   54</span>    <span class="comment">// Read elements</span></div>
-<div class="line"><span class="lineno">   55</span>    <span class="keywordtype">int</span> value;</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 7; ++i) {</div>
-<div class="line"><span class="lineno">   57</span>        <span class="keyword">auto</span> read_result = buffer.read(value);</div>
-<div class="line"><span class="lineno">   58</span>        EXPECT_TRUE(read_result);</div>
-<div class="line"><span class="lineno">   59</span>        EXPECT_EQ(value, i);</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00057">57</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                                                     {</div>
+<div class="line"><span class="lineno">   58</span>    ring_buffer_config config;</div>
+<div class="line"><span class="lineno">   59</span>    config.capacity = 8;  <span class="comment">// Small capacity for testing</span></div>
+<div class="line"><span class="lineno">   60</span>    config.overwrite_old = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   61</span>    </div>
-<div class="line"><span class="lineno">   62</span>    EXPECT_TRUE(buffer.empty());</div>
-<div class="line"><span class="lineno">   63</span>}</div>
+<div class="line"><span class="lineno">   62</span>    ring_buffer&lt;int&gt; buffer(config);</div>
+<div class="line"><span class="lineno">   63</span>    </div>
+<div class="line"><span class="lineno">   64</span>    EXPECT_EQ(buffer.capacity(), 8);</div>
+<div class="line"><span class="lineno">   65</span>    EXPECT_TRUE(buffer.empty());</div>
+<div class="line"><span class="lineno">   66</span>    EXPECT_FALSE(buffer.full());</div>
+<div class="line"><span class="lineno">   67</span>    EXPECT_EQ(buffer.size(), 0);</div>
+<div class="line"><span class="lineno">   68</span>    </div>
+<div class="line"><span class="lineno">   69</span>    <span class="comment">// Write elements</span></div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 7; ++i) {</div>
+<div class="line"><span class="lineno">   71</span>        <span class="keyword">auto</span> result = buffer.write(std::move(i));</div>
+<div class="line"><span class="lineno">   72</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to write &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">   73</span>    }</div>
+<div class="line"><span class="lineno">   74</span>    </div>
+<div class="line"><span class="lineno">   75</span>    EXPECT_EQ(buffer.size(), 7);</div>
+<div class="line"><span class="lineno">   76</span>    EXPECT_FALSE(buffer.empty());</div>
+<div class="line"><span class="lineno">   77</span>    EXPECT_TRUE(buffer.full());  <span class="comment">// 7 elements in 8-capacity buffer means full</span></div>
+<div class="line"><span class="lineno">   78</span>    </div>
+<div class="line"><span class="lineno">   79</span>    <span class="comment">// Try to write when full</span></div>
+<div class="line"><span class="lineno">   80</span>    <span class="keyword">auto</span> result = buffer.write(std::move(999));</div>
+<div class="line"><span class="lineno">   81</span>    EXPECT_FALSE(result);  <span class="comment">// Should fail as overwrite_old is false</span></div>
+<div class="line"><span class="lineno">   82</span>    </div>
+<div class="line"><span class="lineno">   83</span>    <span class="comment">// Read elements</span></div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordtype">int</span> value;</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 7; ++i) {</div>
+<div class="line"><span class="lineno">   86</span>        <span class="keyword">auto</span> read_result = buffer.read(value);</div>
+<div class="line"><span class="lineno">   87</span>        EXPECT_TRUE(read_result);</div>
+<div class="line"><span class="lineno">   88</span>        EXPECT_EQ(value, i);</div>
+<div class="line"><span class="lineno">   89</span>    }</div>
+<div class="line"><span class="lineno">   90</span>    </div>
+<div class="line"><span class="lineno">   91</span>    EXPECT_TRUE(buffer.empty());</div>
+<div class="line"><span class="lineno">   92</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -688,25 +688,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00088">88</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>                                                     {</div>
-<div class="line"><span class="lineno">   89</span>    ring_buffer&lt;int&gt; buffer;</div>
-<div class="line"><span class="lineno">   90</span>    </div>
-<div class="line"><span class="lineno">   91</span>    <span class="comment">// Write batch</span></div>
-<div class="line"><span class="lineno">   92</span>    std::vector&lt;int&gt; write_data = {1, 2, 3, 4, 5};</div>
-<div class="line"><span class="lineno">   93</span>    <span class="keywordtype">size_t</span> written = buffer.write_batch(std::move(write_data));</div>
-<div class="line"><span class="lineno">   94</span>    EXPECT_EQ(written, 5);</div>
-<div class="line"><span class="lineno">   95</span>    </div>
-<div class="line"><span class="lineno">   96</span>    <span class="comment">// Read batch</span></div>
-<div class="line"><span class="lineno">   97</span>    std::vector&lt;int&gt; read_data;</div>
-<div class="line"><span class="lineno">   98</span>    <span class="keywordtype">size_t</span> read_count = buffer.read_batch(read_data, 10);</div>
-<div class="line"><span class="lineno">   99</span>    EXPECT_EQ(read_count, 5);</div>
-<div class="line"><span class="lineno">  100</span>    EXPECT_EQ(read_data.size(), 5);</div>
-<div class="line"><span class="lineno">  101</span>    </div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; read_data.size(); ++i) {</div>
-<div class="line"><span class="lineno">  103</span>        EXPECT_EQ(read_data[i], <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(i + 1));</div>
-<div class="line"><span class="lineno">  104</span>    }</div>
-<div class="line"><span class="lineno">  105</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00117">117</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>                                                     {</div>
+<div class="line"><span class="lineno">  118</span>    ring_buffer&lt;int&gt; buffer;</div>
+<div class="line"><span class="lineno">  119</span>    </div>
+<div class="line"><span class="lineno">  120</span>    <span class="comment">// Write batch</span></div>
+<div class="line"><span class="lineno">  121</span>    std::vector&lt;int&gt; write_data = {1, 2, 3, 4, 5};</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordtype">size_t</span> written = buffer.write_batch(std::move(write_data));</div>
+<div class="line"><span class="lineno">  123</span>    EXPECT_EQ(written, 5);</div>
+<div class="line"><span class="lineno">  124</span>    </div>
+<div class="line"><span class="lineno">  125</span>    <span class="comment">// Read batch</span></div>
+<div class="line"><span class="lineno">  126</span>    std::vector&lt;int&gt; read_data;</div>
+<div class="line"><span class="lineno">  127</span>    <span class="keywordtype">size_t</span> read_count = buffer.read_batch(read_data, 10);</div>
+<div class="line"><span class="lineno">  128</span>    EXPECT_EQ(read_count, 5);</div>
+<div class="line"><span class="lineno">  129</span>    EXPECT_EQ(read_data.size(), 5);</div>
+<div class="line"><span class="lineno">  130</span>    </div>
+<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; read_data.size(); ++i) {</div>
+<div class="line"><span class="lineno">  132</span>        EXPECT_EQ(read_data[i], <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(i + 1));</div>
+<div class="line"><span class="lineno">  133</span>    }</div>
+<div class="line"><span class="lineno">  134</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -736,29 +736,29 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   65</span>                                               {</div>
-<div class="line"><span class="lineno">   66</span>    ring_buffer_config config;</div>
-<div class="line"><span class="lineno">   67</span>    config.capacity = 4;</div>
-<div class="line"><span class="lineno">   68</span>    config.overwrite_old = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   69</span>    </div>
-<div class="line"><span class="lineno">   70</span>    ring_buffer&lt;int&gt; buffer(config);</div>
-<div class="line"><span class="lineno">   71</span>    </div>
-<div class="line"><span class="lineno">   72</span>    <span class="comment">// Fill buffer completely</span></div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 8; ++i) {</div>
-<div class="line"><span class="lineno">   74</span>        <span class="keyword">auto</span> result = buffer.write(std::move(i));</div>
-<div class="line"><span class="lineno">   75</span>        EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">   76</span>    }</div>
-<div class="line"><span class="lineno">   77</span>    </div>
-<div class="line"><span class="lineno">   78</span>    <span class="comment">// Should have overwritten, so we should read the last 3 values</span></div>
-<div class="line"><span class="lineno">   79</span>    std::vector&lt;int&gt; read_values;</div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordtype">int</span> value;</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">while</span> (buffer.read(value)) {</div>
-<div class="line"><span class="lineno">   82</span>        read_values.push_back(value);</div>
-<div class="line"><span class="lineno">   83</span>    }</div>
-<div class="line"><span class="lineno">   84</span>    </div>
-<div class="line"><span class="lineno">   85</span>    EXPECT_GE(read_values.size(), 3);  <span class="comment">// Should have at least the last few values</span></div>
-<div class="line"><span class="lineno">   86</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>                                               {</div>
+<div class="line"><span class="lineno">   95</span>    ring_buffer_config config;</div>
+<div class="line"><span class="lineno">   96</span>    config.capacity = 4;</div>
+<div class="line"><span class="lineno">   97</span>    config.overwrite_old = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   98</span>    </div>
+<div class="line"><span class="lineno">   99</span>    ring_buffer&lt;int&gt; buffer(config);</div>
+<div class="line"><span class="lineno">  100</span>    </div>
+<div class="line"><span class="lineno">  101</span>    <span class="comment">// Fill buffer completely</span></div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 8; ++i) {</div>
+<div class="line"><span class="lineno">  103</span>        <span class="keyword">auto</span> result = buffer.write(std::move(i));</div>
+<div class="line"><span class="lineno">  104</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  105</span>    }</div>
+<div class="line"><span class="lineno">  106</span>    </div>
+<div class="line"><span class="lineno">  107</span>    <span class="comment">// Should have overwritten, so we should read the last 3 values</span></div>
+<div class="line"><span class="lineno">  108</span>    std::vector&lt;int&gt; read_values;</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordtype">int</span> value;</div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">while</span> (buffer.read(value)) {</div>
+<div class="line"><span class="lineno">  111</span>        read_values.push_back(value);</div>
+<div class="line"><span class="lineno">  112</span>    }</div>
+<div class="line"><span class="lineno">  113</span>    </div>
+<div class="line"><span class="lineno">  114</span>    EXPECT_GE(read_values.size(), 3);  <span class="comment">// Should have at least the last few values</span></div>
+<div class="line"><span class="lineno">  115</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -788,25 +788,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00107">107</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  107</span>                                          {</div>
-<div class="line"><span class="lineno">  108</span>    ring_buffer&lt;int&gt; buffer;</div>
-<div class="line"><span class="lineno">  109</span>    </div>
-<div class="line"><span class="lineno">  110</span>    buffer.write(std::move(42));</div>
-<div class="line"><span class="lineno">  111</span>    buffer.write(std::move(84));</div>
-<div class="line"><span class="lineno">  112</span>    </div>
-<div class="line"><span class="lineno">  113</span>    <span class="keywordtype">int</span> value;</div>
-<div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> result = buffer.peek(value);</div>
-<div class="line"><span class="lineno">  115</span>    EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  116</span>    EXPECT_EQ(value, 42);</div>
-<div class="line"><span class="lineno">  117</span>    </div>
-<div class="line"><span class="lineno">  118</span>    <span class="comment">// Size should not change after peek</span></div>
-<div class="line"><span class="lineno">  119</span>    EXPECT_EQ(buffer.size(), 2);</div>
-<div class="line"><span class="lineno">  120</span>    </div>
-<div class="line"><span class="lineno">  121</span>    <span class="comment">// Reading should still get the same value</span></div>
-<div class="line"><span class="lineno">  122</span>    buffer.read(value);</div>
-<div class="line"><span class="lineno">  123</span>    EXPECT_EQ(value, 42);</div>
-<div class="line"><span class="lineno">  124</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00136">136</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  136</span>                                          {</div>
+<div class="line"><span class="lineno">  137</span>    ring_buffer&lt;int&gt; buffer;</div>
+<div class="line"><span class="lineno">  138</span>    </div>
+<div class="line"><span class="lineno">  139</span>    buffer.write(std::move(42));</div>
+<div class="line"><span class="lineno">  140</span>    buffer.write(std::move(84));</div>
+<div class="line"><span class="lineno">  141</span>    </div>
+<div class="line"><span class="lineno">  142</span>    <span class="keywordtype">int</span> value;</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> result = buffer.peek(value);</div>
+<div class="line"><span class="lineno">  144</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  145</span>    EXPECT_EQ(value, 42);</div>
+<div class="line"><span class="lineno">  146</span>    </div>
+<div class="line"><span class="lineno">  147</span>    <span class="comment">// Size should not change after peek</span></div>
+<div class="line"><span class="lineno">  148</span>    EXPECT_EQ(buffer.size(), 2);</div>
+<div class="line"><span class="lineno">  149</span>    </div>
+<div class="line"><span class="lineno">  150</span>    <span class="comment">// Reading should still get the same value</span></div>
+<div class="line"><span class="lineno">  151</span>    buffer.read(value);</div>
+<div class="line"><span class="lineno">  152</span>    EXPECT_EQ(value, 42);</div>
+<div class="line"><span class="lineno">  153</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -836,33 +836,33 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00183">183</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  183</span>                                                     {</div>
-<div class="line"><span class="lineno">  184</span>    time_series_config config;</div>
-<div class="line"><span class="lineno">  185</span>    config.max_points = 100;</div>
-<div class="line"><span class="lineno">  186</span>    config.retention_period = std::chrono::seconds(60);</div>
-<div class="line"><span class="lineno">  187</span>    </div>
-<div class="line"><span class="lineno">  188</span>    time_series series(<span class="stringliteral">&quot;test_series&quot;</span>, config);</div>
-<div class="line"><span class="lineno">  189</span>    </div>
-<div class="line"><span class="lineno">  190</span>    EXPECT_TRUE(series.empty());</div>
-<div class="line"><span class="lineno">  191</span>    EXPECT_EQ(series.name(), <span class="stringliteral">&quot;test_series&quot;</span>);</div>
-<div class="line"><span class="lineno">  192</span>    </div>
-<div class="line"><span class="lineno">  193</span>    <span class="comment">// Add some data points</span></div>
-<div class="line"><span class="lineno">  194</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  195</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">  196</span>        <span class="keyword">auto</span> timestamp = now + std::chrono::seconds(i);</div>
-<div class="line"><span class="lineno">  197</span>        <span class="keyword">auto</span> result = series.add_point(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), timestamp);</div>
-<div class="line"><span class="lineno">  198</span>        EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  199</span>    }</div>
-<div class="line"><span class="lineno">  200</span>    </div>
-<div class="line"><span class="lineno">  201</span>    EXPECT_EQ(series.size(), 10);</div>
-<div class="line"><span class="lineno">  202</span>    EXPECT_FALSE(series.empty());</div>
-<div class="line"><span class="lineno">  203</span>    </div>
-<div class="line"><span class="lineno">  204</span>    <span class="comment">// Get latest value</span></div>
-<div class="line"><span class="lineno">  205</span>    <span class="keyword">auto</span> latest = series.get_latest_value();</div>
-<div class="line"><span class="lineno">  206</span>    EXPECT_TRUE(latest);</div>
-<div class="line"><span class="lineno">  207</span>    EXPECT_EQ(latest.value(), 9.0);</div>
-<div class="line"><span class="lineno">  208</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00212">212</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  212</span>                                                     {</div>
+<div class="line"><span class="lineno">  213</span>    time_series_config config;</div>
+<div class="line"><span class="lineno">  214</span>    config.max_points = 100;</div>
+<div class="line"><span class="lineno">  215</span>    config.retention_period = std::chrono::seconds(60);</div>
+<div class="line"><span class="lineno">  216</span>    </div>
+<div class="line"><span class="lineno">  217</span>    time_series series(<span class="stringliteral">&quot;test_series&quot;</span>, config);</div>
+<div class="line"><span class="lineno">  218</span>    </div>
+<div class="line"><span class="lineno">  219</span>    EXPECT_TRUE(series.empty());</div>
+<div class="line"><span class="lineno">  220</span>    EXPECT_EQ(series.name(), <span class="stringliteral">&quot;test_series&quot;</span>);</div>
+<div class="line"><span class="lineno">  221</span>    </div>
+<div class="line"><span class="lineno">  222</span>    <span class="comment">// Add some data points</span></div>
+<div class="line"><span class="lineno">  223</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  224</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><span class="lineno">  225</span>        <span class="keyword">auto</span> timestamp = now + std::chrono::seconds(i);</div>
+<div class="line"><span class="lineno">  226</span>        <span class="keyword">auto</span> result = series.add_point(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), timestamp);</div>
+<div class="line"><span class="lineno">  227</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  228</span>    }</div>
+<div class="line"><span class="lineno">  229</span>    </div>
+<div class="line"><span class="lineno">  230</span>    EXPECT_EQ(series.size(), 10);</div>
+<div class="line"><span class="lineno">  231</span>    EXPECT_FALSE(series.empty());</div>
+<div class="line"><span class="lineno">  232</span>    </div>
+<div class="line"><span class="lineno">  233</span>    <span class="comment">// Get latest value</span></div>
+<div class="line"><span class="lineno">  234</span>    <span class="keyword">auto</span> latest = series.get_latest_value();</div>
+<div class="line"><span class="lineno">  235</span>    EXPECT_TRUE(latest);</div>
+<div class="line"><span class="lineno">  236</span>    EXPECT_EQ(latest.value(), 9.0);</div>
+<div class="line"><span class="lineno">  237</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -892,43 +892,43 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00210">210</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  210</span>                                           {</div>
-<div class="line"><span class="lineno">  211</span>    time_series series(<span class="stringliteral">&quot;query_test&quot;</span>);</div>
-<div class="line"><span class="lineno">  212</span>    </div>
-<div class="line"><span class="lineno">  213</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  214</span>    </div>
-<div class="line"><span class="lineno">  215</span>    <span class="comment">// Add data points over a time range</span></div>
-<div class="line"><span class="lineno">  216</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 60; ++i) {</div>
-<div class="line"><span class="lineno">  217</span>        <span class="keyword">auto</span> timestamp = now + std::chrono::seconds(i);</div>
-<div class="line"><span class="lineno">  218</span>        series.add_point(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), timestamp);</div>
-<div class="line"><span class="lineno">  219</span>    }</div>
-<div class="line"><span class="lineno">  220</span>    </div>
-<div class="line"><span class="lineno">  221</span>    <span class="comment">// Query a subset</span></div>
-<div class="line"><span class="lineno">  222</span>    time_series_query query;</div>
-<div class="line"><span class="lineno">  223</span>    query.start_time = now + std::chrono::seconds(10);</div>
-<div class="line"><span class="lineno">  224</span>    query.end_time = now + std::chrono::seconds(50);</div>
-<div class="line"><span class="lineno">  225</span>    query.step = std::chrono::seconds(10);</div>
-<div class="line"><span class="lineno">  226</span>    </div>
-<div class="line"><span class="lineno">  227</span>    <span class="keyword">auto</span> result = series.query(query);</div>
-<div class="line"><span class="lineno">  228</span>    EXPECT_TRUE(result);</div>
-<div class="line"><span class="lineno">  229</span>    </div>
-<div class="line"><span class="lineno">  230</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; agg_result = result.value();</div>
-<div class="line"><span class="lineno">  231</span>    EXPECT_GT(agg_result.points.size(), 0);</div>
-<div class="line"><span class="lineno">  232</span>    EXPECT_GT(agg_result.total_samples, 0);</div>
-<div class="line"><span class="lineno">  233</span>    </div>
-<div class="line"><span class="lineno">  234</span>    <span class="keyword">auto</span> summary = agg_result.get_summary();</div>
-<div class="line"><span class="lineno">  235</span>    EXPECT_GT(summary.count, 0);</div>
-<div class="line"><span class="lineno">  236</span>    EXPECT_GE(summary.min_value, 10.0);  <span class="comment">// Should be in the queried range</span></div>
-<div class="line"><span class="lineno">  237</span>    EXPECT_LE(summary.max_value, 50.0);</div>
-<div class="line"><span class="lineno">  238</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html#l00239">239</a> of file <a class="el" href="../../d3/d9d/test__metric__storage_8cpp_source.html">test_metric_storage.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  239</span>                                           {</div>
+<div class="line"><span class="lineno">  240</span>    time_series series(<span class="stringliteral">&quot;query_test&quot;</span>);</div>
+<div class="line"><span class="lineno">  241</span>    </div>
+<div class="line"><span class="lineno">  242</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  243</span>    </div>
+<div class="line"><span class="lineno">  244</span>    <span class="comment">// Add data points over a time range</span></div>
+<div class="line"><span class="lineno">  245</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 60; ++i) {</div>
+<div class="line"><span class="lineno">  246</span>        <span class="keyword">auto</span> timestamp = now + std::chrono::seconds(i);</div>
+<div class="line"><span class="lineno">  247</span>        series.add_point(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), timestamp);</div>
+<div class="line"><span class="lineno">  248</span>    }</div>
+<div class="line"><span class="lineno">  249</span>    </div>
+<div class="line"><span class="lineno">  250</span>    <span class="comment">// Query a subset</span></div>
+<div class="line"><span class="lineno">  251</span>    time_series_query query;</div>
+<div class="line"><span class="lineno">  252</span>    query.start_time = now + std::chrono::seconds(10);</div>
+<div class="line"><span class="lineno">  253</span>    query.end_time = now + std::chrono::seconds(50);</div>
+<div class="line"><span class="lineno">  254</span>    query.step = std::chrono::seconds(10);</div>
+<div class="line"><span class="lineno">  255</span>    </div>
+<div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> result = series.query(query);</div>
+<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  258</span>    </div>
+<div class="line"><span class="lineno">  259</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; agg_result = result.value();</div>
+<div class="line"><span class="lineno">  260</span>    EXPECT_GT(agg_result.points.size(), 0);</div>
+<div class="line"><span class="lineno">  261</span>    EXPECT_GT(agg_result.total_samples, 0);</div>
+<div class="line"><span class="lineno">  262</span>    </div>
+<div class="line"><span class="lineno">  263</span>    <span class="keyword">auto</span> summary = agg_result.get_summary();</div>
+<div class="line"><span class="lineno">  264</span>    EXPECT_GT(summary.count, 0);</div>
+<div class="line"><span class="lineno">  265</span>    EXPECT_GE(summary.min_value, 10.0);  <span class="comment">// Should be in the queried range</span></div>
+<div class="line"><span class="lineno">  266</span>    EXPECT_LE(summary.max_value, 50.0);</div>
+<div class="line"><span class="lineno">  267</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 11 2025 14:26:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 12 2025 01:04:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
