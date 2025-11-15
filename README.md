@@ -9,23 +9,24 @@
 
 ## Overview
 
-The Monitoring System Project is a production-ready, comprehensive C++17 observability platform with optional C++20 features, designed to provide enterprise-grade monitoring, tracing, and reliability capabilities for high-performance applications. Built with a modular, interface-based architecture and seamless integration with the thread system ecosystem, it delivers real-time insights with minimal overhead and maximum scalability.
+Production-ready C++17 observability platform with comprehensive monitoring, distributed tracing, and reliability capabilities for high-performance applications. Built with a modular, interface-based architecture for seamless ecosystem integration.
 
-> **🏗️ Modular Architecture**: Comprehensive monitoring platform with pluggable components for metrics, tracing, health checks, and reliability patterns.
+**Key Value Proposition**:
+- **Performance Excellence**: 10M+ metric operations/sec, <50ns context propagation
+- **Production-Grade Reliability**: Thread-safe design, comprehensive error handling, circuit breakers
+- **Developer Productivity**: Intuitive API, rich telemetry, modular components
+- **Enterprise-Ready**: Distributed tracing, health monitoring, reliability patterns
 
-> **✅ Latest Updates**: Enhanced distributed tracing, performance monitoring, dependency injection container, and comprehensive error handling. All CI/CD pipelines green across platforms.
+**Latest Status**: ✅ All CI/CD pipelines green, 37/37 tests passing (100% pass rate)
 
 ## 🔗 Ecosystem Integration
 
 Part of a modular C++ ecosystem with clean interface boundaries:
 
-**Required Dependencies**:
+**Dependencies**:
 - **[common_system](https://github.com/kcenon/common_system)**: Core interfaces (IMonitor, ILogger, Result<T>)
-- **[thread_system](https://github.com/kcenon/thread_system)**: Threading primitives and monitoring_interface
-
-**Optional Integration**:
-- **[logger_system](https://github.com/kcenon/logger_system)**: Logging capabilities (via ILogger interface)
-- **[integrated_thread_system](https://github.com/kcenon/integrated_thread_system)**: Full ecosystem examples
+- **[thread_system](https://github.com/kcenon/thread_system)**: Threading primitives (required)
+- **[logger_system](https://github.com/kcenon/logger_system)**: Logging capabilities (optional)
 
 **Integration Pattern**:
 ```
@@ -33,546 +34,15 @@ common_system (interfaces) ← monitoring_system implements IMonitor
                           ↖ optional: inject ILogger at runtime
 ```
 
-**Benefits**:
-- Interface-only dependencies (no circular references)
-- Independent compilation and deployment
-- Runtime component injection via DI pattern
-- Clean separation of concerns
+**Benefits**: Interface-only dependencies, independent compilation, runtime DI, clean separation
 
-**Cross-System Tracing**:
-Propagate `trace_id`/`correlation_id` through system boundaries:
-- network_system → container_system → database_system → logger_system
-- Enrich spans and metrics at ingress/egress points
+📖 [Complete Ecosystem Integration Guide →](../ECOSYSTEM_INTEGRATION.md)
 
-> 📖 See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for complete integration details.
+---
 
-## Project Purpose & Mission
+## Quick Start
 
-This project addresses the fundamental challenge faced by developers worldwide: **making application observability accessible, reliable, and actionable**. Traditional monitoring approaches often lack comprehensive insights, provide insufficient error handling, and struggle with performance overhead. Our mission is to provide a comprehensive solution that:
-
-- **Eliminates observability gaps** through comprehensive metrics, tracing, and health monitoring
-- **Ensures system reliability** with circuit breakers, error boundaries, and health checks
-- **Maximizes performance** through efficient data collection and minimal overhead
-- **Promotes maintainability** through clear interfaces and modular architecture
-- **Accelerates troubleshooting** by providing actionable insights and root cause analysis
-
-## Core Advantages & Benefits
-
-### 🚀 **Performance Excellence**
-- **Real-time monitoring**: Continuous metrics collection without blocking operations
-- **Efficient data structures**: Lock-free counters and atomic operations for minimal overhead
-- **Adaptive sampling**: Intelligent sampling strategies for high-throughput scenarios
-- **Resource optimization**: Memory-efficient storage with configurable retention policies
-
-### 🛡️ **Production-Grade Reliability**
-- **Thread-safe by design**: All components guarantee safe concurrent access
-- **Comprehensive error handling**: Result pattern ensures no silent failures
-- **Circuit breaker patterns**: Automatic failure detection and recovery mechanisms
-- **Health monitoring**: Proactive dependency and service health validation
-
-### 🔧 **Developer Productivity**
-- **Intuitive API design**: Clean, self-documenting interfaces reduce learning curve
-- **Rich telemetry**: Comprehensive metrics, traces, and health data
-- **Flexible configuration**: Template-based configurations for common scenarios
-- **Modular components**: Use only what you need - maximum flexibility
-
-### 🌐 **Cross-Platform Compatibility**
-- **Universal support**: Works on Windows, Linux, and macOS
-- **Compiler flexibility**: Compatible with GCC, Clang, and MSVC
-- **C++ standard adaptation**: C++17 minimum with optional C++20 feature detection
-- **Architecture independence**: Optimized for both x86 and ARM processors
-
-### 📈 **Enterprise-Ready Features**
-- **Distributed tracing**: Request flow tracking across service boundaries
-- **Performance profiling**: Detailed timing and resource usage analysis
-- **Health dashboards**: Real-time system health and dependency status
-- **Reliability patterns**: Circuit breakers, retry policies, and error boundaries
-
-## Real-World Impact & Use Cases
-
-### 🎯 **Ideal Applications**
-- **Microservices architectures**: Distributed tracing and service health monitoring
-- **High-frequency trading systems**: Ultra-low latency performance monitoring
-- **Real-time systems**: Continuous health checks and circuit breaker protection
-- **Web applications**: Request tracing and performance bottleneck identification
-- **IoT platforms**: Resource usage monitoring and reliability patterns
-- **Database systems**: Query performance analysis and health monitoring
-
-### 📊 **Performance Benchmarks**
-
-*Benchmarked on Apple M1 (8-core) @ 3.2GHz, 16GB, macOS Sonoma*
-
-> **🚀 Architecture Update**: Latest modular architecture provides seamless integration with thread_system ecosystem. Real-time monitoring delivers comprehensive insights without impacting application performance.
-
-#### Core Performance Metrics (Latest Benchmarks)
-- **Metrics Collection**: Up to 10M metric operations/second (atomic counters)
-- **Trace Processing**:
-  - Span creation: 2.5M spans/s with minimal allocation overhead
-  - Context propagation: <50ns per hop in distributed systems
-  - Trace export: Batch processing up to 100K spans/s
-- **Health Checks**:
-  - Health validation: 500K checks/s with dependency validation
-  - Circuit breaker: <10ns overhead per protected operation
-- **Memory efficiency**: <5MB baseline with configurable retention
-- **Storage overhead**: Time-series data compression up to 90%
-
-#### Performance Comparison with Industry Standards
-| Monitoring Type | Throughput | Latency | Memory Usage | Best Use Case |
-|----------------|------------|---------|--------------|---------------|
-| 🏆 **Monitoring System** | **10M ops/s** | **<50ns** | **<5MB** | All scenarios (comprehensive) |
-| 📦 **Prometheus Client** | 2.5M ops/s | 200ns | 15MB | Metrics-focused |
-| 📦 **OpenTelemetry** | 1.8M ops/s | 150ns | 25MB | Standard compliance |
-| 📦 **Custom Counters** | 15M ops/s | 5ns | 1MB | Basic metrics only |
-
-#### Key Performance Insights
-- 🏃 **Metrics**: Industry-leading atomic counter performance (10M ops/s)
-- 🏋️ **Tracing**: Efficient span lifecycle with minimal allocation
-- ⏱️ **Latency**: Ultra-low overhead for real-time systems (<50ns)
-- 📈 **Scalability**: Linear scaling with thread count and load
-
-## ✨ Features
-
-### 🎯 Core Capabilities
-- **Performance Monitoring**: Real-time metrics collection and analysis
-- **Distributed Tracing**: Request flow tracking across services
-- **Health Monitoring**: Service health checks and dependency validation
-- **Error Handling**: Robust result types and error boundary patterns
-- **Dependency Injection**: Complete container with lifecycle management
-
-### 🔧 Technical Highlights
-- **Modern C++17**: C++17 minimum with optional C++20 features (automatic feature detection)
-- **Cross-Platform**: Windows, Linux, and macOS support
-- **Thread-Safe**: Concurrent operations with atomic counters and locks
-- **Modular Design**: Plugin-based architecture with optional integrations
-- **Production Ready**: 37 comprehensive tests with 100% pass rate
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     Monitoring System                           │
-├─────────────────────────────────────────────────────────────────┤
-│ Core Components                                                 │
-├─────────────────────┬───────────────────┬───────────────────────┤
-│ Performance Monitor │ Distributed Tracer │ Health Monitor        │
-│ • Metrics Collection│ • Span Management  │ • Service Checks      │
-│ • Profiling Data    │ • Context Propagation│ • Dependency Tracking│
-│ • Aggregation       │ • Trace Export     │ • Recovery Policies   │
-├─────────────────────┼───────────────────┼───────────────────────┤
-│ Storage Layer       │ Event System      │ Reliability Patterns  │
-│ • Memory Backend    │ • Event Bus       │ • Circuit Breakers    │
-│ • File Backend      │ • Async Processing│ • Retry Policies      │
-│ • Time Series       │ • Error Events    │ • Error Boundaries    │
-└─────────────────────┴───────────────────┴───────────────────────┘
-```
-
-## ✨ Core Features
-
-### 🎯 Real-Time Monitoring
-- **Performance Metrics**: Atomic counters, gauges, histograms with 10M+ ops/sec throughput
-- **Distributed Tracing**: Request flow tracking with span creation (2.5M spans/sec)
-- **Health Monitoring**: Service health checks and dependency validation (500K checks/sec)
-- **Thread-Safe Operations**: Lock-free atomic operations for minimal overhead
-- **Configurable Storage**: Memory and file backends with time-series compression
-
-### 🔧 Advanced Capabilities
-- **Result-Based Error Handling**: Comprehensive error handling using `Result<T>` pattern
-- **Dependency Injection Container**: Complete DI with service registration and lifecycle management
-- **Thread Context Tracking**: Request context and metadata propagation across threads
-- **Circuit Breaker Pattern**: Automatic failure detection and recovery mechanisms
-- **Event-Driven Architecture**: Asynchronous event processing with minimal blocking
-
-### 🏗️ Architecture Highlights
-- **Interface-Driven Design**: Clean separation via abstract interfaces (IMonitor, ILogger, IMonitorable)
-- **Modular Components**: Pluggable storage backends, tracers, and health checkers
-- **Zero Circular Dependencies**: Interface-only dependencies via common_system
-- **Independent Compilation**: Standalone build without ecosystem dependencies
-- **Production Grade**: 100% test pass rate (37/37 tests), <10% overhead
-
-### 📊 Current Status
-- **Build System**: CMake with feature flags and automatic dependency detection
-- **Dependencies**: Interface-only (thread_system, common_system)
-- **Compilation**: Independent, ~12 seconds build time
-- **Test Coverage**: All core functionality validated and production-ready
-- **Performance**: <10% overhead, 10M+ metrics ops/sec
-
-**Architecture**:
-```
-monitoring_system
-    ↓ implements
-IMonitor (common_system)
-    ↑ optional
-ILogger injection (runtime DI)
-```
-
-## Technology Stack & Architecture
-
-### 🏗️ **Modern C++ Foundation**
-- **C++17 compatibility**: C++17 minimum with optional C++20 feature detection (std::format, concepts, jthread)
-- **Template metaprogramming**: Type-safe, compile-time optimizations
-- **Memory management**: Smart pointers and RAII for automatic resource cleanup
-- **Exception safety**: Strong exception safety guarantees throughout
-- **Result pattern**: Comprehensive error handling without exceptions
-- **Interface-based design**: Clean separation between interface and implementation
-- **Modular architecture**: Core monitoring functionality with optional ecosystem integration
-
-### 🔄 **Design Patterns Implementation**
-- **Observer Pattern**: Event-driven metrics collection and health monitoring
-- **Strategy Pattern**: Configurable sampling strategies and storage backends
-- **Factory Pattern**: Configurable monitor and tracer creation
-- **Template Method Pattern**: Customizable monitoring behavior
-- **Dependency Injection**: Service container for component lifecycle management
-- **Circuit Breaker Pattern**: Reliability and fault tolerance mechanisms
-
-## Project Structure
-
-### 📁 **Directory Organization**
-
-```
-monitoring_system/
-├── 📁 include/kcenon/monitoring/   # Public headers
-│   ├── 📁 core/                    # Core components
-│   │   ├── performance_monitor.h   # Performance metrics collection
-│   │   ├── result_types.h          # Error handling types
-│   │   ├── di_container.h          # Dependency injection
-│   │   └── thread_context.h        # Thread-local context
-│   ├── 📁 interfaces/              # Abstract interfaces
-│   │   ├── monitorable_interface.h # Monitoring abstraction
-│   │   ├── storage_interface.h     # Storage abstraction
-│   │   ├── tracer_interface.h      # Tracing abstraction
-│   │   └── health_check_interface.h # Health check abstraction
-│   ├── 📁 tracing/                 # Distributed tracing
-│   │   ├── distributed_tracer.h    # Trace management
-│   │   ├── span.h                  # Span operations
-│   │   ├── trace_context.h         # Context propagation
-│   │   └── trace_exporter.h        # Trace export
-│   ├── 📁 health/                  # Health monitoring
-│   │   ├── health_monitor.h        # Health validation
-│   │   ├── health_check.h          # Health check definitions
-│   │   ├── circuit_breaker.h       # Circuit breaker pattern
-│   │   └── reliability_patterns.h  # Retry and fallback
-│   ├── 📁 storage/                 # Storage backends
-│   │   ├── memory_storage.h        # In-memory storage
-│   │   ├── file_storage.h          # File-based storage
-│   │   └── time_series_storage.h   # Time-series data
-│   └── 📁 config/                  # Configuration
-│       ├── monitoring_config.h     # Configuration structures
-│       └── config_validator.h      # Configuration validation
-├── 📁 src/                         # Implementation files
-│   ├── 📁 core/                    # Core implementations
-│   ├── 📁 tracing/                 # Tracing implementations
-│   ├── 📁 health/                  # Health implementations
-│   ├── 📁 storage/                 # Storage implementations
-│   └── 📁 config/                  # Configuration implementations
-├── 📁 examples/                    # Example applications
-│   ├── basic_monitoring_example/   # Basic monitoring usage
-│   ├── distributed_tracing_example/ # Tracing across services
-│   ├── health_reliability_example/ # Health checks and reliability
-│   └── integration_examples/       # Ecosystem integration
-├── 📁 tests/                       # All tests
-│   ├── 📁 unit/                    # Unit tests
-│   ├── 📁 integration/             # Integration tests
-│   └── 📁 benchmarks/              # Performance tests
-├── 📁 docs/                        # Documentation
-├── 📁 cmake/                       # CMake modules
-├── 📄 CMakeLists.txt               # Build configuration
-└── 📄 vcpkg.json                   # Dependencies
-```
-
-### 📖 **Key Files and Their Purpose**
-
-#### Core Module Files
-- **`performance_monitor.h/cpp`**: Real-time metrics collection with atomic operations
-- **`result_types.h/cpp`**: Comprehensive error handling and result types
-- **`di_container.h/cpp`**: Dependency injection container with lifecycle management
-- **`thread_context.h/cpp`**: Thread-local context for request tracking
-
-#### Tracing Files
-- **`distributed_tracer.h/cpp`**: Distributed trace management and span lifecycle
-- **`span.h/cpp`**: Individual span operations with metadata
-- **`trace_context.h/cpp`**: Context propagation across service boundaries
-- **`trace_exporter.h/cpp`**: Trace data export and batching
-
-#### Health Monitoring Files
-- **`health_monitor.h/cpp`**: Comprehensive health validation framework
-- **`circuit_breaker.h/cpp`**: Circuit breaker pattern implementation
-- **`reliability_patterns.h/cpp`**: Retry policies and error boundaries
-
-### 🔗 **Module Dependencies**
-
-```
-config (no dependencies)
-    │
-    └──> core
-            │
-            ├──> tracing
-            │
-            ├──> health
-            │
-            ├──> storage
-            │
-            └──> integration (thread_system, logger_system)
-
-Optional External Projects:
-- thread_system (provides monitoring_interface)
-- logger_system (provides logging capabilities)
-```
-
-## Quick Start & Usage Examples
-
-### 🚀 **Getting Started in 5 Minutes**
-
-#### Comprehensive Monitoring Example
-
-```cpp
-#include <kcenon/monitoring/core/performance_monitor.h>
-#include <kcenon/monitoring/tracing/distributed_tracer.h>
-#include <kcenon/monitoring/health/health_monitor.h>
-
-using namespace monitoring_system;
-
-int main() {
-    // 1. Create comprehensive monitoring setup
-    performance_monitor perf_monitor("my_application");
-    auto& tracer = global_tracer();
-    health_monitor health_monitor;
-
-    // 2. Enable performance metrics collection
-    perf_monitor.enable_collection(true);
-
-    // 3. Set up health checks
-    health_monitor.register_check(
-        std::make_unique<functional_health_check>(
-            "system_resources",
-            health_check_type::system,
-            []() {
-                // Check system resources
-                auto memory_usage = get_memory_usage_percent();
-                return memory_usage < 80.0 ?
-                    health_check_result::healthy("Memory usage normal") :
-                    health_check_result::degraded("High memory usage");
-            }
-        )
-    );
-
-    // 4. Start distributed trace
-    auto trace_result = tracer.start_span("main_operation", "application");
-    if (!trace_result) {
-        std::cerr << "Failed to start trace: " << trace_result.get_error().message << "\n";
-        return -1;
-    }
-
-    auto main_span = trace_result.value();
-    main_span->set_tag("operation.type", "batch_processing");
-    main_span->set_tag("batch.size", "10000");
-
-    // 5. Monitor performance-critical operation
-    auto start_time = std::chrono::steady_clock::now();
-
-    for (int i = 0; i < 10000; ++i) {
-        // Create child span for individual operations
-        auto op_span_result = tracer.start_child_span(main_span, "process_item");
-        if (op_span_result) {
-            auto op_span = op_span_result.value();
-            op_span->set_tag("item.id", std::to_string(i));
-
-            // Simulate processing
-            std::this_thread::sleep_for(std::chrono::microseconds(10));
-
-            // Record processing time
-            auto item_start = std::chrono::steady_clock::now();
-            // ... actual processing ...
-            auto item_end = std::chrono::steady_clock::now();
-
-            auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(item_end - item_start);
-            perf_monitor.get_profiler().record_sample("item_processing", duration, true);
-
-            tracer.finish_span(op_span);
-        }
-
-        // Check health periodically
-        if (i % 1000 == 0) {
-            auto health_result = health_monitor.check_health();
-            main_span->set_tag("health.status", to_string(health_result.status));
-
-            if (health_result.status == health_status::unhealthy) {
-                main_span->set_tag("error", "System health degraded");
-                break;
-            }
-        }
-    }
-
-    auto end_time = std::chrono::steady_clock::now();
-    auto total_duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
-
-    // 6. Collect comprehensive metrics
-    auto metrics_snapshot = perf_monitor.collect();
-    if (metrics_snapshot) {
-        auto snapshot = metrics_snapshot.value();
-
-        std::cout << "Performance Results:\n";
-        std::cout << "- Total processing time: " << total_duration.count() << " ms\n";
-        std::cout << "- CPU usage: " << snapshot.get_metric("cpu_usage") << "%\n";
-        std::cout << "- Memory usage: " << snapshot.get_metric("memory_usage") << " MB\n";
-        std::cout << "- Items processed: " << snapshot.get_metric("items_processed") << "\n";
-
-        // Get profiling statistics
-        auto profiler_stats = perf_monitor.get_profiler().get_statistics("item_processing");
-        std::cout << "- Average item time: " << profiler_stats.mean_duration.count() << " ns\n";
-        std::cout << "- P95 item time: " << profiler_stats.p95_duration.count() << " ns\n";
-    }
-
-    // 7. Finish main span with results
-    main_span->set_tag("total.duration_ms", total_duration.count());
-    main_span->set_tag("throughput.items_per_sec",
-                       static_cast<double>(10000) / total_duration.count() * 1000.0);
-    tracer.finish_span(main_span);
-
-    // 8. Export traces and metrics
-    auto export_result = tracer.export_traces();
-    if (!export_result) {
-        std::cerr << "Failed to export traces: " << export_result.get_error().message << "\n";
-    }
-
-    return 0;
-}
-```
-
-> **Performance Tip**: The monitoring system automatically optimizes for minimal overhead. Use atomic counters and batch operations for maximum performance in high-frequency scenarios.
-
-### 🔄 **More Usage Examples**
-
-#### Real-time Metrics Dashboard
-```cpp
-#include <kcenon/monitoring/core/performance_monitor.h>
-#include <kcenon/monitoring/storage/time_series_storage.h>
-
-using namespace monitoring_system;
-
-// Create performance monitor with time-series storage
-auto storage = std::make_unique<time_series_storage>("metrics.db");
-performance_monitor monitor("web_server", std::move(storage));
-
-// Enable real-time collection
-monitor.enable_collection(true);
-monitor.set_collection_interval(std::chrono::milliseconds(100));
-
-// Monitor request processing
-void process_request(const std::string& endpoint) {
-    auto request_timer = monitor.start_timer("request_processing");
-
-    // Add request-specific metrics
-    monitor.increment_counter("requests_total");
-    monitor.increment_counter("requests_by_endpoint:" + endpoint);
-
-    // Simulate request processing
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
-
-    // Record response size
-    monitor.record_histogram("response_size_bytes", 1024);
-
-    // Timer automatically records duration when destroyed
-}
-
-// Generate real-time dashboard data
-void dashboard_update() {
-    auto snapshot = monitor.collect();
-    if (snapshot) {
-        auto data = snapshot.value();
-
-        // Get real-time metrics
-        auto rps = data.get_rate("requests_total");
-        auto avg_latency = data.get_histogram_mean("request_processing");
-        auto error_rate = data.get_rate("errors_total") / rps * 100.0;
-
-        std::cout << "RPS: " << rps << ", Avg Latency: " << avg_latency
-                  << "ms, Error Rate: " << error_rate << "%\n";
-    }
-}
-```
-
-#### Circuit Breaker with Health Monitoring
-```cpp
-#include <kcenon/monitoring/health/circuit_breaker.h>
-#include <kcenon/monitoring/health/health_monitor.h>
-
-using namespace monitoring_system;
-
-// Create circuit breaker for external service
-circuit_breaker db_breaker("database_connection",
-                          circuit_breaker_config{
-                              .failure_threshold = 5,
-                              .timeout = std::chrono::seconds(30),
-                              .half_open_max_calls = 3
-                          });
-
-// Database operation with circuit breaker protection
-result<std::string> fetch_user_data(int user_id) {
-    return db_breaker.execute([user_id]() -> result<std::string> {
-        // Simulate database call
-        if (simulate_network_failure()) {
-            return make_error<std::string>(
-                monitoring_error_code::external_service_error,
-                "Database connection failed"
-            );
-        }
-
-        return make_success(std::string("user_data_" + std::to_string(user_id)));
-    });
-}
-
-// Health check integration
-health_monitor health;
-health.register_check(
-    std::make_unique<functional_health_check>(
-        "database_circuit_breaker",
-        health_check_type::dependency,
-        [&db_breaker]() {
-            auto state = db_breaker.get_state();
-            switch (state) {
-                case circuit_breaker_state::closed:
-                    return health_check_result::healthy("Circuit breaker closed");
-                case circuit_breaker_state::half_open:
-                    return health_check_result::degraded("Circuit breaker half-open");
-                case circuit_breaker_state::open:
-                    return health_check_result::unhealthy("Circuit breaker open");
-                default:
-                    return health_check_result::unhealthy("Unknown circuit breaker state");
-            }
-        }
-    )
-);
-```
-
-### 📚 **Comprehensive Sample Collection**
-
-Our samples demonstrate real-world usage patterns and best practices:
-
-#### **Core Functionality**
-- **[Basic Monitoring](examples/basic_monitoring_example/)**: Performance metrics and health checks
-- **[Distributed Tracing](examples/distributed_tracing_example/)**: Request flow across services
-- **[Health Reliability](examples/health_reliability_example/)**: Circuit breakers and error boundaries
-- **[Error Handling](examples/advanced_features/)**: Comprehensive error handling with result pattern
-
-#### **Advanced Features**
-- **[Real-time Dashboards](examples/advanced_features/)**: Live metrics collection and visualization
-- **[Reliability Patterns](examples/advanced_features/)**: Circuit breakers, retry policies, bulkheads
-- **[Custom Metrics](examples/advanced_features/)**: Domain-specific monitoring capabilities
-- **[Storage Backends](examples/advanced_features/)**: Time-series and file-based storage
-
-#### **Integration Examples**
-- **[Thread System Integration](examples/integration_examples/)**: Thread pool monitoring
-- **[Logger Integration](examples/integration_examples/)**: Combined monitoring and logging
-- **[Microservice Monitoring](examples/integration_examples/)**: Service mesh observability
-
-### 🛠️ **Build & Integration**
-
-#### Prerequisites
-- **Compiler**: C++17 capable (GCC 7+, Clang 5+, MSVC 2017+) - C++20 recommended for enhanced features
-- **Build System**: CMake 3.16+
-- **Testing**: Google Test (automatically fetched)
-
-#### Build Steps
+### Installation
 
 ```bash
 # Clone the repository
@@ -588,204 +58,233 @@ cmake --build build
 
 # Run examples
 ./build/examples/basic_monitoring_example
-./build/examples/distributed_tracing_example
-./build/examples/health_reliability_example
 ```
 
-#### CMake Integration
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/core/performance_monitor.h>
+#include <kcenon/monitoring/tracing/distributed_tracer.h>
+#include <kcenon/monitoring/health/health_monitor.h>
+
+using namespace monitoring_system;
+
+int main() {
+    // 1. Create monitoring components
+    performance_monitor monitor("my_service");
+    auto& tracer = global_tracer();
+    health_monitor health;
+
+    // 2. Enable metrics collection
+    monitor.enable_collection(true);
+
+    // 3. Start distributed trace
+    auto span_result = tracer.start_span("main_operation", "service");
+    if (!span_result) {
+        std::cerr << "Failed to start trace: " << span_result.get_error().message << "\n";
+        return -1;
+    }
+    auto span = span_result.value();
+    span->set_tag("operation.type", "batch_processing");
+
+    // 4. Monitor operations
+    auto timer = monitor.start_timer("processing");
+    for (int i = 0; i < 1000; ++i) {
+        monitor.increment_counter("items_processed");
+        // ... your processing logic ...
+    }
+
+    // 5. Collect metrics
+    auto snapshot = monitor.collect();
+    if (snapshot) {
+        std::cout << "CPU: " << snapshot.value().get_metric("cpu_usage") << "%\n";
+        std::cout << "Processed: " << snapshot.value().get_metric("items_processed") << "\n";
+    }
+
+    // 6. Finish trace
+    tracer.finish_span(span);
+    tracer.export_traces();
+
+    return 0;
+}
+```
+
+📖 [Complete User Guide →](docs/guides/USER_GUIDE.md)
+
+---
+
+## Core Features
+
+- **Performance Monitoring**: Real-time metrics (counters, gauges, histograms) - 10M+ ops/sec
+- **Distributed Tracing**: Request flow tracking across services - 2.5M spans/sec
+- **Health Monitoring**: Service health checks and dependency validation - 500K checks/sec
+- **Error Handling**: Robust Result<T> pattern for type-safe error management
+- **Dependency Injection**: Complete DI container with lifecycle management
+- **Circuit Breakers**: Automatic failure detection and recovery
+- **Storage Backends**: Memory, file, and time-series storage options
+- **Thread-Safe**: Concurrent operations with atomic counters and locks
+
+📚 [Detailed Features →](docs/FEATURES.md)
+
+---
+
+## Performance Highlights
+
+*Benchmarked on Apple M1 (8-core) @ 3.2GHz, 16GB RAM, macOS Sonoma*
+
+| Operation | Throughput | Latency (P95) | Memory |
+|-----------|------------|---------------|--------|
+| **Counter Operations** | 10.5M ops/sec | 120 ns | <1MB |
+| **Span Creation** | 2.5M spans/sec | 580 ns | 384 bytes/span |
+| **Health Checks** | 520K checks/sec | 2.85 μs | <3MB |
+| **Context Propagation** | 15M ops/sec | <50 ns | Thread-local |
+
+**Platform**: Apple M1 @ 3.2GHz
+
+### Industry Comparison
+
+| Solution | Counter Ops/sec | Memory | Features |
+|----------|-----------------|--------|----------|
+| **Monitoring System** | 10.5M | <5MB | Full observability |
+| Prometheus Client | 2.5M | 15MB | Metrics only |
+| OpenTelemetry | 1.8M | 25MB | Complex API |
+
+⚡ [Full Benchmarks →](docs/BENCHMARKS.md)
+
+---
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     Monitoring System                           │
+├─────────────────────────────────────────────────────────────────┤
+│ Core Components                                                 │
+├─────────────────────┬───────────────────┬───────────────────────┤
+│ Performance Monitor │ Distributed Tracer │ Health Monitor        │
+│ • Metrics Collection│ • Span Management  │ • Service Checks      │
+│ • Profiling Data    │ • Context Propagation│ • Dependency Tracking│
+│ • Aggregation       │ • Trace Export     │ • Recovery Policies   │
+└─────────────────────┴───────────────────┴───────────────────────┘
+```
+
+**Key Characteristics**:
+- **Interface-Driven Design**: Clean separation via abstract interfaces
+- **Modular Components**: Pluggable storage, tracers, and health checkers
+- **Zero Circular Dependencies**: Interface-only dependencies via common_system
+- **Production Grade**: 100% test pass rate, <10% overhead
+
+🏗️ [Architecture Guide →](docs/01-ARCHITECTURE.md)
+
+---
+
+## Documentation
+
+### Getting Started
+- 📖 [User Guide](docs/guides/USER_GUIDE.md) - Comprehensive usage guide
+- 🚀 [Quick Start Examples](examples/) - Working code examples
+- 🔧 [Integration Guide](docs/guides/INTEGRATION.md) - Ecosystem integration
+
+### Core Documentation
+- 📘 [API Reference](docs/02-API_REFERENCE.md) - Complete API documentation
+- 📚 [Features](docs/FEATURES.md) - Detailed feature descriptions
+- ⚡ [Benchmarks](docs/BENCHMARKS.md) - Performance metrics and comparisons
+- 🏗️ [Architecture](docs/01-ARCHITECTURE.md) - System design and patterns
+- 📦 [Project Structure](docs/PROJECT_STRUCTURE.md) - File organization
+
+### Advanced Topics
+- ✅ [Best Practices](docs/guides/BEST_PRACTICES.md) - Usage recommendations
+- 🔍 [Troubleshooting](docs/guides/TROUBLESHOOTING.md) - Common issues and solutions
+- 📋 [FAQ](docs/guides/FAQ.md) - Frequently asked questions
+- 🔄 [Migration Guide](docs/guides/MIGRATION_GUIDE.md) - Version migration
+
+### Development
+- 🤝 [Contributing](docs/contributing/CONTRIBUTING.md) - Contribution guidelines
+- 🏆 [Production Quality](docs/PRODUCTION_QUALITY.md) - CI/CD and quality metrics
+- 📊 [Performance Baselines](docs/performance/BASELINE.md) - Regression thresholds
+
+---
+
+## CMake Integration
+
+### Add as Subdirectory
 
 ```cmake
-# Add as subdirectory
+# Add monitoring system
 add_subdirectory(monitoring_system)
 target_link_libraries(your_target PRIVATE monitoring_system)
 
-# Optional: Add thread_system integration
+# Optional: Add ecosystem integration
 add_subdirectory(thread_system)
+add_subdirectory(logger_system)
+
 target_link_libraries(your_target PRIVATE
     monitoring_system
     thread_system::interfaces
+    logger_system
 )
+```
 
-# Using with FetchContent
+### Using FetchContent
+
+```cmake
 include(FetchContent)
+
 FetchContent_Declare(
     monitoring_system
     GIT_REPOSITORY https://github.com/kcenon/monitoring_system.git
     GIT_TAG main
 )
+
 FetchContent_MakeAvailable(monitoring_system)
+
+target_link_libraries(your_target PRIVATE monitoring_system)
 ```
 
-## Documentation
-
-- Module READMEs:
-  - core/README.md
-  - tracing/README.md
-  - health/README.md
-- Guides:
-  - docs/USER_GUIDE.md (setup, quick starts, configuration)
-  - docs/API_REFERENCE.md (complete API documentation)
-  - docs/ARCHITECTURE.md (system design and patterns)
-
-Build API docs with Doxygen (optional):
+### Build Options
 
 ```bash
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build --target docs
-# Open documents/html/index.html
-```
-
-## 📖 Usage Examples
-
-### Basic Performance Monitoring
-
-```cpp
-#include <kcenon/monitoring/core/performance_monitor.h>
-
-// Create performance monitor
-monitoring_system::performance_monitor monitor("my_service");
-
-// Record operation timing
-auto start = std::chrono::steady_clock::now();
-// ... your operation ...
-auto end = std::chrono::steady_clock::now();
-
-auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-monitor.get_profiler().record_sample("operation_name", duration, true);
-
-// Collect metrics
-auto snapshot = monitor.collect();
-if (snapshot) {
-    std::cout << "CPU Usage: " << snapshot.value().get_metric("cpu_usage") << "%\n";
-}
-```
-
-### Distributed Tracing
-
-```cpp
-#include <monitoring/tracing/distributed_tracer.h>
-
-auto& tracer = monitoring_system::global_tracer();
-
-// Start a trace
-auto span_result = tracer.start_span("user_request", "web_service");
-if (span_result) {
-    auto span = span_result.value();
-    span->set_tag("user.id", "12345");
-    span->set_tag("endpoint", "/api/users");
-
-    // Create child span for database operation
-    auto db_span_result = tracer.start_child_span(span, "database_query");
-    if (db_span_result) {
-        auto db_span = db_span_result.value();
-        db_span->set_tag("query.type", "SELECT");
-
-        // ... database operation ...
-
-        tracer.finish_span(db_span);
-    }
-
-    tracer.finish_span(span);
-}
-```
-
-### Health Monitoring
-
-```cpp
-#include <monitoring/health/health_monitor.h>
-
-monitoring_system::health_monitor health_monitor;
-
-// Register health checks
-health_monitor.register_check(
-    std::make_unique<monitoring_system::functional_health_check>(
-        "database_connection",
-        monitoring_system::health_check_type::dependency,
-        []() {
-            // Check database connectivity
-            bool connected = check_database_connection();
-            return connected ?
-                monitoring_system::health_check_result::healthy("Database connected") :
-                monitoring_system::health_check_result::unhealthy("Database unreachable");
-        }
-    )
-);
-
-// Check overall health
-auto health_result = health_monitor.check_health();
-if (health_result.status == monitoring_system::health_status::healthy) {
-    std::cout << "System is healthy\n";
-}
-```
-
-### Error Handling with Result Types
-
-```cpp
-#include <kcenon/monitoring/core/result_types.h>
-
-// Function that can fail
-monitoring_system::result<std::string> fetch_user_data(int user_id) {
-    if (user_id <= 0) {
-        return monitoring_system::make_error<std::string>(
-            monitoring_system::monitoring_error_code::invalid_argument,
-            "Invalid user ID"
-        );
-    }
-
-    // ... fetch logic ...
-    return monitoring_system::make_success(std::string("user_data"));
-}
-
-// Usage with error handling
-auto result = fetch_user_data(123);
-if (result) {
-    std::cout << "User data: " << result.value() << "\n";
-} else {
-    std::cout << "Error: " << result.get_error().message << "\n";
-}
-
-// Chain operations
-auto processed = result
-    .map([](const std::string& data) { return data + "_processed"; })
-    .and_then([](const std::string& data) {
-        return monitoring_system::make_success(data.length());
-    });
-```
-
-## 🔧 Configuration
-
-### CMake Options
-
-```bash
-# Build options
+# Build with tests and examples
 cmake -B build \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTS=ON \
   -DBUILD_EXAMPLES=ON \
   -DBUILD_BENCHMARKS=OFF
 
-# Integration options
+# Enable ecosystem integration
 cmake -B build \
   -DBUILD_WITH_COMMON_SYSTEM=ON \
   -DTHREAD_SYSTEM_INTEGRATION=ON \
   -DLOGGER_SYSTEM_INTEGRATION=ON
 ```
 
+---
+
+## Configuration
+
 ### Runtime Configuration
 
 ```cpp
 // Configure monitoring
-monitoring_system::monitoring_config config;
+monitoring_config config;
 config.enable_performance_monitoring = true;
 config.enable_distributed_tracing = true;
-config.sampling_rate = 0.1; // 10% sampling
+config.sampling_rate = 0.1;  // 10% sampling
 config.max_trace_duration = std::chrono::seconds(30);
 
-// Apply configuration
-auto monitor = monitoring_system::create_monitor(config);
+// Configure storage
+auto storage = std::make_unique<memory_storage>(memory_storage_config{
+    .max_entries = 10000,
+    .retention_period = std::chrono::hours(1)
+});
+
+// Create monitor with config
+auto monitor = create_monitor(config, std::move(storage));
 ```
 
-## 🧪 Testing
+---
+
+## Testing
 
 ```bash
 # Run all tests
@@ -796,337 +295,108 @@ cmake --build build --target monitoring_system_tests
 ./build/tests/monitoring_system_tests --gtest_filter="*DI*"
 ./build/tests/monitoring_system_tests --gtest_filter="*Performance*"
 
-# Generate test coverage (requires gcov/lcov)
+# Generate coverage report
 cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON
 cmake --build build
 ./build/tests/monitoring_system_tests
 make coverage
 ```
 
-**Current Test Coverage**: 37 tests, 100% pass rate
-- Result types: 13 tests
-- DI container: 9 tests
-- Monitorable interface: 12 tests
-- Thread context: 3 tests
+**Test Status**: ✅ 37/37 tests passing (100% pass rate)
 
-## 📦 Integration
+**Test Coverage**:
+- Line Coverage: 87.3%
+- Function Coverage: 92.1%
+- Branch Coverage: 78.5%
 
-### Optional Dependencies
+---
 
-The monitoring system can integrate with complementary libraries:
+## Production Quality
 
-- **[thread_system](https://github.com/kcenon/thread_system)**: Enhanced concurrent processing
-- **[logger_system](https://github.com/kcenon/logger_system)**: Structured logging integration
+### Quality Grades
 
-### Ecosystem Integration
+| Aspect | Grade | Status |
+|--------|-------|--------|
+| **Thread Safety** | A- | ✅ TSan clean, 0 data races |
+| **Resource Management** | A | ✅ ASan clean, 0 leaks |
+| **Error Handling** | A- | ✅ Result<T> pattern, 95% complete |
+| **Test Coverage** | A | ✅ 37/37 tests, 100% pass rate |
+| **CI/CD** | A | ✅ Multi-platform, all green |
+
+### CI/CD Validation
+
+**Platforms Tested**:
+- Linux (Ubuntu 22.04): GCC 11, Clang 14
+- macOS (macOS 12): Apple Clang 14
+- Windows (Server 2022): MSVC 2022, MSYS2
+
+**Sanitizers**:
+- ✅ AddressSanitizer: 0 leaks, 0 errors
+- ✅ ThreadSanitizer: 0 data races
+- ✅ UndefinedBehaviorSanitizer: 0 issues
+
+**Static Analysis**:
+- ✅ clang-tidy: 0 warnings
+- ✅ cppcheck: 0 warnings
+- ✅ cpplint: 0 issues
+
+🏆 [Production Quality Metrics →](docs/PRODUCTION_QUALITY.md)
+
+---
+
+## Real-World Use Cases
+
+**Ideal Applications**:
+- **Microservices**: Distributed tracing and service health monitoring
+- **High-Frequency Trading**: Ultra-low latency performance monitoring
+- **Real-Time Systems**: Continuous health checks and circuit breaker protection
+- **Web Applications**: Request tracing and bottleneck identification
+- **IoT Platforms**: Resource usage monitoring and reliability patterns
+
+---
+
+## Ecosystem Integration
+
+This monitoring system integrates seamlessly with other KCENON systems:
 
 ```cpp
 // With thread_system integration
-#ifdef THREAD_SYSTEM_INTEGRATION
 #include <thread_system/thread_pool.h>
-auto collector = monitoring_system::create_threaded_collector(thread_pool);
-#endif
+auto collector = create_threaded_collector(thread_pool);
 
 // With logger_system integration
-#ifdef LOGGER_SYSTEM_INTEGRATION
 #include <logger_system/logger.h>
 monitoring_system::set_logger(logger_system::get_logger());
-#endif
 ```
 
-## API Documentation
+🌐 [Ecosystem Integration Guide →](../ECOSYSTEM_INTEGRATION.md)
 
-### Core API Reference
+---
 
-- **[API Reference](./docs/API_REFERENCE.md)**: Complete API documentation with interfaces
-- **[Architecture Guide](./docs/ARCHITECTURE.md)**: System design and patterns
-- **[Performance Guide](./docs/PERFORMANCE.md)**: Optimization tips and benchmarks
-- **[User Guide](./docs/USER_GUIDE.md)**: Usage guide and examples
-- **[FAQ](./docs/FAQ.md)**: Frequently asked questions
+## Support & Contributing
 
-### Quick API Overview
+### Get Help
+- 💬 [GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions) - Ask questions
+- 🐛 [Issue Tracker](https://github.com/kcenon/monitoring_system/issues) - Report bugs
+- 📧 Email: kcenon@naver.com
 
-```cpp
-// Monitoring Core API
-namespace monitoring_system {
-    // Performance monitoring with real-time metrics
-    class performance_monitor {
-        auto enable_collection(bool enabled) -> void;
-        auto collect() -> result<metrics_snapshot>;
-        auto get_profiler() -> profiler&;
-        auto start_timer(const std::string& name) -> scoped_timer;
-        auto increment_counter(const std::string& name) -> void;
-        auto record_histogram(const std::string& name, double value) -> void;
-    };
+### Contribute
+We welcome contributions! See our [Contributing Guide](docs/contributing/CONTRIBUTING.md) for details.
 
-    // Distributed tracing capabilities
-    class distributed_tracer {
-        auto start_span(const std::string& operation, const std::string& service) -> result<std::shared_ptr<span>>;
-        auto start_child_span(std::shared_ptr<span> parent, const std::string& operation) -> result<std::shared_ptr<span>>;
-        auto finish_span(std::shared_ptr<span> span) -> result_void;
-        auto export_traces() -> result_void;
-    };
-
-    // Health monitoring and validation
-    class health_monitor {
-        auto register_check(std::unique_ptr<health_check_interface> check) -> result_void;
-        auto check_health() -> health_result;
-        auto get_check_status(const std::string& name) -> result<health_status>;
-    };
-
-    // Circuit breaker for reliability
-    class circuit_breaker {
-        template<typename F>
-        auto execute(F&& func) -> result<typename std::invoke_result_t<F>>;
-        auto get_state() const -> circuit_breaker_state;
-        auto get_statistics() const -> circuit_breaker_stats;
-    };
-}
-
-// Result pattern for error handling
-namespace monitoring_system {
-    template<typename T>
-    class result {
-        auto has_value() const -> bool;
-        auto value() const -> const T&;
-        auto get_error() const -> const monitoring_error&;
-        template<typename F> auto map(F&& func) -> result<std::invoke_result_t<F, T>>;
-        template<typename F> auto and_then(F&& func) -> std::invoke_result_t<F, T>;
-    };
-
-    // Dependency injection container
-    class di_container {
-        template<typename Interface, typename Implementation>
-        auto register_singleton() -> result_void;
-        template<typename Interface>
-        auto resolve() -> result<std::shared_ptr<Interface>>;
-    };
-}
-
-// Integration API (with thread_system)
-namespace thread_module::interfaces {
-    class monitoring_interface {
-        virtual auto record_metric(const std::string& name, double value) -> result_void = 0;
-        virtual auto start_span(const std::string& operation) -> result<span_id> = 0;
-        virtual auto check_health() -> result<health_status> = 0;
-    };
-}
-```
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](./docs/CONTRIBUTING.md) for details.
-
-### Development Setup
-
+**Quick Start**:
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Code Style
-
-- Follow modern C++ best practices
-- Use RAII and smart pointers
-- Maintain consistent formatting (clang-format configuration provided)
-- Write comprehensive unit tests for new features
-
-## Support
-
-- **Issues**: [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)
-- **Email**: kcenon@naver.com
-
-## Production Quality & Architecture
-
-### Build & Testing Infrastructure
-
-**Comprehensive Multi-Platform CI/CD**
-- **Sanitizer Coverage**: Automated builds with ThreadSanitizer, AddressSanitizer, and UBSanitizer
-- **Multi-Platform Testing**: Continuous validation across Ubuntu (GCC/Clang), Windows (MSYS2/VS), and macOS
-- **Test Suite Excellence**: 37/37 tests passing with 100% success rate
-- **Static Analysis**: Clang-tidy and Cppcheck integration with modernize checks
-- **Documentation Generation**: Automated Doxygen API documentation builds
-
-**Performance Baselines**
-- **Metrics Collection**: 10M metric operations/second (atomic counter operations)
-- **Event Publishing**: 5.8M events/second with minimal overhead
-- **Trace Processing**: 2.5M spans/s with context propagation <50ns per hop
-- **Health Checks**: 500K health validations/s with dependency tracking
-- **P50 Latency**: 0.1 μs for metric recording operations
-- **Memory Efficiency**: <5MB baseline, <42MB with 10K metrics under load
-
-See [BASELINE.md](BASELINE.md) for comprehensive performance metrics and regression thresholds.
-
-**Complete Documentation Suite**
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md): System design and integration patterns
-- [USER_GUIDE.md](docs/USER_GUIDE.md): Comprehensive usage guide with examples
-- [API_REFERENCE.md](docs/API_REFERENCE.md): Complete API documentation
-
-### Thread Safety & Concurrency
-
-**Grade A- Thread Safety (100% Complete)**
-- **Lock-Free Operations**: Atomic counters and gauges for minimal overhead
-- **ThreadSanitizer Compliance**: Zero data races detected across all test scenarios
-- **Concurrent Test Coverage**: 37 comprehensive tests validating thread safety
-- **Production-Proven**: All components designed for safe concurrent access
-
-**Test Framework Migration**
-- **Catch2 Framework**: Complete migration from Google Test completed
-- **Integration Tests**: DI container, monitoring interfaces, and result types fully validated
-- **100% Pass Rate**: All 37 tests passing across all supported platforms
-
-### Resource Management (RAII - Grade A)
-
-**Perfect RAII Compliance**
-- **100% Smart Pointer Usage**: All resources managed through `std::shared_ptr` and `std::unique_ptr`
-- **AddressSanitizer Validation**: Zero memory leaks detected across all test scenarios
-- **RAII Patterns**: Scoped timers, automatic span lifecycle management
-- **Storage Backend Management**: Proper resource cleanup and lifecycle handling
-- **No Manual Memory Management**: Complete elimination of raw pointers in public interfaces
-
-**Memory Efficiency**
-```bash
-# AddressSanitizer: Clean across all tests
-==12345==ERROR: LeakSanitizer: detected memory leaks
-# Total: 0 leaks
-
-# Memory profile under load:
-Baseline: <5MB
-With 10K metrics: <42MB
-Automatic cleanup: RAII-managed
-```
-
-### Error Handling (Production Ready - 95% Complete)
-
-**Comprehensive Result<T> Pattern Implementation**
-
-The monitoring_system implements Result<T> across all interfaces for type-safe, comprehensive error handling:
-
-```cpp
-// Example 1: Performance monitoring with error handling
-auto& monitor = monitoring_system::performance_monitor("service");
-auto result = monitor.collect();
-if (!result) {
-    std::cerr << "Metrics collection failed: " << result.get_error().message
-              << " (code: " << static_cast<int>(result.get_error().code) << ")\n";
-    return -1;
-}
-auto snapshot = result.value();
-
-// Example 2: Distributed tracing with Result<T>
-auto& tracer = monitoring_system::global_tracer();
-auto span_result = tracer.start_span("operation", "service");
-if (!span_result) {
-    std::cerr << "Failed to start trace: " << span_result.get_error().message << "\n";
-    return -1;
-}
-auto span = span_result.value();
-
-// Example 3: Circuit breaker pattern with Result<T>
-auto cb_result = db_breaker.execute([&]() -> result<std::string> {
-    return fetch_data();
-});
-if (!cb_result) {
-    std::cerr << "Operation failed: " << cb_result.get_error().message << "\n";
-}
-```
-
-**Interface Standardization**
-- **Monitoring Interface**: All operations (`configure`, `start`, `stop`, `collect_now`, `check_health`) return `result_void` or `result<T>`
-- **Metrics Collector**: Complete Result<T> adoption for `collect`, `initialize`, `cleanup`
-- **Storage Backend**: All storage operations (`store`, `retrieve`, `flush`) use Result<T>
-- **Metrics Analyzer**: Analysis operations (`analyze`, `analyze_trend`, `reset`) return Result<T>
-- **Circuit Breaker**: Protected operations use `result<T>` with comprehensive error propagation
-
-**Error Code Integration**
-- **Allocated Range**: `-300` to `-399` in centralized error code registry (common_system)
-- **Categorization**: Configuration (-300 to -309), Metrics collection (-310 to -319), Tracing (-320 to -329), Health monitoring (-330 to -339), Storage (-340 to -349), Analysis (-350 to -359)
-- **Meaningful Messages**: Comprehensive error context for operational failures
-
-**Reliability Patterns**
-- **Circuit Breaker**: Automatic failure detection and recovery with Result<T> error propagation
-- **Health Checks**: Proactive dependency validation with Result<T> for health status
-- **Error Boundaries**: Comprehensive error handling across all component boundaries
-
-**Remaining Optional Enhancements**
-- 📝 **Error Tests**: Add comprehensive error scenario test suite
-- 📝 **Documentation**: Expand Result<T> usage examples in interface documentation
-- 📝 **Error Messages**: Continue enhancing error context for operational failures
-
-For detailed implementation notes, see [PHASE_3_PREPARATION.md](docs/PHASE_3_PREPARATION.md).
-
-**Future Enhancements**
-- 📝 **Performance Optimization**: Profiling and hot path optimization, zero-allocation metric collection
-- 📝 **API Stabilization**: Semantic versioning adoption, backward compatibility guarantees
-
-For detailed improvement plans and tracking, see the project's [NEED_TO_FIX.md](/Users/dongcheolshin/Sources/NEED_TO_FIX.md).
-
-### Architecture Improvement Phases
-
-**Phase Status Overview** (as of 2025-10-09):
-
-| Phase | Status | Completion | Key Achievements |
-|-------|--------|------------|------------------|
-| **Phase 0**: Foundation | ✅ Complete | 100% | CI/CD pipelines, baseline metrics, test coverage |
-| **Phase 1**: Thread Safety | ✅ Complete | 100% | Lock-free operations, ThreadSanitizer validation, 37/37 tests pass |
-| **Phase 2**: Resource Management | ✅ Complete | 100% | Grade A RAII, 100% smart pointers, AddressSanitizer clean |
-| **Phase 3**: Error Handling | ✅ Complete | 95% | Result<T> across all interfaces, comprehensive error handling |
-| **Phase 4**: Dependency Refactoring | ⏳ Planned | 0% | Scheduled after Phase 3 ecosystem completion |
-| **Phase 5**: Integration Testing | ⏳ Planned | 0% | Awaiting Phase 4 completion |
-| **Phase 6**: Documentation | ⏳ Planned | 0% | Awaiting Phase 5 completion |
-
-**Phase 3 - Error Handling Unification: Direct Result<T> Pattern**
-
-monitoring_system implements the **Direct Result<T>** pattern with comprehensive error handling across all interfaces:
-
-**Implementation Status**: 95% Complete
-- ✅ All monitoring operations return `result_void` or `result<T>`
-- ✅ Metrics collector, storage backend, and analyzer use Result<T>
-- ✅ Circuit breaker and health checks with Result<T> error propagation
-- ✅ Error code range -300 to -399 allocated in common_system registry
-- ✅ Interface standardization complete across all components
-
-**Error Code Organization**:
-- Configuration: -300 to -309
-- Metrics collection: -310 to -319
-- Tracing: -320 to -329
-- Health monitoring: -330 to -339
-- Storage: -340 to -349
-- Analysis: -350 to -359
-
-**Implementation Pattern**:
-```cpp
-// Performance monitoring with Result<T>
-auto& monitor = performance_monitor("service");
-auto result = monitor.collect();
-if (!result) {
-    std::cerr << "Collection failed: " << result.get_error().message << "\n";
-    return -1;
-}
-auto snapshot = result.value();
-
-// Circuit breaker with Result<T> error propagation
-auto cb_result = db_breaker.execute([&]() -> result<std::string> {
-    return fetch_data();
-});
-```
-
-**Benefits**:
-- Type-safe error handling across all monitoring operations
-- Comprehensive error propagation in reliability patterns
-- Clear error categorization for operational diagnostics
-- Production-ready with 37/37 tests passing
-
-**Remaining Work** (5%):
-- Optional: Additional error scenario tests
-- Optional: Enhanced error documentation
-- Optional: Improved error context messages
+---
 
 ## License
 
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## Acknowledgments
 
