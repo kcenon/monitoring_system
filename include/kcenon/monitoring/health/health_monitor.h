@@ -35,58 +35,17 @@
 #include <chrono>
 #include <functional>
 #include <memory>
+#include <kcenon/monitoring/interfaces/monitoring_interface.h>
 
 namespace kcenon::monitoring {
 
-/**
- * @brief Basic health status enumeration
- */
-enum class health_status {
-    healthy,
-    degraded,
-    unhealthy,
-    unknown
-};
-
-/**
- * @brief Health check result
- */
-struct health_check_result {
-    health_status status{health_status::unknown};
-    std::string message;
-    std::chrono::steady_clock::time_point timestamp;
-    std::unordered_map<std::string, std::string> details;
-
-    static health_check_result healthy(const std::string& msg = "OK") {
-        health_check_result result;
-        result.status = health_status::healthy;
-        result.message = msg;
-        result.timestamp = std::chrono::steady_clock::now();
-        return result;
-    }
-
-    static health_check_result unhealthy(const std::string& msg = "FAILED") {
-        health_check_result result;
-        result.status = health_status::unhealthy;
-        result.message = msg;
-        result.timestamp = std::chrono::steady_clock::now();
-        return result;
-    }
-
-    static health_check_result degraded(const std::string& msg = "DEGRADED") {
-        health_check_result result;
-        result.status = health_status::degraded;
-        result.message = msg;
-        result.timestamp = std::chrono::steady_clock::now();
-        return result;
-    }
-};
+// Use health_status and health_check_result from monitoring_interface.h
 
 /**
  * @brief Health monitor configuration
  */
 struct health_monitor_config {
-    std::chrono::seconds check_interval{std::chrono::seconds(5)};
+    std::chrono::milliseconds check_interval{std::chrono::milliseconds(5000)};
     std::chrono::seconds cache_duration{std::chrono::seconds(1)};
     bool enable_auto_recovery{true};
     size_t max_consecutive_failures{3};
@@ -147,7 +106,7 @@ public:
         health_check_result result;
         result.status = health_status::healthy;
         result.message = "Health monitor stub - always healthy";
-        result.timestamp = std::chrono::steady_clock::now();
+        result.timestamp = std::chrono::system_clock::now();
         return result;
     }
 
