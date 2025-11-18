@@ -86,6 +86,7 @@ jobs:
 
       - name: Upload Coverage to Codecov
         if: matrix.build_type == 'Debug'
+        continue-on-error: true
         uses: codecov/codecov-action@v4
         with:
           files: build/coverage_filtered.info
