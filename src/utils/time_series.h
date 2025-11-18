@@ -291,10 +291,10 @@ public:
         const time_series_config& config = {}) {
 
         auto validation = config.validate();
-        if (!validation) {
+        if (validation.is_err()) {
             return make_error<std::unique_ptr<time_series>>(
                 monitoring_error_code::invalid_configuration,
-                validation.get_error().message);
+                validation.error().message);
         }
 
         return make_success(std::unique_ptr<time_series>(
@@ -358,9 +358,9 @@ public:
      */
     result<aggregation_result> query(const time_series_query& query) const {
         auto validation = query.validate();
-        if (!validation) {
+        if (validation.is_err()) {
             return make_error<aggregation_result>(monitoring_error_code::invalid_argument,
-                                                validation.get_error().message);
+                                                validation.error().message);
         }
         
         std::lock_guard<std::mutex> lock(mutex_);
