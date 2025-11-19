@@ -311,8 +311,8 @@ install(TARGETS monitoring_system monitoring_system_interface
     EXPORT monitoring_system_targets
 )
 
-install(DIRECTORY sources/monitoring
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+install(DIRECTORY include/kcenon/monitoring
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon
     FILES_MATCHING PATTERN "*.h"
 )
 
@@ -340,8 +340,8 @@ write_basic_package_version_file(
 # Install adapter headers if BUILD_WITH_COMMON_SYSTEM is enabled
 if(BUILD_WITH_COMMON_SYSTEM)
     install(FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/monitoring/adapters/common_monitor_adapter.h
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/monitoring/adapters
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_monitor_adapter.h
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
         COMPONENT Development
     )
 endif()
