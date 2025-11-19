@@ -298,9 +298,9 @@ public:
         : config_(config) {
         
         auto validation = config_.validate();
-        if (!validation) {
-            throw std::invalid_argument("Invalid metric storage configuration: " + 
-                                      validation.get_error().message);
+        if (validation.is_err()) {
+            throw std::invalid_argument("Invalid metric storage configuration: " +
+                                      validation.error().message);
         }
         
         if (config_.enable_background_processing) {
@@ -344,7 +344,7 @@ public:
         }
 
         auto result = series->buffer->write(std::move(metric));
-        if (result) {
+        if (result.is_ok()) {
             stats_.total_metrics_stored.fetch_add(1, std::memory_order_relaxed);
         } else {
             stats_.total_metrics_dropped.fetch_add(1, std::memory_order_relaxed);
@@ -363,7 +363,7 @@ public:
             auto series = get_or_create_series(metric.metadata);
             if (series) {
                 auto result = series->buffer->write(compact_metric_value(metric));
-                if (result) {
+                if (result.is_ok()) {
                     ++stored_count;
                     stats_.total_metrics_stored.fetch_add(1, std::memory_order_relaxed);
                 } else {

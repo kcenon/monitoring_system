@@ -179,9 +179,9 @@ public:
         
         // Validate configuration
         auto validation = config_.validate();
-        if (!validation) {
-            throw std::invalid_argument("Invalid ring buffer configuration: " + 
-                                      validation.get_error().message);
+        if (validation.is_err()) {
+            throw std::invalid_argument("Invalid ring buffer configuration: " +
+                                      validation.error().message);
         }
     }
     
@@ -285,7 +285,7 @@ public:
 
         for (auto& item : items) {
             auto result = write(std::move(item));
-            if (result) {
+            if (result.is_ok()) {
                 ++written;
             } else {
                 ++failed;
@@ -345,7 +345,7 @@ public:
         
         while (read_count < batch_size) {
             auto result = read(temp_item);
-            if (!result) {
+            if (result.is_err()) {
                 break; // No more items to read
             }
             

@@ -872,9 +872,9 @@ inline std::unique_ptr<buffer_strategy_interface> create_buffering_strategy(
     const buffering_config& config) {
     
     auto validation = config.validate();
-    if (!validation) {
-        throw std::invalid_argument("Invalid buffering configuration: " + 
-                                  validation.get_error().message);
+    if (validation.is_err()) {
+        throw std::invalid_argument("Invalid buffering configuration: " +
+                                  validation.error().message);
     }
     
     switch (config.strategy) {

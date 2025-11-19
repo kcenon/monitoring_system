@@ -70,26 +70,26 @@ struct trace_export_config {
      */
     result_void validate() const {
         if (endpoint.empty()) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Export endpoint cannot be empty");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Export endpoint cannot be empty", "monitoring_system").to_common_error());
         }
-        
+
         if (timeout.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Timeout must be positive");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Timeout must be positive", "monitoring_system").to_common_error());
         }
-        
+
         if (max_batch_size == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Batch size must be greater than 0");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Batch size must be greater than 0", "monitoring_system").to_common_error());
         }
-        
+
         if (max_queue_size < max_batch_size) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Queue size must be at least batch size");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Queue size must be at least batch size", "monitoring_system").to_common_error());
         }
-        
-        return result_void::success();
+
+        return result_void{};
     }
 };
 
@@ -236,29 +236,29 @@ public:
             } else if (config_.format == trace_export_format::jaeger_grpc) {
                 send_result = send_grpc_batch(jaeger_spans);
             } else {
-                return result_void(monitoring_error_code::invalid_configuration,
-                                 "Invalid Jaeger export format");
+                return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                                 "Invalid Jaeger export format", "monitoring_system").to_common_error());
             }
-            
-            if (send_result) {
+
+            if (send_result.is_ok()) {
                 exported_spans_ += spans.size();
             } else {
                 failed_exports_++;
                 return send_result;
             }
-            
-            return result_void::success();
-            
+
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "Jaeger export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "Jaeger export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
     result_void flush() override {
         // Jaeger exporter typically sends immediately, so flush is a no-op
-        return result_void::success();
+        return result_void{};
     }
     
     result_void shutdown() override {
@@ -278,14 +278,14 @@ private:
         // Simulate Thrift protocol sending
         // In real implementation, this would serialize to Thrift and send via HTTP/UDP
         (void)spans; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
-    
+
     result_void send_grpc_batch(const std::vector<jaeger_span_data>& spans) {
         // Simulate gRPC protocol sending
         // In real implementation, this would use Jaeger gRPC client
         (void)spans; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
 };
 
@@ -356,29 +356,29 @@ public:
             } else if (config_.format == trace_export_format::zipkin_protobuf) {
                 send_result = send_protobuf_batch(zipkin_spans);
             } else {
-                return result_void(monitoring_error_code::invalid_configuration,
-                                 "Invalid Zipkin export format");
+                return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                                 "Invalid Zipkin export format", "monitoring_system").to_common_error());
             }
-            
-            if (send_result) {
+
+            if (send_result.is_ok()) {
                 exported_spans_ += spans.size();
             } else {
                 failed_exports_++;
                 return send_result;
             }
-            
-            return result_void::success();
-            
+
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "Zipkin export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "Zipkin export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
     result_void flush() override {
         // Zipkin exporter typically sends immediately, so flush is a no-op
-        return result_void::success();
+        return result_void{};
     }
     
     result_void shutdown() override {
@@ -398,14 +398,14 @@ private:
         // Simulate JSON format sending via HTTP
         // In real implementation, this would serialize to JSON and POST to Zipkin
         (void)spans; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
     
     result_void send_protobuf_batch(const std::vector<zipkin_span_data>& spans) {
         // Simulate Protocol Buffers format sending
         // In real implementation, this would serialize to protobuf and send via HTTP
         (void)spans; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
 };
 
@@ -429,10 +429,10 @@ public:
         try {
             // Convert to OpenTelemetry format first
             auto otel_result = otel_adapter_->convert_spans(spans);
-            if (!otel_result) {
+            if (otel_result.is_err()) {
                 failed_exports_++;
-                return result_void(monitoring_error_code::processing_failed,
-                                 "Failed to convert spans to OTEL format: " + otel_result.get_error().message);
+                return result_void::err(error_info(monitoring_error_code::processing_failed,
+                                 "Failed to convert spans to OTEL format: " + otel_result.error().message, "monitoring_system").to_common_error());
             }
             
             const auto& otel_spans = otel_result.value();
@@ -446,29 +446,29 @@ public:
             } else if (config_.format == trace_export_format::otlp_http_protobuf) {
                 send_result = send_http_protobuf_batch(otel_spans);
             } else {
-                return result_void(monitoring_error_code::invalid_configuration,
-                                 "Invalid OTLP export format");
+                return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                                 "Invalid OTLP export format", "monitoring_system").to_common_error());
             }
-            
-            if (send_result) {
+
+            if (send_result.is_ok()) {
                 exported_spans_ += spans.size();
             } else {
                 failed_exports_++;
                 return send_result;
             }
-            
-            return result_void::success();
-            
+
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "OTLP export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "OTLP export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
     result_void flush() override {
         // OTLP exporter typically sends immediately, so flush is a no-op
-        return result_void::success();
+        return result_void{};
     }
     
     result_void shutdown() override {
@@ -488,21 +488,21 @@ private:
         // Simulate OTLP gRPC sending
         // In real implementation, this would use OTLP gRPC client
         (void)spans; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
     
     result_void send_http_json_batch(const std::vector<otel_span_data>& spans) {
         // Simulate OTLP HTTP JSON sending
         // In real implementation, this would serialize OTEL spans to JSON and POST
         (void)spans; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
     
     result_void send_http_protobuf_batch(const std::vector<otel_span_data>& spans) {
         // Simulate OTLP HTTP protobuf sending
         // In real implementation, this would serialize OTEL spans to protobuf and POST
         (void)spans; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
 };
 

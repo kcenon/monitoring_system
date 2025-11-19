@@ -175,7 +175,7 @@ private:
             }
             
             auto result = flush_buffer(buffer_name);
-            if (result) {
+            if (result.is_ok()) {
                 ++concurrent_flushes;
                 stats_.active_flushes.fetch_add(1, std::memory_order_relaxed);
             }
@@ -209,9 +209,9 @@ private:
         }
         
         auto flush_result = it->second->strategy->flush();
-        if (!flush_result) {
+        if (flush_result.is_err()) {
             stats_.failed_flushes.fetch_add(1, std::memory_order_relaxed);
-            return result_void(flush_result.get_error().code, flush_result.get_error().message);
+            return result_void::err(flush_result.error());
         }
         
         auto flushed_metrics = flush_result.value();
@@ -256,9 +256,9 @@ public:
         : config_(config), storage_(storage) {
         
         auto validation = config_.validate();
-        if (!validation) {
-            throw std::invalid_argument("Invalid buffer manager configuration: " + 
-                                      validation.get_error().message);
+        if (validation.is_err()) {
+            throw std::invalid_argument("Invalid buffer manager configuration: " +
+                                      validation.error().message);
         }
     }
     
@@ -366,7 +366,7 @@ public:
         
         for (const auto& name : buffer_names) {
             auto result = flush_buffer(name);
-            if (!result) {
+            if (result.is_err()) {
                 // Continue flushing other buffers even if one fails
                 stats_.failed_flushes.fetch_add(1, std::memory_order_relaxed);
             }

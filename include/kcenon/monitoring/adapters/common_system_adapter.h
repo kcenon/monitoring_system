@@ -94,7 +94,7 @@ public:
         }
 
         auto result = monitor_->collect_now();
-        if (!result) {
+        if (result.is_err()) {
             return ::kcenon::common::error_info(2, "Failed to collect metrics", "monitoring_system");
         }
 
@@ -126,7 +126,7 @@ public:
         }
 
         auto result = monitor_->check_health();
-        if (!result) {
+        if (result.is_err()) {
             return ::kcenon::common::error_info(2, "Health check failed", "monitoring_system");
         }
 

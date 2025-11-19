@@ -290,13 +290,12 @@ public:
         const time_series_config& config = {}) {
 
         auto validation = config.validate();
-        if (!validation) {
-            return make_error<std::unique_ptr<time_series>>(
-                monitoring_error_code::invalid_configuration,
-                validation.get_error().message);
+        if (validation.is_err()) {
+            return result<std::unique_ptr<time_series>>::err(error_info(monitoring_error_code::invalid_configuration,
+                validation.error().message, "monitoring_system").to_common_error());
         }
 
-        return make_success(std::unique_ptr<time_series>(
+        return result<std::unique_ptr<time_series>>::ok(std::unique_ptr<time_series>(
             new time_series(name, config)));
     }
     
@@ -367,9 +366,9 @@ public:
      */
     result<aggregation_result> query(const time_series_query& query) const {
         auto validation = query.validate();
-        if (!validation) {
-            return make_error<aggregation_result>(monitoring_error_code::invalid_argument,
-                                                validation.get_error().message);
+        if (validation.is_err()) {
+            return result<aggregation_result>::err(error_info(monitoring_error_code::invalid_argument,
+                                                validation.error().message, "monitoring_system").to_common_error());
         }
         
         std::lock_guard<std::mutex> lock(mutex_);
@@ -474,11 +473,11 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (data_.empty()) {
-            return make_error<double>(monitoring_error_code::collection_failed,
-                                    "No data available");
+            return result<double>::err(error_info(monitoring_error_code::collection_failed,
+                                    "No data available", "monitoring_system").to_common_error());
         }
-        
-        return make_success(data_.back().value);
+
+        return result<double>::ok(data_.back().value);
     }
     
     /**

@@ -378,7 +378,7 @@ public:
         
         for (const auto& metric_name : metric_names) {
             auto result = process_metric_aggregation(metric_name);
-            if (result) {
+            if (result.is_ok()) {
                 results.push_back(result.value());
             }
         }
