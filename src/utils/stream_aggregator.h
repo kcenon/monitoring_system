@@ -522,9 +522,9 @@ public:
         , window_(config.window_duration, config.window_size) {
         
         auto validation = config_.validate();
-        if (!validation) {
-            throw std::invalid_argument("Invalid stream aggregator configuration: " + 
-                                      validation.get_error().message);
+        if (validation.is_err()) {
+            throw std::invalid_argument("Invalid stream aggregator configuration: " +
+                                      validation.error().message);
         }
         
         initialize_percentile_estimators();

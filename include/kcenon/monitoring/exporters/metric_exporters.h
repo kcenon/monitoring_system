@@ -91,26 +91,26 @@ struct metric_export_config {
      */
     result_void validate() const {
         if (endpoint.empty() && port == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Either endpoint or port must be specified");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Either endpoint or port must be specified", "monitoring_system").to_common_error());
         }
-        
+
         if (push_interval.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Push interval must be positive");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Push interval must be positive", "monitoring_system").to_common_error());
         }
-        
+
         if (max_batch_size == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Batch size must be greater than 0");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Batch size must be greater than 0", "monitoring_system").to_common_error());
         }
-        
+
         if (max_queue_size < max_batch_size) {
-            return result_void(monitoring_error_code::invalid_configuration,
-                             "Queue size must be at least batch size");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Queue size must be at least batch size", "monitoring_system").to_common_error());
         }
-        
-        return result_void::success();
+
+        return result_void{};
     }
 };
 
@@ -270,12 +270,12 @@ public:
     /**
      * @brief Start the exporter (for pull-based systems)
      */
-    virtual result_void start() { return result_void::success(); }
-    
+    virtual result_void start() { return result_void{}; }
+
     /**
      * @brief Stop the exporter
      */
-    virtual result_void stop() { return result_void::success(); }
+    virtual result_void stop() { return result_void{}; }
 };
 
 /**
@@ -383,12 +383,12 @@ public:
             }
             
             exported_metrics_ += metrics.size();
-            return result_void::success();
-            
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "Prometheus export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "Prometheus export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
@@ -400,12 +400,12 @@ public:
                                   prom_metrics.begin(), prom_metrics.end());
             
             exported_metrics_++;
-            return result_void::success();
-            
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "Prometheus snapshot export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "Prometheus snapshot export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
@@ -428,7 +428,7 @@ public:
     
     result_void flush() override {
         // Prometheus is pull-based, so flush is a no-op
-        return result_void::success();
+        return result_void{};
     }
     
     result_void shutdown() override {
@@ -597,20 +597,20 @@ public:
             
             // Send via UDP (simulated)
             auto send_result = send_udp_batch(statsd_lines);
-            if (send_result) {
+            if (send_result.is_ok()) {
                 exported_metrics_ += metrics.size();
                 sent_packets_++;
             } else {
                 failed_exports_++;
                 return send_result;
             }
-            
-            return result_void::success();
-            
+
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "StatsD export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "StatsD export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
@@ -626,26 +626,26 @@ public:
             
             // Send via UDP (simulated)
             auto send_result = send_udp_batch(statsd_lines);
-            if (send_result) {
+            if (send_result.is_ok()) {
                 exported_metrics_++;
                 sent_packets_++;
             } else {
                 failed_exports_++;
                 return send_result;
             }
-            
-            return result_void::success();
-            
+
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "StatsD snapshot export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "StatsD snapshot export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
     result_void flush() override {
         // StatsD is push-based and sends immediately, so flush is a no-op
-        return result_void::success();
+        return result_void{};
     }
     
     result_void shutdown() override {
@@ -665,7 +665,7 @@ private:
         // Simulate UDP sending
         // In real implementation, this would create UDP socket and send packets
         (void)lines; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
     
     std::string sanitize_metric_name(const std::string& name) const {
@@ -714,29 +714,29 @@ public:
             for (const auto& data : metrics) {
                 // Convert to OpenTelemetry format
                 auto otel_result = otel_adapter_->convert_monitoring_data(data);
-                if (!otel_result) {
+                if (otel_result.is_err()) {
                     failed_exports_++;
-                    return result_void(monitoring_error_code::processing_failed,
-                                     "Failed to convert metrics to OTEL format: " + otel_result.get_error().message);
+                    return result_void::err(error_info(monitoring_error_code::processing_failed,
+                                     "Failed to convert metrics to OTEL format: " + otel_result.error().message, "monitoring_system").to_common_error());
                 }
                 
                 const auto& otel_metrics = otel_result.value();
                 
                 // Send via appropriate OTLP protocol
                 auto send_result = send_otlp_batch(otel_metrics);
-                if (!send_result) {
+                if (send_result.is_err()) {
                     failed_exports_++;
                     return send_result;
                 }
             }
             
             exported_metrics_ += metrics.size();
-            return result_void::success();
-            
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "OTLP metrics export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "OTLP metrics export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
@@ -744,34 +744,34 @@ public:
         try {
             // Convert to OpenTelemetry format
             auto otel_result = otel_adapter_->convert_metrics(snapshot);
-            if (!otel_result) {
+            if (otel_result.is_err()) {
                 failed_exports_++;
-                return result_void(monitoring_error_code::processing_failed,
-                                 "Failed to convert snapshot to OTEL format: " + otel_result.get_error().message);
+                return result_void::err(error_info(monitoring_error_code::processing_failed,
+                                 "Failed to convert snapshot to OTEL format: " + otel_result.error().message, "monitoring_system").to_common_error());
             }
             
             const auto& otel_metrics = otel_result.value();
             
             // Send via appropriate OTLP protocol
             auto send_result = send_otlp_batch(otel_metrics);
-            if (!send_result) {
+            if (send_result.is_err()) {
                 failed_exports_++;
                 return send_result;
             }
             
             exported_metrics_++;
-            return result_void::success();
-            
+            return result_void{};
+
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void(monitoring_error_code::operation_failed,
-                             "OTLP snapshot export failed: " + std::string(e.what()));
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                             "OTLP snapshot export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
     result_void flush() override {
         // OTLP exporter typically sends immediately, so flush is a no-op
-        return result_void::success();
+        return result_void{};
     }
     
     result_void shutdown() override {
@@ -790,7 +790,7 @@ private:
         // Simulate OTLP sending based on format
         // In real implementation, this would use OTLP client
         (void)metrics; // Suppress unused parameter warning
-        return result_void::success();
+        return result_void{};
     }
 };
 

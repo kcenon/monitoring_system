@@ -282,12 +282,14 @@ public:
     kcenon::monitoring::result<trace_context> extract_context_from_carrier(const Carrier& carrier) {
         auto traceparent_it = carrier.find("traceparent");
         if (traceparent_it == carrier.end()) {
-            return kcenon::monitoring::make_error<trace_context>(kcenon::monitoring::monitoring_error_code::not_found);
+            return result<trace_context>::err(error_info(kcenon::monitoring::monitoring_error_code::not_found,
+                "Traceparent not found in carrier").to_common_error());
         }
         
         auto ctx_result = trace_context::from_w3c_traceparent(traceparent_it->second);
-        if (!ctx_result) {
-            return kcenon::monitoring::make_error<trace_context>(ctx_result.get_error().code);
+        if (ctx_result.is_err()) {
+            return result<trace_context>::err(error_info(ctx_result.error().code,
+                ctx_result.error().message, "monitoring_system").to_common_error());
         }
         
         auto ctx = ctx_result.value();

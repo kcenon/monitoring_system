@@ -99,11 +99,11 @@ struct otel_resource {
     result<std::string> get_attribute(const std::string& key) const {
         for (const auto& attr : attributes) {
             if (attr.key == key) {
-                return make_success(attr.value);
+                return result<std::string>::ok(attr.value);
             }
         }
-        return make_error<std::string>(monitoring_error_code::not_found,
-                                     "Attribute not found: " + key);
+        return result<std::string>::err(error_info(monitoring_error_code::not_found,
+                                     "Attribute not found: " + key, "monitoring_system").to_common_error());
     }
 };
 
@@ -232,7 +232,7 @@ public:
             }
         }
         
-        return make_success(std::move(otel_span));
+        return result<otel_span_data>::ok(std::move(otel_span));
     }
     
     /**
@@ -244,22 +244,21 @@ public:
         
         for (const auto& span : spans) {
             auto convert_result = convert_span(span);
-            if (!convert_result) {
-                return make_error<std::vector<otel_span_data>>(
-                    convert_result.get_error().code,
-                    "Failed to convert span: " + convert_result.get_error().message);
+            if (convert_result.is_err()) {
+                return result<std::vector<otel_span_data>>::err(error_info(monitoring_error_code::processing_failed,
+                    "Failed to convert span: " + convert_result.error().message).to_common_error());
             }
             otel_spans.push_back(convert_result.value());
         }
-        
-        return make_success(std::move(otel_spans));
+
+        return result<std::vector<otel_span_data>>::ok(std::move(otel_spans));
     }
     
     /**
      * @brief Create OpenTelemetry context from internal trace context
      */
     result<otel_span_context> create_context(const trace_context& context) {
-        return make_success(otel_span_context(context.trace_id, context.span_id));
+        return result<otel_span_context>::ok(otel_span_context(context.trace_id, context.span_id));
     }
     
 private:
@@ -308,10 +307,10 @@ public:
             
             otel_metrics.push_back(std::move(metric));
         }
-        
-        return make_success(std::move(otel_metrics));
+
+        return result<std::vector<otel_metric_data>>::ok(std::move(otel_metrics));
     }
-    
+
     /**
      * @brief Convert monitoring data to OpenTelemetry metric data
      */
@@ -332,10 +331,10 @@ public:
             
             otel_metrics.push_back(std::move(metric));
         }
-        
-        return make_success(std::move(otel_metrics));
+
+        return result<std::vector<otel_metric_data>>::ok(std::move(otel_metrics));
     }
-    
+
 private:
     otel_resource resource_;
 };
@@ -356,20 +355,20 @@ struct opentelemetry_exporter_config {
     
     result_void validate() const {
         if (endpoint.empty()) {
-            return result_void::error(monitoring_error_code::invalid_configuration,
-                                    "Exporter endpoint cannot be empty");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                                    "Exporter endpoint cannot be empty", "monitoring_system").to_common_error());
         }
         if (protocol != "grpc" && protocol != "http/protobuf" && protocol != "http/json") {
-            return result_void::error(monitoring_error_code::invalid_configuration,
-                                    "Invalid protocol: " + protocol);
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                                    "Invalid protocol: " + protocol, "monitoring_system").to_common_error());
         }
         if (timeout <= std::chrono::milliseconds(0)) {
-            return result_void::error(monitoring_error_code::invalid_configuration,
-                                    "Timeout must be positive");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                                    "Timeout must be positive", "monitoring_system").to_common_error());
         }
         if (max_batch_size == 0) {
-            return result_void::error(monitoring_error_code::invalid_configuration,
-                                    "Batch size must be positive");
+            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                                    "Batch size must be positive", "monitoring_system").to_common_error());
         }
         return result_void{};
     }
@@ -392,10 +391,10 @@ public:
     result_void initialize() {
         std::lock_guard<std::mutex> lock(mutex_);
         if (initialized_) {
-            return result_void::error(monitoring_error_code::already_exists,
-                                    "Compatibility layer already initialized");
+            return result_void::err(error_info(monitoring_error_code::already_exists,
+                                    "Compatibility layer already initialized", "monitoring_system").to_common_error());
         }
-        
+
         initialized_ = true;
         return result_void{};
     }
@@ -423,21 +422,21 @@ public:
      */
     result_void export_spans(const std::vector<trace_span>& spans) {
         if (!initialized_) {
-            return result_void::error(monitoring_error_code::invalid_state,
-                                    "Compatibility layer not initialized");
+            return result_void::err(error_info(monitoring_error_code::invalid_state,
+                                    "Compatibility layer not initialized", "monitoring_system").to_common_error());
         }
-        
+
         auto convert_result = tracer_adapter_.convert_spans(spans);
-        if (!convert_result) {
-            return result_void::error(convert_result.get_error().code,
-                                    "Failed to convert spans: " + convert_result.get_error().message);
+        if (convert_result.is_err()) {
+            return result_void::err(error_info(monitoring_error_code::processing_failed,
+                                    "Failed to convert spans: " + convert_result.error().message).to_common_error());
         }
-        
+
         // Store converted spans for batching
         std::lock_guard<std::mutex> lock(mutex_);
         const auto& otel_spans = convert_result.value();
         pending_spans_.insert(pending_spans_.end(), otel_spans.begin(), otel_spans.end());
-        
+
         return result_void{};
     }
     
@@ -446,21 +445,21 @@ public:
      */
     result_void export_metrics(const monitoring_data& data) {
         if (!initialized_) {
-            return result_void::error(monitoring_error_code::invalid_state,
-                                    "Compatibility layer not initialized");
+            return result_void::err(error_info(monitoring_error_code::invalid_state,
+                                    "Compatibility layer not initialized", "monitoring_system").to_common_error());
         }
-        
+
         auto convert_result = metrics_adapter_.convert_monitoring_data(data);
-        if (!convert_result) {
-            return result_void::error(convert_result.get_error().code,
-                                    "Failed to convert metrics: " + convert_result.get_error().message);
+        if (convert_result.is_err()) {
+            return result_void::err(error_info(monitoring_error_code::processing_failed,
+                                    "Failed to convert metrics: " + convert_result.error().message).to_common_error());
         }
-        
+
         // Store converted metrics for batching
         std::lock_guard<std::mutex> lock(mutex_);
         const auto& otel_metrics = convert_result.value();
         pending_metrics_.insert(pending_metrics_.end(), otel_metrics.begin(), otel_metrics.end());
-        
+
         return result_void{};
     }
     
