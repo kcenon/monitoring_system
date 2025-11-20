@@ -50,7 +50,9 @@ if(DEFINED BUILD_INTEGRATION_TESTS)
     set(MONITORING_BUILD_INTEGRATION_TESTS ${_MONITORING_BUILD_IT_VALUE} CACHE BOOL "Build integration tests" FORCE)
 endif()
 
-if(DEFINED BUILD_EXAMPLES)
+if(DEFINED MONITORING_FORCE_DISABLE_EXAMPLES AND MONITORING_FORCE_DISABLE_EXAMPLES)
+    set(MONITORING_BUILD_EXAMPLES OFF CACHE BOOL "Build example programs" FORCE)
+elseif(DEFINED BUILD_EXAMPLES)
     if(BUILD_EXAMPLES)
         set(_MONITORING_BUILD_EXAMPLES_VALUE ON)
     else()
@@ -98,10 +100,24 @@ endif()
 endif() # BUILD_WITH_COMMON_SYSTEM
 
 # Optional dependencies
+set(MONITORING_THREAD_TARGET "")
 if(MONITORING_USE_THREAD_SYSTEM)
-    find_package(thread_system CONFIG)
-    if(thread_system_FOUND)
-        message(STATUS "Found thread_system: integration enabled")
+    foreach(_candidate ThreadSystem utilities thread_system::thread_system)
+        if(TARGET ${_candidate})
+            set(MONITORING_THREAD_TARGET ${_candidate})
+            break()
+        endif()
+    endforeach()
+
+    if(NOT MONITORING_THREAD_TARGET)
+        find_package(thread_system CONFIG QUIET)
+        if(thread_system_FOUND)
+            set(MONITORING_THREAD_TARGET thread_system::thread_system)
+        endif()
+    endif()
+
+    if(MONITORING_THREAD_TARGET)
+        message(STATUS "Found thread_system: integration enabled (${MONITORING_THREAD_TARGET})")
         add_compile_definitions(MONITORING_HAS_THREAD_SYSTEM)
     else()
         message(WARNING "thread_system not found: integration disabled")
@@ -109,10 +125,24 @@ if(MONITORING_USE_THREAD_SYSTEM)
     endif()
 endif()
 
+set(MONITORING_LOGGER_TARGET "")
 if(MONITORING_USE_LOGGER_SYSTEM)
-    find_package(logger_system CONFIG)
-    if(logger_system_FOUND)
-        message(STATUS "Found logger_system: integration enabled")
+    foreach(_candidate LoggerSystem logger logger_system::logger_system)
+        if(TARGET ${_candidate})
+            set(MONITORING_LOGGER_TARGET ${_candidate})
+            break()
+        endif()
+    endforeach()
+
+    if(NOT MONITORING_LOGGER_TARGET)
+        find_package(logger_system CONFIG QUIET)
+        if(logger_system_FOUND)
+            set(MONITORING_LOGGER_TARGET logger_system::logger_system)
+        endif()
+    endif()
+
+    if(MONITORING_LOGGER_TARGET)
+        message(STATUS "Found logger_system: integration enabled (${MONITORING_LOGGER_TARGET})")
         add_compile_definitions(MONITORING_HAS_LOGGER_SYSTEM)
     else()
         message(WARNING "logger_system not found: integration disabled")
@@ -282,34 +312,29 @@ if(COMMAND setup_monitoring_formatting)
 endif()
 
 # Link optional dependencies with proper target detection
+set(MONITORING_CAN_INSTALL TRUE)
+
 if(MONITORING_USE_THREAD_SYSTEM)
-    # Check for various possible target names
-    if(TARGET ThreadSystem)
-        target_link_libraries(monitoring_system INTERFACE ThreadSystem)
-        message(STATUS "Monitoring System: Linked to ThreadSystem target")
-    elseif(TARGET utilities)
-        target_link_libraries(monitoring_system INTERFACE utilities)
-        message(STATUS "Monitoring System: Linked to utilities target")
-    elseif(TARGET thread_system::thread_system)
-        target_link_libraries(monitoring_system INTERFACE thread_system::thread_system)
-        message(STATUS "Monitoring System: Linked to thread_system::thread_system target")
+    if(MONITORING_THREAD_TARGET AND TARGET ${MONITORING_THREAD_TARGET})
+        target_link_libraries(monitoring_system PUBLIC ${MONITORING_THREAD_TARGET})
+        message(STATUS "Monitoring System: Linked to ${MONITORING_THREAD_TARGET} target")
+        get_target_property(_thread_imported ${MONITORING_THREAD_TARGET} IMPORTED)
+        if(NOT _thread_imported)
+            set(MONITORING_CAN_INSTALL FALSE)
+        endif()
     else()
-        message(FATAL_ERROR "MONITORING_USE_THREAD_SYSTEM is ON but no thread_system target found. "
-                            "Available targets: ThreadSystem, utilities, or thread_system::thread_system")
+        message(FATAL_ERROR "MONITORING_USE_THREAD_SYSTEM is ON but no thread_system target found.")
     endif()
 endif()
 
 if(MONITORING_USE_LOGGER_SYSTEM)
-    # Check for various possible target names
-    if(TARGET LoggerSystem)
-        target_link_libraries(monitoring_system INTERFACE LoggerSystem)
-        message(STATUS "Monitoring System: Linked to LoggerSystem target")
-    elseif(TARGET logger)
-        target_link_libraries(monitoring_system INTERFACE logger)
-        message(STATUS "Monitoring System: Linked to logger target")
-    elseif(TARGET logger_system::logger_system)
-        target_link_libraries(monitoring_system INTERFACE logger_system::logger_system)
-        message(STATUS "Monitoring System: Linked to logger_system::logger_system target")
+    if(MONITORING_LOGGER_TARGET AND TARGET ${MONITORING_LOGGER_TARGET})
+        target_link_libraries(monitoring_system PUBLIC ${MONITORING_LOGGER_TARGET})
+        message(STATUS "Monitoring System: Linked to ${MONITORING_LOGGER_TARGET} target")
+        get_target_property(_logger_imported ${MONITORING_LOGGER_TARGET} IMPORTED)
+        if(NOT _logger_imported)
+            set(MONITORING_CAN_INSTALL FALSE)
+        endif()
     else()
         message(WARNING "MONITORING_USE_LOGGER_SYSTEM is ON but no logger_system target found. "
                         "Logger integration will be disabled.")
@@ -343,53 +368,57 @@ if(MONITORING_BUILD_INTEGRATION_TESTS)
     endif()
 endif()
 
-# Installation
-include(GNUInstallDirs)
+if(MONITORING_CAN_INSTALL)
+    # Installation
+    include(GNUInstallDirs)
 
-install(TARGETS monitoring_system monitoring_system_interface
-    EXPORT monitoring_system_targets
-)
-
-install(DIRECTORY include/kcenon/monitoring
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon
-    FILES_MATCHING PATTERN "*.h"
-)
-
-install(EXPORT monitoring_system_targets
-    FILE monitoring_system-targets.cmake
-    NAMESPACE monitoring_system::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
-)
-
-# Create package configuration
-include(CMakePackageConfigHelpers)
-
-configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/monitoring_system-config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
-)
-
-write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY SameMajorVersion
-)
-
-# Install adapter headers if BUILD_WITH_COMMON_SYSTEM is enabled
-if(BUILD_WITH_COMMON_SYSTEM)
-    install(FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_monitor_adapter.h
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
-        COMPONENT Development
+    install(TARGETS monitoring_system monitoring_system_interface
+        EXPORT monitoring_system_targets
     )
-endif()
 
-install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
-)
+    install(DIRECTORY include/kcenon/monitoring
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon
+        FILES_MATCHING PATTERN "*.h"
+    )
+
+    install(EXPORT monitoring_system_targets
+        FILE monitoring_system-targets.cmake
+        NAMESPACE monitoring_system::
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
+    )
+
+    # Create package configuration
+    include(CMakePackageConfigHelpers)
+
+    configure_package_config_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/monitoring_system-config.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
+        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
+    )
+
+    write_basic_package_version_file(
+        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY SameMajorVersion
+    )
+
+    # Install adapter headers if BUILD_WITH_COMMON_SYSTEM is enabled
+    if(BUILD_WITH_COMMON_SYSTEM)
+        install(FILES
+            ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_monitor_adapter.h
+            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
+            COMPONENT Development
+        )
+    endif()
+
+    install(FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
+    )
+else()
+    message(STATUS "Monitoring System: Skipping install/export (local dependency targets cannot be exported)")
+endif()
 
 # Summary
 message(STATUS "")
