@@ -338,7 +338,7 @@ TEST_F(DataConsistencyTest, TransactionManagerDuplicateTransaction) {
     // Should fail with duplicate ID
     auto begin_result2 = manager.begin_transaction("tx1");
     EXPECT_FALSE(begin_result2);
-    EXPECT_EQ(begin_result2.get_error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(begin_result2.error().code, monitoring_error_code::already_exists);
 }
 
 TEST_F(DataConsistencyTest, TransactionManagerDeadlockDetection) {

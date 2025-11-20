@@ -216,9 +216,9 @@ TEST_F(IntegrationE2ETest, HealthMonitoringWithRecovery) {
             recovery_attempts++;
             if (recovery_attempts >= 2) {
                 service_healthy = true;
-                return result_void::success();
+                return make_void_success();
             }
-            return result_void::error(monitoring_error_code::operation_failed,
+            return make_result_void(monitoring_error_code::operation_failed,
                                     "Still recovering");
         },
         policy
@@ -307,11 +307,11 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
         
         // Fail first 3 calls, then succeed
         if (call_count <= 3 && should_fail) {
-            return result_void::error(monitoring_error_code::operation_failed,
+            return make_result_void(monitoring_error_code::operation_failed,
                                     "Simulated failure");
         }
         
-        return result_void::success();
+        return make_void_success();
     };
     
     // 3. Test retry mechanism

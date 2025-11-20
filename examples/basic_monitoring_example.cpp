@@ -70,7 +70,7 @@ int main() {
         // Step 3: Initialize performance monitor
         if (auto result = perf_monitor.initialize(); !result) {
             std::cerr << "Failed to initialize performance monitor: " 
-                     << result.get_error().message << std::endl;
+                     << result.error().message << std::endl;
             return 1;
         }
         
@@ -135,14 +135,14 @@ int main() {
         // Step 8: Cleanup
         if (auto result = perf_monitor.cleanup(); !result) {
             std::cerr << "Failed to cleanup: " 
-                     << result.get_error().message << std::endl;
+                     << result.error().message << std::endl;
             return 1;
         }
         
         // Flush storage
         if (auto result = storage->flush(); !result) {
             std::cerr << "Failed to flush storage: " 
-                     << result.get_error().message << std::endl;
+                     << result.error().message << std::endl;
         }
         
         std::cout << std::endl;

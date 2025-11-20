@@ -50,26 +50,26 @@ struct metric_storage_config {
      */
     result_void validate() const {
         if (ring_buffer_capacity == 0 || (ring_buffer_capacity & (ring_buffer_capacity - 1)) != 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Ring buffer capacity must be a power of 2");
         }
         
         if (max_metrics == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Max metrics must be positive");
         }
         
         if (retention_period.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Retention period must be positive");
         }
         
         if (flush_interval.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Flush interval must be positive");
         }
         
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -339,7 +339,7 @@ public:
         auto series = get_or_create_series(metadata);
         if (!series) {
             stats_.total_metrics_dropped.fetch_add(1, std::memory_order_relaxed);
-            return result_void(monitoring_error_code::storage_full,
+            return make_result_void(monitoring_error_code::storage_full,
                              "Storage capacity exceeded");
         }
 

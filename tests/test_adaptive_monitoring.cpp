@@ -56,15 +56,15 @@ public:
     
     result_void set_enabled(bool enable) override {
         enabled_ = enable;
-        return result_void::success();
+        return make_void_success();
     }
     
     result_void initialize() override {
-        return result_void::success();
+        return make_void_success();
     }
     
     result_void cleanup() override {
-        return result_void::success();
+        return make_void_success();
     }
     
     kcenon::monitoring::result<metrics_snapshot> collect() override {

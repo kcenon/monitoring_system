@@ -87,7 +87,7 @@ TEST_F(StorageBackendsTest, StorageConfigValidation) {
     invalid_path.batch_size = 100;
     auto path_validation = invalid_path.validate();
     EXPECT_FALSE(path_validation);
-    EXPECT_EQ(path_validation.get_error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(path_validation.error().code, monitoring_error_code::invalid_configuration);
     
     // Valid memory buffer (no path required)
     storage_config memory_config;
@@ -103,7 +103,7 @@ TEST_F(StorageBackendsTest, StorageConfigValidation) {
     invalid_capacity.max_capacity = 0;
     auto capacity_validation = invalid_capacity.validate();
     EXPECT_FALSE(capacity_validation);
-    EXPECT_EQ(capacity_validation.get_error().code, monitoring_error_code::invalid_capacity);
+    EXPECT_EQ(capacity_validation.error().code, monitoring_error_code::invalid_capacity);
     
     // Invalid batch size
     storage_config invalid_batch;

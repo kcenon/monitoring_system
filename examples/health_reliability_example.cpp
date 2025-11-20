@@ -160,7 +160,7 @@ void demonstrate_health_monitoring() {
                     return health_check_result::healthy("Database is alive");
                 } else {
                     return health_check_result::unhealthy(
-                        "Database unreachable: " + result.get_error().message
+                        "Database unreachable: " + result.error().message
                     );
                 }
             },
@@ -187,7 +187,7 @@ void demonstrate_health_monitoring() {
                     return health_check_result::healthy("Database ready");
                 } else {
                     return health_check_result::unhealthy(
-                        "Database not ready: " + result.get_error().message
+                        "Database not ready: " + result.error().message
                     );
                 }
             },
@@ -316,7 +316,7 @@ void demonstrate_circuit_breaker() {
         if (result) {
             std::cout << "SUCCESS - " << result.value() << std::endl;
         } else {
-            std::cout << "FAILED - " << result.get_error().message << std::endl;
+            std::cout << "FAILED - " << result.error().message << std::endl;
         }
         
         // Check circuit state
@@ -411,7 +411,7 @@ void demonstrate_retry_policy() {
     if (final_result) {
         std::cout << "  Final result: SUCCESS - " << final_result.value() << std::endl;
     } else {
-        std::cout << "  Final result: FAILED - " << final_result.get_error().message << std::endl;
+        std::cout << "  Final result: FAILED - " << final_result.error().message << std::endl;
     }
     
     std::cout << "  Total attempts: " << attempt_count << std::endl;
@@ -459,7 +459,7 @@ void demonstrate_error_boundaries() {
             return make_success<std::string>("Result " + std::to_string(i));
         });
         
-        if (!result && result.get_error().code == monitoring_error_code::circuit_breaker_open) {
+        if (!result && result.error().code == monitoring_error_code::circuit_breaker_open) {
             std::cout << "    [Error boundary triggered - too many errors]" << std::endl;
             break;
         }

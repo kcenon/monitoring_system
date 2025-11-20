@@ -47,21 +47,21 @@ struct stream_aggregator_config {
      */
     result_void validate() const {
         if (window_size == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Window size must be positive");
         }
         
         if (window_duration.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Window duration must be positive");
         }
         
         if (percentile_precision <= 0 || percentile_precision >= 1) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Percentile precision must be between 0 and 1");
         }
         
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -558,7 +558,7 @@ public:
             estimator->add_observation(value);
         }
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**

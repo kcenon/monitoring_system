@@ -153,7 +153,7 @@ TEST_F(ResourceManagementTest, MemoryQuotaBasicAllocation) {
     // Should reject when quota exceeded
     auto result3 = manager->allocate(512);
     EXPECT_FALSE(result3);
-    EXPECT_EQ(result3.get_error().code, monitoring_error_code::resource_exhausted);
+    EXPECT_EQ(result3.error().code, monitoring_error_code::resource_exhausted);
 }
 
 TEST_F(ResourceManagementTest, MemoryQuotaDeallocation) {
@@ -304,7 +304,7 @@ TEST_F(ResourceManagementTest, ResourceManagerDuplicateNames) {
     // Second addition with same name should fail
     auto result2 = manager->add_rate_limiter("duplicate_name", config);
     EXPECT_FALSE(result2);
-    EXPECT_EQ(result2.get_error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(result2.error().code, monitoring_error_code::already_exists);
 }
 
 TEST_F(ResourceManagementTest, ResourceManagerHealthCheck) {

@@ -108,7 +108,7 @@ TEST_F(DistributedTracingTest, CannotFinishSpanTwice) {
     
     auto second_finish = tracer.finish_span(span);
     ASSERT_FALSE(second_finish.has_value());
-    EXPECT_EQ(second_finish.get_error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(second_finish.error().code, monitoring_error_code::already_exists);
 }
 
 TEST_F(DistributedTracingTest, TraceContextPropagation) {
