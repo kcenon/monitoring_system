@@ -45,21 +45,21 @@ struct time_series_config {
      */
     result_void validate() const {
         if (retention_period.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Retention period must be positive");
         }
         
         if (resolution.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Resolution must be positive");
         }
         
         if (max_points == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Max points must be positive");
         }
         
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -128,16 +128,16 @@ struct time_series_query {
      */
     result_void validate() const {
         if (start_time >= end_time) {
-            return result_void(monitoring_error_code::invalid_argument,
+            return make_result_void(monitoring_error_code::invalid_argument,
                              "Start time must be before end time");
         }
         
         if (step.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_argument,
+            return make_result_void(monitoring_error_code::invalid_argument,
                              "Step size must be positive");
         }
         
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -330,7 +330,7 @@ public:
             enforce_size_limit();
         }
 
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -358,7 +358,7 @@ public:
         compress_data();
         enforce_size_limit();
 
-        return result_void::success();
+        return make_void_success();
     }
     
     /**

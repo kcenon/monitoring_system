@@ -48,28 +48,28 @@ struct aggregation_rule {
      */
     result_void validate() const {
         if (source_metric.empty()) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Source metric name cannot be empty");
         }
         
         if (target_metric_prefix.empty()) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Target metric prefix cannot be empty");
         }
         
         if (aggregation_interval.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Aggregation interval must be positive");
         }
         
         for (double p : percentiles) {
             if (p < 0.0 || p > 1.0) {
-                return result_void(monitoring_error_code::invalid_configuration,
+                return make_result_void(monitoring_error_code::invalid_configuration,
                                  "Percentiles must be between 0 and 1");
             }
         }
         
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -297,13 +297,13 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (aggregators_.find(rule.source_metric) != aggregators_.end()) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Aggregation rule already exists for metric: " + rule.source_metric);
         }
         
         aggregators_[rule.source_metric] = std::make_unique<metric_aggregator_state>(rule);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -314,12 +314,12 @@ public:
         
         auto it = aggregators_.find(source_metric);
         if (it == aggregators_.end()) {
-            return result_void(monitoring_error_code::collector_not_found,
+            return make_result_void(monitoring_error_code::collector_not_found,
                              "Aggregation rule not found for metric: " + source_metric);
         }
         
         aggregators_.erase(it);
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -333,7 +333,7 @@ public:
         
         auto it = aggregators_.find(metric_name);
         if (it == aggregators_.end()) {
-            return result_void(monitoring_error_code::collector_not_found,
+            return make_result_void(monitoring_error_code::collector_not_found,
                              "No aggregation rule found for metric: " + metric_name);
         }
         
@@ -391,7 +391,7 @@ public:
      */
     result_void start_background_processing(std::chrono::milliseconds interval = std::chrono::milliseconds(10000)) {
         if (running_.load(std::memory_order_acquire)) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Background processing already running");
         }
         
@@ -399,7 +399,7 @@ public:
         running_.store(true, std::memory_order_release);
         background_thread_ = std::thread(&aggregation_processor::background_processing_loop, this);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
