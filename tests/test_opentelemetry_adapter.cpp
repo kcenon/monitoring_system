@@ -246,7 +246,7 @@ TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerInitialization) {
     // Double initialization should fail
     auto double_init = compatibility_layer->initialize();
     EXPECT_FALSE(double_init);
-    EXPECT_EQ(double_init.get_error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(double_init.error().code, monitoring_error_code::already_exists);
     
     auto shutdown_result = compatibility_layer->shutdown();
     EXPECT_TRUE(shutdown_result);
@@ -340,7 +340,7 @@ TEST_F(OpenTelemetryAdapterTest, ExporterConfigValidation) {
     invalid_endpoint.endpoint = "";
     auto endpoint_validation = invalid_endpoint.validate();
     EXPECT_FALSE(endpoint_validation);
-    EXPECT_EQ(endpoint_validation.get_error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(endpoint_validation.error().code, monitoring_error_code::invalid_configuration);
     
     // Test invalid protocol
     opentelemetry_exporter_config invalid_protocol;
