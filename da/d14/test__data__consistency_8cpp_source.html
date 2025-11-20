@@ -460,7 +460,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="comment">// Should fail with duplicate ID</span></div>
 <div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="keyword">auto</span> begin_result2 = manager.begin_transaction(<span class="stringliteral">&quot;tx1&quot;</span>);</div>
 <div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    EXPECT_FALSE(begin_result2);</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    EXPECT_EQ(begin_result2.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    EXPECT_EQ(begin_result2.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>}</div>
 </div>
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
@@ -735,7 +735,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

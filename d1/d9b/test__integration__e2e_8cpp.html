@@ -264,11 +264,11 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  307</span>        </div>
 <div class="line"><span class="lineno">  308</span>        <span class="comment">// Fail first 3 calls, then succeed</span></div>
 <div class="line"><span class="lineno">  309</span>        <span class="keywordflow">if</span> (call_count &lt;= 3 &amp;&amp; should_fail) {</div>
-<div class="line"><span class="lineno">  310</span>            <span class="keywordflow">return</span> result_void::error(monitoring_error_code::operation_failed,</div>
+<div class="line"><span class="lineno">  310</span>            <span class="keywordflow">return</span> make_result_void(monitoring_error_code::operation_failed,</div>
 <div class="line"><span class="lineno">  311</span>                                    <span class="stringliteral">&quot;Simulated failure&quot;</span>);</div>
 <div class="line"><span class="lineno">  312</span>        }</div>
 <div class="line"><span class="lineno">  313</span>        </div>
-<div class="line"><span class="lineno">  314</span>        <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><span class="lineno">  314</span>        <span class="keywordflow">return</span> make_void_success();</div>
 <div class="line"><span class="lineno">  315</span>    };</div>
 <div class="line"><span class="lineno">  316</span>    </div>
 <div class="line"><span class="lineno">  317</span>    <span class="comment">// 3. Test retry mechanism</span></div>
@@ -718,9 +718,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  216</span>            recovery_attempts++;</div>
 <div class="line"><span class="lineno">  217</span>            <span class="keywordflow">if</span> (recovery_attempts &gt;= 2) {</div>
 <div class="line"><span class="lineno">  218</span>                service_healthy = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  219</span>                <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><span class="lineno">  219</span>                <span class="keywordflow">return</span> make_void_success();</div>
 <div class="line"><span class="lineno">  220</span>            }</div>
-<div class="line"><span class="lineno">  221</span>            <span class="keywordflow">return</span> result_void::error(monitoring_error_code::operation_failed,</div>
+<div class="line"><span class="lineno">  221</span>            <span class="keywordflow">return</span> make_result_void(monitoring_error_code::operation_failed,</div>
 <div class="line"><span class="lineno">  222</span>                                    <span class="stringliteral">&quot;Still recovering&quot;</span>);</div>
 <div class="line"><span class="lineno">  223</span>        },</div>
 <div class="line"><span class="lineno">  224</span>        policy</div>
@@ -917,7 +917,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

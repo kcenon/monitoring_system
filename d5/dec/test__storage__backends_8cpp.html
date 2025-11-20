@@ -1076,7 +1076,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   87</span>    invalid_path.batch_size = 100;</div>
 <div class="line"><span class="lineno">   88</span>    <span class="keyword">auto</span> path_validation = invalid_path.validate();</div>
 <div class="line"><span class="lineno">   89</span>    EXPECT_FALSE(path_validation);</div>
-<div class="line"><span class="lineno">   90</span>    EXPECT_EQ(path_validation.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">   90</span>    EXPECT_EQ(path_validation.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><span class="lineno">   91</span>    </div>
 <div class="line"><span class="lineno">   92</span>    <span class="comment">// Valid memory buffer (no path required)</span></div>
 <div class="line"><span class="lineno">   93</span>    storage_config memory_config;</div>
@@ -1092,7 +1092,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  103</span>    invalid_capacity.max_capacity = 0;</div>
 <div class="line"><span class="lineno">  104</span>    <span class="keyword">auto</span> capacity_validation = invalid_capacity.validate();</div>
 <div class="line"><span class="lineno">  105</span>    EXPECT_FALSE(capacity_validation);</div>
-<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(capacity_validation.get_error().code, monitoring_error_code::invalid_capacity);</div>
+<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(capacity_validation.error().code, monitoring_error_code::invalid_capacity);</div>
 <div class="line"><span class="lineno">  107</span>    </div>
 <div class="line"><span class="lineno">  108</span>    <span class="comment">// Invalid batch size</span></div>
 <div class="line"><span class="lineno">  109</span>    storage_config invalid_batch;</div>
@@ -1159,7 +1159,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

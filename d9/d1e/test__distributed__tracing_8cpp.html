@@ -245,7 +245,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  108</span>    </div>
 <div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> second_finish = tracer.finish_span(span);</div>
 <div class="line"><span class="lineno">  110</span>    ASSERT_FALSE(second_finish.has_value());</div>
-<div class="line"><span class="lineno">  111</span>    EXPECT_EQ(second_finish.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  111</span>    EXPECT_EQ(second_finish.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><span class="lineno">  112</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -939,7 +939,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

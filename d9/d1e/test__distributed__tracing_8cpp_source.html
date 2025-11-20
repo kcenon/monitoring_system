@@ -199,7 +199,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    </div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">auto</span> second_finish = tracer.finish_span(span);</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    ASSERT_FALSE(second_finish.has_value());</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    EXPECT_EQ(second_finish.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    EXPECT_EQ(second_finish.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
 </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
@@ -501,7 +501,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

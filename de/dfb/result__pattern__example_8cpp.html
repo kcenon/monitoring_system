@@ -193,7 +193,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span> (result1) {</div>
 <div class="line"><span class="lineno">   83</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result1.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   84</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   85</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   85</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   86</span>    }</div>
 <div class="line"><span class="lineno">   87</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   88</span>    </div>
@@ -203,7 +203,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">   92</span>    <span class="keywordflow">if</span> (result2) {</div>
 <div class="line"><span class="lineno">   93</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result2.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   94</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   96</span>    }</div>
 <div class="line"><span class="lineno">   97</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   98</span>    </div>
@@ -220,14 +220,14 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (validation1) {</div>
 <div class="line"><span class="lineno">  110</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  111</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  112</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  112</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  113</span>    }</div>
 <div class="line"><span class="lineno">  114</span>    </div>
 <div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> validation2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(150.0, 0.0, 100.0);</div>
 <div class="line"><span class="lineno">  116</span>    <span class="keywordflow">if</span> (validation2) {</div>
 <div class="line"><span class="lineno">  117</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  118</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  119</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  119</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  120</span>    }</div>
 <div class="line"><span class="lineno">  121</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  122</span>    </div>
@@ -237,14 +237,14 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  126</span>    <span class="keywordflow">if</span> (result4) {</div>
 <div class="line"><span class="lineno">  127</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result4.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  128</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  130</span>    }</div>
 <div class="line"><span class="lineno">  131</span>    </div>
 <div class="line"><span class="lineno">  132</span>    <span class="keyword">auto</span> result5 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(1.0);</div>
 <div class="line"><span class="lineno">  133</span>    <span class="keywordflow">if</span> (result5) {</div>
 <div class="line"><span class="lineno">  134</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result5.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  135</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  136</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  136</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  137</span>    }</div>
 <div class="line"><span class="lineno">  138</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  139</span>    </div>
@@ -280,7 +280,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  169</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Collection interval: &quot;</span> &lt;&lt; config.collection_interval.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  170</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Buffer size: &quot;</span> &lt;&lt; config.buffer_size &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  171</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  172</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  172</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  173</span>    }</div>
 <div class="line"><span class="lineno">  174</span>    </div>
 <div class="line"><span class="lineno">  175</span>    <span class="keywordflow">return</span> 0;</div>
@@ -392,12 +392,12 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   53</span>                                                                 {</div>
 <div class="line"><span class="lineno">   54</span>    <span class="keywordflow">if</span> (value &lt; min || value &gt; max) {</div>
-<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">return</span> result_void(</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">return</span> make_result_void(</div>
 <div class="line"><span class="lineno">   56</span>            monitoring_error_code::invalid_configuration,</div>
 <div class="line"><span class="lineno">   57</span>            <span class="stringliteral">&quot;Value out of range [&quot;</span> + std::to_string(min) + <span class="stringliteral">&quot;, &quot;</span> + std::to_string(max) + <span class="stringliteral">&quot;]&quot;</span></div>
 <div class="line"><span class="lineno">   58</span>        );</div>
 <div class="line"><span class="lineno">   59</span>    }</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> make_void_success();</div>
 <div class="line"><span class="lineno">   61</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -415,7 +415,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

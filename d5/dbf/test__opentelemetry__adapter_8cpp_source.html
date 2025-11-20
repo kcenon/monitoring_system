@@ -354,7 +354,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="comment">// Double initialization should fail</span></div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">auto</span> double_init = compatibility_layer-&gt;initialize();</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    EXPECT_FALSE(double_init);</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    EXPECT_EQ(double_init.get_error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    EXPECT_EQ(double_init.error().code, monitoring_error_code::already_exists);</div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    </div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">auto</span> shutdown_result = compatibility_layer-&gt;shutdown();</div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    EXPECT_TRUE(shutdown_result);</div>
@@ -458,7 +458,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    invalid_endpoint.endpoint = <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="keyword">auto</span> endpoint_validation = invalid_endpoint.validate();</div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    EXPECT_FALSE(endpoint_validation);</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    EXPECT_EQ(endpoint_validation.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    EXPECT_EQ(endpoint_validation.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    </div>
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <span class="comment">// Test invalid protocol</span></div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    opentelemetry_exporter_config invalid_protocol;</div>
@@ -517,7 +517,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -184,7 +184,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    invalid_config.format = metric_export_format::prometheus_text;</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">auto</span> invalid_validation = invalid_config.validate();</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    EXPECT_FALSE(invalid_validation);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    EXPECT_EQ(invalid_validation.get_error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    EXPECT_EQ(invalid_validation.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// Invalid push interval</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    metric_export_config invalid_interval;</div>
@@ -650,7 +650,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

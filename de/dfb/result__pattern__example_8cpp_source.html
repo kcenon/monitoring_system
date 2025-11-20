@@ -134,12 +134,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">   53</a></span>result_void <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(<span class="keywordtype">double</span> value, <span class="keywordtype">double</span> min, <span class="keywordtype">double</span> max) {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">if</span> (value &lt; min || value &gt; max) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">return</span> result_void(</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">return</span> make_result_void(</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            monitoring_error_code::invalid_configuration,</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="stringliteral">&quot;Value out of range [&quot;</span> + std::to_string(min) + <span class="stringliteral">&quot;, &quot;</span> + std::to_string(max) + <span class="stringliteral">&quot;]&quot;</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        );</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">return</span> result_void::success();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">return</span> make_void_success();</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
 </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
@@ -168,7 +168,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">if</span> (result1) {</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result1.value() &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.error().message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    </div>
@@ -178,7 +178,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">if</span> (result2) {</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result2.value() &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.error().message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    </div>
@@ -195,14 +195,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">if</span> (validation1) {</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.error().message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">auto</span> validation2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(150.0, 0.0, 100.0);</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">if</span> (validation2) {</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.error().message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    </div>
@@ -212,14 +212,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">if</span> (result4) {</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result4.value() &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.error().message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    </div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">auto</span> result5 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(1.0);</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">if</span> (result5) {</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result5.value() &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.error().message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    std::cout &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    </div>
@@ -255,7 +255,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Collection interval: &quot;</span> &lt;&lt; config.collection_interval.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Buffer size: &quot;</span> &lt;&lt; config.buffer_size &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.get_error().message &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.error().message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    </div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">return</span> 0;</div>
@@ -269,7 +269,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 20 2025 06:57:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 20 2025 11:16:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
