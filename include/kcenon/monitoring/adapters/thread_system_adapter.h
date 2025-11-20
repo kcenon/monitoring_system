@@ -125,12 +125,12 @@ public:
     // collected metrics are emitted via metric_collection_event.
     result_void start_collection(const collection_config& cfg) {
         if (running_.exchange(true)) {
-            return result_void::success(); // already running
+            return make_void_success(); // already running
         }
 
         if (!bus_) {
             running_ = false;
-            return result_void(monitoring_error_code::operation_failed, "event_bus not set");
+            return make_result_void(monitoring_error_code::operation_failed, "event_bus not set");
         }
 
         worker_ = std::thread([this, cfg]() {
@@ -143,17 +143,17 @@ public:
             }
         });
 
-        return result_void::success();
+        return make_void_success();
     }
 
     result_void stop_collection() {
         if (!running_.exchange(false)) {
-            return result_void::success();
+            return make_void_success();
         }
         if (worker_.joinable()) {
             worker_.join();
         }
-        return result_void::success();
+        return make_void_success();
     }
 
     ~thread_system_adapter() { (void)stop_collection(); }

@@ -104,7 +104,7 @@ public:
      */
     result_void register_logger(const std::string& /*name*/) {
         // Logger is now provided via DI, not registered by name
-        return result_void::success();
+        return make_void_success();
     }
 
     /**
