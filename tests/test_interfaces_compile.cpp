@@ -67,11 +67,11 @@ public:
     }
 
     result_void start_collection(const collection_config& config) override {
-        return result_void::success();
+        return make_void_success();
     }
 
     result_void stop_collection() override {
-        return result_void::success();
+        return make_void_success();
     }
 
     bool is_collecting() const override {
@@ -87,7 +87,7 @@ public:
     }
 
     result_void update_config(const collection_config& config) override {
-        return result_void::success();
+        return make_void_success();
     }
 
     result<std::vector<metric>> force_collect() override {
@@ -102,11 +102,11 @@ public:
 
     // Observable interface methods
     result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
-        return result_void::success();
+        return make_void_success();
     }
 
     result_void unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
-        return result_void::success();
+        return make_void_success();
     }
 
     void notify_metric(const metric_event& event) override {}

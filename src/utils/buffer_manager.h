@@ -48,12 +48,12 @@ struct buffer_manager_config {
      */
     result_void validate() const {
         if (background_check_interval.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Background check interval must be positive");
         }
         
         if (max_concurrent_flushes == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Max concurrent flushes must be positive");
         }
         
@@ -192,7 +192,7 @@ private:
             std::lock_guard<std::mutex> lock(buffers_mutex_);
             auto it = buffers_.find(metric_name);
             if (it == buffers_.end()) {
-                return result_void(monitoring_error_code::collector_not_found,
+                return make_result_void(monitoring_error_code::collector_not_found,
                                  "Buffer not found: " + metric_name);
             }
             
@@ -204,7 +204,7 @@ private:
         std::lock_guard<std::mutex> lock(buffers_mutex_);
         auto it = buffers_.find(metric_name);
         if (it == buffers_.end()) {
-            return result_void(monitoring_error_code::collector_not_found,
+            return make_result_void(monitoring_error_code::collector_not_found,
                              "Buffer not found: " + metric_name);
         }
         
@@ -216,7 +216,7 @@ private:
         
         auto flushed_metrics = flush_result.value();
         if (flushed_metrics.empty()) {
-            return result_void::success();
+            return make_void_success();
         }
         
         // Store metrics if storage is available
@@ -244,7 +244,7 @@ private:
         // Update last flush time
         it->second->last_flush_time = std::chrono::system_clock::now();
         
-        return result_void::success();
+        return make_void_success();
     }
     
 public:
@@ -341,7 +341,7 @@ public:
         
         buffers_[metric_name] = std::move(entry);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -372,7 +372,7 @@ public:
             }
         }
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -426,19 +426,19 @@ public:
      */
     result_void start_background_processing() {
         if (running_.load(std::memory_order_acquire)) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Background processing already running");
         }
         
         if (!config_.enable_automatic_flushing) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Automatic flushing is disabled");
         }
         
         running_.store(true, std::memory_order_release);
         background_thread_ = std::thread(&buffer_manager::background_processing_loop, this);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -505,7 +505,7 @@ public:
         
         auto it = buffers_.find(metric_name);
         if (it == buffers_.end()) {
-            return result_void(monitoring_error_code::collector_not_found,
+            return make_result_void(monitoring_error_code::collector_not_found,
                              "Buffer not found: " + metric_name);
         }
         
@@ -522,7 +522,7 @@ public:
         buffers_.erase(it);
         stats_.total_buffers.fetch_sub(1, std::memory_order_relaxed);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**

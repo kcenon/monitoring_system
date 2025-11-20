@@ -52,12 +52,12 @@ result<double> divide(double a, double b) {
 // Example function using result_void
 result_void validate_range(double value, double min, double max) {
     if (value < min || value > max) {
-        return result_void(
+        return make_result_void(
             monitoring_error_code::invalid_configuration,
             "Value out of range [" + std::to_string(min) + ", " + std::to_string(max) + "]"
         );
     }
-    return result_void::success();
+    return make_void_success();
 }
 
 // Example using monadic operations
@@ -82,7 +82,7 @@ int main() {
     if (result1) {
         std::cout << "  Result: " << result1.value() << std::endl;
     } else {
-        std::cout << "  Error: " << result1.get_error().message << std::endl;
+        std::cout << "  Error: " << result1.error().message << std::endl;
     }
     std::cout << std::endl;
     
@@ -92,7 +92,7 @@ int main() {
     if (result2) {
         std::cout << "  Result: " << result2.value() << std::endl;
     } else {
-        std::cout << "  Error: " << result2.get_error().message << std::endl;
+        std::cout << "  Error: " << result2.error().message << std::endl;
     }
     std::cout << std::endl;
     
@@ -109,14 +109,14 @@ int main() {
     if (validation1) {
         std::cout << "  Validation passed" << std::endl;
     } else {
-        std::cout << "  Validation failed: " << validation1.get_error().message << std::endl;
+        std::cout << "  Validation failed: " << validation1.error().message << std::endl;
     }
     
     auto validation2 = validate_range(150.0, 0.0, 100.0);
     if (validation2) {
         std::cout << "  Validation passed" << std::endl;
     } else {
-        std::cout << "  Validation failed: " << validation2.get_error().message << std::endl;
+        std::cout << "  Validation failed: " << validation2.error().message << std::endl;
     }
     std::cout << std::endl;
     
@@ -126,14 +126,14 @@ int main() {
     if (result4) {
         std::cout << "  " << result4.value() << std::endl;
     } else {
-        std::cout << "  Error: " << result4.get_error().message << std::endl;
+        std::cout << "  Error: " << result4.error().message << std::endl;
     }
     
     auto result5 = process_metric(1.0);
     if (result5) {
         std::cout << "  " << result5.value() << std::endl;
     } else {
-        std::cout << "  Error: " << result5.get_error().message << std::endl;
+        std::cout << "  Error: " << result5.error().message << std::endl;
     }
     std::cout << std::endl;
     
@@ -169,7 +169,7 @@ int main() {
         std::cout << "  - Collection interval: " << config.collection_interval.count() << "ms" << std::endl;
         std::cout << "  - Buffer size: " << config.buffer_size << std::endl;
     } else {
-        std::cout << "  Configuration error: " << config_result.get_error().message << std::endl;
+        std::cout << "  Configuration error: " << config_result.error().message << std::endl;
     }
     
     return 0;

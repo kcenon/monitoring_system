@@ -110,41 +110,41 @@ struct buffering_config {
      */
     result_void validate() const {
         if (max_buffer_size == 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Max buffer size must be positive");
         }
         
         if (flush_threshold_size > max_buffer_size) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Flush threshold cannot exceed max buffer size");
         }
         
         if (flush_interval.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Flush interval must be positive");
         }
         
         if (max_age.count() <= 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Max age must be positive");
         }
         
         if (min_priority > max_priority) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Min priority cannot exceed max priority");
         }
         
         if (load_factor_threshold <= 0.0 || load_factor_threshold > 1.0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Load factor threshold must be between 0 and 1");
         }
         
         if (compression_ratio_threshold <= 0.0 || compression_ratio_threshold > 1.0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Compression ratio threshold must be between 0 and 1");
         }
         
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -312,7 +312,7 @@ public:
         stats_.total_items_flushed.fetch_add(1, std::memory_order_relaxed);
         stats_.total_flushes.fetch_add(1, std::memory_order_relaxed);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     result<std::vector<buffered_metric>> flush() override {
@@ -435,7 +435,7 @@ public:
         if (buffer_.size() >= config_.max_buffer_size) {
             if (config_.overflow_policy == buffer_overflow_policy::drop_newest) {
                 stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
-                return result_void::success();  // Drop the new item
+                return make_void_success();  // Drop the new item
             }
             handle_overflow();
         }
@@ -447,7 +447,7 @@ public:
         buffer_.emplace_back(std::move(metric));
         stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     result<std::vector<buffered_metric>> flush() override {
@@ -542,7 +542,7 @@ public:
         buffer_.emplace_back(std::move(metric));
         stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     result<std::vector<buffered_metric>> flush() override {
@@ -657,7 +657,7 @@ public:
         buffer_.emplace_back(std::move(metric));
         stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     result<std::vector<buffered_metric>> flush() override {
@@ -808,7 +808,7 @@ public:
         buffer_.emplace_back(std::move(metric));
         stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     result<std::vector<buffered_metric>> flush() override {

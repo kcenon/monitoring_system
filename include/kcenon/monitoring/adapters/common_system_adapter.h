@@ -239,14 +239,14 @@ public:
      */
     result_void set_enabled(bool enable) override {
         enabled_ = enable;
-        return result_void::success();
+        return make_void_success();
     }
 
     /**
      * @brief Initialize the collector
      */
     result_void initialize() override {
-        return result_void::success();
+        return make_void_success();
     }
 
     /**
@@ -256,7 +256,7 @@ public:
         if (common_monitor_) {
             common_monitor_->reset();
         }
-        return result_void::success();
+        return make_void_success();
     }
 
 private:

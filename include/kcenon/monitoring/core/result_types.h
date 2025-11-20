@@ -111,6 +111,13 @@ result<T> make_error(monitoring_error_code code,
     return result<T>::err(err.to_common_error());
 }
 
+inline result_void make_result_void(monitoring_error_code code,
+                                    const std::string& message = "",
+                                    const std::optional<std::string>& context = std::nullopt) {
+    error_info err(code, message, context);
+    return result_void::err(err.to_common_error());
+}
+
 /**
  * @brief Create an error result with context
  * @tparam T The expected value type

@@ -79,7 +79,7 @@ TEST_F(TraceExportersTest, TraceExportConfigValidation) {
     invalid_endpoint.endpoint = "";
     auto endpoint_validation = invalid_endpoint.validate();
     EXPECT_FALSE(endpoint_validation);
-    EXPECT_EQ(endpoint_validation.get_error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(endpoint_validation.error().code, monitoring_error_code::invalid_configuration);
     
     // Invalid timeout
     trace_export_config invalid_timeout;

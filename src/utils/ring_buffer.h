@@ -42,16 +42,16 @@ struct ring_buffer_config {
      */
     result_void validate() const {
         if (capacity == 0 || (capacity & (capacity - 1)) != 0) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Capacity must be a power of 2");
         }
         
         if (batch_size == 0 || batch_size > capacity) {
-            return result_void(monitoring_error_code::invalid_configuration,
+            return make_result_void(monitoring_error_code::invalid_configuration,
                              "Invalid batch size");
         }
         
-        return result_void::success();
+        return make_void_success();
     }
 };
 
@@ -237,7 +237,7 @@ public:
 
                     // Provide more detailed error information
                     size_t current_size = size();
-                    return result_void(monitoring_error_code::storage_full,
+                    return make_result_void(monitoring_error_code::storage_full,
                                      "Ring buffer is full (size: " +
                                      std::to_string(current_size) +
                                      "/" + std::to_string(config_.capacity) +
@@ -251,7 +251,7 @@ public:
             // Prevent infinite loop in case of extreme contention
             if (++retry_count > max_retries) {
                 stats_.failed_writes.fetch_add(1, std::memory_order_relaxed);
-                return result_void(monitoring_error_code::collection_failed,
+                return make_result_void(monitoring_error_code::collection_failed,
                                  "Failed to write to ring buffer after " +
                                  std::to_string(max_retries) + " retries (high contention)");
             }
@@ -267,7 +267,7 @@ public:
         // Memory fence ensures data write completes before index update is visible
         std::atomic_thread_fence(std::memory_order_release);
 
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -312,7 +312,7 @@ public:
         
         if (is_empty_unsafe(current_write, current_read)) {
             stats_.failed_reads.fetch_add(1, std::memory_order_relaxed);
-            return result_void(monitoring_error_code::collection_failed,
+            return make_result_void(monitoring_error_code::collection_failed,
                              "Ring buffer is empty");
         }
         
@@ -323,7 +323,7 @@ public:
         size_t new_read = (current_read + 1) & get_mask();
         read_index_.store(new_read, std::memory_order_release);
         
-        return result_void::success();
+        return make_void_success();
     }
     
     /**
@@ -366,12 +366,12 @@ public:
         size_t current_write = write_index_.load(std::memory_order_acquire);
         
         if (is_empty_unsafe(current_write, current_read)) {
-            return result_void(monitoring_error_code::collection_failed,
+            return make_result_void(monitoring_error_code::collection_failed,
                              "Ring buffer is empty");
         }
         
         item = buffer_[current_read]; // Copy, don't move
-        return result_void::success();
+        return make_void_success();
     }
     
     /**

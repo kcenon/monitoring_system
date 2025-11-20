@@ -92,7 +92,7 @@ TEST_F(MetricExportersTest, MetricExportConfigValidation) {
     invalid_config.format = metric_export_format::prometheus_text;
     auto invalid_validation = invalid_config.validate();
     EXPECT_FALSE(invalid_validation);
-    EXPECT_EQ(invalid_validation.get_error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(invalid_validation.error().code, monitoring_error_code::invalid_configuration);
     
     // Invalid push interval
     metric_export_config invalid_interval;
