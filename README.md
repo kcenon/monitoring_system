@@ -81,7 +81,7 @@ int main() {
     // 3. Start distributed trace
     auto span_result = tracer.start_span("main_operation", "service");
     if (!span_result) {
-        std::cerr << "Failed to start trace: " << span_result.get_error().message << "\n";
+        std::cerr << "Failed to start trace: " << span_result.error().message << "\n";
         return -1;
     }
     auto span = span_result.value();

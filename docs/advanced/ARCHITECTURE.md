@@ -495,7 +495,7 @@ if (result) {
 
 // Error handling
 if (!result) {
-    auto error = result.get_error();
+    auto error = result.error();
     logger->error("Collection failed: {}", error.message);
 
     // Error codes enable programmatic handling
@@ -566,7 +566,7 @@ Always check Result<T> returns:
 auto result = operation();
 if (!result) {
     // Handle error - don't ignore!
-    return result.get_error();
+    return result.error();
 }
 ```
 

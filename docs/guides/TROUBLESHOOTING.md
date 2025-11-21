@@ -93,7 +93,7 @@ config.enable_startup_diagnostics = true;
 // Check initialization result
 auto result = monitoring_system.initialize();
 if (!result) {
-    std::cerr << "Init failed: " << result.get_error().message << "\n";
+    std::cerr << "Init failed: " << result.error().message << "\n";
 }
 ```
 

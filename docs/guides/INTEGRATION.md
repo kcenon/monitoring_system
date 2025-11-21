@@ -123,7 +123,7 @@ common::Result<metrics_snapshot> collect_metrics() {
     if (!result) {
         return common::error<metrics_snapshot>(
             common::error_codes::COLLECTION_FAILED,
-            result.get_error().message,
+            result.error().message,
             "metrics_collector"
         );
     }
@@ -494,7 +494,7 @@ common::Result<metrics_snapshot> collect() {
     if (!internal_result) {
         return common::error<metrics_snapshot>(
             common::error_codes::COLLECTION_FAILED,
-            internal_result.get_error().message,
+            internal_result.error().message,
             "collector"
         );
     }

@@ -87,7 +87,7 @@ auto monitoring_result = builder
 
 if (!monitoring_result) {
     // Handle error
-    std::cerr << "Failed: " << monitoring_result.get_error().message << std::endl;
+    std::cerr << "Failed: " << monitoring_result.error().message << std::endl;
     return;
 }
 
@@ -441,7 +441,7 @@ auto result = parse_config_value("42");
 if (result) {
     std::cout << "Value: " << result.value() << std::endl;
 } else {
-    std::cout << "Error: " << result.get_error().message << std::endl;
+    std::cout << "Error: " << result.error().message << std::endl;
 }
 ```
 
@@ -486,8 +486,8 @@ public:
         auto query_result = execute_query("SELECT * FROM users WHERE id = ?", id);
         if (!query_result) {
             return make_error<User>(
-                query_result.get_error().code,
-                "Query failed: " + query_result.get_error().message
+                query_result.error().code,
+                "Query failed: " + query_result.error().message
             );
         }
         
@@ -532,7 +532,7 @@ Always check Results:
 // Good: Check result
 auto result = operation();
 if (!result) {
-    log_error("Operation failed: {}", result.get_error().message);
+    log_error("Operation failed: {}", result.error().message);
     return result; // Propagate error
 }
 use_value(result.value());
@@ -551,7 +551,7 @@ monitoring_config config;
 
 auto validation = config.validate();
 if (!validation) {
-    log_error("Invalid config: {}", validation.get_error().message);
+    log_error("Invalid config: {}", validation.error().message);
     return;
 }
 ```

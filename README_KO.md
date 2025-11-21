@@ -81,7 +81,7 @@ int main() {
     // 3. 분산 추적 시작
     auto span_result = tracer.start_span("main_operation", "service");
     if (!span_result) {
-        std::cerr << "추적 시작 실패: " << span_result.get_error().message << "\n";
+        std::cerr << "추적 시작 실패: " << span_result.error().message << "\n";
         return -1;
     }
     auto span = span_result.value();

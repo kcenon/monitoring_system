@@ -127,6 +127,14 @@ monitor->record_metric("startup_time", 125.5);
 
 ---
 
+### Result API 업그레이드 체크리스트
+1. `if (!result)` / `result.get_error()` 패턴은 `result.is_err()` / `result.error()`로 교체합니다.
+2. `result_void::error(...)` 호출을 `Result<void>::err(...)`로 대체합니다.
+3. 오류를 다른 시스템으로 전달할 때는 `common::error_info`를 그대로 전달하여 `code`와 `module` 정보를 유지합니다.
+4. 코드 수정 시 README·튜토리얼 등 예제 문서도 동시에 갱신해 레거시 API가 남지 않도록 합니다.
+
+---
+
 ## 상세한 변경사항
 
 ### 1. 인터페이스 위치 변경

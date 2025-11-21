@@ -26,6 +26,13 @@ This guide helps you migrate between versions of monitoring_system, including up
 - [ ] Rebuild and test
 - [ ] Update integration points
 
+### Result API Upgrade Checklist
+
+1. Search for legacy patterns `if (!result)` or `result.get_error()` and replace them with `result.is_err()` / `result.error()`.
+2. Replace `result_void::error(...)` invocations with `Result<void>::err(...)`.
+3. When bridging to `common_system`, return `Result<T>::err(common::error_info{...})` to preserve module names.
+4. Update documentation snippets (README, tutorials) alongside code changes to prevent regressions like those highlighted in `docs/SYSTEM_REFERENCE_IMPROVEMENT_RESULTS.md`.
+
 ---
 
 ## Step-by-Step Migration
@@ -102,7 +109,7 @@ if (result) {
     auto snapshot = result.value();
     process_metrics(snapshot);
 } else {
-    auto error = result.get_error();
+    auto error = result.error();
     std::cerr << "Error: " << error.message << " (code: "
               << static_cast<int>(error.code) << ")\n";
 }
@@ -143,7 +150,7 @@ auto collect_metrics() -> common::Result<void> {
     if (!result) {
         return common::error<void>(
             common::error_codes::COLLECTION_FAILED,
-            "Failed to collect metrics: " + result.get_error().message,
+            "Failed to collect metrics: " + result.error().message,
             "metrics_collector"
         );
     }
@@ -196,7 +203,7 @@ auto process_request(const std::string& request_id) -> common::Result<void> {
     if (!span_result) {
         return common::error<void>(
             common::error_codes::TRACING_FAILED,
-            "Failed to start span: " + span_result.get_error().message,
+            "Failed to start span: " + span_result.error().message,
             "request_processor"
         );
     }
@@ -207,7 +214,7 @@ auto process_request(const std::string& request_id) -> common::Result<void> {
     // Process request
     auto handle_result = handle_request(request_id);
     if (!handle_result) {
-        span->set_tag("error", handle_result.get_error().message);
+        span->set_tag("error", handle_result.error().message);
         tracer.finish_span(span);
         return handle_result;
     }
@@ -274,7 +281,7 @@ public:
         if (!result) {
             return common::error<void>(
                 common::error_codes::COLLECTION_FAILED,
-                result.get_error().message,
+                result.error().message,
                 "my_app"
             );
         }
