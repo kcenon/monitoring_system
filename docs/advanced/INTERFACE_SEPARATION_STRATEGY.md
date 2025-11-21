@@ -195,8 +195,8 @@ public:
     result_void initialize() override {
         auto result = impl_->get_system_monitor().start_monitoring();
         if (!result) {
-            return result_void(result.get_error().code,
-                             result.get_error().message);
+            return result_void(result.error().code,
+                             result.error().message);
         }
         return result_void::success();
     }
@@ -204,8 +204,8 @@ public:
     result_void cleanup() override {
         auto result = impl_->get_system_monitor().stop_monitoring();
         if (!result) {
-            return result_void(result.get_error().code,
-                             result.get_error().message);
+            return result_void(result.error().code,
+                             result.error().message);
         }
         return result_void::success();
     }

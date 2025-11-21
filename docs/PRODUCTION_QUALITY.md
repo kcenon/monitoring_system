@@ -369,7 +369,7 @@ Suppressed: 0 bytes in 0 blocks
    ```cpp
    auto result = monitor.collect();
    if (!result) {
-       std::cerr << "Error: " << result.get_error().message << "\n";
+       std::cerr << "Error: " << result.error().message << "\n";
        return -1;
    }
    auto snapshot = result.value();

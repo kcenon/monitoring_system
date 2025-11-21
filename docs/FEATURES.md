@@ -251,7 +251,7 @@ auto exporter = create_trace_exporter(config);
 // Export traces
 auto export_result = tracer.export_traces();
 if (!export_result) {
-    std::cerr << "Export failed: " << export_result.get_error().message << "\n";
+    std::cerr << "Export failed: " << export_result.error().message << "\n";
 }
 ```
 
@@ -379,8 +379,8 @@ auto result = fetch_user_data(123);
 if (result) {
     std::cout << "User data: " << result.value() << "\n";
 } else {
-    std::cerr << "Error: " << result.get_error().message << "\n";
-    std::cerr << "Code: " << static_cast<int>(result.get_error().code) << "\n";
+    std::cerr << "Error: " << result.error().message << "\n";
+    std::cerr << "Code: " << static_cast<int>(result.error().code) << "\n";
 }
 
 // Chaining operations
@@ -592,7 +592,7 @@ auto result = db_breaker.execute([&]() -> result<std::string> {
 });
 
 if (!result) {
-    std::cerr << "Operation failed: " << result.get_error().message << "\n";
+    std::cerr << "Operation failed: " << result.error().message << "\n";
 
     // Check circuit breaker state
     auto state = db_breaker.get_state();
