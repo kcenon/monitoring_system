@@ -55,7 +55,7 @@ protected:
     result_void test_operation() {
         ++call_count;
         ++success_count;
-        return result_void{};
+        return common::ok();
     }
     
     // Helper function that fails
@@ -67,7 +67,7 @@ protected:
     // Helper function for rollback
     result_void rollback_operation() {
         ++rollback_count;
-        return result_void{};
+        return common::ok();
     }
     
     // Helper validation function
@@ -80,7 +80,7 @@ protected:
     }
     
     result_void test_repair() {
-        return result_void{};
+        return common::ok();
     }
 };
 
@@ -236,7 +236,7 @@ TEST_F(DataConsistencyTest, StateValidatorFailureAndRepair) {
         },
         [&should_fail]() { 
             should_fail = false; // Repair fixes the issue
-            return result_void{}; 
+            return common::ok(); 
         }
     );
     

@@ -110,7 +110,7 @@ struct metric_export_config {
                              "Queue size must be at least batch size", "monitoring_system").to_common_error());
         }
 
-        return result_void{};
+        return common::ok();
     }
 };
 
@@ -270,12 +270,12 @@ public:
     /**
      * @brief Start the exporter (for pull-based systems)
      */
-    virtual result_void start() { return result_void{}; }
+    virtual result_void start() { return common::ok(); }
 
     /**
      * @brief Stop the exporter
      */
-    virtual result_void stop() { return result_void{}; }
+    virtual result_void stop() { return common::ok(); }
 };
 
 /**
@@ -383,7 +383,7 @@ public:
             }
             
             exported_metrics_ += metrics.size();
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -400,7 +400,7 @@ public:
                                   prom_metrics.begin(), prom_metrics.end());
             
             exported_metrics_++;
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -428,7 +428,7 @@ public:
     
     result_void flush() override {
         // Prometheus is pull-based, so flush is a no-op
-        return result_void{};
+        return common::ok();
     }
     
     result_void shutdown() override {
@@ -605,7 +605,7 @@ public:
                 return send_result;
             }
 
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -634,7 +634,7 @@ public:
                 return send_result;
             }
 
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -645,7 +645,7 @@ public:
     
     result_void flush() override {
         // StatsD is push-based and sends immediately, so flush is a no-op
-        return result_void{};
+        return common::ok();
     }
     
     result_void shutdown() override {
@@ -665,7 +665,7 @@ private:
         // Simulate UDP sending
         // In real implementation, this would create UDP socket and send packets
         (void)lines; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
     
     std::string sanitize_metric_name(const std::string& name) const {
@@ -731,7 +731,7 @@ public:
             }
             
             exported_metrics_ += metrics.size();
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -760,7 +760,7 @@ public:
             }
             
             exported_metrics_++;
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -771,7 +771,7 @@ public:
     
     result_void flush() override {
         // OTLP exporter typically sends immediately, so flush is a no-op
-        return result_void{};
+        return common::ok();
     }
     
     result_void shutdown() override {
@@ -790,7 +790,7 @@ private:
         // Simulate OTLP sending based on format
         // In real implementation, this would use OTLP client
         (void)metrics; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
 };
 

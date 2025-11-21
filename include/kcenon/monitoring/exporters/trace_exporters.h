@@ -89,7 +89,7 @@ struct trace_export_config {
                              "Queue size must be at least batch size", "monitoring_system").to_common_error());
         }
 
-        return result_void{};
+        return common::ok();
     }
 };
 
@@ -247,7 +247,7 @@ public:
                 return send_result;
             }
 
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -258,7 +258,7 @@ public:
     
     result_void flush() override {
         // Jaeger exporter typically sends immediately, so flush is a no-op
-        return result_void{};
+        return common::ok();
     }
     
     result_void shutdown() override {
@@ -278,14 +278,14 @@ private:
         // Simulate Thrift protocol sending
         // In real implementation, this would serialize to Thrift and send via HTTP/UDP
         (void)spans; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
 
     result_void send_grpc_batch(const std::vector<jaeger_span_data>& spans) {
         // Simulate gRPC protocol sending
         // In real implementation, this would use Jaeger gRPC client
         (void)spans; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
 };
 
@@ -367,7 +367,7 @@ public:
                 return send_result;
             }
 
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -378,7 +378,7 @@ public:
     
     result_void flush() override {
         // Zipkin exporter typically sends immediately, so flush is a no-op
-        return result_void{};
+        return common::ok();
     }
     
     result_void shutdown() override {
@@ -398,14 +398,14 @@ private:
         // Simulate JSON format sending via HTTP
         // In real implementation, this would serialize to JSON and POST to Zipkin
         (void)spans; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
     
     result_void send_protobuf_batch(const std::vector<zipkin_span_data>& spans) {
         // Simulate Protocol Buffers format sending
         // In real implementation, this would serialize to protobuf and send via HTTP
         (void)spans; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
 };
 
@@ -457,7 +457,7 @@ public:
                 return send_result;
             }
 
-            return result_void{};
+            return common::ok();
 
         } catch (const std::exception& e) {
             failed_exports_++;
@@ -468,7 +468,7 @@ public:
     
     result_void flush() override {
         // OTLP exporter typically sends immediately, so flush is a no-op
-        return result_void{};
+        return common::ok();
     }
     
     result_void shutdown() override {
@@ -488,21 +488,21 @@ private:
         // Simulate OTLP gRPC sending
         // In real implementation, this would use OTLP gRPC client
         (void)spans; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
     
     result_void send_http_json_batch(const std::vector<otel_span_data>& spans) {
         // Simulate OTLP HTTP JSON sending
         // In real implementation, this would serialize OTEL spans to JSON and POST
         (void)spans; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
     
     result_void send_http_protobuf_batch(const std::vector<otel_span_data>& spans) {
         // Simulate OTLP HTTP protobuf sending
         // In real implementation, this would serialize OTEL spans to protobuf and POST
         (void)spans; // Suppress unused parameter warning
-        return result_void{};
+        return common::ok();
     }
 };
 
