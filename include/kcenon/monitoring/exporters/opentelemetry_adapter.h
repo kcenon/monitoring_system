@@ -370,7 +370,7 @@ struct opentelemetry_exporter_config {
             return result_void::err(error_info(monitoring_error_code::invalid_configuration,
                                     "Batch size must be positive", "monitoring_system").to_common_error());
         }
-        return result_void{};
+        return common::ok();
     }
 };
 
@@ -396,7 +396,7 @@ public:
         }
 
         initialized_ = true;
-        return result_void{};
+        return common::ok();
     }
     
     /**
@@ -405,7 +405,7 @@ public:
     result_void shutdown() {
         std::lock_guard<std::mutex> lock(mutex_);
         if (!initialized_) {
-            return result_void{};
+            return common::ok();
         }
         
         // Flush any pending data without re-locking
@@ -414,7 +414,7 @@ public:
         pending_metrics_.clear();
         
         initialized_ = false;
-        return result_void{};
+        return common::ok();
     }
     
     /**
@@ -437,7 +437,7 @@ public:
         const auto& otel_spans = convert_result.value();
         pending_spans_.insert(pending_spans_.end(), otel_spans.begin(), otel_spans.end());
 
-        return result_void{};
+        return common::ok();
     }
     
     /**
@@ -460,7 +460,7 @@ public:
         const auto& otel_metrics = convert_result.value();
         pending_metrics_.insert(pending_metrics_.end(), otel_metrics.begin(), otel_metrics.end());
 
-        return result_void{};
+        return common::ok();
     }
     
     /**
@@ -474,7 +474,7 @@ public:
         pending_spans_.clear();
         pending_metrics_.clear();
         
-        return result_void{};
+        return common::ok();
     }
     
     /**
