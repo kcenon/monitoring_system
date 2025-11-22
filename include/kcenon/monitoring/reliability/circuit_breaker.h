@@ -70,7 +70,7 @@ struct circuit_breaker_metrics {
  * @brief Basic circuit breaker implementation - stub
  */
 template<typename T = void>
-class circuit_breaker {
+class [[deprecated("STUB implementation. Do not use in production. See KNOWN_ISSUES.md.")]] circuit_breaker {
 public:
     using config = circuit_breaker_config;
 
