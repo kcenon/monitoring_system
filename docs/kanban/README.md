@@ -10,9 +10,9 @@
 
 | Priority | Total | Done | In Progress | Pending |
 |----------|-------|------|-------------|---------|
-| 🔴 HIGH | 4 | 0 | 0 | 4 |
+| 🔴 HIGH | 4 | 1 | 0 | 3 |
 | 🟡 MEDIUM | 3 | 0 | 0 | 3 |
-| **Total** | **7** | **0** | **0** | **7** |
+| **Total** | **7** | **1** | **0** | **6** |
 
 ---
 
@@ -22,7 +22,7 @@
 |----|-------|------|--------------|--------|
 | [MON-001](MON-001-circuit-breaker.md) | Complete CircuitBreaker Implementation | 8h | - | TODO |
 | [MON-002](MON-002-test-activation.md) | Activate 24 Disabled Tests | 12h | - | TODO |
-| [MON-003](MON-003-known-issues.md) | Write KNOWN_ISSUES.md Document | 4h | - | TODO |
+| [MON-003](MON-003-known-issues.md) | Write KNOWN_ISSUES.md Document | 4h | - | DONE |
 | [MON-004](MON-004-platform-metrics.md) | Implement Linux/Windows Platform Metrics | 16h | - | TODO |
 
 ### Why HIGH Priority?
