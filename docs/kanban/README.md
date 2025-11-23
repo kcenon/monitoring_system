@@ -21,7 +21,7 @@
 | ID | Title | Est. | Dependencies | Status |
 |----|-------|------|--------------|--------|
 | [MON-001](MON-001-circuit-breaker.md) | Complete CircuitBreaker Implementation | 8h | - | DONE |
-| [MON-002](MON-002-test-activation.md) | Activate 24 Disabled Tests | 12h | - | TODO |
+| [MON-002](MON-002-test-activation.md) | Activate 24 Disabled Tests | 12h | - | IN_PROGRESS |
 | [MON-003](MON-003-known-issues.md) | Write KNOWN_ISSUES.md Document | 4h | - | DONE |
 | [MON-004](MON-004-platform-metrics.md) | Implement Linux/Windows Platform Metrics | 16h | - | DONE |
 
