@@ -11,8 +11,8 @@
 | Priority | Total | Done | In Progress | Pending |
 |----------|-------|------|-------------|---------|
 | 🔴 HIGH | 4 | 1 | 0 | 3 |
-| 🟡 MEDIUM | 3 | 0 | 0 | 3 |
-| **Total** | **7** | **1** | **0** | **6** |
+| 🟡 MEDIUM | 3 | 1 | 0 | 2 |
+| **Total** | **7** | **2** | **0** | **5** |
 
 ---
 
@@ -40,7 +40,7 @@
 |----|-------|------|--------------|--------|
 | [MON-005](MON-005-trace-exporters.md) | Implement Jaeger/Zipkin HTTP Transport | 12h | - | TODO |
 | [MON-006](MON-006-integration-tests.md) | Complete Integration Test Suite | 10h | MON-002 | TODO |
-| [MON-007](MON-007-cmake-cleanup.md) | CMake Option Cleanup | 5h | - | TODO |
+| [MON-007](MON-007-cmake-cleanup.md) | CMake Option Cleanup | 5h | - | DONE |
 
 ---
 
