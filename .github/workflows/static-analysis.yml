@@ -32,8 +32,8 @@ jobs:
           -DMONITORING_BUILD_TESTS=OFF \
           -DMONITORING_BUILD_EXAMPLES=OFF \
           -DMONITORING_BUILD_BENCHMARKS=OFF \
-          -DBUILD_WITH_COMMON_SYSTEM=OFF \
-          -DMONITORING_USE_THREAD_SYSTEM=OFF
+          -DMONITORING_WITH_COMMON_SYSTEM=OFF \
+          -DMONITORING_WITH_THREAD_SYSTEM=OFF
 
     - name: Run clang-tidy
       continue-on-error: true  # Phase 0: Allow failures, collect baseline

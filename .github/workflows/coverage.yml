@@ -48,7 +48,7 @@ jobs:
           -DCMAKE_C_FLAGS="--coverage -fprofile-arcs -ftest-coverage" \
           -DMONITORING_BUILD_TESTS=ON \
           -DMONITORING_BUILD_EXAMPLES=OFF \
-          -DBUILD_WITH_COMMON_SYSTEM=ON
+          -DMONITORING_WITH_COMMON_SYSTEM=ON
 
     - name: Build with coverage
       run: cmake --build build --config Debug
