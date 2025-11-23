@@ -2,8 +2,9 @@
 
 **Priority**: HIGH
 **Est. Duration**: 12h
-**Status**: TODO
+**Status**: IN_PROGRESS
 **Dependencies**: None
+**Progress**: CMakeLists.txt updated with detailed documentation of disabled tests and required API changes
 
 ---
 
