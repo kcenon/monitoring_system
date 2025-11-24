@@ -203,7 +203,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  254</span>    </div>
 <div class="line"><span class="lineno">  255</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">  256</span>    </div>
-<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  258</span>    EXPECT_EQ(result.value(), 888);</div>
 <div class="line"><span class="lineno">  259</span>}</div>
 </div><!-- fragment -->
@@ -249,7 +249,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  239</span>    </div>
 <div class="line"><span class="lineno">  240</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">  241</span>    </div>
-<div class="line"><span class="lineno">  242</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  242</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  243</span>    EXPECT_EQ(result.value(), 555);</div>
 <div class="line"><span class="lineno">  244</span>}</div>
 </div><!-- fragment -->
@@ -295,7 +295,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  222</span>    </div>
 <div class="line"><span class="lineno">  223</span>    <span class="keyword">auto</span> result = fallback_boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><span class="lineno">  224</span>    </div>
-<div class="line"><span class="lineno">  225</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  225</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  226</span>    EXPECT_EQ(result.value(), 777);</div>
 <div class="line"><span class="lineno">  227</span>}</div>
 </div><!-- fragment -->
@@ -575,9 +575,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  158</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>);</div>
 <div class="line"><span class="lineno">  159</span>    </div>
 <div class="line"><span class="lineno">  160</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> throwing_operation(); });</div>
-<div class="line"><span class="lineno">  161</span>    </div>
+<div class="line"><span class="lineno">  161</span> </div>
 <div class="line"><span class="lineno">  162</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  163</span>    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);</div>
+<div class="line"><span class="lineno">  163</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed));</div>
 <div class="line"><span class="lineno">  164</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><span class="lineno">  165</span>}</div>
 </div><!-- fragment -->
@@ -617,9 +617,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  100</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><span class="lineno">  101</span>    </div>
 <div class="line"><span class="lineno">  102</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
-<div class="line"><span class="lineno">  103</span>    </div>
+<div class="line"><span class="lineno">  103</span> </div>
 <div class="line"><span class="lineno">  104</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  105</span>    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);</div>
+<div class="line"><span class="lineno">  105</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed));</div>
 <div class="line"><span class="lineno">  106</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><span class="lineno">  107</span>}</div>
 </div><!-- fragment -->
@@ -707,13 +707,13 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">  109</span>                                                        {</div>
 <div class="line"><span class="lineno">  110</span>    error_boundary_config config;</div>
 <div class="line"><span class="lineno">  111</span>    config.policy = error_boundary_policy::isolate;</div>
-<div class="line"><span class="lineno">  112</span>    </div>
+<div class="line"><span class="lineno">  112</span> </div>
 <div class="line"><span class="lineno">  113</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
-<div class="line"><span class="lineno">  114</span>    </div>
+<div class="line"><span class="lineno">  114</span> </div>
 <div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
-<div class="line"><span class="lineno">  116</span>    </div>
+<div class="line"><span class="lineno">  116</span> </div>
 <div class="line"><span class="lineno">  117</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  118</span>    EXPECT_EQ(result.error().code, monitoring_error_code::service_degraded);</div>
+<div class="line"><span class="lineno">  118</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::service_degraded));</div>
 <div class="line"><span class="lineno">  119</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><span class="lineno">  120</span>}</div>
 </div><!-- fragment -->
@@ -796,7 +796,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   87</span>    </div>
 <div class="line"><span class="lineno">   88</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
 <div class="line"><span class="lineno">   89</span>    </div>
-<div class="line"><span class="lineno">   90</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">   90</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">   91</span>    EXPECT_EQ(result.value(), 100);</div>
 <div class="line"><span class="lineno">   92</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><span class="lineno">   93</span>    EXPECT_EQ(call_count.load(), 1);</div>
@@ -849,7 +849,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  197</span>    </div>
 <div class="line"><span class="lineno">  198</span>    <span class="comment">// Execute successful operation to trigger recovery</span></div>
 <div class="line"><span class="lineno">  199</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
-<div class="line"><span class="lineno">  200</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  200</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  201</span>    </div>
 <div class="line"><span class="lineno">  202</span>    <span class="comment">// Check if recovery occurred (might need multiple successful operations)</span></div>
 <div class="line"><span class="lineno">  203</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
@@ -948,7 +948,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  150</span>    </div>
 <div class="line"><span class="lineno">  151</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); }, fallback);</div>
 <div class="line"><span class="lineno">  152</span>    </div>
-<div class="line"><span class="lineno">  153</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  153</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  154</span>    EXPECT_EQ(result.value(), 999);</div>
 <div class="line"><span class="lineno">  155</span>}</div>
 </div><!-- fragment -->
@@ -987,7 +987,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> config = create_service_config(<span class="stringliteral">&quot;test_service&quot;</span>, service_priority::normal);</div>
 <div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> result = manager-&gt;register_service(config);</div>
 <div class="line"><span class="lineno">  267</span>    </div>
-<div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  269</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;test_service&quot;</span>), degradation_level::normal);</div>
 <div class="line"><span class="lineno">  270</span>}</div>
 </div><!-- fragment -->
@@ -1081,7 +1081,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  298</span>    <span class="comment">// Execute plan</span></div>
 <div class="line"><span class="lineno">  299</span>    <span class="keyword">auto</span> result = manager-&gt;execute_plan(<span class="stringliteral">&quot;emergency_plan&quot;</span>, <span class="stringliteral">&quot;Test emergency&quot;</span>);</div>
 <div class="line"><span class="lineno">  300</span>    </div>
-<div class="line"><span class="lineno">  301</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  301</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  302</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service1&quot;</span>), degradation_level::minimal);</div>
 <div class="line"><span class="lineno">  303</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service2&quot;</span>), degradation_level::emergency);</div>
 <div class="line"><span class="lineno">  304</span>}</div>
@@ -1128,7 +1128,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  333</span>    <span class="comment">// Recover all</span></div>
 <div class="line"><span class="lineno">  334</span>    <span class="keyword">auto</span> result = manager-&gt;recover_all_services();</div>
 <div class="line"><span class="lineno">  335</span>    </div>
-<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  337</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service1&quot;</span>), degradation_level::normal);</div>
 <div class="line"><span class="lineno">  338</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service2&quot;</span>), degradation_level::normal);</div>
 <div class="line"><span class="lineno">  339</span>}</div>
@@ -1170,7 +1170,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  277</span>    </div>
 <div class="line"><span class="lineno">  278</span>    <span class="keyword">auto</span> result = manager-&gt;degrade_service(<span class="stringliteral">&quot;test_service&quot;</span>, degradation_level::limited, <span class="stringliteral">&quot;Test degradation&quot;</span>);</div>
 <div class="line"><span class="lineno">  279</span>    </div>
-<div class="line"><span class="lineno">  280</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  280</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  281</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;test_service&quot;</span>), degradation_level::limited);</div>
 <div class="line"><span class="lineno">  282</span>}</div>
 </div><!-- fragment -->
@@ -1216,7 +1216,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  316</span>    <span class="comment">// Recover service</span></div>
 <div class="line"><span class="lineno">  317</span>    <span class="keyword">auto</span> result = manager-&gt;recover_service(<span class="stringliteral">&quot;test_service&quot;</span>);</div>
 <div class="line"><span class="lineno">  318</span>    </div>
-<div class="line"><span class="lineno">  319</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  319</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  320</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;test_service&quot;</span>), degradation_level::normal);</div>
 <div class="line"><span class="lineno">  321</span>}</div>
 </div><!-- fragment -->
@@ -1277,7 +1277,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

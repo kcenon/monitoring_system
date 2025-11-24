@@ -278,7 +278,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">// Deallocate blocks</span></div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_blocks) {</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    </div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    EXPECT_EQ(pool.available_blocks(), 64);  <span class="comment">// All blocks returned</span></div>
@@ -321,7 +321,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// Deallocate objects</span></div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* obj : objects) {</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="keyword">auto</span> result = pool.deallocate_object(obj);</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    }</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>}</div>
 </div>
@@ -593,7 +593,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>    </div>
 <div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : test_data) {</div>
 <div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>        <span class="keyword">auto</span> result = queue.push(value);</div>
-<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>    }</div>
 <div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>    </div>
 <div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>    <span class="comment">// Pop data from queue and collect in vector</span></div>
@@ -638,7 +638,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

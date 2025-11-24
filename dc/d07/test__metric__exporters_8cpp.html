@@ -188,10 +188,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  421</span>    prometheus_exporter exporter(config);</div>
 <div class="line"><span class="lineno">  422</span>    </div>
 <div class="line"><span class="lineno">  423</span>    <span class="keyword">auto</span> data_result = exporter.export_metrics(empty_data);</div>
-<div class="line"><span class="lineno">  424</span>    EXPECT_TRUE(data_result);</div>
+<div class="line"><span class="lineno">  424</span>    EXPECT_TRUE(data_result.is_ok());</div>
 <div class="line"><span class="lineno">  425</span>    </div>
 <div class="line"><span class="lineno">  426</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(empty_snapshot);</div>
-<div class="line"><span class="lineno">  427</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><span class="lineno">  427</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><span class="lineno">  428</span>    </div>
 <div class="line"><span class="lineno">  429</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  430</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 1); <span class="comment">// Empty snapshot counts as 1</span></div>
@@ -289,7 +289,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  449</span>    </div>
 <div class="line"><span class="lineno">  450</span>    statsd_exporter exporter(config);</div>
 <div class="line"><span class="lineno">  451</span>    <span class="keyword">auto</span> result = exporter.export_metrics(large_batch);</div>
-<div class="line"><span class="lineno">  452</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  452</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  453</span>    </div>
 <div class="line"><span class="lineno">  454</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  455</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 100);</div>
@@ -361,15 +361,15 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  105</span>    invalid_batch.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
 <div class="line"><span class="lineno">  106</span>    invalid_batch.max_batch_size = 0;</div>
 <div class="line"><span class="lineno">  107</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
-<div class="line"><span class="lineno">  108</span>    EXPECT_FALSE(batch_validation);</div>
-<div class="line"><span class="lineno">  109</span>    </div>
+<div class="line"><span class="lineno">  108</span>    EXPECT_FALSE(batch_validation.is_ok());</div>
+<div class="line"><span class="lineno">  109</span> </div>
 <div class="line"><span class="lineno">  110</span>    <span class="comment">// Invalid queue size</span></div>
 <div class="line"><span class="lineno">  111</span>    metric_export_config invalid_queue;</div>
 <div class="line"><span class="lineno">  112</span>    invalid_queue.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
 <div class="line"><span class="lineno">  113</span>    invalid_queue.max_batch_size = 1000;</div>
 <div class="line"><span class="lineno">  114</span>    invalid_queue.max_queue_size = 500;</div>
 <div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> queue_validation = invalid_queue.validate();</div>
-<div class="line"><span class="lineno">  116</span>    EXPECT_FALSE(queue_validation);</div>
+<div class="line"><span class="lineno">  116</span>    EXPECT_FALSE(queue_validation.is_ok());</div>
 <div class="line"><span class="lineno">  117</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -595,11 +595,11 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  317</span>    <span class="comment">// Export monitoring data</span></div>
 <div class="line"><span class="lineno">  318</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
 <div class="line"><span class="lineno">  319</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><span class="lineno">  320</span>    EXPECT_TRUE(export_result);</div>
+<div class="line"><span class="lineno">  320</span>    EXPECT_TRUE(export_result.is_ok());</div>
 <div class="line"><span class="lineno">  321</span>    </div>
 <div class="line"><span class="lineno">  322</span>    <span class="comment">// Export snapshot</span></div>
 <div class="line"><span class="lineno">  323</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  324</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><span class="lineno">  324</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><span class="lineno">  325</span>    </div>
 <div class="line"><span class="lineno">  326</span>    <span class="comment">// Check statistics</span></div>
 <div class="line"><span class="lineno">  327</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
@@ -608,10 +608,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  330</span>    </div>
 <div class="line"><span class="lineno">  331</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><span class="lineno">  332</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  333</span>    EXPECT_TRUE(flush_result);</div>
+<div class="line"><span class="lineno">  333</span>    EXPECT_TRUE(flush_result.is_ok());</div>
 <div class="line"><span class="lineno">  334</span>    </div>
 <div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><span class="lineno">  337</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -653,11 +653,11 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  187</span>    <span class="comment">// Export monitoring data</span></div>
 <div class="line"><span class="lineno">  188</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
 <div class="line"><span class="lineno">  189</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><span class="lineno">  190</span>    EXPECT_TRUE(export_result);</div>
+<div class="line"><span class="lineno">  190</span>    EXPECT_TRUE(export_result.is_ok());</div>
 <div class="line"><span class="lineno">  191</span>    </div>
 <div class="line"><span class="lineno">  192</span>    <span class="comment">// Export snapshot</span></div>
 <div class="line"><span class="lineno">  193</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  194</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><span class="lineno">  194</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><span class="lineno">  195</span>    </div>
 <div class="line"><span class="lineno">  196</span>    <span class="comment">// Get metrics text</span></div>
 <div class="line"><span class="lineno">  197</span>    std::string metrics_text = exporter.get_metrics_text();</div>
@@ -673,10 +673,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  207</span>    </div>
 <div class="line"><span class="lineno">  208</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><span class="lineno">  209</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  210</span>    EXPECT_TRUE(flush_result);</div>
+<div class="line"><span class="lineno">  210</span>    EXPECT_TRUE(flush_result.is_ok());</div>
 <div class="line"><span class="lineno">  211</span>    </div>
 <div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  213</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><span class="lineno">  213</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><span class="lineno">  214</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -838,11 +838,11 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  287</span>    <span class="comment">// Export monitoring data</span></div>
 <div class="line"><span class="lineno">  288</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
 <div class="line"><span class="lineno">  289</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><span class="lineno">  290</span>    EXPECT_TRUE(export_result);</div>
+<div class="line"><span class="lineno">  290</span>    EXPECT_TRUE(export_result.is_ok());</div>
 <div class="line"><span class="lineno">  291</span>    </div>
 <div class="line"><span class="lineno">  292</span>    <span class="comment">// Export snapshot</span></div>
 <div class="line"><span class="lineno">  293</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  294</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><span class="lineno">  294</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><span class="lineno">  295</span>    </div>
 <div class="line"><span class="lineno">  296</span>    <span class="comment">// Check statistics</span></div>
 <div class="line"><span class="lineno">  297</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
@@ -852,10 +852,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  301</span>    </div>
 <div class="line"><span class="lineno">  302</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><span class="lineno">  303</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  304</span>    EXPECT_TRUE(flush_result);</div>
+<div class="line"><span class="lineno">  304</span>    EXPECT_TRUE(flush_result.is_ok());</div>
 <div class="line"><span class="lineno">  305</span>    </div>
 <div class="line"><span class="lineno">  306</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  307</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><span class="lineno">  307</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><span class="lineno">  308</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1037,7 +1037,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

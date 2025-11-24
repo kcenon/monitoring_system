@@ -356,7 +356,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  485</span>    </div>
 <div class="line"><span class="lineno">  486</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : test_data) {</div>
 <div class="line"><span class="lineno">  487</span>        <span class="keyword">auto</span> result = queue.push(value);</div>
-<div class="line"><span class="lineno">  488</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  488</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  489</span>    }</div>
 <div class="line"><span class="lineno">  490</span>    </div>
 <div class="line"><span class="lineno">  491</span>    <span class="comment">// Pop data from queue and collect in vector</span></div>
@@ -594,7 +594,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  188</span>    <span class="comment">// Deallocate blocks</span></div>
 <div class="line"><span class="lineno">  189</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_blocks) {</div>
 <div class="line"><span class="lineno">  190</span>        <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><span class="lineno">  191</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  191</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  192</span>    }</div>
 <div class="line"><span class="lineno">  193</span>    </div>
 <div class="line"><span class="lineno">  194</span>    EXPECT_EQ(pool.available_blocks(), 64);  <span class="comment">// All blocks returned</span></div>
@@ -740,7 +740,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  229</span>    <span class="comment">// Deallocate objects</span></div>
 <div class="line"><span class="lineno">  230</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* obj : objects) {</div>
 <div class="line"><span class="lineno">  231</span>        <span class="keyword">auto</span> result = pool.deallocate_object(obj);</div>
-<div class="line"><span class="lineno">  232</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  232</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  233</span>    }</div>
 <div class="line"><span class="lineno">  234</span>}</div>
 </div><!-- fragment -->
@@ -945,7 +945,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

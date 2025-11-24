@@ -197,15 +197,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    invalid_batch.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    invalid_batch.max_batch_size = 0;</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    EXPECT_FALSE(batch_validation);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    EXPECT_FALSE(batch_validation.is_ok());</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// Invalid queue size</span></div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    metric_export_config invalid_queue;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    invalid_queue.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    invalid_queue.max_batch_size = 1000;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    invalid_queue.max_queue_size = 500;</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">auto</span> queue_validation = invalid_queue.validate();</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    EXPECT_FALSE(queue_validation);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    EXPECT_FALSE(queue_validation.is_ok());</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
 </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
@@ -285,11 +285,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// Export monitoring data</span></div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    EXPECT_TRUE(export_result);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    EXPECT_TRUE(export_result.is_ok());</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    </div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">// Export snapshot</span></div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    </div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="comment">// Get metrics text</span></div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    std::string metrics_text = exporter.get_metrics_text();</div>
@@ -305,10 +305,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    </div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    EXPECT_TRUE(flush_result);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    EXPECT_TRUE(flush_result.is_ok());</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    </div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
 </div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
@@ -391,11 +391,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="comment">// Export monitoring data</span></div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    EXPECT_TRUE(export_result);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    EXPECT_TRUE(export_result.is_ok());</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    </div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="comment">// Export snapshot</span></div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    </div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="comment">// Check statistics</span></div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
@@ -405,10 +405,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    </div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    EXPECT_TRUE(flush_result);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    EXPECT_TRUE(flush_result.is_ok());</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    </div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>}</div>
 </div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
@@ -423,11 +423,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="comment">// Export monitoring data</span></div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    EXPECT_TRUE(export_result);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    EXPECT_TRUE(export_result.is_ok());</div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    </div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="comment">// Export snapshot</span></div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    </div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="comment">// Check statistics</span></div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
@@ -436,10 +436,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    </div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    EXPECT_TRUE(flush_result);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    EXPECT_TRUE(flush_result.is_ok());</div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    </div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
 </div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
@@ -535,10 +535,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    prometheus_exporter exporter(config);</div>
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    </div>
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    <span class="keyword">auto</span> data_result = exporter.export_metrics(empty_data);</div>
-<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    EXPECT_TRUE(data_result);</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    EXPECT_TRUE(data_result.is_ok());</div>
 <div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>    </div>
 <div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(empty_snapshot);</div>
-<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    EXPECT_TRUE(snapshot_result);</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
 <div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    </div>
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 1); <span class="comment">// Empty snapshot counts as 1</span></div>
@@ -565,7 +565,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>    </div>
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    statsd_exporter exporter(config);</div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    <span class="keyword">auto</span> result = exporter.export_metrics(large_batch);</div>
-<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>    </div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 100);</div>
@@ -649,7 +649,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

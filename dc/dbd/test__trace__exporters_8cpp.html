@@ -174,7 +174,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  344</span>    </div>
 <div class="line"><span class="lineno">  345</span>    jaeger_exporter exporter(config);</div>
 <div class="line"><span class="lineno">  346</span>    <span class="keyword">auto</span> result = exporter.export_spans(empty_spans);</div>
-<div class="line"><span class="lineno">  347</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  347</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  348</span>    </div>
 <div class="line"><span class="lineno">  349</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  350</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 0);</div>
@@ -264,25 +264,25 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  314</span>    jaeger_exporter jaeger_exporter(invalid_jaeger_config);</div>
 <div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> jaeger_result = jaeger_exporter.export_spans(test_spans_);</div>
 <div class="line"><span class="lineno">  316</span>    EXPECT_FALSE(jaeger_result);</div>
-<div class="line"><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.error().code, monitoring_error_code::invalid_configuration);</div>
-<div class="line"><span class="lineno">  318</span>    </div>
+<div class="line"><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
+<div class="line"><span class="lineno">  318</span> </div>
 <div class="line"><span class="lineno">  319</span>    trace_export_config invalid_zipkin_config;</div>
 <div class="line"><span class="lineno">  320</span>    invalid_zipkin_config.endpoint = <span class="stringliteral">&quot;http://zipkin:9411&quot;</span>;</div>
 <div class="line"><span class="lineno">  321</span>    invalid_zipkin_config.format = trace_export_format::jaeger_grpc; <span class="comment">// Wrong format</span></div>
-<div class="line"><span class="lineno">  322</span>    </div>
+<div class="line"><span class="lineno">  322</span> </div>
 <div class="line"><span class="lineno">  323</span>    zipkin_exporter zipkin_exporter(invalid_zipkin_config);</div>
 <div class="line"><span class="lineno">  324</span>    <span class="keyword">auto</span> zipkin_result = zipkin_exporter.export_spans(test_spans_);</div>
 <div class="line"><span class="lineno">  325</span>    EXPECT_FALSE(zipkin_result);</div>
-<div class="line"><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.error().code, monitoring_error_code::invalid_configuration);</div>
-<div class="line"><span class="lineno">  327</span>    </div>
+<div class="line"><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
+<div class="line"><span class="lineno">  327</span> </div>
 <div class="line"><span class="lineno">  328</span>    trace_export_config invalid_otlp_config;</div>
 <div class="line"><span class="lineno">  329</span>    invalid_otlp_config.endpoint = <span class="stringliteral">&quot;http://otlp:4317&quot;</span>;</div>
 <div class="line"><span class="lineno">  330</span>    invalid_otlp_config.format = trace_export_format::jaeger_thrift; <span class="comment">// Wrong format</span></div>
-<div class="line"><span class="lineno">  331</span>    </div>
+<div class="line"><span class="lineno">  331</span> </div>
 <div class="line"><span class="lineno">  332</span>    otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);</div>
 <div class="line"><span class="lineno">  333</span>    <span class="keyword">auto</span> otlp_result = otlp_exporter.export_spans(test_spans_);</div>
 <div class="line"><span class="lineno">  334</span>    EXPECT_FALSE(otlp_result);</div>
-<div class="line"><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
 <div class="line"><span class="lineno">  336</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -457,7 +457,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  372</span>    </div>
 <div class="line"><span class="lineno">  373</span>    otlp_exporter exporter(config, otel_resource_);</div>
 <div class="line"><span class="lineno">  374</span>    <span class="keyword">auto</span> result = exporter.export_spans(large_batch);</div>
-<div class="line"><span class="lineno">  375</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  375</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  376</span>    </div>
 <div class="line"><span class="lineno">  377</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  378</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 1000);</div>
@@ -805,7 +805,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

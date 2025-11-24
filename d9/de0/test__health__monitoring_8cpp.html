@@ -625,7 +625,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  188</span>    <span class="comment">// Try to add duplicate</span></div>
 <div class="line"><span class="lineno">  189</span>    result = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
 <div class="line"><span class="lineno">  190</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  191</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  191</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::already_exists));</div>
 <div class="line"><span class="lineno">  192</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -739,7 +739,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  235</span>    <span class="comment">// Try to add the cyclic dependency</span></div>
 <div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> result = graph.add_dependency(<span class="stringliteral">&quot;C&quot;</span>, <span class="stringliteral">&quot;A&quot;</span>);</div>
 <div class="line"><span class="lineno">  237</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  238</span>    EXPECT_EQ(result.error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><span class="lineno">  238</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_state));</div>
 <div class="line"><span class="lineno">  239</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -962,7 +962,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  397</span>    <span class="comment">// Check non-existent</span></div>
 <div class="line"><span class="lineno">  398</span>    result = monitor.check(<span class="stringliteral">&quot;non_existent&quot;</span>);</div>
 <div class="line"><span class="lineno">  399</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  400</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  400</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::not_found));</div>
 <div class="line"><span class="lineno">  401</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1170,7 +1170,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  347</span>    <span class="comment">// Try to register again</span></div>
 <div class="line"><span class="lineno">  348</span>    result = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
 <div class="line"><span class="lineno">  349</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  350</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  350</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::already_exists));</div>
 <div class="line"><span class="lineno">  351</span>    </div>
 <div class="line"><span class="lineno">  352</span>    <span class="comment">// Unregister</span></div>
 <div class="line"><span class="lineno">  353</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
@@ -1180,7 +1180,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  357</span>    <span class="comment">// Try to unregister non-existent</span></div>
 <div class="line"><span class="lineno">  358</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  359</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  360</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
+<div class="line"><span class="lineno">  360</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::not_found));</div>
 <div class="line"><span class="lineno">  361</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1345,7 +1345,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

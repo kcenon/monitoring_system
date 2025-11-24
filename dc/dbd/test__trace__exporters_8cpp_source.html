@@ -422,25 +422,25 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    jaeger_exporter jaeger_exporter(invalid_jaeger_config);</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keyword">auto</span> jaeger_result = jaeger_exporter.export_spans(test_spans_);</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    EXPECT_FALSE(jaeger_result);</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.error().code, monitoring_error_code::invalid_configuration);</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    trace_export_config invalid_zipkin_config;</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    invalid_zipkin_config.endpoint = <span class="stringliteral">&quot;http://zipkin:9411&quot;</span>;</div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    invalid_zipkin_config.format = trace_export_format::jaeger_grpc; <span class="comment">// Wrong format</span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    zipkin_exporter zipkin_exporter(invalid_zipkin_config);</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keyword">auto</span> zipkin_result = zipkin_exporter.export_spans(test_spans_);</div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    EXPECT_FALSE(zipkin_result);</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.error().code, monitoring_error_code::invalid_configuration);</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    trace_export_config invalid_otlp_config;</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    invalid_otlp_config.endpoint = <span class="stringliteral">&quot;http://otlp:4317&quot;</span>;</div>
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    invalid_otlp_config.format = trace_export_format::jaeger_thrift; <span class="comment">// Wrong format</span></div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);</div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keyword">auto</span> otlp_result = otlp_exporter.export_spans(test_spans_);</div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    EXPECT_FALSE(otlp_result);</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.error().code, monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
 <div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>}</div>
 </div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
@@ -454,7 +454,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    </div>
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    jaeger_exporter exporter(config);</div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keyword">auto</span> result = exporter.export_spans(empty_spans);</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    </div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 0);</div>
@@ -484,7 +484,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    </div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    otlp_exporter exporter(config, otel_resource_);</div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="keyword">auto</span> result = exporter.export_spans(large_batch);</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    </div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 1000);</div>
@@ -500,7 +500,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

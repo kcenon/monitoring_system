@@ -287,7 +287,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">// Try to add duplicate</span></div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    result = graph.add_node(<span class="stringliteral">&quot;database&quot;</span>, check);</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::already_exists));</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
 </div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
@@ -338,7 +338,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="comment">// Try to add the cyclic dependency</span></div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keyword">auto</span> result = graph.add_dependency(<span class="stringliteral">&quot;C&quot;</span>, <span class="stringliteral">&quot;A&quot;</span>);</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    EXPECT_EQ(result.error().code, monitoring_error_code::invalid_state);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_state));</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>}</div>
 </div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
@@ -458,7 +458,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="comment">// Try to register again</span></div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    result = monitor.register_check(<span class="stringliteral">&quot;test&quot;</span>, check);</div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::already_exists));</div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    </div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="comment">// Unregister</span></div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
@@ -468,7 +468,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="comment">// Try to unregister non-existent</span></div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    result = monitor.unregister_check(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::not_found));</div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>}</div>
 </div>
 <div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
@@ -512,7 +512,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    <span class="comment">// Check non-existent</span></div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    result = monitor.check(<span class="stringliteral">&quot;non_existent&quot;</span>);</div>
 <div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    ASSERT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::not_found));</div>
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>}</div>
 </div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span> </div>
@@ -780,7 +780,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

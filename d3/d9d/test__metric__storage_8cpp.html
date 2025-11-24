@@ -473,7 +473,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  328</span>    <span class="comment">// Query the data</span></div>
 <div class="line"><span class="lineno">  329</span>    time_series_query query;</div>
 <div class="line"><span class="lineno">  330</span>    <span class="keyword">auto</span> result = storage.query_metric(<span class="stringliteral">&quot;batch_metric&quot;</span>, query);</div>
-<div class="line"><span class="lineno">  331</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  332</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -747,7 +747,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  101</span>    <span class="comment">// Fill buffer completely</span></div>
 <div class="line"><span class="lineno">  102</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 8; ++i) {</div>
 <div class="line"><span class="lineno">  103</span>        <span class="keyword">auto</span> result = buffer.write(std::move(i));</div>
-<div class="line"><span class="lineno">  104</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  104</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  105</span>    }</div>
 <div class="line"><span class="lineno">  106</span>    </div>
 <div class="line"><span class="lineno">  107</span>    <span class="comment">// Should have overwritten, so we should read the last 3 values</span></div>
@@ -797,7 +797,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  141</span>    </div>
 <div class="line"><span class="lineno">  142</span>    <span class="keywordtype">int</span> value;</div>
 <div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span> result = buffer.peek(value);</div>
-<div class="line"><span class="lineno">  144</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  144</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  145</span>    EXPECT_EQ(value, 42);</div>
 <div class="line"><span class="lineno">  146</span>    </div>
 <div class="line"><span class="lineno">  147</span>    <span class="comment">// Size should not change after peek</span></div>
@@ -852,7 +852,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  224</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
 <div class="line"><span class="lineno">  225</span>        <span class="keyword">auto</span> timestamp = now + std::chrono::seconds(i);</div>
 <div class="line"><span class="lineno">  226</span>        <span class="keyword">auto</span> result = series.add_point(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), timestamp);</div>
-<div class="line"><span class="lineno">  227</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  227</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  228</span>    }</div>
 <div class="line"><span class="lineno">  229</span>    </div>
 <div class="line"><span class="lineno">  230</span>    EXPECT_EQ(series.size(), 10);</div>
@@ -911,7 +911,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  254</span>    query.step = std::chrono::seconds(10);</div>
 <div class="line"><span class="lineno">  255</span>    </div>
 <div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> result = series.query(query);</div>
-<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  258</span>    </div>
 <div class="line"><span class="lineno">  259</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; agg_result = result.value();</div>
 <div class="line"><span class="lineno">  260</span>    EXPECT_GT(agg_result.points.size(), 0);</div>
@@ -928,7 +928,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

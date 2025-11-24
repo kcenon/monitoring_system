@@ -452,7 +452,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  396</span>    <span class="comment">// Should fail to add duplicate</span></div>
 <div class="line"><span class="lineno">  397</span>    <span class="keyword">auto</span> duplicate_result = consistency_manager.add_transaction_manager(<span class="stringliteral">&quot;tx_manager&quot;</span>, tx_config);</div>
 <div class="line"><span class="lineno">  398</span>    EXPECT_FALSE(duplicate_result);</div>
-<div class="line"><span class="lineno">  399</span>    EXPECT_EQ(duplicate_result.error().code, monitoring_error_code::already_exists);</div>
+<div class="line"><span class="lineno">  399</span>    EXPECT_EQ(duplicate_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::already_exists));</div>
 <div class="line"><span class="lineno">  400</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1112,7 +1112,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   96</span>    EXPECT_FALSE(op-&gt;is_executed());</div>
 <div class="line"><span class="lineno">   97</span>    </div>
 <div class="line"><span class="lineno">   98</span>    <span class="keyword">auto</span> result = op-&gt;execute();</div>
-<div class="line"><span class="lineno">   99</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">   99</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  100</span>    EXPECT_TRUE(op-&gt;is_executed());</div>
 <div class="line"><span class="lineno">  101</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><span class="lineno">  102</span>    EXPECT_EQ(success_count.load(), 1);</div>
@@ -1281,7 +1281,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

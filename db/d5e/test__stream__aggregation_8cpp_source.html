@@ -319,7 +319,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    std::vector&lt;double&gt; values = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : values) {</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="keyword">auto</span> result = aggregator.add_observation(value);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    </div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">auto</span> stats = aggregator.get_statistics();</div>
@@ -425,7 +425,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="comment">// Add observations</span></div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 100; ++i) {</div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        <span class="keyword">auto</span> result = processor.process_observation(<span class="stringliteral">&quot;test_metric&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    }</div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    </div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="comment">// Get current statistics</span></div>
@@ -452,14 +452,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        rule.aggregation_interval = std::chrono::milliseconds(500);</div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        </div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        <span class="keyword">auto</span> result = processor.add_aggregation_rule(rule);</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    }</div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    </div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="comment">// Add observations to each metric</span></div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric_name : metric_names) {</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 50; ++i) {</div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>            <span class="keyword">auto</span> result = processor.process_observation(metric_name, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>            EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>            EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        }</div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    }</div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    </div>
@@ -494,7 +494,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    </div>
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="comment">// Force aggregation before interval</span></div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keyword">auto</span> result = processor.force_aggregation(<span class="stringliteral">&quot;response_time&quot;</span>);</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    </div>
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="keyword">auto</span> agg_result = result.value();</div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    EXPECT_EQ(agg_result.source_metric, <span class="stringliteral">&quot;response_time&quot;</span>);</div>
@@ -672,7 +672,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

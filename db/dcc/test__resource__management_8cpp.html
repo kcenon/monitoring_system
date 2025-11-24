@@ -249,7 +249,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  228</span>    </div>
 <div class="line"><span class="lineno">  229</span>    <span class="comment">// Should execute when CPU usage is low</span></div>
 <div class="line"><span class="lineno">  230</span>    <span class="keyword">auto</span> result = throttler-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">  231</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  231</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  232</span>    EXPECT_EQ(result.value(), 42);</div>
 <div class="line"><span class="lineno">  233</span>}</div>
 </div><!-- fragment -->
@@ -523,7 +523,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  161</span>    </div>
 <div class="line"><span class="lineno">  162</span>    <span class="comment">// Allocate memory</span></div>
 <div class="line"><span class="lineno">  163</span>    <span class="keyword">auto</span> result = manager-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  164</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  164</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  165</span>    EXPECT_EQ(manager-&gt;current_usage(), 512);</div>
 <div class="line"><span class="lineno">  166</span>    </div>
 <div class="line"><span class="lineno">  167</span>    <span class="comment">// Deallocate memory</span></div>
@@ -532,7 +532,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  170</span>    </div>
 <div class="line"><span class="lineno">  171</span>    <span class="comment">// Should be able to allocate again</span></div>
 <div class="line"><span class="lineno">  172</span>    result = manager-&gt;allocate(512);</div>
-<div class="line"><span class="lineno">  173</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  173</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  174</span>    EXPECT_EQ(manager-&gt;current_usage(), 768);</div>
 <div class="line"><span class="lineno">  175</span>}</div>
 </div><!-- fragment -->
@@ -873,7 +873,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  283</span>    config.strategy = throttling_strategy::delay;</div>
 <div class="line"><span class="lineno">  284</span>    </div>
 <div class="line"><span class="lineno">  285</span>    <span class="keyword">auto</span> result = manager-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>, config);</div>
-<div class="line"><span class="lineno">  286</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  286</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  287</span>    </div>
 <div class="line"><span class="lineno">  288</span>    <span class="keyword">auto</span> throttler = manager-&gt;get_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>);</div>
 <div class="line"><span class="lineno">  289</span>    EXPECT_NE(throttler, <span class="keyword">nullptr</span>);</div>
@@ -1007,7 +1007,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  268</span>    resource_quota quota(resource_type::memory, 2048, throttling_strategy::reject);</div>
 <div class="line"><span class="lineno">  269</span>    </div>
 <div class="line"><span class="lineno">  270</span>    <span class="keyword">auto</span> result = manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>, quota);</div>
-<div class="line"><span class="lineno">  271</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  271</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  272</span>    </div>
 <div class="line"><span class="lineno">  273</span>    <span class="keyword">auto</span> memory_manager = manager-&gt;get_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>);</div>
 <div class="line"><span class="lineno">  274</span>    EXPECT_NE(memory_manager, <span class="keyword">nullptr</span>);</div>
@@ -1100,7 +1100,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  255</span>    config.burst_capacity = 10;</div>
 <div class="line"><span class="lineno">  256</span>    </div>
 <div class="line"><span class="lineno">  257</span>    <span class="keyword">auto</span> result = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>, config);</div>
-<div class="line"><span class="lineno">  258</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  258</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  259</span>    </div>
 <div class="line"><span class="lineno">  260</span>    <span class="keyword">auto</span> limiter = manager-&gt;get_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>);</div>
 <div class="line"><span class="lineno">  261</span>    EXPECT_NE(limiter, <span class="keyword">nullptr</span>);</div>
@@ -1236,14 +1236,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   97</span>    <span class="comment">// Execute operations within limit</span></div>
 <div class="line"><span class="lineno">   98</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><span class="lineno">   99</span>        <span class="keyword">auto</span> result = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><span class="lineno">  100</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  100</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  101</span>        EXPECT_EQ(result.value(), 42);</div>
 <div class="line"><span class="lineno">  102</span>    }</div>
 <div class="line"><span class="lineno">  103</span>    </div>
 <div class="line"><span class="lineno">  104</span>    <span class="comment">// Should reject when limit exceeded</span></div>
 <div class="line"><span class="lineno">  105</span>    <span class="keyword">auto</span> result = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
 <div class="line"><span class="lineno">  106</span>    EXPECT_FALSE(result);</div>
-<div class="line"><span class="lineno">  107</span>    EXPECT_EQ(result.error().code, monitoring_error_code::resource_exhausted);</div>
+<div class="line"><span class="lineno">  107</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::resource_exhausted));</div>
 <div class="line"><span class="lineno">  108</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -1296,7 +1296,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

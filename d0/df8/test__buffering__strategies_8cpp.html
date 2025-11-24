@@ -381,7 +381,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  406</span>        compact_metric_value metric(metadata, 50.0 + i);</div>
 <div class="line"><span class="lineno">  407</span>        </div>
 <div class="line"><span class="lineno">  408</span>        <span class="keyword">auto</span> result = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(metric));</div>
-<div class="line"><span class="lineno">  409</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  409</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  410</span>    }</div>
 <div class="line"><span class="lineno">  411</span>    </div>
 <div class="line"><span class="lineno">  412</span>    <span class="comment">// Check buffer size</span></div>
@@ -438,7 +438,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  469</span>    custom_config.flush_priority_threshold = 200;</div>
 <div class="line"><span class="lineno">  470</span>    </div>
 <div class="line"><span class="lineno">  471</span>    <span class="keyword">auto</span> result = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
-<div class="line"><span class="lineno">  472</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  472</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  473</span>    </div>
 <div class="line"><span class="lineno">  474</span>    <span class="comment">// Add metrics with different priorities</span></div>
 <div class="line"><span class="lineno">  475</span>    std::vector&lt;uint8_t&gt; priorities = {100, 250, 150};</div>
@@ -606,7 +606,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  152</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
 <div class="line"><span class="lineno">  153</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  154</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  155</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  155</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  156</span>    }</div>
 <div class="line"><span class="lineno">  157</span>    </div>
 <div class="line"><span class="lineno">  158</span>    EXPECT_EQ(strategy.size(), 3);</div>
@@ -616,7 +616,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  162</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 3; i &lt; 8; ++i) {</div>
 <div class="line"><span class="lineno">  163</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  164</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  165</span>        EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  165</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  166</span>    }</div>
 <div class="line"><span class="lineno">  167</span>    </div>
 <div class="line"><span class="lineno">  168</span>    EXPECT_EQ(strategy.size(), 5);  <span class="comment">// Should not exceed max size</span></div>
@@ -734,7 +734,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  121</span>    <span class="comment">// Add metric (should be processed immediately)</span></div>
 <div class="line"><span class="lineno">  122</span>    <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
 <div class="line"><span class="lineno">  123</span>    <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  124</span>    EXPECT_TRUE(result);</div>
+<div class="line"><span class="lineno">  124</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  125</span>    </div>
 <div class="line"><span class="lineno">  126</span>    <span class="comment">// Size should still be 0 (no buffering)</span></div>
 <div class="line"><span class="lineno">  127</span>    EXPECT_EQ(strategy.size(), 0);</div>
@@ -1107,7 +1107,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -208,7 +208,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">// Add metric (should be processed immediately)</span></div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    </div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// Size should still be 0 (no buffering)</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    EXPECT_EQ(strategy.size(), 0);</div>
@@ -241,7 +241,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    </div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    EXPECT_EQ(strategy.size(), 3);</div>
@@ -251,7 +251,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 3; i &lt; 8; ++i) {</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    </div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    EXPECT_EQ(strategy.size(), 5);  <span class="comment">// Should not exceed max size</span></div>
@@ -513,7 +513,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>        compact_metric_value metric(metadata, 50.0 + i);</div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        </div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <span class="keyword">auto</span> result = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(metric));</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    }</div>
 <div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    </div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="comment">// Check buffer size</span></div>
@@ -580,7 +580,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>    custom_config.flush_priority_threshold = 200;</div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>    </div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>    <span class="keyword">auto</span> result = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
-<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>    EXPECT_TRUE(result);</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>    </div>
 <div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>    <span class="comment">// Add metrics with different priorities</span></div>
 <div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>    std::vector&lt;uint8_t&gt; priorities = {100, 250, 150};</div>
@@ -696,7 +696,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 09:15:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 09:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
