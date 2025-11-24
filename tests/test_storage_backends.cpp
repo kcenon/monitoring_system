@@ -564,7 +564,7 @@ TEST_F(StorageBackendsTest, ErrorHandling) {
         
         auto retrieve_result = backend.retrieve(999);
         EXPECT_FALSE(retrieve_result);
-        EXPECT_EQ(retrieve_result.error().code, monitoring_error_code::not_found);
+        EXPECT_EQ(retrieve_result.error().code, static_cast<int>(monitoring_error_code::not_found));
     }
 }
 

@@ -96,7 +96,7 @@ TEST_F(DataConsistencyTest, TransactionOperationBasic) {
     EXPECT_FALSE(op->is_executed());
     
     auto result = op->execute();
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_TRUE(op->is_executed());
     EXPECT_EQ(call_count.load(), 1);
     EXPECT_EQ(success_count.load(), 1);
@@ -396,7 +396,7 @@ TEST_F(DataConsistencyTest, DataConsistencyManagerTransactionManagers) {
     // Should fail to add duplicate
     auto duplicate_result = consistency_manager.add_transaction_manager("tx_manager", tx_config);
     EXPECT_FALSE(duplicate_result);
-    EXPECT_EQ(duplicate_result.error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(duplicate_result.error().code, static_cast<int>(monitoring_error_code::already_exists));
 }
 
 TEST_F(DataConsistencyTest, DataConsistencyManagerStateValidators) {

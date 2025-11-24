@@ -105,15 +105,15 @@ TEST_F(MetricExportersTest, MetricExportConfigValidation) {
     invalid_batch.endpoint = "http://test";
     invalid_batch.max_batch_size = 0;
     auto batch_validation = invalid_batch.validate();
-    EXPECT_FALSE(batch_validation);
-    
+    EXPECT_FALSE(batch_validation.is_ok());
+
     // Invalid queue size
     metric_export_config invalid_queue;
     invalid_queue.endpoint = "http://test";
     invalid_queue.max_batch_size = 1000;
     invalid_queue.max_queue_size = 500;
     auto queue_validation = invalid_queue.validate();
-    EXPECT_FALSE(queue_validation);
+    EXPECT_FALSE(queue_validation.is_ok());
 }
 
 TEST_F(MetricExportersTest, PrometheusMetricConversion) {
@@ -187,11 +187,11 @@ TEST_F(MetricExportersTest, PrometheusExporterBasicFunctionality) {
     // Export monitoring data
     std::vector<monitoring_data> data_batch = {test_data_};
     auto export_result = exporter.export_metrics(data_batch);
-    EXPECT_TRUE(export_result);
+    EXPECT_TRUE(export_result.is_ok());
     
     // Export snapshot
     auto snapshot_result = exporter.export_snapshot(test_snapshot_);
-    EXPECT_TRUE(snapshot_result);
+    EXPECT_TRUE(snapshot_result.is_ok());
     
     // Get metrics text
     std::string metrics_text = exporter.get_metrics_text();
@@ -207,10 +207,10 @@ TEST_F(MetricExportersTest, PrometheusExporterBasicFunctionality) {
     
     // Test flush and shutdown
     auto flush_result = exporter.flush();
-    EXPECT_TRUE(flush_result);
+    EXPECT_TRUE(flush_result.is_ok());
     
     auto shutdown_result = exporter.shutdown();
-    EXPECT_TRUE(shutdown_result);
+    EXPECT_TRUE(shutdown_result.is_ok());
 }
 
 TEST_F(MetricExportersTest, StatsDMetricConversion) {
@@ -287,11 +287,11 @@ TEST_F(MetricExportersTest, StatsDExporterBasicFunctionality) {
     // Export monitoring data
     std::vector<monitoring_data> data_batch = {test_data_};
     auto export_result = exporter.export_metrics(data_batch);
-    EXPECT_TRUE(export_result);
+    EXPECT_TRUE(export_result.is_ok());
     
     // Export snapshot
     auto snapshot_result = exporter.export_snapshot(test_snapshot_);
-    EXPECT_TRUE(snapshot_result);
+    EXPECT_TRUE(snapshot_result.is_ok());
     
     // Check statistics
     auto stats = exporter.get_stats();
@@ -301,10 +301,10 @@ TEST_F(MetricExportersTest, StatsDExporterBasicFunctionality) {
     
     // Test flush and shutdown
     auto flush_result = exporter.flush();
-    EXPECT_TRUE(flush_result);
+    EXPECT_TRUE(flush_result.is_ok());
     
     auto shutdown_result = exporter.shutdown();
-    EXPECT_TRUE(shutdown_result);
+    EXPECT_TRUE(shutdown_result.is_ok());
 }
 
 TEST_F(MetricExportersTest, OtlpMetricsExporterBasicFunctionality) {
@@ -317,11 +317,11 @@ TEST_F(MetricExportersTest, OtlpMetricsExporterBasicFunctionality) {
     // Export monitoring data
     std::vector<monitoring_data> data_batch = {test_data_};
     auto export_result = exporter.export_metrics(data_batch);
-    EXPECT_TRUE(export_result);
+    EXPECT_TRUE(export_result.is_ok());
     
     // Export snapshot
     auto snapshot_result = exporter.export_snapshot(test_snapshot_);
-    EXPECT_TRUE(snapshot_result);
+    EXPECT_TRUE(snapshot_result.is_ok());
     
     // Check statistics
     auto stats = exporter.get_stats();
@@ -330,10 +330,10 @@ TEST_F(MetricExportersTest, OtlpMetricsExporterBasicFunctionality) {
     
     // Test flush and shutdown
     auto flush_result = exporter.flush();
-    EXPECT_TRUE(flush_result);
+    EXPECT_TRUE(flush_result.is_ok());
     
     auto shutdown_result = exporter.shutdown();
-    EXPECT_TRUE(shutdown_result);
+    EXPECT_TRUE(shutdown_result.is_ok());
 }
 
 TEST_F(MetricExportersTest, MetricExporterFactory) {
@@ -421,10 +421,10 @@ TEST_F(MetricExportersTest, EmptyMetricsHandling) {
     prometheus_exporter exporter(config);
     
     auto data_result = exporter.export_metrics(empty_data);
-    EXPECT_TRUE(data_result);
+    EXPECT_TRUE(data_result.is_ok());
     
     auto snapshot_result = exporter.export_snapshot(empty_snapshot);
-    EXPECT_TRUE(snapshot_result);
+    EXPECT_TRUE(snapshot_result.is_ok());
     
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_metrics"], 1); // Empty snapshot counts as 1
@@ -449,7 +449,7 @@ TEST_F(MetricExportersTest, LargeMetricBatch) {
     
     statsd_exporter exporter(config);
     auto result = exporter.export_metrics(large_batch);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_metrics"], 100);

@@ -87,7 +87,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryNormalOperation) {
     
     auto result = boundary.execute([this]() { return always_succeeding_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 100);
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
     EXPECT_EQ(call_count.load(), 1);
@@ -100,22 +100,22 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryFailFastPolicy) {
     error_boundary<int> boundary("test_boundary", config);
     
     auto result = boundary.execute([this]() { return always_failing_operation(); });
-    
+
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::operation_failed));
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
 }
 
 TEST_F(ErrorBoundariesTest, ErrorBoundaryIsolatePolicy) {
     error_boundary_config config;
     config.policy = error_boundary_policy::isolate;
-    
+
     error_boundary<int> boundary("test_boundary", config);
-    
+
     auto result = boundary.execute([this]() { return always_failing_operation(); });
-    
+
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error().code, monitoring_error_code::service_degraded);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::service_degraded));
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
 }
 
@@ -150,7 +150,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryWithFallback) {
     
     auto result = boundary.execute([this]() { return always_failing_operation(); }, fallback);
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 999);
 }
 
@@ -158,9 +158,9 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryExceptionHandling) {
     error_boundary<int> boundary("test_boundary");
     
     auto result = boundary.execute([this]() { return throwing_operation(); });
-    
+
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error().code, monitoring_error_code::operation_failed);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::operation_failed));
     EXPECT_EQ(call_count.load(), 1);
 }
 
@@ -197,7 +197,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryRecovery) {
     
     // Execute successful operation to trigger recovery
     auto result = boundary.execute([this]() { return always_succeeding_operation(); });
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     // Check if recovery occurred (might need multiple successful operations)
     for (int i = 0; i < 5; ++i) {
@@ -222,7 +222,7 @@ TEST_F(ErrorBoundariesTest, DefaultValueStrategy) {
     
     auto result = fallback_boundary.execute([this]() { return always_failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 777);
 }
 
@@ -239,7 +239,7 @@ TEST_F(ErrorBoundariesTest, CachedValueStrategy) {
     
     auto result = boundary.execute([this]() { return always_failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 555);
 }
 
@@ -254,7 +254,7 @@ TEST_F(ErrorBoundariesTest, AlternativeServiceStrategy) {
     
     auto result = boundary.execute([this]() { return always_failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 888);
 }
 
@@ -265,7 +265,7 @@ TEST_F(ErrorBoundariesTest, GracefulDegradationManagerBasic) {
     auto config = create_service_config("test_service", service_priority::normal);
     auto result = manager->register_service(config);
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(manager->get_service_level("test_service"), degradation_level::normal);
 }
 
@@ -277,7 +277,7 @@ TEST_F(ErrorBoundariesTest, GracefulDegradationServiceDegrade) {
     
     auto result = manager->degrade_service("test_service", degradation_level::limited, "Test degradation");
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(manager->get_service_level("test_service"), degradation_level::limited);
 }
 
@@ -298,7 +298,7 @@ TEST_F(ErrorBoundariesTest, GracefulDegradationPlanExecution) {
     // Execute plan
     auto result = manager->execute_plan("emergency_plan", "Test emergency");
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(manager->get_service_level("service1"), degradation_level::minimal);
     EXPECT_EQ(manager->get_service_level("service2"), degradation_level::emergency);
 }
@@ -316,7 +316,7 @@ TEST_F(ErrorBoundariesTest, GracefulDegradationServiceRecovery) {
     // Recover service
     auto result = manager->recover_service("test_service");
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(manager->get_service_level("test_service"), degradation_level::normal);
 }
 
@@ -333,7 +333,7 @@ TEST_F(ErrorBoundariesTest, GracefulDegradationRecoverAll) {
     // Recover all
     auto result = manager->recover_all_services();
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(manager->get_service_level("service1"), degradation_level::normal);
     EXPECT_EQ(manager->get_service_level("service2"), degradation_level::normal);
 }

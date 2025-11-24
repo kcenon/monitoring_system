@@ -101,7 +101,7 @@ TEST_F(MetricStorageTest, RingBufferOverwrite) {
     // Fill buffer completely
     for (int i = 0; i < 8; ++i) {
         auto result = buffer.write(std::move(i));
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     // Should have overwritten, so we should read the last 3 values
@@ -141,7 +141,7 @@ TEST_F(MetricStorageTest, RingBufferPeek) {
     
     int value;
     auto result = buffer.peek(value);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(value, 42);
     
     // Size should not change after peek
@@ -224,7 +224,7 @@ TEST_F(MetricStorageTest, TimeSeriesBasicOperations) {
     for (int i = 0; i < 10; ++i) {
         auto timestamp = now + std::chrono::seconds(i);
         auto result = series.add_point(static_cast<double>(i), timestamp);
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     EXPECT_EQ(series.size(), 10);
@@ -254,7 +254,7 @@ TEST_F(MetricStorageTest, TimeSeriesQuery) {
     query.step = std::chrono::seconds(10);
     
     auto result = series.query(query);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     const auto& agg_result = result.value();
     EXPECT_GT(agg_result.points.size(), 0);
@@ -328,7 +328,7 @@ TEST_F(MetricStorageTest, MetricStorageBatchOperations) {
     // Query the data
     time_series_query query;
     auto result = storage.query_metric("batch_metric", query);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
 }
 
 TEST_F(MetricStorageTest, MetricStorageCapacityLimits) {

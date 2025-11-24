@@ -68,8 +68,8 @@ int main() {
         performance_monitor perf_monitor("example_monitor");
         
         // Step 3: Initialize performance monitor
-        if (auto result = perf_monitor.initialize(); !result) {
-            std::cerr << "Failed to initialize performance monitor: " 
+        if (auto result = perf_monitor.initialize(); result.is_err()) {
+            std::cerr << "Failed to initialize performance monitor: "
                      << result.error().message << std::endl;
             return 1;
         }
@@ -109,8 +109,8 @@ int main() {
             
             // Get current system metrics
             auto system_metrics = perf_monitor.get_system_monitor().get_current_metrics();
-            if (system_metrics) {
-                std::cout << "   CPU: " << system_metrics.value().cpu_usage_percent 
+            if (system_metrics.is_ok()) {
+                std::cout << "   CPU: " << system_metrics.value().cpu_usage_percent
                          << "%, Memory: " << (system_metrics.value().memory_usage_bytes / (1024.0 * 1024.0)) << " MB" << std::endl;
             }
         }
@@ -121,7 +121,7 @@ int main() {
         std::cout << "6. Collecting metrics:" << std::endl;
         
         auto metrics_result = perf_monitor.collect();
-        if (metrics_result) {
+        if (metrics_result.is_ok()) {
             auto& snapshot = metrics_result.value();
             std::cout << "   Total metrics collected: " << snapshot.metrics.size() << std::endl;
             
@@ -133,15 +133,15 @@ int main() {
         std::cout << std::endl;
         
         // Step 8: Cleanup
-        if (auto result = perf_monitor.cleanup(); !result) {
-            std::cerr << "Failed to cleanup: " 
+        if (auto result = perf_monitor.cleanup(); result.is_err()) {
+            std::cerr << "Failed to cleanup: "
                      << result.error().message << std::endl;
             return 1;
         }
-        
+
         // Flush storage
-        if (auto result = storage->flush(); !result) {
-            std::cerr << "Failed to flush storage: " 
+        if (auto result = storage->flush(); result.is_err()) {
+            std::cerr << "Failed to flush storage: "
                      << result.error().message << std::endl;
         }
         

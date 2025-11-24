@@ -185,7 +185,7 @@ TEST_F(AdaptiveMonitoringTest, RegisterUnregisterCollector) {
     // Try to register again (should fail)
     result = monitor.register_collector("test", mock);
     ASSERT_FALSE(result.is_ok());
-    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::already_exists));
     
     // Unregister
     result = monitor.unregister_collector("test");
@@ -195,7 +195,7 @@ TEST_F(AdaptiveMonitoringTest, RegisterUnregisterCollector) {
     // Try to unregister non-existent (should fail)
     result = monitor.unregister_collector("test");
     ASSERT_FALSE(result.is_ok());
-    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::not_found));
 }
 
 TEST_F(AdaptiveMonitoringTest, StartStopMonitoring) {

@@ -94,7 +94,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerClosedState) {
     EXPECT_EQ(breaker.get_state(), circuit_state::closed);
     
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 100);
     EXPECT_EQ(breaker.get_state(), circuit_state::closed);
     EXPECT_EQ(call_count.load(), 1);
@@ -119,7 +119,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerOpensAfterFailures) {
     auto result = breaker.execute([this]() { return always_failing_operation(); });
     EXPECT_FALSE(result);
     EXPECT_EQ(call_count.load(), 3); // Should not increment
-    EXPECT_EQ(result.error().code, monitoring_error_code::circuit_breaker_open);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::circuit_breaker_open));
 }
 
 TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenTransition) {
@@ -140,7 +140,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenTransition) {
     
     // Next call should transition to half-open
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(breaker.get_state(), circuit_state::half_open);
 }
 
@@ -164,7 +164,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenToClosedTransition) {
     
     // One more success should close the circuit
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(breaker.get_state(), circuit_state::closed);
 }
 
@@ -182,7 +182,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerWithFallback) {
     auto fallback = []() { return make_success(999); };
     auto result = breaker.execute([this]() { return always_failing_operation(); }, fallback);
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 999);
 }
 
@@ -213,7 +213,7 @@ TEST_F(FaultToleranceTest, RetryExecutorBasicRetry) {
     
     auto result = executor.execute([this]() { return failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 42);
     EXPECT_EQ(call_count.load(), 3);
     
@@ -248,7 +248,7 @@ TEST_F(FaultToleranceTest, RetryExecutorFixedDelay) {
     auto result = executor.execute([this]() { return failing_operation(); });
     auto duration = std::chrono::steady_clock::now() - start;
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_GE(duration, std::chrono::milliseconds(100)); // At least 2 delays
 }
 
@@ -260,7 +260,7 @@ TEST_F(FaultToleranceTest, RetryExecutorFibonacciBackoff) {
     
     auto result = executor.execute([this]() { return failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(call_count.load(), 4);
 }
 
@@ -295,7 +295,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerCircuitBreakerFirst) {
     
     auto result = manager.execute([this]() { return failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 42);
     EXPECT_EQ(call_count.load(), 2); // Retry executed
 }
@@ -314,7 +314,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerRetryFirst) {
     
     auto result = manager.execute([this]() { return failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(call_count.load(), 3);
 }
 
@@ -328,7 +328,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerOnlyCircuitBreaker) {
     
     auto result = manager.execute([this]() { return always_succeeding_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 100);
 }
 
@@ -344,7 +344,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerOnlyRetry) {
     
     auto result = manager.execute([this]() { return failing_operation(); });
     
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(call_count.load(), 3);
 }
 
@@ -362,7 +362,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerWithTimeout) {
     );
     
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error().code, monitoring_error_code::operation_timeout);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::operation_timeout));
 }
 
 TEST_F(FaultToleranceTest, FaultToleranceManagerMetrics) {
@@ -574,7 +574,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerReset) {
     
     // Should work normally now
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
 }
 
 TEST_F(FaultToleranceTest, RetryExecutorResetMetrics) {

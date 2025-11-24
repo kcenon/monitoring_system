@@ -97,14 +97,14 @@ TEST_F(ResourceManagementTest, TokenBucketExecute) {
     // Execute operations within limit
     for (int i = 0; i < 5; ++i) {
         auto result = limiter->execute([this]() { return test_operation(); });
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
         EXPECT_EQ(result.value(), 42);
     }
     
     // Should reject when limit exceeded
     auto result = limiter->execute([this]() { return test_operation(); });
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error().code, monitoring_error_code::resource_exhausted);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::resource_exhausted));
 }
 
 // Leaky Bucket Rate Limiter Tests  
@@ -161,7 +161,7 @@ TEST_F(ResourceManagementTest, MemoryQuotaDeallocation) {
     
     // Allocate memory
     auto result = manager->allocate(512);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(manager->current_usage(), 512);
     
     // Deallocate memory
@@ -170,7 +170,7 @@ TEST_F(ResourceManagementTest, MemoryQuotaDeallocation) {
     
     // Should be able to allocate again
     result = manager->allocate(512);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(manager->current_usage(), 768);
 }
 
@@ -228,7 +228,7 @@ TEST_F(ResourceManagementTest, CPUThrottlerBasicOperation) {
     
     // Should execute when CPU usage is low
     auto result = throttler->execute([this]() { return test_operation(); });
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 42);
 }
 
@@ -255,7 +255,7 @@ TEST_F(ResourceManagementTest, ResourceManagerRateLimiter) {
     config.burst_capacity = 10;
     
     auto result = manager->add_rate_limiter("api_limiter", config);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     auto limiter = manager->get_rate_limiter("api_limiter");
     EXPECT_NE(limiter, nullptr);
@@ -268,7 +268,7 @@ TEST_F(ResourceManagementTest, ResourceManagerMemoryQuota) {
     resource_quota quota(resource_type::memory, 2048, throttling_strategy::reject);
     
     auto result = manager->add_memory_quota("memory_quota", quota);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     auto memory_manager = manager->get_memory_quota("memory_quota");
     EXPECT_NE(memory_manager, nullptr);
@@ -283,7 +283,7 @@ TEST_F(ResourceManagementTest, ResourceManagerCPUThrottler) {
     config.strategy = throttling_strategy::delay;
     
     auto result = manager->add_cpu_throttler("cpu_throttler", config);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     auto throttler = manager->get_cpu_throttler("cpu_throttler");
     EXPECT_NE(throttler, nullptr);

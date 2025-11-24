@@ -188,7 +188,7 @@ TEST_F(OptimizationTest, MemoryPoolBasicOperations) {
     // Deallocate blocks
     for (auto* ptr : allocated_blocks) {
         auto result = pool.deallocate(ptr);
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     EXPECT_EQ(pool.available_blocks(), 64);  // All blocks returned
@@ -229,7 +229,7 @@ TEST_F(OptimizationTest, MemoryPoolObjectAllocation) {
     // Deallocate objects
     for (auto* obj : objects) {
         auto result = pool.deallocate_object(obj);
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
 }
 
@@ -485,7 +485,7 @@ TEST_F(OptimizationTest, IntegrationTest) {
     
     for (double value : test_data) {
         auto result = queue.push(value);
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     // Pop data from queue and collect in vector

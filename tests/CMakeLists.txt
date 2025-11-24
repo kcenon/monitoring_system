@@ -32,29 +32,31 @@ add_executable(monitoring_system_tests
     test_performance_monitoring.cpp
 
     # =========================================================================
-    # Tests deferred for MON-002 (require API updates)
+    # MON-002: Deferred tests requiring API updates or missing headers
     # =========================================================================
-    # These tests require updates to Result<T> API usage patterns.
-    # Common issues: .error().code comparison, bool conversion
+    # The following tests require significant updates due to:
+    # - Result<T> API changes (need .is_ok() instead of bool conversion)
+    # - Missing header files (graceful_degradation.h, resource_manager.h, etc.)
+    # - Type mismatches (monitoring_data not in current API)
     #
-    # test_metric_exporters.cpp
-    # test_storage_backends.cpp
-    # test_error_boundaries.cpp
-    # test_optimization.cpp
-    # test_resource_management.cpp
-    # test_data_consistency.cpp
-    # test_opentelemetry_adapter.cpp
-    # test_trace_exporters.cpp
-    # test_integration_e2e.cpp
-    # test_stress_performance.cpp
-    # test_adaptive_monitoring.cpp
-    # test_health_monitoring.cpp
-    # test_metric_storage.cpp
-    # test_stream_aggregation.cpp
-    # test_buffering_strategies.cpp
-    # test_fault_tolerance.cpp
-    # test_event_bus.cpp
-    # test_interfaces_compile.cpp
+    # test_metric_exporters.cpp       # Result<T> API updates needed
+    # test_opentelemetry_adapter.cpp  # monitoring_data type missing, Result API
+    # test_trace_exporters.cpp        # Result<T> API updates needed
+    # test_adaptive_monitoring.cpp    # Result<T> API updates needed
+    # test_health_monitoring.cpp      # Result<T> API updates needed
+    # test_fault_tolerance.cpp        # Result<T> API updates needed
+    # test_event_bus.cpp              # Result<T> API updates needed
+    # test_interfaces_compile.cpp     # May need updates
+    # test_error_boundaries.cpp       # Missing: graceful_degradation.h
+    # test_optimization.cpp           # Missing: optimization/ folder
+    # test_resource_management.cpp    # Missing: resource_manager.h
+    # test_data_consistency.cpp       # Missing: data_consistency.h
+    # test_metric_storage.cpp         # Missing: ring_buffer.h, metric_storage.h
+    # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h
+    # test_buffering_strategies.cpp   # Missing: buffering_strategy.h, buffer_manager.h
+    # test_stress_performance.cpp     # Missing: multiple headers
+    # test_storage_backends.cpp       # API mismatch with storage_backends.h
+    # test_integration_e2e.cpp        # Multiple missing headers
 )
 
 # Thread safety tests (Phase 1 - Task 1.3)

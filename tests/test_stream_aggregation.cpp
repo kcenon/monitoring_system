@@ -222,7 +222,7 @@ TEST_F(StreamAggregationTest, StreamAggregatorBasic) {
     std::vector<double> values = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     for (double value : values) {
         auto result = aggregator.add_observation(value);
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     auto stats = aggregator.get_statistics();
@@ -320,7 +320,7 @@ TEST_F(StreamAggregationTest, AggregationProcessorBasic) {
     // Add observations
     for (int i = 1; i <= 100; ++i) {
         auto result = processor.process_observation("test_metric", static_cast<double>(i));
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     // Get current statistics
@@ -345,14 +345,14 @@ TEST_F(StreamAggregationTest, AggregationProcessorMultipleMetrics) {
         rule.aggregation_interval = std::chrono::milliseconds(500);
         
         auto result = processor.add_aggregation_rule(rule);
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     // Add observations to each metric
     for (const auto& metric_name : metric_names) {
         for (int i = 1; i <= 50; ++i) {
             auto result = processor.process_observation(metric_name, static_cast<double>(i));
-            EXPECT_TRUE(result);
+            EXPECT_TRUE(result.is_ok());
         }
     }
     
@@ -385,7 +385,7 @@ TEST_F(StreamAggregationTest, AggregationProcessorForceAggregation) {
     
     // Force aggregation before interval
     auto result = processor.force_aggregation("response_time");
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     auto agg_result = result.value();
     EXPECT_EQ(agg_result.source_metric, "response_time");
