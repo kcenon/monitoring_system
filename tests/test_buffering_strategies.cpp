@@ -121,7 +121,7 @@ TEST_F(BufferingStrategiesTest, ImmediateStrategy) {
     // Add metric (should be processed immediately)
     auto metric = create_test_metric("test_metric", 42.0);
     auto result = strategy.add_metric(std::move(metric));
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     // Size should still be 0 (no buffering)
     EXPECT_EQ(strategy.size(), 0);
@@ -152,7 +152,7 @@ TEST_F(BufferingStrategiesTest, FixedSizeStrategy) {
     for (int i = 0; i < 3; ++i) {
         auto metric = create_test_metric("test_" + std::to_string(i), static_cast<double>(i));
         auto result = strategy.add_metric(std::move(metric));
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     EXPECT_EQ(strategy.size(), 3);
@@ -162,7 +162,7 @@ TEST_F(BufferingStrategiesTest, FixedSizeStrategy) {
     for (int i = 3; i < 8; ++i) {
         auto metric = create_test_metric("test_" + std::to_string(i), static_cast<double>(i));
         auto result = strategy.add_metric(std::move(metric));
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     EXPECT_EQ(strategy.size(), 5);  // Should not exceed max size
@@ -406,7 +406,7 @@ TEST_F(BufferingStrategiesTest, BufferManagerBasic) {
         compact_metric_value metric(metadata, 50.0 + i);
         
         auto result = manager.add_metric("cpu_usage", std::move(metric));
-        EXPECT_TRUE(result);
+        EXPECT_TRUE(result.is_ok());
     }
     
     // Check buffer size
@@ -469,7 +469,7 @@ TEST_F(BufferingStrategiesTest, BufferManagerCustomStrategy) {
     custom_config.flush_priority_threshold = 200;
     
     auto result = manager.configure_metric_buffer("high_priority_metric", custom_config);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     // Add metrics with different priorities
     std::vector<uint8_t> priorities = {100, 250, 150};
