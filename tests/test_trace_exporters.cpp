@@ -314,25 +314,25 @@ TEST_F(TraceExportersTest, InvalidFormatHandling) {
     jaeger_exporter jaeger_exporter(invalid_jaeger_config);
     auto jaeger_result = jaeger_exporter.export_spans(test_spans_);
     EXPECT_FALSE(jaeger_result);
-    EXPECT_EQ(jaeger_result.error().code, monitoring_error_code::invalid_configuration);
-    
+    EXPECT_EQ(jaeger_result.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
+
     trace_export_config invalid_zipkin_config;
     invalid_zipkin_config.endpoint = "http://zipkin:9411";
     invalid_zipkin_config.format = trace_export_format::jaeger_grpc; // Wrong format
-    
+
     zipkin_exporter zipkin_exporter(invalid_zipkin_config);
     auto zipkin_result = zipkin_exporter.export_spans(test_spans_);
     EXPECT_FALSE(zipkin_result);
-    EXPECT_EQ(zipkin_result.error().code, monitoring_error_code::invalid_configuration);
-    
+    EXPECT_EQ(zipkin_result.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
+
     trace_export_config invalid_otlp_config;
     invalid_otlp_config.endpoint = "http://otlp:4317";
     invalid_otlp_config.format = trace_export_format::jaeger_thrift; // Wrong format
-    
+
     otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);
     auto otlp_result = otlp_exporter.export_spans(test_spans_);
     EXPECT_FALSE(otlp_result);
-    EXPECT_EQ(otlp_result.error().code, monitoring_error_code::invalid_configuration);
+    EXPECT_EQ(otlp_result.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
 }
 
 TEST_F(TraceExportersTest, EmptySpansHandling) {
@@ -344,7 +344,7 @@ TEST_F(TraceExportersTest, EmptySpansHandling) {
     
     jaeger_exporter exporter(config);
     auto result = exporter.export_spans(empty_spans);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_spans"], 0);
@@ -372,7 +372,7 @@ TEST_F(TraceExportersTest, LargeSpanBatch) {
     
     otlp_exporter exporter(config, otel_resource_);
     auto result = exporter.export_spans(large_batch);
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(result.is_ok());
     
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_spans"], 1000);

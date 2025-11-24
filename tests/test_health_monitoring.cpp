@@ -188,7 +188,7 @@ TEST_F(HealthMonitoringTest, HealthDependencyGraphAddNode) {
     // Try to add duplicate
     result = graph.add_node("database", check);
     ASSERT_FALSE(result.is_ok());
-    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::already_exists));
 }
 
 TEST_F(HealthMonitoringTest, HealthDependencyGraphAddDependency) {
@@ -235,7 +235,7 @@ TEST_F(HealthMonitoringTest, HealthDependencyGraphCycleDetection) {
     // Try to add the cyclic dependency
     auto result = graph.add_dependency("C", "A");
     ASSERT_FALSE(result.is_ok());
-    EXPECT_EQ(result.error().code, monitoring_error_code::invalid_state);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::invalid_state));
 }
 
 TEST_F(HealthMonitoringTest, HealthDependencyGraphTopologicalSort) {
@@ -347,7 +347,7 @@ TEST_F(HealthMonitoringTest, HealthMonitorRegisterUnregister) {
     // Try to register again
     result = monitor.register_check("test", check);
     ASSERT_FALSE(result.is_ok());
-    EXPECT_EQ(result.error().code, monitoring_error_code::already_exists);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::already_exists));
     
     // Unregister
     result = monitor.unregister_check("test");
@@ -357,7 +357,7 @@ TEST_F(HealthMonitoringTest, HealthMonitorRegisterUnregister) {
     // Try to unregister non-existent
     result = monitor.unregister_check("test");
     ASSERT_FALSE(result.is_ok());
-    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::not_found));
 }
 
 TEST_F(HealthMonitoringTest, HealthMonitorStartStop) {
@@ -397,7 +397,7 @@ TEST_F(HealthMonitoringTest, HealthMonitorCheckSpecific) {
     // Check non-existent
     result = monitor.check("non_existent");
     ASSERT_FALSE(result.is_ok());
-    EXPECT_EQ(result.error().code, monitoring_error_code::not_found);
+    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::not_found));
 }
 
 TEST_F(HealthMonitoringTest, HealthMonitorCheckAll) {

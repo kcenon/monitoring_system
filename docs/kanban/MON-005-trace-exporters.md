@@ -2,8 +2,9 @@
 
 **Priority**: MEDIUM
 **Est. Duration**: 12h
-**Status**: TODO
+**Status**: DONE
 **Dependencies**: None
+**Progress**: Implemented HTTP transport abstraction with retry logic, JSON serialization for Jaeger Thrift and Zipkin v2 formats.
 
 ---
 
