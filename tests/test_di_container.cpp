@@ -19,6 +19,7 @@ All rights reserved.
 // #include <kcenon/monitoring/di/thread_system_container_adapter.h>
 #include <thread>
 #include <atomic>
+#include <mutex>
 #include <stdexcept>
 #include <memory>
 #include <string>
@@ -41,6 +42,8 @@ namespace kcenon::monitoring {
         mutable std::unordered_map<std::string, std::function<std::shared_ptr<void>()>> factories_;
         mutable std::unordered_map<std::string, std::shared_ptr<void>> singletons_;
         mutable std::unordered_map<std::string, service_lifetime> lifetimes_;
+        service_container_interface* parent_ = nullptr;
+        mutable std::recursive_mutex mutex_;
 
         std::string get_type_key(const std::type_info& type) const {
             return type.name();
@@ -52,6 +55,9 @@ namespace kcenon::monitoring {
 
     public:
         virtual ~service_container_interface() = default;
+
+        explicit service_container_interface(service_container_interface* parent = nullptr)
+            : parent_(parent) {}
 
         template<typename TInterface>
         result<bool> register_factory(
@@ -91,17 +97,25 @@ namespace kcenon::monitoring {
         template<typename TInterface>
         bool is_registered() const {
             std::string key = get_type_key(typeid(TInterface));
-            return factories_.find(key) != factories_.end() || singletons_.find(key) != singletons_.end();
+            if (factories_.find(key) != factories_.end() || singletons_.find(key) != singletons_.end()) {
+                return true;
+            }
+            return parent_ != nullptr && parent_->is_registered<TInterface>();
         }
 
         template<typename TInterface>
         bool is_registered(const std::string& name) const {
             std::string key = get_named_key(typeid(TInterface), name);
-            return factories_.find(key) != factories_.end() || singletons_.find(key) != singletons_.end();
+            if (factories_.find(key) != factories_.end() || singletons_.find(key) != singletons_.end()) {
+                return true;
+            }
+            return parent_ != nullptr && parent_->is_registered<TInterface>(name);
         }
 
         template<typename TInterface>
         result<std::shared_ptr<TInterface>> resolve() const {
+            std::lock_guard<std::recursive_mutex> lock(mutex_);
+
             std::string key = get_type_key(typeid(TInterface));
 
             // Check singletons first
@@ -114,8 +128,10 @@ namespace kcenon::monitoring {
             auto factory_it = factories_.find(key);
             if (factory_it != factories_.end()) {
                 auto lifetime_it = lifetimes_.find(key);
-                if (lifetime_it != lifetimes_.end() && lifetime_it->second == service_lifetime::singleton) {
-                    // Create singleton instance
+                if (lifetime_it != lifetimes_.end() &&
+                    (lifetime_it->second == service_lifetime::singleton ||
+                     lifetime_it->second == service_lifetime::scoped)) {
+                    // Create singleton/scoped instance
                     auto instance = factory_it->second();
                     singletons_[key] = instance;
                     return make_success(std::static_pointer_cast<TInterface>(instance));
@@ -126,12 +142,19 @@ namespace kcenon::monitoring {
                 }
             }
 
+            // Check parent container
+            if (parent_ != nullptr) {
+                return parent_->resolve<TInterface>();
+            }
+
             return make_error<std::shared_ptr<TInterface>>(
                 monitoring_error_code::collector_not_found, "Service not found");
         }
 
         template<typename TInterface>
         result<std::shared_ptr<TInterface>> resolve(const std::string& name) const {
+            std::lock_guard<std::recursive_mutex> lock(mutex_);
+
             std::string key = get_named_key(typeid(TInterface), name);
 
             // Check singletons first
@@ -144,8 +167,10 @@ namespace kcenon::monitoring {
             auto factory_it = factories_.find(key);
             if (factory_it != factories_.end()) {
                 auto lifetime_it = lifetimes_.find(key);
-                if (lifetime_it != lifetimes_.end() && lifetime_it->second == service_lifetime::singleton) {
-                    // Create singleton instance
+                if (lifetime_it != lifetimes_.end() &&
+                    (lifetime_it->second == service_lifetime::singleton ||
+                     lifetime_it->second == service_lifetime::scoped)) {
+                    // Create singleton/scoped instance
                     auto instance = factory_it->second();
                     singletons_[key] = instance;
                     return make_success(std::static_pointer_cast<TInterface>(instance));
@@ -154,6 +179,11 @@ namespace kcenon::monitoring {
                     auto instance = factory_it->second();
                     return make_success(std::static_pointer_cast<TInterface>(instance));
                 }
+            }
+
+            // Check parent container
+            if (parent_ != nullptr) {
+                return parent_->resolve<TInterface>(name);
             }
 
             return make_error<std::shared_ptr<TInterface>>(
@@ -169,7 +199,7 @@ namespace kcenon::monitoring {
         }
 
         virtual std::unique_ptr<service_container_interface> create_scope() {
-            return std::make_unique<service_container_interface>(); // Stub implementation
+            return std::make_unique<service_container_interface>(this);
         }
     };
 
@@ -399,7 +429,7 @@ TEST_F(DIContainerTest, NamedServiceRegistration) {
 /**
  * Test service with dependencies
  */
-TEST_F(DIContainerTest, DISABLED_ServiceWithDependencies) {
+TEST_F(DIContainerTest, ServiceWithDependencies) {
     // Register dependency
     container_->register_factory<ServiceA>(
         []() { return std::make_shared<ServiceA>(); },
@@ -436,7 +466,7 @@ TEST_F(DIContainerTest, DISABLED_ServiceWithDependencies) {
 /**
  * Test scoped container
  */
-TEST_F(DIContainerTest, DISABLED_ScopedContainer) {
+TEST_F(DIContainerTest, ScopedContainer) {
     // Register services in parent container
     container_->register_factory<IService>(
         []() { return std::make_shared<ServiceA>(); },
@@ -535,7 +565,7 @@ TEST_F(DIContainerTest, ClearContainer) {
 /**
  * Test thread safety
  */
-TEST_F(DIContainerTest, DISABLED_ThreadSafety) {
+TEST_F(DIContainerTest, ThreadSafety) {
     // Register singleton service
     container_->register_factory<IService>(
         []() { 
