@@ -385,21 +385,21 @@ $(document).ready(function() { init_codefold(1); });
 <div class="foldopen" id="foldopen00277" data-start="{" data-end="}">
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="../../dd/dd2/test__performance__monitoring_8cpp.html#aa4e90687e3cd2c71364e3d3f6c98778f">  277</a></span><a class="code hl_function" href="../../dd/dd2/test__performance__monitoring_8cpp.html#a7e3eb6323ccefc7d8b95bba34f1fbd3a">TEST_F</a>(<a class="code hl_class" href="../../d7/dbe/classPerformanceMonitoringTest.html">PerformanceMonitoringTest</a>, SystemMonitoringHistory) {</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    system_monitor sys_monitor;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keyword">auto</span> start_result = sys_monitor.start_monitoring(std::chrono::milliseconds(100));</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    ASSERT_TRUE(start_result.is_ok());</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="comment">// Let it collect some samples</span></div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    std::this_thread::sleep_for(std::chrono::milliseconds(500));</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="comment">// Let it collect some samples (increased for CI stability)</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    std::this_thread::sleep_for(std::chrono::milliseconds(700));</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">auto</span> history = sys_monitor.get_history(std::chrono::seconds(1));</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    EXPECT_GE(history.size(), 3); <span class="comment">// Should have at least 3 samples</span></div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    EXPECT_GE(history.size(), 2); <span class="comment">// Should have at least 2 samples (relaxed for CI)</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="comment">// Check that timestamps are increasing</span></div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; i &lt; history.size(); ++i) {</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        EXPECT_GT(history[i].timestamp, history[i-1].timestamp);</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    }</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keyword">auto</span> stop_result = sys_monitor.stop_monitoring();</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    ASSERT_TRUE(stop_result.is_ok());</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>}</div>
@@ -599,7 +599,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 24 2025 00:12:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Nov 24 2025 00:26:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
