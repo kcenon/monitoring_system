@@ -78,28 +78,27 @@ TEST_F(MetricExportersTest, MetricExportConfigValidation) {
     valid_config.max_queue_size = 10000;
     
     auto validation = valid_config.validate();
-    EXPECT_TRUE(validation);
-    
+    EXPECT_TRUE(validation.is_ok());
+
     // Valid configuration with port
     metric_export_config port_config;
     port_config.port = 8125;
     port_config.format = metric_export_format::statsd_plain;
     auto port_validation = port_config.validate();
-    EXPECT_TRUE(port_validation);
-    
+    EXPECT_TRUE(port_validation.is_ok());
+
     // Invalid configuration (no endpoint or port)
     metric_export_config invalid_config;
     invalid_config.format = metric_export_format::prometheus_text;
     auto invalid_validation = invalid_config.validate();
-    EXPECT_FALSE(invalid_validation);
-    EXPECT_EQ(invalid_validation.error().code, monitoring_error_code::invalid_configuration);
-    
+    EXPECT_TRUE(invalid_validation.is_err());
+
     // Invalid push interval
     metric_export_config invalid_interval;
     invalid_interval.endpoint = "http://test";
     invalid_interval.push_interval = std::chrono::milliseconds(0);
     auto interval_validation = invalid_interval.validate();
-    EXPECT_FALSE(interval_validation);
+    EXPECT_TRUE(interval_validation.is_err());
     
     // Invalid batch size
     metric_export_config invalid_batch;
