@@ -288,8 +288,7 @@ public:
         
         auto ctx_result = trace_context::from_w3c_traceparent(traceparent_it->second);
         if (ctx_result.is_err()) {
-            return result<trace_context>::err(error_info(ctx_result.error().code,
-                ctx_result.error().message, "monitoring_system").to_common_error());
+            return result<trace_context>::err(ctx_result.error());
         }
         
         auto ctx = ctx_result.value();
@@ -382,14 +381,14 @@ distributed_tracer& global_tracer();
 #define TRACE_SPAN(operation_name) \
     auto _span_result = kcenon::monitoring::global_tracer().start_span(operation_name); \
     kcenon::monitoring::scoped_span _scoped_span( \
-        _span_result ? _span_result.value() : nullptr, \
+        _span_result.is_ok() ? _span_result.value() : nullptr, \
         &kcenon::monitoring::global_tracer() \
     )
 
 #define TRACE_CHILD_SPAN(parent, operation_name) \
     auto _child_span_result = kcenon::monitoring::global_tracer().start_child_span(parent, operation_name); \
     kcenon::monitoring::scoped_span _child_scoped_span( \
-        _child_span_result ? _child_span_result.value() : nullptr, \
+        _child_span_result.is_ok() ? _child_span_result.value() : nullptr, \
         &kcenon::monitoring::global_tracer() \
     )
 

@@ -542,14 +542,12 @@ public:
     ) {
         auto result1 = run(operation1_name, std::forward<Func1>(func1));
         if (result1.is_err()) {
-            return result<std::pair<performance_metrics, performance_metrics>>::err(error_info(
-                result1.error().code, result1.error().message, "monitoring_system").to_common_error());
+            return result<std::pair<performance_metrics, performance_metrics>>::err(result1.error());
         }
 
         auto result2 = run(operation2_name, std::forward<Func2>(func2));
         if (result2.is_err()) {
-            return result<std::pair<performance_metrics, performance_metrics>>::err(error_info(
-                result2.error().code, result2.error().message, "monitoring_system").to_common_error());
+            return result<std::pair<performance_metrics, performance_metrics>>::err(result2.error());
         }
         
         return std::make_pair(result1.value(), result2.value());
