@@ -162,7 +162,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    );</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    ASSERT_TRUE(token.has_value());</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// Publish an event</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    performance_alert_event alert(</div>
@@ -173,7 +173,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    );</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">auto</span> result = bus-&gt;publish_event(alert);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    ASSERT_TRUE(result);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// Wait for event processing</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    std::this_thread::sleep_for(100ms);</div>
@@ -273,7 +273,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        }</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    );</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    ASSERT_TRUE(token.has_value());</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// Publish first event</span></div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    std::vector&lt;health_check_event::health_check_result&gt; results;</div>
@@ -378,13 +378,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="comment">// Start publisher threads</span></div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        publishers.emplace_back([<span class="keyword">this</span>, t, events_per_thread]() {</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        publishers.emplace_back([<span class="keyword">this</span>, events_per_thread]() {</div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; events_per_thread; ++i) {</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                std::vector&lt;metric&gt; metrics;</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                metrics.push_back(metric{</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                    <span class="stringliteral">&quot;test_metric&quot;</span>,</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                    metric_value{42.0},</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                    {{<span class="stringliteral">&quot;thread&quot;</span>, std::to_string(t)}},</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                    42.0,</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                    {{<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;publisher&quot;</span>}},</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                    metric_type::gauge</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                });</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
@@ -425,7 +425,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 03:22:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 03:36:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
