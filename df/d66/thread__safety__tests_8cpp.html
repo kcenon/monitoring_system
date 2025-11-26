@@ -86,7 +86,7 @@ $(function() {
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
-<code>#include &lt;barrier&gt;</code><br />
+<code>#include &lt;latch&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/core/performance_monitor.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for thread_safety_tests.cpp:</div>
@@ -108,10 +108,10 @@ Include dependency graph for thread_safety_tests.cpp:</div>
 <area shape="poly" title=" " alt="" coords="675,44,722,89,719,93,671,48"/>
 <area shape="rect" title=" " alt="" coords="800,101,867,126"/>
 <area shape="poly" title=" " alt="" coords="694,43,798,93,796,97,692,48"/>
-<area shape="rect" title=" " alt="" coords="891,101,957,126"/>
-<area shape="poly" title=" " alt="" coords="724,43,880,91,885,93,884,98,878,96,723,48"/>
-<area shape="rect" title=" " alt="" coords="981,93,1160,133"/>
-<area shape="poly" title=" " alt="" coords="728,39,969,88,968,94,727,44"/>
+<area shape="rect" title=" " alt="" coords="891,101,946,126"/>
+<area shape="poly" title=" " alt="" coords="728,43,802,64,880,91,884,93,882,97,878,96,800,69,726,48"/>
+<area shape="rect" title=" " alt="" coords="971,93,1149,133"/>
+<area shape="poly" title=" " alt="" coords="728,40,958,88,957,93,727,45"/>
 </map>
 </div>
 </div>
@@ -199,7 +199,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   57</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><span class="lineno">   58</span> </div>
 <div class="line"><span class="lineno">   59</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">   60</span>    std::barrier sync_point(num_publishers);</div>
+<div class="line"><span class="lineno">   60</span>    std::latch sync_point(num_publishers);</div>
 <div class="line"><span class="lineno">   61</span> </div>
 <div class="line"><span class="lineno">   62</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_publishers; ++i) {</div>
 <div class="line"><span class="lineno">   63</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -474,7 +474,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  393</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><span class="lineno">  394</span> </div>
 <div class="line"><span class="lineno">  395</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  396</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><span class="lineno">  396</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><span class="lineno">  397</span> </div>
 <div class="line"><span class="lineno">  398</span>    <span class="keyword">auto</span> start_time = std::chrono::high_resolution_clock::now();</div>
 <div class="line"><span class="lineno">  399</span> </div>
@@ -841,7 +841,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  702</span> </div>
 <div class="line"><span class="lineno">  703</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><span class="lineno">  704</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  705</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><span class="lineno">  705</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><span class="lineno">  706</span> </div>
 <div class="line"><span class="lineno">  707</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><span class="lineno">  708</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -917,7 +917,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  661</span> </div>
 <div class="line"><span class="lineno">  662</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><span class="lineno">  663</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  664</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><span class="lineno">  664</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><span class="lineno">  665</span> </div>
 <div class="line"><span class="lineno">  666</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><span class="lineno">  667</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -986,7 +986,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  614</span> </div>
 <div class="line"><span class="lineno">  615</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><span class="lineno">  616</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  617</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><span class="lineno">  617</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><span class="lineno">  618</span> </div>
 <div class="line"><span class="lineno">  619</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><span class="lineno">  620</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -1142,7 +1142,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  514</span> </div>
 <div class="line"><span class="lineno">  515</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><span class="lineno">  516</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><span class="lineno">  517</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><span class="lineno">  517</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><span class="lineno">  518</span> </div>
 <div class="line"><span class="lineno">  519</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><span class="lineno">  520</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -1182,7 +1182,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 06:49:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 07:46:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

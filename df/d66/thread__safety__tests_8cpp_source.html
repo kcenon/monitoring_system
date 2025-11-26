@@ -96,7 +96,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;barrier&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;latch&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using namespace </span>std::chrono_literals;</div>
@@ -147,7 +147,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    std::barrier sync_point(num_publishers);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    std::latch sync_point(num_publishers);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_publishers; ++i) {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -493,7 +493,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    <span class="keyword">auto</span> start_time = std::chrono::high_resolution_clock::now();</div>
 <div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
@@ -620,7 +620,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
 <div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
 <div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -724,7 +724,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span> </div>
 <div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> </div>
 <div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -775,7 +775,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span> </div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> </div>
 <div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -818,7 +818,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span> </div>
 <div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>    std::atomic&lt;int&gt; errors{0};</div>
 <div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>    std::latch sync_point(num_threads);</div>
 <div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span> </div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
@@ -872,7 +872,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 06:49:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 07:46:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
