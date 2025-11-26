@@ -160,11 +160,18 @@ struct adaptation_stats {
 
 /**
  * @brief Adaptive collector wrapper
+ *
+ * @thread_safety Thread-safe. All public methods can be called concurrently.
+ *   - config_ protected by config_mutex_
+ *   - stats_ protected by stats_mutex_
+ *   - Uses std::atomic for enabled_ and current_sampling_rate_
+ *   - Avoids deadlock by copying config before acquiring stats_mutex_
  */
 class adaptive_collector {
 private:
     std::shared_ptr<kcenon::monitoring::metrics_collector> collector_;
     adaptive_config config_;
+    mutable std::mutex config_mutex_;  // Protects config_
     adaptation_stats stats_;
     std::atomic<bool> enabled_{true};
     std::atomic<double> current_sampling_rate_{1.0};
@@ -197,31 +204,40 @@ public:
     
     /**
      * @brief Adapt collection behavior based on load
+     * @thread_safety Thread-safe. Uses mutex for synchronization.
      */
     void adapt(const kcenon::monitoring::system_metrics& sys_metrics) {
-        std::lock_guard lock(stats_mutex_);
-        
+        // Copy config under lock to avoid holding both locks
+        adaptive_config local_config;
+        {
+            std::lock_guard<std::mutex> config_lock(config_mutex_);
+            local_config = config_;
+        }
+
+        std::lock_guard<std::mutex> lock(stats_mutex_);
+
         // Initialize averages on first adaptation
         if (stats_.total_adaptations == 0) {
             stats_.average_cpu_usage = sys_metrics.cpu_usage_percent;
             stats_.average_memory_usage = sys_metrics.memory_usage_percent;
         } else {
             // Update average metrics using exponential smoothing
-            stats_.average_cpu_usage = 
-                config_.smoothing_factor * sys_metrics.cpu_usage_percent +
-                (1.0 - config_.smoothing_factor) * stats_.average_cpu_usage;
-            
-            stats_.average_memory_usage = 
-                config_.smoothing_factor * sys_metrics.memory_usage_percent +
-                (1.0 - config_.smoothing_factor) * stats_.average_memory_usage;
+            stats_.average_cpu_usage =
+                local_config.smoothing_factor * sys_metrics.cpu_usage_percent +
+                (1.0 - local_config.smoothing_factor) * stats_.average_cpu_usage;
+
+            stats_.average_memory_usage =
+                local_config.smoothing_factor * sys_metrics.memory_usage_percent +
+                (1.0 - local_config.smoothing_factor) * stats_.average_memory_usage;
         }
-        
+
         // Determine load level
-        auto new_level = calculate_load_level(
+        auto new_level = calculate_load_level_with_config(
             stats_.average_cpu_usage,
-            stats_.average_memory_usage
+            stats_.average_memory_usage,
+            local_config
         );
-        
+
         // Adapt if load level changed
         if (new_level != stats_.current_load_level) {
             if (new_level > stats_.current_load_level) {
@@ -229,10 +245,10 @@ public:
             } else {
                 stats_.upscale_count++;
             }
-            
+
             stats_.current_load_level = new_level;
-            stats_.current_interval = config_.get_interval_for_load(new_level);
-            current_sampling_rate_ = config_.get_sampling_rate_for_load(new_level);
+            stats_.current_interval = local_config.get_interval_for_load(new_level);
+            current_sampling_rate_ = local_config.get_sampling_rate_for_load(new_level);
             stats_.current_sampling_rate = current_sampling_rate_;
             stats_.total_adaptations++;
             stats_.last_adaptation = std::chrono::system_clock::now();
@@ -257,15 +273,19 @@ public:
     
     /**
      * @brief Set adaptive configuration
+     * @thread_safety Thread-safe. Uses mutex for synchronization.
      */
     void set_config(const adaptive_config& config) {
+        std::lock_guard<std::mutex> lock(config_mutex_);
         config_ = config;
     }
-    
+
     /**
      * @brief Get adaptive configuration
+     * @thread_safety Thread-safe. Uses mutex for synchronization.
      */
     adaptive_config get_config() const {
+        std::lock_guard<std::mutex> lock(config_mutex_);
         return config_;
     }
     
@@ -289,31 +309,36 @@ private:
      */
     bool should_sample() const {
         if (!enabled_) return true;
-        
+
         // Use random sampling based on current rate
         static thread_local std::mt19937 gen(std::random_device{}());
         std::uniform_real_distribution<> dis(0.0, 1.0);
         return dis(gen) < current_sampling_rate_.load();
     }
-    
+
     /**
-     * @brief Calculate load level from metrics
+     * @brief Calculate load level from metrics with provided config
+     * @note Thread-safe as it only uses the provided config copy
      */
-    load_level calculate_load_level(double cpu_usage, double memory_usage) const {
+    static load_level calculate_load_level_with_config(
+        double cpu_usage,
+        double memory_usage,
+        const adaptive_config& cfg
+    ) {
         // Consider memory pressure in load calculation
         double effective_load = cpu_usage;
-        
+
         // Memory pressure should escalate load level
-        if (memory_usage > config_.memory_critical_threshold) {
+        if (memory_usage > cfg.memory_critical_threshold) {
             // Critical memory -> at least high load
-            effective_load = std::max(effective_load, config_.high_threshold + 1.0);
-        } else if (memory_usage > config_.memory_warning_threshold) {
+            effective_load = std::max(effective_load, cfg.high_threshold + 1.0);
+        } else if (memory_usage > cfg.memory_warning_threshold) {
             // Warning memory -> at least moderate load
-            effective_load = std::max(effective_load, config_.moderate_threshold + 1.0);
+            effective_load = std::max(effective_load, cfg.moderate_threshold + 1.0);
         }
-        
+
         // Apply strategy-specific adjustments BEFORE determining level
-        switch (config_.strategy) {
+        switch (cfg.strategy) {
             case adaptation_strategy::conservative:
                 effective_load *= 0.8;  // Be more conservative
                 break;
@@ -324,15 +349,15 @@ private:
             default:
                 break;
         }
-        
+
         // Determine load level
-        if (effective_load >= config_.high_threshold) {
+        if (effective_load >= cfg.high_threshold) {
             return load_level::critical;
-        } else if (effective_load >= config_.moderate_threshold) {
+        } else if (effective_load >= cfg.moderate_threshold) {
             return load_level::high;
-        } else if (effective_load >= config_.low_threshold) {
+        } else if (effective_load >= cfg.low_threshold) {
             return load_level::moderate;
-        } else if (effective_load >= config_.idle_threshold) {
+        } else if (effective_load >= cfg.idle_threshold) {
             return load_level::low;
         } else {
             return load_level::idle;
