@@ -19,6 +19,7 @@ All rights reserved.
 #include "../core/error_codes.h"
 #include <string>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <chrono>
 #include <memory>
@@ -231,14 +232,91 @@ private:
     }
 };
 
+#ifdef MONITORING_HAS_NETWORK_SYSTEM
+#include <kcenon/network/core/http_client.h>
+
+/**
+ * @class network_http_transport
+ * @brief HTTP transport implementation using network_system
+ *
+ * This implementation provides real HTTP functionality by delegating
+ * to network_system::core::http_client.
+ */
+class network_http_transport : public http_transport {
+private:
+    std::shared_ptr<network_system::core::http_client> client_;
+
+public:
+    explicit network_http_transport(std::chrono::milliseconds timeout = std::chrono::milliseconds(30000))
+        : client_(std::make_shared<network_system::core::http_client>(timeout)) {}
+
+    result<http_response> send(const http_request& request) override {
+        // Convert headers from unordered_map to map
+        std::map<std::string, std::string> headers(request.headers.begin(), request.headers.end());
+
+        // Make the actual HTTP request using network_system
+        network_system::core::Result<network_system::core::internal::http_response> net_result;
+
+        if (request.method == "GET") {
+            net_result = client_->get(request.url, {}, headers);
+        } else if (request.method == "POST") {
+            net_result = client_->post(request.url, request.body, headers);
+        } else if (request.method == "PUT") {
+            std::string body_str(request.body.begin(), request.body.end());
+            net_result = client_->put(request.url, body_str, headers);
+        } else if (request.method == "DELETE") {
+            net_result = client_->del(request.url, headers);
+        } else if (request.method == "HEAD") {
+            net_result = client_->head(request.url, headers);
+        } else if (request.method == "PATCH") {
+            std::string body_str(request.body.begin(), request.body.end());
+            net_result = client_->patch(request.url, body_str, headers);
+        } else {
+            return make_error<http_response>(monitoring_error_code::invalid_configuration,
+                "Unsupported HTTP method: " + request.method);
+        }
+
+        if (!net_result) {
+            return make_error<http_response>(monitoring_error_code::operation_failed,
+                "HTTP request failed: " + net_result.error().message);
+        }
+
+        // Convert network_system response to monitoring response
+        http_response response;
+        response.status_code = net_result->status_code;
+        response.status_message = net_result->status_text;
+        response.body = net_result->body;
+
+        // Convert headers
+        for (const auto& [key, value] : net_result->headers) {
+            response.headers[key] = value;
+        }
+
+        return make_success(response);
+    }
+
+    bool is_available() const override {
+        return true;
+    }
+
+    std::string name() const override {
+        return "network_system";
+    }
+};
+#endif // MONITORING_HAS_NETWORK_SYSTEM
+
 /**
  * @brief Create default HTTP transport
  *
- * Returns a stub transport for now. In production, this would
- * return an implementation based on available HTTP libraries.
+ * Returns a network_system-based transport if available,
+ * otherwise falls back to a stub implementation.
  */
 inline std::unique_ptr<http_transport> create_default_transport() {
+#ifdef MONITORING_HAS_NETWORK_SYSTEM
+    return std::make_unique<network_http_transport>();
+#else
     return std::make_unique<simple_http_client>();
+#endif
 }
 
 /**
@@ -247,5 +325,15 @@ inline std::unique_ptr<http_transport> create_default_transport() {
 inline std::unique_ptr<stub_http_transport> create_stub_transport() {
     return std::make_unique<stub_http_transport>();
 }
+
+#ifdef MONITORING_HAS_NETWORK_SYSTEM
+/**
+ * @brief Create network_system-based HTTP transport
+ */
+inline std::unique_ptr<network_http_transport> create_network_transport(
+    std::chrono::milliseconds timeout = std::chrono::milliseconds(30000)) {
+    return std::make_unique<network_http_transport>(timeout);
+}
+#endif
 
 } } // namespace kcenon::monitoring
