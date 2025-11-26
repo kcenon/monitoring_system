@@ -67,17 +67,29 @@ All platforms have complete implementations for:
 
 | Category | Active | Total | Notes |
 |----------|--------|-------|-------|
-| Unit Tests | 5 | 23 | 18 tests disabled |
+| Unit Tests | 11 | 24 | 13 tests disabled |
 | Thread Safety Tests | 1 | 1 | - |
 | Integration Tests | - | - | Framework only |
+
+### Active Tests
+
+The following test files are enabled and passing:
+- `test_result_types.cpp`
+- `test_di_container.cpp`
+- `test_monitorable_interface.cpp`
+- `test_thread_context_simple.cpp`
+- `test_lock_free_collector.cpp`
+- `test_distributed_tracing.cpp`
+- `test_performance_monitoring.cpp`
+- `test_event_bus.cpp`
+- `test_trace_exporters.cpp`
+- `test_adapter_functionality.cpp`
+- `test_adaptive_monitoring.cpp` (124 tests total)
 
 ### Disabled Tests
 
 The following test files are commented out in `tests/CMakeLists.txt`:
 
-- `test_distributed_tracing.cpp`
-- `test_performance_monitoring.cpp`
-- `test_adaptive_monitoring.cpp`
 - `test_health_monitoring.cpp`
 - `test_metric_storage.cpp`
 - `test_stream_aggregation.cpp`
@@ -88,11 +100,9 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_resource_management.cpp`
 - `test_data_consistency.cpp`
 - `test_opentelemetry_adapter.cpp`
-- `test_trace_exporters.cpp`
 - `test_metric_exporters.cpp`
 - `test_storage_backends.cpp`
 - `test_integration_e2e.cpp`
-- `test_stress_performance.cpp`
 
 **Reason:** API alignment and missing implementations. See MON-002.
 

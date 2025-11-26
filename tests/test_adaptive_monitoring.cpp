@@ -36,8 +36,9 @@
 #include <thread>
 #include <chrono>
 #include <memory>
-// Note: adaptive_monitor.h does not exist in include directory
-// #include <kcenon/monitoring/adaptive/adaptive_monitor.h>
+// Include impl headers directly (src directory is in include path via monitoring_system target)
+#include "impl/adaptive_monitor.h"
+#include <kcenon/monitoring/core/performance_monitor.h>
 
 using namespace kcenon::monitoring;
 
@@ -276,15 +277,15 @@ TEST_F(AdaptiveMonitoringTest, AdaptiveScope) {
         adaptive_scope scope("scoped", mock);
         EXPECT_TRUE(scope.is_registered());
         
-        // Collector should be registered  
+        // Collector should be registered
         // Use the monitor member instead of global monitor
         auto stats = global_adaptive_monitor().get_collector_stats("scoped");
-        EXPECT_TRUE(stats.has_value());
+        EXPECT_TRUE(stats.is_ok());
     }
     // Scope destroyed, collector should be unregistered
-    
+
     auto stats = global_adaptive_monitor().get_collector_stats("scoped");
-    EXPECT_FALSE(stats.has_value());
+    EXPECT_FALSE(stats.is_ok());
 }
 
 TEST_F(AdaptiveMonitoringTest, MemoryPressureAdaptation) {
@@ -350,8 +351,8 @@ TEST_F(AdaptiveMonitoringTest, AdaptationInterval) {
     std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     
     auto stats = monitor.get_collector_stats("test");
-    ASSERT_TRUE(stats.has_value());
-    
+    ASSERT_TRUE(stats.is_ok());
+
     // Should have adapted at least once
     EXPECT_GE(stats.value().total_adaptations, 0);
 }

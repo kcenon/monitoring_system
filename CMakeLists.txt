@@ -224,7 +224,7 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
         target_include_directories(monitoring_system
             PUBLIC
                 $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
+                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
                 $<INSTALL_INTERFACE:include>
         )
     else()
@@ -243,7 +243,7 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
 
         target_include_directories(monitoring_system
             PUBLIC
-                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
+                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
                 $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
                 $<INSTALL_INTERFACE:include>
         )
@@ -264,7 +264,8 @@ else()
 
     target_include_directories(monitoring_system
         PUBLIC
-            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/sources>
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
+            $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
             $<INSTALL_INTERFACE:include>
     )
 endif()
