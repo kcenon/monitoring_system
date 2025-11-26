@@ -322,8 +322,3 @@ TEST_F(EventBusTest, ConcurrentPublishing) {
     // Should have received all metrics
     EXPECT_EQ(received_count.load(), num_threads * events_per_thread);
 }
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
