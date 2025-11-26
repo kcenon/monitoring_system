@@ -316,13 +316,13 @@ public:
         try {
             std::vector<jaeger_span_data> jaeger_spans;
             jaeger_spans.reserve(spans.size());
-            
+
             for (const auto& span : spans) {
                 jaeger_spans.push_back(convert_span(span));
             }
-            
+
             // Convert to appropriate format and send
-            result_void send_result;
+            result_void send_result = common::ok();
             if (config_.format == trace_export_format::jaeger_thrift) {
                 send_result = send_thrift_batch(jaeger_spans);
             } else if (config_.format == trace_export_format::jaeger_grpc) {
@@ -439,7 +439,7 @@ private:
                     continue;
                 }
                 // Non-retryable error
-                return result_void::err(error_info(monitoring_error_code::export_failed,
+                return result_void::err(error_info(monitoring_error_code::operation_failed,
                     "Jaeger export failed with status: " + std::to_string(response.status_code),
                     "monitoring_system").to_common_error());
             }
@@ -449,7 +449,7 @@ private:
                 delay *= 2;
             }
         }
-        return result_void::err(error_info(monitoring_error_code::export_failed,
+        return result_void::err(error_info(monitoring_error_code::operation_failed,
             "Jaeger export failed after " + std::to_string(max_retries_) + " retries",
             "monitoring_system").to_common_error());
     }
@@ -519,13 +519,13 @@ public:
         try {
             std::vector<zipkin_span_data> zipkin_spans;
             zipkin_spans.reserve(spans.size());
-            
+
             for (const auto& span : spans) {
                 zipkin_spans.push_back(convert_span(span));
             }
-            
+
             // Convert to appropriate format and send
-            result_void send_result;
+            result_void send_result = common::ok();
             if (config_.format == trace_export_format::zipkin_json) {
                 send_result = send_json_batch(zipkin_spans);
             } else if (config_.format == trace_export_format::zipkin_protobuf) {
@@ -640,7 +640,7 @@ private:
                     continue;
                 }
                 // Non-retryable error
-                return result_void::err(error_info(monitoring_error_code::export_failed,
+                return result_void::err(error_info(monitoring_error_code::operation_failed,
                     "Zipkin export failed with status: " + std::to_string(response.status_code),
                     "monitoring_system").to_common_error());
             }
@@ -650,7 +650,7 @@ private:
                 delay *= 2;
             }
         }
-        return result_void::err(error_info(monitoring_error_code::export_failed,
+        return result_void::err(error_info(monitoring_error_code::operation_failed,
             "Zipkin export failed after " + std::to_string(max_retries_) + " retries",
             "monitoring_system").to_common_error());
     }
@@ -681,11 +681,11 @@ public:
                 return result_void::err(error_info(monitoring_error_code::processing_failed,
                                  "Failed to convert spans to OTEL format: " + otel_result.error().message, "monitoring_system").to_common_error());
             }
-            
+
             const auto& otel_spans = otel_result.value();
-            
+
             // Send via appropriate OTLP protocol
-            result_void send_result;
+            result_void send_result = common::ok();
             if (config_.format == trace_export_format::otlp_grpc) {
                 send_result = send_grpc_batch(otel_spans);
             } else if (config_.format == trace_export_format::otlp_http_json) {

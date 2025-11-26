@@ -70,38 +70,38 @@ TEST_F(TraceExportersTest, TraceExportConfigValidation) {
     valid_config.timeout = std::chrono::milliseconds(5000);
     valid_config.max_batch_size = 100;
     valid_config.max_queue_size = 1000;
-    
+
     auto validation = valid_config.validate();
-    EXPECT_TRUE(validation);
-    
+    EXPECT_TRUE(validation.is_ok());
+
     // Invalid endpoint
     trace_export_config invalid_endpoint;
     invalid_endpoint.endpoint = "";
     auto endpoint_validation = invalid_endpoint.validate();
-    EXPECT_FALSE(endpoint_validation);
-    EXPECT_EQ(endpoint_validation.error().code, monitoring_error_code::invalid_configuration);
-    
+    EXPECT_TRUE(endpoint_validation.is_err());
+    EXPECT_EQ(endpoint_validation.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
+
     // Invalid timeout
     trace_export_config invalid_timeout;
     invalid_timeout.endpoint = "http://test";
     invalid_timeout.timeout = std::chrono::milliseconds(0);
     auto timeout_validation = invalid_timeout.validate();
-    EXPECT_FALSE(timeout_validation);
-    
+    EXPECT_TRUE(timeout_validation.is_err());
+
     // Invalid batch size
     trace_export_config invalid_batch;
     invalid_batch.endpoint = "http://test";
     invalid_batch.max_batch_size = 0;
     auto batch_validation = invalid_batch.validate();
-    EXPECT_FALSE(batch_validation);
-    
+    EXPECT_TRUE(batch_validation.is_err());
+
     // Invalid queue size
     trace_export_config invalid_queue;
     invalid_queue.endpoint = "http://test";
     invalid_queue.max_batch_size = 100;
     invalid_queue.max_queue_size = 50;
     auto queue_validation = invalid_queue.validate();
-    EXPECT_FALSE(queue_validation);
+    EXPECT_TRUE(queue_validation.is_err());
 }
 
 TEST_F(TraceExportersTest, JaegerSpanConversion) {
@@ -148,24 +148,24 @@ TEST_F(TraceExportersTest, JaegerExporterBasicFunctionality) {
     trace_export_config config;
     config.endpoint = "http://jaeger:14268/api/traces";
     config.format = trace_export_format::jaeger_thrift;
-    
+
     jaeger_exporter exporter(config);
-    
+
     // Export spans
     auto export_result = exporter.export_spans(test_spans_);
-    EXPECT_TRUE(export_result);
-    
+    EXPECT_TRUE(export_result.is_ok());
+
     // Check statistics
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_spans"], test_spans_.size());
     EXPECT_EQ(stats["failed_exports"], 0);
-    
+
     // Test flush and shutdown
     auto flush_result = exporter.flush();
-    EXPECT_TRUE(flush_result);
-    
+    EXPECT_TRUE(flush_result.is_ok());
+
     auto shutdown_result = exporter.shutdown();
-    EXPECT_TRUE(shutdown_result);
+    EXPECT_TRUE(shutdown_result.is_ok());
 }
 
 TEST_F(TraceExportersTest, ZipkinSpanConversion) {
@@ -195,48 +195,48 @@ TEST_F(TraceExportersTest, ZipkinExporterBasicFunctionality) {
     trace_export_config config;
     config.endpoint = "http://zipkin:9411/api/v2/spans";
     config.format = trace_export_format::zipkin_json;
-    
+
     zipkin_exporter exporter(config);
-    
+
     // Export spans
     auto export_result = exporter.export_spans(test_spans_);
-    EXPECT_TRUE(export_result);
-    
+    EXPECT_TRUE(export_result.is_ok());
+
     // Check statistics
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_spans"], test_spans_.size());
     EXPECT_EQ(stats["failed_exports"], 0);
-    
+
     // Test flush and shutdown
     auto flush_result = exporter.flush();
-    EXPECT_TRUE(flush_result);
-    
+    EXPECT_TRUE(flush_result.is_ok());
+
     auto shutdown_result = exporter.shutdown();
-    EXPECT_TRUE(shutdown_result);
+    EXPECT_TRUE(shutdown_result.is_ok());
 }
 
 TEST_F(TraceExportersTest, OtlpExporterBasicFunctionality) {
     trace_export_config config;
     config.endpoint = "http://otlp-collector:4317";
     config.format = trace_export_format::otlp_grpc;
-    
+
     otlp_exporter exporter(config, otel_resource_);
-    
+
     // Export spans
     auto export_result = exporter.export_spans(test_spans_);
-    EXPECT_TRUE(export_result);
-    
+    EXPECT_TRUE(export_result.is_ok());
+
     // Check statistics
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_spans"], test_spans_.size());
     EXPECT_EQ(stats["failed_exports"], 0);
-    
+
     // Test flush and shutdown
     auto flush_result = exporter.flush();
-    EXPECT_TRUE(flush_result);
-    
+    EXPECT_TRUE(flush_result.is_ok());
+
     auto shutdown_result = exporter.shutdown();
-    EXPECT_TRUE(shutdown_result);
+    EXPECT_TRUE(shutdown_result.is_ok());
 }
 
 TEST_F(TraceExportersTest, TraceExporterFactory) {
@@ -310,28 +310,28 @@ TEST_F(TraceExportersTest, InvalidFormatHandling) {
     trace_export_config invalid_jaeger_config;
     invalid_jaeger_config.endpoint = "http://jaeger:14268";
     invalid_jaeger_config.format = trace_export_format::zipkin_json; // Wrong format
-    
-    jaeger_exporter jaeger_exporter(invalid_jaeger_config);
-    auto jaeger_result = jaeger_exporter.export_spans(test_spans_);
-    EXPECT_FALSE(jaeger_result);
+
+    jaeger_exporter jaeger_exp(invalid_jaeger_config);
+    auto jaeger_result = jaeger_exp.export_spans(test_spans_);
+    EXPECT_TRUE(jaeger_result.is_err());
     EXPECT_EQ(jaeger_result.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
 
     trace_export_config invalid_zipkin_config;
     invalid_zipkin_config.endpoint = "http://zipkin:9411";
     invalid_zipkin_config.format = trace_export_format::jaeger_grpc; // Wrong format
 
-    zipkin_exporter zipkin_exporter(invalid_zipkin_config);
-    auto zipkin_result = zipkin_exporter.export_spans(test_spans_);
-    EXPECT_FALSE(zipkin_result);
+    zipkin_exporter zipkin_exp(invalid_zipkin_config);
+    auto zipkin_result = zipkin_exp.export_spans(test_spans_);
+    EXPECT_TRUE(zipkin_result.is_err());
     EXPECT_EQ(zipkin_result.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
 
     trace_export_config invalid_otlp_config;
     invalid_otlp_config.endpoint = "http://otlp:4317";
     invalid_otlp_config.format = trace_export_format::jaeger_thrift; // Wrong format
 
-    otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);
-    auto otlp_result = otlp_exporter.export_spans(test_spans_);
-    EXPECT_FALSE(otlp_result);
+    otlp_exporter otlp_exp(invalid_otlp_config, otel_resource_);
+    auto otlp_result = otlp_exp.export_spans(test_spans_);
+    EXPECT_TRUE(otlp_result.is_err());
     EXPECT_EQ(otlp_result.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
 }
 
@@ -364,16 +364,16 @@ TEST_F(TraceExportersTest, LargeSpanBatch) {
         span.end_time = span.start_time + std::chrono::milliseconds(1);
         large_batch.push_back(span);
     }
-    
+
     trace_export_config config;
     config.endpoint = "http://test:1234";
     config.format = trace_export_format::otlp_grpc;
     config.max_batch_size = 500; // Smaller than batch size
-    
+
     otlp_exporter exporter(config, otel_resource_);
     auto result = exporter.export_spans(large_batch);
     EXPECT_TRUE(result.is_ok());
-    
+
     auto stats = exporter.get_stats();
-    EXPECT_EQ(stats["exported_spans"], 1000);
+    EXPECT_EQ(stats["exported_spans"], static_cast<std::size_t>(1000));
 }

@@ -13,7 +13,7 @@ All rights reserved.
 #include <vector>
 #include <atomic>
 #include <chrono>
-#include <barrier>
+#include <latch>
 
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
@@ -57,7 +57,7 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
     ASSERT_TRUE(token.is_ok());
 
     std::vector<std::thread> threads;
-    std::barrier sync_point(num_publishers);
+    std::latch sync_point(num_publishers);
 
     for (int i = 0; i < num_publishers; ++i) {
         threads.emplace_back([&, thread_id = i]() {
@@ -393,7 +393,7 @@ TEST_F(MonitoringThreadSafetyTest, HighVolumeStressTest) {
     ASSERT_TRUE(token.is_ok());
 
     std::vector<std::thread> threads;
-    std::barrier sync_point(num_threads);
+    std::latch sync_point(num_threads);
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
@@ -514,7 +514,7 @@ TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentSampleRecording) {
 
     std::atomic<int> errors{0};
     std::vector<std::thread> threads;
-    std::barrier sync_point(num_threads);
+    std::latch sync_point(num_threads);
 
     for (int i = 0; i < num_threads; ++i) {
         threads.emplace_back([&, thread_id = i]() {
@@ -614,7 +614,7 @@ TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentLockFreeModeToggle) {
 
     std::atomic<int> errors{0};
     std::vector<std::thread> threads;
-    std::barrier sync_point(num_threads);
+    std::latch sync_point(num_threads);
 
     for (int i = 0; i < num_threads; ++i) {
         threads.emplace_back([&, thread_id = i]() {
@@ -661,7 +661,7 @@ TEST_F(PerformanceMonitorThreadSafetyTest, ConcurrentThresholdModification) {
 
     std::atomic<int> errors{0};
     std::vector<std::thread> threads;
-    std::barrier sync_point(num_threads);
+    std::latch sync_point(num_threads);
 
     for (int i = 0; i < num_threads; ++i) {
         threads.emplace_back([&, thread_id = i]() {
@@ -702,7 +702,7 @@ TEST_F(PerformanceMonitorThreadSafetyTest, ConcurrentProfilingOperations) {
 
     std::atomic<int> errors{0};
     std::vector<std::thread> threads;
-    std::barrier sync_point(num_threads);
+    std::latch sync_point(num_threads);
 
     for (int i = 0; i < num_threads; ++i) {
         threads.emplace_back([&, thread_id = i]() {
