@@ -598,16 +598,281 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>    EXPECT_EQ(total_errors.load(), 0);</div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>}</div>
 </div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span><span class="comment">// =============================================================================</span></div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span><span class="comment">// MON-ARC-003: Monitor Thread Safety Verification Tests</span></div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span><span class="comment">// =============================================================================</span></div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span> </div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="preprocessor">#include &lt;kcenon/monitoring/core/performance_monitor.h&gt;</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span> </div>
+<div class="foldopen" id="foldopen00505" data-start="{" data-end="};">
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno"><a class="line" href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html">  505</a></span><span class="keyword">class </span><a class="code hl_class" href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html">PerformanceProfilerThreadSafetyTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno"><a class="line" href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html#ac48a8245dd958956f927241719ec3b93">  507</a></span>    kcenon::monitoring::performance_profiler <a class="code hl_variable" href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html#ac48a8245dd958956f927241719ec3b93">profiler</a>;</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>};</div>
+</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="comment">// Test 8: Concurrent sample recording</span></div>
+<div class="foldopen" id="foldopen00511" data-start="{" data-end="}">
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno"><a class="line" href="../../df/d66/thread__safety__tests_8cpp.html#a612dbd3359107825a25a5dad7a2bb314">  511</a></span><a class="code hl_function" href="../../df/d66/thread__safety__tests_8cpp.html#aa9a4e8fdf001560b8d7366955c008f75">TEST_F</a>(<a class="code hl_class" href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html">PerformanceProfilerThreadSafetyTest</a>, ConcurrentSampleRecording) {</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 16;</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> samples_per_thread = 1000;</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>    std::atomic&lt;int&gt; errors{0};</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>            sync_point.arrive_and_wait();</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span> </div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; samples_per_thread; ++j) {</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>                <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>                    <span class="keyword">auto</span> duration = std::chrono::nanoseconds(j * 1000 + thread_id);</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>                    <span class="keyword">auto</span> result = profiler.record_sample(</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>                        <span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(thread_id % 4),</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>                        duration,</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>                        j % 10 != 0  <span class="comment">// 10% failure rate</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>                    );</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>                    <span class="keywordflow">if</span> (result.is_err()) {</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>                        ++errors;</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>                    }</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>                } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>                    ++errors;</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>                }</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>            }</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>        });</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>    }</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> </div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>        t.join();</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>    }</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span> </div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    EXPECT_EQ(errors.load(), 0);</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="comment">// Verify data integrity</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    <span class="keyword">auto</span> all_metrics = profiler.get_all_metrics();</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>    EXPECT_EQ(all_metrics.size(), 4);  <span class="comment">// 4 unique operations</span></div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>}</div>
+</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span><span class="comment">// Test 9: Concurrent get_metrics while recording</span></div>
+<div class="foldopen" id="foldopen00553" data-start="{" data-end="}">
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno"><a class="line" href="../../df/d66/thread__safety__tests_8cpp.html#af7ad9424bcf5150f4dc92eff1cf0ab99">  553</a></span><a class="code hl_function" href="../../df/d66/thread__safety__tests_8cpp.html#aa9a4e8fdf001560b8d7366955c008f75">TEST_F</a>(<a class="code hl_class" href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html">PerformanceProfilerThreadSafetyTest</a>, ConcurrentReadWrite) {</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_writers = 8;</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_readers = 4;</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> operations_per_thread = 500;</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> </div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>    std::atomic&lt;bool&gt; running{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    std::atomic&lt;int&gt; errors{0};</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    <span class="comment">// Writers</span></div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_writers; ++i) {</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread &amp;&amp; running.load(); ++j) {</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>                <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>                    profiler.record_sample(</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>                        <span class="stringliteral">&quot;shared_op&quot;</span>,</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>                        std::chrono::nanoseconds(j * 100 + thread_id),</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>                        <span class="keyword">true</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>                    );</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>                } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>                    ++errors;</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>                }</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>            }</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>        });</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>    }</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>    <span class="comment">// Readers</span></div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_readers; ++i) {</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>        threads.emplace_back([&amp;]() {</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>            <span class="keywordflow">while</span> (running.load()) {</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>                try {</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>                    auto result = profiler.get_metrics(<span class="stringliteral">&quot;shared_op&quot;</span>);</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>                    <span class="comment">// Result may be err if not yet recorded</span></div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>                    (void)result;</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>                    std::this_thread::sleep_for(1ms);</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>                } catch (...) {</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>                    ++errors;</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>                }</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>            }</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>        });</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>    }</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>    <span class="comment">// Let writers complete</span></div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_writers; ++i) {</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>        threads[i].join();</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>    }</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span> </div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    running.store(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span> </div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>    <span class="comment">// Join readers</span></div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = num_writers; i &lt; static_cast&lt;int&gt;(threads.size()); ++i) {</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>        threads[i].join();</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>    }</div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span> </div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>    EXPECT_EQ(errors.load(), 0);</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>}</div>
+</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span> </div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span><span class="comment">// Test 10: Concurrent lock-free mode toggle</span></div>
+<div class="foldopen" id="foldopen00611" data-start="{" data-end="}">
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno"><a class="line" href="../../df/d66/thread__safety__tests_8cpp.html#a34223a2af3618793bb44ea5e139564af">  611</a></span><a class="code hl_function" href="../../df/d66/thread__safety__tests_8cpp.html#aa9a4e8fdf001560b8d7366955c008f75">TEST_F</a>(<a class="code hl_class" href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html">PerformanceProfilerThreadSafetyTest</a>, ConcurrentLockFreeModeToggle) {</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 8;</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> iterations = 1000;</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span> </div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>    std::atomic&lt;int&gt; errors{0};</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>            sync_point.arrive_and_wait();</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> </div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; iterations; ++j) {</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>                <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>                    <span class="comment">// Toggle mode</span></div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>                    profiler.set_lock_free_mode(j % 2 == 0);</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span> </div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>                    <span class="comment">// Read mode</span></div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>                    <span class="keywordtype">bool</span> mode = profiler.is_lock_free_mode();</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>                    (void)mode;</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>                    <span class="comment">// Record sample</span></div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>                    profiler.record_sample(</div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>                        <span class="stringliteral">&quot;toggle_test&quot;</span>,</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>                        std::chrono::nanoseconds(j + thread_id * 1000),</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>                        <span class="keyword">true</span></div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>                    );</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>                } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>                    ++errors;</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>                }</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>            }</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>        });</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>    }</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span> </div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>        t.join();</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    }</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span> </div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>    EXPECT_EQ(errors.load(), 0);</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>}</div>
+</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span> </div>
+<div class="foldopen" id="foldopen00652" data-start="{" data-end="};">
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno"><a class="line" href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html">  652</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html">PerformanceMonitorThreadSafetyTest</a> : <span class="keyword">public</span> ::testing::Test {</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno"><a class="line" href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html#a24d5923c5ef732a4c043fbdd91fa712b">  654</a></span>    kcenon::monitoring::performance_monitor <a class="code hl_variable" href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html#a24d5923c5ef732a4c043fbdd91fa712b">monitor</a>{<span class="stringliteral">&quot;test_monitor&quot;</span>};</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>};</div>
+</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span> </div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="comment">// Test 11: Concurrent threshold modification</span></div>
+<div class="foldopen" id="foldopen00658" data-start="{" data-end="}">
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno"><a class="line" href="../../df/d66/thread__safety__tests_8cpp.html#a57d79101a0fd13d6b6c378d718fc3b73">  658</a></span><a class="code hl_function" href="../../df/d66/thread__safety__tests_8cpp.html#aa9a4e8fdf001560b8d7366955c008f75">TEST_F</a>(<a class="code hl_class" href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html">PerformanceMonitorThreadSafetyTest</a>, ConcurrentThresholdModification) {</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 8;</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> iterations = 500;</div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span> </div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>    std::atomic&lt;int&gt; errors{0};</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> </div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>            sync_point.arrive_and_wait();</div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span> </div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; iterations; ++j) {</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>                <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>                    <span class="comment">// Set thresholds</span></div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>                    monitor.set_cpu_threshold(50.0 + (thread_id * 5));</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>                    monitor.set_memory_threshold(60.0 + (j % 20));</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>                    monitor.set_latency_threshold(std::chrono::milliseconds(100 + j));</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> </div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>                    <span class="comment">// Read thresholds</span></div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>                    <span class="keyword">auto</span> thresholds = monitor.get_thresholds();</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>                    (void)thresholds;</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span> </div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>                    <span class="comment">// Check thresholds</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>                    <span class="keyword">auto</span> result = monitor.check_thresholds();</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>                    (void)result;</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>                } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>                    ++errors;</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>                }</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>            }</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>        });</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>    }</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span> </div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>        t.join();</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>    }</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>    EXPECT_EQ(errors.load(), 0);</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>}</div>
+</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span> </div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span><span class="comment">// Test 12: Concurrent profiling operations</span></div>
+<div class="foldopen" id="foldopen00699" data-start="{" data-end="}">
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno"><a class="line" href="../../df/d66/thread__safety__tests_8cpp.html#a84d7c54f6a48ef655175525c4e901e05">  699</a></span><a class="code hl_function" href="../../df/d66/thread__safety__tests_8cpp.html#aa9a4e8fdf001560b8d7366955c008f75">TEST_F</a>(<a class="code hl_class" href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html">PerformanceMonitorThreadSafetyTest</a>, ConcurrentProfilingOperations) {</div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 12;</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> operations_per_thread = 300;</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span> </div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>    std::atomic&lt;int&gt; errors{0};</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>    std::barrier sync_point(num_threads);</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span> </div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>        threads.emplace_back([&amp;, thread_id = i]() {</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>            sync_point.arrive_and_wait();</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span> </div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread; ++j) {</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>                <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>                    <span class="comment">// Use scoped timer</span></div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>                    {</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>                        <span class="keyword">auto</span> timer = monitor.time_operation(</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>                            <span class="stringliteral">&quot;op_&quot;</span> + std::to_string(thread_id % 3)</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>                        );</div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>                        <span class="comment">// Simulate work</span></div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>                        std::this_thread::sleep_for(std::chrono::microseconds(10));</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>                    }  <span class="comment">// Timer records on destruction</span></div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span> </div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>                    <span class="comment">// Collect metrics periodically</span></div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>                    <span class="keywordflow">if</span> (j % 50 == 0) {</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>                        <span class="keyword">auto</span> result = monitor.collect();</div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>                        (void)result;</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>                    }</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>                } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>                    ++errors;</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>                }</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>            }</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>        });</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>    }</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> </div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads) {</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>        t.join();</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    }</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span> </div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>    EXPECT_EQ(errors.load(), 0);</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span> </div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>    <span class="comment">// Verify all operations were recorded</span></div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>    <span class="keyword">auto</span>&amp; profiler = monitor.get_profiler();</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>    <span class="keyword">auto</span> all_metrics = profiler.get_all_metrics();</div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>    EXPECT_EQ(all_metrics.size(), 3);  <span class="comment">// 3 unique operations</span></div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>}</div>
+</div>
 <div class="ttc" id="aclassMonitoringThreadSafetyTest_html"><div class="ttname"><a href="../../d9/d57/classMonitoringThreadSafetyTest.html">MonitoringThreadSafetyTest</a></div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00021">thread_safety_tests.cpp:21</a></div></div>
 <div class="ttc" id="aclassMonitoringThreadSafetyTest_html_a2278dfb49cf1f77a530a97563b75aac4"><div class="ttname"><a href="../../d9/d57/classMonitoringThreadSafetyTest.html#a2278dfb49cf1f77a530a97563b75aac4">MonitoringThreadSafetyTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00023">thread_safety_tests.cpp:23</a></div></div>
 <div class="ttc" id="aclassMonitoringThreadSafetyTest_html_aacec7d68f0d3099ecb3f0b9120791271"><div class="ttname"><a href="../../d9/d57/classMonitoringThreadSafetyTest.html#aacec7d68f0d3099ecb3f0b9120791271">MonitoringThreadSafetyTest::bus</a></div><div class="ttdeci">std::shared_ptr&lt; event_bus &gt; bus</div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00038">thread_safety_tests.cpp:38</a></div></div>
 <div class="ttc" id="aclassMonitoringThreadSafetyTest_html_acd5805f0bf8b860efe54dce4d9e255f8"><div class="ttname"><a href="../../d9/d57/classMonitoringThreadSafetyTest.html#acd5805f0bf8b860efe54dce4d9e255f8">MonitoringThreadSafetyTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00032">thread_safety_tests.cpp:32</a></div></div>
+<div class="ttc" id="aclassPerformanceMonitorThreadSafetyTest_html"><div class="ttname"><a href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html">PerformanceMonitorThreadSafetyTest</a></div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00652">thread_safety_tests.cpp:652</a></div></div>
+<div class="ttc" id="aclassPerformanceMonitorThreadSafetyTest_html_a24d5923c5ef732a4c043fbdd91fa712b"><div class="ttname"><a href="../../d8/d32/classPerformanceMonitorThreadSafetyTest.html#a24d5923c5ef732a4c043fbdd91fa712b">PerformanceMonitorThreadSafetyTest::monitor</a></div><div class="ttdeci">kcenon::monitoring::performance_monitor monitor</div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00654">thread_safety_tests.cpp:654</a></div></div>
+<div class="ttc" id="aclassPerformanceProfilerThreadSafetyTest_html"><div class="ttname"><a href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html">PerformanceProfilerThreadSafetyTest</a></div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00505">thread_safety_tests.cpp:505</a></div></div>
+<div class="ttc" id="aclassPerformanceProfilerThreadSafetyTest_html_ac48a8245dd958956f927241719ec3b93"><div class="ttname"><a href="../../df/d0f/classPerformanceProfilerThreadSafetyTest.html#ac48a8245dd958956f927241719ec3b93">PerformanceProfilerThreadSafetyTest::profiler</a></div><div class="ttdeci">kcenon::monitoring::performance_profiler profiler</div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00507">thread_safety_tests.cpp:507</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00031">test_di_container.cpp:31</a></div></div>
 <div class="ttc" id="athread__safety__tests_8cpp_html_aa9a4e8fdf001560b8d7366955c008f75"><div class="ttname"><a href="../../df/d66/thread__safety__tests_8cpp.html#aa9a4e8fdf001560b8d7366955c008f75">TEST_F</a></div><div class="ttdeci">TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication)</div><div class="ttdef"><b>Definition</b> <a href="../../df/d66/thread__safety__tests_8cpp_source.html#l00042">thread_safety_tests.cpp:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 02:15:02 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 02:31:39 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
