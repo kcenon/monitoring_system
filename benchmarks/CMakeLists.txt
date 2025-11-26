@@ -1,5 +1,5 @@
 # Monitoring System Benchmarks
-# Phase 0, Task 0.2: Baseline Performance Benchmarking
+# Phase 2, ARC-002: Complete Performance Benchmark Suite
 
 cmake_minimum_required(VERSION 3.20)
 
@@ -22,6 +22,7 @@ if(benchmark_FOUND OR BENCHMARK_FOUND)
         metric_collection_bench.cpp
         event_bus_bench.cpp
         collector_overhead_bench.cpp
+        adaptive_monitor_bench.cpp
         main_bench.cpp
     )
 

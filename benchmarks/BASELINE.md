@@ -1,7 +1,8 @@
 # Baseline Performance Metrics
 
-**Document Version**: 1.0
+**Document Version**: 2.0
 **Created**: 2025-10-07
+**Updated**: 2025-11-26
 **System**: monitoring_system
 **Purpose**: Establish baseline performance metrics for regression detection
 
@@ -187,6 +188,67 @@ This document records baseline performance metrics for the monitoring_system. Th
 
 ---
 
+### 6. Adaptive Monitor Performance
+
+**Test File**: `adaptive_monitor_bench.cpp`
+
+#### 6.1 Configuration Lookup
+**Metric**: Time for configuration lookups
+
+| Operation | Target (ns) | Mean (ns) | Notes |
+|-----------|-------------|-----------|-------|
+| Get interval for load level | < 10 | TBD | Simple switch |
+| Get sampling rate for load level | < 10 | TBD | Simple switch |
+
+**Status**: ⏳ Awaiting initial benchmark run
+
+#### 6.2 Adaptive Collection
+**Metric**: Overhead of adaptive collection vs direct collection
+
+| Operation | Target (ns) | Mean (ns) | Notes |
+|-----------|-------------|-----------|-------|
+| Collect (adaptive enabled) | < 500 | TBD | Full path |
+| Collect (adaptive disabled) | < 300 | TBD | Bypass sampling |
+| Adaptation cycle | < 1000 | TBD | Load calculation |
+| Get stats | < 500 | TBD | Stats retrieval |
+
+**Target**: <20% overhead vs direct collection
+**Status**: ⏳ Awaiting initial benchmark run
+
+#### 6.3 Concurrent Adaptive Collection
+**Metric**: Throughput with multiple collectors
+
+| Threads | Operations/sec | Contention (%) | Notes |
+|---------|----------------|----------------|-------|
+| 1 | TBD | 0% (baseline) | |
+| 4 | TBD | TBD | Typical use case |
+
+**Target**: >90% scaling efficiency at 4 threads
+**Status**: ⏳ Awaiting initial benchmark run
+
+#### 6.4 Strategy Comparison
+**Metric**: Performance difference between adaptation strategies
+
+| Strategy | Collect Time (ns) | Adapt Time (ns) | Notes |
+|----------|-------------------|-----------------|-------|
+| Conservative | TBD | TBD | Fewer adaptations |
+| Balanced | TBD | TBD | Default |
+| Aggressive | TBD | TBD | More adaptations |
+
+**Status**: ⏳ Awaiting initial benchmark run
+
+#### 6.5 Memory Pressure Scenarios
+**Metric**: Performance under high memory pressure
+
+| Scenario | Collect Time (ns) | Notes |
+|----------|-------------------|-------|
+| Normal (50% memory) | TBD | Baseline |
+| High pressure (90% memory) | TBD | Critical state |
+
+**Status**: ⏳ Awaiting initial benchmark run
+
+---
+
 ## How to Run Benchmarks
 
 ### Building Benchmarks
@@ -251,4 +313,27 @@ The benchmarks.yml workflow runs benchmarks on every PR and compares results aga
 
 ---
 
-**Status**: 📝 Template created - awaiting initial benchmark data collection
+**Status**: 📝 Benchmark suite complete - awaiting initial data collection
+
+---
+
+## ARC-002 Implementation Notes
+
+This benchmark suite addresses ARC-002 requirements:
+
+1. ✅ **Complete benchmark suite for all monitors**
+   - metric_collection_bench.cpp - Performance profiler benchmarks
+   - event_bus_bench.cpp - Event bus throughput benchmarks
+   - collector_overhead_bench.cpp - Monitoring overhead benchmarks
+   - adaptive_monitor_bench.cpp - Adaptive monitoring benchmarks
+
+2. ✅ **Profile metric collection overhead**
+   - Collector overhead benchmark measures monitoring impact
+   - Target: <1% overhead for monitored operations
+
+3. 📋 **Compare with alternative monitoring solutions**
+   - To be documented when baseline data is collected
+
+4. ✅ **Baseline metrics documented**
+   - Target metrics defined for all benchmark categories
+   - CI/CD workflow configured for automated regression detection
