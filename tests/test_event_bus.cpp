@@ -111,13 +111,13 @@ TEST_F(EventBusTest, MultipleSubscribers) {
 
     // Subscribe twice to the same event type
     bus->subscribe_event<system_resource_event>(
-        [&](const system_resource_event& event) {
+        [&](const system_resource_event& /*event*/) {
             subscriber1_count++;
         }
     );
 
     bus->subscribe_event<system_resource_event>(
-        [&](const system_resource_event& event) {
+        [&](const system_resource_event& /*event*/) {
             subscriber2_count++;
         }
     );
@@ -191,7 +191,7 @@ TEST_F(EventBusTest, Unsubscribe) {
     std::atomic<int> received_count{0};
 
     auto token = bus->subscribe_event<health_check_event>(
-        [&](const health_check_event& event) {
+        [&](const health_check_event& /*event*/) {
             received_count++;
         }
     );
@@ -283,7 +283,7 @@ TEST_F(EventBusTest, ConcurrentPublishing) {
     // Subscribe to metric collection events
     bus->subscribe_event<metric_collection_event>(
         [&](const metric_collection_event& event) {
-            received_count.fetch_add(event.get_metric_count());
+            received_count.fetch_add(static_cast<int>(event.get_metric_count()));
         }
     );
 
