@@ -37,8 +37,10 @@ add_executable(monitoring_system_tests
     test_trace_exporters.cpp
     test_adapter_functionality.cpp
 
+    test_adaptive_monitoring.cpp
+
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (14 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
@@ -47,7 +49,6 @@ add_executable(monitoring_system_tests
     #
     # test_metric_exporters.cpp       # monitoring_data type missing
     # test_opentelemetry_adapter.cpp  # monitoring_data type missing, Result API
-    # test_adaptive_monitoring.cpp    # Result<T> API updates needed
     # test_health_monitoring.cpp      # Result<T> API updates needed
     # test_fault_tolerance.cpp        # Result<T> API updates needed
     # test_error_boundaries.cpp       # Missing: graceful_degradation.h
