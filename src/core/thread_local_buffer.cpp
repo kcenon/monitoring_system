@@ -40,8 +40,10 @@ namespace kcenon { namespace monitoring {
 thread_local_buffer::thread_local_buffer(size_t capacity,
                                          std::shared_ptr<central_collector> collector)
     : capacity_(capacity)
-    , collector_(collector) {
-    buffer_.reserve(capacity);
+    , collector_(collector)
+    , stats_() {
+    // Pre-allocate buffer to avoid runtime allocations
+    buffer_.resize(capacity);
 }
 
 thread_local_buffer::~thread_local_buffer() {
@@ -56,8 +58,10 @@ bool thread_local_buffer::record(const metric_sample& sample) {
         return false;  // Buffer full, caller should flush
     }
 
-    buffer_.push_back(sample);
+    // Direct write to pre-allocated slot (no allocation)
+    buffer_[write_index_] = sample;
     ++write_index_;
+    ++stats_.total_records;
     return true;
 }
 
@@ -65,6 +69,7 @@ bool thread_local_buffer::record_auto_flush(const metric_sample& sample) {
     if (!record(sample)) {
         // Buffer full, flush and retry
         flush();
+        ++stats_.auto_flushes;
         return record(sample);
     }
     return true;
@@ -77,12 +82,13 @@ size_t thread_local_buffer::flush() {
 
     size_t flushed = write_index_;
 
-    // Send batch to central collector
-    collector_->receive_batch(buffer_);
+    // Create a view of the valid samples for batch processing
+    std::vector<metric_sample> batch(buffer_.begin(), buffer_.begin() + write_index_);
+    collector_->receive_batch(batch);
 
-    // Clear buffer
-    buffer_.clear();
+    // Reset write index (buffer stays allocated)
     write_index_ = 0;
+    ++stats_.total_flushes;
 
     return flushed;
 }
