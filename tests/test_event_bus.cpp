@@ -77,7 +77,7 @@ TEST_F(EventBusTest, PublishSubscribe) {
         }
     );
 
-    ASSERT_TRUE(token.has_value());
+    ASSERT_TRUE(token.is_ok());
 
     // Publish an event
     performance_alert_event alert(
@@ -88,7 +88,7 @@ TEST_F(EventBusTest, PublishSubscribe) {
     );
 
     auto result = bus->publish_event(alert);
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
 
     // Wait for event processing
     std::this_thread::sleep_for(100ms);
@@ -182,7 +182,7 @@ TEST_F(EventBusTest, Unsubscribe) {
         }
     );
 
-    ASSERT_TRUE(token.has_value());
+    ASSERT_TRUE(token.is_ok());
 
     // Publish first event
     std::vector<health_check_event::health_check_result> results;
@@ -279,13 +279,13 @@ TEST_F(EventBusTest, ConcurrentPublishing) {
 
     // Start publisher threads
     for (int t = 0; t < num_threads; ++t) {
-        publishers.emplace_back([this, t, events_per_thread]() {
+        publishers.emplace_back([this, events_per_thread]() {
             for (int i = 0; i < events_per_thread; ++i) {
                 std::vector<metric> metrics;
                 metrics.push_back(metric{
                     "test_metric",
-                    metric_value{42.0},
-                    {{"thread", std::to_string(t)}},
+                    42.0,
+                    {{"thread", "publisher"}},
                     metric_type::gauge
                 });
 
