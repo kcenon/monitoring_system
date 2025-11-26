@@ -495,3 +495,250 @@ TEST_F(MonitoringThreadSafetyTest, MemorySafetyTest) {
 
     EXPECT_EQ(total_errors.load(), 0);
 }
+
+// =============================================================================
+// MON-ARC-003: Monitor Thread Safety Verification Tests
+// =============================================================================
+
+#include <kcenon/monitoring/core/performance_monitor.h>
+
+class PerformanceProfilerThreadSafetyTest : public ::testing::Test {
+protected:
+    kcenon::monitoring::performance_profiler profiler;
+};
+
+// Test 8: Concurrent sample recording
+TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentSampleRecording) {
+    const int num_threads = 16;
+    const int samples_per_thread = 1000;
+
+    std::atomic<int> errors{0};
+    std::vector<std::thread> threads;
+    std::barrier sync_point(num_threads);
+
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back([&, thread_id = i]() {
+            sync_point.arrive_and_wait();
+
+            for (int j = 0; j < samples_per_thread; ++j) {
+                try {
+                    auto duration = std::chrono::nanoseconds(j * 1000 + thread_id);
+                    auto result = profiler.record_sample(
+                        "operation_" + std::to_string(thread_id % 4),
+                        duration,
+                        j % 10 != 0  // 10% failure rate
+                    );
+                    if (result.is_err()) {
+                        ++errors;
+                    }
+                } catch (...) {
+                    ++errors;
+                }
+            }
+        });
+    }
+
+    for (auto& t : threads) {
+        t.join();
+    }
+
+    EXPECT_EQ(errors.load(), 0);
+
+    // Verify data integrity
+    auto all_metrics = profiler.get_all_metrics();
+    EXPECT_EQ(all_metrics.size(), 4);  // 4 unique operations
+}
+
+// Test 9: Concurrent get_metrics while recording
+TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentReadWrite) {
+    const int num_writers = 8;
+    const int num_readers = 4;
+    const int operations_per_thread = 500;
+
+    std::atomic<bool> running{true};
+    std::atomic<int> errors{0};
+    std::vector<std::thread> threads;
+
+    // Writers
+    for (int i = 0; i < num_writers; ++i) {
+        threads.emplace_back([&, thread_id = i]() {
+            for (int j = 0; j < operations_per_thread && running.load(); ++j) {
+                try {
+                    profiler.record_sample(
+                        "shared_op",
+                        std::chrono::nanoseconds(j * 100 + thread_id),
+                        true
+                    );
+                } catch (...) {
+                    ++errors;
+                }
+            }
+        });
+    }
+
+    // Readers
+    for (int i = 0; i < num_readers; ++i) {
+        threads.emplace_back([&]() {
+            while (running.load()) {
+                try {
+                    auto result = profiler.get_metrics("shared_op");
+                    // Result may be err if not yet recorded
+                    (void)result;
+                    std::this_thread::sleep_for(1ms);
+                } catch (...) {
+                    ++errors;
+                }
+            }
+        });
+    }
+
+    // Let writers complete
+    for (int i = 0; i < num_writers; ++i) {
+        threads[i].join();
+    }
+
+    running.store(false);
+
+    // Join readers
+    for (int i = num_writers; i < static_cast<int>(threads.size()); ++i) {
+        threads[i].join();
+    }
+
+    EXPECT_EQ(errors.load(), 0);
+}
+
+// Test 10: Concurrent lock-free mode toggle
+TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentLockFreeModeToggle) {
+    const int num_threads = 8;
+    const int iterations = 1000;
+
+    std::atomic<int> errors{0};
+    std::vector<std::thread> threads;
+    std::barrier sync_point(num_threads);
+
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back([&, thread_id = i]() {
+            sync_point.arrive_and_wait();
+
+            for (int j = 0; j < iterations; ++j) {
+                try {
+                    // Toggle mode
+                    profiler.set_lock_free_mode(j % 2 == 0);
+
+                    // Read mode
+                    bool mode = profiler.is_lock_free_mode();
+                    (void)mode;
+
+                    // Record sample
+                    profiler.record_sample(
+                        "toggle_test",
+                        std::chrono::nanoseconds(j + thread_id * 1000),
+                        true
+                    );
+                } catch (...) {
+                    ++errors;
+                }
+            }
+        });
+    }
+
+    for (auto& t : threads) {
+        t.join();
+    }
+
+    EXPECT_EQ(errors.load(), 0);
+}
+
+class PerformanceMonitorThreadSafetyTest : public ::testing::Test {
+protected:
+    kcenon::monitoring::performance_monitor monitor{"test_monitor"};
+};
+
+// Test 11: Concurrent threshold modification
+TEST_F(PerformanceMonitorThreadSafetyTest, ConcurrentThresholdModification) {
+    const int num_threads = 8;
+    const int iterations = 500;
+
+    std::atomic<int> errors{0};
+    std::vector<std::thread> threads;
+    std::barrier sync_point(num_threads);
+
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back([&, thread_id = i]() {
+            sync_point.arrive_and_wait();
+
+            for (int j = 0; j < iterations; ++j) {
+                try {
+                    // Set thresholds
+                    monitor.set_cpu_threshold(50.0 + (thread_id * 5));
+                    monitor.set_memory_threshold(60.0 + (j % 20));
+                    monitor.set_latency_threshold(std::chrono::milliseconds(100 + j));
+
+                    // Read thresholds
+                    auto thresholds = monitor.get_thresholds();
+                    (void)thresholds;
+
+                    // Check thresholds
+                    auto result = monitor.check_thresholds();
+                    (void)result;
+                } catch (...) {
+                    ++errors;
+                }
+            }
+        });
+    }
+
+    for (auto& t : threads) {
+        t.join();
+    }
+
+    EXPECT_EQ(errors.load(), 0);
+}
+
+// Test 12: Concurrent profiling operations
+TEST_F(PerformanceMonitorThreadSafetyTest, ConcurrentProfilingOperations) {
+    const int num_threads = 12;
+    const int operations_per_thread = 300;
+
+    std::atomic<int> errors{0};
+    std::vector<std::thread> threads;
+    std::barrier sync_point(num_threads);
+
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back([&, thread_id = i]() {
+            sync_point.arrive_and_wait();
+
+            for (int j = 0; j < operations_per_thread; ++j) {
+                try {
+                    // Use scoped timer
+                    {
+                        auto timer = monitor.time_operation(
+                            "op_" + std::to_string(thread_id % 3)
+                        );
+                        // Simulate work
+                        std::this_thread::sleep_for(std::chrono::microseconds(10));
+                    }  // Timer records on destruction
+
+                    // Collect metrics periodically
+                    if (j % 50 == 0) {
+                        auto result = monitor.collect();
+                        (void)result;
+                    }
+                } catch (...) {
+                    ++errors;
+                }
+            }
+        });
+    }
+
+    for (auto& t : threads) {
+        t.join();
+    }
+
+    EXPECT_EQ(errors.load(), 0);
+
+    // Verify all operations were recorded
+    auto& profiler = monitor.get_profiler();
+    auto all_metrics = profiler.get_all_metrics();
+    EXPECT_EQ(all_metrics.size(), 3);  // 3 unique operations
+}

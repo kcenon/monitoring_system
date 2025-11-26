@@ -139,6 +139,11 @@ struct system_metrics {
 
 /**
  * @brief Performance profiler for code sections
+ *
+ * @thread_safety Thread-safe. All public methods can be called concurrently.
+ *   - Uses std::shared_mutex for read/write synchronization on profiles
+ *   - Uses per-profile std::mutex for sample data protection
+ *   - Uses std::atomic for counters and flags
  */
 class performance_profiler {
 private:
@@ -160,7 +165,7 @@ private:
     std::size_t max_profiles_{10000};  // LRU eviction threshold
 
     // Lock-free collection path (Sprint 3-4)
-    bool use_lock_free_path_{false};
+    std::atomic<bool> use_lock_free_path_{false};
     
 public:
     /**
@@ -346,6 +351,11 @@ public:
  * Implements kcenon::monitoring::metrics_collector for internal monitoring.
  * For interoperability with common::interfaces::IMonitor, use performance_monitor_adapter.
  *
+ * @thread_safety Thread-safe. All public methods can be called concurrently.
+ *   - profiler_ is thread-safe (uses internal synchronization)
+ *   - system_monitor_ is thread-safe (uses internal synchronization)
+ *   - thresholds_ protected by thresholds_mutex_
+ *
  * @see performance_monitor_adapter For bridging to common::interfaces::IMonitor
  */
 class performance_monitor : public metrics_collector {
@@ -361,6 +371,7 @@ private:
         double memory_threshold{90.0};
         std::chrono::milliseconds latency_threshold{1000};
     } thresholds_;
+    mutable std::mutex thresholds_mutex_;  // Protects thresholds_
     
 public:
     explicit performance_monitor(const std::string& name = "performance_monitor")
@@ -417,17 +428,30 @@ public:
     
     /**
      * @brief Set performance thresholds
+     * @thread_safety Thread-safe. Uses mutex for synchronization.
      */
     void set_cpu_threshold(double threshold) {
+        std::lock_guard<std::mutex> lock(thresholds_mutex_);
         thresholds_.cpu_threshold = threshold;
     }
-    
+
     void set_memory_threshold(double threshold) {
+        std::lock_guard<std::mutex> lock(thresholds_mutex_);
         thresholds_.memory_threshold = threshold;
     }
-    
+
     void set_latency_threshold(std::chrono::milliseconds threshold) {
+        std::lock_guard<std::mutex> lock(thresholds_mutex_);
         thresholds_.latency_threshold = threshold;
+    }
+
+    /**
+     * @brief Get current threshold values
+     * @thread_safety Thread-safe. Uses mutex for synchronization.
+     */
+    thresholds get_thresholds() const {
+        std::lock_guard<std::mutex> lock(thresholds_mutex_);
+        return thresholds_;
     }
     
     /**
