@@ -134,8 +134,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a9b85b2a71a1375869518784fb9bff7a7" id="r_a9b85b2a71a1375869518784fb9bff7a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d52/test__adapter__functionality_8cpp.html#a9b85b2a71a1375869518784fb9bff7a7">TEST</a> (AdapterFunctionalityTest, MultipleAdaptersIndependent)</td></tr>
 <tr class="memdesc:a9b85b2a71a1375869518784fb9bff7a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test Scenario 5: Multiple adapters with different loggers.  <br /></td></tr>
 <tr class="separator:a9b85b2a71a1375869518784fb9bff7a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627" id="r_a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d52/test__adapter__functionality_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
-<tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Phase 3.2 - Adapter Functionality Verification Tests. </p>
@@ -148,40 +146,6 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a3c04138a5bfe5d72780bb7e82a18e627" name="a3c04138a5bfe5d72780bb7e82a18e627"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c04138a5bfe5d72780bb7e82a18e627">&#9670;&#160;</a></span>main()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int main </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>argv</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00240">240</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  240</span>                                {</div>
-<div class="line"><span class="lineno">  241</span>    ::testing::InitGoogleTest(&amp;argc, argv);</div>
-<div class="line"><span class="lineno">  242</span>    <span class="keywordflow">return</span> RUN_ALL_TESTS();</div>
-<div class="line"><span class="lineno">  243</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="a9b85b2a71a1375869518784fb9bff7a7" name="a9b85b2a71a1375869518784fb9bff7a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9b85b2a71a1375869518784fb9bff7a7">&#9670;&#160;</a></span>TEST() <span class="overload">[1/5]</span></h2>
 
@@ -210,21 +174,21 @@ Functions</h2></td></tr>
 
 <p>Test Scenario 5: Multiple adapters with different loggers. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00225">225</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  225</span>                                                            {</div>
-<div class="line"><span class="lineno">  226</span>    <span class="keyword">auto</span> bus = std::make_shared&lt;event_bus&gt;();</div>
-<div class="line"><span class="lineno">  227</span> </div>
-<div class="line"><span class="lineno">  228</span>    <span class="keyword">auto</span> logger1 = std::make_shared&lt;mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  229</span>    <span class="keyword">auto</span> logger2 = std::make_shared&lt;mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  230</span> </div>
-<div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> adapter1 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger1);</div>
-<div class="line"><span class="lineno">  232</span>    <span class="keyword">auto</span> adapter2 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger2);</div>
-<div class="line"><span class="lineno">  233</span> </div>
-<div class="line"><span class="lineno">  234</span>    EXPECT_TRUE(adapter1-&gt;is_logger_system_available());</div>
-<div class="line"><span class="lineno">  235</span>    EXPECT_TRUE(adapter2-&gt;is_logger_system_available());</div>
-<div class="line"><span class="lineno">  236</span> </div>
-<div class="line"><span class="lineno">  237</span>    EXPECT_NE(adapter1-&gt;get_logger(), adapter2-&gt;get_logger());</div>
-<div class="line"><span class="lineno">  238</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00229">229</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  229</span>                                                            {</div>
+<div class="line"><span class="lineno">  230</span>    <span class="keyword">auto</span> bus = std::make_shared&lt;event_bus&gt;();</div>
+<div class="line"><span class="lineno">  231</span> </div>
+<div class="line"><span class="lineno">  232</span>    <span class="keyword">auto</span> logger1 = std::make_shared&lt;mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  233</span>    <span class="keyword">auto</span> logger2 = std::make_shared&lt;mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>    <span class="keyword">auto</span> adapter1 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger1);</div>
+<div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> adapter2 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger2);</div>
+<div class="line"><span class="lineno">  237</span> </div>
+<div class="line"><span class="lineno">  238</span>    EXPECT_TRUE(adapter1-&gt;is_logger_system_available());</div>
+<div class="line"><span class="lineno">  239</span>    EXPECT_TRUE(adapter2-&gt;is_logger_system_available());</div>
+<div class="line"><span class="lineno">  240</span> </div>
+<div class="line"><span class="lineno">  241</span>    EXPECT_NE(adapter1-&gt;get_logger(), adapter2-&gt;get_logger());</div>
+<div class="line"><span class="lineno">  242</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -272,7 +236,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  153</span>    <span class="comment">// Collect metrics should work now</span></div>
 <div class="line"><span class="lineno">  154</span>    EXPECT_NO_THROW({</div>
 <div class="line"><span class="lineno">  155</span>        <span class="keyword">auto</span> metrics = adapter-&gt;collect_metrics();</div>
-<div class="line"><span class="lineno">  156</span>        EXPECT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics));</div>
+<div class="line"><span class="lineno">  156</span>        EXPECT_TRUE(metrics.is_ok());</div>
 <div class="line"><span class="lineno">  157</span>    });</div>
 <div class="line"><span class="lineno">  158</span> </div>
 <div class="line"><span class="lineno">  159</span>    <span class="comment">// Replace with another logger</span></div>
@@ -325,7 +289,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  127</span>    <span class="comment">// Adapter should be able to work with the logger interface</span></div>
 <div class="line"><span class="lineno">  128</span>    EXPECT_NO_THROW({</div>
 <div class="line"><span class="lineno">  129</span>        <span class="keyword">auto</span> metrics = adapter-&gt;collect_metrics();</div>
-<div class="line"><span class="lineno">  130</span>        EXPECT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics));</div>
+<div class="line"><span class="lineno">  130</span>        EXPECT_TRUE(metrics.is_ok());</div>
 <div class="line"><span class="lineno">  131</span>    });</div>
 <div class="line"><span class="lineno">  132</span> </div>
 <div class="line"><span class="lineno">  133</span>    <span class="comment">// Get logger should return the same instance</span></div>
@@ -395,21 +359,25 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  203</span> </div>
 <div class="line"><span class="lineno">  204</span>    <span class="comment">// Collect metrics should retrieve from IMonitorable</span></div>
 <div class="line"><span class="lineno">  205</span>    <span class="keyword">auto</span> metrics_result = adapter-&gt;collect_metrics();</div>
-<div class="line"><span class="lineno">  206</span>    ASSERT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics_result));</div>
+<div class="line"><span class="lineno">  206</span>    ASSERT_TRUE(metrics_result.is_ok());</div>
 <div class="line"><span class="lineno">  207</span> </div>
-<div class="line"><span class="lineno">  208</span>    <span class="keyword">auto</span>&amp; metrics = std::get&lt;std::vector&lt;metric&gt;&gt;(metrics_result);</div>
+<div class="line"><span class="lineno">  208</span>    <span class="keyword">auto</span>&amp; metrics = metrics_result.value();</div>
 <div class="line"><span class="lineno">  209</span>    EXPECT_FALSE(metrics.empty());</div>
 <div class="line"><span class="lineno">  210</span> </div>
 <div class="line"><span class="lineno">  211</span>    <span class="comment">// Should have the metric from the mock</span></div>
 <div class="line"><span class="lineno">  212</span>    <span class="keywordtype">bool</span> found_metric = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  213</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  214</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;messages_logged&quot;</span> &amp;&amp; m.value == 42.0) {</div>
-<div class="line"><span class="lineno">  215</span>            found_metric = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  216</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  217</span>        }</div>
-<div class="line"><span class="lineno">  218</span>    }</div>
-<div class="line"><span class="lineno">  219</span>    EXPECT_TRUE(found_metric);</div>
-<div class="line"><span class="lineno">  220</span>}</div>
+<div class="line"><span class="lineno">  214</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;messages_logged&quot;</span>) {</div>
+<div class="line"><span class="lineno">  215</span>            <span class="keywordflow">if</span> (<span class="keyword">auto</span>* dval = std::get_if&lt;double&gt;(&amp;m.value)) {</div>
+<div class="line"><span class="lineno">  216</span>                <span class="keywordflow">if</span> (*dval == 42.0) {</div>
+<div class="line"><span class="lineno">  217</span>                    found_metric = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  218</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  219</span>                }</div>
+<div class="line"><span class="lineno">  220</span>            }</div>
+<div class="line"><span class="lineno">  221</span>        }</div>
+<div class="line"><span class="lineno">  222</span>    }</div>
+<div class="line"><span class="lineno">  223</span>    EXPECT_TRUE(found_metric);</div>
+<div class="line"><span class="lineno">  224</span>}</div>
 <div class="ttc" id="aclassmock__logger_html"><div class="ttname"><a href="../../dd/d02/classmock__logger.html">mock_logger</a></div><div class="ttdoc">Mock logger for testing (does not depend on logger_system)</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00056">test_adapter_functionality.cpp:56</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -451,7 +419,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  107</span>    EXPECT_FALSE(adapter-&gt;is_logger_system_available());</div>
 <div class="line"><span class="lineno">  108</span>    EXPECT_NO_THROW({</div>
 <div class="line"><span class="lineno">  109</span>        <span class="keyword">auto</span> metrics = adapter-&gt;collect_metrics();</div>
-<div class="line"><span class="lineno">  110</span>        EXPECT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics));</div>
+<div class="line"><span class="lineno">  110</span>        EXPECT_TRUE(metrics.is_ok());</div>
 <div class="line"><span class="lineno">  111</span>    });</div>
 <div class="line"><span class="lineno">  112</span> </div>
 <div class="line"><span class="lineno">  113</span>    <span class="comment">// Get log rate should return 0</span></div>
@@ -463,7 +431,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 07:54:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 08:18:41 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

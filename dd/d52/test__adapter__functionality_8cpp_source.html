@@ -118,9 +118,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">using namespace </span>common::interfaces;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">using </span>common::VoidResult;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">using </span>common::Result;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">using namespace </span>kcenon::common::interfaces;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">using </span>kcenon::common::VoidResult;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">using </span>kcenon::common::Result;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html">   56</a></span><span class="keyword">class </span><a class="code hl_class" href="../../dd/d02/classmock__logger.html">mock_logger</a> : <span class="keyword">public</span> ILogger {</div>
@@ -132,25 +132,25 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#ab04cf332d76e3eff852d64ac1c707bc7">   62</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="../../dd/d02/classmock__logger.html#ab04cf332d76e3eff852d64ac1c707bc7">get_call_count</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">log_count_</a>.load(); }</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#a442be61d82664eca935ce179308285f6">   64</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#a442be61d82664eca935ce179308285f6">log</a>(log_level level, <span class="keyword">const</span> std::string&amp; message)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#a83161c3e3b0a78b57f7ae09f2a544a7f">   64</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#a83161c3e3b0a78b57f7ae09f2a544a7f">log</a>(log_level <span class="comment">/*level*/</span>, <span class="keyword">const</span> std::string&amp; <span class="comment">/*message*/</span>)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">log_count_</a>++;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#a817e04fd58c3f0356bef27d8bfae02e0">   69</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#a817e04fd58c3f0356bef27d8bfae02e0">log</a>(log_level level, <span class="keyword">const</span> std::string&amp; message,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                   <span class="keyword">const</span> std::string&amp; file, <span class="keywordtype">int</span> line,</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                   <span class="keyword">const</span> std::string&amp; function)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#ae6f74795d40bc1b40117fd66011e715d">   69</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#ae6f74795d40bc1b40117fd66011e715d">log</a>(log_level <span class="comment">/*level*/</span>, <span class="keyword">const</span> std::string&amp; <span class="comment">/*message*/</span>,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                   <span class="keyword">const</span> std::string&amp; <span class="comment">/*file*/</span>, <span class="keywordtype">int</span> <span class="comment">/*line*/</span>,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                   <span class="keyword">const</span> std::string&amp; <span class="comment">/*function*/</span>)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">log_count_</a>++;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
 </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#a0fab9ba3b3f3836ab26c7a1e661c7236">   76</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#a0fab9ba3b3f3836ab26c7a1e661c7236">log</a>(<span class="keyword">const</span> log_entry&amp; entry)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#a16691741379833cebadb3125dd22b7e5">   76</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#a16691741379833cebadb3125dd22b7e5">log</a>(<span class="keyword">const</span> log_entry&amp; <span class="comment">/*entry*/</span>)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">log_count_</a>++;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
 </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
@@ -163,7 +163,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#a57845d2ac31c0e8eb920b2d3cf320fe2">   85</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#a57845d2ac31c0e8eb920b2d3cf320fe2">set_level</a>(log_level level)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#adea91ce10adfcf3e5eeddfff5f5352ae">min_level_</a> = level;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
 </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
@@ -175,7 +175,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="../../dd/d02/classmock__logger.html#a439b5e80b1eeaf4cd84f7241b330302f">   94</a></span>    VoidResult <a class="code hl_function" href="../../dd/d02/classmock__logger.html#a439b5e80b1eeaf4cd84f7241b330302f">flush</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
 </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
@@ -190,7 +190,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    EXPECT_FALSE(adapter-&gt;is_logger_system_available());</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    EXPECT_NO_THROW({</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keyword">auto</span> metrics = adapter-&gt;collect_metrics();</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        EXPECT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics));</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        EXPECT_TRUE(metrics.is_ok());</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    });</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// Get log rate should return 0</span></div>
@@ -209,7 +209,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// Adapter should be able to work with the logger interface</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    EXPECT_NO_THROW({</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keyword">auto</span> metrics = adapter-&gt;collect_metrics();</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        EXPECT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics));</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        EXPECT_TRUE(metrics.is_ok());</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    });</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// Get logger should return the same instance</span></div>
@@ -234,7 +234,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// Collect metrics should work now</span></div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    EXPECT_NO_THROW({</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keyword">auto</span> metrics = adapter-&gt;collect_metrics();</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        EXPECT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics));</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        EXPECT_TRUE(metrics.is_ok());</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    });</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// Replace with another logger</span></div>
@@ -278,64 +278,60 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="comment">// Collect metrics should retrieve from IMonitorable</span></div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keyword">auto</span> metrics_result = adapter-&gt;collect_metrics();</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    ASSERT_TRUE(std::holds_alternative&lt;std::vector&lt;metric&gt;&gt;(metrics_result));</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    ASSERT_TRUE(metrics_result.is_ok());</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keyword">auto</span>&amp; metrics = std::get&lt;std::vector&lt;metric&gt;&gt;(metrics_result);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keyword">auto</span>&amp; metrics = metrics_result.value();</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    EXPECT_FALSE(metrics.empty());</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="comment">// Should have the metric from the mock</span></div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">bool</span> found_metric = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;messages_logged&quot;</span> &amp;&amp; m.value == 42.0) {</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            found_metric = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        }</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    EXPECT_TRUE(found_metric);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>}</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;messages_logged&quot;</span>) {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            <span class="keywordflow">if</span> (<span class="keyword">auto</span>* dval = std::get_if&lt;double&gt;(&amp;m.value)) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                <span class="keywordflow">if</span> (*dval == 42.0) {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                    found_metric = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                }</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    }</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    EXPECT_TRUE(found_metric);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
 </div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
-<div class="foldopen" id="foldopen00225" data-start="{" data-end="}">
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="../../dd/d52/test__adapter__functionality_8cpp.html#a9b85b2a71a1375869518784fb9bff7a7">  225</a></span><a class="code hl_function" href="../../dd/d52/test__adapter__functionality_8cpp.html#a31606db0984196957c26aa41dec35dc0">TEST</a>(AdapterFunctionalityTest, MultipleAdaptersIndependent) {</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">auto</span> bus = std::make_shared&lt;event_bus&gt;();</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">auto</span> logger1 = std::make_shared&lt;mock_logger&gt;();</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keyword">auto</span> logger2 = std::make_shared&lt;mock_logger&gt;();</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keyword">auto</span> adapter1 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger1);</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">auto</span> adapter2 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger2);</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    EXPECT_TRUE(adapter1-&gt;is_logger_system_available());</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    EXPECT_TRUE(adapter2-&gt;is_logger_system_available());</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    EXPECT_NE(adapter1-&gt;get_logger(), adapter2-&gt;get_logger());</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>}</div>
-</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="foldopen" id="foldopen00240" data-start="{" data-end="}">
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="../../dd/d52/test__adapter__functionality_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">  240</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    ::testing::InitGoogleTest(&amp;argc, argv);</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">return</span> RUN_ALL_TESTS();</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>}</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="../../dd/d52/test__adapter__functionality_8cpp.html#a9b85b2a71a1375869518784fb9bff7a7">  229</a></span><a class="code hl_function" href="../../dd/d52/test__adapter__functionality_8cpp.html#a31606db0984196957c26aa41dec35dc0">TEST</a>(AdapterFunctionalityTest, MultipleAdaptersIndependent) {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">auto</span> bus = std::make_shared&lt;event_bus&gt;();</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">auto</span> logger1 = std::make_shared&lt;mock_logger&gt;();</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keyword">auto</span> logger2 = std::make_shared&lt;mock_logger&gt;();</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keyword">auto</span> adapter1 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger1);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keyword">auto</span> adapter2 = std::make_shared&lt;logger_system_adapter&gt;(bus, logger2);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    EXPECT_TRUE(adapter1-&gt;is_logger_system_available());</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    EXPECT_TRUE(adapter2-&gt;is_logger_system_available());</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    EXPECT_NE(adapter1-&gt;get_logger(), adapter2-&gt;get_logger());</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>}</div>
 </div>
 <div class="ttc" id="aclassmock__logger_html"><div class="ttname"><a href="../../dd/d02/classmock__logger.html">mock_logger</a></div><div class="ttdoc">Mock logger for testing (does not depend on logger_system)</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00056">test_adapter_functionality.cpp:56</a></div></div>
-<div class="ttc" id="aclassmock__logger_html_a0fab9ba3b3f3836ab26c7a1e661c7236"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#a0fab9ba3b3f3836ab26c7a1e661c7236">mock_logger::log</a></div><div class="ttdeci">VoidResult log(const log_entry &amp;entry) override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00076">test_adapter_functionality.cpp:76</a></div></div>
+<div class="ttc" id="aclassmock__logger_html_a16691741379833cebadb3125dd22b7e5"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#a16691741379833cebadb3125dd22b7e5">mock_logger::log</a></div><div class="ttdeci">VoidResult log(const log_entry &amp;) override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00076">test_adapter_functionality.cpp:76</a></div></div>
 <div class="ttc" id="aclassmock__logger_html_a439b5e80b1eeaf4cd84f7241b330302f"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#a439b5e80b1eeaf4cd84f7241b330302f">mock_logger::flush</a></div><div class="ttdeci">VoidResult flush() override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00094">test_adapter_functionality.cpp:94</a></div></div>
-<div class="ttc" id="aclassmock__logger_html_a442be61d82664eca935ce179308285f6"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#a442be61d82664eca935ce179308285f6">mock_logger::log</a></div><div class="ttdeci">VoidResult log(log_level level, const std::string &amp;message) override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00064">test_adapter_functionality.cpp:64</a></div></div>
 <div class="ttc" id="aclassmock__logger_html_a57845d2ac31c0e8eb920b2d3cf320fe2"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#a57845d2ac31c0e8eb920b2d3cf320fe2">mock_logger::set_level</a></div><div class="ttdeci">VoidResult set_level(log_level level) override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00085">test_adapter_functionality.cpp:85</a></div></div>
-<div class="ttc" id="aclassmock__logger_html_a817e04fd58c3f0356bef27d8bfae02e0"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#a817e04fd58c3f0356bef27d8bfae02e0">mock_logger::log</a></div><div class="ttdeci">VoidResult log(log_level level, const std::string &amp;message, const std::string &amp;file, int line, const std::string &amp;function) override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00069">test_adapter_functionality.cpp:69</a></div></div>
+<div class="ttc" id="aclassmock__logger_html_a83161c3e3b0a78b57f7ae09f2a544a7f"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#a83161c3e3b0a78b57f7ae09f2a544a7f">mock_logger::log</a></div><div class="ttdeci">VoidResult log(log_level, const std::string &amp;) override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00064">test_adapter_functionality.cpp:64</a></div></div>
 <div class="ttc" id="aclassmock__logger_html_ab04cf332d76e3eff852d64ac1c707bc7"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#ab04cf332d76e3eff852d64ac1c707bc7">mock_logger::get_call_count</a></div><div class="ttdeci">int get_call_count() const</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00062">test_adapter_functionality.cpp:62</a></div></div>
 <div class="ttc" id="aclassmock__logger_html_adea91ce10adfcf3e5eeddfff5f5352ae"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#adea91ce10adfcf3e5eeddfff5f5352ae">mock_logger::min_level_</a></div><div class="ttdeci">log_level min_level_</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00059">test_adapter_functionality.cpp:59</a></div></div>
 <div class="ttc" id="aclassmock__logger_html_ae577581a40c325b2c2f434a45ab6d3db"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">mock_logger::log_count_</a></div><div class="ttdeci">std::atomic&lt; int &gt; log_count_</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00058">test_adapter_functionality.cpp:58</a></div></div>
 <div class="ttc" id="aclassmock__logger_html_ae5fc732de2e025606db51db4eea4ec06"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#ae5fc732de2e025606db51db4eea4ec06">mock_logger::is_enabled</a></div><div class="ttdeci">bool is_enabled(log_level level) const override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00081">test_adapter_functionality.cpp:81</a></div></div>
+<div class="ttc" id="aclassmock__logger_html_ae6f74795d40bc1b40117fd66011e715d"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#ae6f74795d40bc1b40117fd66011e715d">mock_logger::log</a></div><div class="ttdeci">VoidResult log(log_level, const std::string &amp;, const std::string &amp;, int, const std::string &amp;) override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00069">test_adapter_functionality.cpp:69</a></div></div>
 <div class="ttc" id="aclassmock__logger_html_af81197924eb9b611984a22acb9443bc9"><div class="ttname"><a href="../../dd/d02/classmock__logger.html#af81197924eb9b611984a22acb9443bc9">mock_logger::get_level</a></div><div class="ttdeci">log_level get_level() const override</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00090">test_adapter_functionality.cpp:90</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1c/test__di__container_8cpp_source.html#l00031">test_di_container.cpp:31</a></div></div>
 <div class="ttc" id="atest__adapter__functionality_8cpp_html_a31606db0984196957c26aa41dec35dc0"><div class="ttname"><a href="../../dd/d52/test__adapter__functionality_8cpp.html#a31606db0984196957c26aa41dec35dc0">TEST</a></div><div class="ttdeci">TEST(AdapterFunctionalityTest, WorksWithoutLogger)</div><div class="ttdoc">Test Scenario 1: Adapter with NULL logger.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00102">test_adapter_functionality.cpp:102</a></div></div>
-<div class="ttc" id="atest__interfaces__compile_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dc5/test__interfaces__compile_8cpp_source.html#l00121">test_interfaces_compile.cpp:121</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 07:54:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 08:18:41 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

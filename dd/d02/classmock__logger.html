@@ -106,12 +106,12 @@ Collaboration diagram for mock_logger:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab04cf332d76e3eff852d64ac1c707bc7" id="r_ab04cf332d76e3eff852d64ac1c707bc7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#ab04cf332d76e3eff852d64ac1c707bc7">get_call_count</a> () const</td></tr>
 <tr class="separator:ab04cf332d76e3eff852d64ac1c707bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a442be61d82664eca935ce179308285f6" id="r_a442be61d82664eca935ce179308285f6"><td class="memItemLeft" align="right" valign="top">VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#a442be61d82664eca935ce179308285f6">log</a> (log_level level, const std::string &amp;message) override</td></tr>
-<tr class="separator:a442be61d82664eca935ce179308285f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a817e04fd58c3f0356bef27d8bfae02e0" id="r_a817e04fd58c3f0356bef27d8bfae02e0"><td class="memItemLeft" align="right" valign="top">VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#a817e04fd58c3f0356bef27d8bfae02e0">log</a> (log_level level, const std::string &amp;message, const std::string &amp;file, int line, const std::string &amp;function) override</td></tr>
-<tr class="separator:a817e04fd58c3f0356bef27d8bfae02e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fab9ba3b3f3836ab26c7a1e661c7236" id="r_a0fab9ba3b3f3836ab26c7a1e661c7236"><td class="memItemLeft" align="right" valign="top">VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#a0fab9ba3b3f3836ab26c7a1e661c7236">log</a> (const log_entry &amp;entry) override</td></tr>
-<tr class="separator:a0fab9ba3b3f3836ab26c7a1e661c7236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83161c3e3b0a78b57f7ae09f2a544a7f" id="r_a83161c3e3b0a78b57f7ae09f2a544a7f"><td class="memItemLeft" align="right" valign="top">VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#a83161c3e3b0a78b57f7ae09f2a544a7f">log</a> (log_level, const std::string &amp;) override</td></tr>
+<tr class="separator:a83161c3e3b0a78b57f7ae09f2a544a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f74795d40bc1b40117fd66011e715d" id="r_ae6f74795d40bc1b40117fd66011e715d"><td class="memItemLeft" align="right" valign="top">VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#ae6f74795d40bc1b40117fd66011e715d">log</a> (log_level, const std::string &amp;, const std::string &amp;, int, const std::string &amp;) override</td></tr>
+<tr class="separator:ae6f74795d40bc1b40117fd66011e715d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16691741379833cebadb3125dd22b7e5" id="r_a16691741379833cebadb3125dd22b7e5"><td class="memItemLeft" align="right" valign="top">VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#a16691741379833cebadb3125dd22b7e5">log</a> (const log_entry &amp;) override</td></tr>
+<tr class="separator:a16691741379833cebadb3125dd22b7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5fc732de2e025606db51db4eea4ec06" id="r_ae5fc732de2e025606db51db4eea4ec06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#ae5fc732de2e025606db51db4eea4ec06">is_enabled</a> (log_level level) const override</td></tr>
 <tr class="separator:ae5fc732de2e025606db51db4eea4ec06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57845d2ac31c0e8eb920b2d3cf320fe2" id="r_a57845d2ac31c0e8eb920b2d3cf320fe2"><td class="memItemLeft" align="right" valign="top">VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d02/classmock__logger.html#a57845d2ac31c0e8eb920b2d3cf320fe2">set_level</a> (log_level level) override</td></tr>
@@ -158,7 +158,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   94</span>                                {</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><span class="lineno">   96</span>    }</div>
 </div><!-- fragment -->
 </div>
@@ -254,8 +254,8 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a0fab9ba3b3f3836ab26c7a1e661c7236" name="a0fab9ba3b3f3836ab26c7a1e661c7236"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fab9ba3b3f3836ab26c7a1e661c7236">&#9670;&#160;</a></span>log() <span class="overload">[1/3]</span></h2>
+<a id="a16691741379833cebadb3125dd22b7e5" name="a16691741379833cebadb3125dd22b7e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16691741379833cebadb3125dd22b7e5">&#9670;&#160;</a></span>log() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,7 +267,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">VoidResult mock_logger::log </td>
           <td>(</td>
           <td class="paramtype">const log_entry &amp;&#160;</td>
-          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -279,15 +279,15 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>                                                    {</div>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>                                                {</div>
 <div class="line"><span class="lineno">   77</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">log_count_</a>++;</div>
-<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><span class="lineno">   79</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a442be61d82664eca935ce179308285f6" name="a442be61d82664eca935ce179308285f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a442be61d82664eca935ce179308285f6">&#9670;&#160;</a></span>log() <span class="overload">[2/3]</span></h2>
+<a id="a83161c3e3b0a78b57f7ae09f2a544a7f" name="a83161c3e3b0a78b57f7ae09f2a544a7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83161c3e3b0a78b57f7ae09f2a544a7f">&#9670;&#160;</a></span>log() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -299,13 +299,13 @@ Private Attributes</h2></td></tr>
           <td class="memname">VoidResult mock_logger::log </td>
           <td>(</td>
           <td class="paramtype">log_level&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>message</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -321,15 +321,15 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   64</span>                                                                       {</div>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>                                                             {</div>
 <div class="line"><span class="lineno">   65</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">log_count_</a>++;</div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><span class="lineno">   67</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a817e04fd58c3f0356bef27d8bfae02e0" name="a817e04fd58c3f0356bef27d8bfae02e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a817e04fd58c3f0356bef27d8bfae02e0">&#9670;&#160;</a></span>log() <span class="overload">[3/3]</span></h2>
+<a id="ae6f74795d40bc1b40117fd66011e715d" name="ae6f74795d40bc1b40117fd66011e715d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6f74795d40bc1b40117fd66011e715d">&#9670;&#160;</a></span>log() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -341,31 +341,31 @@ Private Attributes</h2></td></tr>
           <td class="memname">VoidResult mock_logger::log </td>
           <td>(</td>
           <td class="paramtype">log_level&#160;</td>
-          <td class="paramname"><em>level</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>file</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>function</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -381,9 +381,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                       {</div>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                {</div>
 <div class="line"><span class="lineno">   72</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#ae577581a40c325b2c2f434a45ab6d3db">log_count_</a>++;</div>
-<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><span class="lineno">   74</span>    }</div>
 </div><!-- fragment -->
 </div>
@@ -415,7 +415,7 @@ Private Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00085">85</a> of file <a class="el" href="../../dd/d52/test__adapter__functionality_8cpp_source.html">test_adapter_functionality.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   85</span>                                                   {</div>
 <div class="line"><span class="lineno">   86</span>        <a class="code hl_variable" href="../../dd/d02/classmock__logger.html#adea91ce10adfcf3e5eeddfff5f5352ae">min_level_</a> = level;</div>
-<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><span class="lineno">   88</span>    }</div>
 </div><!-- fragment -->
 </div>
@@ -477,7 +477,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 07:54:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 08:18:41 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
