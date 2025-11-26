@@ -14,9 +14,9 @@ The following components are marked as STUB and are **not production-ready**:
 | Component | File | Status | Ticket |
 |-----------|------|--------|--------|
 | ~~CircuitBreaker~~ | `reliability/circuit_breaker.h` | **Implemented** | MON-001 |
-| Jaeger Exporter (HTTP transport) | `exporters/trace_exporters.h` | STUB | MON-005 |
-| Zipkin Exporter (HTTP transport) | `exporters/trace_exporters.h` | STUB | MON-005 |
-| OTLP Exporter (HTTP transport) | `exporters/trace_exporters.h` | STUB | MON-005 |
+| ~~Jaeger Exporter (HTTP transport)~~ | `exporters/trace_exporters.h` | **Implemented** | MON-005 |
+| ~~Zipkin Exporter (HTTP transport)~~ | `exporters/trace_exporters.h` | **Implemented** | MON-005 |
+| OTLP Exporter (gRPC transport) | `exporters/trace_exporters.h` | STUB | MON-005 |
 
 ### ~~CircuitBreaker~~ (Resolved)
 
@@ -28,23 +28,24 @@ The `circuit_breaker` class has been fully implemented with:
 - Thread-safe operations with proper atomics and mutex
 - Comprehensive metrics tracking
 
-### Trace Exporters
+### ~~Trace Exporters~~ (Partially Resolved)
 
-Jaeger, Zipkin, and OTLP exporters have `send_*` methods that are stubs:
+**Resolved (MON-005):**
+- Jaeger and Zipkin exporters now support real HTTP transmission when built with `MONITORING_WITH_NETWORK_SYSTEM=ON`
+- Uses `network_system::core::http_client` for actual network communication
+- Supports Thrift JSON format for Jaeger and JSON v2 format for Zipkin
 
-```cpp
-result_void send_thrift_batch(const std::vector<jaeger_span_data>& spans) {
-    (void)spans; // Suppress unused parameter warning
-    return common::ok();  // STUB - no actual transmission
-}
+**Still STUB:**
+- OTLP gRPC transport (requires gRPC library integration)
+- Protobuf serialization for Jaeger and Zipkin (requires protobuf library)
+
+**Usage:**
+```cmake
+# Enable real HTTP transport
+cmake -DMONITORING_WITH_NETWORK_SYSTEM=ON ..
 ```
 
-**Current Limitations:**
-- No HTTP/gRPC network transmission
-- Spans are converted but not actually sent
-- Configuration validation works but export is no-op
-
-**Workaround:** Use OpenTelemetry Collector as sidecar and export via stdout/file.
+**Workaround for OTLP:** Use OpenTelemetry Collector as sidecar and export via Jaeger/Zipkin HTTP.
 
 ---
 
