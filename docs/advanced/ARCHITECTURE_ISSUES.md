@@ -193,7 +193,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 - [ ] Document baseline metrics
 
 ### Phase 1 Actions
-- [ ] Resolve ARC-003 (Monitor thread safety)
+- [x] Resolve ARC-003 (Monitor thread safety) - 2025-11-26
 
 ### Phase 2 Actions
 - [ ] Resolve ARC-002 (Performance benchmarks)
