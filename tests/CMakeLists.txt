@@ -8,9 +8,11 @@ if(NOT GTest_FOUND)
 
     # Configure googletest options before fetching (fix Windows/MSVC pthread.h issue)
     set(gtest_force_shared_crt ON CACHE BOOL "Always use shared runtime library" FORCE)
+    set(gtest_disable_pthreads ON CACHE BOOL "Disable pthreads for Windows" FORCE)
     set(BUILD_GMOCK OFF CACHE BOOL "Disable GMock" FORCE)
     set(INSTALL_GTEST OFF CACHE BOOL "Disable GTest installation" FORCE)
 
+    message(STATUS "GTest not found - fetching from GitHub")
     include(FetchContent)
     FetchContent_Declare(
         googletest
@@ -18,6 +20,7 @@ if(NOT GTest_FOUND)
         GIT_TAG v1.14.0
     )
     FetchContent_MakeAvailable(googletest)
+    message(STATUS "GTest fetched successfully")
 endif()
 
 # Create test executable
