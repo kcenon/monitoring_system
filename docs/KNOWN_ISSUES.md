@@ -1,7 +1,7 @@
 # Known Issues and Limitations
 
 **Version**: 2.0.0
-**Last Updated**: 2025-11-24
+**Last Updated**: 2025-11-26
 
 This document lists known issues, limitations, and STUB implementations in the monitoring system.
 
@@ -100,15 +100,22 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 
 ## CMake Configuration
 
-### Known Issues
+### ~~MON-007: Option Naming~~ (Resolved)
 
-1. **Inconsistent Option Naming**
-   - Mix of `BUILD_*`, `MONITORING_BUILD_*`, and `MONITORING_USE_*` prefixes
-   - See MON-007 for cleanup plan
+All CMake options are now consistently prefixed with `MONITORING_`:
+- `MONITORING_BUILD_TESTS`
+- `MONITORING_BUILD_INTEGRATION_TESTS`
+- `MONITORING_BUILD_EXAMPLES`
+- `MONITORING_BUILD_BENCHMARKS`
+- `MONITORING_WITH_COMMON_SYSTEM`
+- `MONITORING_WITH_THREAD_SYSTEM`
+- `MONITORING_WITH_LOGGER_SYSTEM`
+- `MONITORING_ENABLE_ASAN`
+- `MONITORING_ENABLE_TSAN`
+- `MONITORING_ENABLE_UBSAN`
+- `MONITORING_ENABLE_COVERAGE`
 
-2. **Backward Compatibility Code**
-   - Lines 34-65 in CMakeLists.txt contain legacy option handling
-   - May cause confusion during configuration
+**Backward Compatibility:** Legacy option names (e.g., `BUILD_TESTS`) are still supported via `cmake/MonitoringLegacyOptions.cmake` but will emit deprecation warnings. This compatibility layer can be removed in a future major version
 
 ---
 
@@ -120,7 +127,7 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 | Result types | Stable |
 | Tracing interfaces | Stable |
 | Exporter interfaces | Beta |
-| CircuitBreaker | Unstable (STUB) |
+| CircuitBreaker | Stable |
 
 ---
 
