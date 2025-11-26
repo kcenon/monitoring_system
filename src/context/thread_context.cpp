@@ -104,7 +104,8 @@ std::string thread_context_manager::generate_request_id() {
 
     auto id = dis(gen);
     std::stringstream ss;
-    ss << std::hex << id;
+    // W3C span_id requires 16 hex characters
+    ss << std::hex << std::setfill('0') << std::setw(16) << id;
     return ss.str();
 }
 
@@ -116,7 +117,9 @@ std::string thread_context_manager::generate_correlation_id() {
     auto id1 = dis(gen);
     auto id2 = dis(gen);
     std::stringstream ss;
-    ss << std::hex << id1 << "-" << std::hex << id2;
+    // W3C trace_id requires 32 hex characters (no dashes)
+    ss << std::hex << std::setfill('0') << std::setw(16) << id1
+       << std::setfill('0') << std::setw(16) << id2;
     return ss.str();
 }
 
