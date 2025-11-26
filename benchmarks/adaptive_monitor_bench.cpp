@@ -58,17 +58,36 @@ using namespace kcenon::monitoring;
 //-----------------------------------------------------------------------------
 
 class mock_metrics_collector : public metrics_collector {
+private:
+    bool enabled_{true};
+
 public:
     result<metrics_snapshot> collect() override {
         metrics_snapshot snapshot;
-        snapshot.timestamp = std::chrono::system_clock::now();
-        snapshot.metrics["cpu_usage"] = metric_value{50.0, "percent"};
-        snapshot.metrics["memory_usage"] = metric_value{60.0, "percent"};
-        return make_result(std::move(snapshot));
+        snapshot.add_metric("cpu_usage", 50.0);
+        snapshot.add_metric("memory_usage", 60.0);
+        return make_success(std::move(snapshot));
     }
 
     std::string get_name() const override {
         return "mock_collector";
+    }
+
+    bool is_enabled() const override {
+        return enabled_;
+    }
+
+    result_void set_enabled(bool enable) override {
+        enabled_ = enable;
+        return make_void_success();
+    }
+
+    result_void initialize() override {
+        return make_void_success();
+    }
+
+    result_void cleanup() override {
+        return make_void_success();
     }
 };
 
