@@ -61,16 +61,22 @@ This document catalogs known architectural issues in monitoring_system identifie
   - Improve integration test coverage
 - **Acceptance Criteria**: Coverage >80%, all critical paths tested
 
-#### Issue ARC-002: Missing Performance Benchmarks
+#### ~~Issue ARC-002: Missing Performance Benchmarks~~ ✅ RESOLVED
 - **Priority**: P1 (Medium)
 - **Phase**: Phase 2
+- **Status**: ✅ **RESOLVED** (2025-11-26)
 - **Description**: No performance benchmark suite available
 - **Impact**: Unable to measure optimization improvements
-- **Investigation Required**:
-  - Create benchmark suite for all monitors
-  - Profile metric collection overhead
-  - Compare with alternative monitoring solutions
-- **Acceptance Criteria**: Complete benchmark suite with baseline metrics
+- **Resolution**:
+  - ✅ Created complete benchmark suite for all monitors
+  - ✅ Added adaptive_monitor_bench.cpp with comprehensive benchmarks
+  - ✅ Profiled metric collection overhead in collector_overhead_bench.cpp
+  - ✅ Documented baseline metrics in benchmarks/BASELINE.md
+  - ✅ CI/CD workflow configured for automated regression detection
+- **References**:
+  - Benchmarks: `benchmarks/adaptive_monitor_bench.cpp`
+  - Baseline: `benchmarks/BASELINE.md`
+  - CI Workflow: `.github/workflows/benchmarks.yml`
 
 ---
 
@@ -196,7 +202,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 - [x] Resolve ARC-003 (Monitor thread safety) - 2025-11-26
 
 ### Phase 2 Actions
-- [ ] Resolve ARC-002 (Performance benchmarks)
+- [x] Resolve ARC-002 (Performance benchmarks) - 2025-11-26
 - [ ] Resolve ARC-004 (Collection overhead)
 - [ ] Resolve ARC-005 (Adaptive threshold tuning)
 
@@ -246,4 +252,4 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ---
 
-*Last Updated: 2025-10-20*
+*Last Updated: 2025-11-26*
