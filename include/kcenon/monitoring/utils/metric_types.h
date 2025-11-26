@@ -21,6 +21,7 @@ All rights reserved.
 #include <chrono>
 #include <unordered_map>
 #include <variant>
+#include <vector>
 #include <cstdint>
 
 namespace kcenon { namespace monitoring {
