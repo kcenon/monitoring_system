@@ -46,9 +46,9 @@
 #include <atomic>
 
 using namespace kcenon::monitoring;
-using namespace common::interfaces;
-using common::VoidResult;
-using common::Result;
+using namespace kcenon::common::interfaces;
+using kcenon::common::VoidResult;
+using kcenon::common::Result;
 
 /**
  * @brief Mock logger for testing (does not depend on logger_system)
@@ -61,21 +61,21 @@ private:
 public:
     int get_call_count() const { return log_count_.load(); }
 
-    VoidResult log(log_level level, const std::string& message) override {
+    VoidResult log(log_level /*level*/, const std::string& /*message*/) override {
         log_count_++;
-        return std::monostate{};
+        return kcenon::common::ok();
     }
 
-    VoidResult log(log_level level, const std::string& message,
-                   const std::string& file, int line,
-                   const std::string& function) override {
+    VoidResult log(log_level /*level*/, const std::string& /*message*/,
+                   const std::string& /*file*/, int /*line*/,
+                   const std::string& /*function*/) override {
         log_count_++;
-        return std::monostate{};
+        return kcenon::common::ok();
     }
 
-    VoidResult log(const log_entry& entry) override {
+    VoidResult log(const log_entry& /*entry*/) override {
         log_count_++;
-        return std::monostate{};
+        return kcenon::common::ok();
     }
 
     bool is_enabled(log_level level) const override {
@@ -84,7 +84,7 @@ public:
 
     VoidResult set_level(log_level level) override {
         min_level_ = level;
-        return std::monostate{};
+        return kcenon::common::ok();
     }
 
     log_level get_level() const override {
@@ -92,7 +92,7 @@ public:
     }
 
     VoidResult flush() override {
-        return std::monostate{};
+        return kcenon::common::ok();
     }
 };
 
@@ -107,7 +107,7 @@ TEST(AdapterFunctionalityTest, WorksWithoutLogger) {
     EXPECT_FALSE(adapter->is_logger_system_available());
     EXPECT_NO_THROW({
         auto metrics = adapter->collect_metrics();
-        EXPECT_TRUE(std::holds_alternative<std::vector<metric>>(metrics));
+        EXPECT_TRUE(metrics.is_ok());
     });
 
     // Get log rate should return 0
@@ -127,7 +127,7 @@ TEST(AdapterFunctionalityTest, WorksWithMockLogger) {
     // Adapter should be able to work with the logger interface
     EXPECT_NO_THROW({
         auto metrics = adapter->collect_metrics();
-        EXPECT_TRUE(std::holds_alternative<std::vector<metric>>(metrics));
+        EXPECT_TRUE(metrics.is_ok());
     });
 
     // Get logger should return the same instance
@@ -153,7 +153,7 @@ TEST(AdapterFunctionalityTest, RuntimeLoggerInjection) {
     // Collect metrics should work now
     EXPECT_NO_THROW({
         auto metrics = adapter->collect_metrics();
-        EXPECT_TRUE(std::holds_alternative<std::vector<metric>>(metrics));
+        EXPECT_TRUE(metrics.is_ok());
     });
 
     // Replace with another logger
@@ -203,17 +203,21 @@ TEST(AdapterFunctionalityTest, WorksWithMonitorableLogger) {
 
     // Collect metrics should retrieve from IMonitorable
     auto metrics_result = adapter->collect_metrics();
-    ASSERT_TRUE(std::holds_alternative<std::vector<metric>>(metrics_result));
+    ASSERT_TRUE(metrics_result.is_ok());
 
-    auto& metrics = std::get<std::vector<metric>>(metrics_result);
+    auto& metrics = metrics_result.value();
     EXPECT_FALSE(metrics.empty());
 
     // Should have the metric from the mock
     bool found_metric = false;
     for (const auto& m : metrics) {
-        if (m.name == "messages_logged" && m.value == 42.0) {
-            found_metric = true;
-            break;
+        if (m.name == "messages_logged") {
+            if (auto* dval = std::get_if<double>(&m.value)) {
+                if (*dval == 42.0) {
+                    found_metric = true;
+                    break;
+                }
+            }
         }
     }
     EXPECT_TRUE(found_metric);
@@ -235,9 +239,4 @@ TEST(AdapterFunctionalityTest, MultipleAdaptersIndependent) {
     EXPECT_TRUE(adapter2->is_logger_system_available());
 
     EXPECT_NE(adapter1->get_logger(), adapter2->get_logger());
-}
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }
