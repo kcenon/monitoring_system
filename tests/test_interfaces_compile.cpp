@@ -122,7 +122,7 @@ int main() {
     auto collector = std::make_shared<test_collector>();
 
     // Test that interfaces can be used
-    metric m{"test", metric_value{42.0}, {}};
+    metric m{"test", 42.0, {}};
     metric_event me("test_source", m);
     observer->on_metric_collected(me);
 
