@@ -260,28 +260,28 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  310</span>    trace_export_config invalid_jaeger_config;</div>
 <div class="line"><span class="lineno">  311</span>    invalid_jaeger_config.endpoint = <span class="stringliteral">&quot;http://jaeger:14268&quot;</span>;</div>
 <div class="line"><span class="lineno">  312</span>    invalid_jaeger_config.format = trace_export_format::zipkin_json; <span class="comment">// Wrong format</span></div>
-<div class="line"><span class="lineno">  313</span>    </div>
-<div class="line"><span class="lineno">  314</span>    jaeger_exporter jaeger_exporter(invalid_jaeger_config);</div>
-<div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> jaeger_result = jaeger_exporter.export_spans(test_spans_);</div>
-<div class="line"><span class="lineno">  316</span>    EXPECT_FALSE(jaeger_result);</div>
+<div class="line"><span class="lineno">  313</span> </div>
+<div class="line"><span class="lineno">  314</span>    jaeger_exporter jaeger_exp(invalid_jaeger_config);</div>
+<div class="line"><span class="lineno">  315</span>    <span class="keyword">auto</span> jaeger_result = jaeger_exp.export_spans(test_spans_);</div>
+<div class="line"><span class="lineno">  316</span>    EXPECT_TRUE(jaeger_result.is_err());</div>
 <div class="line"><span class="lineno">  317</span>    EXPECT_EQ(jaeger_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
 <div class="line"><span class="lineno">  318</span> </div>
 <div class="line"><span class="lineno">  319</span>    trace_export_config invalid_zipkin_config;</div>
 <div class="line"><span class="lineno">  320</span>    invalid_zipkin_config.endpoint = <span class="stringliteral">&quot;http://zipkin:9411&quot;</span>;</div>
 <div class="line"><span class="lineno">  321</span>    invalid_zipkin_config.format = trace_export_format::jaeger_grpc; <span class="comment">// Wrong format</span></div>
 <div class="line"><span class="lineno">  322</span> </div>
-<div class="line"><span class="lineno">  323</span>    zipkin_exporter zipkin_exporter(invalid_zipkin_config);</div>
-<div class="line"><span class="lineno">  324</span>    <span class="keyword">auto</span> zipkin_result = zipkin_exporter.export_spans(test_spans_);</div>
-<div class="line"><span class="lineno">  325</span>    EXPECT_FALSE(zipkin_result);</div>
+<div class="line"><span class="lineno">  323</span>    zipkin_exporter zipkin_exp(invalid_zipkin_config);</div>
+<div class="line"><span class="lineno">  324</span>    <span class="keyword">auto</span> zipkin_result = zipkin_exp.export_spans(test_spans_);</div>
+<div class="line"><span class="lineno">  325</span>    EXPECT_TRUE(zipkin_result.is_err());</div>
 <div class="line"><span class="lineno">  326</span>    EXPECT_EQ(zipkin_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
 <div class="line"><span class="lineno">  327</span> </div>
 <div class="line"><span class="lineno">  328</span>    trace_export_config invalid_otlp_config;</div>
 <div class="line"><span class="lineno">  329</span>    invalid_otlp_config.endpoint = <span class="stringliteral">&quot;http://otlp:4317&quot;</span>;</div>
 <div class="line"><span class="lineno">  330</span>    invalid_otlp_config.format = trace_export_format::jaeger_thrift; <span class="comment">// Wrong format</span></div>
 <div class="line"><span class="lineno">  331</span> </div>
-<div class="line"><span class="lineno">  332</span>    otlp_exporter otlp_exporter(invalid_otlp_config, otel_resource_);</div>
-<div class="line"><span class="lineno">  333</span>    <span class="keyword">auto</span> otlp_result = otlp_exporter.export_spans(test_spans_);</div>
-<div class="line"><span class="lineno">  334</span>    EXPECT_FALSE(otlp_result);</div>
+<div class="line"><span class="lineno">  332</span>    otlp_exporter otlp_exp(invalid_otlp_config, otel_resource_);</div>
+<div class="line"><span class="lineno">  333</span>    <span class="keyword">auto</span> otlp_result = otlp_exp.export_spans(test_spans_);</div>
+<div class="line"><span class="lineno">  334</span>    EXPECT_TRUE(otlp_result.is_err());</div>
 <div class="line"><span class="lineno">  335</span>    EXPECT_EQ(otlp_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
 <div class="line"><span class="lineno">  336</span>}</div>
 </div><!-- fragment -->
@@ -318,24 +318,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  148</span>    trace_export_config config;</div>
 <div class="line"><span class="lineno">  149</span>    config.endpoint = <span class="stringliteral">&quot;http://jaeger:14268/api/traces&quot;</span>;</div>
 <div class="line"><span class="lineno">  150</span>    config.format = trace_export_format::jaeger_thrift;</div>
-<div class="line"><span class="lineno">  151</span>    </div>
+<div class="line"><span class="lineno">  151</span> </div>
 <div class="line"><span class="lineno">  152</span>    jaeger_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  153</span>    </div>
+<div class="line"><span class="lineno">  153</span> </div>
 <div class="line"><span class="lineno">  154</span>    <span class="comment">// Export spans</span></div>
 <div class="line"><span class="lineno">  155</span>    <span class="keyword">auto</span> export_result = exporter.export_spans(test_spans_);</div>
-<div class="line"><span class="lineno">  156</span>    EXPECT_TRUE(export_result);</div>
-<div class="line"><span class="lineno">  157</span>    </div>
+<div class="line"><span class="lineno">  156</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  157</span> </div>
 <div class="line"><span class="lineno">  158</span>    <span class="comment">// Check statistics</span></div>
 <div class="line"><span class="lineno">  159</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  160</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], test_spans_.size());</div>
 <div class="line"><span class="lineno">  161</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
-<div class="line"><span class="lineno">  162</span>    </div>
+<div class="line"><span class="lineno">  162</span> </div>
 <div class="line"><span class="lineno">  163</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><span class="lineno">  164</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  165</span>    EXPECT_TRUE(flush_result);</div>
-<div class="line"><span class="lineno">  166</span>    </div>
+<div class="line"><span class="lineno">  165</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  166</span> </div>
 <div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  168</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><span class="lineno">  168</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><span class="lineno">  169</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -449,18 +449,18 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  364</span>        span.end_time = span.start_time + std::chrono::milliseconds(1);</div>
 <div class="line"><span class="lineno">  365</span>        large_batch.push_back(span);</div>
 <div class="line"><span class="lineno">  366</span>    }</div>
-<div class="line"><span class="lineno">  367</span>    </div>
+<div class="line"><span class="lineno">  367</span> </div>
 <div class="line"><span class="lineno">  368</span>    trace_export_config config;</div>
 <div class="line"><span class="lineno">  369</span>    config.endpoint = <span class="stringliteral">&quot;http://test:1234&quot;</span>;</div>
 <div class="line"><span class="lineno">  370</span>    config.format = trace_export_format::otlp_grpc;</div>
 <div class="line"><span class="lineno">  371</span>    config.max_batch_size = 500; <span class="comment">// Smaller than batch size</span></div>
-<div class="line"><span class="lineno">  372</span>    </div>
+<div class="line"><span class="lineno">  372</span> </div>
 <div class="line"><span class="lineno">  373</span>    otlp_exporter exporter(config, otel_resource_);</div>
 <div class="line"><span class="lineno">  374</span>    <span class="keyword">auto</span> result = exporter.export_spans(large_batch);</div>
 <div class="line"><span class="lineno">  375</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  376</span>    </div>
+<div class="line"><span class="lineno">  376</span> </div>
 <div class="line"><span class="lineno">  377</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
-<div class="line"><span class="lineno">  378</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 1000);</div>
+<div class="line"><span class="lineno">  378</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], <span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(1000));</div>
 <div class="line"><span class="lineno">  379</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -496,24 +496,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  219</span>    trace_export_config config;</div>
 <div class="line"><span class="lineno">  220</span>    config.endpoint = <span class="stringliteral">&quot;http://otlp-collector:4317&quot;</span>;</div>
 <div class="line"><span class="lineno">  221</span>    config.format = trace_export_format::otlp_grpc;</div>
-<div class="line"><span class="lineno">  222</span>    </div>
+<div class="line"><span class="lineno">  222</span> </div>
 <div class="line"><span class="lineno">  223</span>    otlp_exporter exporter(config, otel_resource_);</div>
-<div class="line"><span class="lineno">  224</span>    </div>
+<div class="line"><span class="lineno">  224</span> </div>
 <div class="line"><span class="lineno">  225</span>    <span class="comment">// Export spans</span></div>
 <div class="line"><span class="lineno">  226</span>    <span class="keyword">auto</span> export_result = exporter.export_spans(test_spans_);</div>
-<div class="line"><span class="lineno">  227</span>    EXPECT_TRUE(export_result);</div>
-<div class="line"><span class="lineno">  228</span>    </div>
+<div class="line"><span class="lineno">  227</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  228</span> </div>
 <div class="line"><span class="lineno">  229</span>    <span class="comment">// Check statistics</span></div>
 <div class="line"><span class="lineno">  230</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  231</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], test_spans_.size());</div>
 <div class="line"><span class="lineno">  232</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
-<div class="line"><span class="lineno">  233</span>    </div>
+<div class="line"><span class="lineno">  233</span> </div>
 <div class="line"><span class="lineno">  234</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><span class="lineno">  235</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  236</span>    EXPECT_TRUE(flush_result);</div>
-<div class="line"><span class="lineno">  237</span>    </div>
+<div class="line"><span class="lineno">  236</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  237</span> </div>
 <div class="line"><span class="lineno">  238</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  239</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><span class="lineno">  239</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><span class="lineno">  240</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -606,38 +606,38 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   70</span>    valid_config.timeout = std::chrono::milliseconds(5000);</div>
 <div class="line"><span class="lineno">   71</span>    valid_config.max_batch_size = 100;</div>
 <div class="line"><span class="lineno">   72</span>    valid_config.max_queue_size = 1000;</div>
-<div class="line"><span class="lineno">   73</span>    </div>
+<div class="line"><span class="lineno">   73</span> </div>
 <div class="line"><span class="lineno">   74</span>    <span class="keyword">auto</span> validation = valid_config.validate();</div>
-<div class="line"><span class="lineno">   75</span>    EXPECT_TRUE(validation);</div>
-<div class="line"><span class="lineno">   76</span>    </div>
+<div class="line"><span class="lineno">   75</span>    EXPECT_TRUE(validation.is_ok());</div>
+<div class="line"><span class="lineno">   76</span> </div>
 <div class="line"><span class="lineno">   77</span>    <span class="comment">// Invalid endpoint</span></div>
 <div class="line"><span class="lineno">   78</span>    trace_export_config invalid_endpoint;</div>
 <div class="line"><span class="lineno">   79</span>    invalid_endpoint.endpoint = <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><span class="lineno">   80</span>    <span class="keyword">auto</span> endpoint_validation = invalid_endpoint.validate();</div>
-<div class="line"><span class="lineno">   81</span>    EXPECT_FALSE(endpoint_validation);</div>
-<div class="line"><span class="lineno">   82</span>    EXPECT_EQ(endpoint_validation.error().code, monitoring_error_code::invalid_configuration);</div>
-<div class="line"><span class="lineno">   83</span>    </div>
+<div class="line"><span class="lineno">   81</span>    EXPECT_TRUE(endpoint_validation.is_err());</div>
+<div class="line"><span class="lineno">   82</span>    EXPECT_EQ(endpoint_validation.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
+<div class="line"><span class="lineno">   83</span> </div>
 <div class="line"><span class="lineno">   84</span>    <span class="comment">// Invalid timeout</span></div>
 <div class="line"><span class="lineno">   85</span>    trace_export_config invalid_timeout;</div>
 <div class="line"><span class="lineno">   86</span>    invalid_timeout.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
 <div class="line"><span class="lineno">   87</span>    invalid_timeout.timeout = std::chrono::milliseconds(0);</div>
 <div class="line"><span class="lineno">   88</span>    <span class="keyword">auto</span> timeout_validation = invalid_timeout.validate();</div>
-<div class="line"><span class="lineno">   89</span>    EXPECT_FALSE(timeout_validation);</div>
-<div class="line"><span class="lineno">   90</span>    </div>
+<div class="line"><span class="lineno">   89</span>    EXPECT_TRUE(timeout_validation.is_err());</div>
+<div class="line"><span class="lineno">   90</span> </div>
 <div class="line"><span class="lineno">   91</span>    <span class="comment">// Invalid batch size</span></div>
 <div class="line"><span class="lineno">   92</span>    trace_export_config invalid_batch;</div>
 <div class="line"><span class="lineno">   93</span>    invalid_batch.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
 <div class="line"><span class="lineno">   94</span>    invalid_batch.max_batch_size = 0;</div>
 <div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
-<div class="line"><span class="lineno">   96</span>    EXPECT_FALSE(batch_validation);</div>
-<div class="line"><span class="lineno">   97</span>    </div>
+<div class="line"><span class="lineno">   96</span>    EXPECT_TRUE(batch_validation.is_err());</div>
+<div class="line"><span class="lineno">   97</span> </div>
 <div class="line"><span class="lineno">   98</span>    <span class="comment">// Invalid queue size</span></div>
 <div class="line"><span class="lineno">   99</span>    trace_export_config invalid_queue;</div>
 <div class="line"><span class="lineno">  100</span>    invalid_queue.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
 <div class="line"><span class="lineno">  101</span>    invalid_queue.max_batch_size = 100;</div>
 <div class="line"><span class="lineno">  102</span>    invalid_queue.max_queue_size = 50;</div>
 <div class="line"><span class="lineno">  103</span>    <span class="keyword">auto</span> queue_validation = invalid_queue.validate();</div>
-<div class="line"><span class="lineno">  104</span>    EXPECT_FALSE(queue_validation);</div>
+<div class="line"><span class="lineno">  104</span>    EXPECT_TRUE(queue_validation.is_err());</div>
 <div class="line"><span class="lineno">  105</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -728,24 +728,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  195</span>    trace_export_config config;</div>
 <div class="line"><span class="lineno">  196</span>    config.endpoint = <span class="stringliteral">&quot;http://zipkin:9411/api/v2/spans&quot;</span>;</div>
 <div class="line"><span class="lineno">  197</span>    config.format = trace_export_format::zipkin_json;</div>
-<div class="line"><span class="lineno">  198</span>    </div>
+<div class="line"><span class="lineno">  198</span> </div>
 <div class="line"><span class="lineno">  199</span>    zipkin_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  200</span>    </div>
+<div class="line"><span class="lineno">  200</span> </div>
 <div class="line"><span class="lineno">  201</span>    <span class="comment">// Export spans</span></div>
 <div class="line"><span class="lineno">  202</span>    <span class="keyword">auto</span> export_result = exporter.export_spans(test_spans_);</div>
-<div class="line"><span class="lineno">  203</span>    EXPECT_TRUE(export_result);</div>
-<div class="line"><span class="lineno">  204</span>    </div>
+<div class="line"><span class="lineno">  203</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  204</span> </div>
 <div class="line"><span class="lineno">  205</span>    <span class="comment">// Check statistics</span></div>
 <div class="line"><span class="lineno">  206</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
 <div class="line"><span class="lineno">  207</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], test_spans_.size());</div>
 <div class="line"><span class="lineno">  208</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
-<div class="line"><span class="lineno">  209</span>    </div>
+<div class="line"><span class="lineno">  209</span> </div>
 <div class="line"><span class="lineno">  210</span>    <span class="comment">// Test flush and shutdown</span></div>
 <div class="line"><span class="lineno">  211</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  212</span>    EXPECT_TRUE(flush_result);</div>
-<div class="line"><span class="lineno">  213</span>    </div>
+<div class="line"><span class="lineno">  212</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  213</span> </div>
 <div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  215</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><span class="lineno">  215</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><span class="lineno">  216</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -805,7 +805,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 26 2025 06:38:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 26 2025 06:49:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
