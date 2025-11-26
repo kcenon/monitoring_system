@@ -36,7 +36,7 @@ add_executable(monitoring_system_tests
     test_event_bus.cpp
 
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (16 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (15 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
@@ -49,7 +49,6 @@ add_executable(monitoring_system_tests
     # test_adaptive_monitoring.cpp    # Result<T> API updates needed
     # test_health_monitoring.cpp      # Result<T> API updates needed
     # test_fault_tolerance.cpp        # Result<T> API updates needed
-    # test_interfaces_compile.cpp     # May need updates
     # test_error_boundaries.cpp       # Missing: graceful_degradation.h
     # test_optimization.cpp           # Missing: optimization/ folder
     # test_resource_management.cpp    # Missing: resource_manager.h
@@ -61,6 +60,21 @@ add_executable(monitoring_system_tests
     # test_storage_backends.cpp       # API mismatch with storage_backends.h
     # test_integration_e2e.cpp        # Multiple missing headers
 )
+
+# Interface compilation test (standalone executable with main())
+add_executable(monitoring_interfaces_compile_test
+    test_interfaces_compile.cpp
+)
+
+target_link_libraries(monitoring_interfaces_compile_test
+    PRIVATE
+        monitoring_system
+        Threads::Threads
+)
+
+# Add to CTest
+add_test(NAME monitoring_interfaces_compile_test
+         COMMAND monitoring_interfaces_compile_test)
 
 # Thread safety tests (Phase 1 - Task 1.3)
 add_executable(monitoring_thread_safety_test

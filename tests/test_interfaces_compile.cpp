@@ -67,6 +67,7 @@ public:
     }
 
     result_void start_collection(const collection_config& config) override {
+        (void)config;
         return make_void_success();
     }
 
@@ -87,6 +88,7 @@ public:
     }
 
     result_void update_config(const collection_config& config) override {
+        (void)config;
         return make_void_success();
     }
 
@@ -102,16 +104,18 @@ public:
 
     // Observable interface methods
     result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
+        (void)observer;
         return make_void_success();
     }
 
     result_void unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
+        (void)observer;
         return make_void_success();
     }
 
-    void notify_metric(const metric_event& event) override {}
-    void notify_event(const system_event& event) override {}
-    void notify_state_change(const state_change_event& event) override {}
+    void notify_metric(const metric_event& event) override { (void)event; }
+    void notify_event(const system_event& event) override { (void)event; }
+    void notify_state_change(const state_change_event& event) override { (void)event; }
 };
 
 int main() {
@@ -122,7 +126,7 @@ int main() {
     auto collector = std::make_shared<test_collector>();
 
     // Test that interfaces can be used
-    metric m{"test", metric_value{42.0}, {}};
+    metric m{"test", 42.0, {}};
     metric_event me("test_source", m);
     observer->on_metric_collected(me);
 
