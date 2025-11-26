@@ -83,8 +83,8 @@ public:
             auto monitorable = std::dynamic_pointer_cast<common::interfaces::IMonitorable>(logger_);
             if (monitorable) {
                 auto metrics_result = monitorable->get_monitoring_data();
-                if (std::holds_alternative<common::interfaces::metrics_snapshot>(metrics_result)) {
-                    const auto& snapshot = std::get<common::interfaces::metrics_snapshot>(metrics_result);
+                if (metrics_result.is_ok()) {
+                    const auto& snapshot = metrics_result.value();
                     // Convert to monitoring_system metric format
                     for (const auto& m : snapshot.metrics) {
                         metric converted;
@@ -115,8 +115,8 @@ public:
             auto monitorable = std::dynamic_pointer_cast<common::interfaces::IMonitorable>(logger_);
             if (monitorable) {
                 auto metrics_result = monitorable->get_monitoring_data();
-                if (std::holds_alternative<common::interfaces::metrics_snapshot>(metrics_result)) {
-                    const auto& snapshot = std::get<common::interfaces::metrics_snapshot>(metrics_result);
+                if (metrics_result.is_ok()) {
+                    const auto& snapshot = metrics_result.value();
                     for (const auto& m : snapshot.metrics) {
                         if (m.name.find("messages_logged") != std::string::npos ||
                             m.name.find("log_rate") != std::string::npos) {

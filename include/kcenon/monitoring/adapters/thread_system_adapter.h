@@ -136,7 +136,7 @@ public:
         worker_ = std::thread([this, cfg]() {
             while (running_.load()) {
                 auto res = collect_metrics();
-                if (res && cfg.publish_events && !res.value().empty()) {
+                if (res.is_ok() && cfg.publish_events && !res.value().empty()) {
                     bus_->publish_event(metric_collection_event("thread_system_adapter", res.value()));
                 }
                 std::this_thread::sleep_for(cfg.interval);

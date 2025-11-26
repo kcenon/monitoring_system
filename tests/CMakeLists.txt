@@ -8,9 +8,11 @@ if(NOT GTest_FOUND)
 
     # Configure googletest options before fetching (fix Windows/MSVC pthread.h issue)
     set(gtest_force_shared_crt ON CACHE BOOL "Always use shared runtime library" FORCE)
+    set(gtest_disable_pthreads ON CACHE BOOL "Disable pthreads for Windows" FORCE)
     set(BUILD_GMOCK OFF CACHE BOOL "Disable GMock" FORCE)
     set(INSTALL_GTEST OFF CACHE BOOL "Disable GTest installation" FORCE)
 
+    message(STATUS "GTest not found - fetching from GitHub")
     include(FetchContent)
     FetchContent_Declare(
         googletest
@@ -18,6 +20,7 @@ if(NOT GTest_FOUND)
         GIT_TAG v1.14.0
     )
     FetchContent_MakeAvailable(googletest)
+    message(STATUS "GTest fetched successfully")
 endif()
 
 # Create test executable
@@ -30,9 +33,10 @@ add_executable(monitoring_system_tests
     test_lock_free_collector.cpp
     test_distributed_tracing.cpp
     test_performance_monitoring.cpp
+    test_event_bus.cpp
 
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers
+    # MON-002: Deferred tests requiring API updates or missing headers (16 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
@@ -45,7 +49,6 @@ add_executable(monitoring_system_tests
     # test_adaptive_monitoring.cpp    # Result<T> API updates needed
     # test_health_monitoring.cpp      # Result<T> API updates needed
     # test_fault_tolerance.cpp        # Result<T> API updates needed
-    # test_event_bus.cpp              # Result<T> API updates needed
     # test_interfaces_compile.cpp     # May need updates
     # test_error_boundaries.cpp       # Missing: graceful_degradation.h
     # test_optimization.cpp           # Missing: optimization/ folder
