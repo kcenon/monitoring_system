@@ -423,10 +423,42 @@ std::vector<performance_metrics> performance_profiler::get_all_metrics() const {
     std::shared_lock<std::shared_mutex> lock(profiles_mutex_);
 
     for (const auto& [name, profile] : profiles_) {
-        auto metrics_result = get_metrics(name);
-        if (metrics_result.is_ok()) {
-            result.push_back(metrics_result.value());
+        // Calculate metrics inline to avoid nested locking with get_metrics()
+        // get_metrics() acquires shared_lock on profiles_mutex_ which we already hold
+        performance_metrics metrics;
+        metrics.operation_name = name;
+        metrics.call_count = profile->call_count.load();
+        metrics.error_count = profile->error_count.load();
+
+        // Lock individual profile for sample access
+        std::lock_guard sample_lock(profile->mutex);
+
+        if (!profile->samples.empty()) {
+            auto total = std::chrono::nanoseconds::zero();
+            auto min_sample = profile->samples[0];
+            auto max_sample = profile->samples[0];
+
+            for (const auto& sample : profile->samples) {
+                total += sample;
+                if (sample < min_sample) min_sample = sample;
+                if (sample > max_sample) max_sample = sample;
+            }
+
+            metrics.min_duration = min_sample;
+            metrics.max_duration = max_sample;
+            metrics.mean_duration = total / profile->samples.size();
+
+            // Calculate percentiles using sorted samples
+            std::vector<std::chrono::nanoseconds> sorted_samples(
+                profile->samples.begin(), profile->samples.end());
+            std::sort(sorted_samples.begin(), sorted_samples.end());
+
+            metrics.median_duration = performance_metrics::calculate_percentile(sorted_samples, 50.0);
+            metrics.p95_duration = performance_metrics::calculate_percentile(sorted_samples, 95.0);
+            metrics.p99_duration = performance_metrics::calculate_percentile(sorted_samples, 99.0);
         }
+
+        result.push_back(metrics);
     }
 
     return result;
