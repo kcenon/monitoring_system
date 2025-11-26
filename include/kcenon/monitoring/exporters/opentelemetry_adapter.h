@@ -20,6 +20,7 @@ All rights reserved.
 #include "../core/error_codes.h"
 #include "../tracing/distributed_tracer.h"
 #include "../interfaces/monitoring_interface.h"
+#include "../interfaces/monitorable_interface.h"
 #include <string>
 #include <vector>
 #include <unordered_map>
