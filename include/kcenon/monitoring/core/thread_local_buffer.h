@@ -66,6 +66,8 @@ struct metric_sample {
  * Each thread maintains its own buffer for recording metrics without locks.
  * When the buffer fills up, it flushes to a central collector.
  *
+ * Optimized with pre-allocated ring buffer to eliminate runtime allocations.
+ *
  * @thread_safety NOT thread-safe across threads (thread-local use only).
  *                Thread-safe within a single thread (no concurrent access).
  */
@@ -99,7 +101,7 @@ public:
      * @return true if recorded, false if buffer is full (caller should flush)
      *
      * @thread_safety Thread-safe (single-threaded access guaranteed by TLS)
-     * @performance O(1) - simple array write, ~5-10 ns
+     * @performance O(1) - direct array write, ~5-10 ns (no allocation)
      */
     bool record(const metric_sample& sample);
 
@@ -150,11 +152,27 @@ public:
         collector_ = collector;
     }
 
+    /**
+     * @brief Get statistics about buffer operations
+     */
+    struct stats {
+        size_t total_records{0};    ///< Total records written
+        size_t total_flushes{0};    ///< Total flush operations
+        size_t auto_flushes{0};     ///< Flushes triggered by auto_flush
+    };
+
+    /**
+     * @brief Get buffer statistics
+     * @return Statistics about buffer operations
+     */
+    const stats& get_stats() const { return stats_; }
+
 private:
-    std::vector<metric_sample> buffer_;
+    std::vector<metric_sample> buffer_;  // Pre-allocated ring buffer
     size_t capacity_;
     size_t write_index_{0};  // Single-writer, no atomic needed
     std::shared_ptr<central_collector> collector_;
+    stats stats_;
 };
 
 }} // namespace kcenon::monitoring
