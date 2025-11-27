@@ -136,8 +136,8 @@ Functions</h2></td></tr>
 <tr class="separator:a5b16fa47be7308c9e126cb25fa21b4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab06e09edd9d4078bff18256cb3b8ec38" id="r_ab06e09edd9d4078bff18256cb3b8ec38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df9/test__timer__metrics_8cpp.html#ab06e09edd9d4078bff18256cb3b8ec38">TEST_F</a> (<a class="el" href="../../da/d72/classTimerMetricsTest.html">TimerMetricsTest</a>, ChronoDurationRecording)</td></tr>
 <tr class="separator:ab06e09edd9d4078bff18256cb3b8ec38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a482338909879a99e130c6fcb482b8f4b" id="r_a482338909879a99e130c6fcb482b8f4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df9/test__timer__metrics_8cpp.html#a482338909879a99e130c6fcb482b8f4b">TEST_F</a> (<a class="el" href="../../da/d72/classTimerMetricsTest.html">TimerMetricsTest</a>, ScopedTimerRecording)</td></tr>
-<tr class="separator:a482338909879a99e130c6fcb482b8f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1561e04ceca92f02e2a61a983e416010" id="r_a1561e04ceca92f02e2a61a983e416010"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df9/test__timer__metrics_8cpp.html#a1561e04ceca92f02e2a61a983e416010">TEST_F</a> (<a class="el" href="../../da/d72/classTimerMetricsTest.html">TimerMetricsTest</a>, TimerScopeRecording)</td></tr>
+<tr class="separator:a1561e04ceca92f02e2a61a983e416010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3aedd8510b45c5b6d5ee9eebf1fbbb15" id="r_a3aedd8510b45c5b6d5ee9eebf1fbbb15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df9/test__timer__metrics_8cpp.html#a3aedd8510b45c5b6d5ee9eebf1fbbb15">TEST_F</a> (<a class="el" href="../../da/d72/classTimerMetricsTest.html">TimerMetricsTest</a>, P999Percentile)</td></tr>
 <tr class="separator:a3aedd8510b45c5b6d5ee9eebf1fbbb15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ce3de7b2daecc98f0da2e67da83236f" id="r_a9ce3de7b2daecc98f0da2e67da83236f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df9/test__timer__metrics_8cpp.html#a9ce3de7b2daecc98f0da2e67da83236f">TEST_F</a> (<a class="el" href="../../d0/d7d/classHistogramMetricsTest.html">HistogramMetricsTest</a>, StandardBuckets)</td></tr>
@@ -689,49 +689,8 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a482338909879a99e130c6fcb482b8f4b" name="a482338909879a99e130c6fcb482b8f4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a482338909879a99e130c6fcb482b8f4b">&#9670;&#160;</a></span>TEST_F() <span class="overload">[14/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TEST_F </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../da/d72/classTimerMetricsTest.html">TimerMetricsTest</a>&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ScopedTimerRecording&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d4/df9/test__timer__metrics_8cpp_source.html#l00171">171</a> of file <a class="el" href="../../d4/df9/test__timer__metrics_8cpp_source.html">test_timer_metrics.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  171</span>                                               {</div>
-<div class="line"><span class="lineno">  172</span>    timer_data timer;</div>
-<div class="line"><span class="lineno">  173</span> </div>
-<div class="line"><span class="lineno">  174</span>    {</div>
-<div class="line"><span class="lineno">  175</span>        scoped_timer scope(timer);</div>
-<div class="line"><span class="lineno">  176</span>        std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
-<div class="line"><span class="lineno">  177</span>    }</div>
-<div class="line"><span class="lineno">  178</span> </div>
-<div class="line"><span class="lineno">  179</span>    EXPECT_EQ(timer.count(), 1);</div>
-<div class="line"><span class="lineno">  180</span>    EXPECT_GE(timer.mean(), 10.0);  <span class="comment">// At least 10ms</span></div>
-<div class="line"><span class="lineno">  181</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="ac634266d92d59c74381b2142554e4d86" name="ac634266d92d59c74381b2142554e4d86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac634266d92d59c74381b2142554e4d86">&#9670;&#160;</a></span>TEST_F() <span class="overload">[15/17]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac634266d92d59c74381b2142554e4d86">&#9670;&#160;</a></span>TEST_F() <span class="overload">[14/17]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -771,7 +730,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae083841eef236ae6f706e0ae5749db08" name="ae083841eef236ae6f706e0ae5749db08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae083841eef236ae6f706e0ae5749db08">&#9670;&#160;</a></span>TEST_F() <span class="overload">[16/17]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae083841eef236ae6f706e0ae5749db08">&#9670;&#160;</a></span>TEST_F() <span class="overload">[15/17]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -816,7 +775,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="af74fc40a4c7946a924feba9d657e2e32" name="af74fc40a4c7946a924feba9d657e2e32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af74fc40a4c7946a924feba9d657e2e32">&#9670;&#160;</a></span>TEST_F() <span class="overload">[17/17]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af74fc40a4c7946a924feba9d657e2e32">&#9670;&#160;</a></span>TEST_F() <span class="overload">[16/17]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -861,10 +820,51 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a1561e04ceca92f02e2a61a983e416010" name="a1561e04ceca92f02e2a61a983e416010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1561e04ceca92f02e2a61a983e416010">&#9670;&#160;</a></span>TEST_F() <span class="overload">[17/17]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/d72/classTimerMetricsTest.html">TimerMetricsTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimerScopeRecording&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d4/df9/test__timer__metrics_8cpp_source.html#l00171">171</a> of file <a class="el" href="../../d4/df9/test__timer__metrics_8cpp_source.html">test_timer_metrics.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  171</span>                                              {</div>
+<div class="line"><span class="lineno">  172</span>    timer_data timer;</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>    {</div>
+<div class="line"><span class="lineno">  175</span>        timer_scope scope(timer);</div>
+<div class="line"><span class="lineno">  176</span>        std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
+<div class="line"><span class="lineno">  177</span>    }</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>    EXPECT_EQ(timer.count(), 1);</div>
+<div class="line"><span class="lineno">  180</span>    EXPECT_GE(timer.mean(), 10.0);  <span class="comment">// At least 10ms</span></div>
+<div class="line"><span class="lineno">  181</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 27 2025 07:44:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 27 2025 07:53:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
