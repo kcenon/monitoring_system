@@ -8,5 +8,6 @@ var searchData=
   ['simple_5fmock_5flogger_5',['simple_mock_logger',['../d1/da6/classsimple__mock__logger.html',1,'']]],
   ['storagebackendstest_6',['StorageBackendsTest',['../d4/dcd/classStorageBackendsTest.html',1,'']]],
   ['streamaggregationtest_7',['StreamAggregationTest',['../de/d8e/classStreamAggregationTest.html',1,'']]],
-  ['stressperformancetest_8',['StressPerformanceTest',['../d9/dbf/classStressPerformanceTest.html',1,'']]]
+  ['stressperformancetest_8',['StressPerformanceTest',['../d9/dbf/classStressPerformanceTest.html',1,'']]],
+  ['summarymetricstest_9',['SummaryMetricsTest',['../db/da7/classSummaryMetricsTest.html',1,'']]]
 ];
