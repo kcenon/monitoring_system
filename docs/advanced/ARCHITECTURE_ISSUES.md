@@ -82,16 +82,20 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ### 2. Concurrency & Thread Safety
 
-#### Issue ARC-003: Monitor Thread Safety Verification
+#### ~~Issue ARC-003: Monitor Thread Safety Verification~~ ✅ RESOLVED
 - **Priority**: P0 (High)
 - **Phase**: Phase 1
+- **Status**: ✅ **RESOLVED** (2025-11-26)
 - **Description**: All monitor implementations need thread safety verification
 - **Impact**: Potential data races in concurrent monitoring
-- **Investigation Required**:
-  - Review performance_monitor synchronization
-  - Check adaptive_monitor atomic operations
-  - Verify metric aggregation thread safety
-- **Acceptance Criteria**: ThreadSanitizer clean, documented contracts
+- **Resolution**:
+  - ✅ Reviewed performance_monitor synchronization
+  - ✅ Verified adaptive_monitor atomic operations
+  - ✅ Confirmed metric aggregation thread safety
+  - ✅ Added thread_safety_tests.cpp with ThreadSanitizer validation
+- **References**:
+  - Tests: `tests/thread_safety_tests.cpp`
+  - Sanitizer workflow: `.github/workflows/sanitizers.yml`
 
 ---
 
@@ -152,16 +156,24 @@ This document catalogs known architectural issues in monitoring_system identifie
   - Add distributed trace visualization
 - **Acceptance Criteria**: Full distributed tracing support
 
-#### Issue ARC-007: Limited Metric Types
+#### ~~Issue ARC-007: Limited Metric Types~~ ✅ RESOLVED
 - **Priority**: P2 (Low)
 - **Phase**: Phase 4
+- **Status**: ✅ **RESOLVED** (2025-11-27)
 - **Description**: Need support for additional metric types
 - **Impact**: Limited monitoring capabilities
-- **Requirements**:
-  - Histogram metrics
-  - Summary metrics
-  - Timer metrics with percentiles
-- **Acceptance Criteria**: All common metric types supported
+- **Resolution**:
+  - ✅ Histogram metrics with configurable buckets (`histogram_data`)
+  - ✅ Summary metrics with min/max/mean (`summary_data`)
+  - ✅ Timer metrics with percentiles (`timer_data`)
+    - Reservoir sampling for memory efficiency
+    - p50, p90, p95, p99, p999 percentile calculations
+    - Standard deviation and snapshot support
+  - ✅ RAII scoped_timer for automatic duration recording
+  - ✅ Comprehensive tests in `test_timer_metrics.cpp`
+- **References**:
+  - Implementation: `include/kcenon/monitoring/utils/metric_types.h`
+  - Tests: `tests/test_timer_metrics.cpp`
 
 ---
 
@@ -235,7 +247,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ### Phase 4 Actions
 - [ ] Resolve ARC-006 (Distributed tracing)
-- [ ] Resolve ARC-007 (Metric types)
+- [x] Resolve ARC-007 (Metric types) - 2025-11-27
 
 ### Phase 5 Actions
 - [ ] Resolve ARC-001 (Test coverage)
@@ -276,4 +288,4 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ---
 
-*Last Updated: 2025-11-27 (ARC-010 Resolved)*
+*Last Updated: 2025-11-27 (ARC-003, ARC-007 Resolved)*
