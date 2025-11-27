@@ -67,7 +67,8 @@ private:
     int log_count_{0};
 
 public:
-    VoidResult log(common_if::log_level level, const std::string& message) override {
+    VoidResult log([[maybe_unused]] common_if::log_level level,
+                   [[maybe_unused]] const std::string& message) override {
         log_count_++;
         if (monitor_) {
             monitor_->record_metric("logs_written", static_cast<double>(log_count_));
@@ -76,8 +77,9 @@ public:
     }
 
     VoidResult log(common_if::log_level level, const std::string& message,
-                   const std::string& file, int line,
-                   const std::string& function) override {
+                   [[maybe_unused]] const std::string& file,
+                   [[maybe_unused]] int line,
+                   [[maybe_unused]] const std::string& function) override {
         return log(level, message);
     }
 
@@ -85,8 +87,8 @@ public:
         return log(entry.level, entry.message);
     }
 
-    bool is_enabled(common_if::log_level level) const override { return true; }
-    VoidResult set_level(common_if::log_level level) override { return kcenon::common::ok(); }
+    bool is_enabled([[maybe_unused]] common_if::log_level level) const override { return true; }
+    VoidResult set_level([[maybe_unused]] common_if::log_level level) override { return kcenon::common::ok(); }
     common_if::log_level get_level() const override { return common_if::log_level::info; }
     VoidResult flush() override { return kcenon::common::ok(); }
 
