@@ -154,7 +154,7 @@
     - 메모리 효율성을 위한 Reservoir 샘플링
     - p50, p90, p95, p99, p999 백분위수 계산
     - 표준 편차 및 스냅샷 지원
-  - ✅ 자동 시간 측정을 위한 RAII scoped_timer
+  - ✅ 자동 시간 측정을 위한 RAII timer_scope
   - ✅ `test_timer_metrics.cpp`의 포괄적인 테스트
 - **참조**:
   - 구현: `include/kcenon/monitoring/utils/metric_types.h`

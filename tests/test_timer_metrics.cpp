@@ -168,11 +168,11 @@ TEST_F(TimerMetricsTest, ChronoDurationRecording) {
     EXPECT_NEAR(timer.mean(), 150.0, 0.01);
 }
 
-TEST_F(TimerMetricsTest, ScopedTimerRecording) {
+TEST_F(TimerMetricsTest, TimerScopeRecording) {
     timer_data timer;
 
     {
-        scoped_timer scope(timer);
+        timer_scope scope(timer);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 

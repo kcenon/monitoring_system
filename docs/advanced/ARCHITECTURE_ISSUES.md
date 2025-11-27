@@ -169,7 +169,7 @@ This document catalogs known architectural issues in monitoring_system identifie
     - Reservoir sampling for memory efficiency
     - p50, p90, p95, p99, p999 percentile calculations
     - Standard deviation and snapshot support
-  - ✅ RAII scoped_timer for automatic duration recording
+  - ✅ RAII timer_scope for automatic duration recording
   - ✅ Comprehensive tests in `test_timer_metrics.cpp`
 - **References**:
   - Implementation: `include/kcenon/monitoring/utils/metric_types.h`

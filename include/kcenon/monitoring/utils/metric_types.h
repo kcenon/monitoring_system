@@ -557,23 +557,26 @@ private:
 };
 
 /**
- * @brief RAII timer scope for automatic duration recording
+ * @brief RAII timer scope for automatic duration recording with timer_data
+ *
+ * Note: This is named timer_scope to avoid collision with scoped_timer
+ * in performance_monitor.h which works with performance_profiler.
  */
-class scoped_timer {
+class timer_scope {
 public:
-    explicit scoped_timer(timer_data& timer)
+    explicit timer_scope(timer_data& timer)
         : timer_(timer), start_(std::chrono::steady_clock::now()) {}
 
-    ~scoped_timer() {
+    ~timer_scope() {
         auto end = std::chrono::steady_clock::now();
         timer_.record(end - start_);
     }
 
     // Non-copyable, non-movable
-    scoped_timer(const scoped_timer&) = delete;
-    scoped_timer& operator=(const scoped_timer&) = delete;
-    scoped_timer(scoped_timer&&) = delete;
-    scoped_timer& operator=(scoped_timer&&) = delete;
+    timer_scope(const timer_scope&) = delete;
+    timer_scope& operator=(const timer_scope&) = delete;
+    timer_scope(timer_scope&&) = delete;
+    timer_scope& operator=(timer_scope&&) = delete;
 
 private:
     timer_data& timer_;
