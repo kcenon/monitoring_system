@@ -180,16 +180,22 @@
 
 ### 6. 통합
 
-#### Issue ARC-010: Common System 통합
+#### ~~Issue ARC-010: Common System 통합~~ ✅ 해결됨
 - **우선순위**: P1 (중간)
 - **단계**: Phase 3
+- **상태**: ✅ **해결됨** (2025-11-27)
 - **설명**: common_system과의 통합 검증 필요
 - **영향**: 잠재적 비호환성 또는 차선책 통합
-- **조사 필요 사항**:
-  - IMonitor 구현 준수 테스트
-  - Result<T> 사용 패턴 검증
-  - 오류 코드 정렬 확인
-- **수락 기준**: 모든 common_system 기능과 깔끔한 통합
+- **해결**:
+  - ✅ `common_system_adapter.h`를 통해 IMonitor 구현 준수 검증
+  - ✅ Result<T> 사용 패턴 검증 - 적절한 변환과 함께 `common::Result<T>` 사용
+  - ✅ 오류 코드 정렬 문서화 (monitoring_system은 양수 코드 사용, 어댑터에서 변환 처리)
+  - ✅ `test_cross_system_integration.cpp`를 테스트 스위트에 추가
+  - ✅ 8개의 크로스 시스템 통합 테스트 모두 통과
+- **참조**:
+  - 어댑터: `include/kcenon/monitoring/adapters/common_system_adapter.h`
+  - 테스트: `tests/test_cross_system_integration.cpp`
+  - Result 타입: `include/kcenon/monitoring/core/result_types.h`
 
 ---
 
@@ -210,7 +216,7 @@
 - [x] ARC-005 해결 (Adaptive 임계값 튜닝) - 2025-11-27
 
 ### Phase 3 작업
-- [ ] ARC-010 해결 (Common system 통합)
+- [x] ARC-010 해결 (Common system 통합) - 2025-11-27
 
 ### Phase 4 작업
 - [ ] ARC-006 해결 (분산 추적)
