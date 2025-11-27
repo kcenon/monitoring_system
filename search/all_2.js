@@ -11,7 +11,7 @@ var searchData=
   ['clear_8',['clear',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#aad8e5b0e69a84815b1dfd20c5351fb51',1,'kcenon::monitoring::service_container_interface']]],
   ['collect_9',['collect',['../d9/d8d/classmock__collector.html#a9de0a27c8ddf96c5d1f6c7441454e82a',1,'mock_collector']]],
   ['collect_5fcount_5f_10',['collect_count_',['../d9/d8d/classmock__collector.html#a6d5ae8721a95a117ecf34a83e6f7c848',1,'mock_collector']]],
-  ['collect_5fmetrics_11',['collect_metrics',['../dc/d68/classmetrics__collector__adapter.html#a9a9a8905a21df78e0984e5473e204fbb',1,'metrics_collector_adapter::collect_metrics()'],['../d2/d91/classperformance__monitor__old.html#a594765d76fddedef1871625d0a839cb5',1,'performance_monitor_old::collect_metrics()'],['../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a',1,'test_collector::collect_metrics()'],['../df/d8a/classmetrics__collector__interface.html#a152adbf65495f3a7de783632da23ae64',1,'metrics_collector_interface::collect_metrics()']]],
+  ['collect_5fmetrics_11',['collect_metrics',['../dc/d68/classmetrics__collector__adapter.html#a9a9a8905a21df78e0984e5473e204fbb',1,'metrics_collector_adapter::collect_metrics()'],['../df/d8a/classmetrics__collector__interface.html#a152adbf65495f3a7de783632da23ae64',1,'metrics_collector_interface::collect_metrics()'],['../d2/d91/classperformance__monitor__old.html#a594765d76fddedef1871625d0a839cb5',1,'performance_monitor_old::collect_metrics()'],['../d9/d71/classtest__collector.html#ac72129342beb4bcfc7c4b7ce2ddc8a7a',1,'test_collector::collect_metrics()']]],
   ['collect_5fmetrics_5finternal_12',['collect_metrics_internal',['../db/d7f/classperformance__monitor__impl.html#aa9a683fb97b96b44a32a936cfb9ef356',1,'performance_monitor_impl']]],
   ['collector_13',['collector',['../d6/dab/classLockFreeCollectorTest.html#af24e8133c720a6cb38561dd407b42a55',1,'LockFreeCollectorTest']]],
   ['compatibility_5flayer_14',['compatibility_layer',['../d5/d90/classOpenTelemetryAdapterTest.html#a8c01572062ef0523f1665749f06ca9d8',1,'OpenTelemetryAdapterTest']]],
@@ -29,5 +29,6 @@ var searchData=
   ['create_5ftest_5fsnapshot_26',['create_test_snapshot',['../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e',1,'MetricExportersTest']]],
   ['create_5ftest_5fsnapshots_27',['create_test_snapshots',['../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192',1,'StorageBackendsTest']]],
   ['create_5ftest_5fspans_28',['create_test_spans',['../de/d2d/classTraceExportersTest.html#a80d31582763fe5daabdfa61cb08e5b6f',1,'TraceExportersTest']]],
-  ['create_5fthread_5fsystem_5fadapter_29',['create_thread_system_adapter',['../db/d50/namespacekcenon_1_1monitoring.html#adacc86dd068c121466fa2066441a052b',1,'kcenon::monitoring']]]
+  ['create_5fthread_5fsystem_5fadapter_29',['create_thread_system_adapter',['../db/d50/namespacekcenon_1_1monitoring.html#adacc86dd068c121466fa2066441a052b',1,'kcenon::monitoring']]],
+  ['custom_5fmetric_5ftypes_5fexample_2ecpp_30',['custom_metric_types_example.cpp',['../d7/dc6/custom__metric__types__example_8cpp.html',1,'']]]
 ];
