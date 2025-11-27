@@ -87,22 +87,31 @@ $(function() {
 <code>#include &lt;kcenon/common/interfaces/logger_interface.h&gt;</code><br />
 <code>#include &lt;kcenon/common/interfaces/monitoring_interface.h&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;mutex&gt;</code><br />
+<code>#include &lt;thread&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for test_cross_system_integration.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/d1b/test__cross__system__integration_8cpp__incl.png" border="0" usemap="#atests_2test__cross__system__integration_8cpp" alt=""/></div>
 <map name="atests_2test__cross__system__integration_8cpp" id="atests_2test__cross__system__integration_8cpp">
-<area shape="rect" title="Phase 3.3 &#45; Cross&#45;System Integration Tests." alt="" coords="347,5,525,45"/>
+<area shape="rect" title="Phase 3.3 &#45; Cross&#45;System Integration Tests." alt="" coords="649,5,828,45"/>
 <area shape="rect" title=" " alt="" coords="5,101,109,126"/>
-<area shape="poly" title=" " alt="" coords="347,46,122,96,108,100,107,94,121,91,346,41"/>
+<area shape="poly" title=" " alt="" coords="649,34,410,54,265,72,122,96,106,100,105,94,121,91,265,67,409,49,649,29"/>
 <area shape="rect" title=" " alt="" coords="133,93,312,133"/>
-<area shape="poly" title=" " alt="" coords="390,48,283,91,281,86,388,43"/>
+<area shape="poly" title=" " alt="" coords="650,43,326,96,325,90,649,38"/>
 <area shape="rect" title=" " alt="" coords="337,93,535,133"/>
-<area shape="poly" title=" " alt="" coords="439,46,439,79,433,79,433,46"/>
+<area shape="poly" title=" " alt="" coords="673,48,516,92,515,87,672,43"/>
 <area shape="rect" title=" " alt="" coords="559,93,758,133"/>
-<area shape="poly" title=" " alt="" coords="486,43,598,86,596,91,484,48"/>
+<area shape="poly" title=" " alt="" coords="723,47,688,85,684,81,719,44"/>
 <area shape="rect" title=" " alt="" coords="781,101,859,126"/>
-<area shape="poly" title=" " alt="" coords="526,38,643,60,771,91,780,93,779,99,770,96,642,65,525,43"/>
+<area shape="poly" title=" " alt="" coords="759,44,801,89,798,92,755,47"/>
+<area shape="rect" title=" " alt="" coords="883,101,947,126"/>
+<area shape="poly" title=" " alt="" coords="778,43,880,92,878,97,776,48"/>
+<area shape="rect" title=" " alt="" coords="971,101,1035,126"/>
+<area shape="poly" title=" " alt="" coords="808,43,960,91,965,93,963,98,958,96,806,48"/>
+<area shape="rect" title=" " alt="" coords="1059,101,1125,126"/>
+<area shape="poly" title=" " alt="" coords="829,39,934,61,1047,91,1054,93,1053,98,1046,96,933,66,827,44"/>
 </map>
 </div>
 </div>
@@ -113,6 +122,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/da6/classsimple__mock__logger.html">simple_mock_logger</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple mock logger for testing.  <a href="../../d1/da6/classsimple__mock__logger.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d21/classmock__monitor.html">mock_monitor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mock IMonitor for testing cross-system integration.  <a href="../../d1/d21/classmock__monitor.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -122,9 +134,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4a43c2efdfbf62caa924fce8192ad0b3" id="r_a4a43c2efdfbf62caa924fce8192ad0b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d75/test__cross__system__integration_8cpp.html#a4a43c2efdfbf62caa924fce8192ad0b3">TEST</a> (CrossSystemIntegrationTest, LoggerWithMonitorInjection)</td></tr>
 <tr class="memdesc:a4a43c2efdfbf62caa924fce8192ad0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test Case 2: Logger with monitor injection.  <br /></td></tr>
 <tr class="separator:a4a43c2efdfbf62caa924fce8192ad0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07a1d2210a7ad0db99d20199a9a7c5bd" id="r_a07a1d2210a7ad0db99d20199a9a7c5bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d75/test__cross__system__integration_8cpp.html#a07a1d2210a7ad0db99d20199a9a7c5bd">TEST</a> (CrossSystemIntegrationTest, MonitorWithLoggerInjection)</td></tr>
-<tr class="memdesc:a07a1d2210a7ad0db99d20199a9a7c5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test Case 3: Monitor with logger injection.  <br /></td></tr>
-<tr class="separator:a07a1d2210a7ad0db99d20199a9a7c5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec3e723cd01f107cf56326390b4cf533" id="r_aec3e723cd01f107cf56326390b4cf533"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d75/test__cross__system__integration_8cpp.html#aec3e723cd01f107cf56326390b4cf533">TEST</a> (CrossSystemIntegrationTest, MonitorInterfaceCompatibility)</td></tr>
+<tr class="memdesc:aec3e723cd01f107cf56326390b4cf533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test Case 3: Monitor with logger (interface compatibility)  <br /></td></tr>
+<tr class="separator:aec3e723cd01f107cf56326390b4cf533"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a160bbb75885ff343b5b78f02a5246377" id="r_a160bbb75885ff343b5b78f02a5246377"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d75/test__cross__system__integration_8cpp.html#a160bbb75885ff343b5b78f02a5246377">TEST</a> (CrossSystemIntegrationTest, BidirectionalDependencyInjection)</td></tr>
 <tr class="memdesc:a160bbb75885ff343b5b78f02a5246377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test Case 4: Bidirectional DI (NO CIRCULAR DEPENDENCY!)  <br /></td></tr>
 <tr class="separator:a160bbb75885ff343b5b78f02a5246377"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,6 +149,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abc894a24fc50a89a892d8fb25bae8559" id="r_abc894a24fc50a89a892d8fb25bae8559"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d75/test__cross__system__integration_8cpp.html#abc894a24fc50a89a892d8fb25bae8559">TEST</a> (CrossSystemIntegrationTest, IntegrationPerformanceOverhead)</td></tr>
 <tr class="memdesc:abc894a24fc50a89a892d8fb25bae8559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performance test: Integration overhead.  <br /></td></tr>
 <tr class="separator:abc894a24fc50a89a892d8fb25bae8559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f21ecd0c8def3a00dd9f869b23067b" id="r_af3f21ecd0c8def3a00dd9f869b23067b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d75/test__cross__system__integration_8cpp.html#af3f21ecd0c8def3a00dd9f869b23067b">TEST</a> (CrossSystemIntegrationTest, MonitoringSystemStandalone)</td></tr>
+<tr class="memdesc:af3f21ecd0c8def3a00dd9f869b23067b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test monitoring_system's performance_monitor standalone.  <br /></td></tr>
+<tr class="separator:af3f21ecd0c8def3a00dd9f869b23067b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627" id="r_a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d75/test__cross__system__integration_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -179,16 +194,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00294">294</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  294</span>                                {</div>
-<div class="line"><span class="lineno">  295</span>    ::testing::InitGoogleTest(&amp;argc, argv);</div>
-<div class="line"><span class="lineno">  296</span>    <span class="keywordflow">return</span> RUN_ALL_TESTS();</div>
-<div class="line"><span class="lineno">  297</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00367">367</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  367</span>                                {</div>
+<div class="line"><span class="lineno">  368</span>    ::testing::InitGoogleTest(&amp;argc, argv);</div>
+<div class="line"><span class="lineno">  369</span>    <span class="keywordflow">return</span> RUN_ALL_TESTS();</div>
+<div class="line"><span class="lineno">  370</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a160bbb75885ff343b5b78f02a5246377" name="a160bbb75885ff343b5b78f02a5246377"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a160bbb75885ff343b5b78f02a5246377">&#9670;&#160;</a></span>TEST() <span class="overload">[1/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a160bbb75885ff343b5b78f02a5246377">&#9670;&#160;</a></span>TEST() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,48 +231,43 @@ Functions</h2></td></tr>
 <p>Test Case 4: Bidirectional DI (NO CIRCULAR DEPENDENCY!) </p>
 <p>This is the critical test - we can create bidirectional runtime dependencies WITHOUT compile-time circular dependency! </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  186</span>                                                                   {</div>
-<div class="line"><span class="lineno">  187</span>    <span class="comment">// Create both systems</span></div>
-<div class="line"><span class="lineno">  188</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  189</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  190</span> </div>
-<div class="line"><span class="lineno">  191</span>    <span class="comment">// Bidirectional injection</span></div>
-<div class="line"><span class="lineno">  192</span>    logger-&gt;set_monitor(monitor);</div>
-<div class="line"><span class="lineno">  193</span>    <span class="comment">// Note: monitor doesn&#39;t need to set logger in this example,</span></div>
-<div class="line"><span class="lineno">  194</span>    <span class="comment">// but adapters can use ILogger interface</span></div>
-<div class="line"><span class="lineno">  195</span> </div>
-<div class="line"><span class="lineno">  196</span>    <span class="comment">// Use both systems</span></div>
-<div class="line"><span class="lineno">  197</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">  198</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Request &quot;</span> + std::to_string(i));</div>
-<div class="line"><span class="lineno">  199</span>        monitor-&gt;record_metric(<span class="stringliteral">&quot;requests_processed&quot;</span>, i + 1);</div>
-<div class="line"><span class="lineno">  200</span>    }</div>
-<div class="line"><span class="lineno">  201</span> </div>
-<div class="line"><span class="lineno">  202</span>    <span class="comment">// Verify logger health</span></div>
-<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> logger_health = logger-&gt;health_check();</div>
-<div class="line"><span class="lineno">  204</span>    ASSERT_TRUE(std::holds_alternative&lt;health_check_result&gt;(logger_health));</div>
-<div class="line"><span class="lineno">  205</span>    EXPECT_TRUE(std::get&lt;health_check_result&gt;(logger_health).is_healthy());</div>
-<div class="line"><span class="lineno">  206</span> </div>
-<div class="line"><span class="lineno">  207</span>    <span class="comment">// Verify monitor health</span></div>
-<div class="line"><span class="lineno">  208</span>    <span class="keyword">auto</span> monitor_health = monitor-&gt;check_health();</div>
-<div class="line"><span class="lineno">  209</span>    ASSERT_TRUE(std::holds_alternative&lt;health_check_result&gt;(monitor_health));</div>
-<div class="line"><span class="lineno">  210</span>    EXPECT_TRUE(std::get&lt;health_check_result&gt;(monitor_health).is_healthy());</div>
-<div class="line"><span class="lineno">  211</span> </div>
-<div class="line"><span class="lineno">  212</span>    <span class="comment">// Verify metrics</span></div>
-<div class="line"><span class="lineno">  213</span>    <span class="keyword">auto</span> monitor_metrics = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  214</span>    ASSERT_TRUE(std::holds_alternative&lt;metrics_snapshot&gt;(monitor_metrics));</div>
-<div class="line"><span class="lineno">  215</span> </div>
-<div class="line"><span class="lineno">  216</span>    <span class="keyword">auto</span>&amp; snapshot = std::get&lt;metrics_snapshot&gt;(monitor_metrics);</div>
-<div class="line"><span class="lineno">  217</span>    EXPECT_FALSE(snapshot.metrics.empty());</div>
-<div class="line"><span class="lineno">  218</span> </div>
-<div class="line"><span class="lineno">  219</span>    <span class="comment">// Logger should have logged</span></div>
-<div class="line"><span class="lineno">  220</span>    EXPECT_EQ(10, logger-&gt;get_log_count());</div>
-<div class="line"><span class="lineno">  221</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00247">247</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  247</span>                                                                   {</div>
+<div class="line"><span class="lineno">  248</span>    <span class="comment">// Create both systems</span></div>
+<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  251</span> </div>
+<div class="line"><span class="lineno">  252</span>    <span class="comment">// Bidirectional injection</span></div>
+<div class="line"><span class="lineno">  253</span>    logger-&gt;set_monitor(monitor);</div>
+<div class="line"><span class="lineno">  254</span> </div>
+<div class="line"><span class="lineno">  255</span>    <span class="comment">// Use both systems</span></div>
+<div class="line"><span class="lineno">  256</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><span class="lineno">  257</span>        logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;Request &quot;</span> + std::to_string(i));</div>
+<div class="line"><span class="lineno">  258</span>    }</div>
+<div class="line"><span class="lineno">  259</span> </div>
+<div class="line"><span class="lineno">  260</span>    <span class="comment">// Verify logger health</span></div>
+<div class="line"><span class="lineno">  261</span>    <span class="keyword">auto</span> logger_health = logger-&gt;health_check();</div>
+<div class="line"><span class="lineno">  262</span>    ASSERT_TRUE(logger_health.is_ok());</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_TRUE(logger_health.value().is_healthy());</div>
+<div class="line"><span class="lineno">  264</span> </div>
+<div class="line"><span class="lineno">  265</span>    <span class="comment">// Verify monitor health</span></div>
+<div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> monitor_health = monitor-&gt;check_health();</div>
+<div class="line"><span class="lineno">  267</span>    ASSERT_TRUE(monitor_health.is_ok());</div>
+<div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(monitor_health.value().is_healthy());</div>
+<div class="line"><span class="lineno">  269</span> </div>
+<div class="line"><span class="lineno">  270</span>    <span class="comment">// Verify metrics were recorded</span></div>
+<div class="line"><span class="lineno">  271</span>    <span class="keyword">auto</span> monitor_metrics = monitor-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  272</span>    ASSERT_TRUE(monitor_metrics.is_ok());</div>
+<div class="line"><span class="lineno">  273</span>    EXPECT_EQ(10, monitor_metrics.value().metrics.size());</div>
+<div class="line"><span class="lineno">  274</span> </div>
+<div class="line"><span class="lineno">  275</span>    <span class="comment">// Logger should have logged</span></div>
+<div class="line"><span class="lineno">  276</span>    EXPECT_EQ(10, logger-&gt;get_log_count());</div>
+<div class="line"><span class="lineno">  277</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="aa140e9ec6b91dc58f23909a441a0160e" name="aa140e9ec6b91dc58f23909a441a0160e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa140e9ec6b91dc58f23909a441a0160e">&#9670;&#160;</a></span>TEST() <span class="overload">[2/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa140e9ec6b91dc58f23909a441a0160e">&#9670;&#160;</a></span>TEST() <span class="overload">[2/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,32 +294,34 @@ Functions</h2></td></tr>
 
 <p>Test Case 1: Both systems standalone. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00116">116</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  116</span>                                                        {</div>
-<div class="line"><span class="lineno">  117</span>    <span class="comment">// Create logger without monitor</span></div>
-<div class="line"><span class="lineno">  118</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>    EXPECT_NO_THROW({</div>
-<div class="line"><span class="lineno">  121</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Test message&quot;</span>);</div>
-<div class="line"><span class="lineno">  122</span>    });</div>
-<div class="line"><span class="lineno">  123</span>    EXPECT_EQ(1, logger-&gt;get_log_count());</div>
-<div class="line"><span class="lineno">  124</span> </div>
-<div class="line"><span class="lineno">  125</span>    <span class="comment">// Create monitor without logger</span></div>
-<div class="line"><span class="lineno">  126</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  127</span> </div>
-<div class="line"><span class="lineno">  128</span>    EXPECT_NO_THROW({</div>
-<div class="line"><span class="lineno">  129</span>        monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 1.0);</div>
-<div class="line"><span class="lineno">  130</span>    });</div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    <span class="comment">// Both should work independently</span></div>
-<div class="line"><span class="lineno">  133</span>    <span class="keyword">auto</span> monitor_metrics = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  134</span>    ASSERT_TRUE(std::holds_alternative&lt;metrics_snapshot&gt;(monitor_metrics));</div>
-<div class="line"><span class="lineno">  135</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  178</span>                                                        {</div>
+<div class="line"><span class="lineno">  179</span>    <span class="comment">// Create logger without monitor</span></div>
+<div class="line"><span class="lineno">  180</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>    EXPECT_NO_THROW({</div>
+<div class="line"><span class="lineno">  183</span>        logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;Test message&quot;</span>);</div>
+<div class="line"><span class="lineno">  184</span>    });</div>
+<div class="line"><span class="lineno">  185</span>    EXPECT_EQ(1, logger-&gt;get_log_count());</div>
+<div class="line"><span class="lineno">  186</span> </div>
+<div class="line"><span class="lineno">  187</span>    <span class="comment">// Create monitor without logger</span></div>
+<div class="line"><span class="lineno">  188</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>    EXPECT_NO_THROW({</div>
+<div class="line"><span class="lineno">  191</span>        <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 1.0);</div>
+<div class="line"><span class="lineno">  192</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  193</span>    });</div>
+<div class="line"><span class="lineno">  194</span> </div>
+<div class="line"><span class="lineno">  195</span>    <span class="comment">// Both should work independently</span></div>
+<div class="line"><span class="lineno">  196</span>    <span class="keyword">auto</span> monitor_metrics = monitor-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  197</span>    ASSERT_TRUE(monitor_metrics.is_ok());</div>
+<div class="line"><span class="lineno">  198</span>    EXPECT_EQ(1, monitor_metrics.value().metrics.size());</div>
+<div class="line"><span class="lineno">  199</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="abc894a24fc50a89a892d8fb25bae8559" name="abc894a24fc50a89a892d8fb25bae8559"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc894a24fc50a89a892d8fb25bae8559">&#9670;&#160;</a></span>TEST() <span class="overload">[3/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abc894a24fc50a89a892d8fb25bae8559">&#9670;&#160;</a></span>TEST() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -336,32 +348,32 @@ Functions</h2></td></tr>
 
 <p>Performance test: Integration overhead. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00273">273</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  273</span>                                                                 {</div>
-<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  275</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  276</span> </div>
-<div class="line"><span class="lineno">  277</span>    logger-&gt;set_monitor(monitor);</div>
-<div class="line"><span class="lineno">  278</span> </div>
-<div class="line"><span class="lineno">  279</span>    <span class="comment">// Measure time for integrated operations</span></div>
-<div class="line"><span class="lineno">  280</span>    <span class="keyword">auto</span> start = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  281</span> </div>
-<div class="line"><span class="lineno">  282</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 1000; ++i) {</div>
-<div class="line"><span class="lineno">  283</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Performance test&quot;</span>);</div>
-<div class="line"><span class="lineno">  284</span>        monitor-&gt;record_metric(<span class="stringliteral">&quot;perf_test&quot;</span>, i);</div>
-<div class="line"><span class="lineno">  285</span>    }</div>
-<div class="line"><span class="lineno">  286</span> </div>
-<div class="line"><span class="lineno">  287</span>    <span class="keyword">auto</span> end = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  288</span>    <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end - start);</div>
-<div class="line"><span class="lineno">  289</span> </div>
-<div class="line"><span class="lineno">  290</span>    <span class="comment">// Integration should be fast (&lt; 100ms for 1000 operations)</span></div>
-<div class="line"><span class="lineno">  291</span>    EXPECT_LT(duration.count(), 100);</div>
-<div class="line"><span class="lineno">  292</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00328">328</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  328</span>                                                                 {</div>
+<div class="line"><span class="lineno">  329</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  330</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  331</span> </div>
+<div class="line"><span class="lineno">  332</span>    logger-&gt;set_monitor(monitor);</div>
+<div class="line"><span class="lineno">  333</span> </div>
+<div class="line"><span class="lineno">  334</span>    <span class="comment">// Measure time for integrated operations</span></div>
+<div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> start = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  336</span> </div>
+<div class="line"><span class="lineno">  337</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 1000; ++i) {</div>
+<div class="line"><span class="lineno">  338</span>        logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;Performance test&quot;</span>);</div>
+<div class="line"><span class="lineno">  339</span>    }</div>
+<div class="line"><span class="lineno">  340</span> </div>
+<div class="line"><span class="lineno">  341</span>    <span class="keyword">auto</span> end = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  342</span>    <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end - start);</div>
+<div class="line"><span class="lineno">  343</span> </div>
+<div class="line"><span class="lineno">  344</span>    <span class="comment">// Integration should be fast (&lt; 100ms for 1000 operations)</span></div>
+<div class="line"><span class="lineno">  345</span>    EXPECT_LT(duration.count(), 100);</div>
+<div class="line"><span class="lineno">  346</span>    EXPECT_EQ(1000, monitor-&gt;get_metric_count());</div>
+<div class="line"><span class="lineno">  347</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a4a43c2efdfbf62caa924fce8192ad0b3" name="a4a43c2efdfbf62caa924fce8192ad0b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a43c2efdfbf62caa924fce8192ad0b3">&#9670;&#160;</a></span>TEST() <span class="overload">[4/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a43c2efdfbf62caa924fce8192ad0b3">&#9670;&#160;</a></span>TEST() <span class="overload">[4/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,30 +400,30 @@ Functions</h2></td></tr>
 
 <p>Test Case 2: Logger with monitor injection. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  140</span>                                                             {</div>
-<div class="line"><span class="lineno">  141</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  143</span> </div>
-<div class="line"><span class="lineno">  144</span>    <span class="comment">// Inject monitor into logger</span></div>
-<div class="line"><span class="lineno">  145</span>    logger-&gt;set_monitor(monitor);</div>
-<div class="line"><span class="lineno">  146</span> </div>
-<div class="line"><span class="lineno">  147</span>    <span class="comment">// Log messages</span></div>
-<div class="line"><span class="lineno">  148</span>    logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Test 1&quot;</span>);</div>
-<div class="line"><span class="lineno">  149</span>    logger-&gt;log(log_level::info, <span class="stringliteral">&quot;Test 2&quot;</span>);</div>
-<div class="line"><span class="lineno">  150</span> </div>
-<div class="line"><span class="lineno">  151</span>    <span class="comment">// Monitor should have received metrics</span></div>
-<div class="line"><span class="lineno">  152</span>    <span class="keyword">auto</span> metrics_result = monitor-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  153</span>    ASSERT_TRUE(std::holds_alternative&lt;metrics_snapshot&gt;(metrics_result));</div>
-<div class="line"><span class="lineno">  154</span> </div>
-<div class="line"><span class="lineno">  155</span>    <span class="keyword">auto</span>&amp; snapshot = std::get&lt;metrics_snapshot&gt;(metrics_result);</div>
-<div class="line"><span class="lineno">  156</span>    EXPECT_FALSE(snapshot.metrics.empty());</div>
-<div class="line"><span class="lineno">  157</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00204">204</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  204</span>                                                             {</div>
+<div class="line"><span class="lineno">  205</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  206</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  207</span> </div>
+<div class="line"><span class="lineno">  208</span>    <span class="comment">// Inject monitor into logger</span></div>
+<div class="line"><span class="lineno">  209</span>    logger-&gt;set_monitor(monitor);</div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>    <span class="comment">// Log messages - each log should record a metric</span></div>
+<div class="line"><span class="lineno">  212</span>    logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;Test 1&quot;</span>);</div>
+<div class="line"><span class="lineno">  213</span>    logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;Test 2&quot;</span>);</div>
+<div class="line"><span class="lineno">  214</span> </div>
+<div class="line"><span class="lineno">  215</span>    <span class="comment">// Monitor should have received metrics from logger</span></div>
+<div class="line"><span class="lineno">  216</span>    <span class="keyword">auto</span> metrics_result = monitor-&gt;get_metrics();</div>
+<div class="line"><span class="lineno">  217</span>    ASSERT_TRUE(metrics_result.is_ok());</div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>    <span class="keyword">auto</span>&amp; snapshot = metrics_result.value();</div>
+<div class="line"><span class="lineno">  220</span>    EXPECT_EQ(2, snapshot.metrics.size());</div>
+<div class="line"><span class="lineno">  221</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a07a1d2210a7ad0db99d20199a9a7c5bd" name="a07a1d2210a7ad0db99d20199a9a7c5bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07a1d2210a7ad0db99d20199a9a7c5bd">&#9670;&#160;</a></span>TEST() <span class="overload">[5/7]</span></h2>
+<a id="af3f21ecd0c8def3a00dd9f869b23067b" name="af3f21ecd0c8def3a00dd9f869b23067b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f21ecd0c8def3a00dd9f869b23067b">&#9670;&#160;</a></span>TEST() <span class="overload">[5/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,7 +437,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">MonitorWithLoggerInjection&#160;</td>
+          <td class="paramtype">MonitoringSystemStandalone&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -436,31 +448,74 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Test Case 3: Monitor with logger injection. </p>
+<p>Test monitoring_system's performance_monitor standalone. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00162">162</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  162</span>                                                             {</div>
-<div class="line"><span class="lineno">  163</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  164</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  165</span> </div>
-<div class="line"><span class="lineno">  166</span>    <span class="comment">// Note: performance_monitor doesn&#39;t require logger, but adapter can use it</span></div>
-<div class="line"><span class="lineno">  167</span>    <span class="comment">// This test verifies the interface compatibility</span></div>
-<div class="line"><span class="lineno">  168</span> </div>
-<div class="line"><span class="lineno">  169</span>    EXPECT_NO_THROW({</div>
-<div class="line"><span class="lineno">  170</span>        monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><span class="lineno">  171</span>    });</div>
-<div class="line"><span class="lineno">  172</span> </div>
-<div class="line"><span class="lineno">  173</span>    <span class="comment">// Monitor should work correctly</span></div>
-<div class="line"><span class="lineno">  174</span>    <span class="keyword">auto</span> health = monitor-&gt;check_health();</div>
-<div class="line"><span class="lineno">  175</span>    ASSERT_TRUE(std::holds_alternative&lt;health_check_result&gt;(health));</div>
-<div class="line"><span class="lineno">  176</span>    EXPECT_EQ(health_status::healthy,</div>
-<div class="line"><span class="lineno">  177</span>              std::get&lt;health_check_result&gt;(health).status);</div>
-<div class="line"><span class="lineno">  178</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00352">352</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  352</span>                                                             {</div>
+<div class="line"><span class="lineno">  353</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mon::performance_monitor&gt;();</div>
+<div class="line"><span class="lineno">  354</span> </div>
+<div class="line"><span class="lineno">  355</span>    <span class="comment">// Test monitoring_system&#39;s native interface</span></div>
+<div class="line"><span class="lineno">  356</span>    EXPECT_NO_THROW({</div>
+<div class="line"><span class="lineno">  357</span>        <span class="keyword">auto</span> timer = monitor-&gt;time_operation(<span class="stringliteral">&quot;test_op&quot;</span>);</div>
+<div class="line"><span class="lineno">  358</span>        <span class="comment">// Simulate work</span></div>
+<div class="line"><span class="lineno">  359</span>        std::this_thread::sleep_for(std::chrono::milliseconds(1));</div>
+<div class="line"><span class="lineno">  360</span>    });</div>
+<div class="line"><span class="lineno">  361</span> </div>
+<div class="line"><span class="lineno">  362</span>    <span class="comment">// Collect metrics using native interface</span></div>
+<div class="line"><span class="lineno">  363</span>    <span class="keyword">auto</span> result = monitor-&gt;collect();</div>
+<div class="line"><span class="lineno">  364</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  365</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aec3e723cd01f107cf56326390b4cf533" name="aec3e723cd01f107cf56326390b4cf533"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec3e723cd01f107cf56326390b4cf533">&#9670;&#160;</a></span>TEST() <span class="overload">[6/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CrossSystemIntegrationTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MonitorInterfaceCompatibility&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test Case 3: Monitor with logger (interface compatibility) </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00226">226</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  226</span>                                                                {</div>
+<div class="line"><span class="lineno">  227</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>    <span class="comment">// Test IMonitor interface methods</span></div>
+<div class="line"><span class="lineno">  230</span>    EXPECT_NO_THROW({</div>
+<div class="line"><span class="lineno">  231</span>        <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
+<div class="line"><span class="lineno">  232</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  233</span>    });</div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>    <span class="comment">// Monitor health check should work</span></div>
+<div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> health = monitor-&gt;check_health();</div>
+<div class="line"><span class="lineno">  237</span>    ASSERT_TRUE(health.is_ok());</div>
+<div class="line"><span class="lineno">  238</span>    EXPECT_EQ(common_if::health_status::healthy, health.value().status);</div>
+<div class="line"><span class="lineno">  239</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="abaccb8d92a562ad33d7699a85a73ce5a" name="abaccb8d92a562ad33d7699a85a73ce5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abaccb8d92a562ad33d7699a85a73ce5a">&#9670;&#160;</a></span>TEST() <span class="overload">[6/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abaccb8d92a562ad33d7699a85a73ce5a">&#9670;&#160;</a></span>TEST() <span class="overload">[7/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -487,27 +542,29 @@ Functions</h2></td></tr>
 
 <p>Test Case 6: NULL injection. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00254">254</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  254</span>                                                {</div>
-<div class="line"><span class="lineno">  255</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  257</span> </div>
-<div class="line"><span class="lineno">  258</span>    <span class="comment">// Inject then remove</span></div>
-<div class="line"><span class="lineno">  259</span>    logger-&gt;set_monitor(monitor);</div>
-<div class="line"><span class="lineno">  260</span>    logger-&gt;set_monitor(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  261</span> </div>
-<div class="line"><span class="lineno">  262</span>    <span class="comment">// Should not crash</span></div>
-<div class="line"><span class="lineno">  263</span>    EXPECT_NO_THROW({</div>
-<div class="line"><span class="lineno">  264</span>        logger-&gt;log(log_level::info, <span class="stringliteral">&quot;After null injection&quot;</span>);</div>
-<div class="line"><span class="lineno">  265</span>    });</div>
-<div class="line"><span class="lineno">  266</span> </div>
-<div class="line"><span class="lineno">  267</span>    EXPECT_EQ(1, logger-&gt;get_log_count());</div>
-<div class="line"><span class="lineno">  268</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00307">307</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  307</span>                                                {</div>
+<div class="line"><span class="lineno">  308</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  310</span> </div>
+<div class="line"><span class="lineno">  311</span>    <span class="comment">// Inject then remove</span></div>
+<div class="line"><span class="lineno">  312</span>    logger-&gt;set_monitor(monitor);</div>
+<div class="line"><span class="lineno">  313</span>    logger-&gt;set_monitor(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  314</span> </div>
+<div class="line"><span class="lineno">  315</span>    <span class="comment">// Should not crash</span></div>
+<div class="line"><span class="lineno">  316</span>    EXPECT_NO_THROW({</div>
+<div class="line"><span class="lineno">  317</span>        logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;After null injection&quot;</span>);</div>
+<div class="line"><span class="lineno">  318</span>    });</div>
+<div class="line"><span class="lineno">  319</span> </div>
+<div class="line"><span class="lineno">  320</span>    EXPECT_EQ(1, logger-&gt;get_log_count());</div>
+<div class="line"><span class="lineno">  321</span>    <span class="comment">// Monitor should not have received the last log (null injection)</span></div>
+<div class="line"><span class="lineno">  322</span>    EXPECT_EQ(0, monitor-&gt;get_metric_count());</div>
+<div class="line"><span class="lineno">  323</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a1f74eca37eced692215569fae56cf3e7" name="a1f74eca37eced692215569fae56cf3e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f74eca37eced692215569fae56cf3e7">&#9670;&#160;</a></span>TEST() <span class="overload">[7/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f74eca37eced692215569fae56cf3e7">&#9670;&#160;</a></span>TEST() <span class="overload">[8/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -534,38 +591,35 @@ Functions</h2></td></tr>
 
 <p>Test Case 5: Repeated injection. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00226">226</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  226</span>                                                    {</div>
-<div class="line"><span class="lineno">  227</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
-<div class="line"><span class="lineno">  228</span>    <span class="keyword">auto</span> monitor1 = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  229</span>    <span class="keyword">auto</span> monitor2 = std::make_shared&lt;performance_monitor&gt;();</div>
-<div class="line"><span class="lineno">  230</span> </div>
-<div class="line"><span class="lineno">  231</span>    <span class="comment">// First injection</span></div>
-<div class="line"><span class="lineno">  232</span>    logger-&gt;set_monitor(monitor1);</div>
-<div class="line"><span class="lineno">  233</span>    logger-&gt;log(log_level::info, <span class="stringliteral">&quot;With monitor1&quot;</span>);</div>
-<div class="line"><span class="lineno">  234</span> </div>
-<div class="line"><span class="lineno">  235</span>    <span class="comment">// monitor1 should have metrics</span></div>
-<div class="line"><span class="lineno">  236</span>    <span class="keyword">auto</span> metrics1 = monitor1-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  237</span>    ASSERT_TRUE(std::holds_alternative&lt;metrics_snapshot&gt;(metrics1));</div>
-<div class="line"><span class="lineno">  238</span> </div>
-<div class="line"><span class="lineno">  239</span>    <span class="comment">// Replace with second monitor</span></div>
-<div class="line"><span class="lineno">  240</span>    logger-&gt;set_monitor(monitor2);</div>
-<div class="line"><span class="lineno">  241</span>    logger-&gt;log(log_level::info, <span class="stringliteral">&quot;With monitor2&quot;</span>);</div>
-<div class="line"><span class="lineno">  242</span> </div>
-<div class="line"><span class="lineno">  243</span>    <span class="comment">// monitor2 should now receive metrics</span></div>
-<div class="line"><span class="lineno">  244</span>    <span class="keyword">auto</span> metrics2 = monitor2-&gt;get_metrics();</div>
-<div class="line"><span class="lineno">  245</span>    ASSERT_TRUE(std::holds_alternative&lt;metrics_snapshot&gt;(metrics2));</div>
-<div class="line"><span class="lineno">  246</span> </div>
-<div class="line"><span class="lineno">  247</span>    <span class="comment">// Both monitors should be independent</span></div>
-<div class="line"><span class="lineno">  248</span>    EXPECT_EQ(1, logger-&gt;get_log_count() + 1); <span class="comment">// First log doesn&#39;t increment again</span></div>
-<div class="line"><span class="lineno">  249</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  282</span>                                                    {</div>
+<div class="line"><span class="lineno">  283</span>    <span class="keyword">auto</span> logger = std::make_shared&lt;simple_mock_logger&gt;();</div>
+<div class="line"><span class="lineno">  284</span>    <span class="keyword">auto</span> monitor1 = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  285</span>    <span class="keyword">auto</span> monitor2 = std::make_shared&lt;mock_monitor&gt;();</div>
+<div class="line"><span class="lineno">  286</span> </div>
+<div class="line"><span class="lineno">  287</span>    <span class="comment">// First injection</span></div>
+<div class="line"><span class="lineno">  288</span>    logger-&gt;set_monitor(monitor1);</div>
+<div class="line"><span class="lineno">  289</span>    logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;With monitor1&quot;</span>);</div>
+<div class="line"><span class="lineno">  290</span> </div>
+<div class="line"><span class="lineno">  291</span>    <span class="comment">// monitor1 should have received the metric</span></div>
+<div class="line"><span class="lineno">  292</span>    EXPECT_EQ(1, monitor1-&gt;get_metric_count());</div>
+<div class="line"><span class="lineno">  293</span> </div>
+<div class="line"><span class="lineno">  294</span>    <span class="comment">// Replace with second monitor</span></div>
+<div class="line"><span class="lineno">  295</span>    logger-&gt;set_monitor(monitor2);</div>
+<div class="line"><span class="lineno">  296</span>    logger-&gt;log(common_if::log_level::info, <span class="stringliteral">&quot;With monitor2&quot;</span>);</div>
+<div class="line"><span class="lineno">  297</span> </div>
+<div class="line"><span class="lineno">  298</span>    <span class="comment">// monitor2 should now receive metrics, monitor1 stays at 1</span></div>
+<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(1, monitor1-&gt;get_metric_count());</div>
+<div class="line"><span class="lineno">  300</span>    EXPECT_EQ(1, monitor2-&gt;get_metric_count());</div>
+<div class="line"><span class="lineno">  301</span>    EXPECT_EQ(2, logger-&gt;get_log_count());</div>
+<div class="line"><span class="lineno">  302</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 27 2025 00:22:09 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Nov 27 2025 04:53:43 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

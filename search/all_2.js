@@ -5,7 +5,7 @@ var searchData=
   ['call_5fcount_5f_2',['call_count_',['../d6/d98/classExternalApiClient.html#a0bd0b42de67a37f21ac0d3cc97fbe4f7',1,'ExternalApiClient']]],
   ['call_5fdownstream_5fservice_3',['call_downstream_service',['../df/d65/classWebService.html#a719b2a5a0ce58d8a6cbf015ddfbc2ba6',1,'WebService']]],
   ['check_4',['check',['../d2/dea/classtest__health__check.html#a367e278d82a0eeca40ce0168d55cecf0',1,'test_health_check']]],
-  ['check_5fhealth_5',['check_health',['../d7/d29/classaggregating__monitor.html#aa7a66237c7a764bda2aa22ff6a9e5dde',1,'aggregating_monitor']]],
+  ['check_5fhealth_5',['check_health',['../d1/d21/classmock__monitor.html#a553c4186ecd962fbd59433c1eabb0e98',1,'mock_monitor::check_health()'],['../d7/d29/classaggregating__monitor.html#aa7a66237c7a764bda2aa22ff6a9e5dde',1,'aggregating_monitor::check_health()']]],
   ['check_5fhealth_5finternal_6',['check_health_internal',['../db/d7f/classperformance__monitor__impl.html#a5f683390b869ca4ac792281db616a5a9',1,'performance_monitor_impl']]],
   ['cleanup_7',['cleanup',['../d9/d8d/classmock__collector.html#adc19f7502f53b78fa6084d48df7e5890',1,'mock_collector']]],
   ['clear_8',['clear',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#aad8e5b0e69a84815b1dfd20c5351fb51',1,'kcenon::monitoring::service_container_interface']]],
