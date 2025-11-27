@@ -42,6 +42,15 @@ target_link_libraries(result_pattern_example
     Threads::Threads
 )
 
+# Custom metric types example (histogram, summary, timer)
+add_executable(custom_metric_types_example
+    custom_metric_types_example.cpp
+)
+target_link_libraries(custom_metric_types_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
 # Phase 4 DI Pattern examples - available when common_system integration is enabled
 if(BUILD_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
     # Logger DI Integration example
