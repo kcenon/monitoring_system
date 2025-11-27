@@ -191,17 +191,25 @@ This document catalogs known architectural issues in monitoring_system identifie
   - Thread safety guarantees specified
 - **Acceptance Criteria**: 100% public API documented
 
-#### Issue ARC-009: Missing Integration Examples
+#### ~~Issue ARC-009: Missing Integration Examples~~ ✅ RESOLVED
 - **Priority**: P2 (Low)
 - **Phase**: Phase 6
+- **Status**: ✅ **RESOLVED** (2025-11-27)
 - **Description**: Need more examples for integration scenarios
 - **Impact**: Developers may struggle with common use cases
-- **Requirements**:
-  - Example for each monitor type
-  - Integration with logger_system example
-  - Custom metric examples
-  - Distributed tracing example
-- **Acceptance Criteria**: Complete example suite in examples/
+- **Resolution**:
+  - ✅ Example for each monitor type (`basic_monitoring_example.cpp`, `health_reliability_example.cpp`)
+  - ✅ Integration with logger_system example (`logger_di_integration_example.cpp`)
+  - ✅ Custom metric examples (`custom_metric_types_example.cpp`)
+    - histogram_data with configurable buckets
+    - summary_data with min/max/mean statistics
+    - timer_data with percentile calculations (p50, p90, p95, p99, p999)
+    - timer_scope for RAII-style automatic duration recording
+    - metric_metadata and metric_batch usage
+  - ✅ Distributed tracing example (`distributed_tracing_example.cpp`)
+- **References**:
+  - Examples: `examples/custom_metric_types_example.cpp`
+  - All examples: `examples/` directory
 
 ---
 
@@ -254,7 +262,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ### Phase 6 Actions
 - [ ] Resolve ARC-008 (API documentation)
-- [ ] Resolve ARC-009 (Integration examples)
+- [x] Resolve ARC-009 (Integration examples) - 2025-11-27
 
 ---
 
@@ -288,4 +296,4 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ---
 
-*Last Updated: 2025-11-27 (ARC-003, ARC-007 Resolved)*
+*Last Updated: 2025-11-27 (ARC-009 Resolved)*
