@@ -117,16 +117,25 @@ This document catalogs known architectural issues in monitoring_system identifie
   - Benchmarks: `benchmarks/collector_overhead_bench.cpp`
   - Optimized TLS buffer: `src/core/thread_local_buffer.cpp`
 
-#### Issue ARC-005: Adaptive Monitor Threshold Tuning
+#### ~~Issue ARC-005: Adaptive Monitor Threshold Tuning~~ ✅ RESOLVED
 - **Priority**: P1 (Medium)
 - **Phase**: Phase 2
+- **Status**: ✅ **RESOLVED** (2025-11-27)
 - **Description**: Adaptive monitor threshold algorithms need validation
 - **Impact**: Suboptimal alert triggering
-- **Investigation Required**:
-  - Analyze threshold adaptation patterns
-  - Test various workload scenarios
-  - Tune adaptation parameters
-- **Acceptance Criteria**: Validated thresholds for common scenarios
+- **Resolution**:
+  - ✅ Implemented hysteresis to prevent oscillation at threshold boundaries
+  - ✅ Added cooldown period to prevent rapid level changes
+  - ✅ Validated thresholds across multiple workload scenarios
+  - ✅ Added comprehensive tests for gradual, spike, and oscillating loads
+- **New Configuration Parameters**:
+  - `hysteresis_margin`: Percentage margin to prevent oscillation (default: 5.0%)
+  - `cooldown_period`: Minimum time between level changes (default: 1000ms)
+  - `enable_hysteresis`: Enable/disable hysteresis (default: true)
+  - `enable_cooldown`: Enable/disable cooldown (default: true)
+- **References**:
+  - Implementation: `src/impl/adaptive_monitor.h`
+  - Tests: `tests/test_adaptive_monitoring.cpp` (12 new workload scenario tests)
 
 ---
 
@@ -213,7 +222,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 ### Phase 2 Actions
 - [x] Resolve ARC-002 (Performance benchmarks) - 2025-11-26
 - [x] Resolve ARC-004 (Collection overhead) - 2025-11-26
-- [ ] Resolve ARC-005 (Adaptive threshold tuning)
+- [x] Resolve ARC-005 (Adaptive threshold tuning) - 2025-11-27
 
 ### Phase 3 Actions
 - [ ] Resolve ARC-010 (Common system integration)
