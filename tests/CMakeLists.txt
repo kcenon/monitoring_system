@@ -36,6 +36,7 @@ add_executable(monitoring_system_tests
     test_event_bus.cpp
     test_trace_exporters.cpp
     test_adapter_functionality.cpp
+    test_cross_system_integration.cpp
 
     test_adaptive_monitoring.cpp
 
