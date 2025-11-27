@@ -176,17 +176,25 @@
   - 스레드 안전성 보장 명시
 - **수락 기준**: 100% 공개 API 문서화됨
 
-#### Issue ARC-009: 통합 예제 누락
+#### ~~Issue ARC-009: 통합 예제 누락~~ ✅ 해결됨
 - **우선순위**: P2 (낮음)
 - **단계**: Phase 6
+- **상태**: ✅ **해결됨** (2025-11-27)
 - **설명**: 통합 시나리오에 대한 더 많은 예제 필요
 - **영향**: 개발자가 일반적인 사용 사례에서 어려움을 겪을 수 있음
-- **요구 사항**:
-  - 각 모니터 유형에 대한 예제
-  - logger_system과의 통합 예제
-  - 사용자 정의 메트릭 예제
-  - 분산 추적 예제
-- **수락 기준**: examples/의 완전한 예제 스위트
+- **해결 내용**:
+  - ✅ 각 모니터 유형에 대한 예제 (`basic_monitoring_example.cpp`, `health_reliability_example.cpp`)
+  - ✅ logger_system과의 통합 예제 (`logger_di_integration_example.cpp`)
+  - ✅ 사용자 정의 메트릭 예제 (`custom_metric_types_example.cpp`)
+    - 설정 가능한 버킷의 histogram_data
+    - min/max/mean 통계의 summary_data
+    - 백분위수 계산이 포함된 timer_data (p50, p90, p95, p99, p999)
+    - RAII 스타일 자동 시간 측정을 위한 timer_scope
+    - metric_metadata 및 metric_batch 사용법
+  - ✅ 분산 추적 예제 (`distributed_tracing_example.cpp`)
+- **참조**:
+  - 예제: `examples/custom_metric_types_example.cpp`
+  - 전체 예제: `examples/` 디렉토리
 
 ---
 
@@ -239,7 +247,7 @@
 
 ### Phase 6 작업
 - [ ] ARC-008 해결 (API 문서)
-- [ ] ARC-009 해결 (통합 예제)
+- [x] ARC-009 해결 (통합 예제) - 2025-11-27
 
 ---
 
@@ -273,4 +281,4 @@
 
 ---
 
-*Last Updated: 2025-11-27 (ARC-003, ARC-007 해결됨)*
+*Last Updated: 2025-11-27 (ARC-009 해결됨)*
