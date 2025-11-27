@@ -23,6 +23,9 @@ All rights reserved.
 #include <variant>
 #include <vector>
 #include <cstdint>
+#include <algorithm>
+#include <cmath>
+#include <cstdlib>
 
 namespace kcenon { namespace monitoring {
 
@@ -330,6 +333,254 @@ struct summary_data {
         min_value = std::numeric_limits<double>::max();
         max_value = std::numeric_limits<double>::lowest();
     }
+};
+
+/**
+ * @struct timer_data
+ * @brief Timer data with percentile calculations
+ *
+ * Stores duration samples and provides percentile calculations.
+ * Uses a reservoir sampling approach for memory efficiency.
+ */
+struct timer_data {
+    static constexpr size_t DEFAULT_RESERVOIR_SIZE = 1024;
+
+    std::vector<double> samples;
+    size_t max_samples;
+    uint64_t total_count = 0;
+    double sum = 0.0;
+    double min_value = std::numeric_limits<double>::max();
+    double max_value = std::numeric_limits<double>::lowest();
+    mutable bool sorted = false;
+
+    /**
+     * @brief Construct timer with default reservoir size
+     */
+    timer_data() : max_samples(DEFAULT_RESERVOIR_SIZE) {
+        samples.reserve(max_samples);
+    }
+
+    /**
+     * @brief Construct timer with custom reservoir size
+     */
+    explicit timer_data(size_t reservoir_size)
+        : max_samples(reservoir_size) {
+        samples.reserve(max_samples);
+    }
+
+    /**
+     * @brief Record a duration sample (in milliseconds)
+     */
+    void record(double duration_ms) {
+        total_count++;
+        sum += duration_ms;
+        min_value = std::min(min_value, duration_ms);
+        max_value = std::max(max_value, duration_ms);
+        sorted = false;
+
+        if (samples.size() < max_samples) {
+            samples.push_back(duration_ms);
+        } else {
+            // Reservoir sampling for memory efficiency
+            size_t idx = static_cast<size_t>(rand()) % total_count;
+            if (idx < max_samples) {
+                samples[idx] = duration_ms;
+            }
+        }
+    }
+
+    /**
+     * @brief Record a duration using chrono duration
+     */
+    template<typename Rep, typename Period>
+    void record(std::chrono::duration<Rep, Period> duration) {
+        auto ms = std::chrono::duration_cast<std::chrono::microseconds>(duration).count() / 1000.0;
+        record(ms);
+    }
+
+    /**
+     * @brief Get percentile value (0-100)
+     * @param percentile The percentile to calculate (e.g., 50 for median, 99 for p99)
+     * @return The value at the given percentile
+     */
+    double get_percentile(double percentile) const {
+        if (samples.empty()) return 0.0;
+        if (percentile <= 0) return min_value;
+        if (percentile >= 100) return max_value;
+
+        ensure_sorted();
+
+        double rank = (percentile / 100.0) * (samples.size() - 1);
+        size_t lower_idx = static_cast<size_t>(rank);
+        size_t upper_idx = lower_idx + 1;
+        double fraction = rank - lower_idx;
+
+        if (upper_idx >= samples.size()) {
+            return samples[lower_idx];
+        }
+
+        // Linear interpolation between adjacent values
+        return samples[lower_idx] + fraction * (samples[upper_idx] - samples[lower_idx]);
+    }
+
+    /**
+     * @brief Get median (p50)
+     */
+    double median() const {
+        return get_percentile(50.0);
+    }
+
+    /**
+     * @brief Get p90 value
+     */
+    double p90() const {
+        return get_percentile(90.0);
+    }
+
+    /**
+     * @brief Get p95 value
+     */
+    double p95() const {
+        return get_percentile(95.0);
+    }
+
+    /**
+     * @brief Get p99 value
+     */
+    double p99() const {
+        return get_percentile(99.0);
+    }
+
+    /**
+     * @brief Get p999 value (99.9th percentile)
+     */
+    double p999() const {
+        return get_percentile(99.9);
+    }
+
+    /**
+     * @brief Get mean value
+     */
+    double mean() const noexcept {
+        return total_count > 0 ? sum / total_count : 0.0;
+    }
+
+    /**
+     * @brief Get sample count
+     */
+    uint64_t count() const noexcept {
+        return total_count;
+    }
+
+    /**
+     * @brief Get minimum recorded value
+     */
+    double min() const noexcept {
+        return total_count > 0 ? min_value : 0.0;
+    }
+
+    /**
+     * @brief Get maximum recorded value
+     */
+    double max() const noexcept {
+        return total_count > 0 ? max_value : 0.0;
+    }
+
+    /**
+     * @brief Get standard deviation
+     */
+    double stddev() const {
+        if (samples.size() < 2) return 0.0;
+
+        double avg = mean();
+        double variance = 0.0;
+        for (double sample : samples) {
+            double diff = sample - avg;
+            variance += diff * diff;
+        }
+        variance /= samples.size();
+        return std::sqrt(variance);
+    }
+
+    /**
+     * @brief Reset all data
+     */
+    void reset() {
+        samples.clear();
+        samples.reserve(max_samples);
+        total_count = 0;
+        sum = 0.0;
+        min_value = std::numeric_limits<double>::max();
+        max_value = std::numeric_limits<double>::lowest();
+        sorted = false;
+    }
+
+    /**
+     * @brief Get snapshot of current statistics
+     */
+    struct snapshot {
+        uint64_t count;
+        double mean;
+        double min;
+        double max;
+        double stddev;
+        double p50;
+        double p90;
+        double p95;
+        double p99;
+        double p999;
+    };
+
+    snapshot get_snapshot() const {
+        return snapshot{
+            total_count,
+            mean(),
+            min(),
+            max(),
+            stddev(),
+            median(),
+            p90(),
+            p95(),
+            p99(),
+            p999()
+        };
+    }
+
+private:
+    void ensure_sorted() const {
+        if (!sorted && !samples.empty()) {
+            auto& mutable_samples = const_cast<std::vector<double>&>(samples);
+            std::sort(mutable_samples.begin(), mutable_samples.end());
+            const_cast<bool&>(sorted) = true;
+        }
+    }
+};
+
+/**
+ * @brief RAII timer scope for automatic duration recording with timer_data
+ *
+ * Note: This is named timer_scope to avoid collision with scoped_timer
+ * in performance_monitor.h which works with performance_profiler.
+ */
+class timer_scope {
+public:
+    explicit timer_scope(timer_data& timer)
+        : timer_(timer), start_(std::chrono::steady_clock::now()) {}
+
+    ~timer_scope() {
+        auto end = std::chrono::steady_clock::now();
+        timer_.record(end - start_);
+    }
+
+    // Non-copyable, non-movable
+    timer_scope(const timer_scope&) = delete;
+    timer_scope& operator=(const timer_scope&) = delete;
+    timer_scope(timer_scope&&) = delete;
+    timer_scope& operator=(timer_scope&&) = delete;
+
+private:
+    timer_data& timer_;
+    std::chrono::steady_clock::time_point start_;
 };
 
 /**

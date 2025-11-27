@@ -39,6 +39,7 @@ add_executable(monitoring_system_tests
     test_cross_system_integration.cpp
 
     test_adaptive_monitoring.cpp
+    test_timer_metrics.cpp
 
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
