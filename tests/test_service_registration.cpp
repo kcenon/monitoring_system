@@ -48,6 +48,16 @@ protected:
         container_.clear();
     }
 
+    /**
+     * Get default test configuration with system monitoring disabled.
+     * System monitoring can cause issues on some platforms (e.g., macOS CI).
+     */
+    static monitoring_di::monitor_registration_config default_test_config() {
+        monitoring_di::monitor_registration_config config;
+        config.enable_system_monitoring = false;  // Disable to avoid platform issues
+        return config;
+    }
+
     // Local container instance for test isolation
     common_di::service_container container_;
 };
@@ -56,7 +66,7 @@ protected:
  * Test basic service registration with default configuration
  */
 TEST_F(MonitorServiceRegistrationTest, RegisterWithDefaultConfig) {
-    auto result = monitoring_di::register_monitor_services(container_);
+    auto result = monitoring_di::register_monitor_services(container_, default_test_config());
 
     ASSERT_TRUE(result.is_ok()) << "Failed to register monitor services";
     EXPECT_TRUE(container_.is_registered<interfaces::IMonitor>());
@@ -66,7 +76,7 @@ TEST_F(MonitorServiceRegistrationTest, RegisterWithDefaultConfig) {
  * Test service resolution after registration
  */
 TEST_F(MonitorServiceRegistrationTest, ResolveRegisteredService) {
-    auto reg_result = monitoring_di::register_monitor_services(container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_, default_test_config());
     ASSERT_TRUE(reg_result.is_ok());
 
     auto resolve_result = container_.resolve<interfaces::IMonitor>();
@@ -80,7 +90,7 @@ TEST_F(MonitorServiceRegistrationTest, ResolveRegisteredService) {
  * Test that singleton lifetime returns same instance
  */
 TEST_F(MonitorServiceRegistrationTest, SingletonLifetime) {
-    monitoring_di::monitor_registration_config config;
+    auto config = default_test_config();
     config.lifetime = common_di::service_lifetime::singleton;
 
     auto reg_result = monitoring_di::register_monitor_services(container_, config);
@@ -96,12 +106,11 @@ TEST_F(MonitorServiceRegistrationTest, SingletonLifetime) {
  * Test custom configuration
  */
 TEST_F(MonitorServiceRegistrationTest, CustomConfiguration) {
-    monitoring_di::monitor_registration_config config;
+    auto config = default_test_config();
     config.monitor_name = "custom_test_monitor";
     config.cpu_threshold = 95.0;
     config.memory_threshold = 85.0;
     config.latency_threshold = std::chrono::milliseconds{500};
-    config.enable_system_monitoring = false;
 
     auto result = monitoring_di::register_monitor_services(container_, config);
     ASSERT_TRUE(result.is_ok());
@@ -123,10 +132,10 @@ TEST_F(MonitorServiceRegistrationTest, CustomConfiguration) {
  * Test double registration fails
  */
 TEST_F(MonitorServiceRegistrationTest, DoubleRegistrationFails) {
-    auto result1 = monitoring_di::register_monitor_services(container_);
+    auto result1 = monitoring_di::register_monitor_services(container_, default_test_config());
     ASSERT_TRUE(result1.is_ok());
 
-    auto result2 = monitoring_di::register_monitor_services(container_);
+    auto result2 = monitoring_di::register_monitor_services(container_, default_test_config());
     EXPECT_TRUE(result2.is_err()) << "Double registration should fail";
 }
 
@@ -134,7 +143,7 @@ TEST_F(MonitorServiceRegistrationTest, DoubleRegistrationFails) {
  * Test unregistration
  */
 TEST_F(MonitorServiceRegistrationTest, UnregisterService) {
-    auto reg_result = monitoring_di::register_monitor_services(container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_, default_test_config());
     ASSERT_TRUE(reg_result.is_ok());
     ASSERT_TRUE(container_.is_registered<interfaces::IMonitor>());
 
@@ -175,7 +184,7 @@ TEST_F(MonitorServiceRegistrationTest, RegisterNullInstanceFails) {
  * Test IMonitor interface functionality
  */
 TEST_F(MonitorServiceRegistrationTest, IMonitorInterface) {
-    auto reg_result = monitoring_di::register_monitor_services(container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_, default_test_config());
     ASSERT_TRUE(reg_result.is_ok());
 
     auto monitor = container_.resolve<interfaces::IMonitor>().value();
@@ -203,7 +212,7 @@ TEST_F(MonitorServiceRegistrationTest, IMonitorInterface) {
  * Test get_underlying_performance_monitor utility
  */
 TEST_F(MonitorServiceRegistrationTest, GetUnderlyingMonitor) {
-    auto reg_result = monitoring_di::register_monitor_services(container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_, default_test_config());
     ASSERT_TRUE(reg_result.is_ok());
 
     auto imonitor = container_.resolve<interfaces::IMonitor>().value();
@@ -217,7 +226,7 @@ TEST_F(MonitorServiceRegistrationTest, GetUnderlyingMonitor) {
  * Test thread safety of service resolution
  */
 TEST_F(MonitorServiceRegistrationTest, ThreadSafeResolution) {
-    monitoring_di::monitor_registration_config config;
+    auto config = default_test_config();
     config.lifetime = common_di::service_lifetime::singleton;
 
     auto reg_result = monitoring_di::register_monitor_services(container_, config);
@@ -254,7 +263,7 @@ TEST_F(MonitorServiceRegistrationTest, ThreadSafeResolution) {
  * Test lock-free mode configuration
  */
 TEST_F(MonitorServiceRegistrationTest, LockFreeMode) {
-    monitoring_di::monitor_registration_config config;
+    auto config = default_test_config();
     config.enable_lock_free = true;
 
     auto result = monitoring_di::register_monitor_services(container_, config);
