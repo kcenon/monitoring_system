@@ -35,46 +35,41 @@ namespace interfaces = kcenon::common::interfaces;
 
 /**
  * Test fixture for service registration tests
+ * Uses a local service_container instance to avoid test interference
  */
 class MonitorServiceRegistrationTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        // Use a fresh scope for each test to avoid singleton pollution
-        container_ = &common_di::service_container::global();
-        // Clear any previous registrations
-        if (container_->is_registered<interfaces::IMonitor>()) {
-            monitoring_di::unregister_monitor_services(*container_);
-        }
+        // Each test gets a fresh container - no need for cleanup
     }
 
     void TearDown() override {
-        // Clean up registrations
-        if (container_->is_registered<interfaces::IMonitor>()) {
-            monitoring_di::unregister_monitor_services(*container_);
-        }
+        // Clear the container after each test
+        container_.clear();
     }
 
-    common_di::service_container* container_;
+    // Local container instance for test isolation
+    common_di::service_container container_;
 };
 
 /**
  * Test basic service registration with default configuration
  */
 TEST_F(MonitorServiceRegistrationTest, RegisterWithDefaultConfig) {
-    auto result = monitoring_di::register_monitor_services(*container_);
+    auto result = monitoring_di::register_monitor_services(container_);
 
     ASSERT_TRUE(result.is_ok()) << "Failed to register monitor services";
-    EXPECT_TRUE(container_->is_registered<interfaces::IMonitor>());
+    EXPECT_TRUE(container_.is_registered<interfaces::IMonitor>());
 }
 
 /**
  * Test service resolution after registration
  */
 TEST_F(MonitorServiceRegistrationTest, ResolveRegisteredService) {
-    auto reg_result = monitoring_di::register_monitor_services(*container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_);
     ASSERT_TRUE(reg_result.is_ok());
 
-    auto resolve_result = container_->resolve<interfaces::IMonitor>();
+    auto resolve_result = container_.resolve<interfaces::IMonitor>();
     ASSERT_TRUE(resolve_result.is_ok()) << "Failed to resolve IMonitor";
 
     auto monitor = resolve_result.value();
@@ -88,11 +83,11 @@ TEST_F(MonitorServiceRegistrationTest, SingletonLifetime) {
     monitoring_di::monitor_registration_config config;
     config.lifetime = common_di::service_lifetime::singleton;
 
-    auto reg_result = monitoring_di::register_monitor_services(*container_, config);
+    auto reg_result = monitoring_di::register_monitor_services(container_, config);
     ASSERT_TRUE(reg_result.is_ok());
 
-    auto monitor1 = container_->resolve<interfaces::IMonitor>().value();
-    auto monitor2 = container_->resolve<interfaces::IMonitor>().value();
+    auto monitor1 = container_.resolve<interfaces::IMonitor>().value();
+    auto monitor2 = container_.resolve<interfaces::IMonitor>().value();
 
     EXPECT_EQ(monitor1, monitor2) << "Singleton should return same instance";
 }
@@ -108,10 +103,10 @@ TEST_F(MonitorServiceRegistrationTest, CustomConfiguration) {
     config.latency_threshold = std::chrono::milliseconds{500};
     config.enable_system_monitoring = false;
 
-    auto result = monitoring_di::register_monitor_services(*container_, config);
+    auto result = monitoring_di::register_monitor_services(container_, config);
     ASSERT_TRUE(result.is_ok());
 
-    auto monitor = container_->resolve<interfaces::IMonitor>().value();
+    auto monitor = container_.resolve<interfaces::IMonitor>().value();
     EXPECT_NE(monitor, nullptr);
 
     // Verify configuration was applied by checking the underlying monitor
@@ -128,10 +123,10 @@ TEST_F(MonitorServiceRegistrationTest, CustomConfiguration) {
  * Test double registration fails
  */
 TEST_F(MonitorServiceRegistrationTest, DoubleRegistrationFails) {
-    auto result1 = monitoring_di::register_monitor_services(*container_);
+    auto result1 = monitoring_di::register_monitor_services(container_);
     ASSERT_TRUE(result1.is_ok());
 
-    auto result2 = monitoring_di::register_monitor_services(*container_);
+    auto result2 = monitoring_di::register_monitor_services(container_);
     EXPECT_TRUE(result2.is_err()) << "Double registration should fail";
 }
 
@@ -139,13 +134,13 @@ TEST_F(MonitorServiceRegistrationTest, DoubleRegistrationFails) {
  * Test unregistration
  */
 TEST_F(MonitorServiceRegistrationTest, UnregisterService) {
-    auto reg_result = monitoring_di::register_monitor_services(*container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_);
     ASSERT_TRUE(reg_result.is_ok());
-    ASSERT_TRUE(container_->is_registered<interfaces::IMonitor>());
+    ASSERT_TRUE(container_.is_registered<interfaces::IMonitor>());
 
-    auto unreg_result = monitoring_di::unregister_monitor_services(*container_);
+    auto unreg_result = monitoring_di::unregister_monitor_services(container_);
     ASSERT_TRUE(unreg_result.is_ok());
-    EXPECT_FALSE(container_->is_registered<interfaces::IMonitor>());
+    EXPECT_FALSE(container_.is_registered<interfaces::IMonitor>());
 }
 
 /**
@@ -155,10 +150,10 @@ TEST_F(MonitorServiceRegistrationTest, RegisterInstance) {
     auto monitor = std::make_shared<kcenon::monitoring::performance_monitor>("test_instance_monitor");
     monitor->set_cpu_threshold(70.0);
 
-    auto result = monitoring_di::register_monitor_instance(*container_, monitor);
+    auto result = monitoring_di::register_monitor_instance(container_, monitor);
     ASSERT_TRUE(result.is_ok());
 
-    auto resolved = container_->resolve<interfaces::IMonitor>().value();
+    auto resolved = container_.resolve<interfaces::IMonitor>().value();
     EXPECT_NE(resolved, nullptr);
 
     auto perf_monitor = monitoring_di::get_underlying_performance_monitor(resolved);
@@ -172,7 +167,7 @@ TEST_F(MonitorServiceRegistrationTest, RegisterInstance) {
  * Test registering null instance fails
  */
 TEST_F(MonitorServiceRegistrationTest, RegisterNullInstanceFails) {
-    auto result = monitoring_di::register_monitor_instance(*container_, nullptr);
+    auto result = monitoring_di::register_monitor_instance(container_, nullptr);
     EXPECT_TRUE(result.is_err()) << "Registering null instance should fail";
 }
 
@@ -180,10 +175,10 @@ TEST_F(MonitorServiceRegistrationTest, RegisterNullInstanceFails) {
  * Test IMonitor interface functionality
  */
 TEST_F(MonitorServiceRegistrationTest, IMonitorInterface) {
-    auto reg_result = monitoring_di::register_monitor_services(*container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_);
     ASSERT_TRUE(reg_result.is_ok());
 
-    auto monitor = container_->resolve<interfaces::IMonitor>().value();
+    auto monitor = container_.resolve<interfaces::IMonitor>().value();
     ASSERT_NE(monitor, nullptr);
 
     // Test record_metric
@@ -208,10 +203,10 @@ TEST_F(MonitorServiceRegistrationTest, IMonitorInterface) {
  * Test get_underlying_performance_monitor utility
  */
 TEST_F(MonitorServiceRegistrationTest, GetUnderlyingMonitor) {
-    auto reg_result = monitoring_di::register_monitor_services(*container_);
+    auto reg_result = monitoring_di::register_monitor_services(container_);
     ASSERT_TRUE(reg_result.is_ok());
 
-    auto imonitor = container_->resolve<interfaces::IMonitor>().value();
+    auto imonitor = container_.resolve<interfaces::IMonitor>().value();
     auto perf_monitor = monitoring_di::get_underlying_performance_monitor(imonitor);
 
     ASSERT_NE(perf_monitor, nullptr);
@@ -225,7 +220,7 @@ TEST_F(MonitorServiceRegistrationTest, ThreadSafeResolution) {
     monitoring_di::monitor_registration_config config;
     config.lifetime = common_di::service_lifetime::singleton;
 
-    auto reg_result = monitoring_di::register_monitor_services(*container_, config);
+    auto reg_result = monitoring_di::register_monitor_services(container_, config);
     ASSERT_TRUE(reg_result.is_ok());
 
     std::vector<std::thread> threads;
@@ -234,7 +229,7 @@ TEST_F(MonitorServiceRegistrationTest, ThreadSafeResolution) {
 
     for (size_t i = 0; i < 10; ++i) {
         threads.emplace_back([this, &results, &success_count, i]() {
-            auto result = container_->resolve<interfaces::IMonitor>();
+            auto result = container_.resolve<interfaces::IMonitor>();
             if (result.is_ok()) {
                 results[i] = result.value();
                 ++success_count;
@@ -262,10 +257,10 @@ TEST_F(MonitorServiceRegistrationTest, LockFreeMode) {
     monitoring_di::monitor_registration_config config;
     config.enable_lock_free = true;
 
-    auto result = monitoring_di::register_monitor_services(*container_, config);
+    auto result = monitoring_di::register_monitor_services(container_, config);
     ASSERT_TRUE(result.is_ok());
 
-    auto monitor = container_->resolve<interfaces::IMonitor>().value();
+    auto monitor = container_.resolve<interfaces::IMonitor>().value();
     auto perf_monitor = monitoring_di::get_underlying_performance_monitor(monitor);
 
     ASSERT_NE(perf_monitor, nullptr);
