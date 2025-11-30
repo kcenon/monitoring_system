@@ -158,12 +158,12 @@ jobs:
         sudo apt update
         sudo apt install -y cmake build-essential gdb pkg-config curl zip unzip tar autoconf automake autoconf-archive ninja-build
         sudo apt install -y clang lld
-        sudo apt install -y libgtest-dev libgmock-dev
+        sudo apt install -y libgtest-dev libgmock-dev libfmt-dev
 
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS'
       run: |
-        brew install ninja pkg-config curl zip unzip autoconf automake autoconf-archive
+        brew install ninja pkg-config curl zip unzip autoconf automake autoconf-archive fmt
 
     - name: Setup Visual Studio (Windows)
       if: runner.os == 'Windows'
@@ -475,7 +475,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake ninja-build clang libgtest-dev libgmock-dev
+        sudo apt-get install -y cmake ninja-build clang libgtest-dev libgmock-dev libfmt-dev
 
     - name: Configure CMake with ${{ matrix.sanitizer.name }}
       run: |

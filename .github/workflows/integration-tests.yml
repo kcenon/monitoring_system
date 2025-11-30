@@ -21,10 +21,10 @@ jobs:
           - os: ubuntu-latest
             install_deps: |
               sudo apt-get update
-              sudo apt-get install -y ninja-build lcov
+              sudo apt-get install -y ninja-build lcov libfmt-dev
           - os: macos-latest
             install_deps: |
-              brew install ninja lcov
+              brew install ninja lcov fmt
 
     steps:
       - name: Checkout code
