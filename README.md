@@ -9,7 +9,7 @@
 
 ## Overview
 
-Production-ready C++17 observability platform with comprehensive monitoring, distributed tracing, and reliability capabilities for high-performance applications. Built with a modular, interface-based architecture for seamless ecosystem integration.
+Production-ready C++20 observability platform with comprehensive monitoring, distributed tracing, and reliability capabilities for high-performance applications. Built with a modular, interface-based architecture for seamless ecosystem integration.
 
 **Key Value Proposition**:
 - **Performance Excellence**: 10M+ metric operations/sec, <50ns context propagation
@@ -326,9 +326,9 @@ make coverage
 ### CI/CD Validation
 
 **Platforms Tested**:
-- Linux (Ubuntu 22.04): GCC 11, Clang 14
-- macOS (macOS 12): Apple Clang 14
-- Windows (Server 2022): MSVC 2022, MSYS2
+- Linux (Ubuntu 22.04): GCC 11+, Clang 14+
+- macOS (macOS 12+): Apple Clang 14+
+- Windows (Server 2022): MSVC 2022+
 
 **Sanitizers**:
 - ✅ AddressSanitizer: 0 leaks, 0 errors
@@ -401,7 +401,7 @@ This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICE
 ## Acknowledgments
 
 - Inspired by modern observability platforms and best practices
-- Built with C++20 features for maximum performance and safety
+- Built with C++20 features (GCC 11+, Clang 14+, MSVC 2022+) for maximum performance and safety
 - Maintained by kcenon@naver.com
 
 ---
