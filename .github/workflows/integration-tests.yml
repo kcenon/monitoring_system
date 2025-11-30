@@ -39,12 +39,52 @@ jobs:
           path: common_system
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Checkout thread_system
+        uses: actions/checkout@v4
+        with:
+          repository: kcenon/thread_system
+          path: thread_system
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout logger_system
+        uses: actions/checkout@v4
+        with:
+          repository: kcenon/logger_system
+          path: logger_system
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and install common_system
         run: |
           cd common_system
           cmake -B build -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
+          cmake --build build --parallel
+          cmake --install build
+          cd ..
+
+      - name: Build and install thread_system
+        run: |
+          cd thread_system
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
+            -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/thread_system_install" \
+            -DBUILD_TESTS=OFF \
+            -DBUILD_SAMPLES=OFF
+          cmake --build build --parallel
+          cmake --install build
+          cd ..
+
+      - name: Build and install logger_system
+        run: |
+          cd logger_system
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install" \
+            -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/logger_system_install" \
+            -DBUILD_TESTS=OFF \
+            -DBUILD_SAMPLES=OFF
           cmake --build build --parallel
           cmake --install build
           cd ..
@@ -65,7 +105,7 @@ jobs:
           cmake -B build \
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
             -DBUILD_EXAMPLES=OFF \
-            -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
+            -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install;${GITHUB_WORKSPACE}/logger_system_install" \
             -DMONITORING_BUILD_INTEGRATION_TESTS=ON \
             -DENABLE_COVERAGE=${{ matrix.build_type == 'Debug' && 'ON' || 'OFF' }}
 
