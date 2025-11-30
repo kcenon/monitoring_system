@@ -314,113 +314,125 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#ae06a6cf280f4728f9cf3fcd13f974741">  221</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, ThreadSystemAdapter) {</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    thread_system_adapter adapter(bus);</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">// Check availability</span></div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    EXPECT_FALSE(adapter.is_thread_system_available());</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// Try to collect metrics (should return empty when not available)</span></div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    EXPECT_TRUE(result.value().empty());</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">// Get supported metric types</span></div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keyword">auto</span> types = adapter.get_metric_types();</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    EXPECT_TRUE(types.empty()); <span class="comment">// Empty when thread_system not available</span></div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>}</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">// Check availability - depends on compile-time header detection</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="preprocessor">#if MONITORING_THREAD_SYSTEM_AVAILABLE</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="comment">// When headers are present, is_thread_system_available() may return true</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// (it attempts runtime resolution but defaults to true if headers exist)</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// We just verify collect_metrics works without asserting availability</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    EXPECT_FALSE(adapter.is_thread_system_available());</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">// Try to collect metrics - should succeed regardless of availability</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="comment">// When no actual thread_system service is registered, result may be empty</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// Get supported metric types - compile-time determined</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">auto</span> types = adapter.get_metric_types();</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="preprocessor">#if MONITORING_THREAD_SYSTEM_AVAILABLE</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// When headers are available, returns the list of supported types</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    EXPECT_FALSE(types.empty());</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    EXPECT_EQ(types.size(), 3u);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    EXPECT_TRUE(types.empty()); <span class="comment">// Empty when thread_system not available</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>}</div>
 </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment">// Test logger system adapter</span></div>
-<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#adfac69ff77f740115918f3252668d5f8">  238</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, LoggerSystemAdapter) {</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    logger_system_adapter adapter(bus);</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// Check availability</span></div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    EXPECT_FALSE(adapter.is_logger_system_available());</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="comment">// Try to collect metrics</span></div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    EXPECT_TRUE(result.value().empty());</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// Register a logger (won&#39;t do anything when system not available)</span></div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    adapter.register_logger(<span class="stringliteral">&quot;test_logger&quot;</span>);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">// Get current log rate</span></div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    EXPECT_EQ(adapter.get_current_log_rate(), 0.0);</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>}</div>
-</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">// Test logger system adapter</span></div>
+<div class="foldopen" id="foldopen00250" data-start="{" data-end="}">
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#adfac69ff77f740115918f3252668d5f8">  250</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, LoggerSystemAdapter) {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    logger_system_adapter adapter(bus);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="comment">// Check availability</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    EXPECT_FALSE(adapter.is_logger_system_available());</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">// Test event bus statistics</span></div>
-<div class="foldopen" id="foldopen00257" data-start="{" data-end="}">
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#a41ebbaa1f78ac3aa7a6ceb3f0dc93dd9">  257</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, Statistics) {</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">auto</span> initial_stats = bus-&gt;get_stats();</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    EXPECT_EQ(initial_stats.total_published, 0);</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    EXPECT_EQ(initial_stats.total_processed, 0);</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="comment">// Publish some events</span></div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        component_lifecycle_event event(</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            <span class="stringliteral">&quot;test_component&quot;</span>,</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            component_lifecycle_event::lifecycle_state::started,</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            component_lifecycle_event::lifecycle_state::running</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        );</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        bus-&gt;publish_event(event);</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    }</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    std::this_thread::sleep_for(200ms);</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keyword">auto</span> final_stats = bus-&gt;get_stats();</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    EXPECT_EQ(final_stats.total_published, 10);</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    EXPECT_GE(final_stats.total_processed, 0); <span class="comment">// May vary due to async processing</span></div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>}</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="comment">// Try to collect metrics</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    EXPECT_TRUE(result.value().empty());</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="comment">// Register a logger (won&#39;t do anything when system not available)</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    adapter.register_logger(<span class="stringliteral">&quot;test_logger&quot;</span>);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="comment">// Get current log rate</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    EXPECT_EQ(adapter.get_current_log_rate(), 0.0);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>}</div>
 </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">// Test concurrent publishing</span></div>
-<div class="foldopen" id="foldopen00280" data-start="{" data-end="}">
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#adad82a3dc4dded30ddc9510a1d82c42f">  280</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, ConcurrentPublishing) {</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    std::atomic&lt;int&gt; received_count{0};</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="comment">// Subscribe to metric collection events</span></div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    bus-&gt;subscribe_event&lt;metric_collection_event&gt;(</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        [&amp;](<span class="keyword">const</span> metric_collection_event&amp; event) {</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            received_count.fetch_add(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(event.get_metric_count()));</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        }</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    );</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 4;</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> events_per_thread = 25;</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    std::vector&lt;std::thread&gt; publishers;</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="comment">// Start publisher threads</span></div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        publishers.emplace_back([<span class="keyword">this</span>, events_per_thread]() {</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; events_per_thread; ++i) {</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                std::vector&lt;metric&gt; metrics;</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                metrics.push_back(metric{</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                    <span class="stringliteral">&quot;test_metric&quot;</span>,</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                    42.0,</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                    {{<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;publisher&quot;</span>}},</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>                    metric_type::gauge</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>                });</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment">// Test event bus statistics</span></div>
+<div class="foldopen" id="foldopen00269" data-start="{" data-end="}">
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#a41ebbaa1f78ac3aa7a6ceb3f0dc93dd9">  269</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, Statistics) {</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keyword">auto</span> initial_stats = bus-&gt;get_stats();</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    EXPECT_EQ(initial_stats.total_published, 0);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    EXPECT_EQ(initial_stats.total_processed, 0);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">// Publish some events</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        component_lifecycle_event event(</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <span class="stringliteral">&quot;test_component&quot;</span>,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            component_lifecycle_event::lifecycle_state::started,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            component_lifecycle_event::lifecycle_state::running</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        );</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        bus-&gt;publish_event(event);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    }</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    std::this_thread::sleep_for(200ms);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">auto</span> final_stats = bus-&gt;get_stats();</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    EXPECT_EQ(final_stats.total_published, 10);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    EXPECT_GE(final_stats.total_processed, 0); <span class="comment">// May vary due to async processing</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>}</div>
+</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment">// Test concurrent publishing</span></div>
+<div class="foldopen" id="foldopen00292" data-start="{" data-end="}">
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="../../df/de1/test__event__bus_8cpp.html#adad82a3dc4dded30ddc9510a1d82c42f">  292</a></span><a class="code hl_function" href="../../df/de1/test__event__bus_8cpp.html#a4a641825def781944b45efd04729b7bf">TEST_F</a>(<a class="code hl_class" href="../../d7/d12/classEventBusTest.html">EventBusTest</a>, ConcurrentPublishing) {</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    std::atomic&lt;int&gt; received_count{0};</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="comment">// Subscribe to metric collection events</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    bus-&gt;subscribe_event&lt;metric_collection_event&gt;(</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        [&amp;](<span class="keyword">const</span> metric_collection_event&amp; event) {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            received_count.fetch_add(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(event.get_metric_count()));</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    );</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 4;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> events_per_thread = 25;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    std::vector&lt;std::thread&gt; publishers;</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>                metric_collection_event event(<span class="stringliteral">&quot;test_collector&quot;</span>, std::move(metrics));</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>                bus-&gt;publish_event(event);</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>                std::this_thread::sleep_for(1ms);</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>            }</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        });</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    }</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="comment">// Wait for all publishers</span></div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : publishers) {</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        thread.join();</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    }</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="comment">// Wait for processing</span></div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    std::this_thread::sleep_for(500ms);</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="comment">// Should have received all metrics</span></div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    EXPECT_EQ(received_count.load(), num_threads * events_per_thread);</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>}</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="comment">// Start publisher threads</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; num_threads; ++t) {</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        publishers.emplace_back([<span class="keyword">this</span>, events_per_thread]() {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; events_per_thread; ++i) {</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>                std::vector&lt;metric&gt; metrics;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>                metrics.push_back(metric{</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                    <span class="stringliteral">&quot;test_metric&quot;</span>,</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                    42.0,</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>                    {{<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;publisher&quot;</span>}},</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>                    metric_type::gauge</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>                });</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>                metric_collection_event event(<span class="stringliteral">&quot;test_collector&quot;</span>, std::move(metrics));</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                bus-&gt;publish_event(event);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>                std::this_thread::sleep_for(1ms);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>            }</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        });</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    }</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="comment">// Wait for all publishers</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; thread : publishers) {</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        thread.join();</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    }</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="comment">// Wait for processing</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    std::this_thread::sleep_for(500ms);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="comment">// Should have received all metrics</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    EXPECT_EQ(received_count.load(), num_threads * events_per_thread);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>}</div>
 </div>
 <div class="ttc" id="aclassEventBusTest_html"><div class="ttname"><a href="../../d7/d12/classEventBusTest.html">EventBusTest</a></div><div class="ttdef"><b>Definition</b> <a href="../../df/de1/test__event__bus_8cpp_source.html#l00047">test_event_bus.cpp:47</a></div></div>
 <div class="ttc" id="aclassEventBusTest_html_a4d568849ba4cc79eb8bc0968a30c05a4"><div class="ttname"><a href="../../d7/d12/classEventBusTest.html#a4d568849ba4cc79eb8bc0968a30c05a4">EventBusTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../df/de1/test__event__bus_8cpp_source.html#l00058">test_event_bus.cpp:58</a></div></div>
@@ -431,7 +443,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 30 2025 11:58:39 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Nov 30 2025 12:15:44 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
