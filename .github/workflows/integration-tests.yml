@@ -71,6 +71,7 @@ jobs:
             -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
             -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/thread_system_install" \
             -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include" \
+            -DUSE_STD_FORMAT=ON \
             -DBUILD_TESTS=OFF \
             -DBUILD_SAMPLES=OFF
           cmake --build build --parallel
@@ -85,6 +86,7 @@ jobs:
             -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install" \
             -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/logger_system_install" \
             -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include -I${GITHUB_WORKSPACE}/thread_system_install/include" \
+            -DUSE_STD_FORMAT=ON \
             -DBUILD_TESTS=OFF \
             -DBUILD_SAMPLES=OFF
           cmake --build build --parallel
