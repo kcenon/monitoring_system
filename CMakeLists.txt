@@ -23,9 +23,31 @@ option(MONITORING_BUILD_INTEGRATION_TESTS "Build integration tests" ON)
 option(MONITORING_BUILD_EXAMPLES "Build example programs" ON)
 option(MONITORING_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(MONITORING_WITH_COMMON_SYSTEM "Enable common_system integration" ON)
-option(MONITORING_WITH_THREAD_SYSTEM "Enable thread_system integration" OFF)
-option(MONITORING_WITH_LOGGER_SYSTEM "Enable logger_system integration" OFF)
-option(MONITORING_WITH_NETWORK_SYSTEM "Enable network_system integration for HTTP transport" OFF)
+
+##################################################
+# Dependency Configuration (Option A Structure)
+#
+# Tier 3: monitoring_system
+#   Required: logger_system <- thread_system <- common_system
+#   Optional: network_system (HTTP metrics export)
+##################################################
+
+# Required dependencies (Tier 2 and below)
+option(MONITORING_WITH_THREAD_SYSTEM "Enable thread_system integration (REQUIRED)" ON)
+option(MONITORING_WITH_LOGGER_SYSTEM "Enable logger_system integration (REQUIRED)" ON)
+
+# Optional integration (Tier 4 - kept optional to prevent circular dependency)
+option(MONITORING_WITH_NETWORK_SYSTEM "Enable network_system integration for HTTP transport (OPTIONAL)" OFF)
+
+# Note: Required dependency validation is performed during detection phase.
+# If dependencies are not found, they will be automatically disabled with a warning.
+
+# Optional integration notice (network_system)
+if(MONITORING_WITH_NETWORK_SYSTEM)
+    message(STATUS "MONITORING_WITH_NETWORK_SYSTEM is enabled - HTTP metrics export available")
+    message(STATUS "Note: This creates an optional cross-tier dependency (Tier 3 -> Tier 4)")
+endif()
+
 option(MONITORING_ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(MONITORING_ENABLE_TSAN "Enable ThreadSanitizer" OFF)
 option(MONITORING_ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
@@ -68,12 +90,18 @@ else()
 endif()
 endif() # MONITORING_WITH_COMMON_SYSTEM
 
-# Optional dependencies
+##################################################
+# Required Dependencies Detection
+##################################################
+
+# thread_system (REQUIRED - Tier 1)
+message(STATUS "=== Finding thread_system (REQUIRED) ===")
 set(MONITORING_THREAD_TARGET "")
 if(MONITORING_WITH_THREAD_SYSTEM)
     foreach(_candidate ThreadSystem utilities thread_system::thread_system)
         if(TARGET ${_candidate})
             set(MONITORING_THREAD_TARGET ${_candidate})
+            message(STATUS "Found thread_system target: ${_candidate}")
             break()
         endif()
     endforeach()
@@ -85,20 +113,52 @@ if(MONITORING_WITH_THREAD_SYSTEM)
         endif()
     endif()
 
+    # Sibling directory fallback
+    if(NOT MONITORING_THREAD_TARGET)
+        set(_THREAD_PATHS
+            "$ENV{THREAD_SYSTEM_ROOT}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../thread_system"
+        )
+
+        foreach(_path ${_THREAD_PATHS})
+            if(EXISTS "${_path}/CMakeLists.txt")
+                message(STATUS "Found thread_system at: ${_path}")
+                set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
+                set(BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
+                add_subdirectory("${_path}" "${CMAKE_BINARY_DIR}/thread_system_build")
+                if(TARGET utilities)
+                    set(MONITORING_THREAD_TARGET utilities)
+                elseif(TARGET ThreadSystem)
+                    set(MONITORING_THREAD_TARGET ThreadSystem)
+                endif()
+                break()
+            endif()
+        endforeach()
+    endif()
+
     if(MONITORING_THREAD_TARGET)
-        message(STATUS "Found thread_system: integration enabled (${MONITORING_THREAD_TARGET})")
+        message(STATUS "thread_system integration: ENABLED (${MONITORING_THREAD_TARGET})")
         add_compile_definitions(MONITORING_HAS_THREAD_SYSTEM)
     else()
-        message(WARNING "thread_system not found: integration disabled")
+        message(WARNING
+            "thread_system is REQUIRED but not found.\n"
+            "Please ensure thread_system is available:\n"
+            "  1. As sibling directory: ../thread_system/\n"
+            "  2. As installed package\n"
+            "  3. Via THREAD_SYSTEM_ROOT environment variable\n"
+            "Disabling thread_system integration for standalone build.")
         set(MONITORING_WITH_THREAD_SYSTEM OFF)
     endif()
 endif()
 
+# logger_system (REQUIRED - Tier 2)
+message(STATUS "=== Finding logger_system (REQUIRED) ===")
 set(MONITORING_LOGGER_TARGET "")
 if(MONITORING_WITH_LOGGER_SYSTEM)
     foreach(_candidate LoggerSystem logger logger_system::logger_system)
         if(TARGET ${_candidate})
             set(MONITORING_LOGGER_TARGET ${_candidate})
+            message(STATUS "Found logger_system target: ${_candidate}")
             break()
         endif()
     endforeach()
@@ -110,15 +170,50 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         endif()
     endif()
 
+    # Sibling directory fallback
+    if(NOT MONITORING_LOGGER_TARGET)
+        set(_LOGGER_PATHS
+            "$ENV{LOGGER_SYSTEM_ROOT}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../logger_system"
+        )
+
+        foreach(_path ${_LOGGER_PATHS})
+            if(EXISTS "${_path}/CMakeLists.txt")
+                message(STATUS "Found logger_system at: ${_path}")
+                set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
+                set(BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
+                add_subdirectory("${_path}" "${CMAKE_BINARY_DIR}/logger_system_build")
+                if(TARGET LoggerSystem)
+                    set(MONITORING_LOGGER_TARGET LoggerSystem)
+                elseif(TARGET logger)
+                    set(MONITORING_LOGGER_TARGET logger)
+                endif()
+                break()
+            endif()
+        endforeach()
+    endif()
+
     if(MONITORING_LOGGER_TARGET)
-        message(STATUS "Found logger_system: integration enabled (${MONITORING_LOGGER_TARGET})")
+        message(STATUS "logger_system integration: ENABLED (${MONITORING_LOGGER_TARGET})")
         add_compile_definitions(MONITORING_HAS_LOGGER_SYSTEM)
     else()
-        message(WARNING "logger_system not found: integration disabled")
+        message(WARNING
+            "logger_system is REQUIRED but not found.\n"
+            "Please ensure logger_system is available:\n"
+            "  1. As sibling directory: ../logger_system/\n"
+            "  2. As installed package\n"
+            "  3. Via LOGGER_SYSTEM_ROOT environment variable\n"
+            "Disabling logger_system integration for standalone build.")
         set(MONITORING_WITH_LOGGER_SYSTEM OFF)
     endif()
 endif()
 
+##################################################
+# Optional Dependencies Detection
+##################################################
+
+# network_system (OPTIONAL - Tier 4, for HTTP transport)
+# Note: Kept optional to prevent circular dependency with network_system
 set(MONITORING_NETWORK_TARGET "")
 if(MONITORING_WITH_NETWORK_SYSTEM)
     foreach(_candidate NetworkSystem network_system network_system::network_system)
@@ -451,20 +546,32 @@ else()
     message(STATUS "Monitoring System: Skipping install/export (local dependency targets cannot be exported)")
 endif()
 
-# Summary
+##################################################
+# Build Summary
+##################################################
+
 message(STATUS "")
-message(STATUS "monitoring_system configuration:")
-message(STATUS "  Version: ${PROJECT_VERSION}")
+message(STATUS "========================================")
+message(STATUS "Monitoring System v${PROJECT_VERSION}")
+message(STATUS "========================================")
+message(STATUS "")
+message(STATUS "Dependency Chain (Tier 3):")
+message(STATUS "  monitoring_system")
+message(STATUS "    ├── common_system (Tier 0): ${MONITORING_WITH_COMMON_SYSTEM} [REQUIRED]")
+message(STATUS "    ├── thread_system (Tier 1): ${MONITORING_WITH_THREAD_SYSTEM} [REQUIRED]")
+message(STATUS "    ├── logger_system (Tier 2): ${MONITORING_WITH_LOGGER_SYSTEM} [REQUIRED]")
+message(STATUS "    └── network_system (Tier 4): ${MONITORING_WITH_NETWORK_SYSTEM} [OPTIONAL]")
+message(STATUS "")
+message(STATUS "Build Configuration:")
 message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "  Build tests: ${MONITORING_BUILD_TESTS}")
 message(STATUS "  Build integration tests: ${MONITORING_BUILD_INTEGRATION_TESTS}")
 message(STATUS "  Build examples: ${MONITORING_BUILD_EXAMPLES}")
 message(STATUS "  Build benchmarks: ${MONITORING_BUILD_BENCHMARKS}")
-message(STATUS "  Thread system integration: ${MONITORING_WITH_THREAD_SYSTEM}")
-message(STATUS "  Logger system integration: ${MONITORING_WITH_LOGGER_SYSTEM}")
-message(STATUS "  Network system integration: ${MONITORING_WITH_NETWORK_SYSTEM}")
+message(STATUS "")
+message(STATUS "Sanitizers:")
 message(STATUS "  Coverage reporting: ${MONITORING_ENABLE_COVERAGE}")
 message(STATUS "  AddressSanitizer: ${MONITORING_ENABLE_ASAN}")
 message(STATUS "  ThreadSanitizer: ${MONITORING_ENABLE_TSAN}")
 message(STATUS "  UBSanitizer: ${MONITORING_ENABLE_UBSAN}")
-message(STATUS "")
+message(STATUS "========================================")
