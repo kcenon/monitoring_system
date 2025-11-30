@@ -34,6 +34,20 @@ jobs:
         path: common_system
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Checkout thread_system
+      uses: actions/checkout@v4
+      with:
+        repository: kcenon/thread_system
+        path: thread_system
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Checkout logger_system
+      uses: actions/checkout@v4
+      with:
+        repository: kcenon/logger_system
+        path: logger_system
+        token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build and install common_system
       run: |
         cd common_system
@@ -44,10 +58,46 @@ jobs:
         cmake --install build
         cd ..
 
+    - name: Build and install thread_system
+      run: |
+        cd thread_system
+        cmake -B build -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
+          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/thread_system_install" \
+          -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include" \
+          -DUSE_STD_FORMAT=ON \
+          -DBUILD_TESTS=OFF \
+          -DBUILD_SAMPLES=OFF
+        cmake --build build --parallel
+        cmake --install build
+        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
+        CONFIG_FILE=$(find "${GITHUB_WORKSPACE}/thread_system_install" -name "thread_system-config.cmake" 2>/dev/null | head -1)
+        if [ -n "$CONFIG_FILE" ]; then
+          echo "Found config file: $CONFIG_FILE"
+          sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+        fi
+        cd ..
+
+    - name: Build and install logger_system
+      run: |
+        cd logger_system
+        cmake -B build -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install" \
+          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/logger_system_install" \
+          -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include -I${GITHUB_WORKSPACE}/thread_system_install/include" \
+          -DUSE_STD_FORMAT=ON \
+          -DBUILD_TESTS=OFF \
+          -DBUILD_SAMPLES=OFF
+        cmake --build build --parallel
+        cmake --install build
+        cd ..
+
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake ninja-build clang libgtest-dev libfmt-dev
+        sudo apt-get install -y cmake ninja-build clang libgtest-dev libgmock-dev
 
     - name: Set up compiler
       run: |
@@ -61,7 +111,7 @@ jobs:
         cmake -B build -S . \
           -GNinja \
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
-          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
+          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install;${GITHUB_WORKSPACE}/logger_system_install" \
           -DCMAKE_CXX_FLAGS="${SANITIZER_FLAGS}" \
           -DCMAKE_C_FLAGS="${SANITIZER_FLAGS}" \
           -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=${{ matrix.sanitizer }}" \
