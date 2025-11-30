@@ -197,14 +197,13 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         message(STATUS "logger_system integration: ENABLED (${MONITORING_LOGGER_TARGET})")
         add_compile_definitions(MONITORING_HAS_LOGGER_SYSTEM)
     else()
-        message(WARNING
+        message(FATAL_ERROR
             "logger_system is REQUIRED but not found.\n"
             "Please ensure logger_system is available:\n"
             "  1. As sibling directory: ../logger_system/\n"
             "  2. As installed package\n"
             "  3. Via LOGGER_SYSTEM_ROOT environment variable\n"
-            "Disabling logger_system integration for standalone build.")
-        set(MONITORING_WITH_LOGGER_SYSTEM OFF)
+            "monitoring_system cannot be built without logger_system.")
     endif()
 endif()
 
@@ -443,9 +442,8 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
             set(MONITORING_CAN_INSTALL FALSE)
         endif()
     else()
-        message(WARNING "MONITORING_WITH_LOGGER_SYSTEM is ON but no logger_system target found. "
-                        "Logger integration will be disabled.")
-        set(MONITORING_WITH_LOGGER_SYSTEM OFF)
+        message(FATAL_ERROR "MONITORING_WITH_LOGGER_SYSTEM is ON but no logger_system target found. "
+                            "logger_system is a required dependency for monitoring_system.")
     endif()
 endif()
 
