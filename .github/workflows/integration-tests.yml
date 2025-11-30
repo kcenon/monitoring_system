@@ -21,10 +21,10 @@ jobs:
           - os: ubuntu-latest
             install_deps: |
               sudo apt-get update
-              sudo apt-get install -y ninja-build lcov libfmt-dev
+              sudo apt-get install -y ninja-build lcov
           - os: macos-latest
             install_deps: |
-              brew install ninja lcov fmt
+              brew install ninja lcov
 
     steps:
       - name: Checkout code
@@ -76,6 +76,12 @@ jobs:
             -DBUILD_SAMPLES=OFF
           cmake --build build --parallel
           cmake --install build
+          # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
+          if [ "$(uname)" = "Darwin" ]; then
+            sed -i '' 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
+          else
+            sed -i 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
+          fi
           cd ..
 
       - name: Build and install logger_system

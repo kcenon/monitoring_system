@@ -71,6 +71,8 @@ jobs:
           -DBUILD_SAMPLES=OFF
         cmake --build build --parallel
         cmake --install build
+        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
+        sed -i 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
         cd ..
 
     - name: Build and install logger_system
@@ -91,7 +93,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake ninja-build clang libgtest-dev libgmock-dev libfmt-dev
+        sudo apt-get install -y cmake ninja-build clang libgtest-dev libgmock-dev
 
     - name: Set up compiler
       run: |

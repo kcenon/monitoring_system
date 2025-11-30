@@ -88,6 +88,8 @@ jobs:
           -DBUILD_SAMPLES=OFF
         cmake --build build --parallel
         cmake --install build
+        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
+        sed -i 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
         cd ..
 
     - name: Build and install logger_system (Unix)
@@ -133,6 +135,11 @@ jobs:
           -DBUILD_SAMPLES=OFF
         cmake --build build --config Release --parallel
         cmake --install build --config Release
+        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
+        $configFile = "${env:GITHUB_WORKSPACE}\thread_system_install\lib\cmake\thread_system\thread_system-config.cmake"
+        if (Test-Path $configFile) {
+          (Get-Content $configFile) -replace 'find_dependency\(fmt\)', '#find_dependency(fmt) # disabled: using std::format' | Set-Content $configFile
+        }
         cd ..
 
     - name: Build and install logger_system (Windows)
@@ -158,12 +165,12 @@ jobs:
         sudo apt update
         sudo apt install -y cmake build-essential gdb pkg-config curl zip unzip tar autoconf automake autoconf-archive ninja-build
         sudo apt install -y clang lld
-        sudo apt install -y libgtest-dev libgmock-dev libfmt-dev
+        sudo apt install -y libgtest-dev libgmock-dev
 
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS'
       run: |
-        brew install ninja pkg-config curl zip unzip autoconf automake autoconf-archive fmt
+        brew install ninja pkg-config curl zip unzip autoconf automake autoconf-archive
 
     - name: Setup Visual Studio (Windows)
       if: runner.os == 'Windows'
@@ -455,6 +462,8 @@ jobs:
           -DBUILD_SAMPLES=OFF
         cmake --build build --parallel
         cmake --install build
+        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
+        sed -i 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
         cd ..
 
     - name: Build and install logger_system
@@ -475,7 +484,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake ninja-build clang libgtest-dev libgmock-dev libfmt-dev
+        sudo apt-get install -y cmake ninja-build clang libgtest-dev libgmock-dev
 
     - name: Configure CMake with ${{ matrix.sanitizer.name }}
       run: |
