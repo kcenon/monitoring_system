@@ -39,20 +39,8 @@ option(MONITORING_WITH_LOGGER_SYSTEM "Enable logger_system integration (REQUIRED
 # Optional integration (Tier 4 - kept optional to prevent circular dependency)
 option(MONITORING_WITH_NETWORK_SYSTEM "Enable network_system integration for HTTP transport (OPTIONAL)" OFF)
 
-# Required dependency validation
-if(NOT MONITORING_WITH_LOGGER_SYSTEM)
-    message(FATAL_ERROR
-        "monitoring_system requires logger_system (Tier 2).\n"
-        "Dependency chain: monitoring_system <- logger_system <- thread_system <- common_system\n"
-        "Please set MONITORING_WITH_LOGGER_SYSTEM=ON")
-endif()
-
-if(NOT MONITORING_WITH_THREAD_SYSTEM)
-    message(FATAL_ERROR
-        "monitoring_system requires thread_system (Tier 1).\n"
-        "thread_system is required for logger_system backend support.\n"
-        "Please set MONITORING_WITH_THREAD_SYSTEM=ON")
-endif()
+# Note: Required dependency validation is performed during detection phase.
+# If dependencies are not found, they will be automatically disabled with a warning.
 
 # Optional integration notice (network_system)
 if(MONITORING_WITH_NETWORK_SYSTEM)
@@ -152,12 +140,14 @@ if(MONITORING_WITH_THREAD_SYSTEM)
         message(STATUS "thread_system integration: ENABLED (${MONITORING_THREAD_TARGET})")
         add_compile_definitions(MONITORING_HAS_THREAD_SYSTEM)
     else()
-        message(FATAL_ERROR
+        message(WARNING
             "thread_system is REQUIRED but not found.\n"
             "Please ensure thread_system is available:\n"
             "  1. As sibling directory: ../thread_system/\n"
             "  2. As installed package\n"
-            "  3. Via THREAD_SYSTEM_ROOT environment variable")
+            "  3. Via THREAD_SYSTEM_ROOT environment variable\n"
+            "Disabling thread_system integration for standalone build.")
+        set(MONITORING_WITH_THREAD_SYSTEM OFF)
     endif()
 endif()
 
@@ -207,12 +197,14 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         message(STATUS "logger_system integration: ENABLED (${MONITORING_LOGGER_TARGET})")
         add_compile_definitions(MONITORING_HAS_LOGGER_SYSTEM)
     else()
-        message(FATAL_ERROR
+        message(WARNING
             "logger_system is REQUIRED but not found.\n"
             "Please ensure logger_system is available:\n"
             "  1. As sibling directory: ../logger_system/\n"
             "  2. As installed package\n"
-            "  3. Via LOGGER_SYSTEM_ROOT environment variable")
+            "  3. Via LOGGER_SYSTEM_ROOT environment variable\n"
+            "Disabling logger_system integration for standalone build.")
+        set(MONITORING_WITH_LOGGER_SYSTEM OFF)
     endif()
 endif()
 
