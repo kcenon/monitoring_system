@@ -163,24 +163,11 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         endif()
     endforeach()
 
-    if(NOT MONITORING_LOGGER_TARGET)
-        # Try both package names (LoggerSystem is the installed name)
-        find_package(LoggerSystem CONFIG QUIET)
-        if(LoggerSystem_FOUND)
-            set(MONITORING_LOGGER_TARGET LoggerSystem::LoggerSystem)
-            message(STATUS "Found LoggerSystem installed package")
-        else()
-            find_package(logger_system CONFIG QUIET)
-            if(logger_system_FOUND)
-                set(MONITORING_LOGGER_TARGET logger_system::logger_system)
-            endif()
-        endif()
-    endif()
-
-    # Sibling directory fallback
+    # Subdirectory/sibling fallback (preferred for CI where targets file may be missing)
     if(NOT MONITORING_LOGGER_TARGET)
         set(_LOGGER_PATHS
             "$ENV{LOGGER_SYSTEM_ROOT}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/logger_system"
             "${CMAKE_CURRENT_SOURCE_DIR}/../logger_system"
         )
 
