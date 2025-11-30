@@ -109,14 +109,22 @@ if(MONITORING_WITH_THREAD_SYSTEM)
     if(NOT MONITORING_THREAD_TARGET)
         find_package(thread_system CONFIG QUIET)
         if(thread_system_FOUND)
-            set(MONITORING_THREAD_TARGET thread_system::thread_system)
+            # Verify the target actually exists (config may have errors)
+            if(TARGET thread_system::thread_system)
+                set(MONITORING_THREAD_TARGET thread_system::thread_system)
+            elseif(TARGET ThreadSystem)
+                set(MONITORING_THREAD_TARGET ThreadSystem)
+            else()
+                message(STATUS "thread_system package found but target missing, trying subdirectory fallback")
+            endif()
         endif()
     endif()
 
-    # Sibling directory fallback
+    # Subdirectory/sibling fallback (preferred for CI where targets may be missing)
     if(NOT MONITORING_THREAD_TARGET)
         set(_THREAD_PATHS
             "$ENV{THREAD_SYSTEM_ROOT}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/thread_system"
             "${CMAKE_CURRENT_SOURCE_DIR}/../thread_system"
         )
 
