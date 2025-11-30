@@ -89,7 +89,17 @@ jobs:
         cmake --build build --parallel
         cmake --install build
         # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
-        sed -i 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
+        CONFIG_FILE=$(find "${GITHUB_WORKSPACE}/thread_system_install" -name "thread_system-config.cmake" 2>/dev/null | head -1)
+        if [ -n "$CONFIG_FILE" ]; then
+          echo "Found config file: $CONFIG_FILE"
+          echo "Before modification:"
+          grep -n "fmt" "$CONFIG_FILE" || echo "No fmt references found"
+          sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+          echo "After modification:"
+          grep -n "fmt" "$CONFIG_FILE" || echo "No fmt references found"
+        else
+          echo "Warning: thread_system-config.cmake not found"
+        fi
         cd ..
 
     - name: Build and install logger_system (Unix)
@@ -136,9 +146,16 @@ jobs:
         cmake --build build --config Release --parallel
         cmake --install build --config Release
         # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
-        $configFile = "${env:GITHUB_WORKSPACE}\thread_system_install\lib\cmake\thread_system\thread_system-config.cmake"
-        if (Test-Path $configFile) {
-          (Get-Content $configFile) -replace 'find_dependency\(fmt\)', '#find_dependency(fmt) # disabled: using std::format' | Set-Content $configFile
+        $configFile = Get-ChildItem -Path "${env:GITHUB_WORKSPACE}\thread_system_install" -Recurse -Filter "thread_system-config.cmake" -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($configFile) {
+          Write-Host "Found config file: $($configFile.FullName)"
+          Write-Host "Before modification:"
+          Select-String -Path $configFile.FullName -Pattern "fmt" | ForEach-Object { Write-Host $_.Line }
+          (Get-Content $configFile.FullName) -replace 'find_dependency\s*\(fmt[^)]*\)', '# $&' | Set-Content $configFile.FullName
+          Write-Host "After modification:"
+          Select-String -Path $configFile.FullName -Pattern "fmt" | ForEach-Object { Write-Host $_.Line }
+        } else {
+          Write-Host "Warning: thread_system-config.cmake not found"
         }
         cd ..
 
@@ -463,7 +480,11 @@ jobs:
         cmake --build build --parallel
         cmake --install build
         # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
-        sed -i 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
+        CONFIG_FILE=$(find "${GITHUB_WORKSPACE}/thread_system_install" -name "thread_system-config.cmake" 2>/dev/null | head -1)
+        if [ -n "$CONFIG_FILE" ]; then
+          echo "Found config file: $CONFIG_FILE"
+          sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+        fi
         cd ..
 
     - name: Build and install logger_system

@@ -77,10 +77,14 @@ jobs:
           cmake --build build --parallel
           cmake --install build
           # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
-          if [ "$(uname)" = "Darwin" ]; then
-            sed -i '' 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
-          else
-            sed -i 's/find_dependency(fmt)/#find_dependency(fmt) # disabled: using std::format/g' "${GITHUB_WORKSPACE}/thread_system_install/lib/cmake/thread_system/thread_system-config.cmake" || true
+          CONFIG_FILE=$(find "${GITHUB_WORKSPACE}/thread_system_install" -name "thread_system-config.cmake" 2>/dev/null | head -1)
+          if [ -n "$CONFIG_FILE" ]; then
+            echo "Found config file: $CONFIG_FILE"
+            if [ "$(uname)" = "Darwin" ]; then
+              sed -i '' 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+            else
+              sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+            fi
           fi
           cd ..
 
