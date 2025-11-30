@@ -94,7 +94,12 @@ jobs:
           echo "Found config file: $CONFIG_FILE"
           echo "Before modification:"
           grep -n "fmt" "$CONFIG_FILE" || echo "No fmt references found"
-          sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+          # macOS requires -i '', Linux requires just -i
+          if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+          else
+            sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
+          fi
           echo "After modification:"
           grep -n "fmt" "$CONFIG_FILE" || echo "No fmt references found"
         else
