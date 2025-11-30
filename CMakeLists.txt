@@ -109,14 +109,22 @@ if(MONITORING_WITH_THREAD_SYSTEM)
     if(NOT MONITORING_THREAD_TARGET)
         find_package(thread_system CONFIG QUIET)
         if(thread_system_FOUND)
-            set(MONITORING_THREAD_TARGET thread_system::thread_system)
+            # Verify the target actually exists (config may have errors)
+            if(TARGET thread_system::thread_system)
+                set(MONITORING_THREAD_TARGET thread_system::thread_system)
+            elseif(TARGET ThreadSystem)
+                set(MONITORING_THREAD_TARGET ThreadSystem)
+            else()
+                message(STATUS "thread_system package found but target missing, trying subdirectory fallback")
+            endif()
         endif()
     endif()
 
-    # Sibling directory fallback
+    # Subdirectory/sibling fallback (preferred for CI where targets may be missing)
     if(NOT MONITORING_THREAD_TARGET)
         set(_THREAD_PATHS
             "$ENV{THREAD_SYSTEM_ROOT}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/thread_system"
             "${CMAKE_CURRENT_SOURCE_DIR}/../thread_system"
         )
 
@@ -163,17 +171,11 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         endif()
     endforeach()
 
-    if(NOT MONITORING_LOGGER_TARGET)
-        find_package(logger_system CONFIG QUIET)
-        if(logger_system_FOUND)
-            set(MONITORING_LOGGER_TARGET logger_system::logger_system)
-        endif()
-    endif()
-
-    # Sibling directory fallback
+    # Subdirectory/sibling fallback (preferred for CI where targets file may be missing)
     if(NOT MONITORING_LOGGER_TARGET)
         set(_LOGGER_PATHS
             "$ENV{LOGGER_SYSTEM_ROOT}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/logger_system"
             "${CMAKE_CURRENT_SOURCE_DIR}/../logger_system"
         )
 
@@ -197,14 +199,13 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         message(STATUS "logger_system integration: ENABLED (${MONITORING_LOGGER_TARGET})")
         add_compile_definitions(MONITORING_HAS_LOGGER_SYSTEM)
     else()
-        message(WARNING
+        message(FATAL_ERROR
             "logger_system is REQUIRED but not found.\n"
             "Please ensure logger_system is available:\n"
             "  1. As sibling directory: ../logger_system/\n"
             "  2. As installed package\n"
             "  3. Via LOGGER_SYSTEM_ROOT environment variable\n"
-            "Disabling logger_system integration for standalone build.")
-        set(MONITORING_WITH_LOGGER_SYSTEM OFF)
+            "monitoring_system cannot be built without logger_system.")
     endif()
 endif()
 
@@ -443,9 +444,8 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
             set(MONITORING_CAN_INSTALL FALSE)
         endif()
     else()
-        message(WARNING "MONITORING_WITH_LOGGER_SYSTEM is ON but no logger_system target found. "
-                        "Logger integration will be disabled.")
-        set(MONITORING_WITH_LOGGER_SYSTEM OFF)
+        message(FATAL_ERROR "MONITORING_WITH_LOGGER_SYSTEM is ON but no logger_system target found. "
+                            "logger_system is a required dependency for monitoring_system.")
     endif()
 endif()
 
