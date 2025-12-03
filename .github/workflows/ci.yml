@@ -63,12 +63,23 @@ jobs:
         path: logger_system
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Install GCC 13 for std::format support (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+        sudo apt-get update
+        sudo apt-get install -y g++-13 gcc-13
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
+        g++ --version
+
     - name: Build and install common_system (Unix)
       if: runner.os != 'Windows'
       run: |
         cd common_system
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
+          ${{ runner.os == 'Linux' && '-DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_C_COMPILER=gcc-13' || '' }} \
           -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
         cmake --build build --parallel
         cmake --install build
@@ -80,6 +91,7 @@ jobs:
         cd thread_system
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
+          ${{ runner.os == 'Linux' && '-DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_C_COMPILER=gcc-13' || '' }} \
           -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
           -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/thread_system_install" \
           -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include" \
@@ -113,6 +125,7 @@ jobs:
         cd logger_system
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
+          ${{ runner.os == 'Linux' && '-DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_C_COMPILER=gcc-13' || '' }} \
           -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install" \
           -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/logger_system_install" \
           -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include -I${GITHUB_WORKSPACE}/thread_system_install/include" \
@@ -300,8 +313,8 @@ jobs:
           -DBUILD_EXAMPLES=OFF \
           -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install;${GITHUB_WORKSPACE}/logger_system_install" \
           -DCMAKE_TOOLCHAIN_FILE="${GITHUB_WORKSPACE}/vcpkg/scripts/buildsystems/vcpkg.cmake" \
-          -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && 'gcc' || 'clang' }} \
-          -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}
+          -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'gcc-13' || 'gcc') || 'clang' }} \
+          -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'g++-13' || 'g++') || 'clang++' }}
 
         cmake --build . --parallel
 
@@ -342,8 +355,8 @@ jobs:
           -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install;${GITHUB_WORKSPACE}/logger_system_install" \
           -DUSE_STD_FORMAT=ON \
           -DCMAKE_TOOLCHAIN_FILE="" \
-          -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && 'gcc' || 'clang' }} \
-          -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}
+          -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'gcc-13' || 'gcc') || 'clang' }} \
+          -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'g++-13' || 'g++') || 'clang++' }}
 
         cmake --build . --parallel
 
@@ -461,11 +474,24 @@ jobs:
         path: logger_system
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Install GCC 13 for std::format support
+      run: |
+        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+        sudo apt-get update
+        sudo apt-get install -y g++-13 gcc-13
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
+        sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-13 100
+        sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-13 100
+        g++ --version
+
     - name: Build and install common_system
       run: |
         cd common_system
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_CXX_COMPILER=g++-13 \
+          -DCMAKE_C_COMPILER=gcc-13 \
           -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
         cmake --build build --parallel
         cmake --install build
@@ -476,6 +502,8 @@ jobs:
         cd thread_system
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_CXX_COMPILER=g++-13 \
+          -DCMAKE_C_COMPILER=gcc-13 \
           -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
           -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/thread_system_install" \
           -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include" \
@@ -497,6 +525,8 @@ jobs:
         cd logger_system
         cmake -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_CXX_COMPILER=g++-13 \
+          -DCMAKE_C_COMPILER=gcc-13 \
           -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install" \
           -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/logger_system_install" \
           -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include -I${GITHUB_WORKSPACE}/thread_system_install/include" \
