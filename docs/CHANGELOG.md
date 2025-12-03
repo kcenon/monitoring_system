@@ -67,6 +67,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Simplifies build configuration by removing external dependency fallback logic
   - Part of ecosystem-wide standardization on C++20 features
   - Related: thread_system#219, container_system#168, network_system#257, database_system#203, logger_system#218
+- **Upgraded macOS CI runner from 13 to 14**: Required for C++20 `std::format` support
+  - Apple Clang on macOS-13 lacks `std::format` support
+  - macOS-14 (Sonoma) includes Apple Clang 15+ with `std::format` support
+  - Updated triplet from `x64-osx` to `arm64-osx` for M1/M2 architecture
 
 ## [4.0.0] - 2024-09-16
 
