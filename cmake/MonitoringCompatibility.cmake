@@ -163,96 +163,40 @@ endfunction()
 # Formatting Library Management
 ##################################################
 
-# Test for formatting libraries with vcpkg fmt fallback
+# Test for std::format availability (C++20 required)
 function(check_formatting_support)
     include(CheckCXXSourceCompiles)
-    
-    # First try std::format (skip in C++17 mode to force fallback testing)
-    if(NOT CMAKE_CXX_STANDARD EQUAL 17 AND NOT DEFINED MONITORING_CPP17_MODE)
-        set(CMAKE_REQUIRED_FLAGS "-std=c++20")
-        check_cxx_source_compiles("
-            #include <format>
-            int main() {
-                auto s = std::format(\"Performance: {:.2f}%\", 95.5);
-                return 0;
-            }
-        " HAS_STD_FORMAT)
-    else()
-        message(STATUS "🔒 Skipping std::format check in C++17 mode")
-        set(HAS_STD_FORMAT FALSE)
-    endif()
-    
+
+    # C++20 std::format is required - no fallback to external libraries
+    set(CMAKE_REQUIRED_FLAGS "-std=c++20")
+    check_cxx_source_compiles("
+        #include <format>
+        int main() {
+            auto s = std::format(\"Performance: {:.2f}%\", 95.5);
+            return 0;
+        }
+    " HAS_STD_FORMAT)
+
     if(HAS_STD_FORMAT)
-        message(STATUS "✅ std::format is available for monitoring")
+        message(STATUS "✅ Using C++20 std::format for monitoring")
         add_definitions(-DMONITORING_USE_STD_FORMAT)
         set(MONITORING_FORMAT_BACKEND "std::format" CACHE INTERNAL "Monitoring format backend")
         set(MONITORING_FORMAT_BACKEND "std::format" PARENT_SCOPE)
     else()
-        message(STATUS "⚠️ std::format not available - checking for fmt library")
-        
-        # Try to find fmt through vcpkg or system
-        find_package(fmt CONFIG QUIET)
-        if(fmt_FOUND)
-            message(STATUS "✅ fmt library found - using fmt::format for monitoring")
-            add_definitions(-DMONITORING_USE_FMT)
-            set(MONITORING_FORMAT_BACKEND "fmt::format" CACHE INTERNAL "Monitoring format backend")
-            set(MONITORING_FORMAT_BACKEND "fmt::format" PARENT_SCOPE)
-            set(MONITORING_FMT_TARGET fmt::fmt CACHE INTERNAL "Monitoring fmt target")
-            set(MONITORING_FMT_TARGET fmt::fmt PARENT_SCOPE)
-        else()
-            # Try to find fmt through vcpkg explicitly
-            if(DEFINED ENV{VCPKG_ROOT})
-                message(STATUS "🔍 Trying to find fmt through vcpkg for monitoring...")
-                find_package(fmt CONFIG QUIET PATHS $ENV{VCPKG_ROOT}/installed/${VCPKG_TARGET_TRIPLET})
-                if(fmt_FOUND)
-                    message(STATUS "✅ fmt library found via vcpkg - using fmt::format for monitoring")
-                    add_definitions(-DMONITORING_USE_FMT)
-                    set(MONITORING_FORMAT_BACKEND "fmt::format" CACHE INTERNAL "Monitoring format backend")
-                    set(MONITORING_FORMAT_BACKEND "fmt::format" PARENT_SCOPE)
-                    set(MONITORING_FMT_TARGET fmt::fmt CACHE INTERNAL "Monitoring fmt target")
-                    set(MONITORING_FMT_TARGET fmt::fmt PARENT_SCOPE)
-                endif()
-            endif()
-            
-            if(NOT fmt_FOUND)
-                message(STATUS "⚠️ Neither std::format nor fmt available - using basic formatting for monitoring")
-                add_definitions(-DMONITORING_USE_BASIC_FORMAT)
-                set(MONITORING_FORMAT_BACKEND "basic" CACHE INTERNAL "Monitoring format backend")
-                set(MONITORING_FORMAT_BACKEND "basic" PARENT_SCOPE)
-            endif()
-        endif()
+        message(FATAL_ERROR "std::format is required. Please use a C++20 compliant compiler:\n"
+            "  - GCC 13+ (full support) or GCC 11+ (partial)\n"
+            "  - Clang 14+ with libc++\n"
+            "  - MSVC 2022 (19.29+)\n"
+            "  - Apple Clang 15+")
     endif()
 endfunction()
 
-# Enhanced formatting library setup for monitoring
+# Configure std::format for monitoring target (C++20 required)
 function(setup_monitoring_formatting TARGET_NAME)
     message(STATUS "========================================")
-    message(STATUS "Setting up formatting library for ${TARGET_NAME}")
-    
-    if(DEFINED MONITORING_FORMAT_BACKEND)
-        message(STATUS "  Backend: ${MONITORING_FORMAT_BACKEND}")
-        
-        if(MONITORING_FORMAT_BACKEND STREQUAL "std::format")
-            message(STATUS "  ✅ Using std::format (C++20 native)")
-            target_compile_definitions(${TARGET_NAME} PRIVATE MONITORING_USE_STD_FORMAT)
-            
-        elseif(MONITORING_FORMAT_BACKEND STREQUAL "fmt::format")
-            message(STATUS "  ✅ Using fmt::format library")
-            target_compile_definitions(${TARGET_NAME} PRIVATE MONITORING_USE_FMT)
-            if(DEFINED MONITORING_FMT_TARGET)
-                target_link_libraries(${TARGET_NAME} PRIVATE ${MONITORING_FMT_TARGET})
-                message(STATUS "  📦 Linked fmt target: ${MONITORING_FMT_TARGET}")
-            endif()
-            
-        elseif(MONITORING_FORMAT_BACKEND STREQUAL "basic")
-            message(STATUS "  ⚠️  Using basic formatting fallback")
-            target_compile_definitions(${TARGET_NAME} PRIVATE MONITORING_USE_BASIC_FORMAT)
-        endif()
-    else()
-        message(WARNING "MONITORING_FORMAT_BACKEND not set - using basic formatting")
-        target_compile_definitions(${TARGET_NAME} PRIVATE MONITORING_USE_BASIC_FORMAT)
-    endif()
-    
+    message(STATUS "Setting up formatting for ${TARGET_NAME}")
+    message(STATUS "  Backend: std::format (C++20)")
+    target_compile_definitions(${TARGET_NAME} PRIVATE MONITORING_USE_STD_FORMAT)
     message(STATUS "========================================")
 endfunction()
 

@@ -63,6 +63,14 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 
 ### 변경됨
 - 문서를 중앙 집중식 구조로 통합
+- **fmt 라이브러리 fallback 제거**: CMake 설정이 이제 C++20 `std::format`만 요구함
+  - 외부 의존성 fallback 로직을 제거하여 빌드 설정 단순화
+  - 생태계 전체의 C++20 기능 표준화의 일부
+  - 관련: thread_system#219, container_system#168, network_system#257, database_system#203, logger_system#218
+- **macOS CI 러너 13에서 14로 업그레이드**: C++20 `std::format` 지원을 위해 필요
+  - macOS-13의 Apple Clang은 `std::format`을 지원하지 않음
+  - macOS-14 (Sonoma)는 `std::format`을 지원하는 Apple Clang 15+ 포함
+  - M1/M2 아키텍처를 위해 triplet을 `x64-osx`에서 `arm64-osx`로 업데이트
 
 ## [4.0.0] - 2024-09-16
 
