@@ -63,6 +63,10 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 
 ### 변경됨
 - 문서를 중앙 집중식 구조로 통합
+- **fmt 라이브러리 fallback 제거**: CMake 설정이 이제 C++20 `std::format`만 요구함
+  - 외부 의존성 fallback 로직을 제거하여 빌드 설정 단순화
+  - 생태계 전체의 C++20 기능 표준화의 일부
+  - 관련: thread_system#219, container_system#168, network_system#257, database_system#203, logger_system#218
 
 ## [4.0.0] - 2024-09-16
 

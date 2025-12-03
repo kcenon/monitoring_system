@@ -63,6 +63,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Unified documentation into centralized structure
+- **Removed fmt library fallback**: CMake configuration now requires C++20 `std::format` exclusively
+  - Simplifies build configuration by removing external dependency fallback logic
+  - Part of ecosystem-wide standardization on C++20 features
+  - Related: thread_system#219, container_system#168, network_system#257, database_system#203, logger_system#218
 
 ## [4.0.0] - 2024-09-16
 
