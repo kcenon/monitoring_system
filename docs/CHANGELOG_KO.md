@@ -62,6 +62,11 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 - 보안 정책 문서
 
 ### 변경됨
+- **logger_system이 이제 선택 사항**: 필수 의존성에서 선택적 의존성으로 변경 (#213)
+  - monitoring_system이 이제 런타임 바인딩을 위해 common_system의 ILogger 인터페이스 사용
+  - logger_system을 의존성 주입을 통해 런타임에 주입 가능
+  - logger_system에 대한 컴파일 타임 의존성 제거
+  - MONITORING_WITH_LOGGER_SYSTEM 옵션 기본값 OFF
 - 문서를 중앙 집중식 구조로 통합
 - **fmt 라이브러리 fallback 제거**: CMake 설정이 이제 C++20 `std::format`만 요구함
   - 외부 의존성 fallback 로직을 제거하여 빌드 설정 단순화

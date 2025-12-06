@@ -28,13 +28,18 @@ option(MONITORING_WITH_COMMON_SYSTEM "Enable common_system integration" ON)
 # Dependency Configuration (Option A Structure)
 #
 # Tier 3: monitoring_system
-#   Required: logger_system <- thread_system <- common_system
+#   Required: thread_system <- common_system
+#   Optional: logger_system (runtime-bound via ILogger interface)
 #   Optional: network_system (HTTP metrics export)
+#
+# Note: logger_system is now optional because monitoring_system uses
+# common_system's ILogger interface for runtime binding.
+# See Issue #213 for migration details.
 ##################################################
 
 # Required dependencies (Tier 2 and below)
 option(MONITORING_WITH_THREAD_SYSTEM "Enable thread_system integration (REQUIRED)" ON)
-option(MONITORING_WITH_LOGGER_SYSTEM "Enable logger_system integration (REQUIRED)" ON)
+option(MONITORING_WITH_LOGGER_SYSTEM "Enable logger_system integration (OPTIONAL - runtime binding via ILogger)" OFF)
 
 # Optional integration (Tier 4 - kept optional to prevent circular dependency)
 option(MONITORING_WITH_NETWORK_SYSTEM "Enable network_system integration for HTTP transport (OPTIONAL)" OFF)
@@ -159,8 +164,8 @@ if(MONITORING_WITH_THREAD_SYSTEM)
     endif()
 endif()
 
-# logger_system (REQUIRED - Tier 2)
-message(STATUS "=== Finding logger_system (REQUIRED) ===")
+# logger_system (OPTIONAL - Tier 2, runtime-bound via ILogger interface)
+message(STATUS "=== Finding logger_system (OPTIONAL) ===")
 set(MONITORING_LOGGER_TARGET "")
 if(MONITORING_WITH_LOGGER_SYSTEM)
     foreach(_candidate LoggerSystem logger logger_system::logger_system)
@@ -199,15 +204,15 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
         message(STATUS "logger_system integration: ENABLED (${MONITORING_LOGGER_TARGET})")
         add_compile_definitions(MONITORING_HAS_LOGGER_SYSTEM)
     else()
-        message(FATAL_ERROR
-            "logger_system is REQUIRED but not found.\n"
-            "Please ensure logger_system is available:\n"
-            "  1. As sibling directory: ../logger_system/\n"
-            "  2. As installed package\n"
-            "  3. Via LOGGER_SYSTEM_ROOT environment variable\n"
-            "monitoring_system cannot be built without logger_system.")
+        message(STATUS
+            "logger_system not found - using runtime binding via ILogger interface.\n"
+            "Note: logger_system can still be provided at runtime via dependency injection.")
+        set(MONITORING_WITH_LOGGER_SYSTEM OFF)
     endif()
 endif()
+
+# Always define logging capability via common_system ILogger interface
+message(STATUS "Logging: Using common_system ILogger interface (runtime binding)")
 
 ##################################################
 # Optional Dependencies Detection
@@ -444,8 +449,9 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
             set(MONITORING_CAN_INSTALL FALSE)
         endif()
     else()
-        message(FATAL_ERROR "MONITORING_WITH_LOGGER_SYSTEM is ON but no logger_system target found. "
-                            "logger_system is a required dependency for monitoring_system.")
+        message(STATUS "MONITORING_WITH_LOGGER_SYSTEM is ON but no logger_system target found. "
+                       "Falling back to runtime binding via ILogger interface.")
+        set(MONITORING_WITH_LOGGER_SYSTEM OFF)
     endif()
 endif()
 
@@ -559,7 +565,7 @@ message(STATUS "Dependency Chain (Tier 3):")
 message(STATUS "  monitoring_system")
 message(STATUS "    ├── common_system (Tier 0): ${MONITORING_WITH_COMMON_SYSTEM} [REQUIRED]")
 message(STATUS "    ├── thread_system (Tier 1): ${MONITORING_WITH_THREAD_SYSTEM} [REQUIRED]")
-message(STATUS "    ├── logger_system (Tier 2): ${MONITORING_WITH_LOGGER_SYSTEM} [REQUIRED]")
+message(STATUS "    ├── logger_system (Tier 2): ${MONITORING_WITH_LOGGER_SYSTEM} [OPTIONAL - runtime via ILogger]")
 message(STATUS "    └── network_system (Tier 4): ${MONITORING_WITH_NETWORK_SYSTEM} [OPTIONAL]")
 message(STATUS "")
 message(STATUS "Build Configuration:")

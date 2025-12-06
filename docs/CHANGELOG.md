@@ -62,6 +62,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security policy documentation
 
 ### Changed
+- **logger_system now optional**: Changed from required to optional dependency (#213)
+  - monitoring_system now uses common_system's ILogger interface for runtime binding
+  - logger_system can be injected at runtime via dependency injection
+  - Removes compile-time dependency on logger_system
+  - MONITORING_WITH_LOGGER_SYSTEM option defaults to OFF
 - Unified documentation into centralized structure
 - **Removed fmt library fallback**: CMake configuration now requires C++20 `std::format` exclusively
   - Simplifies build configuration by removing external dependency fallback logic
