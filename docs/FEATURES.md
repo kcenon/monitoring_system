@@ -863,7 +863,133 @@ if (collector.is_power_available()) {
 
 ---
 
+## GPU Metrics Monitoring
+
+### Overview
+
+The GPU collector provides comprehensive GPU metrics monitoring for NVIDIA, AMD, Intel, and Apple GPUs. It supports utilization, memory, temperature, power, clock speed, and fan metrics with cross-platform implementations and graceful degradation when GPUs or metrics are unavailable.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **gpu_utilization_percent** | GPU compute utilization | Percent |
+| **gpu_memory_used_bytes** | VRAM currently in use | Bytes |
+| **gpu_memory_total_bytes** | Total VRAM capacity | Bytes |
+| **gpu_memory_usage_percent** | Percentage of VRAM used | Percent |
+| **gpu_temperature_celsius** | GPU temperature | Celsius |
+| **gpu_power_watts** | Current power consumption | Watts |
+| **gpu_power_limit_watts** | Power limit/TDP | Watts |
+| **gpu_clock_mhz** | Current GPU clock speed | MHz |
+| **gpu_memory_clock_mhz** | Current memory clock speed | MHz |
+| **gpu_fan_speed_percent** | Fan speed | Percent |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/gpu_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+gpu_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_utilization", "true"},
+    {"collect_memory", "true"},
+    {"collect_temperature", "true"},
+    {"collect_power", "true"},
+    {"collect_clock", "true"},
+    {"collect_fan", "true"}
+};
+collector.initialize(config);
+
+// Collect GPU metrics from all devices
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw GPU readings
+auto readings = collector.get_last_readings();
+for (const auto& reading : readings) {
+    std::cout << "GPU: " << reading.device.name << std::endl;
+    std::cout << "  Vendor: " << gpu_vendor_to_string(reading.device.vendor) << std::endl;
+    std::cout << "  Type: " << gpu_type_to_string(reading.device.type) << std::endl;
+    if (reading.utilization_available) {
+        std::cout << "  Utilization: " << reading.utilization_percent << "%" << std::endl;
+    }
+    if (reading.memory_available) {
+        std::cout << "  Memory: " << reading.memory_used_bytes << " / " 
+                  << reading.memory_total_bytes << " bytes" << std::endl;
+    }
+    if (reading.temperature_available) {
+        std::cout << "  Temperature: " << reading.temperature_celsius << "°C" << std::endl;
+    }
+    if (reading.power_available) {
+        std::cout << "  Power: " << reading.power_watts << " W" << std::endl;
+    }
+}
+```
+
+### GPU Availability Check
+
+```cpp
+gpu_collector collector;
+collector.initialize({});
+
+// Check if GPU monitoring is available
+if (collector.is_gpu_available()) {
+    std::cout << "GPU monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "No GPUs detected or GPU monitoring not available" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable GPU collection |
+| `collect_utilization` | true | Collect GPU utilization metrics |
+| `collect_memory` | true | Collect VRAM usage metrics |
+| `collect_temperature` | true | Collect GPU temperature |
+| `collect_power` | true | Collect power consumption metrics |
+| `collect_clock` | true | Collect clock speed metrics |
+| `collect_fan` | true | Collect fan speed metrics |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | sysfs | `/sys/class/drm/card*/device/` for enumeration, `hwmon` for temperature/power/fan |
+| **macOS** | IOKit/SMC | IOKit for enumeration, SMC for GPU temperature |
+| **Windows** | Stub | Future: DirectX/WMI/vendor APIs |
+
+**Vendor-Specific Metrics (Linux)**:
+
+| Vendor | Utilization | Memory | Temperature | Power | Clock | Fan |
+|--------|:-----------:|:------:|:-----------:|:-----:|:-----:|:---:|
+| **AMD** | ✅ gpu_busy_percent | ✅ mem_info_vram | ✅ hwmon | ✅ hwmon | ✅ pp_dpm_sclk | ✅ hwmon |
+| **NVIDIA** | ❌ (needs NVML) | ❌ (needs NVML) | ✅ hwmon | ✅ hwmon | ❌ (needs NVML) | ✅ hwmon |
+| **Intel** | ❌ | ❌ | ✅ hwmon | ❌ | ❌ | ❌ |
+
+> [!NOTE]
+> The GPU collector uses sysfs/IOKit approaches rather than vendor-specific libraries (NVML, ROCm SMI) to avoid mandatory external dependencies. AMD GPUs on Linux provide the most comprehensive metrics via sysfs. For full NVIDIA metrics, consider using NVML directly.
+
+> [!TIP]
+> On macOS, GPU temperature is available via SMC keys (TG0D, TG0P). Other metrics like utilization and memory require Metal Performance Shaders or vendor-specific APIs which are not used in this implementation.
+
+---
+
 ## Distributed Tracing
+
 
 ### Span Management
 

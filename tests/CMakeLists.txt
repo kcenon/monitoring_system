@@ -66,6 +66,9 @@ add_executable(monitoring_system_tests
     # Power consumption monitoring (Issue #216)
     test_power_collector.cpp
 
+    # GPU metrics monitoring (Issue #221)
+    test_gpu_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
