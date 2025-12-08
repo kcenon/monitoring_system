@@ -60,6 +60,9 @@ add_executable(monitoring_system_tests
     # TCP connection state monitoring (Issue #225)
     test_tcp_state_collector.cpp
 
+    # Interrupt statistics monitoring (Issue #223)
+    test_interrupt_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
