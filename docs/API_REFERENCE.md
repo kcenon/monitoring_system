@@ -355,6 +355,61 @@ struct smart_disk_metrics {
 
 ---
 
+### File Descriptor Usage Collector
+**Header:** `include/kcenon/monitoring/collectors/fd_collector.h`
+
+#### `fd_collector`
+Collects file descriptor usage metrics for proactive FD exhaustion detection.
+
+```cpp
+class fd_collector {
+public:
+    fd_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect FD usage metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    fd_metrics get_last_metrics() const;
+
+    // Check if FD monitoring is available
+    bool is_fd_monitoring_available() const;
+};
+```
+
+#### `fd_metrics`
+Structure containing FD usage data.
+
+```cpp
+struct fd_metrics {
+    uint64_t fd_used_system;        // Total system FDs in use (Linux only)
+    uint64_t fd_max_system;         // System FD limit (Linux only)
+    uint64_t fd_used_process;       // Current process FD count
+    uint64_t fd_soft_limit;         // Process FD soft limit
+    uint64_t fd_hard_limit;         // Process FD hard limit
+    double fd_usage_percent;        // Percentage of soft limit used
+    bool system_metrics_available;  // Whether system-wide metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+---
+
 ## Health Monitoring
 
 ### Health Monitor
