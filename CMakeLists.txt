@@ -425,6 +425,14 @@ target_link_libraries(monitoring_system PUBLIC
     Threads::Threads
 )
 
+# Platform-specific libraries for temperature monitoring
+if(APPLE)
+    target_link_libraries(monitoring_system PUBLIC
+        "-framework IOKit"
+        "-framework CoreFoundation"
+    )
+endif()
+
 # Setup formatting library (std::format, fmt, or basic fallback)
 if(COMMAND setup_monitoring_formatting)
     setup_monitoring_formatting(monitoring_system)
