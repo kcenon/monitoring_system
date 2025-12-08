@@ -15,6 +15,7 @@ This document provides comprehensive details about all features available in the
 - [Performance Monitoring](#performance-monitoring)
 - [Container Metrics Monitoring](#container-metrics-monitoring)
 - [SMART Disk Health Monitoring](#smart-disk-health-monitoring)
+- [Hardware Temperature Monitoring](#hardware-temperature-monitoring)
 - [Distributed Tracing](#distributed-tracing)
 - [Health Monitoring](#health-monitoring)
 - [Error Handling](#error-handling)
@@ -323,6 +324,98 @@ if (collector.is_smart_available()) {
 
 > [!NOTE]
 > The collector gracefully degrades when `smartctl` is not available or a disk doesn't support SMART. No errors are returned; the collector simply returns empty metrics.
+
+---
+
+## Hardware Temperature Monitoring
+
+### Overview
+
+The temperature collector provides hardware temperature monitoring for thermal sensor data from CPU, GPU, and other system components. It supports cross-platform implementations with graceful degradation when sensors are unavailable.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **Temperature** | Current sensor temperature | Celsius |
+| **Critical Threshold** | Temperature threshold for critical state | Celsius |
+| **Warning Threshold** | Temperature threshold for warning state | Celsius |
+| **Is Critical** | Whether temperature exceeds critical threshold | Boolean |
+| **Is Warning** | Whether temperature exceeds warning threshold | Boolean |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/temperature_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+temperature_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_thresholds", "true"},
+    {"collect_warnings", "true"}
+};
+collector.initialize(config);
+
+// Collect temperature metrics from all sensors
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw temperature readings
+auto readings = collector.get_last_readings();
+for (const auto& reading : readings) {
+    std::cout << "Sensor: " << reading.sensor.name << std::endl;
+    std::cout << "  Type: " << sensor_type_to_string(reading.sensor.type) << std::endl;
+    std::cout << "  Temperature: " << reading.temperature_celsius << "°C" << std::endl;
+    if (reading.thresholds_available) {
+        std::cout << "  Warning: " << reading.warning_threshold_celsius << "°C" << std::endl;
+        std::cout << "  Critical: " << reading.critical_threshold_celsius << "°C" << std::endl;
+    }
+}
+```
+
+### Thermal Availability Check
+
+```cpp
+temperature_collector collector;
+collector.initialize({});
+
+// Check if thermal monitoring is available
+if (collector.is_thermal_available()) {
+    std::cout << "Thermal sensors accessible" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "No thermal sensors found" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable temperature collection |
+| `collect_thresholds` | true | Collect critical/warning thresholds |
+| `collect_warnings` | true | Collect warning/critical status flags |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | sysfs | `/sys/class/thermal/thermal_zone*/temp` |
+| **macOS** | IOKit SMC | System Management Controller keys |
+| **Windows** | WMI | `MSAcpi_ThermalZoneTemperature` class |
+
+> [!NOTE]
+> The collector gracefully degrades when thermal sensors are not available or when access is restricted. No errors are returned; the collector simply returns empty metrics.
 
 ---
 
