@@ -57,6 +57,9 @@ add_executable(monitoring_system_tests
     # Inode usage monitoring (Issue #224)
     test_inode_collector.cpp
 
+    # TCP connection state monitoring (Issue #225)
+    test_tcp_state_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
