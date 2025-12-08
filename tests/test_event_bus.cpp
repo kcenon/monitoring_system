@@ -32,20 +32,22 @@
  * @brief Test for event-driven communication system
  */
 
+#include <gtest/gtest.h>
+#include <kcenon/monitoring/adapters/logger_system_adapter.h>
+#include <kcenon/monitoring/adapters/thread_system_adapter.h>
 #include <kcenon/monitoring/core/event_bus.h>
 #include <kcenon/monitoring/core/event_types.h>
-#include <kcenon/monitoring/adapters/thread_system_adapter.h>
-#include <kcenon/monitoring/adapters/logger_system_adapter.h>
-#include <gtest/gtest.h>
+
 #include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <thread>
 
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 class EventBusTest : public ::testing::Test {
-protected:
+   protected:
     void SetUp() override {
         event_bus::config config;
         config.max_queue_size = 1000;
@@ -69,33 +71,34 @@ TEST_F(EventBusTest, PublishSubscribe) {
     std::atomic<int> received_count{0};
     std::string received_message;
     std::mutex message_mutex;
+    std::condition_variable cv;
 
     // Subscribe to performance alerts
-    auto token = bus->subscribe_event<performance_alert_event>(
-        [&](const performance_alert_event& event) {
+    auto token =
+        bus->subscribe_event<performance_alert_event>([&](const performance_alert_event& event) {
             {
                 std::lock_guard<std::mutex> lock(message_mutex);
                 received_message = event.get_message();
             }
             received_count++;
-        }
-    );
+            cv.notify_one();
+        });
 
     ASSERT_TRUE(token.is_ok());
 
     // Publish an event
-    performance_alert_event alert(
-        performance_alert_event::alert_type::high_cpu_usage,
-        performance_alert_event::alert_severity::warning,
-        "test_component",
-        "CPU usage is high"
-    );
+    performance_alert_event alert(performance_alert_event::alert_type::high_cpu_usage,
+                                  performance_alert_event::alert_severity::warning,
+                                  "test_component", "CPU usage is high");
 
     auto result = bus->publish_event(alert);
     ASSERT_TRUE(result.is_ok());
 
-    // Wait for event processing
-    std::this_thread::sleep_for(100ms);
+    // Wait for event processing with condition variable
+    {
+        std::unique_lock<std::mutex> lock(message_mutex);
+        ASSERT_TRUE(cv.wait_for(lock, 5s, [&] { return received_count.load() >= 1; }));
+    }
 
     EXPECT_EQ(received_count.load(), 1);
     {
@@ -108,19 +111,19 @@ TEST_F(EventBusTest, PublishSubscribe) {
 TEST_F(EventBusTest, MultipleSubscribers) {
     std::atomic<int> subscriber1_count{0};
     std::atomic<int> subscriber2_count{0};
+    std::mutex mtx;
+    std::condition_variable cv;
 
     // Subscribe twice to the same event type
-    bus->subscribe_event<system_resource_event>(
-        [&](const system_resource_event& /*event*/) {
-            subscriber1_count++;
-        }
-    );
+    bus->subscribe_event<system_resource_event>([&](const system_resource_event& /*event*/) {
+        subscriber1_count++;
+        cv.notify_all();
+    });
 
-    bus->subscribe_event<system_resource_event>(
-        [&](const system_resource_event& /*event*/) {
-            subscriber2_count++;
-        }
-    );
+    bus->subscribe_event<system_resource_event>([&](const system_resource_event& /*event*/) {
+        subscriber2_count++;
+        cv.notify_all();
+    });
 
     // Publish event
     system_resource_event::resource_stats stats;
@@ -129,7 +132,13 @@ TEST_F(EventBusTest, MultipleSubscribers) {
 
     bus->publish_event(event);
 
-    std::this_thread::sleep_for(100ms);
+    // Wait for both subscribers with timeout
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        ASSERT_TRUE(cv.wait_for(lock, 5s, [&] {
+            return subscriber1_count.load() >= 1 && subscriber2_count.load() >= 1;
+        }));
+    }
 
     EXPECT_EQ(subscriber1_count.load(), 1);
     EXPECT_EQ(subscriber2_count.load(), 1);
@@ -139,30 +148,29 @@ TEST_F(EventBusTest, MultipleSubscribers) {
 TEST_F(EventBusTest, EventPriority) {
     std::vector<int> processing_order;
     std::mutex order_mutex;
+    std::condition_variable cv;
 
     // Subscribe to configuration changes
     bus->subscribe_event<configuration_change_event>(
         [&](const configuration_change_event& event) {
-            std::lock_guard<std::mutex> lock(order_mutex);
-            if (event.get_config_key() == "high_priority") {
-                processing_order.push_back(1);
-            } else {
-                processing_order.push_back(2);
+            {
+                std::lock_guard<std::mutex> lock(order_mutex);
+                if (event.get_config_key() == "high_priority") {
+                    processing_order.push_back(1);
+                } else {
+                    processing_order.push_back(2);
+                }
             }
+            cv.notify_all();
         },
-        event_priority::high
-    );
+        event_priority::high);
 
     // Publish events with different priorities
-    configuration_change_event high_priority(
-        "test", "high_priority",
-        configuration_change_event::change_type::modified
-    );
+    configuration_change_event high_priority("test", "high_priority",
+                                             configuration_change_event::change_type::modified);
 
-    configuration_change_event normal_priority(
-        "test", "normal_priority",
-        configuration_change_event::change_type::modified
-    );
+    configuration_change_event normal_priority("test", "normal_priority",
+                                               configuration_change_event::change_type::modified);
 
     // Stop bus to queue events
     bus->stop();
@@ -173,7 +181,12 @@ TEST_F(EventBusTest, EventPriority) {
 
     // Restart and process
     bus->start();
-    std::this_thread::sleep_for(200ms);
+
+    // Wait for both events to be processed with timeout
+    {
+        std::unique_lock<std::mutex> lock(order_mutex);
+        cv.wait_for(lock, 5s, [&] { return processing_order.size() >= 2; });
+    }
 
     // Stop the bus to ensure all events are processed before checking results
     bus->stop();
@@ -181,7 +194,7 @@ TEST_F(EventBusTest, EventPriority) {
     // Verify events were processed
     {
         std::lock_guard<std::mutex> lock(order_mutex);
-        EXPECT_GE(processing_order.size(), 0u);
+        EXPECT_GE(processing_order.size(), 0U);
     }
     // Note: Priority ordering test is inherently flaky in async systems
 }
@@ -189,12 +202,13 @@ TEST_F(EventBusTest, EventPriority) {
 // Test unsubscribe
 TEST_F(EventBusTest, Unsubscribe) {
     std::atomic<int> received_count{0};
+    std::mutex mtx;
+    std::condition_variable cv;
 
-    auto token = bus->subscribe_event<health_check_event>(
-        [&](const health_check_event& /*event*/) {
-            received_count++;
-        }
-    );
+    auto token = bus->subscribe_event<health_check_event>([&](const health_check_event& /*event*/) {
+        received_count++;
+        cv.notify_one();
+    });
 
     ASSERT_TRUE(token.is_ok());
 
@@ -203,7 +217,11 @@ TEST_F(EventBusTest, Unsubscribe) {
     health_check_event event1("component1", results);
     bus->publish_event(event1);
 
-    std::this_thread::sleep_for(100ms);
+    // Wait for first event with timeout
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        ASSERT_TRUE(cv.wait_for(lock, 5s, [&] { return received_count.load() >= 1; }));
+    }
     EXPECT_EQ(received_count.load(), 1);
 
     // Unsubscribe
@@ -213,8 +231,13 @@ TEST_F(EventBusTest, Unsubscribe) {
     health_check_event event2("component2", results);
     bus->publish_event(event2);
 
-    std::this_thread::sleep_for(100ms);
-    EXPECT_EQ(received_count.load(), 1); // Should still be 1
+    // After unsubscribe, we need a small wait to verify event is NOT received
+    // This is a legitimate case where we need a brief timeout to confirm no event arrived
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        cv.wait_for(lock, 100ms, [&] { return received_count.load() >= 2; });
+    }
+    EXPECT_EQ(received_count.load(), 1);  // Should still be 1
 }
 
 // Test thread system adapter
@@ -242,7 +265,7 @@ TEST_F(EventBusTest, ThreadSystemAdapter) {
     EXPECT_FALSE(types.empty());
     EXPECT_EQ(types.size(), 3u);
 #else
-    EXPECT_TRUE(types.empty()); // Empty when thread_system not available
+    EXPECT_TRUE(types.empty());  // Empty when thread_system not available
 #endif
 }
 
@@ -273,52 +296,58 @@ TEST_F(EventBusTest, Statistics) {
 
     // Publish some events
     for (int i = 0; i < 10; ++i) {
-        component_lifecycle_event event(
-            "test_component",
-            component_lifecycle_event::lifecycle_state::started,
-            component_lifecycle_event::lifecycle_state::running
-        );
+        component_lifecycle_event event("test_component",
+                                        component_lifecycle_event::lifecycle_state::started,
+                                        component_lifecycle_event::lifecycle_state::running);
         bus->publish_event(event);
     }
 
-    std::this_thread::sleep_for(200ms);
+    // Wait until all events are published (poll stats with timeout)
+    auto deadline = std::chrono::steady_clock::now() + 5s;
+    while (std::chrono::steady_clock::now() < deadline) {
+        auto stats = bus->get_stats();
+        if (stats.total_published >= 10) {
+            break;
+        }
+        std::this_thread::yield();
+    }
 
     auto final_stats = bus->get_stats();
     EXPECT_EQ(final_stats.total_published, 10);
-    EXPECT_GE(final_stats.total_processed, 0); // May vary due to async processing
+    EXPECT_GE(final_stats.total_processed, 0);  // May vary due to async processing
 }
 
 // Test concurrent publishing
 TEST_F(EventBusTest, ConcurrentPublishing) {
     std::atomic<int> received_count{0};
-
-    // Subscribe to metric collection events
-    bus->subscribe_event<metric_collection_event>(
-        [&](const metric_collection_event& event) {
-            received_count.fetch_add(static_cast<int>(event.get_metric_count()));
-        }
-    );
-
+    std::mutex mtx;
+    std::condition_variable cv;
     const int num_threads = 4;
     const int events_per_thread = 25;
+    const int total_expected = num_threads * events_per_thread;
+
+    // Subscribe to metric collection events
+    bus->subscribe_event<metric_collection_event>([&](const metric_collection_event& event) {
+        received_count.fetch_add(static_cast<int>(event.get_metric_count()));
+        cv.notify_all();
+    });
+
     std::vector<std::thread> publishers;
+    publishers.reserve(num_threads);
 
     // Start publisher threads
     for (int t = 0; t < num_threads; ++t) {
         publishers.emplace_back([this, events_per_thread]() {
             for (int i = 0; i < events_per_thread; ++i) {
                 std::vector<metric> metrics;
-                metrics.push_back(metric{
-                    "test_metric",
-                    42.0,
-                    {{"thread", "publisher"}},
-                    metric_type::gauge
-                });
+                metrics.push_back(
+                    metric{"test_metric", 42.0, {{"thread", "publisher"}}, metric_type::gauge});
 
                 metric_collection_event event("test_collector", std::move(metrics));
                 bus->publish_event(event);
 
-                std::this_thread::sleep_for(1ms);
+                // Yield to allow other threads to run instead of sleeping
+                std::this_thread::yield();
             }
         });
     }
@@ -328,9 +357,13 @@ TEST_F(EventBusTest, ConcurrentPublishing) {
         thread.join();
     }
 
-    // Wait for processing
-    std::this_thread::sleep_for(500ms);
+    // Wait for processing with condition variable
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        ASSERT_TRUE(
+            cv.wait_for(lock, 10s, [&] { return received_count.load() >= total_expected; }));
+    }
 
     // Should have received all metrics
-    EXPECT_EQ(received_count.load(), num_threads * events_per_thread);
+    EXPECT_EQ(received_count.load(), total_expected);
 }
