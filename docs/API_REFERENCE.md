@@ -754,7 +754,123 @@ enum class power_source_type {
 
 ---
 
+### GPU Metrics Collector
+**Header:** `include/kcenon/monitoring/collectors/gpu_collector.h`
+
+#### `gpu_collector`
+Collects GPU metrics for NVIDIA, AMD, Intel, and Apple GPUs.
+
+```cpp
+class gpu_collector {
+public:
+    gpu_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect GPU metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected readings
+    std::vector<gpu_reading> get_last_readings() const;
+
+    // Check if GPU monitoring is available
+    bool is_gpu_available() const;
+};
+```
+
+#### `gpu_reading`
+Structure containing GPU metrics data.
+
+```cpp
+struct gpu_reading {
+    gpu_device_info device;           // GPU device information
+    double utilization_percent;       // GPU compute utilization (0-100)
+    uint64_t memory_used_bytes;       // VRAM currently used
+    uint64_t memory_total_bytes;      // Total VRAM capacity
+    double temperature_celsius;       // GPU temperature
+    double power_watts;               // Current power consumption
+    double power_limit_watts;         // Power limit/TDP
+    double clock_mhz;                 // Current GPU clock speed
+    double memory_clock_mhz;          // Current memory clock speed
+    double fan_speed_percent;         // Fan speed (0-100)
+    bool utilization_available;       // Whether utilization metrics available
+    bool memory_available;            // Whether memory metrics available
+    bool temperature_available;       // Whether temperature metrics available
+    bool power_available;             // Whether power metrics available
+    bool clock_available;             // Whether clock metrics available
+    bool fan_available;               // Whether fan metrics available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `gpu_device_info`
+Structure containing GPU device information.
+
+```cpp
+struct gpu_device_info {
+    std::string id;              // Unique device identifier (e.g., "gpu0")
+    std::string name;            // Human-readable device name
+    std::string device_path;     // Platform-specific path
+    std::string driver_version;  // Driver version string
+    gpu_vendor vendor;           // GPU vendor (nvidia, amd, intel, apple)
+    gpu_type type;               // GPU type (discrete, integrated, virtual)
+    uint32_t device_index;       // Device index for multi-GPU systems
+};
+```
+
+#### `gpu_vendor` Enum
+```cpp
+enum class gpu_vendor {
+    unknown,  // Unknown vendor
+    nvidia,   // NVIDIA Corporation
+    amd,      // Advanced Micro Devices
+    intel,    // Intel Corporation
+    apple,    // Apple (Apple Silicon GPU)
+    other     // Other vendor
+};
+```
+
+#### `gpu_type` Enum
+```cpp
+enum class gpu_type {
+    unknown,     // Unknown GPU type
+    discrete,    // Discrete GPU (dedicated graphics card)
+    integrated,  // Integrated GPU (part of CPU/SoC)
+    virtual_gpu  // Virtual GPU (cloud/VM)
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses sysfs (`/sys/class/drm/card*/device/`) for GPU enumeration and metrics. AMD GPUs support utilization, memory, and clock via AMDGPU sysfs. All vendors support temperature, power, and fan via hwmon.
+- **macOS**: Uses IOKit for GPU enumeration and SMC for GPU temperature. Supports NVIDIA, AMD, Intel, and Apple GPUs with graceful degradation.
+- **Windows**: Stub implementation (future: DirectX/WMI/vendor APIs)
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `collect_utilization`: "true"/"false" (default: true)
+- `collect_memory`: "true"/"false" (default: true)
+- `collect_temperature`: "true"/"false" (default: true)
+- `collect_power`: "true"/"false" (default: true)
+- `collect_clock`: "true"/"false" (default: true)
+- `collect_fan`: "true"/"false" (default: true)
+
+---
+
 ## Health Monitoring
+
 
 ### Health Monitor
 **Header:** `sources/monitoring/health/health_monitor.h`
