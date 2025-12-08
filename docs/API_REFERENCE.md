@@ -591,6 +591,82 @@ enum class tcp_state {
 
 ---
 
+### Interrupt Statistics Collector
+**Header:** `include/kcenon/monitoring/collectors/interrupt_collector.h`
+
+#### `interrupt_collector`
+Collects hardware and software interrupt statistics for performance analysis.
+
+```cpp
+class interrupt_collector {
+public:
+    interrupt_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect interrupt statistics metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    interrupt_metrics get_last_metrics() const;
+
+    // Check if interrupt monitoring is available
+    bool is_interrupt_monitoring_available() const;
+};
+```
+
+#### `interrupt_metrics`
+Structure containing aggregated interrupt statistics.
+
+```cpp
+struct interrupt_metrics {
+    uint64_t interrupts_total;          // Total hardware interrupt count
+    double interrupts_per_sec;          // Hardware interrupt rate
+    uint64_t soft_interrupts_total;     // Total soft interrupts (Linux only)
+    double soft_interrupts_per_sec;     // Soft interrupt rate (Linux only)
+    std::vector<cpu_interrupt_info> per_cpu;  // Per-CPU breakdown (optional)
+    bool metrics_available;             // Whether metrics are available
+    bool soft_interrupts_available;     // Whether soft interrupt metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `cpu_interrupt_info`
+Structure containing per-CPU interrupt data.
+
+```cpp
+struct cpu_interrupt_info {
+    uint32_t cpu_id;             // CPU identifier
+    uint64_t interrupt_count;    // Total interrupts on this CPU
+    double interrupts_per_sec;   // Interrupt rate on this CPU
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `/proc/stat` (intr line) for total interrupts and `/proc/softirqs` for soft interrupt breakdown
+- **macOS**: Uses `host_statistics64()` for system activity metrics
+- **Windows**: Stub implementation (future: PDH performance counters)
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `collect_per_cpu`: "true"/"false" (default: false)
+- `collect_soft_interrupts`: "true"/"false" (default: true)
+
+---
+
 ## Health Monitoring
 
 ### Health Monitor
