@@ -296,6 +296,65 @@ public:
 
 ---
 
+### SMART Disk Health Collector
+**Header:** `include/kcenon/monitoring/collectors/smart_collector.h`
+
+#### `smart_collector`
+Collects S.M.A.R.T. disk health metrics using smartctl (smartmontools).
+
+```cpp
+class smart_collector {
+public:
+    smart_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect SMART metrics from all disks
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    std::vector<smart_disk_metrics> get_last_metrics() const;
+
+    // Check if SMART monitoring is available
+    bool is_smart_available() const;
+};
+```
+
+#### `smart_disk_metrics`
+Structure containing per-disk SMART health data.
+
+```cpp
+struct smart_disk_metrics {
+    std::string device_path;        // Device path (e.g., /dev/sda)
+    std::string model_name;         // Disk model name
+    std::string serial_number;      // Disk serial number
+    bool smart_supported;           // SMART support available
+    bool smart_enabled;             // SMART enabled
+    bool health_ok;                 // Overall health (PASSED = true)
+    double temperature_celsius;     // Current temperature
+    uint64_t reallocated_sectors;   // Reallocated sector count
+    uint64_t power_on_hours;        // Total power-on hours
+    uint64_t power_cycle_count;     // Power cycle count
+    uint64_t pending_sectors;       // Pending sector count
+    uint64_t uncorrectable_errors;  // Uncorrectable errors
+};
+```
+
+---
+
 ## Health Monitoring
 
 ### Health Monitor
