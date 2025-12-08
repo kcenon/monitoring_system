@@ -679,6 +679,93 @@ if (collector.is_tcp_state_monitoring_available()) {
 
 ---
 
+## Interrupt Statistics Monitoring
+
+### Overview
+
+The interrupt collector provides hardware and software interrupt statistics monitoring for diagnosing interrupt-related performance issues, detecting interrupt storms, and analyzing IRQ balancing problems. Interrupts are a key indicator of hardware activity and can help identify performance bottlenecks.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **interrupts_total** | Total hardware interrupt count | Count |
+| **interrupts_per_sec** | Hardware interrupt rate | Count/sec |
+| **soft_interrupts_total** | Total soft interrupts (Linux only) | Count |
+| **soft_interrupts_per_sec** | Soft interrupt rate (Linux only) | Count/sec |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/interrupt_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+interrupt_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_per_cpu", "false"},
+    {"collect_soft_interrupts", "true"}
+};
+collector.initialize(config);
+
+// Collect interrupt statistics metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw interrupt metrics
+auto irq_data = collector.get_last_metrics();
+std::cout << "Total interrupts: " << irq_data.interrupts_total << std::endl;
+std::cout << "Interrupts/sec: " << irq_data.interrupts_per_sec << std::endl;
+if (irq_data.soft_interrupts_available) {
+    std::cout << "Soft interrupts: " << irq_data.soft_interrupts_total << std::endl;
+}
+```
+
+### Interrupt Monitoring Availability Check
+
+```cpp
+interrupt_collector collector;
+collector.initialize({});
+
+// Check if interrupt monitoring is available
+if (collector.is_interrupt_monitoring_available()) {
+    std::cout << "Interrupt monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "Interrupt monitoring not available on this platform" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable interrupt collection |
+| `collect_per_cpu` | false | Collect per-CPU interrupt breakdown |
+| `collect_soft_interrupts` | true | Collect soft interrupt metrics (Linux) |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | `/proc` parsing | `/proc/stat` (intr line), `/proc/softirqs` |
+| **macOS** | Mach API | `host_statistics64()` for system activity |
+| **Windows** | Stub | Future: PDH performance counters |
+
+> [!NOTE]
+> Soft interrupt metrics are only available on Linux. On macOS and Windows, the collector returns only hardware interrupt approximations. Rate calculation requires multiple samples - the first sample will report 0 for rate metrics.
+
+---
+
 ## Distributed Tracing
 
 ### Span Management
