@@ -587,6 +587,98 @@ for (const auto& fs : inode_data.filesystems) {
 
 ---
 
+## TCP Connection State Monitoring
+
+### Overview
+
+The TCP state collector provides monitoring of TCP connection states to detect connection leaks, TIME_WAIT accumulation, and capacity issues. This is critical for high-traffic services where connection exhaustion can cause service failures.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **tcp_connections_established** | Active established connections | Count |
+| **tcp_connections_time_wait** | Connections in TIME_WAIT | Count |
+| **tcp_connections_close_wait** | Connections in CLOSE_WAIT (leak indicator) | Count |
+| **tcp_connections_listen** | Listening sockets | Count |
+| **tcp_connections_total** | Total connections across all states | Count |
+| **tcp_connections_ipv4_total** | Total IPv4 connections | Count |
+| **tcp_connections_ipv6_total** | Total IPv6 connections | Count |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/tcp_state_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+tcp_state_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"include_ipv6", "true"},
+    {"time_wait_warning_threshold", "10000"},
+    {"close_wait_warning_threshold", "100"}
+};
+collector.initialize(config);
+
+// Collect TCP state metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw TCP state metrics
+auto tcp_data = collector.get_last_metrics();
+std::cout << "Total connections: " << tcp_data.total_connections << std::endl;
+std::cout << "ESTABLISHED: " << tcp_data.combined_counts.established << std::endl;
+std::cout << "TIME_WAIT: " << tcp_data.combined_counts.time_wait << std::endl;
+std::cout << "CLOSE_WAIT: " << tcp_data.combined_counts.close_wait << std::endl;
+std::cout << "LISTEN: " << tcp_data.combined_counts.listen << std::endl;
+```
+
+### TCP State Monitoring Availability Check
+
+```cpp
+tcp_state_collector collector;
+collector.initialize({});
+
+// Check if TCP state monitoring is available
+if (collector.is_tcp_state_monitoring_available()) {
+    std::cout << "TCP state monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "TCP state monitoring not available on this platform" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable TCP state collection |
+| `include_ipv6` | true | Include IPv6 connections in metrics |
+| `time_wait_warning_threshold` | 10000 | Threshold for TIME_WAIT warning alerts |
+| `close_wait_warning_threshold` | 100 | Threshold for CLOSE_WAIT warning alerts |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | `/proc` parsing | `/proc/net/tcp` and `/proc/net/tcp6` |
+| **macOS** | netstat parsing | `netstat -an -p tcp` |
+| **Windows** | Stub | Future: `GetExtendedTcpTable()` API |
+
+> [!NOTE]
+> TCP state monitoring is available on Linux and macOS. On Windows, the collector returns unavailable metrics (stub implementation).
+
+---
+
 ## Distributed Tracing
 
 ### Span Management

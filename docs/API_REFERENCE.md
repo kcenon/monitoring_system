@@ -486,6 +486,111 @@ struct filesystem_inode_info {
 
 ---
 
+### TCP Connection State Collector
+**Header:** `include/kcenon/monitoring/collectors/tcp_state_collector.h`
+
+#### `tcp_state_collector`
+Collects TCP connection state metrics for connection leak detection and capacity planning.
+
+```cpp
+class tcp_state_collector {
+public:
+    tcp_state_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect TCP state metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    tcp_state_metrics get_last_metrics() const;
+
+    // Check if TCP state monitoring is available
+    bool is_tcp_state_monitoring_available() const;
+};
+```
+
+#### `tcp_state_metrics`
+Structure containing aggregated TCP connection state data.
+
+```cpp
+struct tcp_state_metrics {
+    tcp_state_counts ipv4_counts;       // IPv4 connection counts by state
+    tcp_state_counts ipv6_counts;       // IPv6 connection counts by state  
+    tcp_state_counts combined_counts;   // Combined IPv4+IPv6 counts
+    uint64_t total_connections;         // Total connection count
+    bool metrics_available;             // Whether metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `tcp_state_counts`
+Structure containing counts of connections in each TCP state.
+
+```cpp
+struct tcp_state_counts {
+    uint64_t established;   // ESTABLISHED connections
+    uint64_t syn_sent;      // SYN_SENT connections
+    uint64_t syn_recv;      // SYN_RECV connections
+    uint64_t fin_wait1;     // FIN_WAIT1 connections
+    uint64_t fin_wait2;     // FIN_WAIT2 connections
+    uint64_t time_wait;     // TIME_WAIT connections (accumulation indicator)
+    uint64_t close;         // CLOSE connections
+    uint64_t close_wait;    // CLOSE_WAIT connections (leak indicator)
+    uint64_t last_ack;      // LAST_ACK connections
+    uint64_t listen;        // LISTEN sockets
+    uint64_t closing;       // CLOSING connections
+    
+    uint64_t total() const;
+    uint64_t get_count(tcp_state state) const;
+    void increment(tcp_state state);
+};
+```
+
+#### `tcp_state` Enum
+```cpp
+enum class tcp_state {
+    ESTABLISHED = 1,   // Connection established
+    SYN_SENT = 2,      // SYN sent, waiting for SYN-ACK
+    SYN_RECV = 3,      // SYN received, SYN-ACK sent
+    FIN_WAIT1 = 4,     // FIN sent, waiting for ACK or FIN
+    FIN_WAIT2 = 5,     // FIN-ACK received, waiting for FIN
+    TIME_WAIT = 6,     // Waiting for time to pass (2MSL)
+    CLOSE = 7,         // Connection closed
+    CLOSE_WAIT = 8,    // Remote closed, waiting for local close
+    LAST_ACK = 9,      // FIN sent after CLOSE_WAIT
+    LISTEN = 10,       // Listening for connections
+    CLOSING = 11,      // Both sides sent FIN
+    UNKNOWN = 0        // Unknown state
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `/proc/net/tcp` and `/proc/net/tcp6` for connection enumeration
+- **macOS**: Uses `netstat -an -p tcp` for connection enumeration
+- **Windows**: Stub implementation (future: `GetExtendedTcpTable()` API)
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `include_ipv6`: "true"/"false" (default: true)
+- `time_wait_warning_threshold`: count (default: 10000)
+- `close_wait_warning_threshold`: count (default: 100)
+
+---
+
 ## Health Monitoring
 
 ### Health Monitor
