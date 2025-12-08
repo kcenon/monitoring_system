@@ -51,6 +51,9 @@ add_executable(monitoring_system_tests
     # Hardware temperature monitoring (Issue #215)
     test_temperature_collector.cpp
 
+    # File descriptor usage monitoring (Issue #220)
+    test_fd_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
