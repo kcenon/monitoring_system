@@ -507,6 +507,86 @@ if (collector.is_fd_monitoring_available()) {
 
 ---
 
+## Inode Usage Monitoring
+
+### Overview
+
+The inode collector provides filesystem inode usage monitoring to detect inode exhaustion before it causes "No space left on device" errors. This is critical for systems with many small files where disk space may be available but inodes exhausted.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **inodes_total** | Total inodes per filesystem | Count |
+| **inodes_used** | Used inodes | Count |
+| **inodes_free** | Free inodes | Count |
+| **inodes_usage_percent** | Percentage of inodes used | Percent |
+| **inodes_max_usage_percent** | Maximum usage across filesystems | Percent |
+| **inodes_average_usage_percent** | Average usage across filesystems | Percent |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/inode_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+inode_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"warning_threshold", "80.0"},
+    {"critical_threshold", "95.0"}
+};
+collector.initialize(config);
+
+// Collect inode usage metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw inode metrics
+auto inode_data = collector.get_last_metrics();
+std::cout << "Total inodes: " << inode_data.total_inodes << std::endl;
+std::cout << "Used inodes: " << inode_data.total_inodes_used << std::endl;
+std::cout << "Max usage: " << inode_data.max_usage_percent << "% on "
+          << inode_data.max_usage_mount_point << std::endl;
+
+// Per-filesystem breakdown
+for (const auto& fs : inode_data.filesystems) {
+    std::cout << fs.mount_point << " (" << fs.filesystem_type << "): "
+              << fs.inodes_usage_percent << "%" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable inode collection |
+| `warning_threshold` | 80.0 | Warning threshold (percentage) |
+| `critical_threshold` | 95.0 | Critical threshold (percentage) |
+| `include_pseudo_fs` | false | Include pseudo-filesystems (tmpfs, etc.) |
+
+### Platform Implementation
+
+| Platform | API Used | Filesystem Enumeration |
+|----------|----------|------------------------|
+| **Linux** | `statvfs()` | `/proc/mounts` parsing |
+| **macOS** | `statvfs()` | `getmntinfo()` |
+| **Windows** | Not applicable | NTFS uses MFT, not inodes |
+
+> [!NOTE]
+> Inode monitoring is only available on Unix-like systems. On Windows, the collector returns unavailable metrics since NTFS uses a Master File Table (MFT) instead of traditional inodes.
+
+---
+
 ## Distributed Tracing
 
 ### Span Management
