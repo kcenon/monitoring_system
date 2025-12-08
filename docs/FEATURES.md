@@ -13,6 +13,7 @@ This document provides comprehensive details about all features available in the
 
 - [Core Capabilities](#core-capabilities)
 - [Performance Monitoring](#performance-monitoring)
+- [Container Metrics Monitoring](#container-metrics-monitoring)
 - [Distributed Tracing](#distributed-tracing)
 - [Health Monitoring](#health-monitoring)
 - [Error Handling](#error-handling)
@@ -141,6 +142,98 @@ config.adaptive_sampling = true;
 
 auto monitor = create_monitor(config);
 ```
+
+---
+
+## Container Metrics Monitoring
+
+### Overview
+
+The container collector provides per-container resource usage metrics for containerized environments. It supports Linux cgroups v1/v2 with graceful degradation outside containers.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **CPU Usage** | Container CPU utilization | Percent |
+| **Memory Usage** | Current memory consumption | Bytes |
+| **Memory Limit** | Container memory limit | Bytes |
+| **Network RX** | Bytes received | Bytes |
+| **Network TX** | Bytes transmitted | Bytes |
+| **Block I/O Read** | Bytes read from disk | Bytes |
+| **Block I/O Write** | Bytes written to disk | Bytes |
+| **Process Count** | Current number of processes | Count |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/container_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+container_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_network", "true"},
+    {"collect_blkio", "true"}
+};
+collector.initialize(config);
+
+// Collect metrics from all containers
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw container metrics
+auto container_metrics = collector.get_last_metrics();
+for (const auto& cm : container_metrics) {
+    std::cout << "Container: " << cm.container_id << std::endl;
+    std::cout << "  CPU: " << cm.cpu_usage_percent << "%" << std::endl;
+    std::cout << "  Memory: " << cm.memory_usage_bytes << " bytes" << std::endl;
+}
+```
+
+### Cgroup Detection
+
+The collector automatically detects the cgroup version:
+
+```cpp
+container_info_collector info_collector;
+
+// Detect cgroup version
+auto version = info_collector.detect_cgroup_version();
+switch (version) {
+    case cgroup_version::v1:
+        std::cout << "Using cgroups v1" << std::endl;
+        break;
+    case cgroup_version::v2:
+        std::cout << "Using cgroups v2" << std::endl;
+        break;
+    case cgroup_version::none:
+        std::cout << "No cgroups available" << std::endl;
+        break;
+}
+
+// Check if running inside a container
+if (info_collector.is_containerized()) {
+    std::cout << "Running inside a container" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable metric collection |
+| `collect_network` | true | Collect network metrics |
+| `collect_blkio` | true | Collect block I/O metrics |
 
 ---
 
