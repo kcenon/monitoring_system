@@ -410,6 +410,82 @@ struct fd_metrics {
 
 ---
 
+### Inode Usage Collector
+**Header:** `include/kcenon/monitoring/collectors/inode_collector.h`
+
+#### `inode_collector`
+Collects filesystem inode usage metrics for proactive inode exhaustion detection.
+
+```cpp
+class inode_collector {
+public:
+    inode_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect inode usage metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    inode_metrics get_last_metrics() const;
+
+    // Check if inode monitoring is available
+    bool is_inode_monitoring_available() const;
+};
+```
+
+#### `inode_metrics`
+Structure containing aggregated inode usage data.
+
+```cpp
+struct inode_metrics {
+    std::vector<filesystem_inode_info> filesystems;  // Per-filesystem info
+    uint64_t total_inodes;           // Sum of all filesystem inodes
+    uint64_t total_inodes_used;      // Sum of all used inodes
+    uint64_t total_inodes_free;      // Sum of all free inodes
+    double average_usage_percent;    // Average usage across filesystems
+    double max_usage_percent;        // Maximum usage among filesystems
+    std::string max_usage_mount_point; // Mount point with highest usage
+    bool metrics_available;          // Whether inode metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `filesystem_inode_info`
+Structure containing per-filesystem inode data.
+
+```cpp
+struct filesystem_inode_info {
+    std::string mount_point;       // Filesystem mount point (e.g., "/")
+    std::string filesystem_type;   // Filesystem type (e.g., "ext4", "apfs")
+    std::string device;            // Device path (e.g., "/dev/sda1")
+    uint64_t inodes_total;         // Total inodes on filesystem
+    uint64_t inodes_used;          // Used inodes
+    uint64_t inodes_free;          // Free inodes
+    double inodes_usage_percent;   // Percentage of inodes used
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `statvfs()` and `/proc/mounts` for filesystem enumeration
+- **macOS**: Uses `statvfs()` and `getmntinfo()` for filesystem enumeration
+- **Windows**: Not applicable (NTFS uses MFT, not traditional inodes)
+
+---
+
 ## Health Monitoring
 
 ### Health Monitor
