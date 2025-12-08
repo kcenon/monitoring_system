@@ -667,6 +667,93 @@ struct cpu_interrupt_info {
 
 ---
 
+### Power Consumption Collector
+**Header:** `include/kcenon/monitoring/collectors/power_collector.h`
+
+#### `power_collector`
+Collects power consumption metrics for energy efficiency monitoring and cost tracking.
+
+```cpp
+class power_collector {
+public:
+    power_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect power metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected readings
+    std::vector<power_reading> get_last_readings() const;
+
+    // Check if power monitoring is available
+    bool is_power_available() const;
+};
+```
+
+#### `power_reading`
+Structure containing power consumption data.
+
+```cpp
+struct power_reading {
+    power_source_info source;      // Power source information
+    double power_watts;            // Current power consumption in Watts
+    double energy_joules;          // Cumulative energy consumed in Joules
+    double power_limit_watts;      // Power limit/TDP in Watts
+    double voltage_volts;          // Current voltage in Volts
+    double battery_percent;        // Battery charge percentage (0-100)
+    double battery_capacity_wh;    // Battery capacity in Watt-hours
+    double battery_charge_rate;    // Charging/discharging rate in Watts
+    bool is_charging;              // True if battery is charging
+    bool is_discharging;           // True if battery is discharging
+    bool power_available;          // Whether power metrics are available
+    bool battery_available;        // Whether battery metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `power_source_type` Enum
+```cpp
+enum class power_source_type {
+    unknown,   // Unknown power source
+    battery,   // Battery power source
+    ac,        // AC adapter / mains power
+    usb,       // USB power delivery
+    wireless,  // Wireless charging
+    cpu,       // CPU power domain (RAPL)
+    gpu,       // GPU power domain
+    memory,    // Memory/DRAM power domain (RAPL)
+    package,   // Processor package power domain (RAPL)
+    platform,  // Platform/system power domain
+    other      // Other power source type
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses RAPL (`/sys/class/powercap/intel-rapl/`) for CPU/package power and `/sys/class/power_supply/` for battery info
+- **macOS**: Uses IOKit SMC for power metrics and IOPowerSources for battery info
+- **Windows**: Uses WMI (Win32_Battery) for battery metrics
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `collect_battery`: "true"/"false" (default: true)
+- `collect_rapl`: "true"/"false" (default: true)
+
+---
+
 ## Health Monitoring
 
 ### Health Monitor
