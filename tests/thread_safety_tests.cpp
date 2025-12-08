@@ -9,17 +9,17 @@ All rights reserved.
 #include <kcenon/monitoring/core/event_bus.h>
 #include <kcenon/monitoring/core/event_types.h>
 
-#include <thread>
-#include <vector>
 #include <atomic>
 #include <chrono>
 #include <latch>
+#include <thread>
+#include <vector>
 
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
 class MonitoringThreadSafetyTest : public ::testing::Test {
-protected:
+   protected:
     void SetUp() override {
         event_bus::config config;
         config.max_queue_size = 10000;
@@ -47,12 +47,11 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
     std::atomic<int> errors{0};
 
     // Subscribe to performance alerts
-    auto token = bus->subscribe_event<performance_alert_event>(
-        [&](const performance_alert_event& e) {
+    auto token =
+        bus->subscribe_event<performance_alert_event>([&](const performance_alert_event& e) {
             (void)e;  // Suppress unused parameter warning on MSVC
             ++events_received;
-        }
-    );
+        });
 
     ASSERT_TRUE(token.is_ok());
 
@@ -68,9 +67,7 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
                     performance_alert_event alert(
                         performance_alert_event::alert_type::high_cpu_usage,
                         performance_alert_event::alert_severity::warning,
-                        "thread_" + std::to_string(thread_id),
-                        "Test message " + std::to_string(j)
-                    );
+                        "thread_" + std::to_string(thread_id), "Test message " + std::to_string(j));
 
                     auto result = bus->publish_event(alert);
                     if (result.is_err()) {
@@ -81,7 +78,7 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
                 }
 
                 if (j % 50 == 0) {
-                    std::this_thread::sleep_for(1ms);
+                    std::this_thread::yield();
                 }
             }
         });
@@ -91,8 +88,12 @@ TEST_F(MonitoringThreadSafetyTest, ConcurrentEventPublication) {
         t.join();
     }
 
-    // Process any remaining events
-    std::this_thread::sleep_for(200ms);
+    // Wait for event processing with timeout polling
+    auto deadline = std::chrono::steady_clock::now() + 5s;
+    while (events_received.load() < num_publishers * events_per_publisher &&
+           std::chrono::steady_clock::now() < deadline) {
+        std::this_thread::yield();
+    }
 
     bus->unsubscribe_event(token.value());
 
@@ -112,16 +113,13 @@ TEST_F(MonitoringThreadSafetyTest, MultipleEventTypesConcurrent) {
 
     // Subscribe to different event types
     auto perf_token = bus->subscribe_event<performance_alert_event>(
-        [&](const performance_alert_event&) { ++perf_alerts; }
-    );
+        [&](const performance_alert_event&) { ++perf_alerts; });
 
     auto resource_token = bus->subscribe_event<system_resource_event>(
-        [&](const system_resource_event&) { ++resource_events; }
-    );
+        [&](const system_resource_event&) { ++resource_events; });
 
     auto pool_token = bus->subscribe_event<thread_pool_metric_event>(
-        [&](const thread_pool_metric_event&) { ++thread_pool_events; }
-    );
+        [&](const thread_pool_metric_event&) { ++thread_pool_events; });
 
     ASSERT_TRUE(perf_token.is_ok());
     ASSERT_TRUE(resource_token.is_ok());
@@ -139,9 +137,7 @@ TEST_F(MonitoringThreadSafetyTest, MultipleEventTypesConcurrent) {
                             performance_alert_event alert(
                                 performance_alert_event::alert_type::high_memory_usage,
                                 performance_alert_event::alert_severity::info,
-                                "component_" + std::to_string(thread_id),
-                                "Test"
-                            );
+                                "component_" + std::to_string(thread_id), "Test");
                             bus->publish_event(alert);
                             break;
                         }
@@ -157,7 +153,8 @@ TEST_F(MonitoringThreadSafetyTest, MultipleEventTypesConcurrent) {
                             thread_pool_metric_event::thread_pool_stats stats;
                             stats.active_threads = 4;
                             stats.queued_tasks = 10;
-                            thread_pool_metric_event pool("pool_" + std::to_string(thread_id), stats);
+                            thread_pool_metric_event pool("pool_" + std::to_string(thread_id),
+                                                          stats);
                             bus->publish_event(pool);
                             break;
                         }
@@ -173,7 +170,12 @@ TEST_F(MonitoringThreadSafetyTest, MultipleEventTypesConcurrent) {
         t.join();
     }
 
-    std::this_thread::sleep_for(200ms);
+    // Wait for event processing with timeout polling
+    auto deadline = std::chrono::steady_clock::now() + 5s;
+    while ((perf_alerts.load() + resource_events.load() + thread_pool_events.load() < 1) &&
+           std::chrono::steady_clock::now() < deadline) {
+        std::this_thread::yield();
+    }
 
     bus->unsubscribe_event(perf_token.value());
     bus->unsubscribe_event(resource_token.value());
@@ -196,10 +198,7 @@ TEST_F(MonitoringThreadSafetyTest, MultipleSubscribersConcurrent) {
     // Register subscribers
     for (int i = 0; i < num_subscribers; ++i) {
         auto token = bus->subscribe_event<system_resource_event>(
-            [&, sub_id = i](const system_resource_event&) {
-                ++subscriber_counts[sub_id];
-            }
-        );
+            [&, sub_id = i](const system_resource_event&) { ++subscriber_counts[sub_id]; });
 
         ASSERT_TRUE(token.is_ok());
         tokens.push_back(token.value());
@@ -225,7 +224,7 @@ TEST_F(MonitoringThreadSafetyTest, MultipleSubscribersConcurrent) {
                 }
 
                 if (j % 30 == 0) {
-                    std::this_thread::sleep_for(1ms);
+                    std::this_thread::yield();
                 }
             }
         });
@@ -235,7 +234,21 @@ TEST_F(MonitoringThreadSafetyTest, MultipleSubscribersConcurrent) {
         t.join();
     }
 
-    std::this_thread::sleep_for(100ms);
+    // Brief wait for event processing
+    auto deadline = std::chrono::steady_clock::now() + 5s;
+    while (std::chrono::steady_clock::now() < deadline) {
+        bool all_received = true;
+        for (int i = 0; i < num_subscribers; ++i) {
+            if (subscriber_counts[i].load() == 0) {
+                all_received = false;
+                break;
+            }
+        }
+        if (all_received) {
+            break;
+        }
+        std::this_thread::yield();
+    }
 
     // Unsubscribe all
     for (auto& token : tokens) {
@@ -262,10 +275,8 @@ TEST_F(MonitoringThreadSafetyTest, DynamicSubscriptionChanges) {
                 try {
                     performance_alert_event alert(
                         performance_alert_event::alert_type::threshold_exceeded,
-                        performance_alert_event::alert_severity::critical,
-                        "dynamic_test",
-                        "Message " + std::to_string(j)
-                    );
+                        performance_alert_event::alert_severity::critical, "dynamic_test",
+                        "Message " + std::to_string(j));
                     bus->publish_event(alert);
                 } catch (...) {
                     ++errors;
@@ -283,8 +294,7 @@ TEST_F(MonitoringThreadSafetyTest, DynamicSubscriptionChanges) {
                     auto token = bus->subscribe_event<performance_alert_event>(
                         [](const performance_alert_event&) {
                             // Process event
-                        }
-                    );
+                        });
 
                     if (token.is_ok()) {
                         std::this_thread::sleep_for(20ms);
@@ -321,19 +331,13 @@ TEST_F(MonitoringThreadSafetyTest, EventPriorityConcurrent) {
 
     // Subscribe with different priorities
     auto high_token = bus->subscribe_event<performance_alert_event>(
-        [&](const performance_alert_event&) { ++high_priority; },
-        event_priority::high
-    );
+        [&](const performance_alert_event&) { ++high_priority; }, event_priority::high);
 
     auto normal_token = bus->subscribe_event<performance_alert_event>(
-        [&](const performance_alert_event&) { ++normal_priority; },
-        event_priority::normal
-    );
+        [&](const performance_alert_event&) { ++normal_priority; }, event_priority::normal);
 
     auto low_token = bus->subscribe_event<performance_alert_event>(
-        [&](const performance_alert_event&) { ++low_priority; },
-        event_priority::low
-    );
+        [&](const performance_alert_event&) { ++low_priority; }, event_priority::low);
 
     ASSERT_TRUE(high_token.is_ok());
     ASSERT_TRUE(normal_token.is_ok());
@@ -349,8 +353,7 @@ TEST_F(MonitoringThreadSafetyTest, EventPriorityConcurrent) {
                         performance_alert_event::alert_type::high_error_rate,
                         performance_alert_event::alert_severity::warning,
                         "thread_" + std::to_string(thread_id),
-                        "Priority test " + std::to_string(j)
-                    );
+                        "Priority test " + std::to_string(j));
                     bus->publish_event(alert);
                 } catch (...) {
                     ++errors;
@@ -385,10 +388,7 @@ TEST_F(MonitoringThreadSafetyTest, HighVolumeStressTest) {
     std::atomic<int> errors{0};
 
     auto token = bus->subscribe_event<logging_metric_event>(
-        [&](const logging_metric_event&) {
-            ++total_received;
-        }
-    );
+        [&](const logging_metric_event&) { ++total_received; });
 
     ASSERT_TRUE(token.is_ok());
 
@@ -455,8 +455,7 @@ TEST_F(MonitoringThreadSafetyTest, MemorySafetyTest) {
         // Subscribe
         for (int i = 0; i < 5; ++i) {
             auto token = test_bus->subscribe_event<system_resource_event>(
-                [](const system_resource_event&) {}
-            );
+                [](const system_resource_event&) {});
 
             if (token.is_ok()) {
                 tokens.push_back(token.value());
@@ -503,7 +502,7 @@ TEST_F(MonitoringThreadSafetyTest, MemorySafetyTest) {
 #include <kcenon/monitoring/core/performance_monitor.h>
 
 class PerformanceProfilerThreadSafetyTest : public ::testing::Test {
-protected:
+   protected:
     kcenon::monitoring::performance_profiler profiler;
 };
 
@@ -524,8 +523,7 @@ TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentSampleRecording) {
                 try {
                     auto duration = std::chrono::nanoseconds(j * 1000 + thread_id);
                     auto result = profiler.record_sample(
-                        "operation_" + std::to_string(thread_id % 4),
-                        duration,
+                        "operation_" + std::to_string(thread_id % 4), duration,
                         j % 10 != 0  // 10% failure rate
                     );
                     if (result.is_err()) {
@@ -564,11 +562,8 @@ TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentReadWrite) {
         threads.emplace_back([&, thread_id = i]() {
             for (int j = 0; j < operations_per_thread && running.load(); ++j) {
                 try {
-                    profiler.record_sample(
-                        "shared_op",
-                        std::chrono::nanoseconds(j * 100 + thread_id),
-                        true
-                    );
+                    profiler.record_sample("shared_op",
+                                           std::chrono::nanoseconds(j * 100 + thread_id), true);
                 } catch (...) {
                     ++errors;
                 }
@@ -630,11 +625,8 @@ TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentLockFreeModeToggle) {
                     (void)mode;
 
                     // Record sample
-                    profiler.record_sample(
-                        "toggle_test",
-                        std::chrono::nanoseconds(j + thread_id * 1000),
-                        true
-                    );
+                    profiler.record_sample("toggle_test",
+                                           std::chrono::nanoseconds(j + thread_id * 1000), true);
                 } catch (...) {
                     ++errors;
                 }
@@ -650,7 +642,7 @@ TEST_F(PerformanceProfilerThreadSafetyTest, ConcurrentLockFreeModeToggle) {
 }
 
 class PerformanceMonitorThreadSafetyTest : public ::testing::Test {
-protected:
+   protected:
     kcenon::monitoring::performance_monitor monitor{"test_monitor"};
 };
 
@@ -712,9 +704,7 @@ TEST_F(PerformanceMonitorThreadSafetyTest, ConcurrentProfilingOperations) {
                 try {
                     // Use scoped timer
                     {
-                        auto timer = monitor.time_operation(
-                            "op_" + std::to_string(thread_id % 3)
-                        );
+                        auto timer = monitor.time_operation("op_" + std::to_string(thread_id % 3));
                         // Simulate work
                         std::this_thread::sleep_for(std::chrono::microseconds(10));
                     }  // Timer records on destruction
