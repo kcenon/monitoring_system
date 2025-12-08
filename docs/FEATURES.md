@@ -14,6 +14,7 @@ This document provides comprehensive details about all features available in the
 - [Core Capabilities](#core-capabilities)
 - [Performance Monitoring](#performance-monitoring)
 - [Container Metrics Monitoring](#container-metrics-monitoring)
+- [SMART Disk Health Monitoring](#smart-disk-health-monitoring)
 - [Distributed Tracing](#distributed-tracing)
 - [Health Monitoring](#health-monitoring)
 - [Error Handling](#error-handling)
@@ -234,6 +235,94 @@ if (info_collector.is_containerized()) {
 | `enabled` | true | Enable/disable metric collection |
 | `collect_network` | true | Collect network metrics |
 | `collect_blkio` | true | Collect block I/O metrics |
+
+---
+
+## SMART Disk Health Monitoring
+
+### Overview
+
+The SMART collector provides S.M.A.R.T. (Self-Monitoring, Analysis and Reporting Technology) disk health monitoring for predictive failure detection and proactive maintenance. It uses `smartctl` from smartmontools for cross-platform support.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **Health Status** | Overall drive health (PASSED/FAILED) | Boolean |
+| **Temperature** | Current drive temperature | Celsius |
+| **Reallocated Sectors** | Count of reallocated sectors | Count |
+| **Power-On Hours** | Total hours of operation | Hours |
+| **Power Cycle Count** | Number of power cycles | Count |
+| **Pending Sectors** | Sectors pending reallocation | Count |
+| **Uncorrectable Errors** | Uncorrectable error count | Count |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/smart_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+smart_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_temperature", "true"},
+    {"collect_error_rates", "true"}
+};
+collector.initialize(config);
+
+// Collect SMART metrics from all disks
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": " << metric.value << std::endl;
+}
+
+// Get raw SMART metrics
+auto smart_metrics = collector.get_last_metrics();
+for (const auto& sm : smart_metrics) {
+    std::cout << "Disk: " << sm.device_path << std::endl;
+    std::cout << "  Model: " << sm.model_name << std::endl;
+    std::cout << "  Health: " << (sm.health_ok ? "PASSED" : "FAILED") << std::endl;
+    std::cout << "  Temperature: " << sm.temperature_celsius << "°C" << std::endl;
+    std::cout << "  Power-On Hours: " << sm.power_on_hours << std::endl;
+}
+```
+
+### SMART Availability Check
+
+```cpp
+smart_collector collector;
+collector.initialize({});
+
+// Check if SMART monitoring is available
+if (collector.is_smart_available()) {
+    std::cout << "smartctl is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "smartctl not found - install smartmontools" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable SMART collection |
+| `collect_temperature` | true | Collect temperature metrics |
+| `collect_error_rates` | true | Collect read/write error rates |
+
+### Platform Requirements
+
+| Platform | Requirement |
+|----------|-------------|
+| **Linux** | `smartmontools` package (`apt install smartmontools`) |
+| **macOS** | `smartmontools` via Homebrew (`brew install smartmontools`) |
+| **Windows** | smartmontools Windows installer |
+
+> [!NOTE]
+> The collector gracefully degrades when `smartctl` is not available or a disk doesn't support SMART. No errors are returned; the collector simply returns empty metrics.
 
 ---
 

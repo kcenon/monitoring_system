@@ -45,6 +45,9 @@ add_executable(monitoring_system_tests
     # Container metrics monitoring (Issue #228)
     test_container_collector.cpp
 
+    # SMART disk health monitoring (Issue #227)
+    test_smart_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
