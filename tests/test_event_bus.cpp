@@ -105,6 +105,9 @@ TEST_F(EventBusTest, PublishSubscribe) {
         std::lock_guard<std::mutex> lock(message_mutex);
         EXPECT_EQ(received_message, "CPU usage is high");
     }
+
+    // Unsubscribe before local variables (cv, mutex) are destroyed
+    bus->unsubscribe_event(token.value());
 }
 
 // Test multiple subscribers
@@ -115,15 +118,20 @@ TEST_F(EventBusTest, MultipleSubscribers) {
     std::condition_variable cv;
 
     // Subscribe twice to the same event type
-    bus->subscribe_event<system_resource_event>([&](const system_resource_event& /*event*/) {
-        subscriber1_count++;
-        cv.notify_all();
-    });
+    auto token1 =
+        bus->subscribe_event<system_resource_event>([&](const system_resource_event& /*event*/) {
+            subscriber1_count++;
+            cv.notify_all();
+        });
 
-    bus->subscribe_event<system_resource_event>([&](const system_resource_event& /*event*/) {
-        subscriber2_count++;
-        cv.notify_all();
-    });
+    auto token2 =
+        bus->subscribe_event<system_resource_event>([&](const system_resource_event& /*event*/) {
+            subscriber2_count++;
+            cv.notify_all();
+        });
+
+    ASSERT_TRUE(token1.is_ok());
+    ASSERT_TRUE(token2.is_ok());
 
     // Publish event
     system_resource_event::resource_stats stats;
@@ -142,6 +150,10 @@ TEST_F(EventBusTest, MultipleSubscribers) {
 
     EXPECT_EQ(subscriber1_count.load(), 1);
     EXPECT_EQ(subscriber2_count.load(), 1);
+
+    // Unsubscribe before local variables (cv, mutex) are destroyed
+    bus->unsubscribe_event(token1.value());
+    bus->unsubscribe_event(token2.value());
 }
 
 // Test event priority
@@ -151,7 +163,7 @@ TEST_F(EventBusTest, EventPriority) {
     std::condition_variable cv;
 
     // Subscribe to configuration changes
-    bus->subscribe_event<configuration_change_event>(
+    auto token = bus->subscribe_event<configuration_change_event>(
         [&](const configuration_change_event& event) {
             {
                 std::lock_guard<std::mutex> lock(order_mutex);
@@ -164,6 +176,8 @@ TEST_F(EventBusTest, EventPriority) {
             cv.notify_all();
         },
         event_priority::high);
+
+    ASSERT_TRUE(token.is_ok());
 
     // Publish events with different priorities
     configuration_change_event high_priority("test", "high_priority",
@@ -197,6 +211,9 @@ TEST_F(EventBusTest, EventPriority) {
         EXPECT_GE(processing_order.size(), 0U);
     }
     // Note: Priority ordering test is inherently flaky in async systems
+
+    // Unsubscribe before local variables are destroyed
+    bus->unsubscribe_event(token.value());
 }
 
 // Test unsubscribe
@@ -327,10 +344,13 @@ TEST_F(EventBusTest, ConcurrentPublishing) {
     const int total_expected = num_threads * events_per_thread;
 
     // Subscribe to metric collection events
-    bus->subscribe_event<metric_collection_event>([&](const metric_collection_event& event) {
-        received_count.fetch_add(static_cast<int>(event.get_metric_count()));
-        cv.notify_all();
-    });
+    auto token =
+        bus->subscribe_event<metric_collection_event>([&](const metric_collection_event& event) {
+            received_count.fetch_add(static_cast<int>(event.get_metric_count()));
+            cv.notify_all();
+        });
+
+    ASSERT_TRUE(token.is_ok());
 
     std::vector<std::thread> publishers;
     publishers.reserve(num_threads);
@@ -366,4 +386,7 @@ TEST_F(EventBusTest, ConcurrentPublishing) {
 
     // Should have received all metrics
     EXPECT_EQ(received_count.load(), total_expected);
+
+    // Unsubscribe before local variables are destroyed
+    bus->unsubscribe_event(token.value());
 }
