@@ -63,6 +63,9 @@ add_executable(monitoring_system_tests
     # Interrupt statistics monitoring (Issue #223)
     test_interrupt_collector.cpp
 
+    # Power consumption monitoring (Issue #216)
+    test_power_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================

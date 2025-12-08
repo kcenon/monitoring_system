@@ -766,6 +766,103 @@ if (collector.is_interrupt_monitoring_available()) {
 
 ---
 
+## Power Consumption Monitoring
+
+### Overview
+
+The power collector provides power consumption monitoring for energy efficiency tracking, cost analysis, and thermal management. It supports multiple power sources including batteries, RAPL (Running Average Power Limit) for Intel CPUs, and platform power metrics.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **power_consumption_watts** | Current power consumption | Watts |
+| **energy_consumed_joules** | Cumulative energy consumed | Joules |
+| **power_limit_watts** | Power limit/TDP | Watts |
+| **voltage_volts** | Current voltage | Volts |
+| **battery_percent** | Battery charge percentage | Percent |
+| **battery_capacity_wh** | Battery capacity | Watt-hours |
+| **battery_charge_rate** | Charging/discharging rate | Watts |
+| **battery_is_charging** | Battery charging state | Boolean |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/power_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+power_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_battery", "true"},
+    {"collect_rapl", "true"}
+};
+collector.initialize(config);
+
+// Collect power metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw power readings
+auto readings = collector.get_last_readings();
+for (const auto& reading : readings) {
+    std::cout << "Source: " << reading.source.name << std::endl;
+    std::cout << "  Type: " << power_source_type_to_string(reading.source.type) << std::endl;
+    if (reading.power_available) {
+        std::cout << "  Power: " << reading.power_watts << " W" << std::endl;
+    }
+    if (reading.battery_available) {
+        std::cout << "  Battery: " << reading.battery_percent << "%" << std::endl;
+        std::cout << "  Charging: " << (reading.is_charging ? "Yes" : "No") << std::endl;
+    }
+}
+```
+
+### Power Availability Check
+
+```cpp
+power_collector collector;
+collector.initialize({});
+
+// Check if power monitoring is available
+if (collector.is_power_available()) {
+    std::cout << "Power monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "Power monitoring not available on this platform" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable power collection |
+| `collect_battery` | true | Collect battery and AC adapter metrics |
+| `collect_rapl` | true | Collect RAPL power metrics (Linux Intel CPUs) |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | sysfs | `/sys/class/powercap/intel-rapl/` (RAPL), `/sys/class/power_supply/` (battery) |
+| **macOS** | IOKit | SMC for power metrics, IOPowerSources for battery |
+| **Windows** | WMI | `Win32_Battery` for battery metrics |
+
+> [!NOTE]
+> RAPL power metrics require Intel CPU and kernel support. The collector gracefully degrades when power sources are not available. On systems without batteries or RAPL support, the collector returns empty metrics.
+
+---
+
 ## Distributed Tracing
 
 ### Span Management
