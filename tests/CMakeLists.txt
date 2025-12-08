@@ -42,6 +42,9 @@ add_executable(monitoring_system_tests
     test_timer_metrics.cpp
     test_service_registration.cpp
 
+    # Container metrics monitoring (Issue #228)
+    test_container_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
