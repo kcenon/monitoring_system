@@ -54,6 +54,9 @@ add_executable(monitoring_system_tests
     # File descriptor usage monitoring (Issue #220)
     test_fd_collector.cpp
 
+    # Inode usage monitoring (Issue #224)
+    test_inode_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
