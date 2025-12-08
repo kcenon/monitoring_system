@@ -16,6 +16,7 @@ This document provides comprehensive details about all features available in the
 - [Container Metrics Monitoring](#container-metrics-monitoring)
 - [SMART Disk Health Monitoring](#smart-disk-health-monitoring)
 - [Hardware Temperature Monitoring](#hardware-temperature-monitoring)
+- [File Descriptor Usage Monitoring](#file-descriptor-usage-monitoring)
 - [Distributed Tracing](#distributed-tracing)
 - [Health Monitoring](#health-monitoring)
 - [Error Handling](#error-handling)
@@ -416,6 +417,93 @@ if (collector.is_thermal_available()) {
 
 > [!NOTE]
 > The collector gracefully degrades when thermal sensors are not available or when access is restricted. No errors are returned; the collector simply returns empty metrics.
+
+---
+
+## File Descriptor Usage Monitoring
+
+### Overview
+
+The file descriptor (FD) collector provides detailed FD usage monitoring at both system and process levels. FD exhaustion is a common failure mode in server applications ("too many open files"), and monitoring enables proactive leak detection, capacity planning, and alerting.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **fd_used_system** | Total system FDs in use (Linux only) | Count |
+| **fd_max_system** | System FD limit (Linux only) | Count |
+| **fd_used_process** | Current process FD count | Count |
+| **fd_soft_limit** | Process FD soft limit | Count |
+| **fd_hard_limit** | Process FD hard limit | Count |
+| **fd_usage_percent** | Percentage of soft limit used | Percent |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/fd_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+fd_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"warning_threshold", "80.0"},
+    {"critical_threshold", "95.0"}
+};
+collector.initialize(config);
+
+// Collect FD usage metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw FD metrics
+auto fd_data = collector.get_last_metrics();
+std::cout << "Process FDs: " << fd_data.fd_used_process << std::endl;
+std::cout << "Soft limit: " << fd_data.fd_soft_limit << std::endl;
+std::cout << "Usage: " << fd_data.fd_usage_percent << "%" << std::endl;
+```
+
+### FD Monitoring Availability Check
+
+```cpp
+fd_collector collector;
+collector.initialize({});
+
+// Check if FD monitoring is available
+if (collector.is_fd_monitoring_available()) {
+    std::cout << "FD monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "FD monitoring not available on this platform" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable FD collection |
+| `warning_threshold` | 80.0 | Warning threshold (percentage of soft limit) |
+| `critical_threshold` | 95.0 | Critical threshold (percentage of soft limit) |
+
+### Platform Implementation
+
+| Platform | Process FDs | Process Limits | System FDs |
+|----------|-------------|----------------|------------|
+| **Linux** | `/proc/self/fd/` enumeration | `/proc/self/limits` | `/proc/sys/fs/file-nr` |
+| **macOS** | `/dev/fd/` enumeration | `getrlimit(RLIMIT_NOFILE)` | Not available |
+| **Windows** | `GetProcessHandleCount()` | Default limits | Not available |
+
+> [!NOTE]
+> System-wide FD metrics are only available on Linux. On macOS and Windows, the collector gracefully degrades and returns only process-level metrics.
 
 ---
 
