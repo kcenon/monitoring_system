@@ -1672,3 +1672,52 @@ private:
 - [Architecture Guide](01-ARCHITECTURE.md) - System design and patterns
 - [User Guide](guides/USER_GUIDE.md) - Usage examples and best practices
 - [Benchmarks](BENCHMARKS.md) - Performance metrics and comparisons
+
+---
+
+## Context Switch Statistics Monitoring
+
+### Overview
+
+Context switch monitoring tracks the frequency of context switches in the system, which helps identify CPU contention and scheduling bottlenecks. High context switch rates can indicate inefficient threading models or excessive contention for resources.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **context_switches_total** | Total cumulative context switches | Count |
+| **context_switches_per_sec** | Rate of context switches per second | Ops/sec |
+
+### Basic Usage
+
+The context switch metrics are collected automatically as part of the `system_resource_collector` when CPU metrics are enabled.
+
+```cpp
+#include <kcenon/monitoring/collectors/system_resource_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create collector
+system_resource_collector collector;
+collector.initialize({});
+
+// Collect metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    if (metric.name == "context_switches_per_sec") {
+         std::cout << "Context Switch Rate: " << std::get<double>(metric.value) << " ops/s" << std::endl;
+    }
+}
+```
+
+### Platform Support
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | `/proc/stat` | System-wide context switch count |
+| **macOS** | `proc_pidinfo` | Aggregated per-process context switch counts |
+| **Windows** | Stub | Not yet implemented |
+
+> [!NOTE]
+> On macOS, the collection involves iterating all processes which may have higher overhead than Linux's O(1) read.

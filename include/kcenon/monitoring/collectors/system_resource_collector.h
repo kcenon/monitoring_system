@@ -108,6 +108,12 @@ struct system_resources {
     size_t thread_count{0};
     size_t handle_count{0};
     size_t open_file_descriptors{0};
+
+    // Context Switch metrics
+    uint64_t context_switches_total{0};
+    uint64_t context_switches_per_sec{0};
+    uint64_t voluntary_context_switches{0};
+    uint64_t nonvoluntary_context_switches{0};
 };
 
 /**
@@ -176,6 +182,9 @@ class system_info_collector {
         uint64_t write_bytes{0};
     };
     disk_stats last_disk_stats_;
+
+    // Context switch tracking
+    uint64_t last_context_switches_total_{0};
 
     // Platform-specific collection methods
     void collect_cpu_stats(system_resources& resources);
@@ -285,7 +294,7 @@ class resource_threshold_monitor {
         std::chrono::steady_clock::time_point timestamp;
     };
 
-    explicit resource_threshold_monitor(const thresholds& config = {});
+    explicit resource_threshold_monitor(const thresholds& config);
 
     /**
      * Check resources against thresholds
@@ -334,4 +343,4 @@ class resource_threshold_monitor {
                    alert::severity level, double value, double threshold, const std::string& message);
 };
 
-}  // namespace monitoring_system
+} } // namespace kcenon::monitoring
