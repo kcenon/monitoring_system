@@ -75,6 +75,9 @@ add_executable(monitoring_system_tests
     # Security event monitoring (Issue #230)
     test_security_collector.cpp
 
+    # Virtualization metrics monitoring (Issue #229)
+    test_vm_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
