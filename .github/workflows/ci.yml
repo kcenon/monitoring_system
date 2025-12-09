@@ -42,157 +42,10 @@ jobs:
         fetch-depth: 1
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Checkout common_system dependency
-      uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        repository: kcenon/common_system
-        path: common_system
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Checkout thread_system dependency
-      uses: actions/checkout@v4
-      with:
-        repository: kcenon/thread_system
-        path: thread_system
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Checkout logger_system dependency
-      uses: actions/checkout@v4
-      with:
-        repository: kcenon/logger_system
-        path: logger_system
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Install GCC 13 for std::format support (Linux)
-      if: runner.os == 'Linux'
-      run: |
-        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-        sudo apt-get update
-        sudo apt-get install -y g++-13 gcc-13
-        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
-        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
-        g++ --version
-
-    - name: Build and install common_system (Unix)
-      if: runner.os != 'Windows'
-      run: |
-        cd common_system
-        cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release \
-          ${{ runner.os == 'Linux' && '-DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_C_COMPILER=gcc-13' || '' }} \
-          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
-        cmake --build build --parallel
-        cmake --install build
-        cd ..
-
-    - name: Build and install thread_system (Unix)
-      if: runner.os != 'Windows'
-      run: |
-        cd thread_system
-        cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release \
-          ${{ runner.os == 'Linux' && '-DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_C_COMPILER=gcc-13' || '' }} \
-          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
-          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/thread_system_install" \
-          -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include" \
-          -DUSE_STD_FORMAT=ON \
-          -DBUILD_TESTS=OFF \
-          -DBUILD_SAMPLES=OFF
-        cmake --build build --parallel
-        cmake --install build
-        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
-        CONFIG_FILE=$(find "${GITHUB_WORKSPACE}/thread_system_install" -name "thread_system-config.cmake" 2>/dev/null | head -1)
-        if [ -n "$CONFIG_FILE" ]; then
-          echo "Found config file: $CONFIG_FILE"
-          echo "Before modification:"
-          grep -n "fmt" "$CONFIG_FILE" || echo "No fmt references found"
-          # macOS requires -i '', Linux requires just -i
-          if [[ "$OSTYPE" == "darwin"* ]]; then
-            sed -i '' 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
-          else
-            sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
-          fi
-          echo "After modification:"
-          grep -n "fmt" "$CONFIG_FILE" || echo "No fmt references found"
-        else
-          echo "Warning: thread_system-config.cmake not found"
-        fi
-        cd ..
-
-    - name: Build and install logger_system (Unix)
-      if: runner.os != 'Windows'
-      run: |
-        cd logger_system
-        cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release \
-          ${{ runner.os == 'Linux' && '-DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_C_COMPILER=gcc-13' || '' }} \
-          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install" \
-          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/logger_system_install" \
-          -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include -I${GITHUB_WORKSPACE}/thread_system_install/include" \
-          -DUSE_STD_FORMAT=ON \
-          -DBUILD_TESTS=OFF \
-          -DBUILD_SAMPLES=OFF
-        cmake --build build --parallel
-        cmake --install build
-        cd ..
-
-    - name: Build and install common_system (Windows)
-      if: runner.os == 'Windows'
-      shell: pwsh
-      run: |
-        cd common_system
-        cmake -B build -G "Visual Studio 17 2022" -A x64 `
-          -DCMAKE_BUILD_TYPE=Release `
-          -DCMAKE_INSTALL_PREFIX="${env:GITHUB_WORKSPACE}\common_system_install"
-        cmake --build build --config Release --parallel
-        cmake --install build --config Release
-        cd ..
-
-    - name: Build and install thread_system (Windows)
-      if: runner.os == 'Windows'
-      shell: pwsh
-      run: |
-        cd thread_system
-        cmake -B build -G "Visual Studio 17 2022" -A x64 `
-          -DCMAKE_BUILD_TYPE=Release `
-          -DCMAKE_PREFIX_PATH="${env:GITHUB_WORKSPACE}\common_system_install" `
-          -DCMAKE_INSTALL_PREFIX="${env:GITHUB_WORKSPACE}\thread_system_install" `
-          -DCMAKE_CXX_FLAGS="/I${env:GITHUB_WORKSPACE}\common_system_install\include" `
-          -DUSE_STD_FORMAT=ON `
-          -DBUILD_TESTS=OFF `
-          -DBUILD_SAMPLES=OFF
-        cmake --build build --config Release --parallel
-        cmake --install build --config Release
-        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
-        $configFile = Get-ChildItem -Path "${env:GITHUB_WORKSPACE}\thread_system_install" -Recurse -Filter "thread_system-config.cmake" -ErrorAction SilentlyContinue | Select-Object -First 1
-        if ($configFile) {
-          Write-Host "Found config file: $($configFile.FullName)"
-          Write-Host "Before modification:"
-          Select-String -Path $configFile.FullName -Pattern "fmt" | ForEach-Object { Write-Host $_.Line }
-          (Get-Content $configFile.FullName) -replace 'find_dependency\s*\(fmt[^)]*\)', '# $&' | Set-Content $configFile.FullName
-          Write-Host "After modification:"
-          Select-String -Path $configFile.FullName -Pattern "fmt" | ForEach-Object { Write-Host $_.Line }
-        } else {
-          Write-Host "Warning: thread_system-config.cmake not found"
-        }
-        cd ..
-
-    - name: Build and install logger_system (Windows)
-      if: runner.os == 'Windows'
-      shell: pwsh
-      run: |
-        cd logger_system
-        cmake -B build -G "Visual Studio 17 2022" -A x64 `
-          -DCMAKE_BUILD_TYPE=Release `
-          -DCMAKE_PREFIX_PATH="${env:GITHUB_WORKSPACE}\common_system_install;${env:GITHUB_WORKSPACE}\thread_system_install" `
-          -DCMAKE_INSTALL_PREFIX="${env:GITHUB_WORKSPACE}\logger_system_install" `
-          -DCMAKE_CXX_FLAGS="/I${env:GITHUB_WORKSPACE}\common_system_install\include /I${env:GITHUB_WORKSPACE}\thread_system_install\include" `
-          -DUSE_STD_FORMAT=ON `
-          -DBUILD_TESTS=OFF `
-          -DBUILD_SAMPLES=OFF
-        cmake --build build --config Release --parallel
-        cmake --install build --config Release
-        cd ..
+        python-version: '3.x'
 
     - name: Install dependencies (Ubuntu)
       if: runner.os == 'Linux'
@@ -213,6 +66,33 @@ jobs:
       with:
         vs-version: '17.0'
         msbuild-architecture: x64
+
+    - name: Install GCC 13 for std::format support (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+        sudo apt-get update
+        sudo apt-get install -y g++-13 gcc-13
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
+        g++ --version
+
+    - name: Setup Dependencies (Unix)
+      if: runner.os != 'Windows'
+      run: |
+        python3 scripts/setup_dependencies.py \
+          --build-type Release \
+          --install-prefix "${GITHUB_WORKSPACE}" \
+          --os ${{ runner.os }} \
+          --compiler ${{ matrix.compiler }}
+
+    - name: Setup Dependencies (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        python3 scripts/setup_dependencies.py `
+          --build-type Release `
+          --install-prefix "${env:GITHUB_WORKSPACE}" `
+          --os Windows
 
     - name: Check architecture (Linux)
       if: runner.os == 'Linux'
@@ -453,26 +333,10 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Checkout common_system dependency
-      uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        repository: kcenon/common_system
-        path: common_system
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Checkout thread_system dependency
-      uses: actions/checkout@v4
-      with:
-        repository: kcenon/thread_system
-        path: thread_system
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Checkout logger_system dependency
-      uses: actions/checkout@v4
-      with:
-        repository: kcenon/logger_system
-        path: logger_system
-        token: ${{ secrets.GITHUB_TOKEN }}
+        python-version: '3.x'
 
     - name: Install GCC 13 for std::format support
       run: |
@@ -485,57 +349,13 @@ jobs:
         sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-13 100
         g++ --version
 
-    - name: Build and install common_system
+    - name: Setup Dependencies
       run: |
-        cd common_system
-        cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release \
-          -DCMAKE_CXX_COMPILER=g++-13 \
-          -DCMAKE_C_COMPILER=gcc-13 \
-          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/common_system_install"
-        cmake --build build --parallel
-        cmake --install build
-        cd ..
-
-    - name: Build and install thread_system
-      run: |
-        cd thread_system
-        cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release \
-          -DCMAKE_CXX_COMPILER=g++-13 \
-          -DCMAKE_C_COMPILER=gcc-13 \
-          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install" \
-          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/thread_system_install" \
-          -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include" \
-          -DUSE_STD_FORMAT=ON \
-          -DBUILD_TESTS=OFF \
-          -DBUILD_SAMPLES=OFF
-        cmake --build build --parallel
-        cmake --install build
-        # Remove fmt dependency from installed config (USE_STD_FORMAT=ON makes it unnecessary)
-        CONFIG_FILE=$(find "${GITHUB_WORKSPACE}/thread_system_install" -name "thread_system-config.cmake" 2>/dev/null | head -1)
-        if [ -n "$CONFIG_FILE" ]; then
-          echo "Found config file: $CONFIG_FILE"
-          sed -i 's/find_dependency[[:space:]]*(fmt[^)]*)/# &/g' "$CONFIG_FILE"
-        fi
-        cd ..
-
-    - name: Build and install logger_system
-      run: |
-        cd logger_system
-        cmake -B build -G Ninja \
-          -DCMAKE_BUILD_TYPE=Release \
-          -DCMAKE_CXX_COMPILER=g++-13 \
-          -DCMAKE_C_COMPILER=gcc-13 \
-          -DCMAKE_PREFIX_PATH="${GITHUB_WORKSPACE}/common_system_install;${GITHUB_WORKSPACE}/thread_system_install" \
-          -DCMAKE_INSTALL_PREFIX="${GITHUB_WORKSPACE}/logger_system_install" \
-          -DCMAKE_CXX_FLAGS="-I${GITHUB_WORKSPACE}/common_system_install/include -I${GITHUB_WORKSPACE}/thread_system_install/include" \
-          -DUSE_STD_FORMAT=ON \
-          -DBUILD_TESTS=OFF \
-          -DBUILD_SAMPLES=OFF
-        cmake --build build --parallel
-        cmake --install build
-        cd ..
+        python3 scripts/setup_dependencies.py \
+          --build-type Release \
+          --install-prefix "${GITHUB_WORKSPACE}" \
+          --os Linux \
+          --compiler gcc
 
     - name: Install dependencies
       run: |
