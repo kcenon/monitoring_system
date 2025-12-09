@@ -1079,6 +1079,77 @@ if (collector.is_socket_buffer_monitoring_available()) {
 
 ---
 
+## Security Event Monitoring
+
+### Overview
+
+The Security Event Collector provides security event monitoring for audit and compliance. It tracks authentication events, privilege escalation, and account management activities with configurable privacy controls.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **security_login_success_total** | Successful login attempts | Count |
+| **security_login_failure_total** | Failed login attempts | Count |
+| **security_logout_total** | User logout events | Count |
+| **security_sudo_usage_total** | Privilege escalation events | Count |
+| **security_permission_change_total** | Permission/ACL changes | Count |
+| **security_account_created_total** | New account creations | Count |
+| **security_account_deleted_total** | Account deletions | Count |
+| **security_events_total** | Total security events | Count |
+| **security_events_per_second** | Event rate | Events/s |
+| **security_active_sessions** | Current active login sessions | Sessions |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/security_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+security_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"mask_pii", "false"},
+    {"max_recent_events", "100"}
+};
+collector.initialize(config);
+
+// Collect security metrics
+auto metrics = collector.collect();
+for (const auto& m : metrics) {
+    // Process metric: security_login_success_total, etc.
+}
+
+// Get detailed security information
+auto security_data = collector.get_last_metrics();
+std::cout << "Login successes: " << security_data.event_counts.login_success << std::endl;
+std::cout << "Login failures: " << security_data.event_counts.login_failure << std::endl;
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable security event collection |
+| `mask_pii` | false | Mask usernames for privacy compliance |
+| `max_recent_events` | 100 | Maximum recent events to store in memory |
+| `login_failure_rate_limit` | 1000 | Rate limit for login failure events (events/sec) |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | Log parsing | `/var/log/auth.log` (Debian/Ubuntu), `/var/log/secure` (RHEL/CentOS) |
+| **macOS** | Stub | Future: unified logging with `log show` command |
+| **Windows** | Stub | Future: Windows Event Log API (Security log) |
+
+> [!NOTE]
+> Security event monitoring requires read access to system log files. On Linux, the collector parses authentication logs for login attempts, sudo usage, and account management events. macOS and Windows use stub implementations that return unavailable metrics.
+
+---
+
 ## Distributed Tracing
 
 
