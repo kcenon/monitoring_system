@@ -1737,6 +1737,36 @@ private:
 
 ---
 
+## Virtualization Monitoring
+
+### Overview
+
+The Virtualization Monitoring feature detects if the application is running inside a virtual machine and collects relevant metrics such as CPU steal time, which is critical for performance analysis in cloud environments.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **is_virtualized** | Whether the system is running in a VM | Boolean |
+| **steal_time** | Percentage of time CPU is waiting for hypervisor | Percent |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/vm_collector.h>
+
+using namespace kcenon::monitoring;
+
+vm_collector collector;
+collector.initialize({{"enabled", "true"}});
+
+auto metrics = collector.collect();
+// Check if virtualized
+// Note: Actual access to struct requires casting or specific getter if not using generic interface
+```
+
+---
+
 ## See Also
 
 - [API Reference](02-API_REFERENCE.md) - Complete API documentation
