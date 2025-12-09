@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <functional>
 #include <map>
 #include <memory>
@@ -163,8 +164,8 @@ class plugin_metric_collector : public interface_metric_collector {
     plugin_metric_collector& operator=(const plugin_metric_collector&) = delete;
 
     // Enable move
-    plugin_metric_collector(plugin_metric_collector&&) noexcept = default;
-    plugin_metric_collector& operator=(plugin_metric_collector&&) noexcept = default;
+    plugin_metric_collector(plugin_metric_collector&&) = delete;
+    plugin_metric_collector& operator=(plugin_metric_collector&&) = delete;
 
     /**
      * Register a metric collector plugin
@@ -203,6 +204,14 @@ class plugin_metric_collector : public interface_metric_collector {
      */
     bool is_running() const;
 
+    // Missing methods from interface
+    result_void start_collection(const collection_config& config) override;
+    result_void stop_collection() override;
+    bool is_collecting() const override;
+    collection_config get_config() const override;
+    metric_stats get_stats() const override;
+    void reset_stats() override;
+
     /**
      * Get current metrics from cache
      * @param plugin_name Optional plugin name filter
@@ -221,14 +230,14 @@ class plugin_metric_collector : public interface_metric_collector {
      * Force immediate collection from all plugins
      * @return Collected metrics
      */
-    std::vector<metric> force_collect();
+    result<std::vector<metric>> force_collect() override;
 
     // interface_metric_collector implementation
-    collection_result collect_metrics() override;
-    void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
-    void unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
+    result<std::vector<metric>> collect_metrics() override;
+    result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
+    result_void unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
     std::vector<std::string> get_metric_types() const override;
-    void configure(const collection_config& config) override;
+    result_void update_config(const collection_config& config) override;
 
   private:
     // Plugin management
@@ -325,4 +334,4 @@ class plugin_factory {
     static std::mutex factories_mutex_;
 };
 
-}  // namespace monitoring_system
+} } // namespace kcenon::monitoring

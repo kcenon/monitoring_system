@@ -1750,3 +1750,24 @@ Phase 4 focuses on **core foundation stability** rather than feature completenes
 ---
 
 *Last Updated: 2025-10-20*
+
+---
+
+### Context Switch Statistics Monitoring
+
+#### Overview
+
+The system resource collector now includes context switch statistics monitoring to identify scheduling overhead and contention.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **context_switches_total** | Total context switches since boot | Count |
+| **context_switches_per_sec** | Rate of context switches | Ops/sec |
+
+**Platform Support**:
+- **Linux**: Uses `/proc/stat`
+- **macOS**: Uses `proc_pidinfo` iteration (aggregated)
+- **Windows**: Stub implementation
+

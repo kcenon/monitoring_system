@@ -69,8 +69,12 @@ add_executable(monitoring_system_tests
     # GPU metrics monitoring (Issue #221)
     test_gpu_collector.cpp
 
+    
     # Socket buffer usage monitoring (Issue #226)
     test_socket_buffer_collector.cpp
+
+    # Context switch monitoring (Issue #222)
+    test_system_resource_collector.cpp
 
     # Security event monitoring (Issue #230)
     test_security_collector.cpp
