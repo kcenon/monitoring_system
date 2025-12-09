@@ -15,6 +15,21 @@ All rights reserved.
  * and cache-friendly access patterns in the monitoring system.
  */
 
+// Prevent Windows min/max macros from conflicting with std::min/std::max
+// and member functions named min()/max()
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+// Undefine min/max macros if already defined (e.g., from windows.h included earlier)
+#ifdef min
+#undef min
+#endif
+#ifdef max
+#undef max
+#endif
+#endif
+
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
 #include <string>
@@ -26,6 +41,7 @@ All rights reserved.
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <limits>
 
 namespace kcenon { namespace monitoring {
 
@@ -304,34 +320,34 @@ struct histogram_data {
 struct summary_data {
     uint64_t count = 0;
     double sum = 0.0;
-    double min_value = std::numeric_limits<double>::max();
-    double max_value = std::numeric_limits<double>::lowest();
-    
+    double min_value = (std::numeric_limits<double>::max)();
+    double max_value = (std::numeric_limits<double>::lowest)();
+
     /**
      * @brief Add sample to summary
      */
     void add_sample(double value) {
         count++;
         sum += value;
-        min_value = std::min(min_value, value);
-        max_value = std::max(max_value, value);
+        min_value = (std::min)(min_value, value);
+        max_value = (std::max)(max_value, value);
     }
-    
+
     /**
      * @brief Get mean value
      */
     double mean() const noexcept {
         return count > 0 ? sum / count : 0.0;
     }
-    
+
     /**
      * @brief Reset summary
      */
     void reset() {
         count = 0;
         sum = 0.0;
-        min_value = std::numeric_limits<double>::max();
-        max_value = std::numeric_limits<double>::lowest();
+        min_value = (std::numeric_limits<double>::max)();
+        max_value = (std::numeric_limits<double>::lowest)();
     }
 };
 
@@ -349,8 +365,8 @@ struct timer_data {
     size_t max_samples;
     uint64_t total_count = 0;
     double sum = 0.0;
-    double min_value = std::numeric_limits<double>::max();
-    double max_value = std::numeric_limits<double>::lowest();
+    double min_value = (std::numeric_limits<double>::max)();
+    double max_value = (std::numeric_limits<double>::lowest)();
     mutable bool sorted = false;
 
     /**
@@ -374,8 +390,8 @@ struct timer_data {
     void record(double duration_ms) {
         total_count++;
         sum += duration_ms;
-        min_value = std::min(min_value, duration_ms);
-        max_value = std::max(max_value, duration_ms);
+        min_value = (std::min)(min_value, duration_ms);
+        max_value = (std::max)(max_value, duration_ms);
         sorted = false;
 
         if (samples.size() < max_samples) {
@@ -510,8 +526,8 @@ struct timer_data {
         samples.reserve(max_samples);
         total_count = 0;
         sum = 0.0;
-        min_value = std::numeric_limits<double>::max();
-        max_value = std::numeric_limits<double>::lowest();
+        min_value = (std::numeric_limits<double>::max)();
+        max_value = (std::numeric_limits<double>::lowest)();
         sorted = false;
     }
 
@@ -599,13 +615,13 @@ inline uint32_t hash_metric_name(const std::string& name) noexcept {
 /**
  * @brief Create metric metadata from name and type
  */
-inline metric_metadata create_metric_metadata(const std::string& name, 
+inline metric_metadata create_metric_metadata(const std::string& name,
                                              metric_type type,
                                              size_t tag_count = 0) {
     return metric_metadata(
-        hash_metric_name(name), 
-        type, 
-        static_cast<uint8_t>(std::min(tag_count, size_t(255)))
+        hash_metric_name(name),
+        type,
+        static_cast<uint8_t>((std::min)(tag_count, size_t(255)))
     );
 }
 
