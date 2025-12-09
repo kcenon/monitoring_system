@@ -72,6 +72,9 @@ add_executable(monitoring_system_tests
     # Socket buffer usage monitoring (Issue #226)
     test_socket_buffer_collector.cpp
 
+    # Security event monitoring (Issue #230)
+    test_security_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
