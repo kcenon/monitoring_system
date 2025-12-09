@@ -936,6 +936,106 @@ struct socket_buffer_metrics {
 
 ---
 
+### Security Event Collector
+**Header:** `include/kcenon/monitoring/collectors/security_collector.h`
+
+#### `security_collector`
+Collects security event metrics for audit and compliance monitoring.
+
+```cpp
+class security_collector {
+public:
+    security_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect security event metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    security_metrics get_last_metrics() const;
+
+    // Check if security monitoring is available
+    bool is_security_monitoring_available() const;
+};
+```
+
+#### `security_metrics`
+Structure containing aggregated security event data.
+
+```cpp
+struct security_metrics {
+    security_event_counts event_counts;              // Event counts by type
+    uint64_t active_sessions;                        // Current active sessions
+    std::vector<security_event> recent_events;       // Recent security events
+    double events_per_second;                        // Event rate
+    bool metrics_available;                          // Whether metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `security_event_counts`
+Structure containing counts of security events by type.
+
+```cpp
+struct security_event_counts {
+    uint64_t login_success;      // Successful login count
+    uint64_t login_failure;      // Failed login count
+    uint64_t logout;             // Logout count
+    uint64_t sudo_usage;         // Sudo/privilege escalation count
+    uint64_t permission_change;  // Permission change count
+    uint64_t account_created;    // Account creation count
+    uint64_t account_deleted;    // Account deletion count
+    
+    uint64_t total() const;
+    uint64_t get_count(security_event_type type) const;
+    void increment(security_event_type type);
+};
+```
+
+#### `security_event_type` Enum
+```cpp
+enum class security_event_type {
+    login_success = 1,     // Successful login attempt
+    login_failure = 2,     // Failed login attempt
+    logout = 3,            // User logout
+    sudo_usage = 4,        // Privilege escalation
+    permission_change = 5, // Permission/ACL change
+    account_created = 6,   // New account creation
+    account_deleted = 7,   // Account deletion
+    account_modified = 8,  // Account modification
+    session_start = 9,     // Session started
+    session_end = 10,      // Session ended
+    unknown = 0            // Unknown event type
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `/var/log/auth.log` or `/var/log/secure` for authentication event parsing
+- **macOS**: Stub implementation (future: unified logging with `log show`)
+- **Windows**: Stub implementation (future: Windows Event Log API)
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `mask_pii`: "true"/"false" (default: false) - Mask usernames for privacy
+- `max_recent_events`: count (default: 100)
+- `login_failure_rate_limit`: events/sec (default: 1000)
+
+---
+
 ## Health Monitoring
 
 
@@ -1590,6 +1690,43 @@ cd build
 - Advanced storage backends
 - OpenTelemetry integration
 - Stream processing capabilities
+
+---
+
+## Virtualization Monitoring
+
+### VM Metrics Collector
+**Header:** `include/kcenon/monitoring/collectors/vm_collector.h`
+
+#### `vm_collector`
+Collects virtualization environment metrics.
+
+```cpp
+class vm_collector {
+public:
+    vm_collector();
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    std::vector<metric> collect();
+    // ... standard interface methods
+};
+```
+
+#### `vm_metrics`
+Structure containing virtualization data.
+
+```cpp
+struct vm_metrics {
+    bool is_virtualized;             // True if running in a VM
+    vm_type type;                    // Detected hypervisor type
+    double guest_cpu_steal_time;     // % CPU time stolen by hypervisor
+    std::string hypervisor_vendor;   // Vendor string
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `/sys/class/dmi` and `/proc/cpuinfo`.
+- **macOS**: Uses `sysctl` (`machdep.cpu.features`, `kern.hv_vmm_present`).
+- **Windows**: Stub implementation.
 
 ---
 
