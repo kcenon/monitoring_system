@@ -1693,6 +1693,43 @@ cd build
 
 ---
 
+## Virtualization Monitoring
+
+### VM Metrics Collector
+**Header:** `include/kcenon/monitoring/collectors/vm_collector.h`
+
+#### `vm_collector`
+Collects virtualization environment metrics.
+
+```cpp
+class vm_collector {
+public:
+    vm_collector();
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    std::vector<metric> collect();
+    // ... standard interface methods
+};
+```
+
+#### `vm_metrics`
+Structure containing virtualization data.
+
+```cpp
+struct vm_metrics {
+    bool is_virtualized;             // True if running in a VM
+    vm_type type;                    // Detected hypervisor type
+    double guest_cpu_steal_time;     // % CPU time stolen by hypervisor
+    std::string hypervisor_vendor;   // Vendor string
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `/sys/class/dmi` and `/proc/cpuinfo`.
+- **macOS**: Uses `sysctl` (`machdep.cpu.features`, `kern.hv_vmm_present`).
+- **Windows**: Stub implementation.
+
+---
+
 ## Migration Notes for Phase 4
 
 Phase 4 focuses on **core foundation stability** rather than feature completeness. This approach provides:
