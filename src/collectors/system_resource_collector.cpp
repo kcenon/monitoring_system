@@ -127,10 +127,9 @@ void system_info_collector::collect_network_stats(system_resources& resources) {
 
 void system_info_collector::collect_process_stats(system_resources& resources) {
 #ifdef __linux__
-    // Linux process stats often come from /proc
-    // For context switches, we already got system-wide from /proc/stat
-    // voluntary/nonvoluntary are usually per-task in /proc/pid/status
-    // Aggregating them here would be expensive but possible.
+    // Linux process stats - context switches are already collected in collect_linux_cpu_stats
+    // from /proc/stat. Process count can be read from /proc directory.
+    (void)resources;  // Context switches already handled in CPU stats
 #elif __APPLE__
     // macOS context switches are best found by iterating processes
     int numberOfProcesses = proc_listpids(PROC_ALL_PIDS, 0, NULL, 0);

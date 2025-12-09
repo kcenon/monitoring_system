@@ -56,8 +56,8 @@
     #include <sys/sysinfo.h>
     #include <unistd.h>
 #elif _WIN32
-    #include <psapi.h>
     #include <windows.h>
+    #include <psapi.h>
 #endif
 
 #include "plugin_metric_collector.h"
