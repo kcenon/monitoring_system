@@ -1596,10 +1596,112 @@ monitor.register_check("service",
 
 ## Version Compatibility
 
-- C++17 or later required
+- C++20 required (C++17 no longer supported)
 - Thread support required
-- Optional: C++20 for enhanced features (concepts, coroutines)
-- Compatible with: GCC 7+, Clang 5+, MSVC 2017+
+- C++20 Concepts used for type-safe APIs with clear error messages
+- Compatible with: GCC 10+, Clang 10+, MSVC 2019 16.3+
+
+## C++20 Concepts
+
+The monitoring system uses C++20 Concepts for compile-time type validation with clear, actionable error messages.
+
+### Available Concepts
+
+#### Event Bus Concepts (`interfaces/event_bus_interface.h`)
+```cpp
+namespace kcenon::monitoring::concepts {
+    // A type that can be used as an event (class type, copy-constructible)
+    template <typename T>
+    concept EventType = std::is_class_v<T> && std::is_copy_constructible_v<T>;
+
+    // A callable that handles events (invocable with const E&, returns void)
+    template <typename H, typename E>
+    concept EventHandler = std::invocable<H, const E&> &&
+        std::is_void_v<std::invoke_result_t<H, const E&>>;
+
+    // A callable that filters events (invocable with const E&, returns bool)
+    template <typename F, typename E>
+    concept EventFilter = std::invocable<F, const E&> &&
+        std::convertible_to<std::invoke_result_t<F, const E&>, bool>;
+}
+```
+
+#### Metric Collector Concepts (`interfaces/metric_collector_interface.h`)
+```cpp
+namespace kcenon::monitoring::concepts {
+    // A configuration type that can validate itself
+    template <typename T>
+    concept Validatable = requires(const T t) {
+        { t.validate() };
+    };
+
+    // A type that provides metrics
+    template <typename T>
+    concept MetricSourceLike = requires(const T t) {
+        { t.get_current_metrics() };
+        { t.get_source_name() } -> std::convertible_to<std::string>;
+        { t.is_healthy() } -> std::convertible_to<bool>;
+    };
+
+    // A type that collects metrics
+    template <typename T>
+    concept MetricCollectorLike = requires(T t) {
+        { t.collect_metrics() };
+        { t.is_collecting() } -> std::convertible_to<bool>;
+        { t.get_metric_types() };
+    };
+}
+```
+
+### Usage Examples
+
+#### Type-Safe Event Publishing
+```cpp
+// Only class types that are copy-constructible can be published
+struct my_event { std::string data; };
+event_bus.publish_event(my_event{"hello"});  // OK
+
+// Compile error: int is not a class type
+// event_bus.publish_event(42);  // Error: concepts::EventType not satisfied
+```
+
+#### Constrained Event Handlers
+```cpp
+// Handler with correct signature
+event_bus.subscribe_event<my_event>([](const my_event& e) {
+    std::cout << e.data << std::endl;
+});
+
+// Handler must return void - compile error otherwise
+// event_bus.subscribe_event<my_event>([](const my_event& e) {
+//     return e.data.size();  // Error: must return void
+// });
+```
+
+#### Configuration Validation
+```cpp
+// collection_config satisfies Validatable concept
+collection_config config;
+config.interval = std::chrono::seconds(1);
+auto result = config.validate();  // Compile-time verified to exist
+if (result.is_err()) {
+    // Handle validation error
+}
+```
+
+### Benefits of Concepts
+
+1. **Clear Error Messages**: Instead of cryptic SFINAE errors, you get:
+   ```
+   error: constraints not satisfied for 'publish_event'
+   note: concept 'EventType<int>' was not satisfied
+   ```
+
+2. **Self-Documenting APIs**: Concept names describe requirements explicitly
+
+3. **Better IDE Support**: Accurate auto-completion and type hints
+
+4. **Code Simplification**: No more `std::enable_if` boilerplate
 
 ---
 

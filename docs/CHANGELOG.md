@@ -60,8 +60,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation structure reorganization
 - Comprehensive contribution guidelines
 - Security policy documentation
+- **C++20 Concepts support** (#247)
+  - Added `monitoring_concepts.h` with concepts for metrics, events, and collectors
+  - Added concepts to `event_bus_interface.h`: `EventType`, `EventHandler`, `EventFilter`
+  - Added concepts to `metric_collector_interface.h`: `Validatable`, `MetricSourceLike`, `MetricCollectorLike`
+  - Compile-time type validation with clear error messages
+  - Static assertions for concept satisfaction verification
 
 ### Changed
+- **C++20 now required**: Upgraded from C++17 to C++20 for Concepts support
+  - Updated compiler requirements: GCC 10+, Clang 10+, MSVC 2019 16.3+
+  - common_system integration with C++20 Concepts when BUILD_WITH_COMMON_SYSTEM defined
 - **logger_system now optional**: Changed from required to optional dependency (#213)
   - monitoring_system now uses common_system's ILogger interface for runtime binding
   - logger_system can be injected at runtime via dependency injection

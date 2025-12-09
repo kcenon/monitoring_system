@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
+// Copyright (c) 2021-2025, kcenon
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -35,19 +35,83 @@
  *
  * This file defines the interface for components that collect metrics
  * from various sources and publish them to observers.
+ *
+ * C++20 Concepts are used to provide compile-time validation with
+ * clear error messages for configuration types and collectors.
  */
 
 #include <algorithm>
 #include <chrono>
+#include <concepts>
 #include <functional>
 #include <memory>
 #include <string>
+#include <type_traits>
 #include <vector>
-#include "observer_interface.h"
-#include "metric_types_adapter.h"
+
 #include "../core/result_types.h"
+#include "metric_types_adapter.h"
+#include "observer_interface.h"
+
+#ifdef BUILD_WITH_COMMON_SYSTEM
+#include <kcenon/common/concepts/service.h>
+#endif
 
 namespace kcenon { namespace monitoring {
+
+namespace concepts {
+
+/**
+ * @concept Validatable
+ * @brief A type that can validate its own state.
+ *
+ * Validatable types provide a validate() method that checks internal
+ * consistency and returns a result indicating success or validation errors.
+ *
+ * Example usage:
+ * @code
+ * template<Validatable C>
+ * auto apply_config(const C& config) {
+ *     auto result = config.validate();
+ *     if (result.is_err()) {
+ *         return result;
+ *     }
+ *     // Apply configuration
+ * }
+ * @endcode
+ */
+template <typename T>
+concept Validatable = requires(const T t) {
+    { t.validate() };
+};
+
+/**
+ * @concept MetricSourceLike
+ * @brief A type that can provide metrics.
+ *
+ * Metric sources provide current metrics and source identification.
+ */
+template <typename T>
+concept MetricSourceLike = requires(const T t) {
+    { t.get_current_metrics() };
+    { t.get_source_name() } -> std::convertible_to<std::string>;
+    { t.is_healthy() } -> std::convertible_to<bool>;
+};
+
+/**
+ * @concept MetricCollectorLike
+ * @brief A type that can collect metrics from sources.
+ *
+ * Metric collectors manage metric collection and observer notification.
+ */
+template <typename T>
+concept MetricCollectorLike = requires(T t) {
+    { t.collect_metrics() };
+    { t.is_collecting() } -> std::convertible_to<bool>;
+    { t.get_metric_types() };
+};
+
+} // namespace concepts
 
 /**
  * @class metric_filter
@@ -88,6 +152,9 @@ private:
 /**
  * @class collection_config
  * @brief Configuration for metric collection
+ *
+ * This struct satisfies the concepts::Validatable concept,
+ * providing a validate() method for configuration validation.
  */
 struct collection_config {
     std::chrono::milliseconds interval{std::chrono::seconds(1)};
@@ -96,18 +163,30 @@ struct collection_config {
     size_t batch_size{100};
     bool async_collection{true};
 
-    result_void validate() const {
+    /**
+     * @brief Validate the configuration
+     * @return Result indicating success or validation errors
+     *
+     * Validates:
+     * - Collection interval must be positive
+     * - Batch size must be positive when batch collection is enabled
+     */
+    [[nodiscard]] result_void validate() const {
         if (interval.count() <= 0) {
             return make_void_error(monitoring_error_code::invalid_configuration,
-                                    "Collection interval must be positive");
+                                   "Collection interval must be positive");
         }
         if (batch_collection && batch_size == 0) {
             return make_void_error(monitoring_error_code::invalid_configuration,
-                                    "Batch size must be positive when batch collection is enabled");
+                                   "Batch size must be positive when batch collection is enabled");
         }
         return make_void_success();
     }
 };
+
+// Compile-time verification that collection_config satisfies Validatable concept
+static_assert(concepts::Validatable<collection_config>,
+              "collection_config must satisfy Validatable concept");
 
 /**
  * @class interface_metric_collector
