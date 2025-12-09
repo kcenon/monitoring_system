@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
+// Copyright (c) 2021-2025, kcenon
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -36,21 +36,68 @@
  * This file defines the event bus pattern interfaces that enable
  * publish-subscribe communication between monitoring components
  * without direct dependencies.
+ *
+ * C++20 Concepts are used to provide compile-time validation with
+ * clear error messages for event types and handlers.
  */
 
 #include <any>
 #include <atomic>
 #include <chrono>
+#include <concepts>
 #include <functional>
 #include <memory>
 #include <mutex>
 #include <string>
+#include <type_traits>
 #include <typeindex>
 #include <unordered_map>
 #include <vector>
 #include "../core/result_types.h"
 
+#ifdef BUILD_WITH_COMMON_SYSTEM
+#include <kcenon/common/concepts/event.h>
+#endif
+
 namespace kcenon { namespace monitoring {
+
+namespace concepts {
+
+/**
+ * @concept EventType
+ * @brief A type that can be used as an event in the event bus.
+ *
+ * Events must be class types that are copy-constructible to ensure
+ * they can be safely passed to multiple handlers.
+ *
+ * This concept mirrors common_system's EventType concept for consistency.
+ */
+template <typename T>
+concept EventType = std::is_class_v<T> && std::is_copy_constructible_v<T>;
+
+/**
+ * @concept EventHandler
+ * @brief A callable that can handle events of a specific type.
+ *
+ * Event handlers receive events by const reference and return void.
+ * They should not throw exceptions to avoid disrupting event dispatch.
+ */
+template <typename H, typename E>
+concept EventHandler =
+    std::invocable<H, const E&> && std::is_void_v<std::invoke_result_t<H, const E&>>;
+
+/**
+ * @concept EventFilter
+ * @brief A callable that filters events based on criteria.
+ *
+ * Event filters receive events by const reference and return a boolean
+ * indicating whether the event should be processed.
+ */
+template <typename F, typename E>
+concept EventFilter =
+    std::invocable<F, const E&> && std::convertible_to<std::invoke_result_t<F, const E&>, bool>;
+
+} // namespace concepts
 
 /**
  * @class event_base
@@ -170,37 +217,55 @@ public:
 
     /**
      * @brief Publish an event to all subscribers
-     * @tparam EventType The type of event to publish
+     * @tparam E The type of event to publish (must satisfy concepts::EventType)
      * @param event The event to publish
      * @return Result indicating success or failure
+     *
+     * The event type must be a class type and copy-constructible.
+     * Using C++20 Concepts provides clear compile-time error messages
+     * when these requirements are not met.
      */
-    template<typename EventType>
-    result_void publish_event(const EventType& event) {
-        return publish_event_impl(std::type_index(typeid(EventType)),
-                                 std::make_any<EventType>(event));
+    template <concepts::EventType E>
+    result_void publish_event(const E& event) {
+        return publish_event_impl(std::type_index(typeid(E)), std::make_any<E>(event));
     }
 
     /**
      * @brief Subscribe to events of a specific type
-     * @tparam EventType The type of event to subscribe to
+     * @tparam E The type of event to subscribe to (must satisfy concepts::EventType)
      * @param handler The handler function for the event
      * @param priority Priority for handler execution
      * @return Subscription token for managing the subscription
+     *
+     * The event type must be a class type and copy-constructible.
+     * Using C++20 Concepts provides clear compile-time error messages
+     * when these requirements are not met.
      */
-    template<typename EventType>
-    result<subscription_token> subscribe_event(
-        std::function<void(const EventType&)> handler,
-        event_priority priority = event_priority::normal) {
-
-        auto wrapped_handler = event_handler<EventType>(handler, priority);
+    template <concepts::EventType E>
+    result<subscription_token> subscribe_event(std::function<void(const E&)> handler,
+                                               event_priority priority = event_priority::normal) {
+        auto wrapped_handler = event_handler<E>(handler, priority);
         return subscribe_event_impl(
-            std::type_index(typeid(EventType)),
-            [wrapped_handler](const std::any& event) {
-                wrapped_handler(std::any_cast<EventType>(event));
-            },
-            wrapped_handler.get_id(),
-            priority
-        );
+            std::type_index(typeid(E)),
+            [wrapped_handler](const std::any& event) { wrapped_handler(std::any_cast<E>(event)); },
+            wrapped_handler.get_id(), priority);
+    }
+
+    /**
+     * @brief Subscribe to events with a callable handler
+     * @tparam E The type of event to subscribe to (must satisfy concepts::EventType)
+     * @tparam H The handler type (must satisfy concepts::EventHandler<E>)
+     * @param handler The handler callable
+     * @param priority Priority for handler execution
+     * @return Subscription token for managing the subscription
+     *
+     * This overload accepts any callable that satisfies the EventHandler concept,
+     * providing more flexibility than the std::function overload.
+     */
+    template <concepts::EventType E, concepts::EventHandler<E> H>
+    result<subscription_token> subscribe_event(H&& handler,
+                                               event_priority priority = event_priority::normal) {
+        return subscribe_event(std::function<void(const E&)>(std::forward<H>(handler)), priority);
     }
 
     /**
@@ -212,22 +277,22 @@ public:
 
     /**
      * @brief Clear all subscriptions for a specific event type
-     * @tparam EventType The event type to clear subscriptions for
+     * @tparam E The event type to clear subscriptions for (must satisfy concepts::EventType)
      * @return Result indicating success or failure
      */
-    template<typename EventType>
+    template <concepts::EventType E>
     result_void clear_subscriptions() {
-        return clear_subscriptions_impl(std::type_index(typeid(EventType)));
+        return clear_subscriptions_impl(std::type_index(typeid(E)));
     }
 
     /**
      * @brief Get the number of subscribers for an event type
-     * @tparam EventType The event type to check
+     * @tparam E The event type to check (must satisfy concepts::EventType)
      * @return Number of subscribers
      */
-    template<typename EventType>
+    template <concepts::EventType E>
     size_t get_subscriber_count() const {
-        return get_subscriber_count_impl(std::type_index(typeid(EventType)));
+        return get_subscriber_count_impl(std::type_index(typeid(E)));
     }
 
     /**
