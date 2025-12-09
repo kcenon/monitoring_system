@@ -125,11 +125,11 @@ void system_info_collector::collect_network_stats(system_resources& resources) {
     // Basic implementation or platform specific if needed
 }
 
-void system_info_collector::collect_process_stats(system_resources& resources) {
+void system_info_collector::collect_process_stats([[maybe_unused]] system_resources& resources) {
 #ifdef __linux__
     // Linux process stats - context switches are already collected in collect_linux_cpu_stats
     // from /proc/stat. Process count can be read from /proc directory.
-    (void)resources;  // Context switches already handled in CPU stats
+    // Context switches already handled in CPU stats
 #elif __APPLE__
     // macOS context switches are best found by iterating processes
     int numberOfProcesses = proc_listpids(PROC_ALL_PIDS, 0, NULL, 0);
@@ -351,11 +351,11 @@ void system_info_collector::collect_linux_memory_stats(system_resources& resourc
 }
 
 #elif _WIN32
-void system_info_collector::collect_windows_cpu_stats(system_resources& resources) {
-    // Stub
+void system_info_collector::collect_windows_cpu_stats([[maybe_unused]] system_resources& resources) {
+    // TODO: Implement Windows CPU stats collection
 }
-void system_info_collector::collect_windows_memory_stats(system_resources& resources) {
-    // Stub
+void system_info_collector::collect_windows_memory_stats([[maybe_unused]] system_resources& resources) {
+    // TODO: Implement Windows memory stats collection
 }
 #endif
 
