@@ -278,7 +278,7 @@ std::vector<temperature_sensor_info> temperature_info_collector::enumerate_senso
         // Try to classify based on instance name
         std::string lower_name = zone.instance_name;
         std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(),
-                       [](unsigned char c) { return std::tolower(c); });
+                       [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
 
         if (lower_name.find("cpu") != std::string::npos ||
             lower_name.find("proc") != std::string::npos) {
