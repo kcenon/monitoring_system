@@ -35,13 +35,12 @@ var searchData=
   ['test_5fstorage_5fbackends_2ecpp_32',['test_storage_backends.cpp',['../d5/dec/test__storage__backends_8cpp.html',1,'']]],
   ['test_5fstream_5faggregation_2ecpp_33',['test_stream_aggregation.cpp',['../db/d5e/test__stream__aggregation_8cpp.html',1,'']]],
   ['test_5fstress_5fperformance_2ecpp_34',['test_stress_performance.cpp',['../de/da5/test__stress__performance_8cpp.html',1,'']]],
-  ['test_5fsystem_5fresource_5fcollector_2ecpp_35',['test_system_resource_collector.cpp',['../d5/dc8/test__system__resource__collector_8cpp.html',1,'']]],
-  ['test_5ftcp_5fstate_5fcollector_2ecpp_36',['test_tcp_state_collector.cpp',['../d9/d31/test__tcp__state__collector_8cpp.html',1,'']]],
-  ['test_5ftemperature_5fcollector_2ecpp_37',['test_temperature_collector.cpp',['../db/d0a/test__temperature__collector_8cpp.html',1,'']]],
-  ['test_5fthread_5fcontext_2ecpp_38',['test_thread_context.cpp',['../d4/ddd/test__thread__context_8cpp.html',1,'']]],
-  ['test_5fthread_5fcontext_5fsimple_2ecpp_39',['test_thread_context_simple.cpp',['../de/db1/test__thread__context__simple_8cpp.html',1,'']]],
-  ['test_5ftimer_5fmetrics_2ecpp_40',['test_timer_metrics.cpp',['../d4/df9/test__timer__metrics_8cpp.html',1,'']]],
-  ['test_5ftrace_5fexporters_2ecpp_41',['test_trace_exporters.cpp',['../dc/dbd/test__trace__exporters_8cpp.html',1,'']]],
-  ['test_5fvm_5fcollector_2ecpp_42',['test_vm_collector.cpp',['../dd/d57/test__vm__collector_8cpp.html',1,'']]],
-  ['thread_5fsafety_5ftests_2ecpp_43',['thread_safety_tests.cpp',['../df/d66/thread__safety__tests_8cpp.html',1,'']]]
+  ['test_5ftcp_5fstate_5fcollector_2ecpp_35',['test_tcp_state_collector.cpp',['../d9/d31/test__tcp__state__collector_8cpp.html',1,'']]],
+  ['test_5ftemperature_5fcollector_2ecpp_36',['test_temperature_collector.cpp',['../db/d0a/test__temperature__collector_8cpp.html',1,'']]],
+  ['test_5fthread_5fcontext_2ecpp_37',['test_thread_context.cpp',['../d4/ddd/test__thread__context_8cpp.html',1,'']]],
+  ['test_5fthread_5fcontext_5fsimple_2ecpp_38',['test_thread_context_simple.cpp',['../de/db1/test__thread__context__simple_8cpp.html',1,'']]],
+  ['test_5ftimer_5fmetrics_2ecpp_39',['test_timer_metrics.cpp',['../d4/df9/test__timer__metrics_8cpp.html',1,'']]],
+  ['test_5ftrace_5fexporters_2ecpp_40',['test_trace_exporters.cpp',['../dc/dbd/test__trace__exporters_8cpp.html',1,'']]],
+  ['test_5fvm_5fcollector_2ecpp_41',['test_vm_collector.cpp',['../dd/d57/test__vm__collector_8cpp.html',1,'']]],
+  ['thread_5fsafety_5ftests_2ecpp_42',['thread_safety_tests.cpp',['../df/d66/thread__safety__tests_8cpp.html',1,'']]]
 ];

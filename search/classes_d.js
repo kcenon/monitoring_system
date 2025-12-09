@@ -9,6 +9,5 @@ var searchData=
   ['storagebackendstest_6',['StorageBackendsTest',['../d4/dcd/classStorageBackendsTest.html',1,'']]],
   ['streamaggregationtest_7',['StreamAggregationTest',['../de/d8e/classStreamAggregationTest.html',1,'']]],
   ['stressperformancetest_8',['StressPerformanceTest',['../d9/dbf/classStressPerformanceTest.html',1,'']]],
-  ['summarymetricstest_9',['SummaryMetricsTest',['../db/da7/classSummaryMetricsTest.html',1,'']]],
-  ['systemresourcecollectortest_10',['SystemResourceCollectorTest',['../da/df3/classSystemResourceCollectorTest.html',1,'']]]
+  ['summarymetricstest_9',['SummaryMetricsTest',['../db/da7/classSummaryMetricsTest.html',1,'']]]
 ];
