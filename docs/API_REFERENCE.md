@@ -869,6 +869,73 @@ enum class gpu_type {
 
 ---
 
+### Socket Buffer Collector
+**Header:** `include/kcenon/monitoring/collectors/socket_buffer_collector.h`
+
+#### `socket_buffer_collector`
+Collects socket buffer (send/receive queue) usage metrics for network bottleneck detection.
+
+```cpp
+class socket_buffer_collector {
+public:
+    socket_buffer_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect socket buffer metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    socket_buffer_metrics get_last_metrics() const;
+
+    // Check if socket buffer monitoring is available
+    bool is_socket_buffer_monitoring_available() const;
+};
+```
+
+#### `socket_buffer_metrics`
+Structure containing aggregated socket buffer data.
+
+```cpp
+struct socket_buffer_metrics {
+    uint64_t recv_buffer_bytes;      // Total bytes in receive buffers
+    uint64_t send_buffer_bytes;      // Total bytes in send buffers
+    uint64_t recv_queue_full_count;  // Count of non-empty recv queues
+    uint64_t send_queue_full_count;  // Count of non-empty send queues
+    uint64_t socket_memory_bytes;    // Total socket buffer memory used
+    uint64_t socket_count;           // Total number of sockets
+    uint64_t tcp_socket_count;       // Number of TCP sockets
+    uint64_t udp_socket_count;       // Number of UDP sockets
+    bool metrics_available;          // Whether metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `/proc/net/tcp` and `/proc/net/tcp6` for tx_queue/rx_queue parsing, `/proc/net/sockstat` for socket memory statistics
+- **macOS**: Uses `netstat -m` for mbuf statistics, `netstat -an -p tcp` for queue info, `sysctl kern.ipc` for buffer settings
+- **Windows**: Stub implementation (future: `GetTcpStatistics()` API)
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `queue_full_threshold_bytes`: bytes (default: 65536)
+- `memory_warning_threshold_bytes`: bytes (default: 104857600 = 100MB)
+
+---
+
 ## Health Monitoring
 
 
