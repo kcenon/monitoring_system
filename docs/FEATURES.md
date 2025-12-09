@@ -988,6 +988,97 @@ if (collector.is_gpu_available()) {
 
 ---
 
+## Socket Buffer Usage Monitoring
+
+### Overview
+
+The socket buffer collector provides socket buffer (send/receive queue) usage monitoring for network bottleneck detection. Monitoring socket buffer fill levels helps identify slow connections, dropped packets, and network tuning opportunities at the socket level.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **socket_recv_buffer_bytes** | Total bytes in receive buffers | Bytes |
+| **socket_send_buffer_bytes** | Total bytes in send buffers | Bytes |
+| **socket_recv_queue_full_count** | Count of non-empty recv queues | Count |
+| **socket_send_queue_full_count** | Count of non-empty send queues | Count |
+| **socket_memory_bytes** | Total socket buffer memory | Bytes |
+| **socket_count_total** | Total number of sockets | Count |
+| **socket_tcp_count** | Number of TCP sockets | Count |
+| **socket_udp_count** | Number of UDP sockets | Count |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/socket_buffer_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+socket_buffer_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"queue_full_threshold_bytes", "65536"},
+    {"memory_warning_threshold_bytes", "104857600"}
+};
+collector.initialize(config);
+
+// Collect socket buffer metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw socket buffer metrics
+auto buffer_data = collector.get_last_metrics();
+std::cout << "Total sockets: " << buffer_data.socket_count << std::endl;
+std::cout << "TCP sockets: " << buffer_data.tcp_socket_count << std::endl;
+std::cout << "Recv buffer: " << buffer_data.recv_buffer_bytes << " bytes" << std::endl;
+std::cout << "Send buffer: " << buffer_data.send_buffer_bytes << " bytes" << std::endl;
+std::cout << "Socket memory: " << buffer_data.socket_memory_bytes << " bytes" << std::endl;
+```
+
+### Socket Buffer Monitoring Availability Check
+
+```cpp
+socket_buffer_collector collector;
+collector.initialize({});
+
+// Check if socket buffer monitoring is available
+if (collector.is_socket_buffer_monitoring_available()) {
+    std::cout << "Socket buffer monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "Socket buffer monitoring not available on this platform" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable socket buffer collection |
+| `queue_full_threshold_bytes` | 65536 | Threshold for queue warning alerts (per socket) |
+| `memory_warning_threshold_bytes` | 104857600 | Threshold for memory warning alerts (100MB) |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | `/proc` parsing | `/proc/net/tcp` (tx_queue:rx_queue), `/proc/net/sockstat` (memory) |
+| **macOS** | netstat/sysctl | `netstat -m` (mbuf), `netstat -an -p tcp` (queues), `sysctl kern.ipc` |
+| **Windows** | Stub | Future: `GetTcpStatistics()` API |
+
+> [!NOTE]
+> Socket buffer monitoring is available on Linux and macOS. On Windows, the collector returns unavailable metrics (stub implementation). Queue buildup (non-zero tx_queue/rx_queue) may indicate network congestion or slow receivers.
+
+---
+
 ## Distributed Tracing
 
 

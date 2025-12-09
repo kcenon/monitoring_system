@@ -69,6 +69,9 @@ add_executable(monitoring_system_tests
     # GPU metrics monitoring (Issue #221)
     test_gpu_collector.cpp
 
+    # Socket buffer usage monitoring (Issue #226)
+    test_socket_buffer_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
