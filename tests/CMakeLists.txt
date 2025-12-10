@@ -88,6 +88,9 @@ add_executable(monitoring_system_tests
     # Battery status monitoring (Issue #218)
     test_battery_collector.cpp
 
+    # Load average history tracking (Issue #219)
+    test_time_series_buffer.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
