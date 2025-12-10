@@ -121,23 +121,23 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span>InodeCollectorTest : <span class="keyword">public</span> ::testing::Test {</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>   <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> SetUp()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a> = std::make_unique&lt;inode_collector&gt;();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a> = std::make_unique&lt;inode_collector&gt;();</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        std::unordered_map&lt;std::string, std::string&gt; config;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;initialize(config);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;initialize(config);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../d1/d3b/test__inode__collector_8cpp.html#ac854cb4deb0a0e46ed9fa3c1e88f5693">   46</a></span>    std::unique_ptr&lt;inode_collector&gt; <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../d1/d3b/test__inode__collector_8cpp.html#ac854cb4deb0a0e46ed9fa3c1e88f5693">   46</a></span>    std::unique_ptr&lt;inode_collector&gt; <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// Test basic initialization</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, InitializesSuccessfully) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    EXPECT_NE(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_EQ(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_name(), <span class="stringliteral">&quot;inode_collector&quot;</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    EXPECT_NE(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_EQ(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_name(), <span class="stringliteral">&quot;inode_collector&quot;</span>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// Test metric types returned</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, ReturnsCorrectMetricTypes) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">auto</span> types = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_metric_types();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">auto</span> types = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_metric_types();</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    EXPECT_FALSE(types.empty());</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// Check for expected metric types</span></div>
@@ -187,10 +187,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">// Test statistics</span></div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, TracksStatistics) {</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// Collect some metrics</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_statistics();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_statistics();</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    EXPECT_GE(stats[<span class="stringliteral">&quot;collection_count&quot;</span>], 2.0);</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    EXPECT_GE(stats[<span class="stringliteral">&quot;collection_errors&quot;</span>], 0.0);</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
@@ -198,13 +198,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">// Test collect returns metrics (graceful degradation when unavailable)</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, CollectReturnsMetrics) {</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// Should not throw even if platform-specific metrics fail</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    EXPECT_NO_THROW(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect());</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    EXPECT_NO_THROW(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect());</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">// Test get_last_metrics</span></div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, GetLastMetrics) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">auto</span> last = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_last_metrics();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">auto</span> last = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_last_metrics();</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// Timestamp should be set</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
@@ -216,7 +216,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, InodeMonitoringAvailabilityCheck) {</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// This should return true or false depending on platform</span></div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// Either result is valid - we just want to ensure it doesn&#39;t crash</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    EXPECT_NO_THROW(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;is_inode_monitoring_available());</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    EXPECT_NO_THROW(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_inode_monitoring_available());</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>}</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">// Test inode_metrics structure</span></div>
@@ -263,18 +263,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">// Test multiple collections are stable</span></div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, MultipleCollectionsAreStable) {</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="comment">// Should not crash or throw</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        EXPECT_NO_THROW(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_statistics());</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        EXPECT_NO_THROW(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_statistics());</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_statistics();</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_statistics();</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    EXPECT_GE(stats[<span class="stringliteral">&quot;collection_count&quot;</span>], 10.0);</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>}</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment">// Test that metrics have correct tags when collected</span></div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, MetricsHaveCorrectTags) {</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="comment">// All metrics should have the collector tag</span></div>
@@ -288,7 +288,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment">// Test is_healthy reflects actual state</span></div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, IsHealthyReflectsState) {</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="comment">// When enabled, health depends on availability</span></div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    EXPECT_NO_THROW(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;is_healthy());</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    EXPECT_NO_THROW(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_healthy());</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="comment">// When disabled, should not be healthy</span></div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keyword">auto</span> disabled_collector = std::make_unique&lt;inode_collector&gt;();</div>
@@ -301,7 +301,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">#if defined(__linux__) || defined(__APPLE__)</span></div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">// Platform-specific test: On Unix-like systems, inode monitoring should be available</span></div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, UnixInodeMonitoringAvailable) {</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    EXPECT_TRUE(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;is_inode_monitoring_available());</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    EXPECT_TRUE(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_inode_monitoring_available());</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>}</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">// Platform-specific test: Should have at least one filesystem on Unix</span></div>
@@ -340,7 +340,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="preprocessor">#if defined(_WIN32)</span></div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment">// Platform-specific test: On Windows, inode monitoring should not be available</span></div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(InodeCollectorTest, WindowsInodeMonitoringUnavailable) {</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    EXPECT_FALSE(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;is_inode_monitoring_available());</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    EXPECT_FALSE(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_inode_monitoring_available());</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>}</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment">// Platform-specific test: Windows metrics should indicate unavailability</span></div>
@@ -355,14 +355,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>}  <span class="comment">// namespace</span></div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>}  <span class="comment">// namespace monitoring</span></div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>}  <span class="comment">// namespace kcenon</span></div>
-<div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/test__container__collector_8cpp_source.html#l00033">test_container_collector.cpp:33</a></div></div>
+<div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00035">test_battery_collector.cpp:35</a></div></div>
 <div class="ttc" id="atest__adapter__functionality_8cpp_html_a31606db0984196957c26aa41dec35dc0"><div class="ttname"><a href="../../dd/d52/test__adapter__functionality_8cpp.html#a31606db0984196957c26aa41dec35dc0">TEST</a></div><div class="ttdeci">TEST(AdapterFunctionalityTest, WorksWithoutLogger)</div><div class="ttdoc">Test Scenario 1: Adapter with NULL logger.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00102">test_adapter_functionality.cpp:102</a></div></div>
 <div class="ttc" id="atest__adaptive__monitoring_8cpp_html_a595b5fbbcee10830ce03cdba8d572f74"><div class="ttname"><a href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a></div><div class="ttdeci">TEST_F(AdaptiveMonitoringTest, AdaptiveConfigDefaults)</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00100">test_adaptive_monitoring.cpp:100</a></div></div>
-<div class="ttc" id="atest__container__collector_8cpp_html_a4383345342d6f0cdd6ec11c38ea67901"><div class="ttname"><a href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a></div><div class="ttdeci">std::unique_ptr&lt; container_collector &gt; collector_</div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/test__container__collector_8cpp_source.html#l00046">test_container_collector.cpp:46</a></div></div>
+<div class="ttc" id="atest__battery__collector_8cpp_html_a534ca6f7d2a3f8a4309322cc0353bb05"><div class="ttname"><a href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a></div><div class="ttdeci">std::unique_ptr&lt; battery_collector &gt; collector_</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00048">test_battery_collector.cpp:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 10 2025 00:48:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Dec 10 2025 01:11:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -121,23 +121,23 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span>PowerCollectorTest : <span class="keyword">public</span> ::testing::Test {</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>   <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> SetUp()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a> = std::make_unique&lt;power_collector&gt;();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a> = std::make_unique&lt;power_collector&gt;();</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        std::unordered_map&lt;std::string, std::string&gt; config;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;initialize(config);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;initialize(config);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../d8/d90/test__power__collector_8cpp.html#aef4fb5298d0c0fea95360b85f5065848">   46</a></span>    std::unique_ptr&lt;power_collector&gt; <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../d8/d90/test__power__collector_8cpp.html#aef4fb5298d0c0fea95360b85f5065848">   46</a></span>    std::unique_ptr&lt;power_collector&gt; <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// Test basic initialization</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, InitializesSuccessfully) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    EXPECT_TRUE(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;is_healthy());</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_EQ(<a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_name(), <span class="stringliteral">&quot;power_collector&quot;</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    EXPECT_TRUE(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_healthy());</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_EQ(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_name(), <span class="stringliteral">&quot;power_collector&quot;</span>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// Test metric types returned</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, ReturnsCorrectMetricTypes) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">auto</span> metric_types = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_metric_types();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">auto</span> metric_types = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_metric_types();</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// Should include all expected power metrics</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    EXPECT_FALSE(metric_types.empty());</div>
@@ -180,7 +180,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">// Test statistics</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, TracksStatistics) {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_statistics();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_statistics();</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// Should have expected statistics keys</span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    EXPECT_TRUE(stats.find(<span class="stringliteral">&quot;collection_count&quot;</span>) != stats.end());</div>
@@ -194,18 +194,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">// Test collect returns metrics (graceful degradation when sources unavailable)</span></div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, CollectReturnsMetrics) {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// This may return empty metrics if power sources are not available</span></div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// This is expected behavior - graceful degradation</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_statistics();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_statistics();</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    EXPECT_GE(stats[<span class="stringliteral">&quot;collection_count&quot;</span>], 1.0);</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">// Test get_last_readings</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, GetLastReadings) {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">auto</span> last_readings = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_last_readings();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">auto</span> last_readings = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_last_readings();</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// Should return vector (may be empty if power not available)</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// No assertion - just verify it doesn&#39;t crash</span></div>
@@ -215,7 +215,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">// Test is_power_available</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, PowerAvailabilityCheck) {</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// Should not crash - returns true/false based on power source availability</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">bool</span> available = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;is_power_available();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">bool</span> available = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_power_available();</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    (void)available;  <span class="comment">// Use the variable to avoid warning</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>}</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
@@ -314,19 +314,19 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">// Test multiple collections don&#39;t cause issues</span></div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, MultipleCollectionsAreStable) {</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="comment">// Should not crash on repeated calls</span></div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        (void)metrics;</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    }</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;get_statistics();</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_statistics();</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    EXPECT_GE(stats[<span class="stringliteral">&quot;collection_count&quot;</span>], 5.0);</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;collection_errors&quot;</span>], 0.0);</div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>}</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">// Test that metrics have correct tags when collected</span></div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(PowerCollectorTest, MetricsHaveCorrectTags) {</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a>-&gt;collect();</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keyword">auto</span> metrics = <a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;collect();</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="comment">// If we have any metrics, check they have the expected tags</span></div>
@@ -385,14 +385,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>}  <span class="comment">// namespace</span></div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>}  <span class="comment">// namespace monitoring</span></div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>}  <span class="comment">// namespace kcenon</span></div>
-<div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/test__container__collector_8cpp_source.html#l00033">test_container_collector.cpp:33</a></div></div>
+<div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00035">test_battery_collector.cpp:35</a></div></div>
 <div class="ttc" id="atest__adapter__functionality_8cpp_html_a31606db0984196957c26aa41dec35dc0"><div class="ttname"><a href="../../dd/d52/test__adapter__functionality_8cpp.html#a31606db0984196957c26aa41dec35dc0">TEST</a></div><div class="ttdeci">TEST(AdapterFunctionalityTest, WorksWithoutLogger)</div><div class="ttdoc">Test Scenario 1: Adapter with NULL logger.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00102">test_adapter_functionality.cpp:102</a></div></div>
 <div class="ttc" id="atest__adaptive__monitoring_8cpp_html_a595b5fbbcee10830ce03cdba8d572f74"><div class="ttname"><a href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a></div><div class="ttdeci">TEST_F(AdaptiveMonitoringTest, AdaptiveConfigDefaults)</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dee/test__adaptive__monitoring_8cpp_source.html#l00100">test_adaptive_monitoring.cpp:100</a></div></div>
-<div class="ttc" id="atest__container__collector_8cpp_html_a4383345342d6f0cdd6ec11c38ea67901"><div class="ttname"><a href="../../d4/d11/test__container__collector_8cpp.html#a4383345342d6f0cdd6ec11c38ea67901">collector_</a></div><div class="ttdeci">std::unique_ptr&lt; container_collector &gt; collector_</div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/test__container__collector_8cpp_source.html#l00046">test_container_collector.cpp:46</a></div></div>
+<div class="ttc" id="atest__battery__collector_8cpp_html_a534ca6f7d2a3f8a4309322cc0353bb05"><div class="ttname"><a href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a></div><div class="ttdeci">std::unique_ptr&lt; battery_collector &gt; collector_</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00048">test_battery_collector.cpp:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 10 2025 00:48:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Dec 10 2025 01:11:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
