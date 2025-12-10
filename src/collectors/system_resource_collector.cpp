@@ -367,13 +367,29 @@ void system_info_collector::collect_windows_memory_stats([[maybe_unused]] system
 // system_resource_collector Plugin Implementation
 // -----------------------------------------------------------------------------
 
-system_resource_collector::system_resource_collector() 
-    : collector_(std::make_unique<system_info_collector>()) {
+system_resource_collector::system_resource_collector()
+    : collector_(std::make_unique<system_info_collector>())
+    , load_history_(std::make_unique<load_average_history>(1000)) {
 }
 
 bool system_resource_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
-    (void)config;
-    // Parse config if needed
+    auto it = config.find("load_history_max_samples");
+    if (it != config.end()) {
+        try {
+            size_t max_samples = std::stoull(it->second);
+            if (max_samples > 0) {
+                load_history_ = std::make_unique<load_average_history>(max_samples);
+            }
+        } catch (...) {
+            // Ignore invalid config, use default
+        }
+    }
+
+    it = config.find("enable_load_history");
+    if (it != config.end()) {
+        enable_load_history_ = (it->second == "true" || it->second == "1");
+    }
+
     return true;
 }
 
@@ -382,9 +398,15 @@ std::vector<metric> system_resource_collector::collect() {
     // auto start_time = std::chrono::steady_clock::now();
 
     system_resources resources = collector_->collect();
-    
+
     // Convert to shared_ptr for storage
     last_resources_ = std::make_shared<system_resources>(resources);
+
+    // Track load average history
+    if (enable_load_history_ && load_history_) {
+        load_history_->add_sample(resources.load_average_1min, resources.load_average_5min,
+                                  resources.load_average_15min);
+    }
     
     std::vector<metric> metrics;
     
@@ -437,6 +459,30 @@ system_resources system_resource_collector::get_last_resources() const {
         return *last_resources_;
     }
     return system_resources{};
+}
+
+std::vector<load_average_sample> system_resource_collector::get_all_load_history() const {
+    if (load_history_) {
+        return load_history_->get_all_samples();
+    }
+    return {};
+}
+
+load_average_statistics system_resource_collector::get_all_load_statistics() const {
+    if (load_history_) {
+        return load_history_->get_statistics();
+    }
+    return {};
+}
+
+void system_resource_collector::configure_load_history(size_t max_samples) {
+    if (max_samples > 0) {
+        load_history_ = std::make_unique<load_average_history>(max_samples);
+    }
+}
+
+bool system_resource_collector::is_load_history_enabled() const {
+    return enable_load_history_ && load_history_ != nullptr;
 }
 
 metric system_resource_collector::create_metric(const std::string& name, double value, 
