@@ -1992,3 +1992,118 @@ struct uptime_metrics {
 - **macOS**: Uses `sysctl(KERN_BOOTTIME)` for boot timestamp
 - **Windows**: Uses `GetTickCount64()` for uptime in milliseconds
 
+---
+
+### Battery Status Monitoring
+
+#### Overview
+
+The `battery_collector` provides battery status monitoring for portable devices (laptops, mobile) with cross-platform support. It collects battery level, charging status, health information, and time estimates.
+
+#### Classes
+
+**`battery_collector`**: Main collector class for battery metrics.
+
+| Method | Description | Return Type |
+|--------|-------------|-------------|
+| `initialize(config)` | Initialize with configuration map | `bool` |
+| `collect()` | Collect battery metrics | `std::vector<metric>` |
+| `get_name()` | Get collector name | `std::string` |
+| `get_metric_types()` | Get supported metric types | `std::vector<std::string>` |
+| `is_healthy()` | Check if collector is operational | `bool` |
+| `get_statistics()` | Get collector statistics | `std::unordered_map<std::string, double>` |
+| `get_last_readings()` | Get last collected readings | `std::vector<battery_reading>` |
+| `is_battery_available()` | Check battery availability | `bool` |
+
+**`battery_info_collector`**: Low-level platform-specific collector.
+
+| Method | Description | Return Type |
+|--------|-------------|-------------|
+| `is_battery_available()` | Check if battery monitoring is available | `bool` |
+| `enumerate_batteries()` | List all available batteries | `std::vector<battery_info>` |
+| `read_battery(battery)` | Read specific battery status | `battery_reading` |
+| `read_all_batteries()` | Read all batteries | `std::vector<battery_reading>` |
+
+#### Data Structures
+
+**`battery_status`** enum:
+```cpp
+enum class battery_status {
+    unknown,      // Unknown status
+    charging,     // Battery is charging
+    discharging,  // Battery is discharging
+    not_charging, // Plugged in but not charging
+    full          // Battery is fully charged
+};
+```
+
+**`battery_info`**:
+```cpp
+struct battery_info {
+    std::string id;           // Unique battery identifier
+    std::string name;         // Human-readable name
+    std::string path;         // Platform-specific path
+    std::string manufacturer; // Battery manufacturer
+    std::string model;        // Battery model name
+    std::string serial;       // Serial number
+    std::string technology;   // Battery technology (Li-ion, etc.)
+};
+```
+
+**`battery_reading`**:
+```cpp
+struct battery_reading {
+    battery_info info;                    // Battery information
+    double level_percent;                 // Current charge (0-100)
+    battery_status status;                // Charging status
+    bool is_charging;                     // Is charging
+    bool ac_connected;                    // AC power connected
+    int64_t time_to_empty_seconds;        // Estimated time to empty
+    int64_t time_to_full_seconds;         // Estimated time to full
+    double design_capacity_wh;            // Original design capacity
+    double full_charge_capacity_wh;       // Current full charge capacity
+    double current_capacity_wh;           // Current energy stored
+    double health_percent;                // Battery health percentage
+    double voltage_volts;                 // Current voltage
+    double current_amps;                  // Current in Amps
+    double power_watts;                   // Current power
+    double temperature_celsius;           // Battery temperature
+    bool temperature_available;           // Whether temperature is available
+    int64_t cycle_count;                  // Battery charge cycles
+    bool battery_present;                 // Whether battery is present
+    bool metrics_available;               // Whether metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **battery_level_percent** | Current charge percentage | Percent (0-100) |
+| **battery_charging** | Charging status (1=charging, 0=not) | Boolean |
+| **battery_status** | Current status enum value | Enum |
+| **battery_ac_connected** | AC power connection status | Boolean |
+| **battery_time_to_empty_seconds** | Estimated time to empty | Seconds |
+| **battery_time_to_full_seconds** | Estimated time to full charge | Seconds |
+| **battery_voltage_volts** | Current voltage | Volts |
+| **battery_power_watts** | Current power draw/charge rate | Watts |
+| **battery_health_percent** | Battery health (full_charge/design) | Percent |
+| **battery_design_capacity_wh** | Original design capacity | Watt-hours |
+| **battery_full_charge_capacity_wh** | Current full charge capacity | Watt-hours |
+| **battery_cycle_count** | Number of charge cycles | Count |
+| **battery_temperature_celsius** | Battery temperature | Celsius |
+
+**Configuration Options**:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | `true` | Enable/disable collection |
+| `collect_health` | `true` | Collect health metrics |
+| `collect_thermal` | `true` | Collect temperature metrics |
+
+**Platform Support**:
+- **Linux**: Uses `/sys/class/power_supply/BAT*` sysfs files
+- **macOS**: Uses IOKit (AppleSmartBattery)
+- **Windows**: Uses GetSystemPowerStatus() and WMI Win32_Battery
+

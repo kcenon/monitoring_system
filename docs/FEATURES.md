@@ -18,6 +18,7 @@ This document provides comprehensive details about all features available in the
 - [Hardware Temperature Monitoring](#hardware-temperature-monitoring)
 - [File Descriptor Usage Monitoring](#file-descriptor-usage-monitoring)
 - [System Uptime Monitoring](#system-uptime-monitoring)
+- [Battery Status Monitoring](#battery-status-monitoring)
 - [Distributed Tracing](#distributed-tracing)
 - [Health Monitoring](#health-monitoring)
 - [Error Handling](#error-handling)
@@ -587,6 +588,103 @@ if (collector.is_uptime_monitoring_available()) {
 
 > [!NOTE]
 > System uptime monitoring is available on all major platforms (Linux, macOS, Windows). Idle time metrics are only available on Linux. The collector gracefully provides uptime and boot timestamp on all platforms.
+
+---
+
+## Battery Status Monitoring
+
+### Overview
+
+The battery collector provides battery status monitoring for portable devices (laptops, mobile). It collects battery level, charging status, health information, time estimates, and electrical metrics. This enables power-aware scheduling, battery health tracking, and UPS-like behaviors.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **battery_level_percent** | Current charge percentage | Percent (0-100) |
+| **battery_charging** | Charging status (1=charging, 0=not) | Boolean |
+| **battery_status** | Current status enum value | Enum |
+| **battery_ac_connected** | AC power connection status | Boolean |
+| **battery_time_to_empty_seconds** | Estimated time to empty | Seconds |
+| **battery_time_to_full_seconds** | Estimated time to full charge | Seconds |
+| **battery_voltage_volts** | Current voltage | Volts |
+| **battery_power_watts** | Current power draw/charge rate | Watts |
+| **battery_health_percent** | Battery health (full_charge/design) | Percent |
+| **battery_design_capacity_wh** | Original design capacity | Watt-hours |
+| **battery_full_charge_capacity_wh** | Current full charge capacity | Watt-hours |
+| **battery_cycle_count** | Number of charge cycles | Count |
+| **battery_temperature_celsius** | Battery temperature | Celsius |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/battery_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+battery_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_health", "true"},
+    {"collect_thermal", "true"}
+};
+collector.initialize(config);
+
+// Collect battery metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw battery readings
+auto readings = collector.get_last_readings();
+for (const auto& reading : readings) {
+    std::cout << "Battery: " << reading.info.name << std::endl;
+    std::cout << "  Level: " << reading.level_percent << "%" << std::endl;
+    std::cout << "  Status: " << battery_status_to_string(reading.status) << std::endl;
+    std::cout << "  Health: " << reading.health_percent << "%" << std::endl;
+}
+```
+
+### Battery Availability Check
+
+```cpp
+battery_collector collector;
+collector.initialize({});
+
+// Check if battery monitoring is available
+if (collector.is_battery_available()) {
+    std::cout << "Battery monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "No battery detected on this system" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable battery collection |
+| `collect_health` | true | Collect health metrics (capacity, cycle count) |
+| `collect_thermal` | true | Collect temperature metrics |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | `/sys/class/power_supply/BAT*` | Sysfs battery attributes |
+| **macOS** | IOKit (AppleSmartBattery) | IORegistry battery properties |
+| **Windows** | GetSystemPowerStatus() + WMI | Win32_Battery class |
+
+> [!NOTE]
+> Battery status monitoring gracefully returns empty metrics when no battery is present. Health and temperature metrics availability varies by platform and hardware.
 
 ---
 
