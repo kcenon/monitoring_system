@@ -1859,17 +1859,73 @@ Phase 4 focuses on **core foundation stability** rather than feature completenes
 
 #### Overview
 
-The system resource collector now includes context switch statistics monitoring to identify scheduling overhead and contention.
+The `context_switch_collector` provides comprehensive context switch statistics monitoring to track CPU scheduling activity and identify scheduling overhead and contention.
+
+#### Classes
+
+**`context_switch_collector`**: Main collector class for context switch metrics.
+
+| Method | Description | Return Type |
+|--------|-------------|-------------|
+| `initialize(config)` | Initialize with configuration map | `bool` |
+| `collect()` | Collect context switch metrics | `std::vector<metric>` |
+| `get_name()` | Get collector name | `std::string` |
+| `get_metric_types()` | Get supported metric types | `std::vector<std::string>` |
+| `is_healthy()` | Check if collector is operational | `bool` |
+| `get_statistics()` | Get collector statistics | `std::unordered_map<std::string, double>` |
+| `get_last_metrics()` | Get last collected metrics | `context_switch_metrics` |
+| `is_context_switch_monitoring_available()` | Check availability | `bool` |
+
+**`context_switch_info_collector`**: Low-level platform-specific collector.
+
+| Method | Description | Return Type |
+|--------|-------------|-------------|
+| `is_context_switch_monitoring_available()` | Check if monitoring is available | `bool` |
+| `collect_metrics()` | Collect raw context switch metrics | `context_switch_metrics` |
+
+#### Data Structures
+
+**`context_switch_metrics`**:
+```cpp
+struct context_switch_metrics {
+    uint64_t system_context_switches_total;  // Total system context switches
+    double context_switches_per_sec;         // Context switch rate
+    process_context_switch_info process_info; // Process-level info
+    bool metrics_available;                   // Whether metrics are available
+    bool rate_available;                      // Whether rate calculation is available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+**`process_context_switch_info`**:
+```cpp
+struct process_context_switch_info {
+    uint64_t voluntary_switches;     // Voluntary context switches (I/O wait, sleep)
+    uint64_t nonvoluntary_switches;  // Involuntary context switches (preemption)
+    uint64_t total_switches;         // Total process context switches
+};
+```
 
 **Metrics Collected**:
 
 | Metric | Description | Unit |
 |--------|-------------|------|
-| **context_switches_total** | Total context switches since boot | Count |
-| **context_switches_per_sec** | Rate of context switches | Ops/sec |
+| **context_switches_total** | Total system-wide context switches | Count |
+| **context_switches_per_sec** | Context switch rate | Switches/sec |
+| **voluntary_context_switches** | Process voluntary switches | Count |
+| **nonvoluntary_context_switches** | Process involuntary switches | Count |
+| **process_context_switches_total** | Total process context switches | Count |
+
+**Configuration Options**:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | `true` | Enable/disable collection |
+| `collect_process_metrics` | `true` | Collect process-level metrics |
+| `rate_warning_threshold` | `100000` | High rate warning threshold (switches/sec) |
 
 **Platform Support**:
-- **Linux**: Uses `/proc/stat`
-- **macOS**: Uses `proc_pidinfo` iteration (aggregated)
-- **Windows**: Stub implementation
+- **Linux**: Uses `/proc/stat` (ctxt field) and `/proc/self/status`
+- **macOS**: Uses `task_info()` with `TASK_EVENTS_INFO`
+- **Windows**: Stub implementation (returns unavailable metrics)
 

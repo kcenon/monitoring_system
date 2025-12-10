@@ -1780,45 +1780,83 @@ auto metrics = collector.collect();
 
 ### Overview
 
-Context switch monitoring tracks the frequency of context switches in the system, which helps identify CPU contention and scheduling bottlenecks. High context switch rates can indicate inefficient threading models or excessive contention for resources.
+The `context_switch_collector` provides comprehensive context switch statistics monitoring to track CPU scheduling activity. Excessive context switching indicates CPU contention, poor thread pool sizing, or inefficient threading models. Monitoring context switches enables scheduling analysis and performance tuning.
 
 **Metrics Collected**:
 
 | Metric | Description | Unit |
 |--------|-------------|------|
-| **context_switches_total** | Total cumulative context switches | Count |
-| **context_switches_per_sec** | Rate of context switches per second | Ops/sec |
+| **context_switches_total** | Total system-wide context switches (counter) | Count |
+| **context_switches_per_sec** | Context switch rate (gauge) | Switches/sec |
+| **voluntary_context_switches** | Process voluntary switches (I/O wait, sleep) | Count |
+| **nonvoluntary_context_switches** | Process involuntary switches (preemption) | Count |
+| **process_context_switches_total** | Total process context switches | Count |
 
 ### Basic Usage
 
-The context switch metrics are collected automatically as part of the `system_resource_collector` when CPU metrics are enabled.
-
 ```cpp
-#include <kcenon/monitoring/collectors/system_resource_collector.h>
+#include <kcenon/monitoring/collectors/context_switch_collector.h>
 
 using namespace kcenon::monitoring;
 
-// Create collector
-system_resource_collector collector;
-collector.initialize({});
+// Create and initialize collector
+context_switch_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_process_metrics", "true"},
+    {"rate_warning_threshold", "100000"}
+};
+collector.initialize(config);
 
-// Collect metrics
+// Collect context switch metrics
 auto metrics = collector.collect();
 
 for (const auto& metric : metrics) {
-    if (metric.name == "context_switches_per_sec") {
-         std::cout << "Context Switch Rate: " << std::get<double>(metric.value) << " ops/s" << std::endl;
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
     }
+    std::cout << std::endl;
+}
+
+// Get raw context switch metrics
+auto cs_data = collector.get_last_metrics();
+std::cout << "Total context switches: " << cs_data.system_context_switches_total << std::endl;
+std::cout << "Context switches/sec: " << cs_data.context_switches_per_sec << std::endl;
+std::cout << "Voluntary switches: " << cs_data.process_info.voluntary_switches << std::endl;
+std::cout << "Nonvoluntary switches: " << cs_data.process_info.nonvoluntary_switches << std::endl;
+```
+
+### Context Switch Monitoring Availability Check
+
+```cpp
+context_switch_collector collector;
+collector.initialize({});
+
+// Check if context switch monitoring is available
+if (collector.is_context_switch_monitoring_available()) {
+    std::cout << "Context switch monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "Context switch monitoring not available on this platform" << std::endl;
 }
 ```
 
-### Platform Support
+### Configuration Options
 
-| Platform | Method | Data Source |
-|----------|--------|-------------|
-| **Linux** | `/proc/stat` | System-wide context switch count |
-| **macOS** | `proc_pidinfo` | Aggregated per-process context switch counts |
-| **Windows** | Stub | Not yet implemented |
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable context switch collection |
+| `collect_process_metrics` | true | Collect process-level context switch metrics |
+| `rate_warning_threshold` | 100000 | Threshold for high context switch rate warning (switches/sec) |
+
+### Platform Implementation
+
+| Platform | System-wide | Process-level | Data Source |
+|----------|-------------|---------------|-------------|
+| **Linux** | `/proc/stat` (ctxt field) | `/proc/self/status` | voluntary/nonvoluntary_ctxt_switches |
+| **macOS** | `task_info()` | `TASK_EVENTS_INFO` | Combined context switches |
+| **Windows** | Stub | Stub | Not yet implemented |
 
 > [!NOTE]
-> On macOS, the collection involves iterating all processes which may have higher overhead than Linux's O(1) read.
+> Context switch monitoring is available on Linux and macOS. On Windows, the collector returns unavailable metrics (stub implementation). On Linux, voluntary and nonvoluntary context switches are tracked separately. On macOS, only combined context switch count is available.
