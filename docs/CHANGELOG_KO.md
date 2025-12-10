@@ -60,6 +60,85 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 - 문서 구조 재구성
 - 포괄적인 기여 가이드라인
 - 보안 정책 문서
+- **컨테이너 메트릭 모니터링** (#228)
+  - Docker/Podman 컨테이너 감지 및 메트릭 수집
+  - 컨테이너 CPU, 메모리, 네트워크, I/O 모니터링
+  - 컨테이너 상태 추적 (실행 중, 일시 정지, 중지)
+  - cgroups v1/v2 및 `/proc` 파일시스템을 통한 Linux 지원
+  - macOS/Windows 스텁 구현
+- **SMART 디스크 상태 모니터링** (#227)
+  - smartctl을 통한 S.M.A.R.T. 디스크 상태 메트릭 수집
+  - 온도, 재할당된 섹터, 전원 켜진 시간 모니터링
+  - 대기 중인 섹터 및 수정 불가능한 오류 추적
+  - 크로스 플랫폼 지원 (Linux, smartmontools를 사용하는 macOS)
+- **하드웨어 온도 모니터링** (#215)
+  - CPU, GPU, 시스템 온도 수집
+  - 코어별 CPU 온도 추적
+  - hwmon sysfs 및 lm-sensors를 통한 Linux 지원
+  - SMC (System Management Controller)를 통한 macOS 지원
+- **파일 디스크립터 사용량 모니터링** (#220)
+  - 시스템 전체 및 프로세스별 FD 추적
+  - FD 제한 모니터링 (소프트/하드 제한)
+  - 사전 FD 고갈 감지
+  - `/proc/sys/fs/file-nr` 및 `/proc/self/fd`를 통한 Linux 지원
+  - `getrlimit()` 및 디렉터리 열거를 통한 macOS 지원
+- **Inode 사용량 모니터링** (#224)
+  - 파일시스템별 inode 사용 메트릭
+  - Inode 고갈 위험 감지
+  - `statvfs()`를 통한 Linux/macOS 지원
+- **TCP 연결 상태 모니터링** (#225)
+  - 연결 상태 카운트 (ESTABLISHED, TIME_WAIT, CLOSE_WAIT 등)
+  - IPv4 및 IPv6 연결 추적
+  - 연결 누수 감지 (CLOSE_WAIT 누적)
+  - `/proc/net/tcp` 및 `/proc/net/tcp6`를 통한 Linux 지원
+  - `netstat`를 통한 macOS 지원
+- **인터럽트 통계 모니터링** (#223)
+  - 하드웨어 인터럽트 카운팅 및 비율 계산
+  - 소프트 인터럽트 추적 (Linux)
+  - CPU별 인터럽트 분석 (선택 사항)
+  - `/proc/stat` 및 `/proc/softirqs`를 통한 Linux 지원
+  - `host_statistics64()`를 통한 macOS 지원
+- **전력 소비 모니터링** (#216)
+  - Intel RAPL을 통한 CPU/패키지 전력 소비
+  - 배터리 전력 및 충전 속도 모니터링
+  - Joules 단위의 에너지 소비 추적
+  - powercap sysfs를 통한 Linux 지원
+  - IOKit 및 SMC를 통한 macOS 지원
+- **GPU 메트릭 모니터링** (#221)
+  - 다중 벤더 지원 (NVIDIA, AMD, Intel, Apple)
+  - GPU 사용률, VRAM 사용량, 온도, 전력, 클럭 속도
+  - 팬 속도 모니터링
+  - sysfs 및 hwmon을 통한 Linux 지원
+  - IOKit을 통한 macOS 지원
+- **소켓 버퍼 사용량 모니터링** (#226)
+  - TCP 송신/수신 큐 모니터링
+  - 소켓 메모리 소비 추적
+  - 네트워크 병목 현상 감지
+  - `/proc/net/tcp` 및 `/proc/net/sockstat`를 통한 Linux 지원
+  - `netstat` 및 `sysctl`을 통한 macOS 지원
+- **보안 이벤트 모니터링** (#230)
+  - 로그인 성공/실패 추적
+  - sudo 사용 및 권한 상승 모니터링
+  - 계정 생성/삭제 이벤트
+  - 세션 추적
+  - auth.log 파싱을 통한 Linux 지원
+- **가상화 메트릭 모니터링** (#229)
+  - VM 환경 감지 (VMware, VirtualBox, Hyper-V, KVM 등)
+  - 게스트 CPU steal time 모니터링
+  - 하이퍼바이저 벤더 식별
+  - DMI 및 cpuinfo를 통한 Linux 지원
+  - sysctl을 통한 macOS 지원
+- **컨텍스트 스위치 통계 모니터링** (#222)
+  - 시스템 전체 컨텍스트 스위치 카운팅 및 비율
+  - 프로세스별 자발적/비자발적 스위치 추적
+  - 스케줄링 오버헤드 분석
+  - `/proc/stat` 및 `/proc/self/status`를 통한 Linux 지원
+  - `task_info()`를 통한 macOS 지원
+- **로드 평균 히스토리 추적** (#219)
+  - 1/5/15분 로드 평균 수집
+  - 시계열 버퍼를 통한 과거 로드 평균 데이터
+  - 트렌드 분석 지원
+  - 크로스 플랫폼 지원 (Linux, macOS, Windows)
 - **시스템 가동 시간 모니터링** (#217)
   - 크로스 플랫폼 가동 시간 추적 (Linux, macOS, Windows)
   - 부팅 타임스탬프 및 가동 시간 메트릭
@@ -336,4 +415,4 @@ v3.0.0 릴리스는 API에 중대한 변경을 도입합니다:
 
 ---
 
-*Last Updated: 2025-10-20*
+*Last Updated: 2025-12-10*

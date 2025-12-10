@@ -60,6 +60,85 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation structure reorganization
 - Comprehensive contribution guidelines
 - Security policy documentation
+- **Container metrics monitoring** (#228)
+  - Docker/Podman container detection and metrics collection
+  - Container CPU, memory, network, and I/O monitoring
+  - Container state tracking (running, paused, stopped)
+  - Linux support via cgroups v1/v2 and `/proc` filesystem
+  - macOS/Windows stub implementations
+- **SMART disk health monitoring** (#227)
+  - S.M.A.R.T. disk health metrics collection via smartctl
+  - Temperature, reallocated sectors, power-on hours monitoring
+  - Pending sectors and uncorrectable error tracking
+  - Cross-platform support (Linux, macOS with smartmontools)
+- **Hardware temperature monitoring** (#215)
+  - CPU, GPU, and system temperature collection
+  - Per-core CPU temperature tracking
+  - Linux support via hwmon sysfs and lm-sensors
+  - macOS support via SMC (System Management Controller)
+- **File descriptor usage monitoring** (#220)
+  - System-wide and per-process FD tracking
+  - FD limit monitoring (soft/hard limits)
+  - Proactive FD exhaustion detection
+  - Linux support via `/proc/sys/fs/file-nr` and `/proc/self/fd`
+  - macOS support via `getrlimit()` and directory enumeration
+- **Inode usage monitoring** (#224)
+  - Per-filesystem inode usage metrics
+  - Inode exhaustion risk detection
+  - Linux/macOS support via `statvfs()`
+- **TCP connection state monitoring** (#225)
+  - Connection state counts (ESTABLISHED, TIME_WAIT, CLOSE_WAIT, etc.)
+  - IPv4 and IPv6 connection tracking
+  - Connection leak detection (CLOSE_WAIT accumulation)
+  - Linux support via `/proc/net/tcp` and `/proc/net/tcp6`
+  - macOS support via `netstat`
+- **Interrupt statistics monitoring** (#223)
+  - Hardware interrupt counting and rate calculation
+  - Soft interrupt tracking (Linux)
+  - Per-CPU interrupt breakdown (optional)
+  - Linux support via `/proc/stat` and `/proc/softirqs`
+  - macOS support via `host_statistics64()`
+- **Power consumption monitoring** (#216)
+  - CPU/package power consumption via Intel RAPL
+  - Battery power and charge rate monitoring
+  - Energy consumption tracking in Joules
+  - Linux support via powercap sysfs
+  - macOS support via IOKit and SMC
+- **GPU metrics monitoring** (#221)
+  - Multi-vendor support (NVIDIA, AMD, Intel, Apple)
+  - GPU utilization, VRAM usage, temperature, power, clock speeds
+  - Fan speed monitoring
+  - Linux support via sysfs and hwmon
+  - macOS support via IOKit
+- **Socket buffer usage monitoring** (#226)
+  - TCP send/receive queue monitoring
+  - Socket memory consumption tracking
+  - Network bottleneck detection
+  - Linux support via `/proc/net/tcp` and `/proc/net/sockstat`
+  - macOS support via `netstat` and `sysctl`
+- **Security event monitoring** (#230)
+  - Login success/failure tracking
+  - Sudo usage and privilege escalation monitoring
+  - Account creation/deletion events
+  - Session tracking
+  - Linux support via auth.log parsing
+- **Virtualization metrics monitoring** (#229)
+  - VM environment detection (VMware, VirtualBox, Hyper-V, KVM, etc.)
+  - Guest CPU steal time monitoring
+  - Hypervisor vendor identification
+  - Linux support via DMI and cpuinfo
+  - macOS support via sysctl
+- **Context switch statistics monitoring** (#222)
+  - System-wide context switch counting and rate
+  - Per-process voluntary/involuntary switch tracking
+  - Scheduling overhead analysis
+  - Linux support via `/proc/stat` and `/proc/self/status`
+  - macOS support via `task_info()`
+- **Load average history tracking** (#219)
+  - 1/5/15 minute load average collection
+  - Historical load average data with time-series buffer
+  - Trend analysis support
+  - Cross-platform support (Linux, macOS, Windows)
 - **System uptime monitoring** (#217)
   - Cross-platform uptime tracking (Linux, macOS, Windows)
   - Boot timestamp and uptime duration metrics
@@ -336,4 +415,4 @@ For detailed migration instructions, refer to [ARCHITECTURE_GUIDE.md](ARCHITECTU
 
 ---
 
-*Last Updated: 2025-11-21*
+*Last Updated: 2025-12-10*
