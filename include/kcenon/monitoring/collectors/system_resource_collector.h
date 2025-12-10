@@ -61,6 +61,7 @@
 #endif
 
 #include "plugin_metric_collector.h"
+#include "../utils/time_series_buffer.h"
 
 namespace kcenon { namespace monitoring {
 
@@ -238,6 +239,56 @@ class system_resource_collector : public metric_collector_plugin {
      */
     system_resources get_last_resources() const;
 
+    /**
+     * Get load average history for trend analysis
+     * @param duration How far back to look
+     * @return Vector of load average samples within the duration
+     */
+    template <typename Duration>
+    std::vector<load_average_sample> get_load_history(Duration duration) const {
+        if (load_history_) {
+            return load_history_->get_samples(duration);
+        }
+        return {};
+    }
+
+    /**
+     * Get load average statistics for a duration
+     * @param duration How far back to look
+     * @return Statistics for load averages within the duration
+     */
+    template <typename Duration>
+    load_average_statistics get_load_statistics(Duration duration) const {
+        if (load_history_) {
+            return load_history_->get_statistics(duration);
+        }
+        return {};
+    }
+
+    /**
+     * Get all load average history
+     * @return Vector of all load average samples
+     */
+    std::vector<load_average_sample> get_all_load_history() const;
+
+    /**
+     * Get load average statistics for all history
+     * @return Statistics for all load average samples
+     */
+    load_average_statistics get_all_load_statistics() const;
+
+    /**
+     * Configure load history buffer size
+     * @param max_samples Maximum number of samples to keep (default: 1000)
+     */
+    void configure_load_history(size_t max_samples);
+
+    /**
+     * Check if load history tracking is enabled
+     * @return true if load history tracking is enabled
+     */
+    bool is_load_history_enabled() const;
+
   private:
     // Collector implementation
     std::unique_ptr<system_info_collector> collector_;
@@ -255,6 +306,10 @@ class system_resource_collector : public metric_collector_plugin {
     std::atomic<size_t> collection_errors_{0};
     std::atomic<int64_t> init_time_ns_{0};  // Store as nanoseconds for atomic access
     std::shared_ptr<system_resources> last_resources_;  // Use shared_ptr to avoid large struct copy
+
+    // Load average history tracking
+    std::unique_ptr<load_average_history> load_history_;
+    bool enable_load_history_{true};
 
     // Helper methods
     metric create_metric(const std::string& name, double value, const std::string& unit = "",
