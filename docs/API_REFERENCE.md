@@ -1929,3 +1929,66 @@ struct process_context_switch_info {
 - **macOS**: Uses `task_info()` with `TASK_EVENTS_INFO`
 - **Windows**: Stub implementation (returns unavailable metrics)
 
+---
+
+### System Uptime Monitoring
+
+#### Overview
+
+The `uptime_collector` provides system uptime monitoring to track boot time, uptime duration, and system availability for SLA compliance and stability analysis.
+
+#### Classes
+
+**`uptime_collector`**: Main collector class for uptime metrics.
+
+| Method | Description | Return Type |
+|--------|-------------|-------------|
+| `initialize(config)` | Initialize with configuration map | `bool` |
+| `collect()` | Collect uptime metrics | `std::vector<metric>` |
+| `get_name()` | Get collector name | `std::string` |
+| `get_metric_types()` | Get supported metric types | `std::vector<std::string>` |
+| `is_healthy()` | Check if collector is operational | `bool` |
+| `get_statistics()` | Get collector statistics | `std::unordered_map<std::string, double>` |
+| `get_last_metrics()` | Get last collected metrics | `uptime_metrics` |
+| `is_uptime_monitoring_available()` | Check availability | `bool` |
+
+**`uptime_info_collector`**: Low-level platform-specific collector.
+
+| Method | Description | Return Type |
+|--------|-------------|-------------|
+| `is_uptime_monitoring_available()` | Check if monitoring is available | `bool` |
+| `collect_metrics()` | Collect raw uptime metrics | `uptime_metrics` |
+
+#### Data Structures
+
+**`uptime_metrics`**:
+```cpp
+struct uptime_metrics {
+    double uptime_seconds;         // Time since boot in seconds
+    int64_t boot_timestamp;        // Unix timestamp of last boot
+    double idle_seconds;           // Total idle time (Linux only)
+    bool metrics_available;        // Whether metrics are available
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **system_uptime_seconds** | Time since system boot | Seconds |
+| **system_boot_timestamp** | Unix timestamp of last boot | Timestamp |
+| **system_idle_seconds** | Total system idle time (Linux only) | Seconds |
+
+**Configuration Options**:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | `true` | Enable/disable collection |
+| `collect_idle_time` | `true` | Collect idle time metrics (Linux only) |
+
+**Platform Support**:
+- **Linux**: Uses `/proc/uptime` for uptime and idle seconds
+- **macOS**: Uses `sysctl(KERN_BOOTTIME)` for boot timestamp
+- **Windows**: Uses `GetTickCount64()` for uptime in milliseconds
+

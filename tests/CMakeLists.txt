@@ -82,6 +82,9 @@ add_executable(monitoring_system_tests
     # Virtualization metrics monitoring (Issue #229)
     test_vm_collector.cpp
 
+    # System uptime monitoring (Issue #217)
+    test_uptime_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
