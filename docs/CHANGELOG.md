@@ -60,6 +60,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation structure reorganization
 - Comprehensive contribution guidelines
 - Security policy documentation
+- **System uptime monitoring** (#217)
+  - Cross-platform uptime tracking (Linux, macOS, Windows)
+  - Boot timestamp and uptime duration metrics
+  - Idle time tracking on Linux via `/proc/uptime`
+  - macOS support via `sysctl(KERN_BOOTTIME)`
+  - Windows support via `GetTickCount64()`
 - **C++20 Concepts support** (#247)
   - Added `monitoring_concepts.h` with concepts for metrics, events, and collectors
   - Added concepts to `event_bus_interface.h`: `EventType`, `EventHandler`, `EventFilter`

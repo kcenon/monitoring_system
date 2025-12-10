@@ -17,6 +17,7 @@ This document provides comprehensive details about all features available in the
 - [SMART Disk Health Monitoring](#smart-disk-health-monitoring)
 - [Hardware Temperature Monitoring](#hardware-temperature-monitoring)
 - [File Descriptor Usage Monitoring](#file-descriptor-usage-monitoring)
+- [System Uptime Monitoring](#system-uptime-monitoring)
 - [Distributed Tracing](#distributed-tracing)
 - [Health Monitoring](#health-monitoring)
 - [Error Handling](#error-handling)
@@ -504,6 +505,88 @@ if (collector.is_fd_monitoring_available()) {
 
 > [!NOTE]
 > System-wide FD metrics are only available on Linux. On macOS and Windows, the collector gracefully degrades and returns only process-level metrics.
+
+---
+
+## System Uptime Monitoring
+
+### Overview
+
+The uptime collector provides system uptime monitoring to track boot time, uptime duration, and system availability. This is essential for availability monitoring, SLA compliance tracking, and stability analysis. Unexpected reboots or low uptime can indicate system instability.
+
+**Metrics Collected**:
+
+| Metric | Description | Unit |
+|--------|-------------|------|
+| **system_uptime_seconds** | Time since system boot | Seconds |
+| **system_boot_timestamp** | Unix timestamp of last boot | Timestamp |
+| **system_idle_seconds** | Total system idle time (Linux only) | Seconds |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/uptime_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+uptime_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"enabled", "true"},
+    {"collect_idle_time", "true"}
+};
+collector.initialize(config);
+
+// Collect uptime metrics
+auto metrics = collector.collect();
+
+for (const auto& metric : metrics) {
+    std::cout << metric.name << ": ";
+    if (std::holds_alternative<double>(metric.value)) {
+        std::cout << std::get<double>(metric.value);
+    }
+    std::cout << std::endl;
+}
+
+// Get raw uptime metrics
+auto uptime_data = collector.get_last_metrics();
+std::cout << "Uptime: " << uptime_data.uptime_seconds << " seconds" << std::endl;
+std::cout << "Boot time: " << uptime_data.boot_timestamp << std::endl;
+std::cout << "Idle time: " << uptime_data.idle_seconds << " seconds" << std::endl;
+```
+
+### Uptime Monitoring Availability Check
+
+```cpp
+uptime_collector collector;
+collector.initialize({});
+
+// Check if uptime monitoring is available
+if (collector.is_uptime_monitoring_available()) {
+    std::cout << "Uptime monitoring is available" << std::endl;
+    auto metrics = collector.collect();
+} else {
+    std::cout << "Uptime monitoring not available on this platform" << std::endl;
+}
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | true | Enable/disable uptime collection |
+| `collect_idle_time` | true | Collect idle time metrics (Linux only) |
+
+### Platform Implementation
+
+| Platform | Method | Data Source |
+|----------|--------|-------------|
+| **Linux** | `/proc/uptime` | Uptime and idle time in seconds |
+| **macOS** | `sysctl(KERN_BOOTTIME)` | Boot time as timeval structure |
+| **Windows** | `GetTickCount64()` | Milliseconds since system start |
+
+> [!NOTE]
+> System uptime monitoring is available on all major platforms (Linux, macOS, Windows). Idle time metrics are only available on Linux. The collector gracefully provides uptime and boot timestamp on all platforms.
 
 ---
 

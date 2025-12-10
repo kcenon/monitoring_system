@@ -60,6 +60,12 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 - 문서 구조 재구성
 - 포괄적인 기여 가이드라인
 - 보안 정책 문서
+- **시스템 가동 시간 모니터링** (#217)
+  - 크로스 플랫폼 가동 시간 추적 (Linux, macOS, Windows)
+  - 부팅 타임스탬프 및 가동 시간 메트릭
+  - Linux에서 `/proc/uptime`을 통한 유휴 시간 추적
+  - `sysctl(KERN_BOOTTIME)`을 통한 macOS 지원
+  - `GetTickCount64()`를 통한 Windows 지원
 - **C++20 Concepts 지원** (#247)
   - 메트릭, 이벤트, 수집기를 위한 개념이 포함된 `monitoring_concepts.h` 추가
   - `event_bus_interface.h`에 개념 추가: `EventType`, `EventHandler`, `EventFilter`
