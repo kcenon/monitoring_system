@@ -66,6 +66,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Idle time tracking on Linux via `/proc/uptime`
   - macOS support via `sysctl(KERN_BOOTTIME)`
   - Windows support via `GetTickCount64()`
+- **Battery status monitoring** (#218)
+  - Cross-platform battery monitoring (Linux, macOS, Windows)
+  - Battery level percentage, charging status, time estimates
+  - Battery health percentage and cycle count
+  - Voltage, current, and power metrics
+  - Temperature monitoring (when available)
+  - Linux support via `/sys/class/power_supply/BAT*` sysfs
+  - macOS support via IOKit (AppleSmartBattery)
+  - Windows support via GetSystemPowerStatus() and WMI
 - **C++20 Concepts support** (#247)
   - Added `monitoring_concepts.h` with concepts for metrics, events, and collectors
   - Added concepts to `event_bus_interface.h`: `EventType`, `EventHandler`, `EventFilter`

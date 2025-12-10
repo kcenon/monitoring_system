@@ -66,6 +66,15 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - Linux에서 `/proc/uptime`을 통한 유휴 시간 추적
   - `sysctl(KERN_BOOTTIME)`을 통한 macOS 지원
   - `GetTickCount64()`를 통한 Windows 지원
+- **배터리 상태 모니터링** (#218)
+  - 크로스 플랫폼 배터리 모니터링 (Linux, macOS, Windows)
+  - 배터리 잔량 퍼센트, 충전 상태, 시간 추정
+  - 배터리 건강도 퍼센트 및 사이클 횟수
+  - 전압, 전류, 전력 메트릭
+  - 온도 모니터링 (가능한 경우)
+  - `/sys/class/power_supply/BAT*` sysfs를 통한 Linux 지원
+  - IOKit (AppleSmartBattery)를 통한 macOS 지원
+  - GetSystemPowerStatus() 및 WMI를 통한 Windows 지원
 - **C++20 Concepts 지원** (#247)
   - 메트릭, 이벤트, 수집기를 위한 개념이 포함된 `monitoring_concepts.h` 추가
   - `event_bus_interface.h`에 개념 추가: `EventType`, `EventHandler`, `EventFilter`

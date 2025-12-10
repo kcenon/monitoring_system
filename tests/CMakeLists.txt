@@ -85,6 +85,9 @@ add_executable(monitoring_system_tests
     # System uptime monitoring (Issue #217)
     test_uptime_collector.cpp
 
+    # Battery status monitoring (Issue #218)
+    test_battery_collector.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
