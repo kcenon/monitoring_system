@@ -1851,7 +1851,178 @@ Phase 4 focuses on **core foundation stability** rather than feature completenes
 - [Changelog](CHANGELOG.md) - Version history and changes
 ---
 
-*Last Updated: 2025-10-20*
+*Last Updated: 2025-12-10*
+
+---
+
+### Container Metrics Collector
+**Header:** `include/kcenon/monitoring/collectors/container_collector.h`
+
+#### `container_collector`
+Collects container-level metrics from Docker/Podman containers via cgroups.
+
+```cpp
+class container_collector {
+public:
+    container_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect container metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected metrics
+    std::vector<container_metrics> get_last_metrics() const;
+
+    // Check if running in container environment
+    bool is_container_environment() const;
+};
+```
+
+#### `container_metrics`
+Structure containing per-container resource usage data.
+
+```cpp
+struct container_metrics {
+    std::string container_id;         // Short container ID
+    std::string container_name;       // Container name (Docker only)
+    std::string image_name;           // Image name (Docker only)
+    double cpu_usage_percent;         // CPU utilization percentage
+    uint64_t cpu_usage_ns;            // Total CPU time in nanoseconds
+    uint64_t memory_usage_bytes;      // Current memory usage
+    uint64_t memory_limit_bytes;      // Memory limit
+    double memory_usage_percent;      // Memory usage percentage
+    uint64_t network_rx_bytes;        // Total bytes received
+    uint64_t network_tx_bytes;        // Total bytes transmitted
+    uint64_t blkio_read_bytes;        // Total bytes read from disk
+    uint64_t blkio_write_bytes;       // Total bytes written to disk
+    uint64_t pids_current;            // Current number of processes
+    uint64_t pids_limit;              // Process limit (0 = unlimited)
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `cgroup_version` Enum
+```cpp
+enum class cgroup_version {
+    none = 0,  // Not in a cgroup or not Linux
+    v1 = 1,    // Legacy cgroups v1
+    v2 = 2     // Unified cgroups v2 hierarchy
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses cgroups v1/v2 and `/proc` filesystem for container detection and metrics
+- **macOS**: Stub implementation (containers typically run in Linux VMs)
+- **Windows**: Stub implementation (containers typically run in Linux VMs)
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `collect_network_metrics`: "true"/"false" (default: true)
+- `collect_blkio_metrics`: "true"/"false" (default: true)
+
+---
+
+### Hardware Temperature Collector
+**Header:** `include/kcenon/monitoring/collectors/temperature_collector.h`
+
+#### `temperature_collector`
+Collects hardware temperature data from thermal sensors.
+
+```cpp
+class temperature_collector {
+public:
+    temperature_collector();
+
+    // Initialize with configuration
+    bool initialize(const std::unordered_map<std::string, std::string>& config);
+
+    // Collect temperature metrics
+    std::vector<metric> collect();
+
+    // Get collector name
+    std::string get_name() const;
+
+    // Get supported metric types
+    std::vector<std::string> get_metric_types() const;
+
+    // Check if collector is healthy
+    bool is_healthy() const;
+
+    // Get collection statistics
+    std::unordered_map<std::string, double> get_statistics() const;
+
+    // Get last collected readings
+    std::vector<temperature_reading> get_last_readings() const;
+
+    // Check if thermal monitoring is available
+    bool is_thermal_available() const;
+};
+```
+
+#### `temperature_reading`
+Structure containing temperature sensor data.
+
+```cpp
+struct temperature_reading {
+    temperature_sensor_info sensor;          // Sensor information
+    double temperature_celsius;              // Current temperature in Celsius
+    double critical_threshold_celsius;       // Critical temperature threshold
+    double warning_threshold_celsius;        // Warning threshold
+    bool thresholds_available;               // Whether thresholds are available
+    bool is_critical;                        // True if exceeds critical threshold
+    bool is_warning;                         // True if exceeds warning threshold
+    std::chrono::system_clock::time_point timestamp;
+};
+```
+
+#### `temperature_sensor_info`
+Structure containing sensor identification.
+
+```cpp
+struct temperature_sensor_info {
+    std::string id;         // Unique sensor identifier
+    std::string name;       // Human-readable sensor name
+    std::string zone_path;  // Platform-specific path
+    sensor_type type;       // Sensor type classification
+};
+```
+
+#### `sensor_type` Enum
+```cpp
+enum class sensor_type {
+    unknown,      // Unknown sensor type
+    cpu,          // CPU temperature sensor
+    gpu,          // GPU temperature sensor
+    motherboard,  // Motherboard/chipset sensor
+    storage,      // Storage device sensor
+    ambient,      // Ambient/case temperature
+    other         // Other sensor type
+};
+```
+
+**Platform Support:**
+- **Linux**: Uses `/sys/class/thermal/thermal_zone*` and hwmon sysfs interfaces
+- **macOS**: Uses IOKit SMC (System Management Controller)
+- **Windows**: Uses WMI (MSAcpi_ThermalZoneTemperature) - stub implementation
+
+**Configuration Options:**
+- `enabled`: "true"/"false" (default: true)
+- `collect_thresholds`: "true"/"false" (default: true)
+- `collect_warnings`: "true"/"false" (default: true)
 
 ---
 
