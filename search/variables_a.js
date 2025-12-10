@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['parent_5f_0',['parent_',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#a3849b93f46f9b7291ec3e761b0bda50b',1,'kcenon::monitoring::service_container_interface']]],
-  ['prefix_5f_1',['prefix_',['../d3/dfa/classexample__logger.html#ac81ee8f3c5faa9939f1d2b71ab04f58e',1,'example_logger']]],
-  ['profiler_2',['profiler',['../d7/dbe/classPerformanceMonitoringTest.html#a47d07edd9fd1df796473642030bb2b24',1,'PerformanceMonitoringTest::profiler'],['../df/d0f/classPerformanceProfilerThreadSafetyTest.html#ac48a8245dd958956f927241719ec3b93',1,'PerformanceProfilerThreadSafetyTest::profiler']]]
+  ['operation_5fcount_5f_0',['operation_count_',['../d9/db4/classtest__monitorable__component.html#adfcec440e68ccc03b813f8a24e72cf89',1,'test_monitorable_component']]],
+  ['otel_5fresource_5f_1',['otel_resource_',['../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4',1,'MetricExportersTest::otel_resource_'],['../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472',1,'TraceExportersTest::otel_resource_']]]
 ];

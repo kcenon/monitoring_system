@@ -42,9 +42,10 @@ var searchData=
   ['test_5ftemperature_5fcollector_2ecpp_39',['test_temperature_collector.cpp',['../db/d0a/test__temperature__collector_8cpp.html',1,'']]],
   ['test_5fthread_5fcontext_2ecpp_40',['test_thread_context.cpp',['../d4/ddd/test__thread__context_8cpp.html',1,'']]],
   ['test_5fthread_5fcontext_5fsimple_2ecpp_41',['test_thread_context_simple.cpp',['../de/db1/test__thread__context__simple_8cpp.html',1,'']]],
-  ['test_5ftimer_5fmetrics_2ecpp_42',['test_timer_metrics.cpp',['../d4/df9/test__timer__metrics_8cpp.html',1,'']]],
-  ['test_5ftrace_5fexporters_2ecpp_43',['test_trace_exporters.cpp',['../dc/dbd/test__trace__exporters_8cpp.html',1,'']]],
-  ['test_5fuptime_5fcollector_2ecpp_44',['test_uptime_collector.cpp',['../df/dd9/test__uptime__collector_8cpp.html',1,'']]],
-  ['test_5fvm_5fcollector_2ecpp_45',['test_vm_collector.cpp',['../dd/d57/test__vm__collector_8cpp.html',1,'']]],
-  ['thread_5fsafety_5ftests_2ecpp_46',['thread_safety_tests.cpp',['../df/d66/thread__safety__tests_8cpp.html',1,'']]]
+  ['test_5ftime_5fseries_5fbuffer_2ecpp_42',['test_time_series_buffer.cpp',['../d9/da5/test__time__series__buffer_8cpp.html',1,'']]],
+  ['test_5ftimer_5fmetrics_2ecpp_43',['test_timer_metrics.cpp',['../d4/df9/test__timer__metrics_8cpp.html',1,'']]],
+  ['test_5ftrace_5fexporters_2ecpp_44',['test_trace_exporters.cpp',['../dc/dbd/test__trace__exporters_8cpp.html',1,'']]],
+  ['test_5fuptime_5fcollector_2ecpp_45',['test_uptime_collector.cpp',['../df/dd9/test__uptime__collector_8cpp.html',1,'']]],
+  ['test_5fvm_5fcollector_2ecpp_46',['test_vm_collector.cpp',['../dd/d57/test__vm__collector_8cpp.html',1,'']]],
+  ['thread_5fsafety_5ftests_2ecpp_47',['thread_safety_tests.cpp',['../df/d66/thread__safety__tests_8cpp.html',1,'']]]
 ];

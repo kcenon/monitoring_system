@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['operation_5fcount_5f_0',['operation_count_',['../d9/db4/classtest__monitorable__component.html#adfcec440e68ccc03b813f8a24e72cf89',1,'test_monitorable_component']]],
-  ['otel_5fresource_5f_1',['otel_resource_',['../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4',1,'MetricExportersTest::otel_resource_'],['../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472',1,'TraceExportersTest::otel_resource_']]]
+  ['name_5f_0',['name_',['../d9/d8d/classmock__collector.html#ae46143e0e7c82ade2c70c253b3814d02',1,'mock_collector::name_'],['../d2/dea/classtest__health__check.html#a939dd9d1cce3395bddd909e2e141a12c',1,'test_health_check::name_'],['../d2/d91/classperformance__monitor__old.html#ac5d61a44e32cc508800baac3799cc35a',1,'performance_monitor_old::name_'],['../db/d7f/classperformance__monitor__impl.html#a4bae1ffb86b608afd60e9c660ad03166',1,'performance_monitor_impl::name_']]],
+  ['named_5fmonitors_5f_1',['named_monitors_',['../da/db2/classmonitor__factory.html#a1c51e0e49580c343fe1654c76faa4f95',1,'monitor_factory']]]
 ];
