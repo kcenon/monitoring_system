@@ -26,6 +26,7 @@ This document provides comprehensive details about all features available in the
 - [Storage Backends](#storage-backends)
 - [Reliability Patterns](#reliability-patterns)
 - [Advanced Features](#advanced-features)
+- [Load Average History Tracking](#load-average-history-tracking)
 
 ---
 
@@ -1945,6 +1946,120 @@ auto metrics = collector.collect();
 // Check if virtualized
 // Note: Actual access to struct requires casting or specific getter if not using generic interface
 ```
+
+---
+
+## Load Average History Tracking
+
+### Overview
+
+The load average history tracking feature provides time-series storage of system load averages for trend analysis, anomaly detection, and capacity planning. It extends `system_resource_collector` with in-memory ring buffer storage that automatically tracks load_1m, load_5m, and load_15m values with timestamps.
+
+**Features**:
+- Thread-safe ring buffer with configurable size (default: 1000 samples)
+- Timestamp stored with each sample
+- Statistics calculation (min, max, avg, stddev, p95, p99)
+- Duration-based and time-range queries
+- Memory-bounded with no unbounded growth
+
+**Metrics Available in Statistics**:
+
+| Statistic | Description | Notes |
+|-----------|-------------|-------|
+| **min_value** | Minimum load value in the period | Per load average type (1m, 5m, 15m) |
+| **max_value** | Maximum load value in the period | Per load average type |
+| **avg** | Average load value | Per load average type |
+| **stddev** | Standard deviation | Measures volatility |
+| **p95** | 95th percentile | For capacity planning |
+| **p99** | 99th percentile | For outlier detection |
+| **sample_count** | Number of samples | In the query period |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/collectors/system_resource_collector.h>
+
+using namespace kcenon::monitoring;
+
+// Create and initialize collector
+system_resource_collector collector;
+std::unordered_map<std::string, std::string> config = {
+    {"load_history_max_samples", "1000"},
+    {"enable_load_history", "true"}
+};
+collector.initialize(config);
+
+// Collect metrics (automatically stores load averages)
+collector.collect();
+collector.collect();
+collector.collect();
+
+// Get load history for the last hour
+auto samples = collector.get_load_history(std::chrono::hours(1));
+for (const auto& sample : samples) {
+    std::cout << "Load 1m: " << sample.load_1m
+              << ", 5m: " << sample.load_5m
+              << ", 15m: " << sample.load_15m << std::endl;
+}
+
+// Get statistics for the last 30 minutes
+auto stats = collector.get_load_statistics(std::chrono::minutes(30));
+std::cout << "Load 1m avg: " << stats.load_1m_stats.avg << std::endl;
+std::cout << "Load 1m p95: " << stats.load_1m_stats.p95 << std::endl;
+std::cout << "Load 1m stddev: " << stats.load_1m_stats.stddev << std::endl;
+```
+
+### Using time_series_buffer Directly
+
+For custom metric history tracking, you can use the generic `time_series_buffer<T>` template:
+
+```cpp
+#include <kcenon/monitoring/utils/time_series_buffer.h>
+
+using namespace kcenon::monitoring;
+
+// Configure buffer
+time_series_buffer_config config;
+config.max_samples = 500;
+
+// Create buffer for custom metric
+time_series_buffer<double> cpu_history(config);
+
+// Add samples
+cpu_history.add_sample(45.2);
+cpu_history.add_sample(52.1);
+cpu_history.add_sample(48.7);
+
+// Get statistics
+auto stats = cpu_history.get_statistics();
+std::cout << "CPU avg: " << stats.avg << std::endl;
+std::cout << "CPU min: " << stats.min_value << std::endl;
+std::cout << "CPU max: " << stats.max_value << std::endl;
+
+// Get samples from the last 5 minutes
+auto recent = cpu_history.get_samples(std::chrono::minutes(5));
+```
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `load_history_max_samples` | 1000 | Maximum samples to store in ring buffer |
+| `enable_load_history` | true | Enable/disable load history tracking |
+
+### Thread Safety
+
+Both `time_series_buffer<T>` and `load_average_history` are fully thread-safe:
+- Mutex-protected read/write operations
+- Safe for concurrent collection and query
+- Statistics calculation is performed on snapshot data
+
+### Memory Footprint
+
+The memory footprint is bounded and predictable:
+- `time_series_buffer<T>`: ~48 bytes per sample (timestamp + value + overhead)
+- `load_average_history`: ~72 bytes per sample (timestamp + 3 doubles + overhead)
+- Default 1000 samples: ~72KB for load average history
 
 ---
 
