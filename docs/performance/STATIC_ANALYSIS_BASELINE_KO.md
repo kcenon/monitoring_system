@@ -3,7 +3,7 @@
 > **Language:** [English](STATIC_ANALYSIS_BASELINE.md) | **한국어**
 
 **날짜**: 2025-10-03
-**버전**: 1.0.0
+**버전**: 0.1.0.0
 **도구 버전**:
 - clang-tidy: 18.x
 - cppcheck: 2.x

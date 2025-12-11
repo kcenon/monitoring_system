@@ -1,6 +1,6 @@
 # Interface Separation Strategy
 
-**Version**: 1.0
+**Version**: 0.1.0
 **Last Updated**: 2025-11-08
 **Status**: Planning Document
 **Priority**: P1 (High)

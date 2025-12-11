@@ -3,7 +3,7 @@
 
 > **언어 선택 (Language)**: [English](BASELINE.md) | **한국어**
 
-**Version**: 1.0.0
+**Version**: 0.1.0.0
 **Date**: 2025-10-09
 **Phase**: Phase 0 - Foundation
 **Status**: Baseline Established

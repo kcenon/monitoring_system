@@ -1,6 +1,6 @@
 # Monitoring System - Quick Start Guide
 
-> **Version:** 1.0
+> **Version:** 0.1.0
 > **Last Updated:** 2025-11-11
 > **Time to Complete:** 5 minutes
 
@@ -705,4 +705,4 @@ You now know how to:
 ---
 
 **Last Updated:** 2025-11-11
-**Version:** 1.0
+**Version:** 0.1.0

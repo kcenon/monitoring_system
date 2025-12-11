@@ -6,7 +6,7 @@
 
 This guide describes how to integrate monitoring_system with other modules in the ecosystem. Monitoring System provides comprehensive observability and reliability patterns that seamlessly integrate with common, thread, and logger systems for production-grade monitoring capabilities.
 
-**Version:** 2.0.0
+**Version:** 0.2.0.0
 **Last Updated:** 2025-10-22
 
 ---
