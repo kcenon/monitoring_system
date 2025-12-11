@@ -1,6 +1,6 @@
 # Monitoring System - Best Practices Guide
 
-> **Version:** 1.0
+> **Version:** 0.1.0
 > **Last Updated:** 2025-11-11
 > **Audience:** Developers, DevOps Engineers, SREs
 

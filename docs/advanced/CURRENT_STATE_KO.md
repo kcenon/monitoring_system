@@ -2,7 +2,7 @@
 
 > **Language:** [English](CURRENT_STATE.md) | **한국어**
 
-**문서 버전**: 1.0
+**문서 버전**: 0.1.0
 **날짜**: 2025-10-05
 **Phase**: Phase 0 - Foundation and Tooling Setup
 **시스템**: monitoring_system
