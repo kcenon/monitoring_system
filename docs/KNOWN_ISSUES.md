@@ -9,7 +9,7 @@ This document lists known issues, limitations, and STUB implementations in the m
 
 ## STUB Implementations
 
-The following components are marked as STUB and are **not production-ready**:
+The following components are marked as STUB and are **not fully implemented**:
 
 | Component | File | Status | Ticket |
 |-----------|------|--------|--------|
