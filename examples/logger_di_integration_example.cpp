@@ -299,7 +299,7 @@ int main() {
         std::cout << "  ✓ common_system interfaces used" << std::endl;
         std::cout << "  ✓ Result<T> pattern for error handling" << std::endl;
         std::cout << "  ✓ Interface-based loose coupling" << std::endl;
-        std::cout << "  ✓ Production-ready monitoring" << std::endl;
+        std::cout << "  ✓ Comprehensive monitoring" << std::endl;
         std::cout << "========================================================" << std::endl;
 
     } catch (const std::exception& e) {

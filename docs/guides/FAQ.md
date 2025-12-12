@@ -26,7 +26,7 @@ This FAQ addresses common questions about the monitoring_system, covering setup,
 
 ### 1. What is the monitoring_system?
 
-The monitoring_system is a production-ready observability platform for C++20 applications that provides:
+The monitoring_system is an observability platform for C++20 applications that provides:
 - High-performance metrics collection
 - Time-series data storage with compression
 - Distributed tracing with correlation
