@@ -19,6 +19,48 @@ Modern C++20 observability platform with comprehensive monitoring, distributed t
 
 **Latest Status**: ✅ All CI/CD pipelines green, 37/37 tests passing (100% pass rate)
 
+---
+
+## Requirements
+
+| Dependency | Version | Required | Description |
+|------------|---------|----------|-------------|
+| C++20 Compiler | GCC 11+ / Clang 14+ / MSVC 2022+ / Apple Clang 14+ | Yes | C++20 features required |
+| CMake | 3.20+ | Yes | Build system |
+| [common_system](https://github.com/kcenon/common_system) | latest | Yes | Common interfaces (IMonitor, Result<T>) |
+| [thread_system](https://github.com/kcenon/thread_system) | latest | Yes | Thread pool and async operations |
+| [logger_system](https://github.com/kcenon/logger_system) | latest | Optional | Logging capabilities |
+
+### Dependency Flow
+
+```
+monitoring_system
+├── common_system (required)
+├── thread_system (required)
+│   └── common_system
+└── logger_system (optional)
+    └── common_system
+```
+
+### Building with Dependencies
+
+```bash
+# Clone all dependencies
+git clone https://github.com/kcenon/common_system.git
+git clone https://github.com/kcenon/thread_system.git
+git clone https://github.com/kcenon/logger_system.git
+git clone https://github.com/kcenon/monitoring_system.git
+
+# Build monitoring_system
+cd monitoring_system
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+📖 **[Quick Start Guide →](docs/guides/QUICK_START.md)** | **[빠른 시작 가이드 →](docs/guides/QUICK_START_KO.md)**
+
+---
+
 ## 🔗 Ecosystem Integration
 
 Part of a modular C++ ecosystem with clean interface boundaries:
