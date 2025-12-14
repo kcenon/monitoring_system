@@ -76,12 +76,27 @@ public:
         return kcenon::common::ok();
     }
 
+    // Override new source_location-based API (preferred)
+    VoidResult log(common_if::log_level level,
+                   std::string_view message,
+                   const kcenon::common::source_location& /*loc*/ = kcenon::common::source_location::current()) override {
+        return log(level, std::string(message));
+    }
+
+    // Override legacy API (required as it's pure virtual, suppress deprecation warning)
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996)
+#endif
     VoidResult log(common_if::log_level level, const std::string& message,
                    [[maybe_unused]] const std::string& file,
                    [[maybe_unused]] int line,
                    [[maybe_unused]] const std::string& function) override {
         return log(level, message);
     }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
     VoidResult log(const common_if::log_entry& entry) override {
         return log(entry.level, entry.message);
