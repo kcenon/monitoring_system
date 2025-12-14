@@ -13,6 +13,13 @@ find_package(GTest QUIET)
 
 if(NOT GTest_FOUND)
     message(STATUS "GTest not found - fetching from GitHub")
+
+    # Configure googletest options before fetching (fix Windows/MSVC pthread.h issue)
+    set(gtest_force_shared_crt ON CACHE BOOL "Always use shared runtime library" FORCE)
+    set(gtest_disable_pthreads ON CACHE BOOL "Disable pthreads for Windows" FORCE)
+    set(BUILD_GMOCK OFF CACHE BOOL "Disable GMock" FORCE)
+    set(INSTALL_GTEST OFF CACHE BOOL "Disable GTest installation" FORCE)
+
     include(FetchContent)
     FetchContent_Declare(
         googletest
@@ -20,8 +27,6 @@ if(NOT GTest_FOUND)
         GIT_TAG v1.14.0
         GIT_SHALLOW TRUE
     )
-    # Prevent overriding the parent project's compiler/linker settings
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     FetchContent_MakeAvailable(googletest)
     message(STATUS "GTest fetched successfully")
 endif()

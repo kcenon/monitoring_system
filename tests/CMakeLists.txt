@@ -142,6 +142,13 @@ target_link_libraries(monitoring_system_tests
         Threads::Threads
 )
 
+# Suppress C4996 (deprecated) warning for tests using common_system's ILogger interface
+# The ILogger default implementation calls deprecated legacy API internally
+if(MSVC)
+    target_compile_options(monitoring_system_tests PRIVATE /wd4996)
+    target_compile_options(monitoring_thread_safety_test PRIVATE /wd4996)
+endif()
+
 target_link_libraries(monitoring_thread_safety_test
     PRIVATE
         monitoring_system
