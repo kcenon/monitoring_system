@@ -19,6 +19,48 @@
 
 **최신 상태**: ✅ 모든 CI/CD 파이프라인 정상, 37/37 테스트 통과 (100% 통과율)
 
+---
+
+## 요구사항
+
+| 의존성 | 버전 | 필수 | 설명 |
+|--------|------|------|------|
+| C++20 컴파일러 | GCC 11+ / Clang 14+ / MSVC 2022+ / Apple Clang 14+ | 예 | C++20 기능 필요 |
+| CMake | 3.20+ | 예 | 빌드 시스템 |
+| [common_system](https://github.com/kcenon/common_system) | latest | 예 | 공통 인터페이스 (IMonitor, Result<T>) |
+| [thread_system](https://github.com/kcenon/thread_system) | latest | 예 | 스레드 풀 및 비동기 작업 |
+| [logger_system](https://github.com/kcenon/logger_system) | latest | 선택 | 로깅 기능 |
+
+### 의존성 구조
+
+```
+monitoring_system
+├── common_system (필수)
+├── thread_system (필수)
+│   └── common_system
+└── logger_system (선택)
+    └── common_system
+```
+
+### 의존성과 함께 빌드
+
+```bash
+# 모든 의존성 클론
+git clone https://github.com/kcenon/common_system.git
+git clone https://github.com/kcenon/thread_system.git
+git clone https://github.com/kcenon/logger_system.git
+git clone https://github.com/kcenon/monitoring_system.git
+
+# monitoring_system 빌드
+cd monitoring_system
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+📖 **[Quick Start Guide →](docs/guides/QUICK_START.md)** | **[빠른 시작 가이드 →](docs/guides/QUICK_START_KO.md)**
+
+---
+
 ## 🔗 생태계 통합
 
 명확한 인터페이스 경계를 가진 모듈식 C++ 생태계의 일부:
