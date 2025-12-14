@@ -130,7 +130,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Mock IMonitor for testing cross-system integration. </p>
 <p>Implements common_system's IMonitor interface for testing. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00142">142</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00128">128</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a553c4186ecd962fbd59433c1eabb0e98" name="a553c4186ecd962fbd59433c1eabb0e98"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a553c4186ecd962fbd59433c1eabb0e98">&#9670;&#160;</a></span>check_health()</h2>
@@ -155,13 +155,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  173</span>                                                                 {</div>
-<div class="line"><span class="lineno">  174</span>        common_if::health_check_result result;</div>
-<div class="line"><span class="lineno">  175</span>        result.status = common_if::health_status::healthy;</div>
-<div class="line"><span class="lineno">  176</span>        result.message = <span class="stringliteral">&quot;Mock monitor operational&quot;</span>;</div>
-<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">return</span> result;</div>
-<div class="line"><span class="lineno">  178</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00159">159</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  159</span>                                                                 {</div>
+<div class="line"><span class="lineno">  160</span>        common_if::health_check_result result;</div>
+<div class="line"><span class="lineno">  161</span>        result.status = common_if::health_status::healthy;</div>
+<div class="line"><span class="lineno">  162</span>        result.message = <span class="stringliteral">&quot;Mock monitor operational&quot;</span>;</div>
+<div class="line"><span class="lineno">  163</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><span class="lineno">  164</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -188,13 +188,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  186</span>                                    {</div>
-<div class="line"><span class="lineno">  187</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  188</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.size();</div>
-<div class="line"><span class="lineno">  189</span>    }</div>
-<div class="ttc" id="aclassmock__monitor_html_a311a3989ba555b59e528587a504e7d78"><div class="ttname"><a href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">mock_monitor::metrics_</a></div><div class="ttdeci">std::vector&lt; common_if::metric_value &gt; metrics_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00144">test_cross_system_integration.cpp:144</a></div></div>
-<div class="ttc" id="aclassmock__monitor_html_af15e8ace7717045695fd27c2d6b13fe6"><div class="ttname"><a href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mock_monitor::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00145">test_cross_system_integration.cpp:145</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00172">172</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  172</span>                                    {</div>
+<div class="line"><span class="lineno">  173</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.size();</div>
+<div class="line"><span class="lineno">  175</span>    }</div>
+<div class="ttc" id="aclassmock__monitor_html_a311a3989ba555b59e528587a504e7d78"><div class="ttname"><a href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">mock_monitor::metrics_</a></div><div class="ttdeci">std::vector&lt; common_if::metric_value &gt; metrics_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00130">test_cross_system_integration.cpp:130</a></div></div>
+<div class="ttc" id="aclassmock__monitor_html_af15e8ace7717045695fd27c2d6b13fe6"><div class="ttname"><a href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mock_monitor::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00131">test_cross_system_integration.cpp:131</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,14 +221,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  165</span>                                                             {</div>
-<div class="line"><span class="lineno">  166</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  167</span>        common_if::metrics_snapshot snapshot;</div>
-<div class="line"><span class="lineno">  168</span>        snapshot.metrics = <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>;</div>
-<div class="line"><span class="lineno">  169</span>        snapshot.source_id = <span class="stringliteral">&quot;mock_monitor&quot;</span>;</div>
-<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">return</span> snapshot;</div>
-<div class="line"><span class="lineno">  171</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00151">151</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  151</span>                                                             {</div>
+<div class="line"><span class="lineno">  152</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  153</span>        common_if::metrics_snapshot snapshot;</div>
+<div class="line"><span class="lineno">  154</span>        snapshot.metrics = <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>;</div>
+<div class="line"><span class="lineno">  155</span>        snapshot.source_id = <span class="stringliteral">&quot;mock_monitor&quot;</span>;</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keywordflow">return</span> snapshot;</div>
+<div class="line"><span class="lineno">  157</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -266,12 +266,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  148</span>                                                                           {</div>
-<div class="line"><span class="lineno">  149</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  150</span>        <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.emplace_back(name, value);</div>
-<div class="line"><span class="lineno">  151</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
-<div class="line"><span class="lineno">  152</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00134">134</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  134</span>                                                                           {</div>
+<div class="line"><span class="lineno">  135</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  136</span>        <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.emplace_back(name, value);</div>
+<div class="line"><span class="lineno">  137</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
+<div class="line"><span class="lineno">  138</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -315,14 +315,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00154">154</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  157</span>                                                                     {</div>
-<div class="line"><span class="lineno">  158</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  159</span>        common_if::metric_value mv(name, value);</div>
-<div class="line"><span class="lineno">  160</span>        mv.tags = tags;</div>
-<div class="line"><span class="lineno">  161</span>        <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.push_back(mv);</div>
-<div class="line"><span class="lineno">  162</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
-<div class="line"><span class="lineno">  163</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  143</span>                                                                     {</div>
+<div class="line"><span class="lineno">  144</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  145</span>        common_if::metric_value mv(name, value);</div>
+<div class="line"><span class="lineno">  146</span>        mv.tags = tags;</div>
+<div class="line"><span class="lineno">  147</span>        <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.push_back(mv);</div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
+<div class="line"><span class="lineno">  149</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -349,12 +349,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00180">180</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  180</span>                                {</div>
-<div class="line"><span class="lineno">  181</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  182</span>        <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.clear();</div>
-<div class="line"><span class="lineno">  183</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
-<div class="line"><span class="lineno">  184</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00166">166</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  166</span>                                {</div>
+<div class="line"><span class="lineno">  167</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#af15e8ace7717045695fd27c2d6b13fe6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  168</span>        <a class="code hl_variable" href="../../d1/d21/classmock__monitor.html#a311a3989ba555b59e528587a504e7d78">metrics_</a>.clear();</div>
+<div class="line"><span class="lineno">  169</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
+<div class="line"><span class="lineno">  170</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -379,7 +379,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00130">130</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +403,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../d8/d75/test__cross__system__integration_8cpp_source.html">test_cross_system_integration.cpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +413,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 14 2025 15:38:21 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Dec 14 2025 15:49:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
