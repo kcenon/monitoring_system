@@ -76,6 +76,7 @@ public:
         return kcenon::common::ok();
     }
 
+    // Legacy API (required as it's pure virtual)
     VoidResult log(common_if::log_level level, const std::string& message,
                    [[maybe_unused]] const std::string& file,
                    [[maybe_unused]] int line,

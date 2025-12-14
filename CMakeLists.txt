@@ -72,11 +72,11 @@ if(MONITORING_WITH_COMMON_SYSTEM)
 find_package(common_system CONFIG QUIET)
 if(NOT common_system_FOUND)
     # Check for common_system in multiple locations
-    # Priority: Environment variable, then relative paths as fallback
+    # Priority: Workspace-relative paths first (for CI), then sibling, then environment variable
     set(_MONITORING_COMMON_PATHS
-        "$ENV{COMMON_SYSTEM_ROOT}/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include"
         "${CMAKE_CURRENT_SOURCE_DIR}/common_system/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include"
+        "$ENV{COMMON_SYSTEM_ROOT}/include"
     )
 
     foreach(_path ${_MONITORING_COMMON_PATHS})
@@ -126,11 +126,12 @@ if(MONITORING_WITH_THREAD_SYSTEM)
     endif()
 
     # Subdirectory/sibling fallback (preferred for CI where targets may be missing)
+    # Priority: Workspace-relative paths first (for CI), then sibling, then environment variable
     if(NOT MONITORING_THREAD_TARGET)
         set(_THREAD_PATHS
-            "$ENV{THREAD_SYSTEM_ROOT}"
             "${CMAKE_CURRENT_SOURCE_DIR}/thread_system"
             "${CMAKE_CURRENT_SOURCE_DIR}/../thread_system"
+            "$ENV{THREAD_SYSTEM_ROOT}"
         )
 
         foreach(_path ${_THREAD_PATHS})
@@ -177,11 +178,12 @@ if(MONITORING_WITH_LOGGER_SYSTEM)
     endforeach()
 
     # Subdirectory/sibling fallback (preferred for CI where targets file may be missing)
+    # Priority: Workspace-relative paths first (for CI), then sibling, then environment variable
     if(NOT MONITORING_LOGGER_TARGET)
         set(_LOGGER_PATHS
-            "$ENV{LOGGER_SYSTEM_ROOT}"
             "${CMAKE_CURRENT_SOURCE_DIR}/logger_system"
             "${CMAKE_CURRENT_SOURCE_DIR}/../logger_system"
+            "$ENV{LOGGER_SYSTEM_ROOT}"
         )
 
         foreach(_path ${_LOGGER_PATHS})
@@ -237,11 +239,12 @@ if(MONITORING_WITH_NETWORK_SYSTEM)
     endif()
 
     # Try to find network_system include directory if package not found
+    # Priority: Workspace-relative paths first (for CI), then sibling, then environment variable
     if(NOT MONITORING_NETWORK_TARGET)
         set(_MONITORING_NETWORK_PATHS
-            "$ENV{NETWORK_SYSTEM_ROOT}/include"
-            "${CMAKE_CURRENT_SOURCE_DIR}/../network_system/include"
             "${CMAKE_CURRENT_SOURCE_DIR}/network_system/include"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../network_system/include"
+            "$ENV{NETWORK_SYSTEM_ROOT}/include"
         )
 
         foreach(_path ${_MONITORING_NETWORK_PATHS})
