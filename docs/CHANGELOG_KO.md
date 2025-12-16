@@ -58,6 +58,15 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 
 ### 추가됨
 - 문서 구조 재구성
+
+### 변경됨
+- **통합 에러 처리를 위한 common_system Result<T> 도입** (#259)
+  - `result<T>` 및 `result_void` 타입 별칭을 deprecated로 표시
+  - 헬퍼 함수들 (`make_success`, `make_error`, `make_void_success`, `make_void_error`, `make_result_void`, `make_error_with_context`)을 deprecated로 표시
+  - `MONITORING_TRY` 및 `MONITORING_TRY_ASSIGN` 매크로를 deprecated로 표시
+  - 코드 예제와 함께 마이그레이션 문서 추가
+  - 새 코드는 `common::Result<T>`, `common::VoidResult`, `common::ok()`, `common::make_error()`를 직접 사용해야 함
+  - 자세한 예제는 `result_types.h`의 마이그레이션 가이드 참조
 - 포괄적인 기여 가이드라인
 - 보안 정책 문서
 - **컨테이너 메트릭 모니터링** (#228)

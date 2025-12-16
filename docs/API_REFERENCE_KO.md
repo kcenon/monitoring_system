@@ -23,7 +23,24 @@
 ### Result 타입 ✅ **완전 구현**
 **헤더:** `include/kcenon/monitoring/core/result_types.h`
 
-#### `result<T>`
+> **⚠️ 마이그레이션 안내**: monitoring 전용 result 타입들은 common_system의 `common::Result<T>`로 대체되어 deprecated 되었습니다. 기존 코드는 계속 작동하지만, 새 코드는 common_system 타입을 직접 사용해야 합니다.
+
+#### 마이그레이션 가이드
+
+| Deprecated | 대체 |
+|------------|------|
+| `result<T>` | `common::Result<T>` |
+| `result_void` | `common::VoidResult` |
+| `make_success<T>(value)` | `common::ok(value)` |
+| `make_error<T>(code, msg)` | `common::make_error<T>(code, msg, module)` |
+| `make_void_success()` | `common::ok()` |
+| `make_void_error(code, msg)` | `common::VoidResult::err(error_info)` |
+| `MONITORING_TRY(expr)` | `COMMON_RETURN_IF_ERROR(expr)` |
+| `MONITORING_TRY_ASSIGN(var, expr)` | `COMMON_ASSIGN_OR_RETURN(var, expr)` |
+
+자세한 마이그레이션 예제는 `result_types.h`를 참조하세요.
+
+#### `result<T>` *(Deprecated)*
 예외 없이 오류 처리를 위한 모나딕 result 타입. **13개의 통과 테스트로 완전히 테스트됨.**
 
 ```cpp
@@ -58,7 +75,7 @@ public:
 };
 ```
 
-#### `result_void`
+#### `result_void` *(Deprecated)*
 값을 반환하지 않는 연산을 위한 특수화된 result 타입.
 
 ```cpp
