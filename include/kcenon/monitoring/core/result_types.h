@@ -98,7 +98,7 @@ struct error_info {
 // ============================================================================
 
 /**
- * @brief Deprecated alias for common::Result<T>
+ * @brief Backward-compatible alias for common::Result<T>
  * @deprecated Use common::Result<T> directly instead
  *
  * Migration example:
@@ -111,10 +111,10 @@ struct error_info {
  * @endcode
  */
 template<typename T>
-using result [[deprecated("Use common::Result<T> directly instead")]] = common::Result<T>;
+using result = common::Result<T>;
 
 /**
- * @brief Deprecated alias for common::VoidResult
+ * @brief Backward-compatible alias for common::VoidResult
  * @deprecated Use common::VoidResult directly instead
  *
  * Migration example:
@@ -126,7 +126,7 @@ using result [[deprecated("Use common::Result<T> directly instead")]] = common::
  * common::VoidResult my_function();
  * @endcode
  */
-using result_void [[deprecated("Use common::VoidResult directly instead")]] = common::VoidResult;
+using result_void = common::VoidResult;
 
 // ============================================================================
 // DEPRECATED HELPER FUNCTIONS
@@ -152,7 +152,6 @@ using result_void [[deprecated("Use common::VoidResult directly instead")]] = co
  * @endcode
  */
 template<typename T>
-[[deprecated("Use common::ok() directly instead")]]
 common::Result<std::decay_t<T>> make_success(T&& value) {
     return common::ok<std::decay_t<T>>(std::forward<T>(value));
 }
@@ -177,7 +176,6 @@ common::Result<std::decay_t<T>> make_success(T&& value) {
  * @endcode
  */
 template<typename T>
-[[deprecated("Use common::make_error() directly instead")]]
 common::Result<T> make_error(monitoring_error_code code,
                              const std::string& message = "") {
     error_info err(code, message);
@@ -188,7 +186,6 @@ common::Result<T> make_error(monitoring_error_code code,
  * @brief Create a VoidResult with error
  * @deprecated Use common::VoidResult::err() directly instead
  */
-[[deprecated("Use common::VoidResult::err() directly instead")]]
 inline common::VoidResult make_result_void(monitoring_error_code code,
                                            const std::string& message = "",
                                            const std::optional<std::string>& context = std::nullopt) {
@@ -206,7 +203,6 @@ inline common::VoidResult make_result_void(monitoring_error_code code,
  * @return result<T> containing the error with context
  */
 template<typename T>
-[[deprecated("Use common::make_error() with details parameter instead")]]
 common::Result<T> make_error_with_context(monitoring_error_code code,
                                           const std::string& message,
                                           const std::string& context) {
@@ -221,7 +217,6 @@ common::Result<T> make_error_with_context(monitoring_error_code code,
  * @param message Error message
  * @return result_void containing the error
  */
-[[deprecated("Use common::VoidResult::err() directly instead")]]
 inline common::VoidResult make_void_error(monitoring_error_code code,
                                           const std::string& message = "") {
     error_info err(code, message);
@@ -242,7 +237,6 @@ inline common::VoidResult make_void_error(monitoring_error_code code,
  * return common::ok();
  * @endcode
  */
-[[deprecated("Use common::ok() directly instead")]]
 inline common::VoidResult make_void_success() {
     return common::VoidResult(std::monostate{});
 }
