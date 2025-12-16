@@ -23,7 +23,24 @@ This document describes the **actually implemented** APIs and interfaces in the 
 ### Result Types ✅ **Fully Implemented**
 **Header:** `include/kcenon/monitoring/core/result_types.h`
 
-#### `result<T>`
+> **⚠️ MIGRATION NOTICE**: The monitoring-specific result types are now deprecated in favor of `common::Result<T>` from common_system. Existing code will continue to work, but new code should use the common_system types directly.
+
+#### Migration Guide
+
+| Deprecated | Replacement |
+|------------|-------------|
+| `result<T>` | `common::Result<T>` |
+| `result_void` | `common::VoidResult` |
+| `make_success<T>(value)` | `common::ok(value)` |
+| `make_error<T>(code, msg)` | `common::make_error<T>(code, msg, module)` |
+| `make_void_success()` | `common::ok()` |
+| `make_void_error(code, msg)` | `common::VoidResult::err(error_info)` |
+| `MONITORING_TRY(expr)` | `COMMON_RETURN_IF_ERROR(expr)` |
+| `MONITORING_TRY_ASSIGN(var, expr)` | `COMMON_ASSIGN_OR_RETURN(var, expr)` |
+
+See `result_types.h` for detailed migration examples.
+
+#### `result<T>` *(Deprecated)*
 A monadic result type for error handling without exceptions. **Fully tested with 13 passing tests.**
 
 ```cpp
@@ -58,7 +75,7 @@ public:
 };
 ```
 
-#### `result_void`
+#### `result_void` *(Deprecated)*
 Specialized result type for operations that don't return values.
 
 ```cpp

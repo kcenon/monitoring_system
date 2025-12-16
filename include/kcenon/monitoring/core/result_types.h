@@ -13,6 +13,18 @@ All rights reserved.
  *
  * This file provides Result pattern types using common_system's Result
  * implementation, ensuring consistent error management across the ecosystem.
+ *
+ * @note MIGRATION NOTICE: This file provides backward-compatible aliases
+ * for the transition to common::Result<T>. New code should use common::Result<T>
+ * directly from <kcenon/common/patterns/result.h>.
+ *
+ * Deprecated aliases (use common:: equivalents instead):
+ * - result<T>     -> common::Result<T>
+ * - result_void   -> common::VoidResult
+ * - make_success  -> common::ok
+ * - make_error    -> common::make_error
+ *
+ * @see https://github.com/kcenon/common_system/issues/205
  */
 
 #include "error_codes.h"
@@ -78,48 +90,112 @@ struct error_info {
     }
 };
 
-// Type aliases for common::Result usage
+// ============================================================================
+// DEPRECATED TYPE ALIASES
+// ============================================================================
+// These aliases are provided for backward compatibility during migration.
+// New code should use common::Result<T> and common::VoidResult directly.
+// ============================================================================
+
+/**
+ * @brief Backward-compatible alias for common::Result<T>
+ * @deprecated Use common::Result<T> directly instead
+ *
+ * Migration example:
+ * @code
+ * // Old code:
+ * result<int> my_function();
+ *
+ * // New code:
+ * common::Result<int> my_function();
+ * @endcode
+ */
 template<typename T>
 using result = common::Result<T>;
 
+/**
+ * @brief Backward-compatible alias for common::VoidResult
+ * @deprecated Use common::VoidResult directly instead
+ *
+ * Migration example:
+ * @code
+ * // Old code:
+ * result_void my_function();
+ *
+ * // New code:
+ * common::VoidResult my_function();
+ * @endcode
+ */
 using result_void = common::VoidResult;
 
-// Helper functions for creating results
+// ============================================================================
+// DEPRECATED HELPER FUNCTIONS
+// ============================================================================
+// These functions are provided for backward compatibility during migration.
+// New code should use common::ok() and common::make_error() directly.
+// ============================================================================
 
 /**
  * @brief Create a successful result
+ * @deprecated Use common::ok() directly instead
  * @tparam T The value type
  * @param value The success value
  * @return result<T> containing the value
+ *
+ * Migration example:
+ * @code
+ * // Old code:
+ * return make_success<int>(42);
+ *
+ * // New code:
+ * return common::ok(42);
+ * @endcode
  */
 template<typename T>
-result<std::decay_t<T>> make_success(T&& value) {
+common::Result<std::decay_t<T>> make_success(T&& value) {
     return common::ok<std::decay_t<T>>(std::forward<T>(value));
 }
 
 /**
  * @brief Create an error result
+ * @deprecated Use common::make_error() directly instead
  * @tparam T The expected value type
  * @param code The error code
  * @param message Optional error message
  * @return result<T> containing the error
+ *
+ * Migration example:
+ * @code
+ * // Old code:
+ * return make_error<int>(monitoring_error_code::invalid_configuration, "error");
+ *
+ * // New code:
+ * return common::make_error<int>(
+ *     static_cast<int>(monitoring_error_code::invalid_configuration),
+ *     "error", "monitoring_system");
+ * @endcode
  */
 template<typename T>
-result<T> make_error(monitoring_error_code code,
-                     const std::string& message = "") {
+common::Result<T> make_error(monitoring_error_code code,
+                             const std::string& message = "") {
     error_info err(code, message);
-    return result<T>::err(err.to_common_error());
+    return common::Result<T>::err(err.to_common_error());
 }
 
-inline result_void make_result_void(monitoring_error_code code,
-                                    const std::string& message = "",
-                                    const std::optional<std::string>& context = std::nullopt) {
+/**
+ * @brief Create a VoidResult with error
+ * @deprecated Use common::VoidResult::err() directly instead
+ */
+inline common::VoidResult make_result_void(monitoring_error_code code,
+                                           const std::string& message = "",
+                                           const std::optional<std::string>& context = std::nullopt) {
     error_info err(code, message, context);
-    return result_void::err(err.to_common_error());
+    return common::VoidResult::err(err.to_common_error());
 }
 
 /**
  * @brief Create an error result with context
+ * @deprecated Use common::make_error() with details parameter instead
  * @tparam T The expected value type
  * @param code The error code
  * @param message Error message
@@ -127,36 +203,62 @@ inline result_void make_result_void(monitoring_error_code code,
  * @return result<T> containing the error with context
  */
 template<typename T>
-result<T> make_error_with_context(monitoring_error_code code,
-                                  const std::string& message,
-                                  const std::string& context) {
+common::Result<T> make_error_with_context(monitoring_error_code code,
+                                          const std::string& message,
+                                          const std::string& context) {
     error_info err(code, message, context);
-    return result<T>::err(err.to_common_error());
+    return common::Result<T>::err(err.to_common_error());
 }
 
 /**
  * @brief Helper function to create VoidResult with error
+ * @deprecated Use common::VoidResult::err() directly instead
  * @param code The error code
  * @param message Error message
  * @return result_void containing the error
  */
-inline result_void make_void_error(monitoring_error_code code,
-                                   const std::string& message = "") {
+inline common::VoidResult make_void_error(monitoring_error_code code,
+                                          const std::string& message = "") {
     error_info err(code, message);
-    return result_void::err(err.to_common_error());
+    return common::VoidResult::err(err.to_common_error());
 }
 
 /**
  * @brief Helper function to create successful VoidResult
+ * @deprecated Use common::ok() directly instead
  * @return result_void indicating success
+ *
+ * Migration example:
+ * @code
+ * // Old code:
+ * return make_void_success();
+ *
+ * // New code:
+ * return common::ok();
+ * @endcode
  */
-inline result_void make_void_success() {
-    return result_void(std::monostate{});
+inline common::VoidResult make_void_success() {
+    return common::VoidResult(std::monostate{});
 }
 
-// Macros for propagating errors (compatible with common::Result)
+// ============================================================================
+// DEPRECATED MACROS
+// ============================================================================
+// These macros are provided for backward compatibility during migration.
+// New code should use COMMON_RETURN_IF_ERROR and COMMON_ASSIGN_OR_RETURN
+// from <kcenon/common/patterns/result.h> directly.
+// ============================================================================
+
+/**
+ * @def MONITORING_TRY
+ * @deprecated Use COMMON_RETURN_IF_ERROR directly instead
+ */
 #define MONITORING_TRY(expr) COMMON_RETURN_IF_ERROR(expr)
 
+/**
+ * @def MONITORING_TRY_ASSIGN
+ * @deprecated Use COMMON_ASSIGN_OR_RETURN directly instead
+ */
 #define MONITORING_TRY_ASSIGN(var, expr) \
     auto _result_##var = (expr); \
     if (_result_##var.is_err()) { \
