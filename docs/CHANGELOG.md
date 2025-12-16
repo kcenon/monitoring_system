@@ -58,6 +58,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Documentation structure reorganization
+
+### Changed
+- **Adopt common_system Result<T> for unified error handling** (#259)
+  - Mark `result<T>` and `result_void` type aliases as deprecated
+  - Mark helper functions (`make_success`, `make_error`, `make_void_success`, `make_void_error`, `make_result_void`, `make_error_with_context`) as deprecated
+  - Mark `MONITORING_TRY` and `MONITORING_TRY_ASSIGN` macros as deprecated
+  - Add migration documentation with code examples
+  - New code should use `common::Result<T>`, `common::VoidResult`, `common::ok()`, and `common::make_error()` directly
+  - See migration guide in `result_types.h` for detailed examples
 - Comprehensive contribution guidelines
 - Security policy documentation
 - **Container metrics monitoring** (#228)
