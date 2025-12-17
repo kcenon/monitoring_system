@@ -59,6 +59,13 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ### 추가됨
 - 문서 구조 재구성
 
+### 수정됨
+- **FetchContent를 통해 monitoring_system 사용 시 CMake 오류 수정** (#261)
+  - `kcenon::common_system` 타겟 별칭을 찾을 수 없는 오류 수정
+  - 여러 common_system 타겟 이름 지원 (`kcenon::common_system`, `kcenon::common`, `common_system`, `common`)
+  - 기본 타겟은 있지만 네임스페이스 별칭이 없을 때 자동 별칭 생성
+  - include 디렉터리를 사용한 헤더 전용 통합으로 폴백
+
 ### 변경됨
 - **통합 에러 처리를 위한 common_system Result<T> 도입** (#259)
   - `result<T>` 및 `result_void` 타입 별칭을 deprecated로 표시

@@ -59,6 +59,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Documentation structure reorganization
 
+### Fixed
+- **CMake error when using monitoring_system via FetchContent** (#261)
+  - Fixed `kcenon::common_system` target alias not found error
+  - Added support for multiple common_system target names (`kcenon::common_system`, `kcenon::common`, `common_system`, `common`)
+  - Automatic alias creation when base target exists but namespaced alias doesn't
+  - Fallback to header-only integration using include directories
+
 ### Changed
 - **Adopt common_system Result<T> for unified error handling** (#259)
   - Mark `result<T>` and `result_void` type aliases as deprecated
