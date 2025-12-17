@@ -276,15 +276,36 @@ target_include_directories(monitoring_system_interface
 # common_system integration is now mandatory (Phase 2.3)
 message(STATUS "Monitoring System: Using common_system interfaces")
 
-# Add common_system include path
-if(common_system_FOUND)
+# Find common_system target with multiple possible names
+# Priority: namespaced alias first, then direct target name
+# This handles both find_package() and FetchContent scenarios
+set(_COMMON_SYSTEM_TARGET "")
+foreach(_candidate kcenon::common_system kcenon::common common_system common)
+    if(TARGET ${_candidate})
+        set(_COMMON_SYSTEM_TARGET ${_candidate})
+        message(STATUS "Found common_system target: ${_candidate}")
+        break()
+    endif()
+endforeach()
+
+# Add common_system dependency
+if(_COMMON_SYSTEM_TARGET)
+    target_link_libraries(monitoring_system_interface INTERFACE ${_COMMON_SYSTEM_TARGET})
+elseif(TARGET common_system AND NOT TARGET kcenon::common_system)
+    # Create alias if the base target exists but namespaced alias doesn't
+    # This can happen when common_system is added via FetchContent
+    add_library(kcenon::common_system ALIAS common_system)
     target_link_libraries(monitoring_system_interface INTERFACE kcenon::common_system)
-else()
-    # Use sibling directory
+    message(STATUS "Created kcenon::common_system alias for common_system target")
+elseif(DEFINED COMMON_SYSTEM_INCLUDE_DIR)
+    # Fallback to header-only integration using include directories
     target_include_directories(monitoring_system_interface
         INTERFACE
             $<BUILD_INTERFACE:${COMMON_SYSTEM_INCLUDE_DIR}>
     )
+    message(STATUS "Using common_system headers from: ${COMMON_SYSTEM_INCLUDE_DIR}")
+else()
+    message(FATAL_ERROR "common_system is required but no suitable target or include directory was found.")
 endif()
 
 target_compile_definitions(monitoring_system_interface
