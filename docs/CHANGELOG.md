@@ -59,6 +59,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Documentation structure reorganization
 
+### Changed
+- **thread_system v3.0 compatibility** (#263)
+  - Removed dependency on deprecated `kcenon/thread/interfaces/shared_interfaces.h`
+  - Updated `monitor_adapter.h` to standalone adapter (renamed to `performance_monitor_adapter`)
+  - Updated `thread_system_adapter.h` to use `common::interfaces::IMonitorable`
+  - Detection now uses `thread_pool.h` instead of removed `monitorable_interface.h`
+  - For thread_system integration, use `common_monitor_adapter.h` which provides adapters for `kcenon::common::interfaces::IMonitor` and `IMonitorable`
+
 ### Fixed
 - **CMake error when using monitoring_system via FetchContent** (#261)
   - Fixed `kcenon::common_system` target alias not found error

@@ -29,19 +29,25 @@
 #include "../interfaces/metric_types_adapter.h"
 
 // Optional thread_system integration
+// Note: thread_system v3.0+ uses common_system interfaces instead of
+// thread-specific monitorable_interface.h. Detection now uses umbrella headers.
 #if !defined(MONITORING_THREAD_SYSTEM_AVAILABLE)
 #  if defined(MONITORING_HAS_THREAD_SYSTEM)
 #    define MONITORING_THREAD_SYSTEM_AVAILABLE 1
-#  elif __has_include(<kcenon/thread/interfaces/monitorable_interface.h>)
+#  elif __has_include(<kcenon/thread/thread_pool.h>)
 #    define MONITORING_THREAD_SYSTEM_AVAILABLE 1
 #  else
 #    define MONITORING_THREAD_SYSTEM_AVAILABLE 0
 #  endif
 #endif
 
+// thread_system v3.0+ uses common_system interfaces
 #if MONITORING_THREAD_SYSTEM_AVAILABLE
-#  include <kcenon/thread/interfaces/monitorable_interface.h>
 #  include <kcenon/thread/interfaces/service_container.h>
+#  if __has_include(<kcenon/common/interfaces/monitoring_interface.h>)
+#    include <kcenon/common/interfaces/monitoring_interface.h>
+#    define MONITORING_HAS_COMMON_INTERFACES 1
+#  endif
 #endif
 
 namespace kcenon { namespace monitoring {
@@ -60,14 +66,19 @@ public:
     // provider can be discovered at runtime (best‑effort).
     bool is_thread_system_available() const {
 #if MONITORING_THREAD_SYSTEM_AVAILABLE
+        // thread_system v3.0+ uses common_system interfaces
+#  if defined(MONITORING_HAS_COMMON_INTERFACES)
         // Dynamic discovery via service_container if present
         try {
             auto& container = kcenon::thread::service_container::global();
-            auto monitorable = container.resolve<kcenon::thread::monitorable_interface>();
+            auto monitorable = container.resolve<kcenon::common::interfaces::IMonitorable>();
             return static_cast<bool>(monitorable);
         } catch (...) {
             return true; // Headers present; treat as available even if not registered
         }
+#  else
+        return true; // thread_system available but no common interfaces
+#  endif
 #else
         return false;
 #endif
@@ -77,28 +88,22 @@ public:
     result<std::vector<metric>> collect_metrics() {
         std::vector<metric> out;
 
-#if MONITORING_THREAD_SYSTEM_AVAILABLE
+#if MONITORING_THREAD_SYSTEM_AVAILABLE && defined(MONITORING_HAS_COMMON_INTERFACES)
         try {
             auto& container = kcenon::thread::service_container::global();
-            auto monitorable = container.resolve<kcenon::thread::monitorable_interface>();
+            auto monitorable = container.resolve<kcenon::common::interfaces::IMonitorable>();
             if (monitorable) {
                 // Convert minimal subset of thread_system metrics into adapter metrics
-                auto snap = monitorable->get_metrics();
-                // Map a few well‑known fields when present; best‑effort conversion.
-                // Note: The interface in thread_system exposes a metrics_snapshot with
-                // system/thread_pool/worker fields. We convert selected numeric values.
-                metric m_jobs_pending{"thread.pool.jobs_pending", 0.0, {}};
-                metric m_jobs_completed{"thread.pool.jobs_completed", 0.0, {}};
-                metric m_workers{"thread.pool.worker_threads", 0.0, {}};
-
-                // Values default to 0.0 if missing — safe for aggregation
-                m_jobs_pending.value = static_cast<int64_t>(snap.thread_pool.jobs_pending);
-                m_jobs_completed.value = static_cast<int64_t>(snap.thread_pool.jobs_completed);
-                m_workers.value = static_cast<int64_t>(snap.thread_pool.worker_threads);
-
-                out.emplace_back(std::move(m_jobs_pending));
-                out.emplace_back(std::move(m_jobs_completed));
-                out.emplace_back(std::move(m_workers));
+                // thread_system v3.0 uses common::interfaces::IMonitorable
+                auto result = monitorable->get_monitoring_data();
+                if (!kcenon::common::is_error(result)) {
+                    const auto& snap = kcenon::common::get_value(result);
+                    // Map metrics from common_system snapshot
+                    for (const auto& m : snap.metrics) {
+                        metric adapted{m.name, m.value, {}};
+                        out.emplace_back(std::move(adapted));
+                    }
+                }
             }
         } catch (...) {
             // Fall back to empty on any failure
