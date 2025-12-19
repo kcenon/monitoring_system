@@ -29,30 +29,35 @@
 
 #pragma once
 
-#include <kcenon/thread/interfaces/shared_interfaces.h>
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <memory>
 #include <chrono>
 
+// For thread_system v3.0+ integration, use common_monitor_adapter.h which provides
+// adapters for kcenon::common::interfaces::IMonitor and IMonitorable
+
 namespace kcenon::monitoring::adapters {
 
 /**
- * @brief Adapter to make performance_monitor compatible with IMonitorable interface
+ * @brief Standalone adapter for performance_monitor
+ * @note For thread_system integration, use common_monitor_adapter.h which provides
+ *       adapters for kcenon::common::interfaces::IMonitor and IMonitorable
+ *       (the unified interfaces used by thread_system v3.0+)
  */
-class monitor_adapter : public shared::IMonitorable, public shared::IService {
+class performance_monitor_adapter {
 public:
     /**
      * @brief Constructor with performance monitor instance
      * @param monitor Performance monitor instance
      */
-    explicit monitor_adapter(std::shared_ptr<kcenon::monitoring::performance_monitor> monitor)
+    explicit performance_monitor_adapter(std::shared_ptr<kcenon::monitoring::performance_monitor> monitor)
         : monitor_(std::move(monitor)) {
     }
 
     /**
      * @brief Default constructor - creates a default monitor
      */
-    monitor_adapter() {
+    performance_monitor_adapter() {
         // Create default monitor configuration
         kcenon::monitoring::performance_monitor::config config;
         config.enable_cpu_monitoring = true;
@@ -61,56 +66,11 @@ public:
         monitor_ = std::make_shared<kcenon::monitoring::performance_monitor>(config);
     }
 
-    // IMonitorable interface
-    shared::MetricsSnapshot get_metrics() const override {
-        shared::MetricsSnapshot snapshot;
-        snapshot.timestamp = std::chrono::steady_clock::now();
-
-        if (monitor_) {
-            auto sys_metrics = monitor_->get_system_metrics();
-
-            snapshot.cpu_usage = sys_metrics.cpu_usage_percent;
-            snapshot.memory_usage_mb = sys_metrics.memory_usage_mb;
-
-            // Get thread metrics if available
-            if (sys_metrics.thread_count > 0) {
-                snapshot.active_threads = sys_metrics.thread_count;
-            }
-
-            // Get additional metrics from performance data
-            auto perf_data = monitor_->get_performance_data();
-            if (!perf_data.profiles.empty()) {
-                // Calculate average task duration from profiles
-                double total_duration = 0.0;
-                size_t count = 0;
-                for (const auto& [name, profile] : perf_data.profiles) {
-                    if (profile.average_duration_ms > 0) {
-                        total_duration += profile.average_duration_ms;
-                        count++;
-                    }
-                }
-                if (count > 0) {
-                    snapshot.average_task_duration_ms = total_duration / count;
-                }
-            }
-        }
-
-        return snapshot;
-    }
-
-    void set_metrics_enabled(bool enabled) override {
-        metrics_enabled_ = enabled;
-        if (monitor_) {
-            if (enabled) {
-                monitor_->start();
-            } else {
-                monitor_->stop();
-            }
-        }
-    }
-
-    // IService interface
-    bool initialize() override {
+    /**
+     * @brief Initialize the adapter
+     * @return true if initialization succeeded
+     */
+    bool initialize() {
         if (monitor_) {
             monitor_->start();
             is_running_ = true;
@@ -119,18 +79,29 @@ public:
         return false;
     }
 
-    void shutdown() override {
+    /**
+     * @brief Shutdown the adapter
+     */
+    void shutdown() {
         if (monitor_) {
             monitor_->stop();
         }
         is_running_ = false;
     }
 
-    bool is_running() const override {
+    /**
+     * @brief Check if the adapter is running
+     * @return true if running
+     */
+    bool is_running() const {
         return is_running_ && monitor_ != nullptr;
     }
 
-    std::string name() const override {
+    /**
+     * @brief Get the adapter name
+     * @return "MonitorAdapter"
+     */
+    std::string name() const {
         return "MonitorAdapter";
     }
 
@@ -162,10 +133,28 @@ public:
         }
     }
 
+    /**
+     * @brief Enable or disable metrics collection
+     * @param enabled true to enable, false to disable
+     */
+    void set_metrics_enabled(bool enabled) {
+        metrics_enabled_ = enabled;
+        if (monitor_) {
+            if (enabled) {
+                monitor_->start();
+            } else {
+                monitor_->stop();
+            }
+        }
+    }
+
 private:
     std::shared_ptr<kcenon::monitoring::performance_monitor> monitor_;
     bool metrics_enabled_{true};
     bool is_running_{false};
 };
+
+// Legacy alias for backward compatibility
+using monitor_adapter = performance_monitor_adapter;
 
 } // namespace kcenon::monitoring::adapters
