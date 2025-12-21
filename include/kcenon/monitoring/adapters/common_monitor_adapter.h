@@ -22,7 +22,7 @@ All rights reserved.
 // Include actual monitoring_system headers
 #include <kcenon/monitoring/core/performance_monitor.h>
 #include <kcenon/monitoring/health/health_monitor.h>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 
 namespace kcenon {
 namespace monitoring {

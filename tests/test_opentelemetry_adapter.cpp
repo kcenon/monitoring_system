@@ -9,7 +9,7 @@ All rights reserved.
 #include <kcenon/monitoring/exporters/opentelemetry_adapter.h>
 // Note: distributed_tracer.h does not exist in include directory
 // #include <kcenon/monitoring/tracing/distributed_tracer.h>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 #include <thread>
 #include <chrono>
 

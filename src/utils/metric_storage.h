@@ -20,7 +20,7 @@ All rights reserved.
 #include <kcenon/monitoring/utils/ring_buffer.h>
 #include <kcenon/monitoring/utils/metric_types.h>
 #include <kcenon/monitoring/utils/time_series.h>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 #include <memory>
 #include <unordered_map>
 #include <string>

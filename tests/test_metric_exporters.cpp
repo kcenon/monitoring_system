@@ -8,7 +8,7 @@ All rights reserved.
 #include <gtest/gtest.h>
 #include <kcenon/monitoring/exporters/metric_exporters.h>
 #include <kcenon/monitoring/interfaces/monitorable_interface.h>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 #include <kcenon/monitoring/exporters/opentelemetry_adapter.h>
 #include <thread>
 #include <chrono>
