@@ -323,6 +323,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         -Wall
         -Wextra
         -Wpedantic
+        -Wdeprecated-declarations
         -Werror=return-type
         -Werror=uninitialized
         -Werror=unused-result
@@ -341,6 +342,7 @@ elseif(MSVC)
         /WX
         /permissive-
         /Zc:__cplusplus
+        /w14996  # Enable deprecated declarations warning
     )
     
     # Enable AVX2 on MSVC if supported

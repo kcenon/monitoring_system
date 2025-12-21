@@ -58,6 +58,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Documentation structure reorganization
+- **Deprecated API warning flag** (#267)
+  - Added `-Wdeprecated-declarations` for GCC/Clang compilers
+  - Added `/w14996` for MSVC compiler
+  - Catches usage of deprecated common_system APIs before v3.0.0 removal
+  - No deprecated API usage found in codebase (already using new patterns)
 
 ### Changed
 - **thread_system v3.0 compatibility** (#263)
