@@ -30,7 +30,7 @@
 #include <iostream>
 #include <kcenon/monitoring/core/result_types.h>
 #include <kcenon/monitoring/core/error_codes.h>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 
 using namespace kcenon::monitoring;
 

@@ -36,7 +36,7 @@ All rights reserved.
 #include <filesystem>
 
 #include <kcenon/monitoring/core/result_types.h>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 #include <kcenon/monitoring/tracing/distributed_tracer.h>
 #include <kcenon/monitoring/performance/performance_monitor.h>
 #include <kcenon/monitoring/adaptive/adaptive_monitor.h>

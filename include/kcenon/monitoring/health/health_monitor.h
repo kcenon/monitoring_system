@@ -35,11 +35,11 @@
 #include <chrono>
 #include <functional>
 #include <memory>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 
 namespace kcenon::monitoring {
 
-// Use health_status and health_check_result from monitoring_interface.h
+// Use health_status and health_check_result from monitoring_core.h
 
 /**
  * @brief Health monitor configuration

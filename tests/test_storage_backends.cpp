@@ -8,7 +8,7 @@ All rights reserved.
 #include <gtest/gtest.h>
 // Note: storage_backends.h does not exist in include directory
 // #include <kcenon/monitoring/storage/storage_backends.h>
-#include <kcenon/monitoring/interfaces/monitoring_interface.h>
+#include <kcenon/monitoring/interfaces/monitoring_core.h>
 #include <filesystem>
 #include <fstream>
 

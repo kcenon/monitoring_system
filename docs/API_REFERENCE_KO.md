@@ -210,7 +210,11 @@ auto user_svc = container.resolve<user_service>();
 ## 모니터링 인터페이스
 
 ### 모니터링 인터페이스
-**헤더:** `sources/monitoring/interfaces/monitoring_interface.h`
+**헤더:** `include/kcenon/monitoring/interfaces/monitoring_core.h`
+
+> **참고:** 이 헤더는 `common_system`의 `monitoring_interface.h` (IMonitor 인터페이스 정의)와의
+> 이름 충돌을 피하기 위해 `monitoring_interface.h`에서 이름이 변경되었습니다. 기존 경로는
+> 하위 호환성을 위해 deprecated forwarding 헤더로 유지됩니다.
 
 #### `metrics_collector`
 모든 메트릭 수집기를 위한 기본 인터페이스.

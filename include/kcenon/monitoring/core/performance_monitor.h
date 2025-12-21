@@ -55,7 +55,7 @@
 
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
-#include "../interfaces/monitoring_interface.h"
+#include "../interfaces/monitoring_core.h"
 
 // Use common_system interfaces (Phase 2.3.4)
 #include <kcenon/common/interfaces/monitoring_interface.h>

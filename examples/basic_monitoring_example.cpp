@@ -42,7 +42,7 @@
 #include <thread>
 #include <chrono>
 
-#include "kcenon/monitoring/interfaces/monitoring_interface.h"
+#include "kcenon/monitoring/interfaces/monitoring_core.h"
 #include "kcenon/monitoring/core/performance_monitor.h"
 #include "kcenon/monitoring/storage/storage_backends.h"
 #include "kcenon/monitoring/core/result_types.h"
