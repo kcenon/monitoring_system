@@ -18,7 +18,7 @@ All rights reserved.
 #include <kcenon/common/patterns/result.h>
 #endif
 
-#include "../interfaces/monitoring_interface.h"
+#include "../interfaces/monitoring_core.h"
 #include "../interfaces/monitorable_interface.h"
 #include "../core/result_types.h"
 

@@ -19,7 +19,7 @@ All rights reserved.
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
 #include "../tracing/distributed_tracer.h"
-#include "../interfaces/monitoring_interface.h"
+#include "../interfaces/monitoring_core.h"
 #include "../interfaces/monitorable_interface.h"
 #include <string>
 #include <vector>
