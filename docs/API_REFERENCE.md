@@ -210,7 +210,12 @@ auto user_svc = container.resolve<user_service>();
 ## Monitoring Interfaces
 
 ### Monitoring Interface
-**Header:** `sources/monitoring/interfaces/monitoring_interface.h`
+**Header:** `include/kcenon/monitoring/interfaces/monitoring_core.h`
+
+> **Note:** This header was renamed from `monitoring_interface.h` to avoid naming
+> collision with `common_system`'s `monitoring_interface.h` (which defines the
+> `IMonitor` interface). The old path is preserved as a deprecated forwarding
+> header for backward compatibility.
 
 #### `metrics_collector`
 Base interface for all metric collectors.
