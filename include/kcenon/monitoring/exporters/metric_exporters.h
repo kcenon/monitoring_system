@@ -22,7 +22,7 @@ All rights reserved.
 
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
-#include "../interfaces/monitoring_interface.h"
+#include "../interfaces/monitoring_core.h"
 #include "../interfaces/monitorable_interface.h"
 #include "opentelemetry_adapter.h"
 #include <vector>
