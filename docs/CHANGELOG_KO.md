@@ -63,6 +63,11 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - MSVC 컴파일러용 `/w14996` 추가
   - common_system v3.0.0 제거 전에 deprecated API 사용 감지
   - 코드베이스에서 deprecated API 사용 없음 (이미 새로운 패턴 사용 중)
+- **common_system v3.0.0 호환성 확인** (#269)
+  - deprecated `THREAD_LOG_*` 매크로 사용하지 않음 확인 (이미 `LOG_*` 매크로 사용 중)
+  - legacy `log(level, msg, file, line, func)` 메서드 사용하지 않음 확인
+  - 코드베이스가 이미 자동 source_location을 사용하는 modern `log(level, msg)` 사용 중
+  - common_system v3.0.0 업그레이드 시 코드 변경 불필요
 
 ### 수정됨
 - **FetchContent를 통해 monitoring_system 사용 시 CMake 오류 수정** (#261)
