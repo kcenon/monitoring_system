@@ -12,9 +12,9 @@ All rights reserved.
 #include <chrono>
 #include <unordered_map>
 #include <vector>
+#include "../config/feature_flags.h"
 
-// Check if common_system is available
-#ifdef BUILD_WITH_COMMON_SYSTEM
+#if KCENON_HAS_COMMON_SYSTEM
 #include <kcenon/common/interfaces/monitoring_interface.h>
 #include <kcenon/common/patterns/result.h>
 #endif
@@ -28,7 +28,7 @@ namespace kcenon {
 namespace monitoring {
 namespace adapters {
 
-#ifdef BUILD_WITH_COMMON_SYSTEM
+#if KCENON_HAS_COMMON_SYSTEM
 
 /**
  * @brief Convert health status between monitoring_system and common_system
@@ -416,7 +416,7 @@ public:
     }
 };
 
-#endif // BUILD_WITH_COMMON_SYSTEM
+#endif // KCENON_HAS_COMMON_SYSTEM
 
 } // namespace adapters
 } // namespace monitoring

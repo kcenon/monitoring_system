@@ -52,7 +52,7 @@ target_link_libraries(custom_metric_types_example
 )
 
 # Phase 4 DI Pattern examples - available when common_system integration is enabled
-if(BUILD_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
+if(MONITORING_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
     # Logger DI Integration example
     add_executable(logger_di_integration_example
         logger_di_integration_example.cpp
