@@ -41,8 +41,12 @@ elseif(DEFINED BUILD_EXAMPLES)
 endif()
 
 # BUILD_WITH_COMMON_SYSTEM -> MONITORING_WITH_COMMON_SYSTEM
+# Note: Source code now uses KCENON_HAS_COMMON_SYSTEM for feature detection.
+# The CMake option MONITORING_WITH_COMMON_SYSTEM controls whether to enable the integration,
+# and KCENON_HAS_COMMON_SYSTEM=1 is defined as a compile definition when enabled.
 if(DEFINED BUILD_WITH_COMMON_SYSTEM AND NOT DEFINED MONITORING_WITH_COMMON_SYSTEM)
-    message(DEPRECATION "BUILD_WITH_COMMON_SYSTEM is deprecated. Use MONITORING_WITH_COMMON_SYSTEM instead.")
+    message(DEPRECATION "BUILD_WITH_COMMON_SYSTEM is deprecated. Use MONITORING_WITH_COMMON_SYSTEM instead. "
+                        "Source code now uses KCENON_HAS_COMMON_SYSTEM for feature detection.")
     set(MONITORING_WITH_COMMON_SYSTEM ${BUILD_WITH_COMMON_SYSTEM} CACHE BOOL "Enable common_system integration" FORCE)
 endif()
 

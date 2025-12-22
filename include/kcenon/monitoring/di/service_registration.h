@@ -15,8 +15,9 @@
 #pragma once
 
 #include <memory>
+#include "../config/feature_flags.h"
 
-#ifdef BUILD_WITH_COMMON_SYSTEM
+#if KCENON_HAS_COMMON_SYSTEM
 
 #include <kcenon/common/di/service_container.h>
 #include <kcenon/common/interfaces/monitoring_interface.h>
@@ -203,4 +204,4 @@ inline std::shared_ptr<performance_monitor> get_underlying_performance_monitor(
 
 } // namespace kcenon::monitoring::di
 
-#endif // BUILD_WITH_COMMON_SYSTEM
+#endif // KCENON_HAS_COMMON_SYSTEM

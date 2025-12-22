@@ -31,8 +31,9 @@
 #include <string>
 #include <type_traits>
 #include <vector>
+#include "../config/feature_flags.h"
 
-#ifdef BUILD_WITH_COMMON_SYSTEM
+#if KCENON_HAS_COMMON_SYSTEM
 #include <kcenon/common/concepts/concepts.h>
 #endif
 

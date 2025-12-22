@@ -50,10 +50,11 @@
 #include <vector>
 
 #include "../core/result_types.h"
+#include "../config/feature_flags.h"
 #include "metric_types_adapter.h"
 #include "observer_interface.h"
 
-#ifdef BUILD_WITH_COMMON_SYSTEM
+#if KCENON_HAS_COMMON_SYSTEM
 #include <kcenon/common/concepts/service.h>
 #endif
 
