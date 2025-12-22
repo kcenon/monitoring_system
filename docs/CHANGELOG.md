@@ -78,6 +78,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - For thread_system integration, use `common_monitor_adapter.h` which provides adapters for `kcenon::common::interfaces::IMonitor` and `IMonitorable`
 
 ### Fixed
+- **Test mock classes using deprecated ILogger API** (#272)
+  - Removed deprecated 5-argument `log(level, msg, file, line, func)` override from mock_logger
+  - Updated mock classes to match common_system v3.0.0 ILogger interface (Issue #217)
+  - The deprecated API was replaced with source_location-based API in common_system
 - **CMake error when using monitoring_system via FetchContent** (#261)
   - Fixed `kcenon::common_system` target alias not found error
   - Added support for multiple common_system target names (`kcenon::common_system`, `kcenon::common`, `common_system`, `common`)

@@ -16,8 +16,9 @@ All rights reserved.
  */
 
 #include <gtest/gtest.h>
+#include "kcenon/monitoring/config/feature_flags.h"
 
-#ifdef BUILD_WITH_COMMON_SYSTEM
+#if KCENON_HAS_COMMON_SYSTEM
 
 #include "kcenon/monitoring/di/service_registration.h"
 #include <kcenon/common/di/service_container.h>
@@ -278,11 +279,11 @@ TEST_F(MonitorServiceRegistrationTest, LockFreeMode) {
 
 } // anonymous namespace
 
-#else // BUILD_WITH_COMMON_SYSTEM
+#else // KCENON_HAS_COMMON_SYSTEM
 
 // Stub test when common_system is not available
 TEST(MonitorServiceRegistrationSkipTest, CommonSystemNotAvailable) {
     GTEST_SKIP() << "common_system integration not available - skipping service registration tests";
 }
 
-#endif // BUILD_WITH_COMMON_SYSTEM
+#endif // KCENON_HAS_COMMON_SYSTEM

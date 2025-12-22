@@ -70,6 +70,10 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - common_system v3.0.0 업그레이드 시 코드 변경 불필요
 
 ### 수정됨
+- **테스트 mock 클래스의 deprecated ILogger API 사용 문제** (#272)
+  - mock_logger에서 deprecated 5인자 `log(level, msg, file, line, func)` override 제거
+  - common_system v3.0.0 ILogger 인터페이스에 맞게 mock 클래스 업데이트 (Issue #217)
+  - deprecated API는 common_system에서 source_location 기반 API로 대체됨
 - **FetchContent를 통해 monitoring_system 사용 시 CMake 오류 수정** (#261)
   - `kcenon::common_system` 타겟 별칭을 찾을 수 없는 오류 수정
   - 여러 common_system 타겟 이름 지원 (`kcenon::common_system`, `kcenon::common`, `common_system`, `common`)

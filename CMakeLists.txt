@@ -310,7 +310,7 @@ endif()
 
 target_compile_definitions(monitoring_system_interface
     INTERFACE
-        BUILD_WITH_COMMON_SYSTEM
+        KCENON_HAS_COMMON_SYSTEM=1
         MONITORING_USING_COMMON_INTERFACES
 )
 

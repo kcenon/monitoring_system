@@ -54,8 +54,9 @@
 #include <unordered_map>
 #include <vector>
 #include "../core/result_types.h"
+#include "../config/feature_flags.h"
 
-#ifdef BUILD_WITH_COMMON_SYSTEM
+#if KCENON_HAS_COMMON_SYSTEM
 #include <kcenon/common/concepts/event.h>
 #endif
 

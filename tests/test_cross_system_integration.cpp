@@ -76,14 +76,6 @@ public:
         return kcenon::common::ok();
     }
 
-    // Legacy API (required as it's pure virtual)
-    VoidResult log(common_if::log_level level, const std::string& message,
-                   [[maybe_unused]] const std::string& file,
-                   [[maybe_unused]] int line,
-                   [[maybe_unused]] const std::string& function) override {
-        return log(level, message);
-    }
-
     VoidResult log(const common_if::log_entry& entry) override {
         return log(entry.level, entry.message);
     }
