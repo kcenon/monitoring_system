@@ -25,6 +25,7 @@ All rights reserved.
 #include "../interfaces/monitoring_core.h"
 #include "../interfaces/monitorable_interface.h"
 #include "opentelemetry_adapter.h"
+#include "udp_transport.h"
 #include <vector>
 #include <string>
 #include <memory>
@@ -497,17 +498,37 @@ private:
 /**
  * @class statsd_exporter
  * @brief StatsD metric exporter implementation
+ *
+ * Exports metrics to StatsD-compatible backends via UDP.
+ * Supports both plain StatsD and DataDog extension formats.
  */
 class statsd_exporter : public metric_exporter_interface {
 private:
     metric_export_config config_;
+    std::unique_ptr<udp_transport> transport_;
     std::atomic<std::size_t> exported_metrics_{0};
     std::atomic<std::size_t> failed_exports_{0};
     std::atomic<std::size_t> sent_packets_{0};
-    
+    bool started_{false};
+
 public:
+    /**
+     * @brief Construct StatsD exporter with default UDP transport
+     * @param config Export configuration with endpoint and port
+     */
     explicit statsd_exporter(const metric_export_config& config)
-        : config_(config) {}
+        : config_(config)
+        , transport_(create_default_udp_transport()) {}
+
+    /**
+     * @brief Construct StatsD exporter with custom UDP transport
+     * @param config Export configuration
+     * @param transport Custom UDP transport implementation
+     */
+    statsd_exporter(const metric_export_config& config,
+                    std::unique_ptr<udp_transport> transport)
+        : config_(config)
+        , transport_(std::move(transport)) {}
     
     /**
      * @brief Convert monitoring_data to StatsD format
@@ -643,29 +664,99 @@ public:
         }
     }
     
+    result_void start() override {
+        if (started_) {
+            return common::ok();
+        }
+
+        if (!transport_) {
+            return result_void::err(error_info(
+                monitoring_error_code::dependency_missing,
+                "UDP transport not available",
+                "statsd_exporter"
+            ).to_common_error());
+        }
+
+        // Connect to StatsD endpoint
+        auto connect_result = transport_->connect(config_.endpoint, config_.port);
+        if (connect_result.is_err()) {
+            return connect_result;
+        }
+
+        started_ = true;
+        return common::ok();
+    }
+
+    result_void stop() override {
+        if (!started_) {
+            return common::ok();
+        }
+
+        if (transport_) {
+            transport_->disconnect();
+        }
+
+        started_ = false;
+        return common::ok();
+    }
+
     result_void flush() override {
         // StatsD is push-based and sends immediately, so flush is a no-op
         return common::ok();
     }
-    
+
     result_void shutdown() override {
-        return flush();
+        return stop();
     }
     
     std::unordered_map<std::string, std::size_t> get_stats() const override {
-        return {
+        std::unordered_map<std::string, std::size_t> stats = {
             {"exported_metrics", exported_metrics_.load()},
             {"failed_exports", failed_exports_.load()},
             {"sent_packets", sent_packets_.load()}
         };
+
+        // Add transport statistics if available
+        if (transport_) {
+            auto transport_stats = transport_->get_statistics();
+            stats["transport_packets_sent"] = transport_stats.packets_sent;
+            stats["transport_bytes_sent"] = transport_stats.bytes_sent;
+            stats["transport_send_failures"] = transport_stats.send_failures;
+        }
+
+        return stats;
     }
     
 private:
     result_void send_udp_batch(const std::vector<std::string>& lines) {
-        // Simulate UDP sending
-        // In real implementation, this would create UDP socket and send packets
-        (void)lines; // Suppress unused parameter warning
-        return common::ok();
+        if (!transport_) {
+            return result_void::err(error_info(
+                monitoring_error_code::dependency_missing,
+                "UDP transport not available",
+                "statsd_exporter"
+            ).to_common_error());
+        }
+
+        // Auto-connect if not already connected
+        if (!transport_->is_connected()) {
+            auto connect_result = transport_->connect(config_.endpoint, config_.port);
+            if (connect_result.is_err()) {
+                return connect_result;
+            }
+        }
+
+        // Combine lines into a single packet (newline-separated)
+        // StatsD typically accepts multiple metrics per packet
+        std::string batch;
+        for (const auto& line : lines) {
+            if (!batch.empty()) {
+                batch += '\n';
+            }
+            batch += line;
+        }
+
+        // Send the batch
+        return transport_->send(batch);
     }
     
     std::string sanitize_metric_name(const std::string& name) const {
