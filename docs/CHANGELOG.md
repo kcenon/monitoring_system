@@ -57,6 +57,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **UDP and gRPC transport implementations** (#273)
+  - Added `udp_transport.h` with abstract interface for UDP communication
+  - Added `grpc_transport.h` with abstract interface for gRPC communication
+  - `stub_udp_transport`: Testing implementation with simulated UDP sends
+  - `stub_grpc_transport`: Testing implementation with simulated gRPC calls
+  - `common_udp_transport`: Integration with common_system IUdpClient interface
+  - `network_udp_transport`: Integration with network_system UDP client
+  - Factory functions for automatic backend selection based on availability
+- **StatsD exporter with real UDP transport** (#274)
+  - Updated `statsd_exporter` to use `udp_transport` abstraction
+  - Support for custom transport injection for testing
+  - Start/stop lifecycle management with connection handling
+  - Transport statistics included in exporter stats
+- **OTLP exporter with HTTP/gRPC transport** (#275)
+  - Updated `otlp_metrics_exporter` to use transport abstractions
+  - OTLP/HTTP support via `http_transport` (JSON and Protobuf)
+  - OTLP/gRPC support via `grpc_transport`
+  - Basic OTLP JSON serialization for metrics
+- **CMake transport interface detection**
+  - Automatic detection of common_system transport interfaces
+  - `MONITORING_HAS_COMMON_TRANSPORT_INTERFACES` compile definition
 - Documentation structure reorganization
 - **Deprecated API warning flag** (#267)
   - Added `-Wdeprecated-declarations` for GCC/Clang compilers

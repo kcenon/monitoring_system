@@ -7,6 +7,9 @@ All rights reserved.
 
 #include <gtest/gtest.h>
 #include <kcenon/monitoring/exporters/metric_exporters.h>
+#include <kcenon/monitoring/exporters/udp_transport.h>
+#include <kcenon/monitoring/exporters/http_transport.h>
+#include <kcenon/monitoring/exporters/grpc_transport.h>
 #include <kcenon/monitoring/interfaces/monitorable_interface.h>
 #include <kcenon/monitoring/interfaces/monitoring_core.h>
 #include <kcenon/monitoring/exporters/opentelemetry_adapter.h>
@@ -515,4 +518,300 @@ TEST_F(MetricExportersTest, MetricTypeInference) {
     EXPECT_EQ(find_metric("request_duration")->type, metric_type::timer);
     EXPECT_EQ(find_metric("cpu_usage")->type, metric_type::gauge);
     EXPECT_EQ(find_metric("memory_available")->type, metric_type::gauge);
+}
+
+// ============================================================================
+// UDP Transport Tests
+// ============================================================================
+
+TEST(UdpTransportTest, StubTransportBasicFunctionality) {
+    auto transport = create_stub_udp_transport();
+    ASSERT_TRUE(transport);
+    EXPECT_TRUE(transport->is_available());
+    EXPECT_EQ(transport->name(), "stub");
+    EXPECT_FALSE(transport->is_connected());
+
+    // Test connection
+    auto connect_result = transport->connect("localhost", 8125);
+    EXPECT_TRUE(connect_result.is_ok());
+    EXPECT_TRUE(transport->is_connected());
+    EXPECT_EQ(transport->get_host(), "localhost");
+    EXPECT_EQ(transport->get_port(), 8125);
+
+    // Test send
+    std::string metric = "test_metric:100|c";
+    auto send_result = transport->send(metric);
+    EXPECT_TRUE(send_result.is_ok());
+
+    // Check statistics
+    auto stats = transport->get_statistics();
+    EXPECT_EQ(stats.packets_sent, 1);
+    EXPECT_EQ(stats.bytes_sent, metric.size());
+    EXPECT_EQ(stats.send_failures, 0);
+
+    // Test disconnect
+    transport->disconnect();
+    EXPECT_FALSE(transport->is_connected());
+
+    // Send should fail after disconnect
+    auto fail_result = transport->send(metric);
+    EXPECT_TRUE(fail_result.is_err());
+
+    auto stats_after = transport->get_statistics();
+    EXPECT_EQ(stats_after.send_failures, 1);
+}
+
+TEST(UdpTransportTest, StubTransportSimulateFailure) {
+    auto transport = create_stub_udp_transport();
+    transport->set_simulate_success(false);
+
+    // Connection should fail
+    auto connect_result = transport->connect("localhost", 8125);
+    EXPECT_TRUE(connect_result.is_err());
+    EXPECT_FALSE(transport->is_connected());
+
+    // Re-enable success and connect
+    transport->set_simulate_success(true);
+    auto retry_result = transport->connect("localhost", 8125);
+    EXPECT_TRUE(retry_result.is_ok());
+
+    // Now simulate send failure
+    transport->set_simulate_success(false);
+    auto send_result = transport->send("test:1|c");
+    EXPECT_TRUE(send_result.is_err());
+}
+
+TEST(UdpTransportTest, StubTransportStatisticsReset) {
+    auto transport = create_stub_udp_transport();
+    transport->connect("localhost", 8125);
+    transport->send("metric1:1|c");
+    transport->send("metric2:2|c");
+    transport->send("metric3:3|c");
+
+    auto stats = transport->get_statistics();
+    EXPECT_EQ(stats.packets_sent, 3);
+    EXPECT_GT(stats.bytes_sent, 0);
+
+    transport->reset_statistics();
+    auto reset_stats = transport->get_statistics();
+    EXPECT_EQ(reset_stats.packets_sent, 0);
+    EXPECT_EQ(reset_stats.bytes_sent, 0);
+    EXPECT_EQ(reset_stats.send_failures, 0);
+}
+
+TEST(UdpTransportTest, DefaultTransportCreation) {
+    auto transport = create_default_udp_transport();
+    ASSERT_TRUE(transport);
+    EXPECT_TRUE(transport->is_available());
+    // Default transport should work (either stub or network)
+}
+
+// ============================================================================
+// gRPC Transport Tests
+// ============================================================================
+
+TEST(GrpcTransportTest, StubTransportBasicFunctionality) {
+    auto transport = create_stub_grpc_transport();
+    ASSERT_TRUE(transport);
+    EXPECT_TRUE(transport->is_available());
+    EXPECT_EQ(transport->name(), "stub");
+    EXPECT_FALSE(transport->is_connected());
+
+    // Test connection
+    auto connect_result = transport->connect("localhost", 4317);
+    EXPECT_TRUE(connect_result.is_ok());
+    EXPECT_TRUE(transport->is_connected());
+    EXPECT_EQ(transport->get_host(), "localhost");
+    EXPECT_EQ(transport->get_port(), 4317);
+
+    // Test send
+    grpc_request request;
+    request.service = "test.Service";
+    request.method = "TestMethod";
+    request.body = {0x01, 0x02, 0x03, 0x04};
+    request.timeout = std::chrono::milliseconds(5000);
+
+    auto send_result = transport->send(request);
+    EXPECT_TRUE(send_result.is_ok());
+
+    const auto& response = send_result.value();
+    EXPECT_EQ(response.status_code, 0); // gRPC OK
+    EXPECT_EQ(response.status_message, "OK");
+
+    // Check statistics
+    auto stats = transport->get_statistics();
+    EXPECT_EQ(stats.requests_sent, 1);
+    EXPECT_EQ(stats.bytes_sent, 4);
+    EXPECT_EQ(stats.send_failures, 0);
+
+    // Test disconnect
+    transport->disconnect();
+    EXPECT_FALSE(transport->is_connected());
+}
+
+TEST(GrpcTransportTest, StubTransportCustomResponseHandler) {
+    auto transport = create_stub_grpc_transport();
+    transport->connect("localhost", 4317);
+
+    // Set custom response handler
+    transport->set_response_handler([](const grpc_request& req) {
+        grpc_response response;
+        response.status_code = 0;
+        response.status_message = "Custom response for " + req.method;
+        response.body = {0xAB, 0xCD};
+        return response;
+    });
+
+    grpc_request request;
+    request.method = "CustomMethod";
+    request.body = {0x01};
+
+    auto result = transport->send(request);
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_EQ(result.value().status_message, "Custom response for CustomMethod");
+    EXPECT_EQ(result.value().body.size(), 2);
+}
+
+TEST(GrpcTransportTest, StubTransportSimulateFailure) {
+    auto transport = create_stub_grpc_transport();
+    transport->set_simulate_success(false);
+
+    // Connection should fail
+    auto connect_result = transport->connect("localhost", 4317);
+    EXPECT_TRUE(connect_result.is_err());
+
+    // Re-enable and connect
+    transport->set_simulate_success(true);
+    transport->connect("localhost", 4317);
+
+    // Simulate send failure
+    transport->set_simulate_success(false);
+    grpc_request request;
+    request.body = {0x01};
+    auto send_result = transport->send(request);
+    EXPECT_TRUE(send_result.is_err());
+
+    auto stats = transport->get_statistics();
+    EXPECT_EQ(stats.send_failures, 1);
+}
+
+TEST(GrpcTransportTest, DefaultTransportCreation) {
+    auto transport = create_default_grpc_transport();
+    ASSERT_TRUE(transport);
+    EXPECT_TRUE(transport->is_available());
+}
+
+// ============================================================================
+// StatsD Exporter with Custom Transport Tests
+// ============================================================================
+
+TEST_F(MetricExportersTest, StatsDExporterWithCustomTransport) {
+    auto stub_transport = create_stub_udp_transport();
+    auto* transport_ptr = stub_transport.get();
+
+    metric_export_config config;
+    config.endpoint = "statsd.example.com";
+    config.port = 8125;
+    config.format = metric_export_format::statsd_datadog;
+
+    statsd_exporter exporter(config, std::move(stub_transport));
+
+    // Start the exporter
+    auto start_result = exporter.start();
+    EXPECT_TRUE(start_result.is_ok());
+
+    // Export metrics
+    std::vector<monitoring_data> data_batch = {test_data_};
+    auto export_result = exporter.export_metrics(data_batch);
+    EXPECT_TRUE(export_result.is_ok());
+
+    // Check transport was used
+    auto transport_stats = transport_ptr->get_statistics();
+    EXPECT_GT(transport_stats.packets_sent, 0);
+    EXPECT_GT(transport_stats.bytes_sent, 0);
+
+    // Get exporter stats (includes transport stats)
+    auto stats = exporter.get_stats();
+    EXPECT_GT(stats["transport_packets_sent"], 0);
+    EXPECT_GT(stats["transport_bytes_sent"], 0);
+
+    // Stop the exporter
+    auto stop_result = exporter.stop();
+    EXPECT_TRUE(stop_result.is_ok());
+}
+
+TEST_F(MetricExportersTest, StatsDExporterTransportFailure) {
+    auto stub_transport = create_stub_udp_transport();
+    stub_transport->set_simulate_success(false);
+
+    metric_export_config config;
+    config.endpoint = "statsd.example.com";
+    config.port = 8125;
+    config.format = metric_export_format::statsd_plain;
+
+    statsd_exporter exporter(config, std::move(stub_transport));
+
+    // Export should fail due to transport failure
+    std::vector<monitoring_data> data_batch = {test_data_};
+    auto export_result = exporter.export_metrics(data_batch);
+    EXPECT_TRUE(export_result.is_err());
+
+    auto stats = exporter.get_stats();
+    EXPECT_EQ(stats["failed_exports"], 1);
+}
+
+// ============================================================================
+// OTLP Exporter with Custom Transport Tests
+// ============================================================================
+
+TEST_F(MetricExportersTest, OtlpExporterWithCustomHttpTransport) {
+    auto stub_http = create_stub_transport();
+    auto stub_grpc = create_stub_grpc_transport();
+
+    metric_export_config config;
+    config.endpoint = "http://otlp-collector";
+    config.port = 4318;
+    config.format = metric_export_format::otlp_http_json;
+
+    otlp_metrics_exporter exporter(config, otel_resource_,
+                                   std::move(stub_http), std::move(stub_grpc));
+
+    // Start and export
+    auto start_result = exporter.start();
+    EXPECT_TRUE(start_result.is_ok());
+
+    std::vector<monitoring_data> data_batch = {test_data_};
+    auto export_result = exporter.export_metrics(data_batch);
+    EXPECT_TRUE(export_result.is_ok());
+
+    auto stats = exporter.get_stats();
+    EXPECT_EQ(stats["exported_metrics"], 1);
+
+    auto stop_result = exporter.stop();
+    EXPECT_TRUE(stop_result.is_ok());
+}
+
+TEST_F(MetricExportersTest, OtlpExporterWithCustomGrpcTransport) {
+    auto stub_http = create_stub_transport();
+    auto stub_grpc = create_stub_grpc_transport();
+    auto* grpc_ptr = stub_grpc.get();
+
+    metric_export_config config;
+    config.endpoint = "otlp-collector";
+    config.port = 4317;
+    config.format = metric_export_format::otlp_grpc;
+
+    otlp_metrics_exporter exporter(config, otel_resource_,
+                                   std::move(stub_http), std::move(stub_grpc));
+
+    std::vector<monitoring_data> data_batch = {test_data_};
+    auto export_result = exporter.export_metrics(data_batch);
+    EXPECT_TRUE(export_result.is_ok());
+
+    // Check gRPC transport was used
+    auto transport_stats = grpc_ptr->get_statistics();
+    EXPECT_GT(transport_stats.requests_sent, 0);
+
+    auto stats = exporter.get_stats();
+    EXPECT_GT(stats["transport_requests_sent"], 0);
 }

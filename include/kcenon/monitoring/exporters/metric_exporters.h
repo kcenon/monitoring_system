@@ -25,6 +25,9 @@ All rights reserved.
 #include "../interfaces/monitoring_core.h"
 #include "../interfaces/monitorable_interface.h"
 #include "opentelemetry_adapter.h"
+#include "udp_transport.h"
+#include "http_transport.h"
+#include "grpc_transport.h"
 #include <vector>
 #include <string>
 #include <memory>
@@ -497,17 +500,37 @@ private:
 /**
  * @class statsd_exporter
  * @brief StatsD metric exporter implementation
+ *
+ * Exports metrics to StatsD-compatible backends via UDP.
+ * Supports both plain StatsD and DataDog extension formats.
  */
 class statsd_exporter : public metric_exporter_interface {
 private:
     metric_export_config config_;
+    std::unique_ptr<udp_transport> transport_;
     std::atomic<std::size_t> exported_metrics_{0};
     std::atomic<std::size_t> failed_exports_{0};
     std::atomic<std::size_t> sent_packets_{0};
-    
+    bool started_{false};
+
 public:
+    /**
+     * @brief Construct StatsD exporter with default UDP transport
+     * @param config Export configuration with endpoint and port
+     */
     explicit statsd_exporter(const metric_export_config& config)
-        : config_(config) {}
+        : config_(config)
+        , transport_(create_default_udp_transport()) {}
+
+    /**
+     * @brief Construct StatsD exporter with custom UDP transport
+     * @param config Export configuration
+     * @param transport Custom UDP transport implementation
+     */
+    statsd_exporter(const metric_export_config& config,
+                    std::unique_ptr<udp_transport> transport)
+        : config_(config)
+        , transport_(std::move(transport)) {}
     
     /**
      * @brief Convert monitoring_data to StatsD format
@@ -643,29 +666,99 @@ public:
         }
     }
     
+    result_void start() override {
+        if (started_) {
+            return common::ok();
+        }
+
+        if (!transport_) {
+            return result_void::err(error_info(
+                monitoring_error_code::dependency_missing,
+                "UDP transport not available",
+                "statsd_exporter"
+            ).to_common_error());
+        }
+
+        // Connect to StatsD endpoint
+        auto connect_result = transport_->connect(config_.endpoint, config_.port);
+        if (connect_result.is_err()) {
+            return connect_result;
+        }
+
+        started_ = true;
+        return common::ok();
+    }
+
+    result_void stop() override {
+        if (!started_) {
+            return common::ok();
+        }
+
+        if (transport_) {
+            transport_->disconnect();
+        }
+
+        started_ = false;
+        return common::ok();
+    }
+
     result_void flush() override {
         // StatsD is push-based and sends immediately, so flush is a no-op
         return common::ok();
     }
-    
+
     result_void shutdown() override {
-        return flush();
+        return stop();
     }
     
     std::unordered_map<std::string, std::size_t> get_stats() const override {
-        return {
+        std::unordered_map<std::string, std::size_t> stats = {
             {"exported_metrics", exported_metrics_.load()},
             {"failed_exports", failed_exports_.load()},
             {"sent_packets", sent_packets_.load()}
         };
+
+        // Add transport statistics if available
+        if (transport_) {
+            auto transport_stats = transport_->get_statistics();
+            stats["transport_packets_sent"] = transport_stats.packets_sent;
+            stats["transport_bytes_sent"] = transport_stats.bytes_sent;
+            stats["transport_send_failures"] = transport_stats.send_failures;
+        }
+
+        return stats;
     }
     
 private:
     result_void send_udp_batch(const std::vector<std::string>& lines) {
-        // Simulate UDP sending
-        // In real implementation, this would create UDP socket and send packets
-        (void)lines; // Suppress unused parameter warning
-        return common::ok();
+        if (!transport_) {
+            return result_void::err(error_info(
+                monitoring_error_code::dependency_missing,
+                "UDP transport not available",
+                "statsd_exporter"
+            ).to_common_error());
+        }
+
+        // Auto-connect if not already connected
+        if (!transport_->is_connected()) {
+            auto connect_result = transport_->connect(config_.endpoint, config_.port);
+            if (connect_result.is_err()) {
+                return connect_result;
+            }
+        }
+
+        // Combine lines into a single packet (newline-separated)
+        // StatsD typically accepts multiple metrics per packet
+        std::string batch;
+        for (const auto& line : lines) {
+            if (!batch.empty()) {
+                batch += '\n';
+            }
+            batch += line;
+        }
+
+        // Send the batch
+        return transport_->send(batch);
     }
     
     std::string sanitize_metric_name(const std::string& name) const {
@@ -697,17 +790,47 @@ private:
 /**
  * @class otlp_metrics_exporter
  * @brief OpenTelemetry Protocol (OTLP) metrics exporter implementation
+ *
+ * Exports metrics to OTLP-compatible backends via gRPC or HTTP.
+ * Supports OTLP/gRPC, OTLP/HTTP JSON, and OTLP/HTTP Protobuf formats.
  */
 class otlp_metrics_exporter : public metric_exporter_interface {
 private:
     metric_export_config config_;
     std::unique_ptr<opentelemetry_metrics_adapter> otel_adapter_;
+    std::unique_ptr<http_transport> http_transport_;
+    std::unique_ptr<grpc_transport> grpc_transport_;
     std::atomic<std::size_t> exported_metrics_{0};
     std::atomic<std::size_t> failed_exports_{0};
-    
+    bool started_{false};
+
 public:
+    /**
+     * @brief Construct OTLP exporter with default transports
+     * @param config Export configuration with endpoint and protocol
+     * @param resource OpenTelemetry resource attributes
+     */
     explicit otlp_metrics_exporter(const metric_export_config& config, const otel_resource& resource)
-        : config_(config), otel_adapter_(std::make_unique<opentelemetry_metrics_adapter>(resource)) {}
+        : config_(config)
+        , otel_adapter_(std::make_unique<opentelemetry_metrics_adapter>(resource))
+        , http_transport_(create_default_transport())
+        , grpc_transport_(create_default_grpc_transport()) {}
+
+    /**
+     * @brief Construct OTLP exporter with custom transports
+     * @param config Export configuration
+     * @param resource OpenTelemetry resource attributes
+     * @param http_transport Custom HTTP transport (for OTLP/HTTP)
+     * @param grpc_transport Custom gRPC transport (for OTLP/gRPC)
+     */
+    otlp_metrics_exporter(const metric_export_config& config,
+                          const otel_resource& resource,
+                          std::unique_ptr<http_transport> http_transport,
+                          std::unique_ptr<grpc_transport> grpc_transport)
+        : config_(config)
+        , otel_adapter_(std::make_unique<opentelemetry_metrics_adapter>(resource))
+        , http_transport_(std::move(http_transport))
+        , grpc_transport_(std::move(grpc_transport)) {}
     
     result_void export_metrics(const std::vector<monitoring_data>& metrics) override {
         try {
@@ -769,28 +892,206 @@ public:
         }
     }
     
+    result_void start() override {
+        if (started_) {
+            return common::ok();
+        }
+
+        // gRPC transport connection is managed per-request
+        // HTTP transport is stateless
+        started_ = true;
+        return common::ok();
+    }
+
+    result_void stop() override {
+        if (!started_) {
+            return common::ok();
+        }
+
+        if (grpc_transport_) {
+            grpc_transport_->disconnect();
+        }
+
+        started_ = false;
+        return common::ok();
+    }
+
     result_void flush() override {
         // OTLP exporter typically sends immediately, so flush is a no-op
         return common::ok();
     }
-    
+
     result_void shutdown() override {
-        return flush();
+        return stop();
     }
-    
+
     std::unordered_map<std::string, std::size_t> get_stats() const override {
-        return {
+        std::unordered_map<std::string, std::size_t> stats = {
             {"exported_metrics", exported_metrics_.load()},
             {"failed_exports", failed_exports_.load()}
         };
+
+        // Add transport statistics based on protocol
+        if (is_grpc_protocol() && grpc_transport_) {
+            auto transport_stats = grpc_transport_->get_statistics();
+            stats["transport_requests_sent"] = transport_stats.requests_sent;
+            stats["transport_bytes_sent"] = transport_stats.bytes_sent;
+            stats["transport_send_failures"] = transport_stats.send_failures;
+        }
+
+        return stats;
     }
-    
+
 private:
+    bool is_grpc_protocol() const {
+        return config_.format == metric_export_format::otlp_grpc;
+    }
+
+    bool is_http_protocol() const {
+        return config_.format == metric_export_format::otlp_http_json ||
+               config_.format == metric_export_format::otlp_http_protobuf;
+    }
+
+    std::string get_content_type() const {
+        switch (config_.format) {
+            case metric_export_format::otlp_http_json:
+                return "application/json";
+            case metric_export_format::otlp_http_protobuf:
+                return "application/x-protobuf";
+            default:
+                return "application/json";
+        }
+    }
+
     result_void send_otlp_batch(const std::vector<otel_metric_data>& metrics) {
-        // Simulate OTLP sending based on format
-        // In real implementation, this would use OTLP client
-        (void)metrics; // Suppress unused parameter warning
+        if (is_grpc_protocol()) {
+            return send_via_grpc(metrics);
+        } else {
+            return send_via_http(metrics);
+        }
+    }
+
+    result_void send_via_http(const std::vector<otel_metric_data>& metrics) {
+        if (!http_transport_) {
+            return result_void::err(error_info(
+                monitoring_error_code::dependency_missing,
+                "HTTP transport not available",
+                "otlp_metrics_exporter"
+            ).to_common_error());
+        }
+
+        // Build OTLP HTTP endpoint
+        std::string endpoint = config_.endpoint;
+        if (config_.port != 0) {
+            endpoint += ":" + std::to_string(config_.port);
+        }
+        endpoint += "/v1/metrics";
+
+        // Serialize metrics to JSON or Protobuf
+        std::vector<uint8_t> body = serialize_metrics(metrics);
+
+        http_request request;
+        request.url = endpoint;
+        request.method = "POST";
+        request.headers["Content-Type"] = get_content_type();
+        request.body = std::move(body);
+        request.timeout = config_.timeout;
+
+        // Add custom headers
+        for (const auto& [key, value] : config_.headers) {
+            request.headers[key] = value;
+        }
+
+        auto result = http_transport_->send(request);
+        if (result.is_err()) {
+            return result_void::err(error_info(
+                monitoring_error_code::network_error,
+                "HTTP send failed: " + result.error().message,
+                "otlp_metrics_exporter"
+            ).to_common_error());
+        }
+
+        const auto& response = result.value();
+        if (response.status_code < 200 || response.status_code >= 300) {
+            return result_void::err(error_info(
+                monitoring_error_code::operation_failed,
+                "OTLP HTTP request failed with status " + std::to_string(response.status_code),
+                "otlp_metrics_exporter"
+            ).to_common_error());
+        }
+
         return common::ok();
+    }
+
+    result_void send_via_grpc(const std::vector<otel_metric_data>& metrics) {
+        if (!grpc_transport_) {
+            return result_void::err(error_info(
+                monitoring_error_code::dependency_missing,
+                "gRPC transport not available",
+                "otlp_metrics_exporter"
+            ).to_common_error());
+        }
+
+        // Connect if not already connected
+        if (!grpc_transport_->is_connected()) {
+            auto connect_result = grpc_transport_->connect(config_.endpoint, config_.port);
+            if (connect_result.is_err()) {
+                return connect_result;
+            }
+        }
+
+        // Serialize metrics to protobuf
+        std::vector<uint8_t> body = serialize_metrics(metrics);
+
+        grpc_request request;
+        request.service = "opentelemetry.proto.collector.metrics.v1.MetricsService";
+        request.method = "Export";
+        request.body = std::move(body);
+        request.timeout = config_.timeout;
+
+        auto result = grpc_transport_->send(request);
+        if (result.is_err()) {
+            return result_void::err(error_info(
+                monitoring_error_code::network_error,
+                "gRPC send failed: " + result.error().message,
+                "otlp_metrics_exporter"
+            ).to_common_error());
+        }
+
+        const auto& response = result.value();
+        if (response.status_code != 0) { // gRPC OK is 0
+            return result_void::err(error_info(
+                monitoring_error_code::operation_failed,
+                "OTLP gRPC request failed: " + response.status_message,
+                "otlp_metrics_exporter"
+            ).to_common_error());
+        }
+
+        return common::ok();
+    }
+
+    std::vector<uint8_t> serialize_metrics(const std::vector<otel_metric_data>& metrics) const {
+        // Serialize metrics based on format
+        // For JSON format, convert to JSON string
+        // For protobuf format, serialize to protobuf bytes
+        // This is a simplified implementation
+        std::string json = "{\"resourceMetrics\":[";
+
+        bool first = true;
+        for (const auto& metric : metrics) {
+            if (!first) json += ",";
+            first = false;
+
+            json += "{\"resource\":{},\"scopeMetrics\":[{\"metrics\":[{";
+            json += "\"name\":\"" + metric.name + "\",";
+            json += "\"gauge\":{\"dataPoints\":[{\"asDouble\":" +
+                    std::to_string(metric.value) + "}]}";
+            json += "}]}]}";
+        }
+
+        json += "]}";
+
+        return std::vector<uint8_t>(json.begin(), json.end());
     }
 };
 

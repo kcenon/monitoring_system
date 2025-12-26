@@ -265,6 +265,39 @@ if(MONITORING_WITH_NETWORK_SYSTEM)
     endif()
 endif()
 
+##################################################
+# Transport Interface Detection
+##################################################
+
+# Check for common_system transport interfaces (IHttpClient, IUdpClient)
+# These interfaces enable dependency injection for network communication
+message(STATUS "=== Checking for transport interfaces ===")
+set(MONITORING_HAS_TRANSPORT_INTERFACES OFF)
+
+if(MONITORING_WITH_COMMON_SYSTEM)
+    # Check multiple possible locations for transport.h
+    set(_TRANSPORT_INTERFACE_PATHS
+        "${COMMON_SYSTEM_INCLUDE_DIR}/kcenon/common/interfaces/transport.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../common_system/include/kcenon/common/interfaces/transport.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/common_system/include/kcenon/common/interfaces/transport.h"
+    )
+
+    foreach(_path ${_TRANSPORT_INTERFACE_PATHS})
+        if(EXISTS "${_path}")
+            message(STATUS "Found transport interfaces at: ${_path}")
+            set(MONITORING_HAS_TRANSPORT_INTERFACES ON)
+            add_compile_definitions(MONITORING_HAS_COMMON_TRANSPORT_INTERFACES)
+            break()
+        endif()
+    endforeach()
+
+    if(MONITORING_HAS_TRANSPORT_INTERFACES)
+        message(STATUS "Transport interfaces: ENABLED (IHttpClient, IUdpClient available)")
+    else()
+        message(STATUS "Transport interfaces: NOT FOUND (using local transport implementations)")
+    endif()
+endif()
+
 # Create interface library for headers
 add_library(monitoring_system_interface INTERFACE)
 target_include_directories(monitoring_system_interface
