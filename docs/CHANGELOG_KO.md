@@ -57,6 +57,27 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **UDP 및 gRPC 전송 구현** (#273)
+  - UDP 통신용 추상 인터페이스 `udp_transport.h` 추가
+  - gRPC 통신용 추상 인터페이스 `grpc_transport.h` 추가
+  - `stub_udp_transport`: 시뮬레이션 UDP 전송용 테스트 구현
+  - `stub_grpc_transport`: 시뮬레이션 gRPC 호출용 테스트 구현
+  - `common_udp_transport`: common_system IUdpClient 인터페이스 통합
+  - `network_udp_transport`: network_system UDP 클라이언트 통합
+  - 가용성에 따른 자동 백엔드 선택 팩토리 함수
+- **실제 UDP 전송을 사용하는 StatsD 익스포터** (#274)
+  - `statsd_exporter`가 `udp_transport` 추상화 사용하도록 업데이트
+  - 테스트용 커스텀 전송 주입 지원
+  - 연결 관리를 포함한 start/stop 라이프사이클 관리
+  - 익스포터 통계에 전송 통계 포함
+- **HTTP/gRPC 전송을 사용하는 OTLP 익스포터** (#275)
+  - `otlp_metrics_exporter`가 전송 추상화 사용하도록 업데이트
+  - `http_transport`를 통한 OTLP/HTTP 지원 (JSON 및 Protobuf)
+  - `grpc_transport`를 통한 OTLP/gRPC 지원
+  - 메트릭용 기본 OTLP JSON 직렬화
+- **CMake 전송 인터페이스 감지**
+  - common_system 전송 인터페이스 자동 감지
+  - `MONITORING_HAS_COMMON_TRANSPORT_INTERFACES` 컴파일 정의
 - 문서 구조 재구성
 - **Deprecated API 경고 플래그** (#267)
   - GCC/Clang 컴파일러용 `-Wdeprecated-declarations` 추가
