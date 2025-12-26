@@ -117,7 +117,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00021">21</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af31b9add2333027b1f78f00c3a329961" name="af31b9add2333027b1f78f00c3a329961"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af31b9add2333027b1f78f00c3a329961">&#9670;&#160;</a></span>create_test_monitoring_data()</h2>
@@ -142,20 +142,20 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00031">31</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   31</span>                                                  {</div>
-<div class="line"><span class="lineno">   32</span>        monitoring_data data(<span class="stringliteral">&quot;web_server&quot;</span>);</div>
-<div class="line"><span class="lineno">   33</span>        data.add_metric(<span class="stringliteral">&quot;http_requests_total&quot;</span>, 1500.0);</div>
-<div class="line"><span class="lineno">   34</span>        data.add_metric(<span class="stringliteral">&quot;http_request_duration_seconds&quot;</span>, 0.250);</div>
-<div class="line"><span class="lineno">   35</span>        data.add_metric(<span class="stringliteral">&quot;memory_usage_bytes&quot;</span>, 1024000.0);</div>
-<div class="line"><span class="lineno">   36</span>        data.add_metric(<span class="stringliteral">&quot;cpu_usage_percent&quot;</span>, 75.5);</div>
-<div class="line"><span class="lineno">   37</span>        </div>
-<div class="line"><span class="lineno">   38</span>        data.add_tag(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
-<div class="line"><span class="lineno">   39</span>        data.add_tag(<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-west-2&quot;</span>);</div>
-<div class="line"><span class="lineno">   40</span>        data.add_tag(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
-<div class="line"><span class="lineno">   41</span>        </div>
-<div class="line"><span class="lineno">   42</span>        <span class="keywordflow">return</span> data;</div>
-<div class="line"><span class="lineno">   43</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00034">34</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>                                                  {</div>
+<div class="line"><span class="lineno">   35</span>        monitoring_data data(<span class="stringliteral">&quot;web_server&quot;</span>);</div>
+<div class="line"><span class="lineno">   36</span>        data.add_metric(<span class="stringliteral">&quot;http_requests_total&quot;</span>, 1500.0);</div>
+<div class="line"><span class="lineno">   37</span>        data.add_metric(<span class="stringliteral">&quot;http_request_duration_seconds&quot;</span>, 0.250);</div>
+<div class="line"><span class="lineno">   38</span>        data.add_metric(<span class="stringliteral">&quot;memory_usage_bytes&quot;</span>, 1024000.0);</div>
+<div class="line"><span class="lineno">   39</span>        data.add_metric(<span class="stringliteral">&quot;cpu_usage_percent&quot;</span>, 75.5);</div>
+<div class="line"><span class="lineno">   40</span>        </div>
+<div class="line"><span class="lineno">   41</span>        data.add_tag(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>        data.add_tag(<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-west-2&quot;</span>);</div>
+<div class="line"><span class="lineno">   43</span>        data.add_tag(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;1.2.3&quot;</span>);</div>
+<div class="line"><span class="lineno">   44</span>        </div>
+<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">return</span> data;</div>
+<div class="line"><span class="lineno">   46</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -192,27 +192,27 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00045">45</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   45</span>                                            {</div>
-<div class="line"><span class="lineno">   46</span>        metrics_snapshot snapshot;</div>
-<div class="line"><span class="lineno">   47</span>        snapshot.source_id = <span class="stringliteral">&quot;system_monitor&quot;</span>;</div>
-<div class="line"><span class="lineno">   48</span>        snapshot.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   49</span>        </div>
-<div class="line"><span class="lineno">   50</span>        snapshot.add_metric(<span class="stringliteral">&quot;system_load_1m&quot;</span>, 2.1);</div>
-<div class="line"><span class="lineno">   51</span>        snapshot.add_metric(<span class="stringliteral">&quot;system_load_5m&quot;</span>, 1.8);</div>
-<div class="line"><span class="lineno">   52</span>        snapshot.add_metric(<span class="stringliteral">&quot;disk_usage_percent&quot;</span>, 68.3);</div>
-<div class="line"><span class="lineno">   53</span>        snapshot.add_metric(<span class="stringliteral">&quot;network_bytes_in&quot;</span>, 987654.0);</div>
-<div class="line"><span class="lineno">   54</span>        snapshot.add_metric(<span class="stringliteral">&quot;network_bytes_out&quot;</span>, 654321.0);</div>
-<div class="line"><span class="lineno">   55</span>        </div>
-<div class="line"><span class="lineno">   56</span>        <span class="comment">// Add tags to metrics</span></div>
-<div class="line"><span class="lineno">   57</span>        snapshot.metrics[0].tags[<span class="stringliteral">&quot;host&quot;</span>] = <span class="stringliteral">&quot;server01&quot;</span>;</div>
-<div class="line"><span class="lineno">   58</span>        snapshot.metrics[1].tags[<span class="stringliteral">&quot;host&quot;</span>] = <span class="stringliteral">&quot;server01&quot;</span>;</div>
-<div class="line"><span class="lineno">   59</span>        snapshot.metrics[2].tags[<span class="stringliteral">&quot;mount&quot;</span>] = <span class="stringliteral">&quot;/var&quot;</span>;</div>
-<div class="line"><span class="lineno">   60</span>        snapshot.metrics[3].tags[<span class="stringliteral">&quot;interface&quot;</span>] = <span class="stringliteral">&quot;eth0&quot;</span>;</div>
-<div class="line"><span class="lineno">   61</span>        snapshot.metrics[4].tags[<span class="stringliteral">&quot;interface&quot;</span>] = <span class="stringliteral">&quot;eth0&quot;</span>;</div>
-<div class="line"><span class="lineno">   62</span>        </div>
-<div class="line"><span class="lineno">   63</span>        <span class="keywordflow">return</span> snapshot;</div>
-<div class="line"><span class="lineno">   64</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00048">48</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>                                            {</div>
+<div class="line"><span class="lineno">   49</span>        metrics_snapshot snapshot;</div>
+<div class="line"><span class="lineno">   50</span>        snapshot.source_id = <span class="stringliteral">&quot;system_monitor&quot;</span>;</div>
+<div class="line"><span class="lineno">   51</span>        snapshot.capture_time = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   52</span>        </div>
+<div class="line"><span class="lineno">   53</span>        snapshot.add_metric(<span class="stringliteral">&quot;system_load_1m&quot;</span>, 2.1);</div>
+<div class="line"><span class="lineno">   54</span>        snapshot.add_metric(<span class="stringliteral">&quot;system_load_5m&quot;</span>, 1.8);</div>
+<div class="line"><span class="lineno">   55</span>        snapshot.add_metric(<span class="stringliteral">&quot;disk_usage_percent&quot;</span>, 68.3);</div>
+<div class="line"><span class="lineno">   56</span>        snapshot.add_metric(<span class="stringliteral">&quot;network_bytes_in&quot;</span>, 987654.0);</div>
+<div class="line"><span class="lineno">   57</span>        snapshot.add_metric(<span class="stringliteral">&quot;network_bytes_out&quot;</span>, 654321.0);</div>
+<div class="line"><span class="lineno">   58</span>        </div>
+<div class="line"><span class="lineno">   59</span>        <span class="comment">// Add tags to metrics</span></div>
+<div class="line"><span class="lineno">   60</span>        snapshot.metrics[0].tags[<span class="stringliteral">&quot;host&quot;</span>] = <span class="stringliteral">&quot;server01&quot;</span>;</div>
+<div class="line"><span class="lineno">   61</span>        snapshot.metrics[1].tags[<span class="stringliteral">&quot;host&quot;</span>] = <span class="stringliteral">&quot;server01&quot;</span>;</div>
+<div class="line"><span class="lineno">   62</span>        snapshot.metrics[2].tags[<span class="stringliteral">&quot;mount&quot;</span>] = <span class="stringliteral">&quot;/var&quot;</span>;</div>
+<div class="line"><span class="lineno">   63</span>        snapshot.metrics[3].tags[<span class="stringliteral">&quot;interface&quot;</span>] = <span class="stringliteral">&quot;eth0&quot;</span>;</div>
+<div class="line"><span class="lineno">   64</span>        snapshot.metrics[4].tags[<span class="stringliteral">&quot;interface&quot;</span>] = <span class="stringliteral">&quot;eth0&quot;</span>;</div>
+<div class="line"><span class="lineno">   65</span>        </div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> snapshot;</div>
+<div class="line"><span class="lineno">   67</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -249,22 +249,22 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00020">20</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>                          {</div>
-<div class="line"><span class="lineno">   21</span>        <span class="comment">// Create test monitoring data</span></div>
-<div class="line"><span class="lineno">   22</span>        <a class="code hl_variable" href="../../d9/d66/classMetricExportersTest.html#a6bb84725bc4153b6422b0d237fcb15c8">test_data_</a> = <a class="code hl_function" href="../../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961">create_test_monitoring_data</a>();</div>
-<div class="line"><span class="lineno">   23</span>        </div>
-<div class="line"><span class="lineno">   24</span>        <span class="comment">// Create test metrics snapshot</span></div>
-<div class="line"><span class="lineno">   25</span>        <a class="code hl_variable" href="../../d9/d66/classMetricExportersTest.html#adaf1bb4ba527798f4b255d27c732ae84">test_snapshot_</a> = <a class="code hl_function" href="../../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e">create_test_snapshot</a>();</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00023">23</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>                          {</div>
+<div class="line"><span class="lineno">   24</span>        <span class="comment">// Create test monitoring data</span></div>
+<div class="line"><span class="lineno">   25</span>        <a class="code hl_variable" href="../../d9/d66/classMetricExportersTest.html#a6bb84725bc4153b6422b0d237fcb15c8">test_data_</a> = <a class="code hl_function" href="../../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961">create_test_monitoring_data</a>();</div>
 <div class="line"><span class="lineno">   26</span>        </div>
-<div class="line"><span class="lineno">   27</span>        <span class="comment">// Create OTEL resource</span></div>
-<div class="line"><span class="lineno">   28</span>        <a class="code hl_variable" href="../../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4">otel_resource_</a> = create_service_resource(<span class="stringliteral">&quot;test_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>, <span class="stringliteral">&quot;test_namespace&quot;</span>);</div>
-<div class="line"><span class="lineno">   29</span>    }</div>
-<div class="ttc" id="aclassMetricExportersTest_html_a0708ce2cd4bd6e4b7af9fcc1711b59c4"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4">MetricExportersTest::otel_resource_</a></div><div class="ttdeci">otel_resource otel_resource_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00068">test_metric_exporters.cpp:68</a></div></div>
-<div class="ttc" id="aclassMetricExportersTest_html_a6bb84725bc4153b6422b0d237fcb15c8"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#a6bb84725bc4153b6422b0d237fcb15c8">MetricExportersTest::test_data_</a></div><div class="ttdeci">monitoring_data test_data_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00066">test_metric_exporters.cpp:66</a></div></div>
-<div class="ttc" id="aclassMetricExportersTest_html_ab8564359a54e23d640804ec5f7b0fe4e"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e">MetricExportersTest::create_test_snapshot</a></div><div class="ttdeci">metrics_snapshot create_test_snapshot()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00045">test_metric_exporters.cpp:45</a></div></div>
-<div class="ttc" id="aclassMetricExportersTest_html_adaf1bb4ba527798f4b255d27c732ae84"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#adaf1bb4ba527798f4b255d27c732ae84">MetricExportersTest::test_snapshot_</a></div><div class="ttdeci">metrics_snapshot test_snapshot_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00067">test_metric_exporters.cpp:67</a></div></div>
-<div class="ttc" id="aclassMetricExportersTest_html_af31b9add2333027b1f78f00c3a329961"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961">MetricExportersTest::create_test_monitoring_data</a></div><div class="ttdeci">monitoring_data create_test_monitoring_data()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00031">test_metric_exporters.cpp:31</a></div></div>
+<div class="line"><span class="lineno">   27</span>        <span class="comment">// Create test metrics snapshot</span></div>
+<div class="line"><span class="lineno">   28</span>        <a class="code hl_variable" href="../../d9/d66/classMetricExportersTest.html#adaf1bb4ba527798f4b255d27c732ae84">test_snapshot_</a> = <a class="code hl_function" href="../../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e">create_test_snapshot</a>();</div>
+<div class="line"><span class="lineno">   29</span>        </div>
+<div class="line"><span class="lineno">   30</span>        <span class="comment">// Create OTEL resource</span></div>
+<div class="line"><span class="lineno">   31</span>        <a class="code hl_variable" href="../../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4">otel_resource_</a> = create_service_resource(<span class="stringliteral">&quot;test_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>, <span class="stringliteral">&quot;test_namespace&quot;</span>);</div>
+<div class="line"><span class="lineno">   32</span>    }</div>
+<div class="ttc" id="aclassMetricExportersTest_html_a0708ce2cd4bd6e4b7af9fcc1711b59c4"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4">MetricExportersTest::otel_resource_</a></div><div class="ttdeci">otel_resource otel_resource_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00071">test_metric_exporters.cpp:71</a></div></div>
+<div class="ttc" id="aclassMetricExportersTest_html_a6bb84725bc4153b6422b0d237fcb15c8"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#a6bb84725bc4153b6422b0d237fcb15c8">MetricExportersTest::test_data_</a></div><div class="ttdeci">monitoring_data test_data_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00069">test_metric_exporters.cpp:69</a></div></div>
+<div class="ttc" id="aclassMetricExportersTest_html_ab8564359a54e23d640804ec5f7b0fe4e"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#ab8564359a54e23d640804ec5f7b0fe4e">MetricExportersTest::create_test_snapshot</a></div><div class="ttdeci">metrics_snapshot create_test_snapshot()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00048">test_metric_exporters.cpp:48</a></div></div>
+<div class="ttc" id="aclassMetricExportersTest_html_adaf1bb4ba527798f4b255d27c732ae84"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#adaf1bb4ba527798f4b255d27c732ae84">MetricExportersTest::test_snapshot_</a></div><div class="ttdeci">metrics_snapshot test_snapshot_</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00070">test_metric_exporters.cpp:70</a></div></div>
+<div class="ttc" id="aclassMetricExportersTest_html_af31b9add2333027b1f78f00c3a329961"><div class="ttname"><a href="../../d9/d66/classMetricExportersTest.html#af31b9add2333027b1f78f00c3a329961">MetricExportersTest::create_test_monitoring_data</a></div><div class="ttdeci">monitoring_data create_test_monitoring_data()</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00034">test_metric_exporters.cpp:34</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -301,7 +301,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
 
 </div>
 </div>
@@ -325,7 +325,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +349,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,7 +359,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 22 2025 15:54:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Dec 26 2025 02:19:06 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

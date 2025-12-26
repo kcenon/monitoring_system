@@ -81,6 +81,9 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/exporters/metric_exporters.h&gt;</code><br />
+<code>#include &lt;kcenon/monitoring/exporters/udp_transport.h&gt;</code><br />
+<code>#include &lt;kcenon/monitoring/exporters/http_transport.h&gt;</code><br />
+<code>#include &lt;kcenon/monitoring/exporters/grpc_transport.h&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/interfaces/monitorable_interface.h&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/interfaces/monitoring_core.h&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/exporters/opentelemetry_adapter.h&gt;</code><br />
@@ -91,21 +94,27 @@ Include dependency graph for test_metric_exporters.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/dff/test__metric__exporters_8cpp__incl.png" border="0" usemap="#atests_2test__metric__exporters_8cpp" alt=""/></div>
 <map name="atests_2test__metric__exporters_8cpp" id="atests_2test__metric__exporters_8cpp">
-<area shape="rect" title=" " alt="" coords="598,5,826,31"/>
+<area shape="rect" title=" " alt="" coords="946,5,1174,31"/>
 <area shape="rect" title=" " alt="" coords="5,86,109,111"/>
-<area shape="poly" title=" " alt="" coords="598,27,376,45,248,60,122,81,106,85,105,80,121,76,248,55,376,40,598,22"/>
+<area shape="poly" title=" " alt="" coords="946,21,784,23,578,32,350,50,234,64,122,81,105,85,104,80,121,76,234,59,349,45,577,27,783,18,946,16"/>
 <area shape="rect" title=" " alt="" coords="133,79,344,119"/>
-<area shape="poly" title=" " alt="" coords="644,33,358,80,358,75,643,28"/>
-<area shape="rect" title=" " alt="" coords="368,79,581,119"/>
-<area shape="poly" title=" " alt="" coords="678,33,546,77,544,72,677,28"/>
-<area shape="rect" title=" " alt="" coords="605,79,819,119"/>
-<area shape="poly" title=" " alt="" coords="715,31,715,65,709,65,709,31"/>
-<area shape="rect" title=" " alt="" coords="843,79,1053,119"/>
-<area shape="poly" title=" " alt="" coords="747,28,879,72,877,77,745,33"/>
-<area shape="rect" title=" " alt="" coords="1077,86,1141,111"/>
-<area shape="poly" title=" " alt="" coords="820,28,939,47,1066,76,1073,78,1071,83,1065,81,938,52,819,33"/>
-<area shape="rect" title=" " alt="" coords="1165,86,1232,111"/>
-<area shape="poly" title=" " alt="" coords="826,24,983,42,1069,57,1154,76,1162,78,1160,84,1153,81,1068,62,982,47,826,29"/>
+<area shape="poly" title=" " alt="" coords="946,29,682,49,358,81,357,76,681,43,946,24"/>
+<area shape="rect" title=" " alt="" coords="368,79,579,119"/>
+<area shape="poly" title=" " alt="" coords="963,33,593,81,592,76,962,28"/>
+<area shape="rect" title=" " alt="" coords="603,79,813,119"/>
+<area shape="poly" title=" " alt="" coords="1009,33,806,78,805,73,1008,28"/>
+<area shape="rect" title=" " alt="" coords="837,79,1048,119"/>
+<area shape="poly" title=" " alt="" coords="1044,33,984,73,981,69,1041,29"/>
+<area shape="rect" title=" " alt="" coords="1072,79,1285,119"/>
+<area shape="poly" title=" " alt="" coords="1079,29,1140,69,1137,73,1076,33"/>
+<area shape="rect" title=" " alt="" coords="1309,79,1523,119"/>
+<area shape="poly" title=" " alt="" coords="1112,28,1318,73,1317,78,1111,33"/>
+<area shape="rect" title=" " alt="" coords="1547,79,1757,119"/>
+<area shape="poly" title=" " alt="" coords="1159,28,1534,76,1533,81,1158,33"/>
+<area shape="rect" title=" " alt="" coords="1781,86,1845,111"/>
+<area shape="poly" title=" " alt="" coords="1174,22,1495,42,1654,57,1770,76,1778,78,1776,84,1769,81,1654,63,1495,47,1174,27"/>
+<area shape="rect" title=" " alt="" coords="1869,86,1936,111"/>
+<area shape="poly" title=" " alt="" coords="1174,21,1539,40,1724,56,1800,65,1858,76,1867,79,1866,84,1857,81,1799,71,1723,61,1539,45,1174,26"/>
 </map>
 </div>
 </div>
@@ -148,10 +157,439 @@ Functions</h2></td></tr>
 <tr class="separator:a2a840d53a81656e336e15da493458e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a883e1be7196e3bddf94fbbeddd244fda" id="r_a883e1be7196e3bddf94fbbeddd244fda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a883e1be7196e3bddf94fbbeddd244fda">TEST_F</a> (<a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>, MetricTypeInference)</td></tr>
 <tr class="separator:a883e1be7196e3bddf94fbbeddd244fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d8f273e2f5c9059f522a74cdcf47cd" id="r_a75d8f273e2f5c9059f522a74cdcf47cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a75d8f273e2f5c9059f522a74cdcf47cd">TEST</a> (UdpTransportTest, StubTransportBasicFunctionality)</td></tr>
+<tr class="separator:a75d8f273e2f5c9059f522a74cdcf47cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa58bc833f6c7b1499cc6d5727012287d" id="r_aa58bc833f6c7b1499cc6d5727012287d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#aa58bc833f6c7b1499cc6d5727012287d">TEST</a> (UdpTransportTest, StubTransportSimulateFailure)</td></tr>
+<tr class="separator:aa58bc833f6c7b1499cc6d5727012287d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad193b3278e70deca27d7e41bf701e0fe" id="r_ad193b3278e70deca27d7e41bf701e0fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#ad193b3278e70deca27d7e41bf701e0fe">TEST</a> (UdpTransportTest, StubTransportStatisticsReset)</td></tr>
+<tr class="separator:ad193b3278e70deca27d7e41bf701e0fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61669c961e063a589b03092724b71624" id="r_a61669c961e063a589b03092724b71624"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a61669c961e063a589b03092724b71624">TEST</a> (UdpTransportTest, DefaultTransportCreation)</td></tr>
+<tr class="separator:a61669c961e063a589b03092724b71624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a34596cd2d3eff219a1a45ca94ed8e7" id="r_a6a34596cd2d3eff219a1a45ca94ed8e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a6a34596cd2d3eff219a1a45ca94ed8e7">TEST</a> (GrpcTransportTest, StubTransportBasicFunctionality)</td></tr>
+<tr class="separator:a6a34596cd2d3eff219a1a45ca94ed8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a061c5fd0735716ce40de5f75869575a6" id="r_a061c5fd0735716ce40de5f75869575a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a061c5fd0735716ce40de5f75869575a6">TEST</a> (GrpcTransportTest, StubTransportCustomResponseHandler)</td></tr>
+<tr class="separator:a061c5fd0735716ce40de5f75869575a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05e3807176b74e659b647190b548f6f3" id="r_a05e3807176b74e659b647190b548f6f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a05e3807176b74e659b647190b548f6f3">TEST</a> (GrpcTransportTest, StubTransportSimulateFailure)</td></tr>
+<tr class="separator:a05e3807176b74e659b647190b548f6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50f2172e098a16af7d04234d877f1e2" id="r_af50f2172e098a16af7d04234d877f1e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#af50f2172e098a16af7d04234d877f1e2">TEST</a> (GrpcTransportTest, DefaultTransportCreation)</td></tr>
+<tr class="separator:af50f2172e098a16af7d04234d877f1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5411389d3461a5bc373425c30c122fe" id="r_aa5411389d3461a5bc373425c30c122fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#aa5411389d3461a5bc373425c30c122fe">TEST_F</a> (<a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>, StatsDExporterWithCustomTransport)</td></tr>
+<tr class="separator:aa5411389d3461a5bc373425c30c122fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1012ceac747be854b5fd8176ba367a11" id="r_a1012ceac747be854b5fd8176ba367a11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a1012ceac747be854b5fd8176ba367a11">TEST_F</a> (<a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>, StatsDExporterTransportFailure)</td></tr>
+<tr class="separator:a1012ceac747be854b5fd8176ba367a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73fa2d974bb73fb73064bcb59b838a69" id="r_a73fa2d974bb73fb73064bcb59b838a69"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a73fa2d974bb73fb73064bcb59b838a69">TEST_F</a> (<a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>, OtlpExporterWithCustomHttpTransport)</td></tr>
+<tr class="separator:a73fa2d974bb73fb73064bcb59b838a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d2d412c55f76d401c8073d08d6946e" id="r_a67d2d412c55f76d401c8073d08d6946e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/test__metric__exporters_8cpp.html#a67d2d412c55f76d401c8073d08d6946e">TEST_F</a> (<a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>, OtlpExporterWithCustomGrpcTransport)</td></tr>
+<tr class="separator:a67d2d412c55f76d401c8073d08d6946e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="af50f2172e098a16af7d04234d877f1e2" name="af50f2172e098a16af7d04234d877f1e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af50f2172e098a16af7d04234d877f1e2">&#9670;&#160;</a></span>TEST() <span class="overload">[1/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">GrpcTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DefaultTransportCreation&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00698">698</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  698</span>                                                  {</div>
+<div class="line"><span class="lineno">  699</span>    <span class="keyword">auto</span> transport = create_default_grpc_transport();</div>
+<div class="line"><span class="lineno">  700</span>    ASSERT_TRUE(transport);</div>
+<div class="line"><span class="lineno">  701</span>    EXPECT_TRUE(transport-&gt;is_available());</div>
+<div class="line"><span class="lineno">  702</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6a34596cd2d3eff219a1a45ca94ed8e7" name="a6a34596cd2d3eff219a1a45ca94ed8e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a34596cd2d3eff219a1a45ca94ed8e7">&#9670;&#160;</a></span>TEST() <span class="overload">[2/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">GrpcTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StubTransportBasicFunctionality&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00613">613</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  613</span>                                                         {</div>
+<div class="line"><span class="lineno">  614</span>    <span class="keyword">auto</span> transport = create_stub_grpc_transport();</div>
+<div class="line"><span class="lineno">  615</span>    ASSERT_TRUE(transport);</div>
+<div class="line"><span class="lineno">  616</span>    EXPECT_TRUE(transport-&gt;is_available());</div>
+<div class="line"><span class="lineno">  617</span>    EXPECT_EQ(transport-&gt;name(), <span class="stringliteral">&quot;stub&quot;</span>);</div>
+<div class="line"><span class="lineno">  618</span>    EXPECT_FALSE(transport-&gt;is_connected());</div>
+<div class="line"><span class="lineno">  619</span> </div>
+<div class="line"><span class="lineno">  620</span>    <span class="comment">// Test connection</span></div>
+<div class="line"><span class="lineno">  621</span>    <span class="keyword">auto</span> connect_result = transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 4317);</div>
+<div class="line"><span class="lineno">  622</span>    EXPECT_TRUE(connect_result.is_ok());</div>
+<div class="line"><span class="lineno">  623</span>    EXPECT_TRUE(transport-&gt;is_connected());</div>
+<div class="line"><span class="lineno">  624</span>    EXPECT_EQ(transport-&gt;get_host(), <span class="stringliteral">&quot;localhost&quot;</span>);</div>
+<div class="line"><span class="lineno">  625</span>    EXPECT_EQ(transport-&gt;get_port(), 4317);</div>
+<div class="line"><span class="lineno">  626</span> </div>
+<div class="line"><span class="lineno">  627</span>    <span class="comment">// Test send</span></div>
+<div class="line"><span class="lineno">  628</span>    grpc_request request;</div>
+<div class="line"><span class="lineno">  629</span>    request.service = <span class="stringliteral">&quot;test.Service&quot;</span>;</div>
+<div class="line"><span class="lineno">  630</span>    request.method = <span class="stringliteral">&quot;TestMethod&quot;</span>;</div>
+<div class="line"><span class="lineno">  631</span>    request.body = {0x01, 0x02, 0x03, 0x04};</div>
+<div class="line"><span class="lineno">  632</span>    request.timeout = std::chrono::milliseconds(5000);</div>
+<div class="line"><span class="lineno">  633</span> </div>
+<div class="line"><span class="lineno">  634</span>    <span class="keyword">auto</span> send_result = transport-&gt;send(request);</div>
+<div class="line"><span class="lineno">  635</span>    EXPECT_TRUE(send_result.is_ok());</div>
+<div class="line"><span class="lineno">  636</span> </div>
+<div class="line"><span class="lineno">  637</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; response = send_result.value();</div>
+<div class="line"><span class="lineno">  638</span>    EXPECT_EQ(response.status_code, 0); <span class="comment">// gRPC OK</span></div>
+<div class="line"><span class="lineno">  639</span>    EXPECT_EQ(response.status_message, <span class="stringliteral">&quot;OK&quot;</span>);</div>
+<div class="line"><span class="lineno">  640</span> </div>
+<div class="line"><span class="lineno">  641</span>    <span class="comment">// Check statistics</span></div>
+<div class="line"><span class="lineno">  642</span>    <span class="keyword">auto</span> stats = transport-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  643</span>    EXPECT_EQ(stats.requests_sent, 1);</div>
+<div class="line"><span class="lineno">  644</span>    EXPECT_EQ(stats.bytes_sent, 4);</div>
+<div class="line"><span class="lineno">  645</span>    EXPECT_EQ(stats.send_failures, 0);</div>
+<div class="line"><span class="lineno">  646</span> </div>
+<div class="line"><span class="lineno">  647</span>    <span class="comment">// Test disconnect</span></div>
+<div class="line"><span class="lineno">  648</span>    transport-&gt;disconnect();</div>
+<div class="line"><span class="lineno">  649</span>    EXPECT_FALSE(transport-&gt;is_connected());</div>
+<div class="line"><span class="lineno">  650</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a061c5fd0735716ce40de5f75869575a6" name="a061c5fd0735716ce40de5f75869575a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a061c5fd0735716ce40de5f75869575a6">&#9670;&#160;</a></span>TEST() <span class="overload">[3/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">GrpcTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StubTransportCustomResponseHandler&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00652">652</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  652</span>                                                            {</div>
+<div class="line"><span class="lineno">  653</span>    <span class="keyword">auto</span> transport = create_stub_grpc_transport();</div>
+<div class="line"><span class="lineno">  654</span>    transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 4317);</div>
+<div class="line"><span class="lineno">  655</span> </div>
+<div class="line"><span class="lineno">  656</span>    <span class="comment">// Set custom response handler</span></div>
+<div class="line"><span class="lineno">  657</span>    transport-&gt;set_response_handler([](<span class="keyword">const</span> grpc_request&amp; req) {</div>
+<div class="line"><span class="lineno">  658</span>        grpc_response response;</div>
+<div class="line"><span class="lineno">  659</span>        response.status_code = 0;</div>
+<div class="line"><span class="lineno">  660</span>        response.status_message = <span class="stringliteral">&quot;Custom response for &quot;</span> + req.method;</div>
+<div class="line"><span class="lineno">  661</span>        response.body = {0xAB, 0xCD};</div>
+<div class="line"><span class="lineno">  662</span>        <span class="keywordflow">return</span> response;</div>
+<div class="line"><span class="lineno">  663</span>    });</div>
+<div class="line"><span class="lineno">  664</span> </div>
+<div class="line"><span class="lineno">  665</span>    grpc_request request;</div>
+<div class="line"><span class="lineno">  666</span>    request.method = <span class="stringliteral">&quot;CustomMethod&quot;</span>;</div>
+<div class="line"><span class="lineno">  667</span>    request.body = {0x01};</div>
+<div class="line"><span class="lineno">  668</span> </div>
+<div class="line"><span class="lineno">  669</span>    <span class="keyword">auto</span> result = transport-&gt;send(request);</div>
+<div class="line"><span class="lineno">  670</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  671</span>    EXPECT_EQ(result.value().status_message, <span class="stringliteral">&quot;Custom response for CustomMethod&quot;</span>);</div>
+<div class="line"><span class="lineno">  672</span>    EXPECT_EQ(result.value().body.size(), 2);</div>
+<div class="line"><span class="lineno">  673</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a05e3807176b74e659b647190b548f6f3" name="a05e3807176b74e659b647190b548f6f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05e3807176b74e659b647190b548f6f3">&#9670;&#160;</a></span>TEST() <span class="overload">[4/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">GrpcTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StubTransportSimulateFailure&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00675">675</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  675</span>                                                      {</div>
+<div class="line"><span class="lineno">  676</span>    <span class="keyword">auto</span> transport = create_stub_grpc_transport();</div>
+<div class="line"><span class="lineno">  677</span>    transport-&gt;set_simulate_success(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  678</span> </div>
+<div class="line"><span class="lineno">  679</span>    <span class="comment">// Connection should fail</span></div>
+<div class="line"><span class="lineno">  680</span>    <span class="keyword">auto</span> connect_result = transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 4317);</div>
+<div class="line"><span class="lineno">  681</span>    EXPECT_TRUE(connect_result.is_err());</div>
+<div class="line"><span class="lineno">  682</span> </div>
+<div class="line"><span class="lineno">  683</span>    <span class="comment">// Re-enable and connect</span></div>
+<div class="line"><span class="lineno">  684</span>    transport-&gt;set_simulate_success(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  685</span>    transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 4317);</div>
+<div class="line"><span class="lineno">  686</span> </div>
+<div class="line"><span class="lineno">  687</span>    <span class="comment">// Simulate send failure</span></div>
+<div class="line"><span class="lineno">  688</span>    transport-&gt;set_simulate_success(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  689</span>    grpc_request request;</div>
+<div class="line"><span class="lineno">  690</span>    request.body = {0x01};</div>
+<div class="line"><span class="lineno">  691</span>    <span class="keyword">auto</span> send_result = transport-&gt;send(request);</div>
+<div class="line"><span class="lineno">  692</span>    EXPECT_TRUE(send_result.is_err());</div>
+<div class="line"><span class="lineno">  693</span> </div>
+<div class="line"><span class="lineno">  694</span>    <span class="keyword">auto</span> stats = transport-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  695</span>    EXPECT_EQ(stats.send_failures, 1);</div>
+<div class="line"><span class="lineno">  696</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a61669c961e063a589b03092724b71624" name="a61669c961e063a589b03092724b71624"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61669c961e063a589b03092724b71624">&#9670;&#160;</a></span>TEST() <span class="overload">[5/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">UdpTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DefaultTransportCreation&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00602">602</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  602</span>                                                 {</div>
+<div class="line"><span class="lineno">  603</span>    <span class="keyword">auto</span> transport = create_default_udp_transport();</div>
+<div class="line"><span class="lineno">  604</span>    ASSERT_TRUE(transport);</div>
+<div class="line"><span class="lineno">  605</span>    EXPECT_TRUE(transport-&gt;is_available());</div>
+<div class="line"><span class="lineno">  606</span>    <span class="comment">// Default transport should work (either stub or network)</span></div>
+<div class="line"><span class="lineno">  607</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a75d8f273e2f5c9059f522a74cdcf47cd" name="a75d8f273e2f5c9059f522a74cdcf47cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75d8f273e2f5c9059f522a74cdcf47cd">&#9670;&#160;</a></span>TEST() <span class="overload">[6/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">UdpTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StubTransportBasicFunctionality&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00527">527</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  527</span>                                                        {</div>
+<div class="line"><span class="lineno">  528</span>    <span class="keyword">auto</span> transport = create_stub_udp_transport();</div>
+<div class="line"><span class="lineno">  529</span>    ASSERT_TRUE(transport);</div>
+<div class="line"><span class="lineno">  530</span>    EXPECT_TRUE(transport-&gt;is_available());</div>
+<div class="line"><span class="lineno">  531</span>    EXPECT_EQ(transport-&gt;name(), <span class="stringliteral">&quot;stub&quot;</span>);</div>
+<div class="line"><span class="lineno">  532</span>    EXPECT_FALSE(transport-&gt;is_connected());</div>
+<div class="line"><span class="lineno">  533</span> </div>
+<div class="line"><span class="lineno">  534</span>    <span class="comment">// Test connection</span></div>
+<div class="line"><span class="lineno">  535</span>    <span class="keyword">auto</span> connect_result = transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 8125);</div>
+<div class="line"><span class="lineno">  536</span>    EXPECT_TRUE(connect_result.is_ok());</div>
+<div class="line"><span class="lineno">  537</span>    EXPECT_TRUE(transport-&gt;is_connected());</div>
+<div class="line"><span class="lineno">  538</span>    EXPECT_EQ(transport-&gt;get_host(), <span class="stringliteral">&quot;localhost&quot;</span>);</div>
+<div class="line"><span class="lineno">  539</span>    EXPECT_EQ(transport-&gt;get_port(), 8125);</div>
+<div class="line"><span class="lineno">  540</span> </div>
+<div class="line"><span class="lineno">  541</span>    <span class="comment">// Test send</span></div>
+<div class="line"><span class="lineno">  542</span>    std::string metric = <span class="stringliteral">&quot;test_metric:100|c&quot;</span>;</div>
+<div class="line"><span class="lineno">  543</span>    <span class="keyword">auto</span> send_result = transport-&gt;send(metric);</div>
+<div class="line"><span class="lineno">  544</span>    EXPECT_TRUE(send_result.is_ok());</div>
+<div class="line"><span class="lineno">  545</span> </div>
+<div class="line"><span class="lineno">  546</span>    <span class="comment">// Check statistics</span></div>
+<div class="line"><span class="lineno">  547</span>    <span class="keyword">auto</span> stats = transport-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  548</span>    EXPECT_EQ(stats.packets_sent, 1);</div>
+<div class="line"><span class="lineno">  549</span>    EXPECT_EQ(stats.bytes_sent, metric.size());</div>
+<div class="line"><span class="lineno">  550</span>    EXPECT_EQ(stats.send_failures, 0);</div>
+<div class="line"><span class="lineno">  551</span> </div>
+<div class="line"><span class="lineno">  552</span>    <span class="comment">// Test disconnect</span></div>
+<div class="line"><span class="lineno">  553</span>    transport-&gt;disconnect();</div>
+<div class="line"><span class="lineno">  554</span>    EXPECT_FALSE(transport-&gt;is_connected());</div>
+<div class="line"><span class="lineno">  555</span> </div>
+<div class="line"><span class="lineno">  556</span>    <span class="comment">// Send should fail after disconnect</span></div>
+<div class="line"><span class="lineno">  557</span>    <span class="keyword">auto</span> fail_result = transport-&gt;send(metric);</div>
+<div class="line"><span class="lineno">  558</span>    EXPECT_TRUE(fail_result.is_err());</div>
+<div class="line"><span class="lineno">  559</span> </div>
+<div class="line"><span class="lineno">  560</span>    <span class="keyword">auto</span> stats_after = transport-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  561</span>    EXPECT_EQ(stats_after.send_failures, 1);</div>
+<div class="line"><span class="lineno">  562</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa58bc833f6c7b1499cc6d5727012287d" name="aa58bc833f6c7b1499cc6d5727012287d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa58bc833f6c7b1499cc6d5727012287d">&#9670;&#160;</a></span>TEST() <span class="overload">[7/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">UdpTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StubTransportSimulateFailure&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00564">564</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  564</span>                                                     {</div>
+<div class="line"><span class="lineno">  565</span>    <span class="keyword">auto</span> transport = create_stub_udp_transport();</div>
+<div class="line"><span class="lineno">  566</span>    transport-&gt;set_simulate_success(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  567</span> </div>
+<div class="line"><span class="lineno">  568</span>    <span class="comment">// Connection should fail</span></div>
+<div class="line"><span class="lineno">  569</span>    <span class="keyword">auto</span> connect_result = transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 8125);</div>
+<div class="line"><span class="lineno">  570</span>    EXPECT_TRUE(connect_result.is_err());</div>
+<div class="line"><span class="lineno">  571</span>    EXPECT_FALSE(transport-&gt;is_connected());</div>
+<div class="line"><span class="lineno">  572</span> </div>
+<div class="line"><span class="lineno">  573</span>    <span class="comment">// Re-enable success and connect</span></div>
+<div class="line"><span class="lineno">  574</span>    transport-&gt;set_simulate_success(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  575</span>    <span class="keyword">auto</span> retry_result = transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 8125);</div>
+<div class="line"><span class="lineno">  576</span>    EXPECT_TRUE(retry_result.is_ok());</div>
+<div class="line"><span class="lineno">  577</span> </div>
+<div class="line"><span class="lineno">  578</span>    <span class="comment">// Now simulate send failure</span></div>
+<div class="line"><span class="lineno">  579</span>    transport-&gt;set_simulate_success(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  580</span>    <span class="keyword">auto</span> send_result = transport-&gt;send(<span class="stringliteral">&quot;test:1|c&quot;</span>);</div>
+<div class="line"><span class="lineno">  581</span>    EXPECT_TRUE(send_result.is_err());</div>
+<div class="line"><span class="lineno">  582</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad193b3278e70deca27d7e41bf701e0fe" name="ad193b3278e70deca27d7e41bf701e0fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad193b3278e70deca27d7e41bf701e0fe">&#9670;&#160;</a></span>TEST() <span class="overload">[8/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">UdpTransportTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StubTransportStatisticsReset&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00584">584</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  584</span>                                                     {</div>
+<div class="line"><span class="lineno">  585</span>    <span class="keyword">auto</span> transport = create_stub_udp_transport();</div>
+<div class="line"><span class="lineno">  586</span>    transport-&gt;connect(<span class="stringliteral">&quot;localhost&quot;</span>, 8125);</div>
+<div class="line"><span class="lineno">  587</span>    transport-&gt;send(<span class="stringliteral">&quot;metric1:1|c&quot;</span>);</div>
+<div class="line"><span class="lineno">  588</span>    transport-&gt;send(<span class="stringliteral">&quot;metric2:2|c&quot;</span>);</div>
+<div class="line"><span class="lineno">  589</span>    transport-&gt;send(<span class="stringliteral">&quot;metric3:3|c&quot;</span>);</div>
+<div class="line"><span class="lineno">  590</span> </div>
+<div class="line"><span class="lineno">  591</span>    <span class="keyword">auto</span> stats = transport-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  592</span>    EXPECT_EQ(stats.packets_sent, 3);</div>
+<div class="line"><span class="lineno">  593</span>    EXPECT_GT(stats.bytes_sent, 0);</div>
+<div class="line"><span class="lineno">  594</span> </div>
+<div class="line"><span class="lineno">  595</span>    transport-&gt;reset_statistics();</div>
+<div class="line"><span class="lineno">  596</span>    <span class="keyword">auto</span> reset_stats = transport-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  597</span>    EXPECT_EQ(reset_stats.packets_sent, 0);</div>
+<div class="line"><span class="lineno">  598</span>    EXPECT_EQ(reset_stats.bytes_sent, 0);</div>
+<div class="line"><span class="lineno">  599</span>    EXPECT_EQ(reset_stats.send_failures, 0);</div>
+<div class="line"><span class="lineno">  600</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a921c6d9366afd6eeb829880c680a61b4" name="a921c6d9366afd6eeb829880c680a61b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a921c6d9366afd6eeb829880c680a61b4">&#9670;&#160;</a></span>TEST_F() <span class="overload">[1/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a921c6d9366afd6eeb829880c680a61b4">&#9670;&#160;</a></span>TEST_F() <span class="overload">[1/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -176,32 +614,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00413">413</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  413</span>                                                  {</div>
-<div class="line"><span class="lineno">  414</span>    std::vector&lt;monitoring_data&gt; empty_data;</div>
-<div class="line"><span class="lineno">  415</span>    metrics_snapshot empty_snapshot;</div>
-<div class="line"><span class="lineno">  416</span>    </div>
-<div class="line"><span class="lineno">  417</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  418</span>    config.endpoint = <span class="stringliteral">&quot;http://test:1234&quot;</span>;</div>
-<div class="line"><span class="lineno">  419</span>    config.format = metric_export_format::prometheus_text;</div>
-<div class="line"><span class="lineno">  420</span>    </div>
-<div class="line"><span class="lineno">  421</span>    prometheus_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  422</span>    </div>
-<div class="line"><span class="lineno">  423</span>    <span class="keyword">auto</span> data_result = exporter.export_metrics(empty_data);</div>
-<div class="line"><span class="lineno">  424</span>    EXPECT_TRUE(data_result.is_ok());</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00416">416</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  416</span>                                                  {</div>
+<div class="line"><span class="lineno">  417</span>    std::vector&lt;monitoring_data&gt; empty_data;</div>
+<div class="line"><span class="lineno">  418</span>    metrics_snapshot empty_snapshot;</div>
+<div class="line"><span class="lineno">  419</span>    </div>
+<div class="line"><span class="lineno">  420</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  421</span>    config.endpoint = <span class="stringliteral">&quot;http://test:1234&quot;</span>;</div>
+<div class="line"><span class="lineno">  422</span>    config.format = metric_export_format::prometheus_text;</div>
+<div class="line"><span class="lineno">  423</span>    </div>
+<div class="line"><span class="lineno">  424</span>    prometheus_exporter exporter(config);</div>
 <div class="line"><span class="lineno">  425</span>    </div>
-<div class="line"><span class="lineno">  426</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(empty_snapshot);</div>
-<div class="line"><span class="lineno">  427</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
+<div class="line"><span class="lineno">  426</span>    <span class="keyword">auto</span> data_result = exporter.export_metrics(empty_data);</div>
+<div class="line"><span class="lineno">  427</span>    EXPECT_TRUE(data_result.is_ok());</div>
 <div class="line"><span class="lineno">  428</span>    </div>
-<div class="line"><span class="lineno">  429</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
-<div class="line"><span class="lineno">  430</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 1); <span class="comment">// Empty snapshot counts as 1</span></div>
-<div class="line"><span class="lineno">  431</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
-<div class="line"><span class="lineno">  432</span>}</div>
+<div class="line"><span class="lineno">  429</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(empty_snapshot);</div>
+<div class="line"><span class="lineno">  430</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
+<div class="line"><span class="lineno">  431</span>    </div>
+<div class="line"><span class="lineno">  432</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  433</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 1); <span class="comment">// Empty snapshot counts as 1</span></div>
+<div class="line"><span class="lineno">  434</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
+<div class="line"><span class="lineno">  435</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="abc40bdc2cccf205f40d8e3537c8aff69" name="abc40bdc2cccf205f40d8e3537c8aff69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc40bdc2cccf205f40d8e3537c8aff69">&#9670;&#160;</a></span>TEST_F() <span class="overload">[2/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abc40bdc2cccf205f40d8e3537c8aff69">&#9670;&#160;</a></span>TEST_F() <span class="overload">[2/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,26 +664,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00398">398</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  398</span>                                             {</div>
-<div class="line"><span class="lineno">  399</span>    <span class="comment">// Test Prometheus helper</span></div>
-<div class="line"><span class="lineno">  400</span>    <span class="keyword">auto</span> prometheus_exporter = create_prometheus_exporter(9090, <span class="stringliteral">&quot;test_job&quot;</span>);</div>
-<div class="line"><span class="lineno">  401</span>    EXPECT_TRUE(prometheus_exporter);</div>
-<div class="line"><span class="lineno">  402</span>    </div>
-<div class="line"><span class="lineno">  403</span>    <span class="comment">// Test StatsD helper</span></div>
-<div class="line"><span class="lineno">  404</span>    <span class="keyword">auto</span> statsd_exporter = create_statsd_exporter(<span class="stringliteral">&quot;localhost&quot;</span>, 8125, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  405</span>    EXPECT_TRUE(statsd_exporter);</div>
-<div class="line"><span class="lineno">  406</span>    </div>
-<div class="line"><span class="lineno">  407</span>    <span class="comment">// Test OTLP helper</span></div>
-<div class="line"><span class="lineno">  408</span>    <span class="keyword">auto</span> otlp_exporter = create_otlp_metrics_exporter(<span class="stringliteral">&quot;http://otlp:4317&quot;</span>, otel_resource_, </div>
-<div class="line"><span class="lineno">  409</span>                                                     metric_export_format::otlp_http_json);</div>
-<div class="line"><span class="lineno">  410</span>    EXPECT_TRUE(otlp_exporter);</div>
-<div class="line"><span class="lineno">  411</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00401">401</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  401</span>                                             {</div>
+<div class="line"><span class="lineno">  402</span>    <span class="comment">// Test Prometheus helper</span></div>
+<div class="line"><span class="lineno">  403</span>    <span class="keyword">auto</span> prometheus_exporter = create_prometheus_exporter(9090, <span class="stringliteral">&quot;test_job&quot;</span>);</div>
+<div class="line"><span class="lineno">  404</span>    EXPECT_TRUE(prometheus_exporter);</div>
+<div class="line"><span class="lineno">  405</span>    </div>
+<div class="line"><span class="lineno">  406</span>    <span class="comment">// Test StatsD helper</span></div>
+<div class="line"><span class="lineno">  407</span>    <span class="keyword">auto</span> statsd_exporter = create_statsd_exporter(<span class="stringliteral">&quot;localhost&quot;</span>, 8125, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  408</span>    EXPECT_TRUE(statsd_exporter);</div>
+<div class="line"><span class="lineno">  409</span>    </div>
+<div class="line"><span class="lineno">  410</span>    <span class="comment">// Test OTLP helper</span></div>
+<div class="line"><span class="lineno">  411</span>    <span class="keyword">auto</span> otlp_exporter = create_otlp_metrics_exporter(<span class="stringliteral">&quot;http://otlp:4317&quot;</span>, otel_resource_, </div>
+<div class="line"><span class="lineno">  412</span>                                                     metric_export_format::otlp_http_json);</div>
+<div class="line"><span class="lineno">  413</span>    EXPECT_TRUE(otlp_exporter);</div>
+<div class="line"><span class="lineno">  414</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a4df08761fc9b30fc11ae252d8017c5d3" name="a4df08761fc9b30fc11ae252d8017c5d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4df08761fc9b30fc11ae252d8017c5d3">&#9670;&#160;</a></span>TEST_F() <span class="overload">[3/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4df08761fc9b30fc11ae252d8017c5d3">&#9670;&#160;</a></span>TEST_F() <span class="overload">[3/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -270,35 +708,35 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00434">434</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  434</span>                                              {</div>
-<div class="line"><span class="lineno">  435</span>    <span class="comment">// Create a large batch of monitoring data</span></div>
-<div class="line"><span class="lineno">  436</span>    std::vector&lt;monitoring_data&gt; large_batch;</div>
-<div class="line"><span class="lineno">  437</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
-<div class="line"><span class="lineno">  438</span>        monitoring_data data(<span class="stringliteral">&quot;service_&quot;</span> + std::to_string(i));</div>
-<div class="line"><span class="lineno">  439</span>        data.add_metric(<span class="stringliteral">&quot;requests_total&quot;</span>, i * 10.0);</div>
-<div class="line"><span class="lineno">  440</span>        data.add_metric(<span class="stringliteral">&quot;response_time&quot;</span>, i * 0.1);</div>
-<div class="line"><span class="lineno">  441</span>        data.add_tag(<span class="stringliteral">&quot;instance&quot;</span>, std::to_string(i));</div>
-<div class="line"><span class="lineno">  442</span>        large_batch.push_back(data);</div>
-<div class="line"><span class="lineno">  443</span>    }</div>
-<div class="line"><span class="lineno">  444</span>    </div>
-<div class="line"><span class="lineno">  445</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  446</span>    config.endpoint = <span class="stringliteral">&quot;http://test:1234&quot;</span>;</div>
-<div class="line"><span class="lineno">  447</span>    config.format = metric_export_format::statsd_plain;</div>
-<div class="line"><span class="lineno">  448</span>    config.max_batch_size = 50; <span class="comment">// Smaller than batch size</span></div>
-<div class="line"><span class="lineno">  449</span>    </div>
-<div class="line"><span class="lineno">  450</span>    statsd_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  451</span>    <span class="keyword">auto</span> result = exporter.export_metrics(large_batch);</div>
-<div class="line"><span class="lineno">  452</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  453</span>    </div>
-<div class="line"><span class="lineno">  454</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
-<div class="line"><span class="lineno">  455</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 100);</div>
-<div class="line"><span class="lineno">  456</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00437">437</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  437</span>                                              {</div>
+<div class="line"><span class="lineno">  438</span>    <span class="comment">// Create a large batch of monitoring data</span></div>
+<div class="line"><span class="lineno">  439</span>    std::vector&lt;monitoring_data&gt; large_batch;</div>
+<div class="line"><span class="lineno">  440</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
+<div class="line"><span class="lineno">  441</span>        monitoring_data data(<span class="stringliteral">&quot;service_&quot;</span> + std::to_string(i));</div>
+<div class="line"><span class="lineno">  442</span>        data.add_metric(<span class="stringliteral">&quot;requests_total&quot;</span>, i * 10.0);</div>
+<div class="line"><span class="lineno">  443</span>        data.add_metric(<span class="stringliteral">&quot;response_time&quot;</span>, i * 0.1);</div>
+<div class="line"><span class="lineno">  444</span>        data.add_tag(<span class="stringliteral">&quot;instance&quot;</span>, std::to_string(i));</div>
+<div class="line"><span class="lineno">  445</span>        large_batch.push_back(data);</div>
+<div class="line"><span class="lineno">  446</span>    }</div>
+<div class="line"><span class="lineno">  447</span>    </div>
+<div class="line"><span class="lineno">  448</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  449</span>    config.endpoint = <span class="stringliteral">&quot;http://test:1234&quot;</span>;</div>
+<div class="line"><span class="lineno">  450</span>    config.format = metric_export_format::statsd_plain;</div>
+<div class="line"><span class="lineno">  451</span>    config.max_batch_size = 50; <span class="comment">// Smaller than batch size</span></div>
+<div class="line"><span class="lineno">  452</span>    </div>
+<div class="line"><span class="lineno">  453</span>    statsd_exporter exporter(config);</div>
+<div class="line"><span class="lineno">  454</span>    <span class="keyword">auto</span> result = exporter.export_metrics(large_batch);</div>
+<div class="line"><span class="lineno">  455</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  456</span>    </div>
+<div class="line"><span class="lineno">  457</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  458</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 100);</div>
+<div class="line"><span class="lineno">  459</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="ada39003921b23577bfb296109ee5cb17" name="ada39003921b23577bfb296109ee5cb17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada39003921b23577bfb296109ee5cb17">&#9670;&#160;</a></span>TEST_F() <span class="overload">[4/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ada39003921b23577bfb296109ee5cb17">&#9670;&#160;</a></span>TEST_F() <span class="overload">[4/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -323,59 +761,59 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                          {</div>
-<div class="line"><span class="lineno">   72</span>    <span class="comment">// Valid configuration</span></div>
-<div class="line"><span class="lineno">   73</span>    metric_export_config valid_config;</div>
-<div class="line"><span class="lineno">   74</span>    valid_config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
-<div class="line"><span class="lineno">   75</span>    valid_config.format = metric_export_format::prometheus_text;</div>
-<div class="line"><span class="lineno">   76</span>    valid_config.push_interval = std::chrono::milliseconds(15000);</div>
-<div class="line"><span class="lineno">   77</span>    valid_config.max_batch_size = 1000;</div>
-<div class="line"><span class="lineno">   78</span>    valid_config.max_queue_size = 10000;</div>
-<div class="line"><span class="lineno">   79</span>    </div>
-<div class="line"><span class="lineno">   80</span>    <span class="keyword">auto</span> validation = valid_config.validate();</div>
-<div class="line"><span class="lineno">   81</span>    EXPECT_TRUE(validation.is_ok());</div>
-<div class="line"><span class="lineno">   82</span> </div>
-<div class="line"><span class="lineno">   83</span>    <span class="comment">// Valid configuration with port</span></div>
-<div class="line"><span class="lineno">   84</span>    metric_export_config port_config;</div>
-<div class="line"><span class="lineno">   85</span>    port_config.port = 8125;</div>
-<div class="line"><span class="lineno">   86</span>    port_config.format = metric_export_format::statsd_plain;</div>
-<div class="line"><span class="lineno">   87</span>    <span class="keyword">auto</span> port_validation = port_config.validate();</div>
-<div class="line"><span class="lineno">   88</span>    EXPECT_TRUE(port_validation.is_ok());</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>    <span class="comment">// Invalid configuration (no endpoint or port)</span></div>
-<div class="line"><span class="lineno">   91</span>    metric_export_config invalid_config;</div>
-<div class="line"><span class="lineno">   92</span>    invalid_config.format = metric_export_format::prometheus_text;</div>
-<div class="line"><span class="lineno">   93</span>    <span class="keyword">auto</span> invalid_validation = invalid_config.validate();</div>
-<div class="line"><span class="lineno">   94</span>    EXPECT_TRUE(invalid_validation.is_err());</div>
-<div class="line"><span class="lineno">   95</span> </div>
-<div class="line"><span class="lineno">   96</span>    <span class="comment">// Invalid push interval</span></div>
-<div class="line"><span class="lineno">   97</span>    metric_export_config invalid_interval;</div>
-<div class="line"><span class="lineno">   98</span>    invalid_interval.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
-<div class="line"><span class="lineno">   99</span>    invalid_interval.push_interval = std::chrono::milliseconds(0);</div>
-<div class="line"><span class="lineno">  100</span>    <span class="keyword">auto</span> interval_validation = invalid_interval.validate();</div>
-<div class="line"><span class="lineno">  101</span>    EXPECT_TRUE(interval_validation.is_err());</div>
-<div class="line"><span class="lineno">  102</span>    </div>
-<div class="line"><span class="lineno">  103</span>    <span class="comment">// Invalid batch size</span></div>
-<div class="line"><span class="lineno">  104</span>    metric_export_config invalid_batch;</div>
-<div class="line"><span class="lineno">  105</span>    invalid_batch.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
-<div class="line"><span class="lineno">  106</span>    invalid_batch.max_batch_size = 0;</div>
-<div class="line"><span class="lineno">  107</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
-<div class="line"><span class="lineno">  108</span>    EXPECT_FALSE(batch_validation.is_ok());</div>
-<div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>    <span class="comment">// Invalid queue size</span></div>
-<div class="line"><span class="lineno">  111</span>    metric_export_config invalid_queue;</div>
-<div class="line"><span class="lineno">  112</span>    invalid_queue.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
-<div class="line"><span class="lineno">  113</span>    invalid_queue.max_batch_size = 1000;</div>
-<div class="line"><span class="lineno">  114</span>    invalid_queue.max_queue_size = 500;</div>
-<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> queue_validation = invalid_queue.validate();</div>
-<div class="line"><span class="lineno">  116</span>    EXPECT_FALSE(queue_validation.is_ok());</div>
-<div class="line"><span class="lineno">  117</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>                                                          {</div>
+<div class="line"><span class="lineno">   75</span>    <span class="comment">// Valid configuration</span></div>
+<div class="line"><span class="lineno">   76</span>    metric_export_config valid_config;</div>
+<div class="line"><span class="lineno">   77</span>    valid_config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
+<div class="line"><span class="lineno">   78</span>    valid_config.format = metric_export_format::prometheus_text;</div>
+<div class="line"><span class="lineno">   79</span>    valid_config.push_interval = std::chrono::milliseconds(15000);</div>
+<div class="line"><span class="lineno">   80</span>    valid_config.max_batch_size = 1000;</div>
+<div class="line"><span class="lineno">   81</span>    valid_config.max_queue_size = 10000;</div>
+<div class="line"><span class="lineno">   82</span>    </div>
+<div class="line"><span class="lineno">   83</span>    <span class="keyword">auto</span> validation = valid_config.validate();</div>
+<div class="line"><span class="lineno">   84</span>    EXPECT_TRUE(validation.is_ok());</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>    <span class="comment">// Valid configuration with port</span></div>
+<div class="line"><span class="lineno">   87</span>    metric_export_config port_config;</div>
+<div class="line"><span class="lineno">   88</span>    port_config.port = 8125;</div>
+<div class="line"><span class="lineno">   89</span>    port_config.format = metric_export_format::statsd_plain;</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keyword">auto</span> port_validation = port_config.validate();</div>
+<div class="line"><span class="lineno">   91</span>    EXPECT_TRUE(port_validation.is_ok());</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>    <span class="comment">// Invalid configuration (no endpoint or port)</span></div>
+<div class="line"><span class="lineno">   94</span>    metric_export_config invalid_config;</div>
+<div class="line"><span class="lineno">   95</span>    invalid_config.format = metric_export_format::prometheus_text;</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keyword">auto</span> invalid_validation = invalid_config.validate();</div>
+<div class="line"><span class="lineno">   97</span>    EXPECT_TRUE(invalid_validation.is_err());</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>    <span class="comment">// Invalid push interval</span></div>
+<div class="line"><span class="lineno">  100</span>    metric_export_config invalid_interval;</div>
+<div class="line"><span class="lineno">  101</span>    invalid_interval.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
+<div class="line"><span class="lineno">  102</span>    invalid_interval.push_interval = std::chrono::milliseconds(0);</div>
+<div class="line"><span class="lineno">  103</span>    <span class="keyword">auto</span> interval_validation = invalid_interval.validate();</div>
+<div class="line"><span class="lineno">  104</span>    EXPECT_TRUE(interval_validation.is_err());</div>
+<div class="line"><span class="lineno">  105</span>    </div>
+<div class="line"><span class="lineno">  106</span>    <span class="comment">// Invalid batch size</span></div>
+<div class="line"><span class="lineno">  107</span>    metric_export_config invalid_batch;</div>
+<div class="line"><span class="lineno">  108</span>    invalid_batch.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
+<div class="line"><span class="lineno">  109</span>    invalid_batch.max_batch_size = 0;</div>
+<div class="line"><span class="lineno">  110</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
+<div class="line"><span class="lineno">  111</span>    EXPECT_FALSE(batch_validation.is_ok());</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>    <span class="comment">// Invalid queue size</span></div>
+<div class="line"><span class="lineno">  114</span>    metric_export_config invalid_queue;</div>
+<div class="line"><span class="lineno">  115</span>    invalid_queue.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
+<div class="line"><span class="lineno">  116</span>    invalid_queue.max_batch_size = 1000;</div>
+<div class="line"><span class="lineno">  117</span>    invalid_queue.max_queue_size = 500;</div>
+<div class="line"><span class="lineno">  118</span>    <span class="keyword">auto</span> queue_validation = invalid_queue.validate();</div>
+<div class="line"><span class="lineno">  119</span>    EXPECT_FALSE(queue_validation.is_ok());</div>
+<div class="line"><span class="lineno">  120</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a4b77a19c40dd1950936a2ab702c2e37c" name="a4b77a19c40dd1950936a2ab702c2e37c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b77a19c40dd1950936a2ab702c2e37c">&#9670;&#160;</a></span>TEST_F() <span class="overload">[5/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b77a19c40dd1950936a2ab702c2e37c">&#9670;&#160;</a></span>TEST_F() <span class="overload">[5/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -400,46 +838,46 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00339">339</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  339</span>                                                   {</div>
-<div class="line"><span class="lineno">  340</span>    <span class="comment">// Test Prometheus factory</span></div>
-<div class="line"><span class="lineno">  341</span>    metric_export_config prometheus_config;</div>
-<div class="line"><span class="lineno">  342</span>    prometheus_config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
-<div class="line"><span class="lineno">  343</span>    prometheus_config.format = metric_export_format::prometheus_text;</div>
-<div class="line"><span class="lineno">  344</span>    </div>
-<div class="line"><span class="lineno">  345</span>    <span class="keyword">auto</span> prometheus_exporter = metric_exporter_factory::create_exporter(prometheus_config, otel_resource_);</div>
-<div class="line"><span class="lineno">  346</span>    EXPECT_TRUE(prometheus_exporter);</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00342">342</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  342</span>                                                   {</div>
+<div class="line"><span class="lineno">  343</span>    <span class="comment">// Test Prometheus factory</span></div>
+<div class="line"><span class="lineno">  344</span>    metric_export_config prometheus_config;</div>
+<div class="line"><span class="lineno">  345</span>    prometheus_config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
+<div class="line"><span class="lineno">  346</span>    prometheus_config.format = metric_export_format::prometheus_text;</div>
 <div class="line"><span class="lineno">  347</span>    </div>
-<div class="line"><span class="lineno">  348</span>    <span class="comment">// Test StatsD factory</span></div>
-<div class="line"><span class="lineno">  349</span>    metric_export_config statsd_config;</div>
-<div class="line"><span class="lineno">  350</span>    statsd_config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
-<div class="line"><span class="lineno">  351</span>    statsd_config.port = 8125;</div>
-<div class="line"><span class="lineno">  352</span>    statsd_config.format = metric_export_format::statsd_datadog;</div>
-<div class="line"><span class="lineno">  353</span>    </div>
-<div class="line"><span class="lineno">  354</span>    <span class="keyword">auto</span> statsd_exporter = metric_exporter_factory::create_exporter(statsd_config, otel_resource_);</div>
-<div class="line"><span class="lineno">  355</span>    EXPECT_TRUE(statsd_exporter);</div>
+<div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> prometheus_exporter = metric_exporter_factory::create_exporter(prometheus_config, otel_resource_);</div>
+<div class="line"><span class="lineno">  349</span>    EXPECT_TRUE(prometheus_exporter);</div>
+<div class="line"><span class="lineno">  350</span>    </div>
+<div class="line"><span class="lineno">  351</span>    <span class="comment">// Test StatsD factory</span></div>
+<div class="line"><span class="lineno">  352</span>    metric_export_config statsd_config;</div>
+<div class="line"><span class="lineno">  353</span>    statsd_config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
+<div class="line"><span class="lineno">  354</span>    statsd_config.port = 8125;</div>
+<div class="line"><span class="lineno">  355</span>    statsd_config.format = metric_export_format::statsd_datadog;</div>
 <div class="line"><span class="lineno">  356</span>    </div>
-<div class="line"><span class="lineno">  357</span>    <span class="comment">// Test OTLP factory</span></div>
-<div class="line"><span class="lineno">  358</span>    metric_export_config otlp_config;</div>
-<div class="line"><span class="lineno">  359</span>    otlp_config.endpoint = <span class="stringliteral">&quot;http://otlp-collector:4317&quot;</span>;</div>
-<div class="line"><span class="lineno">  360</span>    otlp_config.format = metric_export_format::otlp_http_json;</div>
-<div class="line"><span class="lineno">  361</span>    </div>
-<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> otlp_exporter = metric_exporter_factory::create_exporter(otlp_config, otel_resource_);</div>
-<div class="line"><span class="lineno">  363</span>    EXPECT_TRUE(otlp_exporter);</div>
+<div class="line"><span class="lineno">  357</span>    <span class="keyword">auto</span> statsd_exporter = metric_exporter_factory::create_exporter(statsd_config, otel_resource_);</div>
+<div class="line"><span class="lineno">  358</span>    EXPECT_TRUE(statsd_exporter);</div>
+<div class="line"><span class="lineno">  359</span>    </div>
+<div class="line"><span class="lineno">  360</span>    <span class="comment">// Test OTLP factory</span></div>
+<div class="line"><span class="lineno">  361</span>    metric_export_config otlp_config;</div>
+<div class="line"><span class="lineno">  362</span>    otlp_config.endpoint = <span class="stringliteral">&quot;http://otlp-collector:4317&quot;</span>;</div>
+<div class="line"><span class="lineno">  363</span>    otlp_config.format = metric_export_format::otlp_http_json;</div>
 <div class="line"><span class="lineno">  364</span>    </div>
-<div class="line"><span class="lineno">  365</span>    <span class="comment">// Test invalid format</span></div>
-<div class="line"><span class="lineno">  366</span>    metric_export_config invalid_config;</div>
-<div class="line"><span class="lineno">  367</span>    invalid_config.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
-<div class="line"><span class="lineno">  368</span>    invalid_config.format = <span class="keyword">static_cast&lt;</span>metric_export_format<span class="keyword">&gt;</span>(999);</div>
-<div class="line"><span class="lineno">  369</span>    </div>
-<div class="line"><span class="lineno">  370</span>    <span class="keyword">auto</span> invalid_exporter = metric_exporter_factory::create_exporter(invalid_config, otel_resource_);</div>
-<div class="line"><span class="lineno">  371</span>    EXPECT_FALSE(invalid_exporter);</div>
-<div class="line"><span class="lineno">  372</span>}</div>
+<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> otlp_exporter = metric_exporter_factory::create_exporter(otlp_config, otel_resource_);</div>
+<div class="line"><span class="lineno">  366</span>    EXPECT_TRUE(otlp_exporter);</div>
+<div class="line"><span class="lineno">  367</span>    </div>
+<div class="line"><span class="lineno">  368</span>    <span class="comment">// Test invalid format</span></div>
+<div class="line"><span class="lineno">  369</span>    metric_export_config invalid_config;</div>
+<div class="line"><span class="lineno">  370</span>    invalid_config.endpoint = <span class="stringliteral">&quot;http://test&quot;</span>;</div>
+<div class="line"><span class="lineno">  371</span>    invalid_config.format = <span class="keyword">static_cast&lt;</span>metric_export_format<span class="keyword">&gt;</span>(999);</div>
+<div class="line"><span class="lineno">  372</span>    </div>
+<div class="line"><span class="lineno">  373</span>    <span class="keyword">auto</span> invalid_exporter = metric_exporter_factory::create_exporter(invalid_config, otel_resource_);</div>
+<div class="line"><span class="lineno">  374</span>    EXPECT_FALSE(invalid_exporter);</div>
+<div class="line"><span class="lineno">  375</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a2a840d53a81656e336e15da493458e46" name="a2a840d53a81656e336e15da493458e46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a840d53a81656e336e15da493458e46">&#9670;&#160;</a></span>TEST_F() <span class="overload">[6/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a840d53a81656e336e15da493458e46">&#9670;&#160;</a></span>TEST_F() <span class="overload">[6/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -464,40 +902,40 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00458">458</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  458</span>                                                    {</div>
-<div class="line"><span class="lineno">  459</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  460</span>    config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
-<div class="line"><span class="lineno">  461</span>    config.format = metric_export_format::prometheus_text;</div>
-<div class="line"><span class="lineno">  462</span>    </div>
-<div class="line"><span class="lineno">  463</span>    prometheus_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  464</span>    </div>
-<div class="line"><span class="lineno">  465</span>    <span class="comment">// Create data with problematic metric names</span></div>
-<div class="line"><span class="lineno">  466</span>    monitoring_data data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
-<div class="line"><span class="lineno">  467</span>    data.add_metric(<span class="stringliteral">&quot;http.requests-total&quot;</span>, 100.0);  <span class="comment">// Contains dots and dashes</span></div>
-<div class="line"><span class="lineno">  468</span>    data.add_metric(<span class="stringliteral">&quot;123_invalid_start&quot;</span>, 50.0);     <span class="comment">// Starts with number</span></div>
-<div class="line"><span class="lineno">  469</span>    data.add_metric(<span class="stringliteral">&quot;special@chars#metric&quot;</span>, 75.0);   <span class="comment">// Contains special characters</span></div>
-<div class="line"><span class="lineno">  470</span>    </div>
-<div class="line"><span class="lineno">  471</span>    <span class="keyword">auto</span> prom_metrics = exporter.convert_monitoring_data(data);</div>
-<div class="line"><span class="lineno">  472</span>    EXPECT_EQ(prom_metrics.size(), 3);</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00461">461</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  461</span>                                                    {</div>
+<div class="line"><span class="lineno">  462</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  463</span>    config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
+<div class="line"><span class="lineno">  464</span>    config.format = metric_export_format::prometheus_text;</div>
+<div class="line"><span class="lineno">  465</span>    </div>
+<div class="line"><span class="lineno">  466</span>    prometheus_exporter exporter(config);</div>
+<div class="line"><span class="lineno">  467</span>    </div>
+<div class="line"><span class="lineno">  468</span>    <span class="comment">// Create data with problematic metric names</span></div>
+<div class="line"><span class="lineno">  469</span>    monitoring_data data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
+<div class="line"><span class="lineno">  470</span>    data.add_metric(<span class="stringliteral">&quot;http.requests-total&quot;</span>, 100.0);  <span class="comment">// Contains dots and dashes</span></div>
+<div class="line"><span class="lineno">  471</span>    data.add_metric(<span class="stringliteral">&quot;123_invalid_start&quot;</span>, 50.0);     <span class="comment">// Starts with number</span></div>
+<div class="line"><span class="lineno">  472</span>    data.add_metric(<span class="stringliteral">&quot;special@chars#metric&quot;</span>, 75.0);   <span class="comment">// Contains special characters</span></div>
 <div class="line"><span class="lineno">  473</span>    </div>
-<div class="line"><span class="lineno">  474</span>    <span class="comment">// Check sanitized names exist</span></div>
-<div class="line"><span class="lineno">  475</span>    std::vector&lt;std::string&gt; expected_names = {<span class="stringliteral">&quot;http_requests_total&quot;</span>, <span class="stringliteral">&quot;_123_invalid_start&quot;</span>, <span class="stringliteral">&quot;special_chars_metric&quot;</span>};</div>
-<div class="line"><span class="lineno">  476</span>    std::vector&lt;std::string&gt; actual_names;</div>
-<div class="line"><span class="lineno">  477</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : prom_metrics) {</div>
-<div class="line"><span class="lineno">  478</span>        actual_names.push_back(metric.name);</div>
-<div class="line"><span class="lineno">  479</span>    }</div>
-<div class="line"><span class="lineno">  480</span>    </div>
-<div class="line"><span class="lineno">  481</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; expected_name : expected_names) {</div>
-<div class="line"><span class="lineno">  482</span>        EXPECT_NE(std::find(actual_names.begin(), actual_names.end(), expected_name), actual_names.end()) </div>
-<div class="line"><span class="lineno">  483</span>            &lt;&lt; <span class="stringliteral">&quot;Expected metric name &#39;&quot;</span> &lt;&lt; expected_name &lt;&lt; <span class="stringliteral">&quot;&#39; not found&quot;</span>;</div>
-<div class="line"><span class="lineno">  484</span>    }</div>
-<div class="line"><span class="lineno">  485</span>}</div>
+<div class="line"><span class="lineno">  474</span>    <span class="keyword">auto</span> prom_metrics = exporter.convert_monitoring_data(data);</div>
+<div class="line"><span class="lineno">  475</span>    EXPECT_EQ(prom_metrics.size(), 3);</div>
+<div class="line"><span class="lineno">  476</span>    </div>
+<div class="line"><span class="lineno">  477</span>    <span class="comment">// Check sanitized names exist</span></div>
+<div class="line"><span class="lineno">  478</span>    std::vector&lt;std::string&gt; expected_names = {<span class="stringliteral">&quot;http_requests_total&quot;</span>, <span class="stringliteral">&quot;_123_invalid_start&quot;</span>, <span class="stringliteral">&quot;special_chars_metric&quot;</span>};</div>
+<div class="line"><span class="lineno">  479</span>    std::vector&lt;std::string&gt; actual_names;</div>
+<div class="line"><span class="lineno">  480</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric : prom_metrics) {</div>
+<div class="line"><span class="lineno">  481</span>        actual_names.push_back(metric.name);</div>
+<div class="line"><span class="lineno">  482</span>    }</div>
+<div class="line"><span class="lineno">  483</span>    </div>
+<div class="line"><span class="lineno">  484</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; expected_name : expected_names) {</div>
+<div class="line"><span class="lineno">  485</span>        EXPECT_NE(std::find(actual_names.begin(), actual_names.end(), expected_name), actual_names.end()) </div>
+<div class="line"><span class="lineno">  486</span>            &lt;&lt; <span class="stringliteral">&quot;Expected metric name &#39;&quot;</span> &lt;&lt; expected_name &lt;&lt; <span class="stringliteral">&quot;&#39; not found&quot;</span>;</div>
+<div class="line"><span class="lineno">  487</span>    }</div>
+<div class="line"><span class="lineno">  488</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a883e1be7196e3bddf94fbbeddd244fda" name="a883e1be7196e3bddf94fbbeddd244fda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a883e1be7196e3bddf94fbbeddd244fda">&#9670;&#160;</a></span>TEST_F() <span class="overload">[7/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a883e1be7196e3bddf94fbbeddd244fda">&#9670;&#160;</a></span>TEST_F() <span class="overload">[7/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -522,44 +960,154 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00487">487</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  487</span>                                                 {</div>
-<div class="line"><span class="lineno">  488</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  489</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
-<div class="line"><span class="lineno">  490</span>    config.port = 8125;</div>
-<div class="line"><span class="lineno">  491</span>    config.format = metric_export_format::statsd_plain;</div>
-<div class="line"><span class="lineno">  492</span>    </div>
-<div class="line"><span class="lineno">  493</span>    statsd_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  494</span>    </div>
-<div class="line"><span class="lineno">  495</span>    monitoring_data data(<span class="stringliteral">&quot;test_service&quot;</span>);</div>
-<div class="line"><span class="lineno">  496</span>    data.add_metric(<span class="stringliteral">&quot;requests_count&quot;</span>, 100.0);       <span class="comment">// Should be counter</span></div>
-<div class="line"><span class="lineno">  497</span>    data.add_metric(<span class="stringliteral">&quot;requests_total&quot;</span>, 200.0);       <span class="comment">// Should be counter</span></div>
-<div class="line"><span class="lineno">  498</span>    data.add_metric(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 250.0);     <span class="comment">// Should be timer</span></div>
-<div class="line"><span class="lineno">  499</span>    data.add_metric(<span class="stringliteral">&quot;request_duration&quot;</span>, 0.5);       <span class="comment">// Should be timer</span></div>
-<div class="line"><span class="lineno">  500</span>    data.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 75.5);             <span class="comment">// Should be gauge</span></div>
-<div class="line"><span class="lineno">  501</span>    data.add_metric(<span class="stringliteral">&quot;memory_available&quot;</span>, 1024.0);    <span class="comment">// Should be gauge</span></div>
-<div class="line"><span class="lineno">  502</span>    </div>
-<div class="line"><span class="lineno">  503</span>    <span class="keyword">auto</span> statsd_metrics = exporter.convert_monitoring_data(data);</div>
-<div class="line"><span class="lineno">  504</span>    </div>
-<div class="line"><span class="lineno">  505</span>    <span class="comment">// Check inferred types by finding specific metrics</span></div>
-<div class="line"><span class="lineno">  506</span>    <span class="keyword">auto</span> find_metric = [&amp;](<span class="keyword">const</span> std::string&amp; name) -&gt; <span class="keyword">const</span> statsd_metric_data* {</div>
-<div class="line"><span class="lineno">  507</span>        <span class="keyword">auto</span> it = std::find_if(statsd_metrics.begin(), statsd_metrics.end(),</div>
-<div class="line"><span class="lineno">  508</span>            [&amp;name](<span class="keyword">const</span> statsd_metric_data&amp; m) { return m.name == name; });</div>
-<div class="line"><span class="lineno">  509</span>        <span class="keywordflow">return</span> (it != statsd_metrics.end()) ? &amp;(*it) : <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  510</span>    };</div>
-<div class="line"><span class="lineno">  511</span>    </div>
-<div class="line"><span class="lineno">  512</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;requests_count&quot;</span>)-&gt;type, metric_type::counter);</div>
-<div class="line"><span class="lineno">  513</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;requests_total&quot;</span>)-&gt;type, metric_type::counter);</div>
-<div class="line"><span class="lineno">  514</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;response_time_ms&quot;</span>)-&gt;type, metric_type::timer);</div>
-<div class="line"><span class="lineno">  515</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;request_duration&quot;</span>)-&gt;type, metric_type::timer);</div>
-<div class="line"><span class="lineno">  516</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>)-&gt;type, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  517</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;memory_available&quot;</span>)-&gt;type, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  518</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00490">490</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  490</span>                                                 {</div>
+<div class="line"><span class="lineno">  491</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  492</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
+<div class="line"><span class="lineno">  493</span>    config.port = 8125;</div>
+<div class="line"><span class="lineno">  494</span>    config.format = metric_export_format::statsd_plain;</div>
+<div class="line"><span class="lineno">  495</span>    </div>
+<div class="line"><span class="lineno">  496</span>    statsd_exporter exporter(config);</div>
+<div class="line"><span class="lineno">  497</span>    </div>
+<div class="line"><span class="lineno">  498</span>    monitoring_data data(<span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><span class="lineno">  499</span>    data.add_metric(<span class="stringliteral">&quot;requests_count&quot;</span>, 100.0);       <span class="comment">// Should be counter</span></div>
+<div class="line"><span class="lineno">  500</span>    data.add_metric(<span class="stringliteral">&quot;requests_total&quot;</span>, 200.0);       <span class="comment">// Should be counter</span></div>
+<div class="line"><span class="lineno">  501</span>    data.add_metric(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 250.0);     <span class="comment">// Should be timer</span></div>
+<div class="line"><span class="lineno">  502</span>    data.add_metric(<span class="stringliteral">&quot;request_duration&quot;</span>, 0.5);       <span class="comment">// Should be timer</span></div>
+<div class="line"><span class="lineno">  503</span>    data.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 75.5);             <span class="comment">// Should be gauge</span></div>
+<div class="line"><span class="lineno">  504</span>    data.add_metric(<span class="stringliteral">&quot;memory_available&quot;</span>, 1024.0);    <span class="comment">// Should be gauge</span></div>
+<div class="line"><span class="lineno">  505</span>    </div>
+<div class="line"><span class="lineno">  506</span>    <span class="keyword">auto</span> statsd_metrics = exporter.convert_monitoring_data(data);</div>
+<div class="line"><span class="lineno">  507</span>    </div>
+<div class="line"><span class="lineno">  508</span>    <span class="comment">// Check inferred types by finding specific metrics</span></div>
+<div class="line"><span class="lineno">  509</span>    <span class="keyword">auto</span> find_metric = [&amp;](<span class="keyword">const</span> std::string&amp; name) -&gt; <span class="keyword">const</span> statsd_metric_data* {</div>
+<div class="line"><span class="lineno">  510</span>        <span class="keyword">auto</span> it = std::find_if(statsd_metrics.begin(), statsd_metrics.end(),</div>
+<div class="line"><span class="lineno">  511</span>            [&amp;name](<span class="keyword">const</span> statsd_metric_data&amp; m) { return m.name == name; });</div>
+<div class="line"><span class="lineno">  512</span>        <span class="keywordflow">return</span> (it != statsd_metrics.end()) ? &amp;(*it) : <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  513</span>    };</div>
+<div class="line"><span class="lineno">  514</span>    </div>
+<div class="line"><span class="lineno">  515</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;requests_count&quot;</span>)-&gt;type, metric_type::counter);</div>
+<div class="line"><span class="lineno">  516</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;requests_total&quot;</span>)-&gt;type, metric_type::counter);</div>
+<div class="line"><span class="lineno">  517</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;response_time_ms&quot;</span>)-&gt;type, metric_type::timer);</div>
+<div class="line"><span class="lineno">  518</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;request_duration&quot;</span>)-&gt;type, metric_type::timer);</div>
+<div class="line"><span class="lineno">  519</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>)-&gt;type, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  520</span>    EXPECT_EQ(find_metric(<span class="stringliteral">&quot;memory_available&quot;</span>)-&gt;type, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  521</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a67d2d412c55f76d401c8073d08d6946e" name="a67d2d412c55f76d401c8073d08d6946e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d2d412c55f76d401c8073d08d6946e">&#9670;&#160;</a></span>TEST_F() <span class="overload">[8/19]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OtlpExporterWithCustomGrpcTransport&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00794">794</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  794</span>                                                                 {</div>
+<div class="line"><span class="lineno">  795</span>    <span class="keyword">auto</span> stub_http = create_stub_transport();</div>
+<div class="line"><span class="lineno">  796</span>    <span class="keyword">auto</span> stub_grpc = create_stub_grpc_transport();</div>
+<div class="line"><span class="lineno">  797</span>    <span class="keyword">auto</span>* grpc_ptr = stub_grpc.get();</div>
+<div class="line"><span class="lineno">  798</span> </div>
+<div class="line"><span class="lineno">  799</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  800</span>    config.endpoint = <span class="stringliteral">&quot;otlp-collector&quot;</span>;</div>
+<div class="line"><span class="lineno">  801</span>    config.port = 4317;</div>
+<div class="line"><span class="lineno">  802</span>    config.format = metric_export_format::otlp_grpc;</div>
+<div class="line"><span class="lineno">  803</span> </div>
+<div class="line"><span class="lineno">  804</span>    otlp_metrics_exporter exporter(config, otel_resource_,</div>
+<div class="line"><span class="lineno">  805</span>                                   std::move(stub_http), std::move(stub_grpc));</div>
+<div class="line"><span class="lineno">  806</span> </div>
+<div class="line"><span class="lineno">  807</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
+<div class="line"><span class="lineno">  808</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
+<div class="line"><span class="lineno">  809</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  810</span> </div>
+<div class="line"><span class="lineno">  811</span>    <span class="comment">// Check gRPC transport was used</span></div>
+<div class="line"><span class="lineno">  812</span>    <span class="keyword">auto</span> transport_stats = grpc_ptr-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  813</span>    EXPECT_GT(transport_stats.requests_sent, 0);</div>
+<div class="line"><span class="lineno">  814</span> </div>
+<div class="line"><span class="lineno">  815</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  816</span>    EXPECT_GT(stats[<span class="stringliteral">&quot;transport_requests_sent&quot;</span>], 0);</div>
+<div class="line"><span class="lineno">  817</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a73fa2d974bb73fb73064bcb59b838a69" name="a73fa2d974bb73fb73064bcb59b838a69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73fa2d974bb73fb73064bcb59b838a69">&#9670;&#160;</a></span>TEST_F() <span class="overload">[9/19]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OtlpExporterWithCustomHttpTransport&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00767">767</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  767</span>                                                                 {</div>
+<div class="line"><span class="lineno">  768</span>    <span class="keyword">auto</span> stub_http = create_stub_transport();</div>
+<div class="line"><span class="lineno">  769</span>    <span class="keyword">auto</span> stub_grpc = create_stub_grpc_transport();</div>
+<div class="line"><span class="lineno">  770</span> </div>
+<div class="line"><span class="lineno">  771</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  772</span>    config.endpoint = <span class="stringliteral">&quot;http://otlp-collector&quot;</span>;</div>
+<div class="line"><span class="lineno">  773</span>    config.port = 4318;</div>
+<div class="line"><span class="lineno">  774</span>    config.format = metric_export_format::otlp_http_json;</div>
+<div class="line"><span class="lineno">  775</span> </div>
+<div class="line"><span class="lineno">  776</span>    otlp_metrics_exporter exporter(config, otel_resource_,</div>
+<div class="line"><span class="lineno">  777</span>                                   std::move(stub_http), std::move(stub_grpc));</div>
+<div class="line"><span class="lineno">  778</span> </div>
+<div class="line"><span class="lineno">  779</span>    <span class="comment">// Start and export</span></div>
+<div class="line"><span class="lineno">  780</span>    <span class="keyword">auto</span> start_result = exporter.start();</div>
+<div class="line"><span class="lineno">  781</span>    EXPECT_TRUE(start_result.is_ok());</div>
+<div class="line"><span class="lineno">  782</span> </div>
+<div class="line"><span class="lineno">  783</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
+<div class="line"><span class="lineno">  784</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
+<div class="line"><span class="lineno">  785</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  786</span> </div>
+<div class="line"><span class="lineno">  787</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  788</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 1);</div>
+<div class="line"><span class="lineno">  789</span> </div>
+<div class="line"><span class="lineno">  790</span>    <span class="keyword">auto</span> stop_result = exporter.stop();</div>
+<div class="line"><span class="lineno">  791</span>    EXPECT_TRUE(stop_result.is_ok());</div>
+<div class="line"><span class="lineno">  792</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="acac8121c4a187d83abaead530f17e3ae" name="acac8121c4a187d83abaead530f17e3ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acac8121c4a187d83abaead530f17e3ae">&#9670;&#160;</a></span>TEST_F() <span class="overload">[8/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acac8121c4a187d83abaead530f17e3ae">&#9670;&#160;</a></span>TEST_F() <span class="overload">[10/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -584,40 +1132,40 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00310">310</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  310</span>                                                                   {</div>
-<div class="line"><span class="lineno">  311</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  312</span>    config.endpoint = <span class="stringliteral">&quot;http://otlp-collector:4317&quot;</span>;</div>
-<div class="line"><span class="lineno">  313</span>    config.format = metric_export_format::otlp_grpc;</div>
-<div class="line"><span class="lineno">  314</span>    </div>
-<div class="line"><span class="lineno">  315</span>    otlp_metrics_exporter exporter(config, otel_resource_);</div>
-<div class="line"><span class="lineno">  316</span>    </div>
-<div class="line"><span class="lineno">  317</span>    <span class="comment">// Export monitoring data</span></div>
-<div class="line"><span class="lineno">  318</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
-<div class="line"><span class="lineno">  319</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><span class="lineno">  320</span>    EXPECT_TRUE(export_result.is_ok());</div>
-<div class="line"><span class="lineno">  321</span>    </div>
-<div class="line"><span class="lineno">  322</span>    <span class="comment">// Export snapshot</span></div>
-<div class="line"><span class="lineno">  323</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  324</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
-<div class="line"><span class="lineno">  325</span>    </div>
-<div class="line"><span class="lineno">  326</span>    <span class="comment">// Check statistics</span></div>
-<div class="line"><span class="lineno">  327</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
-<div class="line"><span class="lineno">  328</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 2); <span class="comment">// 1 data + 1 snapshot</span></div>
-<div class="line"><span class="lineno">  329</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
-<div class="line"><span class="lineno">  330</span>    </div>
-<div class="line"><span class="lineno">  331</span>    <span class="comment">// Test flush and shutdown</span></div>
-<div class="line"><span class="lineno">  332</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  333</span>    EXPECT_TRUE(flush_result.is_ok());</div>
-<div class="line"><span class="lineno">  334</span>    </div>
-<div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
-<div class="line"><span class="lineno">  337</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00313">313</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  313</span>                                                                   {</div>
+<div class="line"><span class="lineno">  314</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  315</span>    config.endpoint = <span class="stringliteral">&quot;http://otlp-collector:4317&quot;</span>;</div>
+<div class="line"><span class="lineno">  316</span>    config.format = metric_export_format::otlp_grpc;</div>
+<div class="line"><span class="lineno">  317</span>    </div>
+<div class="line"><span class="lineno">  318</span>    otlp_metrics_exporter exporter(config, otel_resource_);</div>
+<div class="line"><span class="lineno">  319</span>    </div>
+<div class="line"><span class="lineno">  320</span>    <span class="comment">// Export monitoring data</span></div>
+<div class="line"><span class="lineno">  321</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
+<div class="line"><span class="lineno">  322</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
+<div class="line"><span class="lineno">  323</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  324</span>    </div>
+<div class="line"><span class="lineno">  325</span>    <span class="comment">// Export snapshot</span></div>
+<div class="line"><span class="lineno">  326</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
+<div class="line"><span class="lineno">  327</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
+<div class="line"><span class="lineno">  328</span>    </div>
+<div class="line"><span class="lineno">  329</span>    <span class="comment">// Check statistics</span></div>
+<div class="line"><span class="lineno">  330</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 2); <span class="comment">// 1 data + 1 snapshot</span></div>
+<div class="line"><span class="lineno">  332</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
+<div class="line"><span class="lineno">  333</span>    </div>
+<div class="line"><span class="lineno">  334</span>    <span class="comment">// Test flush and shutdown</span></div>
+<div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  337</span>    </div>
+<div class="line"><span class="lineno">  338</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
+<div class="line"><span class="lineno">  339</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
+<div class="line"><span class="lineno">  340</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="afea51d363be0088e2c0f716a327aa0ee" name="afea51d363be0088e2c0f716a327aa0ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afea51d363be0088e2c0f716a327aa0ee">&#9670;&#160;</a></span>TEST_F() <span class="overload">[9/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afea51d363be0088e2c0f716a327aa0ee">&#9670;&#160;</a></span>TEST_F() <span class="overload">[11/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -642,47 +1190,47 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00180">180</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  180</span>                                                                  {</div>
-<div class="line"><span class="lineno">  181</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  182</span>    config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
-<div class="line"><span class="lineno">  183</span>    config.format = metric_export_format::prometheus_text;</div>
-<div class="line"><span class="lineno">  184</span>    </div>
-<div class="line"><span class="lineno">  185</span>    prometheus_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  186</span>    </div>
-<div class="line"><span class="lineno">  187</span>    <span class="comment">// Export monitoring data</span></div>
-<div class="line"><span class="lineno">  188</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
-<div class="line"><span class="lineno">  189</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><span class="lineno">  190</span>    EXPECT_TRUE(export_result.is_ok());</div>
-<div class="line"><span class="lineno">  191</span>    </div>
-<div class="line"><span class="lineno">  192</span>    <span class="comment">// Export snapshot</span></div>
-<div class="line"><span class="lineno">  193</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  194</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
-<div class="line"><span class="lineno">  195</span>    </div>
-<div class="line"><span class="lineno">  196</span>    <span class="comment">// Get metrics text</span></div>
-<div class="line"><span class="lineno">  197</span>    std::string metrics_text = exporter.get_metrics_text();</div>
-<div class="line"><span class="lineno">  198</span>    EXPECT_FALSE(metrics_text.empty());</div>
-<div class="line"><span class="lineno">  199</span>    EXPECT_NE(metrics_text.find(<span class="stringliteral">&quot;http_requests_total&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  200</span>    EXPECT_NE(metrics_text.find(<span class="stringliteral">&quot;system_load_1m&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  201</span>    </div>
-<div class="line"><span class="lineno">  202</span>    <span class="comment">// Check statistics</span></div>
-<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
-<div class="line"><span class="lineno">  204</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 2); <span class="comment">// 1 data + 1 snapshot</span></div>
-<div class="line"><span class="lineno">  205</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
-<div class="line"><span class="lineno">  206</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;scrape_requests&quot;</span>], 1); <span class="comment">// Called get_metrics_text once</span></div>
-<div class="line"><span class="lineno">  207</span>    </div>
-<div class="line"><span class="lineno">  208</span>    <span class="comment">// Test flush and shutdown</span></div>
-<div class="line"><span class="lineno">  209</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  210</span>    EXPECT_TRUE(flush_result.is_ok());</div>
-<div class="line"><span class="lineno">  211</span>    </div>
-<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  213</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
-<div class="line"><span class="lineno">  214</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00183">183</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  183</span>                                                                  {</div>
+<div class="line"><span class="lineno">  184</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  185</span>    config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
+<div class="line"><span class="lineno">  186</span>    config.format = metric_export_format::prometheus_text;</div>
+<div class="line"><span class="lineno">  187</span>    </div>
+<div class="line"><span class="lineno">  188</span>    prometheus_exporter exporter(config);</div>
+<div class="line"><span class="lineno">  189</span>    </div>
+<div class="line"><span class="lineno">  190</span>    <span class="comment">// Export monitoring data</span></div>
+<div class="line"><span class="lineno">  191</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
+<div class="line"><span class="lineno">  192</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
+<div class="line"><span class="lineno">  193</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  194</span>    </div>
+<div class="line"><span class="lineno">  195</span>    <span class="comment">// Export snapshot</span></div>
+<div class="line"><span class="lineno">  196</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
+<div class="line"><span class="lineno">  197</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
+<div class="line"><span class="lineno">  198</span>    </div>
+<div class="line"><span class="lineno">  199</span>    <span class="comment">// Get metrics text</span></div>
+<div class="line"><span class="lineno">  200</span>    std::string metrics_text = exporter.get_metrics_text();</div>
+<div class="line"><span class="lineno">  201</span>    EXPECT_FALSE(metrics_text.empty());</div>
+<div class="line"><span class="lineno">  202</span>    EXPECT_NE(metrics_text.find(<span class="stringliteral">&quot;http_requests_total&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  203</span>    EXPECT_NE(metrics_text.find(<span class="stringliteral">&quot;system_load_1m&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  204</span>    </div>
+<div class="line"><span class="lineno">  205</span>    <span class="comment">// Check statistics</span></div>
+<div class="line"><span class="lineno">  206</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  207</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 2); <span class="comment">// 1 data + 1 snapshot</span></div>
+<div class="line"><span class="lineno">  208</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
+<div class="line"><span class="lineno">  209</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;scrape_requests&quot;</span>], 1); <span class="comment">// Called get_metrics_text once</span></div>
+<div class="line"><span class="lineno">  210</span>    </div>
+<div class="line"><span class="lineno">  211</span>    <span class="comment">// Test flush and shutdown</span></div>
+<div class="line"><span class="lineno">  212</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
+<div class="line"><span class="lineno">  213</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  214</span>    </div>
+<div class="line"><span class="lineno">  215</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
+<div class="line"><span class="lineno">  216</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
+<div class="line"><span class="lineno">  217</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="abc3d1a913876d541ede2cdd5bdd61fde" name="abc3d1a913876d541ede2cdd5bdd61fde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc3d1a913876d541ede2cdd5bdd61fde">&#9670;&#160;</a></span>TEST_F() <span class="overload">[10/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abc3d1a913876d541ede2cdd5bdd61fde">&#9670;&#160;</a></span>TEST_F() <span class="overload">[12/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -707,51 +1255,51 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00119">119</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>                                                        {</div>
-<div class="line"><span class="lineno">  120</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  121</span>    config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
-<div class="line"><span class="lineno">  122</span>    config.format = metric_export_format::prometheus_text;</div>
-<div class="line"><span class="lineno">  123</span>    config.instance_id = <span class="stringliteral">&quot;test_instance&quot;</span>;</div>
-<div class="line"><span class="lineno">  124</span>    config.labels[<span class="stringliteral">&quot;datacenter&quot;</span>] = <span class="stringliteral">&quot;dc1&quot;</span>;</div>
-<div class="line"><span class="lineno">  125</span>    </div>
-<div class="line"><span class="lineno">  126</span>    prometheus_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  127</span>    </div>
-<div class="line"><span class="lineno">  128</span>    <span class="comment">// Test monitoring_data conversion</span></div>
-<div class="line"><span class="lineno">  129</span>    <span class="keyword">auto</span> prom_metrics = exporter.convert_monitoring_data(test_data_);</div>
-<div class="line"><span class="lineno">  130</span>    EXPECT_EQ(prom_metrics.size(), 4); <span class="comment">// 4 metrics in test data</span></div>
-<div class="line"><span class="lineno">  131</span>    </div>
-<div class="line"><span class="lineno">  132</span>    <span class="comment">// Find http_requests_total metric</span></div>
-<div class="line"><span class="lineno">  133</span>    <span class="keyword">auto</span> it = std::find_if(prom_metrics.begin(), prom_metrics.end(),</div>
-<div class="line"><span class="lineno">  134</span>        [](<span class="keyword">const</span> prometheus_metric_data&amp; m) { return m.name == <span class="stringliteral">&quot;http_requests_total&quot;</span>; });</div>
-<div class="line"><span class="lineno">  135</span>    ASSERT_NE(it, prom_metrics.end());</div>
-<div class="line"><span class="lineno">  136</span>    </div>
-<div class="line"><span class="lineno">  137</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; requests_metric = *it;</div>
-<div class="line"><span class="lineno">  138</span>    EXPECT_EQ(requests_metric.name, <span class="stringliteral">&quot;http_requests_total&quot;</span>);</div>
-<div class="line"><span class="lineno">  139</span>    EXPECT_EQ(requests_metric.type, metric_type::counter);</div>
-<div class="line"><span class="lineno">  140</span>    EXPECT_EQ(requests_metric.value, 1500.0);</div>
-<div class="line"><span class="lineno">  141</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;component&quot;</span>), <span class="stringliteral">&quot;web_server&quot;</span>);</div>
-<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;environment&quot;</span>), <span class="stringliteral">&quot;production&quot;</span>);</div>
-<div class="line"><span class="lineno">  143</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;datacenter&quot;</span>), <span class="stringliteral">&quot;dc1&quot;</span>);</div>
-<div class="line"><span class="lineno">  144</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;instance&quot;</span>), <span class="stringliteral">&quot;test_instance&quot;</span>);</div>
-<div class="line"><span class="lineno">  145</span>    </div>
-<div class="line"><span class="lineno">  146</span>    <span class="comment">// Test snapshot conversion</span></div>
-<div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> snapshot_metrics = exporter.convert_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  148</span>    EXPECT_EQ(snapshot_metrics.size(), 5); <span class="comment">// 5 metrics in test snapshot</span></div>
-<div class="line"><span class="lineno">  149</span>    </div>
-<div class="line"><span class="lineno">  150</span>    <span class="comment">// Check snapshot metric</span></div>
-<div class="line"><span class="lineno">  151</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; load_metric = snapshot_metrics[0];</div>
-<div class="line"><span class="lineno">  152</span>    EXPECT_EQ(load_metric.name, <span class="stringliteral">&quot;system_load_1m&quot;</span>);</div>
-<div class="line"><span class="lineno">  153</span>    EXPECT_EQ(load_metric.type, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  154</span>    EXPECT_EQ(load_metric.value, 2.1);</div>
-<div class="line"><span class="lineno">  155</span>    EXPECT_EQ(load_metric.labels.at(<span class="stringliteral">&quot;source&quot;</span>), <span class="stringliteral">&quot;system_monitor&quot;</span>);</div>
-<div class="line"><span class="lineno">  156</span>    EXPECT_EQ(load_metric.labels.at(<span class="stringliteral">&quot;host&quot;</span>), <span class="stringliteral">&quot;server01&quot;</span>);</div>
-<div class="line"><span class="lineno">  157</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00122">122</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  122</span>                                                        {</div>
+<div class="line"><span class="lineno">  123</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  124</span>    config.endpoint = <span class="stringliteral">&quot;http://prometheus:9090&quot;</span>;</div>
+<div class="line"><span class="lineno">  125</span>    config.format = metric_export_format::prometheus_text;</div>
+<div class="line"><span class="lineno">  126</span>    config.instance_id = <span class="stringliteral">&quot;test_instance&quot;</span>;</div>
+<div class="line"><span class="lineno">  127</span>    config.labels[<span class="stringliteral">&quot;datacenter&quot;</span>] = <span class="stringliteral">&quot;dc1&quot;</span>;</div>
+<div class="line"><span class="lineno">  128</span>    </div>
+<div class="line"><span class="lineno">  129</span>    prometheus_exporter exporter(config);</div>
+<div class="line"><span class="lineno">  130</span>    </div>
+<div class="line"><span class="lineno">  131</span>    <span class="comment">// Test monitoring_data conversion</span></div>
+<div class="line"><span class="lineno">  132</span>    <span class="keyword">auto</span> prom_metrics = exporter.convert_monitoring_data(test_data_);</div>
+<div class="line"><span class="lineno">  133</span>    EXPECT_EQ(prom_metrics.size(), 4); <span class="comment">// 4 metrics in test data</span></div>
+<div class="line"><span class="lineno">  134</span>    </div>
+<div class="line"><span class="lineno">  135</span>    <span class="comment">// Find http_requests_total metric</span></div>
+<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> it = std::find_if(prom_metrics.begin(), prom_metrics.end(),</div>
+<div class="line"><span class="lineno">  137</span>        [](<span class="keyword">const</span> prometheus_metric_data&amp; m) { return m.name == <span class="stringliteral">&quot;http_requests_total&quot;</span>; });</div>
+<div class="line"><span class="lineno">  138</span>    ASSERT_NE(it, prom_metrics.end());</div>
+<div class="line"><span class="lineno">  139</span>    </div>
+<div class="line"><span class="lineno">  140</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; requests_metric = *it;</div>
+<div class="line"><span class="lineno">  141</span>    EXPECT_EQ(requests_metric.name, <span class="stringliteral">&quot;http_requests_total&quot;</span>);</div>
+<div class="line"><span class="lineno">  142</span>    EXPECT_EQ(requests_metric.type, metric_type::counter);</div>
+<div class="line"><span class="lineno">  143</span>    EXPECT_EQ(requests_metric.value, 1500.0);</div>
+<div class="line"><span class="lineno">  144</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;component&quot;</span>), <span class="stringliteral">&quot;web_server&quot;</span>);</div>
+<div class="line"><span class="lineno">  145</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;environment&quot;</span>), <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">  146</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;datacenter&quot;</span>), <span class="stringliteral">&quot;dc1&quot;</span>);</div>
+<div class="line"><span class="lineno">  147</span>    EXPECT_EQ(requests_metric.labels.at(<span class="stringliteral">&quot;instance&quot;</span>), <span class="stringliteral">&quot;test_instance&quot;</span>);</div>
+<div class="line"><span class="lineno">  148</span>    </div>
+<div class="line"><span class="lineno">  149</span>    <span class="comment">// Test snapshot conversion</span></div>
+<div class="line"><span class="lineno">  150</span>    <span class="keyword">auto</span> snapshot_metrics = exporter.convert_snapshot(test_snapshot_);</div>
+<div class="line"><span class="lineno">  151</span>    EXPECT_EQ(snapshot_metrics.size(), 5); <span class="comment">// 5 metrics in test snapshot</span></div>
+<div class="line"><span class="lineno">  152</span>    </div>
+<div class="line"><span class="lineno">  153</span>    <span class="comment">// Check snapshot metric</span></div>
+<div class="line"><span class="lineno">  154</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; load_metric = snapshot_metrics[0];</div>
+<div class="line"><span class="lineno">  155</span>    EXPECT_EQ(load_metric.name, <span class="stringliteral">&quot;system_load_1m&quot;</span>);</div>
+<div class="line"><span class="lineno">  156</span>    EXPECT_EQ(load_metric.type, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  157</span>    EXPECT_EQ(load_metric.value, 2.1);</div>
+<div class="line"><span class="lineno">  158</span>    EXPECT_EQ(load_metric.labels.at(<span class="stringliteral">&quot;source&quot;</span>), <span class="stringliteral">&quot;system_monitor&quot;</span>);</div>
+<div class="line"><span class="lineno">  159</span>    EXPECT_EQ(load_metric.labels.at(<span class="stringliteral">&quot;host&quot;</span>), <span class="stringliteral">&quot;server01&quot;</span>);</div>
+<div class="line"><span class="lineno">  160</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="ab6150956614e8ab1afd344a42b03fcc2" name="ab6150956614e8ab1afd344a42b03fcc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6150956614e8ab1afd344a42b03fcc2">&#9670;&#160;</a></span>TEST_F() <span class="overload">[11/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6150956614e8ab1afd344a42b03fcc2">&#9670;&#160;</a></span>TEST_F() <span class="overload">[13/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -776,32 +1324,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00159">159</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  159</span>                                                  {</div>
-<div class="line"><span class="lineno">  160</span>    prometheus_metric_data metric;</div>
-<div class="line"><span class="lineno">  161</span>    metric.name = <span class="stringliteral">&quot;http_requests_total&quot;</span>;</div>
-<div class="line"><span class="lineno">  162</span>    metric.type = metric_type::counter;</div>
-<div class="line"><span class="lineno">  163</span>    metric.value = 1500.0;</div>
-<div class="line"><span class="lineno">  164</span>    metric.help_text = <span class="stringliteral">&quot;Total number of HTTP requests&quot;</span>;</div>
-<div class="line"><span class="lineno">  165</span>    metric.labels[<span class="stringliteral">&quot;method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
-<div class="line"><span class="lineno">  166</span>    metric.labels[<span class="stringliteral">&quot;status&quot;</span>] = <span class="stringliteral">&quot;200&quot;</span>;</div>
-<div class="line"><span class="lineno">  167</span>    metric.timestamp = std::chrono::system_clock::from_time_t(1640995200); <span class="comment">// Fixed timestamp: 2022-01-01 00:00:00 UTC</span></div>
-<div class="line"><span class="lineno">  168</span>    </div>
-<div class="line"><span class="lineno">  169</span>    std::string prometheus_text = metric.to_prometheus_text();</div>
-<div class="line"><span class="lineno">  170</span>    </div>
-<div class="line"><span class="lineno">  171</span>    <span class="comment">// Check format components</span></div>
-<div class="line"><span class="lineno">  172</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;# HELP http_requests_total Total number of HTTP requests&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  173</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;# TYPE http_requests_total counter&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  174</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;http_requests_total{&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  175</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;method=\&quot;GET\&quot;&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  176</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;status=\&quot;200\&quot;&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  177</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;} 1500&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  178</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00162">162</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  162</span>                                                  {</div>
+<div class="line"><span class="lineno">  163</span>    prometheus_metric_data metric;</div>
+<div class="line"><span class="lineno">  164</span>    metric.name = <span class="stringliteral">&quot;http_requests_total&quot;</span>;</div>
+<div class="line"><span class="lineno">  165</span>    metric.type = metric_type::counter;</div>
+<div class="line"><span class="lineno">  166</span>    metric.value = 1500.0;</div>
+<div class="line"><span class="lineno">  167</span>    metric.help_text = <span class="stringliteral">&quot;Total number of HTTP requests&quot;</span>;</div>
+<div class="line"><span class="lineno">  168</span>    metric.labels[<span class="stringliteral">&quot;method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><span class="lineno">  169</span>    metric.labels[<span class="stringliteral">&quot;status&quot;</span>] = <span class="stringliteral">&quot;200&quot;</span>;</div>
+<div class="line"><span class="lineno">  170</span>    metric.timestamp = std::chrono::system_clock::from_time_t(1640995200); <span class="comment">// Fixed timestamp: 2022-01-01 00:00:00 UTC</span></div>
+<div class="line"><span class="lineno">  171</span>    </div>
+<div class="line"><span class="lineno">  172</span>    std::string prometheus_text = metric.to_prometheus_text();</div>
+<div class="line"><span class="lineno">  173</span>    </div>
+<div class="line"><span class="lineno">  174</span>    <span class="comment">// Check format components</span></div>
+<div class="line"><span class="lineno">  175</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;# HELP http_requests_total Total number of HTTP requests&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  176</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;# TYPE http_requests_total counter&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  177</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;http_requests_total{&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  178</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;method=\&quot;GET\&quot;&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  179</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;status=\&quot;200\&quot;&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  180</span>    EXPECT_NE(prometheus_text.find(<span class="stringliteral">&quot;} 1500&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  181</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a7b9703cf04ab94fbd627efb90097c3ac" name="a7b9703cf04ab94fbd627efb90097c3ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b9703cf04ab94fbd627efb90097c3ac">&#9670;&#160;</a></span>TEST_F() <span class="overload">[12/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b9703cf04ab94fbd627efb90097c3ac">&#9670;&#160;</a></span>TEST_F() <span class="overload">[14/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -826,42 +1374,155 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00279">279</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  279</span>                                                              {</div>
-<div class="line"><span class="lineno">  280</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  281</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
-<div class="line"><span class="lineno">  282</span>    config.port = 8125;</div>
-<div class="line"><span class="lineno">  283</span>    config.format = metric_export_format::statsd_plain;</div>
-<div class="line"><span class="lineno">  284</span>    </div>
-<div class="line"><span class="lineno">  285</span>    statsd_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  286</span>    </div>
-<div class="line"><span class="lineno">  287</span>    <span class="comment">// Export monitoring data</span></div>
-<div class="line"><span class="lineno">  288</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
-<div class="line"><span class="lineno">  289</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
-<div class="line"><span class="lineno">  290</span>    EXPECT_TRUE(export_result.is_ok());</div>
-<div class="line"><span class="lineno">  291</span>    </div>
-<div class="line"><span class="lineno">  292</span>    <span class="comment">// Export snapshot</span></div>
-<div class="line"><span class="lineno">  293</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  294</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
-<div class="line"><span class="lineno">  295</span>    </div>
-<div class="line"><span class="lineno">  296</span>    <span class="comment">// Check statistics</span></div>
-<div class="line"><span class="lineno">  297</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
-<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 2); <span class="comment">// 1 data + 1 snapshot</span></div>
-<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
-<div class="line"><span class="lineno">  300</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;sent_packets&quot;</span>], 2); <span class="comment">// 2 UDP packets sent</span></div>
-<div class="line"><span class="lineno">  301</span>    </div>
-<div class="line"><span class="lineno">  302</span>    <span class="comment">// Test flush and shutdown</span></div>
-<div class="line"><span class="lineno">  303</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
-<div class="line"><span class="lineno">  304</span>    EXPECT_TRUE(flush_result.is_ok());</div>
-<div class="line"><span class="lineno">  305</span>    </div>
-<div class="line"><span class="lineno">  306</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
-<div class="line"><span class="lineno">  307</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
-<div class="line"><span class="lineno">  308</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  282</span>                                                              {</div>
+<div class="line"><span class="lineno">  283</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  284</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
+<div class="line"><span class="lineno">  285</span>    config.port = 8125;</div>
+<div class="line"><span class="lineno">  286</span>    config.format = metric_export_format::statsd_plain;</div>
+<div class="line"><span class="lineno">  287</span>    </div>
+<div class="line"><span class="lineno">  288</span>    statsd_exporter exporter(config);</div>
+<div class="line"><span class="lineno">  289</span>    </div>
+<div class="line"><span class="lineno">  290</span>    <span class="comment">// Export monitoring data</span></div>
+<div class="line"><span class="lineno">  291</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
+<div class="line"><span class="lineno">  292</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
+<div class="line"><span class="lineno">  293</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  294</span>    </div>
+<div class="line"><span class="lineno">  295</span>    <span class="comment">// Export snapshot</span></div>
+<div class="line"><span class="lineno">  296</span>    <span class="keyword">auto</span> snapshot_result = exporter.export_snapshot(test_snapshot_);</div>
+<div class="line"><span class="lineno">  297</span>    EXPECT_TRUE(snapshot_result.is_ok());</div>
+<div class="line"><span class="lineno">  298</span>    </div>
+<div class="line"><span class="lineno">  299</span>    <span class="comment">// Check statistics</span></div>
+<div class="line"><span class="lineno">  300</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  301</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_metrics&quot;</span>], 2); <span class="comment">// 1 data + 1 snapshot</span></div>
+<div class="line"><span class="lineno">  302</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 0);</div>
+<div class="line"><span class="lineno">  303</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;sent_packets&quot;</span>], 2); <span class="comment">// 2 UDP packets sent</span></div>
+<div class="line"><span class="lineno">  304</span>    </div>
+<div class="line"><span class="lineno">  305</span>    <span class="comment">// Test flush and shutdown</span></div>
+<div class="line"><span class="lineno">  306</span>    <span class="keyword">auto</span> flush_result = exporter.flush();</div>
+<div class="line"><span class="lineno">  307</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  308</span>    </div>
+<div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> shutdown_result = exporter.shutdown();</div>
+<div class="line"><span class="lineno">  310</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
+<div class="line"><span class="lineno">  311</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a1012ceac747be854b5fd8176ba367a11" name="a1012ceac747be854b5fd8176ba367a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1012ceac747be854b5fd8176ba367a11">&#9670;&#160;</a></span>TEST_F() <span class="overload">[15/19]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StatsDExporterTransportFailure&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00743">743</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  743</span>                                                            {</div>
+<div class="line"><span class="lineno">  744</span>    <span class="keyword">auto</span> stub_transport = create_stub_udp_transport();</div>
+<div class="line"><span class="lineno">  745</span>    stub_transport-&gt;set_simulate_success(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  746</span> </div>
+<div class="line"><span class="lineno">  747</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  748</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
+<div class="line"><span class="lineno">  749</span>    config.port = 8125;</div>
+<div class="line"><span class="lineno">  750</span>    config.format = metric_export_format::statsd_plain;</div>
+<div class="line"><span class="lineno">  751</span> </div>
+<div class="line"><span class="lineno">  752</span>    statsd_exporter exporter(config, std::move(stub_transport));</div>
+<div class="line"><span class="lineno">  753</span> </div>
+<div class="line"><span class="lineno">  754</span>    <span class="comment">// Export should fail due to transport failure</span></div>
+<div class="line"><span class="lineno">  755</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
+<div class="line"><span class="lineno">  756</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
+<div class="line"><span class="lineno">  757</span>    EXPECT_TRUE(export_result.is_err());</div>
+<div class="line"><span class="lineno">  758</span> </div>
+<div class="line"><span class="lineno">  759</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  760</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;failed_exports&quot;</span>], 1);</div>
+<div class="line"><span class="lineno">  761</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa5411389d3461a5bc373425c30c122fe" name="aa5411389d3461a5bc373425c30c122fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5411389d3461a5bc373425c30c122fe">&#9670;&#160;</a></span>TEST_F() <span class="overload">[16/19]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d66/classMetricExportersTest.html">MetricExportersTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StatsDExporterWithCustomTransport&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00708">708</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  708</span>                                                               {</div>
+<div class="line"><span class="lineno">  709</span>    <span class="keyword">auto</span> stub_transport = create_stub_udp_transport();</div>
+<div class="line"><span class="lineno">  710</span>    <span class="keyword">auto</span>* transport_ptr = stub_transport.get();</div>
+<div class="line"><span class="lineno">  711</span> </div>
+<div class="line"><span class="lineno">  712</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  713</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
+<div class="line"><span class="lineno">  714</span>    config.port = 8125;</div>
+<div class="line"><span class="lineno">  715</span>    config.format = metric_export_format::statsd_datadog;</div>
+<div class="line"><span class="lineno">  716</span> </div>
+<div class="line"><span class="lineno">  717</span>    statsd_exporter exporter(config, std::move(stub_transport));</div>
+<div class="line"><span class="lineno">  718</span> </div>
+<div class="line"><span class="lineno">  719</span>    <span class="comment">// Start the exporter</span></div>
+<div class="line"><span class="lineno">  720</span>    <span class="keyword">auto</span> start_result = exporter.start();</div>
+<div class="line"><span class="lineno">  721</span>    EXPECT_TRUE(start_result.is_ok());</div>
+<div class="line"><span class="lineno">  722</span> </div>
+<div class="line"><span class="lineno">  723</span>    <span class="comment">// Export metrics</span></div>
+<div class="line"><span class="lineno">  724</span>    std::vector&lt;monitoring_data&gt; data_batch = {test_data_};</div>
+<div class="line"><span class="lineno">  725</span>    <span class="keyword">auto</span> export_result = exporter.export_metrics(data_batch);</div>
+<div class="line"><span class="lineno">  726</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  727</span> </div>
+<div class="line"><span class="lineno">  728</span>    <span class="comment">// Check transport was used</span></div>
+<div class="line"><span class="lineno">  729</span>    <span class="keyword">auto</span> transport_stats = transport_ptr-&gt;get_statistics();</div>
+<div class="line"><span class="lineno">  730</span>    EXPECT_GT(transport_stats.packets_sent, 0);</div>
+<div class="line"><span class="lineno">  731</span>    EXPECT_GT(transport_stats.bytes_sent, 0);</div>
+<div class="line"><span class="lineno">  732</span> </div>
+<div class="line"><span class="lineno">  733</span>    <span class="comment">// Get exporter stats (includes transport stats)</span></div>
+<div class="line"><span class="lineno">  734</span>    <span class="keyword">auto</span> stats = exporter.get_stats();</div>
+<div class="line"><span class="lineno">  735</span>    EXPECT_GT(stats[<span class="stringliteral">&quot;transport_packets_sent&quot;</span>], 0);</div>
+<div class="line"><span class="lineno">  736</span>    EXPECT_GT(stats[<span class="stringliteral">&quot;transport_bytes_sent&quot;</span>], 0);</div>
+<div class="line"><span class="lineno">  737</span> </div>
+<div class="line"><span class="lineno">  738</span>    <span class="comment">// Stop the exporter</span></div>
+<div class="line"><span class="lineno">  739</span>    <span class="keyword">auto</span> stop_result = exporter.stop();</div>
+<div class="line"><span class="lineno">  740</span>    EXPECT_TRUE(stop_result.is_ok());</div>
+<div class="line"><span class="lineno">  741</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a27f6a7296c10ed7960f3297350698f46" name="a27f6a7296c10ed7960f3297350698f46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27f6a7296c10ed7960f3297350698f46">&#9670;&#160;</a></span>TEST_F() <span class="overload">[13/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a27f6a7296c10ed7960f3297350698f46">&#9670;&#160;</a></span>TEST_F() <span class="overload">[17/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -886,44 +1547,44 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00216">216</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  216</span>                                                    {</div>
-<div class="line"><span class="lineno">  217</span>    metric_export_config config;</div>
-<div class="line"><span class="lineno">  218</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
-<div class="line"><span class="lineno">  219</span>    config.port = 8125;</div>
-<div class="line"><span class="lineno">  220</span>    config.format = metric_export_format::statsd_datadog;</div>
-<div class="line"><span class="lineno">  221</span>    config.instance_id = <span class="stringliteral">&quot;test_instance&quot;</span>;</div>
-<div class="line"><span class="lineno">  222</span>    config.labels[<span class="stringliteral">&quot;datacenter&quot;</span>] = <span class="stringliteral">&quot;dc1&quot;</span>;</div>
-<div class="line"><span class="lineno">  223</span>    </div>
-<div class="line"><span class="lineno">  224</span>    statsd_exporter exporter(config);</div>
-<div class="line"><span class="lineno">  225</span>    </div>
-<div class="line"><span class="lineno">  226</span>    <span class="comment">// Test monitoring_data conversion</span></div>
-<div class="line"><span class="lineno">  227</span>    <span class="keyword">auto</span> statsd_metrics = exporter.convert_monitoring_data(test_data_);</div>
-<div class="line"><span class="lineno">  228</span>    EXPECT_EQ(statsd_metrics.size(), 4); <span class="comment">// 4 metrics in test data</span></div>
-<div class="line"><span class="lineno">  229</span>    </div>
-<div class="line"><span class="lineno">  230</span>    <span class="comment">// Find http_requests_total metric</span></div>
-<div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> it = std::find_if(statsd_metrics.begin(), statsd_metrics.end(),</div>
-<div class="line"><span class="lineno">  232</span>        [](<span class="keyword">const</span> statsd_metric_data&amp; m) { return m.name == <span class="stringliteral">&quot;http_requests_total&quot;</span>; });</div>
-<div class="line"><span class="lineno">  233</span>    ASSERT_NE(it, statsd_metrics.end());</div>
-<div class="line"><span class="lineno">  234</span>    </div>
-<div class="line"><span class="lineno">  235</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; requests_metric = *it;</div>
-<div class="line"><span class="lineno">  236</span>    EXPECT_EQ(requests_metric.name, <span class="stringliteral">&quot;http_requests_total&quot;</span>);</div>
-<div class="line"><span class="lineno">  237</span>    EXPECT_EQ(requests_metric.type, metric_type::counter);</div>
-<div class="line"><span class="lineno">  238</span>    EXPECT_EQ(requests_metric.value, 1500.0);</div>
-<div class="line"><span class="lineno">  239</span>    EXPECT_EQ(requests_metric.sample_rate, 1.0);</div>
-<div class="line"><span class="lineno">  240</span>    EXPECT_EQ(requests_metric.tags.at(<span class="stringliteral">&quot;component&quot;</span>), <span class="stringliteral">&quot;web_server&quot;</span>);</div>
-<div class="line"><span class="lineno">  241</span>    EXPECT_EQ(requests_metric.tags.at(<span class="stringliteral">&quot;environment&quot;</span>), <span class="stringliteral">&quot;production&quot;</span>);</div>
-<div class="line"><span class="lineno">  242</span>    EXPECT_EQ(requests_metric.tags.at(<span class="stringliteral">&quot;datacenter&quot;</span>), <span class="stringliteral">&quot;dc1&quot;</span>);</div>
-<div class="line"><span class="lineno">  243</span>    </div>
-<div class="line"><span class="lineno">  244</span>    <span class="comment">// Test snapshot conversion</span></div>
-<div class="line"><span class="lineno">  245</span>    <span class="keyword">auto</span> snapshot_metrics = exporter.convert_snapshot(test_snapshot_);</div>
-<div class="line"><span class="lineno">  246</span>    EXPECT_EQ(snapshot_metrics.size(), 5); <span class="comment">// 5 metrics in test snapshot</span></div>
-<div class="line"><span class="lineno">  247</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00219">219</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  219</span>                                                    {</div>
+<div class="line"><span class="lineno">  220</span>    metric_export_config config;</div>
+<div class="line"><span class="lineno">  221</span>    config.endpoint = <span class="stringliteral">&quot;statsd.example.com&quot;</span>;</div>
+<div class="line"><span class="lineno">  222</span>    config.port = 8125;</div>
+<div class="line"><span class="lineno">  223</span>    config.format = metric_export_format::statsd_datadog;</div>
+<div class="line"><span class="lineno">  224</span>    config.instance_id = <span class="stringliteral">&quot;test_instance&quot;</span>;</div>
+<div class="line"><span class="lineno">  225</span>    config.labels[<span class="stringliteral">&quot;datacenter&quot;</span>] = <span class="stringliteral">&quot;dc1&quot;</span>;</div>
+<div class="line"><span class="lineno">  226</span>    </div>
+<div class="line"><span class="lineno">  227</span>    statsd_exporter exporter(config);</div>
+<div class="line"><span class="lineno">  228</span>    </div>
+<div class="line"><span class="lineno">  229</span>    <span class="comment">// Test monitoring_data conversion</span></div>
+<div class="line"><span class="lineno">  230</span>    <span class="keyword">auto</span> statsd_metrics = exporter.convert_monitoring_data(test_data_);</div>
+<div class="line"><span class="lineno">  231</span>    EXPECT_EQ(statsd_metrics.size(), 4); <span class="comment">// 4 metrics in test data</span></div>
+<div class="line"><span class="lineno">  232</span>    </div>
+<div class="line"><span class="lineno">  233</span>    <span class="comment">// Find http_requests_total metric</span></div>
+<div class="line"><span class="lineno">  234</span>    <span class="keyword">auto</span> it = std::find_if(statsd_metrics.begin(), statsd_metrics.end(),</div>
+<div class="line"><span class="lineno">  235</span>        [](<span class="keyword">const</span> statsd_metric_data&amp; m) { return m.name == <span class="stringliteral">&quot;http_requests_total&quot;</span>; });</div>
+<div class="line"><span class="lineno">  236</span>    ASSERT_NE(it, statsd_metrics.end());</div>
+<div class="line"><span class="lineno">  237</span>    </div>
+<div class="line"><span class="lineno">  238</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; requests_metric = *it;</div>
+<div class="line"><span class="lineno">  239</span>    EXPECT_EQ(requests_metric.name, <span class="stringliteral">&quot;http_requests_total&quot;</span>);</div>
+<div class="line"><span class="lineno">  240</span>    EXPECT_EQ(requests_metric.type, metric_type::counter);</div>
+<div class="line"><span class="lineno">  241</span>    EXPECT_EQ(requests_metric.value, 1500.0);</div>
+<div class="line"><span class="lineno">  242</span>    EXPECT_EQ(requests_metric.sample_rate, 1.0);</div>
+<div class="line"><span class="lineno">  243</span>    EXPECT_EQ(requests_metric.tags.at(<span class="stringliteral">&quot;component&quot;</span>), <span class="stringliteral">&quot;web_server&quot;</span>);</div>
+<div class="line"><span class="lineno">  244</span>    EXPECT_EQ(requests_metric.tags.at(<span class="stringliteral">&quot;environment&quot;</span>), <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">  245</span>    EXPECT_EQ(requests_metric.tags.at(<span class="stringliteral">&quot;datacenter&quot;</span>), <span class="stringliteral">&quot;dc1&quot;</span>);</div>
+<div class="line"><span class="lineno">  246</span>    </div>
+<div class="line"><span class="lineno">  247</span>    <span class="comment">// Test snapshot conversion</span></div>
+<div class="line"><span class="lineno">  248</span>    <span class="keyword">auto</span> snapshot_metrics = exporter.convert_snapshot(test_snapshot_);</div>
+<div class="line"><span class="lineno">  249</span>    EXPECT_EQ(snapshot_metrics.size(), 5); <span class="comment">// 5 metrics in test snapshot</span></div>
+<div class="line"><span class="lineno">  250</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a09cf9762f53e421723a18f0b4466f8b5" name="a09cf9762f53e421723a18f0b4466f8b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09cf9762f53e421723a18f0b4466f8b5">&#9670;&#160;</a></span>TEST_F() <span class="overload">[14/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a09cf9762f53e421723a18f0b4466f8b5">&#9670;&#160;</a></span>TEST_F() <span class="overload">[18/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -948,41 +1609,41 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00249">249</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  249</span>                                              {</div>
-<div class="line"><span class="lineno">  250</span>    statsd_metric_data counter_metric;</div>
-<div class="line"><span class="lineno">  251</span>    counter_metric.name = <span class="stringliteral">&quot;http_requests_total&quot;</span>;</div>
-<div class="line"><span class="lineno">  252</span>    counter_metric.type = metric_type::counter;</div>
-<div class="line"><span class="lineno">  253</span>    counter_metric.value = 1500.0;</div>
-<div class="line"><span class="lineno">  254</span>    counter_metric.sample_rate = 1.0;</div>
-<div class="line"><span class="lineno">  255</span>    counter_metric.tags[<span class="stringliteral">&quot;method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
-<div class="line"><span class="lineno">  256</span>    counter_metric.tags[<span class="stringliteral">&quot;status&quot;</span>] = <span class="stringliteral">&quot;200&quot;</span>;</div>
-<div class="line"><span class="lineno">  257</span>    </div>
-<div class="line"><span class="lineno">  258</span>    <span class="comment">// Test plain StatsD format</span></div>
-<div class="line"><span class="lineno">  259</span>    std::string plain_statsd = counter_metric.to_statsd_format(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  260</span>    EXPECT_EQ(plain_statsd, <span class="stringliteral">&quot;http_requests_total:1500|c&quot;</span>);</div>
-<div class="line"><span class="lineno">  261</span>    </div>
-<div class="line"><span class="lineno">  262</span>    <span class="comment">// Test DataDog format with tags</span></div>
-<div class="line"><span class="lineno">  263</span>    std::string datadog_statsd = counter_metric.to_statsd_format(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  264</span>    EXPECT_NE(datadog_statsd.find(<span class="stringliteral">&quot;http_requests_total:1500|c|#&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  265</span>    EXPECT_NE(datadog_statsd.find(<span class="stringliteral">&quot;method:GET&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  266</span>    EXPECT_NE(datadog_statsd.find(<span class="stringliteral">&quot;status:200&quot;</span>), std::string::npos);</div>
-<div class="line"><span class="lineno">  267</span>    </div>
-<div class="line"><span class="lineno">  268</span>    <span class="comment">// Test timer metric</span></div>
-<div class="line"><span class="lineno">  269</span>    statsd_metric_data timer_metric;</div>
-<div class="line"><span class="lineno">  270</span>    timer_metric.name = <span class="stringliteral">&quot;request_duration&quot;</span>;</div>
-<div class="line"><span class="lineno">  271</span>    timer_metric.type = metric_type::timer;</div>
-<div class="line"><span class="lineno">  272</span>    timer_metric.value = 250.0;</div>
-<div class="line"><span class="lineno">  273</span>    timer_metric.sample_rate = 0.1;</div>
-<div class="line"><span class="lineno">  274</span>    </div>
-<div class="line"><span class="lineno">  275</span>    std::string timer_statsd = timer_metric.to_statsd_format(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  276</span>    EXPECT_EQ(timer_statsd, <span class="stringliteral">&quot;request_duration:250|ms|@0.1&quot;</span>);</div>
-<div class="line"><span class="lineno">  277</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00252">252</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  252</span>                                              {</div>
+<div class="line"><span class="lineno">  253</span>    statsd_metric_data counter_metric;</div>
+<div class="line"><span class="lineno">  254</span>    counter_metric.name = <span class="stringliteral">&quot;http_requests_total&quot;</span>;</div>
+<div class="line"><span class="lineno">  255</span>    counter_metric.type = metric_type::counter;</div>
+<div class="line"><span class="lineno">  256</span>    counter_metric.value = 1500.0;</div>
+<div class="line"><span class="lineno">  257</span>    counter_metric.sample_rate = 1.0;</div>
+<div class="line"><span class="lineno">  258</span>    counter_metric.tags[<span class="stringliteral">&quot;method&quot;</span>] = <span class="stringliteral">&quot;GET&quot;</span>;</div>
+<div class="line"><span class="lineno">  259</span>    counter_metric.tags[<span class="stringliteral">&quot;status&quot;</span>] = <span class="stringliteral">&quot;200&quot;</span>;</div>
+<div class="line"><span class="lineno">  260</span>    </div>
+<div class="line"><span class="lineno">  261</span>    <span class="comment">// Test plain StatsD format</span></div>
+<div class="line"><span class="lineno">  262</span>    std::string plain_statsd = counter_metric.to_statsd_format(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(plain_statsd, <span class="stringliteral">&quot;http_requests_total:1500|c&quot;</span>);</div>
+<div class="line"><span class="lineno">  264</span>    </div>
+<div class="line"><span class="lineno">  265</span>    <span class="comment">// Test DataDog format with tags</span></div>
+<div class="line"><span class="lineno">  266</span>    std::string datadog_statsd = counter_metric.to_statsd_format(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  267</span>    EXPECT_NE(datadog_statsd.find(<span class="stringliteral">&quot;http_requests_total:1500|c|#&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  268</span>    EXPECT_NE(datadog_statsd.find(<span class="stringliteral">&quot;method:GET&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  269</span>    EXPECT_NE(datadog_statsd.find(<span class="stringliteral">&quot;status:200&quot;</span>), std::string::npos);</div>
+<div class="line"><span class="lineno">  270</span>    </div>
+<div class="line"><span class="lineno">  271</span>    <span class="comment">// Test timer metric</span></div>
+<div class="line"><span class="lineno">  272</span>    statsd_metric_data timer_metric;</div>
+<div class="line"><span class="lineno">  273</span>    timer_metric.name = <span class="stringliteral">&quot;request_duration&quot;</span>;</div>
+<div class="line"><span class="lineno">  274</span>    timer_metric.type = metric_type::timer;</div>
+<div class="line"><span class="lineno">  275</span>    timer_metric.value = 250.0;</div>
+<div class="line"><span class="lineno">  276</span>    timer_metric.sample_rate = 0.1;</div>
+<div class="line"><span class="lineno">  277</span>    </div>
+<div class="line"><span class="lineno">  278</span>    std::string timer_statsd = timer_metric.to_statsd_format(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  279</span>    EXPECT_EQ(timer_statsd, <span class="stringliteral">&quot;request_duration:250|ms|@0.1&quot;</span>);</div>
+<div class="line"><span class="lineno">  280</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="afc09b1feee613daf1cf2bd0c8efc7fff" name="afc09b1feee613daf1cf2bd0c8efc7fff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc09b1feee613daf1cf2bd0c8efc7fff">&#9670;&#160;</a></span>TEST_F() <span class="overload">[15/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afc09b1feee613daf1cf2bd0c8efc7fff">&#9670;&#160;</a></span>TEST_F() <span class="overload">[19/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1007,37 +1668,37 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00374">374</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  374</span>                                                   {</div>
-<div class="line"><span class="lineno">  375</span>    <span class="keyword">auto</span> prometheus_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;prometheus&quot;</span>);</div>
-<div class="line"><span class="lineno">  376</span>    EXPECT_EQ(prometheus_formats.size(), 2);</div>
-<div class="line"><span class="lineno">  377</span>    EXPECT_TRUE(std::find(prometheus_formats.begin(), prometheus_formats.end(), </div>
-<div class="line"><span class="lineno">  378</span>                         metric_export_format::prometheus_text) != prometheus_formats.end());</div>
-<div class="line"><span class="lineno">  379</span>    EXPECT_TRUE(std::find(prometheus_formats.begin(), prometheus_formats.end(), </div>
-<div class="line"><span class="lineno">  380</span>                         metric_export_format::prometheus_protobuf) != prometheus_formats.end());</div>
-<div class="line"><span class="lineno">  381</span>    </div>
-<div class="line"><span class="lineno">  382</span>    <span class="keyword">auto</span> statsd_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;statsd&quot;</span>);</div>
-<div class="line"><span class="lineno">  383</span>    EXPECT_EQ(statsd_formats.size(), 2);</div>
-<div class="line"><span class="lineno">  384</span>    EXPECT_TRUE(std::find(statsd_formats.begin(), statsd_formats.end(), </div>
-<div class="line"><span class="lineno">  385</span>                         metric_export_format::statsd_plain) != statsd_formats.end());</div>
-<div class="line"><span class="lineno">  386</span>    EXPECT_TRUE(std::find(statsd_formats.begin(), statsd_formats.end(), </div>
-<div class="line"><span class="lineno">  387</span>                         metric_export_format::statsd_datadog) != statsd_formats.end());</div>
-<div class="line"><span class="lineno">  388</span>    </div>
-<div class="line"><span class="lineno">  389</span>    <span class="keyword">auto</span> otlp_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;otlp&quot;</span>);</div>
-<div class="line"><span class="lineno">  390</span>    EXPECT_EQ(otlp_formats.size(), 3);</div>
-<div class="line"><span class="lineno">  391</span>    EXPECT_TRUE(std::find(otlp_formats.begin(), otlp_formats.end(), </div>
-<div class="line"><span class="lineno">  392</span>                         metric_export_format::otlp_grpc) != otlp_formats.end());</div>
-<div class="line"><span class="lineno">  393</span>    </div>
-<div class="line"><span class="lineno">  394</span>    <span class="keyword">auto</span> unknown_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;unknown&quot;</span>);</div>
-<div class="line"><span class="lineno">  395</span>    EXPECT_EQ(unknown_formats.size(), 0);</div>
-<div class="line"><span class="lineno">  396</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html#l00377">377</a> of file <a class="el" href="../../dc/d07/test__metric__exporters_8cpp_source.html">test_metric_exporters.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  377</span>                                                   {</div>
+<div class="line"><span class="lineno">  378</span>    <span class="keyword">auto</span> prometheus_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;prometheus&quot;</span>);</div>
+<div class="line"><span class="lineno">  379</span>    EXPECT_EQ(prometheus_formats.size(), 2);</div>
+<div class="line"><span class="lineno">  380</span>    EXPECT_TRUE(std::find(prometheus_formats.begin(), prometheus_formats.end(), </div>
+<div class="line"><span class="lineno">  381</span>                         metric_export_format::prometheus_text) != prometheus_formats.end());</div>
+<div class="line"><span class="lineno">  382</span>    EXPECT_TRUE(std::find(prometheus_formats.begin(), prometheus_formats.end(), </div>
+<div class="line"><span class="lineno">  383</span>                         metric_export_format::prometheus_protobuf) != prometheus_formats.end());</div>
+<div class="line"><span class="lineno">  384</span>    </div>
+<div class="line"><span class="lineno">  385</span>    <span class="keyword">auto</span> statsd_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;statsd&quot;</span>);</div>
+<div class="line"><span class="lineno">  386</span>    EXPECT_EQ(statsd_formats.size(), 2);</div>
+<div class="line"><span class="lineno">  387</span>    EXPECT_TRUE(std::find(statsd_formats.begin(), statsd_formats.end(), </div>
+<div class="line"><span class="lineno">  388</span>                         metric_export_format::statsd_plain) != statsd_formats.end());</div>
+<div class="line"><span class="lineno">  389</span>    EXPECT_TRUE(std::find(statsd_formats.begin(), statsd_formats.end(), </div>
+<div class="line"><span class="lineno">  390</span>                         metric_export_format::statsd_datadog) != statsd_formats.end());</div>
+<div class="line"><span class="lineno">  391</span>    </div>
+<div class="line"><span class="lineno">  392</span>    <span class="keyword">auto</span> otlp_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;otlp&quot;</span>);</div>
+<div class="line"><span class="lineno">  393</span>    EXPECT_EQ(otlp_formats.size(), 3);</div>
+<div class="line"><span class="lineno">  394</span>    EXPECT_TRUE(std::find(otlp_formats.begin(), otlp_formats.end(), </div>
+<div class="line"><span class="lineno">  395</span>                         metric_export_format::otlp_grpc) != otlp_formats.end());</div>
+<div class="line"><span class="lineno">  396</span>    </div>
+<div class="line"><span class="lineno">  397</span>    <span class="keyword">auto</span> unknown_formats = metric_exporter_factory::get_supported_formats(<span class="stringliteral">&quot;unknown&quot;</span>);</div>
+<div class="line"><span class="lineno">  398</span>    EXPECT_EQ(unknown_formats.size(), 0);</div>
+<div class="line"><span class="lineno">  399</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 22 2025 15:54:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Dec 26 2025 02:19:06 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
