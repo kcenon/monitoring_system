@@ -57,6 +57,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **vcpkg manifest: Add ecosystem dependencies** (#277)
+  - Added `kcenon-common-system` as required dependency
+  - Added `kcenon-thread-system` as required dependency
+  - Added `logging` feature with `kcenon-logger-system` dependency
+  - Follows vcpkg ecosystem standard template
 - **UDP and gRPC transport implementations** (#273)
   - Added `udp_transport.h` with abstract interface for UDP communication
   - Added `grpc_transport.h` with abstract interface for gRPC communication

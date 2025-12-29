@@ -7,8 +7,17 @@
   "homepage": "https://github.com/kcenon/monitoring_system",
   "license": "BSD-3-Clause",
   "supports": "!(uwp | xbox)",
-  "dependencies": [],
+  "dependencies": [
+    "kcenon-common-system",
+    "kcenon-thread-system"
+  ],
   "features": {
+    "logging": {
+      "description": "Enable logger_system integration for audit logging",
+      "dependencies": [
+        "kcenon-logger-system"
+      ]
+    },
     "testing": {
       "description": "Build unit tests",
       "dependencies": [
