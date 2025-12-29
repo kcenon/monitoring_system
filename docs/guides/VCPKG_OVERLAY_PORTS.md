@@ -13,7 +13,7 @@ The `vcpkg-ports/` directory contains overlay port definitions for local testing
 | kcenon-common-system | 0.2.0 | Foundation library with Result<T> pattern and interfaces |
 | kcenon-thread-system | 0.3.0 | High-performance multithreading framework |
 | kcenon-logger-system | 0.1.0 | High-performance async logging framework |
-| kcenon-monitoring-system | 2.0.0 | Monitoring system with metrics and tracing |
+| kcenon-monitoring-system | 0.1.0 | Monitoring system with metrics, tracing, and container monitoring |
 
 ## Prerequisites
 
@@ -88,15 +88,31 @@ cmake -B build \
 
 ```
 kcenon-monitoring-system
-├── kcenon-common-system
-├── kcenon-thread-system
+├── kcenon-common-system (required)
+├── kcenon-thread-system (required)
 │   └── kcenon-common-system
 │   └── libiconv (non-Windows)
-└── [optional] kcenon-logger-system
-    ├── kcenon-common-system
-    ├── kcenon-thread-system
-    ├── fmt
-    └── libiconv (non-Windows)
+├── [logging] kcenon-logger-system
+│   ├── kcenon-common-system
+│   ├── kcenon-thread-system
+│   ├── fmt
+│   └── libiconv (non-Windows)
+└── [network] (enables HTTP metrics export)
+```
+
+## Optional Features
+
+### monitoring-system Features
+
+| Feature | Description |
+|---------|-------------|
+| `logging` | Enable logger_system integration for structured logging and audit trails |
+| `network` | Enable network_system integration for HTTP metrics export (OTLP, Prometheus) |
+
+```bash
+# Install with optional features
+vcpkg install kcenon-monitoring-system[logging] --overlay-ports=./vcpkg-ports
+vcpkg install kcenon-monitoring-system[logging,network] --overlay-ports=./vcpkg-ports
 ```
 
 ## Testing Status

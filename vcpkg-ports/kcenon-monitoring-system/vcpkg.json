@@ -1,8 +1,8 @@
 {
   "name": "kcenon-monitoring-system",
-  "version": "2.0.0",
+  "version": "0.1.0",
   "port-version": 0,
-  "description": "High-performance C++20 monitoring system with metrics, tracing, and alerting",
+  "description": "High-performance C++20 monitoring system with metrics collection, distributed tracing, and container monitoring",
   "homepage": "https://github.com/kcenon/monitoring_system",
   "license": "BSD-3-Clause",
   "supports": "!(uwp | xbox)",
@@ -20,10 +20,14 @@
   ],
   "features": {
     "logging": {
-      "description": "Enable logger_system integration for audit logging",
+      "description": "Enable logger_system integration for structured logging and audit trails",
       "dependencies": [
         "kcenon-logger-system"
       ]
+    },
+    "network": {
+      "description": "Enable network_system integration for HTTP metrics export (OTLP, Prometheus)",
+      "dependencies": []
     }
   }
 }
