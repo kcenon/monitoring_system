@@ -57,6 +57,11 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **vcpkg manifest: 에코시스템 의존성 추가** (#277)
+  - `kcenon-common-system`을 필수 의존성으로 추가
+  - `kcenon-thread-system`을 필수 의존성으로 추가
+  - `kcenon-logger-system` 의존성을 가진 `logging` 기능 추가
+  - vcpkg 에코시스템 표준 템플릿 준수
 - **UDP 및 gRPC 전송 구현** (#273)
   - UDP 통신용 추상 인터페이스 `udp_transport.h` 추가
   - gRPC 통신용 추상 인터페이스 `grpc_transport.h` 추가
