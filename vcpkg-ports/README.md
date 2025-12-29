@@ -12,7 +12,7 @@ These overlay ports enable local testing of the kcenon packages before official 
 |---------|---------|--------------|
 | kcenon-common-system | 0.2.0 | None |
 | kcenon-thread-system | 0.3.0 | common-system, libiconv |
-| kcenon-logger-system | 1.0.0 | common-system, thread-system, fmt |
+| kcenon-logger-system | 0.1.0 | common-system, thread-system, fmt, libiconv |
 | kcenon-monitoring-system | 2.0.0 | common-system, thread-system |
 
 ## Quick Start
