@@ -1,12 +1,21 @@
 {
   "name": "kcenon-logger-system",
-  "version": "1.0.0",
-  "port-version": 0,
-  "description": "High-performance C++20 async logging library with file rotation and console output",
+  "version": "0.1.0",
+  "description": "High-performance C++20 async logging framework with 4.34M msg/sec throughput, 148ns latency, and modular architecture",
   "homepage": "https://github.com/kcenon/logger_system",
   "license": "BSD-3-Clause",
   "supports": "!(uwp | xbox)",
   "dependencies": [
+    "kcenon-common-system",
+    "kcenon-thread-system",
+    {
+      "name": "fmt",
+      "version>=": "10.0.0"
+    },
+    {
+      "name": "libiconv",
+      "platform": "!windows"
+    },
     {
       "name": "vcpkg-cmake",
       "host": true
@@ -14,12 +23,6 @@
     {
       "name": "vcpkg-cmake-config",
       "host": true
-    },
-    {
-      "name": "fmt",
-      "version>=": "10.0.0"
-    },
-    "kcenon-common-system",
-    "kcenon-thread-system"
+    }
   ]
 }
