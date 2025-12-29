@@ -15,6 +15,10 @@ vcpkg_cmake_configure(
         -DBUILD_TESTING=OFF
         -DBUILD_BENCHMARKS=OFF
         -DBUILD_SAMPLES=OFF
+    MAYBE_UNUSED_VARIABLES
+        BUILD_TESTING
+        BUILD_BENCHMARKS
+        BUILD_SAMPLES
 )
 
 vcpkg_cmake_install()

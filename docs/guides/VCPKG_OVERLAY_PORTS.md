@@ -98,11 +98,29 @@ kcenon-monitoring-system
     └── fmt
 ```
 
+## Testing Status
+
+| Port | vcpkg Install | Build | Notes |
+|------|---------------|-------|-------|
+| kcenon-common-system | ✅ Pass | ✅ Pass | Header-only library |
+| kcenon-thread-system | ✅ Pass | ⚠️ Blocked | Upstream CMake issue (common_system linking) |
+| kcenon-logger-system | ✅ Pass | ⚠️ Blocked | Depends on thread_system fix |
+| kcenon-monitoring-system | ✅ Pass | ⚠️ Blocked | Depends on thread_system fix |
+
+### Known Issues
+
+The `thread_system`, `logger_system`, and `monitoring_system` builds are blocked due to an upstream CMake configuration issue:
+
+- **Problem**: `ThreadSystemDependencies.cmake` finds `common_system` via `find_package()` but doesn't link the `kcenon::common_system` target to the `ThreadSystem` library
+- **Symptom**: Build fails with "fatal error: 'kcenon/common/patterns/result.h' file not found"
+- **Solution**: Upstream repositories need to update their CMake configuration to properly link the `kcenon::common_system` target
+
 ## Notes
 
 - These overlay ports use `HEAD_REF main` for development
 - SHA512 hashes are placeholder values (update after release)
 - For production, wait for official vcpkg registry submission
+- Port definitions include `MAYBE_UNUSED_VARIABLES` to suppress CMake warnings
 
 ## Related Issues
 
