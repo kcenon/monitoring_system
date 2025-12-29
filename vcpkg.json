@@ -1,19 +1,24 @@
 {
-  "name": "monitoring-system",
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "kcenon-monitoring-system",
   "version": "2.0.0",
-  "description": "High-performance monitoring system for C++ applications",
+  "port-version": 0,
+  "description": "High-performance C++20 monitoring system with metrics, tracing, and alerting",
   "homepage": "https://github.com/kcenon/monitoring_system",
-  "dependencies": [
-    "gtest"
-  ],
+  "license": "BSD-3-Clause",
+  "supports": "!(uwp | xbox)",
+  "dependencies": [],
   "features": {
-    "thread-system": {
-      "description": "Enable thread_system integration",
-      "dependencies": []
-    },
-    "logger-system": {
-      "description": "Enable logger_system integration",
-      "dependencies": []
+    "testing": {
+      "description": "Build unit tests",
+      "dependencies": [
+        {
+          "name": "gtest",
+          "features": [
+            "gmock"
+          ]
+        }
+      ]
     }
   }
 }
