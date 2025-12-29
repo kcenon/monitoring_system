@@ -1,12 +1,16 @@
 {
   "name": "kcenon-thread-system",
-  "version": "3.0.0",
-  "port-version": 0,
+  "version": "0.3.0",
   "description": "High-performance C++20 multithreading framework with lock-free queues and adaptive optimization",
   "homepage": "https://github.com/kcenon/thread_system",
   "license": "BSD-3-Clause",
   "supports": "!(uwp | xbox)",
   "dependencies": [
+    "kcenon-common-system",
+    {
+      "name": "libiconv",
+      "platform": "!windows"
+    },
     {
       "name": "vcpkg-cmake",
       "host": true
@@ -14,11 +18,6 @@
     {
       "name": "vcpkg-cmake-config",
       "host": true
-    },
-    {
-      "name": "libiconv",
-      "platform": "!windows"
-    },
-    "kcenon-common-system"
+    }
   ]
 }
