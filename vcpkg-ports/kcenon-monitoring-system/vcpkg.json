@@ -1,0 +1,29 @@
+{
+  "name": "kcenon-monitoring-system",
+  "version": "2.0.0",
+  "port-version": 0,
+  "description": "High-performance C++20 monitoring system with metrics, tracing, and alerting",
+  "homepage": "https://github.com/kcenon/monitoring_system",
+  "license": "BSD-3-Clause",
+  "supports": "!(uwp | xbox)",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    },
+    "kcenon-common-system",
+    "kcenon-thread-system"
+  ],
+  "features": {
+    "logging": {
+      "description": "Enable logger_system integration for audit logging",
+      "dependencies": [
+        "kcenon-logger-system"
+      ]
+    }
+  }
+}
