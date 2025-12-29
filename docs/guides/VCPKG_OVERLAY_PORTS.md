@@ -10,7 +10,7 @@ The `vcpkg-ports/` directory contains overlay port definitions for local testing
 
 | Port | Version | Description |
 |------|---------|-------------|
-| kcenon-common-system | 1.0.0 | Foundation library with Result<T> pattern and interfaces |
+| kcenon-common-system | 0.2.0 | Foundation library with Result<T> pattern and interfaces |
 | kcenon-thread-system | 3.0.0 | High-performance multithreading framework |
 | kcenon-logger-system | 1.0.0 | Async logging library with file rotation |
 | kcenon-monitoring-system | 2.0.0 | Monitoring system with metrics and tracing |
