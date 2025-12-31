@@ -74,6 +74,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Enables partial access (e.g., pass `resources.cpu` only when needed)
 
 ### Added
+- **Windows metrics_provider implementation** (#291, Phase 4: #297)
+  - Implemented full `windows_metrics_provider` with WMI and Win32 API
+  - Battery metrics: WMI Win32_Battery + GetSystemPowerStatus fallback
+  - Temperature: WMI MSAcpi_ThermalZoneTemperature
+  - Uptime: GetTickCount64
+  - File descriptors: GetProcessHandleCount (Windows handles)
+  - TCP states: GetExtendedTcpTable API with full state tracking
+  - Power info: GetSystemPowerStatus + WMI battery voltage
+  - Stubs for: context switches, interrupts, GPU, security, socket buffers
 - **Platform abstraction layer interface** (#291, Phase 1: #294)
   - Added `metrics_provider` abstract interface for unified platform metrics
   - Defined common data structures (uptime_info, context_switch_info, fd_info, etc.)
