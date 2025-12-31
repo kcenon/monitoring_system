@@ -134,6 +134,7 @@ bool socket_buffer_collector::is_available() const {
 }
 
 void socket_buffer_collector::do_add_statistics(stats_map& stats) const {
+    stats["available"] = collector_->is_socket_buffer_monitoring_available() ? 1.0 : 0.0;
     stats["queue_full_threshold_bytes"] = static_cast<double>(queue_full_threshold_bytes_);
     stats["memory_warning_threshold_bytes"] = static_cast<double>(memory_warning_threshold_bytes_);
 }
