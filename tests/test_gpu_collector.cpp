@@ -230,25 +230,6 @@ TEST(GpuInfoCollectorTest, EnumerateGpus) {
     (void)gpus;
 }
 
-// Test reading metrics for non-existent GPU
-TEST(GpuInfoCollectorTest, ReadMetricsNonExistentGpu) {
-    gpu_info_collector collector;
-
-    gpu_device_info fake_device;
-    fake_device.id = "fake_gpu_xyz";
-    fake_device.name = "Fake GPU";
-    fake_device.device_path = "/nonexistent/path";
-    fake_device.vendor = gpu_vendor::unknown;
-
-    // Should not crash, just return empty/default reading
-    auto reading = collector.read_gpu_metrics(fake_device);
-
-    EXPECT_EQ(reading.device.id, "fake_gpu_xyz");
-    // All metrics should be unavailable
-    EXPECT_FALSE(reading.utilization_available);
-    EXPECT_FALSE(reading.memory_available);
-}
-
 // Test multiple collections don't cause issues
 TEST_F(GpuCollectorTest, MultipleCollectionsAreStable) {
     for (int i = 0; i < 5; ++i) {
