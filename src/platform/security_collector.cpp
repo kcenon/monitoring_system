@@ -33,9 +33,70 @@
  */
 
 #include <kcenon/monitoring/collectors/security_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// security_info_collector implementation
+// ============================================================================
+
+security_info_collector::security_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+security_info_collector::~security_info_collector() = default;
+
+bool security_info_collector::is_security_monitoring_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto info = provider_->get_security_info();
+    return info.available;
+}
+
+security_metrics security_info_collector::collect_metrics() {
+    security_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto info = provider_->get_security_info();
+    if (!info.available) {
+        return result;
+    }
+
+    result.event_counts.login_failure = info.failed_login_attempts;
+    result.active_sessions = info.active_sessions;
+    result.metrics_available = true;
+
+    return result;
+}
+
+void security_info_collector::set_max_recent_events(size_t max_events) {
+    max_recent_events_ = max_events;
+}
+
+void security_info_collector::set_mask_pii(bool mask_pii) {
+    mask_pii_ = mask_pii;
+}
+
+std::string security_info_collector::mask_username(const std::string& username) const {
+    if (!mask_pii_ || username.empty()) {
+        return username;
+    }
+    if (username.length() <= 2) {
+        return "**";
+    }
+    return username.substr(0, 1) + std::string(username.length() - 2, '*') +
+           username.substr(username.length() - 1);
+}
+
+// ============================================================================
+// security_collector implementation
+// ============================================================================
 
 security_collector::security_collector()
     : collector_(std::make_unique<security_info_collector>()) {

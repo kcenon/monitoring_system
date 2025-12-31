@@ -28,9 +28,76 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/context_switch_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// context_switch_info_collector implementation
+// ============================================================================
+
+context_switch_info_collector::context_switch_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+context_switch_info_collector::~context_switch_info_collector() = default;
+
+bool context_switch_info_collector::is_context_switch_monitoring_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto cs = provider_->get_context_switches();
+    return cs.available;
+}
+
+double context_switch_info_collector::calculate_rate(uint64_t current_switches) {
+    auto now = std::chrono::steady_clock::now();
+
+    if (!has_previous_sample_) {
+        last_system_switches_ = current_switches;
+        last_collection_time_ = now;
+        has_previous_sample_ = true;
+        return 0.0;
+    }
+
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+        now - last_collection_time_).count();
+    if (elapsed <= 0) {
+        return 0.0;
+    }
+
+    double rate = static_cast<double>(current_switches - last_system_switches_) /
+                  (static_cast<double>(elapsed) / 1000.0);
+
+    last_system_switches_ = current_switches;
+    last_collection_time_ = now;
+
+    return rate;
+}
+
+context_switch_metrics context_switch_info_collector::collect_metrics() {
+    context_switch_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto cs = provider_->get_context_switches();
+    if (!cs.available) {
+        return result;
+    }
+
+    result.system_context_switches_total = cs.total_switches;
+    result.context_switches_per_sec = calculate_rate(cs.total_switches);
+    result.process_info.voluntary_switches = cs.voluntary_switches;
+    result.process_info.nonvoluntary_switches = cs.involuntary_switches;
+    result.process_info.total_switches = cs.voluntary_switches + cs.involuntary_switches;
+    result.metrics_available = true;
+    result.rate_available = has_previous_sample_;
+
+    return result;
+}
 
 // ============================================================================
 // context_switch_collector implementation

@@ -28,11 +28,62 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/tcp_state_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 #include <algorithm>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// tcp_state_info_collector implementation
+// ============================================================================
+
+tcp_state_info_collector::tcp_state_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+tcp_state_info_collector::~tcp_state_info_collector() = default;
+
+bool tcp_state_info_collector::is_tcp_state_monitoring_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto stats = provider_->get_tcp_states();
+    return stats.available;
+}
+
+tcp_state_metrics tcp_state_info_collector::collect_metrics() {
+    tcp_state_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto stats = provider_->get_tcp_states();
+    if (!stats.available) {
+        return result;
+    }
+
+    result.combined_counts.established = stats.established;
+    result.combined_counts.syn_sent = stats.syn_sent;
+    result.combined_counts.syn_recv = stats.syn_recv;
+    result.combined_counts.fin_wait1 = stats.fin_wait1;
+    result.combined_counts.fin_wait2 = stats.fin_wait2;
+    result.combined_counts.time_wait = stats.time_wait;
+    result.combined_counts.close_wait = stats.close_wait;
+    result.combined_counts.last_ack = stats.last_ack;
+    result.combined_counts.listen = stats.listen;
+    result.combined_counts.closing = stats.closing;
+    result.total_connections = stats.total;
+    result.metrics_available = true;
+
+    return result;
+}
+
+// ============================================================================
+// tcp_state_collector implementation
+// ============================================================================
 
 tcp_state_collector::tcp_state_collector()
     : collector_(std::make_unique<tcp_state_info_collector>()) {}

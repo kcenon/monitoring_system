@@ -28,11 +28,53 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/socket_buffer_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 #include <algorithm>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// socket_buffer_info_collector implementation
+// ============================================================================
+
+socket_buffer_info_collector::socket_buffer_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+socket_buffer_info_collector::~socket_buffer_info_collector() = default;
+
+bool socket_buffer_info_collector::is_socket_buffer_monitoring_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto stats = provider_->get_socket_buffer_stats();
+    return stats.available;
+}
+
+socket_buffer_metrics socket_buffer_info_collector::collect_metrics() {
+    socket_buffer_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto stats = provider_->get_socket_buffer_stats();
+    if (!stats.available) {
+        return result;
+    }
+
+    result.recv_buffer_bytes = stats.rx_buffer_used;
+    result.send_buffer_bytes = stats.tx_buffer_used;
+    result.metrics_available = true;
+
+    return result;
+}
+
+// ============================================================================
+// socket_buffer_collector implementation
+// ============================================================================
 
 socket_buffer_collector::socket_buffer_collector()
     : collector_(std::make_unique<socket_buffer_info_collector>()) {}

@@ -28,11 +28,82 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/gpu_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
 
+// ============================================================================
+// gpu_info_collector implementation
+// ============================================================================
+
+gpu_info_collector::gpu_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+gpu_info_collector::~gpu_info_collector() = default;
+
+bool gpu_info_collector::is_gpu_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto gpus = provider_->get_gpu_info();
+    return !gpus.empty();
+}
+
+std::vector<gpu_device_info> gpu_info_collector::enumerate_gpus() {
+    std::vector<gpu_device_info> result;
+    if (!provider_) {
+        return result;
+    }
+
+    auto gpus = provider_->get_gpu_info();
+    for (size_t i = 0; i < gpus.size(); ++i) {
+        gpu_device_info info;
+        info.id = "gpu" + std::to_string(i);
+        info.name = gpus[i].name;
+        info.device_index = static_cast<uint32_t>(i);
+        result.push_back(info);
+    }
+
+    return result;
+}
+
+std::vector<gpu_reading> gpu_info_collector::read_all_gpu_metrics() {
+    std::vector<gpu_reading> result;
+    if (!provider_) {
+        return result;
+    }
+
+    auto gpus = provider_->get_gpu_info();
+    for (size_t i = 0; i < gpus.size(); ++i) {
+        const auto& gpu = gpus[i];
+        if (!gpu.available) {
+            continue;
+        }
+
+        gpu_reading reading;
+        reading.device.id = "gpu" + std::to_string(i);
+        reading.device.name = gpu.name;
+        reading.device.device_index = static_cast<uint32_t>(i);
+        reading.utilization_percent = gpu.usage_percent;
+        reading.memory_used_bytes = static_cast<uint64_t>(gpu.memory_used_mb * 1024 * 1024);
+        reading.memory_total_bytes = static_cast<uint64_t>(gpu.memory_total_mb * 1024 * 1024);
+        reading.temperature_celsius = gpu.temperature_celsius;
+        reading.power_watts = gpu.power_watts;
+        reading.utilization_available = true;
+        reading.memory_available = gpu.memory_total_mb > 0;
+        reading.temperature_available = gpu.temperature_celsius > 0;
+        reading.power_available = gpu.power_watts > 0;
+        reading.timestamp = std::chrono::system_clock::now();
+        result.push_back(reading);
+    }
+
+    return result;
+}
+
+// ============================================================================
 // gpu_collector implementation (platform-independent)
+// ============================================================================
 
 gpu_collector::gpu_collector() : collector_(std::make_unique<gpu_info_collector>()) {}
 
