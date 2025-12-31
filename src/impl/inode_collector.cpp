@@ -28,9 +28,72 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/inode_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// inode_info_collector implementation
+// ============================================================================
+
+inode_info_collector::inode_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+inode_info_collector::~inode_info_collector() = default;
+
+bool inode_info_collector::is_inode_monitoring_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto stats = provider_->get_inode_stats();
+    return !stats.empty() && stats[0].available;
+}
+
+inode_metrics inode_info_collector::collect_metrics() {
+    inode_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto stats = provider_->get_inode_stats();
+    if (stats.empty()) {
+        return result;
+    }
+
+    for (const auto& stat : stats) {
+        if (!stat.available) {
+            continue;
+        }
+
+        filesystem_inode_info fs_info;
+        fs_info.mount_point = stat.filesystem;
+        fs_info.inodes_total = stat.total_inodes;
+        fs_info.inodes_used = stat.used_inodes;
+        fs_info.inodes_free = stat.free_inodes;
+        fs_info.inodes_usage_percent = stat.usage_percent;
+        result.filesystems.push_back(fs_info);
+
+        result.total_inodes += stat.total_inodes;
+        result.total_inodes_used += stat.used_inodes;
+        result.total_inodes_free += stat.free_inodes;
+
+        if (stat.usage_percent > result.max_usage_percent) {
+            result.max_usage_percent = stat.usage_percent;
+            result.max_usage_mount_point = stat.filesystem;
+        }
+    }
+
+    if (!result.filesystems.empty()) {
+        result.average_usage_percent = result.total_inodes > 0 ?
+            (static_cast<double>(result.total_inodes_used) / result.total_inodes * 100.0) : 0.0;
+        result.metrics_available = true;
+    }
+
+    return result;
+}
 
 // ============================================================================
 // inode_collector implementation (common across all platforms)

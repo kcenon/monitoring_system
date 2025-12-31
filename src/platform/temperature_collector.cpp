@@ -28,11 +28,50 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/temperature_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
 
+// ============================================================================
+// temperature_info_collector implementation
+// ============================================================================
+
+temperature_info_collector::temperature_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+temperature_info_collector::~temperature_info_collector() = default;
+
+bool temperature_info_collector::is_thermal_available() const {
+    return provider_ && provider_->is_temperature_available();
+}
+
+std::vector<temperature_sensor_info> temperature_info_collector::enumerate_sensors() {
+    if (!provider_) {
+        return {};
+    }
+
+    auto readings = provider_->get_temperature_readings();
+    std::vector<temperature_sensor_info> result;
+    result.reserve(readings.size());
+
+    for (const auto& reading : readings) {
+        result.push_back(reading.sensor);
+    }
+
+    return result;
+}
+
+std::vector<temperature_reading> temperature_info_collector::read_all_temperatures() {
+    if (!provider_) {
+        return {};
+    }
+    return provider_->get_temperature_readings();
+}
+
+// ============================================================================
 // temperature_collector implementation (platform-independent)
+// ============================================================================
 
 temperature_collector::temperature_collector()
     : collector_(std::make_unique<temperature_info_collector>()) {}

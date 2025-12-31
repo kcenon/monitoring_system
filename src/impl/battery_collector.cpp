@@ -28,9 +28,46 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/battery_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// battery_info_collector implementation
+// ============================================================================
+
+battery_info_collector::battery_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+battery_info_collector::~battery_info_collector() = default;
+
+bool battery_info_collector::is_battery_available() const {
+    return provider_ && provider_->is_battery_available();
+}
+
+std::vector<battery_info> battery_info_collector::enumerate_batteries() {
+    if (!provider_) {
+        return {};
+    }
+
+    auto readings = provider_->get_battery_readings();
+    std::vector<battery_info> result;
+    result.reserve(readings.size());
+
+    for (const auto& reading : readings) {
+        result.push_back(reading.info);
+    }
+
+    return result;
+}
+
+std::vector<battery_reading> battery_info_collector::read_all_batteries() {
+    if (!provider_) {
+        return {};
+    }
+    return provider_->get_battery_readings();
+}
 
 // ============================================================================
 // battery_collector implementation

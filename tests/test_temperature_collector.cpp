@@ -202,24 +202,6 @@ TEST(TemperatureInfoCollectorTest, EnumerateSensors) {
     (void)sensors;
 }
 
-// Test reading temperature for non-existent sensor
-TEST(TemperatureInfoCollectorTest, ReadTemperatureNonExistentSensor) {
-    temperature_info_collector collector;
-
-    temperature_sensor_info fake_sensor;
-    fake_sensor.id = "fake_sensor_xyz";
-    fake_sensor.name = "Fake Sensor";
-    fake_sensor.zone_path = "/nonexistent/path";
-    fake_sensor.type = sensor_type::unknown;
-
-    // Should not crash, just return empty/default reading
-    auto reading = collector.read_temperature(fake_sensor);
-
-    EXPECT_EQ(reading.sensor.id, "fake_sensor_xyz");
-    // Temperature should be 0 for non-existent sensor
-    EXPECT_EQ(reading.temperature_celsius, 0.0);
-}
-
 // Test multiple collections don't cause issues
 TEST_F(TemperatureCollectorTest, MultipleCollectionsAreStable) {
     for (int i = 0; i < 5; ++i) {

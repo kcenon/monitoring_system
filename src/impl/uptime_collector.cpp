@@ -28,9 +28,48 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/uptime_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// uptime_info_collector implementation
+// ============================================================================
+
+uptime_info_collector::uptime_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+uptime_info_collector::~uptime_info_collector() = default;
+
+bool uptime_info_collector::is_uptime_monitoring_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto uptime = provider_->get_uptime();
+    return uptime.available;
+}
+
+uptime_metrics uptime_info_collector::collect_metrics() {
+    uptime_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto uptime = provider_->get_uptime();
+    if (!uptime.available) {
+        return result;
+    }
+
+    result.uptime_seconds = static_cast<double>(uptime.uptime_seconds);
+    result.idle_seconds = static_cast<double>(uptime.idle_seconds);
+    result.boot_timestamp = std::chrono::system_clock::to_time_t(uptime.boot_time);
+    result.metrics_available = true;
+
+    return result;
+}
 
 // ============================================================================
 // uptime_collector implementation

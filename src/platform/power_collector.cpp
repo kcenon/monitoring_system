@@ -28,11 +28,67 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/power_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
 
+// ============================================================================
+// power_info_collector implementation
+// ============================================================================
+
+power_info_collector::power_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+power_info_collector::~power_info_collector() = default;
+
+bool power_info_collector::is_power_available() const {
+    return provider_ && provider_->is_power_available();
+}
+
+std::vector<power_source_info> power_info_collector::enumerate_sources() {
+    if (!provider_) {
+        return {};
+    }
+
+    // Get power info and convert to source info
+    auto power = provider_->get_power_info();
+    if (!power.available) {
+        return {};
+    }
+
+    power_source_info info;
+    info.id = "power0";
+    info.name = power.source;
+    info.type = power_source_type::ac;
+    return {info};
+}
+
+std::vector<power_reading> power_info_collector::read_all_power() {
+    if (!provider_) {
+        return {};
+    }
+
+    auto power = provider_->get_power_info();
+    if (!power.available) {
+        return {};
+    }
+
+    power_reading reading;
+    reading.source.id = "power0";
+    reading.source.name = power.source;
+    reading.source.type = power_source_type::platform;
+    reading.power_watts = power.power_watts;
+    reading.voltage_volts = power.voltage_volts;
+    reading.power_available = true;
+    reading.timestamp = std::chrono::system_clock::now();
+
+    return {reading};
+}
+
+// ============================================================================
 // power_collector implementation (platform-independent)
+// ============================================================================
 
 power_collector::power_collector()
     : collector_(std::make_unique<power_info_collector>()) {}

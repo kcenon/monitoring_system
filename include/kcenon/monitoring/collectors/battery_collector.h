@@ -142,12 +142,17 @@ struct battery_reading {
     std::chrono::system_clock::time_point timestamp;  ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class battery_info_collector
- * @brief Platform-specific battery data collector implementation
+ * @brief Battery data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * enumerating batteries and reading battery status.
+ * This class provides battery data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class battery_info_collector {
    public:
@@ -173,27 +178,13 @@ class battery_info_collector {
     std::vector<battery_info> enumerate_batteries();
 
     /**
-     * Read status from a specific battery
-     * @param battery Battery information
-     * @return Battery reading
-     */
-    battery_reading read_battery(const battery_info& battery);
-
-    /**
      * Read status from all available batteries
      * @return Vector of battery readings
      */
     std::vector<battery_reading> read_all_batteries();
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool battery_checked_{false};
-    mutable bool battery_available_{false};
-    std::vector<battery_info> cached_batteries_;
-
-    // Platform-specific helper methods
-    std::vector<battery_info> enumerate_batteries_impl();
-    battery_reading read_battery_impl(const battery_info& battery);
+    std::unique_ptr<platform::metrics_provider> provider_;
 };
 
 /**

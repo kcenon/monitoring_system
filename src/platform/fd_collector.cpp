@@ -28,6 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/fd_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 #include <algorithm>
 #include <cstdlib>
@@ -36,21 +37,42 @@ namespace kcenon {
 namespace monitoring {
 
 // ============================================================================
-// fd_info_collector - Common interface implementation
+// fd_info_collector implementation
 // ============================================================================
 
+fd_info_collector::fd_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+fd_info_collector::~fd_info_collector() = default;
+
 bool fd_info_collector::is_fd_monitoring_available() const {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (!availability_checked_) {
-        available_ = check_availability_impl();
-        availability_checked_ = true;
+    if (!provider_) {
+        return false;
     }
-    return available_;
+    auto stats = provider_->get_fd_stats();
+    return stats.available;
 }
 
 fd_metrics fd_info_collector::collect_metrics() {
-    std::lock_guard<std::mutex> lock(mutex_);
-    return collect_metrics_impl();
+    fd_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto stats = provider_->get_fd_stats();
+    if (!stats.available) {
+        return result;
+    }
+
+    result.fd_used_process = stats.open_fds;
+    result.fd_soft_limit = stats.max_fds;
+    result.fd_hard_limit = stats.max_fds;
+    result.fd_usage_percent = stats.usage_percent;
+    result.system_metrics_available = false;
+
+    return result;
 }
 
 // ============================================================================

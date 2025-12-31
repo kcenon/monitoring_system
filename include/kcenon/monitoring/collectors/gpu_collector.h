@@ -167,12 +167,17 @@ struct gpu_reading {
     std::chrono::system_clock::time_point timestamp;  ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class gpu_info_collector
- * @brief Platform-specific GPU data collector implementation
+ * @brief GPU data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * enumerating GPUs and reading GPU metrics.
+ * This class provides GPU data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class gpu_info_collector {
    public:
@@ -198,27 +203,13 @@ class gpu_info_collector {
     std::vector<gpu_device_info> enumerate_gpus();
 
     /**
-     * Read metrics from a specific GPU
-     * @param device GPU device information
-     * @return GPU reading with available metrics
-     */
-    gpu_reading read_gpu_metrics(const gpu_device_info& device);
-
-    /**
      * Read metrics from all available GPUs
      * @return Vector of GPU readings
      */
     std::vector<gpu_reading> read_all_gpu_metrics();
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool gpu_checked_{false};
-    mutable bool gpu_available_{false};
-    std::vector<gpu_device_info> cached_devices_;
-
-    // Platform-specific helper methods
-    std::vector<gpu_device_info> enumerate_gpus_impl();
-    gpu_reading read_gpu_metrics_impl(const gpu_device_info& device);
+    std::unique_ptr<platform::metrics_provider> provider_;
 };
 
 /**

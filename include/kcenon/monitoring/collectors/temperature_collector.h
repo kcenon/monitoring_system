@@ -116,12 +116,17 @@ struct temperature_reading {
     std::chrono::system_clock::time_point timestamp;  ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class temperature_info_collector
- * @brief Platform-specific temperature data collector implementation
+ * @brief Temperature data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * enumerating thermal zones and reading temperature values.
+ * This class provides temperature data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class temperature_info_collector {
    public:
@@ -147,27 +152,13 @@ class temperature_info_collector {
     std::vector<temperature_sensor_info> enumerate_sensors();
 
     /**
-     * Read temperature from a specific sensor
-     * @param sensor Sensor information
-     * @return Temperature reading
-     */
-    temperature_reading read_temperature(const temperature_sensor_info& sensor);
-
-    /**
      * Read temperatures from all available sensors
      * @return Vector of temperature readings
      */
     std::vector<temperature_reading> read_all_temperatures();
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool thermal_checked_{false};
-    mutable bool thermal_available_{false};
-    std::vector<temperature_sensor_info> cached_sensors_;
-
-    // Platform-specific helper methods
-    std::vector<temperature_sensor_info> enumerate_sensors_impl();
-    temperature_reading read_temperature_impl(const temperature_sensor_info& sensor);
+    std::unique_ptr<platform::metrics_provider> provider_;
 };
 
 /**

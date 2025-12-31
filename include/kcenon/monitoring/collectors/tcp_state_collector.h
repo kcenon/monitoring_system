@@ -182,12 +182,17 @@ struct tcp_state_metrics {
     std::chrono::system_clock::time_point timestamp; ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class tcp_state_info_collector
- * @brief Platform-specific TCP state data collector implementation
+ * @brief TCP state data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * reading TCP connection states.
+ * This class provides TCP state data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class tcp_state_info_collector {
    public:
@@ -213,13 +218,7 @@ class tcp_state_info_collector {
     tcp_state_metrics collect_metrics();
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool availability_checked_{false};
-    mutable bool available_{false};
-
-    // Platform-specific helper methods
-    tcp_state_metrics collect_metrics_impl();
-    bool check_availability_impl() const;
+    std::unique_ptr<platform::metrics_provider> provider_;
 };
 
 /**
