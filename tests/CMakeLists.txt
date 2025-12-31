@@ -91,6 +91,9 @@ add_executable(monitoring_system_tests
     # Load average history tracking (Issue #219)
     test_time_series_buffer.cpp
 
+    # Platform metrics provider (Issue #295)
+    test_metrics_provider.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
     # =========================================================================
