@@ -13,6 +13,13 @@ Key Modules
   - event_bus, event_types: In‑process pub/sub for metrics and system events
 - Interfaces
   - monitoring_interface, metric_collector_interface, storage_backend, metrics_analyzer
+- Platform Abstraction Layer (Issue #291)
+  - metrics_provider: Abstract interface for platform-specific metrics collection
+  - linux_metrics_provider: Linux implementation using /proc and /sys filesystems
+  - macos_metrics_provider: macOS implementation using IOKit and system APIs
+  - windows_metrics_provider: Windows implementation using WMI and system APIs
+  - Provides: battery, temperature, uptime, context switches, FD stats, inode stats,
+    TCP states, socket buffers, interrupts, power info, GPU info, security info
 - Utilities
   - buffer_manager, ring_buffer, time_series, aggregation_processor
 - Reliability & Tracing
