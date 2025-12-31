@@ -33,6 +33,7 @@
 
 #include <mach/mach.h>
 #include <sys/sysctl.h>
+#include <sys/time.h>
 #include <sys/types.h>
 
 namespace kcenon {
