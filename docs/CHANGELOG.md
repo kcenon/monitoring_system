@@ -57,6 +57,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Platform abstraction layer interface** (#291, Phase 1: #294)
+  - Added `metrics_provider` abstract interface for unified platform metrics
+  - Defined common data structures (uptime_info, context_switch_info, fd_info, etc.)
+  - Created platform-specific provider headers (linux, macos, windows)
+  - Implemented factory function for automatic platform detection
+  - Foundation for consolidating 39 platform-specific files into unified layer
 - **vcpkg manifest: Add ecosystem dependencies** (#277)
   - Added `kcenon-common-system` as required dependency
   - Added `kcenon-thread-system` as required dependency
