@@ -12,5 +12,6 @@ var searchData=
   ['prefix_5f_9',['prefix_',['../d3/dfa/classexample__logger.html#ac81ee8f3c5faa9939f1d2b71ab04f58e',1,'example_logger']]],
   ['process_5fbusiness_5flogic_10',['process_business_logic',['../df/d65/classWebService.html#a596c1a2053455df6df50c850e3828532',1,'WebService']]],
   ['process_5fmetric_11',['process_metric',['../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75',1,'result_pattern_example.cpp']]],
-  ['profiler_12',['profiler',['../d7/dbe/classPerformanceMonitoringTest.html#a47d07edd9fd1df796473642030bb2b24',1,'PerformanceMonitoringTest::profiler'],['../df/d0f/classPerformanceProfilerThreadSafetyTest.html#ac48a8245dd958956f927241719ec3b93',1,'PerformanceProfilerThreadSafetyTest::profiler']]]
+  ['profiler_12',['profiler',['../d7/dbe/classPerformanceMonitoringTest.html#a47d07edd9fd1df796473642030bb2b24',1,'PerformanceMonitoringTest::profiler'],['../df/d0f/classPerformanceProfilerThreadSafetyTest.html#ac48a8245dd958956f927241719ec3b93',1,'PerformanceProfilerThreadSafetyTest::profiler']]],
+  ['provider_5f_13',['provider_',['../de/da3/test__metrics__provider_8cpp.html#ae22e6f44440c708fa2fc7a7ec7a7671b',1,'test_metrics_provider.cpp']]]
 ];
