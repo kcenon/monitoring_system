@@ -74,6 +74,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Enables partial access (e.g., pass `resources.cpu` only when needed)
 
 ### Added
+- **Migrate all collectors to metrics_provider abstraction** (#291, #298, #299)
+  - All 12 platform-specific collectors now use unified metrics_provider interface
+  - Removed 36 platform-specific files (12 files × 3 platforms)
+  - Significant code reduction: ~8,700 lines deleted
+  - Affected collectors: battery, temperature, power, gpu, context_switch, fd,
+    inode, tcp_state, socket_buffer, interrupt, security, uptime
+  - info_collector classes now delegate to metrics_provider for all platforms
 - **Windows metrics_provider implementation** (#291, Phase 4: #297)
   - Implemented full `windows_metrics_provider` with WMI and Win32 API
   - Battery metrics: WMI Win32_Battery + GetSystemPowerStatus fallback
