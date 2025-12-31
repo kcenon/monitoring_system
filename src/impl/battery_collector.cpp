@@ -76,14 +76,7 @@ std::vector<battery_reading> battery_info_collector::read_all_batteries() {
 battery_collector::battery_collector()
     : collector_(std::make_unique<battery_info_collector>()) {}
 
-bool battery_collector::initialize(
-    const std::unordered_map<std::string, std::string>& config) {
-
-    // Parse configuration
-    if (auto it = config.find("enabled"); it != config.end()) {
-        enabled_ = (it->second == "true" || it->second == "1");
-    }
-
+bool battery_collector::do_initialize(const config_map& config) {
     if (auto it = config.find("collect_health"); it != config.end()) {
         collect_health_ = (it->second == "true" || it->second == "1");
     }
@@ -99,7 +92,7 @@ bool battery_collector::initialize(
     return true;
 }
 
-std::vector<std::string> battery_collector::get_metric_types() const {
+std::vector<std::string> battery_collector::do_get_metric_types() const {
     return {
         "battery_level_percent",
         "battery_charging",
@@ -113,24 +106,18 @@ std::vector<std::string> battery_collector::get_metric_types() const {
     };
 }
 
-bool battery_collector::is_healthy() const {
-    return enabled_ && collector_->is_battery_available();
+bool battery_collector::is_available() const {
+    return collector_->is_battery_available();
 }
 
 bool battery_collector::is_battery_available() const {
     return collector_->is_battery_available();
 }
 
-std::unordered_map<std::string, double> battery_collector::get_statistics() const {
-    std::lock_guard<std::mutex> lock(stats_mutex_);
-    return {
-        {"enabled", enabled_ ? 1.0 : 0.0},
-        {"collection_count", static_cast<double>(collection_count_.load())},
-        {"collection_errors", static_cast<double>(collection_errors_.load())},
-        {"batteries_found", static_cast<double>(batteries_found_.load())},
-        {"collect_health", collect_health_ ? 1.0 : 0.0},
-        {"collect_thermal", collect_thermal_ ? 1.0 : 0.0}
-    };
+void battery_collector::do_add_statistics(stats_map& stats) const {
+    stats["batteries_found"] = static_cast<double>(batteries_found_.load());
+    stats["collect_health"] = collect_health_ ? 1.0 : 0.0;
+    stats["collect_thermal"] = collect_thermal_ ? 1.0 : 0.0;
 }
 
 std::vector<battery_reading> battery_collector::get_last_readings() const {
@@ -138,7 +125,7 @@ std::vector<battery_reading> battery_collector::get_last_readings() const {
     return last_readings_;
 }
 
-metric battery_collector::create_metric(
+metric battery_collector::create_battery_metric(
     const std::string& name,
     double value,
     const battery_reading& reading,
@@ -148,7 +135,7 @@ metric battery_collector::create_metric(
     m.name = name;
     m.value = value;
     m.timestamp = std::chrono::system_clock::now();
-    m.tags["collector"] = "battery_collector";
+    m.tags["collector"] = collector_name;
     m.tags["battery_id"] = reading.info.id;
 
     if (!reading.info.name.empty()) {
@@ -170,7 +157,7 @@ void battery_collector::add_battery_metrics(
     }
 
     // Battery level percentage (gauge)
-    metrics.push_back(create_metric(
+    metrics.push_back(create_battery_metric(
         "battery_level_percent",
         reading.level_percent,
         reading,
@@ -178,7 +165,7 @@ void battery_collector::add_battery_metrics(
     ));
 
     // Battery charging status (1 = charging, 0 = not charging)
-    metrics.push_back(create_metric(
+    metrics.push_back(create_battery_metric(
         "battery_charging",
         reading.is_charging ? 1.0 : 0.0,
         reading,
@@ -187,7 +174,7 @@ void battery_collector::add_battery_metrics(
 
     // Add status tag to a separate metric
     {
-        metric status_metric = create_metric(
+        metric status_metric = create_battery_metric(
             "battery_status",
             static_cast<double>(static_cast<int>(reading.status)),
             reading,
@@ -198,7 +185,7 @@ void battery_collector::add_battery_metrics(
     }
 
     // AC connected status
-    metrics.push_back(create_metric(
+    metrics.push_back(create_battery_metric(
         "battery_ac_connected",
         reading.ac_connected ? 1.0 : 0.0,
         reading,
@@ -207,7 +194,7 @@ void battery_collector::add_battery_metrics(
 
     // Time to empty (only if discharging and available)
     if (reading.time_to_empty_seconds > 0) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_battery_metric(
             "battery_time_to_empty_seconds",
             static_cast<double>(reading.time_to_empty_seconds),
             reading,
@@ -217,7 +204,7 @@ void battery_collector::add_battery_metrics(
 
     // Time to full (only if charging and available)
     if (reading.time_to_full_seconds > 0) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_battery_metric(
             "battery_time_to_full_seconds",
             static_cast<double>(reading.time_to_full_seconds),
             reading,
@@ -227,7 +214,7 @@ void battery_collector::add_battery_metrics(
 
     // Voltage
     if (reading.voltage_volts > 0.0) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_battery_metric(
             "battery_voltage_volts",
             reading.voltage_volts,
             reading,
@@ -237,7 +224,7 @@ void battery_collector::add_battery_metrics(
 
     // Power (current draw/charge rate)
     if (reading.power_watts > 0.0) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_battery_metric(
             "battery_power_watts",
             reading.power_watts,
             reading,
@@ -249,7 +236,7 @@ void battery_collector::add_battery_metrics(
     if (collect_health_) {
         // Battery health percentage
         if (reading.health_percent > 0.0) {
-            metrics.push_back(create_metric(
+            metrics.push_back(create_battery_metric(
                 "battery_health_percent",
                 reading.health_percent,
                 reading,
@@ -259,7 +246,7 @@ void battery_collector::add_battery_metrics(
 
         // Design capacity
         if (reading.design_capacity_wh > 0.0) {
-            metrics.push_back(create_metric(
+            metrics.push_back(create_battery_metric(
                 "battery_design_capacity_wh",
                 reading.design_capacity_wh,
                 reading,
@@ -269,7 +256,7 @@ void battery_collector::add_battery_metrics(
 
         // Full charge capacity
         if (reading.full_charge_capacity_wh > 0.0) {
-            metrics.push_back(create_metric(
+            metrics.push_back(create_battery_metric(
                 "battery_full_charge_capacity_wh",
                 reading.full_charge_capacity_wh,
                 reading,
@@ -279,7 +266,7 @@ void battery_collector::add_battery_metrics(
 
         // Cycle count
         if (reading.cycle_count >= 0) {
-            metrics.push_back(create_metric(
+            metrics.push_back(create_battery_metric(
                 "battery_cycle_count",
                 static_cast<double>(reading.cycle_count),
                 reading,
@@ -290,7 +277,7 @@ void battery_collector::add_battery_metrics(
 
     // Thermal metrics (when enabled and available)
     if (collect_thermal_ && reading.temperature_available) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_battery_metric(
             "battery_temperature_celsius",
             reading.temperature_celsius,
             reading,
@@ -299,31 +286,20 @@ void battery_collector::add_battery_metrics(
     }
 }
 
-std::vector<metric> battery_collector::collect() {
+std::vector<metric> battery_collector::do_collect() {
     std::vector<metric> metrics;
 
-    if (!enabled_) {
-        return metrics;
+    auto readings = collector_->read_all_batteries();
+
+    {
+        std::lock_guard<std::mutex> lock(stats_mutex_);
+        last_readings_ = readings;
     }
 
-    try {
-        auto readings = collector_->read_all_batteries();
+    batteries_found_.store(readings.size());
 
-        {
-            std::lock_guard<std::mutex> lock(stats_mutex_);
-            last_readings_ = readings;
-        }
-
-        batteries_found_.store(readings.size());
-
-        for (const auto& reading : readings) {
-            add_battery_metrics(metrics, reading);
-        }
-
-        ++collection_count_;
-
-    } catch (...) {
-        ++collection_errors_;
+    for (const auto& reading : readings) {
+        add_battery_metrics(metrics, reading);
     }
 
     return metrics;

@@ -99,51 +99,34 @@ interrupt_metrics interrupt_info_collector::collect_metrics() {
 
 interrupt_collector::interrupt_collector() : collector_(std::make_unique<interrupt_info_collector>()) {}
 
-bool interrupt_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
-    // Parse configuration
-    auto it = config.find("enabled");
-    if (it != config.end()) {
-        enabled_ = (it->second == "true" || it->second == "1");
-    }
-
-    it = config.find("collect_per_cpu");
-    if (it != config.end()) {
+bool interrupt_collector::do_initialize(const config_map& config) {
+    if (auto it = config.find("collect_per_cpu"); it != config.end()) {
         collect_per_cpu_ = (it->second == "true" || it->second == "1");
     }
 
-    it = config.find("collect_soft_interrupts");
-    if (it != config.end()) {
+    if (auto it = config.find("collect_soft_interrupts"); it != config.end()) {
         collect_soft_interrupts_ = (it->second == "true" || it->second == "1");
     }
 
     return true;
 }
 
-std::vector<metric> interrupt_collector::collect() {
+std::vector<metric> interrupt_collector::do_collect() {
     std::vector<metric> metrics;
 
-    if (!enabled_) {
-        return metrics;
+    auto interrupt_data = collector_->collect_metrics();
+
+    {
+        std::lock_guard<std::mutex> lock(stats_mutex_);
+        last_metrics_ = interrupt_data;
     }
 
-    try {
-        auto interrupt_data = collector_->collect_metrics();
-        
-        {
-            std::lock_guard<std::mutex> lock(stats_mutex_);
-            last_metrics_ = interrupt_data;
-        }
-
-        add_interrupt_metrics(metrics, interrupt_data);
-        ++collection_count_;
-    } catch (...) {
-        ++collection_errors_;
-    }
+    add_interrupt_metrics(metrics, interrupt_data);
 
     return metrics;
 }
 
-std::vector<std::string> interrupt_collector::get_metric_types() const {
+std::vector<std::string> interrupt_collector::do_get_metric_types() const {
     return {
         "interrupts_total",
         "interrupts_per_sec",
@@ -152,18 +135,13 @@ std::vector<std::string> interrupt_collector::get_metric_types() const {
     };
 }
 
-bool interrupt_collector::is_healthy() const {
-    return enabled_ && collector_->is_interrupt_monitoring_available();
+bool interrupt_collector::is_available() const {
+    return collector_->is_interrupt_monitoring_available();
 }
 
-std::unordered_map<std::string, double> interrupt_collector::get_statistics() const {
-    return {
-        {"collection_count", static_cast<double>(collection_count_.load())},
-        {"collection_errors", static_cast<double>(collection_errors_.load())},
-        {"collect_per_cpu", collect_per_cpu_ ? 1.0 : 0.0},
-        {"collect_soft_interrupts", collect_soft_interrupts_ ? 1.0 : 0.0},
-        {"enabled", enabled_ ? 1.0 : 0.0}
-    };
+void interrupt_collector::do_add_statistics(stats_map& stats) const {
+    stats["collect_per_cpu"] = collect_per_cpu_ ? 1.0 : 0.0;
+    stats["collect_soft_interrupts"] = collect_soft_interrupts_ ? 1.0 : 0.0;
 }
 
 interrupt_metrics interrupt_collector::get_last_metrics() const {
@@ -175,36 +153,20 @@ bool interrupt_collector::is_interrupt_monitoring_available() const {
     return collector_->is_interrupt_monitoring_available();
 }
 
-metric interrupt_collector::create_metric(const std::string& name, double value,
-                                          const std::unordered_map<std::string, std::string>& tags,
-                                          const std::string& unit) const {
-    metric m;
-    m.name = name;
-    m.value = value;
-    m.type = metric_type::gauge;
-    m.timestamp = std::chrono::system_clock::now();
-    m.tags = tags;
-    if (!unit.empty()) {
-        m.tags["unit"] = unit;
-    }
-    m.tags["collector"] = "interrupt_collector";
-    return m;
-}
-
 void interrupt_collector::add_interrupt_metrics(std::vector<metric>& metrics, const interrupt_metrics& data) {
     if (!data.metrics_available) {
         return;
     }
 
     // Hardware interrupt metrics
-    metrics.push_back(create_metric("interrupts_total", static_cast<double>(data.interrupts_total), {}, "count"));
-    metrics.push_back(create_metric("interrupts_per_sec", data.interrupts_per_sec, {}, "count/sec"));
+    metrics.push_back(create_base_metric("interrupts_total", static_cast<double>(data.interrupts_total), {}, "count"));
+    metrics.push_back(create_base_metric("interrupts_per_sec", data.interrupts_per_sec, {}, "count/sec"));
 
     // Soft interrupt metrics (when available and configured)
     if (collect_soft_interrupts_ && data.soft_interrupts_available) {
-        metrics.push_back(create_metric("soft_interrupts_total", 
+        metrics.push_back(create_base_metric("soft_interrupts_total",
                                          static_cast<double>(data.soft_interrupts_total), {}, "count"));
-        metrics.push_back(create_metric("soft_interrupts_per_sec", 
+        metrics.push_back(create_base_metric("soft_interrupts_per_sec",
                                          data.soft_interrupts_per_sec, {}, "count/sec"));
     }
 
@@ -214,9 +176,9 @@ void interrupt_collector::add_interrupt_metrics(std::vector<metric>& metrics, co
             std::unordered_map<std::string, std::string> cpu_tags = {
                 {"cpu", std::to_string(cpu.cpu_id)}
             };
-            metrics.push_back(create_metric("interrupts_total", 
+            metrics.push_back(create_base_metric("interrupts_total",
                                              static_cast<double>(cpu.interrupt_count), cpu_tags, "count"));
-            metrics.push_back(create_metric("interrupts_per_sec", 
+            metrics.push_back(create_base_metric("interrupts_per_sec",
                                              cpu.interrupts_per_sec, cpu_tags, "count/sec"));
         }
     }

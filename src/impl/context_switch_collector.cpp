@@ -106,18 +106,11 @@ context_switch_metrics context_switch_info_collector::collect_metrics() {
 context_switch_collector::context_switch_collector()
     : collector_(std::make_unique<context_switch_info_collector>()) {}
 
-bool context_switch_collector::initialize(
-    const std::unordered_map<std::string, std::string>& config) {
-    
-    // Parse configuration
-    if (auto it = config.find("enabled"); it != config.end()) {
-        enabled_ = (it->second == "true" || it->second == "1");
-    }
-    
+bool context_switch_collector::do_initialize(const config_map& config) {
     if (auto it = config.find("collect_process_metrics"); it != config.end()) {
         collect_process_metrics_ = (it->second == "true" || it->second == "1");
     }
-    
+
     if (auto it = config.find("rate_warning_threshold"); it != config.end()) {
         try {
             rate_warning_threshold_ = std::stod(it->second);
@@ -125,11 +118,11 @@ bool context_switch_collector::initialize(
             // Keep default
         }
     }
-    
+
     return true;
 }
 
-std::vector<std::string> context_switch_collector::get_metric_types() const {
+std::vector<std::string> context_switch_collector::do_get_metric_types() const {
     return {
         "context_switches_total",
         "context_switches_per_sec",
@@ -139,23 +132,17 @@ std::vector<std::string> context_switch_collector::get_metric_types() const {
     };
 }
 
-bool context_switch_collector::is_healthy() const {
-    return enabled_ && collector_->is_context_switch_monitoring_available();
+bool context_switch_collector::is_available() const {
+    return collector_->is_context_switch_monitoring_available();
 }
 
 bool context_switch_collector::is_context_switch_monitoring_available() const {
     return collector_->is_context_switch_monitoring_available();
 }
 
-std::unordered_map<std::string, double> context_switch_collector::get_statistics() const {
-    std::lock_guard<std::mutex> lock(stats_mutex_);
-    return {
-        {"enabled", enabled_ ? 1.0 : 0.0},
-        {"collection_count", static_cast<double>(collection_count_.load())},
-        {"collection_errors", static_cast<double>(collection_errors_.load())},
-        {"rate_warning_threshold", rate_warning_threshold_},
-        {"collect_process_metrics", collect_process_metrics_ ? 1.0 : 0.0}
-    };
+void context_switch_collector::do_add_statistics(stats_map& stats) const {
+    stats["rate_warning_threshold"] = rate_warning_threshold_;
+    stats["collect_process_metrics"] = collect_process_metrics_ ? 1.0 : 0.0;
 }
 
 context_switch_metrics context_switch_collector::get_last_metrics() const {
@@ -163,63 +150,48 @@ context_switch_metrics context_switch_collector::get_last_metrics() const {
     return last_metrics_;
 }
 
-metric context_switch_collector::create_metric(
-    const std::string& name, 
-    double value,
-    const std::unordered_map<std::string, std::string>& tags,
-    const std::string& /* unit */) const {
-    
-    metric m;
-    m.name = name;
-    m.value = value;
-    m.timestamp = std::chrono::system_clock::now();
-    m.tags = tags;
-    m.tags["collector"] = "context_switch_collector";
-    return m;
-}
-
 void context_switch_collector::add_context_switch_metrics(
     std::vector<metric>& metrics,
     const context_switch_metrics& cs_data) {
-    
+
     if (!cs_data.metrics_available) {
         return;
     }
-    
+
     // System-wide metrics
-    metrics.push_back(create_metric(
+    metrics.push_back(create_base_metric(
         "context_switches_total",
         static_cast<double>(cs_data.system_context_switches_total),
         {{"type", "system"}},
         "count"
     ));
-    
+
     if (cs_data.rate_available) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_base_metric(
             "context_switches_per_sec",
             cs_data.context_switches_per_sec,
             {{"type", "system"}},
             "switches/s"
         ));
     }
-    
+
     // Process-level metrics
     if (collect_process_metrics_) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_base_metric(
             "voluntary_context_switches",
             static_cast<double>(cs_data.process_info.voluntary_switches),
             {{"type", "process"}},
             "count"
         ));
-        
-        metrics.push_back(create_metric(
+
+        metrics.push_back(create_base_metric(
             "nonvoluntary_context_switches",
             static_cast<double>(cs_data.process_info.nonvoluntary_switches),
             {{"type", "process"}},
             "count"
         ));
-        
-        metrics.push_back(create_metric(
+
+        metrics.push_back(create_base_metric(
             "process_context_switches_total",
             static_cast<double>(cs_data.process_info.total_switches),
             {{"type", "process"}},
@@ -228,28 +200,18 @@ void context_switch_collector::add_context_switch_metrics(
     }
 }
 
-std::vector<metric> context_switch_collector::collect() {
+std::vector<metric> context_switch_collector::do_collect() {
     std::vector<metric> metrics;
-    
-    if (!enabled_) {
-        return metrics;
+
+    auto cs_data = collector_->collect_metrics();
+
+    {
+        std::lock_guard<std::mutex> lock(stats_mutex_);
+        last_metrics_ = cs_data;
     }
-    
-    try {
-        auto cs_data = collector_->collect_metrics();
-        
-        {
-            std::lock_guard<std::mutex> lock(stats_mutex_);
-            last_metrics_ = cs_data;
-        }
-        
-        add_context_switch_metrics(metrics, cs_data);
-        ++collection_count_;
-        
-    } catch (...) {
-        ++collection_errors_;
-    }
-    
+
+    add_context_switch_metrics(metrics, cs_data);
+
     return metrics;
 }
 

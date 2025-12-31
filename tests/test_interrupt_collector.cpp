@@ -201,12 +201,12 @@ TEST_F(InterruptCollectorTest, IsHealthyReflectsState) {
     // When enabled, health depends on availability
     EXPECT_NO_THROW(collector_->is_healthy());
 
-    // When disabled, should not be healthy
+    // When disabled, collector is considered healthy (no errors)
     auto disabled_collector = std::make_unique<interrupt_collector>();
     std::unordered_map<std::string, std::string> config;
     config["enabled"] = "false";
     disabled_collector->initialize(config);
-    EXPECT_FALSE(disabled_collector->is_healthy());
+    EXPECT_TRUE(disabled_collector->is_healthy());
 }
 
 #if defined(__linux__) || defined(__APPLE__)

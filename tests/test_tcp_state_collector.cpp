@@ -217,7 +217,7 @@ TEST_F(TcpStateCollectorTest, MetricsHaveCorrectTags) {
         // All metrics should have collector tag
         auto it = m.tags.find("collector");
         if (it != m.tags.end()) {
-            EXPECT_EQ(it->second, "tcp_state");
+            EXPECT_EQ(it->second, "tcp_state_collector");
         }
     }
 }

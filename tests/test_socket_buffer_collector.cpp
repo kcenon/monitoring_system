@@ -182,7 +182,7 @@ TEST_F(SocketBufferCollectorTest, MetricsHaveCorrectTags) {
         // All metrics should have collector tag
         auto it = m.tags.find("collector");
         if (it != m.tags.end()) {
-            EXPECT_EQ(it->second, "socket_buffer");
+            EXPECT_EQ(it->second, "socket_buffer_collector");
         }
     }
 }

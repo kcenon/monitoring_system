@@ -88,15 +88,8 @@ tcp_state_metrics tcp_state_info_collector::collect_metrics() {
 tcp_state_collector::tcp_state_collector()
     : collector_(std::make_unique<tcp_state_info_collector>()) {}
 
-bool tcp_state_collector::initialize(
-    const std::unordered_map<std::string, std::string>& config) {
-    // Parse configuration options
-    auto it = config.find("enabled");
-    if (it != config.end()) {
-        enabled_ = (it->second == "true" || it->second == "1");
-    }
-
-    it = config.find("include_ipv6");
+bool tcp_state_collector::do_initialize(const config_map& config) {
+    auto it = config.find("include_ipv6");
     if (it != config.end()) {
         include_ipv6_ = (it->second == "true" || it->second == "1");
     }
@@ -122,35 +115,24 @@ bool tcp_state_collector::initialize(
     return true;
 }
 
-std::vector<metric> tcp_state_collector::collect() {
+std::vector<metric> tcp_state_collector::do_collect() {
     std::vector<metric> metrics;
 
-    if (!enabled_) {
-        return metrics;
+    auto tcp_data = collector_->collect_metrics();
+
+    {
+        std::lock_guard<std::mutex> lock(stats_mutex_);
+        last_metrics_ = tcp_data;
     }
 
-    try {
-        auto tcp_data = collector_->collect_metrics();
-
-        {
-            std::lock_guard<std::mutex> lock(stats_mutex_);
-            last_metrics_ = tcp_data;
-        }
-
-        if (tcp_data.metrics_available) {
-            add_tcp_state_metrics(metrics, tcp_data);
-            ++collection_count_;
-        } else {
-            ++collection_errors_;
-        }
-    } catch (...) {
-        ++collection_errors_;
+    if (tcp_data.metrics_available) {
+        add_tcp_state_metrics(metrics, tcp_data);
     }
 
     return metrics;
 }
 
-std::vector<std::string> tcp_state_collector::get_metric_types() const {
+std::vector<std::string> tcp_state_collector::do_get_metric_types() const {
     return {
         "tcp_connections_established",
         "tcp_connections_syn_sent",
@@ -167,28 +149,12 @@ std::vector<std::string> tcp_state_collector::get_metric_types() const {
     };
 }
 
-bool tcp_state_collector::is_healthy() const {
-    if (!enabled_) {
-        return true;  // Disabled is healthy
-    }
-
-    // Healthy if we can collect metrics and haven't had too many errors
-    size_t total = collection_count_.load() + collection_errors_.load();
-    if (total == 0) {
-        return collector_->is_tcp_state_monitoring_available();
-    }
-
-    double error_rate = static_cast<double>(collection_errors_.load()) / total;
-    return error_rate < 0.5;  // Less than 50% error rate
+bool tcp_state_collector::is_available() const {
+    return collector_->is_tcp_state_monitoring_available();
 }
 
-std::unordered_map<std::string, double> tcp_state_collector::get_statistics() const {
-    std::unordered_map<std::string, double> stats;
-    stats["collection_count"] = static_cast<double>(collection_count_.load());
-    stats["collection_errors"] = static_cast<double>(collection_errors_.load());
-    stats["enabled"] = enabled_ ? 1.0 : 0.0;
+void tcp_state_collector::do_add_statistics(stats_map& stats) const {
     stats["available"] = collector_->is_tcp_state_monitoring_available() ? 1.0 : 0.0;
-    return stats;
 }
 
 tcp_state_metrics tcp_state_collector::get_last_metrics() const {
@@ -200,62 +166,48 @@ bool tcp_state_collector::is_tcp_state_monitoring_available() const {
     return collector_->is_tcp_state_monitoring_available();
 }
 
-metric tcp_state_collector::create_metric(
-    const std::string& name, double value,
-    const std::unordered_map<std::string, std::string>& tags,
-    const std::string& /* unit */) const {
-    metric m;
-    m.name = name;
-    m.value = value;
-    m.tags = tags;
-    m.timestamp = std::chrono::system_clock::now();
-    return m;
-}
-
 void tcp_state_collector::add_tcp_state_metrics(
     std::vector<metric>& metrics,
     const tcp_state_metrics& tcp_data) {
-    
+
     // Add metrics for each TCP state
     const auto& counts = tcp_data.combined_counts;
-    
-    std::unordered_map<std::string, std::string> base_tags = {
-        {"collector", "tcp_state"}
-    };
+
+    std::unordered_map<std::string, std::string> base_tags;
 
     // Individual state metrics
-    metrics.push_back(create_metric("tcp_connections_established",
+    metrics.push_back(create_base_metric("tcp_connections_established",
         static_cast<double>(counts.established), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_syn_sent",
+    metrics.push_back(create_base_metric("tcp_connections_syn_sent",
         static_cast<double>(counts.syn_sent), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_syn_recv",
+    metrics.push_back(create_base_metric("tcp_connections_syn_recv",
         static_cast<double>(counts.syn_recv), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_fin_wait1",
+    metrics.push_back(create_base_metric("tcp_connections_fin_wait1",
         static_cast<double>(counts.fin_wait1), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_fin_wait2",
+    metrics.push_back(create_base_metric("tcp_connections_fin_wait2",
         static_cast<double>(counts.fin_wait2), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_time_wait",
+    metrics.push_back(create_base_metric("tcp_connections_time_wait",
         static_cast<double>(counts.time_wait), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_close",
+    metrics.push_back(create_base_metric("tcp_connections_close",
         static_cast<double>(counts.close), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_close_wait",
+    metrics.push_back(create_base_metric("tcp_connections_close_wait",
         static_cast<double>(counts.close_wait), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_last_ack",
+    metrics.push_back(create_base_metric("tcp_connections_last_ack",
         static_cast<double>(counts.last_ack), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_listen",
+    metrics.push_back(create_base_metric("tcp_connections_listen",
         static_cast<double>(counts.listen), base_tags, "connections"));
-    metrics.push_back(create_metric("tcp_connections_closing",
+    metrics.push_back(create_base_metric("tcp_connections_closing",
         static_cast<double>(counts.closing), base_tags, "connections"));
 
     // Total connections
-    metrics.push_back(create_metric("tcp_connections_total",
+    metrics.push_back(create_base_metric("tcp_connections_total",
         static_cast<double>(tcp_data.total_connections), base_tags, "connections"));
 
     // IPv4-specific metrics if available
     if (tcp_data.ipv4_counts.total() > 0) {
         std::unordered_map<std::string, std::string> ipv4_tags = base_tags;
         ipv4_tags["ip_version"] = "4";
-        metrics.push_back(create_metric("tcp_connections_ipv4_total",
+        metrics.push_back(create_base_metric("tcp_connections_ipv4_total",
             static_cast<double>(tcp_data.ipv4_counts.total()), ipv4_tags, "connections"));
     }
 
@@ -263,7 +215,7 @@ void tcp_state_collector::add_tcp_state_metrics(
     if (include_ipv6_ && tcp_data.ipv6_counts.total() > 0) {
         std::unordered_map<std::string, std::string> ipv6_tags = base_tags;
         ipv6_tags["ip_version"] = "6";
-        metrics.push_back(create_metric("tcp_connections_ipv6_total",
+        metrics.push_back(create_base_metric("tcp_connections_ipv6_total",
             static_cast<double>(tcp_data.ipv6_counts.total()), ipv6_tags, "connections"));
     }
 
@@ -271,14 +223,14 @@ void tcp_state_collector::add_tcp_state_metrics(
     if (counts.time_wait >= time_wait_warning_threshold_) {
         std::unordered_map<std::string, std::string> warning_tags = base_tags;
         warning_tags["alert"] = "time_wait_high";
-        metrics.push_back(create_metric("tcp_connections_warning",
+        metrics.push_back(create_base_metric("tcp_connections_warning",
             static_cast<double>(counts.time_wait), warning_tags, "connections"));
     }
 
     if (counts.close_wait >= close_wait_warning_threshold_) {
         std::unordered_map<std::string, std::string> warning_tags = base_tags;
         warning_tags["alert"] = "close_wait_high";
-        metrics.push_back(create_metric("tcp_connections_warning",
+        metrics.push_back(create_base_metric("tcp_connections_warning",
             static_cast<double>(counts.close_wait), warning_tags, "connections"));
     }
 }

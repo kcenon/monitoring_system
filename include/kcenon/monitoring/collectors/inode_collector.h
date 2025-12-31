@@ -44,16 +44,15 @@
  * - Windows: Not applicable (NTFS uses MFT, not traditional inodes)
  */
 
-#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "collector_base.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -131,93 +130,38 @@ class inode_info_collector {
  * @class inode_collector
  * @brief Filesystem inode usage monitoring collector
  *
- * Collects inode usage metrics with cross-platform support.
- * Returns empty/unavailable metrics on Windows since NTFS
- * uses MFT instead of traditional inodes.
+ * Uses CRTP base class to reduce code duplication.
  */
-class inode_collector {
+class inode_collector : public collector_base<inode_collector> {
    public:
-    inode_collector();
-    ~inode_collector() = default;
+    static constexpr const char* collector_name = "inode_collector";
 
-    // Non-copyable, non-moveable due to internal state
+    inode_collector();
+    ~inode_collector() override = default;
+
     inode_collector(const inode_collector&) = delete;
     inode_collector& operator=(const inode_collector&) = delete;
     inode_collector(inode_collector&&) = delete;
     inode_collector& operator=(inode_collector&&) = delete;
 
-    /**
-     * Initialize the collector with configuration
-     * @param config Configuration options:
-     *   - "enabled": "true"/"false" (default: true)
-     *   - "warning_threshold": percentage (default: 80.0)
-     *   - "critical_threshold": percentage (default: 95.0)
-     *   - "include_pseudo_fs": "true"/"false" (default: false)
-     * @return true if initialization successful
-     */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    // CRTP interface
+    bool do_initialize(const config_map& config);
+    std::vector<metric> do_collect();
+    bool is_available() const;
+    std::vector<std::string> do_get_metric_types() const;
+    void do_add_statistics(stats_map& stats) const;
 
-    /**
-     * Collect inode usage metrics
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
-
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "inode_collector"; }
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
-    bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
-
-    /**
-     * Get last collected inode metrics
-     * @return Most recent inode_metrics reading
-     */
     inode_metrics get_last_metrics() const;
-
-    /**
-     * Check if inode monitoring is available
-     * @return True if inode metrics are accessible
-     */
     bool is_inode_monitoring_available() const;
 
    private:
     std::unique_ptr<inode_info_collector> collector_;
 
-    // Configuration
-    bool enabled_{true};
     bool include_pseudo_fs_{false};
     double warning_threshold_{80.0};
     double critical_threshold_{95.0};
-
-    // Statistics
-    mutable std::mutex stats_mutex_;
-    std::atomic<size_t> collection_count_{0};
-    std::atomic<size_t> collection_errors_{0};
     inode_metrics last_metrics_;
 
-    // Helper methods
-    metric create_metric(const std::string& name, double value,
-                         const std::unordered_map<std::string, std::string>& tags = {},
-                         const std::string& unit = "") const;
     void add_inode_metrics(std::vector<metric>& metrics, const inode_metrics& inode_data);
 };
 

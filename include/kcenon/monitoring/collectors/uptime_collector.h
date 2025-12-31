@@ -43,16 +43,15 @@
  * - Windows: GetTickCount64()
  */
 
-#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "collector_base.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -115,11 +114,16 @@ class uptime_info_collector {
  *
  * Collects system uptime metrics with cross-platform support.
  * Provides boot timestamp and uptime duration for availability tracking.
+ *
+ * Uses CRTP base class to reduce code duplication.
  */
-class uptime_collector {
+class uptime_collector : public collector_base<uptime_collector> {
    public:
+    /// Collector name for CRTP base class
+    static constexpr const char* collector_name = "uptime_collector";
+
     uptime_collector();
-    ~uptime_collector() = default;
+    ~uptime_collector() override = default;
 
     // Non-copyable, non-moveable due to internal state
     uptime_collector(const uptime_collector&) = delete;
@@ -127,44 +131,38 @@ class uptime_collector {
     uptime_collector(uptime_collector&&) = delete;
     uptime_collector& operator=(uptime_collector&&) = delete;
 
+    // CRTP interface implementation
     /**
-     * Initialize the collector with configuration
+     * Collector-specific initialization
      * @param config Configuration options:
-     *   - "enabled": "true"/"false" (default: true)
      *   - "collect_idle_time": "true"/"false" (default: true, Linux only)
      * @return true if initialization successful
      */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    bool do_initialize(const config_map& config);
 
     /**
      * Collect uptime metrics
      * @return Vector of collected metrics
      */
-    std::vector<metric> collect();
+    std::vector<metric> do_collect();
 
     /**
-     * Get the name of this collector
-     * @return Collector name
+     * Check if uptime monitoring is available
+     * @return True if uptime metrics are accessible
      */
-    std::string get_name() const { return "uptime_collector"; }
+    bool is_available() const;
 
     /**
      * Get supported metric types
      * @return Vector of supported metric type names
      */
-    std::vector<std::string> get_metric_types() const;
+    std::vector<std::string> do_get_metric_types() const;
 
     /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
+     * Add collector-specific statistics
+     * @param stats Map to add statistics to
      */
-    bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
+    void do_add_statistics(stats_map& stats) const;
 
     /**
      * Get last collected uptime metrics
@@ -182,19 +180,12 @@ class uptime_collector {
     std::unique_ptr<uptime_info_collector> collector_;
 
     // Configuration
-    bool enabled_{true};
     bool collect_idle_time_{true};
 
-    // Statistics
-    mutable std::mutex stats_mutex_;
-    std::atomic<size_t> collection_count_{0};
-    std::atomic<size_t> collection_errors_{0};
+    // Last metrics cache
     uptime_metrics last_metrics_;
 
     // Helper methods
-    metric create_metric(const std::string& name, double value,
-                         const std::unordered_map<std::string, std::string>& tags = {},
-                         const std::string& unit = "") const;
     void add_uptime_metrics(std::vector<metric>& metrics,
                             const uptime_metrics& uptime_data);
 };
