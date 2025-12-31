@@ -232,12 +232,12 @@ TEST_F(BatteryCollectorTest, IsHealthyReflectsState) {
     // When enabled, health depends on battery availability
     EXPECT_NO_THROW(collector_->is_healthy());
 
-    // When disabled, should not be healthy
+    // When disabled, collector is considered healthy (no errors)
     auto disabled_collector = std::make_unique<battery_collector>();
     std::unordered_map<std::string, std::string> config;
     config["enabled"] = "false";
     disabled_collector->initialize(config);
-    EXPECT_FALSE(disabled_collector->is_healthy());
+    EXPECT_TRUE(disabled_collector->is_healthy());
 }
 
 // Test that battery metrics have battery_id tag

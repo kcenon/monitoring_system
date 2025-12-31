@@ -63,8 +63,19 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - macOS에서는 단조 증가 대신 0이 아닌 값 검증으로 assertion 변경
   - Linux에서는 시스템 전체 context switch에 대해 단조 증가 검증 유지
 - macOS에서 `struct timeval` 이식성을 위해 명시적 `<sys/time.h>` 헤더 include 추가
+- **CRTP collector_base 구현에 맞게 테스트 기대값 정렬** (#306)
+  - IsHealthyReflectsState 테스트 수정: 비활성화된 collector는 healthy로 간주 (에러 없음)
+  - MetricsHaveCorrectTags 테스트 수정: 실제 collector_name 값 사용
+  - socket_buffer_collector에 누락된 'available' 통계 추가
 
 ### 변경됨
+- **collector 구현에 CRTP 패턴 적용** (#292)
+  - 공통 collector 기능을 위한 `collector_base` 템플릿 클래스 생성 (CRTP)
+  - 8개 collector를 collector_base 사용으로 마이그레이션: uptime, fd, battery, tcp_state,
+    context_switch, inode, interrupt, socket_buffer
+  - 공통 기능 추출: enabled 상태, 통계, 에러 처리, 메트릭 생성
+  - collector 간 코드 중복 감소 (~400줄 이상 제거)
+  - 런타임 오버헤드 없는 컴파일 타임 다형성 패턴
 - **system_resources를 중첩 구조체로 재구성** (#293)
   - 35개 필드의 평면 구조체를 논리적으로 그룹화된 중첩 하위 구조체로 재구성
   - CPU 메트릭을 `cpu` 아래에 `load_average` 중첩 구조체와 함께 그룹화

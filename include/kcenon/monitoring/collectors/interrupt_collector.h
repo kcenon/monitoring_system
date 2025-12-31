@@ -43,16 +43,15 @@
  * - Windows: Not implemented (future: Performance counters)
  */
 
-#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "collector_base.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -131,91 +130,37 @@ class interrupt_info_collector {
  * @class interrupt_collector
  * @brief Hardware and software interrupt statistics monitoring collector
  *
- * Collects interrupt statistics with cross-platform support.
- * Provides interrupt counts and rates for diagnosing hardware-related
- * performance issues and interrupt storms.
+ * Uses CRTP base class to reduce code duplication.
  */
-class interrupt_collector {
+class interrupt_collector : public collector_base<interrupt_collector> {
    public:
-    interrupt_collector();
-    ~interrupt_collector() = default;
+    static constexpr const char* collector_name = "interrupt_collector";
 
-    // Non-copyable, non-moveable due to internal state
+    interrupt_collector();
+    ~interrupt_collector() override = default;
+
     interrupt_collector(const interrupt_collector&) = delete;
     interrupt_collector& operator=(const interrupt_collector&) = delete;
     interrupt_collector(interrupt_collector&&) = delete;
     interrupt_collector& operator=(interrupt_collector&&) = delete;
 
-    /**
-     * Initialize the collector with configuration
-     * @param config Configuration options:
-     *   - "enabled": "true"/"false" (default: true)
-     *   - "collect_per_cpu": "true"/"false" (default: false)
-     *   - "collect_soft_interrupts": "true"/"false" (default: true)
-     * @return true if initialization successful
-     */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    // CRTP interface
+    bool do_initialize(const config_map& config);
+    std::vector<metric> do_collect();
+    bool is_available() const;
+    std::vector<std::string> do_get_metric_types() const;
+    void do_add_statistics(stats_map& stats) const;
 
-    /**
-     * Collect interrupt statistics metrics
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
-
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "interrupt_collector"; }
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
-    bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
-
-    /**
-     * Get last collected interrupt metrics
-     * @return Most recent interrupt_metrics reading
-     */
     interrupt_metrics get_last_metrics() const;
-
-    /**
-     * Check if interrupt monitoring is available
-     * @return True if interrupt metrics are accessible
-     */
     bool is_interrupt_monitoring_available() const;
 
    private:
     std::unique_ptr<interrupt_info_collector> collector_;
 
-    // Configuration
-    bool enabled_{true};
     bool collect_per_cpu_{false};
     bool collect_soft_interrupts_{true};
-
-    // Statistics
-    mutable std::mutex stats_mutex_;
-    std::atomic<size_t> collection_count_{0};
-    std::atomic<size_t> collection_errors_{0};
     interrupt_metrics last_metrics_;
 
-    // Helper methods
-    metric create_metric(const std::string& name, double value,
-                         const std::unordered_map<std::string, std::string>& tags = {},
-                         const std::string& unit = "") const;
     void add_interrupt_metrics(std::vector<metric>& metrics, const interrupt_metrics& data);
 };
 

@@ -81,13 +81,7 @@ fd_metrics fd_info_collector::collect_metrics() {
 
 fd_collector::fd_collector() : collector_(std::make_unique<fd_info_collector>()) {}
 
-bool fd_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
-    // Parse configuration
-    auto enabled_it = config.find("enabled");
-    if (enabled_it != config.end()) {
-        enabled_ = (enabled_it->second == "true" || enabled_it->second == "1");
-    }
-
+bool fd_collector::do_initialize(const config_map& config) {
     auto warning_it = config.find("warning_threshold");
     if (warning_it != config.end()) {
         try {
@@ -109,21 +103,18 @@ bool fd_collector::initialize(const std::unordered_map<std::string, std::string>
     return true;
 }
 
-std::vector<std::string> fd_collector::get_metric_types() const {
+std::vector<std::string> fd_collector::do_get_metric_types() const {
     return {"fd_used_system", "fd_max_system", "fd_used_process",
             "fd_soft_limit",  "fd_hard_limit", "fd_usage_percent"};
 }
 
-bool fd_collector::is_healthy() const {
-    return enabled_ && collector_ && collector_->is_fd_monitoring_available();
+bool fd_collector::is_available() const {
+    return collector_ && collector_->is_fd_monitoring_available();
 }
 
-std::unordered_map<std::string, double> fd_collector::get_statistics() const {
-    return {{"collection_count", static_cast<double>(collection_count_.load())},
-            {"collection_errors", static_cast<double>(collection_errors_.load())},
-            {"enabled", enabled_ ? 1.0 : 0.0},
-            {"warning_threshold", warning_threshold_},
-            {"critical_threshold", critical_threshold_}};
+void fd_collector::do_add_statistics(stats_map& stats) const {
+    stats["warning_threshold"] = warning_threshold_;
+    stats["critical_threshold"] = critical_threshold_;
 }
 
 fd_metrics fd_collector::get_last_metrics() const {
@@ -135,83 +126,57 @@ bool fd_collector::is_fd_monitoring_available() const {
     return collector_ && collector_->is_fd_monitoring_available();
 }
 
-metric fd_collector::create_metric(const std::string& name, double value,
-                                   const std::unordered_map<std::string, std::string>& tags,
-                                   const std::string& unit) const {
-    metric m;
-    m.name = name;
-    m.value = value;
-    m.type = metric_type::gauge;
-    m.timestamp = std::chrono::system_clock::now();
-    m.tags = tags;
-    if (!unit.empty()) {
-        m.tags["unit"] = unit;
-    }
-    m.tags["collector"] = "fd_collector";
-    return m;
-}
-
 void fd_collector::add_fd_metrics(std::vector<metric>& metrics, const fd_metrics& fd_data) {
     std::unordered_map<std::string, std::string> tags;
 
     // Process-level metrics (always available)
-    metrics.push_back(create_metric("fd_used_process", static_cast<double>(fd_data.fd_used_process),
-                                    tags, "count"));
-    metrics.push_back(
-        create_metric("fd_soft_limit", static_cast<double>(fd_data.fd_soft_limit), tags, "count"));
-    metrics.push_back(
-        create_metric("fd_hard_limit", static_cast<double>(fd_data.fd_hard_limit), tags, "count"));
-    metrics.push_back(create_metric("fd_usage_percent", fd_data.fd_usage_percent, tags, "percent"));
+    metrics.push_back(create_base_metric("fd_used_process",
+                                         static_cast<double>(fd_data.fd_used_process), tags, "count"));
+    metrics.push_back(create_base_metric("fd_soft_limit",
+                                         static_cast<double>(fd_data.fd_soft_limit), tags, "count"));
+    metrics.push_back(create_base_metric("fd_hard_limit",
+                                         static_cast<double>(fd_data.fd_hard_limit), tags, "count"));
+    metrics.push_back(create_base_metric("fd_usage_percent", fd_data.fd_usage_percent, tags, "percent"));
 
     // System-level metrics (Linux only)
     if (fd_data.system_metrics_available) {
         tags["scope"] = "system";
-        metrics.push_back(create_metric(
-            "fd_used_system", static_cast<double>(fd_data.fd_used_system), tags, "count"));
-        metrics.push_back(create_metric("fd_max_system", static_cast<double>(fd_data.fd_max_system),
-                                        tags, "count"));
+        metrics.push_back(create_base_metric("fd_used_system",
+                                             static_cast<double>(fd_data.fd_used_system), tags, "count"));
+        metrics.push_back(create_base_metric("fd_max_system",
+                                             static_cast<double>(fd_data.fd_max_system), tags, "count"));
     }
 
     // Threshold state metrics
     std::unordered_map<std::string, std::string> threshold_tags;
     if (fd_data.fd_usage_percent >= critical_threshold_) {
         threshold_tags["state"] = "critical";
-        metrics.push_back(create_metric("fd_threshold_state", 2.0, threshold_tags));
+        metrics.push_back(create_base_metric("fd_threshold_state", 2.0, threshold_tags));
     } else if (fd_data.fd_usage_percent >= warning_threshold_) {
         threshold_tags["state"] = "warning";
-        metrics.push_back(create_metric("fd_threshold_state", 1.0, threshold_tags));
+        metrics.push_back(create_base_metric("fd_threshold_state", 1.0, threshold_tags));
     } else {
         threshold_tags["state"] = "normal";
-        metrics.push_back(create_metric("fd_threshold_state", 0.0, threshold_tags));
+        metrics.push_back(create_base_metric("fd_threshold_state", 0.0, threshold_tags));
     }
 }
 
-std::vector<metric> fd_collector::collect() {
+std::vector<metric> fd_collector::do_collect() {
     std::vector<metric> metrics;
 
-    if (!enabled_) {
-        return metrics;
-    }
-
     if (!collector_) {
-        ++collection_errors_;
         return metrics;
     }
 
-    try {
-        fd_metrics fd_data = collector_->collect_metrics();
+    fd_metrics fd_data = collector_->collect_metrics();
 
-        // Store last metrics
-        {
-            std::lock_guard<std::mutex> lock(stats_mutex_);
-            last_metrics_ = fd_data;
-        }
-
-        add_fd_metrics(metrics, fd_data);
-        ++collection_count_;
-    } catch (...) {
-        ++collection_errors_;
+    // Store last metrics
+    {
+        std::lock_guard<std::mutex> lock(stats_mutex_);
+        last_metrics_ = fd_data;
     }
+
+    add_fd_metrics(metrics, fd_data);
 
     return metrics;
 }

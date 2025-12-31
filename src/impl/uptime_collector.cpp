@@ -78,14 +78,7 @@ uptime_metrics uptime_info_collector::collect_metrics() {
 uptime_collector::uptime_collector()
     : collector_(std::make_unique<uptime_info_collector>()) {}
 
-bool uptime_collector::initialize(
-    const std::unordered_map<std::string, std::string>& config) {
-
-    // Parse configuration
-    if (auto it = config.find("enabled"); it != config.end()) {
-        enabled_ = (it->second == "true" || it->second == "1");
-    }
-
+bool uptime_collector::do_initialize(const config_map& config) {
     if (auto it = config.find("collect_idle_time"); it != config.end()) {
         collect_idle_time_ = (it->second == "true" || it->second == "1");
     }
@@ -93,7 +86,7 @@ bool uptime_collector::initialize(
     return true;
 }
 
-std::vector<std::string> uptime_collector::get_metric_types() const {
+std::vector<std::string> uptime_collector::do_get_metric_types() const {
     return {
         "system_uptime_seconds",
         "system_boot_timestamp",
@@ -101,42 +94,21 @@ std::vector<std::string> uptime_collector::get_metric_types() const {
     };
 }
 
-bool uptime_collector::is_healthy() const {
-    return enabled_ && collector_->is_uptime_monitoring_available();
+bool uptime_collector::is_available() const {
+    return collector_->is_uptime_monitoring_available();
 }
 
 bool uptime_collector::is_uptime_monitoring_available() const {
     return collector_->is_uptime_monitoring_available();
 }
 
-std::unordered_map<std::string, double> uptime_collector::get_statistics() const {
-    std::lock_guard<std::mutex> lock(stats_mutex_);
-    return {
-        {"enabled", enabled_ ? 1.0 : 0.0},
-        {"collection_count", static_cast<double>(collection_count_.load())},
-        {"collection_errors", static_cast<double>(collection_errors_.load())},
-        {"collect_idle_time", collect_idle_time_ ? 1.0 : 0.0}
-    };
+void uptime_collector::do_add_statistics(stats_map& stats) const {
+    stats["collect_idle_time"] = collect_idle_time_ ? 1.0 : 0.0;
 }
 
 uptime_metrics uptime_collector::get_last_metrics() const {
     std::lock_guard<std::mutex> lock(stats_mutex_);
     return last_metrics_;
-}
-
-metric uptime_collector::create_metric(
-    const std::string& name,
-    double value,
-    const std::unordered_map<std::string, std::string>& tags,
-    const std::string& /* unit */) const {
-
-    metric m;
-    m.name = name;
-    m.value = value;
-    m.timestamp = std::chrono::system_clock::now();
-    m.tags = tags;
-    m.tags["collector"] = "uptime_collector";
-    return m;
 }
 
 void uptime_collector::add_uptime_metrics(
@@ -148,7 +120,7 @@ void uptime_collector::add_uptime_metrics(
     }
 
     // System uptime in seconds
-    metrics.push_back(create_metric(
+    metrics.push_back(create_base_metric(
         "system_uptime_seconds",
         uptime_data.uptime_seconds,
         {},
@@ -156,7 +128,7 @@ void uptime_collector::add_uptime_metrics(
     ));
 
     // Boot timestamp
-    metrics.push_back(create_metric(
+    metrics.push_back(create_base_metric(
         "system_boot_timestamp",
         static_cast<double>(uptime_data.boot_timestamp),
         {},
@@ -165,7 +137,7 @@ void uptime_collector::add_uptime_metrics(
 
     // Idle time (Linux only, when enabled)
     if (collect_idle_time_ && uptime_data.idle_seconds > 0.0) {
-        metrics.push_back(create_metric(
+        metrics.push_back(create_base_metric(
             "system_idle_seconds",
             uptime_data.idle_seconds,
             {},
@@ -174,27 +146,17 @@ void uptime_collector::add_uptime_metrics(
     }
 }
 
-std::vector<metric> uptime_collector::collect() {
+std::vector<metric> uptime_collector::do_collect() {
     std::vector<metric> metrics;
 
-    if (!enabled_) {
-        return metrics;
+    auto uptime_data = collector_->collect_metrics();
+
+    {
+        std::lock_guard<std::mutex> lock(stats_mutex_);
+        last_metrics_ = uptime_data;
     }
 
-    try {
-        auto uptime_data = collector_->collect_metrics();
-
-        {
-            std::lock_guard<std::mutex> lock(stats_mutex_);
-            last_metrics_ = uptime_data;
-        }
-
-        add_uptime_metrics(metrics, uptime_data);
-        ++collection_count_;
-
-    } catch (...) {
-        ++collection_errors_;
-    }
+    add_uptime_metrics(metrics, uptime_data);
 
     return metrics;
 }

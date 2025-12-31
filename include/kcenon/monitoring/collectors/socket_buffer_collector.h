@@ -43,16 +43,15 @@
  * - Windows: GetTcpStatistics() API (stub implementation)
  */
 
-#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "collector_base.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -117,90 +116,37 @@ class socket_buffer_info_collector {
  * @class socket_buffer_collector
  * @brief Socket buffer usage monitoring collector
  *
- * Collects socket buffer metrics with cross-platform support.
- * Returns unavailable metrics on Windows (stub implementation).
+ * Uses CRTP base class to reduce code duplication.
  */
-class socket_buffer_collector {
+class socket_buffer_collector : public collector_base<socket_buffer_collector> {
    public:
-    socket_buffer_collector();
-    ~socket_buffer_collector() = default;
+    static constexpr const char* collector_name = "socket_buffer_collector";
 
-    // Non-copyable, non-moveable due to internal state
+    socket_buffer_collector();
+    ~socket_buffer_collector() override = default;
+
     socket_buffer_collector(const socket_buffer_collector&) = delete;
     socket_buffer_collector& operator=(const socket_buffer_collector&) = delete;
     socket_buffer_collector(socket_buffer_collector&&) = delete;
     socket_buffer_collector& operator=(socket_buffer_collector&&) = delete;
 
-    /**
-     * Initialize the collector with configuration
-     * @param config Configuration options:
-     *   - "enabled": "true"/"false" (default: true)
-     *   - "queue_full_threshold_bytes": bytes (default: 65536)
-     *   - "memory_warning_threshold_bytes": bytes (default: 104857600 = 100MB)
-     * @return true if initialization successful
-     */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    // CRTP interface
+    bool do_initialize(const config_map& config);
+    std::vector<metric> do_collect();
+    bool is_available() const;
+    std::vector<std::string> do_get_metric_types() const;
+    void do_add_statistics(stats_map& stats) const;
 
-    /**
-     * Collect socket buffer metrics
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
-
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "socket_buffer_collector"; }
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
-    bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
-
-    /**
-     * Get last collected socket buffer metrics
-     * @return Most recent socket_buffer_metrics reading
-     */
     socket_buffer_metrics get_last_metrics() const;
-
-    /**
-     * Check if socket buffer monitoring is available
-     * @return True if socket buffer metrics are accessible
-     */
     bool is_socket_buffer_monitoring_available() const;
 
    private:
     std::unique_ptr<socket_buffer_info_collector> collector_;
 
-    // Configuration
-    bool enabled_{true};
-    uint64_t queue_full_threshold_bytes_{65536};  // 64KB default
-    uint64_t memory_warning_threshold_bytes_{104857600};  // 100MB default
-
-    // Statistics
-    mutable std::mutex stats_mutex_;
-    std::atomic<size_t> collection_count_{0};
-    std::atomic<size_t> collection_errors_{0};
+    uint64_t queue_full_threshold_bytes_{65536};
+    uint64_t memory_warning_threshold_bytes_{104857600};
     socket_buffer_metrics last_metrics_;
 
-    // Helper methods
-    metric create_metric(const std::string& name, double value,
-                         const std::unordered_map<std::string, std::string>& tags = {},
-                         const std::string& unit = "") const;
     void add_socket_buffer_metrics(std::vector<metric>& metrics,
                                    const socket_buffer_metrics& buffer_data);
 };
