@@ -85,12 +85,17 @@ struct context_switch_metrics {
     std::chrono::system_clock::time_point timestamp;  ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class context_switch_info_collector
- * @brief Platform-specific context switch data collector implementation
+ * @brief Context switch data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * reading context switch statistics from system APIs.
+ * This class provides context switch data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class context_switch_info_collector {
    public:
@@ -116,19 +121,13 @@ class context_switch_info_collector {
     context_switch_metrics collect_metrics();
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool availability_checked_{false};
-    mutable bool available_{false};
-    
+    std::unique_ptr<platform::metrics_provider> provider_;
+
     // For rate calculation
     uint64_t last_system_switches_{0};
     std::chrono::steady_clock::time_point last_collection_time_;
     bool has_previous_sample_{false};
 
-    // Platform-specific helper methods
-    context_switch_metrics collect_metrics_impl();
-    bool check_availability_impl() const;
-    
     // Rate calculation
     double calculate_rate(uint64_t current_switches);
 };

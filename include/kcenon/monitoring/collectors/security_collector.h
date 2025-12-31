@@ -185,12 +185,17 @@ struct security_metrics {
     std::chrono::system_clock::time_point timestamp; ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class security_info_collector
- * @brief Platform-specific security event data collector implementation
+ * @brief Security event data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * reading security events from system logs.
+ * This class provides security event data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class security_info_collector {
    public:
@@ -228,20 +233,10 @@ class security_info_collector {
     void set_mask_pii(bool mask_pii);
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool availability_checked_{false};
-    mutable bool available_{false};
+    std::unique_ptr<platform::metrics_provider> provider_;
     size_t max_recent_events_{100};
     bool mask_pii_{false};
-    
-    // Track last read position for log parsing
-    std::streamoff last_log_position_{0};
-    std::chrono::system_clock::time_point last_collection_time_;
-    security_event_counts cumulative_counts_;
 
-    // Platform-specific helper methods
-    security_metrics collect_metrics_impl();
-    bool check_availability_impl() const;
     std::string mask_username(const std::string& username) const;
 };
 
