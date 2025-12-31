@@ -43,16 +43,15 @@
  * - Windows: Performance counters (stub implementation)
  */
 
-#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "collector_base.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -138,89 +137,39 @@ class context_switch_info_collector {
  *
  * Collects context switch metrics with cross-platform support.
  * Returns empty/unavailable metrics on Windows (stub implementation).
+ *
+ * Uses CRTP base class to reduce code duplication.
  */
-class context_switch_collector {
+class context_switch_collector : public collector_base<context_switch_collector> {
    public:
-    context_switch_collector();
-    ~context_switch_collector() = default;
+    static constexpr const char* collector_name = "context_switch_collector";
 
-    // Non-copyable, non-moveable due to internal state
+    context_switch_collector();
+    ~context_switch_collector() override = default;
+
     context_switch_collector(const context_switch_collector&) = delete;
     context_switch_collector& operator=(const context_switch_collector&) = delete;
     context_switch_collector(context_switch_collector&&) = delete;
     context_switch_collector& operator=(context_switch_collector&&) = delete;
 
-    /**
-     * Initialize the collector with configuration
-     * @param config Configuration options:
-     *   - "enabled": "true"/"false" (default: true)
-     *   - "collect_process_metrics": "true"/"false" (default: true)
-     *   - "rate_warning_threshold": switches/sec (default: 100000)
-     * @return true if initialization successful
-     */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    // CRTP interface
+    bool do_initialize(const config_map& config);
+    std::vector<metric> do_collect();
+    bool is_available() const;
+    std::vector<std::string> do_get_metric_types() const;
+    void do_add_statistics(stats_map& stats) const;
 
-    /**
-     * Collect context switch metrics
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
-
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "context_switch_collector"; }
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
-    bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
-
-    /**
-     * Get last collected context switch metrics
-     * @return Most recent context_switch_metrics reading
-     */
     context_switch_metrics get_last_metrics() const;
-
-    /**
-     * Check if context switch monitoring is available
-     * @return True if context switch metrics are accessible
-     */
     bool is_context_switch_monitoring_available() const;
 
    private:
     std::unique_ptr<context_switch_info_collector> collector_;
 
-    // Configuration
-    bool enabled_{true};
     bool collect_process_metrics_{true};
     double rate_warning_threshold_{100000.0};
-
-    // Statistics
-    mutable std::mutex stats_mutex_;
-    std::atomic<size_t> collection_count_{0};
-    std::atomic<size_t> collection_errors_{0};
     context_switch_metrics last_metrics_;
 
-    // Helper methods
-    metric create_metric(const std::string& name, double value,
-                         const std::unordered_map<std::string, std::string>& tags = {},
-                         const std::string& unit = "") const;
-    void add_context_switch_metrics(std::vector<metric>& metrics, 
+    void add_context_switch_metrics(std::vector<metric>& metrics,
                                     const context_switch_metrics& cs_data);
 };
 
