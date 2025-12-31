@@ -43,16 +43,15 @@
  * - Windows: GetExtendedTcpTable() API (stub implementation)
  */
 
-#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "collector_base.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -227,11 +226,16 @@ class tcp_state_info_collector {
  *
  * Collects TCP connection state metrics with cross-platform support.
  * Returns unavailable metrics on Windows (stub implementation).
+ *
+ * Uses CRTP base class to reduce code duplication.
  */
-class tcp_state_collector {
+class tcp_state_collector : public collector_base<tcp_state_collector> {
    public:
+    /// Collector name for CRTP base class
+    static constexpr const char* collector_name = "tcp_state_collector";
+
     tcp_state_collector();
-    ~tcp_state_collector() = default;
+    ~tcp_state_collector() override = default;
 
     // Non-copyable, non-moveable due to internal state
     tcp_state_collector(const tcp_state_collector&) = delete;
@@ -239,46 +243,40 @@ class tcp_state_collector {
     tcp_state_collector(tcp_state_collector&&) = delete;
     tcp_state_collector& operator=(tcp_state_collector&&) = delete;
 
+    // CRTP interface implementation
     /**
-     * Initialize the collector with configuration
+     * Collector-specific initialization
      * @param config Configuration options:
-     *   - "enabled": "true"/"false" (default: true)
      *   - "time_wait_warning_threshold": count (default: 10000)
      *   - "close_wait_warning_threshold": count (default: 100)
      *   - "include_ipv6": "true"/"false" (default: true)
      * @return true if initialization successful
      */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    bool do_initialize(const config_map& config);
 
     /**
      * Collect TCP state metrics
      * @return Vector of collected metrics
      */
-    std::vector<metric> collect();
+    std::vector<metric> do_collect();
 
     /**
-     * Get the name of this collector
-     * @return Collector name
+     * Check if TCP state monitoring is available
+     * @return True if TCP state metrics are accessible
      */
-    std::string get_name() const { return "tcp_state_collector"; }
+    bool is_available() const;
 
     /**
      * Get supported metric types
      * @return Vector of supported metric type names
      */
-    std::vector<std::string> get_metric_types() const;
+    std::vector<std::string> do_get_metric_types() const;
 
     /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
+     * Add collector-specific statistics
+     * @param stats Map to add statistics to
      */
-    bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
+    void do_add_statistics(stats_map& stats) const;
 
     /**
      * Get last collected TCP state metrics
@@ -296,21 +294,14 @@ class tcp_state_collector {
     std::unique_ptr<tcp_state_info_collector> collector_;
 
     // Configuration
-    bool enabled_{true};
     bool include_ipv6_{true};
     uint64_t time_wait_warning_threshold_{10000};
     uint64_t close_wait_warning_threshold_{100};
 
-    // Statistics
-    mutable std::mutex stats_mutex_;
-    std::atomic<size_t> collection_count_{0};
-    std::atomic<size_t> collection_errors_{0};
+    // Last metrics cache
     tcp_state_metrics last_metrics_;
 
     // Helper methods
-    metric create_metric(const std::string& name, double value,
-                         const std::unordered_map<std::string, std::string>& tags = {},
-                         const std::string& unit = "") const;
     void add_tcp_state_metrics(std::vector<metric>& metrics,
                                const tcp_state_metrics& tcp_data);
 };
