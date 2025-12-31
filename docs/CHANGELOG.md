@@ -63,6 +63,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Changed assertion to verify non-zero values instead of monotonic increase on macOS
   - Linux continues to verify monotonic increase for system-wide context switches
 - Added explicit `<sys/time.h>` header include for `struct timeval` portability on macOS
+- **Align test expectations with CRTP collector_base implementation** (#306)
+  - Fixed IsHealthyReflectsState tests: disabled collectors are considered healthy (no errors)
+  - Fixed MetricsHaveCorrectTags tests: use actual collector_name values
+  - Added missing 'available' statistic to socket_buffer_collector
 
 ### Changed
 - **Apply CRTP pattern to collector implementations** (#292)
