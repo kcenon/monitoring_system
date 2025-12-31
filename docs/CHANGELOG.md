@@ -64,6 +64,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Linux continues to verify monotonic increase for system-wide context switches
 - Added explicit `<sys/time.h>` header include for `struct timeval` portability on macOS
 
+### Changed
+- **Restructured system_resources as nested structs** (#293)
+  - Reorganized flat 35-field struct into logically grouped nested sub-structs
+  - CPU metrics grouped under `cpu` with `load_average` nested struct
+  - Memory metrics grouped with `swap_info` nested struct
+  - Disk metrics grouped with `io_throughput` nested struct
+  - Cleaner access pattern: `resources.cpu.usage_percent` instead of `resources.cpu_usage_percent`
+  - Enables partial access (e.g., pass `resources.cpu` only when needed)
+
 ### Added
 - **Platform abstraction layer interface** (#291, Phase 1: #294)
   - Added `metrics_provider` abstract interface for unified platform metrics

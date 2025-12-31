@@ -152,20 +152,20 @@ void system_info_collector::collect_process_stats([[maybe_unused]] system_resour
         }
     }
 
-    resources.context_switches_total = total_switches;
-    
+    resources.context_switches.total = total_switches;
+
     // Calculate rate
     auto now = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - last_collection_time_).count();
-    
+
     if (duration > 0 && last_context_switches_total_ > 0 && total_switches >= last_context_switches_total_) {
         double seconds = duration / 1000000.0;
-        resources.context_switches_per_sec = static_cast<uint64_t>((total_switches - last_context_switches_total_) / seconds);
+        resources.context_switches.per_sec = static_cast<uint64_t>((total_switches - last_context_switches_total_) / seconds);
     }
-    
+
     last_context_switches_total_ = total_switches;
 
-    resources.process_count = numberOfProcesses;
+    resources.process.count = numberOfProcesses;
 
 #elif _WIN32
     // Windows implementation TODO
@@ -203,10 +203,10 @@ void system_info_collector::collect_macos_cpu_stats(system_resources& resources)
                               
         if (total > prev_total) {
             uint64_t total_delta = total - prev_total;
-            resources.cpu_user_percent = 100.0 * (total_user - last_cpu_stats_.user) / total_delta;
-            resources.cpu_system_percent = 100.0 * (total_sys - last_cpu_stats_.system) / total_delta;
-            resources.cpu_idle_percent = 100.0 * (total_idle - last_cpu_stats_.idle) / total_delta;
-            resources.cpu_usage_percent = resources.cpu_user_percent + resources.cpu_system_percent;
+            resources.cpu.user_percent = 100.0 * (total_user - last_cpu_stats_.user) / total_delta;
+            resources.cpu.system_percent = 100.0 * (total_sys - last_cpu_stats_.system) / total_delta;
+            resources.cpu.idle_percent = 100.0 * (total_idle - last_cpu_stats_.idle) / total_delta;
+            resources.cpu.usage_percent = resources.cpu.user_percent + resources.cpu.system_percent;
         }
 
         last_cpu_stats_.system = total_sys;
@@ -223,9 +223,9 @@ void system_info_collector::collect_macos_cpu_stats(system_resources& resources)
     struct host_load_info load_info;
     mach_msg_type_number_t count = HOST_LOAD_INFO_COUNT;
     if (host_statistics(mach_host_self(), HOST_LOAD_INFO, (host_info_t)&load_info, &count) == KERN_SUCCESS) {
-        resources.load_average_1min = (double)load_info.avenrun[0] / LOAD_SCALE;
-        resources.load_average_5min = (double)load_info.avenrun[1] / LOAD_SCALE;
-        resources.load_average_15min = (double)load_info.avenrun[2] / LOAD_SCALE;
+        resources.cpu.load.one_min = (double)load_info.avenrun[0] / LOAD_SCALE;
+        resources.cpu.load.five_min = (double)load_info.avenrun[1] / LOAD_SCALE;
+        resources.cpu.load.fifteen_min = (double)load_info.avenrun[2] / LOAD_SCALE;
     }
 }
 
@@ -245,12 +245,12 @@ void system_info_collector::collect_macos_memory_stats(system_resources& resourc
         size_t length = sizeof(total_memory);
         sysctl(mib, 2, &total_memory, &length, NULL, 0);
 
-        resources.total_memory_bytes = total_memory;
-        resources.available_memory_bytes = vm_stats.free_count * page_size;
-        resources.used_memory_bytes = (vm_stats.active_count + vm_stats.wire_count + vm_stats.compressor_page_count) * page_size;
-        
+        resources.memory.total_bytes = total_memory;
+        resources.memory.available_bytes = vm_stats.free_count * page_size;
+        resources.memory.used_bytes = (vm_stats.active_count + vm_stats.wire_count + vm_stats.compressor_page_count) * page_size;
+
         if (total_memory > 0) {
-            resources.memory_usage_percent = 100.0 * resources.used_memory_bytes / total_memory;
+            resources.memory.usage_percent = 100.0 * resources.memory.used_bytes / total_memory;
         }
     }
 }
@@ -296,14 +296,14 @@ void system_info_collector::collect_linux_cpu_stats(system_resources& resources)
     }
 
     // Context Switch Metrics
-    resources.context_switches_total = context_switches;
-    
+    resources.context_switches.total = context_switches;
+
     auto now = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - last_collection_time_).count();
-    
+
     if (duration > 0 && last_context_switches_total_ > 0 && context_switches >= last_context_switches_total_) {
         double seconds = duration / 1000000.0;
-        resources.context_switches_per_sec = static_cast<uint64_t>((context_switches - last_context_switches_total_) / seconds);
+        resources.context_switches.per_sec = static_cast<uint64_t>((context_switches - last_context_switches_total_) / seconds);
     }
     last_context_switches_total_ = context_switches;
 
@@ -318,11 +318,11 @@ void system_info_collector::collect_linux_cpu_stats(system_resources& resources)
     if (total > prev_total) {
         uint64_t total_delta = total - prev_total;
         uint64_t idle_delta = (idle + iowait) - (last_cpu_stats_.idle + last_cpu_stats_.iowait);
-        
-        resources.cpu_usage_percent = 100.0 * (1.0 - (double)idle_delta / total_delta);
-        resources.cpu_user_percent = 100.0 * (user - last_cpu_stats_.user) / total_delta;
-        resources.cpu_system_percent = 100.0 * (system - last_cpu_stats_.system) / total_delta;
-        resources.cpu_idle_percent = 100.0 * (idle - last_cpu_stats_.idle) / total_delta;
+
+        resources.cpu.usage_percent = 100.0 * (1.0 - (double)idle_delta / total_delta);
+        resources.cpu.user_percent = 100.0 * (user - last_cpu_stats_.user) / total_delta;
+        resources.cpu.system_percent = 100.0 * (system - last_cpu_stats_.system) / total_delta;
+        resources.cpu.idle_percent = 100.0 * (idle - last_cpu_stats_.idle) / total_delta;
     }
 
     last_cpu_stats_ = {user, nice, system, idle, iowait, irq, softirq, steal};
@@ -330,22 +330,22 @@ void system_info_collector::collect_linux_cpu_stats(system_resources& resources)
     // Load Average
     struct sysinfo si;
     if (sysinfo(&si) == 0) {
-        resources.load_average_1min = si.loads[0] / 65536.0;
-        resources.load_average_5min = si.loads[1] / 65536.0;
-        resources.load_average_15min = si.loads[2] / 65536.0;
+        resources.cpu.load.one_min = si.loads[0] / 65536.0;
+        resources.cpu.load.five_min = si.loads[1] / 65536.0;
+        resources.cpu.load.fifteen_min = si.loads[2] / 65536.0;
     }
 }
 
 void system_info_collector::collect_linux_memory_stats(system_resources& resources) {
     struct sysinfo si;
     if (sysinfo(&si) == 0) {
-        resources.total_memory_bytes = si.totalram * si.mem_unit;
-        resources.available_memory_bytes = si.freeram * si.mem_unit; // buffers/cache not included in freeram usually
-        resources.used_memory_bytes = resources.total_memory_bytes - resources.available_memory_bytes;
+        resources.memory.total_bytes = si.totalram * si.mem_unit;
+        resources.memory.available_bytes = si.freeram * si.mem_unit; // buffers/cache not included in freeram usually
+        resources.memory.used_bytes = resources.memory.total_bytes - resources.memory.available_bytes;
         // More precise meminfo parsing would be better but this is sufficient for now
-        
-        if (resources.total_memory_bytes > 0) {
-            resources.memory_usage_percent = 100.0 * resources.used_memory_bytes / resources.total_memory_bytes;
+
+        if (resources.memory.total_bytes > 0) {
+            resources.memory.usage_percent = 100.0 * resources.memory.used_bytes / resources.memory.total_bytes;
         }
     }
 }
@@ -404,8 +404,8 @@ std::vector<metric> system_resource_collector::collect() {
 
     // Track load average history
     if (enable_load_history_ && load_history_) {
-        load_history_->add_sample(resources.load_average_1min, resources.load_average_5min,
-                                  resources.load_average_15min);
+        load_history_->add_sample(resources.cpu.load.one_min, resources.cpu.load.five_min,
+                                  resources.cpu.load.fifteen_min);
     }
     
     std::vector<metric> metrics;
@@ -502,20 +502,20 @@ metric system_resource_collector::create_metric(const std::string& name, double 
 }
 
 void system_resource_collector::add_cpu_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    metrics.push_back(create_metric("cpu_usage_percent", resources.cpu_usage_percent, "%"));
-    metrics.push_back(create_metric("cpu_user_percent", resources.cpu_user_percent, "%"));
-    metrics.push_back(create_metric("cpu_system_percent", resources.cpu_system_percent, "%"));
-    metrics.push_back(create_metric("load_average_1min", resources.load_average_1min));
-    
+    metrics.push_back(create_metric("cpu_usage_percent", resources.cpu.usage_percent, "%"));
+    metrics.push_back(create_metric("cpu_user_percent", resources.cpu.user_percent, "%"));
+    metrics.push_back(create_metric("cpu_system_percent", resources.cpu.system_percent, "%"));
+    metrics.push_back(create_metric("load_average_1min", resources.cpu.load.one_min));
+
     // Add context switch metrics here as they are closely related to CPU
-    metrics.push_back(create_metric("context_switches_total", (double)resources.context_switches_total));
-    metrics.push_back(create_metric("context_switches_per_sec", (double)resources.context_switches_per_sec, "ops/s"));
+    metrics.push_back(create_metric("context_switches_total", (double)resources.context_switches.total));
+    metrics.push_back(create_metric("context_switches_per_sec", (double)resources.context_switches.per_sec, "ops/s"));
 }
 
 void system_resource_collector::add_memory_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    metrics.push_back(create_metric("memory_usage_percent", resources.memory_usage_percent, "%"));
-    metrics.push_back(create_metric("memory_used_bytes", (double)resources.used_memory_bytes, "bytes"));
-    metrics.push_back(create_metric("memory_available_bytes", (double)resources.available_memory_bytes, "bytes"));
+    metrics.push_back(create_metric("memory_usage_percent", resources.memory.usage_percent, "%"));
+    metrics.push_back(create_metric("memory_used_bytes", (double)resources.memory.used_bytes, "bytes"));
+    metrics.push_back(create_metric("memory_available_bytes", (double)resources.memory.available_bytes, "bytes"));
 }
 
 void system_resource_collector::add_disk_metrics(std::vector<metric>& metrics, const system_resources& resources) {
@@ -529,7 +529,7 @@ void system_resource_collector::add_network_metrics(std::vector<metric>& metrics
 }
 
 void system_resource_collector::add_process_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    metrics.push_back(create_metric("process_count", (double)resources.process_count));
+    metrics.push_back(create_metric("process_count", (double)resources.process.count));
 }
 
 // -----------------------------------------------------------------------------
@@ -572,18 +572,18 @@ void resource_threshold_monitor::clear_history() {
 }
 
 void resource_threshold_monitor::check_cpu_usage(std::vector<alert>& alerts, const system_resources& resources) {
-    if (resources.cpu_usage_percent >= config_.cpu_usage_critical) {
-        add_alert(alerts, "cpu", alert::severity::critical, resources.cpu_usage_percent, config_.cpu_usage_critical, "CPU usage critical");
-    } else if (resources.cpu_usage_percent >= config_.cpu_usage_warn) {
-        add_alert(alerts, "cpu", alert::severity::warning, resources.cpu_usage_percent, config_.cpu_usage_warn, "CPU usage warning");
+    if (resources.cpu.usage_percent >= config_.cpu_usage_critical) {
+        add_alert(alerts, "cpu", alert::severity::critical, resources.cpu.usage_percent, config_.cpu_usage_critical, "CPU usage critical");
+    } else if (resources.cpu.usage_percent >= config_.cpu_usage_warn) {
+        add_alert(alerts, "cpu", alert::severity::warning, resources.cpu.usage_percent, config_.cpu_usage_warn, "CPU usage warning");
     }
 }
 
 void resource_threshold_monitor::check_memory_usage(std::vector<alert>& alerts, const system_resources& resources) {
-    if (resources.memory_usage_percent >= config_.memory_usage_critical) {
-        add_alert(alerts, "memory", alert::severity::critical, resources.memory_usage_percent, config_.memory_usage_critical, "Memory usage critical");
-    } else if (resources.memory_usage_percent >= config_.memory_usage_warn) {
-        add_alert(alerts, "memory", alert::severity::warning, resources.memory_usage_percent, config_.memory_usage_warn, "Memory usage warning");
+    if (resources.memory.usage_percent >= config_.memory_usage_critical) {
+        add_alert(alerts, "memory", alert::severity::critical, resources.memory.usage_percent, config_.memory_usage_critical, "Memory usage critical");
+    } else if (resources.memory.usage_percent >= config_.memory_usage_warn) {
+        add_alert(alerts, "memory", alert::severity::warning, resources.memory.usage_percent, config_.memory_usage_warn, "Memory usage warning");
     }
 }
 

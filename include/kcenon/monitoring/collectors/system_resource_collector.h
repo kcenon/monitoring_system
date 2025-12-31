@@ -66,55 +66,102 @@
 namespace kcenon { namespace monitoring {
 
 /**
- * System resource information structure
+ * System resource information structure with nested logical groupings
+ *
+ * This structure organizes system metrics into logical sub-structs for:
+ * - Cleaner access patterns: resources.cpu.usage_percent vs resources.cpu_usage_percent
+ * - Easier extension: add fields to relevant sub-struct
+ * - Partial access: pass resources.cpu only when needed
  */
 struct system_resources {
-    // CPU metrics
-    double cpu_usage_percent{0.0};
-    double cpu_user_percent{0.0};
-    double cpu_system_percent{0.0};
-    double cpu_idle_percent{0.0};
-    size_t cpu_count{0};
-    double load_average_1min{0.0};
-    double load_average_5min{0.0};
-    double load_average_15min{0.0};
+    /**
+     * CPU-related metrics
+     */
+    struct cpu_metrics {
+        double usage_percent{0.0};
+        double user_percent{0.0};
+        double system_percent{0.0};
+        double idle_percent{0.0};
+        size_t count{0};
 
-    // Memory metrics
-    size_t total_memory_bytes{0};
-    size_t available_memory_bytes{0};
-    size_t used_memory_bytes{0};
-    double memory_usage_percent{0.0};
-    size_t swap_total_bytes{0};
-    size_t swap_used_bytes{0};
-    double swap_usage_percent{0.0};
+        /**
+         * System load average
+         */
+        struct load_average {
+            double one_min{0.0};
+            double five_min{0.0};
+            double fifteen_min{0.0};
+        } load;
+    } cpu;
 
-    // Disk metrics
-    size_t disk_total_bytes{0};
-    size_t disk_used_bytes{0};
-    size_t disk_available_bytes{0};
-    double disk_usage_percent{0.0};
-    size_t disk_read_bytes_per_sec{0};
-    size_t disk_write_bytes_per_sec{0};
+    /**
+     * Memory-related metrics
+     */
+    struct memory_metrics {
+        size_t total_bytes{0};
+        size_t available_bytes{0};
+        size_t used_bytes{0};
+        double usage_percent{0.0};
 
-    // Network metrics
-    size_t network_rx_bytes_per_sec{0};
-    size_t network_tx_bytes_per_sec{0};
-    size_t network_rx_packets_per_sec{0};
-    size_t network_tx_packets_per_sec{0};
-    size_t network_errors{0};
-    size_t network_drops{0};
+        /**
+         * Swap memory info
+         */
+        struct swap_info {
+            size_t total_bytes{0};
+            size_t used_bytes{0};
+            double usage_percent{0.0};
+        } swap;
+    } memory;
 
-    // Process metrics
-    size_t process_count{0};
-    size_t thread_count{0};
-    size_t handle_count{0};
-    size_t open_file_descriptors{0};
+    /**
+     * Disk-related metrics
+     */
+    struct disk_metrics {
+        size_t total_bytes{0};
+        size_t used_bytes{0};
+        size_t available_bytes{0};
+        double usage_percent{0.0};
 
-    // Context Switch metrics
-    uint64_t context_switches_total{0};
-    uint64_t context_switches_per_sec{0};
-    uint64_t voluntary_context_switches{0};
-    uint64_t nonvoluntary_context_switches{0};
+        /**
+         * Disk I/O throughput
+         */
+        struct io_throughput {
+            size_t read_bytes_per_sec{0};
+            size_t write_bytes_per_sec{0};
+        } io;
+    } disk;
+
+    /**
+     * Network-related metrics
+     */
+    struct network_metrics {
+        size_t rx_bytes_per_sec{0};
+        size_t tx_bytes_per_sec{0};
+        size_t rx_packets_per_sec{0};
+        size_t tx_packets_per_sec{0};
+        size_t errors{0};
+        size_t drops{0};
+    } network;
+
+    /**
+     * Process-related metrics
+     */
+    struct process_metrics {
+        size_t count{0};
+        size_t thread_count{0};
+        size_t handle_count{0};
+        size_t open_file_descriptors{0};
+    } process;
+
+    /**
+     * Context switch metrics
+     */
+    struct context_switch_metrics {
+        uint64_t total{0};
+        uint64_t per_sec{0};
+        uint64_t voluntary{0};
+        uint64_t nonvoluntary{0};
+    } context_switches;
 };
 
 /**

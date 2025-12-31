@@ -64,6 +64,15 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - Linux에서는 시스템 전체 context switch에 대해 단조 증가 검증 유지
 - macOS에서 `struct timeval` 이식성을 위해 명시적 `<sys/time.h>` 헤더 include 추가
 
+### 변경됨
+- **system_resources를 중첩 구조체로 재구성** (#293)
+  - 35개 필드의 평면 구조체를 논리적으로 그룹화된 중첩 하위 구조체로 재구성
+  - CPU 메트릭을 `cpu` 아래에 `load_average` 중첩 구조체와 함께 그룹화
+  - 메모리 메트릭을 `swap_info` 중첩 구조체와 함께 그룹화
+  - 디스크 메트릭을 `io_throughput` 중첩 구조체와 함께 그룹화
+  - 더 깔끔한 접근 패턴: `resources.cpu_usage_percent` 대신 `resources.cpu.usage_percent`
+  - 부분 접근 가능 (예: 필요할 때 `resources.cpu`만 전달)
+
 ### 추가됨
 - **플랫폼 추상화 레이어 인터페이스** (#291, Phase 1: #294)
   - 통합 플랫폼 메트릭을 위한 `metrics_provider` 추상 인터페이스 추가
