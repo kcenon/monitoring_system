@@ -65,6 +65,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added explicit `<sys/time.h>` header include for `struct timeval` portability on macOS
 
 ### Changed
+- **Apply CRTP pattern to collector implementations** (#292)
+  - Created `collector_base` template class with CRTP for common collector functionality
+  - Migrated 8 collectors to use collector_base: uptime, fd, battery, tcp_state,
+    context_switch, inode, interrupt, socket_buffer
+  - Extracted common functionality: enabled state, statistics, error handling, metric creation
+  - Reduced code duplication across collectors (~400+ lines removed)
+  - Pattern enables compile-time polymorphism with zero runtime overhead
 - **Restructured system_resources as nested structs** (#293)
   - Reorganized flat 35-field struct into logically grouped nested sub-structs
   - CPU metrics grouped under `cpu` with `load_average` nested struct
