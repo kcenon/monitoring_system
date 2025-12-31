@@ -280,12 +280,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">// When enabled, health depends on availability</span></div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    EXPECT_NO_THROW(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_healthy());</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// When disabled, should not be healthy</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// When disabled, collector is considered healthy (no errors)</span></div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">auto</span> disabled_collector = std::make_unique&lt;context_switch_collector&gt;();</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    std::unordered_map&lt;std::string, std::string&gt; config;</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    config[<span class="stringliteral">&quot;enabled&quot;</span>] = <span class="stringliteral">&quot;false&quot;</span>;</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    disabled_collector-&gt;initialize(config);</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    EXPECT_FALSE(disabled_collector-&gt;is_healthy());</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    EXPECT_TRUE(disabled_collector-&gt;is_healthy());</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>}</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="preprocessor">#if defined(__linux__) || defined(__APPLE__)</span></div>
@@ -341,7 +341,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 31 2025 11:35:41 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Dec 31 2025 11:56:40 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
