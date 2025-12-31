@@ -56,6 +56,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- **macOS CI test flakiness** (#300)
+  - Fixed flaky `ContextSwitchMonitoring` test on macOS CI
+  - macOS reads process-level context switches which may not be monotonically increasing
+  - Changed assertion to verify non-zero values instead of monotonic increase on macOS
+  - Linux continues to verify monotonic increase for system-wide context switches
+- Added explicit `<sys/time.h>` header include for `struct timeval` portability on macOS
+
 ### Added
 - **Platform abstraction layer interface** (#291, Phase 1: #294)
   - Added `metrics_provider` abstract interface for unified platform metrics
