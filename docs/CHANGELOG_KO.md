@@ -74,6 +74,15 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 부분 접근 가능 (예: 필요할 때 `resources.cpu`만 전달)
 
 ### 추가됨
+- **Windows metrics_provider 구현** (#291, Phase 4: #297)
+  - WMI 및 Win32 API를 사용한 완전한 `windows_metrics_provider` 구현
+  - 배터리 메트릭: WMI Win32_Battery + GetSystemPowerStatus 폴백
+  - 온도: WMI MSAcpi_ThermalZoneTemperature
+  - 업타임: GetTickCount64
+  - 파일 디스크립터: GetProcessHandleCount (Windows 핸들)
+  - TCP 상태: GetExtendedTcpTable API 전체 상태 추적
+  - 전원 정보: GetSystemPowerStatus + WMI 배터리 전압
+  - 스텁: context switch, 인터럽트, GPU, 보안, 소켓 버퍼
 - **플랫폼 추상화 레이어 인터페이스** (#291, Phase 1: #294)
   - 통합 플랫폼 메트릭을 위한 `metrics_provider` 추상 인터페이스 추가
   - 공통 데이터 구조 정의 (uptime_info, context_switch_info, fd_info 등)
