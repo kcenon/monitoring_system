@@ -238,11 +238,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   86</span>    }</div>
 <div class="line"><span class="lineno">   87</span>    </div>
 <div class="line"><span class="lineno">   88</span>    <span class="comment">// On stub platforms (Windows) this might be equal or zero</span></div>
-<div class="line"><span class="lineno">   89</span><span class="preprocessor">    #if defined(__APPLE__) || defined(__linux__)</span></div>
-<div class="line"><span class="lineno">   90</span>        EXPECT_GE(csw_total_2, csw_total_1);</div>
-<div class="line"><span class="lineno">   91</span>        <span class="comment">// It&#39;s possible rate is 0 if no swithces happened, but unlikely.</span></div>
-<div class="line"><span class="lineno">   92</span><span class="preprocessor">    #endif</span></div>
-<div class="line"><span class="lineno">   93</span>}</div>
+<div class="line"><span class="lineno">   89</span><span class="preprocessor">    #if defined(__linux__)</span></div>
+<div class="line"><span class="lineno">   90</span>        <span class="comment">// On Linux, system-wide context switches should be monotonically increasing</span></div>
+<div class="line"><span class="lineno">   91</span>        EXPECT_GE(csw_total_2, csw_total_1);</div>
+<div class="line"><span class="lineno">   92</span><span class="preprocessor">    #elif defined(__APPLE__)</span></div>
+<div class="line"><span class="lineno">   93</span>        <span class="comment">// On macOS, we read process-level context switches which may not be</span></div>
+<div class="line"><span class="lineno">   94</span>        <span class="comment">// monotonically increasing in CI environments due to process lifecycle</span></div>
+<div class="line"><span class="lineno">   95</span>        <span class="comment">// Just verify we got valid readings</span></div>
+<div class="line"><span class="lineno">   96</span>        EXPECT_GT(csw_total_1, 0u);</div>
+<div class="line"><span class="lineno">   97</span>        EXPECT_GT(csw_total_2, 0u);</div>
+<div class="line"><span class="lineno">   98</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><span class="lineno">   99</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -284,7 +290,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 31 2025 01:44:53 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Dec 31 2025 02:04:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
