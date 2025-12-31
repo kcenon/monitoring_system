@@ -13,6 +13,13 @@
   - event_bus, event_types: metrics 및 시스템 이벤트를 위한 프로세스 내 pub/sub
 - Interfaces
   - monitoring_interface, metric_collector_interface, storage_backend, metrics_analyzer
+- Platform Abstraction Layer (Issue #291)
+  - metrics_provider: 플랫폼별 metrics 수집을 위한 추상 인터페이스
+  - linux_metrics_provider: /proc 및 /sys 파일시스템을 사용하는 Linux 구현
+  - macos_metrics_provider: IOKit 및 시스템 API를 사용하는 macOS 구현
+  - windows_metrics_provider: WMI 및 시스템 API를 사용하는 Windows 구현
+  - 제공 기능: 배터리, 온도, 업타임, 컨텍스트 스위치, FD 통계, inode 통계,
+    TCP 상태, 소켓 버퍼, 인터럽트, 전원 정보, GPU 정보, 보안 정보
 - Utilities
   - buffer_manager, ring_buffer, time_series, aggregation_processor
 - Reliability & Tracing
