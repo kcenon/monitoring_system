@@ -28,9 +28,70 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <kcenon/monitoring/collectors/interrupt_collector.h>
+#include <kcenon/monitoring/platform/metrics_provider.h>
 
 namespace kcenon {
 namespace monitoring {
+
+// ============================================================================
+// interrupt_info_collector implementation
+// ============================================================================
+
+interrupt_info_collector::interrupt_info_collector()
+    : provider_(platform::metrics_provider::create()) {}
+
+interrupt_info_collector::~interrupt_info_collector() = default;
+
+bool interrupt_info_collector::is_interrupt_monitoring_available() const {
+    if (!provider_) {
+        return false;
+    }
+    auto stats = provider_->get_interrupt_stats();
+    return !stats.empty();
+}
+
+interrupt_metrics interrupt_info_collector::collect_metrics() {
+    interrupt_metrics result;
+    result.timestamp = std::chrono::system_clock::now();
+
+    if (!provider_) {
+        return result;
+    }
+
+    auto stats = provider_->get_interrupt_stats();
+    if (stats.empty()) {
+        return result;
+    }
+
+    // Sum up all interrupt counts
+    uint64_t total_interrupts = 0;
+    for (const auto& info : stats) {
+        total_interrupts += info.count;
+    }
+
+    result.interrupts_total = total_interrupts;
+    result.soft_interrupts_total = 0;  // Not available from this interface
+    result.metrics_available = true;
+    result.soft_interrupts_available = false;
+
+    // Calculate rates
+    auto now = std::chrono::system_clock::now();
+    if (has_previous_sample_) {
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+            now - prev_timestamp_).count();
+        if (elapsed > 0) {
+            result.interrupts_per_sec = static_cast<double>(
+                total_interrupts - prev_interrupts_total_) /
+                (static_cast<double>(elapsed) / 1000.0);
+        }
+    }
+
+    prev_interrupts_total_ = total_interrupts;
+    prev_timestamp_ = now;
+    has_previous_sample_ = true;
+
+    return result;
+}
 
 // ============================================================================
 // interrupt_collector implementation (common across all platforms)

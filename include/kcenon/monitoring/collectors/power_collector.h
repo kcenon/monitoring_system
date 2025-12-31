@@ -145,12 +145,17 @@ struct power_reading {
     std::chrono::system_clock::time_point timestamp;  ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class power_info_collector
- * @brief Platform-specific power data collector implementation
+ * @brief Power data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * enumerating power sources and reading power values.
+ * This class provides power data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class power_info_collector {
    public:
@@ -176,31 +181,13 @@ class power_info_collector {
     std::vector<power_source_info> enumerate_sources();
 
     /**
-     * Read power from a specific source
-     * @param source Power source information
-     * @return Power reading
-     */
-    power_reading read_power(const power_source_info& source);
-
-    /**
      * Read power from all available sources
      * @return Vector of power readings
      */
     std::vector<power_reading> read_all_power();
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool power_checked_{false};
-    mutable bool power_available_{false};
-    std::vector<power_source_info> cached_sources_;
-
-    // For calculating power from energy delta
-    std::unordered_map<std::string, double> last_energy_readings_;
-    std::chrono::steady_clock::time_point last_reading_time_;
-
-    // Platform-specific helper methods
-    std::vector<power_source_info> enumerate_sources_impl();
-    power_reading read_power_impl(const power_source_info& source);
+    std::unique_ptr<platform::metrics_provider> provider_;
 };
 
 /**

@@ -254,16 +254,15 @@ TEST_F(BatteryCollectorTest, MetricsHaveBatteryIdTag) {
     }
 }
 
-// Test reading battery when battery is present
-TEST(BatteryInfoCollectorTest, ReadBatteryWhenPresent) {
+// Test reading all batteries when battery is present
+TEST(BatteryInfoCollectorTest, ReadAllBatteriesWhenPresent) {
     battery_info_collector collector;
 
     if (collector.is_battery_available()) {
-        auto batteries = collector.enumerate_batteries();
-        EXPECT_FALSE(batteries.empty());
+        auto readings = collector.read_all_batteries();
+        EXPECT_FALSE(readings.empty());
 
-        for (const auto& battery : batteries) {
-            auto reading = collector.read_battery(battery);
+        for (const auto& reading : readings) {
             EXPECT_TRUE(reading.battery_present);
             EXPECT_TRUE(reading.metrics_available);
             // Level should be in valid range

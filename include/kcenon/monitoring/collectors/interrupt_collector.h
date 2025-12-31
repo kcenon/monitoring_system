@@ -82,12 +82,17 @@ struct interrupt_metrics {
     std::chrono::system_clock::time_point timestamp;  ///< Reading timestamp
 };
 
+// Forward declaration
+namespace platform {
+class metrics_provider;
+}  // namespace platform
+
 /**
  * @class interrupt_info_collector
- * @brief Platform-specific interrupt data collector implementation
+ * @brief Interrupt data collector using platform abstraction layer
  *
- * This class handles the low-level platform-specific operations for
- * reading interrupt statistics from system APIs.
+ * This class provides interrupt data collection using the unified
+ * metrics_provider interface, eliminating platform-specific code.
  */
 class interrupt_info_collector {
    public:
@@ -113,19 +118,13 @@ class interrupt_info_collector {
     interrupt_metrics collect_metrics();
 
    private:
-    mutable std::mutex mutex_;
-    mutable bool availability_checked_{false};
-    mutable bool available_{false};
+    std::unique_ptr<platform::metrics_provider> provider_;
 
     // Previous sample for rate calculation
     uint64_t prev_interrupts_total_{0};
-    uint64_t prev_soft_interrupts_total_{0};  // Linux only, may be unused on other platforms
+    uint64_t prev_soft_interrupts_total_{0};
     std::chrono::system_clock::time_point prev_timestamp_;
     bool has_previous_sample_{false};
-
-    // Platform-specific helper methods
-    interrupt_metrics collect_metrics_impl();
-    bool check_availability_impl() const;
 };
 
 /**

@@ -210,24 +210,6 @@ TEST(PowerInfoCollectorTest, EnumerateSources) {
     (void)sources;
 }
 
-// Test reading power for non-existent source
-TEST(PowerInfoCollectorTest, ReadPowerNonExistentSource) {
-    power_info_collector collector;
-
-    power_source_info fake_source;
-    fake_source.id = "fake_source_xyz";
-    fake_source.name = "Fake Source";
-    fake_source.path = "/nonexistent/path";
-    fake_source.type = power_source_type::unknown;
-
-    // Should not crash, just return empty/default reading
-    auto reading = collector.read_power(fake_source);
-
-    EXPECT_EQ(reading.source.id, "fake_source_xyz");
-    // Power should be 0 for non-existent source
-    EXPECT_EQ(reading.power_watts, 0.0);
-}
-
 // Test multiple collections don't cause issues
 TEST_F(PowerCollectorTest, MultipleCollectionsAreStable) {
     for (int i = 0; i < 5; ++i) {
