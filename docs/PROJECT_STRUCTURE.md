@@ -85,7 +85,7 @@ monitoring_system/
 │   │   ├── metric_collector_interface.h # Collector abstraction
 │   │   ├── metric_types_adapter.h    # Metric type adapters
 │   │   ├── monitorable_interface.h   # Monitoring abstraction
-│   │   ├── monitoring_interface.h    # Core monitoring interface
+│   │   ├── monitoring_core.h         # Core monitoring interface
 │   │   └── observer_interface.h      # Observer pattern
 │   ├── reliability/             # Reliability patterns
 │   │   ├── circuit_breaker.h         # Circuit breaker pattern

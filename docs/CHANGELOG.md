@@ -56,6 +56,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+- **Deprecated `monitoring_interface.h` header removed** (#307)
+  - Deleted `include/kcenon/monitoring/interfaces/monitoring_interface.h` forwarding header
+  - All code should use `monitoring_core.h` instead
+  - This was a breaking change announced in the deprecation notice
+  - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
+
 ### Fixed
 - **macOS CI test flakiness** (#300)
   - Fixed flaky `ContextSwitchMonitoring` test on macOS CI
