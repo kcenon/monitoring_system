@@ -56,6 +56,13 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 
 ## [Unreleased]
 
+### 제거됨
+- **deprecated된 `monitoring_interface.h` 헤더 제거** (#307)
+  - `include/kcenon/monitoring/interfaces/monitoring_interface.h` 포워딩 헤더 삭제
+  - 모든 코드는 `monitoring_core.h`를 대신 사용해야 함
+  - deprecation 공지에서 안내된 breaking change
+  - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
+
 ### 수정됨
 - **macOS CI 테스트 불안정성** (#300)
   - macOS CI에서 불안정한 `ContextSwitchMonitoring` 테스트 수정
