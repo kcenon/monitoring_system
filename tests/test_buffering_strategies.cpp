@@ -28,9 +28,9 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <gtest/gtest.h>
-#include <kcenon/monitoring/utils/buffering_strategy.h>
-#include <kcenon/monitoring/utils/buffer_manager.h>
-#include <kcenon/monitoring/utils/metric_storage.h>
+#include "utils/buffering_strategy.h"
+#include "utils/buffer_manager.h"
+#include "utils/metric_storage.h"
 #include <chrono>
 #include <thread>
 #include <vector>

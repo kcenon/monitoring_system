@@ -21,7 +21,7 @@ All rights reserved.
 #include <kcenon/monitoring/core/result_types.h>
 #include <kcenon/monitoring/core/error_codes.h>
 #include <kcenon/monitoring/utils/metric_types.h>
-#include <kcenon/monitoring/utils/ring_buffer.h>
+#include "ring_buffer.h"
 #include <memory>
 #include <vector>
 #include <chrono>
@@ -31,8 +31,33 @@ All rights reserved.
 #include <thread>
 #include <functional>
 #include <algorithm>
+#include <cstdint>
 
 namespace kcenon { namespace monitoring {
+
+namespace detail {
+
+/**
+ * @brief Round up to the next power of two
+ * @param n Input value
+ * @return Next power of two greater than or equal to n
+ */
+inline constexpr size_t next_power_of_two(size_t n) noexcept {
+    if (n == 0) return 1;
+    if (n && !(n & (n - 1))) return n;  // Already a power of two
+    --n;
+    n |= n >> 1;
+    n |= n >> 2;
+    n |= n >> 4;
+    n |= n >> 8;
+    n |= n >> 16;
+    if constexpr (sizeof(size_t) > 4) {
+        n |= n >> 32;
+    }
+    return ++n;
+}
+
+} // namespace detail
 
 /**
  * @enum buffering_strategy_type
@@ -346,165 +371,126 @@ public:
 
 /**
  * @class fixed_size_strategy
- * @brief Fixed size buffering strategy
+ * @brief Fixed size buffering strategy using ring_buffer for storage
+ *
+ * This strategy uses ring_buffer internally for efficient FIFO buffering
+ * with lock-free operations when possible.
  */
 class fixed_size_strategy : public buffer_strategy_interface {
 private:
     buffering_config config_;
-    std::vector<buffered_metric> buffer_;
+    std::unique_ptr<ring_buffer<buffered_metric>> ring_buffer_;
     mutable buffer_statistics stats_;
     mutable std::mutex mutex_;
     std::atomic<size_t> sequence_counter_{0};
-    
+
     /**
-     * @brief Handle buffer overflow
+     * @brief Create ring buffer config from buffering config
      */
-    void handle_overflow() {
-        if (buffer_.size() < config_.max_buffer_size) {
-            return;
-        }
-        
-        switch (config_.overflow_policy) {
-            case buffer_overflow_policy::drop_oldest:
-                if (!buffer_.empty()) {
-                    buffer_.erase(buffer_.begin());
-                    stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
-                }
-                break;
-                
-            case buffer_overflow_policy::drop_newest:
-                // Don't add the new item (it will be dropped by caller)
-                stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
-                break;
-                
-            case buffer_overflow_policy::drop_lowest_priority: {
-                auto min_it = std::min_element(buffer_.begin(), buffer_.end(),
-                    [](const buffered_metric& a, const buffered_metric& b) {
-                        return a.priority < b.priority;
-                    });
-                if (min_it != buffer_.end()) {
-                    buffer_.erase(min_it);
-                    stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
-                }
-                break;
-            }
-            
-            case buffer_overflow_policy::flush_immediately:
-                // Force flush will be handled by should_flush()
-                break;
-                
-            default:
-                // For other policies, drop oldest as fallback
-                if (!buffer_.empty()) {
-                    buffer_.erase(buffer_.begin());
-                    stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
-                }
-                break;
-        }
+    ring_buffer_config create_ring_buffer_config() const {
+        ring_buffer_config rb_config;
+        // Ring buffer requires power of 2 capacity
+        rb_config.capacity = detail::next_power_of_two(config_.max_buffer_size);
+        // Map overflow policies to ring buffer behavior
+        rb_config.overwrite_old = (config_.overflow_policy == buffer_overflow_policy::drop_oldest ||
+                                   config_.overflow_policy == buffer_overflow_policy::flush_immediately ||
+                                   config_.overflow_policy == buffer_overflow_policy::compress ||
+                                   config_.overflow_policy == buffer_overflow_policy::block_until_space);
+        rb_config.batch_size = config_.batch_size;
+        return rb_config;
     }
-    
-    /**
-     * @brief Remove expired items
-     */
-    void remove_expired_items() {
-        size_t removed = 0;
-        auto it = std::remove_if(buffer_.begin(), buffer_.end(),
-            [this, &removed](const buffered_metric& item) {
-                if (item.is_expired(config_.max_age)) {
-                    ++removed;
-                    return true;
-                }
-                return false;
-            });
-        
-        buffer_.erase(it, buffer_.end());
-        stats_.items_dropped_expired.fetch_add(removed, std::memory_order_relaxed);
-    }
-    
+
 public:
     explicit fixed_size_strategy(const buffering_config& config)
         : config_(config) {
         config_.strategy = buffering_strategy_type::fixed_size;
-        buffer_.reserve(config_.max_buffer_size);
+        ring_buffer_ = std::make_unique<ring_buffer<buffered_metric>>(create_ring_buffer_config());
     }
-    
+
     result_void add_metric(buffered_metric&& metric) override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        
-        // Remove expired items first
-        remove_expired_items();
-        
-        // Handle overflow before adding
-        if (buffer_.size() >= config_.max_buffer_size) {
-            if (config_.overflow_policy == buffer_overflow_policy::drop_newest) {
+        // Set sequence number
+        metric.sequence_number = sequence_counter_.fetch_add(1, std::memory_order_relaxed);
+
+        // Handle drop_newest policy specially
+        if (config_.overflow_policy == buffer_overflow_policy::drop_newest) {
+            std::lock_guard<std::mutex> lock(mutex_);
+            if (ring_buffer_->size() >= config_.max_buffer_size) {
                 stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
                 return make_void_success();  // Drop the new item
             }
-            handle_overflow();
         }
-        
-        // Set sequence number
-        metric.sequence_number = sequence_counter_.fetch_add(1, std::memory_order_relaxed);
-        
-        // Add to buffer
-        buffer_.emplace_back(std::move(metric));
-        stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
-        
+
+        // Track if we're about to overflow (for statistics)
+        bool was_full = ring_buffer_->size() >= config_.max_buffer_size;
+
+        // Write to ring buffer
+        auto result = ring_buffer_->write(std::move(metric));
+
+        if (result.is_ok()) {
+            stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
+            // If buffer was full and we succeeded, an item was overwritten
+            if (was_full && ring_buffer_->get_config().overwrite_old) {
+                stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
+            }
+        } else {
+            stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
+        }
+
         return make_void_success();
     }
-    
+
     result<std::vector<buffered_metric>> flush() override {
         std::lock_guard<std::mutex> lock(mutex_);
-        
-        if (buffer_.empty()) {
+
+        if (ring_buffer_->empty()) {
             return make_success(std::vector<buffered_metric>{});
         }
-        
+
         std::vector<buffered_metric> flushed_items;
-        flushed_items.reserve(buffer_.size());
-        
-        // Move all items to flushed_items
-        for (auto& item : buffer_) {
-            flushed_items.emplace_back(std::move(item));
+        flushed_items.reserve(ring_buffer_->size());
+
+        // Read all items from ring buffer, filtering expired ones
+        buffered_metric item;
+        while (ring_buffer_->read(item).is_ok()) {
+            if (!item.is_expired(config_.max_age)) {
+                flushed_items.emplace_back(std::move(item));
+            } else {
+                stats_.items_dropped_expired.fetch_add(1, std::memory_order_relaxed);
+            }
         }
-        
+
         stats_.total_items_flushed.fetch_add(flushed_items.size(), std::memory_order_relaxed);
         stats_.total_flushes.fetch_add(1, std::memory_order_relaxed);
-        
-        buffer_.clear();
-        
+
         return make_success(std::move(flushed_items));
     }
-    
+
     bool should_flush() const override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        
         switch (config_.flush_trigger) {
             case buffer_flush_trigger::size_threshold:
-                return buffer_.size() >= config_.flush_threshold_size;
-                
+                return ring_buffer_->size() >= config_.flush_threshold_size;
+
             case buffer_flush_trigger::manual:
                 return false;
-                
+
             default:
-                return buffer_.size() >= config_.flush_threshold_size;
+                return ring_buffer_->size() >= config_.flush_threshold_size;
         }
     }
-    
+
     size_t size() const override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return buffer_.size();
+        return ring_buffer_->size();
     }
-    
+
     const buffer_statistics& get_statistics() const override {
         return stats_;
     }
-    
+
     void clear() override {
         std::lock_guard<std::mutex> lock(mutex_);
-        buffer_.clear();
+        ring_buffer_->clear();
     }
-    
+
     const buffering_config& get_config() const override {
         return config_;
     }
@@ -512,97 +498,120 @@ public:
 
 /**
  * @class time_based_strategy
- * @brief Time-based buffering strategy
+ * @brief Time-based buffering strategy using ring_buffer for storage
+ *
+ * This strategy flushes buffer contents at regular time intervals
+ * or when buffer capacity is reached.
  */
 class time_based_strategy : public buffer_strategy_interface {
 private:
     buffering_config config_;
-    std::vector<buffered_metric> buffer_;
+    std::unique_ptr<ring_buffer<buffered_metric>> ring_buffer_;
     mutable buffer_statistics stats_;
     mutable std::mutex mutex_;
     std::atomic<size_t> sequence_counter_{0};
-    std::chrono::system_clock::time_point last_flush_time_;
-    
+    std::atomic<std::chrono::system_clock::time_point::rep> last_flush_time_rep_;
+
+    /**
+     * @brief Create ring buffer config from buffering config
+     */
+    ring_buffer_config create_ring_buffer_config() const {
+        ring_buffer_config rb_config;
+        rb_config.capacity = detail::next_power_of_two(config_.max_buffer_size);
+        rb_config.overwrite_old = true;  // Time-based strategy overwrites old on overflow
+        rb_config.batch_size = config_.batch_size;
+        return rb_config;
+    }
+
+    std::chrono::system_clock::time_point get_last_flush_time() const {
+        return std::chrono::system_clock::time_point(
+            std::chrono::system_clock::duration(
+                last_flush_time_rep_.load(std::memory_order_acquire)));
+    }
+
+    void set_last_flush_time(std::chrono::system_clock::time_point tp) {
+        last_flush_time_rep_.store(tp.time_since_epoch().count(), std::memory_order_release);
+    }
+
 public:
     explicit time_based_strategy(const buffering_config& config)
-        : config_(config), last_flush_time_(std::chrono::system_clock::now()) {
+        : config_(config) {
         config_.strategy = buffering_strategy_type::time_based;
-        buffer_.reserve(config_.max_buffer_size);
+        ring_buffer_ = std::make_unique<ring_buffer<buffered_metric>>(create_ring_buffer_config());
+        set_last_flush_time(std::chrono::system_clock::now());
     }
-    
+
     result_void add_metric(buffered_metric&& metric) override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        
         // Set sequence number
         metric.sequence_number = sequence_counter_.fetch_add(1, std::memory_order_relaxed);
-        
-        // Check if buffer is full
-        if (buffer_.size() >= config_.max_buffer_size) {
-            // Force flush if buffer is full
+
+        // Check if buffer is full before adding
+        if (ring_buffer_->size() >= config_.max_buffer_size) {
             stats_.forced_flushes.fetch_add(1, std::memory_order_relaxed);
         }
-        
-        buffer_.emplace_back(std::move(metric));
-        stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
-        
+
+        // Write to ring buffer (will overwrite oldest if full)
+        auto result = ring_buffer_->write(std::move(metric));
+
+        if (result.is_ok()) {
+            stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
+        }
+
         return make_void_success();
     }
-    
+
     result<std::vector<buffered_metric>> flush() override {
         std::lock_guard<std::mutex> lock(mutex_);
-        
-        if (buffer_.empty()) {
+
+        if (ring_buffer_->empty()) {
             return make_success(std::vector<buffered_metric>{});
         }
-        
+
         std::vector<buffered_metric> flushed_items;
-        flushed_items.reserve(buffer_.size());
-        
-        // Move all items to flushed_items
-        for (auto& item : buffer_) {
+        flushed_items.reserve(ring_buffer_->size());
+
+        // Read all items from ring buffer
+        buffered_metric item;
+        while (ring_buffer_->read(item).is_ok()) {
             flushed_items.emplace_back(std::move(item));
         }
-        
+
         stats_.total_items_flushed.fetch_add(flushed_items.size(), std::memory_order_relaxed);
         stats_.total_flushes.fetch_add(1, std::memory_order_relaxed);
-        
-        buffer_.clear();
-        last_flush_time_ = std::chrono::system_clock::now();
-        
+
+        set_last_flush_time(std::chrono::system_clock::now());
+
         return make_success(std::move(flushed_items));
     }
-    
+
     bool should_flush() const override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        
-        if (buffer_.empty()) {
+        if (ring_buffer_->empty()) {
             return false;
         }
-        
+
         auto now = std::chrono::system_clock::now();
         auto time_since_flush = std::chrono::duration_cast<std::chrono::milliseconds>(
-            now - last_flush_time_);
-        
+            now - get_last_flush_time());
+
         // Flush if time interval reached or buffer is full
-        return time_since_flush >= config_.flush_interval || 
-               buffer_.size() >= config_.max_buffer_size;
+        return time_since_flush >= config_.flush_interval ||
+               ring_buffer_->size() >= config_.max_buffer_size;
     }
-    
+
     size_t size() const override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return buffer_.size();
+        return ring_buffer_->size();
     }
-    
+
     const buffer_statistics& get_statistics() const override {
         return stats_;
     }
-    
+
     void clear() override {
         std::lock_guard<std::mutex> lock(mutex_);
-        buffer_.clear();
-        last_flush_time_ = std::chrono::system_clock::now();
+        ring_buffer_->clear();
+        set_last_flush_time(std::chrono::system_clock::now());
     }
-    
+
     const buffering_config& get_config() const override {
         return config_;
     }
@@ -728,42 +737,67 @@ public:
 
 /**
  * @class adaptive_strategy
- * @brief Adaptive buffering strategy based on system load
+ * @brief Adaptive buffering strategy based on system load using ring_buffer
+ *
+ * This strategy dynamically adjusts its flush threshold based on current
+ * system load, using ring_buffer for efficient storage.
  */
 class adaptive_strategy : public buffer_strategy_interface {
 private:
     buffering_config config_;
-    std::vector<buffered_metric> buffer_;
+    std::unique_ptr<ring_buffer<buffered_metric>> ring_buffer_;
     mutable buffer_statistics stats_;
     mutable std::mutex mutex_;
     std::atomic<size_t> sequence_counter_{0};
-    std::chrono::system_clock::time_point last_adaptation_;
-    double current_load_factor_ = 0.0;
-    
+    std::atomic<std::chrono::system_clock::time_point::rep> last_adaptation_rep_;
+    std::atomic<double> current_load_factor_{0.0};
+
+    /**
+     * @brief Create ring buffer config from buffering config
+     */
+    ring_buffer_config create_ring_buffer_config() const {
+        ring_buffer_config rb_config;
+        rb_config.capacity = detail::next_power_of_two(config_.max_buffer_size);
+        rb_config.overwrite_old = true;  // Adaptive strategy overwrites old on overflow
+        rb_config.batch_size = config_.batch_size;
+        return rb_config;
+    }
+
+    std::chrono::system_clock::time_point get_last_adaptation() const {
+        return std::chrono::system_clock::time_point(
+            std::chrono::system_clock::duration(
+                last_adaptation_rep_.load(std::memory_order_acquire)));
+    }
+
+    void set_last_adaptation(std::chrono::system_clock::time_point tp) {
+        last_adaptation_rep_.store(tp.time_since_epoch().count(), std::memory_order_release);
+    }
+
     /**
      * @brief Calculate current load factor
      */
     double calculate_load_factor() const {
         // Simple load factor based on buffer utilization
-        double buffer_utilization = static_cast<double>(buffer_.size()) / config_.max_buffer_size;
-        
-        // Add time pressure (how long since last flush)
+        double buffer_utilization = static_cast<double>(ring_buffer_->size()) / config_.max_buffer_size;
+
+        // Add time pressure (how long since last adaptation)
         auto now = std::chrono::system_clock::now();
         auto time_pressure = std::chrono::duration_cast<std::chrono::milliseconds>(
-            now - last_adaptation_).count() / static_cast<double>(config_.flush_interval.count());
-        
+            now - get_last_adaptation()).count() / static_cast<double>(config_.flush_interval.count());
+
         return std::min(1.0, buffer_utilization + time_pressure * 0.1);
     }
-    
+
     /**
      * @brief Adapt buffer behavior based on load
      */
     void adapt_to_load() {
-        current_load_factor_ = calculate_load_factor();
-        last_adaptation_ = std::chrono::system_clock::now();
-        
+        double load = calculate_load_factor();
+        current_load_factor_.store(load, std::memory_order_relaxed);
+        set_last_adaptation(std::chrono::system_clock::now());
+
         // Adjust flush threshold based on load
-        if (current_load_factor_ > config_.load_factor_threshold) {
+        if (load > config_.load_factor_threshold) {
             // High load - reduce flush threshold for more frequent flushing
             config_.flush_threshold_size = std::max(
                 config_.batch_size,
@@ -774,95 +808,97 @@ private:
             config_.flush_threshold_size = config_.max_buffer_size / 2;
         }
     }
-    
+
 public:
     explicit adaptive_strategy(const buffering_config& config)
-        : config_(config), last_adaptation_(std::chrono::system_clock::now()) {
+        : config_(config) {
         config_.strategy = buffering_strategy_type::adaptive;
-        buffer_.reserve(config_.max_buffer_size);
+        ring_buffer_ = std::make_unique<ring_buffer<buffered_metric>>(create_ring_buffer_config());
+        set_last_adaptation(std::chrono::system_clock::now());
     }
-    
+
     result_void add_metric(buffered_metric&& metric) override {
         std::lock_guard<std::mutex> lock(mutex_);
-        
+
         // Periodic adaptation
         auto now = std::chrono::system_clock::now();
-        if (now - last_adaptation_ >= config_.adaptive_check_interval) {
+        if (now - get_last_adaptation() >= config_.adaptive_check_interval) {
             adapt_to_load();
         }
-        
+
         // Set sequence number
         metric.sequence_number = sequence_counter_.fetch_add(1, std::memory_order_relaxed);
-        
-        // Handle overflow adaptively
-        if (buffer_.size() >= config_.max_buffer_size) {
-            if (current_load_factor_ > config_.load_factor_threshold) {
-                // High load - drop oldest to make space
-                if (!buffer_.empty()) {
-                    buffer_.erase(buffer_.begin());
-                    stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
-                }
+
+        // Track overflow for statistics
+        bool was_full = ring_buffer_->size() >= config_.max_buffer_size;
+        double load = current_load_factor_.load(std::memory_order_relaxed);
+
+        if (was_full) {
+            if (load > config_.load_factor_threshold) {
+                // High load - ring_buffer will overwrite oldest
+                stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
             } else {
                 // Normal load - trigger immediate flush
                 stats_.forced_flushes.fetch_add(1, std::memory_order_relaxed);
             }
         }
-        
-        buffer_.emplace_back(std::move(metric));
-        stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
-        
+
+        // Write to ring buffer
+        auto result = ring_buffer_->write(std::move(metric));
+
+        if (result.is_ok()) {
+            stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
+        }
+
         return make_void_success();
     }
-    
+
     result<std::vector<buffered_metric>> flush() override {
         std::lock_guard<std::mutex> lock(mutex_);
-        
-        if (buffer_.empty()) {
+
+        if (ring_buffer_->empty()) {
             return make_success(std::vector<buffered_metric>{});
         }
-        
+
         std::vector<buffered_metric> flushed_items;
-        flushed_items.reserve(buffer_.size());
-        
-        // Move all items to flushed_items
-        for (auto& item : buffer_) {
+        flushed_items.reserve(ring_buffer_->size());
+
+        // Read all items from ring buffer
+        buffered_metric item;
+        while (ring_buffer_->read(item).is_ok()) {
             flushed_items.emplace_back(std::move(item));
         }
-        
+
         stats_.total_items_flushed.fetch_add(flushed_items.size(), std::memory_order_relaxed);
         stats_.total_flushes.fetch_add(1, std::memory_order_relaxed);
-        
-        buffer_.clear();
-        
+
         return make_success(std::move(flushed_items));
     }
-    
+
     bool should_flush() const override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        
-        if (buffer_.empty()) {
+        if (ring_buffer_->empty()) {
             return false;
         }
-        
+
         // Flush based on current load and adaptive threshold
-        return buffer_.size() >= config_.flush_threshold_size ||
-               current_load_factor_ > config_.load_factor_threshold;
+        double load = current_load_factor_.load(std::memory_order_relaxed);
+        return ring_buffer_->size() >= config_.flush_threshold_size ||
+               load > config_.load_factor_threshold;
     }
-    
+
     size_t size() const override {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return buffer_.size();
+        return ring_buffer_->size();
     }
-    
+
     const buffer_statistics& get_statistics() const override {
         return stats_;
     }
-    
+
     void clear() override {
         std::lock_guard<std::mutex> lock(mutex_);
-        buffer_.clear();
+        ring_buffer_->clear();
     }
-    
+
     const buffering_config& get_config() const override {
         return config_;
     }

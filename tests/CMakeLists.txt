@@ -95,7 +95,7 @@ add_executable(monitoring_system_tests
     test_metrics_provider.cpp
 
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (13 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (12 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
@@ -112,7 +112,6 @@ add_executable(monitoring_system_tests
     # test_data_consistency.cpp       # Missing: data_consistency.h
     # test_metric_storage.cpp         # Missing: ring_buffer.h, metric_storage.h
     # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h
-    # test_buffering_strategies.cpp   # Missing: buffering_strategy.h, buffer_manager.h
     # test_stress_performance.cpp     # Missing: multiple headers
     # test_storage_backends.cpp       # API mismatch with storage_backends.h
     # test_integration_e2e.cpp        # Multiple missing headers

@@ -18,7 +18,7 @@ All rights reserved.
 #include <kcenon/monitoring/core/result_types.h>
 #include <kcenon/monitoring/core/error_codes.h>
 #include <kcenon/monitoring/utils/metric_types.h>
-#include <kcenon/monitoring/utils/ring_buffer.h>
+#include "ring_buffer.h"
 #include <chrono>
 #include <vector>
 #include <algorithm>
