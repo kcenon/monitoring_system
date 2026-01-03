@@ -127,19 +127,19 @@ void example_1_basic_monitoring() {
 
     // Record metrics using Result pattern
     auto result1 = monitor->record_metric("requests_total", 100.0);
-    if (kcenon::common::is_ok(result1)) {
+    if (result1.is_ok()) {
         std::cout << "✓ Metric 'requests_total' recorded" << std::endl;
     }
 
     auto result2 = monitor->record_metric("errors_total", 5.0);
-    if (kcenon::common::is_ok(result2)) {
+    if (result2.is_ok()) {
         std::cout << "✓ Metric 'errors_total' recorded" << std::endl;
     }
 
     // Get metrics snapshot
     auto metrics = monitor->get_metrics();
-    if (kcenon::common::is_ok(metrics)) {
-        auto snapshot = kcenon::common::get_value(metrics);
+    if (metrics.is_ok()) {
+        const auto& snapshot = metrics.value();
         std::cout << "✓ Retrieved " << snapshot.metrics.size() << " metrics" << std::endl;
     }
 }
@@ -154,10 +154,10 @@ void example_2_error_handling() {
 
     // Record metric and check result
     auto result = monitor->record_metric("cpu_usage", 45.5);
-    if (kcenon::common::is_ok(result)) {
+    if (result.is_ok()) {
         std::cout << "✓ Metric recorded successfully" << std::endl;
     } else {
-        auto err = kcenon::common::get_error(result);
+        const auto& err = result.error();
         std::cout << "✗ Error: " << err.message << std::endl;
     }
 }
@@ -175,8 +175,8 @@ void example_3_health_monitoring() {
     // Perform health check
     auto health_result = monitor->check_health();
 
-    if (kcenon::common::is_ok(health_result)) {
-        const auto& health = kcenon::common::get_value(health_result);
+    if (health_result.is_ok()) {
+        const auto& health = health_result.value();
 
         std::cout << "\nHealth Check Results:" << std::endl;
         std::cout << "  Status: " << to_string(health.status) << std::endl;
@@ -212,9 +212,9 @@ void example_4_multiple_monitors() {
     auto metrics1 = monitor1->get_metrics();
     auto metrics2 = monitor2->get_metrics();
 
-    if (kcenon::common::is_ok(metrics1) && kcenon::common::is_ok(metrics2)) {
-        auto snapshot1 = kcenon::common::get_value(metrics1);
-        auto snapshot2 = kcenon::common::get_value(metrics2);
+    if (metrics1.is_ok() && metrics2.is_ok()) {
+        const auto& snapshot1 = metrics1.value();
+        const auto& snapshot2 = metrics2.value();
         std::cout << "✓ Monitor 1: " << snapshot1.metrics.size() << " metrics" << std::endl;
         std::cout << "✓ Monitor 2: " << snapshot2.metrics.size() << " metrics" << std::endl;
     }
@@ -236,7 +236,7 @@ void example_5_metrics_with_tags() {
     };
 
     auto result = monitor->record_metric("request_latency", 150.0, tags);
-    if (kcenon::common::is_ok(result)) {
+    if (result.is_ok()) {
         std::cout << "✓ Metric with tags recorded successfully" << std::endl;
     }
 }
@@ -255,7 +255,7 @@ void example_6_monitoring_workflow() {
     // Simulate application metrics
     for (int i = 0; i < 5; ++i) {
         auto result = monitor->record_metric("requests", static_cast<double>(i * 10));
-        if (kcenon::common::is_ok(result)) {
+        if (result.is_ok()) {
             logger->log(log_level::info, "Recorded metric: requests = " + std::to_string(i * 10));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -263,15 +263,15 @@ void example_6_monitoring_workflow() {
 
     // Check health and log results
     auto health = monitor->check_health();
-    if (kcenon::common::is_ok(health)) {
-        auto health_status = kcenon::common::get_value(health);
+    if (health.is_ok()) {
+        const auto& health_status = health.value();
         logger->log(log_level::info, "Monitor health: " + to_string(health_status.status));
     }
 
     // Get metrics and log summary
     auto metrics = monitor->get_metrics();
-    if (kcenon::common::is_ok(metrics)) {
-        auto snapshot = kcenon::common::get_value(metrics);
+    if (metrics.is_ok()) {
+        const auto& snapshot = metrics.value();
         logger->log(log_level::info, "Collected " + std::to_string(snapshot.metrics.size()) + " metrics");
     }
 
