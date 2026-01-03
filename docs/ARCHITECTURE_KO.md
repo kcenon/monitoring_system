@@ -21,7 +21,9 @@
   - 제공 기능: 배터리, 온도, 업타임, 컨텍스트 스위치, FD 통계, inode 통계,
     TCP 상태, 소켓 버퍼, 인터럽트, 전원 정보, GPU 정보, 보안 정보
 - Utilities
-  - buffer_manager, ring_buffer, time_series, aggregation_processor
+  - **Public API**: time_series_buffer, thread_local_buffer
+  - **Internal** (@internal): buffer_manager, ring_buffer, buffering_strategy
+  - 공통 연산을 위한 `detail` 네임스페이스 유틸리티
 - Reliability & Tracing
   - retry_policy, circuit_breaker, fault_tolerance_manager, distributed_tracer
 - Adapters (선택적)
