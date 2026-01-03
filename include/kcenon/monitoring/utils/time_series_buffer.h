@@ -404,7 +404,7 @@ class time_series_buffer {
     result<T> get_latest() const {
         auto sample_result = buffer_.get_latest();
         if (sample_result.is_err()) {
-            return make_error<T>(sample_result.error().code, sample_result.error().message);
+            return common::Result<T>::err(sample_result.error());
         }
         return make_success(sample_result.value().value);
     }
