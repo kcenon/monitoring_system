@@ -34,6 +34,7 @@ All rights reserved.
 #include <cmath>
 #include <limits>
 #include <mutex>
+#include <stdexcept>
 #include <vector>
 
 namespace kcenon { namespace monitoring {
@@ -122,23 +123,6 @@ inline double calculate_percentile(const std::vector<double>& sorted_values,
 }
 
 /**
- * @brief Calculate ring buffer actual index from logical index
- * @param logical_index Logical index (0 to count-1)
- * @param head Current head position
- * @param count Current element count
- * @param capacity Buffer capacity
- * @return Actual index in buffer
- * @internal
- */
-inline size_t ring_buffer_index(size_t logical_index, size_t head,
-                                size_t count, size_t capacity) noexcept {
-    if (count < capacity) {
-        return logical_index;
-    }
-    return (head + logical_index) % capacity;
-}
-
-/**
  * @brief Calculate basic statistics from a vector of double values
  * @param values Vector of values to analyze
  * @param oldest_timestamp Timestamp of oldest sample
@@ -186,11 +170,150 @@ inline time_series_statistics calculate_basic_statistics(
     return stats;
 }
 
+/**
+ * @brief Generic time-series ring buffer base template
+ *
+ * This template provides the common ring buffer functionality shared by
+ * time_series_buffer<T> and load_average_history. It handles:
+ * - Ring buffer storage and index management
+ * - Thread-safe add/get operations
+ * - Time-based sample filtering
+ *
+ * @tparam Sample The sample type (must have a 'timestamp' member of type
+ *                std::chrono::system_clock::time_point)
+ * @internal
+ */
+template <typename Sample>
+class time_series_ring_buffer {
+  private:
+    mutable std::mutex mutex_;
+    std::vector<Sample> buffer_;
+    size_t head_ = 0;
+    size_t count_ = 0;
+    size_t max_samples_;
+
+    size_t get_actual_index(size_t logical_index) const noexcept {
+        if (count_ < max_samples_) {
+            return logical_index;
+        }
+        return (head_ + logical_index) % max_samples_;
+    }
+
+  public:
+    explicit time_series_ring_buffer(size_t max_samples) : max_samples_(max_samples) {
+        if (max_samples_ == 0) {
+            throw std::invalid_argument("Max samples must be positive");
+        }
+        buffer_.resize(max_samples_);
+    }
+
+    time_series_ring_buffer(const time_series_ring_buffer&) = delete;
+    time_series_ring_buffer& operator=(const time_series_ring_buffer&) = delete;
+    time_series_ring_buffer(time_series_ring_buffer&&) = delete;
+    time_series_ring_buffer& operator=(time_series_ring_buffer&&) = delete;
+
+    void add_sample(const Sample& sample) {
+        std::lock_guard<std::mutex> lock(mutex_);
+
+        buffer_[head_] = sample;
+        head_ = (head_ + 1) % max_samples_;
+
+        if (count_ < max_samples_) {
+            ++count_;
+        }
+    }
+
+    template <typename Duration>
+    std::vector<Sample> get_samples(Duration duration) const {
+        auto cutoff = std::chrono::system_clock::now() - duration;
+        return get_samples_since(cutoff);
+    }
+
+    std::vector<Sample> get_samples_since(
+        std::chrono::system_clock::time_point since) const {
+        std::lock_guard<std::mutex> lock(mutex_);
+
+        std::vector<Sample> result;
+        result.reserve(count_);
+
+        for (size_t i = 0; i < count_; ++i) {
+            const auto& sample = buffer_[get_actual_index(i)];
+            if (sample.timestamp >= since) {
+                result.push_back(sample);
+            }
+        }
+
+        std::sort(result.begin(), result.end(),
+                  [](const Sample& a, const Sample& b) {
+                      return a.timestamp < b.timestamp;
+                  });
+
+        return result;
+    }
+
+    std::vector<Sample> get_all_samples() const {
+        std::lock_guard<std::mutex> lock(mutex_);
+
+        std::vector<Sample> result;
+        result.reserve(count_);
+
+        for (size_t i = 0; i < count_; ++i) {
+            result.push_back(buffer_[get_actual_index(i)]);
+        }
+
+        std::sort(result.begin(), result.end(),
+                  [](const Sample& a, const Sample& b) {
+                      return a.timestamp < b.timestamp;
+                  });
+
+        return result;
+    }
+
+    result<Sample> get_latest() const {
+        std::lock_guard<std::mutex> lock(mutex_);
+
+        if (count_ == 0) {
+            return make_error<Sample>(monitoring_error_code::collection_failed,
+                                      "No samples available");
+        }
+
+        size_t latest_idx = (head_ == 0) ? max_samples_ - 1 : head_ - 1;
+        return make_success(buffer_[latest_idx]);
+    }
+
+    size_t size() const noexcept {
+        std::lock_guard<std::mutex> lock(mutex_);
+        return count_;
+    }
+
+    bool empty() const noexcept {
+        std::lock_guard<std::mutex> lock(mutex_);
+        return count_ == 0;
+    }
+
+    size_t capacity() const noexcept { return max_samples_; }
+
+    void clear() noexcept {
+        std::lock_guard<std::mutex> lock(mutex_);
+        head_ = 0;
+        count_ = 0;
+    }
+
+    size_t memory_footprint() const noexcept {
+        return sizeof(time_series_ring_buffer<Sample>) +
+               max_samples_ * sizeof(Sample);
+    }
+};
+
 }  // namespace detail
 
 /**
  * @class time_series_buffer
  * @brief Thread-safe ring buffer for time-series data with statistics
+ *
+ * This class wraps detail::time_series_ring_buffer to provide a specialized
+ * interface for single-value time series with automatic statistics calculation.
+ *
  * @tparam T The type of values to store (must be numeric)
  */
 template <typename T>
@@ -198,24 +321,16 @@ class time_series_buffer {
     static_assert(std::is_arithmetic_v<T>, "T must be an arithmetic type");
 
   private:
-    mutable std::mutex mutex_;
-    std::vector<time_series_sample<T>> buffer_;
-    size_t head_ = 0;
-    size_t count_ = 0;
-    time_series_buffer_config config_;
-
-    size_t get_actual_index(size_t logical_index) const noexcept {
-        return detail::ring_buffer_index(logical_index, head_, count_, config_.max_samples);
-    }
+    detail::time_series_ring_buffer<time_series_sample<T>> buffer_;
 
   public:
-    explicit time_series_buffer(const time_series_buffer_config& config = {}) : config_(config) {
-        auto validation = config_.validate();
+    explicit time_series_buffer(const time_series_buffer_config& config = {})
+        : buffer_(config.max_samples) {
+        auto validation = config.validate();
         if (validation.is_err()) {
             throw std::invalid_argument("Invalid time_series_buffer configuration: " +
                                         validation.error().message);
         }
-        buffer_.resize(config_.max_samples);
     }
 
     time_series_buffer(const time_series_buffer&) = delete;
@@ -231,14 +346,7 @@ class time_series_buffer {
     void add_sample(T value,
                     std::chrono::system_clock::time_point timestamp =
                         std::chrono::system_clock::now()) {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        buffer_[head_] = time_series_sample<T>(timestamp, value);
-        head_ = (head_ + 1) % config_.max_samples;
-
-        if (count_ < config_.max_samples) {
-            ++count_;
-        }
+        buffer_.add_sample(time_series_sample<T>(timestamp, value));
     }
 
     /**
@@ -248,8 +356,7 @@ class time_series_buffer {
      */
     template <typename Duration>
     std::vector<time_series_sample<T>> get_samples(Duration duration) const {
-        auto cutoff = std::chrono::system_clock::now() - duration;
-        return get_samples_since(cutoff);
+        return buffer_.get_samples(duration);
     }
 
     /**
@@ -259,24 +366,7 @@ class time_series_buffer {
      */
     std::vector<time_series_sample<T>> get_samples_since(
         std::chrono::system_clock::time_point since) const {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        std::vector<time_series_sample<T>> result;
-        result.reserve(count_);
-
-        for (size_t i = 0; i < count_; ++i) {
-            const auto& sample = buffer_[get_actual_index(i)];
-            if (sample.timestamp >= since) {
-                result.push_back(sample);
-            }
-        }
-
-        std::sort(result.begin(), result.end(),
-                  [](const time_series_sample<T>& a, const time_series_sample<T>& b) {
-                      return a.timestamp < b.timestamp;
-                  });
-
-        return result;
+        return buffer_.get_samples_since(since);
     }
 
     /**
@@ -284,21 +374,7 @@ class time_series_buffer {
      * @return Vector of all samples
      */
     std::vector<time_series_sample<T>> get_all_samples() const {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        std::vector<time_series_sample<T>> result;
-        result.reserve(count_);
-
-        for (size_t i = 0; i < count_; ++i) {
-            result.push_back(buffer_[get_actual_index(i)]);
-        }
-
-        std::sort(result.begin(), result.end(),
-                  [](const time_series_sample<T>& a, const time_series_sample<T>& b) {
-                      return a.timestamp < b.timestamp;
-                  });
-
-        return result;
+        return buffer_.get_all_samples();
     }
 
     /**
@@ -326,14 +402,11 @@ class time_series_buffer {
      * @return Result containing the latest value or error
      */
     result<T> get_latest() const {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        if (count_ == 0) {
-            return make_error<T>(monitoring_error_code::collection_failed, "No samples available");
+        auto sample_result = buffer_.get_latest();
+        if (sample_result.is_err()) {
+            return common::Result<T>::err(sample_result.error());
         }
-
-        size_t latest_idx = (head_ == 0) ? config_.max_samples - 1 : head_ - 1;
-        return make_success(buffer_[latest_idx].value);
+        return make_success(sample_result.value().value);
     }
 
     /**
@@ -341,53 +414,42 @@ class time_series_buffer {
      * @return Result containing the latest sample or error
      */
     result<time_series_sample<T>> get_latest_sample() const {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        if (count_ == 0) {
-            return make_error<time_series_sample<T>>(monitoring_error_code::collection_failed,
-                                                     "No samples available");
-        }
-
-        size_t latest_idx = (head_ == 0) ? config_.max_samples - 1 : head_ - 1;
-        return make_success(buffer_[latest_idx]);
+        return buffer_.get_latest();
     }
 
     /**
      * @brief Get current number of samples
      */
     size_t size() const noexcept {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return count_;
+        return buffer_.size();
     }
 
     /**
      * @brief Check if buffer is empty
      */
     bool empty() const noexcept {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return count_ == 0;
+        return buffer_.empty();
     }
 
     /**
      * @brief Get buffer capacity
      */
-    size_t capacity() const noexcept { return config_.max_samples; }
+    size_t capacity() const noexcept {
+        return buffer_.capacity();
+    }
 
     /**
      * @brief Clear all samples
      */
     void clear() noexcept {
-        std::lock_guard<std::mutex> lock(mutex_);
-        head_ = 0;
-        count_ = 0;
+        buffer_.clear();
     }
 
     /**
      * @brief Get memory footprint in bytes
      */
     size_t memory_footprint() const noexcept {
-        return sizeof(time_series_buffer<T>) +
-               config_.max_samples * sizeof(time_series_sample<T>);
+        return buffer_.memory_footprint();
     }
 
   private:
@@ -444,26 +506,16 @@ struct load_average_statistics {
 /**
  * @class load_average_history
  * @brief Specialized buffer for tracking load average history
+ *
+ * This class wraps detail::time_series_ring_buffer to provide a specialized
+ * interface for load average samples with per-field statistics calculation.
  */
 class load_average_history {
   private:
-    mutable std::mutex mutex_;
-    std::vector<load_average_sample> buffer_;
-    size_t head_ = 0;
-    size_t count_ = 0;
-    size_t max_samples_;
-
-    size_t get_actual_index(size_t logical_index) const noexcept {
-        return detail::ring_buffer_index(logical_index, head_, count_, max_samples_);
-    }
+    detail::time_series_ring_buffer<load_average_sample> buffer_;
 
   public:
-    explicit load_average_history(size_t max_samples = 1000) : max_samples_(max_samples) {
-        if (max_samples_ == 0) {
-            throw std::invalid_argument("Max samples must be positive");
-        }
-        buffer_.resize(max_samples_);
-    }
+    explicit load_average_history(size_t max_samples = 1000) : buffer_(max_samples) {}
 
     load_average_history(const load_average_history&) = delete;
     load_average_history& operator=(const load_average_history&) = delete;
@@ -480,14 +532,7 @@ class load_average_history {
     void add_sample(double load_1m, double load_5m, double load_15m,
                     std::chrono::system_clock::time_point timestamp =
                         std::chrono::system_clock::now()) {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        buffer_[head_] = load_average_sample(timestamp, load_1m, load_5m, load_15m);
-        head_ = (head_ + 1) % max_samples_;
-
-        if (count_ < max_samples_) {
-            ++count_;
-        }
+        buffer_.add_sample(load_average_sample(timestamp, load_1m, load_5m, load_15m));
     }
 
     /**
@@ -497,8 +542,7 @@ class load_average_history {
      */
     template <typename Duration>
     std::vector<load_average_sample> get_samples(Duration duration) const {
-        auto cutoff = std::chrono::system_clock::now() - duration;
-        return get_samples_since(cutoff);
+        return buffer_.get_samples(duration);
     }
 
     /**
@@ -508,24 +552,7 @@ class load_average_history {
      */
     std::vector<load_average_sample> get_samples_since(
         std::chrono::system_clock::time_point since) const {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        std::vector<load_average_sample> result;
-        result.reserve(count_);
-
-        for (size_t i = 0; i < count_; ++i) {
-            const auto& sample = buffer_[get_actual_index(i)];
-            if (sample.timestamp >= since) {
-                result.push_back(sample);
-            }
-        }
-
-        std::sort(result.begin(), result.end(),
-                  [](const load_average_sample& a, const load_average_sample& b) {
-                      return a.timestamp < b.timestamp;
-                  });
-
-        return result;
+        return buffer_.get_samples_since(since);
     }
 
     /**
@@ -533,21 +560,7 @@ class load_average_history {
      * @return Vector of all samples
      */
     std::vector<load_average_sample> get_all_samples() const {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        std::vector<load_average_sample> result;
-        result.reserve(count_);
-
-        for (size_t i = 0; i < count_; ++i) {
-            result.push_back(buffer_[get_actual_index(i)]);
-        }
-
-        std::sort(result.begin(), result.end(),
-                  [](const load_average_sample& a, const load_average_sample& b) {
-                      return a.timestamp < b.timestamp;
-                  });
-
-        return result;
+        return buffer_.get_all_samples();
     }
 
     /**
@@ -575,52 +588,42 @@ class load_average_history {
      * @return Result containing the latest sample or error
      */
     result<load_average_sample> get_latest() const {
-        std::lock_guard<std::mutex> lock(mutex_);
-
-        if (count_ == 0) {
-            return make_error<load_average_sample>(monitoring_error_code::collection_failed,
-                                                   "No samples available");
-        }
-
-        size_t latest_idx = (head_ == 0) ? max_samples_ - 1 : head_ - 1;
-        return make_success(buffer_[latest_idx]);
+        return buffer_.get_latest();
     }
 
     /**
      * @brief Get current number of samples
      */
     size_t size() const noexcept {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return count_;
+        return buffer_.size();
     }
 
     /**
      * @brief Check if buffer is empty
      */
     bool empty() const noexcept {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return count_ == 0;
+        return buffer_.empty();
     }
 
     /**
      * @brief Get buffer capacity
      */
-    size_t capacity() const noexcept { return max_samples_; }
+    size_t capacity() const noexcept {
+        return buffer_.capacity();
+    }
 
     /**
      * @brief Clear all samples
      */
     void clear() noexcept {
-        std::lock_guard<std::mutex> lock(mutex_);
-        head_ = 0;
-        count_ = 0;
+        buffer_.clear();
     }
 
     /**
      * @brief Get memory footprint in bytes
      */
     size_t memory_footprint() const noexcept {
-        return sizeof(load_average_history) + max_samples_ * sizeof(load_average_sample);
+        return buffer_.memory_footprint();
     }
 
   private:
