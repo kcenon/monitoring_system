@@ -15,7 +15,13 @@ All rights reserved.
  * metric collection and storage based on different scenarios.
  *
  * @internal This is an internal implementation detail.
- * Not part of the public API - subject to change without notice.
+ * @warning NOT PART OF PUBLIC API - Subject to change without notice.
+ *          Do not use directly in application code.
+ *          Use buffer_manager for high-level buffer management.
+ *
+ * @note For C++20 module migration:
+ *       - This header will be in the internal partition
+ *       - Strategies will be exported through buffer_manager interface
  */
 
 #include <kcenon/monitoring/core/result_types.h>

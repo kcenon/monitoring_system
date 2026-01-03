@@ -29,6 +29,21 @@
 
 #pragma once
 
+/**
+ * @file thread_local_buffer.h
+ * @brief Thread-local buffer for lock-free metric collection
+ *
+ * This file provides a thread-local buffer implementation for high-performance
+ * metric collection without lock contention between threads.
+ *
+ * @public This is part of the public API.
+ *         Stable interface - breaking changes follow semantic versioning.
+ *
+ * @note For C++20 module migration:
+ *       - This will be exported as part of kcenon.monitoring.core
+ *       - Public interface is stable and maintained
+ */
+
 #include <vector>
 #include <string>
 #include <chrono>
