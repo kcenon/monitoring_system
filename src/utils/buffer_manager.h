@@ -10,9 +10,12 @@ All rights reserved.
 /**
  * @file buffer_manager.h
  * @brief Comprehensive buffer management system
- * 
+ *
  * This file provides a high-level buffer manager that coordinates
  * different buffering strategies and integrates with the metric storage system.
+ *
+ * @internal This is an internal implementation detail.
+ * Not part of the public API - subject to change without notice.
  */
 
 #include <kcenon/monitoring/core/result_types.h>
