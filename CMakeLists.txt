@@ -8,6 +8,38 @@ message(STATUS "Monitoring System: Using C++20 mode")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+##################################################
+# C++20 Module Support (Experimental)
+##################################################
+# C++20 modules require CMake 3.28+ and a compatible compiler.
+# This is an opt-in feature for the transition period.
+#
+# To enable modules:
+#   cmake -DMONITORING_ENABLE_MODULES=ON ..
+#
+# Requirements:
+#   - CMake 3.28 or later
+#   - GCC 14+, Clang 16+, or MSVC 19.34+
+#
+# See: https://github.com/kcenon/monitoring_system/issues/310
+##################################################
+option(MONITORING_ENABLE_MODULES "Enable C++20 module support (requires CMake 3.28+)" OFF)
+
+if(MONITORING_ENABLE_MODULES)
+    if(CMAKE_VERSION VERSION_LESS "3.28")
+        message(FATAL_ERROR
+            "C++20 modules require CMake 3.28 or later.\n"
+            "Current CMake version: ${CMAKE_VERSION}\n"
+            "Either upgrade CMake or disable modules with -DMONITORING_ENABLE_MODULES=OFF")
+    endif()
+
+    # Enable module scanning
+    set(CMAKE_CXX_SCAN_FOR_MODULES ON)
+    message(STATUS "Monitoring System: C++20 modules ENABLED")
+else()
+    message(STATUS "Monitoring System: C++20 modules DISABLED (header-based build)")
+endif()
+
 # Include compatibility module for C++17/C++20 feature detection
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(MonitoringCompatibility)
@@ -484,6 +516,65 @@ target_link_libraries(monitoring_system PUBLIC
     Threads::Threads
 )
 
+##################################################
+# C++20 Module Sources
+##################################################
+# Add module sources when MONITORING_ENABLE_MODULES is ON
+# This creates a separate library for module-based usage
+#
+# Module structure:
+#   kcenon.monitoring          - Primary module interface
+#   kcenon.monitoring.core     - Core types and interfaces
+#   kcenon.monitoring.collectors - Metric collectors
+#   kcenon.monitoring.adaptive - Adaptive monitoring
+##################################################
+if(MONITORING_ENABLE_MODULES)
+    # Define module source files
+    set(MONITORING_MODULE_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/monitoring.cppm
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/core.cppm
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/collectors.cppm
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/adaptive.cppm
+    )
+
+    # Create module library
+    add_library(monitoring_system_modules)
+
+    # Add module sources using FILE_SET
+    target_sources(monitoring_system_modules
+        PUBLIC FILE_SET CXX_MODULES
+        FILES ${MONITORING_MODULE_SOURCES}
+    )
+
+    target_include_directories(monitoring_system_modules
+        PUBLIC
+            $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
+            $<INSTALL_INTERFACE:include>
+    )
+
+    target_link_libraries(monitoring_system_modules
+        PUBLIC
+            monitoring_system_interface
+            Threads::Threads
+    )
+
+    # Link to same dependencies as main library
+    if(MONITORING_WITH_THREAD_SYSTEM AND MONITORING_THREAD_TARGET)
+        target_link_libraries(monitoring_system_modules PUBLIC ${MONITORING_THREAD_TARGET})
+    endif()
+
+    if(MONITORING_WITH_LOGGER_SYSTEM AND MONITORING_LOGGER_TARGET)
+        target_link_libraries(monitoring_system_modules PUBLIC ${MONITORING_LOGGER_TARGET})
+    endif()
+
+    # Create alias for namespaced usage
+    add_library(kcenon::monitoring_modules ALIAS monitoring_system_modules)
+
+    message(STATUS "Monitoring System: Module library created (monitoring_system_modules)")
+    message(STATUS "  Module files: ${MONITORING_MODULE_SOURCES}")
+endif()
+
 # Platform-specific libraries for temperature monitoring
 if(APPLE)
     target_link_libraries(monitoring_system PUBLIC
@@ -643,6 +734,7 @@ message(STATUS "    └── network_system (Tier 4): ${MONITORING_WITH_NETWORK
 message(STATUS "")
 message(STATUS "Build Configuration:")
 message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "  C++20 Modules: ${MONITORING_ENABLE_MODULES}")
 message(STATUS "  Build tests: ${MONITORING_BUILD_TESTS}")
 message(STATUS "  Build integration tests: ${MONITORING_BUILD_INTEGRATION_TESTS}")
 message(STATUS "  Build examples: ${MONITORING_BUILD_EXAMPLES}")
