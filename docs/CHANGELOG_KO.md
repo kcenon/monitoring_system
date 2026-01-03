@@ -56,6 +56,21 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 
 ## [Unreleased]
 
+### 추가됨
+- **C++20 모듈 지원** (#310)
+  - `kcenon.monitoring` 모듈용 C++20 모듈 파일 생성
+  - 모듈 파티션:
+    - `kcenon.monitoring.core`: 핵심 타입, 인터페이스, concepts 및 유틸리티
+    - `kcenon.monitoring.collectors`: 메트릭 collector 구현체 및 레지스트리
+    - `kcenon.monitoring.adaptive`: 적응형 모니터링, 알림 및 부하 기반 적응
+  - 주요 모듈 인터페이스: `kcenon.monitoring`
+  - CMake 설정:
+    - `MONITORING_ENABLE_MODULES` 옵션 추가 (CMake 3.28+ 필요)
+    - `monitoring_system_modules` 라이브러리 타겟 생성
+    - 전환 기간 동안 모듈 지원은 선택적(opt-in)
+  - 헤더 기반 빌드는 완전히 지원됨
+  - C++20 모듈 마이그레이션 에픽의 일부 (common_system#256)
+
 ### 제거됨
 - **deprecated된 `monitoring_interface.h` 헤더 제거** (#307)
   - `include/kcenon/monitoring/interfaces/monitoring_interface.h` 포워딩 헤더 삭제

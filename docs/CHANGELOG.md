@@ -56,6 +56,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **C++20 Module Support** (#310)
+  - Created C++20 module files for `kcenon.monitoring` module
+  - Module partitions:
+    - `kcenon.monitoring.core`: Core types, interfaces, concepts, and utilities
+    - `kcenon.monitoring.collectors`: Metric collector implementations and registry
+    - `kcenon.monitoring.adaptive`: Adaptive monitoring, alerts, and load-based adaptation
+  - Primary module interface: `kcenon.monitoring`
+  - CMake configuration:
+    - Added `MONITORING_ENABLE_MODULES` option (requires CMake 3.28+)
+    - Created `monitoring_system_modules` library target
+    - Module support is opt-in during transition period
+  - Header-based builds remain fully supported
+  - Part of C++20 Module Migration Epic (common_system#256)
+
 ### Removed
 - **Deprecated `monitoring_interface.h` header removed** (#307)
   - Deleted `include/kcenon/monitoring/interfaces/monitoring_interface.h` forwarding header
