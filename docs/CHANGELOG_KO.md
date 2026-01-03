@@ -80,6 +80,12 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - socket_buffer_collector에 누락된 'available' 통계 추가
 
 ### 변경됨
+- **buffering_strategy가 내부적으로 ring_buffer를 사용하도록 리팩토링** (#312)
+  - `fixed_size_strategy`, `time_based_strategy`, `adaptive_strategy`가 `ring_buffer<buffered_metric>`을 스토리지로 사용하도록 수정
+  - ring_buffer 용량 계산을 위한 `detail::next_power_of_two()` 헬퍼 함수 추가
+  - `priority_based_strategy`는 벡터 기반 스토리지 유지 (정렬/선택적 삭제 필요)
+  - 내부 헤더용 상대 경로로 include 경로 업데이트
+  - lock-free ring buffer를 통한 코드 중복 감소 및 메모리 효율성 향상
 - **collector 구현에 CRTP 패턴 적용** (#292)
   - 공통 collector 기능을 위한 `collector_base` 템플릿 클래스 생성 (CRTP)
   - 8개 collector를 collector_base 사용으로 마이그레이션: uptime, fd, battery, tcp_state,

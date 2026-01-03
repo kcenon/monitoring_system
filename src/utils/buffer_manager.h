@@ -20,8 +20,8 @@ All rights reserved.
 
 #include <kcenon/monitoring/core/result_types.h>
 #include <kcenon/monitoring/core/error_codes.h>
-#include <kcenon/monitoring/utils/buffering_strategy.h>
-#include <kcenon/monitoring/utils/metric_storage.h>
+#include "buffering_strategy.h"
+#include "metric_storage.h"
 #include <unordered_map>
 #include <string>
 #include <memory>
