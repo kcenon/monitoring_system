@@ -80,6 +80,11 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - socket_buffer_collector에 누락된 'available' 통계 추가
 
 ### 변경됨
+- **public vs internal 버퍼 API 명확화** (#313)
+  - public API 헤더에 `@public` 문서화 태그 추가: `thread_local_buffer.h`, `time_series_buffer.h`, `socket_buffer_collector.h`
+  - internal 헤더에 경고와 함께 `@internal` 문서화 강화: `ring_buffer.h`, `buffering_strategy.h`, `buffer_manager.h`
+  - 모든 버퍼 관련 헤더에 C++20 모듈 마이그레이션 노트 추가
+  - 명확한 export 경계로 버퍼 레이어 C++20 모듈 분할 준비
 - **buffering_strategy가 내부적으로 ring_buffer를 사용하도록 리팩토링** (#312)
   - `fixed_size_strategy`, `time_based_strategy`, `adaptive_strategy`가 `ring_buffer<buffered_metric>`을 스토리지로 사용하도록 수정
   - ring_buffer 용량 계산을 위한 `detail::next_power_of_two()` 헬퍼 함수 추가

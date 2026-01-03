@@ -41,6 +41,13 @@
  * - Linux: /proc/net/tcp (tx_queue, rx_queue), /proc/net/sockstat
  * - macOS: netstat -m (mbuf statistics), sysctl kern.ipc
  * - Windows: GetTcpStatistics() API (stub implementation)
+ *
+ * @public This is part of the public API.
+ *         Stable interface - breaking changes follow semantic versioning.
+ *
+ * @note For C++20 module migration:
+ *       - This will be exported as part of kcenon.monitoring.collectors
+ *       - Public classes: socket_buffer_collector, socket_buffer_metrics
  */
 
 #include <chrono>

@@ -16,7 +16,13 @@ All rights reserved.
  * allocation overhead and cache-friendly access patterns.
  *
  * @internal This is an internal implementation detail.
- * Not part of the public API - subject to change without notice.
+ * @warning NOT PART OF PUBLIC API - Subject to change without notice.
+ *          Do not use directly in application code.
+ *          Use public APIs like thread_local_buffer or time_series_buffer instead.
+ *
+ * @note For C++20 module migration:
+ *       - This header will be in the internal partition
+ *       - Export only through buffer_manager or buffering_strategy
  */
 
 #include <kcenon/monitoring/core/result_types.h>

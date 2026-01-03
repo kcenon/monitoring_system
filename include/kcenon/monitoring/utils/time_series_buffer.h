@@ -13,6 +13,14 @@ All rights reserved.
  *
  * This file provides a thread-safe, memory-bounded ring buffer for storing
  * time-series data with configurable retention and statistics calculation.
+ *
+ * @public This is part of the public API.
+ *         Stable interface - breaking changes follow semantic versioning.
+ *
+ * @note For C++20 module migration:
+ *       - This will be exported as part of kcenon.monitoring.utils
+ *       - detail namespace contents will remain internal
+ *       - Public classes: time_series_buffer, load_average_history
  */
 
 #ifdef _WIN32
