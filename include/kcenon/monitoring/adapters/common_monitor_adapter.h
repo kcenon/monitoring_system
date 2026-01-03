@@ -250,8 +250,8 @@ public:
         }
 
         auto result = common_monitor_->get_metrics();
-        if (!::kcenon::common::is_error(result)) {
-            const auto& snapshot = ::kcenon::common::get_value(result);
+        if (!result.is_err()) {
+            const auto& snapshot = result.value();
             for (const auto& metric : snapshot.metrics) {
                 metric_data data;
                 data.name = metric.name;
@@ -277,8 +277,8 @@ public:
         }
 
         auto result = common_monitor_->check_health();
-        if (!::kcenon::common::is_error(result)) {
-            const auto& check = ::kcenon::common::get_value(result);
+        if (!result.is_err()) {
+            const auto& check = result.value();
             health_result.status = from_common_health_status(check.status);
             health_result.message = check.message;
             health_result.duration = check.check_duration;

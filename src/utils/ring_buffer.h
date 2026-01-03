@@ -10,10 +10,13 @@ All rights reserved.
 /**
  * @file ring_buffer.h
  * @brief Lock-free ring buffer for efficient metric storage
- * 
+ *
  * This file provides a high-performance, memory-efficient ring buffer
  * implementation specifically designed for metric storage with minimal
  * allocation overhead and cache-friendly access patterns.
+ *
+ * @internal This is an internal implementation detail.
+ * Not part of the public API - subject to change without notice.
  */
 
 #include <kcenon/monitoring/core/result_types.h>

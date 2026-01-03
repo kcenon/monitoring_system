@@ -156,7 +156,7 @@ void demonstrate_health_monitoring() {
             [database]() -> health_check_result {
                 // Simple ping check
                 auto result = database->execute_query("SELECT 1");
-                if (result) {
+                if (result.is_ok()) {
                     return health_check_result::healthy("Database is alive");
                 } else {
                     return health_check_result::unhealthy(
@@ -177,7 +177,7 @@ void demonstrate_health_monitoring() {
             [database]() -> health_check_result {
                 // Check if database can handle queries
                 auto result = database->execute_query("SELECT COUNT(*) FROM users");
-                if (result) {
+                if (result.is_ok()) {
                     int query_count = database->get_query_count();
                     if (query_count > 100) {
                         return health_check_result::degraded(
@@ -313,7 +313,7 @@ void demonstrate_circuit_breaker() {
         auto result = breaker.execute(api_operation, fallback);
         
         std::cout << "  Call " << i << ": ";
-        if (result) {
+        if (result.is_ok()) {
             std::cout << "SUCCESS - " << result.value() << std::endl;
         } else {
             std::cout << "FAILED - " << result.error().message << std::endl;
@@ -349,7 +349,7 @@ void demonstrate_circuit_breaker() {
     for (int i = 1; i <= 3; ++i) {
         auto result = breaker.execute(api_operation, fallback);
         std::cout << "  Call " << i << ": ";
-        if (result) {
+        if (result.is_ok()) {
             std::cout << "SUCCESS" << std::endl;
         } else {
             std::cout << "FAILED" << std::endl;
@@ -397,18 +397,18 @@ void demonstrate_retry_policy() {
         monitoring_error_code::operation_failed, "Initialization pending");
     for (int i = 0; i < static_cast<int>(config.max_attempts); ++i) {
         final_result = flaky_operation();
-        if (final_result) {
+        if (final_result.is_ok()) {
             break;
         }
-        
+
         // Wait before retry
         if (i < static_cast<int>(config.max_attempts) - 1) {
             auto delay = config.initial_delay * static_cast<int>(std::pow(config.backoff_multiplier, i));
             std::this_thread::sleep_for(delay);
         }
     }
-    
-    if (final_result) {
+
+    if (final_result.is_ok()) {
         std::cout << "  Final result: SUCCESS - " << final_result.value() << std::endl;
     } else {
         std::cout << "  Final result: FAILED - " << final_result.error().message << std::endl;
@@ -459,7 +459,7 @@ void demonstrate_error_boundaries() {
             return make_success<std::string>("Result " + std::to_string(i));
         });
         
-        if (!result && result.error().code == monitoring_error_code::circuit_breaker_open) {
+        if (result.is_err() && result.error().code == static_cast<int>(monitoring_error_code::circuit_breaker_open)) {
             std::cout << "    [Error boundary triggered - too many errors]" << std::endl;
             break;
         }
