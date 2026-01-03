@@ -80,6 +80,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added missing 'available' statistic to socket_buffer_collector
 
 ### Changed
+- **Refactor buffering_strategy to use ring_buffer internally** (#312)
+  - Modified `fixed_size_strategy`, `time_based_strategy`, and `adaptive_strategy` to use `ring_buffer<buffered_metric>` for storage
+  - Added `detail::next_power_of_two()` helper function for ring_buffer capacity calculation
+  - `priority_based_strategy` retains vector-based storage (requires sorting/selective deletion)
+  - Updated internal include paths to use relative paths for internal headers
+  - Reduces code duplication and improves memory efficiency through lock-free ring buffer
 - **Apply CRTP pattern to collector implementations** (#292)
   - Created `collector_base` template class with CRTP for common collector functionality
   - Migrated 8 collectors to use collector_base: uptime, fd, battery, tcp_state,
