@@ -95,9 +95,9 @@ public:
             if (monitorable) {
                 // Convert minimal subset of thread_system metrics into adapter metrics
                 // thread_system v3.0 uses common::interfaces::IMonitorable
-                auto result = monitorable->get_monitoring_data();
-                if (!kcenon::common::is_error(result)) {
-                    const auto& snap = kcenon::common::get_value(result);
+                auto monitoring_result = monitorable->get_monitoring_data();
+                if (!monitoring_result.is_err()) {
+                    const auto& snap = monitoring_result.value();
                     // Map metrics from common_system snapshot
                     for (const auto& m : snap.metrics) {
                         metric adapted{m.name, m.value, {}};

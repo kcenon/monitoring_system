@@ -137,7 +137,12 @@ monitoring_system/
 │   │   ├── smart_metrics.cpp
 │   │   ├── temperature_collector.cpp
 │   │   └── windows_*.cpp             # Windows implementations
-│   └── utils/                   # Utility implementations
+│   └── utils/                   # Utility implementations (@internal)
+│       ├── buffer_manager.h          # Buffer lifecycle management
+│       ├── buffering_strategy.h      # Configurable buffering strategies
+│       ├── metric_storage.h          # Metric persistence
+│       ├── ring_buffer.h             # Lock-free ring buffer
+│       └── time_series.h             # Time-series data storage
 ├── tests/                       # Test suites (48 test files)
 │   ├── test_adapter_functionality.cpp
 │   ├── test_adaptive_monitoring.cpp

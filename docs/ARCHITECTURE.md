@@ -21,7 +21,9 @@ Key Modules
   - Provides: battery, temperature, uptime, context switches, FD stats, inode stats,
     TCP states, socket buffers, interrupts, power info, GPU info, security info
 - Utilities
-  - buffer_manager, ring_buffer, time_series, aggregation_processor
+  - **Public API**: time_series_buffer, thread_local_buffer
+  - **Internal** (@internal): buffer_manager, ring_buffer, buffering_strategy
+  - Shared utilities in `detail` namespace for common operations
 - Reliability & Tracing
   - retry_policy, circuit_breaker, fault_tolerance_manager, distributed_tracer
 - Adapters (optional)

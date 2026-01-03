@@ -10,9 +10,12 @@ All rights reserved.
 /**
  * @file buffering_strategy.h
  * @brief Configurable buffering strategies for metric collection
- * 
- * This file implements P3 task: Configurable buffering strategies
- * for optimizing metric collection and storage based on different scenarios.
+ *
+ * This file implements configurable buffering strategies for optimizing
+ * metric collection and storage based on different scenarios.
+ *
+ * @internal This is an internal implementation detail.
+ * Not part of the public API - subject to change without notice.
  */
 
 #include <kcenon/monitoring/core/result_types.h>

@@ -86,6 +86,109 @@ struct time_series_statistics {
 };
 
 /**
+ * @namespace detail
+ * @brief Internal implementation details - not part of public API
+ * @internal
+ */
+namespace detail {
+
+/**
+ * @brief Calculate percentile from sorted values
+ * @param sorted_values Pre-sorted vector of values
+ * @param percentile Percentile to calculate (0-100)
+ * @return Calculated percentile value
+ * @internal
+ */
+inline double calculate_percentile(const std::vector<double>& sorted_values,
+                                   double percentile) {
+    if (sorted_values.empty()) {
+        return 0.0;
+    }
+    if (sorted_values.size() == 1) {
+        return sorted_values[0];
+    }
+
+    double rank = (percentile / 100.0) * (sorted_values.size() - 1);
+    size_t lower_idx = static_cast<size_t>(rank);
+    size_t upper_idx = lower_idx + 1;
+    double fraction = rank - lower_idx;
+
+    if (upper_idx >= sorted_values.size()) {
+        return sorted_values[lower_idx];
+    }
+
+    return sorted_values[lower_idx] +
+           fraction * (sorted_values[upper_idx] - sorted_values[lower_idx]);
+}
+
+/**
+ * @brief Calculate ring buffer actual index from logical index
+ * @param logical_index Logical index (0 to count-1)
+ * @param head Current head position
+ * @param count Current element count
+ * @param capacity Buffer capacity
+ * @return Actual index in buffer
+ * @internal
+ */
+inline size_t ring_buffer_index(size_t logical_index, size_t head,
+                                size_t count, size_t capacity) noexcept {
+    if (count < capacity) {
+        return logical_index;
+    }
+    return (head + logical_index) % capacity;
+}
+
+/**
+ * @brief Calculate basic statistics from a vector of double values
+ * @param values Vector of values to analyze
+ * @param oldest_timestamp Timestamp of oldest sample
+ * @param newest_timestamp Timestamp of newest sample
+ * @return Calculated statistics
+ * @internal
+ */
+inline time_series_statistics calculate_basic_statistics(
+    const std::vector<double>& values,
+    std::chrono::system_clock::time_point oldest_timestamp,
+    std::chrono::system_clock::time_point newest_timestamp) {
+
+    time_series_statistics stats;
+    stats.sample_count = values.size();
+
+    if (values.empty()) {
+        stats.min_value = 0.0;
+        stats.max_value = 0.0;
+        return stats;
+    }
+
+    stats.oldest_timestamp = oldest_timestamp;
+    stats.newest_timestamp = newest_timestamp;
+
+    double sum = 0.0;
+    for (double val : values) {
+        sum += val;
+        stats.min_value = (std::min)(stats.min_value, val);
+        stats.max_value = (std::max)(stats.max_value, val);
+    }
+    stats.avg = sum / values.size();
+
+    double variance = 0.0;
+    for (double val : values) {
+        double diff = val - stats.avg;
+        variance += diff * diff;
+    }
+    stats.stddev = std::sqrt(variance / values.size());
+
+    std::vector<double> sorted_values = values;
+    std::sort(sorted_values.begin(), sorted_values.end());
+    stats.p95 = calculate_percentile(sorted_values, 95.0);
+    stats.p99 = calculate_percentile(sorted_values, 99.0);
+
+    return stats;
+}
+
+}  // namespace detail
+
+/**
  * @class time_series_buffer
  * @brief Thread-safe ring buffer for time-series data with statistics
  * @tparam T The type of values to store (must be numeric)
@@ -102,10 +205,7 @@ class time_series_buffer {
     time_series_buffer_config config_;
 
     size_t get_actual_index(size_t logical_index) const noexcept {
-        if (count_ < config_.max_samples) {
-            return logical_index;
-        }
-        return (head_ + logical_index) % config_.max_samples;
+        return detail::ring_buffer_index(logical_index, head_, count_, config_.max_samples);
     }
 
   public:
@@ -293,66 +393,24 @@ class time_series_buffer {
   private:
     static time_series_statistics calculate_statistics(
         const std::vector<time_series_sample<T>>& samples) {
-        time_series_statistics stats;
-        stats.sample_count = samples.size();
-
         if (samples.empty()) {
+            time_series_statistics stats;
+            stats.sample_count = 0;
             stats.min_value = 0.0;
             stats.max_value = 0.0;
             return stats;
         }
 
-        stats.oldest_timestamp = samples.front().timestamp;
-        stats.newest_timestamp = samples.back().timestamp;
-
-        double sum = 0.0;
         std::vector<double> values;
         values.reserve(samples.size());
-
         for (const auto& sample : samples) {
-            double val = static_cast<double>(sample.value);
-            values.push_back(val);
-            sum += val;
-            stats.min_value = (std::min)(stats.min_value, val);
-            stats.max_value = (std::max)(stats.max_value, val);
+            values.push_back(static_cast<double>(sample.value));
         }
 
-        stats.avg = sum / values.size();
-
-        double variance = 0.0;
-        for (double val : values) {
-            double diff = val - stats.avg;
-            variance += diff * diff;
-        }
-        stats.stddev = std::sqrt(variance / values.size());
-
-        std::sort(values.begin(), values.end());
-        stats.p95 = calculate_percentile(values, 95.0);
-        stats.p99 = calculate_percentile(values, 99.0);
-
-        return stats;
-    }
-
-    static double calculate_percentile(const std::vector<double>& sorted_values,
-                                        double percentile) {
-        if (sorted_values.empty()) {
-            return 0.0;
-        }
-        if (sorted_values.size() == 1) {
-            return sorted_values[0];
-        }
-
-        double rank = (percentile / 100.0) * (sorted_values.size() - 1);
-        size_t lower_idx = static_cast<size_t>(rank);
-        size_t upper_idx = lower_idx + 1;
-        double fraction = rank - lower_idx;
-
-        if (upper_idx >= sorted_values.size()) {
-            return sorted_values[lower_idx];
-        }
-
-        return sorted_values[lower_idx] +
-               fraction * (sorted_values[upper_idx] - sorted_values[lower_idx]);
+        return detail::calculate_basic_statistics(
+            values,
+            samples.front().timestamp,
+            samples.back().timestamp);
     }
 };
 
@@ -396,10 +454,7 @@ class load_average_history {
     size_t max_samples_;
 
     size_t get_actual_index(size_t logical_index) const noexcept {
-        if (count_ < max_samples_) {
-            return logical_index;
-        }
-        return (head_ + logical_index) % max_samples_;
+        return detail::ring_buffer_index(logical_index, head_, count_, max_samples_);
     }
 
   public:
@@ -593,69 +648,14 @@ class load_average_history {
             values_15m.push_back(sample.load_15m);
         }
 
-        stats.load_1m_stats = calculate_single_statistics(values_1m, samples);
-        stats.load_5m_stats = calculate_single_statistics(values_5m, samples);
-        stats.load_15m_stats = calculate_single_statistics(values_15m, samples);
+        auto oldest = samples.front().timestamp;
+        auto newest = samples.back().timestamp;
+
+        stats.load_1m_stats = detail::calculate_basic_statistics(values_1m, oldest, newest);
+        stats.load_5m_stats = detail::calculate_basic_statistics(values_5m, oldest, newest);
+        stats.load_15m_stats = detail::calculate_basic_statistics(values_15m, oldest, newest);
 
         return stats;
-    }
-
-    static time_series_statistics calculate_single_statistics(
-        std::vector<double>& values, const std::vector<load_average_sample>& samples) {
-        time_series_statistics stats;
-        stats.sample_count = values.size();
-
-        if (values.empty()) {
-            stats.min_value = 0.0;
-            stats.max_value = 0.0;
-            return stats;
-        }
-
-        stats.oldest_timestamp = samples.front().timestamp;
-        stats.newest_timestamp = samples.back().timestamp;
-
-        double sum = 0.0;
-        for (double val : values) {
-            sum += val;
-            stats.min_value = (std::min)(stats.min_value, val);
-            stats.max_value = (std::max)(stats.max_value, val);
-        }
-        stats.avg = sum / values.size();
-
-        double variance = 0.0;
-        for (double val : values) {
-            double diff = val - stats.avg;
-            variance += diff * diff;
-        }
-        stats.stddev = std::sqrt(variance / values.size());
-
-        std::sort(values.begin(), values.end());
-        stats.p95 = calculate_percentile(values, 95.0);
-        stats.p99 = calculate_percentile(values, 99.0);
-
-        return stats;
-    }
-
-    static double calculate_percentile(const std::vector<double>& sorted_values,
-                                        double percentile) {
-        if (sorted_values.empty()) {
-            return 0.0;
-        }
-        if (sorted_values.size() == 1) {
-            return sorted_values[0];
-        }
-
-        double rank = (percentile / 100.0) * (sorted_values.size() - 1);
-        size_t lower_idx = static_cast<size_t>(rank);
-        size_t upper_idx = lower_idx + 1;
-        double fraction = rank - lower_idx;
-
-        if (upper_idx >= sorted_values.size()) {
-            return sorted_values[lower_idx];
-        }
-
-        return sorted_values[lower_idx] +
-               fraction * (sorted_values[upper_idx] - sorted_values[lower_idx]);
     }
 };
 
