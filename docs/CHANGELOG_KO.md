@@ -64,6 +64,10 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
 
 ### 수정됨
+- **deprecated된 common_system 헬퍼 함수로 인한 MSVC 빌드 오류** (#314)
+  - deprecated된 `kcenon::common::is_error()`, `get_value()`, `get_error()`를 Result 멤버 메서드로 대체
+  - 영향받은 어댑터: `thread_system_adapter.h`, `common_monitor_adapter.h`, `common_system_adapter.h`
+  - 예제 파일들 최신 Result API 사용으로 업데이트: `result.is_ok()`, `result.value()`, `result.error()`
 - **macOS CI 테스트 불안정성** (#300)
   - macOS CI에서 불안정한 `ContextSwitchMonitoring` 테스트 수정
   - macOS는 프로세스 수준의 context switch를 읽으므로 단조 증가가 보장되지 않음

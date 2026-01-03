@@ -64,6 +64,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **MSVC build error from deprecated common_system helper functions** (#314)
+  - Replaced deprecated `kcenon::common::is_error()`, `get_value()`, `get_error()` with Result member methods
+  - Affected adapters: `thread_system_adapter.h`, `common_monitor_adapter.h`, `common_system_adapter.h`
+  - Updated examples to use modern Result API: `result.is_ok()`, `result.value()`, `result.error()`
 - **macOS CI test flakiness** (#300)
   - Fixed flaky `ContextSwitchMonitoring` test on macOS CI
   - macOS reads process-level context switches which may not be monotonically increasing
