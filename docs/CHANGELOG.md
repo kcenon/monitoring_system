@@ -80,6 +80,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added missing 'available' statistic to socket_buffer_collector
 
 ### Changed
+- **Clarify public vs internal buffer APIs** (#313)
+  - Added `@public` documentation tags to public API headers: `thread_local_buffer.h`, `time_series_buffer.h`, `socket_buffer_collector.h`
+  - Enhanced `@internal` documentation with warnings in internal headers: `ring_buffer.h`, `buffering_strategy.h`, `buffer_manager.h`
+  - Added C++20 module migration notes to all buffer-related headers
+  - Prepared buffer layer for C++20 module partitioning with clear export boundaries
 - **Refactor buffering_strategy to use ring_buffer internally** (#312)
   - Modified `fixed_size_strategy`, `time_based_strategy`, and `adaptive_strategy` to use `ring_buffer<buffered_metric>` for storage
   - Added `detail::next_power_of_two()` helper function for ring_buffer capacity calculation

@@ -15,7 +15,13 @@ All rights reserved.
  * different buffering strategies and integrates with the metric storage system.
  *
  * @internal This is an internal implementation detail.
- * Not part of the public API - subject to change without notice.
+ * @warning NOT PART OF PUBLIC API - Subject to change without notice.
+ *          Do not use directly in application code.
+ *          This is the internal coordination layer for buffering.
+ *
+ * @note For C++20 module migration:
+ *       - This header will be in the internal partition
+ *       - Public interface will be exposed through monitoring facade
  */
 
 #include <kcenon/monitoring/core/result_types.h>
