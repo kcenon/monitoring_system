@@ -200,13 +200,13 @@ public:
         }
 
         auto common_result = common_monitor_->get_metrics();
-        if (::kcenon::common::is_error(common_result)) {
+        if (common_result.is_err()) {
             return result<metrics_snapshot>(
                 monitoring_error_code::collection_failed,
-                ::kcenon::common::get_error(common_result).message);
+                common_result.error().message);
         }
 
-        const auto& common_snapshot = ::kcenon::common::get_value(common_result);
+        const auto& common_snapshot = common_result.value();
 
         // Convert common snapshot to monitoring_system snapshot
         metrics_snapshot snapshot;
