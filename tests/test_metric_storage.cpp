@@ -82,7 +82,7 @@ TEST_F(MetricStorageTest, RingBufferBasicOperations) {
     EXPECT_FALSE(result.is_ok());  // Should fail as overwrite_old is false
     
     // Read elements
-    int value;
+    int value = 0;
     for (int i = 0; i < 7; ++i) {
         auto read_result = buffer.read(value);
         EXPECT_TRUE(read_result.is_ok());
@@ -141,7 +141,7 @@ TEST_F(MetricStorageTest, RingBufferPeek) {
     buffer.write(std::move(42));
     buffer.write(std::move(84));
     
-    int value;
+    int value = 0;
     auto result = buffer.peek(value);
     EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(value, 42);
