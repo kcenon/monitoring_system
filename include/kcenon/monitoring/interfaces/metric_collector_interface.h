@@ -117,6 +117,32 @@ concept MetricCollectorLike = requires(T t) {
 /**
  * @class metric_filter
  * @brief Filter configuration for metric collection
+ *
+ * Provides filtering capabilities for selective metric collection based
+ * on metric type names. Supports include-all, include-specific, and
+ * exclude-specific filtering strategies.
+ *
+ * @thread_safety This class is NOT thread-safe. External synchronization
+ *                is required when modifying filter configuration from
+ *                multiple threads.
+ *
+ * @example
+ * @code
+ * // Include only specific metric types
+ * metric_filter filter(metric_filter::filter_type::include_specific);
+ * filter.add_metric_type("cpu_usage");
+ * filter.add_metric_type("memory_usage");
+ *
+ * if (filter.should_collect("cpu_usage")) {
+ *     // Collect this metric
+ * }
+ *
+ * // Exclude specific metric types
+ * metric_filter exclude_filter(metric_filter::filter_type::exclude_specific);
+ * exclude_filter.add_metric_type("debug_info");
+ * @endcode
+ *
+ * @see collection_config for integration with metric collection
  */
 class metric_filter {
 public:
@@ -156,6 +182,26 @@ private:
  *
  * This struct satisfies the concepts::Validatable concept,
  * providing a validate() method for configuration validation.
+ *
+ * @thread_safety This struct is NOT thread-safe. Configuration should be
+ *                set before starting collection or protected by external
+ *                synchronization.
+ *
+ * @example
+ * @code
+ * collection_config config;
+ * config.interval = std::chrono::seconds(5);
+ * config.batch_collection = true;
+ * config.batch_size = 50;
+ * config.async_collection = true;
+ *
+ * auto validation_result = config.validate();
+ * if (validation_result.is_ok()) {
+ *     collector->start_collection(config);
+ * }
+ * @endcode
+ *
+ * @see interface_metric_collector::start_collection
  */
 struct collection_config {
     std::chrono::milliseconds interval{std::chrono::seconds(1)};
@@ -194,7 +240,40 @@ static_assert(concepts::Validatable<collection_config>,
  * @brief Pure virtual interface for metric collectors
  *
  * Components implementing this interface can collect various types
- * of metrics and publish them to registered observers.
+ * of metrics and publish them to registered observers. The interface
+ * provides both manual and automatic collection modes with configurable
+ * filtering and batching options.
+ *
+ * @thread_safety Implementations MUST be thread-safe. All public methods
+ *                can be called from multiple threads simultaneously.
+ *                The observer notification mechanism should handle concurrent
+ *                access appropriately.
+ *
+ * @example
+ * @code
+ * class cpu_metric_collector : public interface_metric_collector {
+ * public:
+ *     result<std::vector<metric>> collect_metrics() override {
+ *         std::vector<metric> metrics;
+ *         metrics.push_back({"cpu_usage", get_cpu_usage(), {}, metric_type::gauge});
+ *         return make_success(std::move(metrics));
+ *     }
+ *     // ... implement other methods
+ * };
+ *
+ * // Usage
+ * auto collector = std::make_shared<cpu_metric_collector>();
+ * collection_config config;
+ * config.interval = std::chrono::seconds(5);
+ *
+ * auto result = collector->start_collection(config);
+ * if (result.is_ok()) {
+ *     // Collection started successfully
+ * }
+ * @endcode
+ *
+ * @see interface_observable for observer registration
+ * @see collection_config for configuration options
  */
 class interface_metric_collector : public interface_observable {
 public:
@@ -265,6 +344,36 @@ public:
 /**
  * @class interface_metric_source
  * @brief Interface for components that provide metrics
+ *
+ * This interface defines the contract for components that can provide
+ * metrics to collectors. Metric sources are typically sensors, subsystems,
+ * or services that expose their internal state as metrics.
+ *
+ * @thread_safety Implementations MUST be thread-safe. The get_current_metrics()
+ *                method may be called from multiple threads simultaneously.
+ *
+ * @example
+ * @code
+ * class database_metric_source : public interface_metric_source {
+ * public:
+ *     std::vector<metric> get_current_metrics() const override {
+ *         std::vector<metric> metrics;
+ *         metrics.push_back({"db_connections", get_active_connections(), {}});
+ *         metrics.push_back({"db_query_latency_ms", get_avg_latency(), {}});
+ *         return metrics;
+ *     }
+ *
+ *     std::string get_source_name() const override {
+ *         return "database";
+ *     }
+ *
+ *     bool is_healthy() const override {
+ *         return connection_pool_.is_available();
+ *     }
+ * };
+ * @endcode
+ *
+ * @see interface_aggregated_collector for collector that uses metric sources
  */
 class interface_metric_source {
 public:
@@ -292,6 +401,40 @@ public:
 /**
  * @class interface_aggregated_collector
  * @brief Interface for collectors that aggregate metrics from multiple sources
+ *
+ * This interface extends interface_metric_collector to support collecting
+ * metrics from multiple registered sources. It provides source management
+ * capabilities and aggregation of metrics from all sources.
+ *
+ * @thread_safety Implementations MUST be thread-safe. Source registration
+ *                and unregistration can be performed while collection is active.
+ *                All source operations should be protected appropriately.
+ *
+ * @example
+ * @code
+ * auto aggregated_collector = std::make_shared<aggregated_collector_impl>();
+ *
+ * // Register multiple sources
+ * auto db_source = std::make_shared<database_metric_source>();
+ * auto cache_source = std::make_shared<cache_metric_source>();
+ *
+ * aggregated_collector->register_source(db_source);
+ * aggregated_collector->register_source(cache_source);
+ *
+ * // Collect from all sources
+ * auto metrics = aggregated_collector->collect_metrics();
+ * if (metrics.is_ok()) {
+ *     for (const auto& m : metrics.value()) {
+ *         // Process aggregated metrics
+ *     }
+ * }
+ *
+ * // List registered sources
+ * auto sources = aggregated_collector->get_registered_sources();
+ * @endcode
+ *
+ * @see interface_metric_source for source implementation
+ * @see interface_metric_collector for base collector interface
  */
 class interface_aggregated_collector : public interface_metric_collector {
 public:

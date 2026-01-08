@@ -31,9 +31,36 @@ namespace kcenon { namespace monitoring {
 /**
  * @struct monitoring_data
  * @brief Container for monitoring metrics from a component
- * 
+ *
  * This structure holds key-value pairs of metrics that a component
- * exposes for monitoring purposes.
+ * exposes for monitoring purposes. It supports both numeric metrics
+ * and string tags for additional metadata.
+ *
+ * @thread_safety This class is NOT inherently thread-safe. When accessed
+ *                from multiple threads, external synchronization is required.
+ *                Consider using `mutable` with mutex for thread-safe access
+ *                in derived classes.
+ *
+ * @example
+ * @code
+ * monitoring_data data("my_service");
+ * data.add_metric("requests_per_second", 150.5);
+ * data.add_metric("active_connections", 42.0);
+ * data.add_tag("version", "1.2.3");
+ * data.add_tag("region", "us-east-1");
+ *
+ * // Retrieve metrics
+ * if (auto rps = data.get_metric("requests_per_second")) {
+ *     std::cout << "RPS: " << *rps << std::endl;
+ * }
+ *
+ * // Merge with another data source
+ * monitoring_data other_data("cache");
+ * other_data.add_metric("hit_rate", 0.95);
+ * data.merge(other_data, "cache");  // Prefixed as "cache.hit_rate"
+ * @endcode
+ *
+ * @see monitorable_interface for the interface that produces this data
  */
 struct monitoring_data {
     using metric_map = std::unordered_map<std::string, double>;
@@ -203,10 +230,39 @@ public:
 /**
  * @class monitorable_interface
  * @brief Interface for components that can be monitored
- * 
+ *
  * This interface allows components to expose their internal state
  * and metrics for monitoring purposes. It follows the pattern from
  * thread_system for consistent monitoring across components.
+ *
+ * @thread_safety Implementations should be thread-safe for the
+ *                get_monitoring_data() method as it may be called
+ *                from monitoring threads while the component is active.
+ *
+ * @example
+ * @code
+ * class database_connection : public monitorable_interface {
+ * public:
+ *     result<monitoring_data> get_monitoring_data() const override {
+ *         monitoring_data data(get_monitoring_id());
+ *         data.add_metric("active_queries", active_queries_.load());
+ *         data.add_metric("connection_pool_size", pool_size_);
+ *         data.add_tag("database", database_name_);
+ *         return make_success(std::move(data));
+ *     }
+ *
+ *     std::string get_monitoring_id() const override {
+ *         return "db_connection_" + database_name_;
+ *     }
+ * private:
+ *     std::atomic<int> active_queries_{0};
+ *     size_t pool_size_;
+ *     std::string database_name_;
+ * };
+ * @endcode
+ *
+ * @see monitoring_data for the returned data structure
+ * @see monitorable_component for a convenient base implementation
  */
 class monitorable_interface {
 public:
@@ -256,9 +312,35 @@ public:
 /**
  * @class monitorable_component
  * @brief Base class providing default monitorable implementation
- * 
+ *
  * This class provides a convenient base for components that want
  * to implement the monitorable interface with common functionality.
+ * It handles ID management, enable/disable state, and cached data.
+ *
+ * @thread_safety The base implementation uses mutable cached_data_
+ *                which is NOT thread-safe. Derived classes should
+ *                add synchronization if needed for concurrent access.
+ *
+ * @example
+ * @code
+ * class web_server : public monitorable_component {
+ * public:
+ *     web_server() : monitorable_component("web_server") {}
+ *
+ *     result<monitoring_data> get_monitoring_data() const override {
+ *         update_metric("requests_total", requests_.load());
+ *         update_metric("avg_response_time_ms", avg_response_time_.load());
+ *         update_tag("status", is_running_ ? "running" : "stopped");
+ *         return make_success(cached_data_);
+ *     }
+ * private:
+ *     std::atomic<uint64_t> requests_{0};
+ *     std::atomic<double> avg_response_time_{0.0};
+ *     bool is_running_ = false;
+ * };
+ * @endcode
+ *
+ * @see monitorable_interface for the interface contract
  */
 class monitorable_component : public monitorable_interface {
 protected:
@@ -334,6 +416,41 @@ protected:
 /**
  * @class monitoring_aggregator
  * @brief Utility class to aggregate metrics from multiple monitorable components
+ *
+ * Collects and merges monitoring data from multiple components into a
+ * single aggregated view. Useful for creating dashboards or exporting
+ * combined metrics from a subsystem.
+ *
+ * @thread_safety This class is NOT thread-safe. External synchronization
+ *                is required when modifying the component list from
+ *                multiple threads.
+ *
+ * @example
+ * @code
+ * monitoring_aggregator aggregator("my_service");
+ *
+ * // Add components to monitor
+ * aggregator.add_component(std::make_shared<database_connection>());
+ * aggregator.add_component(std::make_shared<cache_service>());
+ * aggregator.add_component(std::make_shared<http_server>());
+ *
+ * // Collect all metrics
+ * auto result = aggregator.collect_all();
+ * if (result.is_ok()) {
+ *     const auto& data = result.value();
+ *     for (const auto& [name, value] : data.get_metrics()) {
+ *         export_metric(name, value);
+ *     }
+ * }
+ *
+ * // Check specific component
+ * auto db = aggregator.get_component("db_connection_main");
+ * if (db && db->is_monitoring_enabled()) {
+ *     // Process DB metrics specifically
+ * }
+ * @endcode
+ *
+ * @see monitorable_interface for the interface components must implement
  */
 class monitoring_aggregator {
 private:

@@ -103,6 +103,30 @@ concept EventFilter =
 /**
  * @class event_base
  * @brief Base class for all events in the system
+ *
+ * Provides common functionality for all events including automatic
+ * timestamp generation and unique ID assignment. All custom events
+ * should inherit from this class.
+ *
+ * @thread_safety This class is thread-safe. The ID generation uses
+ *                atomic operations, and the timestamp is captured
+ *                at construction time.
+ *
+ * @example
+ * @code
+ * class custom_event : public event_base {
+ * public:
+ *     custom_event(const std::string& data) : data_(data) {}
+ *
+ *     std::string get_type_name() const override {
+ *         return "custom_event";
+ *     }
+ *
+ *     const std::string& data() const { return data_; }
+ * private:
+ *     std::string data_;
+ * };
+ * @endcode
  */
 class event_base {
 public:
@@ -211,6 +235,43 @@ private:
  *
  * The event bus provides a centralized communication mechanism
  * for loosely coupled components using publish-subscribe pattern.
+ * It supports typed events, priority-based handler execution,
+ * and subscription management via tokens.
+ *
+ * @thread_safety Implementations MUST be thread-safe. Publishing and
+ *                subscribing can occur from multiple threads simultaneously.
+ *                Handler execution order is determined by priority, and
+ *                handlers should not block for extended periods.
+ *
+ * @example
+ * @code
+ * // Define an event type
+ * struct metric_alert_event {
+ *     std::string metric_name;
+ *     double threshold;
+ *     double current_value;
+ * };
+ *
+ * // Subscribe to events
+ * auto bus = create_event_bus();
+ * auto token = bus->subscribe_event<metric_alert_event>(
+ *     [](const metric_alert_event& event) {
+ *         std::cout << "Alert: " << event.metric_name
+ *                   << " exceeded threshold!" << std::endl;
+ *     },
+ *     event_priority::high
+ * );
+ *
+ * // Publish an event
+ * metric_alert_event alert{"cpu_usage", 80.0, 95.5};
+ * bus->publish_event(alert);
+ *
+ * // Cleanup
+ * bus->unsubscribe_event(token.value());
+ * @endcode
+ *
+ * @see subscription_token for subscription management
+ * @see event_priority for handler ordering
  */
 class interface_event_bus {
 public:
@@ -348,6 +409,37 @@ protected:
 /**
  * @class interface_event_publisher
  * @brief Interface for components that publish events
+ *
+ * Components implementing this interface can publish events to an event bus.
+ * This provides a standardized way to decouple event producers from consumers.
+ *
+ * @thread_safety Implementations should ensure thread-safe access to the
+ *                event bus reference.
+ *
+ * @example
+ * @code
+ * class metric_alerter : public interface_event_publisher {
+ * public:
+ *     result_void set_event_bus(std::shared_ptr<interface_event_bus> bus) override {
+ *         bus_ = bus;
+ *         return make_void_success();
+ *     }
+ *
+ *     std::shared_ptr<interface_event_bus> get_event_bus() const override {
+ *         return bus_;
+ *     }
+ *
+ *     void check_thresholds() {
+ *         if (auto bus = bus_) {
+ *             bus->publish_event(threshold_exceeded_event{});
+ *         }
+ *     }
+ * private:
+ *     std::shared_ptr<interface_event_bus> bus_;
+ * };
+ * @endcode
+ *
+ * @see interface_event_bus for the event bus interface
  */
 class interface_event_publisher {
 public:
@@ -370,6 +462,50 @@ public:
 /**
  * @class interface_event_subscriber
  * @brief Interface for components that subscribe to events
+ *
+ * Components implementing this interface can subscribe to events from
+ * an event bus. This provides lifecycle management for subscriptions
+ * and ensures proper cleanup when components are destroyed.
+ *
+ * @thread_safety Implementations should ensure thread-safe subscription
+ *                management, especially during subscribe/unsubscribe operations.
+ *
+ * @example
+ * @code
+ * class metric_logger : public interface_event_subscriber {
+ * public:
+ *     result_void subscribe_to_events(std::shared_ptr<interface_event_bus> bus) override {
+ *         auto token = bus->subscribe_event<metric_event>(
+ *             [this](const metric_event& e) { log_metric(e); }
+ *         );
+ *         if (token.is_ok()) {
+ *             tokens_.push_back(token.value());
+ *             bus_ = bus;
+ *         }
+ *         return make_void_success();
+ *     }
+ *
+ *     result_void unsubscribe_from_events() override {
+ *         if (auto bus = bus_) {
+ *             for (const auto& token : tokens_) {
+ *                 bus->unsubscribe_event(token);
+ *             }
+ *             tokens_.clear();
+ *         }
+ *         return make_void_success();
+ *     }
+ *
+ *     std::vector<subscription_token> get_subscriptions() const override {
+ *         return tokens_;
+ *     }
+ * private:
+ *     std::weak_ptr<interface_event_bus> bus_;
+ *     std::vector<subscription_token> tokens_;
+ * };
+ * @endcode
+ *
+ * @see interface_event_bus for event bus operations
+ * @see subscription_token for subscription management
  */
 class interface_event_subscriber {
 public:

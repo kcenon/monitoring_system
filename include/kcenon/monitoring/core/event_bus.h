@@ -129,6 +129,46 @@ struct event_bus_config {
  * - Back-pressure management
  * - Async and sync processing modes
  * - Type-safe publish/subscribe
+ *
+ * @thread_safety All public methods are thread-safe. The event bus uses
+ *                multiple mutexes for fine-grained locking:
+ *                - bus_mutex_ for start/stop operations
+ *                - queue_mutex_ for event queue access
+ *                - handlers_mutex_ for subscriber management
+ *
+ * @example
+ * @code
+ * // Create and configure event bus
+ * event_bus_config config;
+ * config.max_queue_size = 10000;
+ * config.worker_thread_count = 4;
+ *
+ * auto bus = std::make_shared<event_bus>(config);
+ * bus->start();
+ *
+ * // Subscribe to events
+ * struct alert_event { std::string message; };
+ * auto token = bus->subscribe_event<alert_event>(
+ *     [](const alert_event& e) {
+ *         std::cout << "Alert: " << e.message << std::endl;
+ *     },
+ *     event_priority::high
+ * );
+ *
+ * // Publish events
+ * bus->publish_event(alert_event{"System overload"});
+ *
+ * // Check statistics
+ * auto stats = bus->get_stats();
+ * std::cout << "Events processed: " << stats.total_processed << std::endl;
+ *
+ * // Cleanup
+ * bus->unsubscribe_event(token.value());
+ * bus->stop();
+ * @endcode
+ *
+ * @see event_bus_config for configuration options
+ * @see interface_event_bus for the base interface
  */
 class event_bus : public interface_event_bus {
 public:
