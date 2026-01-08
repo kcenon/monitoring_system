@@ -25,6 +25,7 @@ All rights reserved.
 #include "../tracing/distributed_tracer.h"
 #include "opentelemetry_adapter.h"
 #include "http_transport.h"
+#include "grpc_transport.h"
 #include <vector>
 #include <string>
 #include <memory>

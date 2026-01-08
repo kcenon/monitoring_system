@@ -136,6 +136,10 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - socket_buffer_collector에 누락된 'available' 통계 추가
 
 ### 변경됨
+- **OTLP exporter 타이밍 정밀도 개선** (#353)
+  - `otlp_exporter_stats.total_export_time`을 `std::chrono::milliseconds`에서 `std::chrono::microseconds`로 변경
+  - 빠른 export 작업에 대해 더 높은 정밀도의 시간 측정 제공
+  - stub transport 작업이 1ms 미만으로 완료되는 CI에서의 테스트 실패 수정
 - **public vs internal 버퍼 API 명확화** (#313)
   - public API 헤더에 `@public` 문서화 태그 추가: `thread_local_buffer.h`, `time_series_buffer.h`, `socket_buffer_collector.h`
   - internal 헤더에 경고와 함께 `@internal` 문서화 강화: `ring_buffer.h`, `buffering_strategy.h`, `buffer_manager.h`

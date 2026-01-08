@@ -377,3 +377,245 @@ TEST_F(TraceExportersTest, LargeSpanBatch) {
     auto stats = exporter.get_stats();
     EXPECT_EQ(stats["exported_spans"], static_cast<std::size_t>(1000));
 }
+
+// ==============================================================
+// OTLP gRPC Exporter Tests
+// ==============================================================
+
+#include <kcenon/monitoring/exporters/otlp_grpc_exporter.h>
+
+class OtlpGrpcExporterTest : public TraceExportersTest {
+protected:
+    void SetUp() override {
+        TraceExportersTest::SetUp();
+    }
+};
+
+TEST_F(OtlpGrpcExporterTest, ConfigValidation) {
+    // Valid configuration
+    otlp_grpc_config valid_config;
+    valid_config.endpoint = "localhost:4317";
+    valid_config.timeout = std::chrono::milliseconds(5000);
+    valid_config.max_batch_size = 512;
+
+    auto validation = valid_config.validate();
+    EXPECT_TRUE(validation.is_ok());
+
+    // Invalid endpoint (empty)
+    otlp_grpc_config invalid_endpoint;
+    invalid_endpoint.endpoint = "";
+    auto endpoint_validation = invalid_endpoint.validate();
+    EXPECT_TRUE(endpoint_validation.is_err());
+
+    // Invalid timeout (zero)
+    otlp_grpc_config invalid_timeout;
+    invalid_timeout.endpoint = "localhost:4317";
+    invalid_timeout.timeout = std::chrono::milliseconds(0);
+    auto timeout_validation = invalid_timeout.validate();
+    EXPECT_TRUE(timeout_validation.is_err());
+
+    // Invalid batch size (zero)
+    otlp_grpc_config invalid_batch;
+    invalid_batch.endpoint = "localhost:4317";
+    invalid_batch.max_batch_size = 0;
+    auto batch_validation = invalid_batch.validate();
+    EXPECT_TRUE(batch_validation.is_err());
+}
+
+TEST_F(OtlpGrpcExporterTest, SpanConverterBasic) {
+    // Test span conversion to OTLP format
+    auto payload = otlp_span_converter::convert_to_otlp(
+        test_spans_,
+        "test_service",
+        "1.0.0",
+        {{"environment", "test"}});
+
+    // Verify payload is non-empty
+    EXPECT_GT(payload.size(), 0u);
+
+    // Verify protobuf wire format structure
+    // First byte should be 0x0A (field 1, length-delimited)
+    EXPECT_EQ(payload[0], 0x0A);
+}
+
+TEST_F(OtlpGrpcExporterTest, SpanConverterEmptySpans) {
+    std::vector<trace_span> empty_spans;
+
+    auto payload = otlp_span_converter::convert_to_otlp(
+        empty_spans,
+        "test_service",
+        "1.0.0",
+        {});
+
+    // Even with no spans, should have resource data
+    EXPECT_GT(payload.size(), 0u);
+}
+
+TEST_F(OtlpGrpcExporterTest, ExporterWithStubTransport) {
+    otlp_grpc_config config;
+    config.endpoint = "localhost:4317";
+    config.service_name = "test_service";
+    config.service_version = "1.0.0";
+
+    // Create exporter with stub transport for testing
+    auto stub_transport = create_stub_grpc_transport();
+    auto* stub_ptr = stub_transport.get();
+
+    otlp_grpc_exporter exporter(config, std::move(stub_transport));
+
+    // Start exporter (connects to stub)
+    auto start_result = exporter.start();
+    EXPECT_TRUE(start_result.is_ok());
+    EXPECT_TRUE(exporter.is_running());
+
+    // Export spans
+    auto export_result = exporter.export_spans(test_spans_);
+    EXPECT_TRUE(export_result.is_ok());
+
+    // Check stats
+    auto stats = exporter.get_stats();
+    EXPECT_EQ(stats["exported_spans"], test_spans_.size());
+    EXPECT_EQ(stats["dropped_spans"], 0u);
+    EXPECT_EQ(stats["failed_exports"], 0u);
+
+    // Check transport statistics
+    auto transport_stats = stub_ptr->get_statistics();
+    EXPECT_EQ(transport_stats.requests_sent, 1u);
+    EXPECT_GT(transport_stats.bytes_sent, 0u);
+
+    // Shutdown
+    auto shutdown_result = exporter.shutdown();
+    EXPECT_TRUE(shutdown_result.is_ok());
+    EXPECT_FALSE(exporter.is_running());
+}
+
+TEST_F(OtlpGrpcExporterTest, ExporterFailedConnection) {
+    otlp_grpc_config config;
+    config.endpoint = "localhost:4317";
+
+    // Create stub transport that simulates failure
+    auto stub_transport = create_stub_grpc_transport();
+    stub_transport->set_simulate_success(false);
+
+    otlp_grpc_exporter exporter(config, std::move(stub_transport));
+
+    // Start should fail due to connection failure
+    auto start_result = exporter.start();
+    EXPECT_TRUE(start_result.is_err());
+}
+
+TEST_F(OtlpGrpcExporterTest, ExporterRetryBehavior) {
+    otlp_grpc_config config;
+    config.endpoint = "localhost:4317";
+    config.max_retry_attempts = 3;
+    config.initial_backoff = std::chrono::milliseconds(10);
+
+    // Track call count
+    int call_count = 0;
+
+    auto stub_transport = create_stub_grpc_transport();
+    stub_transport->set_response_handler([&call_count](const grpc_request&) {
+        call_count++;
+        grpc_response response;
+        if (call_count < 3) {
+            // Simulate UNAVAILABLE error (retryable)
+            response.status_code = 14;
+            response.status_message = "Service unavailable";
+        } else {
+            // Success on third attempt
+            response.status_code = 0;
+            response.status_message = "OK";
+        }
+        return response;
+    });
+
+    otlp_grpc_exporter exporter(config, std::move(stub_transport));
+
+    auto start_result = exporter.start();
+    EXPECT_TRUE(start_result.is_ok());
+
+    auto export_result = exporter.export_spans(test_spans_);
+    EXPECT_TRUE(export_result.is_ok());
+
+    // Should have retried twice before success
+    EXPECT_EQ(call_count, 3);
+
+    auto stats = exporter.get_stats();
+    EXPECT_EQ(stats["retries"], 2u);
+    EXPECT_EQ(stats["exported_spans"], test_spans_.size());
+}
+
+TEST_F(OtlpGrpcExporterTest, ExporterDetailedStats) {
+    otlp_grpc_config config;
+    config.endpoint = "localhost:4317";
+
+    auto stub_transport = create_stub_grpc_transport();
+    // Set response handler to simulate realistic export time
+    stub_transport->set_response_handler([](const grpc_request&) {
+        // Simulate a small delay to ensure measurable export time
+        std::this_thread::sleep_for(std::chrono::microseconds(100));
+        grpc_response response;
+        response.status_code = 0;  // OK
+        response.status_message = "OK";
+        return response;
+    });
+    otlp_grpc_exporter exporter(config, std::move(stub_transport));
+
+    auto start_result = exporter.start();
+    EXPECT_TRUE(start_result.is_ok());
+
+    // Export multiple batches
+    for (int i = 0; i < 3; ++i) {
+        auto result = exporter.export_spans(test_spans_);
+        EXPECT_TRUE(result.is_ok());
+    }
+
+    auto detailed_stats = exporter.get_detailed_stats();
+    EXPECT_EQ(detailed_stats.spans_exported, test_spans_.size() * 3);
+    EXPECT_EQ(detailed_stats.spans_dropped, 0u);
+    EXPECT_EQ(detailed_stats.export_failures, 0u);
+    EXPECT_GT(detailed_stats.total_export_time.count(), 0);
+}
+
+TEST_F(OtlpGrpcExporterTest, FactoryFunctions) {
+    // Test default factory
+    auto exporter1 = create_otlp_grpc_exporter();
+    EXPECT_TRUE(exporter1 != nullptr);
+    EXPECT_EQ(exporter1->config().endpoint, "localhost:4317");
+
+    // Test factory with endpoint
+    auto exporter2 = create_otlp_grpc_exporter("collector:4317");
+    EXPECT_TRUE(exporter2 != nullptr);
+    EXPECT_EQ(exporter2->config().endpoint, "collector:4317");
+
+    // Test factory with config
+    otlp_grpc_config config;
+    config.endpoint = "otlp.example.com:443";
+    config.use_tls = true;
+    config.service_name = "my_service";
+
+    auto exporter3 = create_otlp_grpc_exporter(config);
+    EXPECT_TRUE(exporter3 != nullptr);
+    EXPECT_EQ(exporter3->config().endpoint, "otlp.example.com:443");
+    EXPECT_TRUE(exporter3->config().use_tls);
+    EXPECT_EQ(exporter3->config().service_name, "my_service");
+}
+
+TEST_F(OtlpGrpcExporterTest, ExportEmptySpans) {
+    otlp_grpc_config config;
+    config.endpoint = "localhost:4317";
+
+    auto stub_transport = create_stub_grpc_transport();
+    otlp_grpc_exporter exporter(config, std::move(stub_transport));
+
+    auto start_result = exporter.start();
+    EXPECT_TRUE(start_result.is_ok());
+
+    // Export empty vector should succeed without sending
+    std::vector<trace_span> empty_spans;
+    auto export_result = exporter.export_spans(empty_spans);
+    EXPECT_TRUE(export_result.is_ok());
+
+    auto stats = exporter.get_stats();
+    EXPECT_EQ(stats["exported_spans"], 0u);
+}
