@@ -94,18 +94,24 @@ add_executable(monitoring_system_tests
     # Platform metrics provider (Issue #295)
     test_metrics_provider.cpp
 
+    # Metric exporters and OpenTelemetry adapter tests (Issue #320 - Phase 1)
+    test_metric_exporters.cpp
+    test_opentelemetry_adapter.cpp
+
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (12 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (10 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
     # - Missing header files (graceful_degradation.h, resource_manager.h, etc.)
-    # - Type mismatches (monitoring_data not in current API)
+    # - Missing API implementations (health_check base class, retry_executor, etc.)
     #
-    # test_metric_exporters.cpp       # monitoring_data type missing
-    # test_opentelemetry_adapter.cpp  # monitoring_data type missing, Result API
-    # test_health_monitoring.cpp      # Result<T> API updates needed
-    # test_fault_tolerance.cpp        # Result<T> API updates needed
+    # test_health_monitoring.cpp      # Requires: health_check base class, composite_health_check,
+    #                                 #           health_dependency_graph, health_check_builder,
+    #                                 #           global_health_monitor() - See Issue #320-1
+    # test_fault_tolerance.cpp        # Requires: retry_executor<T>, fault_tolerance_config,
+    #                                 #           circuit breaker registries, config validation
+    #                                 #           - See Issue #320-2
     # test_error_boundaries.cpp       # Missing: graceful_degradation.h
     # test_optimization.cpp           # Missing: optimization/ folder
     # test_resource_management.cpp    # Missing: resource_manager.h

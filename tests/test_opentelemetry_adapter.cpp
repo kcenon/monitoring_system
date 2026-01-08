@@ -36,19 +36,19 @@ TEST_F(OpenTelemetryAdapterTest, ResourceCreation) {
     EXPECT_EQ(resource.type, otel_resource_type::service);
     
     auto service_name = resource.get_attribute("service.name");
-    ASSERT_TRUE(service_name);
+    ASSERT_TRUE(service_name.is_ok());
     EXPECT_EQ(service_name.value(), "test_service");
-    
+
     auto service_version = resource.get_attribute("service.version");
-    ASSERT_TRUE(service_version);
+    ASSERT_TRUE(service_version.is_ok());
     EXPECT_EQ(service_version.value(), "1.0.0");
-    
+
     auto service_namespace = resource.get_attribute("service.namespace");
-    ASSERT_TRUE(service_namespace);
+    ASSERT_TRUE(service_namespace.is_ok());
     EXPECT_EQ(service_namespace.value(), "test_namespace");
-    
+
     auto sdk_name = resource.get_attribute("telemetry.sdk.name");
-    ASSERT_TRUE(sdk_name);
+    ASSERT_TRUE(sdk_name.is_ok());
     EXPECT_EQ(sdk_name.value(), "monitoring_system");
 }
 
@@ -133,7 +133,7 @@ TEST_F(OpenTelemetryAdapterTest, TracerAdapterSpanConversion) {
     internal_span.tags["error"] = "false";
     
     auto result = adapter.convert_span(internal_span);
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     const auto& otel_span = result.value();
     EXPECT_EQ(otel_span.name, "database_query");
@@ -168,7 +168,7 @@ TEST_F(OpenTelemetryAdapterTest, TracerAdapterErrorSpanConversion) {
     error_span.tags["error.message"] = "Connection timeout";
     
     auto result = adapter.convert_span(error_span);
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     const auto& otel_span = result.value();
     EXPECT_EQ(otel_span.status_code, otel_status_code::error);
@@ -190,7 +190,7 @@ TEST_F(OpenTelemetryAdapterTest, TracerAdapterMultipleSpans) {
     }
     
     auto result = adapter.convert_spans(spans);
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     const auto& otel_spans = result.value();
     EXPECT_EQ(otel_spans.size(), 3);
@@ -211,7 +211,7 @@ TEST_F(OpenTelemetryAdapterTest, MetricsAdapterConversion) {
     data.add_tag("region", "us-west-2");
     
     auto result = adapter.convert_monitoring_data(data);
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(result.is_ok());
     
     const auto& otel_metrics = result.value();
     EXPECT_EQ(otel_metrics.size(), 2);
@@ -241,21 +241,21 @@ TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerInitialization) {
     EXPECT_TRUE(compatibility_layer);
     
     auto init_result = compatibility_layer->initialize();
-    EXPECT_TRUE(init_result);
-    
+    EXPECT_TRUE(init_result.is_ok());
+
     // Double initialization should fail
     auto double_init = compatibility_layer->initialize();
-    EXPECT_FALSE(double_init);
-    EXPECT_EQ(double_init.error().code, monitoring_error_code::already_exists);
-    
+    EXPECT_TRUE(double_init.is_err());
+    EXPECT_EQ(double_init.error().code, static_cast<int>(monitoring_error_code::already_exists));
+
     auto shutdown_result = compatibility_layer->shutdown();
-    EXPECT_TRUE(shutdown_result);
+    EXPECT_TRUE(shutdown_result.is_ok());
 }
 
 TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerSpanExport) {
     auto init_result = compatibility_layer->initialize();
-    ASSERT_TRUE(init_result);
-    
+    ASSERT_TRUE(init_result.is_ok());
+
     std::vector<trace_span> spans;
     trace_span span;
     span.operation_name = "test_operation";
@@ -264,39 +264,39 @@ TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerSpanExport) {
     span.start_time = std::chrono::system_clock::now();
     span.end_time = span.start_time + std::chrono::milliseconds(10);
     spans.push_back(span);
-    
+
     auto export_result = compatibility_layer->export_spans(spans);
-    EXPECT_TRUE(export_result);
-    
+    EXPECT_TRUE(export_result.is_ok());
+
     auto stats = compatibility_layer->get_stats();
     EXPECT_EQ(stats.pending_spans, 1);
     EXPECT_EQ(stats.pending_metrics, 0);
-    
+
     auto flush_result = compatibility_layer->flush();
-    EXPECT_TRUE(flush_result);
-    
+    EXPECT_TRUE(flush_result.is_ok());
+
     stats = compatibility_layer->get_stats();
     EXPECT_EQ(stats.pending_spans, 0);
 }
 
 TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerMetricExport) {
     auto init_result = compatibility_layer->initialize();
-    ASSERT_TRUE(init_result);
-    
+    ASSERT_TRUE(init_result.is_ok());
+
     monitoring_data data("test_component");
     data.add_metric("test_metric", 42.0);
     data.add_tag("test_tag", "test_value");
-    
+
     auto export_result = compatibility_layer->export_metrics(data);
-    EXPECT_TRUE(export_result);
-    
+    EXPECT_TRUE(export_result.is_ok());
+
     auto stats = compatibility_layer->get_stats();
     EXPECT_EQ(stats.pending_metrics, 1);
     EXPECT_EQ(stats.pending_spans, 0);
-    
+
     auto flush_result = compatibility_layer->flush();
-    EXPECT_TRUE(flush_result);
-    
+    EXPECT_TRUE(flush_result.is_ok());
+
     stats = compatibility_layer->get_stats();
     EXPECT_EQ(stats.pending_metrics, 0);
 }
@@ -307,12 +307,12 @@ TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerUninitializedExport) {
     spans.push_back(span);
     
     auto export_result = compatibility_layer->export_spans(spans);
-    EXPECT_FALSE(export_result);
+    EXPECT_TRUE(export_result.is_err());
     EXPECT_EQ(export_result.error().code, static_cast<int>(monitoring_error_code::invalid_state));
 
     monitoring_data data("test");
     auto metrics_export_result = compatibility_layer->export_metrics(data);
-    EXPECT_FALSE(metrics_export_result);
+    EXPECT_TRUE(metrics_export_result.is_err());
     EXPECT_EQ(metrics_export_result.error().code, static_cast<int>(monitoring_error_code::invalid_state));
 }
 
@@ -321,7 +321,7 @@ TEST_F(OpenTelemetryAdapterTest, CompatibilityLayerResourceAccess) {
     EXPECT_EQ(layer_resource.type, otel_resource_type::service);
     
     auto service_name = layer_resource.get_attribute("service.name");
-    EXPECT_TRUE(service_name);
+    EXPECT_TRUE(service_name.is_ok());
     EXPECT_EQ(service_name.value(), "test_service");
 }
 
@@ -333,56 +333,56 @@ TEST_F(OpenTelemetryAdapterTest, ExporterConfigValidation) {
     valid_config.max_batch_size = 100;
     
     auto validation = valid_config.validate();
-    EXPECT_TRUE(validation);
-    
+    EXPECT_TRUE(validation.is_ok());
+
     // Test invalid endpoint
     opentelemetry_exporter_config invalid_endpoint;
     invalid_endpoint.endpoint = "";
     auto endpoint_validation = invalid_endpoint.validate();
-    EXPECT_FALSE(endpoint_validation);
-    EXPECT_EQ(endpoint_validation.error().code, monitoring_error_code::invalid_configuration);
-    
+    EXPECT_TRUE(endpoint_validation.is_err());
+    EXPECT_EQ(endpoint_validation.error().code, static_cast<int>(monitoring_error_code::invalid_configuration));
+
     // Test invalid protocol
     opentelemetry_exporter_config invalid_protocol;
     invalid_protocol.protocol = "invalid";
     auto protocol_validation = invalid_protocol.validate();
-    EXPECT_FALSE(protocol_validation);
-    
+    EXPECT_TRUE(protocol_validation.is_err());
+
     // Test invalid timeout
     opentelemetry_exporter_config invalid_timeout;
     invalid_timeout.timeout = std::chrono::milliseconds(0);
     auto timeout_validation = invalid_timeout.validate();
-    EXPECT_FALSE(timeout_validation);
-    
+    EXPECT_TRUE(timeout_validation.is_err());
+
     // Test invalid batch size
     opentelemetry_exporter_config invalid_batch;
     invalid_batch.max_batch_size = 0;
     auto batch_validation = invalid_batch.validate();
-    EXPECT_FALSE(batch_validation);
+    EXPECT_TRUE(batch_validation.is_err());
 }
 
 TEST_F(OpenTelemetryAdapterTest, FactoryFunctions) {
     // Test service resource creation
     auto service_resource = create_service_resource("my_service", "2.0.0", "production");
     EXPECT_EQ(service_resource.type, otel_resource_type::service);
-    
+
     auto name = service_resource.get_attribute("service.name");
-    EXPECT_TRUE(name);
+    EXPECT_TRUE(name.is_ok());
     EXPECT_EQ(name.value(), "my_service");
-    
+
     auto version = service_resource.get_attribute("service.version");
-    EXPECT_TRUE(version);
+    EXPECT_TRUE(version.is_ok());
     EXPECT_EQ(version.value(), "2.0.0");
-    
+
     // Test compatibility layer factory functions
     auto layer1 = create_opentelemetry_compatibility_layer(service_resource);
-    EXPECT_TRUE(layer1);
-    
+    EXPECT_TRUE(layer1 != nullptr);
+
     auto layer2 = create_opentelemetry_compatibility_layer("test_service", "1.0.0");
-    EXPECT_TRUE(layer2);
-    
+    EXPECT_TRUE(layer2 != nullptr);
+
     const auto& layer2_resource = layer2->get_resource();
     auto layer2_name = layer2_resource.get_attribute("service.name");
-    EXPECT_TRUE(layer2_name);
+    EXPECT_TRUE(layer2_name.is_ok());
     EXPECT_EQ(layer2_name.value(), "test_service");
 }
