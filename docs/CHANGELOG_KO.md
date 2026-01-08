@@ -57,6 +57,14 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **system_resource_collector에서 디스크 및 네트워크 메트릭 수집** (#323)
+  - macOS (IOKit), Linux (/proc/diskstats), Windows용 `collect_disk_stats()` 구현
+  - macOS (ifaddrs), Linux (/proc/net/dev), Windows용 `collect_network_stats()` 구현
+  - 디스크 메트릭: usage_percent, total/used/available bytes, read/write bytes per sec, read/write ops per sec
+  - 네트워크 메트릭: rx/tx bytes per sec, rx/tx packets per sec, rx/tx errors, rx/tx dropped
+  - `add_disk_metrics()` 및 `add_network_metrics()` 메서드 추가
+  - 모든 새 메트릭을 포함하도록 `get_metric_types()` 업데이트
+  - 디스크 및 네트워크 메트릭 수집을 위한 종합 유닛 테스트
 - **distributed_tracer를 trace exporter에 연결 (ARC-006)** (#321)
   - `distributed_tracer`를 `trace_exporter_interface`에 연결하여 Jaeger/Zipkin/OTLP export 지원
   - trace exporter 설정을 위한 `set_exporter()` 메서드 추가

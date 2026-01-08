@@ -57,6 +57,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Disk and Network metrics collection in system_resource_collector** (#323)
+  - Implemented `collect_disk_stats()` for macOS (IOKit), Linux (/proc/diskstats), Windows
+  - Implemented `collect_network_stats()` for macOS (ifaddrs), Linux (/proc/net/dev), Windows
+  - Disk metrics: usage_percent, total/used/available bytes, read/write bytes per sec, read/write ops per sec
+  - Network metrics: rx/tx bytes per sec, rx/tx packets per sec, rx/tx errors, rx/tx dropped
+  - Added `add_disk_metrics()` and `add_network_metrics()` methods
+  - Updated `get_metric_types()` to include all new metrics
+  - Comprehensive unit tests for disk and network metric collection
 - **Connect distributed_tracer to trace exporters (ARC-006)** (#321)
   - Connected `distributed_tracer` to `trace_exporter_interface` for Jaeger/Zipkin/OTLP export
   - Added `set_exporter()` method to configure trace exporters
