@@ -1,7 +1,7 @@
 # Known Issues and Limitations
 
 **Version**: 0.2.0.0
-**Last Updated**: 2025-11-26
+**Last Updated**: 2026-01-08
 
 This document lists known issues, limitations, and STUB implementations in the monitoring system.
 
@@ -109,6 +109,10 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_metric_exporters.cpp` - Enabled in #332
 - `test_storage_backends.cpp` - Enabled in #347
 - `test_error_boundaries.cpp` - Enabled in #338 (Graceful degradation API implemented)
+
+### Test Stability Improvements
+
+- `FaultToleranceManagerWithTimeout` test delay increased from 100ms to 500ms in #349 to prevent flaky failures on macOS Debug builds
 
 ---
 
