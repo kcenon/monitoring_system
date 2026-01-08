@@ -218,15 +218,15 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  241</span>    EXPECT_TRUE(compatibility_layer);</div>
 <div class="line"><span class="lineno">  242</span>    </div>
 <div class="line"><span class="lineno">  243</span>    <span class="keyword">auto</span> init_result = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  244</span>    EXPECT_TRUE(init_result);</div>
-<div class="line"><span class="lineno">  245</span>    </div>
+<div class="line"><span class="lineno">  244</span>    EXPECT_TRUE(init_result.is_ok());</div>
+<div class="line"><span class="lineno">  245</span> </div>
 <div class="line"><span class="lineno">  246</span>    <span class="comment">// Double initialization should fail</span></div>
 <div class="line"><span class="lineno">  247</span>    <span class="keyword">auto</span> double_init = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  248</span>    EXPECT_FALSE(double_init);</div>
-<div class="line"><span class="lineno">  249</span>    EXPECT_EQ(double_init.error().code, monitoring_error_code::already_exists);</div>
-<div class="line"><span class="lineno">  250</span>    </div>
+<div class="line"><span class="lineno">  248</span>    EXPECT_TRUE(double_init.is_err());</div>
+<div class="line"><span class="lineno">  249</span>    EXPECT_EQ(double_init.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::already_exists));</div>
+<div class="line"><span class="lineno">  250</span> </div>
 <div class="line"><span class="lineno">  251</span>    <span class="keyword">auto</span> shutdown_result = compatibility_layer-&gt;shutdown();</div>
-<div class="line"><span class="lineno">  252</span>    EXPECT_TRUE(shutdown_result);</div>
+<div class="line"><span class="lineno">  252</span>    EXPECT_TRUE(shutdown_result.is_ok());</div>
 <div class="line"><span class="lineno">  253</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -260,22 +260,22 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  282</span>                                                                 {</div>
 <div class="line"><span class="lineno">  283</span>    <span class="keyword">auto</span> init_result = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  284</span>    ASSERT_TRUE(init_result);</div>
-<div class="line"><span class="lineno">  285</span>    </div>
+<div class="line"><span class="lineno">  284</span>    ASSERT_TRUE(init_result.is_ok());</div>
+<div class="line"><span class="lineno">  285</span> </div>
 <div class="line"><span class="lineno">  286</span>    monitoring_data data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
 <div class="line"><span class="lineno">  287</span>    data.add_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
 <div class="line"><span class="lineno">  288</span>    data.add_tag(<span class="stringliteral">&quot;test_tag&quot;</span>, <span class="stringliteral">&quot;test_value&quot;</span>);</div>
-<div class="line"><span class="lineno">  289</span>    </div>
+<div class="line"><span class="lineno">  289</span> </div>
 <div class="line"><span class="lineno">  290</span>    <span class="keyword">auto</span> export_result = compatibility_layer-&gt;export_metrics(data);</div>
-<div class="line"><span class="lineno">  291</span>    EXPECT_TRUE(export_result);</div>
-<div class="line"><span class="lineno">  292</span>    </div>
+<div class="line"><span class="lineno">  291</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  292</span> </div>
 <div class="line"><span class="lineno">  293</span>    <span class="keyword">auto</span> stats = compatibility_layer-&gt;get_stats();</div>
 <div class="line"><span class="lineno">  294</span>    EXPECT_EQ(stats.pending_metrics, 1);</div>
 <div class="line"><span class="lineno">  295</span>    EXPECT_EQ(stats.pending_spans, 0);</div>
-<div class="line"><span class="lineno">  296</span>    </div>
+<div class="line"><span class="lineno">  296</span> </div>
 <div class="line"><span class="lineno">  297</span>    <span class="keyword">auto</span> flush_result = compatibility_layer-&gt;flush();</div>
-<div class="line"><span class="lineno">  298</span>    EXPECT_TRUE(flush_result);</div>
-<div class="line"><span class="lineno">  299</span>    </div>
+<div class="line"><span class="lineno">  298</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  299</span> </div>
 <div class="line"><span class="lineno">  300</span>    stats = compatibility_layer-&gt;get_stats();</div>
 <div class="line"><span class="lineno">  301</span>    EXPECT_EQ(stats.pending_metrics, 0);</div>
 <div class="line"><span class="lineno">  302</span>}</div>
@@ -314,7 +314,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  321</span>    EXPECT_EQ(layer_resource.type, otel_resource_type::service);</div>
 <div class="line"><span class="lineno">  322</span>    </div>
 <div class="line"><span class="lineno">  323</span>    <span class="keyword">auto</span> service_name = layer_resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">  324</span>    EXPECT_TRUE(service_name);</div>
+<div class="line"><span class="lineno">  324</span>    EXPECT_TRUE(service_name.is_ok());</div>
 <div class="line"><span class="lineno">  325</span>    EXPECT_EQ(service_name.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
 <div class="line"><span class="lineno">  326</span>}</div>
 </div><!-- fragment -->
@@ -349,8 +349,8 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html#l00255">255</a> of file <a class="el" href="../../d5/dbf/test__opentelemetry__adapter_8cpp_source.html">test_opentelemetry_adapter.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  255</span>                                                               {</div>
 <div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> init_result = compatibility_layer-&gt;initialize();</div>
-<div class="line"><span class="lineno">  257</span>    ASSERT_TRUE(init_result);</div>
-<div class="line"><span class="lineno">  258</span>    </div>
+<div class="line"><span class="lineno">  257</span>    ASSERT_TRUE(init_result.is_ok());</div>
+<div class="line"><span class="lineno">  258</span> </div>
 <div class="line"><span class="lineno">  259</span>    std::vector&lt;trace_span&gt; spans;</div>
 <div class="line"><span class="lineno">  260</span>    trace_span span;</div>
 <div class="line"><span class="lineno">  261</span>    span.operation_name = <span class="stringliteral">&quot;test_operation&quot;</span>;</div>
@@ -359,17 +359,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  264</span>    span.start_time = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  265</span>    span.end_time = span.start_time + std::chrono::milliseconds(10);</div>
 <div class="line"><span class="lineno">  266</span>    spans.push_back(span);</div>
-<div class="line"><span class="lineno">  267</span>    </div>
+<div class="line"><span class="lineno">  267</span> </div>
 <div class="line"><span class="lineno">  268</span>    <span class="keyword">auto</span> export_result = compatibility_layer-&gt;export_spans(spans);</div>
-<div class="line"><span class="lineno">  269</span>    EXPECT_TRUE(export_result);</div>
-<div class="line"><span class="lineno">  270</span>    </div>
+<div class="line"><span class="lineno">  269</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><span class="lineno">  270</span> </div>
 <div class="line"><span class="lineno">  271</span>    <span class="keyword">auto</span> stats = compatibility_layer-&gt;get_stats();</div>
 <div class="line"><span class="lineno">  272</span>    EXPECT_EQ(stats.pending_spans, 1);</div>
 <div class="line"><span class="lineno">  273</span>    EXPECT_EQ(stats.pending_metrics, 0);</div>
-<div class="line"><span class="lineno">  274</span>    </div>
+<div class="line"><span class="lineno">  274</span> </div>
 <div class="line"><span class="lineno">  275</span>    <span class="keyword">auto</span> flush_result = compatibility_layer-&gt;flush();</div>
-<div class="line"><span class="lineno">  276</span>    EXPECT_TRUE(flush_result);</div>
-<div class="line"><span class="lineno">  277</span>    </div>
+<div class="line"><span class="lineno">  276</span>    EXPECT_TRUE(flush_result.is_ok());</div>
+<div class="line"><span class="lineno">  277</span> </div>
 <div class="line"><span class="lineno">  278</span>    stats = compatibility_layer-&gt;get_stats();</div>
 <div class="line"><span class="lineno">  279</span>    EXPECT_EQ(stats.pending_spans, 0);</div>
 <div class="line"><span class="lineno">  280</span>}</div>
@@ -409,12 +409,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  307</span>    spans.push_back(span);</div>
 <div class="line"><span class="lineno">  308</span>    </div>
 <div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> export_result = compatibility_layer-&gt;export_spans(spans);</div>
-<div class="line"><span class="lineno">  310</span>    EXPECT_FALSE(export_result);</div>
+<div class="line"><span class="lineno">  310</span>    EXPECT_TRUE(export_result.is_err());</div>
 <div class="line"><span class="lineno">  311</span>    EXPECT_EQ(export_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_state));</div>
 <div class="line"><span class="lineno">  312</span> </div>
 <div class="line"><span class="lineno">  313</span>    monitoring_data data(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  314</span>    <span class="keyword">auto</span> metrics_export_result = compatibility_layer-&gt;export_metrics(data);</div>
-<div class="line"><span class="lineno">  315</span>    EXPECT_FALSE(metrics_export_result);</div>
+<div class="line"><span class="lineno">  315</span>    EXPECT_TRUE(metrics_export_result.is_err());</div>
 <div class="line"><span class="lineno">  316</span>    EXPECT_EQ(metrics_export_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_state));</div>
 <div class="line"><span class="lineno">  317</span>}</div>
 </div><!-- fragment -->
@@ -455,32 +455,32 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  333</span>    valid_config.max_batch_size = 100;</div>
 <div class="line"><span class="lineno">  334</span>    </div>
 <div class="line"><span class="lineno">  335</span>    <span class="keyword">auto</span> validation = valid_config.validate();</div>
-<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(validation);</div>
-<div class="line"><span class="lineno">  337</span>    </div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_TRUE(validation.is_ok());</div>
+<div class="line"><span class="lineno">  337</span> </div>
 <div class="line"><span class="lineno">  338</span>    <span class="comment">// Test invalid endpoint</span></div>
 <div class="line"><span class="lineno">  339</span>    opentelemetry_exporter_config invalid_endpoint;</div>
 <div class="line"><span class="lineno">  340</span>    invalid_endpoint.endpoint = <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><span class="lineno">  341</span>    <span class="keyword">auto</span> endpoint_validation = invalid_endpoint.validate();</div>
-<div class="line"><span class="lineno">  342</span>    EXPECT_FALSE(endpoint_validation);</div>
-<div class="line"><span class="lineno">  343</span>    EXPECT_EQ(endpoint_validation.error().code, monitoring_error_code::invalid_configuration);</div>
-<div class="line"><span class="lineno">  344</span>    </div>
+<div class="line"><span class="lineno">  342</span>    EXPECT_TRUE(endpoint_validation.is_err());</div>
+<div class="line"><span class="lineno">  343</span>    EXPECT_EQ(endpoint_validation.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration));</div>
+<div class="line"><span class="lineno">  344</span> </div>
 <div class="line"><span class="lineno">  345</span>    <span class="comment">// Test invalid protocol</span></div>
 <div class="line"><span class="lineno">  346</span>    opentelemetry_exporter_config invalid_protocol;</div>
 <div class="line"><span class="lineno">  347</span>    invalid_protocol.protocol = <span class="stringliteral">&quot;invalid&quot;</span>;</div>
 <div class="line"><span class="lineno">  348</span>    <span class="keyword">auto</span> protocol_validation = invalid_protocol.validate();</div>
-<div class="line"><span class="lineno">  349</span>    EXPECT_FALSE(protocol_validation);</div>
-<div class="line"><span class="lineno">  350</span>    </div>
+<div class="line"><span class="lineno">  349</span>    EXPECT_TRUE(protocol_validation.is_err());</div>
+<div class="line"><span class="lineno">  350</span> </div>
 <div class="line"><span class="lineno">  351</span>    <span class="comment">// Test invalid timeout</span></div>
 <div class="line"><span class="lineno">  352</span>    opentelemetry_exporter_config invalid_timeout;</div>
 <div class="line"><span class="lineno">  353</span>    invalid_timeout.timeout = std::chrono::milliseconds(0);</div>
 <div class="line"><span class="lineno">  354</span>    <span class="keyword">auto</span> timeout_validation = invalid_timeout.validate();</div>
-<div class="line"><span class="lineno">  355</span>    EXPECT_FALSE(timeout_validation);</div>
-<div class="line"><span class="lineno">  356</span>    </div>
+<div class="line"><span class="lineno">  355</span>    EXPECT_TRUE(timeout_validation.is_err());</div>
+<div class="line"><span class="lineno">  356</span> </div>
 <div class="line"><span class="lineno">  357</span>    <span class="comment">// Test invalid batch size</span></div>
 <div class="line"><span class="lineno">  358</span>    opentelemetry_exporter_config invalid_batch;</div>
 <div class="line"><span class="lineno">  359</span>    invalid_batch.max_batch_size = 0;</div>
 <div class="line"><span class="lineno">  360</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
-<div class="line"><span class="lineno">  361</span>    EXPECT_FALSE(batch_validation);</div>
+<div class="line"><span class="lineno">  361</span>    EXPECT_TRUE(batch_validation.is_err());</div>
 <div class="line"><span class="lineno">  362</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -516,25 +516,25 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  365</span>    <span class="comment">// Test service resource creation</span></div>
 <div class="line"><span class="lineno">  366</span>    <span class="keyword">auto</span> service_resource = create_service_resource(<span class="stringliteral">&quot;my_service&quot;</span>, <span class="stringliteral">&quot;2.0.0&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
 <div class="line"><span class="lineno">  367</span>    EXPECT_EQ(service_resource.type, otel_resource_type::service);</div>
-<div class="line"><span class="lineno">  368</span>    </div>
+<div class="line"><span class="lineno">  368</span> </div>
 <div class="line"><span class="lineno">  369</span>    <span class="keyword">auto</span> name = service_resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">  370</span>    EXPECT_TRUE(name);</div>
+<div class="line"><span class="lineno">  370</span>    EXPECT_TRUE(name.is_ok());</div>
 <div class="line"><span class="lineno">  371</span>    EXPECT_EQ(name.value(), <span class="stringliteral">&quot;my_service&quot;</span>);</div>
-<div class="line"><span class="lineno">  372</span>    </div>
+<div class="line"><span class="lineno">  372</span> </div>
 <div class="line"><span class="lineno">  373</span>    <span class="keyword">auto</span> version = service_resource.get_attribute(<span class="stringliteral">&quot;service.version&quot;</span>);</div>
-<div class="line"><span class="lineno">  374</span>    EXPECT_TRUE(version);</div>
+<div class="line"><span class="lineno">  374</span>    EXPECT_TRUE(version.is_ok());</div>
 <div class="line"><span class="lineno">  375</span>    EXPECT_EQ(version.value(), <span class="stringliteral">&quot;2.0.0&quot;</span>);</div>
-<div class="line"><span class="lineno">  376</span>    </div>
+<div class="line"><span class="lineno">  376</span> </div>
 <div class="line"><span class="lineno">  377</span>    <span class="comment">// Test compatibility layer factory functions</span></div>
 <div class="line"><span class="lineno">  378</span>    <span class="keyword">auto</span> layer1 = create_opentelemetry_compatibility_layer(service_resource);</div>
-<div class="line"><span class="lineno">  379</span>    EXPECT_TRUE(layer1);</div>
-<div class="line"><span class="lineno">  380</span>    </div>
+<div class="line"><span class="lineno">  379</span>    EXPECT_TRUE(layer1 != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  380</span> </div>
 <div class="line"><span class="lineno">  381</span>    <span class="keyword">auto</span> layer2 = create_opentelemetry_compatibility_layer(<span class="stringliteral">&quot;test_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
-<div class="line"><span class="lineno">  382</span>    EXPECT_TRUE(layer2);</div>
-<div class="line"><span class="lineno">  383</span>    </div>
+<div class="line"><span class="lineno">  382</span>    EXPECT_TRUE(layer2 != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  383</span> </div>
 <div class="line"><span class="lineno">  384</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; layer2_resource = layer2-&gt;get_resource();</div>
 <div class="line"><span class="lineno">  385</span>    <span class="keyword">auto</span> layer2_name = layer2_resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">  386</span>    EXPECT_TRUE(layer2_name);</div>
+<div class="line"><span class="lineno">  386</span>    EXPECT_TRUE(layer2_name.is_ok());</div>
 <div class="line"><span class="lineno">  387</span>    EXPECT_EQ(layer2_name.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
 <div class="line"><span class="lineno">  388</span>}</div>
 </div><!-- fragment -->
@@ -624,7 +624,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  211</span>    data.add_tag(<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-west-2&quot;</span>);</div>
 <div class="line"><span class="lineno">  212</span>    </div>
 <div class="line"><span class="lineno">  213</span>    <span class="keyword">auto</span> result = adapter.convert_monitoring_data(data);</div>
-<div class="line"><span class="lineno">  214</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  214</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  215</span>    </div>
 <div class="line"><span class="lineno">  216</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_metrics = result.value();</div>
 <div class="line"><span class="lineno">  217</span>    EXPECT_EQ(otel_metrics.size(), 2);</div>
@@ -683,19 +683,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   36</span>    EXPECT_EQ(resource.type, otel_resource_type::service);</div>
 <div class="line"><span class="lineno">   37</span>    </div>
 <div class="line"><span class="lineno">   38</span>    <span class="keyword">auto</span> service_name = resource.get_attribute(<span class="stringliteral">&quot;service.name&quot;</span>);</div>
-<div class="line"><span class="lineno">   39</span>    ASSERT_TRUE(service_name);</div>
+<div class="line"><span class="lineno">   39</span>    ASSERT_TRUE(service_name.is_ok());</div>
 <div class="line"><span class="lineno">   40</span>    EXPECT_EQ(service_name.value(), <span class="stringliteral">&quot;test_service&quot;</span>);</div>
-<div class="line"><span class="lineno">   41</span>    </div>
+<div class="line"><span class="lineno">   41</span> </div>
 <div class="line"><span class="lineno">   42</span>    <span class="keyword">auto</span> service_version = resource.get_attribute(<span class="stringliteral">&quot;service.version&quot;</span>);</div>
-<div class="line"><span class="lineno">   43</span>    ASSERT_TRUE(service_version);</div>
+<div class="line"><span class="lineno">   43</span>    ASSERT_TRUE(service_version.is_ok());</div>
 <div class="line"><span class="lineno">   44</span>    EXPECT_EQ(service_version.value(), <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
-<div class="line"><span class="lineno">   45</span>    </div>
+<div class="line"><span class="lineno">   45</span> </div>
 <div class="line"><span class="lineno">   46</span>    <span class="keyword">auto</span> service_namespace = resource.get_attribute(<span class="stringliteral">&quot;service.namespace&quot;</span>);</div>
-<div class="line"><span class="lineno">   47</span>    ASSERT_TRUE(service_namespace);</div>
+<div class="line"><span class="lineno">   47</span>    ASSERT_TRUE(service_namespace.is_ok());</div>
 <div class="line"><span class="lineno">   48</span>    EXPECT_EQ(service_namespace.value(), <span class="stringliteral">&quot;test_namespace&quot;</span>);</div>
-<div class="line"><span class="lineno">   49</span>    </div>
+<div class="line"><span class="lineno">   49</span> </div>
 <div class="line"><span class="lineno">   50</span>    <span class="keyword">auto</span> sdk_name = resource.get_attribute(<span class="stringliteral">&quot;telemetry.sdk.name&quot;</span>);</div>
-<div class="line"><span class="lineno">   51</span>    ASSERT_TRUE(sdk_name);</div>
+<div class="line"><span class="lineno">   51</span>    ASSERT_TRUE(sdk_name.is_ok());</div>
 <div class="line"><span class="lineno">   52</span>    EXPECT_EQ(sdk_name.value(), <span class="stringliteral">&quot;monitoring_system&quot;</span>);</div>
 <div class="line"><span class="lineno">   53</span>}</div>
 </div><!-- fragment -->
@@ -835,7 +835,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  168</span>    error_span.tags[<span class="stringliteral">&quot;error.message&quot;</span>] = <span class="stringliteral">&quot;Connection timeout&quot;</span>;</div>
 <div class="line"><span class="lineno">  169</span>    </div>
 <div class="line"><span class="lineno">  170</span>    <span class="keyword">auto</span> result = adapter.convert_span(error_span);</div>
-<div class="line"><span class="lineno">  171</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  171</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  172</span>    </div>
 <div class="line"><span class="lineno">  173</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = result.value();</div>
 <div class="line"><span class="lineno">  174</span>    EXPECT_EQ(otel_span.status_code, otel_status_code::error);</div>
@@ -886,7 +886,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  190</span>    }</div>
 <div class="line"><span class="lineno">  191</span>    </div>
 <div class="line"><span class="lineno">  192</span>    <span class="keyword">auto</span> result = adapter.convert_spans(spans);</div>
-<div class="line"><span class="lineno">  193</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  193</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  194</span>    </div>
 <div class="line"><span class="lineno">  195</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_spans = result.value();</div>
 <div class="line"><span class="lineno">  196</span>    EXPECT_EQ(otel_spans.size(), 3);</div>
@@ -941,7 +941,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  133</span>    internal_span.tags[<span class="stringliteral">&quot;error&quot;</span>] = <span class="stringliteral">&quot;false&quot;</span>;</div>
 <div class="line"><span class="lineno">  134</span>    </div>
 <div class="line"><span class="lineno">  135</span>    <span class="keyword">auto</span> result = adapter.convert_span(internal_span);</div>
-<div class="line"><span class="lineno">  136</span>    ASSERT_TRUE(result);</div>
+<div class="line"><span class="lineno">  136</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  137</span>    </div>
 <div class="line"><span class="lineno">  138</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; otel_span = result.value();</div>
 <div class="line"><span class="lineno">  139</span>    EXPECT_EQ(otel_span.name, <span class="stringliteral">&quot;database_query&quot;</span>);</div>
@@ -968,7 +968,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 08:15:08 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 08:40:13 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
