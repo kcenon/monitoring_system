@@ -145,16 +145,25 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ### 4. Features & Functionality
 
-#### Issue ARC-006: Distributed Tracing Incomplete
+#### ~~Issue ARC-006: Distributed Tracing Incomplete~~ ✅ RESOLVED
 - **Priority**: P1 (Medium)
 - **Phase**: Phase 4
+- **Status**: ✅ **RESOLVED** (2026-01-08)
 - **Description**: Distributed tracing implementation needs completion
 - **Impact**: Limited observability in distributed systems
-- **Investigation Required**:
-  - Complete trace context propagation
-  - Implement trace aggregation
-  - Add distributed trace visualization
-- **Acceptance Criteria**: Full distributed tracing support
+- **Resolution**:
+  - ✅ Connected `distributed_tracer` to `trace_exporter_interface`
+  - ✅ Implemented `set_exporter()` method for configuring exporters (Jaeger, Zipkin, OTLP)
+  - ✅ Added automatic batch export when buffer threshold is reached
+  - ✅ Implemented manual `flush()` for immediate export
+  - ✅ Added export settings configuration (batch_size, max_queue_size, export_on_finish)
+  - ✅ Implemented export failure handling with retry/queue mechanism
+  - ✅ Added export statistics tracking (exported_spans, failed_exports, dropped_spans)
+  - ✅ Comprehensive unit tests for exporter integration
+- **References**:
+  - Implementation: `src/impl/tracing/distributed_tracer.cpp`
+  - Header: `src/impl/tracing/distributed_tracer.h`
+  - Tests: `tests/test_distributed_tracing.cpp` (ExporterIntegrationTest)
 
 #### ~~Issue ARC-007: Limited Metric Types~~ ✅ RESOLVED
 - **Priority**: P2 (Low)
@@ -254,7 +263,7 @@ This document catalogs known architectural issues in monitoring_system identifie
 - [x] Resolve ARC-010 (Common system integration) - 2025-11-27
 
 ### Phase 4 Actions
-- [ ] Resolve ARC-006 (Distributed tracing)
+- [x] Resolve ARC-006 (Distributed tracing) - 2026-01-08
 - [x] Resolve ARC-007 (Metric types) - 2025-11-27
 
 ### Phase 5 Actions
@@ -296,4 +305,4 @@ This document catalogs known architectural issues in monitoring_system identifie
 
 ---
 
-*Last Updated: 2025-11-27 (ARC-009 Resolved)*
+*Last Updated: 2026-01-08 (ARC-006 Resolved)*

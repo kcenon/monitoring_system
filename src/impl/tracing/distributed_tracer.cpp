@@ -33,6 +33,7 @@
  */
 
 #include "distributed_tracer.h"
+#include <kcenon/monitoring/exporters/trace_exporters.h>
 #include <thread>
 #include <algorithm>
 #include <shared_mutex>
@@ -55,6 +56,13 @@ struct distributed_tracer::tracer_impl {
     std::vector<trace_span> finished_spans_;
     std::mutex export_mutex_;
     size_t export_batch_size_ = 100;
+
+    // Exporter integration
+    std::shared_ptr<trace_exporter_interface> exporter_;
+    trace_export_settings export_settings_;
+    std::atomic<std::size_t> exported_spans_{0};
+    std::atomic<std::size_t> failed_exports_{0};
+    std::atomic<std::size_t> dropped_spans_{0};
 
     // Configuration
     std::string default_service_name{"monitoring_system"};
@@ -96,6 +104,42 @@ struct distributed_tracer::tracer_impl {
      */
     std::string generate_trace_id() {
         return thread_context_manager::generate_correlation_id();
+    }
+
+    /**
+     * @brief Export spans to configured exporter
+     * @param spans Spans to export
+     * @return Result indicating success or failure
+     */
+    result_void export_spans_to_exporter(const std::vector<trace_span>& spans) {
+        if (!exporter_) {
+            // No exporter configured, silently succeed
+            return common::ok();
+        }
+
+        auto result = exporter_->export_spans(spans);
+        if (result.is_ok()) {
+            exported_spans_ += spans.size();
+        } else {
+            failed_exports_++;
+        }
+        return result;
+    }
+
+    /**
+     * @brief Check if queue is at capacity and drop spans if necessary
+     * @return Number of spans dropped
+     */
+    std::size_t enforce_queue_limit() {
+        if (finished_spans_.size() <= export_settings_.max_queue_size) {
+            return 0;
+        }
+
+        std::size_t to_drop = finished_spans_.size() - export_settings_.max_queue_size;
+        finished_spans_.erase(finished_spans_.begin(),
+                              finished_spans_.begin() + static_cast<std::ptrdiff_t>(to_drop));
+        dropped_spans_ += to_drop;
+        return to_drop;
     }
 };
 
@@ -209,11 +253,24 @@ kcenon::monitoring::result<bool> distributed_tracer::finish_span(std::shared_ptr
         std::lock_guard<std::mutex> lock(impl_->export_mutex_);
         impl_->finished_spans_.push_back(*span);
 
+        // Enforce queue size limit
+        impl_->enforce_queue_limit();
+
         // Auto-flush when buffer reaches threshold
-        if (impl_->finished_spans_.size() >= impl_->export_batch_size_) {
-            // TODO: Implement actual export to external system (Jaeger, Zipkin, etc.)
-            // For now, just clear to prevent memory leak
-            impl_->finished_spans_.clear();
+        if (impl_->export_settings_.export_on_finish &&
+            impl_->finished_spans_.size() >= impl_->export_settings_.batch_size) {
+            // Export to configured exporter
+            std::vector<trace_span> spans_to_export;
+            spans_to_export.swap(impl_->finished_spans_);
+
+            auto export_result = impl_->export_spans_to_exporter(spans_to_export);
+            if (export_result.is_err()) {
+                // On failure, put spans back for retry (up to queue limit)
+                impl_->finished_spans_.insert(impl_->finished_spans_.end(),
+                                             spans_to_export.begin(),
+                                             spans_to_export.end());
+                impl_->enforce_queue_limit();
+            }
         }
     }
 
@@ -270,6 +327,64 @@ kcenon::monitoring::result<bool> distributed_tracer::export_spans(std::vector<tr
     }
     
     return true;
+}
+
+void distributed_tracer::set_exporter(std::shared_ptr<trace_exporter_interface> exporter) {
+    std::lock_guard<std::mutex> lock(impl_->export_mutex_);
+    impl_->exporter_ = std::move(exporter);
+}
+
+std::shared_ptr<trace_exporter_interface> distributed_tracer::get_exporter() const {
+    std::lock_guard<std::mutex> lock(impl_->export_mutex_);
+    return impl_->exporter_;
+}
+
+void distributed_tracer::configure_export(const trace_export_settings& settings) {
+    std::lock_guard<std::mutex> lock(impl_->export_mutex_);
+    impl_->export_settings_ = settings;
+    impl_->export_batch_size_ = settings.batch_size;
+}
+
+trace_export_settings distributed_tracer::get_export_settings() const {
+    std::lock_guard<std::mutex> lock(impl_->export_mutex_);
+    return impl_->export_settings_;
+}
+
+result_void distributed_tracer::flush() {
+    std::lock_guard<std::mutex> lock(impl_->export_mutex_);
+
+    if (impl_->finished_spans_.empty()) {
+        return common::ok();
+    }
+
+    if (!impl_->exporter_) {
+        // No exporter configured, just clear the buffer
+        impl_->finished_spans_.clear();
+        return common::ok();
+    }
+
+    std::vector<trace_span> spans_to_export;
+    spans_to_export.swap(impl_->finished_spans_);
+
+    auto result = impl_->export_spans_to_exporter(spans_to_export);
+    if (result.is_err()) {
+        // On failure, put spans back
+        impl_->finished_spans_.insert(impl_->finished_spans_.end(),
+                                     spans_to_export.begin(),
+                                     spans_to_export.end());
+        impl_->enforce_queue_limit();
+    }
+
+    return result;
+}
+
+std::unordered_map<std::string, std::size_t> distributed_tracer::get_export_stats() const {
+    return {
+        {"exported_spans", impl_->exported_spans_.load()},
+        {"failed_exports", impl_->failed_exports_.load()},
+        {"dropped_spans", impl_->dropped_spans_.load()},
+        {"pending_spans", impl_->finished_spans_.size()}
+    };
 }
 
 // Global tracer instance

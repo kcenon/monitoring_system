@@ -57,6 +57,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Connect distributed_tracer to trace exporters (ARC-006)** (#321)
+  - Connected `distributed_tracer` to `trace_exporter_interface` for Jaeger/Zipkin/OTLP export
+  - Added `set_exporter()` method to configure trace exporters
+  - Added `configure_export()` for export settings (batch_size, max_queue_size, export_on_finish)
+  - Implemented automatic batch export when buffer threshold is reached
+  - Added `flush()` method for manual span export
+  - Export failure handling with retry/queue mechanism
+  - Export statistics: `get_export_stats()` returns exported_spans, failed_exports, dropped_spans
+  - Queue size limit enforcement to prevent memory exhaustion
+  - Comprehensive unit tests for exporter integration
 - **Windows CPU/Memory stats collection in system_resource_collector** (#319)
   - Implemented `collect_windows_cpu_stats()` using `GetSystemTimes()` API
   - Implemented `collect_windows_memory_stats()` using `GlobalMemoryStatusEx()` API

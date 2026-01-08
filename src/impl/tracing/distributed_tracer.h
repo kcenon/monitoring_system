@@ -53,6 +53,20 @@
 
 namespace kcenon { namespace monitoring {
 
+// Forward declaration for trace exporter interface
+class trace_exporter_interface;
+
+/**
+ * @struct trace_export_settings
+ * @brief Configuration settings for trace export behavior
+ */
+struct trace_export_settings {
+    std::size_t batch_size = 100;           ///< Number of spans to batch before export
+    std::chrono::milliseconds flush_interval{5000};  ///< Interval for automatic flush
+    std::size_t max_queue_size = 2048;      ///< Maximum spans in queue before dropping
+    bool export_on_finish = true;           ///< Export when batch is full
+};
+
 /**
  * @brief Trace span representing a unit of work in distributed tracing
  */
@@ -318,6 +332,42 @@ public:
      * @brief Export spans to external system
      */
     kcenon::monitoring::result<bool> export_spans(std::vector<trace_span> spans);
+
+    /**
+     * @brief Set the trace exporter for span export
+     * @param exporter Shared pointer to trace exporter implementation
+     */
+    void set_exporter(std::shared_ptr<trace_exporter_interface> exporter);
+
+    /**
+     * @brief Get the current trace exporter
+     * @return Shared pointer to current exporter, or nullptr if not set
+     */
+    std::shared_ptr<trace_exporter_interface> get_exporter() const;
+
+    /**
+     * @brief Configure export settings
+     * @param settings Export configuration settings
+     */
+    void configure_export(const trace_export_settings& settings);
+
+    /**
+     * @brief Get current export settings
+     * @return Current export settings
+     */
+    trace_export_settings get_export_settings() const;
+
+    /**
+     * @brief Manually flush all pending spans to exporter
+     * @return Result indicating success or failure
+     */
+    result_void flush();
+
+    /**
+     * @brief Get export statistics
+     * @return Map of statistic name to value
+     */
+    std::unordered_map<std::string, std::size_t> get_export_stats() const;
 };
 
 /**

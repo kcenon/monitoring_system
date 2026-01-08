@@ -57,6 +57,16 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **distributed_tracer를 trace exporter에 연결 (ARC-006)** (#321)
+  - `distributed_tracer`를 `trace_exporter_interface`에 연결하여 Jaeger/Zipkin/OTLP export 지원
+  - trace exporter 설정을 위한 `set_exporter()` 메서드 추가
+  - export 설정을 위한 `configure_export()` 추가 (batch_size, max_queue_size, export_on_finish)
+  - 버퍼 임계값 도달 시 자동 배치 export 구현
+  - 수동 span export를 위한 `flush()` 메서드 추가
+  - retry/queue 메커니즘을 통한 export 실패 처리
+  - export 통계: `get_export_stats()`가 exported_spans, failed_exports, dropped_spans 반환
+  - 메모리 고갈 방지를 위한 큐 크기 제한 적용
+  - exporter 통합을 위한 종합 유닛 테스트
 - **system_resource_collector에서 Windows CPU/메모리 통계 수집** (#319)
   - `GetSystemTimes()` API를 사용하여 `collect_windows_cpu_stats()` 구현
   - `GlobalMemoryStatusEx()` API를 사용하여 `collect_windows_memory_stats()` 구현

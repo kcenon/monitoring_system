@@ -37,6 +37,7 @@
 #include <chrono>
 #include <unordered_map>
 #include <kcenon/monitoring/tracing/distributed_tracer.h>
+#include <kcenon/monitoring/exporters/trace_exporters.h>
 
 using namespace kcenon::monitoring;
 
@@ -380,4 +381,249 @@ TEST_F(DistributedTracingTest, TraceMacros) {
         }
     }
     // Spans should be finished after leaving scope
+}
+
+// Mock exporter for testing exporter integration
+class MockTraceExporter : public trace_exporter_interface {
+public:
+    std::vector<trace_span> exported_spans;
+    std::atomic<std::size_t> export_count{0};
+    std::atomic<std::size_t> flush_count{0};
+    std::atomic<std::size_t> shutdown_count{0};
+    bool should_fail = false;
+
+    result_void export_spans(const std::vector<trace_span>& spans) override {
+        if (should_fail) {
+            return result_void::err(error_info(monitoring_error_code::operation_failed,
+                "Mock export failure", "test").to_common_error());
+        }
+        for (const auto& span : spans) {
+            exported_spans.push_back(span);
+        }
+        export_count++;
+        return kcenon::common::ok();
+    }
+
+    result_void flush() override {
+        flush_count++;
+        return kcenon::common::ok();
+    }
+
+    result_void shutdown() override {
+        shutdown_count++;
+        return kcenon::common::ok();
+    }
+
+    std::unordered_map<std::string, std::size_t> get_stats() const override {
+        return {
+            {"exported_spans", exported_spans.size()},
+            {"export_count", export_count.load()},
+            {"flush_count", flush_count.load()},
+            {"shutdown_count", shutdown_count.load()}
+        };
+    }
+};
+
+class ExporterIntegrationTest : public ::testing::Test {
+protected:
+    distributed_tracer tracer;
+    std::shared_ptr<MockTraceExporter> mock_exporter;
+
+    void SetUp() override {
+        mock_exporter = std::make_shared<MockTraceExporter>();
+    }
+
+    void TearDown() override {
+        tracer.set_exporter(nullptr);
+    }
+};
+
+TEST_F(ExporterIntegrationTest, SetAndGetExporter) {
+    EXPECT_EQ(tracer.get_exporter(), nullptr);
+
+    tracer.set_exporter(mock_exporter);
+    EXPECT_EQ(tracer.get_exporter(), mock_exporter);
+
+    tracer.set_exporter(nullptr);
+    EXPECT_EQ(tracer.get_exporter(), nullptr);
+}
+
+TEST_F(ExporterIntegrationTest, ConfigureExportSettings) {
+    trace_export_settings settings;
+    settings.batch_size = 50;
+    settings.max_queue_size = 1000;
+    settings.export_on_finish = true;
+
+    tracer.configure_export(settings);
+
+    auto retrieved = tracer.get_export_settings();
+    EXPECT_EQ(retrieved.batch_size, 50);
+    EXPECT_EQ(retrieved.max_queue_size, 1000);
+    EXPECT_TRUE(retrieved.export_on_finish);
+}
+
+TEST_F(ExporterIntegrationTest, AutoExportWhenBatchSizeReached) {
+    tracer.set_exporter(mock_exporter);
+
+    trace_export_settings settings;
+    settings.batch_size = 5;
+    settings.export_on_finish = true;
+    tracer.configure_export(settings);
+
+    // Create and finish enough spans to trigger export
+    for (int i = 0; i < 5; ++i) {
+        auto span_result = tracer.start_span("operation_" + std::to_string(i));
+        ASSERT_TRUE(span_result.is_ok());
+        tracer.finish_span(span_result.value());
+    }
+
+    // Should have triggered one export
+    EXPECT_EQ(mock_exporter->export_count.load(), 1);
+    EXPECT_EQ(mock_exporter->exported_spans.size(), 5);
+}
+
+TEST_F(ExporterIntegrationTest, ManualFlush) {
+    tracer.set_exporter(mock_exporter);
+
+    trace_export_settings settings;
+    settings.batch_size = 100;  // Large batch size to prevent auto-export
+    settings.export_on_finish = true;
+    tracer.configure_export(settings);
+
+    // Create a few spans (less than batch size)
+    for (int i = 0; i < 3; ++i) {
+        auto span_result = tracer.start_span("operation_" + std::to_string(i));
+        ASSERT_TRUE(span_result.is_ok());
+        tracer.finish_span(span_result.value());
+    }
+
+    // No auto-export should have happened
+    EXPECT_EQ(mock_exporter->export_count.load(), 0);
+
+    // Manual flush
+    auto flush_result = tracer.flush();
+    ASSERT_TRUE(flush_result.is_ok());
+
+    // Now spans should be exported
+    EXPECT_EQ(mock_exporter->export_count.load(), 1);
+    EXPECT_EQ(mock_exporter->exported_spans.size(), 3);
+}
+
+TEST_F(ExporterIntegrationTest, FlushWithNoExporter) {
+    // No exporter set
+    EXPECT_EQ(tracer.get_exporter(), nullptr);
+
+    // Create and finish some spans
+    for (int i = 0; i < 3; ++i) {
+        auto span_result = tracer.start_span("operation_" + std::to_string(i));
+        ASSERT_TRUE(span_result.is_ok());
+        tracer.finish_span(span_result.value());
+    }
+
+    // Flush should succeed (just clears the buffer)
+    auto flush_result = tracer.flush();
+    EXPECT_TRUE(flush_result.is_ok());
+}
+
+TEST_F(ExporterIntegrationTest, ExportFailureRetainsSpans) {
+    mock_exporter->should_fail = true;
+    tracer.set_exporter(mock_exporter);
+
+    trace_export_settings settings;
+    settings.batch_size = 100;
+    settings.max_queue_size = 200;
+    tracer.configure_export(settings);
+
+    // Create some spans
+    for (int i = 0; i < 3; ++i) {
+        auto span_result = tracer.start_span("operation_" + std::to_string(i));
+        ASSERT_TRUE(span_result.is_ok());
+        tracer.finish_span(span_result.value());
+    }
+
+    // Flush should fail
+    auto flush_result = tracer.flush();
+    EXPECT_TRUE(flush_result.is_err());
+
+    // Spans should still be in queue (we can verify via stats)
+    auto stats = tracer.get_export_stats();
+    EXPECT_EQ(stats["pending_spans"], 3);
+
+    // Now fix the exporter and try again
+    mock_exporter->should_fail = false;
+    flush_result = tracer.flush();
+    EXPECT_TRUE(flush_result.is_ok());
+
+    // Now spans should be exported
+    EXPECT_EQ(mock_exporter->exported_spans.size(), 3);
+}
+
+TEST_F(ExporterIntegrationTest, ExportStats) {
+    tracer.set_exporter(mock_exporter);
+
+    trace_export_settings settings;
+    settings.batch_size = 5;
+    tracer.configure_export(settings);
+
+    // Create and finish spans
+    for (int i = 0; i < 10; ++i) {
+        auto span_result = tracer.start_span("operation_" + std::to_string(i));
+        ASSERT_TRUE(span_result.is_ok());
+        tracer.finish_span(span_result.value());
+    }
+
+    auto stats = tracer.get_export_stats();
+    EXPECT_EQ(stats["exported_spans"], 10);
+    EXPECT_EQ(stats["failed_exports"], 0);
+    EXPECT_EQ(stats["dropped_spans"], 0);
+}
+
+TEST_F(ExporterIntegrationTest, QueueSizeLimitEnforced) {
+    tracer.set_exporter(mock_exporter);
+    mock_exporter->should_fail = true;  // Make exports fail to fill queue
+
+    trace_export_settings settings;
+    settings.batch_size = 100;  // Large batch size
+    settings.max_queue_size = 5;  // Small queue
+    settings.export_on_finish = false;  // Disable auto-export
+    tracer.configure_export(settings);
+
+    // Create more spans than queue can hold
+    for (int i = 0; i < 10; ++i) {
+        auto span_result = tracer.start_span("operation_" + std::to_string(i));
+        ASSERT_TRUE(span_result.is_ok());
+        tracer.finish_span(span_result.value());
+    }
+
+    // Stats should show dropped spans
+    auto stats = tracer.get_export_stats();
+    EXPECT_GT(stats["dropped_spans"], 0);
+    EXPECT_LE(stats["pending_spans"], 5);
+}
+
+TEST_F(ExporterIntegrationTest, ExportedSpansContainCorrectData) {
+    tracer.set_exporter(mock_exporter);
+
+    trace_export_settings settings;
+    settings.batch_size = 1;  // Export immediately
+    tracer.configure_export(settings);
+
+    auto span_result = tracer.start_span("test_operation", "test_service");
+    ASSERT_TRUE(span_result.is_ok());
+    auto span = span_result.value();
+    span->tags["custom_tag"] = "custom_value";
+
+    tracer.finish_span(span);
+
+    ASSERT_EQ(mock_exporter->exported_spans.size(), 1);
+    const auto& exported = mock_exporter->exported_spans[0];
+
+    EXPECT_EQ(exported.operation_name, "test_operation");
+    EXPECT_EQ(exported.service_name, "test_service");
+    EXPECT_EQ(exported.trace_id, span->trace_id);
+    EXPECT_EQ(exported.span_id, span->span_id);
+    auto tag_it = exported.tags.find("custom_tag");
+    ASSERT_NE(tag_it, exported.tags.end());
+    EXPECT_EQ(tag_it->second, "custom_value");
+    EXPECT_TRUE(exported.is_finished());
 }
