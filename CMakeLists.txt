@@ -76,6 +76,9 @@ option(MONITORING_WITH_LOGGER_SYSTEM "Enable logger_system integration (OPTIONAL
 # Optional integration (Tier 4 - kept optional to prevent circular dependency)
 option(MONITORING_WITH_NETWORK_SYSTEM "Enable network_system integration for HTTP transport (OPTIONAL)" OFF)
 
+# Optional gRPC support for OTLP trace export
+option(MONITORING_WITH_GRPC "Enable gRPC support for OTLP trace export (OPTIONAL)" OFF)
+
 # Note: Required dependency validation is performed during detection phase.
 # If dependencies are not found, they will be automatically disabled with a warning.
 
@@ -295,6 +298,37 @@ if(MONITORING_WITH_NETWORK_SYSTEM)
         message(WARNING "network_system not found: HTTP transport will use stub implementation")
         set(MONITORING_WITH_NETWORK_SYSTEM OFF)
     endif()
+endif()
+
+# gRPC (OPTIONAL - for OTLP gRPC transport)
+message(STATUS "=== Finding gRPC (OPTIONAL) ===")
+set(MONITORING_GRPC_TARGET "")
+set(MONITORING_PROTOBUF_TARGET "")
+if(MONITORING_WITH_GRPC)
+    # Find gRPC package
+    find_package(gRPC CONFIG QUIET)
+    if(gRPC_FOUND)
+        message(STATUS "Found gRPC package")
+        set(MONITORING_GRPC_TARGET gRPC::grpc++)
+    endif()
+
+    # Find Protobuf package
+    find_package(Protobuf CONFIG QUIET)
+    if(Protobuf_FOUND)
+        message(STATUS "Found Protobuf package")
+        set(MONITORING_PROTOBUF_TARGET protobuf::libprotobuf)
+    endif()
+
+    if(MONITORING_GRPC_TARGET AND MONITORING_PROTOBUF_TARGET)
+        message(STATUS "gRPC integration: ENABLED")
+        add_compile_definitions(MONITORING_HAS_GRPC)
+    else()
+        message(STATUS "gRPC or Protobuf not found: OTLP gRPC transport will use stub implementation")
+        message(STATUS "  To enable gRPC support, install via vcpkg: vcpkg install monitoring-system[grpc]")
+        set(MONITORING_WITH_GRPC OFF)
+    endif()
+else()
+    message(STATUS "gRPC integration: DISABLED (use -DMONITORING_WITH_GRPC=ON to enable)")
 endif()
 
 ##################################################
@@ -638,6 +672,17 @@ if(MONITORING_WITH_NETWORK_SYSTEM)
     endif()
 endif()
 
+if(MONITORING_WITH_GRPC)
+    if(MONITORING_GRPC_TARGET AND TARGET ${MONITORING_GRPC_TARGET})
+        target_link_libraries(monitoring_system PUBLIC ${MONITORING_GRPC_TARGET})
+        message(STATUS "Monitoring System: Linked to ${MONITORING_GRPC_TARGET} target")
+    endif()
+    if(MONITORING_PROTOBUF_TARGET AND TARGET ${MONITORING_PROTOBUF_TARGET})
+        target_link_libraries(monitoring_system PUBLIC ${MONITORING_PROTOBUF_TARGET})
+        message(STATUS "Monitoring System: Linked to ${MONITORING_PROTOBUF_TARGET} target")
+    endif()
+endif()
+
 # Tests
 if(MONITORING_BUILD_TESTS)
     enable_testing()
@@ -730,7 +775,8 @@ message(STATUS "  monitoring_system")
 message(STATUS "    ├── common_system (Tier 0): ${MONITORING_WITH_COMMON_SYSTEM} [REQUIRED]")
 message(STATUS "    ├── thread_system (Tier 1): ${MONITORING_WITH_THREAD_SYSTEM} [REQUIRED]")
 message(STATUS "    ├── logger_system (Tier 2): ${MONITORING_WITH_LOGGER_SYSTEM} [OPTIONAL - runtime via ILogger]")
-message(STATUS "    └── network_system (Tier 4): ${MONITORING_WITH_NETWORK_SYSTEM} [OPTIONAL]")
+message(STATUS "    ├── network_system (Tier 4): ${MONITORING_WITH_NETWORK_SYSTEM} [OPTIONAL]")
+message(STATUS "    └── gRPC: ${MONITORING_WITH_GRPC} [OPTIONAL - OTLP gRPC transport]")
 message(STATUS "")
 message(STATUS "Build Configuration:")
 message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")

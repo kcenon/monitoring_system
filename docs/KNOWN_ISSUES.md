@@ -16,7 +16,7 @@ The following components are marked as STUB and are **not fully implemented**:
 | ~~CircuitBreaker~~ | `reliability/circuit_breaker.h` | **Implemented** | MON-001 |
 | ~~Jaeger Exporter (HTTP transport)~~ | `exporters/trace_exporters.h` | **Implemented** | MON-005 |
 | ~~Zipkin Exporter (HTTP transport)~~ | `exporters/trace_exporters.h` | **Implemented** | MON-005 |
-| OTLP Exporter (gRPC transport) | `exporters/trace_exporters.h` | STUB | MON-005 |
+| ~~OTLP Exporter (gRPC transport)~~ | `exporters/otlp_grpc_exporter.h` | **Implemented** | MON-005 |
 
 ### ~~CircuitBreaker~~ (Resolved)
 
@@ -35,17 +35,22 @@ The `circuit_breaker` class has been fully implemented with:
 - Uses `network_system::core::http_client` for actual network communication
 - Supports Thrift JSON format for Jaeger and JSON v2 format for Zipkin
 
+**Now Implemented:**
+- OTLP gRPC transport (optional, requires gRPC library integration)
+
 **Still STUB:**
-- OTLP gRPC transport (requires gRPC library integration)
 - Protobuf serialization for Jaeger and Zipkin (requires protobuf library)
 
 **Usage:**
 ```cmake
 # Enable real HTTP transport
 cmake -DMONITORING_WITH_NETWORK_SYSTEM=ON ..
+
+# Enable gRPC transport for OTLP
+cmake -DMONITORING_WITH_GRPC=ON ..
 ```
 
-**Workaround for OTLP:** Use OpenTelemetry Collector as sidecar and export via Jaeger/Zipkin HTTP.
+**Alternative:** Use OpenTelemetry Collector as sidecar. See [OTel Collector Sidecar Guide](guides/OTEL_COLLECTOR_SIDECAR.md).
 
 ---
 
