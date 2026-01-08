@@ -57,6 +57,14 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **system_resource_collector에서 디스크 및 네트워크 메트릭 수집** (#323)
+  - macOS (IOKit), Linux (/proc/diskstats), Windows용 `collect_disk_stats()` 구현
+  - macOS (ifaddrs), Linux (/proc/net/dev), Windows용 `collect_network_stats()` 구현
+  - 디스크 메트릭: usage_percent, total/used/available bytes, read/write bytes per sec, read/write ops per sec
+  - 네트워크 메트릭: rx/tx bytes per sec, rx/tx packets per sec, rx/tx errors, rx/tx dropped
+  - `add_disk_metrics()` 및 `add_network_metrics()` 메서드 추가
+  - 모든 새 메트릭을 포함하도록 `get_metric_types()` 업데이트
+  - 디스크 및 네트워크 메트릭 수집을 위한 종합 유닛 테스트
 - **distributed_tracer를 trace exporter에 연결 (ARC-006)** (#321)
   - `distributed_tracer`를 `trace_exporter_interface`에 연결하여 Jaeger/Zipkin/OTLP export 지원
   - trace exporter 설정을 위한 `set_exporter()` 메서드 추가
@@ -96,6 +104,11 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
 
 ### 수정됨
+- **winsock 헤더 충돌로 인한 Windows MSVC 빌드 실패** (#323)
+  - winsock2.h가 windows.h보다 먼저 include되도록 `system_resource_collector.h`의 헤더 포함 순서 수정
+  - winsock.h가 windows.h를 통해 include되는 것을 방지하기 위해 WIN32_LEAN_AND_MEAN 및 NOMINMAX 매크로 추가
+  - 올바른 Windows 소켓 타입 정의를 보장하기 위해 iphlpapi.h include를 헤더 파일로 이동
+  - performance_monitor.cpp 및 windows_metrics.cpp 전체에 일관된 Windows 헤더 순서 적용
 - **deprecated된 common_system 헬퍼 함수로 인한 MSVC 빌드 오류** (#314)
   - deprecated된 `kcenon::common::is_error()`, `get_value()`, `get_error()`를 Result 멤버 메서드로 대체
   - 영향받은 어댑터: `thread_system_adapter.h`, `common_monitor_adapter.h`, `common_system_adapter.h`

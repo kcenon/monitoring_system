@@ -31,7 +31,10 @@
 
 #if defined(_WIN32)
 
-// Define NOMINMAX before including windows.h to prevent min/max macro conflicts
+// Define NOMINMAX and WIN32_LEAN_AND_MEAN before including windows.h
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif

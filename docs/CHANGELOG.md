@@ -57,6 +57,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Disk and Network metrics collection in system_resource_collector** (#323)
+  - Implemented `collect_disk_stats()` for macOS (IOKit), Linux (/proc/diskstats), Windows
+  - Implemented `collect_network_stats()` for macOS (ifaddrs), Linux (/proc/net/dev), Windows
+  - Disk metrics: usage_percent, total/used/available bytes, read/write bytes per sec, read/write ops per sec
+  - Network metrics: rx/tx bytes per sec, rx/tx packets per sec, rx/tx errors, rx/tx dropped
+  - Added `add_disk_metrics()` and `add_network_metrics()` methods
+  - Updated `get_metric_types()` to include all new metrics
+  - Comprehensive unit tests for disk and network metric collection
 - **Connect distributed_tracer to trace exporters (ARC-006)** (#321)
   - Connected `distributed_tracer` to `trace_exporter_interface` for Jaeger/Zipkin/OTLP export
   - Added `set_exporter()` method to configure trace exporters
@@ -96,6 +104,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **Windows MSVC build failure due to winsock header conflicts** (#323)
+  - Fixed header inclusion order in `system_resource_collector.h` to include winsock2.h before windows.h
+  - Added WIN32_LEAN_AND_MEAN and NOMINMAX macros to prevent winsock.h being included via windows.h
+  - Moved iphlpapi.h include to header file to ensure proper Windows socket type definitions
+  - Applied consistent Windows header ordering across performance_monitor.cpp and windows_metrics.cpp
 - **MSVC build error from deprecated common_system helper functions** (#314)
   - Replaced deprecated `kcenon::common::is_error()`, `get_value()`, `get_error()` with Result member methods
   - Affected adapters: `thread_system_adapter.h`, `common_monitor_adapter.h`, `common_system_adapter.h`
