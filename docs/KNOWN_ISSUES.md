@@ -96,16 +96,19 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_stream_aggregation.cpp`
 - `test_buffering_strategies.cpp`
 - `test_optimization.cpp`
-- `test_fault_tolerance.cpp`
 - `test_error_boundaries.cpp`
 - `test_resource_management.cpp`
 - `test_data_consistency.cpp`
-- `test_opentelemetry_adapter.cpp`
-- `test_metric_exporters.cpp`
-- `test_storage_backends.cpp`
 - `test_integration_e2e.cpp`
 
 **Reason:** API alignment and missing implementations. See MON-002.
+
+### Recently Enabled Tests
+
+- `test_fault_tolerance.cpp` - Enabled in #329 (Fault tolerance API implemented)
+- `test_opentelemetry_adapter.cpp` - Enabled in #332
+- `test_metric_exporters.cpp` - Enabled in #332
+- `test_storage_backends.cpp` - Enabled in #347
 
 ---
 
