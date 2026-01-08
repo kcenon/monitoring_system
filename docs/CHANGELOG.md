@@ -123,6 +123,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **GCC Release build maybe-uninitialized warning in test_metric_storage.cpp** (#354)
+  - Fixed uninitialized local variables in `RingBufferBasicOperations` and `RingBufferPeek` tests
+  - Resolved `-Werror=maybe-uninitialized` errors occurring in GCC Release builds
 - **Windows MSVC build failure due to winsock header conflicts** (#323)
   - Fixed header inclusion order in `system_resource_collector.h` to include winsock2.h before windows.h
   - Added WIN32_LEAN_AND_MEAN and NOMINMAX macros to prevent winsock.h being included via windows.h
