@@ -98,8 +98,11 @@ add_executable(monitoring_system_tests
     test_metric_exporters.cpp
     test_opentelemetry_adapter.cpp
 
+    # Storage backends test (Issue #326 - Phase 2, #343)
+    test_storage_backends.cpp
+
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (10 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (9 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
@@ -108,19 +111,18 @@ add_executable(monitoring_system_tests
     #
     # test_health_monitoring.cpp      # Requires: health_check base class, composite_health_check,
     #                                 #           health_dependency_graph, health_check_builder,
-    #                                 #           global_health_monitor() - See Issue #320-1
+    #                                 #           global_health_monitor() - See Issue #330
     # test_fault_tolerance.cpp        # Requires: retry_executor<T>, fault_tolerance_config,
     #                                 #           circuit breaker registries, config validation
-    #                                 #           - See Issue #320-2
-    # test_error_boundaries.cpp       # Missing: graceful_degradation.h
-    # test_optimization.cpp           # Missing: optimization/ folder
-    # test_resource_management.cpp    # Missing: resource_manager.h
-    # test_data_consistency.cpp       # Missing: data_consistency.h
-    # test_metric_storage.cpp         # Missing: ring_buffer.h, metric_storage.h
-    # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h
-    # test_stress_performance.cpp     # Missing: multiple headers
-    # test_storage_backends.cpp       # API mismatch with storage_backends.h
-    # test_integration_e2e.cpp        # Multiple missing headers
+    #                                 #           - See Issue #329
+    # test_error_boundaries.cpp       # Missing: graceful_degradation.h - See Issue #338
+    # test_optimization.cpp           # Missing: optimization/ folder - See Issue #340
+    # test_resource_management.cpp    # Missing: resource_manager.h - See Issue #341
+    # test_data_consistency.cpp       # Missing: data_consistency.h - See Issue #342
+    # test_metric_storage.cpp         # Missing: ring_buffer.h, metric_storage.h - See Issue #339
+    # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h - See Issue #344
+    # test_stress_performance.cpp     # Missing: multiple headers - See Issue #345
+    # test_integration_e2e.cpp        # Multiple missing headers - See Issue #346
 )
 
 # Interface compilation test (standalone executable with main())
