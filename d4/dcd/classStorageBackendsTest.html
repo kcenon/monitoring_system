@@ -131,7 +131,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00017">17</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a882ac0a6ba810ff1ce1442e652596192" name="a882ac0a6ba810ff1ce1442e652596192"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a882ac0a6ba810ff1ce1442e652596192">&#9670;&#160;</a></span>create_test_snapshots()</h2>
@@ -156,39 +156,39 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00035">35</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>                                                        {</div>
-<div class="line"><span class="lineno">   36</span>        std::vector&lt;metrics_snapshot&gt; snapshots;</div>
-<div class="line"><span class="lineno">   37</span>        </div>
-<div class="line"><span class="lineno">   38</span>        <span class="comment">// Create first snapshot</span></div>
-<div class="line"><span class="lineno">   39</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap1;</div>
-<div class="line"><span class="lineno">   40</span>        snap1.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;web_server&quot;</span>;</div>
-<div class="line"><span class="lineno">   41</span>        snap1.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   42</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;requests_per_second&quot;</span>, 150.0);</div>
-<div class="line"><span class="lineno">   43</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 45.2);</div>
-<div class="line"><span class="lineno">   44</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;error_rate&quot;</span>, 0.02);</div>
-<div class="line"><span class="lineno">   45</span>        snapshots.push_back(snap1);</div>
-<div class="line"><span class="lineno">   46</span>        </div>
-<div class="line"><span class="lineno">   47</span>        <span class="comment">// Create second snapshot</span></div>
-<div class="line"><span class="lineno">   48</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap2;</div>
-<div class="line"><span class="lineno">   49</span>        snap2.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;database&quot;</span>;</div>
-<div class="line"><span class="lineno">   50</span>        snap2.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   51</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;connections&quot;</span>, 25.0);</div>
-<div class="line"><span class="lineno">   52</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;query_time_ms&quot;</span>, 12.8);</div>
-<div class="line"><span class="lineno">   53</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;cache_hit_rate&quot;</span>, 0.95);</div>
-<div class="line"><span class="lineno">   54</span>        snapshots.push_back(snap2);</div>
-<div class="line"><span class="lineno">   55</span>        </div>
-<div class="line"><span class="lineno">   56</span>        <span class="comment">// Create third snapshot</span></div>
-<div class="line"><span class="lineno">   57</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap3;</div>
-<div class="line"><span class="lineno">   58</span>        snap3.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;cache_server&quot;</span>;</div>
-<div class="line"><span class="lineno">   59</span>        snap3.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   60</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;memory_usage_mb&quot;</span>, 512.0);</div>
-<div class="line"><span class="lineno">   61</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;hit_rate&quot;</span>, 0.88);</div>
-<div class="line"><span class="lineno">   62</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;evictions_per_sec&quot;</span>, 2.1);</div>
-<div class="line"><span class="lineno">   63</span>        snapshots.push_back(snap3);</div>
-<div class="line"><span class="lineno">   64</span>        </div>
-<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">return</span> snapshots;</div>
-<div class="line"><span class="lineno">   66</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00036">36</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>                                                        {</div>
+<div class="line"><span class="lineno">   37</span>        std::vector&lt;metrics_snapshot&gt; snapshots;</div>
+<div class="line"><span class="lineno">   38</span>        </div>
+<div class="line"><span class="lineno">   39</span>        <span class="comment">// Create first snapshot</span></div>
+<div class="line"><span class="lineno">   40</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap1;</div>
+<div class="line"><span class="lineno">   41</span>        snap1.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;web_server&quot;</span>;</div>
+<div class="line"><span class="lineno">   42</span>        snap1.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   43</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;requests_per_second&quot;</span>, 150.0);</div>
+<div class="line"><span class="lineno">   44</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 45.2);</div>
+<div class="line"><span class="lineno">   45</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;error_rate&quot;</span>, 0.02);</div>
+<div class="line"><span class="lineno">   46</span>        snapshots.push_back(snap1);</div>
+<div class="line"><span class="lineno">   47</span>        </div>
+<div class="line"><span class="lineno">   48</span>        <span class="comment">// Create second snapshot</span></div>
+<div class="line"><span class="lineno">   49</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap2;</div>
+<div class="line"><span class="lineno">   50</span>        snap2.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;database&quot;</span>;</div>
+<div class="line"><span class="lineno">   51</span>        snap2.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   52</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;connections&quot;</span>, 25.0);</div>
+<div class="line"><span class="lineno">   53</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;query_time_ms&quot;</span>, 12.8);</div>
+<div class="line"><span class="lineno">   54</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;cache_hit_rate&quot;</span>, 0.95);</div>
+<div class="line"><span class="lineno">   55</span>        snapshots.push_back(snap2);</div>
+<div class="line"><span class="lineno">   56</span>        </div>
+<div class="line"><span class="lineno">   57</span>        <span class="comment">// Create third snapshot</span></div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap3;</div>
+<div class="line"><span class="lineno">   59</span>        snap3.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;cache_server&quot;</span>;</div>
+<div class="line"><span class="lineno">   60</span>        snap3.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   61</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;memory_usage_mb&quot;</span>, 512.0);</div>
+<div class="line"><span class="lineno">   62</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;hit_rate&quot;</span>, 0.88);</div>
+<div class="line"><span class="lineno">   63</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;evictions_per_sec&quot;</span>, 2.1);</div>
+<div class="line"><span class="lineno">   64</span>        snapshots.push_back(snap3);</div>
+<div class="line"><span class="lineno">   65</span>        </div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> snapshots;</div>
+<div class="line"><span class="lineno">   67</span>    }</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">kcenon::monitoring::metrics_snapshot</a></div><div class="ttdoc">Complete snapshot of metrics at a point in time.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00066">monitoring_core.h:66</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_a1b9a151e0a484848d243a1e468a04266"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">kcenon::monitoring::metrics_snapshot::capture_time</a></div><div class="ttdeci">std::chrono::system_clock::time_point capture_time</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00068">monitoring_core.h:68</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_a91c4bb5a196e0ace7716f2d6c54eb1a7"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">kcenon::monitoring::metrics_snapshot::add_metric</a></div><div class="ttdeci">void add_metric(const std::string &amp;name, double value)</div><div class="ttdoc">Add a metric to the snapshot.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00079">monitoring_core.h:79</a></div></div>
@@ -239,18 +239,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00019">19</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>                          {</div>
-<div class="line"><span class="lineno">   20</span>        <span class="comment">// Create test snapshots</span></div>
-<div class="line"><span class="lineno">   21</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">test_snapshots_</a> = <a class="code hl_function" href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">create_test_snapshots</a>();</div>
-<div class="line"><span class="lineno">   22</span>        </div>
-<div class="line"><span class="lineno">   23</span>        <span class="comment">// Create test directories</span></div>
-<div class="line"><span class="lineno">   24</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a> = std::filesystem::temp_directory_path() / <span class="stringliteral">&quot;monitoring_test&quot;</span>;</div>
-<div class="line"><span class="lineno">   25</span>        std::filesystem::create_directories(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
-<div class="line"><span class="lineno">   26</span>    }</div>
-<div class="ttc" id="aclassStorageBackendsTest_html_a882ac0a6ba810ff1ce1442e652596192"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">StorageBackendsTest::create_test_snapshots</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; create_test_snapshots()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00035">test_storage_backends.cpp:35</a></div></div>
-<div class="ttc" id="aclassStorageBackendsTest_html_a9a658822aa30b1e817ad2120503a6a45"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">StorageBackendsTest::test_snapshots_</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; test_snapshots_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00068">test_storage_backends.cpp:68</a></div></div>
-<div class="ttc" id="aclassStorageBackendsTest_html_afb5240a59494c52f7c24830ceb0c059b"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">StorageBackendsTest::test_dir_</a></div><div class="ttdeci">std::filesystem::path test_dir_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00069">test_storage_backends.cpp:69</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00020">20</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>                          {</div>
+<div class="line"><span class="lineno">   21</span>        <span class="comment">// Create test snapshots</span></div>
+<div class="line"><span class="lineno">   22</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">test_snapshots_</a> = <a class="code hl_function" href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">create_test_snapshots</a>();</div>
+<div class="line"><span class="lineno">   23</span>        </div>
+<div class="line"><span class="lineno">   24</span>        <span class="comment">// Create test directories</span></div>
+<div class="line"><span class="lineno">   25</span>        <a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a> = std::filesystem::temp_directory_path() / <span class="stringliteral">&quot;monitoring_test&quot;</span>;</div>
+<div class="line"><span class="lineno">   26</span>        std::filesystem::create_directories(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
+<div class="line"><span class="lineno">   27</span>    }</div>
+<div class="ttc" id="aclassStorageBackendsTest_html_a882ac0a6ba810ff1ce1442e652596192"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a882ac0a6ba810ff1ce1442e652596192">StorageBackendsTest::create_test_snapshots</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; create_test_snapshots()</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00036">test_storage_backends.cpp:36</a></div></div>
+<div class="ttc" id="aclassStorageBackendsTest_html_a9a658822aa30b1e817ad2120503a6a45"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">StorageBackendsTest::test_snapshots_</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; test_snapshots_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00069">test_storage_backends.cpp:69</a></div></div>
+<div class="ttc" id="aclassStorageBackendsTest_html_afb5240a59494c52f7c24830ceb0c059b"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">StorageBackendsTest::test_dir_</a></div><div class="ttdeci">std::filesystem::path test_dir_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00070">test_storage_backends.cpp:70</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -289,13 +289,13 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00028">28</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>                             {</div>
-<div class="line"><span class="lineno">   29</span>        <span class="comment">// Clean up test files</span></div>
-<div class="line"><span class="lineno">   30</span>        <span class="keywordflow">if</span> (std::filesystem::exists(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>)) {</div>
-<div class="line"><span class="lineno">   31</span>            std::filesystem::remove_all(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
-<div class="line"><span class="lineno">   32</span>        }</div>
-<div class="line"><span class="lineno">   33</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00029">29</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>                             {</div>
+<div class="line"><span class="lineno">   30</span>        <span class="comment">// Clean up test files</span></div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">if</span> (std::filesystem::exists(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>)) {</div>
+<div class="line"><span class="lineno">   32</span>            std::filesystem::remove_all(<a class="code hl_variable" href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">test_dir_</a>);</div>
+<div class="line"><span class="lineno">   33</span>        }</div>
+<div class="line"><span class="lineno">   34</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -320,7 +320,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +344,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d5/dec/test__storage__backends_8cpp_source.html">test_storage_backends.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,7 +354,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 13:07:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 13:59:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

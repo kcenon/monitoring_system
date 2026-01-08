@@ -7,7 +7,7 @@ var searchData=
   ['basic_5fmonitoring_5fexample_2ecpp_4',['basic_monitoring_example.cpp',['../d0/d97/basic__monitoring__example_8cpp.html',1,'']]],
   ['batch_5fcollection_5',['batch_collection',['../d6/d16/structkcenon_1_1monitoring_1_1collection__config.html#a1a8384f93885a7f29d056d8a0bcfe038',1,'kcenon::monitoring::collection_config']]],
   ['batch_5fid_6',['batch_id',['../d2/d88/structkcenon_1_1monitoring_1_1metric__batch.html#a3fb847551ee080ece0ca268c7ce747f5',1,'kcenon::monitoring::metric_batch']]],
-  ['batch_5fsize_7',['batch_size',['../d6/d16/structkcenon_1_1monitoring_1_1collection__config.html#ab11fd16ab649e52eab5015716d966ec4',1,'kcenon::monitoring::collection_config']]],
+  ['batch_5fsize_7',['batch_size',['../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a429f72ed65b994ef6af4d08f87e0207a',1,'kcenon::monitoring::storage_config::batch_size'],['../d6/d16/structkcenon_1_1monitoring_1_1collection__config.html#ab11fd16ab649e52eab5015716d966ec4',1,'kcenon::monitoring::collection_config::batch_size']]],
   ['batch_5ftimeout_8',['batch_timeout',['../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a388ccfcf3993be8eb98df78427a81983',1,'kcenon::monitoring::trace_export_config']]],
   ['batch_5ftimestamp_9',['batch_timestamp',['../d2/d88/structkcenon_1_1monitoring_1_1metric__batch.html#aa862e7a69cd0fa8329e01efea930d683',1,'kcenon::monitoring::metric_batch']]],
   ['batches_5freceived_10',['batches_received',['../d7/dd7/structkcenon_1_1monitoring_1_1central__collector_1_1stats.html#ad3a2661aaeae69a799d720b57e17f75e',1,'kcenon::monitoring::central_collector::stats']]],

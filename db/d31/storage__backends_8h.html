@@ -76,7 +76,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">storage_backends.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -85,35 +86,59 @@ $(function() {
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;mutex&gt;</code><br />
+<code>#include &lt;deque&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../d1/d7d/result__types_8h_source.html">kcenon/monitoring/core/result_types.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d1/d6e/monitoring__core_8h_source.html">kcenon/monitoring/interfaces/monitoring_core.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for storage_backends.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d5c/storage__backends_8h__incl.png" border="0" usemap="#ainclude_2kcenon_2monitoring_2storage_2storage__backends_8h" alt=""/></div>
 <map name="ainclude_2kcenon_2monitoring_2storage_2storage__backends_8h" id="ainclude_2kcenon_2monitoring_2storage_2storage__backends_8h">
-<area shape="rect" title=" " alt="" coords="110,5,318,45"/>
-<area shape="rect" title=" " alt="" coords="246,269,305,295"/>
-<area shape="poly" title=" " alt="" coords="111,46,65,59,29,78,17,89,10,102,9,116,15,132,35,160,60,185,88,206,119,224,180,251,233,268,232,274,178,256,116,229,85,211,57,189,31,164,10,135,4,117,5,100,12,86,26,74,63,54,109,41"/>
-<area shape="rect" title=" " alt="" coords="25,101,88,126"/>
-<area shape="poly" title=" " alt="" coords="181,48,91,96,88,92,178,43"/>
-<area shape="rect" title=" " alt="" coords="113,101,190,126"/>
-<area shape="poly" title=" " alt="" coords="202,47,170,91,166,88,198,44"/>
-<area shape="rect" title=" " alt="" coords="215,101,339,126"/>
-<area shape="poly" title=" " alt="" coords="230,44,262,88,258,91,226,47"/>
-<area shape="rect" title=" " alt="" coords="363,101,430,126"/>
-<area shape="poly" title=" " alt="" coords="255,43,361,92,359,97,253,48"/>
-<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="454,93,630,133"/>
-<area shape="poly" title=" " alt="" coords="287,43,458,87,456,92,285,48"/>
-<area shape="poly" title=" " alt="" coords="460,136,361,161,323,174,304,183,292,199,284,218,278,256,273,255,279,217,287,197,300,179,321,169,360,156,458,131"/>
-<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="313,189,424,214"/>
-<area shape="poly" title=" " alt="" coords="505,136,405,185,403,180,503,131"/>
-<area shape="rect" title=" " alt="" coords="448,181,636,221"/>
-<area shape="poly" title=" " alt="" coords="545,134,545,167,539,167,539,134"/>
-<area shape="rect" title=" " alt="" coords="661,189,735,214"/>
-<area shape="poly" title=" " alt="" coords="577,131,667,180,664,184,575,136"/>
-<area shape="poly" title=" " alt="" coords="357,216,301,262,298,258,353,212"/>
-<area shape="rect" title=" " alt="" coords="335,269,402,295"/>
-<area shape="poly" title=" " alt="" coords="371,214,371,255,366,255,366,214"/>
+<area shape="rect" title=" " alt="" coords="484,5,692,45"/>
+<area shape="rect" title=" " alt="" coords="275,357,333,383"/>
+<area shape="poly" title=" " alt="" coords="484,36,335,55,253,72,173,96,82,124,49,144,33,161,18,183,10,201,8,218,11,234,18,249,44,276,82,300,127,320,175,336,262,358,260,363,174,342,125,325,79,305,41,280,13,252,6,235,3,218,5,199,14,180,29,157,45,140,80,119,171,91,251,67,334,50,484,30"/>
+<area shape="rect" title=" " alt="" coords="29,189,91,214"/>
+<area shape="poly" title=" " alt="" coords="484,43,377,64,264,96,215,116,167,139,91,183,88,179,165,135,213,111,262,91,375,59,483,38"/>
+<area shape="rect" title=" " alt="" coords="116,189,193,214"/>
+<area shape="poly" title=" " alt="" coords="504,48,428,69,350,96,259,140,185,184,182,179,256,136,348,91,427,64,502,43"/>
+<area shape="rect" title=" " alt="" coords="793,189,917,214"/>
+<area shape="poly" title=" " alt="" coords="604,44,642,87,694,131,748,161,802,182,800,187,746,166,691,136,638,91,600,47"/>
+<area shape="rect" title=" " alt="" coords="941,189,1008,214"/>
+<area shape="poly" title=" " alt="" coords="619,43,688,91,712,113,737,131,789,151,831,159,875,165,930,179,937,181,935,186,929,184,874,170,830,164,787,156,735,136,709,117,685,95,616,48"/>
+<area shape="rect" title=" " alt="" coords="748,101,812,126"/>
+<area shape="poly" title=" " alt="" coords="631,43,743,93,741,98,629,48"/>
+<area shape="rect" title=" " alt="" coords="837,101,899,126"/>
+<area shape="poly" title=" " alt="" coords="664,43,742,64,825,91,831,93,829,98,823,96,741,70,663,48"/>
+<area shape="rect" title=" " alt="" coords="924,101,1009,126"/>
+<area shape="poly" title=" " alt="" coords="693,42,799,63,913,91,924,94,922,99,911,96,798,69,692,47"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="217,181,393,221"/>
+<area shape="poly" title=" " alt="" coords="506,48,451,67,399,96,358,132,327,171,323,168,354,128,396,91,449,63,504,43"/>
+<area shape="rect" href="../../d1/d6e/monitoring__core_8h.html" title="Core monitoring system interface definitions." alt="" coords="409,93,623,133"/>
+<area shape="poly" title=" " alt="" coords="574,47,543,85,539,81,570,44"/>
+<area shape="poly" title=" " alt="" coords="270,224,243,244,222,271,217,289,222,308,241,331,266,349,262,353,237,335,218,311,211,289,218,268,239,240,266,219"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="445,277,555,302"/>
+<area shape="poly" title=" " alt="" coords="349,219,463,269,460,274,347,224"/>
+<area shape="rect" title=" " alt="" coords="233,269,421,309"/>
+<area shape="poly" title=" " alt="" coords="313,221,321,255,316,256,308,222"/>
+<area shape="rect" title=" " alt="" coords="601,277,676,302"/>
+<area shape="poly" title=" " alt="" coords="380,219,567,267,589,272,587,277,566,272,379,224"/>
+<area shape="poly" title=" " alt="" coords="473,304,346,355,344,350,471,300"/>
+<area shape="rect" title=" " alt="" coords="467,357,533,383"/>
+<area shape="poly" title=" " alt="" coords="503,302,503,343,497,343,497,302"/>
+<area shape="poly" title=" " alt="" coords="601,131,641,150,674,180,697,213,710,245,709,278,702,294,690,311,672,321,640,330,546,346,348,368,347,362,545,341,639,325,670,316,686,307,697,292,704,277,705,246,693,215,670,183,638,155,598,136"/>
+<area shape="poly" title=" " alt="" coords="410,127,264,148,183,164,105,184,97,186,96,181,103,179,182,159,263,143,409,122"/>
+<area shape="poly" title=" " alt="" coords="411,136,311,157,206,184,197,187,195,182,205,179,310,152,410,131"/>
+<area shape="poly" title=" " alt="" coords="591,131,797,183,796,188,590,136"/>
+<area shape="poly" title=" " alt="" coords="623,122,770,143,851,159,930,179,938,181,936,186,929,184,850,164,769,149,623,128"/>
+<area shape="poly" title=" " alt="" coords="471,136,365,179,363,174,469,131"/>
+<area shape="poly" title=" " alt="" coords="573,131,605,151,630,180,638,201,630,223,617,240,600,254,562,274,559,270,597,250,613,236,626,220,632,201,626,183,601,155,570,136"/>
+<area shape="poly" title=" " alt="" coords="588,131,624,150,639,164,652,180,660,201,661,224,652,264,647,263,655,223,654,202,647,183,635,168,620,155,586,136"/>
+<area shape="rect" title=" " alt="" coords="418,189,505,214"/>
+<area shape="poly" title=" " alt="" coords="506,135,478,178,474,175,502,132"/>
+<area shape="rect" title=" " alt="" coords="529,189,615,214"/>
+<area shape="poly" title=" " alt="" coords="531,132,559,175,555,178,526,135"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -121,13 +146,15 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/dd7/storage__backends_8h__dep__incl.png" border="0" usemap="#ainclude_2kcenon_2monitoring_2storage_2storage__backends_8hdep" alt=""/></div>
 <map name="ainclude_2kcenon_2monitoring_2storage_2storage__backends_8hdep" id="ainclude_2kcenon_2monitoring_2storage_2storage__backends_8hdep">
-<area shape="rect" title=" " alt="" coords="209,5,417,45"/>
+<area shape="rect" title=" " alt="" coords="296,5,504,45"/>
 <area shape="rect" href="../../d0/d97/basic__monitoring__example_8cpp.html" title="Basic example demonstrating simple monitoring setup." alt="" coords="5,93,208,133"/>
-<area shape="poly" title=" " alt="" coords="256,53,153,96,151,91,254,48"/>
+<area shape="poly" title=" " alt="" coords="323,52,172,96,170,91,322,47"/>
 <area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html" title="End&#45;to&#45;end integration tests for the monitoring system." alt="" coords="233,93,394,133"/>
-<area shape="poly" title=" " alt="" coords="316,59,316,93,311,93,311,59"/>
-<area shape="rect" href="../../de/da5/test__stress__performance_8cpp.html" title="Stress testing for the monitoring system." alt="" coords="418,101,665,126"/>
-<area shape="poly" title=" " alt="" coords="377,48,512,98,510,103,375,53"/>
+<area shape="poly" title=" " alt="" coords="373,57,334,95,331,91,369,53"/>
+<area shape="rect" href="../../d5/dec/test__storage__backends_8cpp.html" title=" " alt="" coords="419,93,557,133"/>
+<area shape="poly" title=" " alt="" coords="431,53,470,91,467,95,428,57"/>
+<area shape="rect" href="../../de/da5/test__stress__performance_8cpp.html" title="Stress testing for the monitoring system." alt="" coords="582,101,829,126"/>
+<area shape="poly" title=" " alt="" coords="481,46,665,98,664,103,479,52"/>
 </map>
 </div>
 </div>
@@ -138,14 +165,26 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">kcenon::monitoring::storage_config</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage configuration.  <a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html">kcenon::monitoring::snapshot_storage_backend</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base interface for snapshot storage backends.  <a href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">kcenon::monitoring::file_storage_backend</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">File storage backend for metrics snapshots.  <a href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/df3/classkcenon_1_1monitoring_1_1database__storage__backend.html">kcenon::monitoring::database_storage_backend</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Database storage backend (stub implementation)  <a href="../../df/df3/classkcenon_1_1monitoring_1_1database__storage__backend.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d36/classkcenon_1_1monitoring_1_1cloud__storage__backend.html">kcenon::monitoring::cloud_storage_backend</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cloud storage backend (stub implementation)  <a href="../../d9/d36/classkcenon_1_1monitoring_1_1cloud__storage__backend.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dbb/classkcenon_1_1monitoring_1_1storage__backend__factory.html">kcenon::monitoring::storage_backend_factory</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory for creating storage backends.  <a href="../../da/dbb/classkcenon_1_1monitoring_1_1storage__backend__factory.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html">kcenon::monitoring::kv_storage_backend</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic key-value storage interface - stub.  <a href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html">kcenon::monitoring::memory_storage_backend</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-memory storage backend - basic implementation.  <a href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">kcenon::monitoring::file_storage_backend</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">File storage backend - stub implementation.  <a href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-memory key-value storage backend.  <a href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -158,12 +197,18 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ae7927fdb839278142ee031c30e42cc98" id="r_ae7927fdb839278142ee031c30e42cc98"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98">kcenon::monitoring::storage_backend_type</a> { <br />
-&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98acd69b4957f06cd818d7bf3d61980e291">kcenon::monitoring::memory</a>
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98adee3aa96e22bc7e161b0388143c89b9e">kcenon::monitoring::memory_buffer</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3afd7d6ff177cd37bed81c26a28757a7">kcenon::monitoring::file_json</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a8983bf013849a0f786a37b5131bea308">kcenon::monitoring::file_binary</a>
-, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a11e0eed8d3696c0a632f822df385ab3c">kcenon::monitoring::database</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ab2f8630695ab3eb420001e6bcd452025">kcenon::monitoring::file_csv</a>
 , <br />
-&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a8cf05aeb2391adb85c0f0eb0ab1cccd7">kcenon::monitoring::time_series</a>
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a4231c010b4e43d6b6b2b45b23ab6aa45">kcenon::monitoring::database_sqlite</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3ae41677b883879151d25978947f79a7">kcenon::monitoring::database_postgresql</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a0181c9af229976ee1436038277820c13">kcenon::monitoring::database_mysql</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a9c8b13e0fe70c407314a6af9009b44af">kcenon::monitoring::cloud_s3</a>
+, <br />
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a46f461446cf9afc5a1a32b1f4687cfe6">kcenon::monitoring::cloud_gcs</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ac90c2ff16cc8133a9616a174da430782">kcenon::monitoring::cloud_azure_blob</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ae7927fdb839278142ee031c30e42cc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage backend types.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98">More...</a><br /></td></tr>
@@ -175,11 +220,23 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ab219f258302c3ffbbc149e2617622ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compression algorithms.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab219f258302c3ffbbc149e2617622ee2">More...</a><br /></td></tr>
 <tr class="separator:ab219f258302c3ffbbc149e2617622ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ad011507205e3ddc08ff6db88313b653c" id="r_ad011507205e3ddc08ff6db88313b653c"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html">snapshot_storage_backend</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad011507205e3ddc08ff6db88313b653c">kcenon::monitoring::create_file_storage</a> (const std::string &amp;path, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98">storage_backend_type</a> type, size_t capacity)</td></tr>
+<tr class="memdesc:ad011507205e3ddc08ff6db88313b653c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a file storage backend.  <br /></td></tr>
+<tr class="separator:ad011507205e3ddc08ff6db88313b653c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f8ba6f124cb1433b947b10dddb1b2e9" id="r_a0f8ba6f124cb1433b947b10dddb1b2e9"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html">snapshot_storage_backend</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0f8ba6f124cb1433b947b10dddb1b2e9">kcenon::monitoring::create_database_storage</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98">storage_backend_type</a> type, const std::string &amp;path, const std::string &amp;table)</td></tr>
+<tr class="memdesc:a0f8ba6f124cb1433b947b10dddb1b2e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a database storage backend.  <br /></td></tr>
+<tr class="separator:a0f8ba6f124cb1433b947b10dddb1b2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a874e1d33c5f361ec9844e1be1382d961" id="r_a874e1d33c5f361ec9844e1be1382d961"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html">snapshot_storage_backend</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a874e1d33c5f361ec9844e1be1382d961">kcenon::monitoring::create_cloud_storage</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98">storage_backend_type</a> type, const std::string &amp;bucket)</td></tr>
+<tr class="memdesc:a874e1d33c5f361ec9844e1be1382d961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a cloud storage backend.  <br /></td></tr>
+<tr class="separator:a874e1d33c5f361ec9844e1be1382d961"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 13:07:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 13:59:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

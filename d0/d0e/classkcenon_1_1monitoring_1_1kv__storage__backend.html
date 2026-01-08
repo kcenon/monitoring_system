@@ -89,11 +89,9 @@ Inheritance diagram for kcenon::monitoring::kv_storage_backend:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d39/classkcenon_1_1monitoring_1_1kv__storage__backend__inherit__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1kv__storage__backend_inherit__map" alt="Inheritance graph"/></div>
 <map name="akcenon_1_1monitoring_1_1kv__storage__backend_inherit__map" id="akcenon_1_1monitoring_1_1kv__storage__backend_inherit__map">
-<area shape="rect" title="Basic key&#45;value storage interface &#45; stub." alt="" coords="106,5,289,165"/>
-<area shape="rect" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html" title="File storage backend &#45; stub implementation." alt="" coords="5,213,181,413"/>
-<area shape="poly" title=" " alt="" coords="158,179,141,214,137,212,153,177"/>
-<area shape="rect" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html" title="In&#45;memory storage backend &#45; basic implementation." alt="" coords="205,253,400,373"/>
-<area shape="poly" title=" " alt="" coords="242,177,278,252,273,254,238,179"/>
+<area shape="rect" title="Basic key&#45;value storage interface &#45; stub." alt="" coords="19,5,202,165"/>
+<area shape="rect" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html" title="In&#45;memory key&#45;value storage backend." alt="" coords="5,213,216,373"/>
+<area shape="poly" title=" " alt="" coords="113,179,113,213,108,213,108,179"/>
 </map>
 </div>
 <div class="dynheader">
@@ -121,7 +119,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Basic key-value storage interface - stub. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00081">81</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00500">500</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5685d23fdf949dfd5db32a538445267d" name="a5685d23fdf949dfd5db32a538445267d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5685d23fdf949dfd5db32a538445267d">&#9670;&#160;</a></span>~kv_storage_backend()</h2>
@@ -172,10 +170,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a3cab7dbaccb968e8ede4fbfeb013e1f8">kcenon::monitoring::file_storage_backend</a>.</p>
-
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00087">87</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   87</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">true</span>); }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00506">506</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  506</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">true</span>); }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a07bdd48e145c9623f4b4443f98e4700c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">kcenon::monitoring::make_success</a></div><div class="ttdeci">common::Result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00155">result_types.h:155</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -214,7 +210,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ab935def809bb7029525b4dae6af68f82">kcenon::monitoring::memory_storage_backend</a>, and <a class="el" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a2987de40222f4af0f8a6e749a9f67bd5">kcenon::monitoring::file_storage_backend</a>.</p>
+<p>Implemented in <a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ab935def809bb7029525b4dae6af68f82">kcenon::monitoring::memory_storage_backend</a>.</p>
 
 </div>
 </div>
@@ -242,7 +238,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a474e5c30dfcd4627e09724e8daf73a02">kcenon::monitoring::memory_storage_backend</a>, and <a class="el" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">kcenon::monitoring::file_storage_backend</a>.</p>
+<p>Implemented in <a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a474e5c30dfcd4627e09724e8daf73a02">kcenon::monitoring::memory_storage_backend</a>.</p>
 
 </div>
 </div>
@@ -280,7 +276,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a5a4b8407cdf6addf1fddb6481ecd476d">kcenon::monitoring::memory_storage_backend</a>, and <a class="el" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">kcenon::monitoring::file_storage_backend</a>.</p>
+<p>Implemented in <a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a5a4b8407cdf6addf1fddb6481ecd476d">kcenon::monitoring::memory_storage_backend</a>.</p>
 
 </div>
 </div>
@@ -290,7 +286,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 13:08:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 13:59:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
