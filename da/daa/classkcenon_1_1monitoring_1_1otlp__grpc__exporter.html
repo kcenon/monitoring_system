@@ -193,8 +193,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a393310c451de92c12b5670e1875785ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a187d240c7df3734d15dbbfd726fddf03" id="r_a187d240c7df3734d15dbbfd726fddf03"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a187d240c7df3734d15dbbfd726fddf03">stats_mutex_</a></td></tr>
 <tr class="separator:a187d240c7df3734d15dbbfd726fddf03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a640003aa1fc2b7823143f5667cdcb610" id="r_a640003aa1fc2b7823143f5667cdcb610"><td class="memItemLeft" align="right" valign="top">std::chrono::milliseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a640003aa1fc2b7823143f5667cdcb610">total_export_time_</a> {0}</td></tr>
-<tr class="separator:a640003aa1fc2b7823143f5667cdcb610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1478503f11330869b9741a23a9feeec5" id="r_a1478503f11330869b9741a23a9feeec5"><td class="memItemLeft" align="right" valign="top">std::chrono::microseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1478503f11330869b9741a23a9feeec5">total_export_time_</a> {0}</td></tr>
+<tr class="separator:a1478503f11330869b9741a23a9feeec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>OTLP gRPC trace exporter. </p>
@@ -400,7 +400,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  477</span> </div>
 <div class="line"><span class="lineno">  478</span>        {</div>
 <div class="line"><span class="lineno">  479</span>            std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a187d240c7df3734d15dbbfd726fddf03">stats_mutex_</a>);</div>
-<div class="line"><span class="lineno">  480</span>            <a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a640003aa1fc2b7823143f5667cdcb610">total_export_time_</a> += std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(</div>
+<div class="line"><span class="lineno">  480</span>            <a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1478503f11330869b9741a23a9feeec5">total_export_time_</a> += std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(</div>
 <div class="line"><span class="lineno">  481</span>                end_time - start_time);</div>
 <div class="line"><span class="lineno">  482</span>        }</div>
 <div class="line"><span class="lineno">  483</span> </div>
@@ -418,9 +418,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  495</span>        }</div>
 <div class="line"><span class="lineno">  496</span>    }</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_a014349b4e3fe634eee2c2e48d28cf320"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a014349b4e3fe634eee2c2e48d28cf320">kcenon::monitoring::otlp_grpc_exporter::send_with_retry</a></div><div class="ttdeci">result&lt; grpc_response &gt; send_with_retry(const grpc_request &amp;request)</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00557">otlp_grpc_exporter.h:557</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_a1478503f11330869b9741a23a9feeec5"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1478503f11330869b9741a23a9feeec5">kcenon::monitoring::otlp_grpc_exporter::total_export_time_</a></div><div class="ttdeci">std::chrono::microseconds total_export_time_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00392">otlp_grpc_exporter.h:392</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_a187d240c7df3734d15dbbfd726fddf03"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a187d240c7df3734d15dbbfd726fddf03">kcenon::monitoring::otlp_grpc_exporter::stats_mutex_</a></div><div class="ttdeci">std::mutex stats_mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00391">otlp_grpc_exporter.h:391</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_a5ee7e2be84c3345ca1080ec29107f371"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a5ee7e2be84c3345ca1080ec29107f371">kcenon::monitoring::otlp_grpc_exporter::dropped_spans_</a></div><div class="ttdeci">std::atomic&lt; std::size_t &gt; dropped_spans_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00388">otlp_grpc_exporter.h:388</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_a640003aa1fc2b7823143f5667cdcb610"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a640003aa1fc2b7823143f5667cdcb610">kcenon::monitoring::otlp_grpc_exporter::total_export_time_</a></div><div class="ttdeci">std::chrono::milliseconds total_export_time_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00392">otlp_grpc_exporter.h:392</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_aa7a82204c8337dcebef7466a92252f66"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#aa7a82204c8337dcebef7466a92252f66">kcenon::monitoring::otlp_grpc_exporter::exported_spans_</a></div><div class="ttdeci">std::atomic&lt; std::size_t &gt; exported_spans_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00387">otlp_grpc_exporter.h:387</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_ac5434d6e6f4c06260a5d893af7c2dd58"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ac5434d6e6f4c06260a5d893af7c2dd58">kcenon::monitoring::otlp_grpc_exporter::failed_exports_</a></div><div class="ttdeci">std::atomic&lt; std::size_t &gt; failed_exports_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00389">otlp_grpc_exporter.h:389</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__span__converter_html_a4c550e8a321d017a9901679fd526f7d4"><div class="ttname"><a href="../../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#a4c550e8a321d017a9901679fd526f7d4">kcenon::monitoring::otlp_span_converter::convert_to_otlp</a></div><div class="ttdeci">static std::vector&lt; uint8_t &gt; convert_to_otlp(const std::vector&lt; trace_span &gt; &amp;spans, const std::string &amp;service_name, const std::string &amp;service_version, const std::unordered_map&lt; std::string, std::string &gt; &amp;resource_attributes)</div><div class="ttdoc">Convert spans to OTLP protobuf format.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00118">otlp_grpc_exporter.h:118</a></div></div>
@@ -562,7 +562,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  535</span>        stats.retries = <a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a393310c451de92c12b5670e1875785ff">retries_</a>.load();</div>
 <div class="line"><span class="lineno">  536</span> </div>
 <div class="line"><span class="lineno">  537</span>        std::lock_guard&lt;std::mutex&gt; lock(<span class="keyword">const_cast&lt;</span>std::mutex&amp;<span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a187d240c7df3734d15dbbfd726fddf03">stats_mutex_</a>));</div>
-<div class="line"><span class="lineno">  538</span>        stats.total_export_time = <a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a640003aa1fc2b7823143f5667cdcb610">total_export_time_</a>;</div>
+<div class="line"><span class="lineno">  538</span>        stats.total_export_time = <a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1478503f11330869b9741a23a9feeec5">total_export_time_</a>;</div>
 <div class="line"><span class="lineno">  539</span>        <span class="keywordflow">return</span> stats;</div>
 <div class="line"><span class="lineno">  540</span>    }</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1otlp__grpc__exporter_html_a393310c451de92c12b5670e1875785ff"><div class="ttname"><a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a393310c451de92c12b5670e1875785ff">kcenon::monitoring::otlp_grpc_exporter::retries_</a></div><div class="ttdeci">std::atomic&lt; std::size_t &gt; retries_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00390">otlp_grpc_exporter.h:390</a></div></div>
@@ -1204,8 +1204,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a640003aa1fc2b7823143f5667cdcb610" name="a640003aa1fc2b7823143f5667cdcb610"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a640003aa1fc2b7823143f5667cdcb610">&#9670;&#160;</a></span>total_export_time_</h2>
+<a id="a1478503f11330869b9741a23a9feeec5" name="a1478503f11330869b9741a23a9feeec5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1478503f11330869b9741a23a9feeec5">&#9670;&#160;</a></span>total_export_time_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1214,7 +1214,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::chrono::milliseconds kcenon::monitoring::otlp_grpc_exporter::total_export_time_ {0}</td>
+          <td class="memname">std::chrono::microseconds kcenon::monitoring::otlp_grpc_exporter::total_export_time_ {0}</td>
         </tr>
       </table>
   </td>
@@ -1259,7 +1259,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 15:18:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 15:35:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

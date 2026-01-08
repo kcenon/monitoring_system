@@ -680,70 +680,79 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a46b3a0fcfd345b3b7933b8f61753f41a">endpoint</a> = <span class="stringliteral">&quot;localhost:4317&quot;</span>;</div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>    <span class="keyword">auto</span> stub_transport = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a35091bd947fbe2921355d76ff705cec1">create_stub_grpc_transport</a>();</div>
-<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>    <a class="code hl_class" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> exporter(config, std::move(stub_transport));</div>
-<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
-<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>    <span class="keyword">auto</span> start_result = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ab0ce41775977c52679146099cbe73f42">start</a>();</div>
-<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>    EXPECT_TRUE(start_result.is_ok());</div>
-<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> </div>
-<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>    <span class="comment">// Export multiple batches</span></div>
-<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1b11a34ad5a4e1ad8be8a9f84989ddd1">export_spans</a>(test_spans_);</div>
-<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
-<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    }</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>    <span class="comment">// Set response handler to simulate realistic export time</span></div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>    stub_transport-&gt;set_response_handler([](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d40/structkcenon_1_1monitoring_1_1grpc__request.html">grpc_request</a>&amp;) {</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>        <span class="comment">// Simulate a small delay to ensure measurable export time</span></div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>        std::this_thread::sleep_for(std::chrono::microseconds(100));</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>        <a class="code hl_struct" href="../../df/df7/structkcenon_1_1monitoring_1_1grpc__response.html">grpc_response</a> response;</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>        response.<a class="code hl_variable" href="../../df/df7/structkcenon_1_1monitoring_1_1grpc__response.html#a5fd619e2819aa0c01e2f0c59bb53987e">status_code</a> = 0;  <span class="comment">// OK</span></div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>        response.<a class="code hl_variable" href="../../df/df7/structkcenon_1_1monitoring_1_1grpc__response.html#a6d1f3a2d9a679db40aa1dee9cda3084e">status_message</a> = <span class="stringliteral">&quot;OK&quot;</span>;</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>        <span class="keywordflow">return</span> response;</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>    });</div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    <a class="code hl_class" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> exporter(config, std::move(stub_transport));</div>
 <div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span> </div>
-<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>    <span class="keyword">auto</span> detailed_stats = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a447140dbf9083735c5a8d70441419fdf">get_detailed_stats</a>();</div>
-<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>    EXPECT_EQ(detailed_stats.spans_exported, test_spans_.size() * 3);</div>
-<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>    EXPECT_EQ(detailed_stats.spans_dropped, 0u);</div>
-<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>    EXPECT_EQ(detailed_stats.export_failures, 0u);</div>
-<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    EXPECT_GT(detailed_stats.total_export_time.count(), 0);</div>
-<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>}</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>    <span class="keyword">auto</span> start_result = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ab0ce41775977c52679146099cbe73f42">start</a>();</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>    EXPECT_TRUE(start_result.is_ok());</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span> </div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>    <span class="comment">// Export multiple batches</span></div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1b11a34ad5a4e1ad8be8a9f84989ddd1">export_spans</a>(test_spans_);</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>    }</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span> </div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    <span class="keyword">auto</span> detailed_stats = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a447140dbf9083735c5a8d70441419fdf">get_detailed_stats</a>();</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    EXPECT_EQ(detailed_stats.spans_exported, test_spans_.size() * 3);</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    EXPECT_EQ(detailed_stats.spans_dropped, 0u);</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>    EXPECT_EQ(detailed_stats.export_failures, 0u);</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>    EXPECT_GT(detailed_stats.total_export_time.count(), 0);</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>}</div>
 </div>
-<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span> </div>
-<div class="foldopen" id="foldopen00571" data-start="{" data-end="}">
-<div class="line"><a id="l00571" name="l00571"></a><span class="lineno"><a class="line" href="../../dc/dbd/test__trace__exporters_8cpp.html#a8970b46fb6a5f0c8647c675159610451">  571</a></span><a class="code hl_function" href="../../dc/dbd/test__trace__exporters_8cpp.html#a423b170cd64ad08da833da46408ba534">TEST_F</a>(<a class="code hl_class" href="../../df/de1/classOtlpGrpcExporterTest.html">OtlpGrpcExporterTest</a>, FactoryFunctions) {</div>
-<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    <span class="comment">// Test default factory</span></div>
-<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    <span class="keyword">auto</span> exporter1 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a85f0e44715d3cc926daa5a7b9716c761">create_otlp_grpc_exporter</a>();</div>
-<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    EXPECT_TRUE(exporter1 != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    EXPECT_EQ(exporter1-&gt;config().endpoint, <span class="stringliteral">&quot;localhost:4317&quot;</span>);</div>
-<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span> </div>
-<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>    <span class="comment">// Test factory with endpoint</span></div>
-<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>    <span class="keyword">auto</span> exporter2 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a85f0e44715d3cc926daa5a7b9716c761">create_otlp_grpc_exporter</a>(<span class="stringliteral">&quot;collector:4317&quot;</span>);</div>
-<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>    EXPECT_TRUE(exporter2 != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    EXPECT_EQ(exporter2-&gt;config().endpoint, <span class="stringliteral">&quot;collector:4317&quot;</span>);</div>
-<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span> </div>
-<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>    <span class="comment">// Test factory with config</span></div>
-<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>    <a class="code hl_struct" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html">otlp_grpc_config</a> config;</div>
-<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a46b3a0fcfd345b3b7933b8f61753f41a">endpoint</a> = <span class="stringliteral">&quot;otlp.example.com:443&quot;</span>;</div>
-<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a05bca1e597eb96923150a7f3233b3da2">use_tls</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a7d0c1a595f149d5eead39dea8e166082">service_name</a> = <span class="stringliteral">&quot;my_service&quot;</span>;</div>
-<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
-<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>    <span class="keyword">auto</span> exporter3 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a85f0e44715d3cc926daa5a7b9716c761">create_otlp_grpc_exporter</a>(config);</div>
-<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    EXPECT_TRUE(exporter3 != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>    EXPECT_EQ(exporter3-&gt;config().endpoint, <span class="stringliteral">&quot;otlp.example.com:443&quot;</span>);</div>
-<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>    EXPECT_TRUE(exporter3-&gt;config().use_tls);</div>
-<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>    EXPECT_EQ(exporter3-&gt;config().service_name, <span class="stringliteral">&quot;my_service&quot;</span>);</div>
-<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>}</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span> </div>
+<div class="foldopen" id="foldopen00580" data-start="{" data-end="}">
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno"><a class="line" href="../../dc/dbd/test__trace__exporters_8cpp.html#a8970b46fb6a5f0c8647c675159610451">  580</a></span><a class="code hl_function" href="../../dc/dbd/test__trace__exporters_8cpp.html#a423b170cd64ad08da833da46408ba534">TEST_F</a>(<a class="code hl_class" href="../../df/de1/classOtlpGrpcExporterTest.html">OtlpGrpcExporterTest</a>, FactoryFunctions) {</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    <span class="comment">// Test default factory</span></div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>    <span class="keyword">auto</span> exporter1 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a85f0e44715d3cc926daa5a7b9716c761">create_otlp_grpc_exporter</a>();</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>    EXPECT_TRUE(exporter1 != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>    EXPECT_EQ(exporter1-&gt;config().endpoint, <span class="stringliteral">&quot;localhost:4317&quot;</span>);</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span> </div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>    <span class="comment">// Test factory with endpoint</span></div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>    <span class="keyword">auto</span> exporter2 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a85f0e44715d3cc926daa5a7b9716c761">create_otlp_grpc_exporter</a>(<span class="stringliteral">&quot;collector:4317&quot;</span>);</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>    EXPECT_TRUE(exporter2 != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    EXPECT_EQ(exporter2-&gt;config().endpoint, <span class="stringliteral">&quot;collector:4317&quot;</span>);</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span> </div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>    <span class="comment">// Test factory with config</span></div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>    <a class="code hl_struct" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html">otlp_grpc_config</a> config;</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a46b3a0fcfd345b3b7933b8f61753f41a">endpoint</a> = <span class="stringliteral">&quot;otlp.example.com:443&quot;</span>;</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a05bca1e597eb96923150a7f3233b3da2">use_tls</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a7d0c1a595f149d5eead39dea8e166082">service_name</a> = <span class="stringliteral">&quot;my_service&quot;</span>;</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span> </div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>    <span class="keyword">auto</span> exporter3 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a85f0e44715d3cc926daa5a7b9716c761">create_otlp_grpc_exporter</a>(config);</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>    EXPECT_TRUE(exporter3 != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>    EXPECT_EQ(exporter3-&gt;config().endpoint, <span class="stringliteral">&quot;otlp.example.com:443&quot;</span>);</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    EXPECT_TRUE(exporter3-&gt;config().use_tls);</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>    EXPECT_EQ(exporter3-&gt;config().service_name, <span class="stringliteral">&quot;my_service&quot;</span>);</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>}</div>
 </div>
-<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
-<div class="foldopen" id="foldopen00595" data-start="{" data-end="}">
-<div class="line"><a id="l00595" name="l00595"></a><span class="lineno"><a class="line" href="../../dc/dbd/test__trace__exporters_8cpp.html#a7dd0edf4498e98977e443035ca5cebb3">  595</a></span><a class="code hl_function" href="../../dc/dbd/test__trace__exporters_8cpp.html#a423b170cd64ad08da833da46408ba534">TEST_F</a>(<a class="code hl_class" href="../../df/de1/classOtlpGrpcExporterTest.html">OtlpGrpcExporterTest</a>, ExportEmptySpans) {</div>
-<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>    <a class="code hl_struct" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html">otlp_grpc_config</a> config;</div>
-<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a46b3a0fcfd345b3b7933b8f61753f41a">endpoint</a> = <span class="stringliteral">&quot;localhost:4317&quot;</span>;</div>
-<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span> </div>
-<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>    <span class="keyword">auto</span> stub_transport = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a35091bd947fbe2921355d76ff705cec1">create_stub_grpc_transport</a>();</div>
-<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    <a class="code hl_class" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> exporter(config, std::move(stub_transport));</div>
-<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span> </div>
-<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>    <span class="keyword">auto</span> start_result = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ab0ce41775977c52679146099cbe73f42">start</a>();</div>
-<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>    EXPECT_TRUE(start_result.is_ok());</div>
-<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span> </div>
-<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>    <span class="comment">// Export empty vector should succeed without sending</span></div>
-<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    std::vector&lt;trace_span&gt; empty_spans;</div>
-<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>    <span class="keyword">auto</span> export_result = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1b11a34ad5a4e1ad8be8a9f84989ddd1">export_spans</a>(empty_spans);</div>
-<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>    EXPECT_TRUE(export_result.is_ok());</div>
-<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span> </div>
-<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>    <span class="keyword">auto</span> stats = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ac343ee7a04c96c6f1897cd10f000191f">get_stats</a>();</div>
-<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 0u);</div>
-<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>}</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span> </div>
+<div class="foldopen" id="foldopen00604" data-start="{" data-end="}">
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno"><a class="line" href="../../dc/dbd/test__trace__exporters_8cpp.html#a7dd0edf4498e98977e443035ca5cebb3">  604</a></span><a class="code hl_function" href="../../dc/dbd/test__trace__exporters_8cpp.html#a423b170cd64ad08da833da46408ba534">TEST_F</a>(<a class="code hl_class" href="../../df/de1/classOtlpGrpcExporterTest.html">OtlpGrpcExporterTest</a>, ExportEmptySpans) {</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>    <a class="code hl_struct" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html">otlp_grpc_config</a> config;</div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    config.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a46b3a0fcfd345b3b7933b8f61753f41a">endpoint</a> = <span class="stringliteral">&quot;localhost:4317&quot;</span>;</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>    <span class="keyword">auto</span> stub_transport = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a35091bd947fbe2921355d76ff705cec1">create_stub_grpc_transport</a>();</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>    <a class="code hl_class" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> exporter(config, std::move(stub_transport));</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>    <span class="keyword">auto</span> start_result = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ab0ce41775977c52679146099cbe73f42">start</a>();</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>    EXPECT_TRUE(start_result.is_ok());</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span> </div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>    <span class="comment">// Export empty vector should succeed without sending</span></div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>    std::vector&lt;trace_span&gt; empty_spans;</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>    <span class="keyword">auto</span> export_result = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1b11a34ad5a4e1ad8be8a9f84989ddd1">export_spans</a>(empty_spans);</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    EXPECT_TRUE(export_result.is_ok());</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>    <span class="keyword">auto</span> stats = exporter.<a class="code hl_function" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ac343ee7a04c96c6f1897cd10f000191f">get_stats</a>();</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>    EXPECT_EQ(stats[<span class="stringliteral">&quot;exported_spans&quot;</span>], 0u);</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>}</div>
 </div>
 <div class="ttc" id="aclassOtlpGrpcExporterTest_html"><div class="ttname"><a href="../../df/de1/classOtlpGrpcExporterTest.html">OtlpGrpcExporterTest</a></div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00387">test_trace_exporters.cpp:387</a></div></div>
 <div class="ttc" id="aclassOtlpGrpcExporterTest_html_ad3b48755eaa37d1843c9f6110f7caf16"><div class="ttname"><a href="../../df/de1/classOtlpGrpcExporterTest.html#ad3b48755eaa37d1843c9f6110f7caf16">OtlpGrpcExporterTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dbd/test__trace__exporters_8cpp_source.html#l00389">test_trace_exporters.cpp:389</a></div></div>
@@ -817,7 +826,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 15:18:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 15:35:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
