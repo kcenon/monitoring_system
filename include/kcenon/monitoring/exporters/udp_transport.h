@@ -139,6 +139,9 @@ private:
 public:
     stub_udp_transport() = default;
 
+    // Bring base class send method into scope
+    using udp_transport::send;
+
     /**
      * @brief Set whether to simulate success or failure
      */
@@ -221,25 +224,29 @@ public:
     uint16_t get_port() const { return port_; }
 };
 
+} } // namespace kcenon::monitoring
+
 #ifdef MONITORING_HAS_COMMON_TRANSPORT_INTERFACES
 #include <kcenon/common/interfaces/transport.h>
+
+namespace kcenon { namespace monitoring {
 
 /**
  * @class common_udp_transport
  * @brief UDP transport implementation using common_system interfaces
  *
  * This implementation provides real UDP functionality by delegating
- * to common::interfaces::IUdpClient implementations.
+ * to ::kcenon::common::interfaces::IUdpClient implementations.
  */
 class common_udp_transport : public udp_transport {
 private:
-    std::shared_ptr<common::interfaces::IUdpClient> client_;
+    std::shared_ptr<::kcenon::common::interfaces::IUdpClient> client_;
     mutable std::atomic<std::size_t> packets_sent_{0};
     mutable std::atomic<std::size_t> bytes_sent_{0};
     mutable std::atomic<std::size_t> send_failures_{0};
 
 public:
-    explicit common_udp_transport(std::shared_ptr<common::interfaces::IUdpClient> client)
+    explicit common_udp_transport(std::shared_ptr<::kcenon::common::interfaces::IUdpClient> client)
         : client_(std::move(client)) {}
 
     result_void connect(const std::string& host, uint16_t port) override {
@@ -332,10 +339,14 @@ public:
     }
 };
 
+} } // namespace kcenon::monitoring
+
 #endif // MONITORING_HAS_COMMON_TRANSPORT_INTERFACES
 
 #ifdef MONITORING_HAS_NETWORK_SYSTEM
 #include <kcenon/network/udp/udp_client.h>
+
+namespace kcenon { namespace monitoring {
 
 /**
  * @class network_udp_transport
@@ -441,7 +452,11 @@ public:
     }
 };
 
+} } // namespace kcenon::monitoring
+
 #endif // MONITORING_HAS_NETWORK_SYSTEM
+
+namespace kcenon { namespace monitoring {
 
 /**
  * @brief Create default UDP transport
@@ -471,7 +486,7 @@ inline std::unique_ptr<stub_udp_transport> create_stub_udp_transport() {
  * @param client The IUdpClient implementation to use
  */
 inline std::unique_ptr<common_udp_transport> create_common_udp_transport(
-    std::shared_ptr<common::interfaces::IUdpClient> client) {
+    std::shared_ptr<::kcenon::common::interfaces::IUdpClient> client) {
     return std::make_unique<common_udp_transport>(std::move(client));
 }
 #endif
