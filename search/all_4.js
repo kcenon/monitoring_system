@@ -17,7 +17,11 @@ var searchData=
   ['example_5f6_5faggregating_5fpattern_14',['example_6_aggregating_pattern',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a2bfe43f46c9eaf038b242846aa26648e',1,'monitor_factory_pattern_example.cpp']]],
   ['example_5f6_5fmonitoring_5fworkflow_15',['example_6_monitoring_workflow',['../d0/d34/logger__di__integration__example_8cpp.html#a77c61aed4fb242a397ecda1274fbb8ab',1,'logger_di_integration_example.cpp']]],
   ['example_5f7_5ffactory_5flifecycle_16',['example_7_factory_lifecycle',['../d3/df7/monitor__factory__pattern__example_8cpp.html#ad272805948d6f72d3ca030bb7b088880',1,'monitor_factory_pattern_example.cpp']]],
-  ['example_5flogger_17',['example_logger',['../d3/dfa/classexample__logger.html#a95f71316714356b1a5cbbb8c20a8f875',1,'example_logger::example_logger()'],['../d3/dfa/classexample__logger.html',1,'example_logger']]],
+  ['example_5flogger_17',['example_logger',['../d3/dfa/classexample__logger.html',1,'example_logger'],['../d3/dfa/classexample__logger.html#a95f71316714356b1a5cbbb8c20a8f875',1,'example_logger::example_logger()']]],
   ['execute_5fquery_18',['execute_query',['../d2/d12/classDatabaseConnection.html#ae21b13ec0e2fe21ddbe7e3db3b9b64d0',1,'DatabaseConnection']]],
-  ['externalapiclient_19',['ExternalApiClient',['../d6/d98/classExternalApiClient.html',1,'']]]
+  ['export_5fcount_19',['export_count',['../d7/da2/classMockTraceExporter.html#a1e5a0b6ff83c412aced748a632ab4059',1,'MockTraceExporter']]],
+  ['export_5fspans_20',['export_spans',['../d7/da2/classMockTraceExporter.html#a95c2c24b09c3ce8e6226169fe30fdfc2',1,'MockTraceExporter']]],
+  ['exported_5fspans_21',['exported_spans',['../d7/da2/classMockTraceExporter.html#aec49ed10716c1ffcda3182acb67fa717',1,'MockTraceExporter']]],
+  ['exporterintegrationtest_22',['ExporterIntegrationTest',['../dd/d3d/classExporterIntegrationTest.html',1,'']]],
+  ['externalapiclient_23',['ExternalApiClient',['../d6/d98/classExternalApiClient.html',1,'']]]
 ];

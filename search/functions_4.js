@@ -14,5 +14,6 @@ var searchData=
   ['example_5f6_5fmonitoring_5fworkflow_11',['example_6_monitoring_workflow',['../d0/d34/logger__di__integration__example_8cpp.html#a77c61aed4fb242a397ecda1274fbb8ab',1,'logger_di_integration_example.cpp']]],
   ['example_5f7_5ffactory_5flifecycle_12',['example_7_factory_lifecycle',['../d3/df7/monitor__factory__pattern__example_8cpp.html#ad272805948d6f72d3ca030bb7b088880',1,'monitor_factory_pattern_example.cpp']]],
   ['example_5flogger_13',['example_logger',['../d3/dfa/classexample__logger.html#a95f71316714356b1a5cbbb8c20a8f875',1,'example_logger']]],
-  ['execute_5fquery_14',['execute_query',['../d2/d12/classDatabaseConnection.html#ae21b13ec0e2fe21ddbe7e3db3b9b64d0',1,'DatabaseConnection']]]
+  ['execute_5fquery_14',['execute_query',['../d2/d12/classDatabaseConnection.html#ae21b13ec0e2fe21ddbe7e3db3b9b64d0',1,'DatabaseConnection']]],
+  ['export_5fspans_15',['export_spans',['../d7/da2/classMockTraceExporter.html#a95c2c24b09c3ce8e6226169fe30fdfc2',1,'MockTraceExporter']]]
 ];
