@@ -448,3 +448,157 @@ TEST_F(PerformanceMonitoringTest, ConcurrentRecording) {
     auto metrics = metrics_result.value();
     EXPECT_EQ(metrics.call_count, num_threads * samples_per_thread);
 }
+
+// =========================================================================
+// Tagged Metric Tests
+// =========================================================================
+
+TEST_F(PerformanceMonitoringTest, RecordCounterWithoutTags) {
+    auto result = monitor.record_counter("requests_total", 1.0);
+    ASSERT_TRUE(result.is_ok());
+
+    result = monitor.record_counter("requests_total", 2.0);
+    ASSERT_TRUE(result.is_ok());
+
+    auto tagged_metrics = monitor.get_all_tagged_metrics();
+    ASSERT_EQ(tagged_metrics.size(), 1);
+
+    EXPECT_EQ(tagged_metrics[0].name, "requests_total");
+    EXPECT_EQ(tagged_metrics[0].value, 3.0);  // 1.0 + 2.0
+    EXPECT_EQ(tagged_metrics[0].type, recorded_metric_type::counter);
+    EXPECT_TRUE(tagged_metrics[0].tags.empty());
+}
+
+TEST_F(PerformanceMonitoringTest, RecordCounterWithTags) {
+    tag_map tags1 = {{"method", "GET"}, {"endpoint", "/api/users"}};
+    tag_map tags2 = {{"method", "POST"}, {"endpoint", "/api/users"}};
+
+    auto result = monitor.record_counter("http_requests", 1.0, tags1);
+    ASSERT_TRUE(result.is_ok());
+
+    result = monitor.record_counter("http_requests", 1.0, tags2);
+    ASSERT_TRUE(result.is_ok());
+
+    result = monitor.record_counter("http_requests", 1.0, tags1);
+    ASSERT_TRUE(result.is_ok());
+
+    auto tagged_metrics = monitor.get_all_tagged_metrics();
+    ASSERT_EQ(tagged_metrics.size(), 2);  // Two different tag combinations
+
+    // Find GET metric
+    auto get_it = std::find_if(tagged_metrics.begin(), tagged_metrics.end(),
+        [](const tagged_metric& m) {
+            return m.tags.count("method") && m.tags.at("method") == "GET";
+        });
+    ASSERT_NE(get_it, tagged_metrics.end());
+    EXPECT_EQ(get_it->value, 2.0);  // Two GET requests
+
+    // Find POST metric
+    auto post_it = std::find_if(tagged_metrics.begin(), tagged_metrics.end(),
+        [](const tagged_metric& m) {
+            return m.tags.count("method") && m.tags.at("method") == "POST";
+        });
+    ASSERT_NE(post_it, tagged_metrics.end());
+    EXPECT_EQ(post_it->value, 1.0);  // One POST request
+}
+
+TEST_F(PerformanceMonitoringTest, RecordGaugeWithTags) {
+    tag_map tags = {{"pool", "database"}, {"host", "db-primary"}};
+
+    auto result = monitor.record_gauge("active_connections", 10.0, tags);
+    ASSERT_TRUE(result.is_ok());
+
+    result = monitor.record_gauge("active_connections", 15.0, tags);
+    ASSERT_TRUE(result.is_ok());
+
+    auto tagged_metrics = monitor.get_all_tagged_metrics();
+    ASSERT_EQ(tagged_metrics.size(), 1);
+
+    EXPECT_EQ(tagged_metrics[0].name, "active_connections");
+    EXPECT_EQ(tagged_metrics[0].value, 15.0);  // Gauge replaces value
+    EXPECT_EQ(tagged_metrics[0].type, recorded_metric_type::gauge);
+    EXPECT_EQ(tagged_metrics[0].tags.size(), 2);
+    EXPECT_EQ(tagged_metrics[0].tags.at("pool"), "database");
+}
+
+TEST_F(PerformanceMonitoringTest, RecordHistogramWithTags) {
+    tag_map tags = {{"service", "auth"}, {"operation", "login"}};
+
+    for (double i = 1.0; i <= 5.0; i += 1.0) {
+        auto result = monitor.record_histogram("request_duration_ms", i * 100.0, tags);
+        ASSERT_TRUE(result.is_ok());
+    }
+
+    auto tagged_metrics = monitor.get_all_tagged_metrics();
+    ASSERT_EQ(tagged_metrics.size(), 1);
+
+    EXPECT_EQ(tagged_metrics[0].name, "request_duration_ms");
+    EXPECT_EQ(tagged_metrics[0].value, 500.0);  // Last value
+    EXPECT_EQ(tagged_metrics[0].type, recorded_metric_type::histogram);
+}
+
+TEST_F(PerformanceMonitoringTest, TaggedMetricsInCollect) {
+    tag_map tags = {{"method", "GET"}, {"status", "200"}};
+    monitor.record_counter("http_requests", 5.0, tags);
+
+    auto init_result = monitor.initialize();
+    ASSERT_TRUE(init_result.is_ok());
+
+    auto snapshot_result = monitor.collect();
+    ASSERT_TRUE(snapshot_result.is_ok());
+
+    auto snapshot = snapshot_result.value();
+
+    // Find our tagged metric in the snapshot
+    bool found = false;
+    for (const auto& metric : snapshot.metrics) {
+        if (metric.name == "http_requests" && !metric.tags.empty()) {
+            found = true;
+            EXPECT_EQ(metric.value, 5.0);
+            EXPECT_EQ(metric.tags.size(), 2);
+            EXPECT_EQ(metric.tags.at("method"), "GET");
+            EXPECT_EQ(metric.tags.at("status"), "200");
+            break;
+        }
+    }
+    EXPECT_TRUE(found);
+}
+
+TEST_F(PerformanceMonitoringTest, ClearAllMetrics) {
+    monitor.record_counter("counter1", 1.0);
+    monitor.record_gauge("gauge1", 10.0);
+
+    EXPECT_EQ(monitor.get_all_tagged_metrics().size(), 2);
+
+    monitor.clear_all_metrics();
+
+    EXPECT_EQ(monitor.get_all_tagged_metrics().size(), 0);
+}
+
+TEST_F(PerformanceMonitoringTest, ResetClearsTaggedMetrics) {
+    monitor.record_counter("test_counter", 1.0);
+
+    EXPECT_EQ(monitor.get_all_tagged_metrics().size(), 1);
+
+    monitor.reset();
+
+    EXPECT_EQ(monitor.get_all_tagged_metrics().size(), 0);
+}
+
+TEST_F(PerformanceMonitoringTest, EmptyMetricNameRejected) {
+    auto result = monitor.record_counter("", 1.0);
+    EXPECT_FALSE(result.is_ok());
+}
+
+TEST_F(PerformanceMonitoringTest, TagKeyConsistency) {
+    // Tags with same keys in different order should produce same metric
+    tag_map tags1 = {{"a", "1"}, {"b", "2"}};
+    tag_map tags2 = {{"b", "2"}, {"a", "1"}};
+
+    monitor.record_counter("test_metric", 1.0, tags1);
+    monitor.record_counter("test_metric", 1.0, tags2);
+
+    auto tagged_metrics = monitor.get_all_tagged_metrics();
+    ASSERT_EQ(tagged_metrics.size(), 1);  // Should be same metric
+    EXPECT_EQ(tagged_metrics[0].value, 2.0);  // Both increments combined
+}

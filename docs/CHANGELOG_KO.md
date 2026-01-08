@@ -57,6 +57,17 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **performance_monitor에서 다차원 메트릭을 위한 태그/라벨 지원** (#324)
+  - 메트릭 라벨(키-값 쌍)을 위한 `tag_map` 타입 별칭 추가
+  - 태그가 포함된 메트릭을 표현하기 위한 `tagged_metric` 구조체 추가
+  - 태그가 포함된 카운터 누적을 위한 `record_counter(name, value, tags)` 추가
+  - 태그가 포함된 순간 값을 위한 `record_gauge(name, value, tags)` 추가
+  - 태그가 포함된 값 분포를 위한 `record_histogram(name, value, tags)` 추가
+  - 스냅샷에 태그된 메트릭을 포함하도록 `collect()` 업데이트
+  - 기본 모니터에 태그를 전달하도록 `performance_monitor_adapter` 업데이트
+  - 태그를 통해 차원별(서비스, 엔드포인트, 상태 등) 필터링 및 집계 가능
+  - shared_mutex를 사용한 스레드 안전 구현
+  - 모든 태그된 메트릭 작업에 대한 종합 유닛 테스트
 - **system_resource_collector에서 디스크 및 네트워크 메트릭 수집** (#323)
   - macOS (IOKit), Linux (/proc/diskstats), Windows용 `collect_disk_stats()` 구현
   - macOS (ifaddrs), Linux (/proc/net/dev), Windows용 `collect_network_stats()` 구현

@@ -416,6 +416,12 @@ result<metrics_snapshot> performance_monitor::collect() {
                           static_cast<double>(perf_metric.mean_duration.count()));
     }
 
+    // Add tagged metrics (counters, gauges, histograms)
+    auto tagged = get_all_tagged_metrics();
+    for (const auto& metric : tagged) {
+        snapshot.add_metric(metric.name, metric.value, metric.tags);
+    }
+
     return make_success(snapshot);
 }
 
@@ -496,6 +502,142 @@ void performance_profiler::clear_all_samples() {
 }
 
 // IMonitor interface implementations removed (use performance_monitor_adapter instead)
+
+// =========================================================================
+// Tagged Metric Recording Methods
+// =========================================================================
+
+std::string performance_monitor::make_metric_key(const std::string& name, const tag_map& tags) {
+    std::string key = name;
+    if (!tags.empty()) {
+        // Sort tags for consistent key generation
+        std::vector<std::pair<std::string, std::string>> sorted_tags(
+            tags.begin(), tags.end());
+        std::sort(sorted_tags.begin(), sorted_tags.end());
+        for (const auto& [tag_key, tag_value] : sorted_tags) {
+            key += ";";
+            key += tag_key;
+            key += "=";
+            key += tag_value;
+        }
+    }
+    return key;
+}
+
+result_void performance_monitor::record_metric_internal(
+    const std::string& name, double value,
+    recorded_metric_type type, const tag_map& tags) {
+
+    if (!enabled_) {
+        return make_void_success();
+    }
+
+    if (name.empty()) {
+        return make_void_error(monitoring_error_code::invalid_configuration,
+                               "Metric name cannot be empty");
+    }
+
+    const std::string key = make_metric_key(name, tags);
+    metric_data* data = nullptr;
+
+    // First, try read lock (hot path optimization)
+    {
+        std::shared_lock<std::shared_mutex> read_lock(metrics_mutex_);
+        auto it = tagged_metrics_.find(key);
+        if (it != tagged_metrics_.end()) {
+            data = it->second.get();
+        }
+    }
+
+    // If not found, acquire write lock to create
+    if (data == nullptr) {
+        std::unique_lock<std::shared_mutex> write_lock(metrics_mutex_);
+        // Double-check after acquiring write lock
+        auto& data_ptr = tagged_metrics_[key];
+        if (!data_ptr) {
+            data_ptr = std::make_unique<metric_data>();
+            data_ptr->type = type;
+            data_ptr->tags = tags;
+        }
+        data = data_ptr.get();
+    }
+
+    // Update the metric value based on type
+    std::unique_lock<std::shared_mutex> write_lock(metrics_mutex_);
+    data->last_update = std::chrono::system_clock::now();
+
+    switch (type) {
+        case recorded_metric_type::counter:
+            data->value += value;  // Counters accumulate
+            break;
+        case recorded_metric_type::gauge:
+            data->value = value;  // Gauges replace
+            break;
+        case recorded_metric_type::histogram:
+            data->value = value;  // Store latest value
+            // Add to histogram samples
+            if (data->histogram_values.size() >= data->max_histogram_samples) {
+                data->histogram_values.erase(data->histogram_values.begin());
+            }
+            data->histogram_values.push_back(value);
+            break;
+    }
+
+    return make_void_success();
+}
+
+result_void performance_monitor::record_counter(const std::string& name, double value) {
+    return record_metric_internal(name, value, recorded_metric_type::counter, {});
+}
+
+result_void performance_monitor::record_counter(const std::string& name, double value,
+                                                 const tag_map& tags) {
+    return record_metric_internal(name, value, recorded_metric_type::counter, tags);
+}
+
+result_void performance_monitor::record_gauge(const std::string& name, double value) {
+    return record_metric_internal(name, value, recorded_metric_type::gauge, {});
+}
+
+result_void performance_monitor::record_gauge(const std::string& name, double value,
+                                               const tag_map& tags) {
+    return record_metric_internal(name, value, recorded_metric_type::gauge, tags);
+}
+
+result_void performance_monitor::record_histogram(const std::string& name, double value) {
+    return record_metric_internal(name, value, recorded_metric_type::histogram, {});
+}
+
+result_void performance_monitor::record_histogram(const std::string& name, double value,
+                                                   const tag_map& tags) {
+    return record_metric_internal(name, value, recorded_metric_type::histogram, tags);
+}
+
+std::vector<tagged_metric> performance_monitor::get_all_tagged_metrics() const {
+    std::vector<tagged_metric> result;
+    std::shared_lock<std::shared_mutex> lock(metrics_mutex_);
+
+    result.reserve(tagged_metrics_.size());
+    for (const auto& [key, data] : tagged_metrics_) {
+        // Extract name from key (everything before first ';' or entire key)
+        std::string name = key;
+        auto semicolon_pos = key.find(';');
+        if (semicolon_pos != std::string::npos) {
+            name = key.substr(0, semicolon_pos);
+        }
+
+        tagged_metric metric(name, data->value, data->type, data->tags);
+        metric.timestamp = data->last_update;
+        result.push_back(std::move(metric));
+    }
+
+    return result;
+}
+
+void performance_monitor::clear_all_metrics() {
+    std::unique_lock<std::shared_mutex> lock(metrics_mutex_);
+    tagged_metrics_.clear();
+}
 
 // Global instance
 performance_monitor& global_performance_monitor() {
