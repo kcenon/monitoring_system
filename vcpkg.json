@@ -12,6 +12,13 @@
     "kcenon-thread-system"
   ],
   "features": {
+    "grpc": {
+      "description": "Enable gRPC transport for OTLP trace export",
+      "dependencies": [
+        "grpc",
+        "protobuf"
+      ]
+    },
     "logging": {
       "description": "Enable logger_system integration for audit logging",
       "dependencies": [
