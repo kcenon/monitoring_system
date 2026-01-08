@@ -79,6 +79,19 @@ struct metrics_snapshot {
     void add_metric(const std::string& name, double value) {
         metrics.emplace_back(name, value);
     }
+
+    /**
+     * @brief Add a metric to the snapshot with tags
+     * @param name Metric name
+     * @param value Metric value
+     * @param tags Metadata tags for the metric
+     */
+    void add_metric(const std::string& name, double value,
+                   const std::unordered_map<std::string, std::string>& tags) {
+        metric_value mv(name, value);
+        mv.tags = tags;
+        metrics.push_back(std::move(mv));
+    }
     
     /**
      * @brief Get a specific metric value

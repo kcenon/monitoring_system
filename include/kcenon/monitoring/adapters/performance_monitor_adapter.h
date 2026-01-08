@@ -85,16 +85,25 @@ public:
      * @param tags Metadata tags for the metric
      * @return VoidResult indicating success or error
      * @override
+     *
+     * Records the metric using the underlying performance_monitor's
+     * tag-aware counter recording. Tags are preserved and passed through
+     * to enable multi-dimensional metric analysis.
      */
     common::VoidResult record_metric(
         const std::string& name,
         double value,
         const std::unordered_map<std::string, std::string>& tags) override {
-        // Note: performance_monitor doesn't currently support tags in record_value
-        // For now, we record the metric without tags
-        // TODO: Extend performance_monitor to support tags if needed
-        (void)tags; // Suppress unused parameter warning
-        return record_metric(name, value);
+        // Convert to tag_map and record as counter with tags
+        tag_map converted_tags(tags.begin(), tags.end());
+        auto result = monitor_->record_counter(name, value, converted_tags);
+        if (result.is_err()) {
+            const auto& err = result.error();
+            return common::VoidResult(
+                common::error_info{static_cast<int>(err.code), err.message, "performance_monitor_adapter"}
+            );
+        }
+        return common::ok();
     }
 
     /**
@@ -133,6 +142,17 @@ public:
                                   static_cast<double>(perf.call_count));
                 snapshot.add_metric(perf.operation_name + "_error_count",
                                   static_cast<double>(perf.error_count));
+            }
+
+            // Add tagged metrics (counters, gauges, histograms with tags)
+            const auto& tagged_metrics = monitor_->get_all_tagged_metrics();
+            for (const auto& metric : tagged_metrics) {
+                // Create metric_value with tags directly
+                common::interfaces::metric_value mv(metric.name, metric.value);
+                mv.tags = std::unordered_map<std::string, std::string>(
+                    metric.tags.begin(), metric.tags.end());
+                mv.timestamp = metric.timestamp;
+                snapshot.metrics.push_back(std::move(mv));
             }
 
             return common::ok(std::move(snapshot));

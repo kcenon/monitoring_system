@@ -57,6 +57,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Tag/label support for multi-dimensional metrics in performance_monitor** (#324)
+  - Added `tag_map` type alias for metric labels (key-value pairs)
+  - Added `tagged_metric` struct for representing metrics with tags
+  - Added `record_counter(name, value, tags)` for accumulating counters with tags
+  - Added `record_gauge(name, value, tags)` for instantaneous values with tags
+  - Added `record_histogram(name, value, tags)` for value distributions with tags
+  - Updated `collect()` to include tagged metrics in snapshot
+  - Updated `performance_monitor_adapter` to pass tags through to underlying monitor
+  - Tags enable filtering and aggregation by dimensions (service, endpoint, status, etc.)
+  - Thread-safe implementation using shared_mutex
+  - Comprehensive unit tests for all tagged metric operations
 - **Disk and Network metrics collection in system_resource_collector** (#323)
   - Implemented `collect_disk_stats()` for macOS (IOKit), Linux (/proc/diskstats), Windows
   - Implemented `collect_network_stats()` for macOS (ifaddrs), Linux (/proc/net/dev), Windows
