@@ -853,7 +853,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   82</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());  <span class="comment">// Should fail as overwrite_old is false</span></div>
 <div class="line"><span class="lineno">   83</span>    </div>
 <div class="line"><span class="lineno">   84</span>    <span class="comment">// Read elements</span></div>
-<div class="line"><span class="lineno">   85</span>    <span class="keywordtype">int</span> value;</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordtype">int</span> value = 0;</div>
 <div class="line"><span class="lineno">   86</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 7; ++i) {</div>
 <div class="line"><span class="lineno">   87</span>        <span class="keyword">auto</span> read_result = buffer.read(value);</div>
 <div class="line"><span class="lineno">   88</span>        EXPECT_TRUE(read_result.is_ok());</div>
@@ -999,7 +999,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  141</span>    buffer.write(std::move(42));</div>
 <div class="line"><span class="lineno">  142</span>    buffer.write(std::move(84));</div>
 <div class="line"><span class="lineno">  143</span>    </div>
-<div class="line"><span class="lineno">  144</span>    <span class="keywordtype">int</span> value;</div>
+<div class="line"><span class="lineno">  144</span>    <span class="keywordtype">int</span> value = 0;</div>
 <div class="line"><span class="lineno">  145</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = buffer.peek(value);</div>
 <div class="line"><span class="lineno">  146</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  147</span>    EXPECT_EQ(value, 42);</div>
@@ -1162,7 +1162,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 16:42:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 22:45:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
