@@ -104,18 +104,20 @@ add_executable(monitoring_system_tests
     # Fault tolerance tests (Issue #329 - ARC-001 Phase 1)
     test_fault_tolerance.cpp
 
+    # Error boundaries and graceful degradation tests (Issue #338)
+    test_error_boundaries.cpp
+
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (8 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (7 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
-    # - Missing header files (graceful_degradation.h, resource_manager.h, etc.)
+    # - Missing header files (resource_manager.h, etc.)
     # - Missing API implementations (health_check base class, etc.)
     #
     # test_health_monitoring.cpp      # Requires: health_check base class, composite_health_check,
     #                                 #           health_dependency_graph, health_check_builder,
     #                                 #           global_health_monitor() - See Issue #330
-    # test_error_boundaries.cpp       # Missing: graceful_degradation.h - See Issue #338
     # test_optimization.cpp           # Missing: optimization/ folder - See Issue #340
     # test_resource_management.cpp    # Missing: resource_manager.h - See Issue #341
     # test_data_consistency.cpp       # Missing: data_consistency.h - See Issue #342
