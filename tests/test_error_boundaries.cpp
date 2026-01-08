@@ -101,7 +101,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryFailFastPolicy) {
     
     auto result = boundary.execute([this]() { return always_failing_operation(); });
 
-    EXPECT_FALSE(result);
+    EXPECT_TRUE(result.is_err());
     EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::operation_failed));
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
 }
@@ -114,7 +114,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryIsolatePolicy) {
 
     auto result = boundary.execute([this]() { return always_failing_operation(); });
 
-    EXPECT_FALSE(result);
+    EXPECT_TRUE(result.is_err());
     EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::service_degraded));
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
 }
@@ -123,16 +123,16 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryDegradePolicy) {
     error_boundary_config config;
     config.policy = error_boundary_policy::degrade;
     config.error_threshold = 2;
-    
+
     error_boundary<int> boundary("test_boundary", config);
-    
+
     // First failure
     auto result1 = boundary.execute([this]() { return always_failing_operation(); });
-    EXPECT_FALSE(result1);
-    
+    EXPECT_TRUE(result1.is_err());
+
     // Second failure should trigger degradation
     auto result2 = boundary.execute([this]() { return always_failing_operation(); });
-    EXPECT_FALSE(result2);
+    EXPECT_TRUE(result2.is_err());
     
     // Check that degradation occurred
     EXPECT_GT(boundary.get_degradation_level(), degradation_level::normal);
@@ -156,10 +156,10 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryWithFallback) {
 
 TEST_F(ErrorBoundariesTest, ErrorBoundaryExceptionHandling) {
     error_boundary<int> boundary("test_boundary");
-    
+
     auto result = boundary.execute([this]() { return throwing_operation(); });
 
-    EXPECT_FALSE(result);
+    EXPECT_TRUE(result.is_err());
     EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::operation_failed));
     EXPECT_EQ(call_count.load(), 1);
 }
@@ -365,16 +365,16 @@ TEST_F(ErrorBoundariesTest, DegradableServiceWrapper) {
     };
     
     auto service = create_degradable_service<int>("wrapper_service", manager, normal_op, degraded_op);
-    
+
     // Test normal operation
     auto result1 = service->execute();
-    EXPECT_TRUE(result1);
+    EXPECT_TRUE(result1.is_ok());
     EXPECT_EQ(result1.value(), 100);
-    
+
     // Degrade service and test degraded operation
     manager->degrade_service("wrapper_service", degradation_level::limited, "Test");
     auto result2 = service->execute();
-    EXPECT_TRUE(result2);
+    EXPECT_TRUE(result2.is_ok());
     EXPECT_EQ(result2.value(), static_cast<int>(degradation_level::limited) * 100);
 }
 
@@ -461,40 +461,40 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryHealthCheck) {
     
     // Initially healthy
     auto health = boundary.is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_TRUE(health.value());
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);
-    
+
     // Force degradation to emergency
     boundary.force_degradation(degradation_level::emergency);
-    
+
     // Verify degradation was applied
     EXPECT_EQ(boundary.get_degradation_level(), degradation_level::emergency);
-    
+
     // Test that health check method works (even if logic needs refinement)
     health = boundary.is_healthy();
-    EXPECT_TRUE(health); // Health check method returns a valid result
+    EXPECT_TRUE(health.is_ok()); // Health check method returns a valid result
     // Note: Health check logic may need refinement for emergency degradation
 }
 
 TEST_F(ErrorBoundariesTest, DegradationManagerHealthCheck) {
     auto manager = create_degradation_manager("health_test");
-    
+
     // Register multiple services
     manager->register_service(create_service_config("service1", service_priority::normal));
     manager->register_service(create_service_config("service2", service_priority::normal));
-    
+
     // Initially healthy
     auto health = manager->is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_TRUE(health.value());
-    
+
     // Degrade more than 50% of services
     manager->degrade_service("service1", degradation_level::minimal, "Test");
     manager->degrade_service("service2", degradation_level::minimal, "Test");
-    
+
     // Should now be unhealthy
     health = manager->is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_FALSE(health.value());
 }
