@@ -96,7 +96,6 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_stream_aggregation.cpp`
 - `test_buffering_strategies.cpp`
 - `test_optimization.cpp`
-- `test_error_boundaries.cpp`
 - `test_resource_management.cpp`
 - `test_data_consistency.cpp`
 - `test_integration_e2e.cpp`
@@ -109,6 +108,7 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_opentelemetry_adapter.cpp` - Enabled in #332
 - `test_metric_exporters.cpp` - Enabled in #332
 - `test_storage_backends.cpp` - Enabled in #347
+- `test_error_boundaries.cpp` - Enabled in #338 (Graceful degradation API implemented)
 
 ---
 
@@ -142,6 +142,8 @@ All CMake options are now consistently prefixed with `MONITORING_`:
 | Tracing interfaces | Stable |
 | Exporter interfaces | Beta |
 | CircuitBreaker | Stable |
+| Error Boundary | Stable |
+| Graceful Degradation | Stable |
 
 ---
 
