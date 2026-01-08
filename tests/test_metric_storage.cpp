@@ -58,7 +58,8 @@ TEST_F(MetricStorageTest, RingBufferBasicOperations) {
     ring_buffer_config config;
     config.capacity = 8;  // Small capacity for testing
     config.overwrite_old = false;
-    
+    config.batch_size = 4;  // Must be <= capacity
+
     ring_buffer<int> buffer(config);
     
     EXPECT_EQ(buffer.capacity(), 8);
@@ -69,7 +70,7 @@ TEST_F(MetricStorageTest, RingBufferBasicOperations) {
     // Write elements
     for (int i = 0; i < 7; ++i) {
         auto result = buffer.write(std::move(i));
-        EXPECT_TRUE(result) << "Failed to write " << i;
+        EXPECT_TRUE(result.is_ok()) << "Failed to write " << i;
     }
     
     EXPECT_EQ(buffer.size(), 7);
@@ -78,13 +79,13 @@ TEST_F(MetricStorageTest, RingBufferBasicOperations) {
     
     // Try to write when full
     auto result = buffer.write(std::move(999));
-    EXPECT_FALSE(result);  // Should fail as overwrite_old is false
+    EXPECT_FALSE(result.is_ok());  // Should fail as overwrite_old is false
     
     // Read elements
     int value;
     for (int i = 0; i < 7; ++i) {
         auto read_result = buffer.read(value);
-        EXPECT_TRUE(read_result);
+        EXPECT_TRUE(read_result.is_ok());
         EXPECT_EQ(value, i);
     }
     
@@ -95,7 +96,8 @@ TEST_F(MetricStorageTest, RingBufferOverwrite) {
     ring_buffer_config config;
     config.capacity = 4;
     config.overwrite_old = true;
-    
+    config.batch_size = 2;  // Must be <= capacity
+
     ring_buffer<int> buffer(config);
     
     // Fill buffer completely
@@ -106,8 +108,8 @@ TEST_F(MetricStorageTest, RingBufferOverwrite) {
     
     // Should have overwritten, so we should read the last 3 values
     std::vector<int> read_values;
-    int value;
-    while (buffer.read(value)) {
+    int value = 0;
+    while (buffer.read(value).is_ok()) {
         read_values.push_back(value);
     }
     
@@ -213,53 +215,57 @@ TEST_F(MetricStorageTest, TimeSeriesBasicOperations) {
     time_series_config config;
     config.max_points = 100;
     config.retention_period = std::chrono::seconds(60);
-    
-    time_series series("test_series", config);
-    
-    EXPECT_TRUE(series.empty());
-    EXPECT_EQ(series.name(), "test_series");
-    
+
+    auto series_result = time_series::create("test_series", config);
+    ASSERT_TRUE(series_result.is_ok());
+    auto& series = series_result.value();
+
+    EXPECT_TRUE(series->empty());
+    EXPECT_EQ(series->name(), "test_series");
+
     // Add some data points
     auto now = std::chrono::system_clock::now();
     for (int i = 0; i < 10; ++i) {
         auto timestamp = now + std::chrono::seconds(i);
-        auto result = series.add_point(static_cast<double>(i), timestamp);
+        auto result = series->add_point(static_cast<double>(i), timestamp);
         EXPECT_TRUE(result.is_ok());
     }
-    
-    EXPECT_EQ(series.size(), 10);
-    EXPECT_FALSE(series.empty());
-    
+
+    EXPECT_EQ(series->size(), 10);
+    EXPECT_FALSE(series->empty());
+
     // Get latest value
-    auto latest = series.get_latest_value();
-    EXPECT_TRUE(latest);
+    auto latest = series->get_latest_value();
+    EXPECT_TRUE(latest.is_ok());
     EXPECT_EQ(latest.value(), 9.0);
 }
 
 TEST_F(MetricStorageTest, TimeSeriesQuery) {
-    time_series series("query_test");
-    
+    auto series_result = time_series::create("query_test");
+    ASSERT_TRUE(series_result.is_ok());
+    auto& series = series_result.value();
+
     auto now = std::chrono::system_clock::now();
-    
+
     // Add data points over a time range
     for (int i = 0; i < 60; ++i) {
         auto timestamp = now + std::chrono::seconds(i);
-        series.add_point(static_cast<double>(i), timestamp);
+        series->add_point(static_cast<double>(i), timestamp);
     }
-    
+
     // Query a subset
     time_series_query query;
     query.start_time = now + std::chrono::seconds(10);
     query.end_time = now + std::chrono::seconds(50);
     query.step = std::chrono::seconds(10);
-    
-    auto result = series.query(query);
+
+    auto result = series->query(query);
     EXPECT_TRUE(result.is_ok());
-    
+
     const auto& agg_result = result.value();
     EXPECT_GT(agg_result.points.size(), 0);
     EXPECT_GT(agg_result.total_samples, 0);
-    
+
     auto summary = agg_result.get_summary();
     EXPECT_GT(summary.count, 0);
     EXPECT_GE(summary.min_value, 10.0);  // Should be in the queried range
@@ -272,29 +278,29 @@ TEST_F(MetricStorageTest, MetricStorageBasicOperations) {
     config.ring_buffer_capacity = 64;
     config.max_metrics = 100;
     config.enable_background_processing = false;  // Disable for testing
-    
+
     metric_storage storage(config);
-    
+
     // Store some metrics
     auto result1 = storage.store_metric("cpu_usage", 65.5, metric_type::gauge);
-    EXPECT_TRUE(result1);
-    
+    EXPECT_TRUE(result1.is_ok());
+
     auto result2 = storage.store_metric("memory_usage", 4096.0, metric_type::gauge);
-    EXPECT_TRUE(result2);
-    
-    auto result3 = storage.store_metric("request_count", 100, metric_type::counter);
-    EXPECT_TRUE(result3);
-    
+    EXPECT_TRUE(result2.is_ok());
+
+    auto result3 = storage.store_metric("request_count", 100.0, metric_type::counter);
+    EXPECT_TRUE(result3.is_ok());
+
     // Flush to time series
     storage.flush();
-    
+
     // Query latest values
     auto cpu = storage.get_latest_value("cpu_usage");
-    EXPECT_TRUE(cpu);
+    EXPECT_TRUE(cpu.is_ok());
     EXPECT_EQ(cpu.value(), 65.5);
-    
+
     auto memory = storage.get_latest_value("memory_usage");
-    EXPECT_TRUE(memory);
+    EXPECT_TRUE(memory.is_ok());
     EXPECT_EQ(memory.value(), 4096.0);
     
     // Get metric names
@@ -308,24 +314,30 @@ TEST_F(MetricStorageTest, MetricStorageBasicOperations) {
 }
 
 TEST_F(MetricStorageTest, MetricStorageBatchOperations) {
-    metric_storage storage;
-    
-    // Create a batch of metrics
+    metric_storage_config config;
+    config.enable_background_processing = false;
+    metric_storage storage(config);
+
+    // First, register the metric name by storing one metric
+    auto init_result = storage.store_metric("batch_metric", 0.0, metric_type::gauge);
+    EXPECT_TRUE(init_result.is_ok());
+
+    // Create a batch of metrics with the same name hash
     metric_batch batch;
     auto metadata = create_metric_metadata("batch_metric", metric_type::gauge);
-    
+
     for (int i = 0; i < 50; ++i) {
         compact_metric_value metric(metadata, static_cast<double>(i));
         batch.add_metric(std::move(metric));
     }
-    
+
     // Store the batch
     size_t stored = storage.store_metrics_batch(batch);
     EXPECT_EQ(stored, 50);
-    
+
     storage.flush();
-    
-    // Query the data
+
+    // Query the data - should have data from both the initial store and batch
     time_series_query query;
     auto result = storage.query_metric("batch_metric", query);
     EXPECT_TRUE(result.is_ok());
@@ -336,12 +348,12 @@ TEST_F(MetricStorageTest, MetricStorageCapacityLimits) {
     config.max_metrics = 2;  // Very low limit for testing
     config.ring_buffer_capacity = 8;
     config.enable_background_processing = false;
-    
+
     metric_storage storage(config);
     
     // Store metrics up to the limit
-    EXPECT_TRUE(storage.store_metric("metric1", 1.0));
-    EXPECT_TRUE(storage.store_metric("metric2", 2.0));
+    EXPECT_TRUE(storage.store_metric("metric1", 1.0).is_ok());
+    EXPECT_TRUE(storage.store_metric("metric2", 2.0).is_ok());
     
     // This should fail due to capacity limit
     auto result = storage.store_metric("metric3", 3.0);
@@ -396,28 +408,28 @@ TEST_F(MetricStorageTest, ConfigurationValidation) {
     // Test invalid ring buffer capacity (not power of 2)
     ring_buffer_config invalid_ring_config;
     invalid_ring_config.capacity = 1000;  // Not a power of 2
-    
+
     auto validation = invalid_ring_config.validate();
-    EXPECT_FALSE(validation);
-    
+    EXPECT_FALSE(validation.is_ok());
+
     // Test valid configuration
     ring_buffer_config valid_ring_config;
     valid_ring_config.capacity = 1024;  // Power of 2
-    
+
     validation = valid_ring_config.validate();
-    EXPECT_TRUE(validation);
-    
+    EXPECT_TRUE(validation.is_ok());
+
     // Test invalid time series configuration
     time_series_config invalid_ts_config;
     invalid_ts_config.retention_period = std::chrono::seconds(-1);
-    
+
     validation = invalid_ts_config.validate();
-    EXPECT_FALSE(validation);
-    
+    EXPECT_FALSE(validation.is_ok());
+
     // Test invalid metric storage configuration
     metric_storage_config invalid_storage_config;
     invalid_storage_config.max_metrics = 0;
-    
+
     validation = invalid_storage_config.validate();
-    EXPECT_FALSE(validation);
+    EXPECT_FALSE(validation.is_ok());
 }
