@@ -57,6 +57,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Windows CPU/Memory stats collection in system_resource_collector** (#319)
+  - Implemented `collect_windows_cpu_stats()` using `GetSystemTimes()` API
+  - Implemented `collect_windows_memory_stats()` using `GlobalMemoryStatusEx()` API
+  - CPU metrics: usage_percent, user_percent, system_percent, idle_percent, core count
+  - Memory metrics: total, available, used bytes, usage_percent
+  - Swap (Page File) metrics: total, used bytes, usage_percent
+  - Completed Windows platform support for system resource collection
 - **C++20 Module Support** (#310)
   - Created C++20 module files for `kcenon.monitoring` module
   - Module partitions:
