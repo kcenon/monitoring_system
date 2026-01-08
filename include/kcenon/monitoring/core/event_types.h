@@ -52,6 +52,24 @@ namespace kcenon { namespace monitoring {
 /**
  * @class thread_pool_metric_event
  * @brief Event containing thread pool metrics
+ *
+ * Published by thread pool monitoring components to report current
+ * pool state including active/idle threads, queue depth, and throughput.
+ *
+ * @thread_safety This class is thread-safe for read operations after
+ *                construction. All accessors are const.
+ *
+ * @example
+ * @code
+ * thread_pool_metric_event::thread_pool_stats stats;
+ * stats.active_threads = 4;
+ * stats.idle_threads = 2;
+ * stats.queued_tasks = 10;
+ * stats.completed_tasks = 1000;
+ *
+ * thread_pool_metric_event event("worker_pool", stats);
+ * event_bus->publish_event(event);
+ * @endcode
  */
 class thread_pool_metric_event : public event_base {
 public:
@@ -144,6 +162,27 @@ private:
 /**
  * @class performance_alert_event
  * @brief Event for performance-related alerts
+ *
+ * Published when performance thresholds are exceeded or anomalies
+ * are detected. Includes severity, component information, and
+ * optional threshold/actual value details.
+ *
+ * @thread_safety This class is thread-safe for read operations after
+ *                construction. All accessors are const.
+ *
+ * @example
+ * @code
+ * // Alert for high CPU usage
+ * performance_alert_event alert(
+ *     performance_alert_event::alert_type::high_cpu_usage,
+ *     performance_alert_event::alert_severity::warning,
+ *     "database_service",
+ *     "CPU usage exceeded threshold",
+ *     80.0,   // threshold
+ *     95.5    // actual_value
+ * );
+ * event_bus->publish_event(alert);
+ * @endcode
  */
 class performance_alert_event : public event_base {
 public:

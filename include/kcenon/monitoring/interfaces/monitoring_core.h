@@ -210,9 +210,50 @@ struct monitoring_config {
 /**
  * @class monitoring_interface
  * @brief Abstract interface for monitoring operations
- * 
+ *
  * This interface defines the contract for monitoring implementations,
- * using the Result pattern for all operations that may fail.
+ * using the Result pattern for all operations that may fail. It provides
+ * comprehensive functionality for collector management, metrics operations,
+ * health checks, storage, and analysis.
+ *
+ * @thread_safety Implementations MUST be thread-safe. All methods may be
+ *                called from multiple threads simultaneously. The start/stop
+ *                methods should handle concurrent collection safely.
+ *
+ * @example
+ * @code
+ * class my_monitor : public monitoring_interface {
+ *     // Implementation
+ * };
+ *
+ * auto monitor = std::make_unique<my_monitor>();
+ *
+ * // Configure
+ * monitoring_config config;
+ * config.collection_interval = std::chrono::seconds(5);
+ * monitor->configure(config);
+ *
+ * // Add collectors
+ * monitor->add_collector(std::make_unique<cpu_collector>());
+ * monitor->add_collector(std::make_unique<memory_collector>());
+ *
+ * // Start monitoring
+ * monitor->start();
+ *
+ * // Register health check
+ * monitor->register_health_check("database", []() {
+ *     return check_db_connection() ?
+ *         health_check_result::healthy() :
+ *         health_check_result::unhealthy("DB connection failed");
+ * });
+ *
+ * // Get status
+ * auto snapshot = monitor->collect_now();
+ * auto health = monitor->check_health();
+ * @endcode
+ *
+ * @see metrics_collector for collector implementation
+ * @see storage_backend for storage implementation
  */
 class monitoring_interface {
 public:
@@ -256,6 +297,41 @@ public:
 /**
  * @class metrics_collector
  * @brief Abstract base class for metric collectors
+ *
+ * Base class for components that collect specific types of metrics.
+ * Collectors can be enabled/disabled and should properly initialize
+ * and cleanup their resources.
+ *
+ * @thread_safety Implementations should be thread-safe. The collect()
+ *                method may be called from the monitoring thread while
+ *                other methods are called from configuration threads.
+ *
+ * @example
+ * @code
+ * class cpu_collector : public metrics_collector {
+ * public:
+ *     result<metrics_snapshot> collect() override {
+ *         metrics_snapshot snapshot;
+ *         snapshot.source_id = get_name();
+ *         snapshot.add_metric("cpu_usage_percent", get_cpu_usage());
+ *         snapshot.add_metric("cpu_load_1min", get_load_average());
+ *         return make_success(std::move(snapshot));
+ *     }
+ *
+ *     std::string get_name() const override { return "cpu"; }
+ *     bool is_enabled() const override { return enabled_; }
+ *     result_void set_enabled(bool enable) override {
+ *         enabled_ = enable;
+ *         return make_void_success();
+ *     }
+ *     result_void initialize() override { return make_void_success(); }
+ *     result_void cleanup() override { return make_void_success(); }
+ * private:
+ *     bool enabled_ = true;
+ * };
+ * @endcode
+ *
+ * @see monitoring_interface::add_collector for registration
  */
 class metrics_collector {
 public:
@@ -302,6 +378,43 @@ public:
 /**
  * @class storage_backend
  * @brief Abstract interface for metrics storage
+ *
+ * Provides persistence capabilities for metric snapshots. Implementations
+ * can store data in memory, on disk, or in external databases.
+ *
+ * @thread_safety Implementations MUST be thread-safe. Store and retrieve
+ *                operations may be called concurrently.
+ *
+ * @example
+ * @code
+ * class memory_storage : public storage_backend {
+ * public:
+ *     result_void store(const metrics_snapshot& snapshot) override {
+ *         std::lock_guard<std::mutex> lock(mutex_);
+ *         if (data_.size() >= capacity_) {
+ *             data_.erase(data_.begin());
+ *         }
+ *         data_.push_back(snapshot);
+ *         return make_void_success();
+ *     }
+ *
+ *     result<metrics_snapshot> retrieve(std::size_t index) const override {
+ *         std::lock_guard<std::mutex> lock(mutex_);
+ *         if (index >= data_.size()) {
+ *             return make_error<metrics_snapshot>(
+ *                 monitoring_error_code::not_found, "Index out of range");
+ *         }
+ *         return make_success(data_[index]);
+ *     }
+ *     // ... other methods
+ * private:
+ *     mutable std::mutex mutex_;
+ *     std::vector<metrics_snapshot> data_;
+ *     std::size_t capacity_ = 1000;
+ * };
+ * @endcode
+ *
+ * @see monitoring_interface::set_storage_backend for configuration
  */
 class storage_backend {
 public:
@@ -358,6 +471,46 @@ public:
 /**
  * @class metrics_analyzer
  * @brief Abstract interface for metrics analysis
+ *
+ * Provides analysis capabilities for metric data. Implementations can
+ * perform single-snapshot analysis or trend analysis across multiple
+ * snapshots to detect anomalies, patterns, or threshold violations.
+ *
+ * @thread_safety Implementations should be thread-safe. The analyze()
+ *                method may be called concurrently with analyze_trend().
+ *
+ * @example
+ * @code
+ * class threshold_analyzer : public metrics_analyzer {
+ * public:
+ *     threshold_analyzer(const std::string& metric, double threshold)
+ *         : metric_name_(metric), threshold_(threshold) {}
+ *
+ *     result<std::string> analyze(const metrics_snapshot& snapshot) override {
+ *         auto value = snapshot.get_metric(metric_name_);
+ *         if (value && *value > threshold_) {
+ *             return make_success(fmt::format(
+ *                 "ALERT: {} = {} exceeds threshold {}",
+ *                 metric_name_, *value, threshold_));
+ *         }
+ *         return make_success("OK");
+ *     }
+ *
+ *     result<std::string> analyze_trend(
+ *         const std::vector<metrics_snapshot>& snapshots) override {
+ *         // Analyze trend over time
+ *         return make_success("Trend: stable");
+ *     }
+ *
+ *     std::string get_name() const override { return "threshold_analyzer"; }
+ *     result_void reset() override { return make_void_success(); }
+ * private:
+ *     std::string metric_name_;
+ *     double threshold_;
+ * };
+ * @endcode
+ *
+ * @see monitoring_interface::add_analyzer for registration
  */
 class metrics_analyzer {
 public:

@@ -55,6 +55,23 @@ class state_change_event;
 /**
  * @class metric_event
  * @brief Event fired when a metric is collected
+ *
+ * This event is published whenever a metric is collected from a source.
+ * It contains the source identifier, the metric data, and a timestamp
+ * for when the event was created.
+ *
+ * @thread_safety This class is thread-safe for read operations.
+ *                Once constructed, all accessors are const and can be
+ *                called from multiple threads.
+ *
+ * @example
+ * @code
+ * metric m("cpu_usage", 75.5, {{"host", "server1"}});
+ * metric_event event("cpu_collector", m);
+ *
+ * std::cout << "Source: " << event.source() << std::endl;
+ * std::cout << "Metric: " << event.data().name << std::endl;
+ * @endcode
  */
 class metric_event {
 public:
@@ -74,6 +91,26 @@ private:
 /**
  * @class system_event
  * @brief Generic system event for monitoring components
+ *
+ * Represents various system-level events such as component lifecycle
+ * changes, errors, warnings, and configuration updates. Each event
+ * has a type, source component, message, and timestamp.
+ *
+ * @thread_safety This class is thread-safe for read operations.
+ *                Once constructed, all accessors are const.
+ *
+ * @example
+ * @code
+ * system_event startup(
+ *     system_event::event_type::component_started,
+ *     "performance_monitor",
+ *     "Monitor initialized successfully"
+ * );
+ *
+ * if (startup.type() == system_event::event_type::component_started) {
+ *     log_info(startup.message());
+ * }
+ * @endcode
  */
 class system_event {
 public:
@@ -105,6 +142,26 @@ private:
 /**
  * @class state_change_event
  * @brief Event fired when system state changes
+ *
+ * Represents a transition from one health state to another for a
+ * specific component. Useful for tracking system health over time
+ * and triggering alerts on degradation.
+ *
+ * @thread_safety This class is thread-safe for read operations.
+ *                Once constructed, all accessors are const.
+ *
+ * @example
+ * @code
+ * state_change_event degradation(
+ *     "database",
+ *     state_change_event::state::healthy,
+ *     state_change_event::state::degraded
+ * );
+ *
+ * if (degradation.new_state() == state_change_event::state::degraded) {
+ *     alert_ops_team(degradation.component());
+ * }
+ * @endcode
  */
 class state_change_event {
 public:
@@ -137,6 +194,34 @@ private:
  *
  * Components implementing this interface can subscribe to monitoring
  * events and react to metrics, system events, and state changes.
+ * Observers are notified synchronously when events occur.
+ *
+ * @thread_safety Implementations MUST be thread-safe. Observer methods
+ *                may be called from multiple threads simultaneously.
+ *                Avoid blocking operations in observer methods to prevent
+ *                delaying event dispatch to other observers.
+ *
+ * @example
+ * @code
+ * class logging_observer : public interface_monitoring_observer {
+ * public:
+ *     void on_metric_collected(const metric_event& event) override {
+ *         logger_.info("Metric {} = {}", event.data().name, event.data().value);
+ *     }
+ *
+ *     void on_event_occurred(const system_event& event) override {
+ *         logger_.warn("System event: {}", event.message());
+ *     }
+ *
+ *     void on_system_state_changed(const state_change_event& event) override {
+ *         logger_.error("State change: {} -> {}", event.old_state(), event.new_state());
+ *     }
+ * private:
+ *     Logger logger_;
+ * };
+ * @endcode
+ *
+ * @see interface_observable for registering observers
  */
 class interface_monitoring_observer {
 public:
@@ -164,6 +249,39 @@ public:
 /**
  * @class interface_observable
  * @brief Interface for components that can be observed
+ *
+ * Provides the subject side of the observer pattern. Components
+ * implementing this interface can register observers and notify
+ * them of metric events, system events, and state changes.
+ *
+ * @thread_safety Implementations MUST be thread-safe. Observer
+ *                registration/unregistration and notification can
+ *                occur from multiple threads simultaneously.
+ *
+ * @example
+ * @code
+ * class metric_collector : public interface_observable {
+ * public:
+ *     result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
+ *         std::lock_guard<std::mutex> lock(mutex_);
+ *         observers_.push_back(observer);
+ *         return make_void_success();
+ *     }
+ *
+ *     void notify_metric(const metric_event& event) override {
+ *         std::lock_guard<std::mutex> lock(mutex_);
+ *         for (const auto& observer : observers_) {
+ *             observer->on_metric_collected(event);
+ *         }
+ *     }
+ *     // ... implement other methods
+ * private:
+ *     std::mutex mutex_;
+ *     std::vector<std::shared_ptr<interface_monitoring_observer>> observers_;
+ * };
+ * @endcode
+ *
+ * @see interface_monitoring_observer for observer implementation
  */
 class interface_observable {
 public:
