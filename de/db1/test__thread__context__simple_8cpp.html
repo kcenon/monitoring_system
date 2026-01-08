@@ -82,7 +82,7 @@ $(function() {
 <p>Simple unit tests for thread context and metadata.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/context/thread_context.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dc/dd1/thread__context_8h_source.html">kcenon/monitoring/context/thread_context.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for test_thread_context_simple.cpp:</div>
 <div class="dyncontent">
@@ -91,8 +91,18 @@ Include dependency graph for test_thread_context_simple.cpp:</div>
 <area shape="rect" title="Simple unit tests for thread context and metadata." alt="" coords="50,5,238,45"/>
 <area shape="rect" title=" " alt="" coords="5,101,109,126"/>
 <area shape="poly" title=" " alt="" coords="127,48,81,92,77,89,123,44"/>
-<area shape="rect" title=" " alt="" coords="133,93,331,133"/>
+<area shape="rect" href="../../dc/dd1/thread__context_8h.html" title=" " alt="" coords="133,93,331,133"/>
 <area shape="poly" title=" " alt="" coords="165,44,205,82,201,86,162,48"/>
+<area shape="rect" title=" " alt="" coords="21,181,80,207"/>
+<area shape="poly" title=" " alt="" coords="190,136,91,178,89,173,188,131"/>
+<area shape="rect" title=" " alt="" coords="104,181,171,207"/>
+<area shape="poly" title=" " alt="" coords="211,136,164,174,161,170,207,131"/>
+<area shape="rect" title=" " alt="" coords="195,181,269,207"/>
+<area shape="poly" title=" " alt="" coords="235,134,235,167,229,167,229,134"/>
+<area shape="rect" title=" " alt="" coords="294,181,418,207"/>
+<area shape="poly" title=" " alt="" coords="263,131,327,172,325,176,261,136"/>
+<area shape="rect" title=" " alt="" coords="443,181,520,207"/>
+<area shape="poly" title=" " alt="" coords="293,131,433,175,431,180,291,136"/>
 </map>
 </div>
 </div>
@@ -142,7 +152,7 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../de/db1/test__thread__context__simple_8cpp_source.html#l00021">21</a> of file <a class="el" href="../../de/db1/test__thread__context__simple_8cpp_source.html">test_thread_context_simple.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   21</span>                                                     {</div>
 <div class="line"><span class="lineno">   22</span>    <span class="comment">// Test constructor</span></div>
-<div class="line"><span class="lineno">   23</span>    context_metadata metadata(<span class="stringliteral">&quot;test-request&quot;</span>);</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_struct" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html">context_metadata</a> metadata(<span class="stringliteral">&quot;test-request&quot;</span>);</div>
 <div class="line"><span class="lineno">   24</span>    EXPECT_EQ(metadata.request_id, <span class="stringliteral">&quot;test-request&quot;</span>);</div>
 <div class="line"><span class="lineno">   25</span>    EXPECT_TRUE(metadata.correlation_id.empty());</div>
 <div class="line"><span class="lineno">   26</span>    EXPECT_TRUE(metadata.user_id.empty());</div>
@@ -163,7 +173,22 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   41</span>    EXPECT_EQ(metadata.correlation_id, <span class="stringliteral">&quot;corr-123&quot;</span>);</div>
 <div class="line"><span class="lineno">   42</span>    EXPECT_EQ(metadata.user_id, <span class="stringliteral">&quot;user-456&quot;</span>);</div>
 <div class="line"><span class="lineno">   43</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1context__metadata_html"><div class="ttname"><a href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html">kcenon::monitoring::context_metadata</a></div><div class="ttdoc">Context metadata for thread-specific information.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00043">thread_context.h:43</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/db1/test__thread__context__simple_8cpp_a2823425af12e38f7e67546fa53f653d3_cgraph.png" border="0" usemap="#ade/db1/test__thread__context__simple_8cpp_a2823425af12e38f7e67546fa53f653d3_cgraph" alt=""/></div>
+<map name="ade/db1/test__thread__context__simple_8cpp_a2823425af12e38f7e67546fa53f653d3_cgraph" id="ade/db1/test__thread__context__simple_8cpp_a2823425af12e38f7e67546fa53f653d3_cgraph">
+<area shape="rect" title=" " alt="" coords="5,85,60,110"/>
+<area shape="rect" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#affcaf1c1d7510e7921342b552782d078" title=" " alt="" coords="108,5,307,45"/>
+<area shape="poly" title=" " alt="" coords="54,82,107,55,125,48,127,53,109,60,57,87"/>
+<area shape="rect" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#ad5d8cb66dca7d00a33efd707bd62001f" title=" " alt="" coords="129,70,286,125"/>
+<area shape="poly" title=" " alt="" coords="60,95,115,95,115,100,60,100"/>
+<area shape="rect" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#adb4ac3e381309cee8961c14bb554844d" title=" " alt="" coords="129,149,286,203"/>
+<area shape="poly" title=" " alt="" coords="58,108,109,134,125,141,123,146,107,138,56,112"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a71e288a77ee54c5d0cfd6b52289f0d0d" name="a71e288a77ee54c5d0cfd6b52289f0d0d"></a>
@@ -196,18 +221,36 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../de/db1/test__thread__context__simple_8cpp_source.html#l00048">48</a> of file <a class="el" href="../../de/db1/test__thread__context__simple_8cpp_source.html">test_thread_context_simple.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   48</span>                                                    {</div>
 <div class="line"><span class="lineno">   49</span>    <span class="comment">// Empty constructor</span></div>
-<div class="line"><span class="lineno">   50</span>    context_metadata empty_metadata;</div>
-<div class="line"><span class="lineno">   51</span>    EXPECT_TRUE(empty_metadata.empty());</div>
-<div class="line"><span class="lineno">   52</span>    EXPECT_TRUE(empty_metadata.request_id.empty());</div>
-<div class="line"><span class="lineno">   53</span>    EXPECT_TRUE(empty_metadata.correlation_id.empty());</div>
-<div class="line"><span class="lineno">   54</span>    EXPECT_TRUE(empty_metadata.user_id.empty());</div>
-<div class="line"><span class="lineno">   55</span>    EXPECT_TRUE(empty_metadata.tags.empty());</div>
+<div class="line"><span class="lineno">   50</span>    <a class="code hl_struct" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html">context_metadata</a> empty_metadata;</div>
+<div class="line"><span class="lineno">   51</span>    EXPECT_TRUE(empty_metadata.<a class="code hl_function" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#affcaf1c1d7510e7921342b552782d078">empty</a>());</div>
+<div class="line"><span class="lineno">   52</span>    EXPECT_TRUE(empty_metadata.<a class="code hl_variable" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a61e1ee7d4e68e1fc85ae4d01dacdaaeb">request_id</a>.empty());</div>
+<div class="line"><span class="lineno">   53</span>    EXPECT_TRUE(empty_metadata.<a class="code hl_variable" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a0994eb562444d5d8be6f93887be53e91">correlation_id</a>.empty());</div>
+<div class="line"><span class="lineno">   54</span>    EXPECT_TRUE(empty_metadata.<a class="code hl_variable" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a9a3b96f2ee8f4479a4afb7140868ec8e">user_id</a>.empty());</div>
+<div class="line"><span class="lineno">   55</span>    EXPECT_TRUE(empty_metadata.<a class="code hl_variable" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a587d479082c7d496ea3a0221d637c88f">tags</a>.empty());</div>
 <div class="line"><span class="lineno">   56</span> </div>
 <div class="line"><span class="lineno">   57</span>    <span class="comment">// Add a tag - should not be empty anymore</span></div>
-<div class="line"><span class="lineno">   58</span>    empty_metadata.set_tag(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;value&quot;</span>);</div>
-<div class="line"><span class="lineno">   59</span>    EXPECT_FALSE(empty_metadata.empty());</div>
+<div class="line"><span class="lineno">   58</span>    empty_metadata.<a class="code hl_function" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#adb4ac3e381309cee8961c14bb554844d">set_tag</a>(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;value&quot;</span>);</div>
+<div class="line"><span class="lineno">   59</span>    EXPECT_FALSE(empty_metadata.<a class="code hl_function" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#affcaf1c1d7510e7921342b552782d078">empty</a>());</div>
 <div class="line"><span class="lineno">   60</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1context__metadata_html_a0994eb562444d5d8be6f93887be53e91"><div class="ttname"><a href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a0994eb562444d5d8be6f93887be53e91">kcenon::monitoring::context_metadata::correlation_id</a></div><div class="ttdeci">std::string correlation_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00045">thread_context.h:45</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1context__metadata_html_a587d479082c7d496ea3a0221d637c88f"><div class="ttname"><a href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a587d479082c7d496ea3a0221d637c88f">kcenon::monitoring::context_metadata::tags</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; tags</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00047">thread_context.h:47</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1context__metadata_html_a61e1ee7d4e68e1fc85ae4d01dacdaaeb"><div class="ttname"><a href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a61e1ee7d4e68e1fc85ae4d01dacdaaeb">kcenon::monitoring::context_metadata::request_id</a></div><div class="ttdeci">std::string request_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00044">thread_context.h:44</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1context__metadata_html_a9a3b96f2ee8f4479a4afb7140868ec8e"><div class="ttname"><a href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#a9a3b96f2ee8f4479a4afb7140868ec8e">kcenon::monitoring::context_metadata::user_id</a></div><div class="ttdeci">std::string user_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00046">thread_context.h:46</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1context__metadata_html_adb4ac3e381309cee8961c14bb554844d"><div class="ttname"><a href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#adb4ac3e381309cee8961c14bb554844d">kcenon::monitoring::context_metadata::set_tag</a></div><div class="ttdeci">void set_tag(const std::string &amp;key, const std::string &amp;value)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00056">thread_context.h:56</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1context__metadata_html_affcaf1c1d7510e7921342b552782d078"><div class="ttname"><a href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#affcaf1c1d7510e7921342b552782d078">kcenon::monitoring::context_metadata::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00052">thread_context.h:52</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/db1/test__thread__context__simple_8cpp_a71e288a77ee54c5d0cfd6b52289f0d0d_cgraph.png" border="0" usemap="#ade/db1/test__thread__context__simple_8cpp_a71e288a77ee54c5d0cfd6b52289f0d0d_cgraph" alt=""/></div>
+<map name="ade/db1/test__thread__context__simple_8cpp_a71e288a77ee54c5d0cfd6b52289f0d0d_cgraph" id="ade/db1/test__thread__context__simple_8cpp_a71e288a77ee54c5d0cfd6b52289f0d0d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,49,60,74"/>
+<area shape="rect" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#affcaf1c1d7510e7921342b552782d078" title=" " alt="" coords="108,5,307,45"/>
+<area shape="poly" title=" " alt="" coords="60,53,97,46,98,51,61,58"/>
+<area shape="rect" href="../../d4/d3c/structkcenon_1_1monitoring_1_1context__metadata.html#adb4ac3e381309cee8961c14bb554844d" title=" " alt="" coords="129,70,286,125"/>
+<area shape="poly" title=" " alt="" coords="61,64,116,76,115,81,60,69"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a2cb45c9656df669793e5b50f74fe627f" name="a2cb45c9656df669793e5b50f74fe627f"></a>
@@ -239,38 +282,46 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../de/db1/test__thread__context__simple_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../de/db1/test__thread__context__simple_8cpp_source.html">test_thread_context_simple.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   65</span>                                                 {</div>
-<div class="line"><span class="lineno">   66</span>    thread_context_data data;</div>
+<div class="line"><span class="lineno">   66</span>    <a class="code hl_struct" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html">thread_context_data</a> data;</div>
 <div class="line"><span class="lineno">   67</span> </div>
 <div class="line"><span class="lineno">   68</span>    <span class="comment">// Check default values</span></div>
-<div class="line"><span class="lineno">   69</span>    EXPECT_TRUE(data.request_id.empty());</div>
-<div class="line"><span class="lineno">   70</span>    EXPECT_TRUE(data.correlation_id.empty());</div>
-<div class="line"><span class="lineno">   71</span>    EXPECT_TRUE(data.user_id.empty());</div>
-<div class="line"><span class="lineno">   72</span>    EXPECT_TRUE(data.span_id.empty());</div>
-<div class="line"><span class="lineno">   73</span>    EXPECT_TRUE(data.trace_id.empty());</div>
-<div class="line"><span class="lineno">   74</span>    EXPECT_FALSE(data.parent_span_id.has_value());</div>
-<div class="line"><span class="lineno">   75</span>    EXPECT_TRUE(data.tags.empty());</div>
+<div class="line"><span class="lineno">   69</span>    EXPECT_TRUE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a5173187a225192ff56f8db8f53dd247b">request_id</a>.empty());</div>
+<div class="line"><span class="lineno">   70</span>    EXPECT_TRUE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a687733b4fa94d7504519f05d176226a5">correlation_id</a>.empty());</div>
+<div class="line"><span class="lineno">   71</span>    EXPECT_TRUE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#adad94d5002dbae271f83513d78bf168d">user_id</a>.empty());</div>
+<div class="line"><span class="lineno">   72</span>    EXPECT_TRUE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a39ea05bc3b1713c783dae605b52d6fa8">span_id</a>.empty());</div>
+<div class="line"><span class="lineno">   73</span>    EXPECT_TRUE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a8df17b01896a0f7cf5ecc10c6c9e6815">trace_id</a>.empty());</div>
+<div class="line"><span class="lineno">   74</span>    EXPECT_FALSE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#ac3b5ec474da0e7c5810f69f759106169">parent_span_id</a>.has_value());</div>
+<div class="line"><span class="lineno">   75</span>    EXPECT_TRUE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#aa320fb1e5338d6546068a1ae6e7244be">tags</a>.empty());</div>
 <div class="line"><span class="lineno">   76</span> </div>
 <div class="line"><span class="lineno">   77</span>    <span class="comment">// Set values</span></div>
-<div class="line"><span class="lineno">   78</span>    data.request_id = <span class="stringliteral">&quot;req-123&quot;</span>;</div>
-<div class="line"><span class="lineno">   79</span>    data.trace_id = <span class="stringliteral">&quot;trace-456&quot;</span>;</div>
-<div class="line"><span class="lineno">   80</span>    data.span_id = <span class="stringliteral">&quot;span-789&quot;</span>;</div>
-<div class="line"><span class="lineno">   81</span>    data.parent_span_id = <span class="stringliteral">&quot;parent-span-101&quot;</span>;</div>
-<div class="line"><span class="lineno">   82</span>    data.tags[<span class="stringliteral">&quot;env&quot;</span>] = <span class="stringliteral">&quot;test&quot;</span>;</div>
+<div class="line"><span class="lineno">   78</span>    data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a5173187a225192ff56f8db8f53dd247b">request_id</a> = <span class="stringliteral">&quot;req-123&quot;</span>;</div>
+<div class="line"><span class="lineno">   79</span>    data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a8df17b01896a0f7cf5ecc10c6c9e6815">trace_id</a> = <span class="stringliteral">&quot;trace-456&quot;</span>;</div>
+<div class="line"><span class="lineno">   80</span>    data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a39ea05bc3b1713c783dae605b52d6fa8">span_id</a> = <span class="stringliteral">&quot;span-789&quot;</span>;</div>
+<div class="line"><span class="lineno">   81</span>    data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#ac3b5ec474da0e7c5810f69f759106169">parent_span_id</a> = <span class="stringliteral">&quot;parent-span-101&quot;</span>;</div>
+<div class="line"><span class="lineno">   82</span>    data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#aa320fb1e5338d6546068a1ae6e7244be">tags</a>[<span class="stringliteral">&quot;env&quot;</span>] = <span class="stringliteral">&quot;test&quot;</span>;</div>
 <div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    EXPECT_EQ(data.request_id, <span class="stringliteral">&quot;req-123&quot;</span>);</div>
-<div class="line"><span class="lineno">   85</span>    EXPECT_EQ(data.trace_id, <span class="stringliteral">&quot;trace-456&quot;</span>);</div>
-<div class="line"><span class="lineno">   86</span>    EXPECT_EQ(data.span_id, <span class="stringliteral">&quot;span-789&quot;</span>);</div>
-<div class="line"><span class="lineno">   87</span>    EXPECT_TRUE(data.parent_span_id.has_value());</div>
-<div class="line"><span class="lineno">   88</span>    EXPECT_EQ(data.parent_span_id.value(), <span class="stringliteral">&quot;parent-span-101&quot;</span>);</div>
-<div class="line"><span class="lineno">   89</span>    EXPECT_EQ(data.tags[<span class="stringliteral">&quot;env&quot;</span>], <span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">   84</span>    EXPECT_EQ(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a5173187a225192ff56f8db8f53dd247b">request_id</a>, <span class="stringliteral">&quot;req-123&quot;</span>);</div>
+<div class="line"><span class="lineno">   85</span>    EXPECT_EQ(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a8df17b01896a0f7cf5ecc10c6c9e6815">trace_id</a>, <span class="stringliteral">&quot;trace-456&quot;</span>);</div>
+<div class="line"><span class="lineno">   86</span>    EXPECT_EQ(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a39ea05bc3b1713c783dae605b52d6fa8">span_id</a>, <span class="stringliteral">&quot;span-789&quot;</span>);</div>
+<div class="line"><span class="lineno">   87</span>    EXPECT_TRUE(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#ac3b5ec474da0e7c5810f69f759106169">parent_span_id</a>.has_value());</div>
+<div class="line"><span class="lineno">   88</span>    EXPECT_EQ(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#ac3b5ec474da0e7c5810f69f759106169">parent_span_id</a>.value(), <span class="stringliteral">&quot;parent-span-101&quot;</span>);</div>
+<div class="line"><span class="lineno">   89</span>    EXPECT_EQ(data.<a class="code hl_variable" href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#aa320fb1e5338d6546068a1ae6e7244be">tags</a>[<span class="stringliteral">&quot;env&quot;</span>], <span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">   90</span>}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html">kcenon::monitoring::thread_context_data</a></div><div class="ttdoc">Enhanced thread context for comprehensive tracking.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00069">thread_context.h:69</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html_a39ea05bc3b1713c783dae605b52d6fa8"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a39ea05bc3b1713c783dae605b52d6fa8">kcenon::monitoring::thread_context_data::span_id</a></div><div class="ttdeci">std::string span_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00073">thread_context.h:73</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html_a5173187a225192ff56f8db8f53dd247b"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a5173187a225192ff56f8db8f53dd247b">kcenon::monitoring::thread_context_data::request_id</a></div><div class="ttdeci">std::string request_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00070">thread_context.h:70</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html_a687733b4fa94d7504519f05d176226a5"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a687733b4fa94d7504519f05d176226a5">kcenon::monitoring::thread_context_data::correlation_id</a></div><div class="ttdeci">std::string correlation_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00071">thread_context.h:71</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html_a8df17b01896a0f7cf5ecc10c6c9e6815"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#a8df17b01896a0f7cf5ecc10c6c9e6815">kcenon::monitoring::thread_context_data::trace_id</a></div><div class="ttdeci">std::string trace_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00074">thread_context.h:74</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html_aa320fb1e5338d6546068a1ae6e7244be"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#aa320fb1e5338d6546068a1ae6e7244be">kcenon::monitoring::thread_context_data::tags</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; tags</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00077">thread_context.h:77</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html_ac3b5ec474da0e7c5810f69f759106169"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#ac3b5ec474da0e7c5810f69f759106169">kcenon::monitoring::thread_context_data::parent_span_id</a></div><div class="ttdeci">std::optional&lt; std::string &gt; parent_span_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00076">thread_context.h:76</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1thread__context__data_html_adad94d5002dbae271f83513d78bf168d"><div class="ttname"><a href="../../d8/d87/structkcenon_1_1monitoring_1_1thread__context__data.html#adad94d5002dbae271f83513d78bf168d">kcenon::monitoring::thread_context_data::user_id</a></div><div class="ttdeci">std::string user_id</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dd1/thread__context_8h_source.html#l00072">thread_context.h:72</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

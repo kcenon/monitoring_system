@@ -1,20 +1,14 @@
 var searchData=
 [
-  ['scoped_0',['scoped',['../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0aa755c6edffa79477aeaccd799e63f0f9',1,'monitoring_system']]],
-  ['service_5fdegraded_1',['service_degraded',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccac87ed2939e63bc8bf29f82947b896d6b',1,'monitoring_system']]],
-  ['service_5funavailable_2',['service_unavailable',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca512d23352b911a1e9be84b5119e39095',1,'monitoring_system']]],
-  ['singleton_3',['singleton',['../de/d3f/namespacemonitoring__system.html#a8fe69e1dec626be265d445c95d612ad0a2ed500a3529637175e675a8791b7c56e',1,'monitoring_system']]],
-  ['slow_5fresponse_5ftime_4',['slow_response_time',['../d7/da4/classmonitoring__system_1_1performance__alert__event.html#a9e3e4114c53de549924945326854ea3aa4191e38bf1a29aff3d3d1edc89d213c9',1,'monitoring_system::performance_alert_event']]],
-  ['started_5',['started',['../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html#af0e5cdc628cc70bb801509dd99d3bb13a3bebb2f89180b03fa5ae736665f648d9',1,'monitoring_system::component_lifecycle_event']]],
-  ['state_5finconsistent_6',['state_inconsistent',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca8048e03c5bdbe19ec0e4335c2304a596',1,'monitoring_system']]],
-  ['stopped_7',['stopped',['../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html#af0e5cdc628cc70bb801509dd99d3bb13af0a0bfe6bc7d2c58d2989034f83183e0',1,'monitoring_system::component_lifecycle_event']]],
-  ['stopping_8',['stopping',['../d0/deb/classmonitoring__system_1_1component__lifecycle__event.html#af0e5cdc628cc70bb801509dd99d3bb13a3b2a3c8ed19fc3647432e72885d633e7',1,'monitoring_system::component_lifecycle_event']]],
-  ['storage_5fcorrupted_9',['storage_corrupted',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaee73756d75b9154cb7cb17942eded244',1,'monitoring_system']]],
-  ['storage_5fempty_10',['storage_empty',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca11ac24db975287952025896dfdc87e48',1,'monitoring_system']]],
-  ['storage_5ffull_11',['storage_full',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccae2de689798d87076d1de69bf02ad89f7',1,'monitoring_system']]],
-  ['storage_5fnot_5finitialized_12',['storage_not_initialized',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca9d47bbaf5be04e75dd853c9213e15f58',1,'monitoring_system']]],
-  ['storage_5fread_5ffailed_13',['storage_read_failed',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca299f429cd50efc89a2469faf3b83bc63',1,'monitoring_system']]],
-  ['storage_5fwrite_5ffailed_14',['storage_write_failed',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccabed540ca883e83742de2b38073c0aa19',1,'monitoring_system']]],
-  ['success_15',['success',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecca260ca9dd8a4577fc00b7bd5810298076',1,'monitoring_system']]],
-  ['system_5fresource_5funavailable_16',['system_resource_unavailable',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724eccaa5bbd6f5fb90c838635b8f5e83ae3189',1,'monitoring_system']]]
+  ['package_0',['package',['../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932aefe90a8e604a7c840e88d03a67f6b7d8',1,'kcenon::monitoring']]],
+  ['paused_1',['paused',['../df/d67/classkcenon_1_1monitoring_1_1component__lifecycle__event.html#aaf23e6717679dc0d595c999b735ad7ebad13c3f7baed576768b11a714ef4d90e2',1,'kcenon::monitoring::component_lifecycle_event']]],
+  ['pausing_2',['pausing',['../df/d67/classkcenon_1_1monitoring_1_1component__lifecycle__event.html#aaf23e6717679dc0d595c999b735ad7ebae487f07747533e59d596acd4c452d498',1,'kcenon::monitoring::component_lifecycle_event']]],
+  ['permission_5fchange_3',['permission_change',['../db/d50/namespacekcenon_1_1monitoring.html#a81271d377da09a5d6d1c03b1ec5f658ea4e29a4647d32563ca0b6a52d53804ea1',1,'kcenon::monitoring']]],
+  ['permission_5fdenied_4',['permission_denied',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae8ee838822072f02738dbd7d97ea03fc',1,'kcenon::monitoring']]],
+  ['platform_5',['platform',['../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5',1,'kcenon::monitoring']]],
+  ['process_6',['process',['../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b',1,'kcenon::monitoring']]],
+  ['processing_5ffailed_7',['processing_failed',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ead1d24eb94ee39e41e17b65cc63118672',1,'kcenon::monitoring']]],
+  ['producer_8',['producer',['../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5af18122ddebc4341b4ed758b3f0817da8',1,'kcenon::monitoring']]],
+  ['prometheus_5fprotobuf_9',['prometheus_protobuf',['../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23a10eb2f0e24f2277a2cf1537b85ca0772',1,'kcenon::monitoring']]],
+  ['prometheus_5ftext_10',['prometheus_text',['../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23ac4aad31613fcff4e713b3b9f3b6b3251',1,'kcenon::monitoring']]]
 ];

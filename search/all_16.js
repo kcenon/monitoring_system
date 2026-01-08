@@ -1,8 +1,24 @@
 var searchData=
 [
-  ['_7eimonitor_5finterface_0',['~imonitor_interface',['../d4/d3d/classimonitor__interface.html#a148ba17af910ef1b8a18926d30b600da',1,'imonitor_interface']]],
-  ['_7eiservice_1',['~IService',['../df/d8b/classIService.html#a098c038e416a77d0f748f13b59d71a55',1,'IService']]],
-  ['_7emetrics_5fcollector_5finterface_2',['~metrics_collector_interface',['../df/d8a/classmetrics__collector__interface.html#a198b144c55bba5889e587966081767bd',1,'metrics_collector_interface']]],
-  ['_7eservice_5fcontainer_5finterface_3',['~service_container_interface',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#ab0050f029549529e161f0ee95c078b54',1,'kcenon::monitoring::service_container_interface']]],
-  ['_7eservicea_4',['~ServiceA',['../d6/d19/classServiceA.html#a0bde63ceecbc16f8f3cd57b35dfa41cd',1,'ServiceA']]]
+  ['warmup_5fiterations_5f_0',['warmup_iterations_',['../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#afd4b83294142afc5bc6fe3aaad0008fd',1,'kcenon::monitoring::performance_benchmark']]],
+  ['warning_1',['warning',['../d2/de4/structkcenon_1_1monitoring_1_1resource__threshold__monitor_1_1alert.html#af52327e4356b93a1ea07ce06b750bb2da7b83d3f08fa392b79e3f553b585971cd',1,'kcenon::monitoring::resource_threshold_monitor::alert::warning'],['../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html#a104f57d5ce155551d43125cbe33366f1a7b83d3f08fa392b79e3f553b585971cd',1,'kcenon::monitoring::performance_alert_event::warning']]],
+  ['warning_5fcount_2',['warning_count',['../d2/dad/structkcenon_1_1monitoring_1_1logging__metric__event_1_1logging__stats.html#a0502df7890cec3039c04a4d704d11f90',1,'kcenon::monitoring::logging_metric_event::logging_stats']]],
+  ['warning_5fraised_3',['warning_raised',['../db/d0d/classkcenon_1_1monitoring_1_1system__event.html#a9fd2721bc6da5110127297846707f9fea4b6a35e5fd22680884b94d11c867badf',1,'kcenon::monitoring::system_event']]],
+  ['warning_5fthreshold_5f_4',['warning_threshold_',['../db/d5d/classkcenon_1_1monitoring_1_1fd__collector.html#ac82d1cf67854a422602339454c547d18',1,'kcenon::monitoring::fd_collector::warning_threshold_'],['../df/d30/classkcenon_1_1monitoring_1_1inode__collector.html#ac0ccf1892d27dfb573a3df3fd38ed4f1',1,'kcenon::monitoring::inode_collector::warning_threshold_']]],
+  ['warning_5fthreshold_5fcelsius_5',['warning_threshold_celsius',['../dc/d0e/structkcenon_1_1monitoring_1_1temperature__reading.html#a29b1d40eae9510e348ef0a5b9201f6b0',1,'kcenon::monitoring::temperature_reading']]],
+  ['webservice_6',['webservice',['../df/d65/classWebService.html#a6f92342771e33bdec3ffb4fecd581801',1,'WebService::WebService()'],['../df/d65/classWebService.html',1,'WebService']]],
+  ['wireless_7',['wireless',['../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a5f62483a188d1c0fef6b7be151751e10',1,'kcenon::monitoring']]],
+  ['work_5fcv_5f_8',['work_cv_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a44c6ce0c503c99780901056dfa365c69',1,'kcenon::monitoring::plugin_metric_collector']]],
+  ['work_5fmutex_5f_9',['work_mutex_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a3b070a02d09c2fa855dafc40eafec0ff',1,'kcenon::monitoring::plugin_metric_collector']]],
+  ['worker_5f_10',['worker_',['../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#a245aab22a8f29c5528b00b4c594f28cc',1,'kcenon::monitoring::thread_system_adapter']]],
+  ['worker_5fthread_5fcount_11',['worker_thread_count',['../db/dc9/structkcenon_1_1monitoring_1_1event__bus__config.html#accfa3e72c448fc4720ba605bdb8288f9',1,'kcenon::monitoring::event_bus_config']]],
+  ['worker_5fthreads_12',['worker_threads',['../dd/dd3/structkcenon_1_1monitoring_1_1plugin__collector__config.html#a95bed8c8430e01073760d2f0c6e46a56',1,'kcenon::monitoring::plugin_collector_config']]],
+  ['worker_5fthreads_5f_13',['worker_threads_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a69f99f05ae42d9ead57793df7a87fa65',1,'kcenon::monitoring::plugin_metric_collector']]],
+  ['workers_5f_14',['workers_',['../df/d2a/classkcenon_1_1monitoring_1_1event__bus.html#acc7ca33af9dfc14ada2d4f2b130ff980',1,'kcenon::monitoring::event_bus']]],
+  ['write_5fbytes_15',['write_bytes',['../de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats.html#a6bc4352ba2326e12154d7ce07e98f753',1,'kcenon::monitoring::system_info_collector::disk_stats']]],
+  ['write_5fbytes_5fper_5fsec_16',['write_bytes_per_sec',['../de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput.html#a50f4b97ee6d68c4696fb72ffd2fb2360',1,'kcenon::monitoring::system_resources::disk_metrics::io_throughput']]],
+  ['write_5ferror_5frate_17',['write_error_rate',['../dd/d5f/structkcenon_1_1monitoring_1_1smart__disk__metrics.html#abfb1bde25cea000f3dd6813405c37df3',1,'kcenon::monitoring::smart_disk_metrics']]],
+  ['write_5findex_5f_18',['write_index_',['../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a3ea13be4f3400ba0ebff660b7b22d92d',1,'kcenon::monitoring::thread_local_buffer']]],
+  ['write_5fops_19',['write_ops',['../de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats.html#a42b3486cc153b117e312fb8e1db13efb',1,'kcenon::monitoring::system_info_collector::disk_stats']]],
+  ['write_5fops_5fper_5fsec_20',['write_ops_per_sec',['../de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput.html#af4272e8c9df9885257cffa480d0e0697',1,'kcenon::monitoring::system_resources::disk_metrics::io_throughput']]]
 ];

@@ -197,21 +197,22 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  333</span>    </div>
 <div class="line"><span class="lineno">  334</span>    <span class="comment">// Add some metrics</span></div>
 <div class="line"><span class="lineno">  335</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 20; ++i) {</div>
-<div class="line"><span class="lineno">  336</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  337</span>        strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  336</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  337</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  338</span>    }</div>
 <div class="line"><span class="lineno">  339</span>    </div>
 <div class="line"><span class="lineno">  340</span>    EXPECT_EQ(strategy.size(), 20);</div>
 <div class="line"><span class="lineno">  341</span>    </div>
 <div class="line"><span class="lineno">  342</span>    <span class="comment">// Add more metrics to increase load</span></div>
 <div class="line"><span class="lineno">  343</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 20; i &lt; 80; ++i) {</div>
-<div class="line"><span class="lineno">  344</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  345</span>        strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  344</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  345</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  346</span>    }</div>
 <div class="line"><span class="lineno">  347</span>    </div>
 <div class="line"><span class="lineno">  348</span>    <span class="comment">// Should adapt to high load</span></div>
 <div class="line"><span class="lineno">  349</span>    EXPECT_TRUE(strategy.should_flush());</div>
 <div class="line"><span class="lineno">  350</span>}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">kcenon::monitoring::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00078">metric_types_adapter.h:78</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -298,13 +299,13 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00490">490</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  490</span>                                                                   {</div>
-<div class="line"><span class="lineno">  491</span>    <span class="keyword">auto</span> storage = std::make_shared&lt;metric_storage&gt;();</div>
+<div class="line"><span class="lineno">  491</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a> = std::make_shared&lt;metric_storage&gt;();</div>
 <div class="line"><span class="lineno">  492</span>    </div>
 <div class="line"><span class="lineno">  493</span>    buffer_manager_config config;</div>
 <div class="line"><span class="lineno">  494</span>    config.background_check_interval = std::chrono::milliseconds(50);</div>
 <div class="line"><span class="lineno">  495</span>    config.enable_automatic_flushing = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  496</span>    </div>
-<div class="line"><span class="lineno">  497</span>    buffer_manager manager(config, storage);</div>
+<div class="line"><span class="lineno">  497</span>    buffer_manager manager(config, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
 <div class="line"><span class="lineno">  498</span>    </div>
 <div class="line"><span class="lineno">  499</span>    <span class="comment">// Configure time-based strategy with short interval</span></div>
 <div class="line"><span class="lineno">  500</span>    buffering_config time_config;</div>
@@ -320,10 +321,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  510</span>    </div>
 <div class="line"><span class="lineno">  511</span>    <span class="comment">// Add metrics</span></div>
 <div class="line"><span class="lineno">  512</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  513</span>        <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;timed_metric&quot;</span>, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  514</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  513</span>        <span class="keyword">auto</span> metadata = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c">create_metric_metadata</a>(<span class="stringliteral">&quot;timed_metric&quot;</span>, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  514</span>        <a class="code hl_struct" href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html">compact_metric_value</a> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  515</span>        </div>
-<div class="line"><span class="lineno">  516</span>        manager.add_metric(<span class="stringliteral">&quot;timed_metric&quot;</span>, std::move(metric));</div>
+<div class="line"><span class="lineno">  516</span>        manager.add_metric(<span class="stringliteral">&quot;timed_metric&quot;</span>, std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  517</span>    }</div>
 <div class="line"><span class="lineno">  518</span>    </div>
 <div class="line"><span class="lineno">  519</span>    <span class="comment">// Wait for background flush</span></div>
@@ -337,7 +338,22 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  527</span>    <span class="comment">// Stop background processing</span></div>
 <div class="line"><span class="lineno">  528</span>    manager.stop_background_processing();</div>
 <div class="line"><span class="lineno">  529</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a9b12cc704f476358d17e70a46991cb6c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c">kcenon::monitoring::create_metric_metadata</a></div><div class="ttdeci">metric_metadata create_metric_metadata(const std::string &amp;name, metric_type type, size_t tag_count=0)</div><div class="ttdoc">Create metric metadata from name and type.</div><div class="ttdef"><b>Definition</b> <a href="../../df/d4b/metric__types_8h_source.html#l00618">metric_types.h:618</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">kcenon::monitoring::sensor_type::storage</a></div><div class="ttdeci">@ storage</div><div class="ttdoc">Storage device sensor.</div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1compact__metric__value_html"><div class="ttname"><a href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html">kcenon::monitoring::compact_metric_value</a></div><div class="ttdoc">Memory-efficient metric value storage.</div><div class="ttdef"><b>Definition</b> <a href="../../df/d4b/metric__types_8h_source.html#l00097">metric_types.h:97</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/df8/test__buffering__strategies_8cpp_af09b40aa318efd980b312d1e9fe75388_cgraph.png" border="0" usemap="#ad0/df8/test__buffering__strategies_8cpp_af09b40aa318efd980b312d1e9fe75388_cgraph" alt=""/></div>
+<map name="ad0/df8/test__buffering__strategies_8cpp_af09b40aa318efd980b312d1e9fe75388_cgraph" id="ad0/df8/test__buffering__strategies_8cpp_af09b40aa318efd980b312d1e9fe75388_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c" title="Create metric metadata from name and type." alt="" coords="123,5,313,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1816c549412066a46de9f31c42f7dc2d" title="Hash function for metric names." alt="" coords="361,5,516,45"/>
+<area shape="poly" title=" " alt="" coords="314,23,348,23,348,28,314,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a5ac52471ad8c8f349331f18417d0df0b" name="a5ac52471ad8c8f349331f18417d0df0b"></a>
@@ -368,20 +384,20 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html#l00395">395</a> of file <a class="el" href="../../d0/df8/test__buffering__strategies_8cpp_source.html">test_buffering_strategies.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  395</span>                                                    {</div>
-<div class="line"><span class="lineno">  396</span>    <span class="keyword">auto</span> storage = std::make_shared&lt;metric_storage&gt;();</div>
+<div class="line"><span class="lineno">  396</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a> = std::make_shared&lt;metric_storage&gt;();</div>
 <div class="line"><span class="lineno">  397</span>    </div>
 <div class="line"><span class="lineno">  398</span>    buffer_manager_config config;</div>
 <div class="line"><span class="lineno">  399</span>    config.enable_automatic_flushing = <span class="keyword">false</span>;  <span class="comment">// Manual control for testing</span></div>
 <div class="line"><span class="lineno">  400</span>    </div>
-<div class="line"><span class="lineno">  401</span>    buffer_manager manager(config, storage);</div>
+<div class="line"><span class="lineno">  401</span>    buffer_manager manager(config, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
 <div class="line"><span class="lineno">  402</span>    </div>
 <div class="line"><span class="lineno">  403</span>    <span class="comment">// Add metrics for different metric names</span></div>
 <div class="line"><span class="lineno">  404</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  405</span>        <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;cpu_usage&quot;</span>, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  406</span>        compact_metric_value metric(metadata, 50.0 + i);</div>
+<div class="line"><span class="lineno">  405</span>        <span class="keyword">auto</span> metadata = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c">create_metric_metadata</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  406</span>        <a class="code hl_struct" href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html">compact_metric_value</a> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>(metadata, 50.0 + i);</div>
 <div class="line"><span class="lineno">  407</span>        </div>
-<div class="line"><span class="lineno">  408</span>        <span class="keyword">auto</span> result = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(metric));</div>
-<div class="line"><span class="lineno">  409</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  408</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
+<div class="line"><span class="lineno">  409</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  410</span>    }</div>
 <div class="line"><span class="lineno">  411</span>    </div>
 <div class="line"><span class="lineno">  412</span>    <span class="comment">// Check buffer size</span></div>
@@ -398,7 +414,20 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  423</span>    EXPECT_TRUE(size_result);</div>
 <div class="line"><span class="lineno">  424</span>    EXPECT_EQ(size_result.value(), 0);</div>
 <div class="line"><span class="lineno">  425</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/df8/test__buffering__strategies_8cpp_a5ac52471ad8c8f349331f18417d0df0b_cgraph.png" border="0" usemap="#ad0/df8/test__buffering__strategies_8cpp_a5ac52471ad8c8f349331f18417d0df0b_cgraph" alt=""/></div>
+<map name="ad0/df8/test__buffering__strategies_8cpp_a5ac52471ad8c8f349331f18417d0df0b_cgraph" id="ad0/df8/test__buffering__strategies_8cpp_a5ac52471ad8c8f349331f18417d0df0b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c" title="Create metric metadata from name and type." alt="" coords="123,5,313,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1816c549412066a46de9f31c42f7dc2d" title="Hash function for metric names." alt="" coords="361,5,516,45"/>
+<area shape="poly" title=" " alt="" coords="314,23,348,23,348,28,314,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aff816ec719a561f22c2ac43838d8b228" name="aff816ec719a561f22c2ac43838d8b228"></a>
@@ -437,17 +466,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  468</span>    custom_config.max_buffer_size = 10;</div>
 <div class="line"><span class="lineno">  469</span>    custom_config.flush_priority_threshold = 200;</div>
 <div class="line"><span class="lineno">  470</span>    </div>
-<div class="line"><span class="lineno">  471</span>    <span class="keyword">auto</span> result = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
-<div class="line"><span class="lineno">  472</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  471</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager.configure_metric_buffer(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, custom_config);</div>
+<div class="line"><span class="lineno">  472</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  473</span>    </div>
 <div class="line"><span class="lineno">  474</span>    <span class="comment">// Add metrics with different priorities</span></div>
 <div class="line"><span class="lineno">  475</span>    std::vector&lt;uint8_t&gt; priorities = {100, 250, 150};</div>
 <div class="line"><span class="lineno">  476</span>    </div>
 <div class="line"><span class="lineno">  477</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; priorities.size(); ++i) {</div>
-<div class="line"><span class="lineno">  478</span>        <span class="keyword">auto</span> metadata = create_metric_metadata(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, metric_type::counter);</div>
-<div class="line"><span class="lineno">  479</span>        compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  478</span>        <span class="keyword">auto</span> metadata = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c">create_metric_metadata</a>(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, metric_type::counter);</div>
+<div class="line"><span class="lineno">  479</span>        <a class="code hl_struct" href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html">compact_metric_value</a> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  480</span>        </div>
-<div class="line"><span class="lineno">  481</span>        <span class="keyword">auto</span> add_result = manager.add_metric(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, std::move(metric), priorities[i]);</div>
+<div class="line"><span class="lineno">  481</span>        <span class="keyword">auto</span> add_result = manager.add_metric(<span class="stringliteral">&quot;high_priority_metric&quot;</span>, std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>), priorities[i]);</div>
 <div class="line"><span class="lineno">  482</span>        EXPECT_TRUE(add_result);</div>
 <div class="line"><span class="lineno">  483</span>    }</div>
 <div class="line"><span class="lineno">  484</span>    </div>
@@ -455,7 +484,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  486</span>    <span class="keyword">auto</span> stats_result = manager.get_buffer_statistics(<span class="stringliteral">&quot;high_priority_metric&quot;</span>);</div>
 <div class="line"><span class="lineno">  487</span>    EXPECT_TRUE(stats_result);</div>
 <div class="line"><span class="lineno">  488</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/df8/test__buffering__strategies_8cpp_aff816ec719a561f22c2ac43838d8b228_cgraph.png" border="0" usemap="#ad0/df8/test__buffering__strategies_8cpp_aff816ec719a561f22c2ac43838d8b228_cgraph" alt=""/></div>
+<map name="ad0/df8/test__buffering__strategies_8cpp_aff816ec719a561f22c2ac43838d8b228_cgraph" id="ad0/df8/test__buffering__strategies_8cpp_aff816ec719a561f22c2ac43838d8b228_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c" title="Create metric metadata from name and type." alt="" coords="123,5,313,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1816c549412066a46de9f31c42f7dc2d" title="Hash function for metric names." alt="" coords="361,5,516,45"/>
+<area shape="poly" title=" " alt="" coords="314,23,348,23,348,28,314,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a648ed9007895524f1d9c89772cfdd4ec" name="a648ed9007895524f1d9c89772cfdd4ec"></a>
@@ -493,10 +534,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  432</span>    <span class="comment">// Add metrics for different metric names</span></div>
 <div class="line"><span class="lineno">  433</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric_name : metric_names) {</div>
 <div class="line"><span class="lineno">  434</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line"><span class="lineno">  435</span>            <span class="keyword">auto</span> metadata = create_metric_metadata(metric_name, metric_type::gauge);</div>
-<div class="line"><span class="lineno">  436</span>            compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  435</span>            <span class="keyword">auto</span> metadata = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c">create_metric_metadata</a>(metric_name, metric_type::gauge);</div>
+<div class="line"><span class="lineno">  436</span>            <a class="code hl_struct" href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html">compact_metric_value</a> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  437</span>            </div>
-<div class="line"><span class="lineno">  438</span>            manager.add_metric(metric_name, std::move(metric));</div>
+<div class="line"><span class="lineno">  438</span>            manager.add_metric(metric_name, std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  439</span>        }</div>
 <div class="line"><span class="lineno">  440</span>    }</div>
 <div class="line"><span class="lineno">  441</span>    </div>
@@ -519,7 +560,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  458</span>        EXPECT_EQ(size_result.value(), 0);</div>
 <div class="line"><span class="lineno">  459</span>    }</div>
 <div class="line"><span class="lineno">  460</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/df8/test__buffering__strategies_8cpp_a648ed9007895524f1d9c89772cfdd4ec_cgraph.png" border="0" usemap="#ad0/df8/test__buffering__strategies_8cpp_a648ed9007895524f1d9c89772cfdd4ec_cgraph" alt=""/></div>
+<map name="ad0/df8/test__buffering__strategies_8cpp_a648ed9007895524f1d9c89772cfdd4ec_cgraph" id="ad0/df8/test__buffering__strategies_8cpp_a648ed9007895524f1d9c89772cfdd4ec_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c" title="Create metric metadata from name and type." alt="" coords="123,5,313,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1816c549412066a46de9f31c42f7dc2d" title="Hash function for metric names." alt="" coords="361,5,516,45"/>
+<area shape="poly" title=" " alt="" coords="314,23,348,23,348,28,314,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a5d5892b99c96e6c965a3bf318904f1b9" name="a5d5892b99c96e6c965a3bf318904f1b9"></a>
@@ -604,9 +657,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  150</span>    </div>
 <div class="line"><span class="lineno">  151</span>    <span class="comment">// Add metrics up to threshold</span></div>
 <div class="line"><span class="lineno">  152</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line"><span class="lineno">  153</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  154</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  155</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  153</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  154</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
+<div class="line"><span class="lineno">  155</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  156</span>    }</div>
 <div class="line"><span class="lineno">  157</span>    </div>
 <div class="line"><span class="lineno">  158</span>    EXPECT_EQ(strategy.size(), 3);</div>
@@ -614,9 +667,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  160</span>    </div>
 <div class="line"><span class="lineno">  161</span>    <span class="comment">// Add more metrics to test overflow</span></div>
 <div class="line"><span class="lineno">  162</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 3; i &lt; 8; ++i) {</div>
-<div class="line"><span class="lineno">  163</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  164</span>        <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  165</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  163</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  164</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
+<div class="line"><span class="lineno">  165</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  166</span>    }</div>
 <div class="line"><span class="lineno">  167</span>    </div>
 <div class="line"><span class="lineno">  168</span>    EXPECT_EQ(strategy.size(), 5);  <span class="comment">// Should not exceed max size</span></div>
@@ -676,15 +729,15 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  193</span>    </div>
 <div class="line"><span class="lineno">  194</span>    <span class="comment">// Fill buffer</span></div>
 <div class="line"><span class="lineno">  195</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line"><span class="lineno">  196</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  197</span>        strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  196</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  197</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  198</span>    }</div>
 <div class="line"><span class="lineno">  199</span>    </div>
 <div class="line"><span class="lineno">  200</span>    EXPECT_EQ(strategy.size(), 3);</div>
 <div class="line"><span class="lineno">  201</span>    </div>
 <div class="line"><span class="lineno">  202</span>    <span class="comment">// Try to add one more (should be dropped)</span></div>
-<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_overflow&quot;</span>, 999.0);</div>
-<div class="line"><span class="lineno">  204</span>    strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  203</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_overflow&quot;</span>, 999.0);</div>
+<div class="line"><span class="lineno">  204</span>    strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  205</span>    </div>
 <div class="line"><span class="lineno">  206</span>    EXPECT_EQ(strategy.size(), 3);  <span class="comment">// Size unchanged</span></div>
 <div class="line"><span class="lineno">  207</span>    </div>
@@ -732,9 +785,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  119</span>    EXPECT_FALSE(strategy.should_flush());</div>
 <div class="line"><span class="lineno">  120</span>    </div>
 <div class="line"><span class="lineno">  121</span>    <span class="comment">// Add metric (should be processed immediately)</span></div>
-<div class="line"><span class="lineno">  122</span>    <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><span class="lineno">  123</span>    <span class="keyword">auto</span> result = strategy.add_metric(std::move(metric));</div>
-<div class="line"><span class="lineno">  124</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
+<div class="line"><span class="lineno">  123</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
+<div class="line"><span class="lineno">  124</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  125</span>    </div>
 <div class="line"><span class="lineno">  126</span>    <span class="comment">// Size should still be 0 (no buffering)</span></div>
 <div class="line"><span class="lineno">  127</span>    EXPECT_EQ(strategy.size(), 0);</div>
@@ -792,8 +845,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  270</span>    std::vector&lt;uint8_t&gt; priorities = {100, 150, 250, 50, 220};</div>
 <div class="line"><span class="lineno">  271</span>    </div>
 <div class="line"><span class="lineno">  272</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; priorities.size(); ++i) {</div>
-<div class="line"><span class="lineno">  273</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
-<div class="line"><span class="lineno">  274</span>        strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  273</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
+<div class="line"><span class="lineno">  274</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  275</span>    }</div>
 <div class="line"><span class="lineno">  276</span>    </div>
 <div class="line"><span class="lineno">  277</span>    EXPECT_EQ(strategy.size(), 5);</div>
@@ -853,8 +906,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  302</span>    std::vector&lt;uint8_t&gt; priorities = {100, 200, 150, 250, 50};</div>
 <div class="line"><span class="lineno">  303</span>    </div>
 <div class="line"><span class="lineno">  304</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; priorities.size(); ++i) {</div>
-<div class="line"><span class="lineno">  305</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
-<div class="line"><span class="lineno">  306</span>        strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  305</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i), priorities[i]);</div>
+<div class="line"><span class="lineno">  306</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  307</span>    }</div>
 <div class="line"><span class="lineno">  308</span>    </div>
 <div class="line"><span class="lineno">  309</span>    EXPECT_EQ(strategy.size(), 3);  <span class="comment">// Should maintain max size</span></div>
@@ -968,10 +1021,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  542</span>            std::string metric_name = <span class="stringliteral">&quot;thread_&quot;</span> + std::to_string(t) + <span class="stringliteral">&quot;_metric&quot;</span>;</div>
 <div class="line"><span class="lineno">  543</span>            </div>
 <div class="line"><span class="lineno">  544</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; metrics_per_thread; ++i) {</div>
-<div class="line"><span class="lineno">  545</span>                <span class="keyword">auto</span> metadata = create_metric_metadata(metric_name, metric_type::counter);</div>
-<div class="line"><span class="lineno">  546</span>                compact_metric_value metric(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  545</span>                <span class="keyword">auto</span> metadata = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c">create_metric_metadata</a>(metric_name, metric_type::counter);</div>
+<div class="line"><span class="lineno">  546</span>                <a class="code hl_struct" href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html">compact_metric_value</a> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>(metadata, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  547</span>                </div>
-<div class="line"><span class="lineno">  548</span>                manager.add_metric(metric_name, std::move(metric));</div>
+<div class="line"><span class="lineno">  548</span>                manager.add_metric(metric_name, std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  549</span>                </div>
 <div class="line"><span class="lineno">  550</span>                <span class="comment">// Small delay to increase chance of contention</span></div>
 <div class="line"><span class="lineno">  551</span>                std::this_thread::sleep_for(std::chrono::microseconds(1));</div>
@@ -996,7 +1049,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  570</span>        EXPECT_EQ(size_result.value(), metrics_per_thread);</div>
 <div class="line"><span class="lineno">  571</span>    }</div>
 <div class="line"><span class="lineno">  572</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/df8/test__buffering__strategies_8cpp_aa4cca2764b1e11c8c9ffa97cc26c5565_cgraph.png" border="0" usemap="#ad0/df8/test__buffering__strategies_8cpp_aa4cca2764b1e11c8c9ffa97cc26c5565_cgraph" alt=""/></div>
+<map name="ad0/df8/test__buffering__strategies_8cpp_aa4cca2764b1e11c8c9ffa97cc26c5565_cgraph" id="ad0/df8/test__buffering__strategies_8cpp_aa4cca2764b1e11c8c9ffa97cc26c5565_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9b12cc704f476358d17e70a46991cb6c" title="Create metric metadata from name and type." alt="" coords="123,5,313,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1816c549412066a46de9f31c42f7dc2d" title="Hash function for metric names." alt="" coords="361,5,516,45"/>
+<area shape="poly" title=" " alt="" coords="314,23,348,23,348,28,314,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a9e479ad436f6d0c25965383826d98464" name="a9e479ad436f6d0c25965383826d98464"></a>
@@ -1036,8 +1101,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  220</span>    </div>
 <div class="line"><span class="lineno">  221</span>    <span class="comment">// Add some metrics</span></div>
 <div class="line"><span class="lineno">  222</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  223</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  224</span>        strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  223</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  224</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  225</span>    }</div>
 <div class="line"><span class="lineno">  226</span>    </div>
 <div class="line"><span class="lineno">  227</span>    EXPECT_EQ(strategy.size(), 5);</div>
@@ -1094,8 +1159,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  249</span>    </div>
 <div class="line"><span class="lineno">  250</span>    <span class="comment">// Fill buffer beyond capacity</span></div>
 <div class="line"><span class="lineno">  251</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">  252</span>        <span class="keyword">auto</span> metric = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  253</span>        strategy.add_metric(std::move(metric));</div>
+<div class="line"><span class="lineno">  252</span>        <span class="keyword">auto</span> <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> = create_test_metric(<span class="stringliteral">&quot;test_&quot;</span> + std::to_string(i), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  253</span>        strategy.add_metric(std::move(<a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>));</div>
 <div class="line"><span class="lineno">  254</span>    }</div>
 <div class="line"><span class="lineno">  255</span>    </div>
 <div class="line"><span class="lineno">  256</span>    <span class="comment">// Should trigger flush due to buffer full condition</span></div>
@@ -1107,7 +1172,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

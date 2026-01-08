@@ -1,4 +1,30 @@
 var searchData=
 [
-  ['webservice_0',['WebService',['../df/d65/classWebService.html',1,'']]]
+  ['performance_5falert_5fevent_0',['performance_alert_event',['../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html',1,'kcenon::monitoring']]],
+  ['performance_5fbenchmark_1',['performance_benchmark',['../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html',1,'kcenon::monitoring']]],
+  ['performance_5fmetrics_2',['performance_metrics',['../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html',1,'kcenon::monitoring']]],
+  ['performance_5fmonitor_3',['performance_monitor',['../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html',1,'kcenon::monitoring']]],
+  ['performance_5fmonitor_5fadapter_4',['performance_monitor_adapter',['../d0/d73/classkcenon_1_1monitoring_1_1adapters_1_1performance__monitor__adapter.html',1,'kcenon::monitoring::adapters::performance_monitor_adapter'],['../d6/d13/classkcenon_1_1monitoring_1_1performance__monitor__adapter.html',1,'kcenon::monitoring::performance_monitor_adapter']]],
+  ['performance_5fmonitor_5ffacade_5',['performance_monitor_facade',['../d9/d17/classperformance__monitor__facade.html',1,'']]],
+  ['performance_5fmonitor_5fimpl_6',['performance_monitor_impl',['../db/d7f/classperformance__monitor__impl.html',1,'']]],
+  ['performance_5fmonitor_5fold_7',['performance_monitor_old',['../d2/d91/classperformance__monitor__old.html',1,'']]],
+  ['performance_5fprofile_8',['performance_profile',['../d8/d86/structkcenon_1_1monitoring_1_1performance__profile.html',1,'kcenon::monitoring']]],
+  ['performance_5fprofiler_9',['performance_profiler',['../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html',1,'kcenon::monitoring']]],
+  ['performancemonitoringtest_10',['PerformanceMonitoringTest',['../d7/dbe/classPerformanceMonitoringTest.html',1,'']]],
+  ['performancemonitorthreadsafetytest_11',['PerformanceMonitorThreadSafetyTest',['../d8/d32/classPerformanceMonitorThreadSafetyTest.html',1,'']]],
+  ['performanceprofilerthreadsafetytest_12',['PerformanceProfilerThreadSafetyTest',['../df/d0f/classPerformanceProfilerThreadSafetyTest.html',1,'']]],
+  ['plugin_5fcollector_5fconfig_13',['plugin_collector_config',['../dd/dd3/structkcenon_1_1monitoring_1_1plugin__collector__config.html',1,'kcenon::monitoring']]],
+  ['plugin_5ffactory_14',['plugin_factory',['../d6/d90/classkcenon_1_1monitoring_1_1plugin__factory.html',1,'kcenon::monitoring']]],
+  ['plugin_5floader_15',['plugin_loader',['../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html',1,'kcenon::monitoring']]],
+  ['plugin_5fmetric_5fcollector_16',['plugin_metric_collector',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html',1,'kcenon::monitoring']]],
+  ['power_5fcollector_17',['power_collector',['../d3/dec/classkcenon_1_1monitoring_1_1power__collector.html',1,'kcenon::monitoring']]],
+  ['power_5finfo_18',['power_info',['../d4/d69/structkcenon_1_1monitoring_1_1platform_1_1power__info.html',1,'kcenon::monitoring::platform']]],
+  ['power_5finfo_5fcollector_19',['power_info_collector',['../dc/dc2/classkcenon_1_1monitoring_1_1power__info__collector.html',1,'kcenon::monitoring']]],
+  ['power_5freading_20',['power_reading',['../d7/d3f/structkcenon_1_1monitoring_1_1power__reading.html',1,'kcenon::monitoring']]],
+  ['power_5fsource_5finfo_21',['power_source_info',['../d3/d78/structkcenon_1_1monitoring_1_1power__source__info.html',1,'kcenon::monitoring']]],
+  ['process_5fcontext_5fswitch_5finfo_22',['process_context_switch_info',['../d7/d9e/structkcenon_1_1monitoring_1_1process__context__switch__info.html',1,'kcenon::monitoring']]],
+  ['process_5fmetrics_23',['process_metrics',['../dc/d13/structkcenon_1_1monitoring_1_1system__resources_1_1process__metrics.html',1,'kcenon::monitoring::system_resources']]],
+  ['profile_5fdata_24',['profile_data',['../d0/ddf/structkcenon_1_1monitoring_1_1central__collector_1_1profile__data.html',1,'kcenon::monitoring::central_collector::profile_data'],['../d1/d27/structkcenon_1_1monitoring_1_1performance__profiler_1_1profile__data.html',1,'kcenon::monitoring::performance_profiler::profile_data']]],
+  ['prometheus_5fexporter_25',['prometheus_exporter',['../d6/dd7/classkcenon_1_1monitoring_1_1prometheus__exporter.html',1,'kcenon::monitoring']]],
+  ['prometheus_5fmetric_5fdata_26',['prometheus_metric_data',['../d6/d21/structkcenon_1_1monitoring_1_1prometheus__metric__data.html',1,'kcenon::monitoring']]]
 ];

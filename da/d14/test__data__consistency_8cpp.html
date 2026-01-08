@@ -1111,8 +1111,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   95</span>    EXPECT_EQ(op-&gt;name(), <span class="stringliteral">&quot;test_op&quot;</span>);</div>
 <div class="line"><span class="lineno">   96</span>    EXPECT_FALSE(op-&gt;is_executed());</div>
 <div class="line"><span class="lineno">   97</span>    </div>
-<div class="line"><span class="lineno">   98</span>    <span class="keyword">auto</span> result = op-&gt;execute();</div>
-<div class="line"><span class="lineno">   99</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">   98</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = op-&gt;execute();</div>
+<div class="line"><span class="lineno">   99</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  100</span>    EXPECT_TRUE(op-&gt;is_executed());</div>
 <div class="line"><span class="lineno">  101</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><span class="lineno">  102</span>    EXPECT_EQ(success_count.load(), 1);</div>
@@ -1121,6 +1121,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  105</span>    EXPECT_TRUE(rollback_result);</div>
 <div class="line"><span class="lineno">  106</span>    EXPECT_EQ(rollback_count.load(), 1);</div>
 <div class="line"><span class="lineno">  107</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1281,7 +1282,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

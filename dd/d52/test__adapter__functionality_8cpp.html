@@ -83,8 +83,8 @@ $(function() {
 <p>Phase 3.2 - Adapter Functionality Verification Tests.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/adapters/logger_system_adapter.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/core/event_bus.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d46/logger__system__adapter_8h_source.html">kcenon/monitoring/adapters/logger_system_adapter.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/d6d/event__bus_8h_source.html">kcenon/monitoring/core/event_bus.h</a>&gt;</code><br />
 <code>#include &lt;kcenon/common/interfaces/logger_interface.h&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
@@ -93,19 +93,123 @@ Include dependency graph for test_adapter_functionality.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/d58/test__adapter__functionality_8cpp__incl.png" border="0" usemap="#atests_2test__adapter__functionality_8cpp" alt=""/></div>
 <map name="atests_2test__adapter__functionality_8cpp" id="atests_2test__adapter__functionality_8cpp">
-<area shape="rect" title="Phase 3.2 &#45; Adapter Functionality Verification Tests." alt="" coords="486,5,626,45"/>
-<area shape="rect" title=" " alt="" coords="5,101,109,126"/>
-<area shape="poly" title=" " alt="" coords="486,37,319,60,122,96,107,100,106,94,121,91,319,55,485,32"/>
-<area shape="rect" title=" " alt="" coords="133,93,339,133"/>
-<area shape="poly" title=" " alt="" coords="486,48,320,92,319,87,485,43"/>
-<area shape="rect" title=" " alt="" coords="363,93,539,133"/>
-<area shape="poly" title=" " alt="" coords="534,48,486,87,483,83,531,44"/>
-<area shape="rect" title=" " alt="" coords="563,93,762,133"/>
-<area shape="poly" title=" " alt="" coords="581,44,630,83,627,87,578,48"/>
-<area shape="rect" title=" " alt="" coords="785,101,863,126"/>
-<area shape="poly" title=" " alt="" coords="622,43,776,91,783,93,781,98,774,96,621,48"/>
-<area shape="rect" title=" " alt="" coords="887,101,953,126"/>
-<area shape="poly" title=" " alt="" coords="627,35,744,57,875,91,882,93,881,98,874,96,743,63,626,40"/>
+<area shape="rect" title="Phase 3.2 &#45; Adapter Functionality Verification Tests." alt="" coords="2274,5,2414,45"/>
+<area shape="rect" title=" " alt="" coords="1039,101,1143,126"/>
+<area shape="poly" title=" " alt="" coords="2274,31,1713,52,1390,71,1256,83,1155,96,1138,100,1137,94,1154,91,1256,77,1390,66,1713,47,2274,26"/>
+<area shape="rect" href="../../d8/d46/logger__system__adapter_8h.html" title=" " alt="" coords="1167,93,1372,133"/>
+<area shape="poly" title=" " alt="" coords="2274,35,1386,105,1385,100,2274,30"/>
+<area shape="rect" title=" " alt="" coords="2325,445,2392,471"/>
+<area shape="poly" title=" " alt="" coords="2365,44,2382,66,2395,92,2406,140,2410,190,2409,239,2405,287,2388,372,2370,433,2365,432,2383,371,2399,286,2404,239,2405,190,2400,141,2389,94,2377,69,2361,47"/>
+<area shape="rect" title=" " alt="" coords="2416,445,2493,471"/>
+<area shape="poly" title=" " alt="" coords="2416,43,2471,65,2526,98,2549,119,2567,143,2580,170,2584,200,2584,291,2581,315,2574,338,2549,379,2516,414,2485,439,2482,435,2513,410,2544,376,2569,336,2576,314,2579,291,2579,200,2574,171,2563,145,2545,122,2523,102,2469,70,2414,48"/>
+<area shape="rect" href="../../dd/d6d/event__bus_8h.html" title="Lightweight event bus implementation for monitoring system." alt="" coords="1755,277,1901,302"/>
+<area shape="poly" title=" " alt="" coords="2355,45,2368,81,2378,129,2379,154,2377,179,2369,202,2355,223,2333,235,2293,246,2177,264,2039,277,1915,286,1914,281,2039,272,2176,258,2292,241,2331,230,2352,219,2364,200,2371,178,2374,154,2373,130,2363,83,2350,46"/>
+<area shape="rect" title=" " alt="" coords="2143,181,2342,221"/>
+<area shape="poly" title=" " alt="" coords="2335,47,2263,171,2258,168,2331,44"/>
+<area shape="poly" title=" " alt="" coords="1356,131,1569,179,1681,200,1780,211,1950,223,2030,235,2112,257,2199,296,2295,355,2314,372,2330,392,2351,431,2347,434,2325,395,2310,376,2292,359,2196,300,2110,262,2029,240,1950,229,1779,216,1680,205,1567,184,1354,136"/>
+<area shape="rect" title=" " alt="" coords="848,445,915,471"/>
+<area shape="poly" title=" " alt="" coords="1177,136,1066,161,1023,174,1000,184,974,211,951,242,933,277,918,312,897,380,887,432,882,431,892,378,913,310,928,274,947,240,969,207,997,179,1021,169,1065,156,1175,131"/>
+<area shape="poly" title=" " alt="" coords="1373,117,1535,130,1743,156,1856,175,1972,200,2086,230,2197,267,2244,286,2279,304,2354,355,2400,395,2438,433,2434,437,2397,399,2350,359,2277,308,2242,290,2195,272,2085,235,1970,205,1855,181,1742,161,1534,135,1372,122"/>
+<area shape="rect" title=" " alt="" coords="96,526,171,551"/>
+<area shape="poly" title=" " alt="" coords="1167,135,1155,136,942,149,587,174,408,194,255,219,194,234,148,251,119,269,112,278,109,288,109,379,116,452,129,512,124,513,111,452,104,379,104,288,107,276,115,265,146,246,193,229,253,214,407,188,587,169,941,144,1154,131,1166,129"/>
+<area shape="rect" title=" " alt="" coords="471,607,529,632"/>
+<area shape="poly" title=" " alt="" coords="1167,135,1155,136,1015,147,896,148,693,140,596,138,492,142,376,156,239,184,197,192,156,196,81,205,51,214,28,229,13,253,8,288,8,459,10,491,17,515,31,536,55,556,86,572,130,584,242,602,361,611,457,615,457,620,361,616,241,607,129,590,84,577,52,561,27,540,12,518,5,492,3,459,3,288,8,251,24,225,49,209,80,199,155,191,196,186,238,179,375,151,492,136,596,132,693,135,896,143,1015,141,1154,131,1166,129"/>
+<area shape="rect" title=" " alt="" coords="1249,365,1313,390"/>
+<area shape="poly" title=" " alt="" coords="1279,133,1291,181,1294,228,1294,275,1288,351,1282,351,1289,275,1289,228,1285,182,1274,134"/>
+<area shape="rect" title=" " alt="" coords="939,445,1002,471"/>
+<area shape="poly" title=" " alt="" coords="1271,134,1264,176,1257,200,1246,223,1220,260,1190,295,1124,357,1058,406,1004,441,1002,436,1055,402,1120,353,1186,292,1216,257,1242,220,1252,198,1259,175,1266,133"/>
+<area shape="poly" title=" " alt="" coords="1330,131,1779,270,1778,275,1329,136"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="1026,445,1185,471"/>
+<area shape="poly" title=" " alt="" coords="1180,136,1080,161,1042,173,1023,183,1008,214,1003,247,1007,282,1018,318,1053,383,1088,433,1084,436,1048,386,1013,320,1002,284,997,247,1002,212,1019,179,1040,168,1078,155,1179,131"/>
+<area shape="rect" href="../../de/d0f/event__types_8h.html" title="Common event type definitions for monitoring system." alt="" coords="623,189,782,214"/>
+<area shape="poly" title=" " alt="" coords="1167,134,1155,136,796,189,796,184,1154,131,1166,129"/>
+<area shape="rect" href="../../dc/d0b/metric__types__adapter_8h.html" title="Adapter for metric types to support interface definitions." alt="" coords="314,269,459,309"/>
+<area shape="poly" title=" " alt="" coords="1167,134,1155,136,1072,144,1001,147,880,147,822,149,761,154,692,165,611,184,561,201,512,222,430,265,427,260,510,217,559,196,610,179,691,160,760,148,822,143,880,142,1001,142,1072,139,1154,131,1166,129"/>
+<area shape="poly" title=" " alt="" coords="1373,117,1708,139,1916,157,2126,179,2130,179,2129,185,2125,184,1916,162,1707,145,1372,123"/>
+<area shape="rect" title=" " alt="" coords="1034,181,1233,221"/>
+<area shape="poly" title=" " alt="" coords="1241,136,1176,176,1173,172,1238,131"/>
+<area shape="poly" title=" " alt="" coords="1901,288,1976,292,2064,302,2157,322,2203,337,2247,355,2275,372,2302,392,2343,433,2339,437,2298,396,2272,376,2244,360,2201,342,2156,328,2063,307,1975,297,1901,293"/>
+<area shape="poly" title=" " alt="" coords="1755,299,1546,321,1443,338,1401,349,1371,360,1358,369,1349,379,1341,390,1327,400,1271,422,1222,434,1177,439,1134,440,1043,438,990,440,929,448,928,443,989,435,1043,433,1134,435,1177,434,1221,429,1269,416,1324,395,1337,386,1345,376,1354,365,1368,355,1400,343,1442,333,1545,316,1755,293"/>
+<area shape="poly" title=" " alt="" coords="1901,289,1983,294,2083,305,2190,325,2294,355,2334,372,2371,393,2431,435,2428,439,2368,398,2331,377,2292,360,2188,330,2082,311,1983,300,1901,295"/>
+<area shape="poly" title=" " alt="" coords="1755,298,1563,318,1447,336,1333,360,1323,363,1321,358,1331,355,1446,331,1562,313,1755,293"/>
+<area shape="poly" title=" " alt="" coords="1755,294,1683,299,1598,310,1508,330,1421,360,1406,369,1397,379,1386,390,1370,400,1320,418,1276,429,1198,436,1117,437,1070,440,1016,448,1015,443,1070,435,1117,431,1198,431,1275,424,1319,413,1368,395,1383,386,1393,376,1403,365,1419,355,1506,325,1597,305,1683,294,1755,289"/>
+<area shape="rect" title=" " alt="" coords="1260,445,1345,471"/>
+<area shape="poly" title=" " alt="" coords="1756,301,1646,322,1587,338,1529,360,1512,369,1501,379,1472,400,1414,425,1358,444,1357,439,1412,420,1469,395,1497,375,1509,365,1527,355,1585,333,1645,317,1755,296"/>
+<area shape="rect" title=" " alt="" coords="2203,445,2250,471"/>
+<area shape="poly" title=" " alt="" coords="1892,299,1980,321,2076,355,2147,395,2203,435,2200,439,2144,399,2074,360,1979,326,1891,305"/>
+<area shape="rect" title=" " alt="" coords="1757,365,1899,390"/>
+<area shape="poly" title=" " alt="" coords="1831,302,1831,350,1825,350,1825,302"/>
+<area shape="rect" title=" " alt="" coords="1772,607,1839,632"/>
+<area shape="poly" title=" " alt="" coords="1901,296,2011,317,2072,334,2130,355,2187,377,2240,400,2260,413,2272,430,2274,450,2264,472,2222,517,2172,552,2116,578,2058,597,2000,609,1944,617,1853,622,1853,617,1944,612,1999,604,2057,592,2114,573,2169,547,2218,513,2259,469,2269,449,2267,432,2256,417,2238,404,2185,382,2128,360,2070,339,2010,322,1900,302"/>
+<area shape="rect" title=" " alt="" coords="1841,445,1927,471"/>
+<area shape="poly" title=" " alt="" coords="1902,298,1929,306,1955,318,1980,334,2000,356,2007,377,2000,399,1974,426,1942,443,1939,439,1971,421,1995,396,2002,377,1995,359,1976,338,1953,322,1927,311,1900,303"/>
+<area shape="rect" title=" " alt="" coords="1952,445,2016,471"/>
+<area shape="poly" title=" " alt="" coords="1902,293,1934,301,1967,313,1998,331,2022,356,2029,376,2026,398,2017,418,2005,436,2001,433,2012,416,2021,396,2024,377,2018,359,1994,335,1965,317,1933,306,1900,298"/>
+<area shape="rect" title=" " alt="" coords="1923,365,1986,390"/>
+<area shape="poly" title=" " alt="" coords="1847,300,1928,355,1925,359,1844,304"/>
+<area shape="rect" title=" " alt="" coords="2041,445,2127,471"/>
+<area shape="poly" title=" " alt="" coords="1901,295,1938,303,1975,315,2012,332,2044,355,2059,372,2070,392,2082,430,2077,432,2065,394,2055,375,2041,359,2009,336,1973,320,1936,308,1900,300"/>
+<area shape="rect" title=" " alt="" coords="338,445,462,471"/>
+<area shape="poly" title=" " alt="" coords="1755,295,1490,303,1138,316,812,335,694,347,625,360,608,368,596,378,585,389,568,400,511,425,455,444,454,439,509,420,565,395,582,384,593,374,605,364,623,355,693,342,811,330,1138,311,1490,297,1755,290"/>
+<area shape="rect" href="../../dd/d70/event__bus__interface_8h.html" title="Event bus interface for decoupled component communication." alt="" coords="1541,357,1681,397"/>
+<area shape="poly" title=" " alt="" coords="1800,305,1672,355,1670,350,1798,300"/>
+<area shape="poly" title=" " alt="" coords="1755,297,1693,303,1620,315,1544,333,1472,360,1457,369,1447,379,1437,390,1421,400,1366,421,1307,436,1199,454,1198,448,1306,431,1364,416,1419,395,1434,386,1443,375,1454,365,1469,355,1543,328,1619,309,1692,298,1755,291"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="1174,526,1285,551"/>
+<area shape="poly" title=" " alt="" coords="1809,304,1781,323,1754,347,1745,359,1739,372,1739,384,1746,396,1768,416,1791,430,1814,437,1839,439,1889,433,1941,419,1993,404,2044,398,2069,401,2094,408,2118,422,2141,444,2147,458,2141,472,2123,484,2095,494,2012,510,1902,521,1773,530,1507,538,1299,540,1299,535,1507,533,1773,524,1901,516,2012,504,2094,489,2121,479,2137,469,2142,458,2136,447,2115,427,2092,413,2068,406,2044,403,1994,410,1942,424,1890,438,1839,445,1813,442,1789,434,1765,420,1742,399,1734,385,1734,371,1740,357,1750,343,1777,319,1806,300"/>
+<area shape="poly" title=" " alt="" coords="1681,386,1744,395,2003,420,2262,443,2312,448,2311,454,2261,448,2002,425,1744,400,1680,392"/>
+<area shape="poly" title=" " alt="" coords="1541,387,1232,414,1062,431,929,448,928,443,1061,425,1231,408,1540,382"/>
+<area shape="poly" title=" " alt="" coords="1681,387,1744,395,1928,409,2072,414,2217,422,2402,443,2402,448,2217,427,2072,420,1927,414,1744,400,1680,392"/>
+<area shape="poly" title=" " alt="" coords="1546,400,1479,422,1409,448,1384,461,1358,473,1303,488,1258,494,1215,502,1163,521,1148,531,1138,541,1127,552,1110,561,1061,575,995,587,833,604,668,615,543,620,543,614,668,609,833,599,994,582,1060,570,1108,556,1124,548,1134,538,1144,527,1160,516,1214,497,1258,489,1302,483,1356,468,1382,456,1407,443,1478,417,1545,395"/>
+<area shape="poly" title=" " alt="" coords="1541,389,1259,419,1016,448,1015,443,1258,413,1540,383"/>
+<area shape="poly" title=" " alt="" coords="1681,386,1744,395,2139,443,2190,449,2189,454,2138,448,1744,400,1681,391"/>
+<area shape="poly" title=" " alt="" coords="1677,395,1832,439,1830,444,1675,400"/>
+<area shape="poly" title=" " alt="" coords="1681,391,1701,395,1939,443,1940,443,1938,448,1938,448,1699,400,1680,396"/>
+<area shape="poly" title=" " alt="" coords="1681,391,1700,395,1862,419,2027,443,2027,448,1861,424,1700,400,1680,396"/>
+<area shape="poly" title=" " alt="" coords="1540,386,1325,400,925,422,526,448,476,452,476,447,525,443,925,417,1325,395,1540,381"/>
+<area shape="rect" title=" " alt="" coords="1620,445,1700,471"/>
+<area shape="poly" title=" " alt="" coords="1625,396,1648,432,1643,435,1620,399"/>
+<area shape="rect" title=" " alt="" coords="1725,445,1817,471"/>
+<area shape="poly" title=" " alt="" coords="1650,395,1736,437,1734,442,1648,400"/>
+<area shape="poly" title=" " alt="" coords="1541,392,1193,446,1192,441,1540,387"/>
+<area shape="rect" href="../../d5/daa/feature__flags_8h.html" title="Unified feature flags header for monitoring_system." alt="" coords="1421,445,1595,471"/>
+<area shape="poly" title=" " alt="" coords="1587,400,1536,439,1532,435,1584,395"/>
+<area shape="poly" title=" " alt="" coords="1026,472,1014,473,532,514,184,537,184,532,531,509,1013,468,1025,467"/>
+<area shape="poly" title=" " alt="" coords="1062,473,544,609,542,604,1061,468"/>
+<area shape="poly" title=" " alt="" coords="1125,469,1201,516,1198,521,1122,473"/>
+<area shape="rect" title=" " alt="" coords="910,519,1098,559"/>
+<area shape="poly" title=" " alt="" coords="1092,473,1041,512,1038,508,1089,469"/>
+<area shape="poly" title=" " alt="" coords="1189,554,1155,561,978,586,803,603,543,619,543,614,803,598,977,581,1154,556,1188,549"/>
+<area shape="poly" title=" " alt="" coords="1272,549,1304,556,1433,577,1560,593,1759,612,1758,617,1560,598,1432,582,1304,561,1270,554"/>
+<area shape="poly" title=" " alt="" coords="713,213,868,432,863,435,709,216"/>
+<area shape="poly" title=" " alt="" coords="623,211,444,233,360,250,327,260,303,272,270,296,241,325,216,358,195,393,162,460,143,513,138,512,157,458,190,390,212,355,237,322,267,292,300,267,325,255,359,245,444,228,623,206"/>
+<area shape="poly" title=" " alt="" coords="623,210,461,225,368,238,275,255,191,277,121,305,95,321,75,338,63,356,59,376,59,459,60,514,67,536,86,557,113,572,153,585,255,603,366,612,457,615,456,620,366,617,255,608,151,590,111,577,82,561,63,538,54,515,53,459,53,376,58,354,71,334,92,316,119,300,189,272,274,250,367,233,461,220,622,205"/>
+<area shape="poly" title=" " alt="" coords="719,212,786,267,880,358,952,433,949,437,877,362,782,271,716,216"/>
+<area shape="poly" title=" " alt="" coords="783,205,1021,219,1174,222,1370,221,1593,222,1826,229,1940,238,2050,250,2155,267,2250,289,2336,317,2409,351,2467,393,2489,418,2508,444,2514,467,2506,488,2486,506,2457,523,2374,551,2268,573,2151,591,2035,604,1853,618,1852,613,2034,599,2150,586,2267,568,2372,546,2455,518,2483,502,2502,485,2508,466,2503,446,2485,421,2463,397,2406,356,2334,322,2249,294,2154,272,2050,255,1940,243,1825,235,1593,227,1370,226,1174,227,1021,224,782,210"/>
+<area shape="poly" title=" " alt="" coords="696,216,627,298,575,351,518,399,480,423,443,442,440,437,478,419,514,395,572,347,623,294,692,212"/>
+<area shape="poly" title=" " alt="" coords="763,211,1528,357,1527,363,762,217"/>
+<area shape="rect" title=" " alt="" coords="246,445,314,471"/>
+<area shape="poly" title=" " alt="" coords="685,217,312,441,309,436,682,212"/>
+<area shape="poly" title=" " alt="" coords="661,217,470,268,469,263,659,212"/>
+<area shape="poly" title=" " alt="" coords="350,312,303,341,257,379,240,400,230,423,228,446,236,469,256,498,282,523,311,544,341,562,404,589,458,606,456,611,402,594,339,567,308,549,278,527,252,501,231,472,222,447,225,422,236,398,253,375,300,336,348,307"/>
+<area shape="poly" title=" " alt="" coords="391,309,401,432,395,432,386,310"/>
+<area shape="poly" title=" " alt="" coords="377,311,297,435,293,432,372,308"/>
+<area shape="rect" href="../../df/d4b/metric__types_8h.html" title="Common metric type definitions for efficient storage." alt="" coords="636,365,799,390"/>
+<area shape="poly" title=" " alt="" coords="460,307,661,359,660,364,459,312"/>
+<area shape="poly" title=" " alt="" coords="742,388,846,437,844,442,740,392"/>
+<area shape="poly" title=" " alt="" coords="667,393,585,417,549,431,527,447,508,482,499,521,497,560,499,592,494,593,491,560,494,521,503,480,523,444,547,427,583,411,666,387"/>
+<area shape="poly" title=" " alt="" coords="755,387,927,440,925,445,753,393"/>
+<area shape="poly" title=" " alt="" coords="799,385,1001,409,1242,443,1247,444,1246,449,1241,448,1000,414,798,390"/>
+<area shape="poly" title=" " alt="" coords="799,380,883,386,983,398,1091,416,1197,443,1223,455,1249,468,1393,516,1537,555,1759,606,1758,611,1535,561,1391,521,1247,473,1221,460,1195,448,1090,422,983,403,883,391,799,385"/>
+<area shape="poly" title=" " alt="" coords="672,393,460,445,459,439,671,387"/>
+<area shape="poly" title=" " alt="" coords="774,387,1036,440,1035,445,773,393"/>
+<area shape="poly" title=" " alt="" coords="730,389,774,429,804,450,837,468,963,492,1161,524,1160,529,962,497,835,473,802,455,771,433,727,392"/>
+<area shape="poly" title=" " alt="" coords="640,393,499,416,328,448,327,442,498,410,640,387"/>
+<area shape="rect" title=" " alt="" coords="538,445,601,471"/>
+<area shape="poly" title=" " alt="" coords="697,393,605,441,602,436,694,388"/>
+<area shape="rect" title=" " alt="" coords="625,445,690,471"/>
+<area shape="poly" title=" " alt="" coords="711,392,677,436,673,432,706,389"/>
+<area shape="rect" title=" " alt="" coords="715,445,773,471"/>
+<area shape="poly" title=" " alt="" coords="724,389,738,432,733,433,719,391"/>
 </map>
 </div>
 </div>
@@ -333,17 +437,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  170</span>    <span class="keyword">class </span>monitorable_mock_logger : <span class="keyword">public</span> <a class="code hl_class" href="../../dd/d02/classmock__logger.html">mock_logger</a>, <span class="keyword">public</span> IMonitorable {</div>
 <div class="line"><span class="lineno">  171</span>    <span class="keyword">public</span>:</div>
 <div class="line"><span class="lineno">  172</span>        Result&lt;metrics_snapshot&gt; get_monitoring_data()<span class="keyword"> override </span>{</div>
-<div class="line"><span class="lineno">  173</span>            metrics_snapshot snapshot;</div>
-<div class="line"><span class="lineno">  174</span>            snapshot.source_id = <span class="stringliteral">&quot;mock_logger&quot;</span>;</div>
-<div class="line"><span class="lineno">  175</span>            snapshot.add_metric(<span class="stringliteral">&quot;messages_logged&quot;</span>, 42.0);</div>
+<div class="line"><span class="lineno">  173</span>            <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
+<div class="line"><span class="lineno">  174</span>            snapshot.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;mock_logger&quot;</span>;</div>
+<div class="line"><span class="lineno">  175</span>            snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;messages_logged&quot;</span>, 42.0);</div>
 <div class="line"><span class="lineno">  176</span>            <span class="keywordflow">return</span> snapshot;</div>
 <div class="line"><span class="lineno">  177</span>        }</div>
 <div class="line"><span class="lineno">  178</span> </div>
 <div class="line"><span class="lineno">  179</span>        Result&lt;health_check_result&gt; health_check()<span class="keyword"> override </span>{</div>
-<div class="line"><span class="lineno">  180</span>            health_check_result result;</div>
-<div class="line"><span class="lineno">  181</span>            result.status = health_status::healthy;</div>
-<div class="line"><span class="lineno">  182</span>            result.message = <span class="stringliteral">&quot;Mock logger operational&quot;</span>;</div>
-<div class="line"><span class="lineno">  183</span>            <span class="keywordflow">return</span> result;</div>
+<div class="line"><span class="lineno">  180</span>            <a class="code hl_struct" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  181</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a> = health_status::healthy;</div>
+<div class="line"><span class="lineno">  182</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.message = <span class="stringliteral">&quot;Mock logger operational&quot;</span>;</div>
+<div class="line"><span class="lineno">  183</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
 <div class="line"><span class="lineno">  184</span>        }</div>
 <div class="line"><span class="lineno">  185</span> </div>
 <div class="line"><span class="lineno">  186</span>        std::string get_component_name()<span class="keyword"> const override </span>{</div>
@@ -379,7 +483,23 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  216</span>    EXPECT_TRUE(found_metric);</div>
 <div class="line"><span class="lineno">  217</span>}</div>
 <div class="ttc" id="aclassmock__logger_html"><div class="ttname"><a href="../../dd/d02/classmock__logger.html">mock_logger</a></div><div class="ttdoc">Mock logger for testing (does not depend on logger_system)</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d52/test__adapter__functionality_8cpp_source.html#l00056">test_adapter_functionality.cpp:56</a></div></div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__check__result_html"><div class="ttname"><a href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">kcenon::monitoring::health_check_result</a></div><div class="ttdoc">Result of a health check operation.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00126">monitoring_core.h:126</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__check__result_html_a91388685dd31af13e8e25caa9ad4c995"><div class="ttname"><a href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">kcenon::monitoring::health_check_result::status</a></div><div class="ttdeci">health_status status</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00127">monitoring_core.h:127</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">kcenon::monitoring::metrics_snapshot</a></div><div class="ttdoc">Complete snapshot of metrics at a point in time.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00066">monitoring_core.h:66</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_a91c4bb5a196e0ace7716f2d6c54eb1a7"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">kcenon::monitoring::metrics_snapshot::add_metric</a></div><div class="ttdeci">void add_metric(const std::string &amp;name, double value)</div><div class="ttdoc">Add a metric to the snapshot.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00079">monitoring_core.h:79</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_ad805ca0681def3b2c9c55136450bda54"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">kcenon::monitoring::metrics_snapshot::source_id</a></div><div class="ttdeci">std::string source_id</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00069">monitoring_core.h:69</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d52/test__adapter__functionality_8cpp_a3d9d3ebd79d1e70b01de1cf48b507edb_cgraph.png" border="0" usemap="#add/d52/test__adapter__functionality_8cpp_a3d9d3ebd79d1e70b01de1cf48b507edb_cgraph" alt=""/></div>
+<map name="add/d52/test__adapter__functionality_8cpp_a3d9d3ebd79d1e70b01de1cf48b507edb_cgraph" id="add/d52/test__adapter__functionality_8cpp_a3d9d3ebd79d1e70b01de1cf48b507edb_cgraph">
+<area shape="rect" title="Test Scenario 4: Adapter with IMonitorable logger." alt="" coords="5,20,60,45"/>
+<area shape="rect" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7" title="Add a metric to the snapshot." alt="" coords="108,5,261,60"/>
+<area shape="poly" title=" " alt="" coords="60,30,94,30,94,35,60,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a31606db0984196957c26aa41dec35dc0" name="a31606db0984196957c26aa41dec35dc0"></a>
@@ -431,7 +551,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

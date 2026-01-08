@@ -355,8 +355,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  484</span>    <span class="keyword">auto</span> test_data = generate_test_data(1000);</div>
 <div class="line"><span class="lineno">  485</span>    </div>
 <div class="line"><span class="lineno">  486</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : test_data) {</div>
-<div class="line"><span class="lineno">  487</span>        <span class="keyword">auto</span> result = queue.push(value);</div>
-<div class="line"><span class="lineno">  488</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  487</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = queue.push(value);</div>
+<div class="line"><span class="lineno">  488</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  489</span>    }</div>
 <div class="line"><span class="lineno">  490</span>    </div>
 <div class="line"><span class="lineno">  491</span>    <span class="comment">// Pop data from queue and collect in vector</span></div>
@@ -364,19 +364,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  493</span>    collected_data.reserve(test_data.size());</div>
 <div class="line"><span class="lineno">  494</span>    </div>
 <div class="line"><span class="lineno">  495</span>    <span class="keywordflow">while</span> (!queue.empty()) {</div>
-<div class="line"><span class="lineno">  496</span>        <span class="keyword">auto</span> result = queue.pop();</div>
-<div class="line"><span class="lineno">  497</span>        <span class="keywordflow">if</span> (result.is_ok()) {</div>
-<div class="line"><span class="lineno">  498</span>            collected_data.push_back(result.value());</div>
+<div class="line"><span class="lineno">  496</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = queue.pop();</div>
+<div class="line"><span class="lineno">  497</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) {</div>
+<div class="line"><span class="lineno">  498</span>            collected_data.push_back(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value());</div>
 <div class="line"><span class="lineno">  499</span>        }</div>
 <div class="line"><span class="lineno">  500</span>    }</div>
 <div class="line"><span class="lineno">  501</span>    </div>
 <div class="line"><span class="lineno">  502</span>    EXPECT_EQ(collected_data.size(), test_data.size());</div>
 <div class="line"><span class="lineno">  503</span>    </div>
 <div class="line"><span class="lineno">  504</span>    <span class="comment">// Use SIMD aggregator to process collected data</span></div>
-<div class="line"><span class="lineno">  505</span>    <span class="keyword">auto</span> summary = aggregator.compute_summary(collected_data);</div>
-<div class="line"><span class="lineno">  506</span>    EXPECT_TRUE(summary);</div>
+<div class="line"><span class="lineno">  505</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a> = aggregator.compute_summary(collected_data);</div>
+<div class="line"><span class="lineno">  506</span>    EXPECT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>);</div>
 <div class="line"><span class="lineno">  507</span>    </div>
-<div class="line"><span class="lineno">  508</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = summary.value();</div>
+<div class="line"><span class="lineno">  508</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.value();</div>
 <div class="line"><span class="lineno">  509</span>    EXPECT_EQ(stats.count, test_data.size());</div>
 <div class="line"><span class="lineno">  510</span>    EXPECT_GT(stats.sum, 0.0);</div>
 <div class="line"><span class="lineno">  511</span>    EXPECT_GT(stats.mean, 0.0);</div>
@@ -391,6 +391,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  520</span>    EXPECT_GT(pool_stats.get_allocation_success_rate(), 99.0);</div>
 <div class="line"><span class="lineno">  521</span>    EXPECT_GT(simd_stats.total_elements_processed.load(), 0);</div>
 <div class="line"><span class="lineno">  522</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">kcenon::monitoring::metric_type::summary</a></div><div class="ttdeci">@ summary</div><div class="ttdoc">Pre-calculated quantiles and count/sum.</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -433,8 +435,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   84</span>    </div>
 <div class="line"><span class="lineno">   85</span>    <span class="comment">// Push elements</span></div>
 <div class="line"><span class="lineno">   86</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">   87</span>        <span class="keyword">auto</span> result = queue.push(i);</div>
-<div class="line"><span class="lineno">   88</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to push &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">   87</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = queue.push(i);</div>
+<div class="line"><span class="lineno">   88</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to push &quot;</span> &lt;&lt; i;</div>
 <div class="line"><span class="lineno">   89</span>    }</div>
 <div class="line"><span class="lineno">   90</span>    </div>
 <div class="line"><span class="lineno">   91</span>    EXPECT_FALSE(queue.empty());</div>
@@ -442,9 +444,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   93</span>    </div>
 <div class="line"><span class="lineno">   94</span>    <span class="comment">// Pop elements</span></div>
 <div class="line"><span class="lineno">   95</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">   96</span>        <span class="keyword">auto</span> result = queue.pop();</div>
-<div class="line"><span class="lineno">   97</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to pop element &quot;</span> &lt;&lt; i;</div>
-<div class="line"><span class="lineno">   98</span>        EXPECT_EQ(result.value(), i);</div>
+<div class="line"><span class="lineno">   96</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = queue.pop();</div>
+<div class="line"><span class="lineno">   97</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to pop element &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">   98</span>        EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), i);</div>
 <div class="line"><span class="lineno">   99</span>    }</div>
 <div class="line"><span class="lineno">  100</span>    </div>
 <div class="line"><span class="lineno">  101</span>    EXPECT_TRUE(queue.empty());</div>
@@ -523,14 +525,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  145</span>    }</div>
 <div class="line"><span class="lineno">  146</span>    </div>
 <div class="line"><span class="lineno">  147</span>    <span class="comment">// Wait for producers</span></div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; producer : producers) {</div>
-<div class="line"><span class="lineno">  149</span>        producer.join();</div>
+<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5af18122ddebc4341b4ed758b3f0817da8">producer</a> : producers) {</div>
+<div class="line"><span class="lineno">  149</span>        <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5af18122ddebc4341b4ed758b3f0817da8">producer</a>.join();</div>
 <div class="line"><span class="lineno">  150</span>    }</div>
 <div class="line"><span class="lineno">  151</span>    producers_done.store(<span class="keyword">true</span>);</div>
 <div class="line"><span class="lineno">  152</span>    </div>
 <div class="line"><span class="lineno">  153</span>    <span class="comment">// Wait for consumers</span></div>
-<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; consumer : consumers) {</div>
-<div class="line"><span class="lineno">  155</span>        consumer.join();</div>
+<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5a1005b14bd29466723ace30d26f602f5b">consumer</a> : consumers) {</div>
+<div class="line"><span class="lineno">  155</span>        <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5a1005b14bd29466723ace30d26f602f5b">consumer</a>.join();</div>
 <div class="line"><span class="lineno">  156</span>    }</div>
 <div class="line"><span class="lineno">  157</span>    </div>
 <div class="line"><span class="lineno">  158</span>    EXPECT_EQ(total_consumed.load(), num_producers * items_per_producer);</div>
@@ -540,6 +542,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  162</span>    EXPECT_GT(stats.get_push_success_rate(), 99.0);</div>
 <div class="line"><span class="lineno">  163</span>    EXPECT_GT(stats.get_pop_success_rate(), 99.0);</div>
 <div class="line"><span class="lineno">  164</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_acd9f2e67b943ef7ce9aee431900de7b5a1005b14bd29466723ace30d26f602f5b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5a1005b14bd29466723ace30d26f602f5b">kcenon::monitoring::otel_span_kind::consumer</a></div><div class="ttdeci">@ consumer</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_acd9f2e67b943ef7ce9aee431900de7b5af18122ddebc4341b4ed758b3f0817da8"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5af18122ddebc4341b4ed758b3f0817da8">kcenon::monitoring::otel_span_kind::producer</a></div><div class="ttdeci">@ producer</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -584,17 +588,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  178</span>    <span class="comment">// Allocate memory blocks</span></div>
 <div class="line"><span class="lineno">  179</span>    std::vector&lt;void*&gt; allocated_blocks;</div>
 <div class="line"><span class="lineno">  180</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 32; ++i) {</div>
-<div class="line"><span class="lineno">  181</span>        <span class="keyword">auto</span> result = pool.allocate();</div>
-<div class="line"><span class="lineno">  182</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate block &quot;</span> &lt;&lt; i;</div>
-<div class="line"><span class="lineno">  183</span>        allocated_blocks.push_back(result.value());</div>
+<div class="line"><span class="lineno">  181</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = pool.allocate();</div>
+<div class="line"><span class="lineno">  182</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate block &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">  183</span>        allocated_blocks.push_back(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value());</div>
 <div class="line"><span class="lineno">  184</span>    }</div>
 <div class="line"><span class="lineno">  185</span>    </div>
 <div class="line"><span class="lineno">  186</span>    EXPECT_EQ(pool.available_blocks(), 32);  <span class="comment">// 64 - 32 = 32</span></div>
 <div class="line"><span class="lineno">  187</span>    </div>
 <div class="line"><span class="lineno">  188</span>    <span class="comment">// Deallocate blocks</span></div>
 <div class="line"><span class="lineno">  189</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_blocks) {</div>
-<div class="line"><span class="lineno">  190</span>        <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><span class="lineno">  191</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  190</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = pool.deallocate(ptr);</div>
+<div class="line"><span class="lineno">  191</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  192</span>    }</div>
 <div class="line"><span class="lineno">  193</span>    </div>
 <div class="line"><span class="lineno">  194</span>    EXPECT_EQ(pool.available_blocks(), 64);  <span class="comment">// All blocks returned</span></div>
@@ -655,16 +659,16 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  254</span>            </div>
 <div class="line"><span class="lineno">  255</span>            <span class="comment">// Allocate</span></div>
 <div class="line"><span class="lineno">  256</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; operations_per_thread; ++i) {</div>
-<div class="line"><span class="lineno">  257</span>                <span class="keyword">auto</span> result = pool.allocate();</div>
-<div class="line"><span class="lineno">  258</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><span class="lineno">  257</span>                <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = pool.allocate();</div>
+<div class="line"><span class="lineno">  258</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) {</div>
 <div class="line"><span class="lineno">  259</span>                    allocated_ptrs.push_back(result.value());</div>
 <div class="line"><span class="lineno">  260</span>                }</div>
 <div class="line"><span class="lineno">  261</span>            }</div>
 <div class="line"><span class="lineno">  262</span>            </div>
 <div class="line"><span class="lineno">  263</span>            <span class="comment">// Deallocate</span></div>
 <div class="line"><span class="lineno">  264</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>* ptr : allocated_ptrs) {</div>
-<div class="line"><span class="lineno">  265</span>                <span class="keyword">auto</span> result = pool.deallocate(ptr);</div>
-<div class="line"><span class="lineno">  266</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><span class="lineno">  265</span>                <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = pool.deallocate(ptr);</div>
+<div class="line"><span class="lineno">  266</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) {</div>
 <div class="line"><span class="lineno">  267</span>                    successful_operations.fetch_add(1);</div>
 <div class="line"><span class="lineno">  268</span>                }</div>
 <div class="line"><span class="lineno">  269</span>            }</div>
@@ -727,10 +731,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  216</span>    <span class="comment">// Allocate objects</span></div>
 <div class="line"><span class="lineno">  217</span>    std::vector&lt;TestObject*&gt; objects;</div>
 <div class="line"><span class="lineno">  218</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
-<div class="line"><span class="lineno">  219</span>        <span class="keyword">auto</span> result = pool.allocate_object&lt;TestObject&gt;(i, i * 0.5);</div>
-<div class="line"><span class="lineno">  220</span>        EXPECT_TRUE(result) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate object &quot;</span> &lt;&lt; i;</div>
+<div class="line"><span class="lineno">  219</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = pool.allocate_object&lt;TestObject&gt;(i, i * 0.5);</div>
+<div class="line"><span class="lineno">  220</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>) &lt;&lt; <span class="stringliteral">&quot;Failed to allocate object &quot;</span> &lt;&lt; i;</div>
 <div class="line"><span class="lineno">  221</span>        </div>
-<div class="line"><span class="lineno">  222</span>        <span class="keyword">auto</span>* obj = result.value();</div>
+<div class="line"><span class="lineno">  222</span>        <span class="keyword">auto</span>* obj = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value();</div>
 <div class="line"><span class="lineno">  223</span>        EXPECT_EQ(obj-&gt;value, i);</div>
 <div class="line"><span class="lineno">  224</span>        EXPECT_DOUBLE_EQ(obj-&gt;data, i * 0.5);</div>
 <div class="line"><span class="lineno">  225</span>        </div>
@@ -739,8 +743,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  228</span>    </div>
 <div class="line"><span class="lineno">  229</span>    <span class="comment">// Deallocate objects</span></div>
 <div class="line"><span class="lineno">  230</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>* obj : objects) {</div>
-<div class="line"><span class="lineno">  231</span>        <span class="keyword">auto</span> result = pool.deallocate_object(obj);</div>
-<div class="line"><span class="lineno">  232</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  231</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = pool.deallocate_object(obj);</div>
+<div class="line"><span class="lineno">  232</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  233</span>    }</div>
 <div class="line"><span class="lineno">  234</span>}</div>
 </div><!-- fragment -->
@@ -845,16 +849,16 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  324</span>    <span class="keyword">auto</span> summary_result = aggregator.compute_summary(data);</div>
 <div class="line"><span class="lineno">  325</span>    EXPECT_TRUE(summary_result);</div>
 <div class="line"><span class="lineno">  326</span>    </div>
-<div class="line"><span class="lineno">  327</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; summary = summary_result.value();</div>
-<div class="line"><span class="lineno">  328</span>    EXPECT_EQ(summary.count, 10000);</div>
-<div class="line"><span class="lineno">  329</span>    EXPECT_GT(summary.sum, 0.0);</div>
-<div class="line"><span class="lineno">  330</span>    EXPECT_GT(summary.mean, 0.0);</div>
-<div class="line"><span class="lineno">  331</span>    EXPECT_LT(summary.mean, 100.0);</div>
-<div class="line"><span class="lineno">  332</span>    EXPECT_GT(summary.variance, 0.0);</div>
-<div class="line"><span class="lineno">  333</span>    EXPECT_GT(summary.std_dev, 0.0);</div>
-<div class="line"><span class="lineno">  334</span>    EXPECT_GE(summary.min_val, 0.0);</div>
-<div class="line"><span class="lineno">  335</span>    EXPECT_LE(summary.max_val, 100.0);</div>
-<div class="line"><span class="lineno">  336</span>    EXPECT_LT(summary.min_val, summary.max_val);</div>
+<div class="line"><span class="lineno">  327</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a> = summary_result.value();</div>
+<div class="line"><span class="lineno">  328</span>    EXPECT_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.count, 10000);</div>
+<div class="line"><span class="lineno">  329</span>    EXPECT_GT(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.sum, 0.0);</div>
+<div class="line"><span class="lineno">  330</span>    EXPECT_GT(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.mean, 0.0);</div>
+<div class="line"><span class="lineno">  331</span>    EXPECT_LT(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.mean, 100.0);</div>
+<div class="line"><span class="lineno">  332</span>    EXPECT_GT(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.variance, 0.0);</div>
+<div class="line"><span class="lineno">  333</span>    EXPECT_GT(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.std_dev, 0.0);</div>
+<div class="line"><span class="lineno">  334</span>    EXPECT_GE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.min_val, 0.0);</div>
+<div class="line"><span class="lineno">  335</span>    EXPECT_LE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.max_val, 100.0);</div>
+<div class="line"><span class="lineno">  336</span>    EXPECT_LT(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.min_val, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727aa80da1282f2c775bbc5f2c92c836968b">summary</a>.max_val);</div>
 <div class="line"><span class="lineno">  337</span>    </div>
 <div class="line"><span class="lineno">  338</span>    <span class="comment">// Check SIMD utilization</span></div>
 <div class="line"><span class="lineno">  339</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = aggregator.get_statistics();</div>
@@ -945,7 +949,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

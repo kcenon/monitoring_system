@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['health_5fstatus_0',['health_status',['../d5/db8/classmonitoring__system_1_1health__check__event.html#a9350fc1231d488b8ebe0e2e0d1bc102f',1,'monitoring_system::health_check_event::health_status'],['../de/d3f/namespacemonitoring__system.html#a1a3c481170ef3603d18f608a94dc7ff4',1,'monitoring_system::health_status']]]
+  ['event_5fpriority_0',['event_priority',['../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1',1,'kcenon::monitoring']]],
+  ['event_5ftype_1',['event_type',['../db/d0d/classkcenon_1_1monitoring_1_1system__event.html#a9fd2721bc6da5110127297846707f9fe',1,'kcenon::monitoring::system_event']]]
 ];

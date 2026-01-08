@@ -90,64 +90,124 @@ $(function() {
 <code>#include &lt;random&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;filesystem&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/core/result_types.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/interfaces/monitoring_core.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/tracing/distributed_tracer.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d1/d7d/result__types_8h_source.html">kcenon/monitoring/core/result_types.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d1/d6e/monitoring__core_8h_source.html">kcenon/monitoring/interfaces/monitoring_core.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d0/d07/distributed__tracer_8h_source.html">kcenon/monitoring/tracing/distributed_tracer.h</a>&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/performance/performance_monitor.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/adaptive/adaptive_monitor.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/health/health_monitor.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/reliability/circuit_breaker.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/reliability/retry_policy.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/reliability/fault_tolerance_manager.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d6/d73/adaptive__monitor_8h_source.html">kcenon/monitoring/adaptive/adaptive_monitor.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d34/health__monitor_8h_source.html">kcenon/monitoring/health/health_monitor.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">kcenon/monitoring/reliability/circuit_breaker.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d6/df4/retry__policy_8h_source.html">kcenon/monitoring/reliability/retry_policy.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">kcenon/monitoring/reliability/fault_tolerance_manager.h</a>&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/export/opentelemetry_adapter.h&gt;</code><br />
 <code>#include &lt;kcenon/monitoring/export/trace_exporters.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/storage/storage_backends.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../db/d31/storage__backends_8h_source.html">kcenon/monitoring/storage/storage_backends.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for test_integration_e2e.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d1/ddb/test__integration__e2e_8cpp__incl.png" border="0" usemap="#atests_2test__integration__e2e_8cpp" alt=""/></div>
 <map name="atests_2test__integration__e2e_8cpp" id="atests_2test__integration__e2e_8cpp">
-<area shape="rect" title="End&#45;to&#45;end integration tests for the monitoring system." alt="" coords="1139,5,1301,45"/>
+<area shape="rect" title="End&#45;to&#45;end integration tests for the monitoring system." alt="" coords="985,5,1146,45"/>
 <area shape="rect" title=" " alt="" coords="5,101,109,126"/>
-<area shape="poly" title=" " alt="" coords="1139,32,622,54,332,73,213,84,122,96,105,100,104,94,121,91,212,78,332,67,621,49,1139,27"/>
+<area shape="poly" title=" " alt="" coords="984,29,825,32,610,42,367,62,243,77,122,96,105,100,104,94,121,91,242,72,366,57,610,37,825,27,984,24"/>
 <area shape="rect" title=" " alt="" coords="133,101,197,126"/>
-<area shape="poly" title=" " alt="" coords="1139,31,931,38,663,50,400,69,292,81,210,96,201,98,200,93,209,91,291,76,400,64,662,45,931,32,1139,26"/>
-<area shape="rect" title=" " alt="" coords="221,101,288,126"/>
-<area shape="poly" title=" " alt="" coords="1139,32,706,52,471,71,374,83,301,96,292,98,290,93,299,91,373,77,470,66,706,47,1139,27"/>
-<area shape="rect" title=" " alt="" coords="313,101,375,126"/>
-<area shape="poly" title=" " alt="" coords="1139,33,749,54,540,73,454,84,389,96,381,98,379,93,387,91,453,78,539,67,749,49,1139,27"/>
-<area shape="rect" title=" " alt="" coords="400,101,467,126"/>
-<area shape="poly" title=" " alt="" coords="1139,29,1011,31,846,41,662,61,569,77,479,96,471,98,469,93,478,91,568,71,661,56,845,36,1011,26,1139,23"/>
-<area shape="rect" title=" " alt="" coords="491,101,563,126"/>
-<area shape="poly" title=" " alt="" coords="1139,31,1027,36,885,47,730,66,575,96,566,99,564,93,574,91,729,61,885,41,1026,30,1139,25"/>
-<area shape="rect" title=" " alt="" coords="587,101,661,126"/>
-<area shape="poly" title=" " alt="" coords="1139,33,927,52,800,70,674,96,664,99,663,94,673,91,799,65,927,47,1139,28"/>
-<area shape="rect" title=" " alt="" coords="685,101,776,126"/>
-<area shape="poly" title=" " alt="" coords="1140,38,977,60,882,76,789,96,776,99,775,94,787,91,881,71,976,55,1139,33"/>
-<area shape="rect" title=" " alt="" coords="800,93,976,133"/>
-<area shape="poly" title=" " alt="" coords="1148,48,974,93,973,87,1146,43"/>
-<area shape="rect" title=" " alt="" coords="1000,93,1213,133"/>
-<area shape="poly" title=" " alt="" coords="1196,48,1144,87,1141,83,1193,43"/>
-<area shape="rect" title=" " alt="" coords="1238,93,1431,133"/>
-<area shape="poly" title=" " alt="" coords="1247,43,1300,83,1297,87,1244,48"/>
-<area shape="rect" title=" " alt="" coords="1455,93,1686,133"/>
-<area shape="poly" title=" " alt="" coords="1298,43,1482,88,1480,93,1296,48"/>
-<area shape="rect" title=" " alt="" coords="1711,93,1916,133"/>
-<area shape="poly" title=" " alt="" coords="1301,35,1697,90,1697,96,1301,40"/>
-<area shape="rect" title=" " alt="" coords="1940,93,2129,133"/>
-<area shape="poly" title=" " alt="" coords="1301,30,1574,52,1927,91,1926,96,1574,57,1301,35"/>
-<area shape="rect" title=" " alt="" coords="2153,93,2364,133"/>
-<area shape="poly" title=" " alt="" coords="1301,28,1661,48,1897,66,2140,91,2139,96,1896,72,1660,54,1301,33"/>
-<area shape="rect" title=" " alt="" coords="2388,93,2599,133"/>
-<area shape="poly" title=" " alt="" coords="1301,26,1754,44,2060,63,2375,91,2374,96,2059,68,1753,49,1301,31"/>
-<area shape="rect" title=" " alt="" coords="2623,93,2833,133"/>
-<area shape="poly" title=" " alt="" coords="1301,25,1524,29,1845,39,2222,59,2609,91,2609,96,2221,64,1845,45,1524,34,1301,30"/>
-<area shape="rect" title=" " alt="" coords="2858,93,3049,133"/>
-<area shape="poly" title=" " alt="" coords="1301,24,1557,25,1936,33,2383,54,2615,70,2844,91,2844,96,2615,75,2383,59,1936,39,1557,30,1301,29"/>
-<area shape="rect" title=" " alt="" coords="3073,93,3263,133"/>
-<area shape="poly" title=" " alt="" coords="1301,25,2154,46,2670,66,2889,77,3059,91,3058,96,2888,83,2669,71,2154,52,1301,31"/>
-<area shape="rect" title=" " alt="" coords="3288,93,3485,133"/>
-<area shape="poly" title=" " alt="" coords="1301,25,2254,45,2836,64,3083,77,3275,91,3274,96,3083,82,2835,70,2254,50,1301,31"/>
+<area shape="poly" title=" " alt="" coords="985,28,839,30,647,39,432,60,323,76,217,96,206,99,204,94,215,91,322,70,431,54,647,34,839,25,985,23"/>
+<area shape="rect" title=" " alt="" coords="616,291,683,317"/>
+<area shape="poly" title=" " alt="" coords="985,37,850,59,791,75,768,85,752,95,737,111,728,127,721,160,717,195,712,216,702,237,671,282,666,279,698,235,707,214,712,194,716,159,723,125,733,108,749,91,766,80,789,70,849,54,984,32"/>
+<area shape="rect" title=" " alt="" coords="1523,291,1586,317"/>
+<area shape="poly" title=" " alt="" coords="1084,44,1132,96,1168,131,1217,149,1262,154,1305,151,1347,144,1387,139,1428,139,1471,151,1515,179,1534,201,1546,227,1556,277,1551,278,1541,229,1529,204,1512,183,1469,156,1428,145,1388,144,1347,149,1306,156,1262,160,1216,154,1165,136,1128,100,1080,47"/>
+<area shape="rect" title=" " alt="" coords="261,291,328,317"/>
+<area shape="poly" title=" " alt="" coords="985,32,815,39,612,51,434,70,373,82,339,96,322,114,309,136,294,186,291,236,294,277,288,278,286,236,289,185,304,134,317,111,336,91,371,77,434,65,612,46,815,33,984,26"/>
+<area shape="rect" title=" " alt="" coords="1179,101,1251,126"/>
+<area shape="poly" title=" " alt="" coords="1099,43,1184,92,1182,96,1097,48"/>
+<area shape="rect" title=" " alt="" coords="1275,101,1349,126"/>
+<area shape="poly" title=" " alt="" coords="1123,43,1264,91,1270,93,1268,98,1262,96,1122,48"/>
+<area shape="rect" title=" " alt="" coords="1373,101,1464,126"/>
+<area shape="poly" title=" " alt="" coords="1147,40,1361,91,1372,94,1371,99,1359,96,1146,46"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="757,284,933,324"/>
+<area shape="poly" title=" " alt="" coords="1052,47,871,275,867,272,1048,44"/>
+<area shape="rect" href="../../d1/d6e/monitoring__core_8h.html" title="Core monitoring system interface definitions." alt="" coords="965,189,1179,229"/>
+<area shape="poly" title=" " alt="" coords="1069,46,1073,175,1068,175,1063,46"/>
+<area shape="rect" href="../../d0/d07/distributed__tracer_8h.html" title=" " alt="" coords="1489,93,1682,133"/>
+<area shape="poly" title=" " alt="" coords="1146,37,1475,91,1474,96,1146,42"/>
+<area shape="rect" title=" " alt="" coords="1706,93,1937,133"/>
+<area shape="poly" title=" " alt="" coords="1147,32,1387,56,1693,90,1692,96,1387,61,1146,37"/>
+<area shape="rect" href="../../d6/d73/adaptive__monitor_8h.html" title=" " alt="" coords="1961,93,2167,133"/>
+<area shape="poly" title=" " alt="" coords="1146,28,1491,49,1716,67,1948,91,1947,96,1716,72,1490,54,1146,33"/>
+<area shape="rect" href="../../d8/d34/health__monitor_8h.html" title=" " alt="" coords="763,93,952,133"/>
+<area shape="poly" title=" " alt="" coords="1021,48,917,91,915,86,1019,43"/>
+<area shape="rect" href="../../d2/dd4/circuit__breaker_8h.html" title=" " alt="" coords="37,189,248,229"/>
+<area shape="poly" title=" " alt="" coords="984,29,816,33,607,42,503,51,408,62,327,77,268,96,248,109,223,130,171,181,168,177,219,126,245,104,266,91,326,72,407,57,503,46,607,37,816,27,984,24"/>
+<area shape="rect" href="../../d6/df4/retry__policy_8h.html" title=" " alt="" coords="477,189,688,229"/>
+<area shape="poly" title=" " alt="" coords="985,32,922,38,851,49,778,68,708,96,678,114,651,135,608,180,604,176,648,131,675,109,705,91,776,63,850,44,921,32,984,26"/>
+<area shape="rect" href="../../dd/d82/fault__tolerance__manager_8h.html" title=" " alt="" coords="349,93,560,133"/>
+<area shape="poly" title=" " alt="" coords="985,41,574,98,573,93,984,35"/>
+<area shape="rect" title=" " alt="" coords="2191,93,2382,133"/>
+<area shape="poly" title=" " alt="" coords="1146,26,1582,43,1876,62,2178,91,2177,96,1875,68,1582,48,1146,31"/>
+<area shape="rect" title=" " alt="" coords="2406,93,2597,133"/>
+<area shape="poly" title=" " alt="" coords="1146,25,1360,28,1667,39,2024,58,2210,73,2392,91,2392,96,2209,78,2024,64,1667,44,1360,34,1146,30"/>
+<area shape="rect" href="../../db/d31/storage__backends_8h.html" title=" " alt="" coords="1304,189,1501,229"/>
+<area shape="poly" title=" " alt="" coords="1073,45,1091,89,1106,112,1124,131,1148,141,1192,155,1306,183,1304,188,1191,160,1146,146,1121,136,1101,115,1086,91,1068,47"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="1083,379,1194,405"/>
+<area shape="poly" title=" " alt="" coords="910,321,1087,373,1086,378,909,327"/>
+<area shape="rect" title=" " alt="" coords="653,460,712,485"/>
+<area shape="poly" title=" " alt="" coords="780,326,742,346,710,374,700,391,692,410,686,447,681,446,687,408,695,388,706,370,739,341,778,322"/>
+<area shape="rect" title=" " alt="" coords="721,372,909,412"/>
+<area shape="poly" title=" " alt="" coords="841,325,829,360,824,358,836,323"/>
+<area shape="rect" title=" " alt="" coords="933,379,1008,405"/>
+<area shape="poly" title=" " alt="" coords="875,322,944,369,941,374,872,326"/>
+<area shape="rect" title=" " alt="" coords="1105,460,1172,485"/>
+<area shape="poly" title=" " alt="" coords="1141,405,1141,446,1136,446,1136,405"/>
+<area shape="poly" title=" " alt="" coords="1096,407,1065,415,876,447,726,469,725,463,875,442,1063,409,1095,402"/>
+<area shape="poly" title=" " alt="" coords="987,231,697,295,696,290,986,226"/>
+<area shape="poly" title=" " alt="" coords="1171,226,1459,281,1510,291,1509,296,1458,287,1170,231"/>
+<area shape="poly" title=" " alt="" coords="1027,231,905,281,903,276,1025,226"/>
+<area shape="poly" title=" " alt="" coords="1107,227,1136,250,1160,283,1165,305,1165,327,1153,367,1148,366,1159,327,1160,305,1155,285,1132,254,1103,231"/>
+<area shape="poly" title=" " alt="" coords="1067,230,1049,285,1045,322,1046,354,1042,384,1035,399,1022,414,1000,428,969,440,888,457,801,467,726,472,726,467,800,462,888,452,967,435,998,423,1018,410,1030,396,1037,382,1041,354,1039,322,1044,283,1062,228"/>
+<area shape="poly" title=" " alt="" coords="1051,231,1027,256,1005,285,987,327,977,366,972,364,982,325,1000,283,1023,252,1047,227"/>
+<area shape="rect" title=" " alt="" coords="1221,291,1299,317"/>
+<area shape="poly" title=" " alt="" coords="1111,226,1226,283,1224,288,1109,231"/>
+<area shape="rect" title=" " alt="" coords="505,291,591,317"/>
+<area shape="poly" title=" " alt="" coords="965,224,795,249,699,266,605,287,593,290,591,285,603,281,698,261,794,243,965,219"/>
+<area shape="rect" title=" " alt="" coords="1323,291,1447,317"/>
+<area shape="poly" title=" " alt="" coords="1136,226,1334,285,1333,290,1135,231"/>
+<area shape="rect" title=" " alt="" coords="1059,291,1146,317"/>
+<area shape="poly" title=" " alt="" coords="1081,228,1097,277,1092,279,1076,230"/>
+<area shape="rect" title=" " alt="" coords="1577,181,1722,236"/>
+<area shape="poly" title=" " alt="" coords="1600,132,1626,169,1621,172,1596,135"/>
+<area shape="rect" title=" " alt="" coords="1973,196,2155,221"/>
+<area shape="poly" title=" " alt="" coords="2067,133,2067,182,2061,182,2061,133"/>
+<area shape="poly" title=" " alt="" coords="854,134,834,185,817,213,796,238,753,264,694,289,692,284,751,259,793,234,813,210,829,182,849,132"/>
+<area shape="poly" title=" " alt="" coords="861,134,857,183,849,212,835,238,815,257,793,265,770,271,747,286,709,325,697,345,687,373,680,411,682,446,676,446,675,410,681,371,692,342,705,321,744,282,768,267,791,260,812,252,831,234,844,210,852,182,856,133"/>
+<area shape="poly" title=" " alt="" coords="902,131,1017,181,1015,186,900,136"/>
+<area shape="poly" title=" " alt="" coords="953,122,1090,144,1150,160,1192,179,1215,201,1233,227,1255,277,1250,279,1228,230,1211,204,1189,184,1149,165,1089,150,952,127"/>
+<area shape="poly" title=" " alt="" coords="838,136,778,185,701,238,646,267,594,289,592,284,644,262,699,234,775,181,834,132"/>
+<area shape="poly" title=" " alt="" coords="953,114,1017,121,1089,132,1163,151,1233,179,1253,191,1266,204,1294,234,1358,281,1355,286,1290,238,1262,208,1249,195,1231,184,1161,156,1088,137,1016,126,952,120"/>
+<area shape="poly" title=" " alt="" coords="249,224,603,281,611,284,610,289,602,287,248,229"/>
+<area shape="poly" title=" " alt="" coords="175,226,266,282,263,286,172,231"/>
+<area shape="poly" title=" " alt="" coords="158,227,196,274,222,300,251,322,301,351,354,376,463,417,563,445,640,461,639,467,562,450,461,422,352,381,298,356,248,326,219,304,192,278,154,231"/>
+<area shape="poly" title=" " alt="" coords="225,226,492,287,490,292,224,231"/>
+<area shape="rect" title=" " alt="" coords="11,291,75,317"/>
+<area shape="poly" title=" " alt="" coords="124,231,67,283,64,280,121,227"/>
+<area shape="rect" title=" " alt="" coords="99,291,186,317"/>
+<area shape="poly" title=" " alt="" coords="145,229,145,277,140,277,140,229"/>
+<area shape="poly" title=" " alt="" coords="598,227,635,279,631,282,594,230"/>
+<area shape="poly" title=" " alt="" coords="578,230,560,279,555,277,573,228"/>
+<area shape="poly" title=" " alt="" coords="392,136,220,187,218,182,391,131"/>
+<area shape="poly" title=" " alt="" coords="482,131,547,178,544,183,479,136"/>
+<area shape="rect" href="../../d5/d2d/error__boundary_8h.html" title=" " alt="" coords="323,196,453,221"/>
+<area shape="poly" title=" " alt="" coords="443,135,406,186,402,183,439,132"/>
+<area shape="poly" title=" " alt="" coords="423,219,604,281,609,284,607,289,602,287,421,224"/>
+<area shape="poly" title=" " alt="" coords="378,223,318,284,314,280,375,219"/>
+<area shape="poly" title=" " alt="" coords="419,219,466,233,611,265,744,286,743,292,610,270,465,239,418,224"/>
+<area shape="poly" title=" " alt="" coords="399,220,439,266,494,322,581,394,656,450,653,454,577,399,490,326,435,270,395,223"/>
+<area shape="poly" title=" " alt="" coords="409,219,518,282,515,287,406,224"/>
+<area shape="poly" title=" " alt="" coords="1304,225,1191,239,968,260,870,270,746,287,697,295,696,290,745,281,870,265,967,255,1190,233,1303,220"/>
+<area shape="poly" title=" " alt="" coords="1435,226,1526,282,1523,286,1432,231"/>
+<area shape="poly" title=" " alt="" coords="1304,229,948,288,947,283,1303,224"/>
+<area shape="poly" title=" " alt="" coords="1426,227,1445,248,1461,272,1469,299,1467,313,1461,326,1440,348,1410,367,1373,385,1330,400,1229,425,1117,444,1001,457,892,466,726,473,726,468,891,460,1001,452,1116,439,1228,420,1328,395,1371,380,1407,363,1436,344,1456,322,1462,311,1463,300,1456,275,1440,251,1422,231"/>
+<area shape="poly" title=" " alt="" coords="1375,231,1290,286,1287,282,1372,227"/>
+<area shape="poly" title=" " alt="" coords="1402,229,1393,278,1387,277,1397,228"/>
 </map>
 </div>
 </div>
@@ -249,9 +309,9 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00293">293</a> of file <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html">test_integration_e2e.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  293</span>                                                   {</div>
 <div class="line"><span class="lineno">  294</span>    <span class="comment">// 1. Setup resilience components</span></div>
-<div class="line"><span class="lineno">  295</span>    fault_tolerance_manager ft_manager;</div>
-<div class="line"><span class="lineno">  296</span>    circuit_breaker breaker(3, std::chrono::milliseconds(100));</div>
-<div class="line"><span class="lineno">  297</span>    retry_policy policy;</div>
+<div class="line"><span class="lineno">  295</span>    <a class="code hl_class" href="../../d2/d74/classkcenon_1_1monitoring_1_1fault__tolerance__manager.html">fault_tolerance_manager</a> ft_manager;</div>
+<div class="line"><span class="lineno">  296</span>    <a class="code hl_class" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">circuit_breaker</a> breaker(3, std::chrono::milliseconds(100));</div>
+<div class="line"><span class="lineno">  297</span>    <a class="code hl_class" href="../../d3/d0a/classkcenon_1_1monitoring_1_1retry__policy.html">retry_policy</a> policy;</div>
 <div class="line"><span class="lineno">  298</span>    policy.max_attempts = 5;</div>
 <div class="line"><span class="lineno">  299</span>    policy.initial_delay = std::chrono::milliseconds(10);</div>
 <div class="line"><span class="lineno">  300</span>    </div>
@@ -259,16 +319,16 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  302</span>    std::atomic&lt;int&gt; call_count{0};</div>
 <div class="line"><span class="lineno">  303</span>    std::atomic&lt;bool&gt; should_fail{<span class="keyword">true</span>};</div>
 <div class="line"><span class="lineno">  304</span>    </div>
-<div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> unreliable_operation = [&amp;call_count, &amp;should_fail]() -&gt; result_void {</div>
+<div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> unreliable_operation = [&amp;call_count, &amp;should_fail]() -&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> {</div>
 <div class="line"><span class="lineno">  306</span>        call_count++;</div>
 <div class="line"><span class="lineno">  307</span>        </div>
 <div class="line"><span class="lineno">  308</span>        <span class="comment">// Fail first 3 calls, then succeed</span></div>
 <div class="line"><span class="lineno">  309</span>        <span class="keywordflow">if</span> (call_count &lt;= 3 &amp;&amp; should_fail) {</div>
-<div class="line"><span class="lineno">  310</span>            <span class="keywordflow">return</span> make_result_void(monitoring_error_code::operation_failed,</div>
+<div class="line"><span class="lineno">  310</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf">make_result_void</a>(monitoring_error_code::operation_failed,</div>
 <div class="line"><span class="lineno">  311</span>                                    <span class="stringliteral">&quot;Simulated failure&quot;</span>);</div>
 <div class="line"><span class="lineno">  312</span>        }</div>
 <div class="line"><span class="lineno">  313</span>        </div>
-<div class="line"><span class="lineno">  314</span>        <span class="keywordflow">return</span> make_void_success();</div>
+<div class="line"><span class="lineno">  314</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
 <div class="line"><span class="lineno">  315</span>    };</div>
 <div class="line"><span class="lineno">  316</span>    </div>
 <div class="line"><span class="lineno">  317</span>    <span class="comment">// 3. Test retry mechanism</span></div>
@@ -313,7 +373,41 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  356</span>    </div>
 <div class="line"><span class="lineno">  357</span>    EXPECT_EQ(breaker.get_state(), circuit_state::closed);</div>
 <div class="line"><span class="lineno">  358</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a></div><div class="ttdoc">Thread-safe circuit breaker implementation.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00104">circuit_breaker.h:104</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1fault__tolerance__manager_html"><div class="ttname"><a href="../../d2/d74/classkcenon_1_1monitoring_1_1fault__tolerance__manager.html">kcenon::monitoring::fault_tolerance_manager</a></div><div class="ttdoc">Basic fault tolerance manager - stub implementation.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00042">fault_tolerance_manager.h:42</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1retry__policy_html"><div class="ttname"><a href="../../d3/d0a/classkcenon_1_1monitoring_1_1retry__policy.html">kcenon::monitoring::retry_policy</a></div><div class="ttdoc">Basic retry policy implementation - stub.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/df4/retry__policy_8h_source.html#l00061">retry_policy.h:61</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a5831822659b3edfa93f8cc4b75357478"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">kcenon::monitoring::make_void_success</a></div><div class="ttdeci">common::VoidResult make_void_success()</div><div class="ttdoc">Helper function to create successful VoidResult.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00240">result_types.h:240</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a6931ba7fb7341c1e6c5c408ee09e48ea"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">kcenon::monitoring::result_void</a></div><div class="ttdeci">common::VoidResult result_void</div><div class="ttdoc">Backward-compatible alias for common::VoidResult.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00129">result_types.h:129</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a716b65495ab9dbb3905f63f7e70d8acf"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf">kcenon::monitoring::make_result_void</a></div><div class="ttdeci">common::VoidResult make_result_void(monitoring_error_code code, const std::string &amp;message=&quot;&quot;, const std::optional&lt; std::string &gt; &amp;context=std::nullopt)</div><div class="ttdoc">Create a VoidResult with error.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00189">result_types.h:189</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d9b/test__integration__e2e_8cpp_ae5f4fd19dd4d35e662f8ca4a44fc2549_cgraph.png" border="0" usemap="#ad1/d9b/test__integration__e2e_8cpp_ae5f4fd19dd4d35e662f8ca4a44fc2549_cgraph" alt=""/></div>
+<map name="ad1/d9b/test__integration__e2e_8cpp_ae5f4fd19dd4d35e662f8ca4a44fc2549_cgraph" id="ad1/d9b/test__integration__e2e_8cpp_ae5f4fd19dd4d35e662f8ca4a44fc2549_cgraph">
+<area shape="rect" title=" " alt="" coords="5,198,75,223"/>
+<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a0556e67dbae69cba46d07476ce0f62ec" title="Execute a function with circuit breaker protection and fallback." alt="" coords="127,84,313,124"/>
+<area shape="poly" title=" " alt="" coords="54,196,84,171,121,144,154,127,156,132,124,149,87,175,57,200"/>
+<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#af41897fbd8d5ca6c4e53e0ad4a8ec5d5" title="Get current circuit state." alt="" coords="123,159,317,199"/>
+<area shape="poly" title=" " alt="" coords="74,202,109,196,110,201,75,207"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf" title="Create a VoidResult with error." alt="" coords="146,223,294,263"/>
+<area shape="poly" title=" " alt="" coords="75,214,133,224,132,230,74,219"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="141,287,299,327"/>
+<area shape="poly" title=" " alt="" coords="56,222,86,247,124,272,137,279,135,284,121,277,83,251,53,226"/>
+<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf" title="Check current state and handle timeout transitions." alt="" coords="367,5,579,45"/>
+<area shape="poly" title=" " alt="" coords="281,81,365,55,391,47,392,52,366,60,283,86"/>
+<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d" title="Handle failed execution." alt="" coords="398,70,549,125"/>
+<area shape="poly" title=" " alt="" coords="313,99,384,97,385,102,313,104"/>
+<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456" title="Handle successful execution." alt="" coords="398,149,549,203"/>
+<area shape="poly" title=" " alt="" coords="292,121,386,148,384,154,290,127"/>
+<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="629,77,845,117"/>
+<area shape="poly" title=" " alt="" coords="548,43,651,71,649,76,547,48"/>
+<area shape="poly" title=" " alt="" coords="549,95,615,95,615,100,549,100"/>
+<area shape="poly" title=" " alt="" coords="548,151,656,119,657,124,550,156"/>
+<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="365,228,581,268"/>
+<area shape="poly" title=" " alt="" coords="294,242,351,243,351,248,294,247"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="afc1c0e68886466ae530a1f18b80f278d" name="afc1c0e68886466ae530a1f18b80f278d"></a>
@@ -346,10 +440,10 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00491">491</a> of file <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html">test_integration_e2e.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  491</span>                                                      {</div>
 <div class="line"><span class="lineno">  492</span>    <span class="comment">// 1. Create storage backend</span></div>
-<div class="line"><span class="lineno">  493</span>    storage_config config;</div>
-<div class="line"><span class="lineno">  494</span>    config.type = storage_backend_type::memory_buffer;</div>
+<div class="line"><span class="lineno">  493</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><span class="lineno">  494</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::memory_buffer;</div>
 <div class="line"><span class="lineno">  495</span>    config.max_capacity = 1000;</div>
-<div class="line"><span class="lineno">  496</span>    <span class="keyword">auto</span> storage = std::make_unique&lt;memory_storage_backend&gt;(config);</div>
+<div class="line"><span class="lineno">  496</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a> = std::make_unique&lt;memory_storage_backend&gt;(config);</div>
 <div class="line"><span class="lineno">  497</span>    </div>
 <div class="line"><span class="lineno">  498</span>    <span class="comment">// 2. Create tracer</span></div>
 <div class="line"><span class="lineno">  499</span>    <span class="keyword">auto</span> tracer = std::make_unique&lt;distributed_tracer&gt;(<span class="stringliteral">&quot;integration_test&quot;</span>);</div>
@@ -358,21 +452,21 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  502</span>    <span class="keyword">auto</span> perf_monitor = performance_monitor::create();</div>
 <div class="line"><span class="lineno">  503</span>    </div>
 <div class="line"><span class="lineno">  504</span>    <span class="comment">// 4. Create metrics snapshot</span></div>
-<div class="line"><span class="lineno">  505</span>    metrics_snapshot snapshot;</div>
+<div class="line"><span class="lineno">  505</span>    <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
 <div class="line"><span class="lineno">  506</span>    </div>
 <div class="line"><span class="lineno">  507</span>    <span class="comment">// Add performance metrics</span></div>
 <div class="line"><span class="lineno">  508</span>    <span class="keyword">auto</span> cpu_usage = perf_monitor-&gt;measure_cpu_usage();</div>
 <div class="line"><span class="lineno">  509</span>    <span class="keywordflow">if</span> (cpu_usage) {</div>
-<div class="line"><span class="lineno">  510</span>        snapshot.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, cpu_usage.value());</div>
+<div class="line"><span class="lineno">  510</span>        snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>, cpu_usage.value());</div>
 <div class="line"><span class="lineno">  511</span>    }</div>
 <div class="line"><span class="lineno">  512</span>    </div>
 <div class="line"><span class="lineno">  513</span>    <span class="keyword">auto</span> memory_usage = perf_monitor-&gt;measure_memory_usage();</div>
 <div class="line"><span class="lineno">  514</span>    <span class="keywordflow">if</span> (memory_usage) {</div>
-<div class="line"><span class="lineno">  515</span>        snapshot.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, memory_usage.value());</div>
+<div class="line"><span class="lineno">  515</span>        snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;memory_usage&quot;</span>, memory_usage.value());</div>
 <div class="line"><span class="lineno">  516</span>    }</div>
 <div class="line"><span class="lineno">  517</span>    </div>
 <div class="line"><span class="lineno">  518</span>    <span class="comment">// 5. Store snapshot</span></div>
-<div class="line"><span class="lineno">  519</span>    <span class="keyword">auto</span> store_result = storage-&gt;store(snapshot);</div>
+<div class="line"><span class="lineno">  519</span>    <span class="keyword">auto</span> store_result = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>-&gt;store(snapshot);</div>
 <div class="line"><span class="lineno">  520</span>    EXPECT_TRUE(store_result);</div>
 <div class="line"><span class="lineno">  521</span>    </div>
 <div class="line"><span class="lineno">  522</span>    <span class="comment">// 6. Create trace span</span></div>
@@ -384,9 +478,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  528</span>    span_result.value().set_attribute(<span class="stringliteral">&quot;memory_usage&quot;</span>, std::to_string(memory_usage.value_or(0)));</div>
 <div class="line"><span class="lineno">  529</span>    </div>
 <div class="line"><span class="lineno">  530</span>    <span class="comment">// 8. Verify storage</span></div>
-<div class="line"><span class="lineno">  531</span>    EXPECT_EQ(storage-&gt;size(), 1);</div>
+<div class="line"><span class="lineno">  531</span>    EXPECT_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>-&gt;size(), 1);</div>
 <div class="line"><span class="lineno">  532</span>    </div>
-<div class="line"><span class="lineno">  533</span>    <span class="keyword">auto</span> retrieved = storage-&gt;retrieve(0);</div>
+<div class="line"><span class="lineno">  533</span>    <span class="keyword">auto</span> retrieved = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>-&gt;retrieve(0);</div>
 <div class="line"><span class="lineno">  534</span>    EXPECT_TRUE(retrieved);</div>
 <div class="line"><span class="lineno">  535</span>    </div>
 <div class="line"><span class="lineno">  536</span>    <span class="comment">// 9. Verify metrics in retrieved snapshot</span></div>
@@ -396,7 +490,22 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  540</span>    <span class="keyword">auto</span> mem_metric = retrieved.value().get_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>);</div>
 <div class="line"><span class="lineno">  541</span>    EXPECT_TRUE(mem_metric.has_value());</div>
 <div class="line"><span class="lineno">  542</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">kcenon::monitoring::sensor_type::storage</a></div><div class="ttdeci">@ storage</div><div class="ttdoc">Storage device sensor.</div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">kcenon::monitoring::metrics_snapshot</a></div><div class="ttdoc">Complete snapshot of metrics at a point in time.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00066">monitoring_core.h:66</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_a91c4bb5a196e0ace7716f2d6c54eb1a7"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">kcenon::monitoring::metrics_snapshot::add_metric</a></div><div class="ttdeci">void add_metric(const std::string &amp;name, double value)</div><div class="ttdoc">Add a metric to the snapshot.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00079">monitoring_core.h:79</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">kcenon::monitoring::storage_config</a></div><div class="ttdoc">Storage configuration.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00065">storage_backends.h:65</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html_a5470889434a9f2c7dab29555dcb3fe0e"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">kcenon::monitoring::storage_config::type</a></div><div class="ttdeci">storage_backend_type type</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00066">storage_backends.h:66</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d9b/test__integration__e2e_8cpp_afc1c0e68886466ae530a1f18b80f278d_cgraph.png" border="0" usemap="#ad1/d9b/test__integration__e2e_8cpp_afc1c0e68886466ae530a1f18b80f278d_cgraph" alt=""/></div>
+<map name="ad1/d9b/test__integration__e2e_8cpp_afc1c0e68886466ae530a1f18b80f278d_cgraph" id="ad1/d9b/test__integration__e2e_8cpp_afc1c0e68886466ae530a1f18b80f278d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
+<area shape="rect" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7" title="Add a metric to the snapshot." alt="" coords="123,5,276,60"/>
+<area shape="poly" title=" " alt="" coords="75,30,109,30,109,35,75,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a70636d332f6e87d00b6c3fca35df35e1" name="a70636d332f6e87d00b6c3fca35df35e1"></a>
@@ -430,7 +539,7 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">  133</span>                                                  {</div>
 <div class="line"><span class="lineno">  134</span>    <span class="comment">// 1. Setup tracing components</span></div>
 <div class="line"><span class="lineno">  135</span>    <span class="keyword">auto</span> tracer = std::make_unique&lt;distributed_tracer&gt;(<span class="stringliteral">&quot;e2e_service&quot;</span>);</div>
-<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> otel_adapter = create_opentelemetry_compatibility_layer(<span class="stringliteral">&quot;e2e_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keyword">auto</span> otel_adapter = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a197ddc8594ddbb2ef9ac1e77d3d4834f">create_opentelemetry_compatibility_layer</a>(<span class="stringliteral">&quot;e2e_service&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
 <div class="line"><span class="lineno">  137</span>    </div>
 <div class="line"><span class="lineno">  138</span>    <span class="comment">// 2. Initialize OTEL adapter</span></div>
 <div class="line"><span class="lineno">  139</span>    <span class="keyword">auto</span> init_result = otel_adapter-&gt;initialize();</div>
@@ -468,7 +577,18 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> flush_result = otel_adapter-&gt;flush();</div>
 <div class="line"><span class="lineno">  172</span>    EXPECT_TRUE(flush_result);</div>
 <div class="line"><span class="lineno">  173</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a197ddc8594ddbb2ef9ac1e77d3d4834f"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a197ddc8594ddbb2ef9ac1e77d3d4834f">kcenon::monitoring::create_opentelemetry_compatibility_layer</a></div><div class="ttdeci">std::unique_ptr&lt; opentelemetry_compatibility_layer &gt; create_opentelemetry_compatibility_layer(const otel_resource &amp;resource)</div><div class="ttdoc">Create OpenTelemetry compatibility layer.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d92/opentelemetry__adapter_8h_source.html#l00555">opentelemetry_adapter.h:555</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d9b/test__integration__e2e_8cpp_a70636d332f6e87d00b6c3fca35df35e1_cgraph.png" border="0" usemap="#ad1/d9b/test__integration__e2e_8cpp_a70636d332f6e87d00b6c3fca35df35e1_cgraph" alt=""/></div>
+<map name="ad1/d9b/test__integration__e2e_8cpp_a70636d332f6e87d00b6c3fca35df35e1_cgraph" id="ad1/d9b/test__integration__e2e_8cpp_a70636d332f6e87d00b6c3fca35df35e1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a197ddc8594ddbb2ef9ac1e77d3d4834f" title="Create OpenTelemetry compatibility layer." alt="" coords="123,5,297,60"/>
+<area shape="poly" title=" " alt="" coords="75,30,109,30,109,35,75,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aab4269a9005d7046025f96d0b3411e76" name="aab4269a9005d7046025f96d0b3411e76"></a>
@@ -501,7 +621,7 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00364">364</a> of file <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html">test_integration_e2e.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  364</span>                                                      {</div>
 <div class="line"><span class="lineno">  365</span>    <span class="comment">// 1. Setup OTEL adapter</span></div>
-<div class="line"><span class="lineno">  366</span>    <span class="keyword">auto</span> otel_adapter = create_opentelemetry_compatibility_layer(<span class="stringliteral">&quot;export_test&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
+<div class="line"><span class="lineno">  366</span>    <span class="keyword">auto</span> otel_adapter = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a197ddc8594ddbb2ef9ac1e77d3d4834f">create_opentelemetry_compatibility_layer</a>(<span class="stringliteral">&quot;export_test&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
 <div class="line"><span class="lineno">  367</span>    <span class="keyword">auto</span> init_result = otel_adapter-&gt;initialize();</div>
 <div class="line"><span class="lineno">  368</span>    ASSERT_TRUE(init_result);</div>
 <div class="line"><span class="lineno">  369</span>    </div>
@@ -527,7 +647,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  389</span>    EXPECT_EQ(stats.pending_spans, test_spans.size());</div>
 <div class="line"><span class="lineno">  390</span>    </div>
 <div class="line"><span class="lineno">  391</span>    <span class="comment">// 5. Create sample metrics</span></div>
-<div class="line"><span class="lineno">  392</span>    monitoring_data test_data(<span class="stringliteral">&quot;export_test&quot;</span>);</div>
+<div class="line"><span class="lineno">  392</span>    <a class="code hl_struct" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">monitoring_data</a> test_data(<span class="stringliteral">&quot;export_test&quot;</span>);</div>
 <div class="line"><span class="lineno">  393</span>    test_data.add_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 75.0);</div>
 <div class="line"><span class="lineno">  394</span>    test_data.add_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>, 60.0);</div>
 <div class="line"><span class="lineno">  395</span>    test_data.add_metric(<span class="stringliteral">&quot;request_count&quot;</span>, 1000.0);</div>
@@ -549,7 +669,20 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  411</span>    EXPECT_EQ(stats.pending_spans, 0);</div>
 <div class="line"><span class="lineno">  412</span>    EXPECT_EQ(stats.pending_metrics, 0);</div>
 <div class="line"><span class="lineno">  413</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1monitoring__data_html"><div class="ttname"><a href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">kcenon::monitoring::monitoring_data</a></div><div class="ttdoc">Container for monitoring metrics from a component.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/db2/monitorable__interface_8h_source.html#l00065">monitorable_interface.h:65</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d9b/test__integration__e2e_8cpp_aab4269a9005d7046025f96d0b3411e76_cgraph.png" border="0" usemap="#ad1/d9b/test__integration__e2e_8cpp_aab4269a9005d7046025f96d0b3411e76_cgraph" alt=""/></div>
+<map name="ad1/d9b/test__integration__e2e_8cpp_aab4269a9005d7046025f96d0b3411e76_cgraph" id="ad1/d9b/test__integration__e2e_8cpp_aab4269a9005d7046025f96d0b3411e76_cgraph">
+<area shape="rect" title=" " alt="" coords="5,60,75,85"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="125,5,295,60"/>
+<area shape="poly" title=" " alt="" coords="74,62,111,53,112,58,75,67"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a197ddc8594ddbb2ef9ac1e77d3d4834f" title="Create OpenTelemetry compatibility layer." alt="" coords="123,84,297,139"/>
+<area shape="poly" title=" " alt="" coords="75,78,110,86,109,91,74,83"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a44e20b27be624999bd30ba9315acf094" name="a44e20b27be624999bd30ba9315acf094"></a>
@@ -584,7 +717,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  420</span>    <span class="comment">// 1. Setup components</span></div>
 <div class="line"><span class="lineno">  421</span>    <span class="keyword">auto</span> tracer = std::make_unique&lt;distributed_tracer&gt;(<span class="stringliteral">&quot;load_test&quot;</span>);</div>
 <div class="line"><span class="lineno">  422</span>    <span class="keyword">auto</span> perf_monitor = performance_monitor::create();</div>
-<div class="line"><span class="lineno">  423</span>    <span class="keyword">auto</span> health_monitor = global_health_monitor::instance();</div>
+<div class="line"><span class="lineno">  423</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a> = global_health_monitor::instance();</div>
 <div class="line"><span class="lineno">  424</span>    </div>
 <div class="line"><span class="lineno">  425</span>    <span class="comment">// 2. Configure for high load</span></div>
 <div class="line"><span class="lineno">  426</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_operations = 1000;</div>
@@ -619,9 +752,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  455</span>    }</div>
 <div class="line"><span class="lineno">  456</span>    </div>
 <div class="line"><span class="lineno">  457</span>    <span class="comment">// 4. Monitor while load is running</span></div>
-<div class="line"><span class="lineno">  458</span>    std::thread monitor_thread([&amp;health_monitor, &amp;start_time]() {</div>
+<div class="line"><span class="lineno">  458</span>    std::thread monitor_thread([&amp;<a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a>, &amp;start_time]() {</div>
 <div class="line"><span class="lineno">  459</span>        <span class="keywordflow">while</span> (std::chrono::steady_clock::now() - start_time &lt; std::chrono::seconds(5)) {</div>
-<div class="line"><span class="lineno">  460</span>            <span class="keyword">auto</span> health = health_monitor-&gt;check_health();</div>
+<div class="line"><span class="lineno">  460</span>            <span class="keyword">auto</span> health = <a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a>-&gt;<a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a77cb754d5cca34fb5f0c4e7b99188fc4">check_health</a>();</div>
 <div class="line"><span class="lineno">  461</span>            <span class="comment">// System should remain healthy under load</span></div>
 <div class="line"><span class="lineno">  462</span>            EXPECT_TRUE(health.is_operational());</div>
 <div class="line"><span class="lineno">  463</span>            std::this_thread::sleep_for(std::chrono::milliseconds(100));</div>
@@ -647,7 +780,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  483</span>    <span class="comment">// Should achieve reasonable throughput</span></div>
 <div class="line"><span class="lineno">  484</span>    EXPECT_GT(throughput, 100.0); <span class="comment">// At least 100 ops/sec</span></div>
 <div class="line"><span class="lineno">  485</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">kcenon::monitoring::health_monitor</a></div><div class="ttdoc">Basic health monitor interface - stub implementation.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00099">health_monitor.h:99</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a77cb754d5cca34fb5f0c4e7b99188fc4"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a77cb754d5cca34fb5f0c4e7b99188fc4">kcenon::monitoring::health_monitor::check_health</a></div><div class="ttdeci">virtual health_check_result check_health() const</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00105">health_monitor.h:105</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d9b/test__integration__e2e_8cpp_a44e20b27be624999bd30ba9315acf094_cgraph.png" border="0" usemap="#ad1/d9b/test__integration__e2e_8cpp_a44e20b27be624999bd30ba9315acf094_cgraph" alt=""/></div>
+<map name="ad1/d9b/test__integration__e2e_8cpp_a44e20b27be624999bd30ba9315acf094_cgraph" id="ad1/d9b/test__integration__e2e_8cpp_a44e20b27be624999bd30ba9315acf094_cgraph">
+<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a77cb754d5cca34fb5f0c4e7b99188fc4" title=" " alt="" coords="123,5,297,60"/>
+<area shape="poly" title=" " alt="" coords="75,30,109,30,109,35,75,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a682e953c7e7637be353153a0ee81b9e1" name="a682e953c7e7637be353153a0ee81b9e1"></a>
@@ -680,33 +825,33 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00179">179</a> of file <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html">test_integration_e2e.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  179</span>                                                         {</div>
 <div class="line"><span class="lineno">  180</span>    <span class="comment">// 1. Setup health monitoring</span></div>
-<div class="line"><span class="lineno">  181</span>    <span class="keyword">auto</span> health_monitor = global_health_monitor::instance();</div>
-<div class="line"><span class="lineno">  182</span>    fault_tolerance_manager ft_manager;</div>
+<div class="line"><span class="lineno">  181</span>    <span class="keyword">auto</span> <a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a> = global_health_monitor::instance();</div>
+<div class="line"><span class="lineno">  182</span>    <a class="code hl_class" href="../../d2/d74/classkcenon_1_1monitoring_1_1fault__tolerance__manager.html">fault_tolerance_manager</a> ft_manager;</div>
 <div class="line"><span class="lineno">  183</span>    </div>
 <div class="line"><span class="lineno">  184</span>    <span class="comment">// 2. Register health checks</span></div>
 <div class="line"><span class="lineno">  185</span>    std::atomic&lt;bool&gt; service_healthy{<span class="keyword">true</span>};</div>
 <div class="line"><span class="lineno">  186</span>    </div>
-<div class="line"><span class="lineno">  187</span>    health_monitor-&gt;register_check(<span class="stringliteral">&quot;database&quot;</span>, [&amp;service_healthy]() {</div>
+<div class="line"><span class="lineno">  187</span>    <a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a>-&gt;<a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a97c77ae75509aa17634024872c25433d">register_check</a>(<span class="stringliteral">&quot;database&quot;</span>, [&amp;service_healthy]() {</div>
 <div class="line"><span class="lineno">  188</span>        <span class="keywordflow">if</span> (service_healthy) {</div>
-<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">return</span> health_check_result::healthy(<span class="stringliteral">&quot;Database connection OK&quot;</span>);</div>
+<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a93c02337fda4400ef37f5b235d662d7c">health_check_result::healthy</a>(<span class="stringliteral">&quot;Database connection OK&quot;</span>);</div>
 <div class="line"><span class="lineno">  190</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  191</span>            <span class="keywordflow">return</span> health_check_result::unhealthy(<span class="stringliteral">&quot;Database connection failed&quot;</span>);</div>
+<div class="line"><span class="lineno">  191</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1">health_check_result::unhealthy</a>(<span class="stringliteral">&quot;Database connection failed&quot;</span>);</div>
 <div class="line"><span class="lineno">  192</span>        }</div>
 <div class="line"><span class="lineno">  193</span>    });</div>
 <div class="line"><span class="lineno">  194</span>    </div>
-<div class="line"><span class="lineno">  195</span>    health_monitor-&gt;register_check(<span class="stringliteral">&quot;cache&quot;</span>, []() {</div>
-<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">return</span> health_check_result::healthy(<span class="stringliteral">&quot;Cache service running&quot;</span>);</div>
+<div class="line"><span class="lineno">  195</span>    <a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a>-&gt;<a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a97c77ae75509aa17634024872c25433d">register_check</a>(<span class="stringliteral">&quot;cache&quot;</span>, []() {</div>
+<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a93c02337fda4400ef37f5b235d662d7c">health_check_result::healthy</a>(<span class="stringliteral">&quot;Cache service running&quot;</span>);</div>
 <div class="line"><span class="lineno">  197</span>    });</div>
 <div class="line"><span class="lineno">  198</span>    </div>
 <div class="line"><span class="lineno">  199</span>    <span class="comment">// 3. Initial health check - should be healthy</span></div>
-<div class="line"><span class="lineno">  200</span>    <span class="keyword">auto</span> initial_health = health_monitor-&gt;check_health();</div>
+<div class="line"><span class="lineno">  200</span>    <span class="keyword">auto</span> initial_health = <a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a>-&gt;<a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a77cb754d5cca34fb5f0c4e7b99188fc4">check_health</a>();</div>
 <div class="line"><span class="lineno">  201</span>    EXPECT_TRUE(initial_health.is_healthy());</div>
 <div class="line"><span class="lineno">  202</span>    </div>
 <div class="line"><span class="lineno">  203</span>    <span class="comment">// 4. Simulate failure</span></div>
 <div class="line"><span class="lineno">  204</span>    service_healthy = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  205</span>    </div>
 <div class="line"><span class="lineno">  206</span>    <span class="comment">// 5. Setup retry policy for recovery</span></div>
-<div class="line"><span class="lineno">  207</span>    retry_policy policy;</div>
+<div class="line"><span class="lineno">  207</span>    <a class="code hl_class" href="../../d3/d0a/classkcenon_1_1monitoring_1_1retry__policy.html">retry_policy</a> policy;</div>
 <div class="line"><span class="lineno">  208</span>    policy.max_attempts = 3;</div>
 <div class="line"><span class="lineno">  209</span>    policy.initial_delay = std::chrono::milliseconds(10);</div>
 <div class="line"><span class="lineno">  210</span>    policy.backoff_multiplier = 2.0;</div>
@@ -714,13 +859,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  212</span>    <span class="comment">// 6. Attempt recovery with fault tolerance</span></div>
 <div class="line"><span class="lineno">  213</span>    <span class="keywordtype">int</span> recovery_attempts = 0;</div>
 <div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> recovery_result = ft_manager.execute_with_retry(</div>
-<div class="line"><span class="lineno">  215</span>        [&amp;service_healthy, &amp;recovery_attempts]() -&gt; result_void {</div>
+<div class="line"><span class="lineno">  215</span>        [&amp;service_healthy, &amp;recovery_attempts]() -&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> {</div>
 <div class="line"><span class="lineno">  216</span>            recovery_attempts++;</div>
 <div class="line"><span class="lineno">  217</span>            <span class="keywordflow">if</span> (recovery_attempts &gt;= 2) {</div>
 <div class="line"><span class="lineno">  218</span>                service_healthy = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  219</span>                <span class="keywordflow">return</span> make_void_success();</div>
+<div class="line"><span class="lineno">  219</span>                <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
 <div class="line"><span class="lineno">  220</span>            }</div>
-<div class="line"><span class="lineno">  221</span>            <span class="keywordflow">return</span> make_result_void(monitoring_error_code::operation_failed,</div>
+<div class="line"><span class="lineno">  221</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf">make_result_void</a>(monitoring_error_code::operation_failed,</div>
 <div class="line"><span class="lineno">  222</span>                                    <span class="stringliteral">&quot;Still recovering&quot;</span>);</div>
 <div class="line"><span class="lineno">  223</span>        },</div>
 <div class="line"><span class="lineno">  224</span>        policy</div>
@@ -730,10 +875,35 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  228</span>    EXPECT_GE(recovery_attempts, 2);</div>
 <div class="line"><span class="lineno">  229</span>    </div>
 <div class="line"><span class="lineno">  230</span>    <span class="comment">// 7. Verify health restored</span></div>
-<div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> final_health = health_monitor-&gt;check_health();</div>
+<div class="line"><span class="lineno">  231</span>    <span class="keyword">auto</span> final_health = <a class="code hl_class" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html">health_monitor</a>-&gt;<a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a77cb754d5cca34fb5f0c4e7b99188fc4">check_health</a>();</div>
 <div class="line"><span class="lineno">  232</span>    EXPECT_TRUE(final_health.is_healthy());</div>
 <div class="line"><span class="lineno">  233</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a97c77ae75509aa17634024872c25433d"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a97c77ae75509aa17634024872c25433d">kcenon::monitoring::health_monitor::register_check</a></div><div class="ttdeci">virtual void register_check(const std::string &amp;name, std::shared_ptr&lt; functional_health_check &gt; check)</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00118">health_monitor.h:118</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__check__result_html_a1249cffaa23a80c2b864e0f7ee8c04f1"><div class="ttname"><a href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1">kcenon::monitoring::health_check_result::unhealthy</a></div><div class="ttdeci">static health_check_result unhealthy(const std::string &amp;msg)</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00158">monitoring_core.h:158</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__check__result_html_a93c02337fda4400ef37f5b235d662d7c"><div class="ttname"><a href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a93c02337fda4400ef37f5b235d662d7c">kcenon::monitoring::health_check_result::healthy</a></div><div class="ttdeci">static health_check_result healthy(const std::string &amp;msg=&quot;OK&quot;)</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00149">monitoring_core.h:149</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d9b/test__integration__e2e_8cpp_a682e953c7e7637be353153a0ee81b9e1_cgraph.png" border="0" usemap="#ad1/d9b/test__integration__e2e_8cpp_a682e953c7e7637be353153a0ee81b9e1_cgraph" alt=""/></div>
+<map name="ad1/d9b/test__integration__e2e_8cpp_a682e953c7e7637be353153a0ee81b9e1_cgraph" id="ad1/d9b/test__integration__e2e_8cpp_a682e953c7e7637be353153a0ee81b9e1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,203,75,228"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a77cb754d5cca34fb5f0c4e7b99188fc4" title=" " alt="" coords="151,5,326,60"/>
+<area shape="poly" title=" " alt="" coords="43,201,68,139,91,102,121,69,137,58,140,62,124,73,95,105,73,141,48,204"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a93c02337fda4400ef37f5b235d662d7c" title=" " alt="" coords="159,84,319,139"/>
+<area shape="poly" title=" " alt="" coords="53,200,83,175,121,149,144,138,147,143,124,154,86,179,56,205"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf" title="Create a VoidResult with error." alt="" coords="165,163,313,203"/>
+<area shape="poly" title=" " alt="" coords="75,207,150,195,151,200,75,212"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="159,227,318,267"/>
+<area shape="poly" title=" " alt="" coords="75,218,146,230,145,235,75,223"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a97c77ae75509aa17634024872c25433d" title=" " alt="" coords="123,291,355,331"/>
+<area shape="poly" title=" " alt="" coords="56,226,86,252,124,277,139,284,137,289,121,282,83,256,53,231"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1" title=" " alt="" coords="159,356,319,411"/>
+<area shape="poly" title=" " alt="" coords="49,227,75,282,97,314,124,341,147,356,145,360,121,345,93,317,71,285,44,229"/>
+<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="403,163,619,203"/>
+<area shape="poly" title=" " alt="" coords="313,181,389,181,389,186,313,186"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a592027d23ef36517b1967e304c0fbf01" name="a592027d23ef36517b1967e304c0fbf01"></a>
@@ -846,13 +1016,13 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../d1/d9b/test__integration__e2e_8cpp_source.html">test_integration_e2e.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   61</span>                                                      {</div>
 <div class="line"><span class="lineno">   62</span>    <span class="comment">// 1. Create multiple storage backends</span></div>
-<div class="line"><span class="lineno">   63</span>    storage_config file_config;</div>
-<div class="line"><span class="lineno">   64</span>    file_config.type = storage_backend_type::file_json;</div>
-<div class="line"><span class="lineno">   65</span>    file_config.path = (test_dir_ / <span class="stringliteral">&quot;metrics.json&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><span class="lineno">   63</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> file_config;</div>
+<div class="line"><span class="lineno">   64</span>    file_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
+<div class="line"><span class="lineno">   65</span>    file_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;metrics.json&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><span class="lineno">   66</span>    file_config.max_capacity = 100;</div>
 <div class="line"><span class="lineno">   67</span>    </div>
-<div class="line"><span class="lineno">   68</span>    storage_config memory_config;</div>
-<div class="line"><span class="lineno">   69</span>    memory_config.type = storage_backend_type::memory_buffer;</div>
+<div class="line"><span class="lineno">   68</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> memory_config;</div>
+<div class="line"><span class="lineno">   69</span>    memory_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::memory_buffer;</div>
 <div class="line"><span class="lineno">   70</span>    memory_config.max_capacity = 100;</div>
 <div class="line"><span class="lineno">   71</span>    </div>
 <div class="line"><span class="lineno">   72</span>    <span class="keyword">auto</span> file_backend = std::make_unique&lt;file_storage_backend&gt;(file_config);</div>
@@ -861,8 +1031,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   75</span>    <span class="comment">// 2. Create test data</span></div>
 <div class="line"><span class="lineno">   76</span>    std::vector&lt;metrics_snapshot&gt; snapshots;</div>
 <div class="line"><span class="lineno">   77</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 50; ++i) {</div>
-<div class="line"><span class="lineno">   78</span>        metrics_snapshot snapshot;</div>
-<div class="line"><span class="lineno">   79</span>        snapshot.add_metric(<span class="stringliteral">&quot;metric_&quot;</span> + std::to_string(i), i * 1.5);</div>
+<div class="line"><span class="lineno">   78</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
+<div class="line"><span class="lineno">   79</span>        snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;metric_&quot;</span> + std::to_string(i), i * 1.5);</div>
 <div class="line"><span class="lineno">   80</span>        snapshots.push_back(snapshot);</div>
 <div class="line"><span class="lineno">   81</span>    }</div>
 <div class="line"><span class="lineno">   82</span>    </div>
@@ -873,16 +1043,16 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   87</span>    <span class="comment">// Thread for file backend</span></div>
 <div class="line"><span class="lineno">   88</span>    threads.emplace_back([&amp;file_backend, &amp;snapshots, &amp;success_count]() {</div>
 <div class="line"><span class="lineno">   89</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; snapshot : snapshots) {</div>
-<div class="line"><span class="lineno">   90</span>            <span class="keyword">auto</span> result = file_backend-&gt;store(snapshot);</div>
-<div class="line"><span class="lineno">   91</span>            <span class="keywordflow">if</span> (result.is_ok()) success_count++;</div>
+<div class="line"><span class="lineno">   90</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = file_backend-&gt;store(snapshot);</div>
+<div class="line"><span class="lineno">   91</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) success_count++;</div>
 <div class="line"><span class="lineno">   92</span>        }</div>
 <div class="line"><span class="lineno">   93</span>    });</div>
 <div class="line"><span class="lineno">   94</span>    </div>
 <div class="line"><span class="lineno">   95</span>    <span class="comment">// Thread for memory backend</span></div>
 <div class="line"><span class="lineno">   96</span>    threads.emplace_back([&amp;memory_backend, &amp;snapshots, &amp;success_count]() {</div>
 <div class="line"><span class="lineno">   97</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; snapshot : snapshots) {</div>
-<div class="line"><span class="lineno">   98</span>            <span class="keyword">auto</span> result = memory_backend-&gt;store(snapshot);</div>
-<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">if</span> (result.is_ok()) success_count++;</div>
+<div class="line"><span class="lineno">   98</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = memory_backend-&gt;store(snapshot);</div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) success_count++;</div>
 <div class="line"><span class="lineno">  100</span>        }</div>
 <div class="line"><span class="lineno">  101</span>    });</div>
 <div class="line"><span class="lineno">  102</span>    </div>
@@ -911,13 +1081,25 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  125</span>    EXPECT_TRUE(flush_file);</div>
 <div class="line"><span class="lineno">  126</span>    EXPECT_TRUE(flush_memory);</div>
 <div class="line"><span class="lineno">  127</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html_a6c3a4fa37326d146343083409e129b0b"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">kcenon::monitoring::storage_config::path</a></div><div class="ttdeci">std::string path</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00067">storage_backends.h:67</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d9b/test__integration__e2e_8cpp_a488edffbb82c503b4fd8a79772a608c0_cgraph.png" border="0" usemap="#ad1/d9b/test__integration__e2e_8cpp_a488edffbb82c503b4fd8a79772a608c0_cgraph" alt=""/></div>
+<map name="ad1/d9b/test__integration__e2e_8cpp_a488edffbb82c503b4fd8a79772a608c0_cgraph" id="ad1/d9b/test__integration__e2e_8cpp_a488edffbb82c503b4fd8a79772a608c0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
+<area shape="rect" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7" title="Add a metric to the snapshot." alt="" coords="123,5,276,60"/>
+<area shape="poly" title=" " alt="" coords="75,30,109,30,109,35,75,35"/>
+</map>
+</div>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

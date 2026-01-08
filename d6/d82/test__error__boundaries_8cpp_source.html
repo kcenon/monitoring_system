@@ -114,7 +114,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;kcenon/monitoring/reliability/error_boundary.h&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d2d/error__boundary_8h.html">kcenon/monitoring/reliability/error_boundary.h</a>&gt;</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;kcenon/monitoring/reliability/graceful_degradation.h&gt;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a>;</div>
@@ -141,19 +141,19 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// Helper function that fails for the first N attempts</span></div>
 <div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#afa1f47e0f9e489fcb446607e90ad70c5">   55</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#afa1f47e0f9e489fcb446607e90ad70c5">failing_operation</a>() {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#afa1f47e0f9e489fcb446607e90ad70c5">   55</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;int&gt;</a> <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#afa1f47e0f9e489fcb446607e90ad70c5">failing_operation</a>() {</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">int</span> current_call = ++<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74">call_count</a>;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a38dfd5bfddad774c3d6eb7fa5914c53f">success_after_attempts</a> &gt; 0 &amp;&amp; current_call &lt;= <a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a38dfd5bfddad774c3d6eb7fa5914c53f">success_after_attempts</a>) {</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                                 <span class="stringliteral">&quot;Simulated failure on attempt &quot;</span> + std::to_string(current_call));</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> make_success(42);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(42);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
 </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// Helper function that always fails</span></div>
 <div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#ae19696d948c2aaf009a364a7847879a3">   65</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#ae19696d948c2aaf009a364a7847879a3">always_failing_operation</a>() {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#ae19696d948c2aaf009a364a7847879a3">   65</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;int&gt;</a> <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#ae19696d948c2aaf009a364a7847879a3">always_failing_operation</a>() {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        ++<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74">call_count</a>;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Always fails&quot;</span>);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
@@ -161,15 +161,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// Helper function that always succeeds</span></div>
 <div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#a6d612fb23208bdf7a468476fa2821cb7">   71</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#a6d612fb23208bdf7a468476fa2821cb7">always_succeeding_operation</a>() {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#a6d612fb23208bdf7a468476fa2821cb7">   71</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;int&gt;</a> <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#a6d612fb23208bdf7a468476fa2821cb7">always_succeeding_operation</a>() {</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        ++<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74">call_count</a>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> make_success(100);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(100);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
 </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Throwing operation for exception handling</span></div>
 <div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#a202e61d620194c79ddd64e44e7451d98">   77</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#a202e61d620194c79ddd64e44e7451d98">throwing_operation</a>() {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../db/d11/classErrorBoundariesTest.html#a202e61d620194c79ddd64e44e7451d98">   77</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;int&gt;</a> <a class="code hl_function" href="../../db/d11/classErrorBoundariesTest.html#a202e61d620194c79ddd64e44e7451d98">throwing_operation</a>() {</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        ++<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74">call_count</a>;</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Simulated exception&quot;</span>);</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
@@ -180,13 +180,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">// Error Boundary Tests</span></div>
 <div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">   84</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryNormalOperation) {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    error_boundary_config config;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    EXPECT_EQ(result.value(), 100);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), 100);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}</div>
@@ -194,48 +194,48 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
 <div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#a0c70ba857c24631a4c307be9ebeb856e">   96</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryFailFastPolicy) {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    config.policy = error_boundary_policy::fail_fast;</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    EXPECT_FALSE(result);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed));</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed));</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
 </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
 <div class="foldopen" id="foldopen00109" data-start="{" data-end="}">
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#a22f7b3d2df585d010ee39c6b373a38e4">  109</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryIsolatePolicy) {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    config.policy = error_boundary_policy::isolate;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    EXPECT_FALSE(result);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::service_degraded));</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::service_degraded));</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    EXPECT_EQ(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
 </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#a8e8e51b411a061f2489f4d7a22f6442c">  122</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryDegradePolicy) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    config.policy = error_boundary_policy::degrade;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    config.error_threshold = 2;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    config.<a class="code hl_variable" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html#a6379a8d7c21d34478452f18264bd3247">error_threshold</a> = 2;</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// First failure</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">auto</span> result1 = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">auto</span> result1 = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    EXPECT_FALSE(result1);</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// Second failure should trigger degradation</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">auto</span> result2 = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">auto</span> result2 = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    EXPECT_FALSE(result2);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    </div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// Check that degradation occurred</span></div>
@@ -245,44 +245,44 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
 <div class="foldopen" id="foldopen00141" data-start="{" data-end="}">
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#af06738dfb2b985bef9fdeb5e5f8195df">  141</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryWithFallback) {</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    config.policy = error_boundary_policy::fallback;</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">auto</span> fallback = [](<span class="keyword">const</span> error_info&amp;, degradation_level) {</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> make_success(999);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">auto</span> fallback = [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html">error_info</a>&amp;, <a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a>) {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(999);</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    };</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); }, fallback);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); }, fallback);</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    EXPECT_EQ(result.value(), 999);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), 999);</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>}</div>
 </div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
 <div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#ad597d844734aa941796602e584e169d9">  157</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryExceptionHandling) {</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>);</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> throwing_operation(); });</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> throwing_operation(); });</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    EXPECT_FALSE(result);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed));</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed));</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
 </div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
 <div class="foldopen" id="foldopen00167" data-start="{" data-end="}">
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#ac7c3a8645600be23aec4edbc074a234f">  167</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryMetrics) {</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>);</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    </div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="comment">// Execute some operations</span></div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">auto</span> metrics = boundary.get_metrics();</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">auto</span> metrics = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#a6a83e9204ef5838d73eecf87342a1786">get_metrics</a>();</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    EXPECT_EQ(metrics.total_operations.load(), 3);</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    EXPECT_EQ(metrics.successful_operations.load(), 2);</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    EXPECT_EQ(metrics.failed_operations.load(), 1);</div>
@@ -292,31 +292,31 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
 <div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#a02c0482a1d94fcbc13de1102b2615362">  182</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryRecovery) {</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    config.policy = error_boundary_policy::degrade;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    config.error_threshold = 1;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    config.<a class="code hl_variable" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html#a6379a8d7c21d34478452f18264bd3247">error_threshold</a> = 1;</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    config.enable_automatic_recovery = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    config.recovery_timeout = std::chrono::milliseconds(100);</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    </div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// Trigger degradation</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    EXPECT_GT(boundary.get_degradation_level(), degradation_level::normal);</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    </div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">// Wait for recovery timeout</span></div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    std::this_thread::sleep_for(std::chrono::milliseconds(150));</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    </div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// Execute successful operation to trigger recovery</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    </div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// Check if recovery occurred (might need multiple successful operations)</span></div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); });</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    }</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">auto</span> metrics = boundary.get_metrics();</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">auto</span> metrics = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#a6a83e9204ef5838d73eecf87342a1786">get_metrics</a>();</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    EXPECT_GT(metrics.recovery_attempts.load(), 0);</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>}</div>
 </div>
@@ -324,20 +324,20 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment">// Fallback Strategy Tests</span></div>
 <div class="foldopen" id="foldopen00212" data-start="{" data-end="}">
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#a14af2a7d05655194e678f67cf45b914e">  212</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, DefaultValueStrategy) {</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>);</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    </div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">auto</span> strategy = std::make_shared&lt;default_value_strategy&lt;int&gt;&gt;(777);</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    boundary.set_fallback_strategy(strategy);</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    config.policy = error_boundary_policy::fallback;</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    error_boundary&lt;int&gt; fallback_boundary(<span class="stringliteral">&quot;fallback_test&quot;</span>, config);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> fallback_boundary(<span class="stringliteral">&quot;fallback_test&quot;</span>, config);</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    fallback_boundary.set_fallback_strategy(strategy);</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keyword">auto</span> result = fallback_boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = fallback_boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    EXPECT_EQ(result.value(), 777);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), 777);</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>}</div>
 </div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
@@ -348,32 +348,32 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">// Update cache with a value</span></div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    strategy-&gt;update_cache(555);</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    config.policy = error_boundary_policy::fallback;</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;cached_test&quot;</span>, config);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;cached_test&quot;</span>, config);</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    boundary.set_fallback_strategy(strategy);</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    EXPECT_EQ(result.value(), 555);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), 555);</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>}</div>
 </div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
 <div class="foldopen" id="foldopen00246" data-start="{" data-end="}">
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#ad9a2ccbc03020f49b0c3df29e0cb81f2">  246</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, AlternativeServiceStrategy) {</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">auto</span> alternative_op = []() { <span class="keywordflow">return</span> make_success(888); };</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">auto</span> alternative_op = []() { <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(888); };</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keyword">auto</span> strategy = std::make_shared&lt;alternative_service_strategy&lt;int&gt;&gt;(alternative_op);</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    config.policy = error_boundary_policy::fallback;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;alternative_test&quot;</span>, config);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;alternative_test&quot;</span>, config);</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    boundary.set_fallback_strategy(strategy);</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = boundary.<a class="code hl_function" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">execute</a>([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); });</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    EXPECT_EQ(result.value(), 888);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), 888);</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>}</div>
 </div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
@@ -383,9 +383,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keyword">auto</span> manager = create_degradation_manager(<span class="stringliteral">&quot;test_manager&quot;</span>);</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keyword">auto</span> config = create_service_config(<span class="stringliteral">&quot;test_service&quot;</span>, service_priority::normal);</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">auto</span> result = manager-&gt;register_service(config);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;register_service(config);</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;test_service&quot;</span>), degradation_level::normal);</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>}</div>
 </div>
@@ -397,9 +397,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keyword">auto</span> config = create_service_config(<span class="stringliteral">&quot;test_service&quot;</span>, service_priority::normal);</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    manager-&gt;register_service(config);</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keyword">auto</span> result = manager-&gt;degrade_service(<span class="stringliteral">&quot;test_service&quot;</span>, degradation_level::limited, <span class="stringliteral">&quot;Test degradation&quot;</span>);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;degrade_service(<span class="stringliteral">&quot;test_service&quot;</span>, degradation_level::limited, <span class="stringliteral">&quot;Test degradation&quot;</span>);</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;test_service&quot;</span>), degradation_level::limited);</div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>}</div>
 </div>
@@ -420,9 +420,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    manager-&gt;add_degradation_plan(plan);</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    </div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="comment">// Execute plan</span></div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keyword">auto</span> result = manager-&gt;execute_plan(<span class="stringliteral">&quot;emergency_plan&quot;</span>, <span class="stringliteral">&quot;Test emergency&quot;</span>);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;execute_plan(<span class="stringliteral">&quot;emergency_plan&quot;</span>, <span class="stringliteral">&quot;Test emergency&quot;</span>);</div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    </div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service1&quot;</span>), degradation_level::minimal);</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service2&quot;</span>), degradation_level::emergency);</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>}</div>
@@ -440,9 +440,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;test_service&quot;</span>), degradation_level::minimal);</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    </div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="comment">// Recover service</span></div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keyword">auto</span> result = manager-&gt;recover_service(<span class="stringliteral">&quot;test_service&quot;</span>);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;recover_service(<span class="stringliteral">&quot;test_service&quot;</span>);</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    </div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;test_service&quot;</span>), degradation_level::normal);</div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>}</div>
 </div>
@@ -459,9 +459,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    manager-&gt;degrade_service(<span class="stringliteral">&quot;service2&quot;</span>, degradation_level::minimal, <span class="stringliteral">&quot;Test&quot;</span>);</div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    </div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="comment">// Recover all</span></div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keyword">auto</span> result = manager-&gt;recover_all_services();</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;recover_all_services();</div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    </div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service1&quot;</span>), degradation_level::normal);</div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    EXPECT_EQ(manager-&gt;get_service_level(<span class="stringliteral">&quot;service2&quot;</span>), degradation_level::normal);</div>
 <div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>}</div>
@@ -492,20 +492,20 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    manager-&gt;register_service(config);</div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    </div>
 <div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keyword">auto</span> normal_op = [<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); };</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keyword">auto</span> degraded_op = [](degradation_level level) { </div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>        <span class="keywordflow">return</span> make_success(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(level) * 100); </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keyword">auto</span> degraded_op = [](<a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a> level) { </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(level) * 100); </div>
 <div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    };</div>
 <div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    </div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="keyword">auto</span> service = create_degradable_service&lt;int&gt;(<span class="stringliteral">&quot;wrapper_service&quot;</span>, manager, normal_op, degraded_op);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443aaaabf0d39951f3e6c3e8a7911df524c2">service</a> = create_degradable_service&lt;int&gt;(<span class="stringliteral">&quot;wrapper_service&quot;</span>, manager, normal_op, degraded_op);</div>
 <div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    </div>
 <div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="comment">// Test normal operation</span></div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    <span class="keyword">auto</span> result1 = service-&gt;execute();</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    <span class="keyword">auto</span> result1 = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443aaaabf0d39951f3e6c3e8a7911df524c2">service</a>-&gt;execute();</div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    EXPECT_TRUE(result1);</div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    EXPECT_EQ(result1.value(), 100);</div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    </div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="comment">// Degrade service and test degraded operation</span></div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    manager-&gt;degrade_service(<span class="stringliteral">&quot;wrapper_service&quot;</span>, degradation_level::limited, <span class="stringliteral">&quot;Test&quot;</span>);</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    <span class="keyword">auto</span> result2 = service-&gt;execute();</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    <span class="keyword">auto</span> result2 = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443aaaabf0d39951f3e6c3e8a7911df524c2">service</a>-&gt;execute();</div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    EXPECT_TRUE(result2);</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    EXPECT_EQ(result2.value(), <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(degradation_level::limited) * 100);</div>
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>}</div>
@@ -535,7 +535,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="comment">// Configuration Validation Tests</span></div>
 <div class="foldopen" id="foldopen00401" data-start="{" data-end="}">
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#a0a14a40cec6c5ad0173a08582d49b81a">  401</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryConfigValidation) {</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    error_boundary_config config;</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    </div>
 <div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="comment">// Valid config</span></div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    config.name = <span class="stringliteral">&quot;test&quot;</span>;</div>
@@ -550,7 +550,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    EXPECT_TRUE(config.validate());</div>
 <div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    </div>
 <div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="comment">// Invalid error threshold</span></div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    config.error_threshold = 0;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    config.<a class="code hl_variable" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html#a6379a8d7c21d34478452f18264bd3247">error_threshold</a> = 0;</div>
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    EXPECT_FALSE(config.validate());</div>
 <div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>}</div>
 </div>
@@ -597,9 +597,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="comment">// Health Check Tests</span></div>
 <div class="foldopen" id="foldopen00457" data-start="{" data-end="}">
 <div class="line"><a id="l00457" name="l00457"></a><span class="lineno"><a class="line" href="../../d6/d82/test__error__boundaries_8cpp.html#aa60f91c0e0317ba33a5726ea14e208e9">  457</a></span><a class="code hl_function" href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a>(<a class="code hl_class" href="../../db/d11/classErrorBoundariesTest.html">ErrorBoundariesTest</a>, ErrorBoundaryHealthCheck) {</div>
-<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    error_boundary_config config;</div>
-<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    config.max_degradation = degradation_level::emergency; <span class="comment">// Allow emergency degradation</span></div>
-<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    error_boundary&lt;int&gt; boundary(<span class="stringliteral">&quot;health_test&quot;</span>, config);</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    config.<a class="code hl_variable" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html#aac121f8dab22f5ef305beeb6da36d7f1">max_degradation</a> = degradation_level::emergency; <span class="comment">// Allow emergency degradation</span></div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;health_test&quot;</span>, config);</div>
 <div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>    </div>
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>    <span class="comment">// Initially healthy</span></div>
 <div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>    <span class="keyword">auto</span> health = boundary.is_healthy();</div>
@@ -652,12 +652,24 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassErrorBoundariesTest_html_ae19696d948c2aaf009a364a7847879a3"><div class="ttname"><a href="../../db/d11/classErrorBoundariesTest.html#ae19696d948c2aaf009a364a7847879a3">ErrorBoundariesTest::always_failing_operation</a></div><div class="ttdeci">result&lt; int &gt; always_failing_operation()</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d82/test__error__boundaries_8cpp_source.html#l00065">test_error_boundaries.cpp:65</a></div></div>
 <div class="ttc" id="aclassErrorBoundariesTest_html_af0af00dff51f6071234683c3dddb016f"><div class="ttname"><a href="../../db/d11/classErrorBoundariesTest.html#af0af00dff51f6071234683c3dddb016f">ErrorBoundariesTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d82/test__error__boundaries_8cpp_source.html#l00046">test_error_boundaries.cpp:46</a></div></div>
 <div class="ttc" id="aclassErrorBoundariesTest_html_afa1f47e0f9e489fcb446607e90ad70c5"><div class="ttname"><a href="../../db/d11/classErrorBoundariesTest.html#afa1f47e0f9e489fcb446607e90ad70c5">ErrorBoundariesTest::failing_operation</a></div><div class="ttdeci">result&lt; int &gt; failing_operation()</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d82/test__error__boundaries_8cpp_source.html#l00055">test_error_boundaries.cpp:55</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00036">test_battery_collector.cpp:36</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1error__boundary_html"><div class="ttname"><a href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">kcenon::monitoring::error_boundary</a></div><div class="ttdoc">Basic error boundary implementation - stub.</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d2d/error__boundary_8h_source.html#l00075">error_boundary.h:75</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1error__boundary_html_a6a83e9204ef5838d73eecf87342a1786"><div class="ttname"><a href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#a6a83e9204ef5838d73eecf87342a1786">kcenon::monitoring::error_boundary::get_metrics</a></div><div class="ttdeci">error_boundary_metrics get_metrics() const</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d2d/error__boundary_8h_source.html#l00098">error_boundary.h:98</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1error__boundary_html_aec735d76e9bd8eb3addaf679072a6de6"><div class="ttname"><a href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#aec735d76e9bd8eb3addaf679072a6de6">kcenon::monitoring::error_boundary::execute</a></div><div class="ttdeci">auto execute(Func &amp;&amp;func) -&gt; decltype(func())</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d2d/error__boundary_8h_source.html#l00084">error_boundary.h:84</a></div></div>
+<div class="ttc" id="aerror__boundary_8h_html"><div class="ttname"><a href="../../d5/d2d/error__boundary_8h.html">error_boundary.h</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00028">common_monitor_adapter.h:28</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a07bdd48e145c9623f4b4443f98e4700c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">kcenon::monitoring::make_success</a></div><div class="ttdeci">common::Result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00155">result_types.h:155</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a4884f61728e7662f1482ddacb7925443aaaabf0d39951f3e6c3e8a7911df524c2"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443aaaabf0d39951f3e6c3e8a7911df524c2">kcenon::monitoring::otel_resource_type::service</a></div><div class="ttdeci">@ service</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a987dca6741f6c68e38102336e2bd8001"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">kcenon::monitoring::degradation_level</a></div><div class="ttdeci">degradation_level</div><div class="ttdoc">Degradation levels.</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d2d/error__boundary_8h_source.html#l00044">error_boundary.h:44</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1error__boundary__config_html"><div class="ttname"><a href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">kcenon::monitoring::error_boundary_config</a></div><div class="ttdoc">Error boundary configuration.</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d2d/error__boundary_8h_source.html#l00055">error_boundary.h:55</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1error__boundary__config_html_a6379a8d7c21d34478452f18264bd3247"><div class="ttname"><a href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html#a6379a8d7c21d34478452f18264bd3247">kcenon::monitoring::error_boundary_config::error_threshold</a></div><div class="ttdeci">size_t error_threshold</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d2d/error__boundary_8h_source.html#l00056">error_boundary.h:56</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1error__boundary__config_html_aac121f8dab22f5ef305beeb6da36d7f1"><div class="ttname"><a href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html#aac121f8dab22f5ef305beeb6da36d7f1">kcenon::monitoring::error_boundary_config::max_degradation</a></div><div class="ttdeci">degradation_level max_degradation</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d2d/error__boundary_8h_source.html#l00059">error_boundary.h:59</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1error__info_html"><div class="ttname"><a href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html">kcenon::monitoring::error_info</a></div><div class="ttdoc">Extended error information with context.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00045">result_types.h:45</a></div></div>
 <div class="ttc" id="atest__error__boundaries_8cpp_html_a5c04ec26803b8a31dca6e1f20944dea0"><div class="ttname"><a href="../../d6/d82/test__error__boundaries_8cpp.html#a5c04ec26803b8a31dca6e1f20944dea0">TEST_F</a></div><div class="ttdeci">TEST_F(ErrorBoundariesTest, ErrorBoundaryNormalOperation)</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d82/test__error__boundaries_8cpp_source.html#l00084">test_error_boundaries.cpp:84</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -139,10 +139,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// Helper function for testing operations</span></div>
 <div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">   53</a></span>    result&lt;int&gt; <a class="code hl_function" href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">test_operation</a>() {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">   53</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;int&gt;</a> <a class="code hl_function" href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">test_operation</a>() {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        ++<a class="code hl_variable" href="../../d7/d4c/classResourceManagementTest.html#a6a695f17e740a5f54b3e1b03f956dfc6">call_count</a>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        ++<a class="code hl_variable" href="../../d7/d4c/classResourceManagementTest.html#a0a84e208e81abf4ead9ca8168afb5b1c">success_count</a>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> make_success(42);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(42);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
 </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    </div>
@@ -194,15 +194,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// Execute operations within limit</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keyword">auto</span> result = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        EXPECT_EQ(result.value(), 42);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), 42);</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// Should reject when limit exceeded</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">auto</span> result = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    EXPECT_FALSE(result);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::resource_exhausted));</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = limiter-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::resource_exhausted));</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
 </div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
@@ -266,8 +266,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">auto</span> manager = create_memory_quota_manager(<span class="stringliteral">&quot;test_memory&quot;</span>, 1024);</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    </div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// Allocate memory</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keyword">auto</span> result = manager-&gt;allocate(512);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;allocate(512);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    EXPECT_EQ(manager-&gt;current_usage(), 512);</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    </div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// Deallocate memory</span></div>
@@ -275,8 +275,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    EXPECT_EQ(manager-&gt;current_usage(), 256);</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    </div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// Should be able to allocate again</span></div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    result = manager-&gt;allocate(512);</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;allocate(512);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    EXPECT_EQ(manager-&gt;current_usage(), 768);</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
 </div>
@@ -339,9 +339,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">auto</span> throttler = std::make_unique&lt;cpu_throttler&gt;(<span class="stringliteral">&quot;test_cpu&quot;</span>, config);</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    </div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// Should execute when CPU usage is low</span></div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">auto</span> result = throttler-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    EXPECT_EQ(result.value(), 42);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = throttler-&gt;execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> test_operation(); });</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value(), 42);</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>}</div>
 </div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
@@ -370,8 +370,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    config.rate_per_second = 100;</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    config.burst_capacity = 10;</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keyword">auto</span> result = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>, config);</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;add_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>, config);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    </div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keyword">auto</span> limiter = manager-&gt;get_rate_limiter(<span class="stringliteral">&quot;api_limiter&quot;</span>);</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    EXPECT_NE(limiter, <span class="keyword">nullptr</span>);</div>
@@ -385,8 +385,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    </div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    resource_quota quota(resource_type::memory, 2048, throttling_strategy::reject);</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keyword">auto</span> result = manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>, quota);</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;add_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>, quota);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    </div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keyword">auto</span> memory_manager = manager-&gt;get_memory_quota(<span class="stringliteral">&quot;memory_quota&quot;</span>);</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    EXPECT_NE(memory_manager, <span class="keyword">nullptr</span>);</div>
@@ -402,8 +402,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    config.max_cpu_usage = 0.7;</div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    config.strategy = throttling_strategy::delay;</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keyword">auto</span> result = manager-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>, config);</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = manager-&gt;add_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>, config);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    </div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keyword">auto</span> throttler = manager-&gt;get_cpu_throttler(<span class="stringliteral">&quot;cpu_throttler&quot;</span>);</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    EXPECT_NE(throttler, <span class="keyword">nullptr</span>);</div>
@@ -652,12 +652,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassResourceManagementTest_html_a89282f04d90c42d01a8a9c3e4d640ab3"><div class="ttname"><a href="../../d7/d4c/classResourceManagementTest.html#a89282f04d90c42d01a8a9c3e4d640ab3">ResourceManagementTest::simulate_work</a></div><div class="ttdeci">void simulate_work(std::chrono::milliseconds duration=std::chrono::milliseconds(10))</div><div class="ttdef"><b>Definition</b> <a href="../../db/dcc/test__resource__management_8cpp_source.html#l00060">test_resource_management.cpp:60</a></div></div>
 <div class="ttc" id="aclassResourceManagementTest_html_aa3d265b01ce05886b4a9112e7d88c47c"><div class="ttname"><a href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">ResourceManagementTest::test_operation</a></div><div class="ttdeci">result&lt; int &gt; test_operation()</div><div class="ttdef"><b>Definition</b> <a href="../../db/dcc/test__resource__management_8cpp_source.html#l00053">test_resource_management.cpp:53</a></div></div>
 <div class="ttc" id="aclassResourceManagementTest_html_adbfca33743175a12f5910683d067c0c0"><div class="ttname"><a href="../../d7/d4c/classResourceManagementTest.html#adbfca33743175a12f5910683d067c0c0">ResourceManagementTest::TearDown</a></div><div class="ttdeci">void TearDown() override</div><div class="ttdef"><b>Definition</b> <a href="../../db/dcc/test__resource__management_8cpp_source.html#l00045">test_resource_management.cpp:45</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00036">test_battery_collector.cpp:36</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00028">common_monitor_adapter.h:28</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a07bdd48e145c9623f4b4443f98e4700c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">kcenon::monitoring::make_success</a></div><div class="ttdeci">common::Result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00155">result_types.h:155</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="atest__resource__management_8cpp_html_a9fb6141b38344cae0955e7f2296baa9a"><div class="ttname"><a href="../../db/dcc/test__resource__management_8cpp.html#a9fb6141b38344cae0955e7f2296baa9a">TEST_F</a></div><div class="ttdeci">TEST_F(ResourceManagementTest, TokenBucketBasicOperation)</div><div class="ttdef"><b>Definition</b> <a href="../../db/dcc/test__resource__management_8cpp_source.html#l00066">test_resource_management.cpp:66</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

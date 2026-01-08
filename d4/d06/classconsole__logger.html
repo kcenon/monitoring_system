@@ -124,9 +124,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aadf75170525ff628e324f875aa5c0393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b169d1d177244dfa2d12bdef495be4c" id="r_a9b169d1d177244dfa2d12bdef495be4c"><td class="memItemLeft" align="right" valign="top">common::VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d06/classconsole__logger.html#a9b169d1d177244dfa2d12bdef495be4c">flush</a> () override</td></tr>
 <tr class="separator:a9b169d1d177244dfa2d12bdef495be4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9465f6d005d968cf150df50ddf2a5b6a" id="r_a9465f6d005d968cf150df50ddf2a5b6a"><td class="memItemLeft" align="right" valign="top">common::Result&lt; metrics_snapshot &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d06/classconsole__logger.html#a9465f6d005d968cf150df50ddf2a5b6a">get_monitoring_data</a> () override</td></tr>
+<tr class="memitem:a9465f6d005d968cf150df50ddf2a5b6a" id="r_a9465f6d005d968cf150df50ddf2a5b6a"><td class="memItemLeft" align="right" valign="top">common::Result&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d06/classconsole__logger.html#a9465f6d005d968cf150df50ddf2a5b6a">get_monitoring_data</a> () override</td></tr>
 <tr class="separator:a9465f6d005d968cf150df50ddf2a5b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21325846fefeb7c3c16b732e2d1be766" id="r_a21325846fefeb7c3c16b732e2d1be766"><td class="memItemLeft" align="right" valign="top">common::Result&lt; health_check_result &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d06/classconsole__logger.html#a21325846fefeb7c3c16b732e2d1be766">health_check</a> () override</td></tr>
+<tr class="memitem:a21325846fefeb7c3c16b732e2d1be766" id="r_a21325846fefeb7c3c16b732e2d1be766"><td class="memItemLeft" align="right" valign="top">common::Result&lt; <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d06/classconsole__logger.html#a21325846fefeb7c3c16b732e2d1be766">health_check</a> () override</td></tr>
 <tr class="separator:a21325846fefeb7c3c16b732e2d1be766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a989c661224c10fc515d7fef7f891a97f" id="r_a989c661224c10fc515d7fef7f891a97f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d06/classconsole__logger.html#a989c661224c10fc515d7fef7f891a97f">get_component_name</a> () const override</td></tr>
 <tr class="separator:a989c661224c10fc515d7fef7f891a97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -283,7 +283,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">common::Result&lt; metrics_snapshot &gt; console_logger::get_monitoring_data </td>
+          <td class="memname">common::Result&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; console_logger::get_monitoring_data </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -298,21 +298,26 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/d24/bidirectional__di__example_8cpp_source.html#l00122">122</a> of file <a class="el" href="../../d7/d24/bidirectional__di__example_8cpp_source.html">bidirectional_di_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  122</span>                                                                  {</div>
-<div class="line"><span class="lineno">  123</span>        metrics_snapshot snapshot;</div>
-<div class="line"><span class="lineno">  124</span>        snapshot.source_id = <span class="stringliteral">&quot;console_logger&quot;</span>;</div>
-<div class="line"><span class="lineno">  125</span>        snapshot.add_metric(<span class="stringliteral">&quot;total_messages&quot;</span>, <a class="code hl_variable" href="../../d4/d06/classconsole__logger.html#a56fc62291a6840a8e24e3d8e5c198ca4">message_count_</a>.load());</div>
-<div class="line"><span class="lineno">  126</span>        snapshot.add_metric(<span class="stringliteral">&quot;is_enabled&quot;</span>, <a class="code hl_function" href="../../d4/d06/classconsole__logger.html#a529d7b92e75166a96417eb84c3b5b210">is_enabled</a>(log_level::info) ? 1.0 : 0.0);</div>
+<div class="line"><span class="lineno">  123</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
+<div class="line"><span class="lineno">  124</span>        snapshot.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;console_logger&quot;</span>;</div>
+<div class="line"><span class="lineno">  125</span>        snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;total_messages&quot;</span>, <a class="code hl_variable" href="../../d4/d06/classconsole__logger.html#a56fc62291a6840a8e24e3d8e5c198ca4">message_count_</a>.load());</div>
+<div class="line"><span class="lineno">  126</span>        snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;is_enabled&quot;</span>, <a class="code hl_function" href="../../d4/d06/classconsole__logger.html#a529d7b92e75166a96417eb84c3b5b210">is_enabled</a>(log_level::info) ? 1.0 : 0.0);</div>
 <div class="line"><span class="lineno">  127</span>        <span class="keywordflow">return</span> snapshot;</div>
 <div class="line"><span class="lineno">  128</span>    }</div>
 <div class="ttc" id="aclassconsole__logger_html_a529d7b92e75166a96417eb84c3b5b210"><div class="ttname"><a href="../../d4/d06/classconsole__logger.html#a529d7b92e75166a96417eb84c3b5b210">console_logger::is_enabled</a></div><div class="ttdeci">bool is_enabled(log_level level) const override</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d24/bidirectional__di__example_8cpp_source.html#l00103">bidirectional_di_example.cpp:103</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">kcenon::monitoring::metrics_snapshot</a></div><div class="ttdoc">Complete snapshot of metrics at a point in time.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00066">monitoring_core.h:66</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_a91c4bb5a196e0ace7716f2d6c54eb1a7"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">kcenon::monitoring::metrics_snapshot::add_metric</a></div><div class="ttdeci">void add_metric(const std::string &amp;name, double value)</div><div class="ttdoc">Add a metric to the snapshot.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00079">monitoring_core.h:79</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_ad805ca0681def3b2c9c55136450bda54"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">kcenon::monitoring::metrics_snapshot::source_id</a></div><div class="ttdeci">std::string source_id</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00069">monitoring_core.h:69</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d06/classconsole__logger_a9465f6d005d968cf150df50ddf2a5b6a_cgraph.png" border="0" usemap="#ad4/d06/classconsole__logger_a9465f6d005d968cf150df50ddf2a5b6a_cgraph" alt=""/></div>
 <map name="ad4/d06/classconsole__logger_a9465f6d005d968cf150df50ddf2a5b6a_cgraph" id="ad4/d06/classconsole__logger_a9465f6d005d968cf150df50ddf2a5b6a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,155,45"/>
-<area shape="rect" href="../../d4/d06/classconsole__logger.html#a529d7b92e75166a96417eb84c3b5b210" title=" " alt="" coords="203,5,341,45"/>
-<area shape="poly" title=" " alt="" coords="155,23,189,23,189,28,155,28"/>
+<area shape="rect" title=" " alt="" coords="5,49,155,89"/>
+<area shape="rect" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7" title="Add a metric to the snapshot." alt="" coords="203,5,356,60"/>
+<area shape="poly" title=" " alt="" coords="155,53,189,46,190,52,156,58"/>
+<area shape="rect" href="../../d4/d06/classconsole__logger.html#a529d7b92e75166a96417eb84c3b5b210" title=" " alt="" coords="210,85,349,125"/>
+<area shape="poly" title=" " alt="" coords="156,80,197,87,196,92,155,85"/>
 </map>
 </div>
 
@@ -328,7 +333,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">common::Result&lt; health_check_result &gt; console_logger::health_check </td>
+          <td class="memname">common::Result&lt; <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt; console_logger::health_check </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -343,12 +348,15 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/d24/bidirectional__di__example_8cpp_source.html#l00130">130</a> of file <a class="el" href="../../d7/d24/bidirectional__di__example_8cpp_source.html">bidirectional_di_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  130</span>                                                              {</div>
-<div class="line"><span class="lineno">  131</span>        health_check_result result;</div>
-<div class="line"><span class="lineno">  132</span>        result.status = health_status::healthy;</div>
-<div class="line"><span class="lineno">  133</span>        result.message = <span class="stringliteral">&quot;Console logger operational&quot;</span>;</div>
-<div class="line"><span class="lineno">  134</span>        result.metadata[<span class="stringliteral">&quot;message_count&quot;</span>] = std::to_string(<a class="code hl_variable" href="../../d4/d06/classconsole__logger.html#a56fc62291a6840a8e24e3d8e5c198ca4">message_count_</a>.load());</div>
-<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><span class="lineno">  131</span>        <a class="code hl_struct" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  132</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a> = health_status::healthy;</div>
+<div class="line"><span class="lineno">  133</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.message = <span class="stringliteral">&quot;Console logger operational&quot;</span>;</div>
+<div class="line"><span class="lineno">  134</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.metadata[<span class="stringliteral">&quot;message_count&quot;</span>] = std::to_string(<a class="code hl_variable" href="../../d4/d06/classconsole__logger.html#a56fc62291a6840a8e24e3d8e5c198ca4">message_count_</a>.load());</div>
+<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
 <div class="line"><span class="lineno">  136</span>    }</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__check__result_html"><div class="ttname"><a href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">kcenon::monitoring::health_check_result</a></div><div class="ttdoc">Result of a health check operation.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00126">monitoring_core.h:126</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__check__result_html_a91388685dd31af13e8e25caa9ad4c995"><div class="ttname"><a href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">kcenon::monitoring::health_check_result::status</a></div><div class="ttdeci">health_status status</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00127">monitoring_core.h:127</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -723,7 +731,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

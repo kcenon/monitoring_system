@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['event_5fpriority_0',['event_priority',['../de/d3f/namespacemonitoring__system.html#a30037fc2d9d552555ffc0d1e6a633084',1,'monitoring_system']]],
-  ['event_5ftype_1',['event_type',['../d5/d12/classmonitoring__system_1_1system__event.html#a9d7c0b9df1d5d89e39be06f09527651e',1,'monitoring_system::system_event']]]
+  ['cgroup_5fversion_0',['cgroup_version',['../db/d50/namespacekcenon_1_1monitoring.html#a041b3c5418e379895427abfcd514812b',1,'kcenon::monitoring']]],
+  ['change_5ftype_1',['change_type',['../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html#afe231ef6a381a630a9bd8022a1765c4a',1,'kcenon::monitoring::configuration_change_event']]],
+  ['circuit_5fstate_2',['circuit_state',['../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3',1,'kcenon::monitoring']]],
+  ['compression_5falgorithm_3',['compression_algorithm',['../db/d50/namespacekcenon_1_1monitoring.html#ab219f258302c3ffbbc149e2617622ee2',1,'kcenon::monitoring']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['logger_5fdi_5fintegration_5fexample_2ecpp_0',['logger_di_integration_example.cpp',['../d0/d34/logger__di__integration__example_8cpp.html',1,'']]]
+  ['gpu_5fcollector_2eh_0',['gpu_collector.h',['../d0/de6/gpu__collector_8h.html',1,'']]],
+  ['grpc_5ftransport_2eh_1',['grpc_transport.h',['../d3/de7/grpc__transport_8h.html',1,'']]]
 ];

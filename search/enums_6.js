@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['monitoring_5ferror_5fcode_0',['monitoring_error_code',['../de/d3f/namespacemonitoring__system.html#a22dca6fa0d74ff9143a6386fbd724ecc',1,'monitoring_system']]]
+  ['gpu_5ftype_0',['gpu_type',['../db/d50/namespacekcenon_1_1monitoring.html#a96427c6006bc9a120d9ec340927afca0',1,'kcenon::monitoring']]],
+  ['gpu_5fvendor_1',['gpu_vendor',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597',1,'kcenon::monitoring']]]
 ];

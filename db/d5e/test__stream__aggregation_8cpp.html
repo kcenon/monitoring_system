@@ -191,8 +191,8 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00304">304</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  304</span>                                                         {</div>
-<div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> storage = std::make_shared&lt;metric_storage&gt;();</div>
-<div class="line"><span class="lineno">  306</span>    aggregation_processor processor(storage);</div>
+<div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a> = std::make_shared&lt;metric_storage&gt;();</div>
+<div class="line"><span class="lineno">  306</span>    aggregation_processor processor(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
 <div class="line"><span class="lineno">  307</span>    </div>
 <div class="line"><span class="lineno">  308</span>    <span class="comment">// Create aggregation rule</span></div>
 <div class="line"><span class="lineno">  309</span>    aggregation_rule rule;</div>
@@ -208,8 +208,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  319</span>    </div>
 <div class="line"><span class="lineno">  320</span>    <span class="comment">// Add observations</span></div>
 <div class="line"><span class="lineno">  321</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 100; ++i) {</div>
-<div class="line"><span class="lineno">  322</span>        <span class="keyword">auto</span> result = processor.process_observation(<span class="stringliteral">&quot;test_metric&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  323</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  322</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.process_observation(<span class="stringliteral">&quot;test_metric&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  323</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  324</span>    }</div>
 <div class="line"><span class="lineno">  325</span>    </div>
 <div class="line"><span class="lineno">  326</span>    <span class="comment">// Get current statistics</span></div>
@@ -220,6 +220,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  331</span>    EXPECT_EQ(stats.count, 100);</div>
 <div class="line"><span class="lineno">  332</span>    EXPECT_GT(stats.mean, 0.0);</div>
 <div class="line"><span class="lineno">  333</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">kcenon::monitoring::sensor_type::storage</a></div><div class="ttdeci">@ storage</div><div class="ttdoc">Storage device sensor.</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -251,8 +253,8 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00368">368</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  368</span>                                                                    {</div>
-<div class="line"><span class="lineno">  369</span>    <span class="keyword">auto</span> storage = std::make_shared&lt;metric_storage&gt;();</div>
-<div class="line"><span class="lineno">  370</span>    aggregation_processor processor(storage);</div>
+<div class="line"><span class="lineno">  369</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a> = std::make_shared&lt;metric_storage&gt;();</div>
+<div class="line"><span class="lineno">  370</span>    aggregation_processor processor(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
 <div class="line"><span class="lineno">  371</span>    </div>
 <div class="line"><span class="lineno">  372</span>    aggregation_rule rule;</div>
 <div class="line"><span class="lineno">  373</span>    rule.source_metric = <span class="stringliteral">&quot;response_time&quot;</span>;</div>
@@ -269,17 +271,17 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  384</span>    }</div>
 <div class="line"><span class="lineno">  385</span>    </div>
 <div class="line"><span class="lineno">  386</span>    <span class="comment">// Force aggregation before interval</span></div>
-<div class="line"><span class="lineno">  387</span>    <span class="keyword">auto</span> result = processor.force_aggregation(<span class="stringliteral">&quot;response_time&quot;</span>);</div>
-<div class="line"><span class="lineno">  388</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  387</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.force_aggregation(<span class="stringliteral">&quot;response_time&quot;</span>);</div>
+<div class="line"><span class="lineno">  388</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  389</span>    </div>
-<div class="line"><span class="lineno">  390</span>    <span class="keyword">auto</span> agg_result = result.value();</div>
+<div class="line"><span class="lineno">  390</span>    <span class="keyword">auto</span> agg_result = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value();</div>
 <div class="line"><span class="lineno">  391</span>    EXPECT_EQ(agg_result.source_metric, <span class="stringliteral">&quot;response_time&quot;</span>);</div>
 <div class="line"><span class="lineno">  392</span>    EXPECT_EQ(agg_result.samples_processed, 1000);</div>
 <div class="line"><span class="lineno">  393</span>    EXPECT_GT(agg_result.processing_duration.count(), 0);</div>
 <div class="line"><span class="lineno">  394</span>    </div>
 <div class="line"><span class="lineno">  395</span>    <span class="comment">// Check that aggregated metrics were stored</span></div>
-<div class="line"><span class="lineno">  396</span>    storage-&gt;flush();</div>
-<div class="line"><span class="lineno">  397</span>    <span class="keyword">auto</span> latest = storage-&gt;get_latest_value(<span class="stringliteral">&quot;response_time_agg.mean&quot;</span>);</div>
+<div class="line"><span class="lineno">  396</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>-&gt;flush();</div>
+<div class="line"><span class="lineno">  397</span>    <span class="keyword">auto</span> latest = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>-&gt;get_latest_value(<span class="stringliteral">&quot;response_time_agg.mean&quot;</span>);</div>
 <div class="line"><span class="lineno">  398</span>    EXPECT_TRUE(latest);</div>
 <div class="line"><span class="lineno">  399</span>    EXPECT_NEAR(latest.value(), 100.0, 10.0);</div>
 <div class="line"><span class="lineno">  400</span>}</div>
@@ -321,8 +323,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  407</span>    invalid_rule.source_metric = <span class="stringliteral">&quot;&quot;</span>;  <span class="comment">// Invalid</span></div>
 <div class="line"><span class="lineno">  408</span>    invalid_rule.target_metric_prefix = <span class="stringliteral">&quot;test&quot;</span>;</div>
 <div class="line"><span class="lineno">  409</span>    </div>
-<div class="line"><span class="lineno">  410</span>    <span class="keyword">auto</span> result = processor.add_aggregation_rule(invalid_rule);</div>
-<div class="line"><span class="lineno">  411</span>    EXPECT_FALSE(result);</div>
+<div class="line"><span class="lineno">  410</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.add_aggregation_rule(invalid_rule);</div>
+<div class="line"><span class="lineno">  411</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
 <div class="line"><span class="lineno">  412</span>    </div>
 <div class="line"><span class="lineno">  413</span>    <span class="comment">// Test duplicate rule</span></div>
 <div class="line"><span class="lineno">  414</span>    aggregation_rule valid_rule;</div>
@@ -377,15 +379,15 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  344</span>        rule.target_metric_prefix = metric_name + <span class="stringliteral">&quot;_stats&quot;</span>;</div>
 <div class="line"><span class="lineno">  345</span>        rule.aggregation_interval = std::chrono::milliseconds(500);</div>
 <div class="line"><span class="lineno">  346</span>        </div>
-<div class="line"><span class="lineno">  347</span>        <span class="keyword">auto</span> result = processor.add_aggregation_rule(rule);</div>
-<div class="line"><span class="lineno">  348</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  347</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.add_aggregation_rule(rule);</div>
+<div class="line"><span class="lineno">  348</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  349</span>    }</div>
 <div class="line"><span class="lineno">  350</span>    </div>
 <div class="line"><span class="lineno">  351</span>    <span class="comment">// Add observations to each metric</span></div>
 <div class="line"><span class="lineno">  352</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric_name : metric_names) {</div>
 <div class="line"><span class="lineno">  353</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 50; ++i) {</div>
-<div class="line"><span class="lineno">  354</span>            <span class="keyword">auto</span> result = processor.process_observation(metric_name, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
-<div class="line"><span class="lineno">  355</span>            EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  354</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.process_observation(metric_name, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  355</span>            EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  356</span>        }</div>
 <div class="line"><span class="lineno">  357</span>    }</div>
 <div class="line"><span class="lineno">  358</span>    </div>
@@ -897,8 +899,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  221</span>    <span class="comment">// Add observations</span></div>
 <div class="line"><span class="lineno">  222</span>    std::vector&lt;double&gt; values = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};</div>
 <div class="line"><span class="lineno">  223</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : values) {</div>
-<div class="line"><span class="lineno">  224</span>        <span class="keyword">auto</span> result = aggregator.add_observation(value);</div>
-<div class="line"><span class="lineno">  225</span>        EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  224</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = aggregator.add_observation(value);</div>
+<div class="line"><span class="lineno">  225</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  226</span>    }</div>
 <div class="line"><span class="lineno">  227</span>    </div>
 <div class="line"><span class="lineno">  228</span>    <span class="keyword">auto</span> stats = aggregator.get_statistics();</div>
@@ -1134,7 +1136,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

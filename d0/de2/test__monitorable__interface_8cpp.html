@@ -83,7 +83,7 @@ $(function() {
 <p>Unit tests for monitorable interface and monitoring data.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/interfaces/monitorable_interface.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/db2/monitorable__interface_8h_source.html">kcenon/monitoring/interfaces/monitorable_interface.h</a>&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -91,15 +91,43 @@ Include dependency graph for test_monitorable_interface.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d9/d23/test__monitorable__interface_8cpp__incl.png" border="0" usemap="#atests_2test__monitorable__interface_8cpp" alt=""/></div>
 <map name="atests_2test__monitorable__interface_8cpp" id="atests_2test__monitorable__interface_8cpp">
-<area shape="rect" title="Unit tests for monitorable interface and monitoring data." alt="" coords="237,5,406,45"/>
-<area shape="rect" title=" " alt="" coords="5,101,109,126"/>
-<area shape="poly" title=" " alt="" coords="264,48,106,99,105,94,263,43"/>
-<area shape="rect" title=" " alt="" coords="133,93,347,133"/>
-<area shape="poly" title=" " alt="" coords="305,47,269,85,266,81,301,44"/>
-<area shape="rect" title=" " alt="" coords="371,101,435,126"/>
-<area shape="poly" title=" " alt="" coords="341,44,384,89,380,92,337,47"/>
-<area shape="rect" title=" " alt="" coords="459,101,525,126"/>
-<area shape="poly" title=" " alt="" coords="360,43,458,92,456,97,358,48"/>
+<area shape="rect" title="Unit tests for monitorable interface and monitoring data." alt="" coords="672,5,841,45"/>
+<area shape="rect" title=" " alt="" coords="441,101,545,126"/>
+<area shape="poly" title=" " alt="" coords="700,48,542,99,540,94,698,43"/>
+<area shape="rect" href="../../d8/db2/monitorable__interface_8h.html" title="Interface for components that expose monitoring metrics." alt="" coords="569,93,782,133"/>
+<area shape="poly" title=" " alt="" coords="741,47,705,85,701,81,737,44"/>
+<area shape="rect" title=" " alt="" coords="806,101,870,126"/>
+<area shape="poly" title=" " alt="" coords="777,44,819,89,816,92,773,47"/>
+<area shape="rect" title=" " alt="" coords="894,101,961,126"/>
+<area shape="poly" title=" " alt="" coords="795,43,894,92,891,97,793,48"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="207,181,365,207"/>
+<area shape="poly" title=" " alt="" coords="583,136,357,181,356,176,582,131"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="5,262,116,287"/>
+<area shape="poly" title=" " alt="" coords="569,134,557,136,454,145,372,147,292,155,247,166,195,184,163,199,133,217,85,255,81,251,130,213,161,194,193,179,246,161,292,150,372,141,453,140,556,131,568,129"/>
+<area shape="rect" title=" " alt="" coords="125,343,183,368"/>
+<area shape="poly" title=" " alt="" coords="620,136,581,156,545,183,534,198,528,212,522,241,515,269,507,283,493,297,470,309,438,320,358,337,271,348,197,354,197,349,270,342,357,331,437,315,468,304,490,293,502,280,510,267,517,240,523,210,530,195,541,179,578,151,617,131"/>
+<area shape="rect" title=" " alt="" coords="405,262,479,287"/>
+<area shape="poly" title=" " alt="" coords="593,136,544,155,500,183,472,216,454,250,449,247,468,213,496,179,542,150,591,131"/>
+<area shape="rect" title=" " alt="" coords="555,181,679,207"/>
+<area shape="poly" title=" " alt="" coords="663,135,636,172,632,168,659,132"/>
+<area shape="rect" title=" " alt="" coords="703,181,765,207"/>
+<area shape="poly" title=" " alt="" coords="692,132,719,168,715,172,687,135"/>
+<area shape="rect" title=" " alt="" coords="790,181,857,207"/>
+<area shape="poly" title=" " alt="" coords="712,131,791,172,788,177,710,136"/>
+<area shape="rect" title=" " alt="" coords="881,181,958,207"/>
+<area shape="poly" title=" " alt="" coords="735,131,871,174,870,180,733,136"/>
+<area shape="rect" title=" " alt="" coords="983,181,1029,207"/>
+<area shape="poly" title=" " alt="" coords="768,131,970,179,969,184,767,136"/>
+<area shape="rect" title=" " alt="" coords="1054,181,1139,207"/>
+<area shape="poly" title=" " alt="" coords="783,131,1041,178,1040,184,782,136"/>
+<area shape="poly" title=" " alt="" coords="254,209,107,260,105,255,252,204"/>
+<area shape="poly" title=" " alt="" coords="251,209,214,228,196,241,181,256,171,273,164,292,158,329,152,328,159,291,166,271,177,253,193,237,211,223,249,204"/>
+<area shape="rect" title=" " alt="" coords="192,255,380,295"/>
+<area shape="poly" title=" " alt="" coords="289,207,289,241,283,241,283,207"/>
+<area shape="poly" title=" " alt="" coords="310,204,408,254,406,258,307,209"/>
+<area shape="rect" title=" " alt="" coords="27,343,94,368"/>
+<area shape="poly" title=" " alt="" coords="63,288,63,329,58,329,58,288"/>
+<area shape="poly" title=" " alt="" coords="76,285,131,332,128,336,73,290"/>
 </map>
 </div>
 </div>
@@ -173,7 +201,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00299">299</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  299</span>                                                            {</div>
-<div class="line"><span class="lineno">  300</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;main_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  300</span>    <a class="code hl_class" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;main_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  301</span>    </div>
 <div class="line"><span class="lineno">  302</span>    <span class="comment">// Create components</span></div>
 <div class="line"><span class="lineno">  303</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
@@ -215,7 +243,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  339</span>    ASSERT_NE(retrieved, <span class="keyword">nullptr</span>);</div>
 <div class="line"><span class="lineno">  340</span>    EXPECT_EQ(retrieved-&gt;get_monitoring_id(), <span class="stringliteral">&quot;comp2&quot;</span>);</div>
 <div class="line"><span class="lineno">  341</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1monitoring__aggregator_html"><div class="ttname"><a href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html">kcenon::monitoring::monitoring_aggregator</a></div><div class="ttdoc">Utility class to aggregate metrics from multiple monitorable components.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/db2/monitorable__interface_8h_source.html#l00455">monitorable_interface.h:455</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_acfbd6509e222daa035e59f4a1e888be9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,139,75,164"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#ac071741ea7a81a42c24a1b7a9c17f6b1" title="Add a component to monitor." alt="" coords="140,5,319,60"/>
+<area shape="poly" title=" " alt="" coords="50,136,80,103,121,69,129,64,132,69,124,74,83,107,54,140"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#aa693ddb3b1a24a4e2ec1257bf915e31b" title="Get a specific component by ID." alt="" coords="140,84,319,139"/>
+<area shape="poly" title=" " alt="" coords="74,142,126,131,127,136,75,147"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#a79a3115c20ee5ccdabe632a9d667b4bd" title="Get all component IDs." alt="" coords="140,163,319,217"/>
+<area shape="poly" title=" " alt="" coords="75,156,127,166,126,171,74,161"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#a12500f8840f2e1e9c88b29bb5263a555" title="Get the number of registered components." alt="" coords="123,242,336,282"/>
+<area shape="poly" title=" " alt="" coords="53,162,83,194,124,226,139,234,137,239,121,231,80,198,50,166"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a0dd1aa70d779f10b00b636543db12132" name="a0dd1aa70d779f10b00b636543db12132"></a>
@@ -247,7 +292,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00423">423</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  423</span>                                                             {</div>
-<div class="line"><span class="lineno">  424</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  424</span>    <a class="code hl_class" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  425</span>    </div>
 <div class="line"><span class="lineno">  426</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
 <div class="line"><span class="lineno">  427</span>    <span class="keyword">auto</span> comp2 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp2&quot;</span>);</div>
@@ -279,7 +324,25 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  453</span>    aggregator.clear();</div>
 <div class="line"><span class="lineno">  454</span>    EXPECT_EQ(aggregator.size(), 0);</div>
 <div class="line"><span class="lineno">  455</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a0dd1aa70d779f10b00b636543db12132_cgraph">
+<area shape="rect" title=" " alt="" coords="5,177,75,203"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#ac071741ea7a81a42c24a1b7a9c17f6b1" title="Add a component to monitor." alt="" coords="140,5,319,60"/>
+<area shape="poly" title=" " alt="" coords="45,176,73,125,94,95,121,69,127,65,130,69,124,73,98,99,77,128,49,178"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#ab48b99152a082de38078d4df372492ed" title="Clear all components." alt="" coords="140,84,319,139"/>
+<area shape="poly" title=" " alt="" coords="64,175,122,148,137,141,139,146,124,152,67,180"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#a79a3115c20ee5ccdabe632a9d667b4bd" title="Get all component IDs." alt="" coords="140,163,319,217"/>
+<area shape="poly" title=" " alt="" coords="75,187,126,187,126,193,75,193"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#a9605a3a4c2a75b37fa6e69c1f9429147" title="Remove a component by ID." alt="" coords="140,241,319,296"/>
+<area shape="poly" title=" " alt="" coords="68,200,124,226,142,234,140,239,122,231,66,205"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#a12500f8840f2e1e9c88b29bb5263a555" title="Get the number of registered components." alt="" coords="123,321,336,361"/>
+<area shape="poly" title=" " alt="" coords="49,202,77,252,98,281,124,305,135,312,132,316,121,309,94,284,72,255,45,204"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="abfa9581dde0223dd4aace47851ba97ad" name="abfa9581dde0223dd4aace47851ba97ad"></a>
@@ -311,7 +374,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00346">346</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  346</span>                                                           {</div>
-<div class="line"><span class="lineno">  347</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  347</span>    <a class="code hl_class" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  348</span>    </div>
 <div class="line"><span class="lineno">  349</span>    <span class="comment">// Create and configure components</span></div>
 <div class="line"><span class="lineno">  350</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
@@ -326,10 +389,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  359</span>    aggregator.add_component(comp2);</div>
 <div class="line"><span class="lineno">  360</span>    </div>
 <div class="line"><span class="lineno">  361</span>    <span class="comment">// Collect all data</span></div>
-<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> result = aggregator.collect_all();</div>
-<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = aggregator.collect_all();</div>
+<div class="line"><span class="lineno">  363</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  364</span>    </div>
-<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> aggregated = result.value();</div>
+<div class="line"><span class="lineno">  365</span>    <span class="keyword">auto</span> aggregated = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value();</div>
 <div class="line"><span class="lineno">  366</span>    EXPECT_EQ(aggregated.get_component_name(), <span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  367</span>    </div>
 <div class="line"><span class="lineno">  368</span>    <span class="comment">// Check that metrics are prefixed</span></div>
@@ -346,7 +409,30 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  379</span>    ASSERT_TRUE(component_count.has_value());</div>
 <div class="line"><span class="lineno">  380</span>    EXPECT_DOUBLE_EQ(component_count.value(), 2.0);</div>
 <div class="line"><span class="lineno">  381</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_abfa9581dde0223dd4aace47851ba97ad_cgraph">
+<area shape="rect" title=" " alt="" coords="5,117,75,143"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#ac071741ea7a81a42c24a1b7a9c17f6b1" title="Add a component to monitor." alt="" coords="123,63,301,117"/>
+<area shape="poly" title=" " alt="" coords="74,120,109,111,110,117,75,125"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#a26bb6b1e4d418a051598182eee7d90a7" title="Collect data from all components." alt="" coords="123,141,301,196"/>
+<area shape="poly" title=" " alt="" coords="75,135,110,143,109,148,74,140"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="380,5,549,60"/>
+<area shape="poly" title=" " alt="" coords="280,139,300,127,314,113,323,99,332,85,348,71,366,60,369,64,351,75,336,88,327,102,318,116,303,131,283,143"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="366,85,563,125"/>
+<area shape="poly" title=" " alt="" coords="301,144,371,126,372,131,302,149"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="391,149,539,189"/>
+<area shape="poly" title=" " alt="" coords="301,166,377,166,377,171,301,171"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a1c374c202f58a26a498b6b904ce9e11d" title="Merge another monitoring_data into this one." alt="" coords="371,213,558,253"/>
+<area shape="poly" title=" " alt="" coords="302,189,372,207,371,212,301,194"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a28db948951c84ab325d6b2ab85db03cf" title="Get the number of metrics." alt="" coords="349,277,580,317"/>
+<area shape="poly" title=" " alt="" coords="247,194,294,229,351,262,367,270,365,274,348,267,291,234,244,198"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a39888f2b0fbe90a0bb503cd8dba9cae5" name="a39888f2b0fbe90a0bb503cd8dba9cae5"></a>
@@ -378,7 +464,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00386">386</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  386</span>                                                                   {</div>
-<div class="line"><span class="lineno">  387</span>    monitoring_aggregator aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
+<div class="line"><span class="lineno">  387</span>    <a class="code hl_class" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html">monitoring_aggregator</a> aggregator(<span class="stringliteral">&quot;test_aggregator&quot;</span>);</div>
 <div class="line"><span class="lineno">  388</span>    </div>
 <div class="line"><span class="lineno">  389</span>    <span class="keyword">auto</span> comp1 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp1&quot;</span>);</div>
 <div class="line"><span class="lineno">  390</span>    <span class="keyword">auto</span> comp2 = std::make_shared&lt;test_monitorable_component&gt;(<span class="stringliteral">&quot;comp2&quot;</span>);</div>
@@ -393,10 +479,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  399</span>    aggregator.add_component(comp2);</div>
 <div class="line"><span class="lineno">  400</span>    </div>
 <div class="line"><span class="lineno">  401</span>    <span class="comment">// Collect data</span></div>
-<div class="line"><span class="lineno">  402</span>    <span class="keyword">auto</span> result = aggregator.collect_all();</div>
-<div class="line"><span class="lineno">  403</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  402</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = aggregator.collect_all();</div>
+<div class="line"><span class="lineno">  403</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  404</span>    </div>
-<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> aggregated = result.value();</div>
+<div class="line"><span class="lineno">  405</span>    <span class="keyword">auto</span> aggregated = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value();</div>
 <div class="line"><span class="lineno">  406</span>    </div>
 <div class="line"><span class="lineno">  407</span>    <span class="comment">// comp1 data should be present</span></div>
 <div class="line"><span class="lineno">  408</span>    <span class="keyword">auto</span> comp1_cpu = aggregated.get_metric(<span class="stringliteral">&quot;comp1.cpu_usage&quot;</span>);</div>
@@ -410,7 +496,29 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  416</span>    <span class="keyword">auto</span> comp2_error = aggregated.get_tag(<span class="stringliteral">&quot;comp2.error&quot;</span>);</div>
 <div class="line"><span class="lineno">  417</span>    EXPECT_FALSE(comp2_error.has_value());</div>
 <div class="line"><span class="lineno">  418</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a39888f2b0fbe90a0bb503cd8dba9cae5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,117,75,143"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#ac071741ea7a81a42c24a1b7a9c17f6b1" title="Add a component to monitor." alt="" coords="123,63,301,117"/>
+<area shape="poly" title=" " alt="" coords="74,120,109,111,110,117,75,125"/>
+<area shape="rect" href="../../db/df3/classkcenon_1_1monitoring_1_1monitoring__aggregator.html#a26bb6b1e4d418a051598182eee7d90a7" title="Collect data from all components." alt="" coords="123,141,301,196"/>
+<area shape="poly" title=" " alt="" coords="75,135,110,143,109,148,74,140"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="380,5,549,60"/>
+<area shape="poly" title=" " alt="" coords="280,139,300,127,314,113,323,99,332,85,348,71,366,60,369,64,351,75,336,88,327,102,318,116,303,131,283,143"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="366,85,563,125"/>
+<area shape="poly" title=" " alt="" coords="301,144,371,126,372,131,302,149"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="391,149,539,189"/>
+<area shape="poly" title=" " alt="" coords="301,166,377,166,377,171,301,171"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a1c374c202f58a26a498b6b904ce9e11d" title="Merge another monitoring_data into this one." alt="" coords="371,213,558,253"/>
+<area shape="poly" title=" " alt="" coords="302,189,372,207,371,212,301,194"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a28db948951c84ab325d6b2ab85db03cf" title="Get the number of metrics." alt="" coords="349,277,580,317"/>
+<area shape="poly" title=" " alt="" coords="247,194,294,229,351,262,367,270,365,274,348,267,291,234,244,198"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ac57ab4be3e15aee2c3d48774595301c2" name="ac57ab4be3e15aee2c3d48774595301c2"></a>
@@ -455,10 +563,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  211</span>    component.set_memory_usage(2048.0);</div>
 <div class="line"><span class="lineno">  212</span>    </div>
 <div class="line"><span class="lineno">  213</span>    <span class="comment">// Get monitoring data</span></div>
-<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  214</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  215</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  216</span>    </div>
-<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> data = result.value();</div>
+<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> data = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value();</div>
 <div class="line"><span class="lineno">  218</span>    EXPECT_EQ(data.get_component_name(), <span class="stringliteral">&quot;test_comp_1&quot;</span>);</div>
 <div class="line"><span class="lineno">  219</span>    </div>
 <div class="line"><span class="lineno">  220</span>    <span class="comment">// Verify metrics</span></div>
@@ -466,13 +574,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  222</span>    ASSERT_TRUE(op_count.has_value());</div>
 <div class="line"><span class="lineno">  223</span>    EXPECT_DOUBLE_EQ(op_count.value(), 2.0);</div>
 <div class="line"><span class="lineno">  224</span>    </div>
-<div class="line"><span class="lineno">  225</span>    <span class="keyword">auto</span> cpu = data.get_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
-<div class="line"><span class="lineno">  226</span>    ASSERT_TRUE(cpu.has_value());</div>
-<div class="line"><span class="lineno">  227</span>    EXPECT_DOUBLE_EQ(cpu.value(), 45.5);</div>
+<div class="line"><span class="lineno">  225</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a> = data.get_metric(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
+<div class="line"><span class="lineno">  226</span>    ASSERT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.has_value());</div>
+<div class="line"><span class="lineno">  227</span>    EXPECT_DOUBLE_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.value(), 45.5);</div>
 <div class="line"><span class="lineno">  228</span>    </div>
-<div class="line"><span class="lineno">  229</span>    <span class="keyword">auto</span> memory = data.get_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>);</div>
-<div class="line"><span class="lineno">  230</span>    ASSERT_TRUE(memory.has_value());</div>
-<div class="line"><span class="lineno">  231</span>    EXPECT_DOUBLE_EQ(memory.value(), 2048.0);</div>
+<div class="line"><span class="lineno">  229</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">memory</a> = data.get_metric(<span class="stringliteral">&quot;memory_usage&quot;</span>);</div>
+<div class="line"><span class="lineno">  230</span>    ASSERT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">memory</a>.has_value());</div>
+<div class="line"><span class="lineno">  231</span>    EXPECT_DOUBLE_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">memory</a>.value(), 2048.0);</div>
 <div class="line"><span class="lineno">  232</span>    </div>
 <div class="line"><span class="lineno">  233</span>    <span class="comment">// Verify tags</span></div>
 <div class="line"><span class="lineno">  234</span>    <span class="keyword">auto</span> type = data.get_tag(<span class="stringliteral">&quot;component_type&quot;</span>);</div>
@@ -484,20 +592,34 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  240</span>    EXPECT_EQ(version.value(), <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
 <div class="line"><span class="lineno">  241</span>}</div>
 <div class="ttc" id="aclasstest__monitorable__component_html"><div class="ttname"><a href="../../d9/db4/classtest__monitorable__component.html">test_monitorable_component</a></div><div class="ttdef"><b>Definition</b> <a href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00023">test_monitorable_interface.cpp:23</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">kcenon::monitoring::power_source_type::memory</a></div><div class="ttdeci">@ memory</div><div class="ttdoc">Memory/DRAM power domain (RAPL)</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">kcenon::monitoring::power_source_type::cpu</a></div><div class="ttdeci">@ cpu</div><div class="ttdoc">CPU power domain (RAPL)</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_ac57ab4be3e15aee2c3d48774595301c2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,109,75,134"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="53,106,83,80,121,55,136,48,139,53,124,60,86,85,56,110"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,69,336,109"/>
-<area shape="poly" title=" " alt="" coords="74,113,109,107,110,112,75,118"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a595ca930d54f9767e3607de774509c87" title=" " alt="" coords="123,133,336,173"/>
-<area shape="poly" title=" " alt="" coords="75,124,110,130,109,136,74,130"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a0114739390502fcc663a306fcf69ac72" title=" " alt="" coords="123,197,336,237"/>
-<area shape="poly" title=" " alt="" coords="56,132,86,158,124,183,139,190,136,195,121,188,83,162,53,136"/>
+<area shape="rect" title=" " alt="" coords="5,308,75,333"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title="Get current monitoring data from the component." alt="" coords="123,157,336,197"/>
+<area shape="poly" title=" " alt="" coords="47,306,77,265,97,241,121,220,154,200,157,205,124,224,101,245,81,268,51,309"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#ae67683966146b7043065f7f6f539a358" title="Get monitoring identifier." alt="" coords="388,213,577,268"/>
+<area shape="poly" title=" " alt="" coords="74,307,122,294,253,269,374,251,375,256,253,274,123,299,75,312"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#acdc6c930de8cabbcf434ef2c7b2b7538" title="Check if monitoring is enabled." alt="" coords="388,292,577,347"/>
+<area shape="poly" title=" " alt="" coords="75,316,123,314,374,314,374,319,123,319,75,321"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,329,336,369"/>
+<area shape="poly" title=" " alt="" coords="75,323,110,328,109,333,74,328"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a595ca930d54f9767e3607de774509c87" title=" " alt="" coords="123,393,336,433"/>
+<area shape="poly" title=" " alt="" coords="57,331,87,355,124,378,139,385,137,390,121,383,84,359,54,335"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a0114739390502fcc663a306fcf69ac72" title=" " alt="" coords="123,457,336,497"/>
+<area shape="poly" title=" " alt="" coords="49,332,76,386,97,417,124,443,132,448,129,452,121,447,93,420,71,389,44,335"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="398,5,567,60"/>
+<area shape="poly" title=" " alt="" coords="255,154,312,113,383,70,396,63,399,68,385,75,315,118,258,159"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="384,85,581,125"/>
+<area shape="poly" title=" " alt="" coords="300,154,398,126,399,131,301,159"/>
+<area shape="poly" title=" " alt="" coords="310,194,375,211,374,216,309,199"/>
+<area shape="poly" title=" " alt="" coords="258,195,315,236,385,278,396,284,394,289,383,283,312,240,255,199"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="409,149,557,189"/>
+<area shape="poly" title=" " alt="" coords="336,171,395,169,395,174,336,176"/>
 </map>
 </div>
 
@@ -532,7 +654,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00091">91</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   91</span>                                                                {</div>
-<div class="line"><span class="lineno">   92</span>    monitoring_data data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
+<div class="line"><span class="lineno">   92</span>    <a class="code hl_struct" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test_component&quot;</span>);</div>
 <div class="line"><span class="lineno">   93</span>    </div>
 <div class="line"><span class="lineno">   94</span>    <span class="comment">// Test adding metrics</span></div>
 <div class="line"><span class="lineno">   95</span>    data.add_metric(<span class="stringliteral">&quot;cpu&quot;</span>, 75.5);</div>
@@ -543,21 +665,21 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  100</span>    data.add_tag(<span class="stringliteral">&quot;region&quot;</span>, <span class="stringliteral">&quot;us-east&quot;</span>);</div>
 <div class="line"><span class="lineno">  101</span>    </div>
 <div class="line"><span class="lineno">  102</span>    <span class="comment">// Verify metrics</span></div>
-<div class="line"><span class="lineno">  103</span>    <span class="keyword">auto</span> cpu = data.get_metric(<span class="stringliteral">&quot;cpu&quot;</span>);</div>
-<div class="line"><span class="lineno">  104</span>    ASSERT_TRUE(cpu.has_value());</div>
-<div class="line"><span class="lineno">  105</span>    EXPECT_DOUBLE_EQ(cpu.value(), 75.5);</div>
+<div class="line"><span class="lineno">  103</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a> = data.get_metric(<span class="stringliteral">&quot;cpu&quot;</span>);</div>
+<div class="line"><span class="lineno">  104</span>    ASSERT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.has_value());</div>
+<div class="line"><span class="lineno">  105</span>    EXPECT_DOUBLE_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.value(), 75.5);</div>
 <div class="line"><span class="lineno">  106</span>    </div>
-<div class="line"><span class="lineno">  107</span>    <span class="keyword">auto</span> memory = data.get_metric(<span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><span class="lineno">  108</span>    ASSERT_TRUE(memory.has_value());</div>
-<div class="line"><span class="lineno">  109</span>    EXPECT_DOUBLE_EQ(memory.value(), 1024.0);</div>
+<div class="line"><span class="lineno">  107</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">memory</a> = data.get_metric(<span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><span class="lineno">  108</span>    ASSERT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">memory</a>.has_value());</div>
+<div class="line"><span class="lineno">  109</span>    EXPECT_DOUBLE_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">memory</a>.value(), 1024.0);</div>
 <div class="line"><span class="lineno">  110</span>    </div>
 <div class="line"><span class="lineno">  111</span>    <span class="keyword">auto</span> missing = data.get_metric(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
 <div class="line"><span class="lineno">  112</span>    EXPECT_FALSE(missing.has_value());</div>
 <div class="line"><span class="lineno">  113</span>    </div>
 <div class="line"><span class="lineno">  114</span>    <span class="comment">// Verify tags</span></div>
-<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> host = data.get_tag(<span class="stringliteral">&quot;host&quot;</span>);</div>
-<div class="line"><span class="lineno">  116</span>    ASSERT_TRUE(host.has_value());</div>
-<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(host.value(), <span class="stringliteral">&quot;localhost&quot;</span>);</div>
+<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a67b3dba8bc6778101892eb77249db32e">host</a> = data.get_tag(<span class="stringliteral">&quot;host&quot;</span>);</div>
+<div class="line"><span class="lineno">  116</span>    ASSERT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a67b3dba8bc6778101892eb77249db32e">host</a>.has_value());</div>
+<div class="line"><span class="lineno">  117</span>    EXPECT_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a67b3dba8bc6778101892eb77249db32e">host</a>.value(), <span class="stringliteral">&quot;localhost&quot;</span>);</div>
 <div class="line"><span class="lineno">  118</span>    </div>
 <div class="line"><span class="lineno">  119</span>    <span class="keyword">auto</span> region = data.get_tag(<span class="stringliteral">&quot;region&quot;</span>);</div>
 <div class="line"><span class="lineno">  120</span>    ASSERT_TRUE(region.has_value());</div>
@@ -571,7 +693,33 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  128</span>    <span class="comment">// Test component name</span></div>
 <div class="line"><span class="lineno">  129</span>    EXPECT_EQ(data.get_component_name(), <span class="stringliteral">&quot;test_component&quot;</span>);</div>
 <div class="line"><span class="lineno">  130</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a4884f61728e7662f1482ddacb7925443a67b3dba8bc6778101892eb77249db32e"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a67b3dba8bc6778101892eb77249db32e">kcenon::monitoring::otel_resource_type::host</a></div><div class="ttdeci">@ host</div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1monitoring__data_html"><div class="ttname"><a href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">kcenon::monitoring::monitoring_data</a></div><div class="ttdoc">Container for monitoring metrics from a component.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/db2/monitorable__interface_8h_source.html#l00065">monitorable_interface.h:65</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a2b06321e04b08930cb05e52045b8d4b0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,268,75,293"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="153,5,323,60"/>
+<area shape="poly" title=" " alt="" coords="40,267,46,230,60,177,84,121,101,94,121,71,140,56,143,61,124,75,105,97,89,123,65,179,51,231,45,268"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="139,85,337,125"/>
+<area shape="poly" title=" " alt="" coords="42,267,68,204,91,166,121,135,129,129,132,134,124,139,95,170,73,206,47,269"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a2e97110dbe2a6d2c1c3ebf46c804f682" title="Check if data is empty." alt="" coords="145,149,331,189"/>
+<area shape="poly" title=" " alt="" coords="49,266,79,232,121,198,134,192,136,196,124,203,82,236,53,270"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a860c9ba8130870970fc120f6886da3f3" title="Get the component name." alt="" coords="155,213,321,268"/>
+<area shape="poly" title=" " alt="" coords="74,271,141,258,142,263,75,276"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a81f647d4419e18ebe5172c06de130c22" title="Get a metric value." alt="" coords="155,292,321,347"/>
+<area shape="poly" title=" " alt="" coords="75,285,142,298,141,303,74,290"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a54c5bcf9399f49cee135be19edf3ad54" title="Get a tag value." alt="" coords="141,371,335,411"/>
+<area shape="poly" title=" " alt="" coords="53,292,83,324,124,356,140,364,138,369,121,360,79,328,50,295"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a28db948951c84ab325d6b2ab85db03cf" title="Get the number of metrics." alt="" coords="123,435,353,475"/>
+<area shape="poly" title=" " alt="" coords="47,293,73,355,95,391,124,421,132,426,129,431,121,425,91,394,68,357,43,295"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a6aa0dcff6b8e91aad70038a886b0a1ab" title="Get the number of tags." alt="" coords="133,499,343,539"/>
+<area shape="poly" title=" " alt="" coords="45,293,51,331,64,383,88,438,104,463,125,485,130,490,126,494,121,489,100,467,83,441,59,385,46,332,40,294"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a19bd4aaf40e0fc5ef5a4d355947a9d06" name="a19bd4aaf40e0fc5ef5a4d355947a9d06"></a>
@@ -603,7 +751,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  173</span>                                                              {</div>
-<div class="line"><span class="lineno">  174</span>    monitoring_data data(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  174</span>    <a class="code hl_struct" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  175</span>    </div>
 <div class="line"><span class="lineno">  176</span>    <span class="comment">// Initially empty</span></div>
 <div class="line"><span class="lineno">  177</span>    EXPECT_TRUE(data.empty());</div>
@@ -625,7 +773,27 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  193</span>    EXPECT_EQ(data.metric_count(), 0);</div>
 <div class="line"><span class="lineno">  194</span>    EXPECT_EQ(data.tag_count(), 0);</div>
 <div class="line"><span class="lineno">  195</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a19bd4aaf40e0fc5ef5a4d355947a9d06_cgraph">
+<area shape="rect" title=" " alt="" coords="5,188,75,213"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="153,5,323,60"/>
+<area shape="poly" title=" " alt="" coords="44,187,71,131,93,99,121,71,139,59,142,63,124,75,97,102,75,134,49,189"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="139,85,337,125"/>
+<area shape="poly" title=" " alt="" coords="53,185,83,160,121,134,137,127,139,132,124,139,86,164,56,190"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a8033829a743570f088c326403194e983" title="Clear all metrics and tags." alt="" coords="149,149,327,189"/>
+<area shape="poly" title=" " alt="" coords="74,193,135,183,136,188,75,198"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a2e97110dbe2a6d2c1c3ebf46c804f682" title="Check if data is empty." alt="" coords="145,213,331,253"/>
+<area shape="poly" title=" " alt="" coords="75,204,131,213,131,218,74,209"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a28db948951c84ab325d6b2ab85db03cf" title="Get the number of metrics." alt="" coords="123,277,353,317"/>
+<area shape="poly" title=" " alt="" coords="56,212,86,237,124,262,139,269,137,274,121,267,83,242,53,216"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a6aa0dcff6b8e91aad70038a886b0a1ab" title="Get the number of tags." alt="" coords="133,341,343,381"/>
+<area shape="poly" title=" " alt="" coords="48,212,75,268,97,300,124,327,132,332,129,336,121,331,93,303,70,270,43,215"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a92398a105c943d409b4f1e498d2ff543" name="a92398a105c943d409b4f1e498d2ff543"></a>
@@ -657,11 +825,11 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html#l00135">135</a> of file <a class="el" href="../../d0/de2/test__monitorable__interface_8cpp_source.html">test_monitorable_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  135</span>                                                      {</div>
-<div class="line"><span class="lineno">  136</span>    monitoring_data data1(<span class="stringliteral">&quot;component1&quot;</span>);</div>
+<div class="line"><span class="lineno">  136</span>    <a class="code hl_struct" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">monitoring_data</a> data1(<span class="stringliteral">&quot;component1&quot;</span>);</div>
 <div class="line"><span class="lineno">  137</span>    data1.add_metric(<span class="stringliteral">&quot;metric1&quot;</span>, 10.0);</div>
 <div class="line"><span class="lineno">  138</span>    data1.add_tag(<span class="stringliteral">&quot;tag1&quot;</span>, <span class="stringliteral">&quot;value1&quot;</span>);</div>
 <div class="line"><span class="lineno">  139</span>    </div>
-<div class="line"><span class="lineno">  140</span>    monitoring_data data2(<span class="stringliteral">&quot;component2&quot;</span>);</div>
+<div class="line"><span class="lineno">  140</span>    <a class="code hl_struct" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">monitoring_data</a> data2(<span class="stringliteral">&quot;component2&quot;</span>);</div>
 <div class="line"><span class="lineno">  141</span>    data2.add_metric(<span class="stringliteral">&quot;metric2&quot;</span>, 20.0);</div>
 <div class="line"><span class="lineno">  142</span>    data2.add_tag(<span class="stringliteral">&quot;tag2&quot;</span>, <span class="stringliteral">&quot;value2&quot;</span>);</div>
 <div class="line"><span class="lineno">  143</span>    </div>
@@ -676,7 +844,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  152</span>    EXPECT_DOUBLE_EQ(metric2.value(), 20.0);</div>
 <div class="line"><span class="lineno">  153</span>    </div>
 <div class="line"><span class="lineno">  154</span>    <span class="comment">// Merge with prefix</span></div>
-<div class="line"><span class="lineno">  155</span>    monitoring_data data3(<span class="stringliteral">&quot;component3&quot;</span>);</div>
+<div class="line"><span class="lineno">  155</span>    <a class="code hl_struct" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">monitoring_data</a> data3(<span class="stringliteral">&quot;component3&quot;</span>);</div>
 <div class="line"><span class="lineno">  156</span>    data3.add_metric(<span class="stringliteral">&quot;metric3&quot;</span>, 30.0);</div>
 <div class="line"><span class="lineno">  157</span>    data3.add_tag(<span class="stringliteral">&quot;tag3&quot;</span>, <span class="stringliteral">&quot;value3&quot;</span>);</div>
 <div class="line"><span class="lineno">  158</span>    </div>
@@ -690,7 +858,29 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  166</span>    ASSERT_TRUE(prefixed_tag.has_value());</div>
 <div class="line"><span class="lineno">  167</span>    EXPECT_EQ(prefixed_tag.value(), <span class="stringliteral">&quot;value3&quot;</span>);</div>
 <div class="line"><span class="lineno">  168</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a92398a105c943d409b4f1e498d2ff543_cgraph">
+<area shape="rect" title=" " alt="" coords="5,236,75,261"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="153,5,323,60"/>
+<area shape="poly" title=" " alt="" coords="41,235,49,202,64,158,88,112,121,71,139,57,143,62,124,75,92,114,69,160,54,204,46,236"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="139,85,337,125"/>
+<area shape="poly" title=" " alt="" coords="45,234,73,186,95,158,121,135,130,129,133,133,124,139,98,162,77,189,49,237"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a81f647d4419e18ebe5172c06de130c22" title="Get a metric value." alt="" coords="155,149,321,204"/>
+<area shape="poly" title=" " alt="" coords="72,233,122,214,144,206,146,211,124,219,74,238"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a54c5bcf9399f49cee135be19edf3ad54" title="Get a tag value." alt="" coords="141,229,335,269"/>
+<area shape="poly" title=" " alt="" coords="75,246,127,246,127,251,75,251"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a1c374c202f58a26a498b6b904ce9e11d" title="Merge another monitoring_data into this one." alt="" coords="145,293,331,333"/>
+<area shape="poly" title=" " alt="" coords="73,259,124,278,148,286,147,291,122,283,71,264"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a28db948951c84ab325d6b2ab85db03cf" title="Get the number of metrics." alt="" coords="123,357,353,397"/>
+<area shape="poly" title=" " alt="" coords="51,260,80,301,100,323,124,342,135,349,132,353,121,347,97,327,75,304,46,263"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a6aa0dcff6b8e91aad70038a886b0a1ab" title="Get the number of tags." alt="" coords="133,421,343,461"/>
+<area shape="poly" title=" " alt="" coords="47,261,55,291,70,331,93,372,124,407,131,411,128,416,121,411,89,375,66,333,50,293,42,262"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a7f9e702c277011ff0e8a83345357030d" name="a7f9e702c277011ff0e8a83345357030d"></a>
@@ -724,7 +914,7 @@ Here is the call graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">  460</span>                                                          {</div>
 <div class="line"><span class="lineno">  461</span>    <span class="keyword">auto</span> start_time = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  462</span>    </div>
-<div class="line"><span class="lineno">  463</span>    monitoring_data data(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  463</span>    <a class="code hl_struct" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html">monitoring_data</a> data(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  464</span>    </div>
 <div class="line"><span class="lineno">  465</span>    <span class="keyword">auto</span> timestamp = data.get_timestamp();</div>
 <div class="line"><span class="lineno">  466</span>    <span class="keyword">auto</span> end_time = std::chrono::system_clock::now();</div>
@@ -733,7 +923,17 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  469</span>    EXPECT_GE(timestamp, start_time);</div>
 <div class="line"><span class="lineno">  470</span>    EXPECT_LE(timestamp, end_time);</div>
 <div class="line"><span class="lineno">  471</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph" alt=""/></div>
+<map name="ad0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a7f9e702c277011ff0e8a83345357030d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,20,75,45"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a4902be5669b4f90a0f4853e292b7a0e3" title="Get the timestamp." alt="" coords="123,5,289,60"/>
+<area shape="poly" title=" " alt="" coords="75,30,109,30,109,35,75,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a3db0137f428eba31280827c180b43df9" name="a3db0137f428eba31280827c180b43df9"></a>
@@ -770,8 +970,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  249</span>    <span class="comment">// Initially enabled</span></div>
 <div class="line"><span class="lineno">  250</span>    EXPECT_TRUE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  251</span>    </div>
-<div class="line"><span class="lineno">  252</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  252</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  254</span>    </div>
 <div class="line"><span class="lineno">  255</span>    <span class="comment">// Disable monitoring</span></div>
 <div class="line"><span class="lineno">  256</span>    <span class="keyword">auto</span> disable_result = component.set_monitoring_enabled(<span class="keyword">false</span>);</div>
@@ -779,9 +979,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  258</span>    EXPECT_FALSE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  259</span>    </div>
 <div class="line"><span class="lineno">  260</span>    <span class="comment">// Should return error when disabled</span></div>
-<div class="line"><span class="lineno">  261</span>    result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  262</span>    EXPECT_TRUE(result.is_err());</div>
-<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span>monitoring_error_code<span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::monitoring_disabled);</div>
+<div class="line"><span class="lineno">  261</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  262</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_err());</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.error().code), monitoring_error_code::monitoring_disabled);</div>
 <div class="line"><span class="lineno">  264</span>    </div>
 <div class="line"><span class="lineno">  265</span>    <span class="comment">// Re-enable monitoring</span></div>
 <div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> enable_result = component.set_monitoring_enabled(<span class="keyword">true</span>);</div>
@@ -789,17 +989,33 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  268</span>    EXPECT_TRUE(component.is_monitoring_enabled());</div>
 <div class="line"><span class="lineno">  269</span>    </div>
 <div class="line"><span class="lineno">  270</span>    <span class="comment">// Should work again</span></div>
-<div class="line"><span class="lineno">  271</span>    result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  272</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  271</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  272</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  273</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83e"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">kcenon::monitoring::monitoring_error_code</a></div><div class="ttdeci">monitoring_error_code</div><div class="ttdoc">Comprehensive error codes for monitoring system operations.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d11/error__codes_8h_source.html#l00027">error_codes.h:27</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a3db0137f428eba31280827c180b43df9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+<area shape="rect" title=" " alt="" coords="5,308,75,333"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title="Get current monitoring data from the component." alt="" coords="123,193,336,233"/>
+<area shape="poly" title=" " alt="" coords="62,306,180,237,183,242,65,310"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#acdc6c930de8cabbcf434ef2c7b2b7538" title="Check if monitoring is enabled." alt="" coords="388,293,577,348"/>
+<area shape="poly" title=" " alt="" coords="75,318,374,318,374,323,75,323"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#a81acc798e60570c7243ac0eecbe359a0" title="Enable or disable monitoring." alt="" coords="135,361,324,416"/>
+<area shape="poly" title=" " alt="" coords="76,330,141,354,139,359,74,335"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="398,5,567,60"/>
+<area shape="poly" title=" " alt="" coords="246,191,304,133,342,100,383,70,393,64,396,69,385,75,345,104,307,137,250,195"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="384,85,581,125"/>
+<area shape="poly" title=" " alt="" coords="267,190,383,134,402,127,404,132,385,139,269,195"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#ae67683966146b7043065f7f6f539a358" title="Get monitoring identifier." alt="" coords="388,149,577,204"/>
+<area shape="poly" title=" " alt="" coords="336,195,374,189,375,195,337,200"/>
+<area shape="poly" title=" " alt="" coords="277,230,385,278,402,285,400,290,383,283,274,235"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="409,229,557,269"/>
+<area shape="poly" title=" " alt="" coords="337,225,395,234,395,239,336,230"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="403,373,562,413"/>
+<area shape="poly" title=" " alt="" coords="324,387,389,389,389,394,324,393"/>
 </map>
 </div>
 
@@ -855,11 +1071,19 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a7eb5c84c183097727dd17c77e55c0883_cgraph">
-<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" title=" " alt="" coords="5,77,75,102"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="74,49,109,43,110,48,75,54"/>
+<area shape="poly" title=" " alt="" coords="71,74,122,55,145,47,147,52,124,60,73,79"/>
 <area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,69,336,109"/>
-<area shape="poly" title=" " alt="" coords="75,60,110,66,109,72,74,66"/>
+<area shape="poly" title=" " alt="" coords="75,87,109,87,109,92,75,92"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#a64810a5584995bb03de4be3ddddb85c4" title="Reset monitoring data." alt="" coords="135,134,324,189"/>
+<area shape="poly" title=" " alt="" coords="74,100,124,119,143,126,142,131,122,124,72,105"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a8033829a743570f088c326403194e983" title="Clear all metrics and tags." alt="" coords="384,77,561,117"/>
+<area shape="poly" title=" " alt="" coords="323,134,382,118,384,123,325,139"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="393,141,552,181"/>
+<area shape="poly" title=" " alt="" coords="324,159,380,159,380,164,324,164"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a55b23c4c38ce5c455bdf6ecb25ccba1e" title="Set the component name." alt="" coords="390,206,555,261"/>
+<area shape="poly" title=" " alt="" coords="323,186,378,203,376,208,322,191"/>
 </map>
 </div>
 
@@ -908,8 +1132,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  488</span>                </div>
 <div class="line"><span class="lineno">  489</span>                <span class="comment">// Also get monitoring data periodically</span></div>
 <div class="line"><span class="lineno">  490</span>                <span class="keywordflow">if</span> (j % 100 == 0) {</div>
-<div class="line"><span class="lineno">  491</span>                    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  492</span>                    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  491</span>                    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  492</span>                    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  493</span>                }</div>
 <div class="line"><span class="lineno">  494</span>            }</div>
 <div class="line"><span class="lineno">  495</span>        });</div>
@@ -924,10 +1148,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  504</span>    EXPECT_EQ(component.get_operation_count(), thread_count * operations_per_thread);</div>
 <div class="line"><span class="lineno">  505</span>    </div>
 <div class="line"><span class="lineno">  506</span>    <span class="comment">// Get final monitoring data</span></div>
-<div class="line"><span class="lineno">  507</span>    <span class="keyword">auto</span> result = component.get_monitoring_data();</div>
-<div class="line"><span class="lineno">  508</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  507</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = component.get_monitoring_data();</div>
+<div class="line"><span class="lineno">  508</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  509</span>    </div>
-<div class="line"><span class="lineno">  510</span>    <span class="keyword">auto</span> op_count = result.value().get_metric(<span class="stringliteral">&quot;operation_count&quot;</span>);</div>
+<div class="line"><span class="lineno">  510</span>    <span class="keyword">auto</span> op_count = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().get_metric(<span class="stringliteral">&quot;operation_count&quot;</span>);</div>
 <div class="line"><span class="lineno">  511</span>    ASSERT_TRUE(op_count.has_value());</div>
 <div class="line"><span class="lineno">  512</span>    EXPECT_DOUBLE_EQ(op_count.value(), </div>
 <div class="line"><span class="lineno">  513</span>                     <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(thread_count * operations_per_thread));</div>
@@ -937,13 +1161,23 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph.png" border="0" usemap="#ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph" alt=""/></div>
 <map name="ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph" id="ad0/de2/test__monitorable__interface_8cpp_a01eb460d7524ea6d79c42dd82fc12e25_cgraph">
-<area shape="rect" title=" " alt="" coords="5,77,75,102"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title=" " alt="" coords="123,5,336,45"/>
-<area shape="poly" title=" " alt="" coords="71,74,122,55,145,47,147,52,124,60,73,79"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267" title=" " alt="" coords="123,69,336,109"/>
-<area shape="poly" title=" " alt="" coords="75,87,109,87,109,92,75,92"/>
-<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,133,336,173"/>
-<area shape="poly" title=" " alt="" coords="73,100,124,119,147,127,145,132,122,124,71,105"/>
+<area shape="rect" title=" " alt="" coords="5,228,75,253"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ac598ed0a99e82c2adf128b8f748ddb2d" title="Get current monitoring data from the component." alt="" coords="123,157,336,197"/>
+<area shape="poly" title=" " alt="" coords="71,225,122,206,145,198,147,203,124,211,73,230"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#ad416472d6c5b74827f90b28606204267" title=" " alt="" coords="123,221,336,261"/>
+<area shape="poly" title=" " alt="" coords="75,238,109,238,109,243,75,243"/>
+<area shape="rect" href="../../d9/db4/classtest__monitorable__component.html#a1772192dc8c9716c15bfd494b5ff214c" title=" " alt="" coords="123,285,336,325"/>
+<area shape="poly" title=" " alt="" coords="73,251,124,270,147,278,145,283,122,275,71,256"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ab6fd7ca7da26f84232646d9e7212c6e8" title="Add a numeric metric." alt="" coords="398,5,567,60"/>
+<area shape="poly" title=" " alt="" coords="255,154,312,113,383,70,396,63,399,68,385,75,315,118,258,159"/>
+<area shape="rect" href="../../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ad164e6b4e49977b7f62e2093e7f5d1f4" title="Add a tag (string metadata)" alt="" coords="384,85,581,125"/>
+<area shape="poly" title=" " alt="" coords="300,154,398,126,399,131,301,159"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#ae67683966146b7043065f7f6f539a358" title="Get monitoring identifier." alt="" coords="388,149,577,204"/>
+<area shape="poly" title=" " alt="" coords="336,174,374,174,374,179,336,179"/>
+<area shape="rect" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#acdc6c930de8cabbcf434ef2c7b2b7538" title="Check if monitoring is enabled." alt="" coords="388,228,577,283"/>
+<area shape="poly" title=" " alt="" coords="298,194,337,206,385,221,383,226,335,211,297,199"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="409,307,557,347"/>
+<area shape="poly" title=" " alt="" coords="319,195,338,207,356,229,363,251,369,273,386,293,398,302,395,306,382,297,365,275,358,253,351,231,334,211,316,199"/>
 </map>
 </div>
 
@@ -952,7 +1186,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

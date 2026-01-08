@@ -124,9 +124,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   42</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Time Series Storage Example ===&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   43</span> </div>
 <div class="line"><span class="lineno">   44</span>    <span class="comment">// Configure storage</span></div>
-<div class="line"><span class="lineno">   45</span>    storage_config config;</div>
-<div class="line"><span class="lineno">   46</span>    config.data_directory = <span class="stringliteral">&quot;./tsdb_test_data&quot;</span>;</div>
-<div class="line"><span class="lineno">   47</span>    config.compression = compression_algorithm::lz4;</div>
+<div class="line"><span class="lineno">   45</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><span class="lineno">   46</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a2dc82e321d71ecc1154cc8a7b464e569">data_directory</a> = <span class="stringliteral">&quot;./tsdb_test_data&quot;</span>;</div>
+<div class="line"><span class="lineno">   47</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#ae7c0815d0bb253ecc941e89b6cfcaf0e">compression</a> = compression_algorithm::lz4;</div>
 <div class="line"><span class="lineno">   48</span>    config.memtable_size_mb = 16;</div>
 <div class="line"><span class="lineno">   49</span> </div>
 <div class="line"><span class="lineno">   50</span>    <span class="comment">// Create time series engine</span></div>
@@ -168,33 +168,33 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   86</span>    db_config.data_directory = <span class="stringliteral">&quot;./metrics_test_db&quot;</span>;</div>
 <div class="line"><span class="lineno">   87</span>    db_config.partition_strategy = partition_strategy::by_metric_name;</div>
 <div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>    <span class="keyword">auto</span> database = std::make_unique&lt;metric_database&gt;(db_config);</div>
+<div class="line"><span class="lineno">   89</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a11e0eed8d3696c0a632f822df385ab3c">database</a> = std::make_unique&lt;metric_database&gt;(db_config);</div>
 <div class="line"><span class="lineno">   90</span> </div>
 <div class="line"><span class="lineno">   91</span>    <span class="comment">// Write batch of metrics</span></div>
 <div class="line"><span class="lineno">   92</span>    std::vector&lt;metric&gt; batch;</div>
 <div class="line"><span class="lineno">   93</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
-<div class="line"><span class="lineno">   94</span>        metric m;</div>
-<div class="line"><span class="lineno">   95</span>        m.name = <span class="stringliteral">&quot;test.metric&quot;</span>;</div>
-<div class="line"><span class="lineno">   96</span>        m.value = metric_value{50.0 + i};</div>
-<div class="line"><span class="lineno">   97</span>        m.timestamp = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   98</span>        m.tags = {{<span class="stringliteral">&quot;env&quot;</span>, <span class="stringliteral">&quot;test&quot;</span>}, {<span class="stringliteral">&quot;instance&quot;</span>, std::to_string(i)}};</div>
+<div class="line"><span class="lineno">   94</span>        <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> m;</div>
+<div class="line"><span class="lineno">   95</span>        m.<a class="code hl_variable" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#a1d1e2a7a2c83b8cdf0747076e0081174">name</a> = <span class="stringliteral">&quot;test.metric&quot;</span>;</div>
+<div class="line"><span class="lineno">   96</span>        m.<a class="code hl_variable" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#abd5d2a90c17aaa351ec39d77d6e0528a">value</a> = <a class="code hl_struct" href="../../d1/d45/structkcenon_1_1monitoring_1_1metric__value.html">metric_value</a>{50.0 + i};</div>
+<div class="line"><span class="lineno">   97</span>        m.<a class="code hl_variable" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#a60f00804af97ba71c9e773131970b4d1">timestamp</a> = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">   98</span>        m.<a class="code hl_variable" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#ad000f01a0c855025f52cbd2127ce7113">tags</a> = {{<span class="stringliteral">&quot;env&quot;</span>, <span class="stringliteral">&quot;test&quot;</span>}, {<span class="stringliteral">&quot;instance&quot;</span>, std::to_string(i)}};</div>
 <div class="line"><span class="lineno">   99</span>        batch.push_back(m);</div>
 <div class="line"><span class="lineno">  100</span>    }</div>
 <div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordtype">size_t</span> written = database-&gt;write_batch(batch);</div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordtype">size_t</span> written = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a11e0eed8d3696c0a632f822df385ab3c">database</a>-&gt;write_batch(batch);</div>
 <div class="line"><span class="lineno">  103</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Written &quot;</span> &lt;&lt; written &lt;&lt; <span class="stringliteral">&quot; metrics to database&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  104</span> </div>
 <div class="line"><span class="lineno">  105</span>    <span class="comment">// Query with aggregation</span></div>
 <div class="line"><span class="lineno">  106</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n=== Query Engine Example ===&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> query_engine = std::make_unique&lt;metric_query_engine&gt;(database.get());</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> query_engine = std::make_unique&lt;metric_query_engine&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a11e0eed8d3696c0a632f822df385ab3c">database</a>.get());</div>
 <div class="line"><span class="lineno">  109</span> </div>
 <div class="line"><span class="lineno">  110</span>    <span class="comment">// Simple query example (would need parser implementation for full functionality)</span></div>
 <div class="line"><span class="lineno">  111</span>    std::string query_str = <span class="stringliteral">&quot;SELECT cpu.usage WHERE host=&#39;server1&#39; FROM -1h&quot;</span>;</div>
 <div class="line"><span class="lineno">  112</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Query: &quot;</span> &lt;&lt; query_str &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  113</span> </div>
 <div class="line"><span class="lineno">  114</span>    <span class="comment">// Get database stats</span></div>
-<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> stats = database-&gt;get_stats();</div>
+<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> stats = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a11e0eed8d3696c0a632f822df385ab3c">database</a>-&gt;get_stats();</div>
 <div class="line"><span class="lineno">  116</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nDatabase Statistics:&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  117</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Total metrics: &quot;</span> &lt;&lt; stats.total_metrics &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  118</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Total points: &quot;</span> &lt;&lt; stats.total_points &lt;&lt; std::endl;</div>
@@ -203,13 +203,23 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  121</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nStorage example completed successfully!&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  122</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><span class="lineno">  123</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ae7927fdb839278142ee031c30e42cc98a11e0eed8d3696c0a632f822df385ab3c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a11e0eed8d3696c0a632f822df385ab3c">kcenon::monitoring::storage_backend_type::database</a></div><div class="ttdeci">@ database</div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric__value_html"><div class="ttname"><a href="../../d1/d45/structkcenon_1_1monitoring_1_1metric__value.html">kcenon::monitoring::metric_value</a></div><div class="ttdoc">Represents a single metric value with metadata.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00050">monitoring_core.h:50</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">kcenon::monitoring::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00078">metric_types_adapter.h:78</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_a1d1e2a7a2c83b8cdf0747076e0081174"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#a1d1e2a7a2c83b8cdf0747076e0081174">kcenon::monitoring::metric::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00079">metric_types_adapter.h:79</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_a60f00804af97ba71c9e773131970b4d1"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#a60f00804af97ba71c9e773131970b4d1">kcenon::monitoring::metric::timestamp</a></div><div class="ttdeci">std::chrono::system_clock::time_point timestamp</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00083">metric_types_adapter.h:83</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_abd5d2a90c17aaa351ec39d77d6e0528a"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#abd5d2a90c17aaa351ec39d77d6e0528a">kcenon::monitoring::metric::value</a></div><div class="ttdeci">std::variant&lt; double, int64_t, std::string &gt; value</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00080">metric_types_adapter.h:80</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_ad000f01a0c855025f52cbd2127ce7113"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#ad000f01a0c855025f52cbd2127ce7113">kcenon::monitoring::metric::tags</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; tags</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00081">metric_types_adapter.h:81</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">kcenon::monitoring::storage_config</a></div><div class="ttdoc">Storage configuration.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00065">storage_backends.h:65</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html_a2dc82e321d71ecc1154cc8a7b464e569"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a2dc82e321d71ecc1154cc8a7b464e569">kcenon::monitoring::storage_config::data_directory</a></div><div class="ttdeci">std::string data_directory</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00068">storage_backends.h:68</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html_ae7c0815d0bb253ecc941e89b6cfcaf0e"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#ae7c0815d0bb253ecc941e89b6cfcaf0e">kcenon::monitoring::storage_config::compression</a></div><div class="ttdeci">compression_algorithm compression</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00069">storage_backends.h:69</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

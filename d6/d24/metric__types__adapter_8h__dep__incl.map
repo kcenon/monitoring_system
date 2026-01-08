@@ -1,17 +1,127 @@
-<map id="sources/monitoring/interfaces/metric_types_adapter.h" name="sources/monitoring/interfaces/metric_types_adapter.h">
-<area shape="rect" id="Node000001" title="Adapter for metric types to support interface definitions." alt="" coords="353,5,533,60"/>
-<area shape="rect" id="Node000002" href="$de/d0f/event__types_8h.html" title="Common event type definitions for monitoring system." alt="" coords="203,115,354,155"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="390,69,311,117,308,113,387,65"/>
-<area shape="rect" id="Node000005" href="$d7/d8d/metric__collector__interface_8h.html" title="Abstract interface for metric collection components." alt="" coords="395,211,595,265"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="451,73,471,162,487,210,482,211,465,163,446,74"/>
-<area shape="rect" id="Node000007" href="$dd/df2/observer__interface_8h.html" title="Observer pattern interface for monitoring system event handling." alt="" coords="480,108,632,163"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="484,67,528,106,525,110,481,71"/>
-<area shape="rect" id="Node000003" href="$d4/d27/event__bus__example_8cpp.html" title="Example demonstrating event&#45;driven monitoring system." alt="" coords="5,218,163,258"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="231,164,122,220,119,216,229,159"/>
-<area shape="rect" id="Node000004" href="$df/de1/test__event__bus_8cpp.html" title="Test for event&#45;driven communication system." alt="" coords="187,225,371,251"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="281,169,281,225,276,225,276,169"/>
-<area shape="rect" id="Node000006" href="$d2/dc5/test__interfaces__compile_8cpp.html" title="Compilation test for new monitoring interfaces." alt="" coords="485,313,640,353"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="524,275,551,312,547,315,520,278"/>
-<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="535,176,513,212,508,209,531,173"/>
-<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="590,172,609,210,615,238,609,266,597,293,582,315,577,312,593,290,604,265,609,238,604,212,585,175"/>
+<map id="include/kcenon/monitoring/interfaces/metric_types_adapter.h" name="include/kcenon/monitoring/interfaces/metric_types_adapter.h">
+<area shape="rect" id="Node000001" title="Adapter for metric types to support interface definitions." alt="" coords="2195,5,2390,60"/>
+<area shape="rect" id="Node000002" href="$d8/d46/logger__system__adapter_8h.html" title=" " alt="" coords="99,313,294,368"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2181,36,1850,36,1410,45,1185,54,976,67,797,86,724,97,663,111,599,130,535,154,415,211,312,268,236,316,234,311,309,264,412,206,533,149,597,125,661,105,723,92,797,81,976,62,1185,48,1410,39,1850,31,2181,30"/>
+<area shape="rect" id="Node000008" href="$d9/d7a/thread__system__adapter_8h.html" title=" " alt="" coords="643,313,838,368"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="2181,37,1869,41,1473,53,1282,62,1114,74,987,91,942,100,914,110,884,130,856,154,810,211,776,268,753,314,749,312,771,265,806,207,852,151,880,126,911,106,941,95,986,85,1114,69,1281,57,1473,47,1869,36,2181,32"/>
+<area shape="rect" id="Node000010" href="$dc/dde/battery__collector_8h.html" title="Battery status monitoring collector." alt="" coords="1481,218,1696,258"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="2182,62,1995,111,1802,169,1645,220,1643,215,1800,164,1993,105,2181,57"/>
+<area shape="rect" id="Node000014" href="$de/d4d/collector__base_8h.html" title="CRTP base class for metric collectors." alt="" coords="2261,115,2460,155"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="2320,70,2350,113,2345,116,2316,73"/>
+<area shape="rect" id="Node000015" href="$df/dd1/context__switch__collector_8h.html" title="Context switch statistics monitoring collector." alt="" coords="1721,211,1915,265"/>
+<area shape="poly" id="edge34_Node000001_Node000015" title=" " alt="" coords="2220,68,1880,213,1878,208,2218,63"/>
+<area shape="rect" id="Node000017" href="$d6/dd3/fd__collector_8h.html" title="File descriptor usage monitoring collector." alt="" coords="1939,218,2134,258"/>
+<area shape="poly" id="edge35_Node000001_Node000017" title=" " alt="" coords="2251,71,2062,220,2059,216,2247,66"/>
+<area shape="rect" id="Node000019" href="$d6/df7/inode__collector_8h.html" title="Filesystem inode usage monitoring collector." alt="" coords="2158,218,2361,258"/>
+<area shape="poly" id="edge38_Node000001_Node000019" title=" " alt="" coords="2267,73,2251,109,2247,138,2247,167,2256,218,2251,218,2242,168,2241,137,2246,107,2263,71"/>
+<area shape="rect" id="Node000021" href="$da/dba/interrupt__collector_8h.html" title="Hardware and software interrupt statistics monitoring collector." alt="" coords="2385,218,2608,258"/>
+<area shape="poly" id="edge39_Node000001_Node000021" title=" " alt="" coords="2404,58,2442,78,2473,106,2489,134,2498,164,2501,218,2495,218,2492,165,2484,136,2469,110,2439,82,2402,63"/>
+<area shape="rect" id="Node000023" href="$db/db3/socket__buffer__collector_8h.html" title="Socket buffer usage monitoring collector." alt="" coords="2633,211,2827,265"/>
+<area shape="poly" id="edge53_Node000001_Node000023" title=" " alt="" coords="2391,62,2503,106,2605,158,2690,208,2687,213,2603,163,2501,110,2389,67"/>
+<area shape="rect" id="Node000025" href="$dd/d32/tcp__state__collector_8h.html" title="TCP connection state monitoring collector." alt="" coords="2851,218,3078,258"/>
+<area shape="poly" id="edge54_Node000001_Node000025" title=" " alt="" coords="2405,59,2573,105,2760,164,2912,215,2910,220,2759,169,2572,111,2403,64"/>
+<area shape="rect" id="Node000027" href="$d7/d6e/uptime__collector_8h.html" title="System uptime monitoring collector." alt="" coords="3102,218,3315,258"/>
+<area shape="poly" id="edge58_Node000001_Node000027" title=" " alt="" coords="2404,51,2679,105,2931,164,3137,215,3136,221,2930,169,2677,111,2403,57"/>
+<area shape="rect" id="Node000029" href="$dc/d80/container__collector_8h.html" title="Container metrics collector for Docker/cgroup monitoring." alt="" coords="3137,115,3365,155"/>
+<area shape="poly" id="edge32_Node000001_Node000029" title=" " alt="" coords="2404,41,3044,105,3137,117,3137,122,3043,111,2404,47"/>
+<area shape="rect" id="Node000031" href="$d0/de6/gpu__collector_8h.html" title="GPU metrics monitoring collector." alt="" coords="3427,115,3622,155"/>
+<area shape="poly" id="edge36_Node000001_Node000031" title=" " alt="" coords="2404,35,2832,57,3103,77,3377,105,3427,113,3427,118,3376,111,3103,83,2831,62,2404,40"/>
+<area shape="rect" id="Node000033" href="$d6/da5/plugin__metric__collector_8h.html" title=" " alt="" coords="913,313,1107,368"/>
+<area shape="poly" id="edge40_Node000001_Node000033" title=" " alt="" coords="2182,39,1889,46,1523,59,1193,81,1074,94,1006,111,951,139,928,155,909,173,896,193,890,214,891,238,900,264,922,291,950,311,947,315,918,295,896,267,885,239,884,214,891,191,905,170,925,151,948,134,1004,105,1073,89,1192,75,1523,54,1889,40,2182,33"/>
+<area shape="rect" id="Node000036" href="$d0/d4c/power__collector_8h.html" title="Power consumption monitoring collector." alt="" coords="3665,115,3872,155"/>
+<area shape="poly" id="edge47_Node000001_Node000036" title=" " alt="" coords="2404,32,2629,37,2935,49,3283,71,3460,86,3634,105,3681,113,3681,118,3634,111,3460,92,3282,76,2935,54,2629,43,2404,38"/>
+<area shape="rect" id="Node000038" href="$d9/d94/security__collector_8h.html" title="Security event monitoring collector." alt="" coords="3906,115,4125,155"/>
+<area shape="poly" id="edge49_Node000001_Node000038" title=" " alt="" coords="2404,31,2667,33,3034,43,3456,66,3672,83,3884,105,3930,113,3930,118,3883,111,3672,88,3456,71,3034,48,2667,38,2404,36"/>
+<area shape="rect" id="Node000040" href="$d0/dbb/smart__collector_8h.html" title="S.M.A.R.T. disk health monitoring collector." alt="" coords="4153,115,4358,155"/>
+<area shape="poly" id="edge51_Node000001_Node000040" title=" " alt="" coords="2404,33,2772,41,3273,55,3772,77,3979,90,4137,105,4180,113,4179,118,4136,111,3979,95,3772,82,3273,61,2772,46,2404,39"/>
+<area shape="rect" id="Node000042" href="$df/df5/temperature__collector_8h.html" title="Hardware temperature monitoring collector." alt="" coords="1301,108,1495,163"/>
+<area shape="poly" id="edge55_Node000001_Node000042" title=" " alt="" coords="2182,49,1496,126,1495,120,2181,44"/>
+<area shape="rect" id="Node000044" href="$df/d6f/vm__collector_8h.html" title="Virtualization metrics collector." alt="" coords="4389,115,4583,155"/>
+<area shape="poly" id="edge59_Node000001_Node000044" title=" " alt="" coords="2404,33,2815,39,3383,52,3953,74,4190,88,4370,105,4413,113,4412,118,4370,111,4190,93,3953,79,3383,57,2815,44,2404,38"/>
+<area shape="rect" id="Node000046" href="$de/d0f/event__types_8h.html" title="Common event type definitions for monitoring system." alt="" coords="483,218,678,258"/>
+<area shape="poly" id="edge61_Node000001_Node000046" title=" " alt="" coords="2181,38,1839,46,1398,60,994,81,848,95,763,111,714,133,668,163,601,220,597,216,665,158,711,128,761,105,847,89,993,75,1398,54,1839,40,2181,33"/>
+<area shape="rect" id="Node000048" href="$d7/d8d/metric__collector__interface_8h.html" title="Abstract interface for metric collection components." alt="" coords="910,211,1110,265"/>
+<area shape="poly" id="edge69_Node000001_Node000048" title=" " alt="" coords="2181,40,1882,49,1512,64,1191,85,1085,97,1053,104,1037,110,1021,132,1012,158,1009,186,1009,210,1004,210,1004,185,1007,157,1016,129,1034,106,1051,99,1084,92,1190,80,1512,59,1882,44,2181,34"/>
+<area shape="rect" id="Node000050" href="$dd/df2/observer__interface_8h.html" title="Observer pattern interface for monitoring system event handling." alt="" coords="1047,115,1277,155"/>
+<area shape="poly" id="edge72_Node000001_Node000050" title=" " alt="" coords="2182,40,1787,61,1538,82,1289,111,1246,118,1245,113,1288,105,1538,76,1786,56,2182,35"/>
+<area shape="rect" id="Node000003" href="$d4/d27/event__bus__example_8cpp.html" title="Example demonstrating event&#45;driven monitoring system." alt="" coords="170,423,327,463"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="219,379,241,422,236,424,214,382"/>
+<area shape="rect" id="Node000004" href="$df/dc0/logger__system__collector_8h.html" title=" " alt="" coords="559,416,754,471"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="308,362,548,413,560,416,558,421,547,419,307,367"/>
+<area shape="rect" id="Node000006" href="$dd/d52/test__adapter__functionality_8cpp.html" title="Phase 3.2 &#45; Adapter Functionality Verification Tests." alt="" coords="5,423,145,463"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="156,379,100,425,96,421,152,375"/>
+<area shape="rect" id="Node000007" href="$df/de1/test__event__bus_8cpp.html" title="Test for event&#45;driven communication system." alt="" coords="351,431,535,456"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="274,371,416,428,414,433,272,376"/>
+<area shape="rect" id="Node000005" href="$dc/d7a/plugin__collector__example_8cpp.html" title=" " alt="" coords="805,519,999,559"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="739,473,854,516,852,521,737,478"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="630,362,491,387,340,419,312,426,310,421,339,413,490,382,630,357"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="651,375,478,433,477,428,649,370"/>
+<area shape="rect" id="Node000009" href="$d0/d2d/thread__system__collector_8h.html" title=" " alt="" coords="778,416,973,471"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="788,374,842,414,838,418,785,378"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="889,483,899,518,894,519,884,485"/>
+<area shape="rect" id="Node000011" href="$d8/d89/metrics__provider_8h.html" title="Platform abstraction layer for system metrics collection." alt="" coords="1311,321,1517,361"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="1545,267,1448,323,1445,318,1543,263"/>
+<area shape="rect" id="Node000013" href="$d9/d1f/test__battery__collector_8cpp.html" title=" " alt="" coords="1541,321,1679,361"/>
+<area shape="poly" id="edge15_Node000010_Node000013" title=" " alt="" coords="1598,271,1609,320,1603,321,1593,272"/>
+<area shape="rect" id="Node000012" href="$de/da3/test__metrics__provider_8cpp.html" title=" " alt="" coords="1345,423,1483,463"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="1417,375,1417,423,1411,423,1411,375"/>
+<area shape="poly" id="edge17_Node000014_Node000010" title=" " alt="" coords="2248,149,2000,174,1854,192,1709,213,1670,221,1669,215,1708,208,1853,187,1999,168,2247,143"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="2248,157,2096,182,1928,213,1916,216,1915,210,1927,208,2095,177,2247,151"/>
+<area shape="poly" id="edge20_Node000014_Node000017" title=" " alt="" coords="2288,162,2098,220,2097,215,2286,157"/>
+<area shape="poly" id="edge22_Node000014_Node000019" title=" " alt="" coords="2334,167,2280,220,2276,216,2330,163"/>
+<area shape="poly" id="edge24_Node000014_Node000021" title=" " alt="" coords="2399,161,2473,216,2470,220,2396,166"/>
+<area shape="poly" id="edge26_Node000014_Node000023" title=" " alt="" coords="2444,156,2634,208,2633,213,2442,162"/>
+<area shape="poly" id="edge28_Node000014_Node000025" title=" " alt="" coords="2474,150,2647,176,2840,208,2878,215,2877,221,2839,213,2646,181,2473,155"/>
+<area shape="poly" id="edge30_Node000014_Node000027" title=" " alt="" coords="2474,141,2755,166,2923,184,3090,208,3130,215,3129,221,3090,213,2922,190,2754,171,2474,147"/>
+<area shape="rect" id="Node000016" href="$d2/d33/test__context__switch__collector_8cpp.html" title=" " alt="" coords="1738,321,1898,361"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="1821,279,1821,320,1815,320,1815,279"/>
+<area shape="rect" id="Node000018" href="$db/d46/test__fd__collector_8cpp.html" title=" " alt="" coords="1938,328,2130,353"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="2038,272,2037,328,2032,327,2033,272"/>
+<area shape="rect" id="Node000020" href="$d1/d3b/test__inode__collector_8cpp.html" title=" " alt="" coords="2155,328,2369,353"/>
+<area shape="poly" id="edge23_Node000019_Node000020" title=" " alt="" coords="2263,272,2264,327,2259,328,2258,272"/>
+<area shape="rect" id="Node000022" href="$db/dde/test__interrupt__collector_8cpp.html" title=" " alt="" coords="2423,321,2570,361"/>
+<area shape="poly" id="edge25_Node000021_Node000022" title=" " alt="" coords="2499,272,2499,321,2494,321,2494,272"/>
+<area shape="rect" id="Node000024" href="$da/df5/test__socket__buffer__collector_8cpp.html" title=" " alt="" coords="2641,321,2819,361"/>
+<area shape="poly" id="edge27_Node000023_Node000024" title=" " alt="" coords="2733,279,2733,320,2727,320,2727,279"/>
+<area shape="rect" id="Node000026" href="$d9/d31/test__tcp__state__collector_8cpp.html" title=" " alt="" coords="2889,321,3040,361"/>
+<area shape="poly" id="edge29_Node000025_Node000026" title=" " alt="" coords="2967,272,2967,321,2962,321,2962,272"/>
+<area shape="rect" id="Node000028" href="$df/dd9/test__uptime__collector_8cpp.html" title=" " alt="" coords="3096,328,3321,353"/>
+<area shape="poly" id="edge31_Node000027_Node000028" title=" " alt="" coords="3211,272,3211,328,3206,328,3206,272"/>
+<area shape="rect" id="Node000030" href="$d4/d11/test__container__collector_8cpp.html" title=" " alt="" coords="3340,218,3491,258"/>
+<area shape="poly" id="edge33_Node000029_Node000030" title=" " alt="" coords="3295,160,3386,216,3383,220,3292,165"/>
+<area shape="rect" id="Node000032" href="$d2/d69/test__gpu__collector_8cpp.html" title=" " alt="" coords="3515,225,3718,251"/>
+<area shape="poly" id="edge37_Node000031_Node000032" title=" " alt="" coords="3553,164,3608,223,3604,227,3549,168"/>
+<area shape="poly" id="edge42_Node000033_Node000004" title=" " alt="" coords="906,374,749,419,748,413,904,369"/>
+<area shape="poly" id="edge41_Node000033_Node000005" title=" " alt="" coords="1012,382,1005,427,987,472,964,500,937,521,933,516,960,496,982,469,1000,425,1007,381"/>
+<area shape="poly" id="edge46_Node000033_Node000009" title=" " alt="" coords="965,378,912,418,909,414,962,374"/>
+<area shape="rect" id="Node000034" href="$d7/d9f/system__resource__collector_8h.html" title=" " alt="" coords="1048,416,1252,471"/>
+<area shape="poly" id="edge43_Node000033_Node000034" title=" " alt="" coords="1059,374,1115,414,1112,418,1056,378"/>
+<area shape="poly" id="edge44_Node000034_Node000005" title=" " alt="" coords="1068,478,953,521,951,516,1067,473"/>
+<area shape="rect" id="Node000035" href="$d5/dc8/test__system__resource__collector_8cpp.html" title=" " alt="" coords="1049,519,1251,559"/>
+<area shape="poly" id="edge45_Node000034_Node000035" title=" " alt="" coords="1153,484,1153,519,1147,519,1147,484"/>
+<area shape="rect" id="Node000037" href="$d8/d90/test__power__collector_8cpp.html" title=" " alt="" coords="3742,225,3961,251"/>
+<area shape="poly" id="edge48_Node000036_Node000037" title=" " alt="" coords="3795,164,3844,223,3839,227,3791,167"/>
+<area shape="rect" id="Node000039" href="$db/db2/test__security__collector_8cpp.html" title=" " alt="" coords="3985,218,4128,258"/>
+<area shape="poly" id="edge50_Node000038_Node000039" title=" " alt="" coords="4031,167,4051,217,4046,219,4026,169"/>
+<area shape="rect" id="Node000041" href="$d7/d50/test__smart__collector_8cpp.html" title=" " alt="" coords="4152,225,4369,251"/>
+<area shape="poly" id="edge52_Node000040_Node000041" title=" " alt="" coords="4260,169,4263,225,4257,225,4254,169"/>
+<area shape="poly" id="edge56_Node000042_Node000011" title=" " alt="" coords="1317,172,1294,190,1276,212,1267,238,1270,250,1276,264,1290,282,1307,296,1348,318,1345,323,1304,301,1286,285,1272,267,1264,252,1262,238,1272,209,1290,186,1314,167"/>
+<area shape="rect" id="Node000043" href="$db/d0a/test__temperature__collector_8cpp.html" title=" " alt="" coords="1286,218,1457,258"/>
+<area shape="poly" id="edge57_Node000042_Node000043" title=" " alt="" coords="1390,177,1379,218,1374,217,1385,175"/>
+<area shape="rect" id="Node000045" href="$dd/d57/test__vm__collector_8cpp.html" title=" " alt="" coords="4394,225,4594,251"/>
+<area shape="poly" id="edge60_Node000044_Node000045" title=" " alt="" coords="4491,169,4496,225,4490,225,4486,169"/>
+<area shape="poly" id="edge63_Node000046_Node000002" title=" " alt="" coords="496,264,295,317,293,311,495,259"/>
+<area shape="poly" id="edge62_Node000046_Node000003" title=" " alt="" coords="474,264,415,285,358,315,318,360,266,425,262,421,314,357,355,311,412,280,473,259"/>
+<area shape="poly" id="edge65_Node000046_Node000004" title=" " alt="" coords="595,270,649,415,644,417,590,272"/>
+<area shape="poly" id="edge67_Node000046_Node000007" title=" " alt="" coords="575,272,558,320,531,370,497,406,463,433,459,428,493,402,527,366,553,318,570,270"/>
+<area shape="poly" id="edge64_Node000046_Node000008" title=" " alt="" coords="624,263,700,311,697,315,621,268"/>
+<area shape="poly" id="edge66_Node000046_Node000009" title=" " alt="" coords="692,241,735,249,777,263,817,283,852,312,868,336,877,364,880,416,875,416,871,365,863,338,848,315,815,287,775,267,733,254,691,246"/>
+<area shape="rect" id="Node000047" href="$df/d66/thread__safety__tests_8cpp.html" title=" " alt="" coords="369,321,517,361"/>
+<area shape="poly" id="edge68_Node000046_Node000047" title=" " alt="" coords="545,268,471,323,467,318,542,264"/>
+<area shape="poly" id="edge70_Node000048_Node000033" title=" " alt="" coords="1013,279,1013,313,1007,313,1007,279"/>
+<area shape="rect" id="Node000049" href="$d2/dc5/test__interfaces__compile_8cpp.html" title="Compilation test for new monitoring interfaces." alt="" coords="1131,321,1286,361"/>
+<area shape="poly" id="edge71_Node000048_Node000049" title=" " alt="" coords="1075,269,1172,318,1170,323,1072,274"/>
+<area shape="poly" id="edge73_Node000050_Node000033" title=" " alt="" coords="1161,169,1149,218,1138,243,1124,267,1097,294,1067,315,1064,311,1094,290,1120,264,1134,241,1144,216,1156,168"/>
+<area shape="poly" id="edge74_Node000050_Node000048" title=" " alt="" coords="1123,165,1051,213,1048,208,1120,161"/>
+<area shape="poly" id="edge75_Node000050_Node000049" title=" " alt="" coords="1172,168,1207,319,1202,321,1167,169"/>
 </map>

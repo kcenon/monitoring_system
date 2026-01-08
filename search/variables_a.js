@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['operation_5fcount_5f_0',['operation_count_',['../d9/db4/classtest__monitorable__component.html#adfcec440e68ccc03b813f8a24e72cf89',1,'test_monitorable_component']]],
-  ['otel_5fresource_5f_1',['otel_resource_',['../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4',1,'MetricExportersTest::otel_resource_'],['../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472',1,'TraceExportersTest::otel_resource_']]]
+  ['key_0',['key',['../d0/d58/structkcenon_1_1monitoring_1_1otel__attribute.html#a59f5f5206183f64612779cb3b3977654',1,'kcenon::monitoring::otel_attribute']]],
+  ['kind_1',['kind',['../d1/d33/structkcenon_1_1monitoring_1_1otel__span__data.html#a1d294a907b65e26e69907c3a926f22b2',1,'kcenon::monitoring::otel_span_data::kind'],['../d1/d12/structkcenon_1_1monitoring_1_1zipkin__span__data.html#a9a0552b0506ca57f5448f8678bc2b7b7',1,'kcenon::monitoring::zipkin_span_data::kind']]]
 ];

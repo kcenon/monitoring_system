@@ -141,7 +141,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// Helper function for testing operations</span></div>
 <div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#ac3e2411e391e7e6b579e3c6867e57c7f">   55</a></span>    result_void <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#ac3e2411e391e7e6b579e3c6867e57c7f">test_operation</a>() {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#ac3e2411e391e7e6b579e3c6867e57c7f">   55</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#ac3e2411e391e7e6b579e3c6867e57c7f">test_operation</a>() {</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        ++<a class="code hl_variable" href="../../d8/d07/classDataConsistencyTest.html#a3e871adb7c0e22de7bca259d3da96e8d">call_count</a>;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        ++<a class="code hl_variable" href="../../d8/d07/classDataConsistencyTest.html#a520561eed7b3bc9d46882559bc041338">success_count</a>;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">return</span> common::ok();</div>
@@ -150,15 +150,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// Helper function that fails</span></div>
 <div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">   62</a></span>    result_void <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">failing_operation</a>() {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">   62</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">failing_operation</a>() {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        ++<a class="code hl_variable" href="../../d8/d07/classDataConsistencyTest.html#a3e871adb7c0e22de7bca259d3da96e8d">call_count</a>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">return</span> result_void{monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Simulated failure&quot;</span>};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>{monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Simulated failure&quot;</span>};</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
 </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// Helper function for rollback</span></div>
 <div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57">   68</a></span>    result_void <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57">rollback_operation</a>() {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57">   68</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#a782435d40a974cd5c2121806efc38e57">rollback_operation</a>() {</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        ++<a class="code hl_variable" href="../../d8/d07/classDataConsistencyTest.html#a22edd023d7ec11376560cb4dd04aa3bd">rollback_count</a>;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> common::ok();</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
@@ -178,7 +178,7 @@ $(document).ready(function() { init_codefold(1); });
 </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    </div>
 <div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#adbc101d4d09a65b152d04bcfbcbf1c32">   82</a></span>    result_void <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#adbc101d4d09a65b152d04bcfbcbf1c32">test_repair</a>() {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#adbc101d4d09a65b152d04bcfbcbf1c32">   82</a></span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#adbc101d4d09a65b152d04bcfbcbf1c32">test_repair</a>() {</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span> common::ok();</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
 </div>
@@ -197,8 +197,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    EXPECT_EQ(op-&gt;name(), <span class="stringliteral">&quot;test_op&quot;</span>);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    EXPECT_FALSE(op-&gt;is_executed());</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">auto</span> result = op-&gt;execute();</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = op-&gt;execute();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    EXPECT_TRUE(op-&gt;is_executed());</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    EXPECT_EQ(call_count.load(), 1);</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    EXPECT_EQ(success_count.load(), 1);</div>
@@ -730,12 +730,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassDataConsistencyTest_html_ac6b460595d48414db0d100b08cc5e40f"><div class="ttname"><a href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">DataConsistencyTest::failing_operation</a></div><div class="ttdeci">result_void failing_operation()</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00062">test_data_consistency.cpp:62</a></div></div>
 <div class="ttc" id="aclassDataConsistencyTest_html_adbc101d4d09a65b152d04bcfbcbf1c32"><div class="ttname"><a href="../../d8/d07/classDataConsistencyTest.html#adbc101d4d09a65b152d04bcfbcbf1c32">DataConsistencyTest::test_repair</a></div><div class="ttdeci">result_void test_repair()</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00082">test_data_consistency.cpp:82</a></div></div>
 <div class="ttc" id="aclassDataConsistencyTest_html_ae30d973a47d94352c14d196569971ad2"><div class="ttname"><a href="../../d8/d07/classDataConsistencyTest.html#ae30d973a47d94352c14d196569971ad2">DataConsistencyTest::failing_validation</a></div><div class="ttdeci">validation_result failing_validation()</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00078">test_data_consistency.cpp:78</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00036">test_battery_collector.cpp:36</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00028">common_monitor_adapter.h:28</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a6931ba7fb7341c1e6c5c408ee09e48ea"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">kcenon::monitoring::result_void</a></div><div class="ttdeci">common::VoidResult result_void</div><div class="ttdoc">Backward-compatible alias for common::VoidResult.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00129">result_types.h:129</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="atest__data__consistency_8cpp_html_aed81538fab462fdcb5b24b5b044cf521"><div class="ttname"><a href="../../da/d14/test__data__consistency_8cpp.html#aed81538fab462fdcb5b24b5b044cf521">TEST_F</a></div><div class="ttdeci">TEST_F(DataConsistencyTest, TransactionOperationBasic)</div><div class="ttdef"><b>Definition</b> <a href="../../da/d14/test__data__consistency_8cpp_source.html#l00088">test_data_consistency.cpp:88</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

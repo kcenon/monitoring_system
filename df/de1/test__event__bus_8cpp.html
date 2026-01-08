@@ -83,10 +83,10 @@ $(function() {
 <p>Test for event-driven communication system.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/adapters/logger_system_adapter.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/adapters/thread_system_adapter.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/core/event_bus.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/core/event_types.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d46/logger__system__adapter_8h_source.html">kcenon/monitoring/adapters/logger_system_adapter.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/d7a/thread__system__adapter_8h_source.html">kcenon/monitoring/adapters/thread_system_adapter.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/d6d/event__bus_8h_source.html">kcenon/monitoring/core/event_bus.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../de/d0f/event__types_8h_source.html">kcenon/monitoring/core/event_types.h</a>&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;condition_variable&gt;</code><br />
@@ -96,25 +96,138 @@ Include dependency graph for test_event_bus.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/df6/test__event__bus_8cpp__incl.png" border="0" usemap="#atests_2test__event__bus_8cpp" alt=""/></div>
 <map name="atests_2test__event__bus_8cpp" id="atests_2test__event__bus_8cpp">
-<area shape="rect" title="Test for event&#45;driven communication system." alt="" coords="788,5,972,31"/>
+<area shape="rect" title="Test for event&#45;driven communication system." alt="" coords="1527,5,1711,31"/>
 <area shape="rect" title=" " alt="" coords="5,86,109,111"/>
-<area shape="poly" title=" " alt="" coords="788,23,656,27,490,37,306,54,122,81,105,85,104,80,121,76,305,49,489,32,656,22,787,18"/>
-<area shape="rect" title=" " alt="" coords="133,79,339,119"/>
-<area shape="poly" title=" " alt="" coords="788,31,592,52,353,81,352,76,591,46,787,26"/>
-<area shape="rect" title=" " alt="" coords="363,79,568,119"/>
-<area shape="poly" title=" " alt="" coords="820,33,578,79,577,74,819,28"/>
-<area shape="rect" title=" " alt="" coords="592,79,768,119"/>
-<area shape="poly" title=" " alt="" coords="852,33,742,76,740,71,850,28"/>
-<area shape="rect" title=" " alt="" coords="792,79,968,119"/>
-<area shape="poly" title=" " alt="" coords="883,31,883,65,877,65,877,31"/>
-<area shape="rect" title=" " alt="" coords="992,86,1059,111"/>
-<area shape="poly" title=" " alt="" coords="903,28,993,77,991,82,900,33"/>
-<area shape="rect" title=" " alt="" coords="1083,86,1149,111"/>
-<area shape="poly" title=" " alt="" coords="921,28,1072,76,1077,78,1076,83,1070,81,919,33"/>
-<area shape="rect" title=" " alt="" coords="1174,86,1317,111"/>
-<area shape="poly" title=" " alt="" coords="936,28,1162,76,1182,80,1181,86,1161,81,934,33"/>
-<area shape="rect" title=" " alt="" coords="1341,86,1405,111"/>
-<area shape="poly" title=" " alt="" coords="972,22,1140,39,1236,55,1330,76,1338,78,1336,84,1329,81,1235,60,1140,44,972,27"/>
+<area shape="poly" title=" " alt="" coords="1526,23,1227,28,823,38,422,56,255,67,128,81,108,85,107,80,128,76,254,62,421,50,823,33,1227,23,1526,18"/>
+<area shape="rect" href="../../d8/d46/logger__system__adapter_8h.html" title=" " alt="" coords="1028,79,1233,119"/>
+<area shape="poly" title=" " alt="" coords="1548,33,1248,81,1247,76,1547,28"/>
+<area shape="rect" title=" " alt="" coords="3303,343,3369,368"/>
+<area shape="poly" title=" " alt="" coords="1711,20,2081,38,2581,68,2828,88,3046,110,3212,136,3270,150,3308,164,3335,182,3353,201,3366,223,3377,254,3381,275,3377,295,3369,316,3357,333,3353,330,3364,313,3372,294,3376,275,3372,255,3361,226,3349,204,3332,186,3305,169,3269,155,3211,141,3045,116,2828,93,2581,73,2081,43,1711,26"/>
+<area shape="rect" title=" " alt="" coords="925,416,992,441"/>
+<area shape="poly" title=" " alt="" coords="1526,25,1209,38,795,64,594,83,421,107,349,121,291,135,248,151,223,168,213,188,218,207,235,227,264,246,303,266,350,285,463,321,590,353,715,380,912,417,911,422,714,386,588,358,462,326,348,290,301,271,261,251,231,231,213,209,208,187,219,165,246,147,289,130,348,115,420,102,594,78,795,59,1209,32,1526,19"/>
+<area shape="rect" title=" " alt="" coords="2208,262,2272,287"/>
+<area shape="poly" title=" " alt="" coords="1711,25,1850,42,2008,70,2084,89,2150,111,2204,136,2224,150,2239,165,2250,185,2254,207,2250,249,2244,249,2249,208,2245,187,2235,168,2221,154,2201,140,2148,116,2082,94,2007,76,1849,48,1710,30"/>
+<area shape="rect" href="../../dd/d6d/event__bus_8h.html" title="Lightweight event bus implementation for monitoring system." alt="" coords="2398,174,2543,199"/>
+<area shape="poly" title=" " alt="" coords="1711,19,1857,25,2029,36,2191,52,2257,63,2308,76,2349,94,2388,117,2449,163,2446,167,2385,122,2347,99,2306,81,2256,68,2190,58,2029,41,1857,30,1711,24"/>
+<area shape="rect" title=" " alt="" coords="3155,262,3298,287"/>
+<area shape="poly" title=" " alt="" coords="1711,20,2003,37,2184,53,2364,76,2603,119,2834,170,3034,219,3173,256,3172,261,3032,224,2833,175,2601,124,2364,81,2183,58,2003,42,1711,25"/>
+<area shape="rect" href="../../de/d0f/event__types_8h.html" title="Common event type definitions for monitoring system." alt="" coords="982,174,1141,199"/>
+<area shape="poly" title=" " alt="" coords="1581,33,1113,173,1112,168,1580,28"/>
+<area shape="rect" href="../../d9/d7a/thread__system__adapter_8h.html" title=" " alt="" coords="1516,79,1721,119"/>
+<area shape="poly" title=" " alt="" coords="1621,31,1621,65,1616,65,1616,31"/>
+<area shape="poly" title=" " alt="" coords="1234,103,1504,116,1800,128,2030,134,2261,144,2556,164,2675,166,2780,158,2964,135,3049,134,3091,139,3134,148,3177,164,3220,186,3266,215,3313,253,3326,269,3334,289,3340,328,3334,329,3329,290,3321,272,3309,257,3262,220,3218,190,3174,169,3132,154,3090,144,3049,139,2964,140,2780,163,2675,172,2556,169,2260,149,2030,140,1800,133,1504,121,1234,108"/>
+<area shape="poly" title=" " alt="" coords="1028,105,942,116,895,127,849,142,805,162,764,187,728,218,700,256,692,272,690,287,692,301,698,314,720,339,752,361,791,379,834,394,912,415,911,421,832,399,789,384,749,365,716,343,693,317,687,303,685,287,687,271,695,253,724,214,761,182,802,157,847,137,894,122,941,111,1028,99"/>
+<area shape="rect" title=" " alt="" coords="2228,343,2305,368"/>
+<area shape="poly" title=" " alt="" coords="1234,104,1395,120,1603,148,1832,191,1948,219,2060,252,2158,293,2237,334,2234,338,2156,297,2058,257,1946,224,1831,196,1602,153,1395,125,1233,110"/>
+<area shape="rect" title=" " alt="" coords="761,497,836,522"/>
+<area shape="poly" title=" " alt="" coords="1028,106,877,113,710,126,568,144,520,156,495,169,479,191,471,215,470,238,476,262,487,285,504,309,548,354,603,396,661,434,762,488,760,493,658,438,600,401,545,358,500,312,483,288,471,263,465,238,466,214,474,189,492,165,518,151,567,139,709,120,877,108,1028,101"/>
+<area shape="rect" title=" " alt="" coords="796,577,855,603"/>
+<area shape="poly" title=" " alt="" coords="1028,103,815,108,563,118,444,126,341,138,265,152,239,160,223,169,204,191,198,214,200,273,200,430,205,451,219,469,241,487,270,502,346,529,437,549,535,564,631,574,783,584,782,590,631,579,535,569,436,554,344,534,268,507,238,491,215,473,200,453,195,430,195,273,193,213,200,189,220,165,237,155,263,147,341,132,443,121,562,113,815,102,1028,98"/>
+<area shape="poly" title=" " alt="" coords="1234,103,1745,132,1985,150,2105,164,2141,182,2173,205,2223,250,2219,254,2170,209,2138,187,2103,169,1985,155,1744,138,1233,108"/>
+<area shape="rect" title=" " alt="" coords="1627,416,1690,441"/>
+<area shape="poly" title=" " alt="" coords="1163,116,1527,340,1631,406,1628,411,1524,345,1160,121"/>
+<area shape="poly" title=" " alt="" coords="1234,103,2206,164,2384,176,2384,182,2205,169,1234,109"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="2111,416,2270,441"/>
+<area shape="poly" title=" " alt="" coords="1234,103,1504,116,1720,123,1903,124,2213,122,2363,123,2524,128,2706,141,2920,164,2986,169,3045,171,3145,172,3192,178,3239,192,3288,216,3342,253,3371,279,3393,308,3398,323,3399,339,3394,355,3383,370,3367,378,3335,384,3233,396,2921,413,2565,424,2283,429,2283,423,2565,418,2921,408,3232,391,3334,379,3365,373,3380,366,3390,352,3394,338,3393,324,3388,310,3367,283,3338,257,3285,220,3237,197,3191,183,3145,178,3044,176,2986,175,2920,169,2705,147,2523,134,2363,128,2213,127,1903,129,1720,128,1504,121,1234,108"/>
+<area shape="poly" title=" " alt="" coords="1117,121,1081,165,1077,161,1113,117"/>
+<area shape="rect" href="../../dc/d0b/metric__types__adapter_8h.html" title="Adapter for metric types to support interface definitions." alt="" coords="710,255,855,295"/>
+<area shape="poly" title=" " alt="" coords="1054,121,990,142,927,169,866,207,815,248,812,243,863,203,924,164,988,137,1052,116"/>
+<area shape="rect" title=" " alt="" coords="234,167,433,207"/>
+<area shape="poly" title=" " alt="" coords="1028,111,766,134,451,169,447,170,446,165,450,164,766,129,1028,105"/>
+<area shape="rect" title=" " alt="" coords="506,167,705,207"/>
+<area shape="poly" title=" " alt="" coords="1028,119,718,170,718,164,1027,114"/>
+<area shape="poly" title=" " alt="" coords="2544,185,2628,189,2730,200,2840,220,2895,234,2948,252,2966,262,2978,272,2990,283,3006,292,3081,317,3159,334,3231,344,3289,349,3289,354,3230,349,3158,339,3080,322,3004,297,2986,287,2974,276,2963,266,2946,257,2893,239,2839,225,2730,205,2627,195,2543,191"/>
+<area shape="poly" title=" " alt="" coords="2398,192,2114,203,1923,213,1719,228,1515,248,1326,274,1166,306,1101,325,1049,345,1028,358,1008,374,977,407,973,403,1005,370,1025,353,1047,340,1100,320,1165,301,1325,268,1514,243,1718,223,1923,208,2113,198,2398,187"/>
+<area shape="poly" title=" " alt="" coords="2458,201,2293,336,2290,332,2455,197"/>
+<area shape="poly" title=" " alt="" coords="2440,202,2285,260,2283,255,2439,197"/>
+<area shape="poly" title=" " alt="" coords="2510,197,2584,224,2625,243,2663,264,2693,287,2713,313,2718,327,2718,341,2713,356,2702,370,2686,377,2656,382,2560,392,2279,407,1847,419,1704,427,1704,422,1847,413,2279,401,2559,387,2656,377,2685,372,2698,366,2708,353,2712,340,2713,328,2709,316,2690,291,2660,268,2622,247,2582,229,2508,202"/>
+<area shape="rect" title=" " alt="" coords="1859,416,1944,441"/>
+<area shape="poly" title=" " alt="" coords="2544,193,2602,202,2662,214,2714,231,2733,241,2746,253,2764,283,2771,312,2765,341,2745,370,2645,381,2419,397,1958,427,1958,421,2419,392,2644,375,2743,366,2760,339,2766,312,2759,285,2742,256,2730,246,2711,236,2661,220,2602,207,2543,198"/>
+<area shape="rect" title=" " alt="" coords="2330,343,2377,368"/>
+<area shape="poly" title=" " alt="" coords="2465,201,2372,333,2367,330,2460,198"/>
+<area shape="poly" title=" " alt="" coords="2544,190,2806,212,2971,230,3136,252,3163,257,3162,262,3136,257,2970,235,2805,217,2543,195"/>
+<area shape="rect" title=" " alt="" coords="2432,577,2499,603"/>
+<area shape="poly" title=" " alt="" coords="2515,197,2551,204,2605,208,2673,209,2832,206,2912,207,2986,214,3048,228,3073,239,3094,253,3113,275,3120,298,3120,354,3120,430,3115,453,3099,474,3076,493,3045,509,2966,536,2872,556,2770,571,2670,581,2513,590,2512,585,2670,575,2769,565,2871,551,2965,530,3043,504,3073,488,3096,470,3110,451,3115,430,3115,354,3115,299,3108,278,3090,257,3071,244,3046,233,2985,219,2912,213,2832,211,2673,214,2604,214,2550,209,2514,202"/>
+<area shape="rect" title=" " alt="" coords="2401,343,2487,368"/>
+<area shape="poly" title=" " alt="" coords="2471,200,2451,329,2445,328,2466,199"/>
+<area shape="rect" title=" " alt="" coords="2512,343,2576,368"/>
+<area shape="poly" title=" " alt="" coords="2478,198,2536,329,2531,331,2473,200"/>
+<area shape="rect" title=" " alt="" coords="3017,262,3079,287"/>
+<area shape="poly" title=" " alt="" coords="2544,189,2750,209,2874,227,2998,252,3008,255,3007,260,2997,257,2873,232,2749,214,2543,195"/>
+<area shape="rect" title=" " alt="" coords="2601,343,2687,368"/>
+<area shape="poly" title=" " alt="" coords="2484,197,2624,331,2620,335,2481,201"/>
+<area shape="rect" title=" " alt="" coords="1479,416,1603,441"/>
+<area shape="poly" title=" " alt="" coords="2398,189,2253,194,2161,202,2061,216,1956,235,1850,263,1747,299,1649,345,1603,376,1565,408,1562,404,1600,372,1647,340,1745,294,1848,257,1955,230,2060,210,2160,197,2252,189,2398,184"/>
+<area shape="rect" href="../../dd/d70/event__bus__interface_8h.html" title="Event bus interface for decoupled component communication." alt="" coords="1907,255,2047,295"/>
+<area shape="poly" title=" " alt="" coords="2405,202,2061,262,2060,256,2404,197"/>
+<area shape="poly" title=" " alt="" coords="2544,190,2615,197,2690,209,2755,227,2780,239,2797,253,2815,283,2822,312,2816,341,2796,370,2771,383,2724,394,2587,411,2427,422,2284,428,2284,422,2427,416,2587,406,2723,389,2769,378,2793,366,2811,339,2817,312,2810,285,2793,256,2777,244,2753,232,2689,215,2614,203,2543,195"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="2049,497,2159,522"/>
+<area shape="poly" title=" " alt="" coords="2518,197,2551,204,2613,210,2695,215,2774,226,2805,237,2826,253,2833,275,2835,309,2833,345,2824,369,2787,407,2752,437,2716,459,2680,474,2644,484,2607,489,2531,490,2366,476,2273,477,2223,482,2171,492,2156,496,2155,490,2170,487,2223,477,2273,471,2366,471,2532,485,2606,484,2642,479,2678,469,2713,454,2748,432,2784,403,2819,367,2827,344,2830,309,2828,276,2822,256,2802,242,2772,232,2695,220,2613,215,2550,209,2517,202"/>
+<area shape="poly" title=" " alt="" coords="2048,280,2196,292,2843,329,3289,349,3289,355,2843,335,2196,297,2047,285"/>
+<area shape="poly" title=" " alt="" coords="1907,280,1728,286,1497,297,1272,317,1179,330,1110,345,1075,358,1042,375,986,410,984,406,1039,371,1073,354,1109,340,1179,324,1271,311,1497,292,1728,281,1907,275"/>
+<area shape="poly" title=" " alt="" coords="2047,292,2215,337,2214,343,2046,297"/>
+<area shape="poly" title=" " alt="" coords="1907,279,1735,283,1517,294,1305,313,1219,328,1154,345,1103,378,1017,442,852,571,848,567,1013,438,1100,373,1152,340,1217,322,1304,308,1516,289,1735,278,1907,274"/>
+<area shape="poly" title=" " alt="" coords="1908,289,1828,310,1786,325,1747,345,1708,375,1678,407,1674,403,1705,371,1744,340,1784,321,1826,305,1907,284"/>
+<area shape="poly" title=" " alt="" coords="2048,285,2170,307,2317,340,2316,345,2168,312,2047,290"/>
+<area shape="poly" title=" " alt="" coords="2048,284,2388,340,2387,345,2047,289"/>
+<area shape="poly" title=" " alt="" coords="2048,279,2247,301,2371,318,2499,340,2498,345,2370,324,2246,307,2047,285"/>
+<area shape="poly" title=" " alt="" coords="2048,279,2283,301,2588,340,2587,345,2283,307,2047,284"/>
+<area shape="poly" title=" " alt="" coords="1908,292,1813,313,1710,345,1636,378,1574,411,1571,407,1633,373,1708,340,1812,308,1907,286"/>
+<area shape="rect" title=" " alt="" coords="2073,343,2153,368"/>
+<area shape="poly" title=" " alt="" coords="2011,292,2083,333,2080,338,2009,297"/>
+<area shape="rect" title=" " alt="" coords="1758,343,1850,368"/>
+<area shape="poly" title=" " alt="" coords="1937,297,1843,339,1841,334,1935,292"/>
+<area shape="poly" title=" " alt="" coords="2048,291,2118,314,2148,327,2167,341,2185,371,2192,402,2187,403,2180,373,2163,344,2145,332,2116,319,2047,296"/>
+<area shape="rect" href="../../d5/daa/feature__flags_8h.html" title="Unified feature flags header for monitoring_system." alt="" coords="1874,343,2049,368"/>
+<area shape="poly" title=" " alt="" coords="1976,295,1969,330,1964,329,1971,294"/>
+<area shape="poly" title=" " alt="" coords="2111,437,850,508,850,502,2111,432"/>
+<area shape="poly" title=" " alt="" coords="2111,442,869,586,868,581,2111,437"/>
+<area shape="poly" title=" " alt="" coords="2180,443,2129,489,2125,485,2176,440"/>
+<area shape="rect" title=" " alt="" coords="2183,489,2371,529"/>
+<area shape="poly" title=" " alt="" coords="2205,440,2248,478,2244,482,2202,443"/>
+<area shape="poly" title=" " alt="" coords="2049,517,869,589,869,583,2048,511"/>
+<area shape="poly" title=" " alt="" coords="2143,519,2171,527,2306,556,2419,578,2418,583,2305,561,2170,532,2142,525"/>
+<area shape="poly" title=" " alt="" coords="1052,201,1004,259,979,299,960,343,956,373,957,402,952,402,950,373,955,342,974,297,1000,256,1048,198"/>
+<area shape="poly" title=" " alt="" coords="1045,202,1011,225,977,257,936,305,910,346,885,389,850,443,818,487,814,484,846,440,880,387,905,343,932,302,973,253,1008,221,1041,197"/>
+<area shape="poly" title=" " alt="" coords="982,194,902,200,817,212,744,230,717,242,699,257,680,271,657,278,638,284,626,296,624,319,638,361,673,429,734,528,757,552,785,569,782,574,753,556,730,531,669,432,633,364,619,320,621,293,635,280,656,273,677,266,696,253,714,238,742,225,816,206,902,195,982,188"/>
+<area shape="poly" title=" " alt="" coords="1101,197,1179,221,1269,252,1471,337,1624,408,1622,413,1469,342,1267,257,1178,226,1100,202"/>
+<area shape="poly" title=" " alt="" coords="1141,186,1342,191,1625,201,1952,221,2284,252,2330,255,2377,254,2471,245,2562,231,2646,221,2719,220,2751,226,2777,237,2799,254,2816,279,2826,312,2829,354,2829,430,2827,455,2820,477,2808,496,2793,514,2754,542,2707,562,2655,576,2603,585,2512,591,2512,586,2602,579,2654,571,2705,557,2752,537,2789,510,2804,493,2815,475,2822,454,2824,430,2824,354,2821,313,2811,282,2795,258,2775,241,2749,231,2719,225,2647,226,2563,237,2472,251,2377,260,2330,261,2284,257,1952,226,1625,206,1342,196,1141,192"/>
+<area shape="poly" title=" " alt="" coords="1088,197,1218,257,1389,340,1511,407,1509,412,1387,345,1216,262,1086,202"/>
+<area shape="poly" title=" " alt="" coords="1141,193,1893,263,1893,268,1141,198"/>
+<area shape="rect" title=" " alt="" coords="769,416,837,441"/>
+<area shape="poly" title=" " alt="" coords="1029,202,979,224,927,257,891,292,859,333,817,405,812,402,855,330,887,289,924,253,976,219,1027,197"/>
+<area shape="poly" title=" " alt="" coords="1025,202,858,253,856,248,1023,197"/>
+<area shape="poly" title=" " alt="" coords="776,296,758,340,742,399,737,432,736,465,741,497,752,528,769,551,791,568,787,572,765,554,747,531,736,499,731,465,732,431,736,398,753,338,771,294"/>
+<area shape="poly" title=" " alt="" coords="856,275,953,281,1075,292,1208,311,1341,340,1370,352,1398,366,1502,408,1500,413,1396,370,1368,356,1339,345,1208,316,1074,297,953,286,856,281"/>
+<area shape="poly" title=" " alt="" coords="788,295,802,402,797,403,783,296"/>
+<area shape="rect" href="../../df/d4b/metric__types_8h.html" title="Common metric type definitions for efficient storage." alt="" coords="1165,343,1328,368"/>
+<area shape="poly" title=" " alt="" coords="856,286,1166,338,1165,343,855,291"/>
+<area shape="poly" title=" " alt="" coords="1201,371,1006,418,1005,413,1200,365"/>
+<area shape="poly" title=" " alt="" coords="1198,371,1151,389,1128,402,1107,418,1095,432,1088,446,1080,474,1072,503,1063,517,1050,531,1006,558,957,575,910,585,868,590,868,585,909,580,956,570,1004,553,1046,527,1059,514,1067,501,1075,473,1083,444,1091,429,1103,414,1125,397,1149,384,1196,366"/>
+<area shape="poly" title=" " alt="" coords="1329,365,1458,385,1614,413,1613,419,1458,390,1328,370"/>
+<area shape="poly" title=" " alt="" coords="1329,363,1845,419,1845,424,1328,368"/>
+<area shape="poly" title=" " alt="" coords="1271,366,1365,414,1387,428,1410,439,1555,481,1704,514,1854,540,1998,558,2250,579,2418,586,2418,591,2250,585,1997,564,1853,545,1703,520,1553,486,1408,444,1385,432,1363,418,1269,371"/>
+<area shape="poly" title=" " alt="" coords="1295,365,1481,410,1480,415,1293,371"/>
+<area shape="poly" title=" " alt="" coords="1329,360,2098,418,2098,423,1328,365"/>
+<area shape="poly" title=" " alt="" coords="1281,366,1410,414,1439,427,1467,439,1545,457,1624,471,1782,491,1925,501,2035,505,2035,510,1924,507,1782,497,1623,477,1544,462,1466,444,1437,432,1408,418,1279,371"/>
+<area shape="poly" title=" " alt="" coords="1176,371,851,422,850,417,1175,365"/>
+<area shape="rect" title=" " alt="" coords="1201,416,1263,441"/>
+<area shape="poly" title=" " alt="" coords="1247,369,1240,403,1235,402,1242,368"/>
+<area shape="rect" title=" " alt="" coords="1287,416,1353,441"/>
+<area shape="poly" title=" " alt="" coords="1261,366,1300,404,1296,408,1257,370"/>
+<area shape="rect" title=" " alt="" coords="1117,416,1176,441"/>
+<area shape="poly" title=" " alt="" coords="1232,370,1176,410,1173,406,1229,366"/>
+<area shape="poly" title=" " alt="" coords="1722,98,2083,101,2561,110,2795,119,3002,130,3161,145,3217,154,3254,164,3290,180,3317,197,3338,220,3357,254,3362,273,3362,294,3351,331,3346,329,3356,293,3357,274,3352,256,3334,223,3314,201,3288,184,3252,169,3216,159,3160,150,3001,135,2795,124,2561,116,2083,106,1722,103"/>
+<area shape="poly" title=" " alt="" coords="1517,121,1403,149,1269,194,1200,224,1133,258,1069,299,1010,345,986,374,970,404,965,402,982,371,1006,341,1065,294,1130,254,1198,219,1267,189,1401,144,1515,116"/>
+<area shape="poly" title=" " alt="" coords="1722,102,1825,109,1936,122,2036,139,2076,151,2105,164,2125,178,2139,193,2157,224,2172,257,2198,293,2242,332,2238,336,2194,296,2168,259,2152,226,2135,196,2121,182,2103,169,2074,156,2035,145,1935,127,1824,115,1721,107"/>
+<area shape="poly" title=" " alt="" coords="1516,108,1191,132,1027,149,909,169,699,257,687,286,685,317,691,350,704,382,742,441,780,485,775,489,737,444,699,384,686,351,679,318,681,285,695,253,907,164,1026,144,1191,127,1516,103"/>
+<area shape="poly" title=" " alt="" coords="1516,109,1112,138,921,154,811,169,714,210,620,257,552,297,540,306,531,319,525,334,523,354,523,430,525,450,530,469,551,501,582,526,620,546,663,561,706,572,782,583,781,588,705,577,661,566,618,551,579,531,547,504,525,471,519,451,517,430,517,354,520,333,526,316,536,303,549,292,617,252,712,205,810,164,920,149,1112,132,1516,104"/>
+<area shape="poly" title=" " alt="" coords="1722,96,1850,99,1992,108,2060,117,2121,129,2171,144,2207,165,2223,183,2233,205,2242,248,2237,249,2228,206,2218,186,2204,169,2169,149,2120,134,2059,122,1992,113,1850,104,1722,101"/>
+<area shape="poly" title=" " alt="" coords="1624,119,1658,402,1653,403,1618,119"/>
+<area shape="poly" title=" " alt="" coords="1722,108,2385,174,2384,179,1721,113"/>
+<area shape="poly" title=" " alt="" coords="1722,98,2093,104,2586,116,3044,136,3209,149,3307,164,3357,178,3396,191,3429,214,3458,253,3474,285,3481,314,3477,342,3458,370,3440,378,3406,385,3296,397,2962,415,2582,425,2284,429,2284,424,2582,419,2962,409,3296,392,3405,380,3438,373,3454,366,3472,340,3476,314,3469,287,3454,256,3425,218,3394,196,3355,183,3306,169,3209,154,3043,141,2586,121,2093,110,1722,104"/>
+<area shape="poly" title=" " alt="" coords="1516,116,1160,169,1133,174,1132,169,1160,164,1515,111"/>
+<area shape="poly" title=" " alt="" coords="1516,107,1378,115,1221,127,1074,145,1015,156,970,169,954,177,942,187,915,209,837,251,834,246,912,204,939,183,951,173,968,164,1014,151,1073,140,1220,122,1378,109,1516,101"/>
 </map>
 </div>
 </div>
@@ -186,7 +299,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  345</span> </div>
 <div class="line"><span class="lineno">  346</span>    <span class="comment">// Subscribe to metric collection events</span></div>
 <div class="line"><span class="lineno">  347</span>    <span class="keyword">auto</span> token =</div>
-<div class="line"><span class="lineno">  348</span>        bus-&gt;subscribe_event&lt;metric_collection_event&gt;([&amp;](<span class="keyword">const</span> metric_collection_event&amp; event) {</div>
+<div class="line"><span class="lineno">  348</span>        bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../df/d19/classkcenon_1_1monitoring_1_1metric__collection__event.html">metric_collection_event</a>&gt;([&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../df/d19/classkcenon_1_1monitoring_1_1metric__collection__event.html">metric_collection_event</a>&amp; event) {</div>
 <div class="line"><span class="lineno">  349</span>            received_count.fetch_add(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(event.get_metric_count()));</div>
 <div class="line"><span class="lineno">  350</span>            cv.notify_all();</div>
 <div class="line"><span class="lineno">  351</span>        });</div>
@@ -202,9 +315,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  361</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; events_per_thread; ++i) {</div>
 <div class="line"><span class="lineno">  362</span>                std::vector&lt;metric&gt; metrics;</div>
 <div class="line"><span class="lineno">  363</span>                metrics.push_back(</div>
-<div class="line"><span class="lineno">  364</span>                    metric{<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0, {{<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;publisher&quot;</span>}}, metric_type::gauge});</div>
+<div class="line"><span class="lineno">  364</span>                    <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>{<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0, {{<span class="stringliteral">&quot;thread&quot;</span>, <span class="stringliteral">&quot;publisher&quot;</span>}}, metric_type::gauge});</div>
 <div class="line"><span class="lineno">  365</span> </div>
-<div class="line"><span class="lineno">  366</span>                metric_collection_event event(<span class="stringliteral">&quot;test_collector&quot;</span>, std::move(metrics));</div>
+<div class="line"><span class="lineno">  366</span>                <a class="code hl_class" href="../../df/d19/classkcenon_1_1monitoring_1_1metric__collection__event.html">metric_collection_event</a> event(<span class="stringliteral">&quot;test_collector&quot;</span>, std::move(metrics));</div>
 <div class="line"><span class="lineno">  367</span>                bus-&gt;publish_event(event);</div>
 <div class="line"><span class="lineno">  368</span> </div>
 <div class="line"><span class="lineno">  369</span>                <span class="comment">// Yield to allow other threads to run instead of sleeping</span></div>
@@ -231,6 +344,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  390</span>    <span class="comment">// Unsubscribe before local variables are destroyed</span></div>
 <div class="line"><span class="lineno">  391</span>    bus-&gt;unsubscribe_event(token.value());</div>
 <div class="line"><span class="lineno">  392</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1metric__collection__event_html"><div class="ttname"><a href="../../df/d19/classkcenon_1_1monitoring_1_1metric__collection__event.html">kcenon::monitoring::metric_collection_event</a></div><div class="ttdoc">Event containing collected metrics batch.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00315">event_types.h:315</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">kcenon::monitoring::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00078">metric_types_adapter.h:78</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -267,8 +382,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  163</span>    std::condition_variable cv;</div>
 <div class="line"><span class="lineno">  164</span> </div>
 <div class="line"><span class="lineno">  165</span>    <span class="comment">// Subscribe to configuration changes</span></div>
-<div class="line"><span class="lineno">  166</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;configuration_change_event&gt;(</div>
-<div class="line"><span class="lineno">  167</span>        [&amp;](<span class="keyword">const</span> configuration_change_event&amp; event) {</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html">configuration_change_event</a>&gt;(</div>
+<div class="line"><span class="lineno">  167</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html">configuration_change_event</a>&amp; event) {</div>
 <div class="line"><span class="lineno">  168</span>            {</div>
 <div class="line"><span class="lineno">  169</span>                std::lock_guard&lt;std::mutex&gt; lock(order_mutex);</div>
 <div class="line"><span class="lineno">  170</span>                <span class="keywordflow">if</span> (event.get_config_key() == <span class="stringliteral">&quot;high_priority&quot;</span>) {</div>
@@ -284,10 +399,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  180</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><span class="lineno">  181</span> </div>
 <div class="line"><span class="lineno">  182</span>    <span class="comment">// Publish events with different priorities</span></div>
-<div class="line"><span class="lineno">  183</span>    configuration_change_event high_priority(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;high_priority&quot;</span>,</div>
+<div class="line"><span class="lineno">  183</span>    <a class="code hl_class" href="../../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html">configuration_change_event</a> high_priority(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;high_priority&quot;</span>,</div>
 <div class="line"><span class="lineno">  184</span>                                             configuration_change_event::change_type::modified);</div>
 <div class="line"><span class="lineno">  185</span> </div>
-<div class="line"><span class="lineno">  186</span>    configuration_change_event normal_priority(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;normal_priority&quot;</span>,</div>
+<div class="line"><span class="lineno">  186</span>    <a class="code hl_class" href="../../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html">configuration_change_event</a> normal_priority(<span class="stringliteral">&quot;test&quot;</span>, <span class="stringliteral">&quot;normal_priority&quot;</span>,</div>
 <div class="line"><span class="lineno">  187</span>                                               configuration_change_event::change_type::modified);</div>
 <div class="line"><span class="lineno">  188</span> </div>
 <div class="line"><span class="lineno">  189</span>    <span class="comment">// Stop bus to queue events</span></div>
@@ -319,6 +434,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  215</span>    <span class="comment">// Unsubscribe before local variables are destroyed</span></div>
 <div class="line"><span class="lineno">  216</span>    bus-&gt;unsubscribe_event(token.value());</div>
 <div class="line"><span class="lineno">  217</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1configuration__change__event_html"><div class="ttname"><a href="../../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html">kcenon::monitoring::configuration_change_event</a></div><div class="ttdoc">Event fired when configuration changes.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00236">event_types.h:236</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -350,15 +466,15 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../df/de1/test__event__bus_8cpp_source.html#l00290">290</a> of file <a class="el" href="../../df/de1/test__event__bus_8cpp_source.html">test_event_bus.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  290</span>                                          {</div>
-<div class="line"><span class="lineno">  291</span>    logger_system_adapter adapter(bus);</div>
+<div class="line"><span class="lineno">  291</span>    <a class="code hl_class" href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html">logger_system_adapter</a> adapter(bus);</div>
 <div class="line"><span class="lineno">  292</span> </div>
 <div class="line"><span class="lineno">  293</span>    <span class="comment">// Check availability</span></div>
 <div class="line"><span class="lineno">  294</span>    EXPECT_FALSE(adapter.is_logger_system_available());</div>
 <div class="line"><span class="lineno">  295</span> </div>
 <div class="line"><span class="lineno">  296</span>    <span class="comment">// Try to collect metrics</span></div>
-<div class="line"><span class="lineno">  297</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
-<div class="line"><span class="lineno">  298</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  299</span>    EXPECT_TRUE(result.value().empty());</div>
+<div class="line"><span class="lineno">  297</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = adapter.collect_metrics();</div>
+<div class="line"><span class="lineno">  298</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><span class="lineno">  299</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().empty());</div>
 <div class="line"><span class="lineno">  300</span> </div>
 <div class="line"><span class="lineno">  301</span>    <span class="comment">// Register a logger (won&#39;t do anything when system not available)</span></div>
 <div class="line"><span class="lineno">  302</span>    adapter.register_logger(<span class="stringliteral">&quot;test_logger&quot;</span>);</div>
@@ -366,7 +482,29 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  304</span>    <span class="comment">// Get current log rate</span></div>
 <div class="line"><span class="lineno">  305</span>    EXPECT_EQ(adapter.get_current_log_rate(), 0.0);</div>
 <div class="line"><span class="lineno">  306</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1logger__system__adapter_html"><div class="ttname"><a href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html">kcenon::monitoring::logger_system_adapter</a></div><div class="ttdoc">Logger system adapter using dependency injection (Phase 2.3.3)</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d46/logger__system__adapter_8h_source.html#l00042">logger_system_adapter.h:42</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../df/de1/test__event__bus_8cpp_adfac69ff77f740115918f3252668d5f8_cgraph.png" border="0" usemap="#adf/de1/test__event__bus_8cpp_adfac69ff77f740115918f3252668d5f8_cgraph" alt=""/></div>
+<map name="adf/de1/test__event__bus_8cpp_adfac69ff77f740115918f3252668d5f8_cgraph" id="adf/de1/test__event__bus_8cpp_adfac69ff77f740115918f3252668d5f8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,139,75,164"/>
+<area shape="rect" href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html#a79d80a72316ff96e03773c4308854296" title="Collect metrics from logger if available (Phase 2.3.3)" alt="" coords="137,5,319,60"/>
+<area shape="poly" title=" " alt="" coords="50,136,80,103,121,69,129,64,132,69,124,74,83,107,54,140"/>
+<area shape="rect" href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html#aa0c8f7c341032441cb31e6d74059883b" title="Get current log rate (if logger supports metrics)" alt="" coords="137,84,319,139"/>
+<area shape="poly" title=" " alt="" coords="74,141,123,131,124,136,75,147"/>
+<area shape="rect" href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html#a5cc0ff17d9460aeaa0675e1cbba73ebb" title="Check if logger is available." alt="" coords="123,163,333,217"/>
+<area shape="poly" title=" " alt="" coords="75,156,110,163,109,168,74,161"/>
+<area shape="rect" href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html#a2da6c700e30190d42fe683469d4a1797" title="Register a logger instance by name." alt="" coords="137,241,319,296"/>
+<area shape="poly" title=" " alt="" coords="54,163,84,194,124,226,135,233,132,237,121,231,80,198,50,166"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="387,13,535,53"/>
+<area shape="poly" title=" " alt="" coords="320,30,373,30,373,35,320,35"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="381,249,540,289"/>
+<area shape="poly" title=" " alt="" coords="320,266,368,266,368,271,320,271"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a0b36e025a5a670348b2bc28f469f946e" name="a0b36e025a5a670348b2bc28f469f946e"></a>
@@ -404,13 +542,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  119</span> </div>
 <div class="line"><span class="lineno">  120</span>    <span class="comment">// Subscribe twice to the same event type</span></div>
 <div class="line"><span class="lineno">  121</span>    <span class="keyword">auto</span> token1 =</div>
-<div class="line"><span class="lineno">  122</span>        bus-&gt;subscribe_event&lt;system_resource_event&gt;([&amp;](<span class="keyword">const</span> system_resource_event&amp; <span class="comment">/*event*/</span>) {</div>
+<div class="line"><span class="lineno">  122</span>        bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html">system_resource_event</a>&gt;([&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html">system_resource_event</a>&amp; <span class="comment">/*event*/</span>) {</div>
 <div class="line"><span class="lineno">  123</span>            subscriber1_count++;</div>
 <div class="line"><span class="lineno">  124</span>            cv.notify_all();</div>
 <div class="line"><span class="lineno">  125</span>        });</div>
 <div class="line"><span class="lineno">  126</span> </div>
 <div class="line"><span class="lineno">  127</span>    <span class="keyword">auto</span> token2 =</div>
-<div class="line"><span class="lineno">  128</span>        bus-&gt;subscribe_event&lt;system_resource_event&gt;([&amp;](<span class="keyword">const</span> system_resource_event&amp; <span class="comment">/*event*/</span>) {</div>
+<div class="line"><span class="lineno">  128</span>        bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html">system_resource_event</a>&gt;([&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html">system_resource_event</a>&amp; <span class="comment">/*event*/</span>) {</div>
 <div class="line"><span class="lineno">  129</span>            subscriber2_count++;</div>
 <div class="line"><span class="lineno">  130</span>            cv.notify_all();</div>
 <div class="line"><span class="lineno">  131</span>        });</div>
@@ -419,9 +557,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  134</span>    ASSERT_TRUE(token2.is_ok());</div>
 <div class="line"><span class="lineno">  135</span> </div>
 <div class="line"><span class="lineno">  136</span>    <span class="comment">// Publish event</span></div>
-<div class="line"><span class="lineno">  137</span>    system_resource_event::resource_stats stats;</div>
-<div class="line"><span class="lineno">  138</span>    stats.cpu_usage_percent = 75.5;</div>
-<div class="line"><span class="lineno">  139</span>    system_resource_event event(stats);</div>
+<div class="line"><span class="lineno">  137</span>    <a class="code hl_struct" href="../../d0/de7/structkcenon_1_1monitoring_1_1system__resource__event_1_1resource__stats.html">system_resource_event::resource_stats</a> stats;</div>
+<div class="line"><span class="lineno">  138</span>    stats.<a class="code hl_variable" href="../../d0/de7/structkcenon_1_1monitoring_1_1system__resource__event_1_1resource__stats.html#a7226b695d4b36d15f7e729cf1936be58">cpu_usage_percent</a> = 75.5;</div>
+<div class="line"><span class="lineno">  139</span>    <a class="code hl_class" href="../../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html">system_resource_event</a> event(stats);</div>
 <div class="line"><span class="lineno">  140</span> </div>
 <div class="line"><span class="lineno">  141</span>    bus-&gt;publish_event(event);</div>
 <div class="line"><span class="lineno">  142</span> </div>
@@ -440,6 +578,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  155</span>    bus-&gt;unsubscribe_event(token1.value());</div>
 <div class="line"><span class="lineno">  156</span>    bus-&gt;unsubscribe_event(token2.value());</div>
 <div class="line"><span class="lineno">  157</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1system__resource__event_html"><div class="ttname"><a href="../../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html">kcenon::monitoring::system_resource_event</a></div><div class="ttdoc">Event containing system resource metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00135">event_types.h:135</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__resource__event_1_1resource__stats_html"><div class="ttname"><a href="../../d0/de7/structkcenon_1_1monitoring_1_1system__resource__event_1_1resource__stats.html">kcenon::monitoring::system_resource_event::resource_stats</a></div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00137">event_types.h:137</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__resource__event_1_1resource__stats_html_a7226b695d4b36d15f7e729cf1936be58"><div class="ttname"><a href="../../d0/de7/structkcenon_1_1monitoring_1_1system__resource__event_1_1resource__stats.html#a7226b695d4b36d15f7e729cf1936be58">kcenon::monitoring::system_resource_event::resource_stats::cpu_usage_percent</a></div><div class="ttdeci">double cpu_usage_percent</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00138">event_types.h:138</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -478,7 +619,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   75</span> </div>
 <div class="line"><span class="lineno">   76</span>    <span class="comment">// Subscribe to performance alerts</span></div>
 <div class="line"><span class="lineno">   77</span>    <span class="keyword">auto</span> token =</div>
-<div class="line"><span class="lineno">   78</span>        bus-&gt;subscribe_event&lt;performance_alert_event&gt;([&amp;](<span class="keyword">const</span> performance_alert_event&amp; event) {</div>
+<div class="line"><span class="lineno">   78</span>        bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html">performance_alert_event</a>&gt;([&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html">performance_alert_event</a>&amp; event) {</div>
 <div class="line"><span class="lineno">   79</span>            {</div>
 <div class="line"><span class="lineno">   80</span>                std::lock_guard&lt;std::mutex&gt; lock(message_mutex);</div>
 <div class="line"><span class="lineno">   81</span>                received_message = <span class="keyword">event</span>.get_message();</div>
@@ -490,12 +631,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   87</span>    ASSERT_TRUE(token.is_ok());</div>
 <div class="line"><span class="lineno">   88</span> </div>
 <div class="line"><span class="lineno">   89</span>    <span class="comment">// Publish an event</span></div>
-<div class="line"><span class="lineno">   90</span>    performance_alert_event alert(performance_alert_event::alert_type::high_cpu_usage,</div>
+<div class="line"><span class="lineno">   90</span>    <a class="code hl_class" href="../../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html">performance_alert_event</a> alert(performance_alert_event::alert_type::high_cpu_usage,</div>
 <div class="line"><span class="lineno">   91</span>                                  performance_alert_event::alert_severity::warning,</div>
 <div class="line"><span class="lineno">   92</span>                                  <span class="stringliteral">&quot;test_component&quot;</span>, <span class="stringliteral">&quot;CPU usage is high&quot;</span>);</div>
 <div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>    <span class="keyword">auto</span> result = bus-&gt;publish_event(alert);</div>
-<div class="line"><span class="lineno">   95</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = bus-&gt;publish_event(alert);</div>
+<div class="line"><span class="lineno">   95</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">   96</span> </div>
 <div class="line"><span class="lineno">   97</span>    <span class="comment">// Wait for event processing with condition variable</span></div>
 <div class="line"><span class="lineno">   98</span>    {</div>
@@ -512,6 +653,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  109</span>    <span class="comment">// Unsubscribe before local variables (cv, mutex) are destroyed</span></div>
 <div class="line"><span class="lineno">  110</span>    bus-&gt;unsubscribe_event(token.value());</div>
 <div class="line"><span class="lineno">  111</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__alert__event_html"><div class="ttname"><a href="../../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html">kcenon::monitoring::performance_alert_event</a></div><div class="ttdoc">Event for performance-related alerts.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00187">event_types.h:187</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -549,7 +691,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  313</span> </div>
 <div class="line"><span class="lineno">  314</span>    <span class="comment">// Publish some events</span></div>
 <div class="line"><span class="lineno">  315</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><span class="lineno">  316</span>        component_lifecycle_event event(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
+<div class="line"><span class="lineno">  316</span>        <a class="code hl_class" href="../../df/d67/classkcenon_1_1monitoring_1_1component__lifecycle__event.html">component_lifecycle_event</a> event(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
 <div class="line"><span class="lineno">  317</span>                                        component_lifecycle_event::lifecycle_state::started,</div>
 <div class="line"><span class="lineno">  318</span>                                        component_lifecycle_event::lifecycle_state::running);</div>
 <div class="line"><span class="lineno">  319</span>        bus-&gt;publish_event(event);</div>
@@ -569,6 +711,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  333</span>    EXPECT_EQ(final_stats.total_published, 10);</div>
 <div class="line"><span class="lineno">  334</span>    EXPECT_GE(final_stats.total_processed, 0);  <span class="comment">// May vary due to async processing</span></div>
 <div class="line"><span class="lineno">  335</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1component__lifecycle__event_html"><div class="ttname"><a href="../../df/d67/classkcenon_1_1monitoring_1_1component__lifecycle__event.html">kcenon::monitoring::component_lifecycle_event</a></div><div class="ttdoc">Event for component lifecycle changes.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00274">event_types.h:274</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -600,7 +743,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../df/de1/test__event__bus_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../df/de1/test__event__bus_8cpp_source.html">test_event_bus.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  261</span>                                          {</div>
-<div class="line"><span class="lineno">  262</span>    thread_system_adapter adapter(bus);</div>
+<div class="line"><span class="lineno">  262</span>    <a class="code hl_class" href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html">thread_system_adapter</a> adapter(bus);</div>
 <div class="line"><span class="lineno">  263</span> </div>
 <div class="line"><span class="lineno">  264</span>    <span class="comment">// Check availability - depends on compile-time header detection</span></div>
 <div class="line"><span class="lineno">  265</span><span class="preprocessor">#if MONITORING_THREAD_SYSTEM_AVAILABLE</span></div>
@@ -612,8 +755,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  271</span><span class="preprocessor">#endif</span></div>
 <div class="line"><span class="lineno">  272</span> </div>
 <div class="line"><span class="lineno">  273</span>    <span class="comment">// Try to collect metrics - should succeed regardless of availability</span></div>
-<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> result = adapter.collect_metrics();</div>
-<div class="line"><span class="lineno">  275</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = adapter.collect_metrics();</div>
+<div class="line"><span class="lineno">  275</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  276</span>    <span class="comment">// When no actual thread_system service is registered, result may be empty</span></div>
 <div class="line"><span class="lineno">  277</span> </div>
 <div class="line"><span class="lineno">  278</span>    <span class="comment">// Get supported metric types - compile-time determined</span></div>
@@ -626,7 +769,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  285</span>    EXPECT_TRUE(types.empty());  <span class="comment">// Empty when thread_system not available</span></div>
 <div class="line"><span class="lineno">  286</span><span class="preprocessor">#endif</span></div>
 <div class="line"><span class="lineno">  287</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1thread__system__adapter_html"><div class="ttname"><a href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html">kcenon::monitoring::thread_system_adapter</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7a/thread__system__adapter_8h_source.html#l00055">thread_system_adapter.h:55</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../df/de1/test__event__bus_8cpp_ae06a6cf280f4728f9cf3fcd13f974741_cgraph.png" border="0" usemap="#adf/de1/test__event__bus_8cpp_ae06a6cf280f4728f9cf3fcd13f974741_cgraph" alt=""/></div>
+<map name="adf/de1/test__event__bus_8cpp_ae06a6cf280f4728f9cf3fcd13f974741_cgraph" id="adf/de1/test__event__bus_8cpp_ae06a6cf280f4728f9cf3fcd13f974741_cgraph">
+<area shape="rect" title=" " alt="" coords="5,99,75,124"/>
+<area shape="rect" href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#ab2b33b59eeb93423e776740b6137a547" title=" " alt="" coords="137,5,321,60"/>
+<area shape="poly" title=" " alt="" coords="64,96,122,69,137,63,139,68,124,74,67,101"/>
+<area shape="rect" href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#a8aa2c942427cb0885343a30d4f89f898" title=" " alt="" coords="137,84,321,139"/>
+<area shape="poly" title=" " alt="" coords="75,109,123,109,123,114,75,114"/>
+<area shape="rect" href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#a9437d4ffcaf2fe7dcac480630e592c48" title=" " alt="" coords="123,163,335,217"/>
+<area shape="poly" title=" " alt="" coords="68,122,124,148,142,155,140,160,122,152,66,126"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="383,13,531,53"/>
+<area shape="poly" title=" " alt="" coords="321,30,369,30,369,35,321,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a7754778d4db28e5ffb0b6cf1fc6e561f" name="a7754778d4db28e5ffb0b6cf1fc6e561f"></a>
@@ -661,7 +821,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  222</span>    std::mutex mtx;</div>
 <div class="line"><span class="lineno">  223</span>    std::condition_variable cv;</div>
 <div class="line"><span class="lineno">  224</span> </div>
-<div class="line"><span class="lineno">  225</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;health_check_event&gt;([&amp;](<span class="keyword">const</span> health_check_event&amp; <span class="comment">/*event*/</span>) {</div>
+<div class="line"><span class="lineno">  225</span>    <span class="keyword">auto</span> token = bus-&gt;subscribe_event&lt;<a class="code hl_class" href="../../d2/d8d/classkcenon_1_1monitoring_1_1health__check__event.html">health_check_event</a>&gt;([&amp;](<span class="keyword">const</span> <a class="code hl_class" href="../../d2/d8d/classkcenon_1_1monitoring_1_1health__check__event.html">health_check_event</a>&amp; <span class="comment">/*event*/</span>) {</div>
 <div class="line"><span class="lineno">  226</span>        received_count++;</div>
 <div class="line"><span class="lineno">  227</span>        cv.notify_one();</div>
 <div class="line"><span class="lineno">  228</span>    });</div>
@@ -670,7 +830,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  231</span> </div>
 <div class="line"><span class="lineno">  232</span>    <span class="comment">// Publish first event</span></div>
 <div class="line"><span class="lineno">  233</span>    std::vector&lt;health_check_event::health_check_result&gt; results;</div>
-<div class="line"><span class="lineno">  234</span>    health_check_event event1(<span class="stringliteral">&quot;component1&quot;</span>, results);</div>
+<div class="line"><span class="lineno">  234</span>    <a class="code hl_class" href="../../d2/d8d/classkcenon_1_1monitoring_1_1health__check__event.html">health_check_event</a> event1(<span class="stringliteral">&quot;component1&quot;</span>, results);</div>
 <div class="line"><span class="lineno">  235</span>    bus-&gt;publish_event(event1);</div>
 <div class="line"><span class="lineno">  236</span> </div>
 <div class="line"><span class="lineno">  237</span>    <span class="comment">// Wait for first event with timeout</span></div>
@@ -684,7 +844,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  245</span>    bus-&gt;unsubscribe_event(token.value());</div>
 <div class="line"><span class="lineno">  246</span> </div>
 <div class="line"><span class="lineno">  247</span>    <span class="comment">// Publish second event</span></div>
-<div class="line"><span class="lineno">  248</span>    health_check_event event2(<span class="stringliteral">&quot;component2&quot;</span>, results);</div>
+<div class="line"><span class="lineno">  248</span>    <a class="code hl_class" href="../../d2/d8d/classkcenon_1_1monitoring_1_1health__check__event.html">health_check_event</a> event2(<span class="stringliteral">&quot;component2&quot;</span>, results);</div>
 <div class="line"><span class="lineno">  249</span>    bus-&gt;publish_event(event2);</div>
 <div class="line"><span class="lineno">  250</span> </div>
 <div class="line"><span class="lineno">  251</span>    <span class="comment">// After unsubscribe, we need a small wait to verify event is NOT received</span></div>
@@ -695,13 +855,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  256</span>    }</div>
 <div class="line"><span class="lineno">  257</span>    EXPECT_EQ(received_count.load(), 1);  <span class="comment">// Should still be 1</span></div>
 <div class="line"><span class="lineno">  258</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__check__event_html"><div class="ttname"><a href="../../d2/d8d/classkcenon_1_1monitoring_1_1health__check__event.html">kcenon::monitoring::health_check_event</a></div><div class="ttdoc">Event for health check results.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d0f/event__types_8h_source.html#l00338">event_types.h:338</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

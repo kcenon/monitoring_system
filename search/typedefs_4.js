@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tag_5fmap_0',['tag_map',['../d0/d0a/structmonitoring__system_1_1monitoring__data.html#aa860051c4325ac350a99b8e520ca790c',1,'monitoring_system::monitoring_data']]],
-  ['type_5fkey_1',['type_key',['../d7/d05/classmonitoring__system_1_1lightweight__container.html#a88ef9f7ed4a5790b5f5d2bc0f9f18faf',1,'monitoring_system::lightweight_container']]]
+  ['result_0',['result',['../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0',1,'kcenon::monitoring']]],
+  ['result_5fvoid_1',['result_void',['../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea',1,'kcenon::monitoring']]]
 ];

@@ -111,8 +111,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;kcenon/monitoring/core/thread_local_buffer.h&gt;</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;kcenon/monitoring/core/central_collector.h&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;<a class="code" href="../../d4/dc6/thread__local__buffer_8h.html">kcenon/monitoring/core/thread_local_buffer.h</a>&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/dec/central__collector_8h.html">kcenon/monitoring/core/central_collector.h</a>&gt;</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
@@ -133,23 +133,23 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">   52</a></span><a class="code hl_function" href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">TEST_F</a>(<a class="code hl_class" href="../../d6/dab/classLockFreeCollectorTest.html">LockFreeCollectorTest</a>, BasicSampleRecording) {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    thread_local_buffer buffer(256, collector);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_class" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html">thread_local_buffer</a> buffer(256, collector);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// Record some samples</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    metric_sample sample1{<span class="stringliteral">&quot;operation1&quot;</span>, std::chrono::nanoseconds(1000), <span class="keyword">true</span>};</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    metric_sample sample2{<span class="stringliteral">&quot;operation1&quot;</span>, std::chrono::nanoseconds(2000), <span class="keyword">true</span>};</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    metric_sample sample3{<span class="stringliteral">&quot;operation1&quot;</span>, std::chrono::nanoseconds(1500), <span class="keyword">false</span>};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample1{<span class="stringliteral">&quot;operation1&quot;</span>, std::chrono::nanoseconds(1000), <span class="keyword">true</span>};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample2{<span class="stringliteral">&quot;operation1&quot;</span>, std::chrono::nanoseconds(2000), <span class="keyword">true</span>};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample3{<span class="stringliteral">&quot;operation1&quot;</span>, std::chrono::nanoseconds(1500), <span class="keyword">false</span>};</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    EXPECT_TRUE(buffer.record(sample1));</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    EXPECT_TRUE(buffer.record(sample2));</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    EXPECT_TRUE(buffer.record(sample3));</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    EXPECT_TRUE(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">record</a>(sample1));</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    EXPECT_TRUE(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">record</a>(sample2));</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    EXPECT_TRUE(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">record</a>(sample3));</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    EXPECT_EQ(buffer.size(), 3);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    EXPECT_EQ(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a71cbfc8f82b623e6e14321765541ae0e">size</a>(), 3);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// Flush to collector</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">size_t</span> flushed = buffer.flush();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">size_t</span> flushed = buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a1791d3cb02db6d0991b768dbad688f59">flush</a>();</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    EXPECT_EQ(flushed, 3);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    EXPECT_EQ(buffer.size(), 0);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    EXPECT_EQ(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a71cbfc8f82b623e6e14321765541ae0e">size</a>(), 0);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// Check collector stats</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">auto</span> stats = collector-&gt;get_stats();</div>
@@ -171,23 +171,23 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="../../db/d36/test__lock__free__collector_8cpp.html#a916eeb68ec1b788bf14077a2e5f57819">   88</a></span><a class="code hl_function" href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">TEST_F</a>(<a class="code hl_class" href="../../d6/dab/classLockFreeCollectorTest.html">LockFreeCollectorTest</a>, BufferAutoFlush) {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    thread_local_buffer buffer(10, collector);  <span class="comment">// Small buffer</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_class" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html">thread_local_buffer</a> buffer(10, collector);  <span class="comment">// Small buffer</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// Fill buffer</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        metric_sample sample{<span class="stringliteral">&quot;op&quot;</span>, std::chrono::nanoseconds(100), <span class="keyword">true</span>};</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        EXPECT_TRUE(buffer.record(sample));</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample{<span class="stringliteral">&quot;op&quot;</span>, std::chrono::nanoseconds(100), <span class="keyword">true</span>};</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        EXPECT_TRUE(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">record</a>(sample));</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    EXPECT_TRUE(buffer.is_full());</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    EXPECT_TRUE(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a92b68594682758df742de0e4300d7041">is_full</a>());</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// Next record should fail</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    metric_sample sample{<span class="stringliteral">&quot;op&quot;</span>, std::chrono::nanoseconds(100), <span class="keyword">true</span>};</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    EXPECT_FALSE(buffer.record(sample));</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample{<span class="stringliteral">&quot;op&quot;</span>, std::chrono::nanoseconds(100), <span class="keyword">true</span>};</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    EXPECT_FALSE(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">record</a>(sample));</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// But auto-flush should work</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    EXPECT_TRUE(buffer.record_auto_flush(sample));</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    EXPECT_EQ(buffer.size(), 1);  <span class="comment">// Buffer now has 1 sample after flush+record</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    EXPECT_TRUE(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a880025fadbf6f2cd23c0a298f052461f">record_auto_flush</a>(sample));</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    EXPECT_EQ(buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a71cbfc8f82b623e6e14321765541ae0e">size</a>(), 1);  <span class="comment">// Buffer now has 1 sample after flush+record</span></div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// Check collector received the batch</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">auto</span> stats = collector-&gt;get_stats();</div>
@@ -204,20 +204,20 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; NUM_THREADS; ++t) {</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        threads.emplace_back([<span class="keyword">this</span>, t]() {</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            thread_local_buffer buffer(256, collector);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <a class="code hl_class" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html">thread_local_buffer</a> buffer(256, collector);</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            std::string op_name = <span class="stringliteral">&quot;thread_op_&quot;</span> + std::to_string(t);</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; SAMPLES_PER_THREAD; ++i) {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                metric_sample sample{</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample{</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                    op_name,</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                    std::chrono::nanoseconds(100 + i),</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                    (i % 10) != 0  <span class="comment">// 10% error rate</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                };</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                buffer.record_auto_flush(sample);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a880025fadbf6f2cd23c0a298f052461f">record_auto_flush</a>(sample);</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            }</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <span class="comment">// Final flush</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            buffer.flush();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a1791d3cb02db6d0991b768dbad688f59">flush</a>();</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        });</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    }</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
@@ -248,16 +248,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="../../db/d36/test__lock__free__collector_8cpp.html#af7f97d3e724f5a43a2a2d47566c7b634">  159</a></span><a class="code hl_function" href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">TEST_F</a>(<a class="code hl_class" href="../../d6/dab/classLockFreeCollectorTest.html">LockFreeCollectorTest</a>, LRUEviction) {</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">auto</span> limited_collector = std::make_shared&lt;central_collector&gt;(10);  <span class="comment">// Only 10 profiles max</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    thread_local_buffer buffer(256, limited_collector);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <a class="code hl_class" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html">thread_local_buffer</a> buffer(256, limited_collector);</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// Create 15 operations (should evict 5)</span></div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 15; ++i) {</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        std::string op_name = <span class="stringliteral">&quot;op_&quot;</span> + std::to_string(i);</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        metric_sample sample{op_name, std::chrono::nanoseconds(1000), <span class="keyword">true</span>};</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        buffer.record_auto_flush(sample);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample{op_name, std::chrono::nanoseconds(1000), <span class="keyword">true</span>};</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a880025fadbf6f2cd23c0a298f052461f">record_auto_flush</a>(sample);</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    buffer.flush();</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a1791d3cb02db6d0991b768dbad688f59">flush</a>();</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// Should have exactly 10 operations (LRU evicted the rest)</span></div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">auto</span> stats = limited_collector-&gt;get_stats();</div>
@@ -268,16 +268,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
 <div class="foldopen" id="foldopen00179" data-start="{" data-end="}">
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="../../db/d36/test__lock__free__collector_8cpp.html#abb33d0b9666df28c83d78d835a7c7058">  179</a></span><a class="code hl_function" href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">TEST_F</a>(<a class="code hl_class" href="../../d6/dab/classLockFreeCollectorTest.html">LockFreeCollectorTest</a>, GetAllProfiles) {</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    thread_local_buffer buffer(256, collector);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <a class="code hl_class" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html">thread_local_buffer</a> buffer(256, collector);</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">// Create multiple operations</span></div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        std::string op_name = <span class="stringliteral">&quot;operation_&quot;</span> + std::to_string(i);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        metric_sample sample{op_name, std::chrono::nanoseconds(1000 * (i + 1)), <span class="keyword">true</span>};</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        buffer.record(sample);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample{op_name, std::chrono::nanoseconds(1000 * (i + 1)), <span class="keyword">true</span>};</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">record</a>(sample);</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    buffer.flush();</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a1791d3cb02db6d0991b768dbad688f59">flush</a>();</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// Get all profiles</span></div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keyword">auto</span> all_profiles = collector-&gt;get_all_profiles();</div>
@@ -295,14 +295,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
 <div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="../../db/d36/test__lock__free__collector_8cpp.html#a38f5f9edc321be6eea89e55aefde0b0b">  204</a></span><a class="code hl_function" href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">TEST_F</a>(<a class="code hl_class" href="../../d6/dab/classLockFreeCollectorTest.html">LockFreeCollectorTest</a>, ClearCollector) {</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    thread_local_buffer buffer(256, collector);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <a class="code hl_class" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html">thread_local_buffer</a> buffer(256, collector);</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="comment">// Add some samples</span></div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        metric_sample sample{<span class="stringliteral">&quot;op&quot;</span>, std::chrono::nanoseconds(1000), <span class="keyword">true</span>};</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        buffer.record(sample);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <a class="code hl_struct" href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">metric_sample</a> sample{<span class="stringliteral">&quot;op&quot;</span>, std::chrono::nanoseconds(1000), <span class="keyword">true</span>};</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">record</a>(sample);</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    buffer.flush();</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    buffer.<a class="code hl_function" href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a1791d3cb02db6d0991b768dbad688f59">flush</a>();</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="comment">// Verify data exists</span></div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">auto</span> stats_before = collector-&gt;get_stats();</div>
@@ -321,20 +321,30 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
 <div class="foldopen" id="foldopen00228" data-start="{" data-end="}">
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="../../db/d36/test__lock__free__collector_8cpp.html#aa81c7fa28d89771380ca59e44cdcb85e">  228</a></span><a class="code hl_function" href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">TEST_F</a>(<a class="code hl_class" href="../../d6/dab/classLockFreeCollectorTest.html">LockFreeCollectorTest</a>, ProfileNotFound) {</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keyword">auto</span> result = collector-&gt;get_profile(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    EXPECT_TRUE(result.is_err());</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    EXPECT_EQ(result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::metric_not_found));</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = collector-&gt;get_profile(<span class="stringliteral">&quot;nonexistent&quot;</span>);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_err());</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    EXPECT_EQ(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::metric_not_found));</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>}</div>
 </div>
+<div class="ttc" id="acentral__collector_8h_html"><div class="ttname"><a href="../../d0/dec/central__collector_8h.html">central_collector.h</a></div></div>
 <div class="ttc" id="aclassLockFreeCollectorTest_html"><div class="ttname"><a href="../../d6/dab/classLockFreeCollectorTest.html">LockFreeCollectorTest</a></div><div class="ttdef"><b>Definition</b> <a href="../../db/d36/test__lock__free__collector_8cpp_source.html#l00043">test_lock_free_collector.cpp:43</a></div></div>
 <div class="ttc" id="aclassLockFreeCollectorTest_html_acb2bca7bfa61564a86ffc2096a161686"><div class="ttname"><a href="../../d6/dab/classLockFreeCollectorTest.html#acb2bca7bfa61564a86ffc2096a161686">LockFreeCollectorTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../db/d36/test__lock__free__collector_8cpp_source.html#l00045">test_lock_free_collector.cpp:45</a></div></div>
 <div class="ttc" id="aclassLockFreeCollectorTest_html_af24e8133c720a6cb38561dd407b42a55"><div class="ttname"><a href="../../d6/dab/classLockFreeCollectorTest.html#af24e8133c720a6cb38561dd407b42a55">LockFreeCollectorTest::collector</a></div><div class="ttdeci">std::shared_ptr&lt; central_collector &gt; collector</div><div class="ttdef"><b>Definition</b> <a href="../../db/d36/test__lock__free__collector_8cpp_source.html#l00049">test_lock_free_collector.cpp:49</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00036">test_battery_collector.cpp:36</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1thread__local__buffer_html"><div class="ttname"><a href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html">kcenon::monitoring::thread_local_buffer</a></div><div class="ttdoc">Thread-local buffer for lock-free metric collection.</div><div class="ttdef"><b>Definition</b> <a href="../../d4/dc6/thread__local__buffer_8h_source.html#l00089">thread_local_buffer.h:89</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1thread__local__buffer_html_a1791d3cb02db6d0991b768dbad688f59"><div class="ttname"><a href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a1791d3cb02db6d0991b768dbad688f59">kcenon::monitoring::thread_local_buffer::flush</a></div><div class="ttdeci">size_t flush()</div><div class="ttdoc">Flush buffered samples to central collector.</div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1thread__local__buffer_html_a71cbfc8f82b623e6e14321765541ae0e"><div class="ttname"><a href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a71cbfc8f82b623e6e14321765541ae0e">kcenon::monitoring::thread_local_buffer::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdoc">Get current number of buffered samples.</div><div class="ttdef"><b>Definition</b> <a href="../../d4/dc6/thread__local__buffer_8h_source.html#l00148">thread_local_buffer.h:148</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1thread__local__buffer_html_a880025fadbf6f2cd23c0a298f052461f"><div class="ttname"><a href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a880025fadbf6f2cd23c0a298f052461f">kcenon::monitoring::thread_local_buffer::record_auto_flush</a></div><div class="ttdeci">bool record_auto_flush(const metric_sample &amp;sample)</div><div class="ttdoc">Record a metric sample with automatic flush on overflow.</div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1thread__local__buffer_html_a92b68594682758df742de0e4300d7041"><div class="ttname"><a href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a92b68594682758df742de0e4300d7041">kcenon::monitoring::thread_local_buffer::is_full</a></div><div class="ttdeci">bool is_full() const</div><div class="ttdoc">Check if buffer is full.</div><div class="ttdef"><b>Definition</b> <a href="../../d4/dc6/thread__local__buffer_8h_source.html#l00154">thread_local_buffer.h:154</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1thread__local__buffer_html_adff28f5c011cf885744caf63db66fe53"><div class="ttname"><a href="../../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#adff28f5c011cf885744caf63db66fe53">kcenon::monitoring::thread_local_buffer::record</a></div><div class="ttdeci">bool record(const metric_sample &amp;sample)</div><div class="ttdoc">Record a metric sample (lock-free)</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00028">common_monitor_adapter.h:28</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metric__sample_html"><div class="ttname"><a href="../../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html">kcenon::monitoring::metric_sample</a></div><div class="ttdoc">Sample data structure for metric recording.</div><div class="ttdef"><b>Definition</b> <a href="../../d4/dc6/thread__local__buffer_8h_source.html#l00061">thread_local_buffer.h:61</a></div></div>
 <div class="ttc" id="atest__lock__free__collector_8cpp_html_acff0ec86c82b24d741b44a6e0debf704"><div class="ttname"><a href="../../db/d36/test__lock__free__collector_8cpp.html#acff0ec86c82b24d741b44a6e0debf704">TEST_F</a></div><div class="ttdeci">TEST_F(LockFreeCollectorTest, BasicSampleRecording)</div><div class="ttdef"><b>Definition</b> <a href="../../db/d36/test__lock__free__collector_8cpp_source.html#l00052">test_lock_free_collector.cpp:52</a></div></div>
+<div class="ttc" id="athread__local__buffer_8h_html"><div class="ttname"><a href="../../d4/dc6/thread__local__buffer_8h.html">thread_local_buffer.h</a></div><div class="ttdoc">Thread-local buffer for lock-free metric collection.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

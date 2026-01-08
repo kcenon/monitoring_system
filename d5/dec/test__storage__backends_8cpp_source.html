@@ -91,7 +91,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Note: storage_backends.h does not exist in include directory</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// #include &lt;kcenon/monitoring/storage/storage_backends.h&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;kcenon/monitoring/interfaces/monitoring_core.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="../../d1/d6e/monitoring__core_8h.html">kcenon/monitoring/interfaces/monitoring_core.h</a>&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
@@ -125,30 +125,30 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        std::vector&lt;metrics_snapshot&gt; snapshots;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">// Create first snapshot</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        metrics_snapshot snap1;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        snap1.source_id = <span class="stringliteral">&quot;web_server&quot;</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        snap1.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        snap1.add_metric(<span class="stringliteral">&quot;requests_per_second&quot;</span>, 150.0);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        snap1.add_metric(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 45.2);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        snap1.add_metric(<span class="stringliteral">&quot;error_rate&quot;</span>, 0.02);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap1;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        snap1.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;web_server&quot;</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        snap1.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;requests_per_second&quot;</span>, 150.0);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;response_time_ms&quot;</span>, 45.2);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        snap1.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;error_rate&quot;</span>, 0.02);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        snapshots.push_back(snap1);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">// Create second snapshot</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        metrics_snapshot snap2;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        snap2.source_id = <span class="stringliteral">&quot;database&quot;</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        snap2.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        snap2.add_metric(<span class="stringliteral">&quot;connections&quot;</span>, 25.0);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        snap2.add_metric(<span class="stringliteral">&quot;query_time_ms&quot;</span>, 12.8);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        snap2.add_metric(<span class="stringliteral">&quot;cache_hit_rate&quot;</span>, 0.95);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap2;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        snap2.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;database&quot;</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        snap2.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;connections&quot;</span>, 25.0);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;query_time_ms&quot;</span>, 12.8);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        snap2.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;cache_hit_rate&quot;</span>, 0.95);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        snapshots.push_back(snap2);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="comment">// Create third snapshot</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        metrics_snapshot snap3;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        snap3.source_id = <span class="stringliteral">&quot;cache_server&quot;</span>;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        snap3.capture_time = std::chrono::system_clock::now();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        snap3.add_metric(<span class="stringliteral">&quot;memory_usage_mb&quot;</span>, 512.0);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        snap3.add_metric(<span class="stringliteral">&quot;hit_rate&quot;</span>, 0.88);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        snap3.add_metric(<span class="stringliteral">&quot;evictions_per_sec&quot;</span>, 2.1);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snap3;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        snap3.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;cache_server&quot;</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        snap3.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">capture_time</a> = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;memory_usage_mb&quot;</span>, 512.0);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;hit_rate&quot;</span>, 0.88);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        snap3.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;evictions_per_sec&quot;</span>, 2.1);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        snapshots.push_back(snap3);</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> snapshots;</div>
@@ -163,9 +163,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">   72</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, StorageConfigValidation) {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// Valid configuration</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    storage_config valid_config;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    valid_config.path = <span class="stringliteral">&quot;/tmp/test.json&quot;</span>;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    valid_config.type = storage_backend_type::file_json;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> valid_config;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    valid_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;/tmp/test.json&quot;</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    valid_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    valid_config.max_capacity = 1000;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    valid_config.batch_size = 100;</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    </div>
@@ -173,8 +173,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    EXPECT_TRUE(validation);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Invalid path (for non-memory storage)</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    storage_config invalid_path;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    invalid_path.type = storage_backend_type::file_json;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> invalid_path;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    invalid_path.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    invalid_path.max_capacity = 1000;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    invalid_path.batch_size = 100;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">auto</span> path_validation = invalid_path.validate();</div>
@@ -182,32 +182,32 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    EXPECT_EQ(path_validation.error().code, monitoring_error_code::invalid_configuration);</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// Valid memory buffer (no path required)</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    storage_config memory_config;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    memory_config.type = storage_backend_type::memory_buffer;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> memory_config;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    memory_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::memory_buffer;</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    memory_config.max_capacity = 1000;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    memory_config.batch_size = 100;</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">auto</span> memory_validation = memory_config.validate();</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    EXPECT_TRUE(memory_validation);</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// Invalid capacity</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    storage_config invalid_capacity;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    invalid_capacity.path = <span class="stringliteral">&quot;/tmp/test&quot;</span>;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    invalid_capacity.max_capacity = 0;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">auto</span> capacity_validation = invalid_capacity.validate();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac751f227f0f658738546c7e3de996848">invalid_capacity</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac751f227f0f658738546c7e3de996848">invalid_capacity</a>.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;/tmp/test&quot;</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac751f227f0f658738546c7e3de996848">invalid_capacity</a>.max_capacity = 0;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">auto</span> capacity_validation = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac751f227f0f658738546c7e3de996848">invalid_capacity</a>.validate();</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    EXPECT_FALSE(capacity_validation);</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    EXPECT_EQ(capacity_validation.error().code, monitoring_error_code::invalid_capacity);</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// Invalid batch size</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    storage_config invalid_batch;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    invalid_batch.path = <span class="stringliteral">&quot;/tmp/test&quot;</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> invalid_batch;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    invalid_batch.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;/tmp/test&quot;</span>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    invalid_batch.max_capacity = 1000;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    invalid_batch.batch_size = 0;</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">auto</span> batch_validation = invalid_batch.validate();</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    EXPECT_FALSE(batch_validation);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    </div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// Batch size larger than capacity</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    storage_config batch_too_large;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    batch_too_large.path = <span class="stringliteral">&quot;/tmp/test&quot;</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> batch_too_large;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    batch_too_large.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;/tmp/test&quot;</span>;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    batch_too_large.max_capacity = 100;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    batch_too_large.batch_size = 200;</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">auto</span> batch_large_validation = batch_too_large.validate();</div>
@@ -217,12 +217,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
 <div class="foldopen" id="foldopen00125" data-start="{" data-end="}">
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#a17f22b610e52a179ad96914b12f6f7fc">  125</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, FileStorageBackendBasicOperations) {</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    storage_config config;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    config.type = storage_backend_type::file_json;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    config.path = (test_dir_ / <span class="stringliteral">&quot;test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    config.max_capacity = 10;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    file_storage_backend backend(config);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> backend(config);</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// Test initial state</span></div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    EXPECT_EQ(backend.size(), 0);</div>
@@ -230,14 +230,14 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    </div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// Store snapshots</span></div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; snapshot : test_snapshots_) {</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keyword">auto</span> store_result = backend.store(snapshot);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keyword">auto</span> store_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(snapshot);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        EXPECT_TRUE(store_result);</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    </div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    EXPECT_EQ(backend.size(), 3);</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    </div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">// Retrieve snapshot</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">auto</span> retrieve_result = backend.retrieve(0);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">auto</span> retrieve_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">retrieve</a>(0);</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    EXPECT_TRUE(retrieve_result);</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    </div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// Retrieve range</span></div>
@@ -246,7 +246,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    EXPECT_EQ(range_result.value().size(), 2);</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    </div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="comment">// Test flush</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">auto</span> flush_result = backend.flush();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">auto</span> flush_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a3cab7dbaccb968e8ede4fbfeb013e1f8">flush</a>();</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    EXPECT_TRUE(flush_result);</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    </div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// Test clear</span></div>
@@ -258,16 +258,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
 <div class="foldopen" id="foldopen00164" data-start="{" data-end="}">
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#a957bc8078a55ac2d2ffd457e54287ade">  164</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, FileStorageBackendCapacityLimit) {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    storage_config config;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    config.type = storage_backend_type::file_json;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    config.path = (test_dir_ / <span class="stringliteral">&quot;capacity_test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;capacity_test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    config.max_capacity = 2; <span class="comment">// Small capacity for testing</span></div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    file_storage_backend backend(config);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> backend(config);</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    </div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// Store snapshots beyond capacity</span></div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; snapshot : test_snapshots_) {</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keyword">auto</span> store_result = backend.store(snapshot);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keyword">auto</span> store_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(snapshot);</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        EXPECT_TRUE(store_result);</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    }</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    </div>
@@ -285,46 +285,46 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#abc6d9d501f672afd5cf70b5a2cae23e4">  187</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, FileStorageBackendDifferentFormats) {</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">// Test JSON format</span></div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        storage_config json_config;</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        json_config.type = storage_backend_type::file_json;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        json_config.path = (test_dir_ / <span class="stringliteral">&quot;test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> json_config;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        json_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        json_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        json_config.max_capacity = 10;</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        file_storage_backend json_backend(json_config);</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keyword">auto</span> store_result = json_backend.store(test_snapshots_[0]);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> json_backend(json_config);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keyword">auto</span> store_result = json_backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(test_snapshots_[0]);</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        EXPECT_TRUE(store_result);</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        </div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keyword">auto</span> retrieve_result = json_backend.retrieve(0);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keyword">auto</span> retrieve_result = json_backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">retrieve</a>(0);</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        EXPECT_TRUE(retrieve_result);</div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    }</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    </div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="comment">// Test Binary format</span></div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    {</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        storage_config binary_config;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        binary_config.type = storage_backend_type::file_binary;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        binary_config.path = (test_dir_ / <span class="stringliteral">&quot;test.bin&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> binary_config;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        binary_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_binary;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        binary_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;test.bin&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        binary_config.max_capacity = 10;</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        file_storage_backend binary_backend(binary_config);</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <span class="keyword">auto</span> store_result = binary_backend.store(test_snapshots_[0]);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> binary_backend(binary_config);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <span class="keyword">auto</span> store_result = binary_backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(test_snapshots_[0]);</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        EXPECT_TRUE(store_result);</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        </div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keyword">auto</span> retrieve_result = binary_backend.retrieve(0);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keyword">auto</span> retrieve_result = binary_backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">retrieve</a>(0);</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        EXPECT_TRUE(retrieve_result);</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    }</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    </div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">// Test CSV format</span></div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    {</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        storage_config csv_config;</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        csv_config.type = storage_backend_type::file_csv;</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        csv_config.path = (test_dir_ / <span class="stringliteral">&quot;test.csv&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> csv_config;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        csv_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_csv;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        csv_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;test.csv&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        csv_config.max_capacity = 10;</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        file_storage_backend csv_backend(csv_config);</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keyword">auto</span> store_result = csv_backend.store(test_snapshots_[0]);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> csv_backend(csv_config);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keyword">auto</span> store_result = csv_backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(test_snapshots_[0]);</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        EXPECT_TRUE(store_result);</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="keyword">auto</span> retrieve_result = csv_backend.retrieve(0);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="keyword">auto</span> retrieve_result = csv_backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">retrieve</a>(0);</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        EXPECT_TRUE(retrieve_result);</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    }</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>}</div>
@@ -332,15 +332,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
 <div class="foldopen" id="foldopen00234" data-start="{" data-end="}">
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#a71aef8a23581e1dad805ea6726fd6b5e">  234</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, MemoryStorageBackend) {</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    storage_config config;</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    config.type = storage_backend_type::memory_buffer;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::memory_buffer;</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    config.max_capacity = 5;</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    </div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    file_storage_backend backend(config); <span class="comment">// Memory buffer uses file_storage_backend</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> backend(config); <span class="comment">// Memory buffer uses file_storage_backend</span></div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    </div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// Store snapshots</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; snapshot : test_snapshots_) {</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keyword">auto</span> store_result = backend.store(snapshot);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keyword">auto</span> store_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(snapshot);</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        EXPECT_TRUE(store_result);</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    }</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    </div>
@@ -350,7 +350,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="comment">// (Implementation detail - file operations are skipped for memory type)</span></div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    </div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">// Test all operations work</span></div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keyword">auto</span> retrieve_result = backend.retrieve(0);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keyword">auto</span> retrieve_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">retrieve</a>(0);</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    EXPECT_TRUE(retrieve_result);</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    </div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keyword">auto</span> range_result = backend.retrieve_range(0, 2);</div>
@@ -364,9 +364,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
 <div class="foldopen" id="foldopen00264" data-start="{" data-end="}">
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#ae53e87e7c2e1abbd2c1403fe2647d006">  264</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, DatabaseStorageBackendBasicOperations) {</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    storage_config config;</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    config.type = storage_backend_type::database_sqlite;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    config.path = (test_dir_ / <span class="stringliteral">&quot;test.db&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::database_sqlite;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;test.db&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    config.table_name = <span class="stringliteral">&quot;test_metrics&quot;</span>;</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    config.max_capacity = 100;</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    </div>
@@ -413,9 +413,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#ac308db86a313dc6d8fd04a720f50ef43">  309</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, DatabaseStorageBackendDifferentTypes) {</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="comment">// Test SQLite</span></div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    {</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        storage_config sqlite_config;</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        sqlite_config.type = storage_backend_type::database_sqlite;</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        sqlite_config.path = (test_dir_ / <span class="stringliteral">&quot;sqlite.db&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> sqlite_config;</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        sqlite_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::database_sqlite;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        sqlite_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;sqlite.db&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        sqlite_config.max_capacity = 50;</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        </div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        database_storage_backend sqlite_backend(sqlite_config);</div>
@@ -425,8 +425,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    </div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="comment">// Test PostgreSQL (simulated)</span></div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    {</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        storage_config pg_config;</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        pg_config.type = storage_backend_type::database_postgresql;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> pg_config;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        pg_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::database_postgresql;</div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        pg_config.host = <span class="stringliteral">&quot;localhost&quot;</span>;</div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        pg_config.port = 5432;</div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        pg_config.database_name = <span class="stringliteral">&quot;monitoring_test&quot;</span>;</div>
@@ -441,8 +441,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    </div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="comment">// Test MySQL (simulated)</span></div>
 <div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    {</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>        storage_config mysql_config;</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        mysql_config.type = storage_backend_type::database_mysql;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> mysql_config;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        mysql_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::database_mysql;</div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>        mysql_config.host = <span class="stringliteral">&quot;localhost&quot;</span>;</div>
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>        mysql_config.port = 3306;</div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>        mysql_config.database_name = <span class="stringliteral">&quot;monitoring_test&quot;</span>;</div>
@@ -459,9 +459,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
 <div class="foldopen" id="foldopen00355" data-start="{" data-end="}">
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#a39b7ebbe053df9413c1191c62bbb71d1">  355</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, CloudStorageBackendBasicOperations) {</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    storage_config config;</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    config.type = storage_backend_type::cloud_s3;</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    config.path = <span class="stringliteral">&quot;test-monitoring-bucket&quot;</span>;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::cloud_s3;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;test-monitoring-bucket&quot;</span>;</div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    config.max_capacity = 1000;</div>
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    </div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    cloud_storage_backend backend(config);</div>
@@ -502,9 +502,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#a156e25409d9490276be8d11f8c051bb3">  394</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, CloudStorageBackendDifferentProviders) {</div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <span class="comment">// Test AWS S3</span></div>
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    {</div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        storage_config s3_config;</div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>        s3_config.type = storage_backend_type::cloud_s3;</div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>        s3_config.path = <span class="stringliteral">&quot;s3-test-bucket&quot;</span>;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> s3_config;</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>        s3_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::cloud_s3;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>        s3_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;s3-test-bucket&quot;</span>;</div>
 <div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>        s3_config.max_capacity = 100;</div>
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>        </div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        cloud_storage_backend s3_backend(s3_config);</div>
@@ -514,9 +514,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    </div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    <span class="comment">// Test Google Cloud Storage</span></div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    {</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        storage_config gcs_config;</div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        gcs_config.type = storage_backend_type::cloud_gcs;</div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>        gcs_config.path = <span class="stringliteral">&quot;gcs-test-bucket&quot;</span>;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> gcs_config;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        gcs_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::cloud_gcs;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>        gcs_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;gcs-test-bucket&quot;</span>;</div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        gcs_config.max_capacity = 100;</div>
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        </div>
 <div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>        cloud_storage_backend gcs_backend(gcs_config);</div>
@@ -526,9 +526,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    </div>
 <div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    <span class="comment">// Test Azure Blob Storage</span></div>
 <div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    {</div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        storage_config azure_config;</div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>        azure_config.type = storage_backend_type::cloud_azure_blob;</div>
-<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>        azure_config.path = <span class="stringliteral">&quot;azure-test-container&quot;</span>;</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> azure_config;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>        azure_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::cloud_azure_blob;</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>        azure_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;azure-test-container&quot;</span>;</div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        azure_config.max_capacity = 100;</div>
 <div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>        </div>
 <div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>        cloud_storage_backend azure_backend(azure_config);</div>
@@ -542,9 +542,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00432" name="l00432"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#aa37787c0fd3f66f52b02f0f345803405">  432</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, StorageBackendFactory) {</div>
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    <span class="comment">// Test file storage creation</span></div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    {</div>
-<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        storage_config file_config;</div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        file_config.type = storage_backend_type::file_json;</div>
-<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>        file_config.path = (test_dir_ / <span class="stringliteral">&quot;factory_test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> file_config;</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        file_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>        file_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;factory_test.json&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>        file_config.max_capacity = 50;</div>
 <div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>        </div>
 <div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>        <span class="keyword">auto</span> backend = storage_backend_factory::create_backend(file_config);</div>
@@ -556,9 +556,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    </div>
 <div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>    <span class="comment">// Test database storage creation</span></div>
 <div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>    {</div>
-<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        storage_config db_config;</div>
-<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        db_config.type = storage_backend_type::database_sqlite;</div>
-<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>        db_config.path = (test_dir_ / <span class="stringliteral">&quot;factory_test.db&quot;</span>).<span class="keywordtype">string</span>();</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> db_config;</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        db_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::database_sqlite;</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>        db_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = (test_dir_ / <span class="stringliteral">&quot;factory_test.db&quot;</span>).<span class="keywordtype">string</span>();</div>
 <div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>        db_config.max_capacity = 50;</div>
 <div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>        </div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>        <span class="keyword">auto</span> backend = storage_backend_factory::create_backend(db_config);</div>
@@ -570,9 +570,9 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    </div>
 <div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>    <span class="comment">// Test cloud storage creation</span></div>
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>    {</div>
-<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>        storage_config cloud_config;</div>
-<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>        cloud_config.type = storage_backend_type::cloud_s3;</div>
-<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>        cloud_config.path = <span class="stringliteral">&quot;factory-test-bucket&quot;</span>;</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> cloud_config;</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>        cloud_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::cloud_s3;</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>        cloud_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;factory-test-bucket&quot;</span>;</div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>        cloud_config.max_capacity = 50;</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>        </div>
 <div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        <span class="keyword">auto</span> backend = storage_backend_factory::create_backend(cloud_config);</div>
@@ -584,8 +584,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>    </div>
 <div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>    <span class="comment">// Test invalid type</span></div>
 <div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>    {</div>
-<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>        storage_config invalid_config;</div>
-<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>        invalid_config.type = <span class="keyword">static_cast&lt;</span>storage_backend_type<span class="keyword">&gt;</span>(999);</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> invalid_config;</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>        invalid_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = <span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98">storage_backend_type</a><span class="keyword">&gt;</span>(999);</div>
 <div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>        </div>
 <div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span>        <span class="keyword">auto</span> backend = storage_backend_factory::create_backend(invalid_config);</div>
 <div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span>        EXPECT_FALSE(backend);</div>
@@ -653,16 +653,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>    <span class="comment">// Test file storage with invalid path (skip if filesystem throws)</span></div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>    {</div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>        <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>            storage_config invalid_config;</div>
-<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>            invalid_config.type = storage_backend_type::file_json;</div>
-<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>            invalid_config.path = <span class="stringliteral">&quot;/invalid/path/that/does/not/exist/file.json&quot;</span>;</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>            <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> invalid_config;</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>            invalid_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::file_json;</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>            invalid_config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">path</a> = <span class="stringliteral">&quot;/invalid/path/that/does/not/exist/file.json&quot;</span>;</div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>            invalid_config.max_capacity = 10;</div>
 <div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>            </div>
 <div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>            <span class="comment">// Constructor may throw if filesystem operations fail</span></div>
-<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>            file_storage_backend backend(invalid_config);</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>            <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> backend(invalid_config);</div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>            </div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>            <span class="comment">// Store operation may fail due to invalid path</span></div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>            <span class="keyword">auto</span> store_result = backend.store(test_snapshots_[0]);</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>            <span class="keyword">auto</span> store_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(test_snapshots_[0]);</div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>            <span class="comment">// Don&#39;t assert on result as it depends on filesystem permissions</span></div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp;) {</div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>            <span class="comment">// Expected if filesystem doesn&#39;t allow directory creation</span></div>
@@ -672,13 +672,13 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>    </div>
 <div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>    <span class="comment">// Test retrieval of non-existent snapshot</span></div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>    {</div>
-<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>        storage_config config;</div>
-<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>        config.type = storage_backend_type::memory_buffer;</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>        <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>        config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::memory_buffer;</div>
 <div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>        config.max_capacity = 10;</div>
 <div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>        </div>
-<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>        file_storage_backend backend(config);</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>        <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> backend(config);</div>
 <div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>        </div>
-<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>        <span class="keyword">auto</span> retrieve_result = backend.retrieve(999);</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>        <span class="keyword">auto</span> retrieve_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">retrieve</a>(999);</div>
 <div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>        EXPECT_FALSE(retrieve_result);</div>
 <div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>        EXPECT_EQ(retrieve_result.error().code, <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::not_found));</div>
 <div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    }</div>
@@ -687,11 +687,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span> </div>
 <div class="foldopen" id="foldopen00571" data-start="{" data-end="}">
 <div class="line"><a id="l00571" name="l00571"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#aa219b7a3b2dfb04d3bb3577f21473d90">  571</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, ConcurrentOperations) {</div>
-<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    storage_config config;</div>
-<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    config.type = storage_backend_type::memory_buffer;</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::memory_buffer;</div>
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    config.max_capacity = 100;</div>
 <div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    </div>
-<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>    file_storage_backend backend(config);</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>    <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> backend(config);</div>
 <div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>    </div>
 <div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>    <span class="comment">// Test concurrent stores</span></div>
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>    std::vector&lt;std::thread&gt; store_threads;</div>
@@ -699,12 +699,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    </div>
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 10; ++i) {</div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>        store_threads.emplace_back([&amp;, i]() {</div>
-<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>            metrics_snapshot snapshot;</div>
-<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>            snapshot.source_id = <span class="stringliteral">&quot;thread_&quot;</span> + std::to_string(i);</div>
-<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>            snapshot.add_metric(<span class="stringliteral">&quot;value&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>            <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>            snapshot.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;thread_&quot;</span> + std::to_string(i);</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>            snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;value&quot;</span>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>            </div>
-<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>            <span class="keyword">auto</span> result = backend.store(snapshot);</div>
-<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>            <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(snapshot);</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) {</div>
 <div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>                successful_stores++;</div>
 <div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>            }</div>
 <div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>        });</div>
@@ -723,8 +723,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>    </div>
 <div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>        retrieve_threads.emplace_back([&amp;, i]() {</div>
-<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>            <span class="keyword">auto</span> result = backend.retrieve(i);</div>
-<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>            <span class="keywordflow">if</span> (result.is_ok()) {</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">retrieve</a>(i);</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) {</div>
 <div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>                successful_retrievals++;</div>
 <div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>            }</div>
 <div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>        });</div>
@@ -740,23 +740,23 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span> </div>
 <div class="foldopen" id="foldopen00622" data-start="{" data-end="}">
 <div class="line"><a id="l00622" name="l00622"></a><span class="lineno"><a class="line" href="../../d5/dec/test__storage__backends_8cpp.html#aa4ce1d14ada8092b48ec3f14a88279ea">  622</a></span><a class="code hl_function" href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a>(<a class="code hl_class" href="../../d4/dcd/classStorageBackendsTest.html">StorageBackendsTest</a>, LargeDatasetHandling) {</div>
-<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>    storage_config config;</div>
-<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>    config.type = storage_backend_type::memory_buffer;</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>    <a class="code hl_struct" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> config;</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>    config.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">type</a> = storage_backend_type::memory_buffer;</div>
 <div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>    config.max_capacity = 50;</div>
 <div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>    </div>
-<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>    file_storage_backend backend(config);</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>    <a class="code hl_class" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">file_storage_backend</a> backend(config);</div>
 <div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>    </div>
 <div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>    <span class="comment">// Store more data than capacity</span></div>
 <div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
-<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>        metrics_snapshot snapshot;</div>
-<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>        snapshot.source_id = <span class="stringliteral">&quot;generator_&quot;</span> + std::to_string(i);</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>        <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>        snapshot.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">source_id</a> = <span class="stringliteral">&quot;generator_&quot;</span> + std::to_string(i);</div>
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>        </div>
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>        <span class="comment">// Add multiple metrics per snapshot</span></div>
 <div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 10; ++j) {</div>
-<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>            snapshot.add_metric(<span class="stringliteral">&quot;metric_&quot;</span> + std::to_string(j), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i * 10 + j));</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>            snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;metric_&quot;</span> + std::to_string(j), <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i * 10 + j));</div>
 <div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>        }</div>
 <div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>        </div>
-<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>        <span class="keyword">auto</span> store_result = backend.store(snapshot);</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>        <span class="keyword">auto</span> store_result = backend.<a class="code hl_function" href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">store</a>(snapshot);</div>
 <div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>        EXPECT_TRUE(store_result);</div>
 <div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>    }</div>
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    </div>
@@ -775,12 +775,27 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="aclassStorageBackendsTest_html_a9435ee9c21c007c863b4bf4103863f89"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a9435ee9c21c007c863b4bf4103863f89">StorageBackendsTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00019">test_storage_backends.cpp:19</a></div></div>
 <div class="ttc" id="aclassStorageBackendsTest_html_a9a658822aa30b1e817ad2120503a6a45"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45">StorageBackendsTest::test_snapshots_</a></div><div class="ttdeci">std::vector&lt; metrics_snapshot &gt; test_snapshots_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00068">test_storage_backends.cpp:68</a></div></div>
 <div class="ttc" id="aclassStorageBackendsTest_html_afb5240a59494c52f7c24830ceb0c059b"><div class="ttname"><a href="../../d4/dcd/classStorageBackendsTest.html#afb5240a59494c52f7c24830ceb0c059b">StorageBackendsTest::test_dir_</a></div><div class="ttdeci">std::filesystem::path test_dir_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00069">test_storage_backends.cpp:69</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d9/d1f/test__battery__collector_8cpp_source.html#l00036">test_battery_collector.cpp:36</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1file__storage__backend_html"><div class="ttname"><a href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html">kcenon::monitoring::file_storage_backend</a></div><div class="ttdoc">File storage backend - stub implementation.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00116">storage_backends.h:116</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1file__storage__backend_html_a332dbb8a36c6d0e0bad7183fe5276c84"><div class="ttname"><a href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a332dbb8a36c6d0e0bad7183fe5276c84">kcenon::monitoring::file_storage_backend::retrieve</a></div><div class="ttdeci">std::string retrieve(const std::string &amp;key) override</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00126">storage_backends.h:126</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1file__storage__backend_html_a3cab7dbaccb968e8ede4fbfeb013e1f8"><div class="ttname"><a href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a3cab7dbaccb968e8ede4fbfeb013e1f8">kcenon::monitoring::file_storage_backend::flush</a></div><div class="ttdeci">result&lt; bool &gt; flush() override</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00135">storage_backends.h:135</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1file__storage__backend_html_a8e9783fe27f8fa4c2e2a570cb7dd8968"><div class="ttname"><a href="../../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html#a8e9783fe27f8fa4c2e2a570cb7dd8968">kcenon::monitoring::file_storage_backend::store</a></div><div class="ttdeci">bool store(const std::string &amp;key, const std::string &amp;value) override</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00121">storage_backends.h:121</a></div></div>
+<div class="ttc" id="amonitoring__core_8h_html"><div class="ttname"><a href="../../d1/d6e/monitoring__core_8h.html">monitoring_core.h</a></div><div class="ttdoc">Core monitoring system interface definitions.</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00028">common_monitor_adapter.h:28</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83eac751f227f0f658738546c7e3de996848"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac751f227f0f658738546c7e3de996848">kcenon::monitoring::monitoring_error_code::invalid_capacity</a></div><div class="ttdeci">@ invalid_capacity</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ae7927fdb839278142ee031c30e42cc98"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98">kcenon::monitoring::storage_backend_type</a></div><div class="ttdeci">storage_backend_type</div><div class="ttdoc">Storage backend types.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00044">storage_backends.h:44</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">kcenon::monitoring::metrics_snapshot</a></div><div class="ttdoc">Complete snapshot of metrics at a point in time.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00066">monitoring_core.h:66</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_a1b9a151e0a484848d243a1e468a04266"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a1b9a151e0a484848d243a1e468a04266">kcenon::monitoring::metrics_snapshot::capture_time</a></div><div class="ttdeci">std::chrono::system_clock::time_point capture_time</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00068">monitoring_core.h:68</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_a91c4bb5a196e0ace7716f2d6c54eb1a7"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">kcenon::monitoring::metrics_snapshot::add_metric</a></div><div class="ttdeci">void add_metric(const std::string &amp;name, double value)</div><div class="ttdoc">Add a metric to the snapshot.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00079">monitoring_core.h:79</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1metrics__snapshot_html_ad805ca0681def3b2c9c55136450bda54"><div class="ttname"><a href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#ad805ca0681def3b2c9c55136450bda54">kcenon::monitoring::metrics_snapshot::source_id</a></div><div class="ttdeci">std::string source_id</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00069">monitoring_core.h:69</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">kcenon::monitoring::storage_config</a></div><div class="ttdoc">Storage configuration.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00065">storage_backends.h:65</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html_a5470889434a9f2c7dab29555dcb3fe0e"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a5470889434a9f2c7dab29555dcb3fe0e">kcenon::monitoring::storage_config::type</a></div><div class="ttdeci">storage_backend_type type</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00066">storage_backends.h:66</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html_a6c3a4fa37326d146343083409e129b0b"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a6c3a4fa37326d146343083409e129b0b">kcenon::monitoring::storage_config::path</a></div><div class="ttdeci">std::string path</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00067">storage_backends.h:67</a></div></div>
 <div class="ttc" id="atest__storage__backends_8cpp_html_a62e4f47091a853ab6bfeff8496e9d4c5"><div class="ttname"><a href="../../d5/dec/test__storage__backends_8cpp.html#a62e4f47091a853ab6bfeff8496e9d4c5">TEST_F</a></div><div class="ttdeci">TEST_F(StorageBackendsTest, StorageConfigValidation)</div><div class="ttdef"><b>Definition</b> <a href="../../d5/dec/test__storage__backends_8cpp_source.html#l00072">test_storage_backends.cpp:72</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 12:42:26 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 12:58:14 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

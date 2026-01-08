@@ -1,12 +1,17 @@
 var searchData=
 [
-  ['service_5fa_5f_0',['service_a_',['../dd/d93/classServiceB.html#a523f50683850fbcbe305820c5017a817',1,'ServiceB']]],
-  ['service_5fname_5f_1',['service_name_',['../df/d65/classWebService.html#a638af0384c35a233ccf6b30b8d525839',1,'WebService']]],
-  ['shared_5flogger_5f_2',['shared_logger_',['../da/db2/classmonitor__factory.html#aa3b99917725d186bc4b6207a28936782',1,'monitor_factory']]],
-  ['should_5ffail_3',['should_fail',['../d7/da2/classMockTraceExporter.html#ae6d6e723125cf3d982234d31d817b765',1,'MockTraceExporter']]],
-  ['shutdown_5fcount_4',['shutdown_count',['../d7/da2/classMockTraceExporter.html#aa4adbf984140b666cf39c0c49f48f00c',1,'MockTraceExporter']]],
-  ['singletons_5f_5',['singletons_',['../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html#a7789d87cb7770d1bbcc64e31af43992c',1,'kcenon::monitoring::service_container_interface']]],
-  ['status_5f_6',['status_',['../d2/dea/classtest__health__check.html#a5b66adec36dcefd9ce60685005f17911',1,'test_health_check']]],
-  ['success_5fafter_5fattempts_7',['success_after_attempts',['../db/d11/classErrorBoundariesTest.html#a38dfd5bfddad774c3d6eb7fa5914c53f',1,'ErrorBoundariesTest::success_after_attempts'],['../d4/d91/classFaultToleranceTest.html#a92bd18aa7262989508b775b9c7d42527',1,'FaultToleranceTest::success_after_attempts']]],
-  ['success_5fcount_8',['success_count',['../d8/d07/classDataConsistencyTest.html#a520561eed7b3bc9d46882559bc041338',1,'DataConsistencyTest::success_count'],['../d7/d4c/classResourceManagementTest.html#a0a84e208e81abf4ead9ca8168afb5b1c',1,'ResourceManagementTest::success_count']]]
+  ['observers_5f_0',['observers_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a767f2a305ede6f5610f1c4cdefcdb3b1',1,'kcenon::monitoring::plugin_metric_collector']]],
+  ['observers_5fmutex_5f_1',['observers_mutex_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a44ee335768473f8a50c34844be0f55ab',1,'kcenon::monitoring::plugin_metric_collector']]],
+  ['old_5fstate_5f_2',['old_state_',['../df/d67/classkcenon_1_1monitoring_1_1component__lifecycle__event.html#a7b2305e12eeffd91e7bf6c6d7ead753d',1,'kcenon::monitoring::component_lifecycle_event::old_state_'],['../d6/d27/classkcenon_1_1monitoring_1_1state__change__event.html#a4eb536db7f0db191dfe1253d3cff9c7a',1,'kcenon::monitoring::state_change_event::old_state_']]],
+  ['old_5fvalue_5f_3',['old_value_',['../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html#a9e200b0dbd408801470ab1770c20902d',1,'kcenon::monitoring::configuration_change_event']]],
+  ['oldest_5ftimestamp_4',['oldest_timestamp',['../d9/de6/structkcenon_1_1monitoring_1_1time__series__statistics.html#a8967837c8f414f7b62b04ad01456df0a',1,'kcenon::monitoring::time_series_statistics']]],
+  ['one_5fmin_5',['one_min',['../de/dc9/structkcenon_1_1monitoring_1_1system__resources_1_1cpu__metrics_1_1load__average.html#a87630d78ffbc7221606faf61bc3d623b',1,'kcenon::monitoring::system_resources::cpu_metrics::load_average']]],
+  ['open_5ffds_6',['open_fds',['../d4/de8/structkcenon_1_1monitoring_1_1platform_1_1fd__info.html#a2900defc228fea98403a70a78733cb1f',1,'kcenon::monitoring::platform::fd_info']]],
+  ['open_5ffile_5fdescriptors_7',['open_file_descriptors',['../dc/d13/structkcenon_1_1monitoring_1_1system__resources_1_1process__metrics.html#adef7e224fc96936f19a2a8dabab59bd4',1,'kcenon::monitoring::system_resources::process_metrics']]],
+  ['operation_5fcount_8',['operation_count',['../d7/dd7/structkcenon_1_1monitoring_1_1central__collector_1_1stats.html#ada141970056b948ab14fced4069a33aa',1,'kcenon::monitoring::central_collector::stats']]],
+  ['operation_5fcount_5f_9',['operation_count_',['../d9/db4/classtest__monitorable__component.html#adfcec440e68ccc03b813f8a24e72cf89',1,'test_monitorable_component']]],
+  ['operation_5fname_10',['operation_name',['../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a0ca5541ff993051eabf7b5caf003a16a',1,'kcenon::monitoring::performance_metrics::operation_name'],['../d8/d86/structkcenon_1_1monitoring_1_1performance__profile.html#a194b50fd5f60c233121a551f89f37f32',1,'kcenon::monitoring::performance_profile::operation_name'],['../d5/d97/structkcenon_1_1monitoring_1_1metric__sample.html#a93cc4e36b0fc344c70f189a8768942de',1,'kcenon::monitoring::metric_sample::operation_name'],['../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a28d587f240e849bd250117d56e8a2d2e',1,'kcenon::monitoring::jaeger_span_data::operation_name']]],
+  ['operation_5fname_5f_11',['operation_name_',['../dc/dcc/classkcenon_1_1monitoring_1_1scoped__timer.html#a1e982a0d37c30903f0d4684320a6cbdc',1,'kcenon::monitoring::scoped_timer']]],
+  ['otel_5fadapter_5f_12',['otel_adapter_',['../d1/dc5/classkcenon_1_1monitoring_1_1otlp__metrics__exporter.html#a2d6f37ccaaf15220a562f112ef9effe3',1,'kcenon::monitoring::otlp_metrics_exporter::otel_adapter_'],['../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#a5b85ac57fc895217166e915d875a5480',1,'kcenon::monitoring::otlp_exporter::otel_adapter_']]],
+  ['otel_5fresource_5f_13',['otel_resource_',['../d9/d66/classMetricExportersTest.html#a0708ce2cd4bd6e4b7af9fcc1711b59c4',1,'MetricExportersTest::otel_resource_'],['../de/d2d/classTraceExportersTest.html#a62450234e4656949c98e42e3bcbb8472',1,'TraceExportersTest::otel_resource_']]]
 ];
