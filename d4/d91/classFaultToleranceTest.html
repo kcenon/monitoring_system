@@ -345,11 +345,37 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d3/d83/test__fault__tolerance_8cpp_source.html#l00047">47</a> of file <a class="el" href="../../d3/d83/test__fault__tolerance_8cpp_source.html">test_fault_tolerance.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   47</span>                             {</div>
 <div class="line"><span class="lineno">   48</span>        <span class="comment">// Clean up registries</span></div>
-<div class="line"><span class="lineno">   49</span>        global_circuit_breaker_registry().clear();</div>
-<div class="line"><span class="lineno">   50</span>        global_retry_executor_registry().clear();</div>
-<div class="line"><span class="lineno">   51</span>        global_fault_tolerance_registry().clear();</div>
+<div class="line"><span class="lineno">   49</span>        <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a91252f948dbbb6bcf8b6445064f888ce">global_circuit_breaker_registry</a>().<a class="code hl_function" href="../../d5/d51/classkcenon_1_1monitoring_1_1circuit__breaker__registry.html#ab7239d1859bbd0f28d7bfaa8cd4c2c8a">clear</a>();</div>
+<div class="line"><span class="lineno">   50</span>        <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#aefc3f28e86bf5233c5d284d31ebe5d6f">global_retry_executor_registry</a>().<a class="code hl_function" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a5621468f468b5e862cf0c0f21bb041fe">clear</a>();</div>
+<div class="line"><span class="lineno">   51</span>        <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#ac9c985375b6402b8f2eb763419e547ad">global_fault_tolerance_registry</a>().<a class="code hl_function" href="../../dc/d94/classkcenon_1_1monitoring_1_1fault__tolerance__registry.html#afa3a02c6f558ead1bb5ae0a9cef055c3">clear</a>();</div>
 <div class="line"><span class="lineno">   52</span>    }</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker__registry_html_ab7239d1859bbd0f28d7bfaa8cd4c2c8a"><div class="ttname"><a href="../../d5/d51/classkcenon_1_1monitoring_1_1circuit__breaker__registry.html#ab7239d1859bbd0f28d7bfaa8cd4c2c8a">kcenon::monitoring::circuit_breaker_registry::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00294">fault_tolerance_manager.h:294</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1fault__tolerance__registry_html_afa3a02c6f558ead1bb5ae0a9cef055c3"><div class="ttname"><a href="../../dc/d94/classkcenon_1_1monitoring_1_1fault__tolerance__registry.html#afa3a02c6f558ead1bb5ae0a9cef055c3">kcenon::monitoring::fault_tolerance_registry::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00386">fault_tolerance_manager.h:386</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1retry__executor__registry_html_a5621468f468b5e862cf0c0f21bb041fe"><div class="ttname"><a href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a5621468f468b5e862cf0c0f21bb041fe">kcenon::monitoring::retry_executor_registry::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00340">fault_tolerance_manager.h:340</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a91252f948dbbb6bcf8b6445064f888ce"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a91252f948dbbb6bcf8b6445064f888ce">kcenon::monitoring::global_circuit_breaker_registry</a></div><div class="ttdeci">circuit_breaker_registry &amp; global_circuit_breaker_registry()</div><div class="ttdoc">Get global circuit breaker registry.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00399">fault_tolerance_manager.h:399</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ac9c985375b6402b8f2eb763419e547ad"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ac9c985375b6402b8f2eb763419e547ad">kcenon::monitoring::global_fault_tolerance_registry</a></div><div class="ttdeci">fault_tolerance_registry &amp; global_fault_tolerance_registry()</div><div class="ttdoc">Get global fault tolerance manager registry.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00415">fault_tolerance_manager.h:415</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aefc3f28e86bf5233c5d284d31ebe5d6f"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aefc3f28e86bf5233c5d284d31ebe5d6f">kcenon::monitoring::global_retry_executor_registry</a></div><div class="ttdeci">retry_executor_registry &amp; global_retry_executor_registry()</div><div class="ttdoc">Get global retry executor registry.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00407">fault_tolerance_manager.h:407</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d91/classFaultToleranceTest_a765af9d9e34b3b2767399b387927abe0_cgraph.png" border="0" usemap="#ad4/d91/classFaultToleranceTest_a765af9d9e34b3b2767399b387927abe0_cgraph" alt=""/></div>
+<map name="ad4/d91/classFaultToleranceTest_a765af9d9e34b3b2767399b387927abe0_cgraph" id="ad4/d91/classFaultToleranceTest_a765af9d9e34b3b2767399b387927abe0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,210,147,250"/>
+<area shape="rect" href="../../d5/d51/classkcenon_1_1monitoring_1_1circuit__breaker__registry.html#ab7239d1859bbd0f28d7bfaa8cd4c2c8a" title=" " alt="" coords="196,5,379,60"/>
+<area shape="poly" title=" " alt="" coords="85,208,127,141,157,103,193,69,198,66,201,70,196,73,161,107,131,144,90,211"/>
+<area shape="rect" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a5621468f468b5e862cf0c0f21bb041fe" title=" " alt="" coords="197,84,378,139"/>
+<area shape="poly" title=" " alt="" coords="102,207,144,178,193,148,204,142,206,147,196,152,147,182,105,212"/>
+<area shape="rect" href="../../dc/d94/classkcenon_1_1monitoring_1_1fault__tolerance__registry.html#afa3a02c6f558ead1bb5ae0a9cef055c3" title=" " alt="" coords="195,163,380,217"/>
+<area shape="poly" title=" " alt="" coords="146,214,181,207,182,213,147,219"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a91252f948dbbb6bcf8b6445064f888ce" title="Get global circuit breaker registry." alt="" coords="201,241,374,296"/>
+<area shape="poly" title=" " alt="" coords="147,240,187,248,186,253,146,245"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#ac9c985375b6402b8f2eb763419e547ad" title="Get global fault tolerance manager registry." alt="" coords="200,320,375,375"/>
+<area shape="poly" title=" " alt="" coords="106,248,196,305,208,312,206,316,193,310,104,252"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#aefc3f28e86bf5233c5d284d31ebe5d6f" title="Get global retry executor registry." alt="" coords="202,399,373,453"/>
+<area shape="poly" title=" " alt="" coords="90,249,132,314,162,351,196,384,204,389,200,394,193,388,158,355,128,317,86,252"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -409,7 +435,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 14:08:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 14:19:55 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

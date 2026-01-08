@@ -74,6 +74,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="../../dd/df7/structkcenon_1_1monitoring_1_1circuit__breaker__config-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">kcenon::monitoring::circuit_breaker_config Struct Reference</div></div>
@@ -93,6 +94,12 @@ Collaboration diagram for kcenon::monitoring::circuit_breaker_config:</div>
 </map>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aff3453f1105695bed8e4cc3502aad832" id="r_aff3453f1105695bed8e4cc3502aad832"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#aff3453f1105695bed8e4cc3502aad832">validate</a> () const</td></tr>
+<tr class="memdesc:aff3453f1105695bed8e4cc3502aad832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate configuration.  <br /></td></tr>
+<tr class="separator:aff3453f1105695bed8e4cc3502aad832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad9b2e2d082a0b5b27861de5590f917a2" id="r_ad9b2e2d082a0b5b27861de5590f917a2"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a> = 5</td></tr>
@@ -111,8 +118,64 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Circuit breaker configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00059">59</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00061">61</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aff3453f1105695bed8e4cc3502aad832" name="aff3453f1105695bed8e4cc3502aad832"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff3453f1105695bed8e4cc3502aad832">&#9670;&#160;</a></span>validate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kcenon::monitoring::circuit_breaker_config::validate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Validate configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration is valid </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00071">71</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>                          {</div>
+<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a> == 0) {</div>
+<div class="line"><span class="lineno">   73</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   74</span>        }</div>
+<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">success_threshold</a> == 0) {</div>
+<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   77</span>        }</div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   79</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ad9b2e2d082a0b5b27861de5590f917a2"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">kcenon::monitoring::circuit_breaker_config::failure_threshold</a></div><div class="ttdeci">size_t failure_threshold</div><div class="ttdoc">Number of failures before opening.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00062">circuit_breaker.h:62</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ae65aa87b580a625079e153349191d5fe"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">kcenon::monitoring::circuit_breaker_config::success_threshold</a></div><div class="ttdeci">size_t success_threshold</div><div class="ttdoc">Successes in half_open to close.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00065">circuit_breaker.h:65</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph.png" border="0" usemap="#ad3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph" alt=""/></div>
+<map name="ad3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph" id="ad3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph">
+<area shape="rect" title="Validate configuration." alt="" coords="345,23,517,77"/>
+<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a690012918be3f423827231a7464218fe" title=" " alt="" coords="175,5,245,31"/>
+<area shape="poly" title=" " alt="" coords="331,38,244,26,245,20,332,33"/>
+<area shape="rect" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aec1508b171fe8dcb9c4b6935b675c7aa" title=" " alt="" coords="123,55,297,109"/>
+<area shape="poly" title=" " alt="" coords="332,67,298,72,297,67,331,62"/>
+<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a70f3e6138309fe98c9e7d8afda29dd9c" title=" " alt="" coords="5,69,75,95"/>
+<area shape="poly" title=" " alt="" coords="109,85,75,85,75,79,109,79"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
 <a id="ad9b2e2d082a0b5b27861de5590f917a2" name="ad9b2e2d082a0b5b27861de5590f917a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad9b2e2d082a0b5b27861de5590f917a2">&#9670;&#160;</a></span>failure_threshold</h2>
 
@@ -127,7 +190,7 @@ Public Attributes</h2></td></tr>
 
 <p>Number of failures before opening. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00060">60</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00062">62</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -145,7 +208,7 @@ Public Attributes</h2></td></tr>
 
 <p>Time before half_open. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00062">62</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00064">64</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -163,7 +226,7 @@ Public Attributes</h2></td></tr>
 
 <p>Successes in half_open to close. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00063">63</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00065">65</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -181,7 +244,7 @@ Public Attributes</h2></td></tr>
 
 <p>Call timeout. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00061">61</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00063">63</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -191,7 +254,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 14:08:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 14:19:55 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -74,6 +74,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="../../d1/d1e/structkcenon_1_1monitoring_1_1retry__config-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">kcenon::monitoring::retry_config Struct Reference</div></div>
@@ -89,10 +90,16 @@ Collaboration diagram for kcenon::monitoring::retry_config:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d9/da3/structkcenon_1_1monitoring_1_1retry__config__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1retry__config_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1retry__config_coll__map" id="akcenon_1_1monitoring_1_1retry__config_coll__map">
-<area shape="rect" title="Retry configuration." alt="" coords="5,5,151,165"/>
+<area shape="rect" title="Retry configuration." alt="" coords="5,5,151,185"/>
 </map>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad8e7a7dea61d29dbbb80da145fa2a11d" id="r_ad8e7a7dea61d29dbbb80da145fa2a11d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#ad8e7a7dea61d29dbbb80da145fa2a11d">validate</a> () const</td></tr>
+<tr class="memdesc:ad8e7a7dea61d29dbbb80da145fa2a11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate configuration.  <br /></td></tr>
+<tr class="separator:ad8e7a7dea61d29dbbb80da145fa2a11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a5ccd2e766253aa6ea5fbfcc3aa84ae40" id="r_a5ccd2e766253aa6ea5fbfcc3aa84ae40"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#a5ccd2e766253aa6ea5fbfcc3aa84ae40">max_attempts</a> = 3</td></tr>
@@ -105,12 +112,70 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a57513c2eea03bab315f774a06ef99524"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0248b7c204478e2227354111571aa6de" id="r_a0248b7c204478e2227354111571aa6de"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#a0248b7c204478e2227354111571aa6de">backoff_multiplier</a> = 2.0</td></tr>
 <tr class="separator:a0248b7c204478e2227354111571aa6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4ee296f13872aa5aeb6550934014a90" id="r_ad4ee296f13872aa5aeb6550934014a90"><td class="memItemLeft" align="right" valign="top">std::function&lt; bool(const <a class="el" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html">error_info</a> &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#ad4ee296f13872aa5aeb6550934014a90">should_retry</a> = nullptr</td></tr>
+<tr class="separator:ad4ee296f13872aa5aeb6550934014a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Retry configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00050">50</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00073">73</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad8e7a7dea61d29dbbb80da145fa2a11d" name="ad8e7a7dea61d29dbbb80da145fa2a11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8e7a7dea61d29dbbb80da145fa2a11d">&#9670;&#160;</a></span>validate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kcenon::monitoring::retry_config::validate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Validate configuration. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration is valid </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00085">85</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   85</span>                          {</div>
+<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#a5ccd2e766253aa6ea5fbfcc3aa84ae40">max_attempts</a> == 0) {</div>
+<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   88</span>        }</div>
+<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#a0248b7c204478e2227354111571aa6de">backoff_multiplier</a> &lt; 1.0) {</div>
+<div class="line"><span class="lineno">   90</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   91</span>        }</div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   93</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1retry__config_html_a0248b7c204478e2227354111571aa6de"><div class="ttname"><a href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#a0248b7c204478e2227354111571aa6de">kcenon::monitoring::retry_config::backoff_multiplier</a></div><div class="ttdeci">double backoff_multiplier</div><div class="ttdef"><b>Definition</b> <a href="../../d6/df4/retry__policy_8h_source.html#l00078">retry_policy.h:78</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1retry__config_html_a5ccd2e766253aa6ea5fbfcc3aa84ae40"><div class="ttname"><a href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#a5ccd2e766253aa6ea5fbfcc3aa84ae40">kcenon::monitoring::retry_config::max_attempts</a></div><div class="ttdeci">size_t max_attempts</div><div class="ttdef"><b>Definition</b> <a href="../../d6/df4/retry__policy_8h_source.html#l00074">retry_policy.h:74</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config_ad8e7a7dea61d29dbbb80da145fa2a11d_icgraph.png" border="0" usemap="#ad4/d7d/structkcenon_1_1monitoring_1_1retry__config_ad8e7a7dea61d29dbbb80da145fa2a11d_icgraph" alt=""/></div>
+<map name="ad4/d7d/structkcenon_1_1monitoring_1_1retry__config_ad8e7a7dea61d29dbbb80da145fa2a11d_icgraph" id="ad4/d7d/structkcenon_1_1monitoring_1_1retry__config_ad8e7a7dea61d29dbbb80da145fa2a11d_icgraph">
+<area shape="rect" title="Validate configuration." alt="" coords="345,30,513,70"/>
+<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a55b0487d8973321d740b6eb2510dc2ed" title=" " alt="" coords="175,5,245,31"/>
+<area shape="poly" title=" " alt="" coords="331,38,244,26,245,20,332,33"/>
+<area shape="rect" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aec1508b171fe8dcb9c4b6935b675c7aa" title=" " alt="" coords="123,55,297,109"/>
+<area shape="poly" title=" " alt="" coords="332,67,298,72,297,67,331,62"/>
+<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a70f3e6138309fe98c9e7d8afda29dd9c" title=" " alt="" coords="5,69,75,95"/>
+<area shape="poly" title=" " alt="" coords="109,85,75,85,75,79,109,79"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
 <a id="a0248b7c204478e2227354111571aa6de" name="a0248b7c204478e2227354111571aa6de"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0248b7c204478e2227354111571aa6de">&#9670;&#160;</a></span>backoff_multiplier</h2>
 
@@ -123,7 +188,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00055">55</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00078">78</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
 
 </div>
 </div>
@@ -139,7 +204,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00053">53</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00076">76</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
 
 </div>
 </div>
@@ -155,7 +220,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00051">51</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00074">74</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
 
 </div>
 </div>
@@ -171,7 +236,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00054">54</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00077">77</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+
+</div>
+</div>
+<a id="ad4ee296f13872aa5aeb6550934014a90" name="ad4ee296f13872aa5aeb6550934014a90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ee296f13872aa5aeb6550934014a90">&#9670;&#160;</a></span>should_retry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;bool(const <a class="el" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html">error_info</a>&amp;)&gt; kcenon::monitoring::retry_config::should_retry = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00079">79</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
 
 </div>
 </div>
@@ -187,7 +268,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00052">52</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/df4/retry__policy_8h_source.html#l00075">75</a> of file <a class="el" href="../../d6/df4/retry__policy_8h_source.html">retry_policy.h</a>.</p>
 
 </div>
 </div>
@@ -197,7 +278,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 14:08:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 14:19:55 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
