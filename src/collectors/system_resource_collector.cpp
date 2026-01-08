@@ -20,8 +20,15 @@
     #include <IOKit/storage/IOBlockStorageDriver.h>
     #include <CoreFoundation/CoreFoundation.h>
 #elif _WIN32
+    #ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN
+    #endif
+    #include <windows.h>
+    #include <winsock2.h>
+    #include <iphlpapi.h>
     #include <pdh.h>
     #pragma comment(lib, "pdh.lib")
+    #pragma comment(lib, "iphlpapi.lib")
 #endif
 
 namespace kcenon { namespace monitoring {
@@ -123,11 +130,10 @@ void system_info_collector::collect_memory_stats(system_resources& resources) {
 }
 
 void system_info_collector::collect_disk_stats(system_resources& resources) {
+#if defined(__APPLE__) || defined(__linux__)
     auto now = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - last_collection_time_).count();
     double seconds = duration > 0 ? duration / 1000000.0 : 1.0;
-
-#if defined(__APPLE__) || defined(__linux__)
     // Get disk space usage for root filesystem
     struct statvfs stat;
     if (statvfs("/", &stat) == 0) {
@@ -283,11 +289,10 @@ void system_info_collector::collect_disk_stats(system_resources& resources) {
 }
 
 void system_info_collector::collect_network_stats(system_resources& resources) {
+#if defined(__APPLE__) || defined(__linux__)
     auto now = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - last_collection_time_).count();
     double seconds = duration > 0 ? duration / 1000000.0 : 1.0;
-
-#if defined(__APPLE__) || defined(__linux__)
     struct ifaddrs* ifaddr = nullptr;
     if (getifaddrs(&ifaddr) == 0) {
         uint64_t total_rx_bytes = 0;
