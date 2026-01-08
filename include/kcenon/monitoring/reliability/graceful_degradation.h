@@ -32,6 +32,9 @@
 #include "error_boundary.h"
 
 #include <any>
+#include <atomic>
+#include <chrono>
+#include <functional>
 #include <memory>
 #include <mutex>
 #include <string>
