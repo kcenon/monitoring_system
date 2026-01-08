@@ -550,6 +550,15 @@ TEST_F(OtlpGrpcExporterTest, ExporterDetailedStats) {
     config.endpoint = "localhost:4317";
 
     auto stub_transport = create_stub_grpc_transport();
+    // Set response handler to simulate realistic export time
+    stub_transport->set_response_handler([](const grpc_request&) {
+        // Simulate a small delay to ensure measurable export time
+        std::this_thread::sleep_for(std::chrono::microseconds(100));
+        grpc_response response;
+        response.status_code = 0;  // OK
+        response.status_message = "OK";
+        return response;
+    });
     otlp_grpc_exporter exporter(config, std::move(stub_transport));
 
     auto start_result = exporter.start();

@@ -95,7 +95,7 @@ struct otlp_exporter_stats {
     std::size_t export_failures{0};
     std::size_t retries{0};
     std::size_t batches_sent{0};
-    std::chrono::milliseconds total_export_time{0};
+    std::chrono::microseconds total_export_time{0};  ///< Total export time (microseconds for precision)
 };
 
 /**
@@ -389,7 +389,7 @@ private:
     std::atomic<std::size_t> failed_exports_{0};
     std::atomic<std::size_t> retries_{0};
     std::mutex stats_mutex_;
-    std::chrono::milliseconds total_export_time_{0};
+    std::chrono::microseconds total_export_time_{0};
 
 public:
     /**
@@ -477,7 +477,7 @@ public:
 
         {
             std::lock_guard<std::mutex> lock(stats_mutex_);
-            total_export_time_ += std::chrono::duration_cast<std::chrono::milliseconds>(
+            total_export_time_ += std::chrono::duration_cast<std::chrono::microseconds>(
                 end_time - start_time);
         }
 
