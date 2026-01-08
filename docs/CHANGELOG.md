@@ -136,6 +136,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added missing 'available' statistic to socket_buffer_collector
 
 ### Changed
+- **OTLP exporter timing precision improvement** (#353)
+  - Changed `otlp_exporter_stats.total_export_time` from `std::chrono::milliseconds` to `std::chrono::microseconds`
+  - Provides higher precision timing for fast export operations
+  - Fixes test failures on CI where stub transport operations completed in under 1ms
 - **Clarify public vs internal buffer APIs** (#313)
   - Added `@public` documentation tags to public API headers: `thread_local_buffer.h`, `time_series_buffer.h`, `socket_buffer_collector.h`
   - Enhanced `@internal` documentation with warnings in internal headers: `ring_buffer.h`, `buffering_strategy.h`, `buffer_manager.h`
