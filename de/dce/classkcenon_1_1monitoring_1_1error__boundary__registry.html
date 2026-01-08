@@ -127,7 +127,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Error boundary registry for managing multiple boundaries. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00414">414</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00417">417</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a87140ae95404b51ffa94046f5b54256e" name="a87140ae95404b51ffa94046f5b54256e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a87140ae95404b51ffa94046f5b54256e">&#9670;&#160;</a></span>clear()</h2>
@@ -152,13 +152,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00451">451</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  451</span>                 {</div>
-<div class="line"><span class="lineno">  452</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  453</span>        <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.clear();</div>
-<div class="line"><span class="lineno">  454</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1error__boundary__registry_html_a177386293e2c908ee575375ff64147e6"><div class="ttname"><a href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">kcenon::monitoring::error_boundary_registry::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00457">graceful_degradation.h:457</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1error__boundary__registry_html_a2c8ec974e2aa31ecee499fb65a55cd08"><div class="ttname"><a href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">kcenon::monitoring::error_boundary_registry::registry_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::any &gt; registry_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00458">graceful_degradation.h:458</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00454">454</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  454</span>                 {</div>
+<div class="line"><span class="lineno">  455</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  456</span>        <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.clear();</div>
+<div class="line"><span class="lineno">  457</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1error__boundary__registry_html_a177386293e2c908ee575375ff64147e6"><div class="ttname"><a href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">kcenon::monitoring::error_boundary_registry::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00460">graceful_degradation.h:460</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1error__boundary__registry_html_a2c8ec974e2aa31ecee499fb65a55cd08"><div class="ttname"><a href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">kcenon::monitoring::error_boundary_registry::registry_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::any &gt; registry_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00461">graceful_degradation.h:461</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -195,16 +195,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00441">441</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  441</span>                                               {</div>
-<div class="line"><span class="lineno">  442</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  443</span>        std::vector&lt;std::string&gt; names;</div>
-<div class="line"><span class="lineno">  444</span>        names.reserve(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.size());</div>
-<div class="line"><span class="lineno">  445</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, boundary] : <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>) {</div>
-<div class="line"><span class="lineno">  446</span>            names.push_back(name);</div>
-<div class="line"><span class="lineno">  447</span>        }</div>
-<div class="line"><span class="lineno">  448</span>        <span class="keywordflow">return</span> names;</div>
-<div class="line"><span class="lineno">  449</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00444">444</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  444</span>                                               {</div>
+<div class="line"><span class="lineno">  445</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  446</span>        std::vector&lt;std::string&gt; names;</div>
+<div class="line"><span class="lineno">  447</span>        names.reserve(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.size());</div>
+<div class="line"><span class="lineno">  448</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, boundary] : <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>) {</div>
+<div class="line"><span class="lineno">  449</span>            names.push_back(name);</div>
+<div class="line"><span class="lineno">  450</span>        }</div>
+<div class="line"><span class="lineno">  451</span>        <span class="keywordflow">return</span> names;</div>
+<div class="line"><span class="lineno">  452</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -234,19 +234,19 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00423">423</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  423</span>                                                                         {</div>
-<div class="line"><span class="lineno">  424</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  425</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.find(name);</div>
-<div class="line"><span class="lineno">  426</span>        <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.end()) {</div>
-<div class="line"><span class="lineno">  427</span>            <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  428</span>                <span class="keywordflow">return</span> std::any_cast&lt;std::shared_ptr&lt;error_boundary&lt;T&gt;&gt;&gt;(it-&gt;second);</div>
-<div class="line"><span class="lineno">  429</span>            } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::bad_any_cast&amp;) {</div>
-<div class="line"><span class="lineno">  430</span>                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  431</span>            }</div>
-<div class="line"><span class="lineno">  432</span>        }</div>
-<div class="line"><span class="lineno">  433</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  434</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00426">426</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  426</span>                                                                         {</div>
+<div class="line"><span class="lineno">  427</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  428</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.find(name);</div>
+<div class="line"><span class="lineno">  429</span>        <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.end()) {</div>
+<div class="line"><span class="lineno">  430</span>            <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  431</span>                <span class="keywordflow">return</span> std::any_cast&lt;std::shared_ptr&lt;error_boundary&lt;T&gt;&gt;&gt;(it-&gt;second);</div>
+<div class="line"><span class="lineno">  432</span>            } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::bad_any_cast&amp;) {</div>
+<div class="line"><span class="lineno">  433</span>                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  434</span>            }</div>
+<div class="line"><span class="lineno">  435</span>        }</div>
+<div class="line"><span class="lineno">  436</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  437</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -286,11 +286,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00417">417</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  417</span>                                                                                             {</div>
-<div class="line"><span class="lineno">  418</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  419</span>        <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>[name] = std::move(boundary);</div>
-<div class="line"><span class="lineno">  420</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00420">420</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  420</span>                                                                                             {</div>
+<div class="line"><span class="lineno">  421</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  422</span>        <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>[name] = std::move(boundary);</div>
+<div class="line"><span class="lineno">  423</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -318,11 +318,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00436">436</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  436</span>                                                {</div>
-<div class="line"><span class="lineno">  437</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
-<div class="line"><span class="lineno">  438</span>        <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.erase(name);</div>
-<div class="line"><span class="lineno">  439</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00439">439</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  439</span>                                                {</div>
+<div class="line"><span class="lineno">  440</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a177386293e2c908ee575375ff64147e6">mutex_</a>);</div>
+<div class="line"><span class="lineno">  441</span>        <a class="code hl_variable" href="../../de/dce/classkcenon_1_1monitoring_1_1error__boundary__registry.html#a2c8ec974e2aa31ecee499fb65a55cd08">registry_</a>.erase(name);</div>
+<div class="line"><span class="lineno">  442</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -347,7 +347,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00457">457</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00460">460</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
@@ -371,7 +371,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00458">458</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00461">461</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
@@ -381,7 +381,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 14:38:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 14:50:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
