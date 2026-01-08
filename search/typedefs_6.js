@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tag_5fmap_0',['tag_map',['../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#a6e010f28138cfe550e9120f701f5fdba',1,'kcenon::monitoring::monitoring_data::tag_map'],['../db/d50/namespacekcenon_1_1monitoring.html#a7a3782079383f72a68c9277cb32730c6',1,'kcenon::monitoring::tag_map']]]
+  ['normal_5foperation_0',['normal_operation',['../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#acf8e118936b394f1c1aa9ff712df5200',1,'kcenon::monitoring::degradable_service']]]
 ];

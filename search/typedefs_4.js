@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['result_0',['result',['../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0',1,'kcenon::monitoring']]],
-  ['result_5fvoid_1',['result_void',['../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea',1,'kcenon::monitoring']]]
+  ['handler_5ffunc_0',['handler_func',['../d0/d89/classkcenon_1_1monitoring_1_1event__handler.html#a1610c575f2d4571803e53fecc3b485b0',1,'kcenon::monitoring::event_handler']]]
 ];

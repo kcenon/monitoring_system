@@ -129,7 +129,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afe49d1ce3b93a72533f945568da99576" id="r_afe49d1ce3b93a72533f945568da99576"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#afe49d1ce3b93a72533f945568da99576">circuit_breaker</a> (const std::string &amp;name, const <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a059b34e0787f1de094e9943a983a77b1">config</a> &amp;cfg)</td></tr>
 <tr class="separator:afe49d1ce3b93a72533f945568da99576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fb45f40f2821e055692878e126ebf9d" id="r_a4fb45f40f2821e055692878e126ebf9d"><td class="memTemplParams" colspan="2">template&lt;typename Func , typename Fallback &gt; </td></tr>
-<tr class="memitem:a4fb45f40f2821e055692878e126ebf9d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a4fb45f40f2821e055692878e126ebf9d">execute</a> (Func &amp;&amp;func, Fallback &amp;&amp;fallback)</td></tr>
+<tr class="memitem:a4fb45f40f2821e055692878e126ebf9d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a4fb45f40f2821e055692878e126ebf9d">execute</a> (Func &amp;&amp;func, Fallback &amp;&amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>)</td></tr>
 <tr class="memdesc:a4fb45f40f2821e055692878e126ebf9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a function with circuit breaker protection and fallback.  <br /></td></tr>
 <tr class="separator:a4fb45f40f2821e055692878e126ebf9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f03f8e0c38b6a82c75549e2b945b637" id="r_a9f03f8e0c38b6a82c75549e2b945b637"><td class="memTemplParams" colspan="2">template&lt;typename Func &gt; </td></tr>
@@ -598,7 +598,7 @@ template&lt;typename Func , typename Fallback &gt; </div>
 <div class="line"><span class="lineno">  159</span> </div>
 <div class="line"><span class="lineno">  160</span>        <span class="keywordflow">if</span> (current_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>) {</div>
 <div class="line"><span class="lineno">  161</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">rejected_calls</a>++;</div>
-<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">return</span> fallback();</div>
+<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>();</div>
 <div class="line"><span class="lineno">  163</span>        }</div>
 <div class="line"><span class="lineno">  164</span> </div>
 <div class="line"><span class="lineno">  165</span>        <span class="keyword">auto</span> op_result = func();</div>
@@ -607,9 +607,10 @@ template&lt;typename Func , typename Fallback &gt; </div>
 <div class="line"><span class="lineno">  168</span>            <span class="keywordflow">return</span> op_result;</div>
 <div class="line"><span class="lineno">  169</span>        } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  170</span>            <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d">on_failure</a>();</div>
-<div class="line"><span class="lineno">  171</span>            <span class="keywordflow">return</span> fallback();</div>
+<div class="line"><span class="lineno">  171</span>            <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>();</div>
 <div class="line"><span class="lineno">  172</span>        }</div>
 <div class="line"><span class="lineno">  173</span>    }</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">kcenon::monitoring::error_boundary_policy::fallback</a></div><div class="ttdeci">@ fallback</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1402,7 +1403,7 @@ template&lt;typename T  = void&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 14:28:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 14:38:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
