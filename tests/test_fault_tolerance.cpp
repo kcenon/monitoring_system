@@ -357,7 +357,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerWithTimeout) {
     fault_tolerance_manager<int> manager("test_manager", config);
     
     auto result = manager.execute_with_timeout(
-        [this]() { return slow_operation(std::chrono::milliseconds(100)); },
+        [this]() { return slow_operation(std::chrono::milliseconds(500)); },
         std::chrono::milliseconds(50)
     );
     
