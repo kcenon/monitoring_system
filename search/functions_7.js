@@ -12,5 +12,6 @@ var searchData=
   ['health_5fcheck_5fresult_9',['health_check_result',['../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a9d7de81a4f8f97b6cd70d706c1a00b3c',1,'kcenon::monitoring::health_check_result']]],
   ['health_5fmonitor_10',['health_monitor',['../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aa1b0494d902b8250aa39541d52afe80a',1,'kcenon::monitoring::health_monitor::health_monitor()=default'],['../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a03c3b9e2160a1f9e892bd03a9695c133',1,'kcenon::monitoring::health_monitor::health_monitor(const health_monitor_config &amp;config)']]],
   ['healthy_11',['healthy',['../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a93c02337fda4400ef37f5b235d662d7c',1,'kcenon::monitoring::health_check_result']]],
-  ['histogram_5fbucket_12',['histogram_bucket',['../dd/d90/structkcenon_1_1monitoring_1_1histogram__bucket.html#a3f73ed79408cf4cee36f69dfa506e3cc',1,'kcenon::monitoring::histogram_bucket']]]
+  ['hex_5fto_5fbytes_12',['hex_to_bytes',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ac65149173e5edf0df22ef225354e8fe5',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['histogram_5fbucket_13',['histogram_bucket',['../dd/d90/structkcenon_1_1monitoring_1_1histogram__bucket.html#a3f73ed79408cf4cee36f69dfa506e3cc',1,'kcenon::monitoring::histogram_bucket']]]
 ];

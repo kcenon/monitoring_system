@@ -18,7 +18,9 @@ var searchData=
   ['write_5fbytes_15',['write_bytes',['../de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats.html#a6bc4352ba2326e12154d7ce07e98f753',1,'kcenon::monitoring::system_info_collector::disk_stats']]],
   ['write_5fbytes_5fper_5fsec_16',['write_bytes_per_sec',['../de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput.html#a50f4b97ee6d68c4696fb72ffd2fb2360',1,'kcenon::monitoring::system_resources::disk_metrics::io_throughput']]],
   ['write_5ferror_5frate_17',['write_error_rate',['../dd/d5f/structkcenon_1_1monitoring_1_1smart__disk__metrics.html#abfb1bde25cea000f3dd6813405c37df3',1,'kcenon::monitoring::smart_disk_metrics']]],
-  ['write_5findex_5f_18',['write_index_',['../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a3ea13be4f3400ba0ebff660b7b22d92d',1,'kcenon::monitoring::thread_local_buffer']]],
-  ['write_5fops_19',['write_ops',['../de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats.html#a42b3486cc153b117e312fb8e1db13efb',1,'kcenon::monitoring::system_info_collector::disk_stats']]],
-  ['write_5fops_5fper_5fsec_20',['write_ops_per_sec',['../de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput.html#af4272e8c9df9885257cffa480d0e0697',1,'kcenon::monitoring::system_resources::disk_metrics::io_throughput']]]
+  ['write_5ffixed64_18',['write_fixed64',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#aaf1655480c90296dea76b44952d6f775',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['write_5findex_5f_19',['write_index_',['../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a3ea13be4f3400ba0ebff660b7b22d92d',1,'kcenon::monitoring::thread_local_buffer']]],
+  ['write_5fops_20',['write_ops',['../de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats.html#a42b3486cc153b117e312fb8e1db13efb',1,'kcenon::monitoring::system_info_collector::disk_stats']]],
+  ['write_5fops_5fper_5fsec_21',['write_ops_per_sec',['../de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput.html#af4272e8c9df9885257cffa480d0e0697',1,'kcenon::monitoring::system_resources::disk_metrics::io_throughput']]],
+  ['write_5fvarint_22',['write_varint',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ade80dc81ce7c0f53e66191ef2ea78ef3',1,'kcenon::monitoring::otlp_span_converter']]]
 ];

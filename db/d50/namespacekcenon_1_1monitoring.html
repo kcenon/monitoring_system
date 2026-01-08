@@ -492,8 +492,20 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html">otlp_exporter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenTelemetry Protocol (OTLP) trace exporter implementation.  <a href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0f/structkcenon_1_1monitoring_1_1otlp__exporter__stats.html">otlp_exporter_stats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statistics for OTLP exporter.  <a href="../../d0/d0f/structkcenon_1_1monitoring_1_1otlp__exporter__stats.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html">otlp_grpc_config</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration for OTLP gRPC exporter.  <a href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">OTLP gRPC trace exporter.  <a href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc5/classkcenon_1_1monitoring_1_1otlp__metrics__exporter.html">otlp_metrics_exporter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenTelemetry Protocol (OTLP) metrics exporter implementation.  <a href="../../d1/dc5/classkcenon_1_1monitoring_1_1otlp__metrics__exporter.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html">otlp_span_converter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts internal spans to OTLP wire format.  <a href="../../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html">performance_alert_event</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event for performance-related alerts.  <a href="../../d4/d66/classkcenon_1_1monitoring_1_1performance__alert__event.html#details">More...</a><br /></td></tr>
@@ -1283,6 +1295,12 @@ Functions</h2></td></tr>
 <tr class="memitem:af69afd20ff35fa732f184ba856dd5cfb" id="r_af69afd20ff35fa732f184ba856dd5cfb"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../de/d18/classkcenon_1_1monitoring_1_1opentelemetry__compatibility__layer.html">opentelemetry_compatibility_layer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#af69afd20ff35fa732f184ba856dd5cfb">create_opentelemetry_compatibility_layer</a> (const std::string &amp;service_name, const std::string &amp;service_version=&quot;1.0.0&quot;)</td></tr>
 <tr class="memdesc:af69afd20ff35fa732f184ba856dd5cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create OpenTelemetry compatibility layer with service resource.  <br /></td></tr>
 <tr class="separator:af69afd20ff35fa732f184ba856dd5cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85f0e44715d3cc926daa5a7b9716c761" id="r_a85f0e44715d3cc926daa5a7b9716c761"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a85f0e44715d3cc926daa5a7b9716c761">create_otlp_grpc_exporter</a> (const std::string &amp;endpoint=&quot;localhost:4317&quot;)</td></tr>
+<tr class="memdesc:a85f0e44715d3cc926daa5a7b9716c761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create OTLP gRPC exporter with default configuration.  <br /></td></tr>
+<tr class="separator:a85f0e44715d3cc926daa5a7b9716c761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d4912525673d436b2c0d6506dab17c1" id="r_a1d4912525673d436b2c0d6506dab17c1"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1d4912525673d436b2c0d6506dab17c1">create_otlp_grpc_exporter</a> (const <a class="el" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html">otlp_grpc_config</a> &amp;config)</td></tr>
+<tr class="memdesc:a1d4912525673d436b2c0d6506dab17c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create OTLP gRPC exporter with custom configuration.  <br /></td></tr>
+<tr class="separator:a1d4912525673d436b2c0d6506dab17c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff04e64734417cd002416edbe247e8ff" id="r_aff04e64734417cd002416edbe247e8ff"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../d2/dc2/classkcenon_1_1monitoring_1_1jaeger__exporter.html">jaeger_exporter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aff04e64734417cd002416edbe247e8ff">create_jaeger_exporter</a> (const std::string &amp;endpoint, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401ac">trace_export_format</a> format=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">trace_export_format::jaeger_grpc</a>)</td></tr>
 <tr class="memdesc:aff04e64734417cd002416edbe247e8ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to create a Jaeger exporter.  <br /></td></tr>
 <tr class="separator:aff04e64734417cd002416edbe247e8ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3065,16 +3083,16 @@ template&lt;typename T &gt; </div>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00048">48</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>                               {</div>
-<div class="line"><span class="lineno">   49</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3">jaeger_thrift</a>,      </div>
-<div class="line"><span class="lineno">   50</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">jaeger_grpc</a>,        </div>
-<div class="line"><span class="lineno">   51</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">zipkin_json</a>,        </div>
-<div class="line"><span class="lineno">   52</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaf6ce4015b005cc4749b10e52b2f99111">zipkin_protobuf</a>,    </div>
-<div class="line"><span class="lineno">   53</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23a3e19f28eb4c4dcbd9cdbd7afb77af099">otlp_grpc</a>,          </div>
-<div class="line"><span class="lineno">   54</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23ae3b3045015a45ca86e1109417228cda0">otlp_http_json</a>,     </div>
-<div class="line"><span class="lineno">   55</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23aebf638e4767f4c75613afea195fd6ce0">otlp_http_protobuf</a>  </div>
-<div class="line"><span class="lineno">   56</span>};</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00049">49</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   49</span>                               {</div>
+<div class="line"><span class="lineno">   50</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3">jaeger_thrift</a>,      </div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">jaeger_grpc</a>,        </div>
+<div class="line"><span class="lineno">   52</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">zipkin_json</a>,        </div>
+<div class="line"><span class="lineno">   53</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaf6ce4015b005cc4749b10e52b2f99111">zipkin_protobuf</a>,    </div>
+<div class="line"><span class="lineno">   54</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23a3e19f28eb4c4dcbd9cdbd7afb77af099">otlp_grpc</a>,          </div>
+<div class="line"><span class="lineno">   55</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23ae3b3045015a45ca86e1109417228cda0">otlp_http_json</a>,     </div>
+<div class="line"><span class="lineno">   56</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23aebf638e4767f4c75613afea195fd6ce0">otlp_http_protobuf</a>  </div>
+<div class="line"><span class="lineno">   57</span>};</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">kcenon::monitoring::trace_export_format::zipkin_json</a></div><div class="ttdeci">@ zipkin_json</div><div class="ttdoc">Zipkin JSON v2 format.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">kcenon::monitoring::trace_export_format::jaeger_grpc</a></div><div class="ttdeci">@ jaeger_grpc</div><div class="ttdoc">Jaeger gRPC protocol.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3">kcenon::monitoring::trace_export_format::jaeger_thrift</a></div><div class="ttdeci">@ jaeger_thrift</div><div class="ttdoc">Jaeger Thrift protocol.</div></div>
@@ -3380,14 +3398,14 @@ Here is the caller graph for this function:</div>
 <p>Create default gRPC transport. </p>
 <p>Returns a real gRPC transport if available, otherwise falls back to a stub implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/de7/grpc__transport_8h_source.html#l00271">271</a> of file <a class="el" href="../../d3/de7/grpc__transport_8h_source.html">grpc_transport.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  271</span>                                                                     {</div>
-<div class="line"><span class="lineno">  272</span><span class="preprocessor">#ifdef MONITORING_HAS_GRPC</span></div>
-<div class="line"><span class="lineno">  273</span>    <span class="keywordflow">return</span> std::make_unique&lt;network_grpc_transport&gt;();</div>
-<div class="line"><span class="lineno">  274</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">  275</span>    <span class="keywordflow">return</span> std::make_unique&lt;stub_grpc_transport&gt;();</div>
-<div class="line"><span class="lineno">  276</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  277</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/de7/grpc__transport_8h_source.html#l00598">598</a> of file <a class="el" href="../../d3/de7/grpc__transport_8h_source.html">grpc_transport.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  598</span>                                                                     {</div>
+<div class="line"><span class="lineno">  599</span><span class="preprocessor">#ifdef MONITORING_HAS_GRPC</span></div>
+<div class="line"><span class="lineno">  600</span>    <span class="keywordflow">return</span> std::make_unique&lt;network_grpc_transport&gt;();</div>
+<div class="line"><span class="lineno">  601</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">  602</span>    <span class="keywordflow">return</span> std::make_unique&lt;stub_grpc_transport&gt;();</div>
+<div class="line"><span class="lineno">  603</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  604</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -4002,17 +4020,17 @@ Here is the caller graph for this function:</div>
 
 <p>Helper function to create a Jaeger exporter. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00807">807</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  809</span>                                                                 {</div>
-<div class="line"><span class="lineno">  810</span>    </div>
-<div class="line"><span class="lineno">  811</span>    <a class="code hl_struct" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">trace_export_config</a> config;</div>
-<div class="line"><span class="lineno">  812</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a> = endpoint;</div>
-<div class="line"><span class="lineno">  813</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">format</a> = format;</div>
-<div class="line"><span class="lineno">  814</span>    <span class="keywordflow">return</span> std::make_unique&lt;jaeger_exporter&gt;(config);</div>
-<div class="line"><span class="lineno">  815</span>}</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">kcenon::monitoring::trace_export_config</a></div><div class="ttdoc">Configuration for trace exporters.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00062">trace_exporters.h:62</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a1029ff6abe2e53c7e4217c36a8a05c9c"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">kcenon::monitoring::trace_export_config::endpoint</a></div><div class="ttdeci">std::string endpoint</div><div class="ttdoc">Endpoint URL.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00063">trace_exporters.h:63</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a47fa882e01cad1465b67cf2faf1bc4ac"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">kcenon::monitoring::trace_export_config::format</a></div><div class="ttdeci">trace_export_format format</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00064">trace_exporters.h:64</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00808">808</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  810</span>                                                                 {</div>
+<div class="line"><span class="lineno">  811</span>    </div>
+<div class="line"><span class="lineno">  812</span>    <a class="code hl_struct" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">trace_export_config</a> config;</div>
+<div class="line"><span class="lineno">  813</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a> = endpoint;</div>
+<div class="line"><span class="lineno">  814</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">format</a> = format;</div>
+<div class="line"><span class="lineno">  815</span>    <span class="keywordflow">return</span> std::make_unique&lt;jaeger_exporter&gt;(config);</div>
+<div class="line"><span class="lineno">  816</span>}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">kcenon::monitoring::trace_export_config</a></div><div class="ttdoc">Configuration for trace exporters.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00063">trace_exporters.h:63</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a1029ff6abe2e53c7e4217c36a8a05c9c"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">kcenon::monitoring::trace_export_config::endpoint</a></div><div class="ttdeci">std::string endpoint</div><div class="ttdoc">Endpoint URL.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00064">trace_exporters.h:64</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a47fa882e01cad1465b67cf2faf1bc4ac"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">kcenon::monitoring::trace_export_config::format</a></div><div class="ttdeci">trace_export_format format</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00065">trace_exporters.h:65</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -4317,14 +4335,14 @@ Here is the call graph for this function:</div>
 
 <p>Helper function to create an OTLP exporter. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00833">833</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  836</span>                                                               {</div>
-<div class="line"><span class="lineno">  837</span>    </div>
-<div class="line"><span class="lineno">  838</span>    <a class="code hl_struct" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">trace_export_config</a> config;</div>
-<div class="line"><span class="lineno">  839</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a> = endpoint;</div>
-<div class="line"><span class="lineno">  840</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">format</a> = format;</div>
-<div class="line"><span class="lineno">  841</span>    <span class="keywordflow">return</span> std::make_unique&lt;otlp_exporter&gt;(config, resource);</div>
-<div class="line"><span class="lineno">  842</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00834">834</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  837</span>                                                               {</div>
+<div class="line"><span class="lineno">  838</span>    </div>
+<div class="line"><span class="lineno">  839</span>    <a class="code hl_struct" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">trace_export_config</a> config;</div>
+<div class="line"><span class="lineno">  840</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a> = endpoint;</div>
+<div class="line"><span class="lineno">  841</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">format</a> = format;</div>
+<div class="line"><span class="lineno">  842</span>    <span class="keywordflow">return</span> std::make_unique&lt;otlp_exporter&gt;(config, resource);</div>
+<div class="line"><span class="lineno">  843</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -4332,6 +4350,100 @@ Here is the caller graph for this function:</div>
 <map name="adb/d50/namespacekcenon_1_1monitoring_ab7c5a560d0c9409c18cd8082da5524ee_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_ab7c5a560d0c9409c18cd8082da5524ee_icgraph">
 <area shape="rect" title="Helper function to create an OTLP exporter." alt="" coords="123,5,288,45"/>
 <area shape="rect" href="../../dc/dbd/test__trace__exporters_8cpp.html#a9dd7f9f549b9f9e8895d4cf3172c3abb" title=" " alt="" coords="5,13,75,38"/>
+<area shape="poly" title=" " alt="" coords="109,28,75,28,75,23,109,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1d4912525673d436b2c0d6506dab17c1" name="a1d4912525673d436b2c0d6506dab17c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d4912525673d436b2c0d6506dab17c1">&#9670;&#160;</a></span>create_otlp_grpc_exporter() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> &gt; kcenon::monitoring::create_otlp_grpc_exporter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html">otlp_grpc_config</a> &amp;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create OTLP gRPC exporter with custom configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>Exporter configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Unique pointer to exporter </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00649">649</a> of file <a class="el" href="../../d6/d9d/otlp__grpc__exporter_8h_source.html">otlp_grpc_exporter.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  650</span>                                    {</div>
+<div class="line"><span class="lineno">  651</span> </div>
+<div class="line"><span class="lineno">  652</span>    <span class="keywordflow">return</span> std::make_unique&lt;otlp_grpc_exporter&gt;(config);</div>
+<div class="line"><span class="lineno">  653</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a85f0e44715d3cc926daa5a7b9716c761" name="a85f0e44715d3cc926daa5a7b9716c761"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f0e44715d3cc926daa5a7b9716c761">&#9670;&#160;</a></span>create_otlp_grpc_exporter() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html">otlp_grpc_exporter</a> &gt; kcenon::monitoring::create_otlp_grpc_exporter </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>endpoint</em> = <code>&quot;localhost:4317&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create OTLP gRPC exporter with default configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">endpoint</td><td>OTLP receiver endpoint </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Unique pointer to exporter </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d6/d9d/otlp__grpc__exporter_8h_source.html#l00636">636</a> of file <a class="el" href="../../d6/d9d/otlp__grpc__exporter_8h_source.html">otlp_grpc_exporter.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  637</span>                                          :4317<span class="stringliteral">&quot;) {</span></div>
+<div class="line"><span class="lineno">  638</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  639</span><span class="stringliteral">    otlp_grpc_config config;</span></div>
+<div class="line"><span class="lineno">  640</span><span class="stringliteral">    config.endpoint = endpoint;</span></div>
+<div class="line"><span class="lineno">  641</span><span class="stringliteral">    return std::make_unique&lt;otlp_grpc_exporter&gt;(config);</span></div>
+<div class="line"><span class="lineno">  642</span><span class="stringliteral">}</span></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_a85f0e44715d3cc926daa5a7b9716c761_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_a85f0e44715d3cc926daa5a7b9716c761_icgraph" alt=""/></div>
+<map name="adb/d50/namespacekcenon_1_1monitoring_a85f0e44715d3cc926daa5a7b9716c761_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_a85f0e44715d3cc926daa5a7b9716c761_icgraph">
+<area shape="rect" title="Create OTLP gRPC exporter with default configuration." alt="" coords="123,5,323,45"/>
+<area shape="rect" href="../../dc/dbd/test__trace__exporters_8cpp.html#a8970b46fb6a5f0c8647c675159610451" title=" " alt="" coords="5,13,75,38"/>
 <area shape="poly" title=" " alt="" coords="109,28,75,28,75,23,109,23"/>
 </map>
 </div>
@@ -4612,17 +4724,19 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_a9e2adee02d3f8c5b7d86e5784d52b36f_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_a9e2adee02d3f8c5b7d86e5784d52b36f_icgraph" alt=""/></div>
 <map name="adb/d50/namespacekcenon_1_1monitoring_a9e2adee02d3f8c5b7d86e5784d52b36f_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_a9e2adee02d3f8c5b7d86e5784d52b36f_icgraph">
-<area shape="rect" title="Create OpenTelemetry resource with service information." alt="" coords="252,149,440,189"/>
-<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#af69afd20ff35fa732f184ba856dd5cfb" title="Create OpenTelemetry compatibility layer with service resource." alt="" coords="17,5,192,60"/>
-<area shape="poly" title=" " alt="" coords="307,143,258,109,203,75,177,62,179,58,205,70,261,104,310,138"/>
-<area shape="rect" href="../../d9/d66/classMetricExportersTest.html#a35e6566cd06a1ff489640f72b984bb54" title=" " alt="" coords="29,85,180,125"/>
-<area shape="poly" title=" " alt="" coords="256,148,179,127,181,122,258,143"/>
-<area shape="rect" href="../../d5/d90/classOpenTelemetryAdapterTest.html#ac8abd562219df5cc64512a55be7eedb0" title=" " alt="" coords="5,149,204,189"/>
-<area shape="poly" title=" " alt="" coords="238,171,204,171,204,166,238,166"/>
-<area shape="rect" href="../../de/d2d/classTraceExportersTest.html#a8148a280d4bc6a963114233ef938c4a9" title=" " alt="" coords="33,213,177,253"/>
-<area shape="poly" title=" " alt="" coords="257,195,178,216,176,211,256,190"/>
-<area shape="rect" href="../../d5/dbf/test__opentelemetry__adapter_8cpp.html#a27d92f326c4c77049817a523df93855f" title=" " alt="" coords="70,277,139,303"/>
-<area shape="poly" title=" " alt="" coords="312,199,263,235,205,267,172,279,140,287,139,282,171,274,203,262,260,230,309,195"/>
+<area shape="rect" title="Create OpenTelemetry resource with service information." alt="" coords="460,149,648,189"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#af69afd20ff35fa732f184ba856dd5cfb" title="Create OpenTelemetry compatibility layer with service resource." alt="" coords="225,5,400,60"/>
+<area shape="poly" title=" " alt="" coords="515,143,466,109,411,75,385,62,387,58,413,70,469,104,518,138"/>
+<area shape="rect" href="../../d9/d66/classMetricExportersTest.html#a35e6566cd06a1ff489640f72b984bb54" title=" " alt="" coords="237,85,388,125"/>
+<area shape="poly" title=" " alt="" coords="464,148,387,127,389,122,466,143"/>
+<area shape="rect" href="../../d5/d90/classOpenTelemetryAdapterTest.html#ac8abd562219df5cc64512a55be7eedb0" title=" " alt="" coords="213,149,412,189"/>
+<area shape="poly" title=" " alt="" coords="446,171,412,171,412,166,446,166"/>
+<area shape="rect" href="../../de/d2d/classTraceExportersTest.html#a8148a280d4bc6a963114233ef938c4a9" title=" " alt="" coords="241,213,385,253"/>
+<area shape="poly" title=" " alt="" coords="465,195,386,216,384,211,464,190"/>
+<area shape="rect" href="../../d5/dbf/test__opentelemetry__adapter_8cpp.html#a27d92f326c4c77049817a523df93855f" title=" " alt="" coords="278,277,347,303"/>
+<area shape="poly" title=" " alt="" coords="520,199,471,235,413,267,380,279,348,287,347,282,379,274,411,262,468,230,517,195"/>
+<area shape="rect" href="../../df/de1/classOtlpGrpcExporterTest.html#ad3b48755eaa37d1843c9f6110f7caf16" title=" " alt="" coords="5,213,165,253"/>
+<area shape="poly" title=" " alt="" coords="227,235,165,235,165,230,227,230"/>
 </map>
 </div>
 
@@ -4717,26 +4831,36 @@ Here is the caller graph for this function:</div>
 
 <p>Create stub gRPC transport for testing. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/de7/grpc__transport_8h_source.html#l00282">282</a> of file <a class="el" href="../../d3/de7/grpc__transport_8h_source.html">grpc_transport.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  282</span>                                                                       {</div>
-<div class="line"><span class="lineno">  283</span>    <span class="keywordflow">return</span> std::make_unique&lt;stub_grpc_transport&gt;();</div>
-<div class="line"><span class="lineno">  284</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d3/de7/grpc__transport_8h_source.html#l00609">609</a> of file <a class="el" href="../../d3/de7/grpc__transport_8h_source.html">grpc_transport.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  609</span>                                                                       {</div>
+<div class="line"><span class="lineno">  610</span>    <span class="keywordflow">return</span> std::make_unique&lt;stub_grpc_transport&gt;();</div>
+<div class="line"><span class="lineno">  611</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_a35091bd947fbe2921355d76ff705cec1_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_a35091bd947fbe2921355d76ff705cec1_icgraph" alt=""/></div>
 <map name="adb/d50/namespacekcenon_1_1monitoring_a35091bd947fbe2921355d76ff705cec1_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_a35091bd947fbe2921355d76ff705cec1_icgraph">
-<area shape="rect" title="Create stub gRPC transport for testing." alt="" coords="123,97,329,137"/>
+<area shape="rect" title="Create stub gRPC transport for testing." alt="" coords="123,221,329,261"/>
 <area shape="rect" href="../../dc/d07/test__metric__exporters_8cpp.html#a6a34596cd2d3eff219a1a45ca94ed8e7" title=" " alt="" coords="13,5,67,31"/>
-<area shape="poly" title=" " alt="" coords="174,92,64,33,66,28,176,88"/>
+<area shape="poly" title=" " alt="" coords="203,210,148,131,112,86,73,44,59,33,63,29,77,40,116,83,152,128,207,207"/>
 <area shape="rect" href="../../dc/d07/test__metric__exporters_8cpp.html#a061c5fd0735716ce40de5f75869575a6" title=" " alt="" coords="13,55,67,80"/>
-<area shape="poly" title=" " alt="" coords="136,96,67,77,68,72,138,90"/>
+<area shape="poly" title=" " alt="" coords="195,212,140,156,73,93,58,82,62,78,76,89,144,152,199,209"/>
 <area shape="rect" href="../../dc/d07/test__metric__exporters_8cpp.html#a05e3807176b74e659b647190b548f6f3" title=" " alt="" coords="13,104,67,129"/>
-<area shape="poly" title=" " alt="" coords="109,119,67,119,67,114,109,114"/>
+<area shape="poly" title=" " alt="" coords="182,215,59,132,62,127,185,211"/>
 <area shape="rect" href="../../dc/d07/test__metric__exporters_8cpp.html#a67d2d412c55f76d401c8073d08d6946e" title=" " alt="" coords="5,153,75,179"/>
-<area shape="poly" title=" " alt="" coords="138,143,75,160,74,154,136,138"/>
+<area shape="poly" title=" " alt="" coords="162,218,72,181,74,176,164,213"/>
 <area shape="rect" href="../../dc/d07/test__metric__exporters_8cpp.html#a73fa2d974bb73fb73064bcb59b838a69" title=" " alt="" coords="5,203,75,228"/>
-<area shape="poly" title=" " alt="" coords="176,146,66,205,64,200,174,141"/>
+<area shape="poly" title=" " alt="" coords="108,227,75,223,75,217,109,222"/>
+<area shape="rect" href="../../dc/dbd/test__trace__exporters_8cpp.html#a7dd0edf4498e98977e443035ca5cebb3" title=" " alt="" coords="5,252,75,277"/>
+<area shape="poly" title=" " alt="" coords="109,258,75,263,75,258,108,253"/>
+<area shape="rect" href="../../dc/dbd/test__trace__exporters_8cpp.html#a7c3fc4967fb8c1f6ee5e18fbab16ce4b" title=" " alt="" coords="5,301,75,327"/>
+<area shape="poly" title=" " alt="" coords="163,268,74,304,72,299,161,263"/>
+<area shape="rect" href="../../dc/dbd/test__trace__exporters_8cpp.html#af15c65b374fbc5083cfc26a7b596b16c" title=" " alt="" coords="5,351,75,376"/>
+<area shape="poly" title=" " alt="" coords="185,271,62,353,59,348,182,266"/>
+<area shape="rect" href="../../dc/dbd/test__trace__exporters_8cpp.html#a52558d88f4d710c0797f1b0ceb22809e" title=" " alt="" coords="5,400,75,425"/>
+<area shape="poly" title=" " alt="" coords="198,272,143,328,76,389,61,402,57,398,73,385,139,324,194,269"/>
+<area shape="rect" href="../../dc/dbd/test__trace__exporters_8cpp.html#a1726bbedb3a8f9c7485a75ebd4c09aae" title=" " alt="" coords="5,449,75,475"/>
+<area shape="poly" title=" " alt="" coords="206,274,151,352,115,396,77,439,62,451,58,447,73,435,111,393,147,349,202,271"/>
 </map>
 </div>
 
@@ -4912,14 +5036,14 @@ Here is the caller graph for this function:</div>
 
 <p>Helper function to create a Zipkin exporter. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00820">820</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  822</span>                                                                 {</div>
-<div class="line"><span class="lineno">  823</span>    </div>
-<div class="line"><span class="lineno">  824</span>    <a class="code hl_struct" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">trace_export_config</a> config;</div>
-<div class="line"><span class="lineno">  825</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a> = endpoint;</div>
-<div class="line"><span class="lineno">  826</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">format</a> = format;</div>
-<div class="line"><span class="lineno">  827</span>    <span class="keywordflow">return</span> std::make_unique&lt;zipkin_exporter&gt;(config);</div>
-<div class="line"><span class="lineno">  828</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00821">821</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  823</span>                                                                 {</div>
+<div class="line"><span class="lineno">  824</span>    </div>
+<div class="line"><span class="lineno">  825</span>    <a class="code hl_struct" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html">trace_export_config</a> config;</div>
+<div class="line"><span class="lineno">  826</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a> = endpoint;</div>
+<div class="line"><span class="lineno">  827</span>    config.<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a47fa882e01cad1465b67cf2faf1bc4ac">format</a> = format;</div>
+<div class="line"><span class="lineno">  828</span>    <span class="keywordflow">return</span> std::make_unique&lt;zipkin_exporter&gt;(config);</div>
+<div class="line"><span class="lineno">  829</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -6618,7 +6742,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 15:01:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 15:18:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

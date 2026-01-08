@@ -105,7 +105,7 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Factory for creating trace exporters. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00760">760</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00761">761</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a71a21afb39a499af520d8efe9c76a646" name="a71a21afb39a499af520d8efe9c76a646"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a71a21afb39a499af520d8efe9c76a646">&#9670;&#160;</a></span>create_exporter()</h2>
@@ -143,27 +143,27 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Create a trace exporter based on format. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00765">765</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  767</span>                                                                                               {</div>
-<div class="line"><span class="lineno">  768</span>        </div>
-<div class="line"><span class="lineno">  769</span>        <span class="keywordflow">switch</span> (config.format) {</div>
-<div class="line"><span class="lineno">  770</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3">trace_export_format::jaeger_thrift</a>:</div>
-<div class="line"><span class="lineno">  771</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">trace_export_format::jaeger_grpc</a>:</div>
-<div class="line"><span class="lineno">  772</span>                <span class="keywordflow">return</span> std::make_unique&lt;jaeger_exporter&gt;(config);</div>
-<div class="line"><span class="lineno">  773</span>                </div>
-<div class="line"><span class="lineno">  774</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">trace_export_format::zipkin_json</a>:</div>
-<div class="line"><span class="lineno">  775</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaf6ce4015b005cc4749b10e52b2f99111">trace_export_format::zipkin_protobuf</a>:</div>
-<div class="line"><span class="lineno">  776</span>                <span class="keywordflow">return</span> std::make_unique&lt;zipkin_exporter&gt;(config);</div>
-<div class="line"><span class="lineno">  777</span>                </div>
-<div class="line"><span class="lineno">  778</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca3e19f28eb4c4dcbd9cdbd7afb77af099">trace_export_format::otlp_grpc</a>:</div>
-<div class="line"><span class="lineno">  779</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acae3b3045015a45ca86e1109417228cda0">trace_export_format::otlp_http_json</a>:</div>
-<div class="line"><span class="lineno">  780</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaebf638e4767f4c75613afea195fd6ce0">trace_export_format::otlp_http_protobuf</a>:</div>
-<div class="line"><span class="lineno">  781</span>                <span class="keywordflow">return</span> std::make_unique&lt;otlp_exporter&gt;(config, resource);</div>
-<div class="line"><span class="lineno">  782</span>                </div>
-<div class="line"><span class="lineno">  783</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  784</span>                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  785</span>        }</div>
-<div class="line"><span class="lineno">  786</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00766">766</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  768</span>                                                                                               {</div>
+<div class="line"><span class="lineno">  769</span>        </div>
+<div class="line"><span class="lineno">  770</span>        <span class="keywordflow">switch</span> (config.format) {</div>
+<div class="line"><span class="lineno">  771</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3">trace_export_format::jaeger_thrift</a>:</div>
+<div class="line"><span class="lineno">  772</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">trace_export_format::jaeger_grpc</a>:</div>
+<div class="line"><span class="lineno">  773</span>                <span class="keywordflow">return</span> std::make_unique&lt;jaeger_exporter&gt;(config);</div>
+<div class="line"><span class="lineno">  774</span>                </div>
+<div class="line"><span class="lineno">  775</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">trace_export_format::zipkin_json</a>:</div>
+<div class="line"><span class="lineno">  776</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaf6ce4015b005cc4749b10e52b2f99111">trace_export_format::zipkin_protobuf</a>:</div>
+<div class="line"><span class="lineno">  777</span>                <span class="keywordflow">return</span> std::make_unique&lt;zipkin_exporter&gt;(config);</div>
+<div class="line"><span class="lineno">  778</span>                </div>
+<div class="line"><span class="lineno">  779</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca3e19f28eb4c4dcbd9cdbd7afb77af099">trace_export_format::otlp_grpc</a>:</div>
+<div class="line"><span class="lineno">  780</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acae3b3045015a45ca86e1109417228cda0">trace_export_format::otlp_http_json</a>:</div>
+<div class="line"><span class="lineno">  781</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaebf638e4767f4c75613afea195fd6ce0">trace_export_format::otlp_http_protobuf</a>:</div>
+<div class="line"><span class="lineno">  782</span>                <span class="keywordflow">return</span> std::make_unique&lt;otlp_exporter&gt;(config, resource);</div>
+<div class="line"><span class="lineno">  783</span>                </div>
+<div class="line"><span class="lineno">  784</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  785</span>                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  786</span>        }</div>
+<div class="line"><span class="lineno">  787</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a9d819af070bff85a26bdd23ed11401aca3e19f28eb4c4dcbd9cdbd7afb77af099"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca3e19f28eb4c4dcbd9cdbd7afb77af099">kcenon::monitoring::trace_export_format::otlp_grpc</a></div><div class="ttdeci">@ otlp_grpc</div><div class="ttdoc">OTLP gRPC protocol.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">kcenon::monitoring::trace_export_format::zipkin_json</a></div><div class="ttdeci">@ zipkin_json</div><div class="ttdoc">Zipkin JSON v2 format.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">kcenon::monitoring::trace_export_format::jaeger_grpc</a></div><div class="ttdeci">@ jaeger_grpc</div><div class="ttdoc">Jaeger gRPC protocol.</div></div>
@@ -210,18 +210,18 @@ Here is the caller graph for this function:</div>
 
 <p>Get supported formats for a specific backend. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00791">791</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  791</span>                                                                                          {</div>
-<div class="line"><span class="lineno">  792</span>        <span class="keywordflow">if</span> (backend == <span class="stringliteral">&quot;jaeger&quot;</span>) {</div>
-<div class="line"><span class="lineno">  793</span>            <span class="keywordflow">return</span> {<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3">trace_export_format::jaeger_thrift</a>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">trace_export_format::jaeger_grpc</a>};</div>
-<div class="line"><span class="lineno">  794</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (backend == <span class="stringliteral">&quot;zipkin&quot;</span>) {</div>
-<div class="line"><span class="lineno">  795</span>            <span class="keywordflow">return</span> {<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">trace_export_format::zipkin_json</a>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaf6ce4015b005cc4749b10e52b2f99111">trace_export_format::zipkin_protobuf</a>};</div>
-<div class="line"><span class="lineno">  796</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (backend == <span class="stringliteral">&quot;otlp&quot;</span>) {</div>
-<div class="line"><span class="lineno">  797</span>            <span class="keywordflow">return</span> {<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca3e19f28eb4c4dcbd9cdbd7afb77af099">trace_export_format::otlp_grpc</a>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acae3b3045015a45ca86e1109417228cda0">trace_export_format::otlp_http_json</a>, </div>
-<div class="line"><span class="lineno">  798</span>                   <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaebf638e4767f4c75613afea195fd6ce0">trace_export_format::otlp_http_protobuf</a>};</div>
-<div class="line"><span class="lineno">  799</span>        }</div>
-<div class="line"><span class="lineno">  800</span>        <span class="keywordflow">return</span> {};</div>
-<div class="line"><span class="lineno">  801</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00792">792</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  792</span>                                                                                          {</div>
+<div class="line"><span class="lineno">  793</span>        <span class="keywordflow">if</span> (backend == <span class="stringliteral">&quot;jaeger&quot;</span>) {</div>
+<div class="line"><span class="lineno">  794</span>            <span class="keywordflow">return</span> {<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acab3d7247e0adbda8f056709f09cc5f7a3">trace_export_format::jaeger_thrift</a>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca91f7c5404540075bbd54d44d2179e1bf">trace_export_format::jaeger_grpc</a>};</div>
+<div class="line"><span class="lineno">  795</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (backend == <span class="stringliteral">&quot;zipkin&quot;</span>) {</div>
+<div class="line"><span class="lineno">  796</span>            <span class="keywordflow">return</span> {<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca868bb7c1cfe16c5ac2e84c28d16f0912">trace_export_format::zipkin_json</a>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaf6ce4015b005cc4749b10e52b2f99111">trace_export_format::zipkin_protobuf</a>};</div>
+<div class="line"><span class="lineno">  797</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (backend == <span class="stringliteral">&quot;otlp&quot;</span>) {</div>
+<div class="line"><span class="lineno">  798</span>            <span class="keywordflow">return</span> {<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401aca3e19f28eb4c4dcbd9cdbd7afb77af099">trace_export_format::otlp_grpc</a>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acae3b3045015a45ca86e1109417228cda0">trace_export_format::otlp_http_json</a>, </div>
+<div class="line"><span class="lineno">  799</span>                   <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401acaebf638e4767f4c75613afea195fd6ce0">trace_export_format::otlp_http_protobuf</a>};</div>
+<div class="line"><span class="lineno">  800</span>        }</div>
+<div class="line"><span class="lineno">  801</span>        <span class="keywordflow">return</span> {};</div>
+<div class="line"><span class="lineno">  802</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -241,7 +241,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 15:01:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 15:18:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

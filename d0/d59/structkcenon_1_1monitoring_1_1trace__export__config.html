@@ -139,7 +139,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Configuration for trace exporters. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00062">62</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00063">63</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aac47093c95e1707cf5427bfa5b84c390" name="aac47093c95e1707cf5427bfa5b84c390"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aac47093c95e1707cf5427bfa5b84c390">&#9670;&#160;</a></span>validate()</h2>
@@ -166,35 +166,35 @@ Public Attributes</h2></td></tr>
 
 <p>Validate export configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00076">76</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>                                 {</div>
-<div class="line"><span class="lineno">   77</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a>.empty()) {</div>
-<div class="line"><span class="lineno">   78</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
-<div class="line"><span class="lineno">   79</span>                             <span class="stringliteral">&quot;Export endpoint cannot be empty&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
-<div class="line"><span class="lineno">   80</span>        }</div>
-<div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a065f1a2553bee6c57dd368a84c999297">timeout</a>.count() &lt;= 0) {</div>
-<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
-<div class="line"><span class="lineno">   84</span>                             <span class="stringliteral">&quot;Timeout must be positive&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
-<div class="line"><span class="lineno">   85</span>        }</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#aff6b289d71f471ee35b95ac52dcfcd6e">max_batch_size</a> == 0) {</div>
-<div class="line"><span class="lineno">   88</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
-<div class="line"><span class="lineno">   89</span>                             <span class="stringliteral">&quot;Batch size must be greater than 0&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
-<div class="line"><span class="lineno">   90</span>        }</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a4a76638ddb6169614f44d306039f52c5">max_queue_size</a> &lt; <a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#aff6b289d71f471ee35b95ac52dcfcd6e">max_batch_size</a>) {</div>
-<div class="line"><span class="lineno">   93</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
-<div class="line"><span class="lineno">   94</span>                             <span class="stringliteral">&quot;Queue size must be at least batch size&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
-<div class="line"><span class="lineno">   95</span>        }</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">return</span> common::ok();</div>
-<div class="line"><span class="lineno">   98</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00077">77</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>                                 {</div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">endpoint</a>.empty()) {</div>
+<div class="line"><span class="lineno">   79</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
+<div class="line"><span class="lineno">   80</span>                             <span class="stringliteral">&quot;Export endpoint cannot be empty&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
+<div class="line"><span class="lineno">   81</span>        }</div>
+<div class="line"><span class="lineno">   82</span> </div>
+<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a065f1a2553bee6c57dd368a84c999297">timeout</a>.count() &lt;= 0) {</div>
+<div class="line"><span class="lineno">   84</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
+<div class="line"><span class="lineno">   85</span>                             <span class="stringliteral">&quot;Timeout must be positive&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
+<div class="line"><span class="lineno">   86</span>        }</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#aff6b289d71f471ee35b95ac52dcfcd6e">max_batch_size</a> == 0) {</div>
+<div class="line"><span class="lineno">   89</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
+<div class="line"><span class="lineno">   90</span>                             <span class="stringliteral">&quot;Batch size must be greater than 0&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
+<div class="line"><span class="lineno">   91</span>        }</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a4a76638ddb6169614f44d306039f52c5">max_queue_size</a> &lt; <a class="code hl_variable" href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#aff6b289d71f471ee35b95ac52dcfcd6e">max_batch_size</a>) {</div>
+<div class="line"><span class="lineno">   94</span>            <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">monitoring_error_code::invalid_configuration</a>,</div>
+<div class="line"><span class="lineno">   95</span>                             <span class="stringliteral">&quot;Queue size must be at least batch size&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>).to_common_error());</div>
+<div class="line"><span class="lineno">   96</span>        }</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">return</span> common::ok();</div>
+<div class="line"><span class="lineno">   99</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea9cc57114b319994e90322314a00521d4">kcenon::monitoring::monitoring_error_code::invalid_configuration</a></div><div class="ttdeci">@ invalid_configuration</div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a065f1a2553bee6c57dd368a84c999297"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a065f1a2553bee6c57dd368a84c999297">kcenon::monitoring::trace_export_config::timeout</a></div><div class="ttdeci">std::chrono::milliseconds timeout</div><div class="ttdoc">Request timeout.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00065">trace_exporters.h:65</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a1029ff6abe2e53c7e4217c36a8a05c9c"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">kcenon::monitoring::trace_export_config::endpoint</a></div><div class="ttdeci">std::string endpoint</div><div class="ttdoc">Endpoint URL.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00063">trace_exporters.h:63</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a4a76638ddb6169614f44d306039f52c5"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a4a76638ddb6169614f44d306039f52c5">kcenon::monitoring::trace_export_config::max_queue_size</a></div><div class="ttdeci">std::size_t max_queue_size</div><div class="ttdoc">Maximum queued spans.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00068">trace_exporters.h:68</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_aff6b289d71f471ee35b95ac52dcfcd6e"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#aff6b289d71f471ee35b95ac52dcfcd6e">kcenon::monitoring::trace_export_config::max_batch_size</a></div><div class="ttdeci">std::size_t max_batch_size</div><div class="ttdoc">Maximum spans per batch.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00067">trace_exporters.h:67</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a065f1a2553bee6c57dd368a84c999297"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a065f1a2553bee6c57dd368a84c999297">kcenon::monitoring::trace_export_config::timeout</a></div><div class="ttdeci">std::chrono::milliseconds timeout</div><div class="ttdoc">Request timeout.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00066">trace_exporters.h:66</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a1029ff6abe2e53c7e4217c36a8a05c9c"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a1029ff6abe2e53c7e4217c36a8a05c9c">kcenon::monitoring::trace_export_config::endpoint</a></div><div class="ttdeci">std::string endpoint</div><div class="ttdoc">Endpoint URL.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00064">trace_exporters.h:64</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_a4a76638ddb6169614f44d306039f52c5"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#a4a76638ddb6169614f44d306039f52c5">kcenon::monitoring::trace_export_config::max_queue_size</a></div><div class="ttdeci">std::size_t max_queue_size</div><div class="ttdoc">Maximum queued spans.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00069">trace_exporters.h:69</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1trace__export__config_html_aff6b289d71f471ee35b95ac52dcfcd6e"><div class="ttname"><a href="../../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html#aff6b289d71f471ee35b95ac52dcfcd6e">kcenon::monitoring::trace_export_config::max_batch_size</a></div><div class="ttdeci">std::size_t max_batch_size</div><div class="ttdoc">Maximum spans per batch.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00068">trace_exporters.h:68</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -223,8 +223,8 @@ Here is the caller graph for this function:</div>
 
 <p>Batch export timeout. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00066">66</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   66</span>{5000};          </div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00067">67</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>{5000};          </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,7 +242,7 @@ Here is the caller graph for this function:</div>
 
 <p>Enable data compression. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00069">69</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00070">70</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -260,7 +260,7 @@ Here is the caller graph for this function:</div>
 
 <p>Endpoint URL. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00063">63</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00064">64</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +276,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00064">64</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00065">65</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -294,7 +294,7 @@ Here is the caller graph for this function:</div>
 
 <p>Custom HTTP headers. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00070">70</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00071">71</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -312,7 +312,7 @@ Here is the caller graph for this function:</div>
 
 <p>Maximum spans per batch. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00067">67</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00068">68</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -330,7 +330,7 @@ Here is the caller graph for this function:</div>
 
 <p>Maximum queued spans. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00068">68</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00069">69</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -348,7 +348,7 @@ Here is the caller graph for this function:</div>
 
 <p>Override service name. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00071">71</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00072">72</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -366,8 +366,8 @@ Here is the caller graph for this function:</div>
 
 <p>Request timeout. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00065">65</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   65</span>{30000};               </div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00066">66</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   66</span>{30000};               </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -377,7 +377,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 15:01:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 15:18:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

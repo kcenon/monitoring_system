@@ -133,7 +133,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Jaeger-specific span representation. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00105">105</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00106">106</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8e5f3167d646f2f5043f5eb56f3f5848" name="a8e5f3167d646f2f5043f5eb56f3f5848"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e5f3167d646f2f5043f5eb56f3f5848">&#9670;&#160;</a></span>to_protobuf()</h2>
@@ -160,12 +160,12 @@ Public Attributes</h2></td></tr>
 
 <p>Convert to Jaeger protobuf format (stub) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00157">157</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  157</span>                                           {</div>
-<div class="line"><span class="lineno">  158</span>        <span class="comment">// Protobuf serialization requires generated code</span></div>
-<div class="line"><span class="lineno">  159</span>        <span class="comment">// Return empty for now - full implementation would use protobuf library</span></div>
-<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">return</span> {};</div>
-<div class="line"><span class="lineno">  161</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00158">158</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  158</span>                                           {</div>
+<div class="line"><span class="lineno">  159</span>        <span class="comment">// Protobuf serialization requires generated code</span></div>
+<div class="line"><span class="lineno">  160</span>        <span class="comment">// Return empty for now - full implementation would use protobuf library</span></div>
+<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">return</span> {};</div>
+<div class="line"><span class="lineno">  162</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -194,50 +194,50 @@ Public Attributes</h2></td></tr>
 
 <p>Convert to Jaeger Thrift format (JSON representation) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00119">119</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>                                     {</div>
-<div class="line"><span class="lineno">  120</span>        std::ostringstream json;</div>
-<div class="line"><span class="lineno">  121</span>        json &lt;&lt; <span class="stringliteral">&quot;{&quot;</span>;</div>
-<div class="line"><span class="lineno">  122</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;traceIdHigh\&quot;:0,&quot;</span>;</div>
-<div class="line"><span class="lineno">  123</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;traceIdLow\&quot;:&quot;</span> &lt;&lt; std::hash&lt;std::string&gt;{}(<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a9962c3e8b4bc04e01effdc122ff483a5">trace_id</a>) &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  124</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;spanId\&quot;:&quot;</span> &lt;&lt; std::hash&lt;std::string&gt;{}(<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#aaad88c86a75ebd04a3529e6981844d81">span_id</a>) &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  125</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;parentSpanId\&quot;:&quot;</span> &lt;&lt; (<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a38713e6800749879f7062fdb1a35f9e6">parent_span_id</a>.empty() ? <span class="stringliteral">&quot;0&quot;</span> : std::to_string(std::hash&lt;std::string&gt;{}(<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a38713e6800749879f7062fdb1a35f9e6">parent_span_id</a>))) &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  126</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;operationName\&quot;:\&quot;&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a28d587f240e849bd250117d56e8a2d2e">operation_name</a> &lt;&lt; <span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  127</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;startTime\&quot;:&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad58c3fe40b30bcfb031bec18601fda6a">start_time</a>.count() &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  128</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;duration\&quot;:&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad562286bcd3a5191e151ffb3edef030b">duration</a>.count() &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  129</span> </div>
-<div class="line"><span class="lineno">  130</span>        <span class="comment">// Tags</span></div>
-<div class="line"><span class="lineno">  131</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;tags\&quot;:[&quot;</span>;</div>
-<div class="line"><span class="lineno">  132</span>        <span class="keywordtype">bool</span> first = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a7d2c39948e98d4a29998e98aee300475">tags</a>) {</div>
-<div class="line"><span class="lineno">  134</span>            <span class="keywordflow">if</span> (!first) json &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  135</span>            json &lt;&lt; <span class="stringliteral">&quot;{\&quot;key\&quot;:\&quot;&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;vType\&quot;:\&quot;STRING\&quot;,\&quot;vStr\&quot;:\&quot;&quot;</span> &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot;\&quot;}&quot;</span>;</div>
-<div class="line"><span class="lineno">  136</span>            first = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  137</span>        }</div>
-<div class="line"><span class="lineno">  138</span>        json &lt;&lt; <span class="stringliteral">&quot;],&quot;</span>;</div>
-<div class="line"><span class="lineno">  139</span> </div>
-<div class="line"><span class="lineno">  140</span>        <span class="comment">// Process</span></div>
-<div class="line"><span class="lineno">  141</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;process\&quot;:{\&quot;serviceName\&quot;:\&quot;&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a81b459713aebf4b73505149f80d92020">service_name</a> &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;tags\&quot;:[&quot;</span>;</div>
-<div class="line"><span class="lineno">  142</span>        first = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a642a5f508dc19c0e7e4f674db7898a0c">process_tags</a>) {</div>
-<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">if</span> (!first) json &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  145</span>            json &lt;&lt; <span class="stringliteral">&quot;{\&quot;key\&quot;:\&quot;&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;vType\&quot;:\&quot;STRING\&quot;,\&quot;vStr\&quot;:\&quot;&quot;</span> &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot;\&quot;}&quot;</span>;</div>
-<div class="line"><span class="lineno">  146</span>            first = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  147</span>        }</div>
-<div class="line"><span class="lineno">  148</span>        json &lt;&lt; <span class="stringliteral">&quot;]}&quot;</span>;</div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>        json &lt;&lt; <span class="stringliteral">&quot;}&quot;</span>;</div>
-<div class="line"><span class="lineno">  151</span>        <span class="keywordflow">return</span> json.str();</div>
-<div class="line"><span class="lineno">  152</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a28d587f240e849bd250117d56e8a2d2e"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a28d587f240e849bd250117d56e8a2d2e">kcenon::monitoring::jaeger_span_data::operation_name</a></div><div class="ttdeci">std::string operation_name</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00109">trace_exporters.h:109</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a38713e6800749879f7062fdb1a35f9e6"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a38713e6800749879f7062fdb1a35f9e6">kcenon::monitoring::jaeger_span_data::parent_span_id</a></div><div class="ttdeci">std::string parent_span_id</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00108">trace_exporters.h:108</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a642a5f508dc19c0e7e4f674db7898a0c"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a642a5f508dc19c0e7e4f674db7898a0c">kcenon::monitoring::jaeger_span_data::process_tags</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; process_tags</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00114">trace_exporters.h:114</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a7d2c39948e98d4a29998e98aee300475"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a7d2c39948e98d4a29998e98aee300475">kcenon::monitoring::jaeger_span_data::tags</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; tags</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00113">trace_exporters.h:113</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a81b459713aebf4b73505149f80d92020"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a81b459713aebf4b73505149f80d92020">kcenon::monitoring::jaeger_span_data::service_name</a></div><div class="ttdeci">std::string service_name</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00110">trace_exporters.h:110</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a9962c3e8b4bc04e01effdc122ff483a5"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a9962c3e8b4bc04e01effdc122ff483a5">kcenon::monitoring::jaeger_span_data::trace_id</a></div><div class="ttdeci">std::string trace_id</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00106">trace_exporters.h:106</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_aaad88c86a75ebd04a3529e6981844d81"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#aaad88c86a75ebd04a3529e6981844d81">kcenon::monitoring::jaeger_span_data::span_id</a></div><div class="ttdeci">std::string span_id</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00107">trace_exporters.h:107</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_ad562286bcd3a5191e151ffb3edef030b"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad562286bcd3a5191e151ffb3edef030b">kcenon::monitoring::jaeger_span_data::duration</a></div><div class="ttdeci">std::chrono::microseconds duration</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00112">trace_exporters.h:112</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_ad58c3fe40b30bcfb031bec18601fda6a"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad58c3fe40b30bcfb031bec18601fda6a">kcenon::monitoring::jaeger_span_data::start_time</a></div><div class="ttdeci">std::chrono::microseconds start_time</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00111">trace_exporters.h:111</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00120">120</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  120</span>                                     {</div>
+<div class="line"><span class="lineno">  121</span>        std::ostringstream json;</div>
+<div class="line"><span class="lineno">  122</span>        json &lt;&lt; <span class="stringliteral">&quot;{&quot;</span>;</div>
+<div class="line"><span class="lineno">  123</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;traceIdHigh\&quot;:0,&quot;</span>;</div>
+<div class="line"><span class="lineno">  124</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;traceIdLow\&quot;:&quot;</span> &lt;&lt; std::hash&lt;std::string&gt;{}(<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a9962c3e8b4bc04e01effdc122ff483a5">trace_id</a>) &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  125</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;spanId\&quot;:&quot;</span> &lt;&lt; std::hash&lt;std::string&gt;{}(<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#aaad88c86a75ebd04a3529e6981844d81">span_id</a>) &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  126</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;parentSpanId\&quot;:&quot;</span> &lt;&lt; (<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a38713e6800749879f7062fdb1a35f9e6">parent_span_id</a>.empty() ? <span class="stringliteral">&quot;0&quot;</span> : std::to_string(std::hash&lt;std::string&gt;{}(<a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a38713e6800749879f7062fdb1a35f9e6">parent_span_id</a>))) &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  127</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;operationName\&quot;:\&quot;&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a28d587f240e849bd250117d56e8a2d2e">operation_name</a> &lt;&lt; <span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  128</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;startTime\&quot;:&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad58c3fe40b30bcfb031bec18601fda6a">start_time</a>.count() &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  129</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;duration\&quot;:&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad562286bcd3a5191e151ffb3edef030b">duration</a>.count() &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  130</span> </div>
+<div class="line"><span class="lineno">  131</span>        <span class="comment">// Tags</span></div>
+<div class="line"><span class="lineno">  132</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;tags\&quot;:[&quot;</span>;</div>
+<div class="line"><span class="lineno">  133</span>        <span class="keywordtype">bool</span> first = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  134</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a7d2c39948e98d4a29998e98aee300475">tags</a>) {</div>
+<div class="line"><span class="lineno">  135</span>            <span class="keywordflow">if</span> (!first) json &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  136</span>            json &lt;&lt; <span class="stringliteral">&quot;{\&quot;key\&quot;:\&quot;&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;vType\&quot;:\&quot;STRING\&quot;,\&quot;vStr\&quot;:\&quot;&quot;</span> &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot;\&quot;}&quot;</span>;</div>
+<div class="line"><span class="lineno">  137</span>            first = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  138</span>        }</div>
+<div class="line"><span class="lineno">  139</span>        json &lt;&lt; <span class="stringliteral">&quot;],&quot;</span>;</div>
+<div class="line"><span class="lineno">  140</span> </div>
+<div class="line"><span class="lineno">  141</span>        <span class="comment">// Process</span></div>
+<div class="line"><span class="lineno">  142</span>        json &lt;&lt; <span class="stringliteral">&quot;\&quot;process\&quot;:{\&quot;serviceName\&quot;:\&quot;&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a81b459713aebf4b73505149f80d92020">service_name</a> &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;tags\&quot;:[&quot;</span>;</div>
+<div class="line"><span class="lineno">  143</span>        first = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a642a5f508dc19c0e7e4f674db7898a0c">process_tags</a>) {</div>
+<div class="line"><span class="lineno">  145</span>            <span class="keywordflow">if</span> (!first) json &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  146</span>            json &lt;&lt; <span class="stringliteral">&quot;{\&quot;key\&quot;:\&quot;&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;vType\&quot;:\&quot;STRING\&quot;,\&quot;vStr\&quot;:\&quot;&quot;</span> &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot;\&quot;}&quot;</span>;</div>
+<div class="line"><span class="lineno">  147</span>            first = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  148</span>        }</div>
+<div class="line"><span class="lineno">  149</span>        json &lt;&lt; <span class="stringliteral">&quot;]}&quot;</span>;</div>
+<div class="line"><span class="lineno">  150</span> </div>
+<div class="line"><span class="lineno">  151</span>        json &lt;&lt; <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><span class="lineno">  152</span>        <span class="keywordflow">return</span> json.str();</div>
+<div class="line"><span class="lineno">  153</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a28d587f240e849bd250117d56e8a2d2e"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a28d587f240e849bd250117d56e8a2d2e">kcenon::monitoring::jaeger_span_data::operation_name</a></div><div class="ttdeci">std::string operation_name</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00110">trace_exporters.h:110</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a38713e6800749879f7062fdb1a35f9e6"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a38713e6800749879f7062fdb1a35f9e6">kcenon::monitoring::jaeger_span_data::parent_span_id</a></div><div class="ttdeci">std::string parent_span_id</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00109">trace_exporters.h:109</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a642a5f508dc19c0e7e4f674db7898a0c"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a642a5f508dc19c0e7e4f674db7898a0c">kcenon::monitoring::jaeger_span_data::process_tags</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; process_tags</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00115">trace_exporters.h:115</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a7d2c39948e98d4a29998e98aee300475"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a7d2c39948e98d4a29998e98aee300475">kcenon::monitoring::jaeger_span_data::tags</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; tags</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00114">trace_exporters.h:114</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a81b459713aebf4b73505149f80d92020"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a81b459713aebf4b73505149f80d92020">kcenon::monitoring::jaeger_span_data::service_name</a></div><div class="ttdeci">std::string service_name</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00111">trace_exporters.h:111</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_a9962c3e8b4bc04e01effdc122ff483a5"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#a9962c3e8b4bc04e01effdc122ff483a5">kcenon::monitoring::jaeger_span_data::trace_id</a></div><div class="ttdeci">std::string trace_id</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00107">trace_exporters.h:107</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_aaad88c86a75ebd04a3529e6981844d81"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#aaad88c86a75ebd04a3529e6981844d81">kcenon::monitoring::jaeger_span_data::span_id</a></div><div class="ttdeci">std::string span_id</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00108">trace_exporters.h:108</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_ad562286bcd3a5191e151ffb3edef030b"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad562286bcd3a5191e151ffb3edef030b">kcenon::monitoring::jaeger_span_data::duration</a></div><div class="ttdeci">std::chrono::microseconds duration</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00113">trace_exporters.h:113</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1jaeger__span__data_html_ad58c3fe40b30bcfb031bec18601fda6a"><div class="ttname"><a href="../../d7/df1/structkcenon_1_1monitoring_1_1jaeger__span__data.html#ad58c3fe40b30bcfb031bec18601fda6a">kcenon::monitoring::jaeger_span_data::start_time</a></div><div class="ttdeci">std::chrono::microseconds start_time</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00112">trace_exporters.h:112</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -254,7 +254,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00112">112</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00113">113</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -270,7 +270,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00109">109</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00110">110</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -286,7 +286,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00108">108</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00109">109</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +302,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00114">114</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00115">115</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -318,7 +318,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00110">110</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00111">111</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -334,7 +334,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00107">107</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00108">108</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -350,7 +350,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00111">111</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00112">112</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -366,7 +366,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00113">113</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00114">114</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -382,7 +382,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00106">106</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00107">107</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 
 </div>
 </div>
@@ -392,7 +392,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2026 15:01:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jan 8 2026 15:18:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
