@@ -36,6 +36,8 @@
 #include <stdexcept>
 #include <string>
 
+#include "kcenon/monitoring/core/result_types.h"
+
 namespace kcenon::monitoring {
 
 /**
@@ -61,6 +63,20 @@ struct circuit_breaker_config {
     std::chrono::milliseconds timeout = std::chrono::milliseconds(30000);   ///< Call timeout
     std::chrono::milliseconds reset_timeout = std::chrono::milliseconds(60000);  ///< Time before half_open
     size_t success_threshold = 3;       ///< Successes in half_open to close
+
+    /**
+     * @brief Validate configuration
+     * @return true if configuration is valid
+     */
+    bool validate() const {
+        if (failure_threshold == 0) {
+            return false;
+        }
+        if (success_threshold == 0) {
+            return false;
+        }
+        return true;
+    }
 };
 
 /**
@@ -80,6 +96,18 @@ struct circuit_breaker_metrics {
         , failed_calls(other.failed_calls.load())
         , rejected_calls(other.rejected_calls.load())
         , state_transitions(other.state_transitions.load()) {}
+
+    /**
+     * @brief Get success rate
+     * @return Success rate between 0.0 and 1.0
+     */
+    double get_success_rate() const {
+        auto total = total_calls.load();
+        if (total == 0) {
+            return 1.0;
+        }
+        return static_cast<double>(successful_calls.load()) / static_cast<double>(total);
+    }
 };
 
 /**
@@ -98,7 +126,7 @@ public:
  * When a service experiences repeated failures, the circuit "opens" and
  * subsequent requests fail fast without attempting the operation.
  *
- * @tparam T Unused template parameter for compatibility
+ * @tparam T The return value type of operations
  */
 template<typename T = void>
 class circuit_breaker {
@@ -117,17 +145,16 @@ public:
     /**
      * @brief Execute a function with circuit breaker protection and fallback
      *
-     * @tparam Func The function type to execute
+     * @tparam Func The function type to execute (must return result<T>)
      * @tparam Fallback The fallback function type
      * @param func The function to execute
      * @param fallback The fallback function to execute on failure or open circuit
-     * @return The result of func() or fallback()
+     * @return result<T> containing success value or error
      */
     template<typename Func, typename Fallback>
-    auto execute(Func&& func, Fallback&& fallback) -> decltype(func()) {
+    result<T> execute(Func&& func, Fallback&& fallback) {
         metrics_.total_calls++;
 
-        // Check and potentially transition state
         auto current_state = check_state();
 
         if (current_state == circuit_state::open) {
@@ -135,11 +162,11 @@ public:
             return fallback();
         }
 
-        try {
-            auto result = func();
+        auto op_result = func();
+        if (op_result.is_ok()) {
             on_success();
-            return result;
-        } catch (...) {
+            return op_result;
+        } else {
             on_failure();
             return fallback();
         }
@@ -148,30 +175,29 @@ public:
     /**
      * @brief Execute a function with circuit breaker protection
      *
-     * @tparam Func The function type to execute
+     * @tparam Func The function type to execute (must return result<T>)
      * @param func The function to execute
-     * @return The result of func()
-     * @throws circuit_open_exception if circuit is open
-     * @throws Any exception from func()
+     * @return result<T> containing success value or error
      */
     template<typename Func>
-    auto execute(Func&& func) -> decltype(func()) {
+    result<T> execute(Func&& func) {
         metrics_.total_calls++;
 
         auto current_state = check_state();
 
         if (current_state == circuit_state::open) {
             metrics_.rejected_calls++;
-            throw circuit_open_exception(name_);
+            return make_error<T>(monitoring_error_code::circuit_breaker_open,
+                               "Circuit breaker '" + name_ + "' is open");
         }
 
-        try {
-            auto result = func();
+        auto op_result = func();
+        if (op_result.is_ok()) {
             on_success();
-            return result;
-        } catch (...) {
+            return op_result;
+        } else {
             on_failure();
-            throw;
+            return op_result;
         }
     }
 
@@ -226,7 +252,6 @@ private:
 
             if (now - opened_at >= config_.reset_timeout) {
                 std::lock_guard<std::mutex> lock(state_mutex_);
-                // Double-check after acquiring lock
                 if (state_.load(std::memory_order_acquire) == circuit_state::open) {
                     transition_to(circuit_state::half_open);
                     consecutive_successes_.store(0, std::memory_order_release);
@@ -258,7 +283,6 @@ private:
                 }
             }
         } else if (current == circuit_state::closed) {
-            // Reset failure count on success in closed state
             failure_count_.store(0, std::memory_order_release);
         }
     }
@@ -273,7 +297,6 @@ private:
         auto current = state_.load(std::memory_order_acquire);
 
         if (current == circuit_state::half_open) {
-            // Any failure in half_open immediately opens the circuit
             std::lock_guard<std::mutex> lock(state_mutex_);
             if (state_.load(std::memory_order_acquire) == circuit_state::half_open) {
                 transition_to(circuit_state::open);

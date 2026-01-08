@@ -109,7 +109,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerOpensAfterFailures) {
     // First 3 failures should open the circuit
     for (int i = 0; i < 3; ++i) {
         auto result = breaker.execute([this]() { return always_failing_operation(); });
-        EXPECT_FALSE(result);
+        EXPECT_TRUE(result.is_err());
     }
     
     EXPECT_EQ(breaker.get_state(), circuit_state::open);
@@ -117,7 +117,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerOpensAfterFailures) {
     
     // Next call should be rejected without calling operation
     auto result = breaker.execute([this]() { return always_failing_operation(); });
-    EXPECT_FALSE(result);
+    EXPECT_TRUE(result.is_err());
     EXPECT_EQ(call_count.load(), 3); // Should not increment
     EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::circuit_breaker_open));
 }
@@ -229,7 +229,7 @@ TEST_F(FaultToleranceTest, RetryExecutorMaxAttemptsExceeded) {
     
     auto result = executor.execute([this]() { return always_failing_operation(); });
     
-    EXPECT_FALSE(result);
+    EXPECT_TRUE(result.is_err());
     EXPECT_EQ(call_count.load(), 2);
     
     auto metrics = executor.get_metrics();
@@ -276,7 +276,7 @@ TEST_F(FaultToleranceTest, RetryExecutorCustomShouldRetry) {
     // This should not retry because it's not a timeout error
     auto result = executor.execute([this]() { return always_failing_operation(); });
     
-    EXPECT_FALSE(result);
+    EXPECT_TRUE(result.is_err());
     EXPECT_EQ(call_count.load(), 1); // No retries
 }
 
@@ -361,7 +361,7 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerWithTimeout) {
         std::chrono::milliseconds(50)
     );
     
-    EXPECT_FALSE(result);
+    EXPECT_TRUE(result.is_err());
     EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::operation_timeout));
 }
 
@@ -396,17 +396,17 @@ TEST_F(FaultToleranceTest, FaultToleranceManagerHealthCheck) {
     
     // Initially healthy
     auto health = manager.is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_TRUE(health.value());
-    
+
     // Open circuit breaker
     for (int i = 0; i < 2; ++i) {
         manager.execute([this]() { return always_failing_operation(); });
     }
-    
+
     // Should now be unhealthy due to open circuit
     health = manager.is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_FALSE(health.value());
 }
 
