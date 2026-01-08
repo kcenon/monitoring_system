@@ -128,6 +128,8 @@ struct system_resources {
         struct io_throughput {
             size_t read_bytes_per_sec{0};
             size_t write_bytes_per_sec{0};
+            size_t read_ops_per_sec{0};
+            size_t write_ops_per_sec{0};
         } io;
     } disk;
 
@@ -139,8 +141,10 @@ struct system_resources {
         size_t tx_bytes_per_sec{0};
         size_t rx_packets_per_sec{0};
         size_t tx_packets_per_sec{0};
-        size_t errors{0};
-        size_t drops{0};
+        size_t rx_errors{0};
+        size_t tx_errors{0};
+        size_t rx_dropped{0};
+        size_t tx_dropped{0};
     } network;
 
     /**
@@ -219,8 +223,10 @@ class system_info_collector {
         uint64_t tx_bytes{0};
         uint64_t rx_packets{0};
         uint64_t tx_packets{0};
-        uint64_t errors{0};
-        uint64_t drops{0};
+        uint64_t rx_errors{0};
+        uint64_t tx_errors{0};
+        uint64_t rx_dropped{0};
+        uint64_t tx_dropped{0};
     };
     network_stats last_network_stats_;
 
@@ -228,6 +234,8 @@ class system_info_collector {
     struct disk_stats {
         uint64_t read_bytes{0};
         uint64_t write_bytes{0};
+        uint64_t read_ops{0};
+        uint64_t write_ops{0};
     };
     disk_stats last_disk_stats_;
 
