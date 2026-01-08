@@ -57,6 +57,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Public ring_buffer.h and metric_storage.h APIs** (#339)
+  - Added `include/kcenon/monitoring/utils/ring_buffer.h` exposing internal ring buffer as public API
+  - Added `include/kcenon/monitoring/utils/metric_storage.h` with memory-efficient metric storage
+  - `metric_storage` class with ring buffer buffering and time series storage for historical data
+  - Thread-safe implementation with background processing support
+  - `metric_storage_config` for configurable capacity, retention, and flush intervals
+  - `metric_storage_stats` for monitoring storage performance
+  - Enabled `test_metric_storage.cpp` with 14 passing tests
 - **Tag/label support for multi-dimensional metrics in performance_monitor** (#324)
   - Added `tag_map` type alias for metric labels (key-value pairs)
   - Added `tagged_metric` struct for representing metrics with tags

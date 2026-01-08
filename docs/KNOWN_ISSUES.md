@@ -97,7 +97,6 @@ The following test files are enabled and passing:
 The following test files are commented out in `tests/CMakeLists.txt`:
 
 - `test_health_monitoring.cpp`
-- `test_metric_storage.cpp`
 - `test_stream_aggregation.cpp`
 - `test_buffering_strategies.cpp`
 - `test_optimization.cpp`
@@ -114,6 +113,7 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_metric_exporters.cpp` - Enabled in #332
 - `test_storage_backends.cpp` - Enabled in #347
 - `test_error_boundaries.cpp` - Enabled in #338 (Graceful degradation API implemented)
+- `test_metric_storage.cpp` - Enabled in #339 (ring_buffer.h and metric_storage.h implemented)
 
 ### Test Stability Improvements
 
