@@ -20,16 +20,10 @@
     #include <IOKit/storage/IOBlockStorageDriver.h>
     #include <CoreFoundation/CoreFoundation.h>
 #elif _WIN32
-    #ifndef WIN32_LEAN_AND_MEAN
-    #define WIN32_LEAN_AND_MEAN
-    #endif
-    // winsock2.h must be included before windows.h to avoid redefinition errors
-    #include <winsock2.h>
-    #include <windows.h>
-    #include <iphlpapi.h>
+    // Windows headers are already included via system_resource_collector.h
+    // Additional headers for performance counters
     #include <pdh.h>
     #pragma comment(lib, "pdh.lib")
-    #pragma comment(lib, "iphlpapi.lib")
 #endif
 
 namespace kcenon { namespace monitoring {
