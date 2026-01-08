@@ -63,6 +63,59 @@
 namespace kcenon { namespace monitoring {
 
 /**
+ * @brief Type alias for metric tags/labels
+ *
+ * Tags are key-value pairs that add dimensions to metrics,
+ * enabling filtering and aggregation by service, endpoint, host, etc.
+ */
+using tag_map = std::unordered_map<std::string, std::string>;
+
+/**
+ * @enum recorded_metric_type
+ * @brief Types of recorded metrics
+ */
+enum class recorded_metric_type {
+    counter,    ///< Monotonically increasing counter
+    gauge,      ///< Instantaneous value that can go up and down
+    histogram   ///< Distribution of values with buckets
+};
+
+/**
+ * @struct tagged_metric
+ * @brief Represents a metric value with associated tags
+ */
+struct tagged_metric {
+    std::string name;
+    double value;
+    recorded_metric_type type;
+    tag_map tags;
+    std::chrono::system_clock::time_point timestamp;
+
+    tagged_metric(const std::string& n, double v, recorded_metric_type t,
+                  const tag_map& tgs = {})
+        : name(n)
+        , value(v)
+        , type(t)
+        , tags(tgs)
+        , timestamp(std::chrono::system_clock::now()) {}
+
+    /**
+     * @brief Generate unique key for aggregation based on name and sorted tags
+     */
+    std::string key() const {
+        std::string k = name;
+        // Sort tags for consistent key generation
+        std::vector<std::pair<std::string, std::string>> sorted_tags(
+            tags.begin(), tags.end());
+        std::sort(sorted_tags.begin(), sorted_tags.end());
+        for (const auto& [tag_key, tag_value] : sorted_tags) {
+            k += ";" + tag_key + "=" + tag_value;
+        }
+        return k;
+    }
+};
+
+/**
  * @brief Performance metrics for a specific operation
  */
 struct performance_metrics {
@@ -364,7 +417,7 @@ private:
     system_monitor system_monitor_;
     std::string name_;
     bool enabled_{true};
-    
+
     // Performance thresholds for alerting
     struct thresholds {
         double cpu_threshold{80.0};
@@ -372,6 +425,18 @@ private:
         std::chrono::milliseconds latency_threshold{1000};
     } thresholds_;
     mutable std::mutex thresholds_mutex_;  // Protects thresholds_
+
+    // Tagged metrics storage for counters, gauges, and histograms
+    struct metric_data {
+        double value{0.0};
+        recorded_metric_type type;
+        tag_map tags;
+        std::chrono::system_clock::time_point last_update;
+        std::vector<double> histogram_values;  // For histogram type only
+        std::size_t max_histogram_samples{1000};
+    };
+    std::unordered_map<std::string, std::unique_ptr<metric_data>> tagged_metrics_;
+    mutable std::shared_mutex metrics_mutex_;  // Protects tagged_metrics_
     
 public:
     explicit performance_monitor(const std::string& name = "performance_monitor")
@@ -467,7 +532,137 @@ public:
      */
     void reset() {
         profiler_.clear_all_samples();
+        clear_all_metrics();
     }
+
+    // =========================================================================
+    // Tagged Metric Recording Methods
+    // =========================================================================
+
+    /**
+     * @brief Record a counter metric (monotonically increasing value)
+     *
+     * @param name Metric name (must not be empty)
+     * @param value Value to add (should be >= 0 for counters)
+     * @return result_void Success or error with details
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     */
+    result_void record_counter(const std::string& name, double value);
+
+    /**
+     * @brief Record a counter metric with tags
+     *
+     * @param name Metric name (must not be empty)
+     * @param value Value to add (should be >= 0 for counters)
+     * @param tags Key-value labels for metric dimensions
+     * @return result_void Success or error with details
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     *
+     * @example
+     * @code
+     * monitor.record_counter("http_requests_total", 1, {
+     *     {"method", "GET"},
+     *     {"endpoint", "/api/users"},
+     *     {"status_code", "200"}
+     * });
+     * @endcode
+     */
+    result_void record_counter(const std::string& name, double value,
+                               const tag_map& tags);
+
+    /**
+     * @brief Record a gauge metric (instantaneous value)
+     *
+     * @param name Metric name (must not be empty)
+     * @param value Current value (can be positive or negative)
+     * @return result_void Success or error with details
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     */
+    result_void record_gauge(const std::string& name, double value);
+
+    /**
+     * @brief Record a gauge metric with tags
+     *
+     * @param name Metric name (must not be empty)
+     * @param value Current value (can be positive or negative)
+     * @param tags Key-value labels for metric dimensions
+     * @return result_void Success or error with details
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     *
+     * @example
+     * @code
+     * monitor.record_gauge("active_connections", 42, {
+     *     {"pool", "database"},
+     *     {"host", "db-primary"}
+     * });
+     * @endcode
+     */
+    result_void record_gauge(const std::string& name, double value,
+                             const tag_map& tags);
+
+    /**
+     * @brief Record a histogram metric (distribution of values)
+     *
+     * @param name Metric name (must not be empty)
+     * @param value Observed value to record
+     * @return result_void Success or error with details
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     */
+    result_void record_histogram(const std::string& name, double value);
+
+    /**
+     * @brief Record a histogram metric with tags
+     *
+     * @param name Metric name (must not be empty)
+     * @param value Observed value to record
+     * @param tags Key-value labels for metric dimensions
+     * @return result_void Success or error with details
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     *
+     * @example
+     * @code
+     * monitor.record_histogram("request_duration_ms", 150.5, {
+     *     {"service", "auth"},
+     *     {"operation", "login"}
+     * });
+     * @endcode
+     */
+    result_void record_histogram(const std::string& name, double value,
+                                 const tag_map& tags);
+
+    /**
+     * @brief Get all recorded tagged metrics
+     *
+     * @return Vector of tagged_metric containing all recorded metrics with their tags
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     */
+    std::vector<tagged_metric> get_all_tagged_metrics() const;
+
+    /**
+     * @brief Clear all recorded tagged metrics
+     *
+     * @thread_safety Thread-safe, uses shared_mutex for synchronization
+     */
+    void clear_all_metrics();
+
+private:
+    /**
+     * @brief Generate a unique key from metric name and tags
+     */
+    static std::string make_metric_key(const std::string& name, const tag_map& tags);
+
+    /**
+     * @brief Internal method to record a metric with type and tags
+     */
+    result_void record_metric_internal(const std::string& name, double value,
+                                       recorded_metric_type type, const tag_map& tags);
 };
 
 /**
