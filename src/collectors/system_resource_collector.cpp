@@ -8,11 +8,22 @@
 
 #if defined(__APPLE__) || defined(__linux__)
 #include <unistd.h>
+#include <sys/statvfs.h>
+#include <ifaddrs.h>
+#include <net/if.h>
 #endif
 
 #ifdef __APPLE__
     #include <libproc.h>
     #include <sys/proc_info.h>
+    #include <IOKit/IOKitLib.h>
+    #include <IOKit/storage/IOBlockStorageDriver.h>
+    #include <CoreFoundation/CoreFoundation.h>
+#elif _WIN32
+    // Windows headers are already included via system_resource_collector.h
+    // Additional headers for performance counters
+    #include <pdh.h>
+    #pragma comment(lib, "pdh.lib")
 #endif
 
 namespace kcenon { namespace monitoring {
@@ -114,15 +125,340 @@ void system_info_collector::collect_memory_stats(system_resources& resources) {
 }
 
 void system_info_collector::collect_disk_stats(system_resources& resources) {
-    (void)resources;
-    // Basic implementation or platform specific if needed
-    // For now leaving basic stub logic or simple counters
-    // Actual implementation would read /proc/diskstats or IOKit
+#if defined(__APPLE__) || defined(__linux__)
+    auto now = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - last_collection_time_).count();
+    double seconds = duration > 0 ? duration / 1000000.0 : 1.0;
+    // Get disk space usage for root filesystem
+    struct statvfs stat;
+    if (statvfs("/", &stat) == 0) {
+        resources.disk.total_bytes = stat.f_blocks * stat.f_frsize;
+        resources.disk.available_bytes = stat.f_bavail * stat.f_frsize;
+        resources.disk.used_bytes = resources.disk.total_bytes - (stat.f_bfree * stat.f_frsize);
+        if (resources.disk.total_bytes > 0) {
+            resources.disk.usage_percent = 100.0 * static_cast<double>(resources.disk.used_bytes) /
+                                           static_cast<double>(resources.disk.total_bytes);
+        }
+    }
+#endif
+
+#ifdef __APPLE__
+    // Get disk I/O stats using IOKit
+    io_iterator_t disk_iter;
+    if (IOServiceGetMatchingServices(kIOMainPortDefault,
+                                      IOServiceMatching(kIOBlockStorageDriverClass),
+                                      &disk_iter) == KERN_SUCCESS) {
+        io_object_t disk;
+        uint64_t total_read_bytes = 0;
+        uint64_t total_write_bytes = 0;
+        uint64_t total_read_ops = 0;
+        uint64_t total_write_ops = 0;
+
+        while ((disk = IOIteratorNext(disk_iter)) != 0) {
+            CFMutableDictionaryRef props = nullptr;
+            if (IORegistryEntryCreateCFProperties(disk, &props, kCFAllocatorDefault, 0) == KERN_SUCCESS && props) {
+                CFDictionaryRef stats = static_cast<CFDictionaryRef>(
+                    CFDictionaryGetValue(props, CFSTR(kIOBlockStorageDriverStatisticsKey)));
+                if (stats) {
+                    CFNumberRef num;
+                    int64_t value;
+
+                    num = static_cast<CFNumberRef>(CFDictionaryGetValue(stats,
+                        CFSTR(kIOBlockStorageDriverStatisticsBytesReadKey)));
+                    if (num && CFNumberGetValue(num, kCFNumberSInt64Type, &value)) {
+                        total_read_bytes += static_cast<uint64_t>(value);
+                    }
+
+                    num = static_cast<CFNumberRef>(CFDictionaryGetValue(stats,
+                        CFSTR(kIOBlockStorageDriverStatisticsBytesWrittenKey)));
+                    if (num && CFNumberGetValue(num, kCFNumberSInt64Type, &value)) {
+                        total_write_bytes += static_cast<uint64_t>(value);
+                    }
+
+                    num = static_cast<CFNumberRef>(CFDictionaryGetValue(stats,
+                        CFSTR(kIOBlockStorageDriverStatisticsReadsKey)));
+                    if (num && CFNumberGetValue(num, kCFNumberSInt64Type, &value)) {
+                        total_read_ops += static_cast<uint64_t>(value);
+                    }
+
+                    num = static_cast<CFNumberRef>(CFDictionaryGetValue(stats,
+                        CFSTR(kIOBlockStorageDriverStatisticsWritesKey)));
+                    if (num && CFNumberGetValue(num, kCFNumberSInt64Type, &value)) {
+                        total_write_ops += static_cast<uint64_t>(value);
+                    }
+                }
+                CFRelease(props);
+            }
+            IOObjectRelease(disk);
+        }
+        IOObjectRelease(disk_iter);
+
+        // Calculate rates
+        if (last_disk_stats_.read_bytes > 0 && total_read_bytes >= last_disk_stats_.read_bytes) {
+            resources.disk.io.read_bytes_per_sec = static_cast<size_t>(
+                (total_read_bytes - last_disk_stats_.read_bytes) / seconds);
+            resources.disk.io.write_bytes_per_sec = static_cast<size_t>(
+                (total_write_bytes - last_disk_stats_.write_bytes) / seconds);
+            resources.disk.io.read_ops_per_sec = static_cast<size_t>(
+                (total_read_ops - last_disk_stats_.read_ops) / seconds);
+            resources.disk.io.write_ops_per_sec = static_cast<size_t>(
+                (total_write_ops - last_disk_stats_.write_ops) / seconds);
+        }
+
+        last_disk_stats_.read_bytes = total_read_bytes;
+        last_disk_stats_.write_bytes = total_write_bytes;
+        last_disk_stats_.read_ops = total_read_ops;
+        last_disk_stats_.write_ops = total_write_ops;
+    }
+#elif __linux__
+    // Read disk I/O stats from /proc/diskstats
+    std::ifstream file("/proc/diskstats");
+    std::string line;
+    uint64_t total_read_sectors = 0;
+    uint64_t total_write_sectors = 0;
+    uint64_t total_read_ops = 0;
+    uint64_t total_write_ops = 0;
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        unsigned int major, minor;
+        std::string dev_name;
+        uint64_t reads, reads_merged, sectors_read, read_time;
+        uint64_t writes, writes_merged, sectors_written, write_time;
+
+        iss >> major >> minor >> dev_name
+            >> reads >> reads_merged >> sectors_read >> read_time
+            >> writes >> writes_merged >> sectors_written >> write_time;
+
+        // Filter for actual disks (sd*, nvme*, vd*), skip partitions
+        if ((dev_name.find("sd") == 0 || dev_name.find("nvme") == 0 || dev_name.find("vd") == 0) &&
+            dev_name.find_first_of("0123456789") == dev_name.length() - 1) {
+            // Skip partition entries (e.g., sda1, nvme0n1p1)
+            continue;
+        }
+        if (dev_name.find("sd") == 0 || dev_name.find("nvme") == 0 || dev_name.find("vd") == 0) {
+            total_read_sectors += sectors_read;
+            total_write_sectors += sectors_written;
+            total_read_ops += reads;
+            total_write_ops += writes;
+        }
+    }
+
+    // Convert sectors to bytes (512 bytes per sector)
+    uint64_t total_read_bytes = total_read_sectors * 512;
+    uint64_t total_write_bytes = total_write_sectors * 512;
+
+    // Calculate rates
+    if (last_disk_stats_.read_bytes > 0 && total_read_bytes >= last_disk_stats_.read_bytes) {
+        resources.disk.io.read_bytes_per_sec = static_cast<size_t>(
+            (total_read_bytes - last_disk_stats_.read_bytes) / seconds);
+        resources.disk.io.write_bytes_per_sec = static_cast<size_t>(
+            (total_write_bytes - last_disk_stats_.write_bytes) / seconds);
+        resources.disk.io.read_ops_per_sec = static_cast<size_t>(
+            (total_read_ops - last_disk_stats_.read_ops) / seconds);
+        resources.disk.io.write_ops_per_sec = static_cast<size_t>(
+            (total_write_ops - last_disk_stats_.write_ops) / seconds);
+    }
+
+    last_disk_stats_.read_bytes = total_read_bytes;
+    last_disk_stats_.write_bytes = total_write_bytes;
+    last_disk_stats_.read_ops = total_read_ops;
+    last_disk_stats_.write_ops = total_write_ops;
+#elif _WIN32
+    // Get disk space usage for C: drive
+    ULARGE_INTEGER free_bytes_available, total_bytes, total_free_bytes;
+    if (GetDiskFreeSpaceExW(L"C:\\", &free_bytes_available, &total_bytes, &total_free_bytes)) {
+        resources.disk.total_bytes = static_cast<size_t>(total_bytes.QuadPart);
+        resources.disk.available_bytes = static_cast<size_t>(free_bytes_available.QuadPart);
+        resources.disk.used_bytes = resources.disk.total_bytes - resources.disk.available_bytes;
+        if (resources.disk.total_bytes > 0) {
+            resources.disk.usage_percent = 100.0 * static_cast<double>(resources.disk.used_bytes) /
+                                           static_cast<double>(resources.disk.total_bytes);
+        }
+    }
+
+    // Note: Windows disk I/O requires PDH counters which need initialization
+    // For now, disk I/O rates are not collected on Windows
+    // Future improvement: Use PDH to collect \\PhysicalDisk\\Disk Read Bytes/sec etc.
+#endif
 }
 
 void system_info_collector::collect_network_stats(system_resources& resources) {
-    (void)resources;
-    // Basic implementation or platform specific if needed
+#if defined(__APPLE__) || defined(__linux__)
+    auto now = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - last_collection_time_).count();
+    double seconds = duration > 0 ? duration / 1000000.0 : 1.0;
+    struct ifaddrs* ifaddr = nullptr;
+    if (getifaddrs(&ifaddr) == 0) {
+        uint64_t total_rx_bytes = 0;
+        uint64_t total_tx_bytes = 0;
+        uint64_t total_rx_packets = 0;
+        uint64_t total_tx_packets = 0;
+        uint64_t total_rx_errors = 0;
+        uint64_t total_tx_errors = 0;
+        uint64_t total_rx_dropped = 0;
+        uint64_t total_tx_dropped = 0;
+
+        for (struct ifaddrs* ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next) {
+            if (ifa->ifa_addr == nullptr) continue;
+
+#ifdef __APPLE__
+            if (ifa->ifa_addr->sa_family == AF_LINK) {
+                // Skip loopback interface
+                if (ifa->ifa_flags & IFF_LOOPBACK) continue;
+
+                struct if_data* if_data = static_cast<struct if_data*>(ifa->ifa_data);
+                if (if_data) {
+                    total_rx_bytes += if_data->ifi_ibytes;
+                    total_tx_bytes += if_data->ifi_obytes;
+                    total_rx_packets += if_data->ifi_ipackets;
+                    total_tx_packets += if_data->ifi_opackets;
+                    total_rx_errors += if_data->ifi_ierrors;
+                    total_tx_errors += if_data->ifi_oerrors;
+                    total_rx_dropped += if_data->ifi_iqdrops;
+                    // macOS doesn't have separate tx drops in if_data
+                }
+            }
+#elif __linux__
+            if (ifa->ifa_addr->sa_family == AF_PACKET) {
+                // Skip loopback interface
+                if (ifa->ifa_flags & IFF_LOOPBACK) continue;
+
+                // On Linux, we need to read from /proc/net/dev for detailed stats
+            }
+#endif
+        }
+        freeifaddrs(ifaddr);
+
+#ifdef __linux__
+        // Read detailed network stats from /proc/net/dev on Linux
+        std::ifstream file("/proc/net/dev");
+        std::string line;
+        std::getline(file, line); // Skip header line 1
+        std::getline(file, line); // Skip header line 2
+
+        while (std::getline(file, line)) {
+            std::istringstream iss(line);
+            std::string iface;
+            uint64_t rx_bytes, rx_packets, rx_errs, rx_drop, rx_fifo, rx_frame, rx_compressed, rx_multicast;
+            uint64_t tx_bytes, tx_packets, tx_errs, tx_drop, tx_fifo, tx_colls, tx_carrier, tx_compressed;
+
+            iss >> iface >> rx_bytes >> rx_packets >> rx_errs >> rx_drop >> rx_fifo >> rx_frame >> rx_compressed >> rx_multicast
+                >> tx_bytes >> tx_packets >> tx_errs >> tx_drop >> tx_fifo >> tx_colls >> tx_carrier >> tx_compressed;
+
+            // Remove colon from interface name
+            if (!iface.empty() && iface.back() == ':') {
+                iface.pop_back();
+            }
+
+            // Skip loopback
+            if (iface == "lo") continue;
+
+            total_rx_bytes += rx_bytes;
+            total_tx_bytes += tx_bytes;
+            total_rx_packets += rx_packets;
+            total_tx_packets += tx_packets;
+            total_rx_errors += rx_errs;
+            total_tx_errors += tx_errs;
+            total_rx_dropped += rx_drop;
+            total_tx_dropped += tx_drop;
+        }
+#endif
+
+        // Calculate rates
+        if (last_network_stats_.rx_bytes > 0 && total_rx_bytes >= last_network_stats_.rx_bytes) {
+            resources.network.rx_bytes_per_sec = static_cast<size_t>(
+                (total_rx_bytes - last_network_stats_.rx_bytes) / seconds);
+            resources.network.tx_bytes_per_sec = static_cast<size_t>(
+                (total_tx_bytes - last_network_stats_.tx_bytes) / seconds);
+            resources.network.rx_packets_per_sec = static_cast<size_t>(
+                (total_rx_packets - last_network_stats_.rx_packets) / seconds);
+            resources.network.tx_packets_per_sec = static_cast<size_t>(
+                (total_tx_packets - last_network_stats_.tx_packets) / seconds);
+        }
+
+        resources.network.rx_errors = static_cast<size_t>(total_rx_errors);
+        resources.network.tx_errors = static_cast<size_t>(total_tx_errors);
+        resources.network.rx_dropped = static_cast<size_t>(total_rx_dropped);
+        resources.network.tx_dropped = static_cast<size_t>(total_tx_dropped);
+
+        last_network_stats_.rx_bytes = total_rx_bytes;
+        last_network_stats_.tx_bytes = total_tx_bytes;
+        last_network_stats_.rx_packets = total_rx_packets;
+        last_network_stats_.tx_packets = total_tx_packets;
+        last_network_stats_.rx_errors = total_rx_errors;
+        last_network_stats_.tx_errors = total_tx_errors;
+        last_network_stats_.rx_dropped = total_rx_dropped;
+        last_network_stats_.tx_dropped = total_tx_dropped;
+    }
+#elif _WIN32
+    // Windows network stats using GetIfTable
+    MIB_IFTABLE* if_table = nullptr;
+    ULONG size = 0;
+
+    // First call to get required buffer size
+    if (GetIfTable(nullptr, &size, FALSE) == ERROR_INSUFFICIENT_BUFFER) {
+        if_table = reinterpret_cast<MIB_IFTABLE*>(malloc(size));
+        if (if_table && GetIfTable(if_table, &size, FALSE) == NO_ERROR) {
+            uint64_t total_rx_bytes = 0;
+            uint64_t total_tx_bytes = 0;
+            uint64_t total_rx_packets = 0;
+            uint64_t total_tx_packets = 0;
+            uint64_t total_rx_errors = 0;
+            uint64_t total_tx_errors = 0;
+            uint64_t total_rx_dropped = 0;
+            uint64_t total_tx_dropped = 0;
+
+            for (DWORD i = 0; i < if_table->dwNumEntries; ++i) {
+                MIB_IFROW& row = if_table->table[i];
+
+                // Skip loopback and non-operational interfaces
+                if (row.dwType == IF_TYPE_SOFTWARE_LOOPBACK) continue;
+                if (row.dwOperStatus != IF_OPER_STATUS_OPERATIONAL) continue;
+
+                total_rx_bytes += row.dwInOctets;
+                total_tx_bytes += row.dwOutOctets;
+                total_rx_packets += row.dwInUcastPkts + row.dwInNUcastPkts;
+                total_tx_packets += row.dwOutUcastPkts + row.dwOutNUcastPkts;
+                total_rx_errors += row.dwInErrors;
+                total_tx_errors += row.dwOutErrors;
+                total_rx_dropped += row.dwInDiscards;
+                total_tx_dropped += row.dwOutDiscards;
+            }
+
+            // Calculate rates
+            auto now = std::chrono::steady_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(now - last_collection_time_).count();
+            double seconds = duration > 0 ? duration / 1000000.0 : 1.0;
+
+            if (last_network_stats_.rx_bytes > 0 && total_rx_bytes >= last_network_stats_.rx_bytes) {
+                resources.network.rx_bytes_per_sec = static_cast<size_t>(
+                    (total_rx_bytes - last_network_stats_.rx_bytes) / seconds);
+                resources.network.tx_bytes_per_sec = static_cast<size_t>(
+                    (total_tx_bytes - last_network_stats_.tx_bytes) / seconds);
+                resources.network.rx_packets_per_sec = static_cast<size_t>(
+                    (total_rx_packets - last_network_stats_.rx_packets) / seconds);
+                resources.network.tx_packets_per_sec = static_cast<size_t>(
+                    (total_tx_packets - last_network_stats_.tx_packets) / seconds);
+            }
+
+            resources.network.rx_errors = static_cast<size_t>(total_rx_errors);
+            resources.network.tx_errors = static_cast<size_t>(total_tx_errors);
+            resources.network.rx_dropped = static_cast<size_t>(total_rx_dropped);
+            resources.network.tx_dropped = static_cast<size_t>(total_tx_dropped);
+
+            last_network_stats_.rx_bytes = total_rx_bytes;
+            last_network_stats_.tx_bytes = total_tx_bytes;
+            last_network_stats_.rx_packets = total_rx_packets;
+            last_network_stats_.tx_packets = total_tx_packets;
+            last_network_stats_.rx_errors = total_rx_errors;
+            last_network_stats_.tx_errors = total_tx_errors;
+            last_network_stats_.rx_dropped = total_rx_dropped;
+            last_network_stats_.tx_dropped = total_tx_dropped;
+        }
+        free(if_table);
+    }
+#endif
 }
 
 void system_info_collector::collect_process_stats([[maybe_unused]] system_resources& resources) {
@@ -501,7 +837,21 @@ std::vector<metric> system_resource_collector::collect() {
 
 std::vector<std::string> system_resource_collector::get_metric_types() const {
     return {
-        "cpu_usage", "memory_usage", "context_switches_total", "context_switches_rate"
+        // CPU metrics
+        "cpu_usage_percent", "cpu_user_percent", "cpu_system_percent",
+        "load_average_1min", "context_switches_total", "context_switches_per_sec",
+        // Memory metrics
+        "memory_usage_percent", "memory_used_bytes", "memory_available_bytes",
+        // Disk metrics
+        "disk_usage_percent", "disk_total_bytes", "disk_used_bytes", "disk_available_bytes",
+        "disk_read_bytes_per_sec", "disk_write_bytes_per_sec",
+        "disk_read_ops_per_sec", "disk_write_ops_per_sec",
+        // Network metrics
+        "network_rx_bytes_per_sec", "network_tx_bytes_per_sec",
+        "network_rx_packets_per_sec", "network_tx_packets_per_sec",
+        "network_rx_errors", "network_tx_errors", "network_rx_dropped", "network_tx_dropped",
+        // Process metrics
+        "process_count"
     };
 }
 
@@ -589,13 +939,33 @@ void system_resource_collector::add_memory_metrics(std::vector<metric>& metrics,
 }
 
 void system_resource_collector::add_disk_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    (void)metrics; (void)resources;
-    // TODO using empty for now or implementing if needed
+    // Disk usage
+    metrics.push_back(create_metric("disk_usage_percent", resources.disk.usage_percent, "%"));
+    metrics.push_back(create_metric("disk_total_bytes", static_cast<double>(resources.disk.total_bytes), "bytes"));
+    metrics.push_back(create_metric("disk_used_bytes", static_cast<double>(resources.disk.used_bytes), "bytes"));
+    metrics.push_back(create_metric("disk_available_bytes", static_cast<double>(resources.disk.available_bytes), "bytes"));
+
+    // I/O throughput
+    metrics.push_back(create_metric("disk_read_bytes_per_sec", static_cast<double>(resources.disk.io.read_bytes_per_sec), "bytes/s"));
+    metrics.push_back(create_metric("disk_write_bytes_per_sec", static_cast<double>(resources.disk.io.write_bytes_per_sec), "bytes/s"));
+    metrics.push_back(create_metric("disk_read_ops_per_sec", static_cast<double>(resources.disk.io.read_ops_per_sec), "ops/s"));
+    metrics.push_back(create_metric("disk_write_ops_per_sec", static_cast<double>(resources.disk.io.write_ops_per_sec), "ops/s"));
 }
 
 void system_resource_collector::add_network_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    (void)metrics; (void)resources;
-    // TODO
+    // Bandwidth
+    metrics.push_back(create_metric("network_rx_bytes_per_sec", static_cast<double>(resources.network.rx_bytes_per_sec), "bytes/s"));
+    metrics.push_back(create_metric("network_tx_bytes_per_sec", static_cast<double>(resources.network.tx_bytes_per_sec), "bytes/s"));
+
+    // Packets
+    metrics.push_back(create_metric("network_rx_packets_per_sec", static_cast<double>(resources.network.rx_packets_per_sec), "pkts/s"));
+    metrics.push_back(create_metric("network_tx_packets_per_sec", static_cast<double>(resources.network.tx_packets_per_sec), "pkts/s"));
+
+    // Errors
+    metrics.push_back(create_metric("network_rx_errors", static_cast<double>(resources.network.rx_errors)));
+    metrics.push_back(create_metric("network_tx_errors", static_cast<double>(resources.network.tx_errors)));
+    metrics.push_back(create_metric("network_rx_dropped", static_cast<double>(resources.network.rx_dropped)));
+    metrics.push_back(create_metric("network_tx_dropped", static_cast<double>(resources.network.tx_dropped)));
 }
 
 void system_resource_collector::add_process_metrics(std::vector<metric>& metrics, const system_resources& resources) {
