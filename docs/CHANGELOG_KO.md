@@ -57,6 +57,13 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **system_resource_collector에서 Windows CPU/메모리 통계 수집** (#319)
+  - `GetSystemTimes()` API를 사용하여 `collect_windows_cpu_stats()` 구현
+  - `GlobalMemoryStatusEx()` API를 사용하여 `collect_windows_memory_stats()` 구현
+  - CPU 메트릭: usage_percent, user_percent, system_percent, idle_percent, 코어 수
+  - 메모리 메트릭: total, available, used bytes, usage_percent
+  - 스왑(페이지 파일) 메트릭: total, used bytes, usage_percent
+  - 시스템 리소스 수집을 위한 Windows 플랫폼 지원 완료
 - **C++20 모듈 지원** (#310)
   - `kcenon.monitoring` 모듈용 C++20 모듈 파일 생성
   - 모듈 파티션:

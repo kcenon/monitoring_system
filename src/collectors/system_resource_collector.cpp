@@ -351,11 +351,81 @@ void system_info_collector::collect_linux_memory_stats(system_resources& resourc
 }
 
 #elif _WIN32
-void system_info_collector::collect_windows_cpu_stats([[maybe_unused]] system_resources& resources) {
-    // TODO: Implement Windows CPU stats collection
+void system_info_collector::collect_windows_cpu_stats(system_resources& resources) {
+    FILETIME idle_time, kernel_time, user_time;
+    if (!GetSystemTimes(&idle_time, &kernel_time, &user_time)) {
+        return;
+    }
+
+    // Convert FILETIME to uint64_t (100-nanosecond intervals)
+    auto filetime_to_uint64 = [](const FILETIME& ft) -> uint64_t {
+        return (static_cast<uint64_t>(ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+    };
+
+    uint64_t idle = filetime_to_uint64(idle_time);
+    uint64_t kernel = filetime_to_uint64(kernel_time);
+    uint64_t user = filetime_to_uint64(user_time);
+
+    // Note: kernel_time includes idle_time on Windows
+    uint64_t system = kernel - idle;
+
+    std::lock_guard<std::mutex> lock(stats_mutex_);
+
+    // Calculate deltas from last collection
+    uint64_t prev_idle = last_cpu_stats_.idle;
+    uint64_t prev_system = last_cpu_stats_.system;
+    uint64_t prev_user = last_cpu_stats_.user;
+
+    uint64_t idle_delta = idle - prev_idle;
+    uint64_t system_delta = system - prev_system;
+    uint64_t user_delta = user - prev_user;
+    uint64_t total_delta = idle_delta + system_delta + user_delta;
+
+    if (total_delta > 0 && prev_idle > 0) {
+        resources.cpu.idle_percent = 100.0 * static_cast<double>(idle_delta) / total_delta;
+        resources.cpu.system_percent = 100.0 * static_cast<double>(system_delta) / total_delta;
+        resources.cpu.user_percent = 100.0 * static_cast<double>(user_delta) / total_delta;
+        resources.cpu.usage_percent = resources.cpu.system_percent + resources.cpu.user_percent;
+    }
+
+    // Store current values for next calculation
+    last_cpu_stats_.idle = idle;
+    last_cpu_stats_.system = system;
+    last_cpu_stats_.user = user;
+
+    // Get processor count
+    SYSTEM_INFO sys_info;
+    GetSystemInfo(&sys_info);
+    resources.cpu.count = sys_info.dwNumberOfProcessors;
+
+    // Windows doesn't have load average like Unix systems
+    // Leave load average at default (0.0)
 }
-void system_info_collector::collect_windows_memory_stats([[maybe_unused]] system_resources& resources) {
-    // TODO: Implement Windows memory stats collection
+
+void system_info_collector::collect_windows_memory_stats(system_resources& resources) {
+    MEMORYSTATUSEX mem_status;
+    mem_status.dwLength = sizeof(mem_status);
+
+    if (!GlobalMemoryStatusEx(&mem_status)) {
+        return;
+    }
+
+    resources.memory.total_bytes = static_cast<size_t>(mem_status.ullTotalPhys);
+    resources.memory.available_bytes = static_cast<size_t>(mem_status.ullAvailPhys);
+    resources.memory.used_bytes = resources.memory.total_bytes - resources.memory.available_bytes;
+    resources.memory.usage_percent = static_cast<double>(mem_status.dwMemoryLoad);
+
+    // Swap (Page File) information
+    resources.memory.swap.total_bytes = static_cast<size_t>(mem_status.ullTotalPageFile - mem_status.ullTotalPhys);
+    uint64_t swap_available = mem_status.ullAvailPageFile > mem_status.ullAvailPhys ?
+                              mem_status.ullAvailPageFile - mem_status.ullAvailPhys : 0;
+    resources.memory.swap.used_bytes = resources.memory.swap.total_bytes -
+                                       static_cast<size_t>(swap_available);
+
+    if (resources.memory.swap.total_bytes > 0) {
+        resources.memory.swap.usage_percent = 100.0 * static_cast<double>(resources.memory.swap.used_bytes) /
+                                              static_cast<double>(resources.memory.swap.total_bytes);
+    }
 }
 #endif
 
