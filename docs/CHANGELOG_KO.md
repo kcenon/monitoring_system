@@ -57,6 +57,16 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **Health monitoring API** (#330)
+  - `health_check` 추상 기본 클래스: `get_name()`, `get_type()`, `check()`, `get_timeout()`, `is_critical()` 메서드 포함
+  - 람다 기반 health check를 위한 `functional_health_check`
+  - 모든-필수 또는 하나-필수 의미론으로 여러 health check를 집계하는 `composite_health_check`
+  - 사이클 감지, 위상 정렬, 실패 영향 분석이 포함된 health check 의존성을 위한 `health_dependency_graph` DAG
+  - 유창한 API health check 생성을 위한 `health_check_builder`
+  - `register_check()`, `unregister_check()`, `check()`, `add_dependency()`, `start()`/`stop()`, `get_stats()`, `get_health_report()`로 확장된 `health_monitor`
+  - health check 통계 추적을 위한 `health_monitor_stats`
+  - `global_health_monitor()` 싱글톤 접근자
+  - `test_health_monitoring.cpp`의 22개 테스트 전체 통과
 - **리소스 관리 API** (#341)
   - 토큰 버킷 및 리키 버킷 속도 제한기
   - 임계값 모니터링을 갖춘 메모리 할당량 관리자

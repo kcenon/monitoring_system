@@ -96,7 +96,6 @@ The following test files are enabled and passing:
 
 The following test files are commented out in `tests/CMakeLists.txt`:
 
-- `test_health_monitoring.cpp`
 - `test_stream_aggregation.cpp`
 - `test_optimization.cpp`
 - `test_data_consistency.cpp`
@@ -114,6 +113,7 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_error_boundaries.cpp` - Enabled in #338 (Graceful degradation API implemented)
 - `test_metric_storage.cpp` - Enabled in #339 (ring_buffer.h and metric_storage.h implemented)
 - `test_resource_management.cpp` - Enabled in #341 (resource_manager.h implemented)
+- `test_health_monitoring.cpp` - Enabled in #330 (Health monitoring API implemented)
 
 ### Test Stability Improvements
 
@@ -153,6 +153,7 @@ All CMake options are now consistently prefixed with `MONITORING_`:
 | CircuitBreaker | Stable |
 | Error Boundary | Stable |
 | Graceful Degradation | Stable |
+| Health Monitor | Stable |
 
 ---
 

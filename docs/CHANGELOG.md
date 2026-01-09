@@ -57,6 +57,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Health monitoring API** (#330)
+  - `health_check` abstract base class with `get_name()`, `get_type()`, `check()`, `get_timeout()`, `is_critical()`
+  - `functional_health_check` for lambda-based health checks
+  - `composite_health_check` for aggregating multiple health checks with all-required or any-required semantics
+  - `health_dependency_graph` DAG for health check dependencies with cycle detection, topological sort, failure impact analysis
+  - `health_check_builder` for fluent API health check creation
+  - `health_monitor` extended with `register_check()`, `unregister_check()`, `check()`, `add_dependency()`, `start()`/`stop()`, `get_stats()`, `get_health_report()`
+  - `health_monitor_stats` for tracking health check statistics
+  - `global_health_monitor()` singleton accessor
+  - All 22 tests in `test_health_monitoring.cpp` passing
 - **Resource management API** (#341)
   - Token bucket and leaky bucket rate limiters
   - Memory quota manager with threshold monitoring
