@@ -31,12 +31,52 @@
 
 #include <atomic>
 #include <cstddef>
+#include <cstdlib>
 #include <memory>
 #include <mutex>
 #include <new>
 #include <vector>
 
+#ifdef _MSC_VER
+#include <malloc.h>  // For _aligned_malloc/_aligned_free on Windows
+#endif
+
 #include "kcenon/monitoring/core/result_types.h"
+
+namespace detail {
+
+/**
+ * @brief Platform-specific aligned memory allocation
+ * @param alignment Memory alignment (must be power of 2)
+ * @param size Size in bytes
+ * @return Pointer to aligned memory or nullptr on failure
+ */
+inline void* aligned_alloc_impl(size_t alignment, size_t size) {
+#ifdef _MSC_VER
+    // MSVC doesn't support std::aligned_alloc
+    // Size must be a multiple of alignment for _aligned_malloc
+    size_t aligned_size = (size + alignment - 1) & ~(alignment - 1);
+    return _aligned_malloc(aligned_size, alignment);
+#else
+    // POSIX/C11 aligned_alloc requires size to be multiple of alignment
+    size_t aligned_size = (size + alignment - 1) & ~(alignment - 1);
+    return std::aligned_alloc(alignment, aligned_size);
+#endif
+}
+
+/**
+ * @brief Platform-specific aligned memory deallocation
+ * @param ptr Pointer to free
+ */
+inline void aligned_free_impl(void* ptr) {
+#ifdef _MSC_VER
+    _aligned_free(ptr);
+#else
+    std::free(ptr);
+#endif
+}
+
+} // namespace detail
 
 namespace kcenon::monitoring {
 
@@ -167,7 +207,7 @@ public:
 
     ~memory_pool() {
         for (auto* chunk : memory_chunks_) {
-            std::free(chunk);
+            detail::aligned_free_impl(chunk);
         }
     }
 
@@ -189,7 +229,7 @@ public:
     memory_pool& operator=(memory_pool&& other) noexcept {
         if (this != &other) {
             for (auto* chunk : memory_chunks_) {
-                std::free(chunk);
+                detail::aligned_free_impl(chunk);
             }
             config_ = other.config_;
             block_size_ = other.block_size_;
@@ -338,7 +378,7 @@ public:
 private:
     void initialize_pool() {
         size_t chunk_size = total_blocks_ * block_size_;
-        void* chunk = std::aligned_alloc(config_.alignment, chunk_size);
+        void* chunk = detail::aligned_alloc_impl(config_.alignment, chunk_size);
 
         if (chunk == nullptr) {
             throw std::bad_alloc();
@@ -365,7 +405,7 @@ private:
         }
 
         size_t chunk_size = new_blocks * block_size_;
-        void* chunk = std::aligned_alloc(config_.alignment, chunk_size);
+        void* chunk = detail::aligned_alloc_impl(config_.alignment, chunk_size);
 
         if (chunk == nullptr) {
             return false;
