@@ -84,13 +84,12 @@ public:
         return kcenon::common::ok();
     }
 
-    kcenon::common::VoidResult log(log_level level, const std::string& message,
-                          const std::string& file, int line, const std::string& function) override {
-        return log(level, message + " [" + file + ":" + std::to_string(line) + " " + function + "]");
-    }
-
     kcenon::common::VoidResult log(const log_entry& entry) override {
-        return log(entry.level, entry.message, entry.file, entry.line, entry.function);
+        std::string msg = entry.message;
+        if (!entry.file.empty()) {
+            msg += " [" + entry.file + ":" + std::to_string(entry.line) + " " + entry.function + "]";
+        }
+        return log(entry.level, msg);
     }
 
     bool is_enabled(log_level level) const override {
@@ -125,22 +124,22 @@ void example_1_basic_monitoring() {
 
     std::cout << "\nRecording metrics..." << std::endl;
 
-    // Record metrics using Result pattern
-    auto result1 = monitor->record_metric("requests_total", 100.0);
+    // Record metrics using Result pattern (updated API: record_counter, record_gauge)
+    auto result1 = monitor->record_counter("requests_total", 100.0);
     if (result1.is_ok()) {
-        std::cout << "✓ Metric 'requests_total' recorded" << std::endl;
+        std::cout << "  Metric 'requests_total' recorded" << std::endl;
     }
 
-    auto result2 = monitor->record_metric("errors_total", 5.0);
+    auto result2 = monitor->record_counter("errors_total", 5.0);
     if (result2.is_ok()) {
-        std::cout << "✓ Metric 'errors_total' recorded" << std::endl;
+        std::cout << "  Metric 'errors_total' recorded" << std::endl;
     }
 
-    // Get metrics snapshot
-    auto metrics = monitor->get_metrics();
+    // Get metrics snapshot using collect()
+    auto metrics = monitor->collect();
     if (metrics.is_ok()) {
         const auto& snapshot = metrics.value();
-        std::cout << "✓ Retrieved " << snapshot.metrics.size() << " metrics" << std::endl;
+        std::cout << "  Retrieved " << snapshot.metrics.size() << " metrics" << std::endl;
     }
 }
 
@@ -152,43 +151,41 @@ void example_2_error_handling() {
 
     auto monitor = std::make_shared<performance_monitor>();
 
-    // Record metric and check result
-    auto result = monitor->record_metric("cpu_usage", 45.5);
+    // Record metric and check result (updated API: record_gauge)
+    auto result = monitor->record_gauge("cpu_usage", 45.5);
     if (result.is_ok()) {
-        std::cout << "✓ Metric recorded successfully" << std::endl;
+        std::cout << "  Metric recorded successfully" << std::endl;
     } else {
         const auto& err = result.error();
-        std::cout << "✗ Error: " << err.message << std::endl;
+        std::cout << "  Error: " << err.message << std::endl;
     }
 }
 
 /**
- * @brief Example 3: Health monitoring
+ * @brief Example 3: Threshold monitoring
  */
-void example_3_health_monitoring() {
-    std::cout << "\n=== Example 3: Health Monitoring ===" << std::endl;
+void example_3_threshold_monitoring() {
+    std::cout << "\n=== Example 3: Threshold Monitoring ===" << std::endl;
 
     auto monitor = std::make_shared<performance_monitor>();
 
-    std::cout << "\nPerforming health check..." << std::endl;
+    std::cout << "\nConfiguring thresholds..." << std::endl;
 
-    // Perform health check
-    auto health_result = monitor->check_health();
+    // Set thresholds
+    monitor->set_cpu_threshold(80.0);
+    monitor->set_memory_threshold(90.0);
+    monitor->set_latency_threshold(std::chrono::milliseconds(1000));
 
-    if (health_result.is_ok()) {
-        const auto& health = health_result.value();
+    // Check thresholds
+    auto threshold_result = monitor->check_thresholds();
+    if (threshold_result.is_ok()) {
+        bool exceeded = threshold_result.value();
+        std::cout << "  Thresholds exceeded: " << (exceeded ? "Yes" : "No") << std::endl;
 
-        std::cout << "\nHealth Check Results:" << std::endl;
-        std::cout << "  Status: " << to_string(health.status) << std::endl;
-        std::cout << "  Message: " << health.message << std::endl;
-        std::cout << "  Duration: " << health.check_duration.count() << "ms" << std::endl;
-
-        if (!health.metadata.empty()) {
-            std::cout << "  Metadata:" << std::endl;
-            for (const auto& [key, value] : health.metadata) {
-                std::cout << "    " << key << ": " << value << std::endl;
-            }
-        }
+        auto thresholds = monitor->get_thresholds();
+        std::cout << "  CPU threshold: " << thresholds.cpu_threshold << "%" << std::endl;
+        std::cout << "  Memory threshold: " << thresholds.memory_threshold << "%" << std::endl;
+        std::cout << "  Latency threshold: " << thresholds.latency_threshold.count() << "ms" << std::endl;
     }
 }
 
@@ -199,24 +196,24 @@ void example_4_multiple_monitors() {
     std::cout << "\n=== Example 4: Multiple Monitors ===" << std::endl;
 
     // Create multiple monitors
-    auto monitor1 = std::make_shared<performance_monitor>();
-    auto monitor2 = std::make_shared<performance_monitor>();
+    auto monitor1 = std::make_shared<performance_monitor>("monitor1");
+    auto monitor2 = std::make_shared<performance_monitor>("monitor2");
 
     std::cout << "\nMonitor 1 recording metrics..." << std::endl;
-    monitor1->record_metric("monitor1_metric", 100.0);
+    monitor1->record_counter("monitor1_metric", 100.0);
 
     std::cout << "Monitor 2 recording metrics..." << std::endl;
-    monitor2->record_metric("monitor2_metric", 200.0);
+    monitor2->record_counter("monitor2_metric", 200.0);
 
-    // Get metrics from both
-    auto metrics1 = monitor1->get_metrics();
-    auto metrics2 = monitor2->get_metrics();
+    // Get metrics from both using collect()
+    auto metrics1 = monitor1->collect();
+    auto metrics2 = monitor2->collect();
 
     if (metrics1.is_ok() && metrics2.is_ok()) {
         const auto& snapshot1 = metrics1.value();
         const auto& snapshot2 = metrics2.value();
-        std::cout << "✓ Monitor 1: " << snapshot1.metrics.size() << " metrics" << std::endl;
-        std::cout << "✓ Monitor 2: " << snapshot2.metrics.size() << " metrics" << std::endl;
+        std::cout << "  Monitor 1: " << snapshot1.metrics.size() << " metrics" << std::endl;
+        std::cout << "  Monitor 2: " << snapshot2.metrics.size() << " metrics" << std::endl;
     }
 }
 
@@ -228,17 +225,21 @@ void example_5_metrics_with_tags() {
 
     auto monitor = std::make_shared<performance_monitor>();
 
-    // Record metrics with tags
-    std::unordered_map<std::string, std::string> tags{
+    // Record metrics with tags (updated API: record_histogram with tags)
+    tag_map tags{
         {"service", "api"},
         {"region", "us-east-1"},
         {"instance", "i-12345"}
     };
 
-    auto result = monitor->record_metric("request_latency", 150.0, tags);
+    auto result = monitor->record_histogram("request_latency", 150.0, tags);
     if (result.is_ok()) {
-        std::cout << "✓ Metric with tags recorded successfully" << std::endl;
+        std::cout << "  Metric with tags recorded successfully" << std::endl;
     }
+
+    // Get all tagged metrics
+    auto all_metrics = monitor->get_all_tagged_metrics();
+    std::cout << "  Total tagged metrics: " << all_metrics.size() << std::endl;
 }
 
 /**
@@ -252,30 +253,30 @@ void example_6_monitoring_workflow() {
 
     std::cout << "\nSimulating application workload..." << std::endl;
 
-    // Simulate application metrics
+    // Simulate application metrics (updated API: record_gauge)
     for (int i = 0; i < 5; ++i) {
-        auto result = monitor->record_metric("requests", static_cast<double>(i * 10));
+        auto result = monitor->record_gauge("requests", static_cast<double>(i * 10));
         if (result.is_ok()) {
             logger->log(log_level::info, "Recorded metric: requests = " + std::to_string(i * 10));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-    // Check health and log results
-    auto health = monitor->check_health();
-    if (health.is_ok()) {
-        const auto& health_status = health.value();
-        logger->log(log_level::info, "Monitor health: " + to_string(health_status.status));
+    // Check thresholds and log results
+    auto threshold_result = monitor->check_thresholds();
+    if (threshold_result.is_ok()) {
+        bool exceeded = threshold_result.value();
+        logger->log(log_level::info, "Thresholds exceeded: " + std::string(exceeded ? "Yes" : "No"));
     }
 
     // Get metrics and log summary
-    auto metrics = monitor->get_metrics();
+    auto metrics = monitor->collect();
     if (metrics.is_ok()) {
         const auto& snapshot = metrics.value();
         logger->log(log_level::info, "Collected " + std::to_string(snapshot.metrics.size()) + " metrics");
     }
 
-    std::cout << "\n✓ Workflow completed successfully" << std::endl;
+    std::cout << "\n  Workflow completed successfully" << std::endl;
     std::cout << "  Logger events: " << logger->get_log_count() << std::endl;
 }
 
@@ -288,7 +289,7 @@ int main() {
     try {
         example_1_basic_monitoring();
         example_2_error_handling();
-        example_3_health_monitoring();
+        example_3_threshold_monitoring();
         example_4_multiple_monitors();
         example_5_metrics_with_tags();
         example_6_monitoring_workflow();
@@ -296,10 +297,10 @@ int main() {
         std::cout << "\n========================================================" << std::endl;
         std::cout << "All integration examples completed!" << std::endl;
         std::cout << "Key Points:" << std::endl;
-        std::cout << "  ✓ common_system interfaces used" << std::endl;
-        std::cout << "  ✓ Result<T> pattern for error handling" << std::endl;
-        std::cout << "  ✓ Interface-based loose coupling" << std::endl;
-        std::cout << "  ✓ Comprehensive monitoring" << std::endl;
+        std::cout << "    common_system interfaces used" << std::endl;
+        std::cout << "    Result<T> pattern for error handling" << std::endl;
+        std::cout << "    Interface-based loose coupling" << std::endl;
+        std::cout << "    Comprehensive monitoring" << std::endl;
         std::cout << "========================================================" << std::endl;
 
     } catch (const std::exception& e) {
