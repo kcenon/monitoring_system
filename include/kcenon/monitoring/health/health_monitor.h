@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include <algorithm>
 #include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <functional>
 #include <memory>
 #include <mutex>
@@ -524,7 +524,7 @@ public:
     }
 
     result<health_check_result> check(const std::string& name) {
-        std::shared_lock<std::shared_mutex> lock(mutex_);
+        std::lock_guard<std::shared_mutex> lock(mutex_);
 
         auto it = checks_.find(name);
         if (it == checks_.end()) {
@@ -539,7 +539,7 @@ public:
     }
 
     std::unordered_map<std::string, health_check_result> check_all() {
-        std::shared_lock<std::shared_mutex> lock(mutex_);
+        std::lock_guard<std::shared_mutex> lock(mutex_);
 
         std::unordered_map<std::string, health_check_result> results;
         for (const auto& [name, check] : checks_) {
@@ -590,7 +590,7 @@ public:
     }
 
     void refresh() {
-        std::shared_lock<std::shared_mutex> lock(mutex_);
+        std::lock_guard<std::shared_mutex> lock(mutex_);
 
         for (const auto& [name, check] : checks_) {
             auto result = check->check();

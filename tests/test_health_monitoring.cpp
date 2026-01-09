@@ -33,9 +33,11 @@
  */
 
 #include <gtest/gtest.h>
-#include <thread>
+#include <atomic>
 #include <chrono>
 #include <memory>
+#include <mutex>
+#include <thread>
 #include <kcenon/monitoring/health/health_monitor.h>
 
 using namespace kcenon::monitoring;
@@ -45,9 +47,10 @@ class test_health_check : public health_check {
 private:
     std::string name_;
     health_check_type type_;
-    health_status status_;
+    std::atomic<health_status> status_;
     std::string message_;
-    
+    mutable std::mutex mutex_;
+
 public:
     test_health_check(
         const std::string& name,
@@ -55,21 +58,25 @@ public:
         health_status status = health_status::healthy,
         const std::string& message = "OK"
     ) : name_(name), type_(type), status_(status), message_(message) {}
-    
+
     std::string get_name() const override { return name_; }
     health_check_type get_type() const override { return type_; }
-    
+
     health_check_result check() override {
+        std::lock_guard<std::mutex> lock(mutex_);
         health_check_result result;
-        result.status = status_;
+        result.status = status_.load();
         result.message = message_;
         result.timestamp = std::chrono::system_clock::now();
         result.check_duration = std::chrono::milliseconds(10);
         return result;
     }
-    
-    void set_status(health_status status) { status_ = status; }
-    void set_message(const std::string& msg) { message_ = msg; }
+
+    void set_status(health_status status) { status_.store(status); }
+    void set_message(const std::string& msg) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        message_ = msg;
+    }
 };
 
 class HealthMonitoringTest : public ::testing::Test {
