@@ -127,14 +127,16 @@ add_executable(monitoring_system_tests
     test_optimization.cpp
 
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (2 remaining)
+    # Phase 3 P2: Stream aggregation
+    test_stream_aggregation.cpp
+
+    # MON-002: Deferred tests requiring API updates or missing headers (1 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
     # - Missing header files
     # - Missing API implementations
     #
-    # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h - See Issue #344
     # test_integration_e2e.cpp        # Multiple missing headers - See Issue #346
 )
 

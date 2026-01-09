@@ -57,6 +57,19 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **스트리밍 집계 모듈** (#344)
+  - `stream_aggregator.h`: 실시간 메트릭을 위한 스트리밍 통계 집계
+    - `online_statistics`: 스트리밍 평균/분산/표준편차를 위한 Welford 알고리즘
+    - `quantile_estimator`: 스트리밍 분위수 추정을 위한 P² 알고리즘
+    - `moving_window_aggregator<T>`: 자동 만료 기능이 있는 시간 윈도우 값 수집
+    - `stream_aggregator`: 이상치 탐지가 포함된 완전한 기능의 스트리밍 집계
+    - `pearson_correlation()`: 상관 분석을 위한 유틸리티 함수
+  - `aggregation_processor.h`: 메트릭 집계 처리 파이프라인
+    - `aggregation_rule`: 메트릭 집계 간격 및 백분위수 구성
+    - `stream_aggregation_result`: 처리 시간 추적이 포함된 집계 작업 결과
+    - `aggregation_processor`: 다양한 메트릭에 대한 여러 스트림 집계기 관리
+    - `create_standard_aggregation_rules()`: 일반 메트릭에 대한 사전 구성된 규칙
+  - `test_stream_aggregation.cpp`의 18개 테스트 전체 통과
 - **최적화 모듈** (#340)
   - `lockfree_queue.h`: 스레드 안전 MPMC (다중 생산자 다중 소비자) 큐
     - 시퀀스 기반 락프리 동기화
