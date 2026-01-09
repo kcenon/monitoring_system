@@ -148,6 +148,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **Updated example files to use current Result<T> API** (#326)
+  - Fixed `distributed_tracing_example.cpp`: Result bool conversion to `.is_ok()`, pointer to reference for start_child_span, renamed API methods (get_context_from_span -> extract_context, inject_context_into_carrier -> inject_context)
+  - Fixed `result_pattern_example.cpp`: Result bool conversion to `.is_ok()`
+  - Fixed `logger_di_integration_example.cpp`: Updated performance_monitor API (record_counter, record_gauge, record_histogram, collect), fixed ILogger interface implementation
+  - All examples now compile and work with the current API
 - **Enabled test_stress_performance.cpp with header path fixes** (#345)
   - Fixed header paths: `performance/performance_monitor.h` → `core/performance_monitor.h`
   - Fixed header paths: `export/opentelemetry_adapter.h` → `exporters/opentelemetry_adapter.h`
