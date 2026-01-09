@@ -212,95 +212,95 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../de/dfb/result__pattern__example_8cpp_source.html">result_pattern_example.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   76</span>           {</div>
 <div class="line"><span class="lineno">   77</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Result Pattern Example ===&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   78</span>    </div>
+<div class="line"><span class="lineno">   78</span> </div>
 <div class="line"><span class="lineno">   79</span>    <span class="comment">// Example 1: Successful operation</span></div>
 <div class="line"><span class="lineno">   80</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 1: Successful division&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   81</span>    <span class="keyword">auto</span> result1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 2.0);</div>
-<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span> (result1) {</div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span> (result1.is_ok()) {</div>
 <div class="line"><span class="lineno">   83</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result1.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   84</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">   85</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result1.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   86</span>    }</div>
 <div class="line"><span class="lineno">   87</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   88</span>    </div>
+<div class="line"><span class="lineno">   88</span> </div>
 <div class="line"><span class="lineno">   89</span>    <span class="comment">// Example 2: Failed operation</span></div>
 <div class="line"><span class="lineno">   90</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 2: Division by zero&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   91</span>    <span class="keyword">auto</span> result2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(10.0, 0.0);</div>
-<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">if</span> (result2) {</div>
+<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">if</span> (result2.is_ok()) {</div>
 <div class="line"><span class="lineno">   93</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Result: &quot;</span> &lt;&lt; result2.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   94</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result2.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   96</span>    }</div>
 <div class="line"><span class="lineno">   97</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   98</span>    </div>
+<div class="line"><span class="lineno">   98</span> </div>
 <div class="line"><span class="lineno">   99</span>    <span class="comment">// Example 3: Using value_or</span></div>
 <div class="line"><span class="lineno">  100</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 3: Using value_or with default&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  101</span>    <span class="keyword">auto</span> result3 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a9da2de03a893c5c66e063754edc6353c">divide</a>(5.0, 0.0);</div>
 <div class="line"><span class="lineno">  102</span>    <span class="keywordtype">double</span> value = result3.value_or(-1.0);</div>
 <div class="line"><span class="lineno">  103</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Value (with default): &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  104</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  105</span>    </div>
+<div class="line"><span class="lineno">  105</span> </div>
 <div class="line"><span class="lineno">  106</span>    <span class="comment">// Example 4: result_void usage</span></div>
 <div class="line"><span class="lineno">  107</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 4: Validation with result_void&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  108</span>    <span class="keyword">auto</span> validation1 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(50.0, 0.0, 100.0);</div>
-<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (validation1) {</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (validation1.is_ok()) {</div>
 <div class="line"><span class="lineno">  110</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  111</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  112</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation1.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  113</span>    }</div>
-<div class="line"><span class="lineno">  114</span>    </div>
+<div class="line"><span class="lineno">  114</span> </div>
 <div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> validation2 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a1836bc38e2f96e48678e749237c4d323">validate_range</a>(150.0, 0.0, 100.0);</div>
-<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">if</span> (validation2) {</div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">if</span> (validation2.is_ok()) {</div>
 <div class="line"><span class="lineno">  117</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation passed&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  118</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  119</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Validation failed: &quot;</span> &lt;&lt; validation2.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  120</span>    }</div>
 <div class="line"><span class="lineno">  121</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  122</span>    </div>
+<div class="line"><span class="lineno">  122</span> </div>
 <div class="line"><span class="lineno">  123</span>    <span class="comment">// Example 5: Monadic operations</span></div>
 <div class="line"><span class="lineno">  124</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 5: Chaining operations&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  125</span>    <span class="keyword">auto</span> result4 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(4.0);</div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">if</span> (result4) {</div>
+<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">if</span> (result4.is_ok()) {</div>
 <div class="line"><span class="lineno">  127</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result4.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  128</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  129</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result4.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  130</span>    }</div>
-<div class="line"><span class="lineno">  131</span>    </div>
+<div class="line"><span class="lineno">  131</span> </div>
 <div class="line"><span class="lineno">  132</span>    <span class="keyword">auto</span> result5 = <a class="code hl_function" href="../../de/dfb/result__pattern__example_8cpp.html#a92da1737d943d0e99e570c8ca59abc75">process_metric</a>(1.0);</div>
-<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">if</span> (result5) {</div>
+<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">if</span> (result5.is_ok()) {</div>
 <div class="line"><span class="lineno">  134</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; result5.value() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  135</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  136</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Error: &quot;</span> &lt;&lt; result5.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  137</span>    }</div>
 <div class="line"><span class="lineno">  138</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  139</span>    </div>
+<div class="line"><span class="lineno">  139</span> </div>
 <div class="line"><span class="lineno">  140</span>    <span class="comment">// Example 6: Metrics snapshot</span></div>
 <div class="line"><span class="lineno">  141</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 6: Metrics snapshot&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  142</span>    <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
 <div class="line"><span class="lineno">  143</span>    snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 65.5);</div>
 <div class="line"><span class="lineno">  144</span>    snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;memory_usage&quot;</span>, 4096.0);</div>
 <div class="line"><span class="lineno">  145</span>    snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;disk_io&quot;</span>, 150.25);</div>
-<div class="line"><span class="lineno">  146</span>    </div>
+<div class="line"><span class="lineno">  146</span> </div>
 <div class="line"><span class="lineno">  147</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;  Metrics collected: &quot;</span> &lt;&lt; snapshot.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a64d114e9e18a2248dcf9d489d65dbf14">metrics</a>.size() &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  148</span>    </div>
+<div class="line"><span class="lineno">  148</span> </div>
 <div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a> = snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a37e4fb3082b43691186b1fc164482356">get_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>)) {</div>
 <div class="line"><span class="lineno">  150</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  CPU Usage: &quot;</span> &lt;&lt; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.value() &lt;&lt; <span class="stringliteral">&quot;%&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  151</span>    }</div>
-<div class="line"><span class="lineno">  152</span>    </div>
+<div class="line"><span class="lineno">  152</span> </div>
 <div class="line"><span class="lineno">  153</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> mem = snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a37e4fb3082b43691186b1fc164482356">get_metric</a>(<span class="stringliteral">&quot;memory_usage&quot;</span>)) {</div>
 <div class="line"><span class="lineno">  154</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Memory Usage: &quot;</span> &lt;&lt; mem.value() &lt;&lt; <span class="stringliteral">&quot; MB&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  155</span>    }</div>
 <div class="line"><span class="lineno">  156</span>    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  157</span>    </div>
+<div class="line"><span class="lineno">  157</span> </div>
 <div class="line"><span class="lineno">  158</span>    <span class="comment">// Example 7: Configuration validation</span></div>
 <div class="line"><span class="lineno">  159</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Example 7: Configuration validation&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  160</span>    <a class="code hl_struct" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html">monitoring_config</a> config;</div>
 <div class="line"><span class="lineno">  161</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> = 1000;</div>
 <div class="line"><span class="lineno">  162</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a> = std::chrono::milliseconds(100);</div>
 <div class="line"><span class="lineno">  163</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a21bcf7acedd777ebbdc77dce1042a5bc">buffer_size</a> = 5000;</div>
-<div class="line"><span class="lineno">  164</span>    </div>
+<div class="line"><span class="lineno">  164</span> </div>
 <div class="line"><span class="lineno">  165</span>    <span class="keyword">auto</span> config_result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a7a0e1cef50221c841e19d99263fbed4f">validate</a>();</div>
-<div class="line"><span class="lineno">  166</span>    <span class="keywordflow">if</span> (config_result) {</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keywordflow">if</span> (config_result.is_ok()) {</div>
 <div class="line"><span class="lineno">  167</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration is valid&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  168</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - History size: &quot;</span> &lt;&lt; config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  169</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  - Collection interval: &quot;</span> &lt;&lt; config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a>.count() &lt;&lt; <span class="stringliteral">&quot;ms&quot;</span> &lt;&lt; std::endl;</div>
@@ -308,7 +308,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  171</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  172</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Configuration error: &quot;</span> &lt;&lt; config_result.error().message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  173</span>    }</div>
-<div class="line"><span class="lineno">  174</span>    </div>
+<div class="line"><span class="lineno">  174</span> </div>
 <div class="line"><span class="lineno">  175</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><span class="lineno">  176</span>}</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">kcenon::monitoring::power_source_type::cpu</a></div><div class="ttdeci">@ cpu</div><div class="ttdoc">CPU power domain (RAPL)</div></div>
@@ -483,7 +483,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 04:04:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 04:21:02 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

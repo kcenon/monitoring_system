@@ -27,7 +27,7 @@ var searchData=
   ['example_5f2_5ferror_5fhandling_24',['example_2_error_handling',['../d0/d34/logger__di__integration__example_8cpp.html#a67f7e0795baa415c624e1d85a984d408',1,'logger_di_integration_example.cpp']]],
   ['example_5f2_5fnamed_5fmonitors_25',['example_2_named_monitors',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a083ab1bdc513a74f04aef7b4394ef123',1,'monitor_factory_pattern_example.cpp']]],
   ['example_5f3_5ffactory_5fwith_5flogger_26',['example_3_factory_with_logger',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a8b7194ae4bbf51bd1e440ca1f4e4ba14',1,'monitor_factory_pattern_example.cpp']]],
-  ['example_5f3_5fhealth_5fmonitoring_27',['example_3_health_monitoring',['../d0/d34/logger__di__integration__example_8cpp.html#a8768bd981973968f2b86175457197699',1,'logger_di_integration_example.cpp']]],
+  ['example_5f3_5fthreshold_5fmonitoring_27',['example_3_threshold_monitoring',['../d0/d34/logger__di__integration__example_8cpp.html#a8a0ac84c2a967a33c7631aee1889da92',1,'logger_di_integration_example.cpp']]],
   ['example_5f4_5fmonitor_5freuse_28',['example_4_monitor_reuse',['../d3/df7/monitor__factory__pattern__example_8cpp.html#a34b771a94af141919418400e378a738f',1,'monitor_factory_pattern_example.cpp']]],
   ['example_5f4_5fmultiple_5fmonitors_29',['example_4_multiple_monitors',['../d0/d34/logger__di__integration__example_8cpp.html#a62d1725f5dde2728923f3132765dec74',1,'logger_di_integration_example.cpp']]],
   ['example_5f5_5fmetrics_5fwith_5ftags_30',['example_5_metrics_with_tags',['../d0/d34/logger__di__integration__example_8cpp.html#a93af997917917a739fa4e2a33747761f',1,'logger_di_integration_example.cpp']]],
