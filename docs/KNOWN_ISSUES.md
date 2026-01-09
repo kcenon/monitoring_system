@@ -1,7 +1,7 @@
 # Known Issues and Limitations
 
 **Version**: 0.2.0.0
-**Last Updated**: 2026-01-08
+**Last Updated**: 2026-01-09
 
 This document lists known issues, limitations, and STUB implementations in the monitoring system.
 
@@ -98,7 +98,6 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 
 - `test_stream_aggregation.cpp`
 - `test_optimization.cpp`
-- `test_data_consistency.cpp`
 - `test_stress_performance.cpp`
 - `test_integration_e2e.cpp`
 
@@ -114,6 +113,7 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_metric_storage.cpp` - Enabled in #339 (ring_buffer.h and metric_storage.h implemented)
 - `test_resource_management.cpp` - Enabled in #341 (resource_manager.h implemented)
 - `test_health_monitoring.cpp` - Enabled in #330 (Health monitoring API implemented)
+- `test_data_consistency.cpp` - Enabled in #342 (Data consistency API implemented)
 
 ### Test Stability Improvements
 
@@ -154,6 +154,7 @@ All CMake options are now consistently prefixed with `MONITORING_`:
 | Error Boundary | Stable |
 | Graceful Degradation | Stable |
 | Health Monitor | Stable |
+| Data Consistency | Stable |
 
 ---
 
