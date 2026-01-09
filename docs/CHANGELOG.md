@@ -57,6 +57,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Optimization module** (#340)
+  - `lockfree_queue.h`: Thread-safe MPMC (Multiple Producer Multiple Consumer) queue
+    - Sequence-based lock-free synchronization
+    - Configurable capacity with `lockfree_queue_config`
+    - Statistics tracking with `lockfree_queue_statistics`
+  - `memory_pool.h`: Fixed-size block memory allocator
+    - Pre-allocated memory blocks for efficient allocation/deallocation
+    - Object construction/destruction with `allocate_object<T>()` / `deallocate_object<T>()`
+    - Thread-safe with mutex protection
+    - Statistics tracking with `memory_pool_statistics`
+  - `simd_aggregator.h`: SIMD-accelerated statistical operations
+    - Support for AVX2 (x86_64) and NEON (ARM64)
+    - Statistical functions: `sum()`, `mean()`, `min()`, `max()`, `variance()`, `compute_summary()`
+    - Runtime SIMD capability detection with `simd_capabilities`
+    - Fallback to scalar operations when SIMD unavailable
+  - Factory functions: `make_lockfree_queue<T>()`, `make_memory_pool()`, `make_simd_aggregator()`
+  - Default configuration generators for different use cases
+  - All 12 tests in `test_optimization.cpp` passing
 - **Data consistency API** (#342)
   - `transaction_operation` class with execute/rollback capabilities
   - `transaction` class for managing multiple operations with timeout and state management

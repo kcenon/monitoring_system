@@ -57,6 +57,24 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **최적화 모듈** (#340)
+  - `lockfree_queue.h`: 스레드 안전 MPMC (다중 생산자 다중 소비자) 큐
+    - 시퀀스 기반 락프리 동기화
+    - `lockfree_queue_config`로 용량 구성 가능
+    - `lockfree_queue_statistics`로 통계 추적
+  - `memory_pool.h`: 고정 크기 블록 메모리 할당기
+    - 효율적인 할당/해제를 위한 사전 할당 메모리 블록
+    - `allocate_object<T>()` / `deallocate_object<T>()`로 객체 생성/소멸
+    - 뮤텍스로 스레드 안전 보장
+    - `memory_pool_statistics`로 통계 추적
+  - `simd_aggregator.h`: SIMD 가속 통계 연산
+    - AVX2 (x86_64) 및 NEON (ARM64) 지원
+    - 통계 함수: `sum()`, `mean()`, `min()`, `max()`, `variance()`, `compute_summary()`
+    - `simd_capabilities`로 런타임 SIMD 기능 감지
+    - SIMD 사용 불가 시 스칼라 연산으로 폴백
+  - 팩토리 함수: `make_lockfree_queue<T>()`, `make_memory_pool()`, `make_simd_aggregator()`
+  - 다양한 사용 사례를 위한 기본 구성 생성기
+  - `test_optimization.cpp`의 12개 테스트 전체 통과
 - **데이터 일관성 API** (#342)
   - 실행/롤백 기능을 갖춘 `transaction_operation` 클래스
   - 타임아웃 및 상태 관리를 갖춘 여러 작업을 관리하는 `transaction` 클래스
