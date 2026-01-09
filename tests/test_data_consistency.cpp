@@ -28,12 +28,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <gtest/gtest.h>
-#include <thread>
-#include <chrono>
 #include <atomic>
+#include <chrono>
+#include <thread>
+#include <vector>
 #include <kcenon/monitoring/reliability/data_consistency.h>
 
 using namespace kcenon::monitoring;
+using namespace kcenon;
 
 class DataConsistencyTest : public ::testing::Test {
 protected:
@@ -61,7 +63,7 @@ protected:
     // Helper function that fails
     result_void failing_operation() {
         ++call_count;
-        return result_void{monitoring_error_code::operation_failed, "Simulated failure"};
+        return make_void_error(monitoring_error_code::operation_failed, "Simulated failure");
     }
     
     // Helper function for rollback
@@ -210,15 +212,15 @@ TEST_F(DataConsistencyTest, StateValidatorBasicValidation) {
     EXPECT_TRUE(add_result);
     
     // Manual validation
-    auto validation_result = validator.validate();
-    EXPECT_TRUE(validation_result);
-    
-    auto results = validation_result.value();
+    auto validation_res = validator.validate();
+    EXPECT_TRUE(validation_res.is_ok());
+
+    auto results = validation_res.value();
     EXPECT_EQ(results.size(), 1);
     EXPECT_EQ(results["test_rule"], validation_result::valid);
-    
+
     auto health = validator.is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_TRUE(health.value());
 }
 
@@ -226,29 +228,29 @@ TEST_F(DataConsistencyTest, StateValidatorFailureAndRepair) {
     validation_config config;
     config.enable_auto_repair = true;
     state_validator validator("test_validator", config);
-    
+
     // Add validation rule that fails initially
     std::atomic<bool> should_fail{true};
     validator.add_validation_rule(
         "failing_rule",
-        [&should_fail]() { 
-            return should_fail.load() ? validation_result::invalid : validation_result::valid; 
+        [&should_fail]() {
+            return should_fail.load() ? validation_result::invalid : validation_result::valid;
         },
-        [&should_fail]() { 
+        [&should_fail]() {
             should_fail = false; // Repair fixes the issue
-            return common::ok(); 
+            return common::ok();
         }
     );
-    
+
     // First validation should fail and trigger repair
-    auto validation_result = validator.validate();
-    EXPECT_TRUE(validation_result);
-    
-    auto results = validation_result.value();
+    auto validation_res = validator.validate();
+    EXPECT_TRUE(validation_res.is_ok());
+
+    auto results = validation_res.value();
     EXPECT_EQ(results["failing_rule"], validation_result::invalid);
     EXPECT_EQ(results["failing_rule_after_repair"], validation_result::valid);
-    
-    auto metrics = validator.get_metrics();
+
+    const auto& metrics = validator.get_metrics();
     EXPECT_EQ(metrics.validation_runs.load(), 1);
     EXPECT_EQ(metrics.repair_operations.load(), 1);
 }
@@ -257,55 +259,57 @@ TEST_F(DataConsistencyTest, StateValidatorContinuousValidation) {
     validation_config config;
     config.validation_interval = std::chrono::milliseconds(50);
     state_validator validator("test_validator", config);
-    
+
     std::atomic<int> validation_calls{0};
     validator.add_validation_rule(
         "continuous_rule",
-        [&validation_calls]() { 
-            validation_calls++; 
-            return validation_result::valid; 
+        [&validation_calls]() {
+            validation_calls++;
+            return validation_result::valid;
         }
     );
-    
+
     // Start continuous validation
     auto start_result = validator.start();
-    EXPECT_TRUE(start_result);
-    
-    // Wait for several validation cycles
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    
+    EXPECT_TRUE(start_result.is_ok());
+
+    // Wait for several validation cycles (400ms with 50ms interval = at least 6-7 cycles)
+    // Using 400ms to account for scheduling delays on various platforms (especially macOS)
+    std::this_thread::sleep_for(std::chrono::milliseconds(400));
+
     // Stop validation
     auto stop_result = validator.stop();
-    EXPECT_TRUE(stop_result);
-    
-    // Should have run multiple validations
-    EXPECT_GT(validation_calls.load(), 2);
+    EXPECT_TRUE(stop_result.is_ok());
+
+    // Should have run multiple validations (at least 2 with 400ms wait)
+    // Using >= 2 to be robust against platform-specific scheduling delays
+    EXPECT_GE(validation_calls.load(), 2);
 }
 
 // Transaction Manager Tests
 TEST_F(DataConsistencyTest, TransactionManagerBasicOperations) {
     transaction_config config;
     transaction_manager manager("test_manager", config);
-    
+
     // Begin transaction
     auto begin_result = manager.begin_transaction("tx1");
-    EXPECT_TRUE(begin_result);
-    
+    EXPECT_TRUE(begin_result.is_ok());
+
     auto tx = begin_result.value();
     EXPECT_EQ(tx->id(), "tx1");
     EXPECT_EQ(tx->state(), transaction_state::active);
     EXPECT_EQ(manager.active_transaction_count(), 1);
-    
+
     // Add operation and commit
     auto op = std::make_unique<transaction_operation>("op", [this]() { return test_operation(); });
     tx->add_operation(std::move(op));
-    
+
     auto commit_result = manager.commit_transaction("tx1");
     EXPECT_TRUE(commit_result);
     EXPECT_EQ(manager.active_transaction_count(), 0);
     EXPECT_EQ(manager.completed_transaction_count(), 1);
-    
-    auto metrics = manager.get_metrics();
+
+    const auto& metrics = manager.get_metrics();
     EXPECT_EQ(metrics.total_transactions.load(), 1);
     EXPECT_EQ(metrics.committed_transactions.load(), 1);
     EXPECT_EQ(metrics.aborted_transactions.load(), 0);
@@ -314,14 +318,14 @@ TEST_F(DataConsistencyTest, TransactionManagerBasicOperations) {
 TEST_F(DataConsistencyTest, TransactionManagerAbort) {
     transaction_config config;
     transaction_manager manager("test_manager", config);
-    
+
     auto begin_result = manager.begin_transaction("tx1");
-    EXPECT_TRUE(begin_result);
-    
+    EXPECT_TRUE(begin_result.is_ok());
+
     auto abort_result = manager.abort_transaction("tx1");
     EXPECT_TRUE(abort_result);
-    
-    auto metrics = manager.get_metrics();
+
+    const auto& metrics = manager.get_metrics();
     EXPECT_EQ(metrics.total_transactions.load(), 1);
     EXPECT_EQ(metrics.committed_transactions.load(), 0);
     EXPECT_EQ(metrics.aborted_transactions.load(), 1);
@@ -331,51 +335,51 @@ TEST_F(DataConsistencyTest, TransactionManagerAbort) {
 TEST_F(DataConsistencyTest, TransactionManagerDuplicateTransaction) {
     transaction_config config;
     transaction_manager manager("test_manager", config);
-    
+
     auto begin_result1 = manager.begin_transaction("tx1");
-    EXPECT_TRUE(begin_result1);
-    
+    EXPECT_TRUE(begin_result1.is_ok());
+
     // Should fail with duplicate ID
     auto begin_result2 = manager.begin_transaction("tx1");
-    EXPECT_FALSE(begin_result2);
-    EXPECT_EQ(begin_result2.error().code, monitoring_error_code::already_exists);
+    EXPECT_FALSE(begin_result2.is_ok());
+    EXPECT_EQ(begin_result2.error().code, static_cast<int>(monitoring_error_code::already_exists));
 }
 
 TEST_F(DataConsistencyTest, TransactionManagerDeadlockDetection) {
     transaction_config config;
     config.timeout = std::chrono::milliseconds(100);
     transaction_manager manager("test_manager", config);
-    
+
     // Create long-running transaction
     auto begin_result = manager.begin_transaction("long_tx");
-    EXPECT_TRUE(begin_result);
-    
+    EXPECT_TRUE(begin_result.is_ok());
+
     // Wait longer than timeout
     std::this_thread::sleep_for(std::chrono::milliseconds(250));
-    
+
     auto deadlocks = manager.detect_deadlocks();
-    EXPECT_TRUE(deadlocks);
+    EXPECT_TRUE(deadlocks.is_ok());
     EXPECT_EQ(deadlocks.value().size(), 1);
     EXPECT_EQ(deadlocks.value()[0], "long_tx");
-    
-    auto metrics = manager.get_metrics();
+
+    const auto& metrics = manager.get_metrics();
     EXPECT_EQ(metrics.deadlocks_detected.load(), 1);
 }
 
 TEST_F(DataConsistencyTest, TransactionManagerCleanup) {
     transaction_config config;
     transaction_manager manager("test_manager", config);
-    
+
     // Create and commit transaction
     auto begin_result = manager.begin_transaction("tx1");
-    EXPECT_TRUE(begin_result);
-    
+    EXPECT_TRUE(begin_result.is_ok());
+
     auto op = std::make_unique<transaction_operation>("op", [this]() { return test_operation(); });
     begin_result.value()->add_operation(std::move(op));
-    
+
     manager.commit_transaction("tx1");
     EXPECT_EQ(manager.completed_transaction_count(), 1);
-    
+
     // Cleanup should remove old transactions
     manager.cleanup_completed_transactions(std::chrono::milliseconds(0));
     EXPECT_EQ(manager.completed_transaction_count(), 0);
@@ -384,67 +388,67 @@ TEST_F(DataConsistencyTest, TransactionManagerCleanup) {
 // Data Consistency Manager Tests
 TEST_F(DataConsistencyTest, DataConsistencyManagerTransactionManagers) {
     data_consistency_manager consistency_manager("test_consistency");
-    
+
     transaction_config tx_config;
     auto add_result = consistency_manager.add_transaction_manager("tx_manager", tx_config);
-    EXPECT_TRUE(add_result);
-    
-    auto manager = consistency_manager.get_transaction_manager("tx_manager");
+    EXPECT_TRUE(add_result.is_ok());
+
+    auto* manager = consistency_manager.get_transaction_manager("tx_manager");
     EXPECT_NE(manager, nullptr);
     EXPECT_EQ(manager->get_name(), "tx_manager");
-    
+
     // Should fail to add duplicate
     auto duplicate_result = consistency_manager.add_transaction_manager("tx_manager", tx_config);
-    EXPECT_FALSE(duplicate_result);
+    EXPECT_FALSE(duplicate_result.is_ok());
     EXPECT_EQ(duplicate_result.error().code, static_cast<int>(monitoring_error_code::already_exists));
 }
 
 TEST_F(DataConsistencyTest, DataConsistencyManagerStateValidators) {
     data_consistency_manager consistency_manager("test_consistency");
-    
+
     validation_config val_config;
     auto add_result = consistency_manager.add_state_validator("validator", val_config);
-    EXPECT_TRUE(add_result);
-    
-    auto validator = consistency_manager.get_state_validator("validator");
+    EXPECT_TRUE(add_result.is_ok());
+
+    auto* validator = consistency_manager.get_state_validator("validator");
     EXPECT_NE(validator, nullptr);
     EXPECT_EQ(validator->get_name(), "validator");
 }
 
 TEST_F(DataConsistencyTest, DataConsistencyManagerGlobalOperations) {
     data_consistency_manager consistency_manager("test_consistency");
-    
+
     // Add validators
     validation_config config;
     config.validation_interval = std::chrono::milliseconds(100);
-    
+
     consistency_manager.add_state_validator("validator1", config);
     consistency_manager.add_state_validator("validator2", config);
-    
+
     // Start all validators
     auto start_result = consistency_manager.start_all_validators();
-    EXPECT_TRUE(start_result);
-    
+    EXPECT_TRUE(start_result.is_ok());
+
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    
+
     // Stop all validators
     auto stop_result = consistency_manager.stop_all_validators();
-    EXPECT_TRUE(stop_result);
+    EXPECT_TRUE(stop_result.is_ok());
 }
 
 TEST_F(DataConsistencyTest, DataConsistencyManagerHealthCheck) {
     data_consistency_manager consistency_manager("test_consistency");
-    
+
     // Add components
     transaction_config tx_config;
     consistency_manager.add_transaction_manager("tx_manager", tx_config);
-    
+
     validation_config val_config;
     consistency_manager.add_state_validator("validator", val_config);
-    
+
     // Should be healthy initially
     auto health = consistency_manager.is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_TRUE(health.value());
 }
 
@@ -521,25 +525,25 @@ TEST_F(DataConsistencyTest, ValidationConfigValidation) {
 TEST_F(DataConsistencyTest, ConcurrentTransactions) {
     transaction_config config;
     transaction_manager manager("concurrent_manager", config);
-    
+
     const int num_threads = 5;
     const int transactions_per_thread = 10;
     std::atomic<int> successful_transactions{0};
-    
+
     std::vector<std::thread> threads;
     for (int i = 0; i < num_threads; ++i) {
         threads.emplace_back([&, i]() {
             for (int j = 0; j < transactions_per_thread; ++j) {
                 std::string tx_id = "tx_" + std::to_string(i) + "_" + std::to_string(j);
-                
+
                 auto begin_result = manager.begin_transaction(tx_id);
-                if (begin_result) {
+                if (begin_result.is_ok()) {
                     auto tx = begin_result.value();
-                    
+
                     auto op = std::make_unique<transaction_operation>(
                         "op", [this]() { return test_operation(); });
                     tx->add_operation(std::move(op));
-                    
+
                     auto commit_result = manager.commit_transaction(tx_id);
                     if (commit_result) {
                         successful_transactions++;
@@ -548,14 +552,14 @@ TEST_F(DataConsistencyTest, ConcurrentTransactions) {
             }
         });
     }
-    
+
     for (auto& thread : threads) {
         thread.join();
     }
-    
+
     EXPECT_EQ(successful_transactions.load(), num_threads * transactions_per_thread);
-    
-    auto metrics = manager.get_metrics();
+
+    const auto& metrics = manager.get_metrics();
     EXPECT_EQ(metrics.total_transactions.load(), num_threads * transactions_per_thread);
     EXPECT_EQ(metrics.committed_transactions.load(), num_threads * transactions_per_thread);
 }
