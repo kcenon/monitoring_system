@@ -22,7 +22,7 @@ var searchData=
   ['thread_5fpool_5fstats_19',['thread_pool_stats',['../d8/d14/structkcenon_1_1monitoring_1_1thread__pool__metric__event_1_1thread__pool__stats.html',1,'kcenon::monitoring::thread_pool_metric_event']]],
   ['thread_5fsystem_5fadapter_20',['thread_system_adapter',['../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html',1,'kcenon::monitoring']]],
   ['threadcontexttest_21',['ThreadContextTest',['../d5/d8c/classThreadContextTest.html',1,'']]],
-  ['thresholds_22',['thresholds',['../db/d23/structkcenon_1_1monitoring_1_1resource__threshold__monitor_1_1thresholds.html',1,'kcenon::monitoring::resource_threshold_monitor::thresholds'],['../dc/dc9/structkcenon_1_1monitoring_1_1performance__monitor_1_1thresholds.html',1,'kcenon::monitoring::performance_monitor::thresholds']]],
+  ['thresholds_22',['thresholds',['../dc/dc9/structkcenon_1_1monitoring_1_1performance__monitor_1_1thresholds.html',1,'kcenon::monitoring::performance_monitor::thresholds'],['../db/d23/structkcenon_1_1monitoring_1_1resource__threshold__monitor_1_1thresholds.html',1,'kcenon::monitoring::resource_threshold_monitor::thresholds']]],
   ['time_5fpoint_5fdata_23',['time_point_data',['../da/df4/structkcenon_1_1monitoring_1_1time__point__data.html',1,'kcenon::monitoring']]],
   ['time_5fseries_24',['time_series',['../dc/d3c/classkcenon_1_1monitoring_1_1time__series.html',1,'kcenon::monitoring']]],
   ['time_5fseries_5fbuffer_25',['time_series_buffer',['../d7/d7c/classkcenon_1_1monitoring_1_1time__series__buffer.html',1,'kcenon::monitoring']]],
@@ -41,5 +41,10 @@ var searchData=
   ['trace_5fexport_5fconfig_38',['trace_export_config',['../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html',1,'kcenon::monitoring']]],
   ['trace_5fexporter_5ffactory_39',['trace_exporter_factory',['../dd/d09/classkcenon_1_1monitoring_1_1trace__exporter__factory.html',1,'kcenon::monitoring']]],
   ['trace_5fexporter_5finterface_40',['trace_exporter_interface',['../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html',1,'kcenon::monitoring']]],
-  ['traceexporterstest_41',['TraceExportersTest',['../de/d2d/classTraceExportersTest.html',1,'']]]
+  ['traceexporterstest_41',['TraceExportersTest',['../de/d2d/classTraceExportersTest.html',1,'']]],
+  ['transaction_42',['transaction',['../dd/d84/classkcenon_1_1monitoring_1_1transaction.html',1,'kcenon::monitoring']]],
+  ['transaction_5fconfig_43',['transaction_config',['../d6/de3/structkcenon_1_1monitoring_1_1transaction__config.html',1,'kcenon::monitoring']]],
+  ['transaction_5fmanager_44',['transaction_manager',['../d3/ddf/classkcenon_1_1monitoring_1_1transaction__manager.html',1,'kcenon::monitoring']]],
+  ['transaction_5fmetrics_45',['transaction_metrics',['../d9/dc2/structkcenon_1_1monitoring_1_1transaction__metrics.html',1,'kcenon::monitoring']]],
+  ['transaction_5foperation_46',['transaction_operation',['../d2/dab/classkcenon_1_1monitoring_1_1transaction__operation.html',1,'kcenon::monitoring']]]
 ];

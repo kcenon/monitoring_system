@@ -2,5 +2,6 @@ var searchData=
 [
   ['tcp_5fstate_0',['tcp_state',['../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1e',1,'kcenon::monitoring']]],
   ['throttling_5fstrategy_1',['throttling_strategy',['../db/d50/namespacekcenon_1_1monitoring.html#a1500cf06cd1a0cacdb9800be2b26e10a',1,'kcenon::monitoring']]],
-  ['trace_5fexport_5fformat_2',['trace_export_format',['../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401ac',1,'kcenon::monitoring']]]
+  ['trace_5fexport_5fformat_2',['trace_export_format',['../db/d50/namespacekcenon_1_1monitoring.html#a9d819af070bff85a26bdd23ed11401ac',1,'kcenon::monitoring']]],
+  ['transaction_5fstate_3',['transaction_state',['../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556d',1,'kcenon::monitoring']]]
 ];

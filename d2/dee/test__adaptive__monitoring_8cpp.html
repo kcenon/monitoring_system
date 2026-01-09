@@ -633,12 +633,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  238</span>    monitor.set_collector_priority(<span class="stringliteral">&quot;low&quot;</span>, 10);</div>
 <div class="line"><span class="lineno">  239</span>    </div>
 <div class="line"><span class="lineno">  240</span>    <span class="comment">// Get active collectors (should be ordered by priority)</span></div>
-<div class="line"><span class="lineno">  241</span>    <span class="keyword">auto</span> active = monitor.get_active_collectors();</div>
-<div class="line"><span class="lineno">  242</span>    EXPECT_GE(active.size(), 1);</div>
-<div class="line"><span class="lineno">  243</span>    <span class="keywordflow">if</span> (active.size() &gt; 0) {</div>
-<div class="line"><span class="lineno">  244</span>        EXPECT_EQ(active[0], <span class="stringliteral">&quot;high&quot;</span>);</div>
+<div class="line"><span class="lineno">  241</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79">active</a> = monitor.get_active_collectors();</div>
+<div class="line"><span class="lineno">  242</span>    EXPECT_GE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79">active</a>.size(), 1);</div>
+<div class="line"><span class="lineno">  243</span>    <span class="keywordflow">if</span> (<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79">active</a>.size() &gt; 0) {</div>
+<div class="line"><span class="lineno">  244</span>        EXPECT_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79">active</a>[0], <span class="stringliteral">&quot;high&quot;</span>);</div>
 <div class="line"><span class="lineno">  245</span>    }</div>
 <div class="line"><span class="lineno">  246</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79">kcenon::monitoring::transaction_state::active</a></div><div class="ttdeci">@ active</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1770,7 +1771,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 01:28:55 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 01:40:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
