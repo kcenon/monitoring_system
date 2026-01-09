@@ -36,8 +36,7 @@
 #include <thread>
 #include <chrono>
 #include <memory>
-// Note: health_monitor.h does not exist in include directory
-// #include <kcenon/monitoring/health/health_monitor.h>
+#include <kcenon/monitoring/health/health_monitor.h>
 
 using namespace kcenon::monitoring;
 
