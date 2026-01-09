@@ -57,6 +57,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Stream aggregation module** (#344)
+  - `stream_aggregator.h`: Streaming statistical aggregation for real-time metrics
+    - `online_statistics`: Welford's algorithm for streaming mean/variance/stddev
+    - `quantile_estimator`: P² algorithm for streaming quantile estimation
+    - `moving_window_aggregator<T>`: Time-windowed value collection with automatic expiration
+    - `stream_aggregator`: Full-featured streaming aggregation with outlier detection
+    - `pearson_correlation()`: Utility function for correlation analysis
+  - `aggregation_processor.h`: Metric aggregation processing pipeline
+    - `aggregation_rule`: Configuration for metric aggregation intervals and percentiles
+    - `stream_aggregation_result`: Result of aggregation operations with duration tracking
+    - `aggregation_processor`: Manages multiple stream aggregators for different metrics
+    - `create_standard_aggregation_rules()`: Pre-configured rules for common metrics
+  - All 18 tests in `test_stream_aggregation.cpp` passing
 - **Optimization module** (#340)
   - `lockfree_queue.h`: Thread-safe MPMC (Multiple Producer Multiple Consumer) queue
     - Sequence-based lock-free synchronization
