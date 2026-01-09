@@ -120,8 +120,11 @@ add_executable(monitoring_system_tests
     # Data consistency tests (Issue #342 - data_consistency.h implemented)
     test_data_consistency.cpp
 
+    # Stress performance tests (Issue #345 - headers fixed)
+    test_stress_performance.cpp
+
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (4 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (3 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
@@ -130,7 +133,6 @@ add_executable(monitoring_system_tests
     #
     # test_optimization.cpp           # Missing: optimization/ folder - See Issue #340
     # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h - See Issue #344
-    # test_stress_performance.cpp     # Missing: multiple headers - See Issue #345
     # test_integration_e2e.cpp        # Multiple missing headers - See Issue #346
 )
 

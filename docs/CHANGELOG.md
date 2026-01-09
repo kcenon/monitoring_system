@@ -148,6 +148,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **Enabled test_stress_performance.cpp with header path fixes** (#345)
+  - Fixed header paths: `performance/performance_monitor.h` → `core/performance_monitor.h`
+  - Fixed header paths: `export/opentelemetry_adapter.h` → `exporters/opentelemetry_adapter.h`
+  - Updated Result API usage to use `is_ok()` instead of bool conversion
+  - Removed duplicate `main()` function (gtest_main provides it)
+  - Fixed test assertions to match current implementation behavior
+  - All 8 stress performance tests now passing
 - **Flaky StateValidatorContinuousValidation test on macOS** (#342)
   - Increased sleep duration from 250ms to 400ms for more reliable timing
   - Changed assertion from EXPECT_GT to EXPECT_GE to handle edge cases

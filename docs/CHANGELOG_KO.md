@@ -148,6 +148,13 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
 
 ### 수정됨
+- **test_stress_performance.cpp 헤더 경로 수정 및 활성화** (#345)
+  - 헤더 경로 수정: `performance/performance_monitor.h` → `core/performance_monitor.h`
+  - 헤더 경로 수정: `export/opentelemetry_adapter.h` → `exporters/opentelemetry_adapter.h`
+  - Result API 사용법을 bool 변환 대신 `is_ok()` 메서드 사용으로 변경
+  - 중복된 `main()` 함수 제거 (gtest_main이 제공)
+  - 현재 구현 동작에 맞게 테스트 어설션 수정
+  - 8개의 스트레스 성능 테스트 모두 통과
 - **health_monitor의 Thread sanitizer 실패** (#356)
   - `check()`, `check_all()`, `refresh()` 메서드에서 `shared_lock`을 `lock_guard`로 변경하여 data race 수정
   - `cv_` 멤버 변수에 필요한 `<condition_variable>` 헤더 누락 추가

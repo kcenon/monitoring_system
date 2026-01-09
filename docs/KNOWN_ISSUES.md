@@ -98,7 +98,6 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 
 - `test_stream_aggregation.cpp`
 - `test_optimization.cpp`
-- `test_stress_performance.cpp`
 - `test_integration_e2e.cpp`
 
 **Reason:** API alignment and missing implementations. See MON-002.
@@ -114,6 +113,7 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 - `test_resource_management.cpp` - Enabled in #341 (resource_manager.h implemented)
 - `test_health_monitoring.cpp` - Enabled in #330 (Health monitoring API implemented)
 - `test_data_consistency.cpp` - Enabled in #342 (Data consistency API implemented)
+- `test_stress_performance.cpp` - Enabled in #345 (Header paths fixed)
 
 ### Test Stability Improvements
 
