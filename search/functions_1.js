@@ -6,12 +6,13 @@ var searchData=
   ['battery_5fstatus_5fto_5fstring_3',['battery_status_to_string',['../db/d50/namespacekcenon_1_1monitoring.html#ad75cd668cc149b5563c96ef2521d1a06',1,'kcenon::monitoring']]],
   ['begin_5ftransaction_4',['begin_transaction',['../d3/ddf/classkcenon_1_1monitoring_1_1transaction__manager.html#a0454ac5c7c88f1eae7919010204be5b8',1,'kcenon::monitoring::transaction_manager']]],
   ['benchmark_5foverhead_5',['benchmark_overhead',['../d0/d69/facade__adapter__poc_8cpp.html#a949dcbe608248b7f9fe7bf1e70a2f4bd',1,'facade_adapter_poc.cpp']]],
-  ['build_6',['build',['../d2/d7c/classkcenon_1_1monitoring_1_1health__check__builder.html#ae327ba20fcca813dd7d39985b9d0f157',1,'kcenon::monitoring::health_check_builder']]],
-  ['build_5fany_5fvalue_5fstring_7',['build_any_value_string',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ac4629a52d78e04d17d5a473441f8ab7c',1,'kcenon::monitoring::otlp_span_converter']]],
-  ['build_5fkey_5fvalue_8',['build_key_value',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ac46c0d8094ce0595020a0021ec0934d7',1,'kcenon::monitoring::otlp_span_converter']]],
-  ['build_5fresource_9',['build_resource',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ad7b6ba411023ba5b9a755c737aff4b09',1,'kcenon::monitoring::otlp_span_converter']]],
-  ['build_5fresource_5fspans_10',['build_resource_spans',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#a88c894ebb1824d4865a38ba6f6e5fd97',1,'kcenon::monitoring::otlp_span_converter']]],
-  ['build_5fscope_11',['build_scope',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#a58d9b7c0ab4fc00e761a34d629c220c5',1,'kcenon::monitoring::otlp_span_converter']]],
-  ['build_5fscope_5fspans_12',['build_scope_spans',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ac567fe4708fb789d59493955b67878db',1,'kcenon::monitoring::otlp_span_converter']]],
-  ['build_5fspan_13',['build_span',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#a2f7e4106806cc504a5208ea3d2c600df',1,'kcenon::monitoring::otlp_span_converter']]]
+  ['block_5fsize_6',['block_size',['../d0/d95/classkcenon_1_1monitoring_1_1memory__pool.html#a26c28f7059396df1003feb47bfd8fbf2',1,'kcenon::monitoring::memory_pool']]],
+  ['build_7',['build',['../d2/d7c/classkcenon_1_1monitoring_1_1health__check__builder.html#ae327ba20fcca813dd7d39985b9d0f157',1,'kcenon::monitoring::health_check_builder']]],
+  ['build_5fany_5fvalue_5fstring_8',['build_any_value_string',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ac4629a52d78e04d17d5a473441f8ab7c',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['build_5fkey_5fvalue_9',['build_key_value',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ac46c0d8094ce0595020a0021ec0934d7',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['build_5fresource_10',['build_resource',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ad7b6ba411023ba5b9a755c737aff4b09',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['build_5fresource_5fspans_11',['build_resource_spans',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#a88c894ebb1824d4865a38ba6f6e5fd97',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['build_5fscope_12',['build_scope',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#a58d9b7c0ab4fc00e761a34d629c220c5',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['build_5fscope_5fspans_13',['build_scope_spans',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#ac567fe4708fb789d59493955b67878db',1,'kcenon::monitoring::otlp_span_converter']]],
+  ['build_5fspan_14',['build_span',['../d1/d45/classkcenon_1_1monitoring_1_1otlp__span__converter.html#a2f7e4106806cc504a5208ea3d2c600df',1,'kcenon::monitoring::otlp_span_converter']]]
 ];
