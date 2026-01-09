@@ -31,7 +31,9 @@
 
 #include <atomic>
 #include <cstddef>
+#include <cstdint>
 #include <memory>
+#include <utility>
 #include <vector>
 
 #include "kcenon/monitoring/core/result_types.h"
