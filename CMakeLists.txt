@@ -428,12 +428,19 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         -Werror=unused-result
     )
     
-    # Add AVX2 support if available (with fallback)
+    # Add SIMD support based on architecture
     include(CheckCXXCompilerFlag)
-    check_cxx_compiler_flag("-mavx2" COMPILER_SUPPORTS_AVX2)
-    if(COMPILER_SUPPORTS_AVX2)
-        target_compile_options(monitoring_system_interface INTERFACE -mavx2)
-        target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
+
+    # Detect architecture - only enable AVX2 on x86/x64
+    if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64|i[3-6]86")
+        check_cxx_compiler_flag("-mavx2" COMPILER_SUPPORTS_AVX2)
+        if(COMPILER_SUPPORTS_AVX2)
+            target_compile_options(monitoring_system_interface INTERFACE -mavx2)
+            target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
+        endif()
+    elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm64|ARM64")
+        # ARM64 uses NEON, which is enabled by default on AArch64
+        target_compile_definitions(monitoring_system_interface INTERFACE SIMD_NEON_AVAILABLE)
     endif()
 elseif(MSVC)
     target_compile_options(monitoring_system_interface INTERFACE
@@ -443,10 +450,14 @@ elseif(MSVC)
         /Zc:__cplusplus
         /w14996  # Enable deprecated declarations warning
     )
-    
-    # Enable AVX2 on MSVC if supported
-    target_compile_options(monitoring_system_interface INTERFACE /arch:AVX2)
-    target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
+
+    # Enable AVX2 on MSVC for x64 architecture only
+    if(CMAKE_SYSTEM_PROCESSOR MATCHES "AMD64|x86_64")
+        target_compile_options(monitoring_system_interface INTERFACE /arch:AVX2)
+        target_compile_definitions(monitoring_system_interface INTERFACE SIMD_AVX2_AVAILABLE)
+    elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "ARM64")
+        target_compile_definitions(monitoring_system_interface INTERFACE SIMD_NEON_AVAILABLE)
+    endif()
 endif()
 
 # Sanitizers

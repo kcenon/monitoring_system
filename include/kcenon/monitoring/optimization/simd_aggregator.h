@@ -487,7 +487,7 @@ private:
     }
 
     double sum_simd(const std::vector<double>& data) const {
-#if defined(SIMD_AVX2_AVAILABLE)
+#if defined(SIMD_AVX2_AVAILABLE) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86)) && defined(__AVX2__)
         const size_t simd_width = 4;  // AVX processes 4 doubles at a time
         size_t simd_count = data.size() / simd_width;
 
@@ -509,7 +509,7 @@ private:
         }
 
         return result;
-#elif defined(SIMD_SSE2_AVAILABLE)
+#elif defined(SIMD_SSE2_AVAILABLE) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86))
         const size_t simd_width = 2;  // SSE processes 2 doubles at a time
         size_t simd_count = data.size() / simd_width;
 
@@ -529,7 +529,7 @@ private:
         }
 
         return result;
-#elif defined(SIMD_NEON_AVAILABLE)
+#elif defined(SIMD_NEON_AVAILABLE) && (defined(__aarch64__) || defined(_M_ARM64))
         const size_t simd_width = 2;  // NEON processes 2 doubles at a time
         size_t simd_count = data.size() / simd_width;
 
@@ -557,7 +557,7 @@ private:
     }
 
     double min_simd(const std::vector<double>& data) const {
-#if defined(SIMD_AVX2_AVAILABLE)
+#if defined(SIMD_AVX2_AVAILABLE) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86)) && defined(__AVX2__)
         const size_t simd_width = 4;
         size_t simd_count = data.size() / simd_width;
 
@@ -577,7 +577,7 @@ private:
         }
 
         return result;
-#elif defined(SIMD_SSE2_AVAILABLE)
+#elif defined(SIMD_SSE2_AVAILABLE) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86))
         const size_t simd_width = 2;
         size_t simd_count = data.size() / simd_width;
 
@@ -597,7 +597,7 @@ private:
         }
 
         return result;
-#elif defined(SIMD_NEON_AVAILABLE)
+#elif defined(SIMD_NEON_AVAILABLE) && (defined(__aarch64__) || defined(_M_ARM64))
         const size_t simd_width = 2;
         size_t simd_count = data.size() / simd_width;
 
@@ -625,7 +625,7 @@ private:
     }
 
     double max_simd(const std::vector<double>& data) const {
-#if defined(SIMD_AVX2_AVAILABLE)
+#if defined(SIMD_AVX2_AVAILABLE) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86)) && defined(__AVX2__)
         const size_t simd_width = 4;
         size_t simd_count = data.size() / simd_width;
 
@@ -645,7 +645,7 @@ private:
         }
 
         return result;
-#elif defined(SIMD_SSE2_AVAILABLE)
+#elif defined(SIMD_SSE2_AVAILABLE) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86))
         const size_t simd_width = 2;
         size_t simd_count = data.size() / simd_width;
 
@@ -665,7 +665,7 @@ private:
         }
 
         return result;
-#elif defined(SIMD_NEON_AVAILABLE)
+#elif defined(SIMD_NEON_AVAILABLE) && (defined(__aarch64__) || defined(_M_ARM64))
         const size_t simd_width = 2;
         size_t simd_count = data.size() / simd_width;
 
