@@ -57,6 +57,11 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **리소스 관리 API** (#341)
+  - 토큰 버킷 및 리키 버킷 속도 제한기
+  - 임계값 모니터링을 갖춘 메모리 할당량 관리자
+  - 실행 제어를 위한 CPU 스로틀러
+  - 중앙 집중식 리소스 관리를 위한 리소스 관리자 코디네이터
 - **공용 ring_buffer.h 및 metric_storage.h API** (#339)
   - 내부 ring buffer를 공용 API로 노출하는 `include/kcenon/monitoring/utils/ring_buffer.h` 추가
   - 메모리 효율적인 메트릭 스토리지를 제공하는 `include/kcenon/monitoring/utils/metric_storage.h` 추가

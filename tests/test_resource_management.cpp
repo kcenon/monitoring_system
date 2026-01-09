@@ -103,8 +103,8 @@ TEST_F(ResourceManagementTest, TokenBucketExecute) {
     
     // Should reject when limit exceeded
     auto result = limiter->execute([this]() { return test_operation(); });
-    EXPECT_FALSE(result);
-    EXPECT_EQ(result.error().code, static_cast<int>(monitoring_error_code::resource_exhausted));
+    EXPECT_TRUE(result.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::resource_exhausted);
 }
 
 // Leaky Bucket Rate Limiter Tests  
@@ -142,18 +142,18 @@ TEST_F(ResourceManagementTest, MemoryQuotaBasicAllocation) {
     
     // Should allow allocation within quota
     auto result1 = manager->allocate(512);
-    EXPECT_TRUE(result1);
+    EXPECT_TRUE(result1.is_ok());
     EXPECT_EQ(manager->current_usage(), 512);
-    
+
     // Should allow another allocation
     auto result2 = manager->allocate(256);
-    EXPECT_TRUE(result2);
+    EXPECT_TRUE(result2.is_ok());
     EXPECT_EQ(manager->current_usage(), 768);
-    
+
     // Should reject when quota exceeded
     auto result3 = manager->allocate(512);
-    EXPECT_FALSE(result3);
-    EXPECT_EQ(result3.error().code, monitoring_error_code::resource_exhausted);
+    EXPECT_TRUE(result3.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result3.error().code), monitoring_error_code::resource_exhausted);
 }
 
 TEST_F(ResourceManagementTest, MemoryQuotaDeallocation) {
@@ -299,12 +299,12 @@ TEST_F(ResourceManagementTest, ResourceManagerDuplicateNames) {
     
     // First addition should succeed
     auto result1 = manager->add_rate_limiter("duplicate_name", config);
-    EXPECT_TRUE(result1);
-    
+    EXPECT_TRUE(result1.is_ok());
+
     // Second addition with same name should fail
     auto result2 = manager->add_rate_limiter("duplicate_name", config);
-    EXPECT_FALSE(result2);
-    EXPECT_EQ(result2.error().code, monitoring_error_code::already_exists);
+    EXPECT_TRUE(result2.is_err());
+    EXPECT_EQ(static_cast<monitoring_error_code>(result2.error().code), monitoring_error_code::already_exists);
 }
 
 TEST_F(ResourceManagementTest, ResourceManagerHealthCheck) {
@@ -320,7 +320,7 @@ TEST_F(ResourceManagementTest, ResourceManagerHealthCheck) {
     
     // Should be healthy initially
     auto health = manager->is_healthy();
-    EXPECT_TRUE(health);
+    EXPECT_TRUE(health.is_ok());
     EXPECT_TRUE(health.value());
 }
 
@@ -449,7 +449,7 @@ TEST_F(ResourceManagementTest, MemoryQuotaConcurrency) {
     for (int i = 0; i < num_threads; ++i) {
         threads.emplace_back([&]() {
             for (int j = 0; j < allocations_per_thread; ++j) {
-                if (manager->allocate(500)) {
+                if (manager->allocate(500).is_ok()) {
                     successful_allocations++;
                     // Simulate some work then deallocate
                     simulate_work(std::chrono::milliseconds(1));

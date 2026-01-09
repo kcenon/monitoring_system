@@ -57,6 +57,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Resource management API** (#341)
+  - Token bucket and leaky bucket rate limiters
+  - Memory quota manager with threshold monitoring
+  - CPU throttler for execution control
+  - Resource manager coordinator for centralized resource management
 - **Public ring_buffer.h and metric_storage.h APIs** (#339)
   - Added `include/kcenon/monitoring/utils/ring_buffer.h` exposing internal ring buffer as public API
   - Added `include/kcenon/monitoring/utils/metric_storage.h` with memory-efficient metric storage

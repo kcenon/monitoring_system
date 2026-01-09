@@ -110,19 +110,21 @@ add_executable(monitoring_system_tests
     # Metric storage tests (Issue #339 - ring_buffer.h, metric_storage.h implemented)
     test_metric_storage.cpp
 
+    # Resource management tests (Issue #341 - resource_manager.h implemented)
+    test_resource_management.cpp
+
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (6 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (5 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
-    # - Missing header files (resource_manager.h, etc.)
+    # - Missing header files (data_consistency.h, etc.)
     # - Missing API implementations (health_check base class, etc.)
     #
     # test_health_monitoring.cpp      # Requires: health_check base class, composite_health_check,
     #                                 #           health_dependency_graph, health_check_builder,
     #                                 #           global_health_monitor() - See Issue #330
     # test_optimization.cpp           # Missing: optimization/ folder - See Issue #340
-    # test_resource_management.cpp    # Missing: resource_manager.h - See Issue #341
     # test_data_consistency.cpp       # Missing: data_consistency.h - See Issue #342
     # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h - See Issue #344
     # test_stress_performance.cpp     # Missing: multiple headers - See Issue #345
