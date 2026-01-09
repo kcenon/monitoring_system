@@ -398,7 +398,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00526">526</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  526</span>                                                             {</div>
-<div class="line"><span class="lineno">  527</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  527</span>        std::lock_guard&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
 <div class="line"><span class="lineno">  528</span> </div>
 <div class="line"><span class="lineno">  529</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.find(name);</div>
 <div class="line"><span class="lineno">  530</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.end()) {</div>
@@ -490,7 +490,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00541">541</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  541</span>                                                                 {</div>
-<div class="line"><span class="lineno">  542</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  542</span>        std::lock_guard&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
 <div class="line"><span class="lineno">  543</span> </div>
 <div class="line"><span class="lineno">  544</span>        std::unordered_map&lt;std::string, health_check_result&gt; results;</div>
 <div class="line"><span class="lineno">  545</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>] : <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>) {</div>
@@ -781,7 +781,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00592">592</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  592</span>                   {</div>
-<div class="line"><span class="lineno">  593</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  593</span>        std::lock_guard&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
 <div class="line"><span class="lineno">  594</span> </div>
 <div class="line"><span class="lineno">  595</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>] : <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>) {</div>
 <div class="line"><span class="lineno">  596</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>-&gt;check();</div>
@@ -1612,7 +1612,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 00:42:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 01:16:50 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
