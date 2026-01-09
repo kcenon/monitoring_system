@@ -37,8 +37,9 @@ var searchData=
   ['timer_5fdata_34',['timer_data',['../db/d67/structkcenon_1_1monitoring_1_1timer__data.html',1,'kcenon::monitoring']]],
   ['timer_5fscope_35',['timer_scope',['../d4/d01/classkcenon_1_1monitoring_1_1timer__scope.html',1,'kcenon::monitoring']]],
   ['timermetricstest_36',['TimerMetricsTest',['../da/d72/classTimerMetricsTest.html',1,'']]],
-  ['trace_5fexport_5fconfig_37',['trace_export_config',['../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html',1,'kcenon::monitoring']]],
-  ['trace_5fexporter_5ffactory_38',['trace_exporter_factory',['../dd/d09/classkcenon_1_1monitoring_1_1trace__exporter__factory.html',1,'kcenon::monitoring']]],
-  ['trace_5fexporter_5finterface_39',['trace_exporter_interface',['../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html',1,'kcenon::monitoring']]],
-  ['traceexporterstest_40',['TraceExportersTest',['../de/d2d/classTraceExportersTest.html',1,'']]]
+  ['token_5fbucket_5flimiter_37',['token_bucket_limiter',['../d8/d67/classkcenon_1_1monitoring_1_1token__bucket__limiter.html',1,'kcenon::monitoring']]],
+  ['trace_5fexport_5fconfig_38',['trace_export_config',['../d0/d59/structkcenon_1_1monitoring_1_1trace__export__config.html',1,'kcenon::monitoring']]],
+  ['trace_5fexporter_5ffactory_39',['trace_exporter_factory',['../dd/d09/classkcenon_1_1monitoring_1_1trace__exporter__factory.html',1,'kcenon::monitoring']]],
+  ['trace_5fexporter_5finterface_40',['trace_exporter_interface',['../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html',1,'kcenon::monitoring']]],
+  ['traceexporterstest_41',['TraceExportersTest',['../de/d2d/classTraceExportersTest.html',1,'']]]
 ];

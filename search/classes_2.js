@@ -10,7 +10,7 @@ var searchData=
   ['circuit_5fbreaker_5fregistry_7',['circuit_breaker_registry',['../d5/d51/classkcenon_1_1monitoring_1_1circuit__breaker__registry.html',1,'kcenon::monitoring']]],
   ['circuit_5fopen_5fexception_8',['circuit_open_exception',['../d8/de6/classkcenon_1_1monitoring_1_1circuit__open__exception.html',1,'kcenon::monitoring']]],
   ['cloud_5fstorage_5fbackend_9',['cloud_storage_backend',['../d9/d36/classkcenon_1_1monitoring_1_1cloud__storage__backend.html',1,'kcenon::monitoring']]],
-  ['collection_5fconfig_10',['collection_config',['../de/d9e/structkcenon_1_1monitoring_1_1thread__system__adapter_1_1collection__config.html',1,'kcenon::monitoring::thread_system_adapter::collection_config'],['../d6/d16/structkcenon_1_1monitoring_1_1collection__config.html',1,'kcenon::monitoring::collection_config']]],
+  ['collection_5fconfig_10',['collection_config',['../d6/d16/structkcenon_1_1monitoring_1_1collection__config.html',1,'kcenon::monitoring::collection_config'],['../de/d9e/structkcenon_1_1monitoring_1_1thread__system__adapter_1_1collection__config.html',1,'kcenon::monitoring::thread_system_adapter::collection_config']]],
   ['collector_5fbase_11',['collector_base',['../db/d97/classkcenon_1_1monitoring_1_1collector__base.html',1,'kcenon::monitoring']]],
   ['collector_5fbase_3c_20battery_5fcollector_20_3e_12',['collector_base&lt; battery_collector &gt;',['../db/d97/classkcenon_1_1monitoring_1_1collector__base.html',1,'kcenon::monitoring']]],
   ['collector_5fbase_3c_20context_5fswitch_5fcollector_20_3e_13',['collector_base&lt; context_switch_collector &gt;',['../db/d97/classkcenon_1_1monitoring_1_1collector__base.html',1,'kcenon::monitoring']]],
@@ -36,5 +36,7 @@ var searchData=
   ['context_5fswitch_5fmetrics_33',['context_switch_metrics',['../db/d12/structkcenon_1_1monitoring_1_1context__switch__metrics.html',1,'kcenon::monitoring::context_switch_metrics'],['../db/dc5/structkcenon_1_1monitoring_1_1system__resources_1_1context__switch__metrics.html',1,'kcenon::monitoring::system_resources::context_switch_metrics']]],
   ['cpu_5finterrupt_5finfo_34',['cpu_interrupt_info',['../d0/d4f/structkcenon_1_1monitoring_1_1cpu__interrupt__info.html',1,'kcenon::monitoring']]],
   ['cpu_5fmetrics_35',['cpu_metrics',['../d8/d58/structkcenon_1_1monitoring_1_1system__resources_1_1cpu__metrics.html',1,'kcenon::monitoring::system_resources']]],
-  ['cpu_5fstats_36',['cpu_stats',['../d6/d9d/structkcenon_1_1monitoring_1_1container__info__collector_1_1cpu__stats.html',1,'kcenon::monitoring::container_info_collector::cpu_stats'],['../d2/dc5/structkcenon_1_1monitoring_1_1system__info__collector_1_1cpu__stats.html',1,'kcenon::monitoring::system_info_collector::cpu_stats']]]
+  ['cpu_5fstats_36',['cpu_stats',['../d6/d9d/structkcenon_1_1monitoring_1_1container__info__collector_1_1cpu__stats.html',1,'kcenon::monitoring::container_info_collector::cpu_stats'],['../d2/dc5/structkcenon_1_1monitoring_1_1system__info__collector_1_1cpu__stats.html',1,'kcenon::monitoring::system_info_collector::cpu_stats']]],
+  ['cpu_5fthrottle_5fconfig_37',['cpu_throttle_config',['../d9/d09/structkcenon_1_1monitoring_1_1cpu__throttle__config.html',1,'kcenon::monitoring']]],
+  ['cpu_5fthrottler_38',['cpu_throttler',['../dc/d73/classkcenon_1_1monitoring_1_1cpu__throttler.html',1,'kcenon::monitoring']]]
 ];

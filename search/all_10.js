@@ -10,5 +10,6 @@ var searchData=
   ['queue_5ffull_5fthreshold_5fbytes_5f_7',['queue_full_threshold_bytes_',['../df/d68/classkcenon_1_1monitoring_1_1socket__buffer__collector.html#a3dd2b85c5851c9fe6d483efa30a54834',1,'kcenon::monitoring::socket_buffer_collector']]],
   ['queue_5fmutex_5f_8',['queue_mutex_',['../df/d2a/classkcenon_1_1monitoring_1_1event__bus.html#a0d39f24c9c9f289f5274d8d2d4c73fe9',1,'kcenon::monitoring::event_bus']]],
   ['queued_5ftasks_9',['queued_tasks',['../d8/d14/structkcenon_1_1monitoring_1_1thread__pool__metric__event_1_1thread__pool__stats.html#a4fbfa810f787b3de4e2acfd79df281a6',1,'kcenon::monitoring::thread_pool_metric_event::thread_pool_stats']]],
-  ['quota_5fexceeded_10',['quota_exceeded',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea038d1f877daecfdfafd2fc3992f0e8bc',1,'kcenon::monitoring']]]
+  ['quota_5f_10',['quota_',['../db/d30/classkcenon_1_1monitoring_1_1memory__quota__manager.html#a79604c1b41add1d91308376310db2949',1,'kcenon::monitoring::memory_quota_manager']]],
+  ['quota_5fexceeded_11',['quota_exceeded',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea038d1f877daecfdfafd2fc3992f0e8bc',1,'kcenon::monitoring']]]
 ];

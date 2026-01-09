@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['memory_0',['memory',['../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291',1,'kcenon::monitoring']]],
+  ['memory_0',['memory',['../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291',1,'kcenon::monitoring::memory'],['../db/d50/namespacekcenon_1_1monitoring.html#ab2003e7176e9688271841eb7e412f0b1acd69b4957f06cd818d7bf3d61980e291',1,'kcenon::monitoring::memory']]],
   ['memory_5fallocation_5ffailed_1',['memory_allocation_failed',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eabac5a7f5a8055a7ebd356e87be3179bf',1,'kcenon::monitoring']]],
   ['memory_5fbuffer_2',['memory_buffer',['../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98adee3aa96e22bc7e161b0388143c89b9e',1,'kcenon::monitoring']]],
   ['memory_5fquota_5fexceeded_3',['memory_quota_exceeded',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7daf5c49086d443b4dc489dea9efd1b6',1,'kcenon::monitoring']]],

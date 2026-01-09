@@ -723,7 +723,7 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d6/db6/trace__exporters_8h_source.html#l00623">623</a> of file <a class="el" href="../../d6/db6/trace__exporters_8h_source.html">trace_exporters.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  623</span>                                                             {</div>
 <div class="line"><span class="lineno">  624</span>        std::size_t attempt = 0;</div>
-<div class="line"><span class="lineno">  625</span>        std::chrono::milliseconds delay = <a class="code hl_variable" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#aa3fb8f29f5ca94a9632fe59f2fe9cecc">base_retry_delay_</a>;</div>
+<div class="line"><span class="lineno">  625</span>        std::chrono::milliseconds <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1500cf06cd1a0cacdb9800be2b26e10aa7243f8be75253afbadf7477867021f8b">delay</a> = <a class="code hl_variable" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#aa3fb8f29f5ca94a9632fe59f2fe9cecc">base_retry_delay_</a>;</div>
 <div class="line"><span class="lineno">  626</span> </div>
 <div class="line"><span class="lineno">  627</span>        <span class="keywordflow">while</span> (attempt &lt; <a class="code hl_variable" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a0c0c067ce790e8a54a2bd36544f55284">max_retries_</a>) {</div>
 <div class="line"><span class="lineno">  628</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = <a class="code hl_variable" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a2885e76040f9ccb1ef9de594ff908b62">transport_</a>-&gt;send(request);</div>
@@ -736,8 +736,8 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  635</span>                <span class="keywordflow">if</span> (response.status_code &gt;= 500) {</div>
 <div class="line"><span class="lineno">  636</span>                    attempt++;</div>
 <div class="line"><span class="lineno">  637</span>                    <span class="keywordflow">if</span> (attempt &lt; <a class="code hl_variable" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a0c0c067ce790e8a54a2bd36544f55284">max_retries_</a>) {</div>
-<div class="line"><span class="lineno">  638</span>                        std::this_thread::sleep_for(delay);</div>
-<div class="line"><span class="lineno">  639</span>                        delay *= 2; <span class="comment">// Exponential backoff</span></div>
+<div class="line"><span class="lineno">  638</span>                        std::this_thread::sleep_for(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1500cf06cd1a0cacdb9800be2b26e10aa7243f8be75253afbadf7477867021f8b">delay</a>);</div>
+<div class="line"><span class="lineno">  639</span>                        <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1500cf06cd1a0cacdb9800be2b26e10aa7243f8be75253afbadf7477867021f8b">delay</a> *= 2; <span class="comment">// Exponential backoff</span></div>
 <div class="line"><span class="lineno">  640</span>                    }</div>
 <div class="line"><span class="lineno">  641</span>                    <span class="keywordflow">continue</span>;</div>
 <div class="line"><span class="lineno">  642</span>                }</div>
@@ -748,8 +748,8 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  647</span>            }</div>
 <div class="line"><span class="lineno">  648</span>            attempt++;</div>
 <div class="line"><span class="lineno">  649</span>            <span class="keywordflow">if</span> (attempt &lt; <a class="code hl_variable" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a0c0c067ce790e8a54a2bd36544f55284">max_retries_</a>) {</div>
-<div class="line"><span class="lineno">  650</span>                std::this_thread::sleep_for(delay);</div>
-<div class="line"><span class="lineno">  651</span>                delay *= 2;</div>
+<div class="line"><span class="lineno">  650</span>                std::this_thread::sleep_for(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1500cf06cd1a0cacdb9800be2b26e10aa7243f8be75253afbadf7477867021f8b">delay</a>);</div>
+<div class="line"><span class="lineno">  651</span>                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1500cf06cd1a0cacdb9800be2b26e10aa7243f8be75253afbadf7477867021f8b">delay</a> *= 2;</div>
 <div class="line"><span class="lineno">  652</span>            }</div>
 <div class="line"><span class="lineno">  653</span>        }</div>
 <div class="line"><span class="lineno">  654</span>        <span class="keywordflow">return</span> result_void::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>,</div>
@@ -758,6 +758,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  657</span>    }</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1zipkin__exporter_html_a0c0c067ce790e8a54a2bd36544f55284"><div class="ttname"><a href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a0c0c067ce790e8a54a2bd36544f55284">kcenon::monitoring::zipkin_exporter::max_retries_</a></div><div class="ttdeci">std::size_t max_retries_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00473">trace_exporters.h:473</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1zipkin__exporter_html_aa3fb8f29f5ca94a9632fe59f2fe9cecc"><div class="ttname"><a href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#aa3fb8f29f5ca94a9632fe59f2fe9cecc">kcenon::monitoring::zipkin_exporter::base_retry_delay_</a></div><div class="ttdeci">std::chrono::milliseconds base_retry_delay_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db6/trace__exporters_8h_source.html#l00474">trace_exporters.h:474</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a1500cf06cd1a0cacdb9800be2b26e10aa7243f8be75253afbadf7477867021f8b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a1500cf06cd1a0cacdb9800be2b26e10aa7243f8be75253afbadf7477867021f8b">kcenon::monitoring::throttling_strategy::delay</a></div><div class="ttdeci">@ delay</div><div class="ttdoc">Delay requests until resources are available.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1026,7 +1027,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 00:07:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 00:17:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
