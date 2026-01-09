@@ -75,13 +75,14 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../dd/dfc/classkcenon_1_1monitoring_1_1health__monitor-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">kcenon::monitoring::health_monitor Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Basic health monitor interface - stub implementation.  
+<p>Health monitor with dependency management and statistics.  
  <a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>&gt;</code></p>
@@ -90,23 +91,52 @@ Collaboration diagram for kcenon::monitoring::health_monitor:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dc/d21/classkcenon_1_1monitoring_1_1health__monitor__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1health__monitor_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1health__monitor_coll__map" id="akcenon_1_1monitoring_1_1health__monitor_coll__map">
-<area shape="rect" title="Basic health monitor interface &#45; stub implementation." alt="" coords="235,1025,444,1345"/>
-<area shape="rect" href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html" title="Health monitor configuration." alt="" coords="5,803,204,963"/>
-<area shape="poly" title=" " alt="" coords="168,961,227,1036,223,1039,164,964"/>
-<area shape="rect" title=" " alt="" coords="227,828,451,937"/>
-<area shape="poly" title=" " alt="" coords="342,938,342,1009,337,1009,337,938"/>
-<area shape="rect" title=" " alt="" coords="313,135,392,200"/>
-<area shape="poly" title=" " alt="" coords="315,192,275,223,258,242,244,264,217,331,199,391,192,445,192,497,199,550,212,606,253,739,268,777,289,813,284,816,263,780,247,741,207,608,194,551,187,498,186,445,194,389,212,329,240,261,254,239,272,219,311,188"/>
-<area shape="rect" href="../../d7/dfb/classkcenon_1_1monitoring_1_1functional__health__check.html" title="Functional health check implementation." alt="" coords="254,263,451,503"/>
-<area shape="poly" title=" " alt="" coords="355,200,355,247,350,247,350,200"/>
-<area shape="rect" title=" " alt="" coords="415,527,562,621"/>
-<area shape="poly" title=" " alt="" coords="394,189,433,220,451,239,466,261,489,325,500,391,502,455,500,511,494,510,497,455,495,392,484,326,461,264,447,243,430,224,391,193"/>
-<area shape="rect" title=" " alt="" coords="287,5,418,85"/>
-<area shape="poly" title=" " alt="" coords="355,99,355,134,350,134,350,99"/>
-<area shape="rect" title=" " alt="" coords="262,645,435,740"/>
-<area shape="poly" title=" " alt="" coords="349,740,345,812,340,812,344,740"/>
-<area shape="poly" title=" " alt="" coords="354,503,352,629,347,629,348,503"/>
-<area shape="poly" title=" " alt="" coords="495,622,497,690,495,776,486,870,466,963,448,1011,443,1009,461,962,481,869,490,775,492,690,489,622"/>
+<area shape="rect" title="Health monitor with dependency management and statistics." alt="" coords="774,1299,947,1619"/>
+<area shape="rect" href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html" title="Health monitor configuration." alt="" coords="5,1014,204,1174"/>
+<area shape="poly" title=" " alt="" coords="170,1173,217,1219,256,1249,299,1272,420,1324,543,1367,660,1403,759,1430,757,1435,658,1408,542,1372,418,1328,297,1277,253,1254,214,1223,166,1176"/>
+<area shape="rect" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html" title="Statistics for health monitoring." alt="" coords="228,994,400,1194"/>
+<area shape="poly" title=" " alt="" coords="337,1193,355,1236,383,1273,424,1309,469,1340,518,1366,568,1388,669,1421,758,1441,757,1446,667,1426,566,1393,516,1371,466,1344,420,1313,379,1276,351,1238,332,1195"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html" title="Directed acyclic graph for health check dependencies." alt="" coords="535,967,744,1221"/>
+<area shape="poly" title=" " alt="" coords="628,1221,633,1248,642,1274,665,1311,694,1345,727,1375,762,1400,759,1405,724,1379,690,1349,660,1315,637,1276,628,1249,623,1222"/>
+<area shape="rect" title=" " alt="" coords="733,727,868,792"/>
+<area shape="poly" title=" " alt="" coords="802,792,800,974,804,1097,814,1221,823,1283,818,1283,809,1222,799,1097,795,975,797,792"/>
+<area shape="poly" title=" " alt="" coords="786,794,723,915,705,953,700,951,718,912,781,791"/>
+<area shape="rect" title=" " alt="" coords="295,705,519,814"/>
+<area shape="poly" title=" " alt="" coords="410,814,413,913,421,1033,437,1144,449,1188,463,1220,491,1257,525,1291,562,1322,602,1349,683,1392,759,1424,757,1429,681,1397,599,1353,559,1326,521,1295,487,1261,458,1223,444,1190,432,1145,416,1033,408,914,405,814"/>
+<area shape="poly" title=" " alt="" coords="441,813,523,941,531,952,526,955,518,944,436,816"/>
+<area shape="rect" title=" " alt="" coords="872,192,951,257"/>
+<area shape="poly" title=" " alt="" coords="872,236,804,253,719,284,675,304,632,330,592,359,557,394,537,421,524,446,509,493,500,544,480,606,443,691,438,689,476,604,494,543,504,492,519,444,533,418,553,390,589,355,629,325,672,300,717,279,802,248,871,231"/>
+<area shape="rect" title=" " alt="" coords="543,712,709,807"/>
+<area shape="poly" title=" " alt="" coords="873,239,817,259,752,291,720,311,689,335,662,362,640,393,623,430,611,469,604,510,601,551,604,629,614,696,609,696,599,630,596,550,599,509,606,468,618,428,636,391,658,359,686,331,717,307,750,286,815,254,871,234"/>
+<area shape="rect" title=" " alt="" coords="695,407,874,472"/>
+<area shape="poly" title=" " alt="" coords="880,259,848,296,818,340,798,392,793,390,813,337,843,293,876,256"/>
+<area shape="rect" title=" " alt="" coords="1194,511,1341,605"/>
+<area shape="poly" title=" " alt="" coords="952,230,1018,247,1099,277,1140,299,1179,324,1215,355,1244,391,1257,415,1266,442,1273,494,1267,495,1260,443,1252,417,1240,393,1211,358,1176,328,1138,303,1097,282,1017,252,951,236"/>
+<area shape="rect" title=" " alt="" coords="990,1039,1177,1149"/>
+<area shape="poly" title=" " alt="" coords="913,258,910,511,908,558,910,605,920,687,930,750,947,811,974,888,1006,959,1042,1024,1037,1026,1001,962,969,890,941,813,925,751,914,687,905,606,903,558,905,511,908,258"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html" title="Result of a health check operation." alt="" coords="983,629,1152,889"/>
+<area shape="poly" title=" " alt="" coords="921,257,956,381,978,443,1001,485,1012,493,1024,495,1037,499,1048,509,1061,533,1071,559,1081,612,1076,613,1066,560,1057,535,1044,512,1034,504,1023,501,1010,498,997,488,974,446,951,383,916,258"/>
+<area shape="rect" title=" " alt="" coords="1086,392,1230,487"/>
+<area shape="poly" title=" " alt="" coords="950,256,1094,379,1090,383,947,260"/>
+<area shape="rect" title=" " alt="" coords="846,5,977,85"/>
+<area shape="poly" title=" " alt="" coords="914,99,914,192,909,192,909,99"/>
+<area shape="rect" title=" " alt="" coords="282,399,485,479"/>
+<area shape="poly" title=" " alt="" coords="389,479,405,688,399,689,384,480"/>
+<area shape="rect" href="../../da/d96/classkcenon_1_1monitoring_1_1health__check.html" title="Abstract base class for health checks." alt="" coords="313,135,453,315"/>
+<area shape="poly" title=" " alt="" coords="386,315,386,383,381,383,381,315"/>
+<area shape="poly" title=" " alt="" coords="607,808,588,872,584,907,586,942,587,950,582,951,581,943,578,907,583,870,602,806"/>
+<area shape="poly" title=" " alt="" coords="771,473,659,698,654,696,766,471"/>
+<area shape="poly" title=" " alt="" coords="875,458,920,478,960,509,976,532,981,554,984,577,991,604,995,613,990,615,986,606,978,578,976,555,971,534,956,512,918,483,873,463"/>
+<area shape="rect" title=" " alt="" coords="881,1061,965,1127"/>
+<area shape="poly" title=" " alt="" coords="921,1127,894,1283,888,1282,915,1126"/>
+<area shape="poly" title=" " alt="" coords="1268,606,1259,742,1243,921,1221,1096,1207,1168,1191,1222,1174,1258,1151,1290,1124,1320,1093,1346,1028,1390,964,1423,961,1418,1025,1385,1090,1342,1120,1316,1146,1287,1169,1255,1186,1220,1202,1167,1216,1096,1238,920,1253,741,1262,606"/>
+<area shape="poly" title=" " alt="" coords="1072,1150,1051,1212,1020,1276,992,1319,960,1359,956,1355,988,1315,1016,1273,1046,1210,1067,1148"/>
+<area shape="poly" title=" " alt="" coords="1076,889,1083,1023,1077,1023,1071,890"/>
+<area shape="poly" title=" " alt="" coords="1119,488,1106,512,1094,554,1085,613,1080,612,1089,552,1101,510,1114,485"/>
+<area shape="rect" title=" " alt="" coords="1252,1061,1397,1127"/>
+<area shape="poly" title=" " alt="" coords="1318,1128,1288,1201,1264,1241,1235,1277,1171,1328,1101,1371,1030,1404,964,1430,962,1425,1028,1399,1099,1366,1168,1324,1231,1273,1260,1238,1283,1198,1313,1126"/>
+<area shape="rect" title=" " alt="" coords="1421,1061,1505,1127"/>
+<area shape="poly" title=" " alt="" coords="1458,1128,1441,1175,1428,1200,1412,1223,1365,1271,1311,1312,1252,1347,1191,1376,1130,1400,1070,1419,964,1444,963,1439,1069,1414,1128,1395,1189,1371,1250,1342,1308,1308,1361,1267,1408,1220,1424,1197,1436,1173,1453,1126"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -116,42 +146,75 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa1b0494d902b8250aa39541d52afe80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03c3b9e2160a1f9e892bd03a9695c133" id="r_a03c3b9e2160a1f9e892bd03a9695c133"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a03c3b9e2160a1f9e892bd03a9695c133">health_monitor</a> (const <a class="el" href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html">health_monitor_config</a> &amp;config)</td></tr>
 <tr class="separator:a03c3b9e2160a1f9e892bd03a9695c133"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba9c813c2aedb99e4aeaf009f0120fdd" id="r_aba9c813c2aedb99e4aeaf009f0120fdd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aba9c813c2aedb99e4aeaf009f0120fdd">~health_monitor</a> ()=default</td></tr>
-<tr class="separator:aba9c813c2aedb99e4aeaf009f0120fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77cb754d5cca34fb5f0c4e7b99188fc4" id="r_a77cb754d5cca34fb5f0c4e7b99188fc4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a77cb754d5cca34fb5f0c4e7b99188fc4">check_health</a> () const</td></tr>
-<tr class="separator:a77cb754d5cca34fb5f0c4e7b99188fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2d7c2da2ef8f9d175d03a44f06c0a9" id="r_a1c2d7c2da2ef8f9d175d03a44f06c0a9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a1c2d7c2da2ef8f9d175d03a44f06c0a9">start</a> ()</td></tr>
-<tr class="separator:a1c2d7c2da2ef8f9d175d03a44f06c0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab52376fc81e9fd14cf0e30a4c367c336" id="r_ab52376fc81e9fd14cf0e30a4c367c336"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab52376fc81e9fd14cf0e30a4c367c336">stop</a> ()</td></tr>
-<tr class="separator:ab52376fc81e9fd14cf0e30a4c367c336"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5c28e470e58318fbfcd5808214c7980" id="r_ad5c28e470e58318fbfcd5808214c7980"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ad5c28e470e58318fbfcd5808214c7980">is_running</a> () const</td></tr>
-<tr class="separator:ad5c28e470e58318fbfcd5808214c7980"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97c77ae75509aa17634024872c25433d" id="r_a97c77ae75509aa17634024872c25433d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a97c77ae75509aa17634024872c25433d">register_check</a> (const std::string &amp;name, std::shared_ptr&lt; <a class="el" href="../../d7/dfb/classkcenon_1_1monitoring_1_1functional__health__check.html">functional_health_check</a> &gt; check)</td></tr>
-<tr class="separator:a97c77ae75509aa17634024872c25433d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13ffc990bedcfa520b338cbd47495847" id="r_a13ffc990bedcfa520b338cbd47495847"><td class="memItemLeft" align="right" valign="top">virtual std::unordered_map&lt; std::string, <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847">check_all</a> ()</td></tr>
-<tr class="separator:a13ffc990bedcfa520b338cbd47495847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc4e2983fa110e9261a898d906f9a804" id="r_adc4e2983fa110e9261a898d906f9a804"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065">health_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adc4e2983fa110e9261a898d906f9a804">get_overall_status</a> ()</td></tr>
-<tr class="separator:adc4e2983fa110e9261a898d906f9a804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad33f2d908ce12b68c4c8bb94fe421129" id="r_ad33f2d908ce12b68c4c8bb94fe421129"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ad33f2d908ce12b68c4c8bb94fe421129">register_recovery_handler</a> (const std::string &amp;check_name, std::function&lt; bool()&gt; handler)</td></tr>
-<tr class="separator:ad33f2d908ce12b68c4c8bb94fe421129"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a406026be31b0daef34e3b37026addbd6" id="r_a406026be31b0daef34e3b37026addbd6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a406026be31b0daef34e3b37026addbd6">refresh</a> ()</td></tr>
-<tr class="separator:a406026be31b0daef34e3b37026addbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a194b429164bba28b6402fee07ead74ff" id="r_a194b429164bba28b6402fee07ead74ff"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a194b429164bba28b6402fee07ead74ff">get_health_report</a> ()</td></tr>
-<tr class="separator:a194b429164bba28b6402fee07ead74ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9f3064fba6d924938fce5db66021b4f" id="r_aa9f3064fba6d924938fce5db66021b4f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aa9f3064fba6d924938fce5db66021b4f">~health_monitor</a> ()</td></tr>
+<tr class="separator:aa9f3064fba6d924938fce5db66021b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2da7f9a85cdb991c756525cfb3dd10a9" id="r_a2da7f9a85cdb991c756525cfb3dd10a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a2da7f9a85cdb991c756525cfb3dd10a9">register_check</a> (const std::string &amp;name, std::shared_ptr&lt; <a class="el" href="../../da/d96/classkcenon_1_1monitoring_1_1health__check.html">health_check</a> &gt; <a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>)</td></tr>
+<tr class="separator:a2da7f9a85cdb991c756525cfb3dd10a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0181e6144468a9e9e6f04afb50b5686b" id="r_a0181e6144468a9e9e6f04afb50b5686b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a0181e6144468a9e9e6f04afb50b5686b">unregister_check</a> (const std::string &amp;name)</td></tr>
+<tr class="separator:a0181e6144468a9e9e6f04afb50b5686b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c6243491ecac6699400b76ee0d8d39" id="r_af3c6243491ecac6699400b76ee0d8d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a> (const std::string &amp;name)</td></tr>
+<tr class="separator:af3c6243491ecac6699400b76ee0d8d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac56fffab98a64f7ac0038d0786cd6c" id="r_a7ac56fffab98a64f7ac0038d0786cd6c"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a7ac56fffab98a64f7ac0038d0786cd6c">check_all</a> ()</td></tr>
+<tr class="separator:a7ac56fffab98a64f7ac0038d0786cd6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82bee2b6a48890b416dc1a8126728994" id="r_a82bee2b6a48890b416dc1a8126728994"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a82bee2b6a48890b416dc1a8126728994">add_dependency</a> (const std::string &amp;dependent, const std::string &amp;dependency)</td></tr>
+<tr class="separator:a82bee2b6a48890b416dc1a8126728994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55bc76eb761c2732e7ab802a23869dcc" id="r_a55bc76eb761c2732e7ab802a23869dcc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a55bc76eb761c2732e7ab802a23869dcc">start</a> ()</td></tr>
+<tr class="separator:a55bc76eb761c2732e7ab802a23869dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf4ee123f7b655273dc76607c53c6d29" id="r_adf4ee123f7b655273dc76607c53c6d29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adf4ee123f7b655273dc76607c53c6d29">stop</a> ()</td></tr>
+<tr class="separator:adf4ee123f7b655273dc76607c53c6d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1953ee1610b7f0b6b62a0b8c791b945" id="r_ac1953ee1610b7f0b6b62a0b8c791b945"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ac1953ee1610b7f0b6b62a0b8c791b945">is_running</a> () const</td></tr>
+<tr class="separator:ac1953ee1610b7f0b6b62a0b8c791b945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d42955e070f8b51d807d8915adbbc15" id="r_a3d42955e070f8b51d807d8915adbbc15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d42955e070f8b51d807d8915adbbc15">refresh</a> ()</td></tr>
+<tr class="separator:a3d42955e070f8b51d807d8915adbbc15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6af984f611e636fe5c209e52496cda66" id="r_a6af984f611e636fe5c209e52496cda66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a6af984f611e636fe5c209e52496cda66">register_recovery_handler</a> (const std::string &amp;check_name, std::function&lt; bool()&gt; handler)</td></tr>
+<tr class="separator:a6af984f611e636fe5c209e52496cda66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa412adba8d22273564bd7c9e794fd5d5" id="r_aa412adba8d22273564bd7c9e794fd5d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065">health_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aa412adba8d22273564bd7c9e794fd5d5">get_overall_status</a> ()</td></tr>
+<tr class="separator:aa412adba8d22273564bd7c9e794fd5d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0983184d3d0ede32cbaaa4b481e9099" id="r_ad0983184d3d0ede32cbaaa4b481e9099"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html">health_monitor_stats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ad0983184d3d0ede32cbaaa4b481e9099">get_stats</a> () const</td></tr>
+<tr class="separator:ad0983184d3d0ede32cbaaa4b481e9099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae67f65328db6461ea8dbb6f63c9ededa" id="r_ae67f65328db6461ea8dbb6f63c9ededa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae67f65328db6461ea8dbb6f63c9ededa">get_health_report</a> ()</td></tr>
+<tr class="separator:ae67f65328db6461ea8dbb6f63c9ededa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47f049117bb9cf648317e3207d8864f2" id="r_a47f049117bb9cf648317e3207d8864f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a47f049117bb9cf648317e3207d8864f2">check_health</a> () const</td></tr>
+<tr class="separator:a47f049117bb9cf648317e3207d8864f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a36343510296556c7358d42a3be70e7df" id="r_a36343510296556c7358d42a3be70e7df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36343510296556c7358d42a3be70e7df">run_monitoring_loop</a> ()</td></tr>
+<tr class="separator:a36343510296556c7358d42a3be70e7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a892cb00ee88bfe5eee5b2e33bca7d923" id="r_a892cb00ee88bfe5eee5b2e33bca7d923"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923">update_stats</a> (const <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>)</td></tr>
+<tr class="separator:a892cb00ee88bfe5eee5b2e33bca7d923"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a3c0a3a05b2bfc44a8d6fc4274f541614" id="r_a3c0a3a05b2bfc44a8d6fc4274f541614"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html">health_monitor_config</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3c0a3a05b2bfc44a8d6fc4274f541614">config_</a></td></tr>
 <tr class="separator:a3c0a3a05b2bfc44a8d6fc4274f541614"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae81d2c1c855ea4089ce706d106dc0790" id="r_ae81d2c1c855ea4089ce706d106dc0790"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="../../d7/dfb/classkcenon_1_1monitoring_1_1functional__health__check.html">functional_health_check</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae81d2c1c855ea4089ce706d106dc0790">checks_</a></td></tr>
-<tr class="separator:ae81d2c1c855ea4089ce706d106dc0790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf13b2c605039c98161ce3258460158" id="r_afdf13b2c605039c98161ce3258460158"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html">health_monitor_stats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a></td></tr>
+<tr class="separator:afdf13b2c605039c98161ce3258460158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612d233919383dd90f7fdfdea3b1e2f9" id="r_a612d233919383dd90f7fdfdea3b1e2f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html">health_dependency_graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a612d233919383dd90f7fdfdea3b1e2f9">dependency_graph_</a></td></tr>
+<tr class="separator:a612d233919383dd90f7fdfdea3b1e2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2bd98d1b347292ba9f410af7cadc380" id="r_ab2bd98d1b347292ba9f410af7cadc380"><td class="memItemLeft" align="right" valign="top">std::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a></td></tr>
+<tr class="separator:ab2bd98d1b347292ba9f410af7cadc380"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae542b7370ea00cbbaab6b106839481d2" id="r_ae542b7370ea00cbbaab6b106839481d2"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae542b7370ea00cbbaab6b106839481d2">lifecycle_mutex_</a></td></tr>
+<tr class="separator:ae542b7370ea00cbbaab6b106839481d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa60db55aed1607788a39ec28f4ca3d80" id="r_aa60db55aed1607788a39ec28f4ca3d80"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aa60db55aed1607788a39ec28f4ca3d80">cv_mutex_</a></td></tr>
+<tr class="separator:aa60db55aed1607788a39ec28f4ca3d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae279d4f74c3221bcf0bf0d4f58a3e9f" id="r_aae279d4f74c3221bcf0bf0d4f58a3e9f"><td class="memItemLeft" align="right" valign="top">std::condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aae279d4f74c3221bcf0bf0d4f58a3e9f">cv_</a></td></tr>
+<tr class="separator:aae279d4f74c3221bcf0bf0d4f58a3e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d3f15d4573837c57fdf9ae9f1be1427" id="r_a3d3f15d4573837c57fdf9ae9f1be1427"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="../../da/d96/classkcenon_1_1monitoring_1_1health__check.html">health_check</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a></td></tr>
+<tr class="separator:a3d3f15d4573837c57fdf9ae9f1be1427"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01fd7e0c09cce70103f5b48f6a88d230" id="r_a01fd7e0c09cce70103f5b48f6a88d230"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::function&lt; bool()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a></td></tr>
 <tr class="separator:a01fd7e0c09cce70103f5b48f6a88d230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab306d1d7e064ae8f24fa27a7a6bc2a06" id="r_ab306d1d7e064ae8f24fa27a7a6bc2a06"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a></td></tr>
+<tr class="separator:ab306d1d7e064ae8f24fa27a7a6bc2a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b2f4aa15ca9d6d17e5f67ab33560c3" id="r_a36b2f4aa15ca9d6d17e5f67ab33560c3"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">running_</a> {false}</td></tr>
+<tr class="separator:a36b2f4aa15ca9d6d17e5f67ab33560c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc28da70590b0b43531e222719ee792c" id="r_adc28da70590b0b43531e222719ee792c"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adc28da70590b0b43531e222719ee792c">monitor_thread_</a></td></tr>
+<tr class="separator:adc28da70590b0b43531e222719ee792c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Basic health monitor interface - stub implementation. </p>
+<div class="textblock"><p>Health monitor with dependency management and statistics. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00099">99</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00490">490</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa1b0494d902b8250aa39541d52afe80a" name="aa1b0494d902b8250aa39541d52afe80a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1b0494d902b8250aa39541d52afe80a">&#9670;&#160;</a></span>health_monitor() <span class="overload">[1/2]</span></h2>
@@ -202,14 +265,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00102">102</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  102</span>: <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3c0a3a05b2bfc44a8d6fc4274f541614">config_</a>(config) {}</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a3c0a3a05b2bfc44a8d6fc4274f541614"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3c0a3a05b2bfc44a8d6fc4274f541614">kcenon::monitoring::health_monitor::config_</a></div><div class="ttdeci">health_monitor_config config_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00182">health_monitor.h:182</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00493">493</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  493</span>: <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3c0a3a05b2bfc44a8d6fc4274f541614">config_</a>(config) {}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a3c0a3a05b2bfc44a8d6fc4274f541614"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3c0a3a05b2bfc44a8d6fc4274f541614">kcenon::monitoring::health_monitor::config_</a></div><div class="ttdeci">health_monitor_config config_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00717">health_monitor.h:717</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aba9c813c2aedb99e4aeaf009f0120fdd" name="aba9c813c2aedb99e4aeaf009f0120fdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba9c813c2aedb99e4aeaf009f0120fdd">&#9670;&#160;</a></span>~health_monitor()</h2>
+<a id="aa9f3064fba6d924938fce5db66021b4f" name="aa9f3064fba6d924938fce5db66021b4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9f3064fba6d924938fce5db66021b4f">&#9670;&#160;</a></span>~health_monitor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,16 +289,32 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00494">494</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  494</span>{ <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adf4ee123f7b655273dc76607c53c6d29">stop</a>(); }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_adf4ee123f7b655273dc76607c53c6d29"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adf4ee123f7b655273dc76607c53c6d29">kcenon::monitoring::health_monitor::stop</a></div><div class="ttdeci">result_void stop()</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00571">health_monitor.h:571</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_aa9f3064fba6d924938fce5db66021b4f_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_aa9f3064fba6d924938fce5db66021b4f_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_aa9f3064fba6d924938fce5db66021b4f_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_aa9f3064fba6d924938fce5db66021b4f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,195,60"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adf4ee123f7b655273dc76607c53c6d29" title=" " alt="" coords="243,13,408,53"/>
+<area shape="poly" title=" " alt="" coords="195,30,229,30,229,35,195,35"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="456,13,615,53"/>
+<area shape="poly" title=" " alt="" coords="408,30,443,30,443,35,408,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a13ffc990bedcfa520b338cbd47495847" name="a13ffc990bedcfa520b338cbd47495847"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13ffc990bedcfa520b338cbd47495847">&#9670;&#160;</a></span>check_all()</h2>
+<a id="a82bee2b6a48890b416dc1a8126728994" name="a82bee2b6a48890b416dc1a8126728994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82bee2b6a48890b416dc1a8126728994">&#9670;&#160;</a></span>add_dependency()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -244,7 +323,159 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unordered_map&lt; std::string, <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt; kcenon::monitoring::health_monitor::check_all </td>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt; kcenon::monitoring::health_monitor::add_dependency </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>dependent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>dependency</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00554">554</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  554</span>                                                                                         {</div>
+<div class="line"><span class="lineno">  555</span>        std::lock_guard&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  556</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a612d233919383dd90f7fdfdea3b1e2f9">dependency_graph_</a>.<a class="code hl_function" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#a77a5e538aefa7f9c02f0141c82520a6a">add_dependency</a>(dependent, dependency);</div>
+<div class="line"><span class="lineno">  557</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__dependency__graph_html_a77a5e538aefa7f9c02f0141c82520a6a"><div class="ttname"><a href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#a77a5e538aefa7f9c02f0141c82520a6a">kcenon::monitoring::health_dependency_graph::add_dependency</a></div><div class="ttdeci">result&lt; bool &gt; add_dependency(const std::string &amp;dependent, const std::string &amp;dependency)</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00249">health_monitor.h:249</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a612d233919383dd90f7fdfdea3b1e2f9"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a612d233919383dd90f7fdfdea3b1e2f9">kcenon::monitoring::health_monitor::dependency_graph_</a></div><div class="ttdeci">health_dependency_graph dependency_graph_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00719">health_monitor.h:719</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_ab2bd98d1b347292ba9f410af7cadc380"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">kcenon::monitoring::health_monitor::mutex_</a></div><div class="ttdeci">std::shared_mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00721">health_monitor.h:721</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a82bee2b6a48890b416dc1a8126728994_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a82bee2b6a48890b416dc1a8126728994_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a82bee2b6a48890b416dc1a8126728994_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a82bee2b6a48890b416dc1a8126728994_cgraph">
+<area shape="rect" title=" " alt="" coords="5,38,167,93"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#a77a5e538aefa7f9c02f0141c82520a6a" title=" " alt="" coords="215,38,399,93"/>
+<area shape="poly" title=" " alt="" coords="167,63,201,63,201,68,167,68"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="453,5,601,45"/>
+<area shape="poly" title=" " alt="" coords="399,46,439,39,440,44,400,51"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#a286e02ef975b5f338d1c5876d2ba0e6d" title=" " alt="" coords="447,69,608,139"/>
+<area shape="poly" title=" " alt="" coords="400,79,434,85,433,90,399,84"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af3c6243491ecac6699400b76ee0d8d39" name="af3c6243491ecac6699400b76ee0d8d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3c6243491ecac6699400b76ee0d8d39">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt; kcenon::monitoring::health_monitor::check </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00526">526</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  526</span>                                                             {</div>
+<div class="line"><span class="lineno">  527</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  528</span> </div>
+<div class="line"><span class="lineno">  529</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.find(name);</div>
+<div class="line"><span class="lineno">  530</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.end()) {</div>
+<div class="line"><span class="lineno">  531</span>            <span class="keywordflow">return</span> make_error&lt;health_check_result&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  532</span>                                                   <span class="stringliteral">&quot;Check &#39;&quot;</span> + name + <span class="stringliteral">&quot;&#39; not found&quot;</span>);</div>
+<div class="line"><span class="lineno">  533</span>        }</div>
+<div class="line"><span class="lineno">  534</span> </div>
+<div class="line"><span class="lineno">  535</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a612d233919383dd90f7fdfdea3b1e2f9">dependency_graph_</a>.<a class="code hl_function" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499">check_with_dependencies</a>(name);</div>
+<div class="line"><span class="lineno">  536</span>        <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923">update_stats</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><span class="lineno">  537</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a>[name] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  538</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><span class="lineno">  539</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__dependency__graph_html_aac97159ff26aadd9c2d8bffa38320499"><div class="ttname"><a href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499">kcenon::monitoring::health_dependency_graph::check_with_dependencies</a></div><div class="ttdeci">health_check_result check_with_dependencies(const std::string &amp;name)</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00336">health_monitor.h:336</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a3d3f15d4573837c57fdf9ae9f1be1427"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">kcenon::monitoring::health_monitor::checks_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::shared_ptr&lt; health_check &gt; &gt; checks_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00726">health_monitor.h:726</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a892cb00ee88bfe5eee5b2e33bca7d923"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923">kcenon::monitoring::health_monitor::update_stats</a></div><div class="ttdeci">void update_stats(const health_check_result &amp;result)</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00700">health_monitor.h:700</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_ab306d1d7e064ae8f24fa27a7a6bc2a06"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">kcenon::monitoring::health_monitor::cached_results_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, health_check_result &gt; cached_results_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00728">health_monitor.h:728</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a07bdd48e145c9623f4b4443f98e4700c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">kcenon::monitoring::make_success</a></div><div class="ttdeci">common::Result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00155">result_types.h:155</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">kcenon::monitoring::monitoring_error_code::not_found</a></div><div class="ttdeci">@ not_found</div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_cgraph">
+<area shape="rect" title=" " alt="" coords="5,123,180,163"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499" title=" " alt="" coords="228,44,472,99"/>
+<area shape="poly" title=" " alt="" coords="164,121,238,100,240,105,166,126"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="276,123,424,163"/>
+<area shape="poly" title=" " alt="" coords="180,141,262,141,262,146,180,146"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923" title=" " alt="" coords="239,187,461,227"/>
+<area shape="poly" title=" " alt="" coords="175,161,257,181,255,187,173,166"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ac4411862126be50fd55a4600168d6aa9" title=" " alt="" coords="520,5,680,60"/>
+<area shape="poly" title=" " alt="" coords="472,50,506,44,507,50,473,55"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1" title=" " alt="" coords="520,84,680,139"/>
+<area shape="poly" title=" " alt="" coords="473,88,507,94,506,99,472,93"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_af3c6243491ecac6699400b76ee0d8d39_icgraph">
+<area shape="rect" title=" " alt="" coords="707,69,881,109"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a7ac56fffab98a64f7ac0038d0786cd6c" title=" " alt="" coords="443,5,642,45"/>
+<area shape="poly" title=" " alt="" coords="701,68,621,48,622,43,702,63"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d42955e070f8b51d807d8915adbbc15" title=" " alt="" coords="451,69,634,109"/>
+<area shape="poly" title=" " alt="" coords="693,92,634,92,634,87,693,87"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a2da7f9a85cdb991c756525cfb3dd10a9" title=" " alt="" coords="427,141,659,181"/>
+<area shape="poly" title=" " alt="" coords="711,116,614,144,613,139,709,111"/>
+<area shape="rect" href="../../de/da5/test__stress__performance_8cpp.html#a6a8ace21bd9bec4ff3d0913957a9b6e5" title=" " alt="" coords="265,13,334,38"/>
+<area shape="poly" title=" " alt="" coords="429,28,334,28,334,23,429,23"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36343510296556c7358d42a3be70e7df" title=" " alt="" coords="220,62,379,117"/>
+<area shape="poly" title=" " alt="" coords="438,92,379,92,379,87,438,87"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a55bc76eb761c2732e7ab802a23869dcc" title=" " alt="" coords="5,69,172,109"/>
+<area shape="poly" title=" " alt="" coords="206,92,172,92,172,87,206,87"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a692c06c3076ca753e03b2f0e6a561bf4" title=" " alt="" coords="223,141,376,181"/>
+<area shape="poly" title=" " alt="" coords="413,164,376,164,376,159,413,159"/>
+<area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html#a682e953c7e7637be353153a0ee81b9e1" title=" " alt="" coords="265,206,334,231"/>
+<area shape="poly" title=" " alt="" coords="445,187,335,213,334,208,443,182"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="61,149,116,174"/>
+<area shape="poly" title=" " alt="" coords="209,164,116,164,116,159,209,159"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7ac56fffab98a64f7ac0038d0786cd6c" name="a7ac56fffab98a64f7ac0038d0786cd6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac56fffab98a64f7ac0038d0786cd6c">&#9670;&#160;</a></span>check_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt; std::string, <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &gt; kcenon::monitoring::health_monitor::check_all </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -252,41 +483,61 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00122">122</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  122</span>                                                                         {</div>
-<div class="line"><span class="lineno">  123</span>        std::unordered_map&lt;std::string, health_check_result&gt; results;</div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, check] : <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae81d2c1c855ea4089ce706d106dc0790">checks_</a>) {</div>
-<div class="line"><span class="lineno">  125</span>            results[name] = check-&gt;execute();</div>
-<div class="line"><span class="lineno">  126</span>        }</div>
-<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">return</span> results;</div>
-<div class="line"><span class="lineno">  128</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_ae81d2c1c855ea4089ce706d106dc0790"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae81d2c1c855ea4089ce706d106dc0790">kcenon::monitoring::health_monitor::checks_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::shared_ptr&lt; functional_health_check &gt; &gt; checks_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00183">health_monitor.h:183</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00541">541</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  541</span>                                                                 {</div>
+<div class="line"><span class="lineno">  542</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  543</span> </div>
+<div class="line"><span class="lineno">  544</span>        std::unordered_map&lt;std::string, health_check_result&gt; results;</div>
+<div class="line"><span class="lineno">  545</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>] : <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>) {</div>
+<div class="line"><span class="lineno">  546</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>-&gt;check();</div>
+<div class="line"><span class="lineno">  547</span>            results[name] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  548</span>            <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a>[name] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  549</span>            <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923">update_stats</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><span class="lineno">  550</span>        }</div>
+<div class="line"><span class="lineno">  551</span>        <span class="keywordflow">return</span> results;</div>
+<div class="line"><span class="lineno">  552</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_af3c6243491ecac6699400b76ee0d8d39"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">kcenon::monitoring::health_monitor::check</a></div><div class="ttdeci">result&lt; health_check_result &gt; check(const std::string &amp;name)</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00526">health_monitor.h:526</a></div></div>
 </div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,204,197"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39" title=" " alt="" coords="252,126,427,166"/>
+<area shape="poly" title=" " alt="" coords="204,161,238,157,239,162,204,166"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923" title=" " alt="" coords="486,187,707,227"/>
+<area shape="poly" title=" " alt="" coords="205,180,473,197,472,202,204,185"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499" title=" " alt="" coords="475,44,719,99"/>
+<area shape="poly" title=" " alt="" coords="408,123,488,100,490,105,410,129"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="523,123,671,163"/>
+<area shape="poly" title=" " alt="" coords="427,142,509,142,509,147,427,148"/>
+<area shape="poly" title=" " alt="" coords="425,163,500,182,498,187,423,169"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ac4411862126be50fd55a4600168d6aa9" title=" " alt="" coords="767,5,927,60"/>
+<area shape="poly" title=" " alt="" coords="718,50,753,44,753,50,719,55"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1" title=" " alt="" coords="767,84,927,139"/>
+<area shape="poly" title=" " alt="" coords="719,88,753,94,753,99,718,93"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a13ffc990bedcfa520b338cbd47495847_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a13ffc990bedcfa520b338cbd47495847_icgraph" alt=""/></div>
-<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a13ffc990bedcfa520b338cbd47495847_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a13ffc990bedcfa520b338cbd47495847_icgraph">
-<area shape="rect" title=" " alt="" coords="236,127,435,167"/>
-<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a194b429164bba28b6402fee07ead74ff" title=" " alt="" coords="17,5,176,60"/>
-<area shape="poly" title=" " alt="" coords="284,123,187,74,163,63,165,58,189,69,286,118"/>
-<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adc4e2983fa110e9261a898d906f9a804" title=" " alt="" coords="17,84,176,139"/>
-<area shape="poly" title=" " alt="" coords="222,133,176,126,177,121,223,128"/>
-<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a406026be31b0daef34e3b37026addbd6" title=" " alt="" coords="5,163,188,203"/>
-<area shape="poly" title=" " alt="" coords="223,167,189,172,188,167,222,162"/>
-<area shape="rect" href="../../de/da5/test__stress__performance_8cpp.html#a6a8ace21bd9bec4ff3d0913957a9b6e5" title=" " alt="" coords="62,228,131,253"/>
-<area shape="poly" title=" " alt="" coords="284,176,189,218,133,235,131,230,187,213,282,171"/>
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a7ac56fffab98a64f7ac0038d0786cd6c_icgraph">
+<area shape="rect" title=" " alt="" coords="123,5,321,45"/>
+<area shape="rect" href="../../de/da5/test__stress__performance_8cpp.html#a6a8ace21bd9bec4ff3d0913957a9b6e5" title=" " alt="" coords="5,13,75,38"/>
+<area shape="poly" title=" " alt="" coords="109,28,75,28,75,23,109,23"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a77cb754d5cca34fb5f0c4e7b99188fc4" name="a77cb754d5cca34fb5f0c4e7b99188fc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77cb754d5cca34fb5f0c4e7b99188fc4">&#9670;&#160;</a></span>check_health()</h2>
+<a id="a47f049117bb9cf648317e3207d8864f2" name="a47f049117bb9cf648317e3207d8864f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47f049117bb9cf648317e3207d8864f2">&#9670;&#160;</a></span>check_health()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -295,7 +546,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> kcenon::monitoring::health_monitor::check_health </td>
+          <td class="memname"><a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> kcenon::monitoring::health_monitor::check_health </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -303,26 +554,25 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00105">105</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  105</span>                                                     {</div>
-<div class="line"><span class="lineno">  106</span>        health_check_result <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
-<div class="line"><span class="lineno">  107</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a>;</div>
-<div class="line"><span class="lineno">  108</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.message = <span class="stringliteral">&quot;Health monitor stub - always healthy&quot;</span>;</div>
-<div class="line"><span class="lineno">  109</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.timestamp = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
-<div class="line"><span class="lineno">  111</span>    }</div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00680">680</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  680</span>                                             {</div>
+<div class="line"><span class="lineno">  681</span>        health_check_result <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  682</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a>;</div>
+<div class="line"><span class="lineno">  683</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.message = <span class="stringliteral">&quot;Health monitor operational&quot;</span>;</div>
+<div class="line"><span class="lineno">  684</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.timestamp = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  685</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  686</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">kcenon::monitoring::health_status::healthy</a></div><div class="ttdeci">@ healthy</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a77cb754d5cca34fb5f0c4e7b99188fc4_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a77cb754d5cca34fb5f0c4e7b99188fc4_icgraph" alt=""/></div>
-<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a77cb754d5cca34fb5f0c4e7b99188fc4_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a77cb754d5cca34fb5f0c4e7b99188fc4_icgraph">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a47f049117bb9cf648317e3207d8864f2_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a47f049117bb9cf648317e3207d8864f2_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a47f049117bb9cf648317e3207d8864f2_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a47f049117bb9cf648317e3207d8864f2_icgraph">
 <area shape="rect" title=" " alt="" coords="123,16,297,71"/>
 <area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html#a44e20b27be624999bd30ba9315acf094" title=" " alt="" coords="5,5,75,31"/>
 <area shape="poly" title=" " alt="" coords="109,31,74,26,75,20,110,26"/>
@@ -333,8 +583,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a194b429164bba28b6402fee07ead74ff" name="a194b429164bba28b6402fee07ead74ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a194b429164bba28b6402fee07ead74ff">&#9670;&#160;</a></span>get_health_report()</h2>
+<a id="ae67f65328db6461ea8dbb6f63c9ededa" name="ae67f65328db6461ea8dbb6f63c9ededa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae67f65328db6461ea8dbb6f63c9ededa">&#9670;&#160;</a></span>get_health_report()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,7 +593,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::string kcenon::monitoring::health_monitor::get_health_report </td>
+          <td class="memname">std::string kcenon::monitoring::health_monitor::get_health_report </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -351,45 +601,50 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00165">165</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  165</span>                                          {</div>
-<div class="line"><span class="lineno">  166</span>        std::string report = <span class="stringliteral">&quot;Health Report:\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  167</span>        <span class="keyword">auto</span> results = <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847">check_all</a>();</div>
-<div class="line"><span class="lineno">  168</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>] : results) {</div>
-<div class="line"><span class="lineno">  169</span>            report += <span class="stringliteral">&quot;  &quot;</span> + name + <span class="stringliteral">&quot;: &quot;</span>;</div>
-<div class="line"><span class="lineno">  170</span>            <span class="keywordflow">switch</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status) {</div>
-<div class="line"><span class="lineno">  171</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a>: report += <span class="stringliteral">&quot;HEALTHY&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  172</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">health_status::degraded</a>: report += <span class="stringliteral">&quot;DEGRADED&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  173</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>: report += <span class="stringliteral">&quot;UNHEALTHY&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  174</span>                <span class="keywordflow">default</span>: report += <span class="stringliteral">&quot;UNKNOWN&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  175</span>            }</div>
-<div class="line"><span class="lineno">  176</span>            report += <span class="stringliteral">&quot; - &quot;</span> + <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.message + <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  177</span>        }</div>
-<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">return</span> report;</div>
-<div class="line"><span class="lineno">  179</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a13ffc990bedcfa520b338cbd47495847"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847">kcenon::monitoring::health_monitor::check_all</a></div><div class="ttdeci">virtual std::unordered_map&lt; std::string, health_check_result &gt; check_all()</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00122">health_monitor.h:122</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00648">648</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  648</span>                                  {</div>
+<div class="line"><span class="lineno">  649</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  650</span> </div>
+<div class="line"><span class="lineno">  651</span>        std::string report = <span class="stringliteral">&quot;Health Report:\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  652</span> </div>
+<div class="line"><span class="lineno">  653</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a>.empty()) {</div>
+<div class="line"><span class="lineno">  654</span>            report += <span class="stringliteral">&quot;  No health checks have been performed yet.\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  655</span>            <span class="keywordflow">return</span> report;</div>
+<div class="line"><span class="lineno">  656</span>        }</div>
+<div class="line"><span class="lineno">  657</span> </div>
+<div class="line"><span class="lineno">  658</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>] : <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a>) {</div>
+<div class="line"><span class="lineno">  659</span>            report += <span class="stringliteral">&quot;  &quot;</span> + name + <span class="stringliteral">&quot;: &quot;</span>;</div>
+<div class="line"><span class="lineno">  660</span>            <span class="keywordflow">switch</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status) {</div>
+<div class="line"><span class="lineno">  661</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a>:</div>
+<div class="line"><span class="lineno">  662</span>                    report += <span class="stringliteral">&quot;HEALTHY&quot;</span>;</div>
+<div class="line"><span class="lineno">  663</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  664</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">health_status::degraded</a>:</div>
+<div class="line"><span class="lineno">  665</span>                    report += <span class="stringliteral">&quot;DEGRADED&quot;</span>;</div>
+<div class="line"><span class="lineno">  666</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  667</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>:</div>
+<div class="line"><span class="lineno">  668</span>                    report += <span class="stringliteral">&quot;UNHEALTHY&quot;</span>;</div>
+<div class="line"><span class="lineno">  669</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  670</span>                <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  671</span>                    report += <span class="stringliteral">&quot;UNKNOWN&quot;</span>;</div>
+<div class="line"><span class="lineno">  672</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  673</span>            }</div>
+<div class="line"><span class="lineno">  674</span>            report += <span class="stringliteral">&quot; - &quot;</span> + <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.message + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  675</span>        }</div>
+<div class="line"><span class="lineno">  676</span> </div>
+<div class="line"><span class="lineno">  677</span>        <span class="keywordflow">return</span> report;</div>
+<div class="line"><span class="lineno">  678</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">kcenon::monitoring::health_status::degraded</a></div><div class="ttdeci">@ degraded</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">kcenon::monitoring::health_status::unhealthy</a></div><div class="ttdeci">@ unhealthy</div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a194b429164bba28b6402fee07ead74ff_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a194b429164bba28b6402fee07ead74ff_cgraph" alt=""/></div>
-<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a194b429164bba28b6402fee07ead74ff_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a194b429164bba28b6402fee07ead74ff_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,164,60"/>
-<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847" title=" " alt="" coords="212,13,411,53"/>
-<area shape="poly" title=" " alt="" coords="164,30,198,30,198,35,164,35"/>
-</map>
-</div>
-
+</div><!-- fragment -->
 </div>
 </div>
-<a id="adc4e2983fa110e9261a898d906f9a804" name="adc4e2983fa110e9261a898d906f9a804"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc4e2983fa110e9261a898d906f9a804">&#9670;&#160;</a></span>get_overall_status()</h2>
+<a id="aa412adba8d22273564bd7c9e794fd5d5" name="aa412adba8d22273564bd7c9e794fd5d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa412adba8d22273564bd7c9e794fd5d5">&#9670;&#160;</a></span>get_overall_status()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -398,7 +653,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065">health_status</a> kcenon::monitoring::health_monitor::get_overall_status </td>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065">health_status</a> kcenon::monitoring::health_monitor::get_overall_status </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -406,44 +661,40 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00130">130</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  130</span>                                               {</div>
-<div class="line"><span class="lineno">  131</span>        <span class="keyword">auto</span> results = <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847">check_all</a>();</div>
-<div class="line"><span class="lineno">  132</span>        <span class="keywordtype">bool</span> has_unhealthy = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordtype">bool</span> has_degraded = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  134</span> </div>
-<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>] : results) {</div>
-<div class="line"><span class="lineno">  136</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>) {</div>
-<div class="line"><span class="lineno">  137</span>                has_unhealthy = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  138</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">health_status::degraded</a>) {</div>
-<div class="line"><span class="lineno">  139</span>                has_degraded = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  140</span>            }</div>
-<div class="line"><span class="lineno">  141</span>        }</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">if</span> (has_unhealthy) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>;</div>
-<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">if</span> (has_degraded) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">health_status::degraded</a>;</div>
-<div class="line"><span class="lineno">  145</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a>;</div>
-<div class="line"><span class="lineno">  146</span>    }</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_adc4e2983fa110e9261a898d906f9a804_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adc4e2983fa110e9261a898d906f9a804_cgraph" alt=""/></div>
-<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adc4e2983fa110e9261a898d906f9a804_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adc4e2983fa110e9261a898d906f9a804_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,164,60"/>
-<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847" title=" " alt="" coords="212,13,411,53"/>
-<area shape="poly" title=" " alt="" coords="164,30,198,30,198,35,164,35"/>
-</map>
-</div>
-
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00620">620</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  620</span>                                       {</div>
+<div class="line"><span class="lineno">  621</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  622</span> </div>
+<div class="line"><span class="lineno">  623</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.empty()) {</div>
+<div class="line"><span class="lineno">  624</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a>.empty() ? <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a> : <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065aad921d60486366258809553a3db49a4a">health_status::unknown</a>;</div>
+<div class="line"><span class="lineno">  625</span>        }</div>
+<div class="line"><span class="lineno">  626</span> </div>
+<div class="line"><span class="lineno">  627</span>        <span class="keywordtype">bool</span> has_unhealthy = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  628</span>        <span class="keywordtype">bool</span> has_degraded = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  629</span> </div>
+<div class="line"><span class="lineno">  630</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>] : <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a>) {</div>
+<div class="line"><span class="lineno">  631</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>) {</div>
+<div class="line"><span class="lineno">  632</span>                has_unhealthy = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  633</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">health_status::degraded</a>) {</div>
+<div class="line"><span class="lineno">  634</span>                has_degraded = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  635</span>            }</div>
+<div class="line"><span class="lineno">  636</span>        }</div>
+<div class="line"><span class="lineno">  637</span> </div>
+<div class="line"><span class="lineno">  638</span>        <span class="keywordflow">if</span> (has_unhealthy) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>;</div>
+<div class="line"><span class="lineno">  639</span>        <span class="keywordflow">if</span> (has_degraded) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">health_status::degraded</a>;</div>
+<div class="line"><span class="lineno">  640</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a>;</div>
+<div class="line"><span class="lineno">  641</span>    }</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_af2ff9ab97db453afdff0044149c54065aad921d60486366258809553a3db49a4a"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065aad921d60486366258809553a3db49a4a">kcenon::monitoring::health_status::unknown</a></div><div class="ttdeci">@ unknown</div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="ad5c28e470e58318fbfcd5808214c7980" name="ad5c28e470e58318fbfcd5808214c7980"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5c28e470e58318fbfcd5808214c7980">&#9670;&#160;</a></span>is_running()</h2>
+<a id="ad0983184d3d0ede32cbaaa4b481e9099" name="ad0983184d3d0ede32cbaaa4b481e9099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0983184d3d0ede32cbaaa4b481e9099">&#9670;&#160;</a></span>get_stats()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -452,7 +703,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool kcenon::monitoring::health_monitor::is_running </td>
+          <td class="memname"><a class="el" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html">health_monitor_stats</a> kcenon::monitoring::health_monitor::get_stats </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -460,18 +711,22 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00115">115</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  115</span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00643">643</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  643</span>                                           {</div>
+<div class="line"><span class="lineno">  644</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  645</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>;</div>
+<div class="line"><span class="lineno">  646</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_afdf13b2c605039c98161ce3258460158"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">kcenon::monitoring::health_monitor::stats_</a></div><div class="ttdeci">health_monitor_stats stats_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00718">health_monitor.h:718</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a406026be31b0daef34e3b37026addbd6" name="a406026be31b0daef34e3b37026addbd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a406026be31b0daef34e3b37026addbd6">&#9670;&#160;</a></span>refresh()</h2>
+<a id="ac1953ee1610b7f0b6b62a0b8c791b945" name="ac1953ee1610b7f0b6b62a0b8c791b945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1953ee1610b7f0b6b62a0b8c791b945">&#9670;&#160;</a></span>is_running()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,7 +735,38 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void kcenon::monitoring::health_monitor::refresh </td>
+          <td class="memname">bool kcenon::monitoring::health_monitor::is_running </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00588">588</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  588</span>                            {</div>
+<div class="line"><span class="lineno">  589</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">running_</a>.load();</div>
+<div class="line"><span class="lineno">  590</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a36b2f4aa15ca9d6d17e5f67ab33560c3"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">kcenon::monitoring::health_monitor::running_</a></div><div class="ttdeci">std::atomic&lt; bool &gt; running_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00730">health_monitor.h:730</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3d42955e070f8b51d807d8915adbbc15" name="a3d42955e070f8b51d807d8915adbbc15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d42955e070f8b51d807d8915adbbc15">&#9670;&#160;</a></span>refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kcenon::monitoring::health_monitor::refresh </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -488,40 +774,76 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00152">152</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  152</span>                           {</div>
-<div class="line"><span class="lineno">  153</span>        <span class="comment">// Trigger recovery handlers for failed checks</span></div>
-<div class="line"><span class="lineno">  154</span>        <span class="keyword">auto</span> results = <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847">check_all</a>();</div>
-<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>] : results) {</div>
-<div class="line"><span class="lineno">  156</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>) {</div>
-<div class="line"><span class="lineno">  157</span>                <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a>.find(name);</div>
-<div class="line"><span class="lineno">  158</span>                <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a>.end()) {</div>
-<div class="line"><span class="lineno">  159</span>                    it-&gt;second(); <span class="comment">// Execute recovery handler</span></div>
-<div class="line"><span class="lineno">  160</span>                }</div>
-<div class="line"><span class="lineno">  161</span>            }</div>
-<div class="line"><span class="lineno">  162</span>        }</div>
-<div class="line"><span class="lineno">  163</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a01fd7e0c09cce70103f5b48f6a88d230"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">kcenon::monitoring::health_monitor::recovery_handlers_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::function&lt; bool()&gt; &gt; recovery_handlers_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00184">health_monitor.h:184</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00592">592</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  592</span>                   {</div>
+<div class="line"><span class="lineno">  593</span>        std::shared_lock&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  594</span> </div>
+<div class="line"><span class="lineno">  595</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>] : <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>) {</div>
+<div class="line"><span class="lineno">  596</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>-&gt;check();</div>
+<div class="line"><span class="lineno">  597</span>            <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab306d1d7e064ae8f24fa27a7a6bc2a06">cached_results_</a>[name] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  598</span>            <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923">update_stats</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
+<div class="line"><span class="lineno">  599</span> </div>
+<div class="line"><span class="lineno">  600</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>) {</div>
+<div class="line"><span class="lineno">  601</span>                <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a>.find(name);</div>
+<div class="line"><span class="lineno">  602</span>                <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a>.end() &amp;&amp; <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3c0a3a05b2bfc44a8d6fc4274f541614">config_</a>.<a class="code hl_variable" href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html#aac9cac749b95373f4da45a7cc2c9c151">enable_auto_recovery</a>) {</div>
+<div class="line"><span class="lineno">  603</span>                    <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>.<a class="code hl_variable" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#ab429450647d4ffe84ca8b0b93718004f">recovery_attempts</a>++;</div>
+<div class="line"><span class="lineno">  604</span>                    <span class="keywordflow">if</span> (it-&gt;second()) {</div>
+<div class="line"><span class="lineno">  605</span>                        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>.<a class="code hl_variable" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#a6355574ce71d3c6d48f11262effc4bcf">successful_recoveries</a>++;</div>
+<div class="line"><span class="lineno">  606</span>                    }</div>
+<div class="line"><span class="lineno">  607</span>                }</div>
+<div class="line"><span class="lineno">  608</span>            }</div>
+<div class="line"><span class="lineno">  609</span>        }</div>
+<div class="line"><span class="lineno">  610</span> </div>
+<div class="line"><span class="lineno">  611</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>.<a class="code hl_variable" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#a5629fdc9f2672063416a5b904fa49d16">last_check_time</a> = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  612</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a01fd7e0c09cce70103f5b48f6a88d230"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">kcenon::monitoring::health_monitor::recovery_handlers_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::function&lt; bool()&gt; &gt; recovery_handlers_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00727">health_monitor.h:727</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__config_html_aac9cac749b95373f4da45a7cc2c9c151"><div class="ttname"><a href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html#aac9cac749b95373f4da45a7cc2c9c151">kcenon::monitoring::health_monitor_config::enable_auto_recovery</a></div><div class="ttdeci">bool enable_auto_recovery</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00065">health_monitor.h:65</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__stats_html_a5629fdc9f2672063416a5b904fa49d16"><div class="ttname"><a href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#a5629fdc9f2672063416a5b904fa49d16">kcenon::monitoring::health_monitor_stats::last_check_time</a></div><div class="ttdeci">std::chrono::system_clock::time_point last_check_time</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00080">health_monitor.h:80</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__stats_html_a6355574ce71d3c6d48f11262effc4bcf"><div class="ttname"><a href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#a6355574ce71d3c6d48f11262effc4bcf">kcenon::monitoring::health_monitor_stats::successful_recoveries</a></div><div class="ttdeci">size_t successful_recoveries</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00079">health_monitor.h:79</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__stats_html_ab429450647d4ffe84ca8b0b93718004f"><div class="ttname"><a href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#ab429450647d4ffe84ca8b0b93718004f">kcenon::monitoring::health_monitor_stats::recovery_attempts</a></div><div class="ttdeci">size_t recovery_attempts</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00078">health_monitor.h:78</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a406026be31b0daef34e3b37026addbd6_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a406026be31b0daef34e3b37026addbd6_cgraph" alt=""/></div>
-<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a406026be31b0daef34e3b37026addbd6_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a406026be31b0daef34e3b37026addbd6_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,188,45"/>
-<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a13ffc990bedcfa520b338cbd47495847" title=" " alt="" coords="236,5,435,45"/>
-<area shape="poly" title=" " alt="" coords="188,23,223,23,223,28,188,28"/>
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,188,197"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39" title=" " alt="" coords="236,126,411,166"/>
+<area shape="poly" title=" " alt="" coords="188,162,222,157,223,162,189,167"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923" title=" " alt="" coords="470,187,691,227"/>
+<area shape="poly" title=" " alt="" coords="189,180,456,197,456,202,188,185"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499" title=" " alt="" coords="459,44,703,99"/>
+<area shape="poly" title=" " alt="" coords="392,123,472,100,474,105,394,129"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="507,123,655,163"/>
+<area shape="poly" title=" " alt="" coords="411,142,493,142,493,147,411,148"/>
+<area shape="poly" title=" " alt="" coords="409,163,484,182,482,187,407,169"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ac4411862126be50fd55a4600168d6aa9" title=" " alt="" coords="751,5,911,60"/>
+<area shape="poly" title=" " alt="" coords="702,50,737,44,737,50,703,55"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1" title=" " alt="" coords="751,84,911,139"/>
+<area shape="poly" title=" " alt="" coords="703,88,737,94,737,99,702,93"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a3d42955e070f8b51d807d8915adbbc15_icgraph">
+<area shape="rect" title=" " alt="" coords="427,13,609,53"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36343510296556c7358d42a3be70e7df" title=" " alt="" coords="220,5,379,60"/>
+<area shape="poly" title=" " alt="" coords="413,35,379,35,379,30,413,30"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a55bc76eb761c2732e7ab802a23869dcc" title=" " alt="" coords="5,13,172,53"/>
+<area shape="poly" title=" " alt="" coords="206,35,172,35,172,30,206,30"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a97c77ae75509aa17634024872c25433d" name="a97c77ae75509aa17634024872c25433d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97c77ae75509aa17634024872c25433d">&#9670;&#160;</a></span>register_check()</h2>
+<a id="a2da7f9a85cdb991c756525cfb3dd10a9" name="a2da7f9a85cdb991c756525cfb3dd10a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2da7f9a85cdb991c756525cfb3dd10a9">&#9670;&#160;</a></span>register_check()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -530,7 +852,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void kcenon::monitoring::health_monitor::register_check </td>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt; kcenon::monitoring::health_monitor::register_check </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -538,7 +860,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="../../d7/dfb/classkcenon_1_1monitoring_1_1functional__health__check.html">functional_health_check</a> &gt;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="../../da/d96/classkcenon_1_1monitoring_1_1health__check.html">health_check</a> &gt;&#160;</td>
           <td class="paramname"><em>check</em>&#160;</td>
         </tr>
         <tr>
@@ -549,20 +871,59 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00118">118</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  118</span>                                                                                                     {</div>
-<div class="line"><span class="lineno">  119</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae81d2c1c855ea4089ce706d106dc0790">checks_</a>[name] = check;</div>
-<div class="line"><span class="lineno">  120</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00496">496</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  496</span>                                                                                          {</div>
+<div class="line"><span class="lineno">  497</span>        std::lock_guard&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  498</span> </div>
+<div class="line"><span class="lineno">  499</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.find(name) != <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.end()) {</div>
+<div class="line"><span class="lineno">  500</span>            <span class="keywordflow">return</span> make_error&lt;bool&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>,</div>
+<div class="line"><span class="lineno">  501</span>                                   <span class="stringliteral">&quot;Check &#39;&quot;</span> + name + <span class="stringliteral">&quot;&#39; already registered&quot;</span>);</div>
+<div class="line"><span class="lineno">  502</span>        }</div>
+<div class="line"><span class="lineno">  503</span> </div>
+<div class="line"><span class="lineno">  504</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>[name] = std::move(<a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39">check</a>);</div>
+<div class="line"><span class="lineno">  505</span>        <span class="keyword">auto</span> graph_result = <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a612d233919383dd90f7fdfdea3b1e2f9">dependency_graph_</a>.<a class="code hl_function" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#a0aa111cd92f27ca091742c92be00a219">add_node</a>(name, <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>[name]);</div>
+<div class="line"><span class="lineno">  506</span>        <span class="keywordflow">if</span> (graph_result.is_err()) {</div>
+<div class="line"><span class="lineno">  507</span>            <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.erase(name);</div>
+<div class="line"><span class="lineno">  508</span>            <span class="keywordflow">return</span> common::Result&lt;bool&gt;::err(graph_result.error());</div>
+<div class="line"><span class="lineno">  509</span>        }</div>
+<div class="line"><span class="lineno">  510</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  511</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__dependency__graph_html_a0aa111cd92f27ca091742c92be00a219"><div class="ttname"><a href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#a0aa111cd92f27ca091742c92be00a219">kcenon::monitoring::health_dependency_graph::add_node</a></div><div class="ttdeci">result&lt; bool &gt; add_node(const std::string &amp;name, std::shared_ptr&lt; health_check &gt; check)</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00235">health_monitor.h:235</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">kcenon::monitoring::monitoring_error_code::already_exists</a></div><div class="ttdeci">@ already_exists</div></div>
 </div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,78,237,118"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#a0aa111cd92f27ca091742c92be00a219" title=" " alt="" coords="294,5,451,60"/>
+<area shape="poly" title=" " alt="" coords="198,75,280,54,282,59,200,81"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="556,63,704,103"/>
+<area shape="poly" title=" " alt="" coords="237,92,542,83,542,89,238,97"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39" title=" " alt="" coords="285,135,460,175"/>
+<area shape="poly" title=" " alt="" coords="210,115,272,130,271,135,209,121"/>
+<area shape="poly" title=" " alt="" coords="452,45,543,64,542,69,451,51"/>
+<area shape="poly" title=" " alt="" coords="439,133,507,113,542,103,543,108,509,118,440,138"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499" title=" " alt="" coords="508,128,752,183"/>
+<area shape="poly" title=" " alt="" coords="460,153,494,153,494,158,460,158"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923" title=" " alt="" coords="519,207,741,247"/>
+<area shape="poly" title=" " alt="" coords="444,173,509,191,543,201,542,206,507,197,442,178"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ac4411862126be50fd55a4600168d6aa9" title=" " alt="" coords="800,88,960,143"/>
+<area shape="poly" title=" " alt="" coords="752,133,786,128,787,133,753,138"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1" title=" " alt="" coords="800,167,960,221"/>
+<area shape="poly" title=" " alt="" coords="753,172,787,177,786,182,752,177"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a97c77ae75509aa17634024872c25433d_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a97c77ae75509aa17634024872c25433d_icgraph" alt=""/></div>
-<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a97c77ae75509aa17634024872c25433d_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a97c77ae75509aa17634024872c25433d_icgraph">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a2da7f9a85cdb991c756525cfb3dd10a9_icgraph">
 <area shape="rect" title=" " alt="" coords="309,35,541,75"/>
 <area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a692c06c3076ca753e03b2f0e6a561bf4" title=" " alt="" coords="108,5,261,45"/>
 <area shape="poly" title=" " alt="" coords="296,42,261,37,262,32,296,36"/>
@@ -575,8 +936,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ad33f2d908ce12b68c4c8bb94fe421129" name="ad33f2d908ce12b68c4c8bb94fe421129"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad33f2d908ce12b68c4c8bb94fe421129">&#9670;&#160;</a></span>register_recovery_handler()</h2>
+<a id="a6af984f611e636fe5c209e52496cda66" name="a6af984f611e636fe5c209e52496cda66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6af984f611e636fe5c209e52496cda66">&#9670;&#160;</a></span>register_recovery_handler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -585,7 +946,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void kcenon::monitoring::health_monitor::register_recovery_handler </td>
+          <td class="memname">void kcenon::monitoring::health_monitor::register_recovery_handler </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>check_name</em>, </td>
@@ -604,20 +965,21 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00148">148</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  148</span>                                                                                                     {</div>
-<div class="line"><span class="lineno">  149</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a>[check_name] = handler;</div>
-<div class="line"><span class="lineno">  150</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00614">614</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  615</span>                                                                {</div>
+<div class="line"><span class="lineno">  616</span>        std::lock_guard&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  617</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a>[check_name] = std::move(handler);</div>
+<div class="line"><span class="lineno">  618</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a1c2d7c2da2ef8f9d175d03a44f06c0a9" name="a1c2d7c2da2ef8f9d175d03a44f06c0a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c2d7c2da2ef8f9d175d03a44f06c0a9">&#9670;&#160;</a></span>start()</h2>
+<a id="a36343510296556c7358d42a3be70e7df" name="a36343510296556c7358d42a3be70e7df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36343510296556c7358d42a3be70e7df">&#9670;&#160;</a></span>run_monitoring_loop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -626,7 +988,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void kcenon::monitoring::health_monitor::start </td>
+          <td class="memname">void kcenon::monitoring::health_monitor::run_monitoring_loop </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -634,18 +996,64 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00113">113</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  113</span>{}</div>
-</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00689">689</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  689</span>                               {</div>
+<div class="line"><span class="lineno">  690</span>        <span class="keywordflow">while</span> (<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">running_</a>.load()) {</div>
+<div class="line"><span class="lineno">  691</span>            <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d42955e070f8b51d807d8915adbbc15">refresh</a>();</div>
+<div class="line"><span class="lineno">  692</span> </div>
+<div class="line"><span class="lineno">  693</span>            std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aa60db55aed1607788a39ec28f4ca3d80">cv_mutex_</a>);</div>
+<div class="line"><span class="lineno">  694</span>            <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aae279d4f74c3221bcf0bf0d4f58a3e9f">cv_</a>.wait_for(lock, <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3c0a3a05b2bfc44a8d6fc4274f541614">config_</a>.<a class="code hl_variable" href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html#a630714d343ae428ab70f797bbd681127">check_interval</a>, [<span class="keyword">this</span>]() {</div>
+<div class="line"><span class="lineno">  695</span>                return !running_.load();</div>
+<div class="line"><span class="lineno">  696</span>            });</div>
+<div class="line"><span class="lineno">  697</span>        }</div>
+<div class="line"><span class="lineno">  698</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a3d42955e070f8b51d807d8915adbbc15"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d42955e070f8b51d807d8915adbbc15">kcenon::monitoring::health_monitor::refresh</a></div><div class="ttdeci">void refresh()</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00592">health_monitor.h:592</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_aa60db55aed1607788a39ec28f4ca3d80"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aa60db55aed1607788a39ec28f4ca3d80">kcenon::monitoring::health_monitor::cv_mutex_</a></div><div class="ttdeci">std::mutex cv_mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00723">health_monitor.h:723</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_aae279d4f74c3221bcf0bf0d4f58a3e9f"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aae279d4f74c3221bcf0bf0d4f58a3e9f">kcenon::monitoring::health_monitor::cv_</a></div><div class="ttdeci">std::condition_variable cv_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00724">health_monitor.h:724</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__config_html_a630714d343ae428ab70f797bbd681127"><div class="ttname"><a href="../../de/dba/structkcenon_1_1monitoring_1_1health__monitor__config.html#a630714d343ae428ab70f797bbd681127">kcenon::monitoring::health_monitor_config::check_interval</a></div><div class="ttdeci">std::chrono::milliseconds check_interval</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00063">health_monitor.h:63</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_cgraph">
+<area shape="rect" title=" " alt="" coords="5,149,164,204"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d42955e070f8b51d807d8915adbbc15" title=" " alt="" coords="212,157,395,197"/>
+<area shape="poly" title=" " alt="" coords="165,174,198,174,198,179,165,179"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39" title=" " alt="" coords="443,126,617,166"/>
+<area shape="poly" title=" " alt="" coords="395,162,429,157,430,162,395,167"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923" title=" " alt="" coords="677,187,898,227"/>
+<area shape="poly" title=" " alt="" coords="395,180,663,197,663,202,395,185"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499" title=" " alt="" coords="665,44,909,99"/>
+<area shape="poly" title=" " alt="" coords="599,123,679,100,680,105,600,129"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="713,123,861,163"/>
+<area shape="poly" title=" " alt="" coords="618,142,699,142,700,147,618,148"/>
+<area shape="poly" title=" " alt="" coords="615,163,690,182,689,187,614,169"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ac4411862126be50fd55a4600168d6aa9" title=" " alt="" coords="957,5,1117,60"/>
+<area shape="poly" title=" " alt="" coords="909,50,943,44,944,50,910,55"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1" title=" " alt="" coords="957,84,1117,139"/>
+<area shape="poly" title=" " alt="" coords="910,88,944,94,943,99,909,93"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a36343510296556c7358d42a3be70e7df_icgraph">
+<area shape="rect" title=" " alt="" coords="220,5,379,60"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a55bc76eb761c2732e7ab802a23869dcc" title=" " alt="" coords="5,13,172,53"/>
+<area shape="poly" title=" " alt="" coords="206,35,172,35,172,30,206,30"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="ab52376fc81e9fd14cf0e30a4c367c336" name="ab52376fc81e9fd14cf0e30a4c367c336"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab52376fc81e9fd14cf0e30a4c367c336">&#9670;&#160;</a></span>stop()</h2>
+<a id="a55bc76eb761c2732e7ab802a23869dcc" name="a55bc76eb761c2732e7ab802a23869dcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55bc76eb761c2732e7ab802a23869dcc">&#9670;&#160;</a></span>start()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -654,7 +1062,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void kcenon::monitoring::health_monitor::stop </td>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::health_monitor::start </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -662,31 +1070,255 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00114">114</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  114</span>{}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00559">559</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  559</span>                        {</div>
+<div class="line"><span class="lineno">  560</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae542b7370ea00cbbaab6b106839481d2">lifecycle_mutex_</a>);</div>
+<div class="line"><span class="lineno">  561</span> </div>
+<div class="line"><span class="lineno">  562</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">running_</a>.load()) {</div>
+<div class="line"><span class="lineno">  563</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
+<div class="line"><span class="lineno">  564</span>        }</div>
+<div class="line"><span class="lineno">  565</span> </div>
+<div class="line"><span class="lineno">  566</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">running_</a>.store(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  567</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adc28da70590b0b43531e222719ee792c">monitor_thread_</a> = std::thread([<span class="keyword">this</span>]() { <a class="code hl_function" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36343510296556c7358d42a3be70e7df">run_monitoring_loop</a>(); });</div>
+<div class="line"><span class="lineno">  568</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
+<div class="line"><span class="lineno">  569</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_a36343510296556c7358d42a3be70e7df"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36343510296556c7358d42a3be70e7df">kcenon::monitoring::health_monitor::run_monitoring_loop</a></div><div class="ttdeci">void run_monitoring_loop()</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00689">health_monitor.h:689</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_adc28da70590b0b43531e222719ee792c"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adc28da70590b0b43531e222719ee792c">kcenon::monitoring::health_monitor::monitor_thread_</a></div><div class="ttdeci">std::thread monitor_thread_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00731">health_monitor.h:731</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1health__monitor_html_ae542b7370ea00cbbaab6b106839481d2"><div class="ttname"><a href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae542b7370ea00cbbaab6b106839481d2">kcenon::monitoring::health_monitor::lifecycle_mutex_</a></div><div class="ttdeci">std::mutex lifecycle_mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00722">health_monitor.h:722</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a5831822659b3edfa93f8cc4b75357478"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">kcenon::monitoring::make_void_success</a></div><div class="ttdeci">common::VoidResult make_void_success()</div><div class="ttdoc">Helper function to create successful VoidResult.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00240">result_types.h:240</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a55bc76eb761c2732e7ab802a23869dcc_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a55bc76eb761c2732e7ab802a23869dcc_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a55bc76eb761c2732e7ab802a23869dcc_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a55bc76eb761c2732e7ab802a23869dcc_cgraph">
+<area shape="rect" title=" " alt="" coords="5,121,172,161"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="220,85,379,125"/>
+<area shape="poly" title=" " alt="" coords="172,124,206,118,207,123,173,129"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36343510296556c7358d42a3be70e7df" title=" " alt="" coords="220,149,379,204"/>
+<area shape="poly" title=" " alt="" coords="173,152,207,158,206,163,172,158"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d42955e070f8b51d807d8915adbbc15" title=" " alt="" coords="427,157,609,197"/>
+<area shape="poly" title=" " alt="" coords="379,174,413,174,413,179,379,179"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39" title=" " alt="" coords="657,126,832,166"/>
+<area shape="poly" title=" " alt="" coords="609,162,644,157,644,162,610,167"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a892cb00ee88bfe5eee5b2e33bca7d923" title=" " alt="" coords="891,187,1113,227"/>
+<area shape="poly" title=" " alt="" coords="610,180,878,197,877,202,610,185"/>
+<area shape="rect" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html#aac97159ff26aadd9c2d8bffa38320499" title=" " alt="" coords="880,44,1124,99"/>
+<area shape="poly" title=" " alt="" coords="813,123,893,100,895,105,815,129"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="928,123,1076,163"/>
+<area shape="poly" title=" " alt="" coords="832,142,914,142,914,147,832,148"/>
+<area shape="poly" title=" " alt="" coords="830,163,905,182,904,187,829,169"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ac4411862126be50fd55a4600168d6aa9" title=" " alt="" coords="1172,5,1332,60"/>
+<area shape="poly" title=" " alt="" coords="1124,50,1158,44,1159,50,1125,55"/>
+<area shape="rect" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a1249cffaa23a80c2b864e0f7ee8c04f1" title=" " alt="" coords="1172,84,1332,139"/>
+<area shape="poly" title=" " alt="" coords="1125,88,1159,94,1158,99,1124,93"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adf4ee123f7b655273dc76607c53c6d29" name="adf4ee123f7b655273dc76607c53c6d29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf4ee123f7b655273dc76607c53c6d29">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::health_monitor::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00571">571</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  571</span>                       {</div>
+<div class="line"><span class="lineno">  572</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ae542b7370ea00cbbaab6b106839481d2">lifecycle_mutex_</a>);</div>
+<div class="line"><span class="lineno">  573</span> </div>
+<div class="line"><span class="lineno">  574</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">running_</a>.load()) {</div>
+<div class="line"><span class="lineno">  575</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
+<div class="line"><span class="lineno">  576</span>        }</div>
+<div class="line"><span class="lineno">  577</span> </div>
+<div class="line"><span class="lineno">  578</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36b2f4aa15ca9d6d17e5f67ab33560c3">running_</a>.store(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  579</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aae279d4f74c3221bcf0bf0d4f58a3e9f">cv_</a>.notify_all();</div>
+<div class="line"><span class="lineno">  580</span> </div>
+<div class="line"><span class="lineno">  581</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adc28da70590b0b43531e222719ee792c">monitor_thread_</a>.joinable()) {</div>
+<div class="line"><span class="lineno">  582</span>            <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#adc28da70590b0b43531e222719ee792c">monitor_thread_</a>.join();</div>
+<div class="line"><span class="lineno">  583</span>        }</div>
+<div class="line"><span class="lineno">  584</span> </div>
+<div class="line"><span class="lineno">  585</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
+<div class="line"><span class="lineno">  586</span>    }</div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,171,45"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="219,5,377,45"/>
+<area shape="poly" title=" " alt="" coords="171,23,205,23,205,28,171,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_adf4ee123f7b655273dc76607c53c6d29_icgraph">
+<area shape="rect" title=" " alt="" coords="243,69,408,109"/>
+<area shape="rect" href="../../da/d18/classHealthMonitoringTest.html#a43e72ce91b518f6ce5bc97045a4ef25f" title=" " alt="" coords="19,5,181,45"/>
+<area shape="poly" title=" " alt="" coords="240,68,170,48,172,43,242,63"/>
+<area shape="rect" href="../../da/d18/classHealthMonitoringTest.html#af2f0d3e5e4973b4d41773d16f0121d3b" title=" " alt="" coords="19,69,181,109"/>
+<area shape="poly" title=" " alt="" coords="229,92,181,92,181,87,229,87"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#aa9f3064fba6d924938fce5db66021b4f" title=" " alt="" coords="5,134,195,189"/>
+<area shape="poly" title=" " alt="" coords="250,116,187,137,185,131,248,111"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0181e6144468a9e9e6f04afb50b5686b" name="a0181e6144468a9e9e6f04afb50b5686b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0181e6144468a9e9e6f04afb50b5686b">&#9670;&#160;</a></span>unregister_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt; kcenon::monitoring::health_monitor::unregister_check </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00513">513</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  513</span>                                                         {</div>
+<div class="line"><span class="lineno">  514</span>        std::lock_guard&lt;std::shared_mutex&gt; lock(<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#ab2bd98d1b347292ba9f410af7cadc380">mutex_</a>);</div>
+<div class="line"><span class="lineno">  515</span> </div>
+<div class="line"><span class="lineno">  516</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.find(name) == <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.end()) {</div>
+<div class="line"><span class="lineno">  517</span>            <span class="keywordflow">return</span> make_error&lt;bool&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  518</span>                                   <span class="stringliteral">&quot;Check &#39;&quot;</span> + name + <span class="stringliteral">&quot;&#39; not found&quot;</span>);</div>
+<div class="line"><span class="lineno">  519</span>        }</div>
+<div class="line"><span class="lineno">  520</span> </div>
+<div class="line"><span class="lineno">  521</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d3f15d4573837c57fdf9ae9f1be1427">checks_</a>.erase(name);</div>
+<div class="line"><span class="lineno">  522</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a01fd7e0c09cce70103f5b48f6a88d230">recovery_handlers_</a>.erase(name);</div>
+<div class="line"><span class="lineno">  523</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  524</span>    }</div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a0181e6144468a9e9e6f04afb50b5686b_cgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a0181e6144468a9e9e6f04afb50b5686b_cgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a0181e6144468a9e9e6f04afb50b5686b_cgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a0181e6144468a9e9e6f04afb50b5686b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,253,45"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="301,5,449,45"/>
+<area shape="poly" title=" " alt="" coords="253,23,288,23,288,28,253,28"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a892cb00ee88bfe5eee5b2e33bca7d923" name="a892cb00ee88bfe5eee5b2e33bca7d923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a892cb00ee88bfe5eee5b2e33bca7d923">&#9670;&#160;</a></span>update_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kcenon::monitoring::health_monitor::update_stats </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00700">700</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  700</span>                                                         {</div>
+<div class="line"><span class="lineno">  701</span>        <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>.<a class="code hl_variable" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#aa3b00215dd1cfdcd729cda972f86005e">total_checks</a>++;</div>
+<div class="line"><span class="lineno">  702</span>        <span class="keywordflow">switch</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status) {</div>
+<div class="line"><span class="lineno">  703</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a741839f346d6e8126ae38ee76a96fd12">health_status::healthy</a>:</div>
+<div class="line"><span class="lineno">  704</span>                <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>.<a class="code hl_variable" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#ad9a9caa7984f36a0cb66b97865bae6f1">healthy_checks</a>++;</div>
+<div class="line"><span class="lineno">  705</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  706</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065ab7a582af4c2e181215b55161560713e5">health_status::unhealthy</a>:</div>
+<div class="line"><span class="lineno">  707</span>                <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>.<a class="code hl_variable" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#aba358cd944b812bcd2714837ca47443e">unhealthy_checks</a>++;</div>
+<div class="line"><span class="lineno">  708</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  709</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065a8377f5fd94f84ea08829f36e1ded3b74">health_status::degraded</a>:</div>
+<div class="line"><span class="lineno">  710</span>                <a class="code hl_variable" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#afdf13b2c605039c98161ce3258460158">stats_</a>.<a class="code hl_variable" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#a6c17f4f7378d93d21dded093538eaf43">degraded_checks</a>++;</div>
+<div class="line"><span class="lineno">  711</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  712</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  713</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  714</span>        }</div>
+<div class="line"><span class="lineno">  715</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__stats_html_a6c17f4f7378d93d21dded093538eaf43"><div class="ttname"><a href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#a6c17f4f7378d93d21dded093538eaf43">kcenon::monitoring::health_monitor_stats::degraded_checks</a></div><div class="ttdeci">size_t degraded_checks</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00077">health_monitor.h:77</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__stats_html_aa3b00215dd1cfdcd729cda972f86005e"><div class="ttname"><a href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#aa3b00215dd1cfdcd729cda972f86005e">kcenon::monitoring::health_monitor_stats::total_checks</a></div><div class="ttdeci">size_t total_checks</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00074">health_monitor.h:74</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__stats_html_aba358cd944b812bcd2714837ca47443e"><div class="ttname"><a href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#aba358cd944b812bcd2714837ca47443e">kcenon::monitoring::health_monitor_stats::unhealthy_checks</a></div><div class="ttdeci">size_t unhealthy_checks</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00076">health_monitor.h:76</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1health__monitor__stats_html_ad9a9caa7984f36a0cb66b97865bae6f1"><div class="ttname"><a href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html#ad9a9caa7984f36a0cb66b97865bae6f1">kcenon::monitoring::health_monitor_stats::healthy_checks</a></div><div class="ttdeci">size_t healthy_checks</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d34/health__monitor_8h_source.html#l00075">health_monitor.h:75</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_ab52376fc81e9fd14cf0e30a4c367c336_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_ab52376fc81e9fd14cf0e30a4c367c336_icgraph" alt=""/></div>
-<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_ab52376fc81e9fd14cf0e30a4c367c336_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_ab52376fc81e9fd14cf0e30a4c367c336_icgraph">
-<area shape="rect" title=" " alt="" coords="215,37,380,77"/>
-<area shape="rect" href="../../da/d18/classHealthMonitoringTest.html#a43e72ce91b518f6ce5bc97045a4ef25f" title=" " alt="" coords="5,5,167,45"/>
-<area shape="poly" title=" " alt="" coords="200,45,167,40,167,35,201,40"/>
-<area shape="rect" href="../../da/d18/classHealthMonitoringTest.html#af2f0d3e5e4973b4d41773d16f0121d3b" title=" " alt="" coords="5,69,167,109"/>
-<area shape="poly" title=" " alt="" coords="201,75,167,80,167,74,200,69"/>
+<div class="center"><img src="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor_a892cb00ee88bfe5eee5b2e33bca7d923_icgraph.png" border="0" usemap="#ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a892cb00ee88bfe5eee5b2e33bca7d923_icgraph" alt=""/></div>
+<map name="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a892cb00ee88bfe5eee5b2e33bca7d923_icgraph" id="ad5/d42/classkcenon_1_1monitoring_1_1health__monitor_a892cb00ee88bfe5eee5b2e33bca7d923_icgraph">
+<area shape="rect" title=" " alt="" coords="929,87,1151,127"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#af3c6243491ecac6699400b76ee0d8d39" title=" " alt="" coords="707,87,881,127"/>
+<area shape="poly" title=" " alt="" coords="916,110,882,110,882,105,916,105"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a7ac56fffab98a64f7ac0038d0786cd6c" title=" " alt="" coords="443,23,642,63"/>
+<area shape="poly" title=" " alt="" coords="935,87,881,78,757,63,642,53,642,47,757,57,882,73,936,82"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a3d42955e070f8b51d807d8915adbbc15" title=" " alt="" coords="451,151,634,191"/>
+<area shape="poly" title=" " alt="" coords="936,133,882,142,752,158,634,168,634,163,752,152,881,137,935,127"/>
+<area shape="poly" title=" " alt="" coords="701,86,621,66,622,61,702,81"/>
+<area shape="poly" title=" " alt="" coords="702,133,622,154,621,149,701,128"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a2da7f9a85cdb991c756525cfb3dd10a9" title=" " alt="" coords="427,87,659,127"/>
+<area shape="poly" title=" " alt="" coords="693,110,659,110,659,105,693,105"/>
+<area shape="rect" href="../../de/da5/test__stress__performance_8cpp.html#a6a8ace21bd9bec4ff3d0913957a9b6e5" title=" " alt="" coords="265,5,334,31"/>
+<area shape="poly" title=" " alt="" coords="430,34,334,24,334,19,430,29"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a36343510296556c7358d42a3be70e7df" title=" " alt="" coords="220,169,379,224"/>
+<area shape="poly" title=" " alt="" coords="438,185,379,191,379,186,437,180"/>
+<area shape="rect" href="../../d5/d42/classkcenon_1_1monitoring_1_1health__monitor.html#a55bc76eb761c2732e7ab802a23869dcc" title=" " alt="" coords="5,177,172,217"/>
+<area shape="poly" title=" " alt="" coords="206,199,172,199,172,194,206,194"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#a692c06c3076ca753e03b2f0e6a561bf4" title=" " alt="" coords="223,55,376,95"/>
+<area shape="poly" title=" " alt="" coords="413,93,376,88,376,83,414,88"/>
+<area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html#a682e953c7e7637be353153a0ee81b9e1" title=" " alt="" coords="265,120,334,145"/>
+<area shape="poly" title=" " alt="" coords="414,123,335,132,334,126,413,118"/>
+<area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="61,63,116,88"/>
+<area shape="poly" title=" " alt="" coords="209,78,116,78,116,73,209,73"/>
 </map>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae81d2c1c855ea4089ce706d106dc0790" name="ae81d2c1c855ea4089ce706d106dc0790"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae81d2c1c855ea4089ce706d106dc0790">&#9670;&#160;</a></span>checks_</h2>
+<a id="ab306d1d7e064ae8f24fa27a7a6bc2a06" name="ab306d1d7e064ae8f24fa27a7a6bc2a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab306d1d7e064ae8f24fa27a7a6bc2a06">&#9670;&#160;</a></span>cached_results_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -695,7 +1327,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;std::string, std::shared_ptr&lt;<a class="el" href="../../d7/dfb/classkcenon_1_1monitoring_1_1functional__health__check.html">functional_health_check</a>&gt; &gt; kcenon::monitoring::health_monitor::checks_</td>
+          <td class="memname">std::unordered_map&lt;std::string, <a class="el" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a>&gt; kcenon::monitoring::health_monitor::cached_results_</td>
         </tr>
       </table>
   </td>
@@ -705,7 +1337,31 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00183">183</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00728">728</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="a3d3f15d4573837c57fdf9ae9f1be1427" name="a3d3f15d4573837c57fdf9ae9f1be1427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d3f15d4573837c57fdf9ae9f1be1427">&#9670;&#160;</a></span>checks_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;std::string, std::shared_ptr&lt;<a class="el" href="../../da/d96/classkcenon_1_1monitoring_1_1health__check.html">health_check</a>&gt; &gt; kcenon::monitoring::health_monitor::checks_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00726">726</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
 
 </div>
 </div>
@@ -729,7 +1385,151 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00182">182</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00717">717</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="aae279d4f74c3221bcf0bf0d4f58a3e9f" name="aae279d4f74c3221bcf0bf0d4f58a3e9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae279d4f74c3221bcf0bf0d4f58a3e9f">&#9670;&#160;</a></span>cv_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::condition_variable kcenon::monitoring::health_monitor::cv_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00724">724</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="aa60db55aed1607788a39ec28f4ca3d80" name="aa60db55aed1607788a39ec28f4ca3d80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa60db55aed1607788a39ec28f4ca3d80">&#9670;&#160;</a></span>cv_mutex_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex kcenon::monitoring::health_monitor::cv_mutex_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00723">723</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="a612d233919383dd90f7fdfdea3b1e2f9" name="a612d233919383dd90f7fdfdea3b1e2f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a612d233919383dd90f7fdfdea3b1e2f9">&#9670;&#160;</a></span>dependency_graph_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/d8e/classkcenon_1_1monitoring_1_1health__dependency__graph.html">health_dependency_graph</a> kcenon::monitoring::health_monitor::dependency_graph_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00719">719</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="ae542b7370ea00cbbaab6b106839481d2" name="ae542b7370ea00cbbaab6b106839481d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae542b7370ea00cbbaab6b106839481d2">&#9670;&#160;</a></span>lifecycle_mutex_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex kcenon::monitoring::health_monitor::lifecycle_mutex_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00722">722</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="adc28da70590b0b43531e222719ee792c" name="adc28da70590b0b43531e222719ee792c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc28da70590b0b43531e222719ee792c">&#9670;&#160;</a></span>monitor_thread_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread kcenon::monitoring::health_monitor::monitor_thread_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00731">731</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="ab2bd98d1b347292ba9f410af7cadc380" name="ab2bd98d1b347292ba9f410af7cadc380"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2bd98d1b347292ba9f410af7cadc380">&#9670;&#160;</a></span>mutex_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_mutex kcenon::monitoring::health_monitor::mutex_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00721">721</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
 
 </div>
 </div>
@@ -753,7 +1553,56 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00184">184</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00727">727</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+
+</div>
+</div>
+<a id="a36b2f4aa15ca9d6d17e5f67ab33560c3" name="a36b2f4aa15ca9d6d17e5f67ab33560c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b2f4aa15ca9d6d17e5f67ab33560c3">&#9670;&#160;</a></span>running_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;bool&gt; kcenon::monitoring::health_monitor::running_ {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00730">730</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  730</span>{<span class="keyword">false</span>};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afdf13b2c605039c98161ce3258460158" name="afdf13b2c605039c98161ce3258460158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf13b2c605039c98161ce3258460158">&#9670;&#160;</a></span>stats_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d31/structkcenon_1_1monitoring_1_1health__monitor__stats.html">health_monitor_stats</a> kcenon::monitoring::health_monitor::stats_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d8/d34/health__monitor_8h_source.html#l00718">718</a> of file <a class="el" href="../../d8/d34/health__monitor_8h_source.html">health_monitor.h</a>.</p>
 
 </div>
 </div>
@@ -763,7 +1612,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 00:33:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 00:42:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
