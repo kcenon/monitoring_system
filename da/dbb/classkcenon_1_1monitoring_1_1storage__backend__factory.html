@@ -105,7 +105,7 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Factory for creating storage backends. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00384">384</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00462">462</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1078d756f19a36ca8c39e2780c0ec7da" name="a1078d756f19a36ca8c39e2780c0ec7da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1078d756f19a36ca8c39e2780c0ec7da">&#9670;&#160;</a></span>create_backend()</h2>
@@ -140,29 +140,31 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Unique pointer to storage backend, nullptr on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00391">391</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  391</span>                                                                                                {</div>
-<div class="line"><span class="lineno">  392</span>        <span class="keywordflow">switch</span> (config.type) {</div>
-<div class="line"><span class="lineno">  393</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98adee3aa96e22bc7e161b0388143c89b9e">storage_backend_type::memory_buffer</a>:</div>
-<div class="line"><span class="lineno">  394</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3afd7d6ff177cd37bed81c26a28757a7">storage_backend_type::file_json</a>:</div>
-<div class="line"><span class="lineno">  395</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a8983bf013849a0f786a37b5131bea308">storage_backend_type::file_binary</a>:</div>
-<div class="line"><span class="lineno">  396</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ab2f8630695ab3eb420001e6bcd452025">storage_backend_type::file_csv</a>:</div>
-<div class="line"><span class="lineno">  397</span>                <span class="keywordflow">return</span> std::make_unique&lt;file_storage_backend&gt;(config);</div>
-<div class="line"><span class="lineno">  398</span> </div>
-<div class="line"><span class="lineno">  399</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a4231c010b4e43d6b6b2b45b23ab6aa45">storage_backend_type::database_sqlite</a>:</div>
-<div class="line"><span class="lineno">  400</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3ae41677b883879151d25978947f79a7">storage_backend_type::database_postgresql</a>:</div>
-<div class="line"><span class="lineno">  401</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a0181c9af229976ee1436038277820c13">storage_backend_type::database_mysql</a>:</div>
-<div class="line"><span class="lineno">  402</span>                <span class="keywordflow">return</span> std::make_unique&lt;database_storage_backend&gt;(config);</div>
-<div class="line"><span class="lineno">  403</span> </div>
-<div class="line"><span class="lineno">  404</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a9c8b13e0fe70c407314a6af9009b44af">storage_backend_type::cloud_s3</a>:</div>
-<div class="line"><span class="lineno">  405</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a46f461446cf9afc5a1a32b1f4687cfe6">storage_backend_type::cloud_gcs</a>:</div>
-<div class="line"><span class="lineno">  406</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ac90c2ff16cc8133a9616a174da430782">storage_backend_type::cloud_azure_blob</a>:</div>
-<div class="line"><span class="lineno">  407</span>                <span class="keywordflow">return</span> std::make_unique&lt;cloud_storage_backend&gt;(config);</div>
-<div class="line"><span class="lineno">  408</span> </div>
-<div class="line"><span class="lineno">  409</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  410</span>                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  411</span>        }</div>
-<div class="line"><span class="lineno">  412</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00469">469</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  469</span>                                                                                                {</div>
+<div class="line"><span class="lineno">  470</span>        <span class="keywordflow">switch</span> (config.type) {</div>
+<div class="line"><span class="lineno">  471</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98adee3aa96e22bc7e161b0388143c89b9e">storage_backend_type::memory_buffer</a>:</div>
+<div class="line"><span class="lineno">  472</span>                <span class="keywordflow">return</span> std::make_unique&lt;memory_storage_backend&gt;(config);</div>
+<div class="line"><span class="lineno">  473</span> </div>
+<div class="line"><span class="lineno">  474</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3afd7d6ff177cd37bed81c26a28757a7">storage_backend_type::file_json</a>:</div>
+<div class="line"><span class="lineno">  475</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a8983bf013849a0f786a37b5131bea308">storage_backend_type::file_binary</a>:</div>
+<div class="line"><span class="lineno">  476</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ab2f8630695ab3eb420001e6bcd452025">storage_backend_type::file_csv</a>:</div>
+<div class="line"><span class="lineno">  477</span>                <span class="keywordflow">return</span> std::make_unique&lt;file_storage_backend&gt;(config);</div>
+<div class="line"><span class="lineno">  478</span> </div>
+<div class="line"><span class="lineno">  479</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a4231c010b4e43d6b6b2b45b23ab6aa45">storage_backend_type::database_sqlite</a>:</div>
+<div class="line"><span class="lineno">  480</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3ae41677b883879151d25978947f79a7">storage_backend_type::database_postgresql</a>:</div>
+<div class="line"><span class="lineno">  481</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a0181c9af229976ee1436038277820c13">storage_backend_type::database_mysql</a>:</div>
+<div class="line"><span class="lineno">  482</span>                <span class="keywordflow">return</span> std::make_unique&lt;database_storage_backend&gt;(config);</div>
+<div class="line"><span class="lineno">  483</span> </div>
+<div class="line"><span class="lineno">  484</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a9c8b13e0fe70c407314a6af9009b44af">storage_backend_type::cloud_s3</a>:</div>
+<div class="line"><span class="lineno">  485</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a46f461446cf9afc5a1a32b1f4687cfe6">storage_backend_type::cloud_gcs</a>:</div>
+<div class="line"><span class="lineno">  486</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ac90c2ff16cc8133a9616a174da430782">storage_backend_type::cloud_azure_blob</a>:</div>
+<div class="line"><span class="lineno">  487</span>                <span class="keywordflow">return</span> std::make_unique&lt;cloud_storage_backend&gt;(config);</div>
+<div class="line"><span class="lineno">  488</span> </div>
+<div class="line"><span class="lineno">  489</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  490</span>                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  491</span>        }</div>
+<div class="line"><span class="lineno">  492</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ae7927fdb839278142ee031c30e42cc98a0181c9af229976ee1436038277820c13"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a0181c9af229976ee1436038277820c13">kcenon::monitoring::storage_backend_type::database_mysql</a></div><div class="ttdeci">@ database_mysql</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ae7927fdb839278142ee031c30e42cc98a3ae41677b883879151d25978947f79a7"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3ae41677b883879151d25978947f79a7">kcenon::monitoring::storage_backend_type::database_postgresql</a></div><div class="ttdeci">@ database_postgresql</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ae7927fdb839278142ee031c30e42cc98a3afd7d6ff177cd37bed81c26a28757a7"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3afd7d6ff177cd37bed81c26a28757a7">kcenon::monitoring::storage_backend_type::file_json</a></div><div class="ttdeci">@ file_json</div></div>
@@ -222,21 +224,21 @@ Here is the caller graph for this function:</div>
 <p>Get list of supported backend types. </p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of supported storage backend types </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00418">418</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  418</span>                                                                    {</div>
-<div class="line"><span class="lineno">  419</span>        <span class="keywordflow">return</span> {</div>
-<div class="line"><span class="lineno">  420</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98adee3aa96e22bc7e161b0388143c89b9e">storage_backend_type::memory_buffer</a>,</div>
-<div class="line"><span class="lineno">  421</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3afd7d6ff177cd37bed81c26a28757a7">storage_backend_type::file_json</a>,</div>
-<div class="line"><span class="lineno">  422</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a8983bf013849a0f786a37b5131bea308">storage_backend_type::file_binary</a>,</div>
-<div class="line"><span class="lineno">  423</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ab2f8630695ab3eb420001e6bcd452025">storage_backend_type::file_csv</a>,</div>
-<div class="line"><span class="lineno">  424</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a4231c010b4e43d6b6b2b45b23ab6aa45">storage_backend_type::database_sqlite</a>,</div>
-<div class="line"><span class="lineno">  425</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3ae41677b883879151d25978947f79a7">storage_backend_type::database_postgresql</a>,</div>
-<div class="line"><span class="lineno">  426</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a0181c9af229976ee1436038277820c13">storage_backend_type::database_mysql</a>,</div>
-<div class="line"><span class="lineno">  427</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a9c8b13e0fe70c407314a6af9009b44af">storage_backend_type::cloud_s3</a>,</div>
-<div class="line"><span class="lineno">  428</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a46f461446cf9afc5a1a32b1f4687cfe6">storage_backend_type::cloud_gcs</a>,</div>
-<div class="line"><span class="lineno">  429</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ac90c2ff16cc8133a9616a174da430782">storage_backend_type::cloud_azure_blob</a></div>
-<div class="line"><span class="lineno">  430</span>        };</div>
-<div class="line"><span class="lineno">  431</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00498">498</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  498</span>                                                                    {</div>
+<div class="line"><span class="lineno">  499</span>        <span class="keywordflow">return</span> {</div>
+<div class="line"><span class="lineno">  500</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98adee3aa96e22bc7e161b0388143c89b9e">storage_backend_type::memory_buffer</a>,</div>
+<div class="line"><span class="lineno">  501</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3afd7d6ff177cd37bed81c26a28757a7">storage_backend_type::file_json</a>,</div>
+<div class="line"><span class="lineno">  502</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a8983bf013849a0f786a37b5131bea308">storage_backend_type::file_binary</a>,</div>
+<div class="line"><span class="lineno">  503</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ab2f8630695ab3eb420001e6bcd452025">storage_backend_type::file_csv</a>,</div>
+<div class="line"><span class="lineno">  504</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a4231c010b4e43d6b6b2b45b23ab6aa45">storage_backend_type::database_sqlite</a>,</div>
+<div class="line"><span class="lineno">  505</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a3ae41677b883879151d25978947f79a7">storage_backend_type::database_postgresql</a>,</div>
+<div class="line"><span class="lineno">  506</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a0181c9af229976ee1436038277820c13">storage_backend_type::database_mysql</a>,</div>
+<div class="line"><span class="lineno">  507</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a9c8b13e0fe70c407314a6af9009b44af">storage_backend_type::cloud_s3</a>,</div>
+<div class="line"><span class="lineno">  508</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98a46f461446cf9afc5a1a32b1f4687cfe6">storage_backend_type::cloud_gcs</a>,</div>
+<div class="line"><span class="lineno">  509</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ae7927fdb839278142ee031c30e42cc98ac90c2ff16cc8133a9616a174da430782">storage_backend_type::cloud_azure_blob</a></div>
+<div class="line"><span class="lineno">  510</span>        };</div>
+<div class="line"><span class="lineno">  511</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -256,7 +258,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 10:26:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 10:45:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

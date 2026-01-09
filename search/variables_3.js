@@ -1,7 +1,7 @@
 var searchData=
 [
   ['data_0',['data',['../db/d2e/structkcenon_1_1monitoring_1_1lockfree__queue_1_1slot.html#a312033dd9c7001df016156494a03c2b2',1,'kcenon::monitoring::lockfree_queue::slot::data'],['../d2/d27/structkcenon_1_1monitoring_1_1plugin__metric__collector_1_1cached__metric.html#aa76214426c6927d6f49365a30498de91',1,'kcenon::monitoring::plugin_metric_collector::cached_metric::data']]],
-  ['data_5f_1',['data_',['../dc/d3c/classkcenon_1_1monitoring_1_1time__series.html#ac9232d4d016cec334cfc0b455ee95057',1,'kcenon::monitoring::time_series::data_'],['../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ada0af875fa8159d2e232e9051b6745ca',1,'kcenon::monitoring::memory_storage_backend::data_']]],
+  ['data_5f_1',['data_',['../dc/d3c/classkcenon_1_1monitoring_1_1time__series.html#ac9232d4d016cec334cfc0b455ee95057',1,'kcenon::monitoring::time_series::data_'],['../d1/d44/classkcenon_1_1monitoring_1_1kv__memory__storage__backend.html#a9cd9108be4a42f55d0819dcf2fba6d0a',1,'kcenon::monitoring::kv_memory_storage_backend::data_']]],
   ['data_5fdirectory_2',['data_directory',['../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#a2dc82e321d71ecc1154cc8a7b464e569',1,'kcenon::monitoring::storage_config']]],
   ['database_5fname_3',['database_name',['../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#aacc52439de73f387970d306a816bb82e',1,'kcenon::monitoring::storage_config']]],
   ['dead_5fletter_5fqueue_5f_4',['dead_letter_queue_',['../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2eb6281cf7a8a04f83e64ee2516f6a0',1,'kcenon::monitoring::safe_event_dispatcher']]],

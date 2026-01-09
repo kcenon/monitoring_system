@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>In-memory key-value storage backend.  
+<p>In-memory snapshot storage backend.  
  <a href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>&gt;</code></p>
@@ -90,9 +90,9 @@ Inheritance diagram for kcenon::monitoring::memory_storage_backend:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/d66/classkcenon_1_1monitoring_1_1memory__storage__backend__inherit__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1memory__storage__backend_inherit__map" alt="Inheritance graph"/></div>
 <map name="akcenon_1_1monitoring_1_1memory__storage__backend_inherit__map" id="akcenon_1_1monitoring_1_1memory__storage__backend_inherit__map">
-<area shape="rect" title="In&#45;memory key&#45;value storage backend." alt="" coords="5,213,216,373"/>
-<area shape="rect" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html" title="Basic key&#45;value storage interface &#45; stub." alt="" coords="19,5,202,165"/>
-<area shape="poly" title=" " alt="" coords="113,179,113,213,108,213,108,179"/>
+<area shape="rect" title="In&#45;memory snapshot storage backend." alt="" coords="13,293,223,593"/>
+<area shape="rect" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html" title="Base interface for snapshot storage backends." alt="" coords="5,5,231,245"/>
+<area shape="poly" title=" " alt="" coords="121,259,121,293,115,293,115,259"/>
 </map>
 </div>
 <div class="dynheader">
@@ -100,48 +100,75 @@ Collaboration diagram for kcenon::monitoring::memory_storage_backend:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d0e/classkcenon_1_1monitoring_1_1memory__storage__backend__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1memory__storage__backend_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1memory__storage__backend_coll__map" id="akcenon_1_1monitoring_1_1memory__storage__backend_coll__map">
-<area shape="rect" title="In&#45;memory key&#45;value storage backend." alt="" coords="13,500,223,660"/>
-<area shape="rect" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html" title="Basic key&#45;value storage interface &#45; stub." alt="" coords="5,277,188,437"/>
-<area shape="poly" title=" " alt="" coords="108,451,113,499,108,500,103,451"/>
-<area shape="rect" title=" " alt="" coords="213,310,357,405"/>
-<area shape="poly" title=" " alt="" coords="252,406,190,488,185,485,248,403"/>
-<area shape="rect" title=" " alt="" coords="245,135,324,200"/>
-<area shape="poly" title=" " alt="" coords="287,200,287,293,282,293,282,200"/>
-<area shape="rect" title=" " alt="" coords="219,5,350,85"/>
-<area shape="poly" title=" " alt="" coords="287,99,287,134,282,134,282,99"/>
+<area shape="rect" title="In&#45;memory snapshot storage backend." alt="" coords="201,1539,411,1799"/>
+<area shape="rect" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html" title="Base interface for snapshot storage backends." alt="" coords="5,1236,231,1476"/>
+<area shape="poly" title=" " alt="" coords="199,1486,230,1537,226,1540,195,1489"/>
+<area shape="rect" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html" title="Storage configuration." alt="" coords="192,469,332,689"/>
+<area shape="poly" title=" " alt="" coords="268,690,270,843,270,1357,274,1441,283,1522,278,1523,269,1441,265,1357,265,843,263,690"/>
+<area shape="rect" title=" " alt="" coords="384,135,463,200"/>
+<area shape="poly" title=" " alt="" coords="384,172,352,176,318,186,286,201,260,226,245,251,234,278,222,336,222,396,229,453,224,454,216,396,217,335,229,276,240,248,256,222,283,197,316,181,351,171,383,167"/>
+<area shape="rect" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html" title="Complete snapshot of metrics at a point in time." alt="" coords="316,1033,469,1173"/>
+<area shape="poly" title=" " alt="" coords="419,201,404,289,398,343,395,397,395,925,395,1017,390,1017,390,925,390,397,392,342,398,288,414,200"/>
+<area shape="rect" href="../../d1/d45/structkcenon_1_1monitoring_1_1metric__value.html" title="Represents a single metric value with metadata." alt="" coords="495,713,635,813"/>
+<area shape="poly" title=" " alt="" coords="429,200,443,309,469,445,506,580,544,697,539,699,501,582,463,446,438,310,424,200"/>
+<area shape="rect" title=" " alt="" coords="531,351,675,445"/>
+<area shape="poly" title=" " alt="" coords="454,199,475,222,563,336,558,339,471,226,450,202"/>
+<area shape="rect" title=" " alt="" coords="358,5,489,85"/>
+<area shape="poly" title=" " alt="" coords="426,99,426,134,421,134,421,99"/>
+<area shape="rect" title=" " alt="" coords="305,1309,456,1403"/>
+<area shape="poly" title=" " alt="" coords="372,1404,343,1523,338,1522,367,1403"/>
+<area shape="poly" title=" " alt="" coords="392,1174,386,1292,381,1292,387,1174"/>
+<area shape="rect" title=" " alt="" coords="461,876,607,971"/>
+<area shape="poly" title=" " alt="" coords="499,972,460,1022,456,1019,495,969"/>
+<area shape="poly" title=" " alt="" coords="558,814,549,860,544,859,553,813"/>
+<area shape="poly" title=" " alt="" coords="601,446,574,697,569,697,596,445"/>
+<area shape="rect" title=" " alt="" coords="480,1323,564,1389"/>
+<area shape="poly" title=" " alt="" coords="513,1390,495,1432,471,1477,424,1542,420,1539,466,1475,490,1430,508,1388"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad416a83567143ecab02c324b3b066eb0" id="r_ad416a83567143ecab02c324b3b066eb0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad416a83567143ecab02c324b3b066eb0">memory_storage_backend</a> ()=default</td></tr>
-<tr class="separator:ad416a83567143ecab02c324b3b066eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a227198ad6398ca44c8d1c93d8738bc47" id="r_a227198ad6398ca44c8d1c93d8738bc47"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a227198ad6398ca44c8d1c93d8738bc47">memory_storage_backend</a> (const <a class="el" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> &amp;)</td></tr>
-<tr class="separator:a227198ad6398ca44c8d1c93d8738bc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a4b8407cdf6addf1fddb6481ecd476d" id="r_a5a4b8407cdf6addf1fddb6481ecd476d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a5a4b8407cdf6addf1fddb6481ecd476d">store</a> (const std::string &amp;key, const std::string &amp;value) override</td></tr>
-<tr class="separator:a5a4b8407cdf6addf1fddb6481ecd476d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a474e5c30dfcd4627e09724e8daf73a02" id="r_a474e5c30dfcd4627e09724e8daf73a02"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a474e5c30dfcd4627e09724e8daf73a02">retrieve</a> (const std::string &amp;key) override</td></tr>
-<tr class="separator:a474e5c30dfcd4627e09724e8daf73a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab935def809bb7029525b4dae6af68f82" id="r_ab935def809bb7029525b4dae6af68f82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ab935def809bb7029525b4dae6af68f82">remove</a> (const std::string &amp;key) override</td></tr>
-<tr class="separator:ab935def809bb7029525b4dae6af68f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classkcenon_1_1monitoring_1_1kv__storage__backend"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classkcenon_1_1monitoring_1_1kv__storage__backend')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html">kcenon::monitoring::kv_storage_backend</a></td></tr>
-<tr class="memitem:a5685d23fdf949dfd5db32a538445267d inherit pub_methods_classkcenon_1_1monitoring_1_1kv__storage__backend" id="r_a5685d23fdf949dfd5db32a538445267d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html#a5685d23fdf949dfd5db32a538445267d">~kv_storage_backend</a> ()=default</td></tr>
-<tr class="separator:a5685d23fdf949dfd5db32a538445267d inherit pub_methods_classkcenon_1_1monitoring_1_1kv__storage__backend"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5e1fea989ec93b03d85872e1d18eaff inherit pub_methods_classkcenon_1_1monitoring_1_1kv__storage__backend" id="r_ab5e1fea989ec93b03d85872e1d18eaff"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html#ab5e1fea989ec93b03d85872e1d18eaff">flush</a> ()</td></tr>
-<tr class="separator:ab5e1fea989ec93b03d85872e1d18eaff inherit pub_methods_classkcenon_1_1monitoring_1_1kv__storage__backend"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d5e3a7a5f5a99ff161b6dd214bbc18" id="r_ac1d5e3a7a5f5a99ff161b6dd214bbc18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ac1d5e3a7a5f5a99ff161b6dd214bbc18">memory_storage_backend</a> ()</td></tr>
+<tr class="separator:ac1d5e3a7a5f5a99ff161b6dd214bbc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad107062aeddae9a67f6ff040ff952397" id="r_ad107062aeddae9a67f6ff040ff952397"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad107062aeddae9a67f6ff040ff952397">memory_storage_backend</a> (const <a class="el" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> &amp;config)</td></tr>
+<tr class="separator:ad107062aeddae9a67f6ff040ff952397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa02f3e136e05560cf28b5379a5d9eee4" id="r_aa02f3e136e05560cf28b5379a5d9eee4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#aa02f3e136e05560cf28b5379a5d9eee4">store</a> (const <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &amp;snapshot) override</td></tr>
+<tr class="separator:aa02f3e136e05560cf28b5379a5d9eee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22602bc8e7ebb43e02b8ebb0c8fa0dc0" id="r_a22602bc8e7ebb43e02b8ebb0c8fa0dc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a22602bc8e7ebb43e02b8ebb0c8fa0dc0">retrieve</a> (size_t index) override</td></tr>
+<tr class="separator:a22602bc8e7ebb43e02b8ebb0c8fa0dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb28c30808e0cecc58149a4d37c43ce6" id="r_afb28c30808e0cecc58149a4d37c43ce6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; std::vector&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#afb28c30808e0cecc58149a4d37c43ce6">retrieve_range</a> (size_t start, size_t count) override</td></tr>
+<tr class="separator:afb28c30808e0cecc58149a4d37c43ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fd7966c43edc4ff6e9aedcffb3fed0f" id="r_a9fd7966c43edc4ff6e9aedcffb3fed0f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a9fd7966c43edc4ff6e9aedcffb3fed0f">size</a> () const override</td></tr>
+<tr class="separator:a9fd7966c43edc4ff6e9aedcffb3fed0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae86500b516482d7f397834a443df9f93" id="r_ae86500b516482d7f397834a443df9f93"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ae86500b516482d7f397834a443df9f93">capacity</a> () const override</td></tr>
+<tr class="separator:ae86500b516482d7f397834a443df9f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f42d737947eded15a43b020d9c1b883" id="r_a2f42d737947eded15a43b020d9c1b883"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2f42d737947eded15a43b020d9c1b883">flush</a> () override</td></tr>
+<tr class="separator:a2f42d737947eded15a43b020d9c1b883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe39bb3c16e7d126d8e86d9554ed5531" id="r_afe39bb3c16e7d126d8e86d9554ed5531"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#afe39bb3c16e7d126d8e86d9554ed5531">clear</a> () override</td></tr>
+<tr class="separator:afe39bb3c16e7d126d8e86d9554ed5531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fb9bebb6bf62db3bfd973c398f3850d" id="r_a6fb9bebb6bf62db3bfd973c398f3850d"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a6fb9bebb6bf62db3bfd973c398f3850d">get_stats</a> () const override</td></tr>
+<tr class="separator:a6fb9bebb6bf62db3bfd973c398f3850d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classkcenon_1_1monitoring_1_1snapshot__storage__backend"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classkcenon_1_1monitoring_1_1snapshot__storage__backend')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html">kcenon::monitoring::snapshot_storage_backend</a></td></tr>
+<tr class="memitem:aa8766279aa348b8c32355d9b81a2efae inherit pub_methods_classkcenon_1_1monitoring_1_1snapshot__storage__backend" id="r_aa8766279aa348b8c32355d9b81a2efae"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#aa8766279aa348b8c32355d9b81a2efae">~snapshot_storage_backend</a> ()=default</td></tr>
+<tr class="separator:aa8766279aa348b8c32355d9b81a2efae inherit pub_methods_classkcenon_1_1monitoring_1_1snapshot__storage__backend"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ada0af875fa8159d2e232e9051b6745ca" id="r_ada0af875fa8159d2e232e9051b6745ca"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ada0af875fa8159d2e232e9051b6745ca">data_</a></td></tr>
-<tr class="separator:ada0af875fa8159d2e232e9051b6745ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2484cdef49b22f31026a88b77943f8ee" id="r_a2484cdef49b22f31026a88b77943f8ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2484cdef49b22f31026a88b77943f8ee">config_</a></td></tr>
+<tr class="separator:a2484cdef49b22f31026a88b77943f8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad554a1dc8f061f5db8f9d5337cc48540" id="r_ad554a1dc8f061f5db8f9d5337cc48540"><td class="memItemLeft" align="right" valign="top">std::deque&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a></td></tr>
+<tr class="separator:ad554a1dc8f061f5db8f9d5337cc48540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a103220008738a54691fa8ee7d2b55e86" id="r_a103220008738a54691fa8ee7d2b55e86"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">mutex_</a></td></tr>
+<tr class="separator:a103220008738a54691fa8ee7d2b55e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>In-memory key-value storage backend. </p>
+<div class="textblock"><p>In-memory snapshot storage backend. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00512">512</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00384">384</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad416a83567143ecab02c324b3b066eb0" name="ad416a83567143ecab02c324b3b066eb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad416a83567143ecab02c324b3b066eb0">&#9670;&#160;</a></span>memory_storage_backend() <span class="overload">[1/2]</span></h2>
+<a id="ac1d5e3a7a5f5a99ff161b6dd214bbc18" name="ac1d5e3a7a5f5a99ff161b6dd214bbc18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1d5e3a7a5f5a99ff161b6dd214bbc18">&#9670;&#160;</a></span>memory_storage_backend() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,15 +185,19 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00386">386</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  386</span>: <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2484cdef49b22f31026a88b77943f8ee">config_</a>() {}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1memory__storage__backend_html_a2484cdef49b22f31026a88b77943f8ee"><div class="ttname"><a href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2484cdef49b22f31026a88b77943f8ee">kcenon::monitoring::memory_storage_backend::config_</a></div><div class="ttdeci">storage_config config_</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00454">storage_backends.h:454</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="a227198ad6398ca44c8d1c93d8738bc47" name="a227198ad6398ca44c8d1c93d8738bc47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a227198ad6398ca44c8d1c93d8738bc47">&#9670;&#160;</a></span>memory_storage_backend() <span class="overload">[2/2]</span></h2>
+<a id="ad107062aeddae9a67f6ff040ff952397" name="ad107062aeddae9a67f6ff040ff952397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad107062aeddae9a67f6ff040ff952397">&#9670;&#160;</a></span>memory_storage_backend() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,7 +209,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">kcenon::monitoring::memory_storage_backend::memory_storage_backend </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -189,14 +220,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00516">516</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  516</span>{}</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00388">388</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  389</span>        : <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2484cdef49b22f31026a88b77943f8ee">config_</a>(config) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab935def809bb7029525b4dae6af68f82" name="ab935def809bb7029525b4dae6af68f82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab935def809bb7029525b4dae6af68f82">&#9670;&#160;</a></span>remove()</h2>
+<a id="ae86500b516482d7f397834a443df9f93" name="ae86500b516482d7f397834a443df9f93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae86500b516482d7f397834a443df9f93">&#9670;&#160;</a></span>capacity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,10 +236,42 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool kcenon::monitoring::memory_storage_backend::remove </td>
+          <td class="memname">size_t kcenon::monitoring::memory_storage_backend::capacity </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#a11ec51260d9bab0f818c6ccc157f962a">kcenon::monitoring::snapshot_storage_backend</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00431">431</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  431</span>                                     {</div>
+<div class="line"><span class="lineno">  432</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2484cdef49b22f31026a88b77943f8ee">config_</a>.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#ac188a463b7a7516db25844e62991a510">max_capacity</a>;</div>
+<div class="line"><span class="lineno">  433</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1storage__config_html_ac188a463b7a7516db25844e62991a510"><div class="ttname"><a href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#ac188a463b7a7516db25844e62991a510">kcenon::monitoring::storage_config::max_capacity</a></div><div class="ttdeci">size_t max_capacity</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00085">storage_backends.h:85</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afe39bb3c16e7d126d8e86d9554ed5531" name="afe39bb3c16e7d126d8e86d9554ed5531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe39bb3c16e7d126d8e86d9554ed5531">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt; kcenon::monitoring::memory_storage_backend::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -219,18 +282,32 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html#a3fe0be69de64ce69c6f5a6ac7e61d41f">kcenon::monitoring::kv_storage_backend</a>.</p>
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#a49fd6b015db3d19fcd34b87be0d8b744">kcenon::monitoring::snapshot_storage_backend</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00528">528</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  528</span>                                               {</div>
-<div class="line"><span class="lineno">  529</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ada0af875fa8159d2e232e9051b6745ca">data_</a>.erase(key) &gt; 0;</div>
-<div class="line"><span class="lineno">  530</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1memory__storage__backend_html_ada0af875fa8159d2e232e9051b6745ca"><div class="ttname"><a href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ada0af875fa8159d2e232e9051b6745ca">kcenon::monitoring::memory_storage_backend::data_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; data_</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00533">storage_backends.h:533</a></div></div>
-</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00439">439</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  439</span>                                  {</div>
+<div class="line"><span class="lineno">  440</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">mutex_</a>);</div>
+<div class="line"><span class="lineno">  441</span>        <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.clear();</div>
+<div class="line"><span class="lineno">  442</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  443</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1memory__storage__backend_html_a103220008738a54691fa8ee7d2b55e86"><div class="ttname"><a href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">kcenon::monitoring::memory_storage_backend::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00456">storage_backends.h:456</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1memory__storage__backend_html_ad554a1dc8f061f5db8f9d5337cc48540"><div class="ttname"><a href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">kcenon::monitoring::memory_storage_backend::snapshots_</a></div><div class="ttdeci">std::deque&lt; metrics_snapshot &gt; snapshots_</div><div class="ttdef"><b>Definition</b> <a href="../../db/d31/storage__backends_8h_source.html#l00455">storage_backends.h:455</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a07bdd48e145c9623f4b4443f98e4700c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">kcenon::monitoring::make_success</a></div><div class="ttdeci">common::Result&lt; std::decay_t&lt; T &gt; &gt; make_success(T &amp;&amp;value)</div><div class="ttdoc">Create a successful result.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00155">result_types.h:155</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afe39bb3c16e7d126d8e86d9554ed5531_cgraph.png" border="0" usemap="#ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afe39bb3c16e7d126d8e86d9554ed5531_cgraph" alt=""/></div>
+<map name="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afe39bb3c16e7d126d8e86d9554ed5531_cgraph" id="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afe39bb3c16e7d126d8e86d9554ed5531_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,60"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="256,13,404,53"/>
+<area shape="poly" title=" " alt="" coords="208,30,242,30,242,35,208,35"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="a474e5c30dfcd4627e09724e8daf73a02" name="a474e5c30dfcd4627e09724e8daf73a02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a474e5c30dfcd4627e09724e8daf73a02">&#9670;&#160;</a></span>retrieve()</h2>
+<a id="a2f42d737947eded15a43b020d9c1b883" name="a2f42d737947eded15a43b020d9c1b883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f42d737947eded15a43b020d9c1b883">&#9670;&#160;</a></span>flush()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,10 +316,9 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string kcenon::monitoring::memory_storage_backend::retrieve </td>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt; kcenon::monitoring::memory_storage_backend::flush </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -253,18 +329,27 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html#a3b25d347519c96a6c1d114d5a6ae79e6">kcenon::monitoring::kv_storage_backend</a>.</p>
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#a84b8be1a089f9eaabd9e4ae22ade807d">kcenon::monitoring::snapshot_storage_backend</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00523">523</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  523</span>                                                      {</div>
-<div class="line"><span class="lineno">  524</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ada0af875fa8159d2e232e9051b6745ca">data_</a>.find(key);</div>
-<div class="line"><span class="lineno">  525</span>        <span class="keywordflow">return</span> it != <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ada0af875fa8159d2e232e9051b6745ca">data_</a>.end() ? it-&gt;second : <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><span class="lineno">  526</span>    }</div>
-</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00435">435</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  435</span>                                  {</div>
+<div class="line"><span class="lineno">  436</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  437</span>    }</div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a2f42d737947eded15a43b020d9c1b883_cgraph.png" border="0" usemap="#ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a2f42d737947eded15a43b020d9c1b883_cgraph" alt=""/></div>
+<map name="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a2f42d737947eded15a43b020d9c1b883_cgraph" id="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a2f42d737947eded15a43b020d9c1b883_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,60"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="256,13,404,53"/>
+<area shape="poly" title=" " alt="" coords="208,30,242,30,242,35,208,35"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="a5a4b8407cdf6addf1fddb6481ecd476d" name="a5a4b8407cdf6addf1fddb6481ecd476d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a4b8407cdf6addf1fddb6481ecd476d">&#9670;&#160;</a></span>store()</h2>
+<a id="a6fb9bebb6bf62db3bfd973c398f3850d" name="a6fb9bebb6bf62db3bfd973c398f3850d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fb9bebb6bf62db3bfd973c398f3850d">&#9670;&#160;</a></span>get_stats()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,16 +358,103 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool kcenon::monitoring::memory_storage_backend::store </td>
+          <td class="memname">std::unordered_map&lt; std::string, size_t &gt; kcenon::monitoring::memory_storage_backend::get_stats </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#a19ca4bb6f4290a11e7ce0bcfb55237a6">kcenon::monitoring::snapshot_storage_backend</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00445">445</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  445</span>                                                                   {</div>
+<div class="line"><span class="lineno">  446</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">mutex_</a>);</div>
+<div class="line"><span class="lineno">  447</span>        <span class="keywordflow">return</span> {</div>
+<div class="line"><span class="lineno">  448</span>            {<span class="stringliteral">&quot;stored_count&quot;</span>, <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.size()},</div>
+<div class="line"><span class="lineno">  449</span>            {<span class="stringliteral">&quot;capacity&quot;</span>, <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2484cdef49b22f31026a88b77943f8ee">config_</a>.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#ac188a463b7a7516db25844e62991a510">max_capacity</a>}</div>
+<div class="line"><span class="lineno">  450</span>        };</div>
+<div class="line"><span class="lineno">  451</span>    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a22602bc8e7ebb43e02b8ebb0c8fa0dc0" name="a22602bc8e7ebb43e02b8ebb0c8fa0dc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22602bc8e7ebb43e02b8ebb0c8fa0dc0">&#9670;&#160;</a></span>retrieve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; kcenon::monitoring::memory_storage_backend::retrieve </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#adcb034dba95a82d95fad77f68bda3503">kcenon::monitoring::snapshot_storage_backend</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00402">402</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  402</span>                                                             {</div>
+<div class="line"><span class="lineno">  403</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">mutex_</a>);</div>
+<div class="line"><span class="lineno">  404</span> </div>
+<div class="line"><span class="lineno">  405</span>        <span class="keywordflow">if</span> (index &gt;= <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.size()) {</div>
+<div class="line"><span class="lineno">  406</span>            <span class="keywordflow">return</span> make_error&lt;metrics_snapshot&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  407</span>                                               <span class="stringliteral">&quot;Snapshot index out of range&quot;</span>);</div>
+<div class="line"><span class="lineno">  408</span>        }</div>
+<div class="line"><span class="lineno">  409</span> </div>
+<div class="line"><span class="lineno">  410</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>[index]);</div>
+<div class="line"><span class="lineno">  411</span>    }</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">kcenon::monitoring::monitoring_error_code::not_found</a></div><div class="ttdeci">@ not_found</div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a22602bc8e7ebb43e02b8ebb0c8fa0dc0_cgraph.png" border="0" usemap="#ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a22602bc8e7ebb43e02b8ebb0c8fa0dc0_cgraph" alt=""/></div>
+<map name="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a22602bc8e7ebb43e02b8ebb0c8fa0dc0_cgraph" id="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_a22602bc8e7ebb43e02b8ebb0c8fa0dc0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,60"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="256,13,404,53"/>
+<area shape="poly" title=" " alt="" coords="208,30,242,30,242,35,208,35"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afb28c30808e0cecc58149a4d37c43ce6" name="afb28c30808e0cecc58149a4d37c43ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb28c30808e0cecc58149a4d37c43ce6">&#9670;&#160;</a></span>retrieve_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; std::vector&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; &gt; kcenon::monitoring::memory_storage_backend::retrieve_range </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -297,19 +469,37 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="../../d0/d0e/classkcenon_1_1monitoring_1_1kv__storage__backend.html#a8113c7565adfa651f9ba4f1b231034a4">kcenon::monitoring::kv_storage_backend</a>.</p>
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#ad5a48ad86ed3c89169e018ffccc3ea42">kcenon::monitoring::snapshot_storage_backend</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00518">518</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  518</span>                                                                      {</div>
-<div class="line"><span class="lineno">  519</span>        <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ada0af875fa8159d2e232e9051b6745ca">data_</a>[key] = value;</div>
-<div class="line"><span class="lineno">  520</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  521</span>    }</div>
-</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00413">413</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  413</span>                                                                                            {</div>
+<div class="line"><span class="lineno">  414</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">mutex_</a>);</div>
+<div class="line"><span class="lineno">  415</span> </div>
+<div class="line"><span class="lineno">  416</span>        std::vector&lt;metrics_snapshot&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><span class="lineno">  417</span>        <span class="keywordtype">size_t</span> end = std::min(start + count, <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.size());</div>
+<div class="line"><span class="lineno">  418</span> </div>
+<div class="line"><span class="lineno">  419</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = start; i &lt; end; ++i) {</div>
+<div class="line"><span class="lineno">  420</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.push_back(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>[i]);</div>
+<div class="line"><span class="lineno">  421</span>        }</div>
+<div class="line"><span class="lineno">  422</span> </div>
+<div class="line"><span class="lineno">  423</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>));</div>
+<div class="line"><span class="lineno">  424</span>    }</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afb28c30808e0cecc58149a4d37c43ce6_cgraph.png" border="0" usemap="#ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afb28c30808e0cecc58149a4d37c43ce6_cgraph" alt=""/></div>
+<map name="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afb28c30808e0cecc58149a4d37c43ce6_cgraph" id="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_afb28c30808e0cecc58149a4d37c43ce6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,60"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="256,13,404,53"/>
+<area shape="poly" title=" " alt="" coords="208,30,242,30,242,35,208,35"/>
+</map>
+</div>
+
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="ada0af875fa8159d2e232e9051b6745ca" name="ada0af875fa8159d2e232e9051b6745ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada0af875fa8159d2e232e9051b6745ca">&#9670;&#160;</a></span>data_</h2>
+<a id="a9fd7966c43edc4ff6e9aedcffb3fed0f" name="a9fd7966c43edc4ff6e9aedcffb3fed0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fd7966c43edc4ff6e9aedcffb3fed0f">&#9670;&#160;</a></span>size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -318,7 +508,91 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;std::string, std::string&gt; kcenon::monitoring::memory_storage_backend::data_</td>
+          <td class="memname">size_t kcenon::monitoring::memory_storage_backend::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#abc7ac8799c6f4ef41bd7e11c0b609089">kcenon::monitoring::snapshot_storage_backend</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00426">426</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  426</span>                                 {</div>
+<div class="line"><span class="lineno">  427</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">mutex_</a>);</div>
+<div class="line"><span class="lineno">  428</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.size();</div>
+<div class="line"><span class="lineno">  429</span>    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa02f3e136e05560cf28b5379a5d9eee4" name="aa02f3e136e05560cf28b5379a5d9eee4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa02f3e136e05560cf28b5379a5d9eee4">&#9670;&#160;</a></span>store()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; bool &gt; kcenon::monitoring::memory_storage_backend::store </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &amp;&#160;</td>
+          <td class="paramname"><em>snapshot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../df/dba/classkcenon_1_1monitoring_1_1snapshot__storage__backend.html#a9c419a944d38e6c81c82630e2463d199">kcenon::monitoring::snapshot_storage_backend</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00391">391</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  391</span>                                                                  {</div>
+<div class="line"><span class="lineno">  392</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a103220008738a54691fa8ee7d2b55e86">mutex_</a>);</div>
+<div class="line"><span class="lineno">  393</span> </div>
+<div class="line"><span class="lineno">  394</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.size() &gt;= <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#a2484cdef49b22f31026a88b77943f8ee">config_</a>.<a class="code hl_variable" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html#ac188a463b7a7516db25844e62991a510">max_capacity</a>) {</div>
+<div class="line"><span class="lineno">  395</span>            <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.pop_front();</div>
+<div class="line"><span class="lineno">  396</span>        }</div>
+<div class="line"><span class="lineno">  397</span> </div>
+<div class="line"><span class="lineno">  398</span>        <a class="code hl_variable" href="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend.html#ad554a1dc8f061f5db8f9d5337cc48540">snapshots_</a>.push_back(snapshot);</div>
+<div class="line"><span class="lineno">  399</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c">make_success</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  400</span>    }</div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_aa02f3e136e05560cf28b5379a5d9eee4_cgraph.png" border="0" usemap="#ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_aa02f3e136e05560cf28b5379a5d9eee4_cgraph" alt=""/></div>
+<map name="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_aa02f3e136e05560cf28b5379a5d9eee4_cgraph" id="ad3/d1c/classkcenon_1_1monitoring_1_1memory__storage__backend_aa02f3e136e05560cf28b5379a5d9eee4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,60"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a07bdd48e145c9623f4b4443f98e4700c" title="Create a successful result." alt="" coords="256,13,404,53"/>
+<area shape="poly" title=" " alt="" coords="208,30,242,30,242,35,208,35"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a2484cdef49b22f31026a88b77943f8ee" name="a2484cdef49b22f31026a88b77943f8ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2484cdef49b22f31026a88b77943f8ee">&#9670;&#160;</a></span>config_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d75/structkcenon_1_1monitoring_1_1storage__config.html">storage_config</a> kcenon::monitoring::memory_storage_backend::config_</td>
         </tr>
       </table>
   </td>
@@ -328,7 +602,55 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00533">533</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00454">454</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+
+</div>
+</div>
+<a id="a103220008738a54691fa8ee7d2b55e86" name="a103220008738a54691fa8ee7d2b55e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a103220008738a54691fa8ee7d2b55e86">&#9670;&#160;</a></span>mutex_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex kcenon::monitoring::memory_storage_backend::mutex_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00456">456</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
+
+</div>
+</div>
+<a id="ad554a1dc8f061f5db8f9d5337cc48540" name="ad554a1dc8f061f5db8f9d5337cc48540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad554a1dc8f061f5db8f9d5337cc48540">&#9670;&#160;</a></span>snapshots_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::deque&lt;<a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a>&gt; kcenon::monitoring::memory_storage_backend::snapshots_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../db/d31/storage__backends_8h_source.html#l00455">455</a> of file <a class="el" href="../../db/d31/storage__backends_8h_source.html">storage_backends.h</a>.</p>
 
 </div>
 </div>
@@ -338,7 +660,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 10:26:01 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 10:45:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
