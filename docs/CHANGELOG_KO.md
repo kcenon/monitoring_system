@@ -138,6 +138,11 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
 
 ### 수정됨
+- **health_monitor의 Thread sanitizer 실패** (#356)
+  - `check()`, `check_all()`, `refresh()` 메서드에서 `shared_lock`을 `lock_guard`로 변경하여 data race 수정
+  - `cv_` 멤버 변수에 필요한 `<condition_variable>` 헤더 누락 추가
+  - atomic 상태와 mutex로 보호되는 message로 `test_health_check`를 thread-safe하게 변경
+  - 4개의 thread sanitizer 및 1개의 undefined behavior sanitizer 테스트 실패 해결
 - **test_metric_storage.cpp의 GCC Release 빌드 maybe-uninitialized 경고** (#354)
   - `RingBufferBasicOperations` 및 `RingBufferPeek` 테스트에서 초기화되지 않은 지역 변수 수정
   - GCC Release 빌드에서 발생하는 `-Werror=maybe-uninitialized` 오류 해결

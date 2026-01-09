@@ -138,6 +138,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **Thread sanitizer failures in health_monitor** (#356)
+  - Fixed data race in `check()`, `check_all()`, and `refresh()` methods by changing `shared_lock` to `lock_guard`
+  - Added missing `<condition_variable>` header required for `cv_` member variable
+  - Made `test_health_check` thread-safe with atomic status and mutex-protected message
+  - Resolved 4 thread sanitizer and 1 undefined behavior sanitizer test failures
 - **GCC Release build maybe-uninitialized warning in test_metric_storage.cpp** (#354)
   - Fixed uninitialized local variables in `RingBufferBasicOperations` and `RingBufferPeek` tests
   - Resolved `-Werror=maybe-uninitialized` errors occurring in GCC Release builds
