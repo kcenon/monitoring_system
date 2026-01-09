@@ -36,6 +36,13 @@
 
 #include "kcenon/monitoring/core/result_types.h"
 
+// Disable MSVC warning C4324: structure was padded due to alignment specifier
+// This is intentional for cache line optimization in lock-free data structures
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4324)
+#endif
+
 namespace kcenon::monitoring {
 
 /**
@@ -359,3 +366,7 @@ inline std::vector<lockfree_queue_config> create_default_queue_configs() {
 }
 
 } // namespace kcenon::monitoring
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
