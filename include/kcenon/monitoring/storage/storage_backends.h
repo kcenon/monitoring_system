@@ -379,6 +379,84 @@ private:
 };
 
 /**
+ * @brief In-memory snapshot storage backend
+ */
+class memory_storage_backend : public snapshot_storage_backend {
+public:
+    memory_storage_backend() : config_() {}
+
+    explicit memory_storage_backend(const storage_config& config)
+        : config_(config) {}
+
+    result<bool> store(const metrics_snapshot& snapshot) override {
+        std::lock_guard<std::mutex> lock(mutex_);
+
+        if (snapshots_.size() >= config_.max_capacity) {
+            snapshots_.pop_front();
+        }
+
+        snapshots_.push_back(snapshot);
+        return make_success(true);
+    }
+
+    result<metrics_snapshot> retrieve(size_t index) override {
+        std::lock_guard<std::mutex> lock(mutex_);
+
+        if (index >= snapshots_.size()) {
+            return make_error<metrics_snapshot>(monitoring_error_code::not_found,
+                                               "Snapshot index out of range");
+        }
+
+        return make_success(snapshots_[index]);
+    }
+
+    result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
+        std::lock_guard<std::mutex> lock(mutex_);
+
+        std::vector<metrics_snapshot> result;
+        size_t end = std::min(start + count, snapshots_.size());
+
+        for (size_t i = start; i < end; ++i) {
+            result.push_back(snapshots_[i]);
+        }
+
+        return make_success(std::move(result));
+    }
+
+    size_t size() const override {
+        std::lock_guard<std::mutex> lock(mutex_);
+        return snapshots_.size();
+    }
+
+    size_t capacity() const override {
+        return config_.max_capacity;
+    }
+
+    result<bool> flush() override {
+        return make_success(true);
+    }
+
+    result<bool> clear() override {
+        std::lock_guard<std::mutex> lock(mutex_);
+        snapshots_.clear();
+        return make_success(true);
+    }
+
+    std::unordered_map<std::string, size_t> get_stats() const override {
+        std::lock_guard<std::mutex> lock(mutex_);
+        return {
+            {"stored_count", snapshots_.size()},
+            {"capacity", config_.max_capacity}
+        };
+    }
+
+private:
+    storage_config config_;
+    std::deque<metrics_snapshot> snapshots_;
+    mutable std::mutex mutex_;
+};
+
+/**
  * @brief Factory for creating storage backends
  */
 class storage_backend_factory {
@@ -391,6 +469,8 @@ public:
     static std::unique_ptr<snapshot_storage_backend> create_backend(const storage_config& config) {
         switch (config.type) {
             case storage_backend_type::memory_buffer:
+                return std::make_unique<memory_storage_backend>(config);
+
             case storage_backend_type::file_json:
             case storage_backend_type::file_binary:
             case storage_backend_type::file_csv:
@@ -507,13 +587,13 @@ public:
 };
 
 /**
- * @brief In-memory key-value storage backend
+ * @brief In-memory key-value storage backend (legacy interface)
  */
-class memory_storage_backend : public kv_storage_backend {
+class kv_memory_storage_backend : public kv_storage_backend {
 public:
-    memory_storage_backend() = default;
+    kv_memory_storage_backend() = default;
 
-    explicit memory_storage_backend(const storage_config& /* config */) {}
+    explicit kv_memory_storage_backend(const storage_config& /* config */) {}
 
     bool store(const std::string& key, const std::string& value) override {
         data_[key] = value;
