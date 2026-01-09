@@ -8,5 +8,6 @@ var searchData=
   ['socket_5fbuffer_5fcollector_2eh_5',['socket_buffer_collector.h',['../db/db3/socket__buffer__collector_8h.html',1,'']]],
   ['storage_5fbackends_2eh_6',['storage_backends.h',['../db/d31/storage__backends_8h.html',1,'']]],
   ['storage_5fexample_2ecpp_7',['storage_example.cpp',['../d9/d8e/storage__example_8cpp.html',1,'']]],
-  ['system_5fresource_5fcollector_2eh_8',['system_resource_collector.h',['../d7/d9f/system__resource__collector_8h.html',1,'']]]
+  ['stream_5faggregator_2eh_8',['stream_aggregator.h',['../d9/d7b/stream__aggregator_8h.html',1,'']]],
+  ['system_5fresource_5fcollector_2eh_9',['system_resource_collector.h',['../d7/d9f/system__resource__collector_8h.html',1,'']]]
 ];

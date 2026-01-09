@@ -43,5 +43,6 @@ var searchData=
   ['monitoring_5fconfig_40',['monitoring_config',['../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html',1,'kcenon::monitoring']]],
   ['monitoring_5fdata_41',['monitoring_data',['../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html',1,'kcenon::monitoring']]],
   ['monitoring_5finterface_42',['monitoring_interface',['../da/d7d/classkcenon_1_1monitoring_1_1monitoring__interface.html',1,'kcenon::monitoring']]],
-  ['monitoringthreadsafetytest_43',['MonitoringThreadSafetyTest',['../d9/d57/classMonitoringThreadSafetyTest.html',1,'']]]
+  ['monitoringthreadsafetytest_43',['MonitoringThreadSafetyTest',['../d9/d57/classMonitoringThreadSafetyTest.html',1,'']]],
+  ['moving_5fwindow_5faggregator_44',['moving_window_aggregator',['../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html',1,'kcenon::monitoring']]]
 ];

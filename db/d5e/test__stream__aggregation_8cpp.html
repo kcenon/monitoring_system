@@ -80,8 +80,8 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/utils/stream_aggregator.h&gt;</code><br />
-<code>#include &lt;kcenon/monitoring/utils/aggregation_processor.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/d7b/stream__aggregator_8h_source.html">kcenon/monitoring/utils/stream_aggregator.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d6/db7/aggregation__processor_8h_source.html">kcenon/monitoring/utils/aggregation_processor.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="../../df/df1/metric__storage_8h_source.html">kcenon/monitoring/utils/metric_storage.h</a>&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
@@ -93,89 +93,115 @@ Include dependency graph for test_stream_aggregation.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/d6f/test__stream__aggregation_8cpp__incl.png" border="0" usemap="#atests_2test__stream__aggregation_8cpp" alt=""/></div>
 <map name="atests_2test__stream__aggregation_8cpp" id="atests_2test__stream__aggregation_8cpp">
-<area shape="rect" title=" " alt="" coords="765,5,1013,31"/>
+<area shape="rect" title=" " alt="" coords="1161,5,1409,31"/>
 <area shape="rect" title=" " alt="" coords="5,86,109,111"/>
-<area shape="poly" title=" " alt="" coords="765,24,632,29,471,39,296,56,122,81,105,85,104,80,121,76,295,50,470,33,632,23,765,18"/>
-<area shape="rect" title=" " alt="" coords="133,79,309,119"/>
-<area shape="poly" title=" " alt="" coords="765,32,562,52,323,81,323,76,562,46,765,27"/>
-<area shape="rect" title=" " alt="" coords="334,79,519,119"/>
-<area shape="poly" title=" " alt="" coords="823,33,533,82,533,77,822,28"/>
-<area shape="rect" href="../../df/df1/metric__storage_8h.html" title="Memory&#45;efficient metric storage with ring buffer backend." alt="" coords="801,79,977,119"/>
-<area shape="poly" title=" " alt="" coords="892,31,892,65,887,65,887,31"/>
-<area shape="rect" title=" " alt="" coords="1425,328,1492,353"/>
-<area shape="poly" title=" " alt="" coords="1014,27,1158,44,1315,71,1388,89,1452,111,1503,136,1537,165,1547,185,1549,206,1545,228,1537,249,1511,289,1483,320,1479,317,1507,285,1532,247,1540,226,1544,206,1542,186,1533,168,1500,140,1450,116,1386,94,1314,76,1157,49,1013,32"/>
-<area shape="rect" title=" " alt="" coords="429,328,491,353"/>
-<area shape="poly" title=" " alt="" coords="832,33,764,51,682,79,598,118,558,142,520,169,490,200,473,241,465,279,462,314,457,314,459,278,468,239,486,197,517,165,555,137,595,113,680,74,762,46,831,28"/>
-<area shape="rect" title=" " alt="" coords="1517,328,1579,353"/>
-<area shape="poly" title=" " alt="" coords="1014,24,1239,44,1344,59,1419,76,1466,91,1503,105,1533,127,1561,165,1574,204,1575,246,1569,285,1560,316,1555,315,1563,283,1569,245,1568,205,1556,168,1530,131,1500,110,1464,96,1418,81,1343,64,1238,49,1013,29"/>
-<area shape="rect" title=" " alt="" coords="1459,167,1523,192"/>
-<area shape="poly" title=" " alt="" coords="933,28,1446,163,1445,169,932,33"/>
-<area shape="rect" title=" " alt="" coords="1648,86,1720,111"/>
-<area shape="poly" title=" " alt="" coords="1014,17,1143,21,1297,31,1464,49,1630,76,1642,79,1641,84,1629,81,1464,54,1297,36,1142,27,1014,23"/>
-<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="515,328,674,353"/>
-<area shape="poly" title=" " alt="" coords="801,109,733,117,664,129,605,146,583,157,569,168,553,194,550,219,565,279,581,315,576,317,560,281,545,220,548,193,565,165,580,152,603,141,663,124,732,112,801,104"/>
-<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="1111,409,1222,434"/>
-<area shape="poly" title=" " alt="" coords="978,105,1085,119,1214,144,1352,182,1420,208,1485,238,1550,271,1574,293,1594,327,1599,341,1594,355,1570,374,1533,388,1489,399,1438,408,1331,418,1236,422,1236,417,1331,413,1437,403,1488,394,1532,383,1567,369,1590,352,1594,341,1590,329,1570,296,1547,276,1483,242,1418,213,1351,187,1213,149,1084,124,977,110"/>
-<area shape="rect" title=" " alt="" coords="832,489,891,515"/>
-<area shape="poly" title=" " alt="" coords="802,110,642,132,569,149,520,169,466,250,418,329,412,363,415,391,429,415,454,439,481,454,521,466,622,483,730,493,818,497,818,502,729,498,621,489,519,471,479,459,450,443,425,419,410,392,407,362,414,327,462,247,517,165,568,144,641,127,801,105"/>
-<area shape="rect" href="../../df/d4b/metric__types_8h.html" title="Common metric type definitions for efficient storage." alt="" coords="1163,247,1282,273"/>
-<area shape="poly" title=" " alt="" coords="979,113,1050,133,1121,164,1169,199,1206,235,1202,239,1165,203,1119,169,1048,138,977,118"/>
-<area shape="rect" title=" " alt="" coords="698,328,822,353"/>
-<area shape="poly" title=" " alt="" coords="912,117,927,134,940,154,944,174,937,193,916,213,894,226,872,233,849,236,803,231,755,219,708,206,663,201,641,204,620,211,599,223,579,242,571,256,571,269,579,280,593,291,636,310,685,323,684,328,634,315,591,296,575,284,566,270,566,255,575,238,596,219,618,206,640,199,663,196,709,201,757,213,804,226,849,231,871,228,892,221,913,209,932,191,939,174,935,156,923,137,909,121"/>
-<area shape="poly" title=" " alt="" coords="802,111,656,133,592,149,548,169,517,202,493,241,477,282,468,315,463,314,472,280,489,239,512,199,545,164,590,144,655,127,801,106"/>
-<area shape="rect" href="../../d8/d51/time__series_8h.html" title="Time&#45;series data storage for efficient metric history." alt="" coords="998,167,1109,192"/>
-<area shape="poly" title=" " alt="" coords="930,116,1018,158,1016,163,927,121"/>
-<area shape="rect" title=" " alt="" coords="589,247,667,273"/>
-<area shape="poly" title=" " alt="" coords="802,109,736,117,669,130,613,146,593,157,580,168,574,185,578,202,590,220,605,236,601,240,586,223,573,204,568,184,575,165,590,152,611,142,668,124,735,112,801,104"/>
-<area shape="rect" title=" " alt="" coords="1408,247,1472,273"/>
-<area shape="poly" title=" " alt="" coords="971,116,1157,164,1271,199,1384,237,1396,241,1394,246,1382,243,1269,205,1155,169,970,121"/>
-<area shape="rect" href="../../d7/d7b/ring__buffer_8h.html" title="Public API for ring buffer metric storage." alt="" coords="590,167,693,192"/>
-<area shape="poly" title=" " alt="" coords="831,121,691,165,690,160,829,116"/>
-<area shape="rect" title=" " alt="" coords="717,167,832,192"/>
-<area shape="poly" title=" " alt="" coords="863,121,804,161,801,157,860,117"/>
-<area shape="rect" title=" " alt="" coords="856,167,923,192"/>
-<area shape="poly" title=" " alt="" coords="892,119,892,153,887,153,887,119"/>
-<area shape="poly" title=" " alt="" coords="978,105,1189,128,1440,164,1446,165,1445,170,1440,169,1188,133,977,111"/>
-<area shape="poly" title=" " alt="" coords="675,350,1098,408,1097,413,674,355"/>
-<area shape="poly" title=" " alt="" coords="647,351,705,370,765,399,812,437,846,476,842,480,808,441,763,404,703,375,645,356"/>
-<area shape="rect" title=" " alt="" coords="465,401,653,441"/>
-<area shape="poly" title=" " alt="" coords="592,355,575,390,571,388,587,352"/>
-<area shape="rect" title=" " alt="" coords="677,409,752,434"/>
-<area shape="poly" title=" " alt="" coords="614,351,687,399,684,403,611,356"/>
-<area shape="rect" title=" " alt="" coords="1247,489,1313,515"/>
-<area shape="poly" title=" " alt="" coords="1185,432,1254,479,1251,484,1182,436"/>
-<area shape="poly" title=" " alt="" coords="1123,437,905,492,903,487,1122,431"/>
-<area shape="poly" title=" " alt="" coords="1184,275,1151,283,1023,302,922,312,819,318,688,330,688,325,819,313,921,306,1023,297,1150,277,1183,270"/>
-<area shape="poly" title=" " alt="" coords="1199,275,1165,297,1150,312,1138,329,1134,346,1137,363,1152,396,1147,398,1131,365,1129,345,1134,327,1146,308,1162,293,1196,271"/>
-<area shape="poly" title=" " alt="" coords="1251,271,1285,293,1302,308,1314,327,1322,346,1325,367,1321,408,1310,447,1296,478,1291,476,1305,445,1316,408,1319,367,1316,348,1310,329,1298,312,1282,297,1248,275"/>
-<area shape="poly" title=" " alt="" coords="1179,275,1070,305,996,330,956,365,922,405,895,445,876,478,871,476,890,442,918,402,952,361,993,326,1068,300,1178,270"/>
-<area shape="poly" title=" " alt="" coords="1258,270,1413,321,1411,327,1256,275"/>
-<area shape="poly" title=" " alt="" coords="1182,275,1151,283,836,331,835,325,1150,277,1181,270"/>
-<area shape="rect" title=" " alt="" coords="1231,328,1299,353"/>
-<area shape="poly" title=" " alt="" coords="1231,272,1255,315,1250,317,1227,274"/>
-<area shape="poly" title=" " alt="" coords="1185,275,1151,283,1054,296,972,303,829,307,687,310,603,317,505,331,504,325,603,312,686,305,829,301,971,298,1054,291,1150,277,1184,270"/>
-<area shape="rect" title=" " alt="" coords="847,328,932,353"/>
-<area shape="poly" title=" " alt="" coords="1180,275,1151,283,946,330,945,324,1150,277,1179,270"/>
-<area shape="poly" title=" " alt="" coords="1273,270,1504,325,1503,330,1271,275"/>
-<area shape="rect" title=" " alt="" coords="1007,328,1073,353"/>
-<area shape="poly" title=" " alt="" coords="1197,275,1080,325,1078,320,1195,270"/>
-<area shape="rect" title=" " alt="" coords="1148,328,1207,353"/>
-<area shape="poly" title=" " alt="" coords="1218,274,1193,317,1189,315,1214,272"/>
-<area shape="poly" title=" " alt="" coords="1030,194,936,242,904,264,870,282,778,312,688,330,687,325,776,306,868,278,901,259,933,238,1028,190"/>
-<area shape="poly" title=" " alt="" coords="1109,185,1217,204,1265,219,1296,238,1318,266,1329,294,1328,323,1314,355,1299,373,1279,388,1236,408,1234,404,1277,384,1295,370,1310,352,1323,322,1324,295,1314,269,1293,242,1263,224,1215,210,1108,190"/>
-<area shape="poly" title=" " alt="" coords="1079,190,1187,239,1185,244,1077,194"/>
-<area shape="poly" title=" " alt="" coords="1109,182,1219,198,1281,214,1340,238,1387,271,1438,317,1435,321,1383,276,1337,242,1279,219,1218,203,1109,187"/>
-<area shape="poly" title=" " alt="" coords="999,195,936,213,871,242,858,252,849,262,840,273,825,282,780,300,741,311,670,319,597,320,505,331,504,325,597,315,670,313,740,306,779,295,823,278,836,269,845,259,854,248,868,238,934,208,998,189"/>
-<area shape="poly" title=" " alt="" coords="1039,194,979,242,941,282,909,318,905,315,937,278,976,238,1035,190"/>
-<area shape="rect" title=" " alt="" coords="691,240,813,280"/>
-<area shape="poly" title=" " alt="" coords="1010,195,827,242,825,237,1009,189"/>
-<area shape="rect" title=" " alt="" coords="989,247,1064,273"/>
-<area shape="poly" title=" " alt="" coords="1052,193,1037,235,1032,234,1047,191"/>
-<area shape="rect" title=" " alt="" coords="1088,247,1139,273"/>
-<area shape="poly" title=" " alt="" coords="1064,191,1098,234,1094,238,1060,194"/>
-<area shape="poly" title=" " alt="" coords="998,192,679,243,669,245,668,240,678,237,997,187"/>
-<area shape="poly" title=" " alt="" coords="1109,185,1238,205,1390,237,1400,240,1398,245,1389,243,1237,210,1108,190"/>
-<area shape="poly" title=" " alt="" coords="659,190,716,230,713,234,656,194"/>
+<area shape="poly" title=" " alt="" coords="1161,25,622,44,336,61,218,70,128,81,108,85,107,80,128,76,218,65,336,55,622,39,1161,20"/>
+<area shape="rect" href="../../d9/d7b/stream__aggregator_8h.html" title="Streaming statistical aggregation for real&#45;time metrics." alt="" coords="733,240,909,280"/>
+<area shape="poly" title=" " alt="" coords="1264,33,871,236,869,231,1262,29"/>
+<area shape="rect" title=" " alt="" coords="745,416,812,441"/>
+<area shape="poly" title=" " alt="" coords="1161,26,759,45,555,61,471,71,407,81,333,92,273,100,246,107,222,120,198,139,174,168,148,195,122,211,102,221,95,230,106,243,142,268,319,366,374,391,424,405,470,411,515,411,611,405,667,406,732,413,731,419,667,412,611,411,515,416,470,416,423,411,372,396,316,370,139,272,102,247,90,230,99,217,119,206,145,191,170,165,194,136,219,115,244,102,272,95,333,87,406,76,470,65,554,56,759,40,1161,21"/>
+<area shape="rect" title=" " alt="" coords="1071,416,1134,441"/>
+<area shape="poly" title=" " alt="" coords="1287,32,1279,88,1260,175,1228,274,1205,324,1178,370,1158,392,1136,410,1132,406,1155,388,1174,366,1201,321,1223,272,1255,173,1273,87,1281,31"/>
+<area shape="rect" title=" " alt="" coords="1917,416,1979,441"/>
+<area shape="poly" title=" " alt="" coords="1410,22,1724,43,1878,58,1990,76,2052,92,2100,107,2144,129,2198,164,2232,190,2259,215,2268,230,2272,245,2271,263,2264,281,2239,315,2208,344,2173,367,2135,386,2059,412,1994,425,1993,420,2057,406,2133,381,2170,363,2205,340,2235,312,2259,279,2266,261,2267,246,2263,232,2255,219,2228,194,2194,169,2142,134,2098,112,2050,97,1989,81,1878,63,1724,48,1409,28"/>
+<area shape="rect" href="../../d6/db7/aggregation__processor_8h.html" title="Metric aggregation processing pipeline." alt="" coords="419,79,605,119"/>
+<area shape="poly" title=" " alt="" coords="1173,33,619,89,618,84,1173,28"/>
+<area shape="rect" href="../../df/df1/metric__storage_8h.html" title="Memory&#45;efficient metric storage with ring buffer backend." alt="" coords="1323,167,1455,192"/>
+<area shape="poly" title=" " alt="" coords="1295,29,1376,154,1372,156,1291,32"/>
+<area shape="rect" title=" " alt="" coords="2185,247,2249,273"/>
+<area shape="poly" title=" " alt="" coords="1410,24,1601,40,1823,68,1931,86,2028,109,2110,134,2168,164,2184,179,2197,197,2213,233,2208,235,2192,200,2180,183,2165,169,2107,139,2027,114,1930,92,1823,73,1601,46,1409,30"/>
+<area shape="rect" title=" " alt="" coords="2324,86,2396,111"/>
+<area shape="poly" title=" " alt="" coords="1410,20,1882,38,2128,54,2229,64,2306,76,2319,79,2318,84,2305,81,2228,70,2127,60,1882,43,1410,25"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="562,416,721,441"/>
+<area shape="poly" title=" " alt="" coords="734,273,706,281,679,293,655,309,636,329,628,347,626,365,634,403,629,404,621,366,623,345,631,327,652,305,677,288,704,276,732,268"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="1319,497,1430,522"/>
+<area shape="poly" title=" " alt="" coords="824,280,829,321,844,367,858,392,871,410,888,425,913,439,944,451,987,462,1093,480,1306,501,1305,506,1092,485,986,467,943,456,911,444,885,429,867,414,853,395,839,369,824,322,819,280"/>
+<area shape="rect" title=" " alt="" coords="467,497,541,522"/>
+<area shape="poly" title=" " alt="" coords="734,280,675,300,619,330,582,365,552,407,530,449,515,485,510,482,525,447,547,405,577,362,616,326,673,295,732,275"/>
+<area shape="rect" title=" " alt="" coords="1159,416,1244,441"/>
+<area shape="poly" title=" " alt="" coords="839,278,883,328,924,366,1145,413,1144,418,921,370,879,332,835,282"/>
+<area shape="rect" title=" " alt="" coords="935,335,1001,361"/>
+<area shape="poly" title=" " alt="" coords="855,278,938,326,935,331,852,282"/>
+<area shape="poly" title=" " alt="" coords="807,282,791,303,780,329,775,366,777,402,772,402,769,366,775,327,787,301,802,279"/>
+<area shape="poly" title=" " alt="" coords="829,279,847,323,862,346,880,366,922,391,961,401,1004,405,1058,413,1058,418,1004,410,960,406,920,396,877,370,857,350,842,326,824,281"/>
+<area shape="rect" title=" " alt="" coords="645,335,707,361"/>
+<area shape="poly" title=" " alt="" coords="791,282,708,331,706,326,788,278"/>
+<area shape="rect" title=" " alt="" coords="1113,335,1164,361"/>
+<area shape="poly" title=" " alt="" coords="910,274,1004,296,1102,325,1107,327,1105,332,1100,331,1002,301,909,280"/>
+<area shape="rect" title=" " alt="" coords="1025,335,1089,361"/>
+<area shape="poly" title=" " alt="" coords="879,278,1014,326,1020,328,1018,333,1012,330,878,283"/>
+<area shape="rect" title=" " alt="" coords="353,335,468,361"/>
+<area shape="poly" title=" " alt="" coords="734,282,479,335,478,330,733,277"/>
+<area shape="poly" title=" " alt="" coords="910,258,1040,262,1207,271,1391,292,1484,307,1574,325,1603,334,1625,344,1676,365,1799,397,1904,417,1903,423,1797,402,1674,371,1623,349,1602,339,1573,331,1483,312,1390,297,1206,277,1040,267,909,264"/>
+<area shape="poly" title=" " alt="" coords="721,437,734,439,1306,499,1306,504,733,444,721,443"/>
+<area shape="rect" title=" " alt="" coords="763,577,821,603"/>
+<area shape="poly" title=" " alt="" coords="689,439,731,457,751,471,769,488,780,506,787,525,794,563,789,564,782,527,775,508,765,491,748,475,729,462,687,444"/>
+<area shape="rect" title=" " alt="" coords="566,489,754,529"/>
+<area shape="poly" title=" " alt="" coords="647,441,655,475,650,477,641,442"/>
+<area shape="poly" title=" " alt="" coords="622,444,537,492,535,488,620,439"/>
+<area shape="rect" title=" " alt="" coords="1504,577,1571,603"/>
+<area shape="poly" title=" " alt="" coords="1399,520,1503,569,1500,574,1397,524"/>
+<area shape="poly" title=" " alt="" coords="1334,525,1300,532,1168,553,1037,569,835,588,835,583,1036,564,1167,548,1300,527,1332,519"/>
+<area shape="poly" title=" " alt="" coords="550,116,774,231,771,236,547,121"/>
+<area shape="poly" title=" " alt="" coords="419,109,348,117,275,129,213,146,190,157,174,169,135,217,123,242,115,267,114,292,118,316,129,341,147,366,166,376,201,385,306,401,432,412,548,420,548,425,431,418,305,406,200,391,164,381,144,370,124,344,113,318,108,292,110,266,118,240,131,215,170,165,187,152,211,141,274,124,347,112,419,104"/>
+<area shape="poly" title=" " alt="" coords="465,121,428,140,388,167,352,200,326,241,311,277,302,307,304,335,320,367,343,393,367,411,392,422,418,427,478,431,551,439,657,457,765,471,978,491,1166,501,1306,505,1305,510,1166,507,978,497,765,477,656,462,550,444,478,436,418,432,391,427,365,416,340,397,315,369,298,337,297,306,306,275,322,239,348,197,385,163,425,136,463,116"/>
+<area shape="poly" title=" " alt="" coords="420,113,295,132,162,162,104,182,57,205,26,231,17,244,15,259,15,430,21,456,39,478,67,499,105,516,151,532,202,545,319,564,444,576,565,583,749,586,749,592,564,589,443,582,319,569,201,550,149,537,103,521,65,503,35,482,16,458,9,430,9,258,12,242,22,227,54,200,102,177,161,157,294,127,419,108"/>
+<area shape="poly" title=" " alt="" coords="485,121,425,167,392,198,362,231,339,266,326,301,324,318,326,334,332,351,343,366,371,385,412,398,462,405,518,408,634,409,732,414,732,419,634,415,518,413,461,410,410,403,369,390,339,370,328,353,321,336,319,318,320,300,334,263,358,228,388,194,421,163,482,117"/>
+<area shape="poly" title=" " alt="" coords="592,116,749,163,837,197,923,238,987,281,1037,324,1034,328,984,285,920,242,835,202,747,168,591,121"/>
+<area shape="poly" title=" " alt="" coords="507,120,423,324,418,322,502,118"/>
+<area shape="poly" title=" " alt="" coords="605,100,900,110,1294,134,1495,152,1682,175,1841,203,1906,220,1960,237,2020,261,2073,288,2093,304,2105,323,2107,345,2096,369,2075,392,2049,407,2021,418,1994,425,1993,420,2019,413,2046,403,2071,387,2091,367,2101,344,2100,324,2089,307,2071,292,2017,266,1958,243,1905,225,1840,208,1682,180,1495,157,1293,139,899,116,605,105"/>
+<area shape="poly" title=" " alt="" coords="605,106,1310,168,1309,174,605,111"/>
+<area shape="rect" title=" " alt="" coords="923,416,1047,441"/>
+<area shape="poly" title=" " alt="" coords="517,118,527,169,548,237,563,273,583,307,607,339,635,366,655,377,682,387,754,402,835,413,910,420,909,425,834,419,753,408,681,392,653,382,632,370,603,343,578,310,559,275,543,239,522,170,512,119"/>
+<area shape="rect" title=" " alt="" coords="1983,335,2060,361"/>
+<area shape="poly" title=" " alt="" coords="605,99,768,105,983,116,1225,135,1468,164,1638,190,1712,208,1804,238,1908,282,1992,326,1989,331,1906,287,1802,242,1710,213,1637,195,1468,169,1224,141,983,122,768,110,605,105"/>
+<area shape="rect" title=" " alt="" coords="185,167,271,192"/>
+<area shape="poly" title=" " alt="" coords="445,121,283,166,282,160,443,116"/>
+<area shape="poly" title=" " alt="" coords="1323,186,941,205,730,222,644,232,578,243,504,254,443,261,416,269,391,281,367,301,344,329,333,355,334,365,338,374,356,390,386,403,422,412,464,419,549,425,548,430,463,424,421,417,384,408,354,395,334,377,329,366,328,354,339,327,363,297,388,277,414,264,442,256,503,248,577,237,643,226,730,216,940,200,1323,180"/>
+<area shape="poly" title=" " alt="" coords="1456,181,1722,199,1860,216,1917,226,1959,237,2019,259,2071,285,2090,301,2102,320,2104,343,2096,369,2076,399,2054,418,2027,431,1993,444,1946,457,1885,469,1733,488,1575,500,1444,508,1444,502,1574,495,1733,482,1884,464,1945,452,1991,439,2025,426,2051,414,2072,396,2091,367,2099,342,2097,322,2086,304,2068,289,2017,264,1958,243,1916,231,1859,221,1721,205,1455,186"/>
+<area shape="poly" title=" " alt="" coords="1323,184,1099,187,805,197,536,214,439,227,406,234,385,242,351,267,329,295,323,310,321,327,328,367,350,422,374,462,407,494,456,527,479,537,511,547,591,563,749,582,749,588,590,568,510,552,477,542,453,532,404,499,370,465,345,424,323,369,315,328,318,309,324,292,347,263,383,238,405,229,439,222,535,209,805,191,1099,182,1323,179"/>
+<area shape="poly" title=" " alt="" coords="1343,195,1270,215,1189,242,1086,288,1002,331,999,326,1083,283,1187,238,1268,210,1342,190"/>
+<area shape="poly" title=" " alt="" coords="1368,194,1094,331,1091,327,1365,190"/>
+<area shape="poly" title=" " alt="" coords="1323,184,1209,188,1058,197,890,214,722,243,645,262,570,287,450,333,448,328,568,281,644,257,721,237,890,209,1058,192,1208,182,1323,179"/>
+<area shape="poly" title=" " alt="" coords="1456,182,1608,194,1796,220,1887,239,1968,262,2033,291,2057,308,2074,327,2082,348,2074,369,2058,388,2038,403,1994,421,1992,416,2035,398,2054,384,2070,367,2077,348,2070,329,2053,312,2030,296,1966,267,1886,244,1795,225,1608,199,1455,187"/>
+<area shape="rect" href="../../df/d4b/metric__types_8h.html" title="Common metric type definitions for efficient storage." alt="" coords="1442,335,1561,361"/>
+<area shape="poly" title=" " alt="" coords="1396,191,1411,231,1437,279,1457,303,1479,324,1475,328,1453,307,1432,281,1406,234,1391,193"/>
+<area shape="poly" title=" " alt="" coords="1381,194,1303,275,1243,326,1177,370,1117,397,1057,415,1056,410,1115,392,1175,366,1240,322,1299,271,1378,190"/>
+<area shape="rect" href="../../d8/d51/time__series_8h.html" title="Time&#45;series data storage for efficient metric history." alt="" coords="1446,247,1557,273"/>
+<area shape="poly" title=" " alt="" coords="1407,190,1475,237,1472,242,1404,194"/>
+<area shape="poly" title=" " alt="" coords="1456,186,1581,206,1725,237,1795,258,1849,278,1972,326,1978,328,1976,333,1970,330,1848,283,1794,263,1723,243,1580,212,1455,192"/>
+<area shape="rect" href="../../d7/d7b/ring__buffer_8h.html" title="Public API for ring buffer metric storage." alt="" coords="1609,247,1711,273"/>
+<area shape="poly" title=" " alt="" coords="1429,189,1608,241,1607,246,1428,195"/>
+<area shape="poly" title=" " alt="" coords="1456,181,1743,200,1929,216,2116,237,2172,247,2171,252,2116,243,1928,221,1743,205,1456,187"/>
+<area shape="poly" title=" " alt="" coords="1442,357,735,419,734,413,1441,352"/>
+<area shape="poly" title=" " alt="" coords="1444,363,1398,383,1377,398,1361,417,1355,433,1355,450,1364,483,1359,485,1350,451,1350,432,1356,415,1374,394,1395,379,1442,358"/>
+<area shape="poly" title=" " alt="" coords="1547,358,1590,379,1610,395,1626,415,1634,436,1635,458,1630,480,1620,501,1593,539,1563,570,1560,566,1589,536,1616,498,1625,478,1630,457,1629,437,1622,417,1607,399,1588,384,1545,363"/>
+<area shape="poly" title=" " alt="" coords="1473,363,1257,444,1019,522,835,578,834,573,1018,517,1255,439,1471,358"/>
+<area shape="poly" title=" " alt="" coords="1458,363,1258,415,1256,410,1457,358"/>
+<area shape="poly" title=" " alt="" coords="1442,361,1372,371,1061,404,826,426,826,421,1060,399,1372,365,1441,356"/>
+<area shape="poly" title=" " alt="" coords="1442,362,1311,385,1148,419,1147,413,1310,380,1441,357"/>
+<area shape="poly" title=" " alt="" coords="1548,358,1581,365,1759,397,1903,419,1903,424,1758,402,1579,371,1546,363"/>
+<area shape="poly" title=" " alt="" coords="1442,361,1062,418,1061,413,1441,356"/>
+<area shape="rect" title=" " alt="" coords="1543,416,1611,441"/>
+<area shape="poly" title=" " alt="" coords="1514,359,1559,404,1555,408,1511,363"/>
+<area shape="rect" title=" " alt="" coords="1370,416,1435,441"/>
+<area shape="poly" title=" " alt="" coords="1488,363,1430,409,1426,405,1485,359"/>
+<area shape="rect" title=" " alt="" coords="1460,416,1519,441"/>
+<area shape="poly" title=" " alt="" coords="1502,361,1496,403,1491,402,1497,360"/>
+<area shape="poly" title=" " alt="" coords="1457,275,1370,299,1272,330,1225,352,1204,362,1177,371,1056,396,959,405,861,409,735,419,735,413,861,403,959,399,1055,390,1175,365,1202,357,1223,347,1270,326,1369,294,1455,270"/>
+<area shape="poly" title=" " alt="" coords="1522,271,1564,301,1609,343,1626,368,1637,393,1637,418,1626,443,1614,454,1597,463,1551,480,1444,502,1443,496,1549,475,1595,459,1611,449,1622,440,1632,417,1631,394,1621,370,1605,347,1560,305,1519,275"/>
+<area shape="poly" title=" " alt="" coords="1492,275,1443,320,1410,347,1373,370,1315,397,1258,416,1256,411,1313,392,1371,366,1406,342,1440,316,1488,271"/>
+<area shape="poly" title=" " alt="" coords="1480,275,1374,328,1315,354,1271,371,1181,388,1057,404,826,426,825,421,1056,399,1181,383,1270,365,1313,349,1371,323,1478,270"/>
+<area shape="poly" title=" " alt="" coords="1453,275,1178,340,1177,335,1452,270"/>
+<area shape="poly" title=" " alt="" coords="1446,269,1289,290,1195,307,1102,331,1095,333,1094,328,1101,325,1194,302,1289,285,1445,264"/>
+<area shape="poly" title=" " alt="" coords="1558,270,1677,296,1734,311,1775,326,1802,345,1827,366,1909,408,1907,413,1824,370,1798,349,1772,330,1732,316,1676,301,1557,275"/>
+<area shape="poly" title=" " alt="" coords="1504,273,1504,321,1499,321,1499,273"/>
+<area shape="rect" title=" " alt="" coords="1837,328,1958,368"/>
+<area shape="poly" title=" " alt="" coords="1557,270,1818,325,1824,327,1823,332,1817,331,1556,275"/>
+<area shape="rect" title=" " alt="" coords="1687,335,1761,361"/>
+<area shape="poly" title=" " alt="" coords="1532,270,1682,328,1680,333,1530,275"/>
+<area shape="poly" title=" " alt="" coords="1557,270,1598,277,1703,290,1785,296,1867,305,1971,325,1982,328,1980,333,1970,331,1867,310,1785,302,1702,296,1597,283,1556,275"/>
+<area shape="poly" title=" " alt="" coords="1693,270,1833,321,1831,326,1691,275"/>
 </map>
 </div>
 </div>
@@ -256,19 +282,19 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00304">304</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  304</span>                                                         {</div>
 <div class="line"><span class="lineno">  305</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a> = std::make_shared&lt;metric_storage&gt;();</div>
-<div class="line"><span class="lineno">  306</span>    aggregation_processor processor(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
+<div class="line"><span class="lineno">  306</span>    <a class="code hl_class" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html">aggregation_processor</a> processor(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
 <div class="line"><span class="lineno">  307</span>    </div>
 <div class="line"><span class="lineno">  308</span>    <span class="comment">// Create aggregation rule</span></div>
-<div class="line"><span class="lineno">  309</span>    aggregation_rule rule;</div>
-<div class="line"><span class="lineno">  310</span>    rule.source_metric = <span class="stringliteral">&quot;test_metric&quot;</span>;</div>
-<div class="line"><span class="lineno">  311</span>    rule.target_metric_prefix = <span class="stringliteral">&quot;test_metric_stats&quot;</span>;</div>
-<div class="line"><span class="lineno">  312</span>    rule.aggregation_interval = std::chrono::milliseconds(1000);</div>
-<div class="line"><span class="lineno">  313</span>    rule.percentiles = {0.5, 0.95};</div>
-<div class="line"><span class="lineno">  314</span>    rule.compute_rate = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  315</span>    rule.detect_outliers = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  309</span>    <a class="code hl_struct" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html">aggregation_rule</a> rule;</div>
+<div class="line"><span class="lineno">  310</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ac02a8a584cf93fb088ca0da12ea26b24">source_metric</a> = <span class="stringliteral">&quot;test_metric&quot;</span>;</div>
+<div class="line"><span class="lineno">  311</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a81a4de8094e105aff4cf871aa8a48bac">target_metric_prefix</a> = <span class="stringliteral">&quot;test_metric_stats&quot;</span>;</div>
+<div class="line"><span class="lineno">  312</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a22f8a3f3220dcbb7b8f6a9e2cddef300">aggregation_interval</a> = std::chrono::milliseconds(1000);</div>
+<div class="line"><span class="lineno">  313</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#af26d49209ed35140f1d16c454ed5c757">percentiles</a> = {0.5, 0.95};</div>
+<div class="line"><span class="lineno">  314</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a4f4cd9c1f7217fe596aab6ec2c9d4239">compute_rate</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  315</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#acc1b50f138a0ec359f0f6bba05203daa">detect_outliers</a> = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  316</span>    </div>
 <div class="line"><span class="lineno">  317</span>    <span class="keyword">auto</span> add_result = processor.add_aggregation_rule(rule);</div>
-<div class="line"><span class="lineno">  318</span>    EXPECT_TRUE(add_result);</div>
+<div class="line"><span class="lineno">  318</span>    EXPECT_TRUE(add_result.is_ok());</div>
 <div class="line"><span class="lineno">  319</span>    </div>
 <div class="line"><span class="lineno">  320</span>    <span class="comment">// Add observations</span></div>
 <div class="line"><span class="lineno">  321</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 100; ++i) {</div>
@@ -278,15 +304,48 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  325</span>    </div>
 <div class="line"><span class="lineno">  326</span>    <span class="comment">// Get current statistics</span></div>
 <div class="line"><span class="lineno">  327</span>    <span class="keyword">auto</span> stats_result = processor.get_current_statistics(<span class="stringliteral">&quot;test_metric&quot;</span>);</div>
-<div class="line"><span class="lineno">  328</span>    EXPECT_TRUE(stats_result);</div>
+<div class="line"><span class="lineno">  328</span>    EXPECT_TRUE(stats_result.is_ok());</div>
 <div class="line"><span class="lineno">  329</span>    </div>
 <div class="line"><span class="lineno">  330</span>    <span class="keyword">auto</span> stats = stats_result.value();</div>
 <div class="line"><span class="lineno">  331</span>    EXPECT_EQ(stats.count, 100);</div>
 <div class="line"><span class="lineno">  332</span>    EXPECT_GT(stats.mean, 0.0);</div>
 <div class="line"><span class="lineno">  333</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1aggregation__processor_html"><div class="ttname"><a href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html">kcenon::monitoring::aggregation_processor</a></div><div class="ttdoc">Processes metric streams and generates aggregated statistics.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00112">aggregation_processor.h:112</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">kcenon::monitoring::sensor_type::storage</a></div><div class="ttdeci">@ storage</div><div class="ttdoc">Storage device sensor.</div></div>
-</div><!-- fragment -->
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html">kcenon::monitoring::aggregation_rule</a></div><div class="ttdoc">Configuration for metric aggregation.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00060">aggregation_processor.h:60</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html_a22f8a3f3220dcbb7b8f6a9e2cddef300"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a22f8a3f3220dcbb7b8f6a9e2cddef300">kcenon::monitoring::aggregation_rule::aggregation_interval</a></div><div class="ttdeci">std::chrono::milliseconds aggregation_interval</div><div class="ttdoc">Aggregation interval.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00063">aggregation_processor.h:63</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html_a4f4cd9c1f7217fe596aab6ec2c9d4239"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a4f4cd9c1f7217fe596aab6ec2c9d4239">kcenon::monitoring::aggregation_rule::compute_rate</a></div><div class="ttdeci">bool compute_rate</div><div class="ttdoc">Compute rate of change.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00065">aggregation_processor.h:65</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html_a81a4de8094e105aff4cf871aa8a48bac"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a81a4de8094e105aff4cf871aa8a48bac">kcenon::monitoring::aggregation_rule::target_metric_prefix</a></div><div class="ttdeci">std::string target_metric_prefix</div><div class="ttdoc">Prefix for aggregated metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00062">aggregation_processor.h:62</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html_ac02a8a584cf93fb088ca0da12ea26b24"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ac02a8a584cf93fb088ca0da12ea26b24">kcenon::monitoring::aggregation_rule::source_metric</a></div><div class="ttdeci">std::string source_metric</div><div class="ttdoc">Source metric name.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00061">aggregation_processor.h:61</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html_acc1b50f138a0ec359f0f6bba05203daa"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#acc1b50f138a0ec359f0f6bba05203daa">kcenon::monitoring::aggregation_rule::detect_outliers</a></div><div class="ttdeci">bool detect_outliers</div><div class="ttdoc">Enable outlier detection.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00066">aggregation_processor.h:66</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html_af26d49209ed35140f1d16c454ed5c757"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#af26d49209ed35140f1d16c454ed5c757">kcenon::monitoring::aggregation_rule::percentiles</a></div><div class="ttdeci">std::vector&lt; double &gt; percentiles</div><div class="ttdoc">Percentiles to compute.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00064">aggregation_processor.h:64</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_ab0ef68a15301bb34ada351c58bb424f5_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_ab0ef68a15301bb34ada351c58bb424f5_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_ab0ef68a15301bb34ada351c58bb424f5_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_ab0ef68a15301bb34ada351c58bb424f5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,119,75,145"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2" title="Add an aggregation rule." alt="" coords="123,26,301,81"/>
+<area shape="poly" title=" " alt="" coords="65,117,122,90,134,84,136,89,124,94,68,122"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#ab4ad032c7c9b29769e54fa60bc2713ed" title="Get current statistics for a metric." alt="" coords="123,105,301,159"/>
+<area shape="poly" title=" " alt="" coords="75,129,109,129,109,135,75,135"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#a2062aeac14bc7398853e86e03612959e" title="Process an observation for a metric." alt="" coords="349,163,528,218"/>
+<area shape="poly" title=" " alt="" coords="63,143,91,157,123,169,177,181,232,188,336,192,336,197,232,193,176,186,122,175,89,162,61,147"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf" title="Create a VoidResult with error." alt="" coords="581,5,729,45"/>
+<area shape="poly" title=" " alt="" coords="301,24,349,15,406,10,463,9,568,13,567,19,463,14,406,15,350,20,302,29"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="576,103,735,143"/>
+<area shape="poly" title=" " alt="" coords="291,78,350,93,460,109,562,117,562,122,459,115,349,99,290,83"/>
+<area shape="rect" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ab9de263cbda69b557d266e73e26eca57" title="Validate the aggregation rule." alt="" coords="365,30,513,85"/>
+<area shape="poly" title=" " alt="" coords="302,52,351,53,351,58,302,58"/>
+<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="783,5,999,45"/>
+<area shape="poly" title=" " alt="" coords="730,23,769,23,769,28,730,28"/>
+<area shape="poly" title=" " alt="" coords="513,44,567,36,568,41,513,49"/>
+<area shape="poly" title=" " alt="" coords="514,77,576,96,575,101,512,82"/>
+<area shape="poly" title=" " alt="" coords="526,161,577,144,579,149,527,166"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ae5371f8050a47c0081c6d971af684e4d" name="ae5371f8050a47c0081c6d971af684e4d"></a>
@@ -318,13 +377,13 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00368">368</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  368</span>                                                                    {</div>
 <div class="line"><span class="lineno">  369</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a> = std::make_shared&lt;metric_storage&gt;();</div>
-<div class="line"><span class="lineno">  370</span>    aggregation_processor processor(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
+<div class="line"><span class="lineno">  370</span>    <a class="code hl_class" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html">aggregation_processor</a> processor(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>);</div>
 <div class="line"><span class="lineno">  371</span>    </div>
-<div class="line"><span class="lineno">  372</span>    aggregation_rule rule;</div>
-<div class="line"><span class="lineno">  373</span>    rule.source_metric = <span class="stringliteral">&quot;response_time&quot;</span>;</div>
-<div class="line"><span class="lineno">  374</span>    rule.target_metric_prefix = <span class="stringliteral">&quot;response_time_agg&quot;</span>;</div>
-<div class="line"><span class="lineno">  375</span>    rule.aggregation_interval = std::chrono::hours(1);  <span class="comment">// Long interval</span></div>
-<div class="line"><span class="lineno">  376</span>    rule.percentiles = {0.5, 0.9, 0.95, 0.99};</div>
+<div class="line"><span class="lineno">  372</span>    <a class="code hl_struct" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html">aggregation_rule</a> rule;</div>
+<div class="line"><span class="lineno">  373</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ac02a8a584cf93fb088ca0da12ea26b24">source_metric</a> = <span class="stringliteral">&quot;response_time&quot;</span>;</div>
+<div class="line"><span class="lineno">  374</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a81a4de8094e105aff4cf871aa8a48bac">target_metric_prefix</a> = <span class="stringliteral">&quot;response_time_agg&quot;</span>;</div>
+<div class="line"><span class="lineno">  375</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a22f8a3f3220dcbb7b8f6a9e2cddef300">aggregation_interval</a> = std::chrono::hours(1);  <span class="comment">// Long interval</span></div>
+<div class="line"><span class="lineno">  376</span>    rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#af26d49209ed35140f1d16c454ed5c757">percentiles</a> = {0.5, 0.9, 0.95, 0.99};</div>
 <div class="line"><span class="lineno">  377</span>    </div>
 <div class="line"><span class="lineno">  378</span>    processor.add_aggregation_rule(rule);</div>
 <div class="line"><span class="lineno">  379</span>    </div>
@@ -341,15 +400,40 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  390</span>    <span class="keyword">auto</span> agg_result = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value();</div>
 <div class="line"><span class="lineno">  391</span>    EXPECT_EQ(agg_result.source_metric, <span class="stringliteral">&quot;response_time&quot;</span>);</div>
 <div class="line"><span class="lineno">  392</span>    EXPECT_EQ(agg_result.samples_processed, 1000);</div>
-<div class="line"><span class="lineno">  393</span>    EXPECT_GT(agg_result.processing_duration.count(), 0);</div>
+<div class="line"><span class="lineno">  393</span>    EXPECT_GE(agg_result.processing_duration.count(), 0);  <span class="comment">// May be 0 on fast systems</span></div>
 <div class="line"><span class="lineno">  394</span>    </div>
 <div class="line"><span class="lineno">  395</span>    <span class="comment">// Check that aggregated metrics were stored</span></div>
 <div class="line"><span class="lineno">  396</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>-&gt;flush();</div>
 <div class="line"><span class="lineno">  397</span>    <span class="keyword">auto</span> latest = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88addecebdea58b5f264d27f1f7909bab74">storage</a>-&gt;get_latest_value(<span class="stringliteral">&quot;response_time_agg.mean&quot;</span>);</div>
-<div class="line"><span class="lineno">  398</span>    EXPECT_TRUE(latest);</div>
+<div class="line"><span class="lineno">  398</span>    EXPECT_TRUE(latest.is_ok());</div>
 <div class="line"><span class="lineno">  399</span>    EXPECT_NEAR(latest.value(), 100.0, 10.0);</div>
 <div class="line"><span class="lineno">  400</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_ae5371f8050a47c0081c6d971af684e4d_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_ae5371f8050a47c0081c6d971af684e4d_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_ae5371f8050a47c0081c6d971af684e4d_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_ae5371f8050a47c0081c6d971af684e4d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,119,75,145"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2" title="Add an aggregation rule." alt="" coords="123,26,301,81"/>
+<area shape="poly" title=" " alt="" coords="65,117,122,90,134,84,136,89,124,94,68,122"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#ac48173818ee228a142214d275b1ae100" title="Force aggregation for a metric." alt="" coords="123,105,301,159"/>
+<area shape="poly" title=" " alt="" coords="75,129,109,129,109,135,75,135"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#a2062aeac14bc7398853e86e03612959e" title="Process an observation for a metric." alt="" coords="349,163,528,218"/>
+<area shape="poly" title=" " alt="" coords="63,143,91,157,123,169,177,181,232,188,336,192,336,197,232,193,176,186,122,175,89,162,61,147"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf" title="Create a VoidResult with error." alt="" coords="581,5,729,45"/>
+<area shape="poly" title=" " alt="" coords="301,24,349,15,406,10,463,9,568,13,567,19,463,14,406,15,350,20,302,29"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="576,103,735,143"/>
+<area shape="poly" title=" " alt="" coords="291,78,350,93,460,109,562,117,562,122,459,115,349,99,290,83"/>
+<area shape="rect" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ab9de263cbda69b557d266e73e26eca57" title="Validate the aggregation rule." alt="" coords="365,30,513,85"/>
+<area shape="poly" title=" " alt="" coords="302,52,351,53,351,58,302,58"/>
+<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="783,5,999,45"/>
+<area shape="poly" title=" " alt="" coords="730,23,769,23,769,28,730,28"/>
+<area shape="poly" title=" " alt="" coords="513,44,567,36,568,41,513,49"/>
+<area shape="poly" title=" " alt="" coords="514,77,576,96,575,101,512,82"/>
+<area shape="poly" title=" " alt="" coords="526,161,577,144,579,149,527,166"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a4227fb8fd285d757ee063d5729a9e307" name="a4227fb8fd285d757ee063d5729a9e307"></a>
@@ -380,28 +464,49 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00402">402</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  402</span>                                                               {</div>
-<div class="line"><span class="lineno">  403</span>    aggregation_processor processor;</div>
-<div class="line"><span class="lineno">  404</span>    </div>
+<div class="line"><span class="lineno">  403</span>    <a class="code hl_class" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html">aggregation_processor</a> processor;</div>
+<div class="line"><span class="lineno">  404</span> </div>
 <div class="line"><span class="lineno">  405</span>    <span class="comment">// Test invalid rule (empty source metric)</span></div>
-<div class="line"><span class="lineno">  406</span>    aggregation_rule invalid_rule;</div>
-<div class="line"><span class="lineno">  407</span>    invalid_rule.source_metric = <span class="stringliteral">&quot;&quot;</span>;  <span class="comment">// Invalid</span></div>
-<div class="line"><span class="lineno">  408</span>    invalid_rule.target_metric_prefix = <span class="stringliteral">&quot;test&quot;</span>;</div>
-<div class="line"><span class="lineno">  409</span>    </div>
-<div class="line"><span class="lineno">  410</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.add_aggregation_rule(invalid_rule);</div>
-<div class="line"><span class="lineno">  411</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>);</div>
-<div class="line"><span class="lineno">  412</span>    </div>
+<div class="line"><span class="lineno">  406</span>    <a class="code hl_struct" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html">aggregation_rule</a> invalid_rule;</div>
+<div class="line"><span class="lineno">  407</span>    invalid_rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ac02a8a584cf93fb088ca0da12ea26b24">source_metric</a> = <span class="stringliteral">&quot;&quot;</span>;  <span class="comment">// Invalid</span></div>
+<div class="line"><span class="lineno">  408</span>    invalid_rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a81a4de8094e105aff4cf871aa8a48bac">target_metric_prefix</a> = <span class="stringliteral">&quot;test&quot;</span>;</div>
+<div class="line"><span class="lineno">  409</span> </div>
+<div class="line"><span class="lineno">  410</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.<a class="code hl_function" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2">add_aggregation_rule</a>(invalid_rule);</div>
+<div class="line"><span class="lineno">  411</span>    EXPECT_FALSE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><span class="lineno">  412</span> </div>
 <div class="line"><span class="lineno">  413</span>    <span class="comment">// Test duplicate rule</span></div>
-<div class="line"><span class="lineno">  414</span>    aggregation_rule valid_rule;</div>
-<div class="line"><span class="lineno">  415</span>    valid_rule.source_metric = <span class="stringliteral">&quot;test_metric&quot;</span>;</div>
-<div class="line"><span class="lineno">  416</span>    valid_rule.target_metric_prefix = <span class="stringliteral">&quot;test_stats&quot;</span>;</div>
-<div class="line"><span class="lineno">  417</span>    </div>
-<div class="line"><span class="lineno">  418</span>    <span class="keyword">auto</span> result1 = processor.add_aggregation_rule(valid_rule);</div>
-<div class="line"><span class="lineno">  419</span>    EXPECT_TRUE(result1);</div>
-<div class="line"><span class="lineno">  420</span>    </div>
-<div class="line"><span class="lineno">  421</span>    <span class="keyword">auto</span> result2 = processor.add_aggregation_rule(valid_rule);  <span class="comment">// Duplicate</span></div>
-<div class="line"><span class="lineno">  422</span>    EXPECT_FALSE(result2);</div>
+<div class="line"><span class="lineno">  414</span>    <a class="code hl_struct" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html">aggregation_rule</a> valid_rule;</div>
+<div class="line"><span class="lineno">  415</span>    valid_rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ac02a8a584cf93fb088ca0da12ea26b24">source_metric</a> = <span class="stringliteral">&quot;test_metric&quot;</span>;</div>
+<div class="line"><span class="lineno">  416</span>    valid_rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a81a4de8094e105aff4cf871aa8a48bac">target_metric_prefix</a> = <span class="stringliteral">&quot;test_stats&quot;</span>;</div>
+<div class="line"><span class="lineno">  417</span> </div>
+<div class="line"><span class="lineno">  418</span>    <span class="keyword">auto</span> result1 = processor.<a class="code hl_function" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2">add_aggregation_rule</a>(valid_rule);</div>
+<div class="line"><span class="lineno">  419</span>    EXPECT_TRUE(result1.is_ok());</div>
+<div class="line"><span class="lineno">  420</span> </div>
+<div class="line"><span class="lineno">  421</span>    <span class="keyword">auto</span> result2 = processor.<a class="code hl_function" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2">add_aggregation_rule</a>(valid_rule);  <span class="comment">// Duplicate</span></div>
+<div class="line"><span class="lineno">  422</span>    EXPECT_FALSE(result2.is_ok());</div>
 <div class="line"><span class="lineno">  423</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1aggregation__processor_html_abe372c57b77609d768b5fa7317d680c2"><div class="ttname"><a href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2">kcenon::monitoring::aggregation_processor::add_aggregation_rule</a></div><div class="ttdeci">result_void add_aggregation_rule(const aggregation_rule &amp;rule)</div><div class="ttdoc">Add an aggregation rule.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00131">aggregation_processor.h:131</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a4227fb8fd285d757ee063d5729a9e307_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a4227fb8fd285d757ee063d5729a9e307_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a4227fb8fd285d757ee063d5729a9e307_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a4227fb8fd285d757ee063d5729a9e307_cgraph">
+<area shape="rect" title=" " alt="" coords="5,45,75,70"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2" title="Add an aggregation rule." alt="" coords="123,30,301,85"/>
+<area shape="poly" title=" " alt="" coords="75,55,109,55,109,60,75,60"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf" title="Create a VoidResult with error." alt="" coords="551,5,699,45"/>
+<area shape="poly" title=" " alt="" coords="292,27,349,15,446,9,537,13,537,18,446,14,350,20,293,33"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="545,69,704,109"/>
+<area shape="poly" title=" " alt="" coords="293,82,350,95,443,101,531,97,531,103,443,106,349,100,292,87"/>
+<area shape="rect" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ab9de263cbda69b557d266e73e26eca57" title="Validate the aggregation rule." alt="" coords="349,30,497,85"/>
+<area shape="poly" title=" " alt="" coords="302,55,336,55,336,60,302,60"/>
+<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="752,5,968,45"/>
+<area shape="poly" title=" " alt="" coords="699,23,738,23,738,28,699,28"/>
+<area shape="poly" title=" " alt="" coords="497,43,537,37,537,42,498,48"/>
+<area shape="poly" title=" " alt="" coords="498,66,532,72,531,77,497,72"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aefb77db560ad73ad96f2e7ddfcbc1d24" name="aefb77db560ad73ad96f2e7ddfcbc1d24"></a>
@@ -432,38 +537,65 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00335">335</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  335</span>                                                                   {</div>
-<div class="line"><span class="lineno">  336</span>    aggregation_processor processor;</div>
+<div class="line"><span class="lineno">  336</span>    <a class="code hl_class" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html">aggregation_processor</a> processor;</div>
 <div class="line"><span class="lineno">  337</span>    </div>
 <div class="line"><span class="lineno">  338</span>    <span class="comment">// Add rules for multiple metrics</span></div>
 <div class="line"><span class="lineno">  339</span>    std::vector&lt;std::string&gt; metric_names = {<span class="stringliteral">&quot;cpu_usage&quot;</span>, <span class="stringliteral">&quot;memory_usage&quot;</span>, <span class="stringliteral">&quot;network_io&quot;</span>};</div>
 <div class="line"><span class="lineno">  340</span>    </div>
 <div class="line"><span class="lineno">  341</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric_name : metric_names) {</div>
-<div class="line"><span class="lineno">  342</span>        aggregation_rule rule;</div>
-<div class="line"><span class="lineno">  343</span>        rule.source_metric = metric_name;</div>
-<div class="line"><span class="lineno">  344</span>        rule.target_metric_prefix = metric_name + <span class="stringliteral">&quot;_stats&quot;</span>;</div>
-<div class="line"><span class="lineno">  345</span>        rule.aggregation_interval = std::chrono::milliseconds(500);</div>
+<div class="line"><span class="lineno">  342</span>        <a class="code hl_struct" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html">aggregation_rule</a> rule;</div>
+<div class="line"><span class="lineno">  343</span>        rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ac02a8a584cf93fb088ca0da12ea26b24">source_metric</a> = metric_name;</div>
+<div class="line"><span class="lineno">  344</span>        rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a81a4de8094e105aff4cf871aa8a48bac">target_metric_prefix</a> = metric_name + <span class="stringliteral">&quot;_stats&quot;</span>;</div>
+<div class="line"><span class="lineno">  345</span>        rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a22f8a3f3220dcbb7b8f6a9e2cddef300">aggregation_interval</a> = std::chrono::milliseconds(500);</div>
 <div class="line"><span class="lineno">  346</span>        </div>
-<div class="line"><span class="lineno">  347</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.add_aggregation_rule(rule);</div>
+<div class="line"><span class="lineno">  347</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.<a class="code hl_function" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2">add_aggregation_rule</a>(rule);</div>
 <div class="line"><span class="lineno">  348</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  349</span>    }</div>
 <div class="line"><span class="lineno">  350</span>    </div>
 <div class="line"><span class="lineno">  351</span>    <span class="comment">// Add observations to each metric</span></div>
 <div class="line"><span class="lineno">  352</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric_name : metric_names) {</div>
 <div class="line"><span class="lineno">  353</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 50; ++i) {</div>
-<div class="line"><span class="lineno">  354</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.process_observation(metric_name, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  354</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = processor.<a class="code hl_function" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#a2062aeac14bc7398853e86e03612959e">process_observation</a>(metric_name, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  355</span>            EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
 <div class="line"><span class="lineno">  356</span>        }</div>
 <div class="line"><span class="lineno">  357</span>    }</div>
 <div class="line"><span class="lineno">  358</span>    </div>
 <div class="line"><span class="lineno">  359</span>    <span class="comment">// Check configured metrics</span></div>
-<div class="line"><span class="lineno">  360</span>    <span class="keyword">auto</span> configured = processor.get_configured_metrics();</div>
+<div class="line"><span class="lineno">  360</span>    <span class="keyword">auto</span> configured = processor.<a class="code hl_function" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#ad6731d5b273f0eb63f6fdc6e395d4a9a">get_configured_metrics</a>();</div>
 <div class="line"><span class="lineno">  361</span>    EXPECT_EQ(configured.size(), 3);</div>
 <div class="line"><span class="lineno">  362</span>    </div>
 <div class="line"><span class="lineno">  363</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; metric_name : metric_names) {</div>
 <div class="line"><span class="lineno">  364</span>        EXPECT_NE(std::find(configured.begin(), configured.end(), metric_name), configured.end());</div>
 <div class="line"><span class="lineno">  365</span>    }</div>
 <div class="line"><span class="lineno">  366</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1aggregation__processor_html_a2062aeac14bc7398853e86e03612959e"><div class="ttname"><a href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#a2062aeac14bc7398853e86e03612959e">kcenon::monitoring::aggregation_processor::process_observation</a></div><div class="ttdeci">result_void process_observation(const std::string &amp;metric_name, double value)</div><div class="ttdoc">Process an observation for a metric.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00169">aggregation_processor.h:169</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1aggregation__processor_html_ad6731d5b273f0eb63f6fdc6e395d4a9a"><div class="ttname"><a href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#ad6731d5b273f0eb63f6fdc6e395d4a9a">kcenon::monitoring::aggregation_processor::get_configured_metrics</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_configured_metrics() const</div><div class="ttdoc">Get list of configured metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00203">aggregation_processor.h:203</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_aefb77db560ad73ad96f2e7ddfcbc1d24_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_aefb77db560ad73ad96f2e7ddfcbc1d24_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_aefb77db560ad73ad96f2e7ddfcbc1d24_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_aefb77db560ad73ad96f2e7ddfcbc1d24_cgraph">
+<area shape="rect" title=" " alt="" coords="5,119,75,145"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#abe372c57b77609d768b5fa7317d680c2" title="Add an aggregation rule." alt="" coords="125,26,303,81"/>
+<area shape="poly" title=" " alt="" coords="65,117,122,90,134,84,136,89,124,94,68,122"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#ad6731d5b273f0eb63f6fdc6e395d4a9a" title="Get list of configured metrics." alt="" coords="123,105,305,159"/>
+<area shape="poly" title=" " alt="" coords="75,129,109,129,109,135,75,135"/>
+<area shape="rect" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#a2062aeac14bc7398853e86e03612959e" title="Process an observation for a metric." alt="" coords="353,163,532,218"/>
+<area shape="poly" title=" " alt="" coords="63,143,91,157,123,169,178,181,234,188,340,192,340,198,234,193,177,186,122,175,89,162,61,147"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf" title="Create a VoidResult with error." alt="" coords="585,5,733,45"/>
+<area shape="poly" title=" " alt="" coords="303,24,353,15,410,10,467,9,572,13,571,19,467,14,410,15,354,20,304,29"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="580,103,739,143"/>
+<area shape="poly" title=" " alt="" coords="294,78,354,93,464,109,566,117,566,122,463,115,353,99,293,83"/>
+<area shape="rect" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ab9de263cbda69b557d266e73e26eca57" title="Validate the aggregation rule." alt="" coords="369,30,517,85"/>
+<area shape="poly" title=" " alt="" coords="303,52,355,53,355,58,303,58"/>
+<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="787,5,1003,45"/>
+<area shape="poly" title=" " alt="" coords="734,23,773,23,773,28,734,28"/>
+<area shape="poly" title=" " alt="" coords="517,44,571,36,572,41,517,49"/>
+<area shape="poly" title=" " alt="" coords="518,77,580,96,579,101,516,82"/>
+<area shape="poly" title=" " alt="" coords="530,161,581,144,583,149,531,166"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad11423cc9fdc4248c8eb7383269c8ca5" name="ad11423cc9fdc4248c8eb7383269c8ca5"></a>
@@ -495,29 +627,54 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00483">483</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  483</span>                                                       {</div>
 <div class="line"><span class="lineno">  484</span>    <span class="comment">// Test invalid stream aggregator config</span></div>
-<div class="line"><span class="lineno">  485</span>    stream_aggregator_config invalid_config;</div>
-<div class="line"><span class="lineno">  486</span>    invalid_config.window_size = 0;  <span class="comment">// Invalid</span></div>
-<div class="line"><span class="lineno">  487</span>    </div>
-<div class="line"><span class="lineno">  488</span>    <span class="keyword">auto</span> validation = invalid_config.validate();</div>
-<div class="line"><span class="lineno">  489</span>    EXPECT_FALSE(validation);</div>
-<div class="line"><span class="lineno">  490</span>    </div>
+<div class="line"><span class="lineno">  485</span>    <a class="code hl_struct" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html">stream_aggregator_config</a> invalid_config;</div>
+<div class="line"><span class="lineno">  486</span>    invalid_config.<a class="code hl_variable" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a0e2d1931ecaf34655ce7a8e298d5500c">window_size</a> = 0;  <span class="comment">// Invalid</span></div>
+<div class="line"><span class="lineno">  487</span> </div>
+<div class="line"><span class="lineno">  488</span>    <span class="keyword">auto</span> validation = invalid_config.<a class="code hl_function" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#ac978430fd89d61af0f8ed6878666cb0f">validate</a>();</div>
+<div class="line"><span class="lineno">  489</span>    EXPECT_FALSE(validation.is_ok());</div>
+<div class="line"><span class="lineno">  490</span> </div>
 <div class="line"><span class="lineno">  491</span>    <span class="comment">// Test valid config</span></div>
-<div class="line"><span class="lineno">  492</span>    stream_aggregator_config valid_config;</div>
-<div class="line"><span class="lineno">  493</span>    valid_config.window_size = 1000;</div>
-<div class="line"><span class="lineno">  494</span>    valid_config.window_duration = std::chrono::milliseconds(60000);</div>
-<div class="line"><span class="lineno">  495</span>    </div>
-<div class="line"><span class="lineno">  496</span>    validation = valid_config.validate();</div>
-<div class="line"><span class="lineno">  497</span>    EXPECT_TRUE(validation);</div>
-<div class="line"><span class="lineno">  498</span>    </div>
+<div class="line"><span class="lineno">  492</span>    <a class="code hl_struct" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html">stream_aggregator_config</a> valid_config;</div>
+<div class="line"><span class="lineno">  493</span>    valid_config.<a class="code hl_variable" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a0e2d1931ecaf34655ce7a8e298d5500c">window_size</a> = 1000;</div>
+<div class="line"><span class="lineno">  494</span>    valid_config.<a class="code hl_variable" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a13af7e7f415549bbed014c8c4d8c9397">window_duration</a> = std::chrono::milliseconds(60000);</div>
+<div class="line"><span class="lineno">  495</span> </div>
+<div class="line"><span class="lineno">  496</span>    validation = valid_config.<a class="code hl_function" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#ac978430fd89d61af0f8ed6878666cb0f">validate</a>();</div>
+<div class="line"><span class="lineno">  497</span>    EXPECT_TRUE(validation.is_ok());</div>
+<div class="line"><span class="lineno">  498</span> </div>
 <div class="line"><span class="lineno">  499</span>    <span class="comment">// Test invalid aggregation rule</span></div>
-<div class="line"><span class="lineno">  500</span>    aggregation_rule invalid_rule;</div>
-<div class="line"><span class="lineno">  501</span>    invalid_rule.source_metric = <span class="stringliteral">&quot;test&quot;</span>;</div>
-<div class="line"><span class="lineno">  502</span>    invalid_rule.target_metric_prefix = <span class="stringliteral">&quot;&quot;</span>;  <span class="comment">// Invalid</span></div>
-<div class="line"><span class="lineno">  503</span>    </div>
-<div class="line"><span class="lineno">  504</span>    validation = invalid_rule.validate();</div>
-<div class="line"><span class="lineno">  505</span>    EXPECT_FALSE(validation);</div>
+<div class="line"><span class="lineno">  500</span>    <a class="code hl_struct" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html">aggregation_rule</a> invalid_rule;</div>
+<div class="line"><span class="lineno">  501</span>    invalid_rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ac02a8a584cf93fb088ca0da12ea26b24">source_metric</a> = <span class="stringliteral">&quot;test&quot;</span>;</div>
+<div class="line"><span class="lineno">  502</span>    invalid_rule.<a class="code hl_variable" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#a81a4de8094e105aff4cf871aa8a48bac">target_metric_prefix</a> = <span class="stringliteral">&quot;&quot;</span>;  <span class="comment">// Invalid</span></div>
+<div class="line"><span class="lineno">  503</span> </div>
+<div class="line"><span class="lineno">  504</span>    validation = invalid_rule.<a class="code hl_function" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ab9de263cbda69b557d266e73e26eca57">validate</a>();</div>
+<div class="line"><span class="lineno">  505</span>    EXPECT_FALSE(validation.is_ok());</div>
 <div class="line"><span class="lineno">  506</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1aggregation__rule_html_ab9de263cbda69b557d266e73e26eca57"><div class="ttname"><a href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ab9de263cbda69b557d266e73e26eca57">kcenon::monitoring::aggregation_rule::validate</a></div><div class="ttdeci">result_void validate() const</div><div class="ttdoc">Validate the aggregation rule.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00072">aggregation_processor.h:72</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1stream__aggregator__config_html"><div class="ttname"><a href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html">kcenon::monitoring::stream_aggregator_config</a></div><div class="ttdoc">Configuration for stream aggregator.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00514">stream_aggregator.h:514</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1stream__aggregator__config_html_a0e2d1931ecaf34655ce7a8e298d5500c"><div class="ttname"><a href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a0e2d1931ecaf34655ce7a8e298d5500c">kcenon::monitoring::stream_aggregator_config::window_size</a></div><div class="ttdeci">size_t window_size</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00515">stream_aggregator.h:515</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1stream__aggregator__config_html_a13af7e7f415549bbed014c8c4d8c9397"><div class="ttname"><a href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a13af7e7f415549bbed014c8c4d8c9397">kcenon::monitoring::stream_aggregator_config::window_duration</a></div><div class="ttdeci">std::chrono::milliseconds window_duration</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00516">stream_aggregator.h:516</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1stream__aggregator__config_html_ac978430fd89d61af0f8ed6878666cb0f"><div class="ttname"><a href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#ac978430fd89d61af0f8ed6878666cb0f">kcenon::monitoring::stream_aggregator_config::validate</a></div><div class="ttdeci">result_void validate() const</div><div class="ttdoc">Validate configuration.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00524">stream_aggregator.h:524</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_ad11423cc9fdc4248c8eb7383269c8ca5_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_ad11423cc9fdc4248c8eb7383269c8ca5_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_ad11423cc9fdc4248c8eb7383269c8ca5_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_ad11423cc9fdc4248c8eb7383269c8ca5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,60,75,85"/>
+<area shape="rect" href="../../d0/dba/structkcenon_1_1monitoring_1_1aggregation__rule.html#ab9de263cbda69b557d266e73e26eca57" title="Validate the aggregation rule." alt="" coords="126,5,274,60"/>
+<area shape="poly" title=" " alt="" coords="74,62,112,52,113,57,75,67"/>
+<area shape="rect" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#ac978430fd89d61af0f8ed6878666cb0f" title="Validate configuration." alt="" coords="123,84,277,139"/>
+<area shape="poly" title=" " alt="" coords="75,78,110,87,109,92,74,83"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a716b65495ab9dbb3905f63f7e70d8acf" title="Create a VoidResult with error." alt="" coords="331,17,479,57"/>
+<area shape="poly" title=" " alt="" coords="274,31,317,32,317,38,274,37"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="325,85,484,125"/>
+<area shape="poly" title=" " alt="" coords="275,56,335,77,333,82,273,61"/>
+<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="532,17,748,57"/>
+<area shape="poly" title=" " alt="" coords="479,34,518,34,518,39,479,39"/>
+<area shape="poly" title=" " alt="" coords="274,81,335,59,337,64,276,86"/>
+<area shape="poly" title=" " alt="" coords="278,106,311,105,312,110,278,111"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a7bb4b18f960737767b7e5d50e5ab550d" name="a7bb4b18f960737767b7e5d50e5ab550d"></a>
@@ -548,7 +705,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  168</span>                                                 {</div>
-<div class="line"><span class="lineno">  169</span>    moving_window_aggregator&lt;double&gt; window(std::chrono::milliseconds(1000), 100);</div>
+<div class="line"><span class="lineno">  169</span>    <a class="code hl_class" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html">moving_window_aggregator&lt;double&gt;</a> window(std::chrono::milliseconds(1000), 100);</div>
 <div class="line"><span class="lineno">  170</span>    </div>
 <div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  172</span>    </div>
@@ -567,7 +724,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  185</span>        EXPECT_EQ(values[i], <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  186</span>    }</div>
 <div class="line"><span class="lineno">  187</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1moving__window__aggregator_html"><div class="ttname"><a href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html">kcenon::monitoring::moving_window_aggregator</a></div><div class="ttdoc">Time-windowed value collection.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00421">stream_aggregator.h:421</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a7bb4b18f960737767b7e5d50e5ab550d_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a7bb4b18f960737767b7e5d50e5ab550d_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a7bb4b18f960737767b7e5d50e5ab550d_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a7bb4b18f960737767b7e5d50e5ab550d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,99,75,124"/>
+<area shape="rect" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#a1a24f636ee8b5c1bec730c318ad7a0fa" title="Add a value with timestamp." alt="" coords="139,5,354,60"/>
+<area shape="poly" title=" " alt="" coords="64,96,122,69,139,62,141,67,124,74,66,101"/>
+<area shape="rect" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#a642adc0bf1c379bae24a96593f430a4e" title="Get all values in the window." alt="" coords="139,84,354,139"/>
+<area shape="poly" title=" " alt="" coords="75,109,126,109,126,114,75,114"/>
+<area shape="rect" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#a1e0886738340b1251714a401d8b31102" title="Get current size." alt="" coords="123,163,371,203"/>
+<area shape="poly" title=" " alt="" coords="66,122,124,148,151,157,150,162,122,152,64,127"/>
+<area shape="rect" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#af103c25314727039b19bdcb57e6ef432" title=" " alt="" coords="419,5,633,60"/>
+<area shape="poly" title=" " alt="" coords="354,30,405,30,405,35,354,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aded858f52b7bf943fd006231d3ee9373" name="aded858f52b7bf943fd006231d3ee9373"></a>
@@ -598,7 +772,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  189</span>                                                      {</div>
-<div class="line"><span class="lineno">  190</span>    moving_window_aggregator&lt;double&gt; window(std::chrono::milliseconds(100), 1000);</div>
+<div class="line"><span class="lineno">  190</span>    <a class="code hl_class" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html">moving_window_aggregator&lt;double&gt;</a> window(std::chrono::milliseconds(100), 1000);</div>
 <div class="line"><span class="lineno">  191</span>    </div>
 <div class="line"><span class="lineno">  192</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
 <div class="line"><span class="lineno">  193</span>    </div>
@@ -620,7 +794,21 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  209</span>        EXPECT_EQ(values[i], <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i + 10));</div>
 <div class="line"><span class="lineno">  210</span>    }</div>
 <div class="line"><span class="lineno">  211</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_aded858f52b7bf943fd006231d3ee9373_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_aded858f52b7bf943fd006231d3ee9373_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_aded858f52b7bf943fd006231d3ee9373_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_aded858f52b7bf943fd006231d3ee9373_cgraph">
+<area shape="rect" title=" " alt="" coords="5,60,75,85"/>
+<area shape="rect" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#a1a24f636ee8b5c1bec730c318ad7a0fa" title="Add a value with timestamp." alt="" coords="123,5,337,60"/>
+<area shape="poly" title=" " alt="" coords="74,63,109,56,110,61,75,68"/>
+<area shape="rect" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#a642adc0bf1c379bae24a96593f430a4e" title="Get all values in the window." alt="" coords="123,84,337,139"/>
+<area shape="poly" title=" " alt="" coords="75,77,110,84,109,89,74,82"/>
+<area shape="rect" href="../../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#af103c25314727039b19bdcb57e6ef432" title=" " alt="" coords="385,5,600,60"/>
+<area shape="poly" title=" " alt="" coords="337,30,372,30,372,35,337,35"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ac6259aaedec28561d66a4f209f7e6a02" name="ac6259aaedec28561d66a4f209f7e6a02"></a>
@@ -651,22 +839,22 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   93</span>                                                     {</div>
-<div class="line"><span class="lineno">   94</span>    online_statistics stats;</div>
+<div class="line"><span class="lineno">   94</span>    <a class="code hl_class" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html">online_statistics</a> stats;</div>
 <div class="line"><span class="lineno">   95</span>    </div>
-<div class="line"><span class="lineno">   96</span>    EXPECT_EQ(stats.count(), 0);</div>
-<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(stats.mean(), 0.0);</div>
-<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(stats.variance(), 0.0);</div>
+<div class="line"><span class="lineno">   96</span>    EXPECT_EQ(stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae">count</a>(), 0);</div>
+<div class="line"><span class="lineno">   97</span>    EXPECT_EQ(stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124">mean</a>(), 0.0);</div>
+<div class="line"><span class="lineno">   98</span>    EXPECT_EQ(stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e">variance</a>(), 0.0);</div>
 <div class="line"><span class="lineno">   99</span>    </div>
 <div class="line"><span class="lineno">  100</span>    <span class="comment">// Add some values</span></div>
 <div class="line"><span class="lineno">  101</span>    std::vector&lt;double&gt; values = {1.0, 2.0, 3.0, 4.0, 5.0};</div>
 <div class="line"><span class="lineno">  102</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> value : values) {</div>
-<div class="line"><span class="lineno">  103</span>        stats.add_value(value);</div>
+<div class="line"><span class="lineno">  103</span>        stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf">add_value</a>(value);</div>
 <div class="line"><span class="lineno">  104</span>    }</div>
 <div class="line"><span class="lineno">  105</span>    </div>
-<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(stats.count(), 5);</div>
-<div class="line"><span class="lineno">  107</span>    EXPECT_DOUBLE_EQ(stats.mean(), 3.0);  <span class="comment">// (1+2+3+4+5)/5 = 3</span></div>
+<div class="line"><span class="lineno">  106</span>    EXPECT_EQ(stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae">count</a>(), 5);</div>
+<div class="line"><span class="lineno">  107</span>    EXPECT_DOUBLE_EQ(stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124">mean</a>(), 3.0);  <span class="comment">// (1+2+3+4+5)/5 = 3</span></div>
 <div class="line"><span class="lineno">  108</span>    </div>
-<div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> full_stats = stats.get_statistics();</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keyword">auto</span> full_stats = stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c">get_statistics</a>();</div>
 <div class="line"><span class="lineno">  110</span>    EXPECT_EQ(full_stats.count, 5);</div>
 <div class="line"><span class="lineno">  111</span>    EXPECT_DOUBLE_EQ(full_stats.mean, 3.0);</div>
 <div class="line"><span class="lineno">  112</span>    EXPECT_DOUBLE_EQ(full_stats.min_value, 1.0);</div>
@@ -674,7 +862,31 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  114</span>    EXPECT_GT(full_stats.variance, 0.0);</div>
 <div class="line"><span class="lineno">  115</span>    EXPECT_GT(full_stats.std_deviation, 0.0);</div>
 <div class="line"><span class="lineno">  116</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1online__statistics_html"><div class="ttname"><a href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html">kcenon::monitoring::online_statistics</a></div><div class="ttdoc">Welford's algorithm for computing streaming statistics.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00083">stream_aggregator.h:83</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1online__statistics_html_a3df0289eb787ad8866a8ce611d440b3e"><div class="ttname"><a href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e">kcenon::monitoring::online_statistics::variance</a></div><div class="ttdeci">double variance() const</div><div class="ttdoc">Get running variance (sample variance)</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00129">stream_aggregator.h:129</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1online__statistics_html_a82194409e4e712ccb2f60da2576c74cf"><div class="ttname"><a href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf">kcenon::monitoring::online_statistics::add_value</a></div><div class="ttdeci">void add_value(double value)</div><div class="ttdoc">Add a value to the statistics.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00091">stream_aggregator.h:91</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1online__statistics_html_af58b9b80277dae07ac8b964c75fd6124"><div class="ttname"><a href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124">kcenon::monitoring::online_statistics::mean</a></div><div class="ttdeci">double mean() const</div><div class="ttdoc">Get running mean.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00121">stream_aggregator.h:121</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1online__statistics_html_af747480f239c364c289c786d693fc68c"><div class="ttname"><a href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c">kcenon::monitoring::online_statistics::get_statistics</a></div><div class="ttdeci">streaming_statistics get_statistics() const</div><div class="ttdoc">Get full statistics.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00171">stream_aggregator.h:171</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1online__statistics_html_af8777b1253df450eb2cf4b8ee3a43fae"><div class="ttname"><a href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae">kcenon::monitoring::online_statistics::count</a></div><div class="ttdeci">size_t count() const</div><div class="ttdoc">Get sample count.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00113">stream_aggregator.h:113</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_ac6259aaedec28561d66a4f209f7e6a02_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_ac6259aaedec28561d66a4f209f7e6a02_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_ac6259aaedec28561d66a4f209f7e6a02_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_ac6259aaedec28561d66a4f209f7e6a02_cgraph">
+<area shape="rect" title=" " alt="" coords="5,177,75,203"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf" title="Add a value to the statistics." alt="" coords="139,5,287,60"/>
+<area shape="poly" title=" " alt="" coords="45,176,73,125,95,96,121,69,126,65,129,70,124,73,99,99,77,128,49,178"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae" title="Get sample count." alt="" coords="139,84,287,139"/>
+<area shape="poly" title=" " alt="" coords="65,175,122,148,134,142,136,147,124,152,68,180"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c" title="Get full statistics." alt="" coords="139,163,287,217"/>
+<area shape="poly" title=" " alt="" coords="75,187,125,187,125,193,75,193"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124" title="Get running mean." alt="" coords="123,242,304,282"/>
+<area shape="poly" title=" " alt="" coords="68,200,124,226,144,235,142,240,122,231,66,205"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e" title="Get running variance (sample variance)" alt="" coords="139,307,287,361"/>
+<area shape="poly" title=" " alt="" coords="51,201,80,245,101,270,124,292,132,297,129,302,121,296,97,273,76,248,46,204"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aba61e40ebb70470d2ce06126ce658c0a" name="aba61e40ebb70470d2ce06126ce658c0a"></a>
@@ -705,23 +917,35 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  118</span>                                                            {</div>
-<div class="line"><span class="lineno">  119</span>    online_statistics stats;</div>
+<div class="line"><span class="lineno">  119</span>    <a class="code hl_class" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html">online_statistics</a> stats;</div>
 <div class="line"><span class="lineno">  120</span>    </div>
 <div class="line"><span class="lineno">  121</span>    <span class="comment">// Generate a large dataset with known properties</span></div>
 <div class="line"><span class="lineno">  122</span>    <span class="keyword">auto</span> samples = generate_normal_samples(10000, 100.0, 15.0);</div>
 <div class="line"><span class="lineno">  123</span>    </div>
 <div class="line"><span class="lineno">  124</span>    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> sample : samples) {</div>
-<div class="line"><span class="lineno">  125</span>        stats.add_value(sample);</div>
+<div class="line"><span class="lineno">  125</span>        stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf">add_value</a>(sample);</div>
 <div class="line"><span class="lineno">  126</span>    }</div>
 <div class="line"><span class="lineno">  127</span>    </div>
-<div class="line"><span class="lineno">  128</span>    <span class="keyword">auto</span> full_stats = stats.get_statistics();</div>
+<div class="line"><span class="lineno">  128</span>    <span class="keyword">auto</span> full_stats = stats.<a class="code hl_function" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c">get_statistics</a>();</div>
 <div class="line"><span class="lineno">  129</span>    </div>
 <div class="line"><span class="lineno">  130</span>    <span class="comment">// Check that the statistics are close to the expected values</span></div>
 <div class="line"><span class="lineno">  131</span>    EXPECT_NEAR(full_stats.mean, 100.0, 1.0);  <span class="comment">// Should be close to 100</span></div>
 <div class="line"><span class="lineno">  132</span>    EXPECT_NEAR(full_stats.std_deviation, 15.0, 1.0);  <span class="comment">// Should be close to 15</span></div>
 <div class="line"><span class="lineno">  133</span>    EXPECT_EQ(full_stats.count, 10000);</div>
 <div class="line"><span class="lineno">  134</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_aba61e40ebb70470d2ce06126ce658c0a_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_aba61e40ebb70470d2ce06126ce658c0a_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_aba61e40ebb70470d2ce06126ce658c0a_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_aba61e40ebb70470d2ce06126ce658c0a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,60,75,85"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf" title="Add a value to the statistics." alt="" coords="123,5,271,60"/>
+<area shape="poly" title=" " alt="" coords="74,61,108,53,110,58,75,67"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c" title="Get full statistics." alt="" coords="123,84,271,139"/>
+<area shape="poly" title=" " alt="" coords="75,78,110,87,108,92,74,84"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a7c56ebe352f17f0bd6b30c74c63d2e59" name="a7c56ebe352f17f0bd6b30c74c63d2e59"></a>
@@ -756,31 +980,42 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  428</span>    std::vector&lt;double&gt; x1 = {1, 2, 3, 4, 5};</div>
 <div class="line"><span class="lineno">  429</span>    std::vector&lt;double&gt; y1 = {2, 4, 6, 8, 10};</div>
 <div class="line"><span class="lineno">  430</span>    </div>
-<div class="line"><span class="lineno">  431</span>    <span class="keywordtype">double</span> corr1 = pearson_correlation(x1, y1);</div>
+<div class="line"><span class="lineno">  431</span>    <span class="keywordtype">double</span> corr1 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1ad5190fe452215ae5942b6f1f73b9be">pearson_correlation</a>(x1, y1);</div>
 <div class="line"><span class="lineno">  432</span>    EXPECT_NEAR(corr1, 1.0, 0.001);</div>
 <div class="line"><span class="lineno">  433</span>    </div>
 <div class="line"><span class="lineno">  434</span>    <span class="comment">// Perfect negative correlation</span></div>
 <div class="line"><span class="lineno">  435</span>    std::vector&lt;double&gt; x2 = {1, 2, 3, 4, 5};</div>
 <div class="line"><span class="lineno">  436</span>    std::vector&lt;double&gt; y2 = {5, 4, 3, 2, 1};</div>
 <div class="line"><span class="lineno">  437</span>    </div>
-<div class="line"><span class="lineno">  438</span>    <span class="keywordtype">double</span> corr2 = pearson_correlation(x2, y2);</div>
+<div class="line"><span class="lineno">  438</span>    <span class="keywordtype">double</span> corr2 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1ad5190fe452215ae5942b6f1f73b9be">pearson_correlation</a>(x2, y2);</div>
 <div class="line"><span class="lineno">  439</span>    EXPECT_NEAR(corr2, -1.0, 0.001);</div>
 <div class="line"><span class="lineno">  440</span>    </div>
 <div class="line"><span class="lineno">  441</span>    <span class="comment">// No correlation</span></div>
 <div class="line"><span class="lineno">  442</span>    std::vector&lt;double&gt; x3 = {1, 2, 3, 4, 5};</div>
 <div class="line"><span class="lineno">  443</span>    std::vector&lt;double&gt; y3 = {3, 3, 3, 3, 3};  <span class="comment">// Constant</span></div>
 <div class="line"><span class="lineno">  444</span>    </div>
-<div class="line"><span class="lineno">  445</span>    <span class="keywordtype">double</span> corr3 = pearson_correlation(x3, y3);</div>
+<div class="line"><span class="lineno">  445</span>    <span class="keywordtype">double</span> corr3 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1ad5190fe452215ae5942b6f1f73b9be">pearson_correlation</a>(x3, y3);</div>
 <div class="line"><span class="lineno">  446</span>    EXPECT_NEAR(corr3, 0.0, 0.001);</div>
 <div class="line"><span class="lineno">  447</span>    </div>
 <div class="line"><span class="lineno">  448</span>    <span class="comment">// Different sizes (should return 0)</span></div>
 <div class="line"><span class="lineno">  449</span>    std::vector&lt;double&gt; x4 = {1, 2, 3};</div>
 <div class="line"><span class="lineno">  450</span>    std::vector&lt;double&gt; y4 = {1, 2, 3, 4, 5};</div>
 <div class="line"><span class="lineno">  451</span>    </div>
-<div class="line"><span class="lineno">  452</span>    <span class="keywordtype">double</span> corr4 = pearson_correlation(x4, y4);</div>
+<div class="line"><span class="lineno">  452</span>    <span class="keywordtype">double</span> corr4 = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1ad5190fe452215ae5942b6f1f73b9be">pearson_correlation</a>(x4, y4);</div>
 <div class="line"><span class="lineno">  453</span>    EXPECT_EQ(corr4, 0.0);</div>
 <div class="line"><span class="lineno">  454</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a1ad5190fe452215ae5942b6f1f73b9be"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a1ad5190fe452215ae5942b6f1f73b9be">kcenon::monitoring::pearson_correlation</a></div><div class="ttdeci">double pearson_correlation(const std::vector&lt; double &gt; &amp;x, const std::vector&lt; double &gt; &amp;y)</div><div class="ttdoc">Calculate Pearson correlation coefficient.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00685">stream_aggregator.h:685</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a7c56ebe352f17f0bd6b30c74c63d2e59_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a7c56ebe352f17f0bd6b30c74c63d2e59_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a7c56ebe352f17f0bd6b30c74c63d2e59_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a7c56ebe352f17f0bd6b30c74c63d2e59_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a1ad5190fe452215ae5942b6f1f73b9be" title="Calculate Pearson correlation coefficient." alt="" coords="123,5,281,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,108,23,108,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa41c128a37e4b80eefc11e981672b57e" name="aa41c128a37e4b80eefc11e981672b57e"></a>
@@ -811,7 +1046,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00137">137</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  137</span>                                                       {</div>
-<div class="line"><span class="lineno">  138</span>    quantile_estimator median_estimator(0.5);</div>
+<div class="line"><span class="lineno">  138</span>    <a class="code hl_class" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html">quantile_estimator</a> median_estimator(0.5);</div>
 <div class="line"><span class="lineno">  139</span>    </div>
 <div class="line"><span class="lineno">  140</span>    <span class="comment">// Add values 1 through 100</span></div>
 <div class="line"><span class="lineno">  141</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 100; ++i) {</div>
@@ -823,7 +1058,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  147</span>    <span class="comment">// For 1-100, median should be around 50.5</span></div>
 <div class="line"><span class="lineno">  148</span>    EXPECT_NEAR(estimated_median, 50.5, 5.0);  <span class="comment">// Allow some tolerance for P² algorithm</span></div>
 <div class="line"><span class="lineno">  149</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1quantile__estimator_html"><div class="ttname"><a href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html">kcenon::monitoring::quantile_estimator</a></div><div class="ttdoc">P² algorithm for streaming quantile estimation.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00218">stream_aggregator.h:218</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_aa41c128a37e4b80eefc11e981672b57e_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_aa41c128a37e4b80eefc11e981672b57e_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_aa41c128a37e4b80eefc11e981672b57e_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_aa41c128a37e4b80eefc11e981672b57e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,99,75,124"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#a5114f693dcf3244e7193ce2fe091cc34" title="Add an observation." alt="" coords="123,44,276,99"/>
+<area shape="poly" title=" " alt="" coords="74,100,109,91,110,97,76,105"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#ad64d3ed325d93fd936c3cc1b2c7aa6d6" title="Get the estimated quantile." alt="" coords="123,123,276,177"/>
+<area shape="poly" title=" " alt="" coords="76,117,110,126,109,131,74,122"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#a6183cb65b0d178e270a762aaaf6c0326" title=" " alt="" coords="324,5,477,60"/>
+<area shape="poly" title=" " alt="" coords="276,54,310,47,311,53,277,59"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#aee37d1b0793581151be7fc1cf716320a" title=" " alt="" coords="324,84,477,139"/>
+<area shape="poly" title=" " alt="" coords="277,84,311,91,310,96,276,89"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a34a4dde1c5b7544f0df993f47b8d068d" name="a34a4dde1c5b7544f0df993f47b8d068d"></a>
@@ -854,7 +1106,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00151">151</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  151</span>                                                            {</div>
-<div class="line"><span class="lineno">  152</span>    quantile_estimator p95_estimator(0.95);</div>
+<div class="line"><span class="lineno">  152</span>    <a class="code hl_class" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html">quantile_estimator</a> p95_estimator(0.95);</div>
 <div class="line"><span class="lineno">  153</span>    </div>
 <div class="line"><span class="lineno">  154</span>    <span class="comment">// Add uniform samples 0-100</span></div>
 <div class="line"><span class="lineno">  155</span>    <span class="keyword">auto</span> samples = generate_uniform_samples(1000, 0.0, 100.0);</div>
@@ -868,7 +1120,23 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  163</span>    <span class="comment">// 95th percentile should be around 95</span></div>
 <div class="line"><span class="lineno">  164</span>    EXPECT_NEAR(p95, 95.0, 10.0);  <span class="comment">// P² algorithm has some approximation error</span></div>
 <div class="line"><span class="lineno">  165</span>}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a34a4dde1c5b7544f0df993f47b8d068d_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a34a4dde1c5b7544f0df993f47b8d068d_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a34a4dde1c5b7544f0df993f47b8d068d_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a34a4dde1c5b7544f0df993f47b8d068d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,99,75,124"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#a5114f693dcf3244e7193ce2fe091cc34" title="Add an observation." alt="" coords="123,44,276,99"/>
+<area shape="poly" title=" " alt="" coords="74,100,109,91,110,97,76,105"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#ad64d3ed325d93fd936c3cc1b2c7aa6d6" title="Get the estimated quantile." alt="" coords="123,123,276,177"/>
+<area shape="poly" title=" " alt="" coords="76,117,110,126,109,131,74,122"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#a6183cb65b0d178e270a762aaaf6c0326" title=" " alt="" coords="324,5,477,60"/>
+<area shape="poly" title=" " alt="" coords="276,54,310,47,311,53,277,59"/>
+<area shape="rect" href="../../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#aee37d1b0793581151be7fc1cf716320a" title=" " alt="" coords="324,84,477,139"/>
+<area shape="poly" title=" " alt="" coords="277,84,311,91,310,96,276,89"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a3bf4cc5bbb44a244bbbda1f0614cefb6" name="a3bf4cc5bbb44a244bbbda1f0614cefb6"></a>
@@ -899,14 +1167,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00456">456</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  456</span>                                                        {</div>
-<div class="line"><span class="lineno">  457</span>    <span class="keyword">auto</span> rules = create_standard_aggregation_rules();</div>
+<div class="line"><span class="lineno">  457</span>    <span class="keyword">auto</span> rules = <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#abb89da990039386ef627a76a64cf6abe">create_standard_aggregation_rules</a>();</div>
 <div class="line"><span class="lineno">  458</span>    </div>
 <div class="line"><span class="lineno">  459</span>    EXPECT_GT(rules.size(), 0);</div>
 <div class="line"><span class="lineno">  460</span>    </div>
 <div class="line"><span class="lineno">  461</span>    <span class="comment">// Validate all rules</span></div>
 <div class="line"><span class="lineno">  462</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; rule : rules) {</div>
 <div class="line"><span class="lineno">  463</span>        <span class="keyword">auto</span> validation = rule.validate();</div>
-<div class="line"><span class="lineno">  464</span>        EXPECT_TRUE(validation) &lt;&lt; <span class="stringliteral">&quot;Rule validation failed for: &quot;</span> &lt;&lt; rule.source_metric;</div>
+<div class="line"><span class="lineno">  464</span>        EXPECT_TRUE(validation.is_ok()) &lt;&lt; <span class="stringliteral">&quot;Rule validation failed for: &quot;</span> &lt;&lt; rule.source_metric;</div>
 <div class="line"><span class="lineno">  465</span>    }</div>
 <div class="line"><span class="lineno">  466</span>    </div>
 <div class="line"><span class="lineno">  467</span>    <span class="comment">// Check that standard metrics are included</span></div>
@@ -923,7 +1191,18 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  478</span>        EXPECT_TRUE(found) &lt;&lt; <span class="stringliteral">&quot;Expected metric not found: &quot;</span> &lt;&lt; expected;</div>
 <div class="line"><span class="lineno">  479</span>    }</div>
 <div class="line"><span class="lineno">  480</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_abb89da990039386ef627a76a64cf6abe"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#abb89da990039386ef627a76a64cf6abe">kcenon::monitoring::create_standard_aggregation_rules</a></div><div class="ttdeci">std::vector&lt; aggregation_rule &gt; create_standard_aggregation_rules()</div><div class="ttdoc">Create standard aggregation rules for common metrics.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/db7/aggregation__processor_8h_source.html#l00333">aggregation_processor.h:333</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a3bf4cc5bbb44a244bbbda1f0614cefb6_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a3bf4cc5bbb44a244bbbda1f0614cefb6_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a3bf4cc5bbb44a244bbbda1f0614cefb6_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a3bf4cc5bbb44a244bbbda1f0614cefb6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,75,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#abb89da990039386ef627a76a64cf6abe" title="Create standard aggregation rules for common metrics." alt="" coords="123,5,381,45"/>
+<area shape="poly" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aba0eacefc5906f9f45a5ba8f527ad9a5" name="aba0eacefc5906f9f45a5ba8f527ad9a5"></a>
@@ -954,11 +1233,11 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00214">214</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  214</span>                                                     {</div>
-<div class="line"><span class="lineno">  215</span>    stream_aggregator_config config;</div>
-<div class="line"><span class="lineno">  216</span>    config.window_size = 1000;</div>
-<div class="line"><span class="lineno">  217</span>    config.enable_outlier_detection = <span class="keyword">false</span>;  <span class="comment">// Disable for predictable testing</span></div>
+<div class="line"><span class="lineno">  215</span>    <a class="code hl_struct" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html">stream_aggregator_config</a> config;</div>
+<div class="line"><span class="lineno">  216</span>    config.<a class="code hl_variable" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a0e2d1931ecaf34655ce7a8e298d5500c">window_size</a> = 1000;</div>
+<div class="line"><span class="lineno">  217</span>    config.<a class="code hl_variable" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#ae4def0cfe34c4c33f87cff3ec64a82e5">enable_outlier_detection</a> = <span class="keyword">false</span>;  <span class="comment">// Disable for predictable testing</span></div>
 <div class="line"><span class="lineno">  218</span>    </div>
-<div class="line"><span class="lineno">  219</span>    stream_aggregator aggregator(config);</div>
+<div class="line"><span class="lineno">  219</span>    <a class="code hl_class" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html">stream_aggregator</a> aggregator(config);</div>
 <div class="line"><span class="lineno">  220</span>    </div>
 <div class="line"><span class="lineno">  221</span>    <span class="comment">// Add observations</span></div>
 <div class="line"><span class="lineno">  222</span>    std::vector&lt;double&gt; values = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};</div>
@@ -978,7 +1257,35 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  236</span>    <span class="comment">// Check percentiles</span></div>
 <div class="line"><span class="lineno">  237</span>    EXPECT_GT(stats.percentiles.size(), 0);</div>
 <div class="line"><span class="lineno">  238</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html">kcenon::monitoring::stream_aggregator</a></div><div class="ttdoc">Full-featured streaming aggregation.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00548">stream_aggregator.h:548</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1stream__aggregator__config_html_ae4def0cfe34c4c33f87cff3ec64a82e5"><div class="ttname"><a href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#ae4def0cfe34c4c33f87cff3ec64a82e5">kcenon::monitoring::stream_aggregator_config::enable_outlier_detection</a></div><div class="ttdeci">bool enable_outlier_detection</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00517">stream_aggregator.h:517</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_aba0eacefc5906f9f45a5ba8f527ad9a5_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_aba0eacefc5906f9f45a5ba8f527ad9a5_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_aba0eacefc5906f9f45a5ba8f527ad9a5_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_aba0eacefc5906f9f45a5ba8f527ad9a5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,279,75,304"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803" title="Add an observation." alt="" coords="123,188,277,243"/>
+<area shape="poly" title=" " alt="" coords="67,276,128,246,131,251,69,281"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a6040464852941cdad84d6d4dd13eb7a5" title="Get full statistics." alt="" coords="123,303,277,357"/>
+<area shape="poly" title=" " alt="" coords="75,297,110,306,109,311,74,302"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf" title="Add a value to the statistics." alt="" coords="342,5,490,60"/>
+<area shape="poly" title=" " alt="" coords="217,186,262,128,291,97,324,69,330,65,333,70,327,73,295,101,266,132,222,189"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae" title="Get sample count." alt="" coords="342,84,490,139"/>
+<area shape="poly" title=" " alt="" coords="252,186,324,149,339,142,341,147,327,154,254,190"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="337,163,495,203"/>
+<area shape="poly" title=" " alt="" coords="277,201,323,194,324,200,278,207"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124" title="Get running mean." alt="" coords="325,227,507,267"/>
+<area shape="poly" title=" " alt="" coords="278,224,312,229,311,235,277,229"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a96b3000d209fca8bf2718c8cca30d410" title="Get running standard deviation." alt="" coords="342,292,490,347"/>
+<area shape="poly" title=" " alt="" coords="254,240,327,277,341,284,339,289,324,282,252,245"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e" title="Get running variance (sample variance)" alt="" coords="555,292,703,347"/>
+<area shape="poly" title=" " alt="" coords="490,317,541,317,541,322,490,322"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c" title="Get full statistics." alt="" coords="342,371,490,425"/>
+<area shape="poly" title=" " alt="" coords="279,352,330,368,328,373,277,357"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a8c859001554622a134ec0a6430225f6b" name="a8c859001554622a134ec0a6430225f6b"></a>
@@ -1009,11 +1316,11 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00263">263</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  263</span>                                                                {</div>
-<div class="line"><span class="lineno">  264</span>    stream_aggregator_config config;</div>
-<div class="line"><span class="lineno">  265</span>    config.enable_outlier_detection = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  266</span>    config.outlier_threshold = 2.0;  <span class="comment">// 2 standard deviations</span></div>
+<div class="line"><span class="lineno">  264</span>    <a class="code hl_struct" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html">stream_aggregator_config</a> config;</div>
+<div class="line"><span class="lineno">  265</span>    config.<a class="code hl_variable" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#ae4def0cfe34c4c33f87cff3ec64a82e5">enable_outlier_detection</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  266</span>    config.<a class="code hl_variable" href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a39ce9a7e8d372ebfdf19666407f214ee">outlier_threshold</a> = 2.0;  <span class="comment">// 2 standard deviations</span></div>
 <div class="line"><span class="lineno">  267</span>    </div>
-<div class="line"><span class="lineno">  268</span>    stream_aggregator aggregator(config);</div>
+<div class="line"><span class="lineno">  268</span>    <a class="code hl_class" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html">stream_aggregator</a> aggregator(config);</div>
 <div class="line"><span class="lineno">  269</span>    </div>
 <div class="line"><span class="lineno">  270</span>    <span class="comment">// Add normal values around 50</span></div>
 <div class="line"><span class="lineno">  271</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 45; i &lt;= 55; ++i) {</div>
@@ -1029,7 +1336,34 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  281</span>    EXPECT_GT(stats.outlier_count, 0);</div>
 <div class="line"><span class="lineno">  282</span>    EXPECT_GT(stats.outliers.size(), 0);</div>
 <div class="line"><span class="lineno">  283</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1stream__aggregator__config_html_a39ce9a7e8d372ebfdf19666407f214ee"><div class="ttname"><a href="../../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a39ce9a7e8d372ebfdf19666407f214ee">kcenon::monitoring::stream_aggregator_config::outlier_threshold</a></div><div class="ttdeci">double outlier_threshold</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00518">stream_aggregator.h:518</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a8c859001554622a134ec0a6430225f6b_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a8c859001554622a134ec0a6430225f6b_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a8c859001554622a134ec0a6430225f6b_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a8c859001554622a134ec0a6430225f6b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,279,75,304"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803" title="Add an observation." alt="" coords="123,188,277,243"/>
+<area shape="poly" title=" " alt="" coords="67,276,128,246,131,251,69,281"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a6040464852941cdad84d6d4dd13eb7a5" title="Get full statistics." alt="" coords="123,303,277,357"/>
+<area shape="poly" title=" " alt="" coords="75,297,110,306,109,311,74,302"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf" title="Add a value to the statistics." alt="" coords="342,5,490,60"/>
+<area shape="poly" title=" " alt="" coords="217,186,262,128,291,97,324,69,330,65,333,70,327,73,295,101,266,132,222,189"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae" title="Get sample count." alt="" coords="342,84,490,139"/>
+<area shape="poly" title=" " alt="" coords="252,186,324,149,339,142,341,147,327,154,254,190"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="337,163,495,203"/>
+<area shape="poly" title=" " alt="" coords="277,201,323,194,324,200,278,207"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124" title="Get running mean." alt="" coords="325,227,507,267"/>
+<area shape="poly" title=" " alt="" coords="278,224,312,229,311,235,277,229"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a96b3000d209fca8bf2718c8cca30d410" title="Get running standard deviation." alt="" coords="342,292,490,347"/>
+<area shape="poly" title=" " alt="" coords="254,240,327,277,341,284,339,289,324,282,252,245"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e" title="Get running variance (sample variance)" alt="" coords="555,292,703,347"/>
+<area shape="poly" title=" " alt="" coords="490,317,541,317,541,322,490,322"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c" title="Get full statistics." alt="" coords="342,371,490,425"/>
+<area shape="poly" title=" " alt="" coords="279,352,330,368,328,373,277,357"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a4bfa763734f0e58fd6d0da7ac718425b" name="a4bfa763734f0e58fd6d0da7ac718425b"></a>
@@ -1060,17 +1394,17 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00240">240</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  240</span>                                                           {</div>
-<div class="line"><span class="lineno">  241</span>    stream_aggregator aggregator;</div>
+<div class="line"><span class="lineno">  241</span>    <a class="code hl_class" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html">stream_aggregator</a> aggregator;</div>
 <div class="line"><span class="lineno">  242</span>    </div>
 <div class="line"><span class="lineno">  243</span>    <span class="comment">// Add 100 values from 1 to 100</span></div>
 <div class="line"><span class="lineno">  244</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 100; ++i) {</div>
-<div class="line"><span class="lineno">  245</span>        aggregator.add_observation(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  245</span>        aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803">add_observation</a>(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  246</span>    }</div>
 <div class="line"><span class="lineno">  247</span>    </div>
 <div class="line"><span class="lineno">  248</span>    <span class="comment">// Get specific percentiles</span></div>
-<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> p50_result = aggregator.get_percentile(0.5);</div>
-<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> p95_result = aggregator.get_percentile(0.95);</div>
-<div class="line"><span class="lineno">  251</span>    <span class="keyword">auto</span> p99_result = aggregator.get_percentile(0.99);</div>
+<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> p50_result = aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#acbef0fc63bdd810be1c7521cb4ac74c2">get_percentile</a>(0.5);</div>
+<div class="line"><span class="lineno">  250</span>    <span class="keyword">auto</span> p95_result = aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#acbef0fc63bdd810be1c7521cb4ac74c2">get_percentile</a>(0.95);</div>
+<div class="line"><span class="lineno">  251</span>    <span class="keyword">auto</span> p99_result = aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#acbef0fc63bdd810be1c7521cb4ac74c2">get_percentile</a>(0.99);</div>
 <div class="line"><span class="lineno">  252</span>    </div>
 <div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(p50_result);</div>
 <div class="line"><span class="lineno">  254</span>    EXPECT_TRUE(p95_result);</div>
@@ -1081,7 +1415,33 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  259</span>    EXPECT_NEAR(p95_result.value(), 95.0, 10.0);</div>
 <div class="line"><span class="lineno">  260</span>    EXPECT_NEAR(p99_result.value(), 99.0, 10.0);</div>
 <div class="line"><span class="lineno">  261</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html_aab112b451840cf6a67935ebdb7c1c803"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803">kcenon::monitoring::stream_aggregator::add_observation</a></div><div class="ttdeci">result_void add_observation(double value)</div><div class="ttdoc">Add an observation.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00572">stream_aggregator.h:572</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html_acbef0fc63bdd810be1c7521cb4ac74c2"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#acbef0fc63bdd810be1c7521cb4ac74c2">kcenon::monitoring::stream_aggregator::get_percentile</a></div><div class="ttdeci">std::optional&lt; double &gt; get_percentile(double p) const</div><div class="ttdoc">Get specific percentile.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00620">stream_aggregator.h:620</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a4bfa763734f0e58fd6d0da7ac718425b_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a4bfa763734f0e58fd6d0da7ac718425b_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a4bfa763734f0e58fd6d0da7ac718425b_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a4bfa763734f0e58fd6d0da7ac718425b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,211,75,236"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803" title="Add an observation." alt="" coords="123,156,277,211"/>
+<area shape="poly" title=" " alt="" coords="74,212,109,203,110,209,75,217"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#acbef0fc63bdd810be1c7521cb4ac74c2" title="Get specific percentile." alt="" coords="123,235,277,289"/>
+<area shape="poly" title=" " alt="" coords="75,229,110,238,109,243,74,234"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf" title="Add a value to the statistics." alt="" coords="342,5,490,60"/>
+<area shape="poly" title=" " alt="" coords="225,154,269,111,324,69,332,64,335,69,327,74,273,115,229,158"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae" title="Get sample count." alt="" coords="342,84,490,139"/>
+<area shape="poly" title=" " alt="" coords="277,155,328,138,330,143,279,160"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="337,163,495,203"/>
+<area shape="poly" title=" " alt="" coords="278,181,323,181,323,186,278,186"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124" title="Get running mean." alt="" coords="325,227,507,267"/>
+<area shape="poly" title=" " alt="" coords="279,204,336,221,334,226,277,209"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a96b3000d209fca8bf2718c8cca30d410" title="Get running standard deviation." alt="" coords="342,292,490,347"/>
+<area shape="poly" title=" " alt="" coords="263,209,279,220,294,235,303,249,312,263,327,277,334,282,331,287,324,281,308,267,299,252,290,239,276,224,260,213"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e" title="Get running variance (sample variance)" alt="" coords="555,292,703,347"/>
+<area shape="poly" title=" " alt="" coords="490,317,541,317,541,322,490,322"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa3f1c151b222afe1e4a5d28878eff971" name="aa3f1c151b222afe1e4a5d28878eff971"></a>
@@ -1112,23 +1472,62 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00285">285</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  285</span>                                                     {</div>
-<div class="line"><span class="lineno">  286</span>    stream_aggregator aggregator;</div>
+<div class="line"><span class="lineno">  286</span>    <a class="code hl_class" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html">stream_aggregator</a> aggregator;</div>
 <div class="line"><span class="lineno">  287</span>    </div>
 <div class="line"><span class="lineno">  288</span>    <span class="comment">// Add some observations</span></div>
 <div class="line"><span class="lineno">  289</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 10; ++i) {</div>
-<div class="line"><span class="lineno">  290</span>        aggregator.add_observation(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
+<div class="line"><span class="lineno">  290</span>        aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803">add_observation</a>(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(i));</div>
 <div class="line"><span class="lineno">  291</span>    }</div>
 <div class="line"><span class="lineno">  292</span>    </div>
-<div class="line"><span class="lineno">  293</span>    EXPECT_EQ(aggregator.count(), 10);</div>
+<div class="line"><span class="lineno">  293</span>    EXPECT_EQ(aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae62ec6819e64b884c7760c0049d5747b">count</a>(), 10);</div>
 <div class="line"><span class="lineno">  294</span>    </div>
 <div class="line"><span class="lineno">  295</span>    <span class="comment">// Reset</span></div>
-<div class="line"><span class="lineno">  296</span>    aggregator.reset();</div>
+<div class="line"><span class="lineno">  296</span>    aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae14b5244b5610e4c7dd3308ad4a27886">reset</a>();</div>
 <div class="line"><span class="lineno">  297</span>    </div>
-<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(aggregator.count(), 0);</div>
-<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(aggregator.mean(), 0.0);</div>
-<div class="line"><span class="lineno">  300</span>    EXPECT_EQ(aggregator.variance(), 0.0);</div>
+<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae62ec6819e64b884c7760c0049d5747b">count</a>(), 0);</div>
+<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a15eb9d03bc572c748fb551d9c307fec9">mean</a>(), 0.0);</div>
+<div class="line"><span class="lineno">  300</span>    EXPECT_EQ(aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ab3e18ed7c0bc4a17130e91048a99c6a6">variance</a>(), 0.0);</div>
 <div class="line"><span class="lineno">  301</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html_a15eb9d03bc572c748fb551d9c307fec9"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a15eb9d03bc572c748fb551d9c307fec9">kcenon::monitoring::stream_aggregator::mean</a></div><div class="ttdeci">double mean() const</div><div class="ttdoc">Get mean.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00639">stream_aggregator.h:639</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html_ab3e18ed7c0bc4a17130e91048a99c6a6"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ab3e18ed7c0bc4a17130e91048a99c6a6">kcenon::monitoring::stream_aggregator::variance</a></div><div class="ttdeci">double variance() const</div><div class="ttdoc">Get variance.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00646">stream_aggregator.h:646</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html_ae14b5244b5610e4c7dd3308ad4a27886"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae14b5244b5610e4c7dd3308ad4a27886">kcenon::monitoring::stream_aggregator::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset the aggregator.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00660">stream_aggregator.h:660</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html_ae62ec6819e64b884c7760c0049d5747b"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae62ec6819e64b884c7760c0049d5747b">kcenon::monitoring::stream_aggregator::count</a></div><div class="ttdeci">size_t count() const</div><div class="ttdoc">Get observation count.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00632">stream_aggregator.h:632</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_aa3f1c151b222afe1e4a5d28878eff971_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_aa3f1c151b222afe1e4a5d28878eff971_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_aa3f1c151b222afe1e4a5d28878eff971_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_aa3f1c151b222afe1e4a5d28878eff971_cgraph">
+<area shape="rect" title=" " alt="" coords="5,301,75,327"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803" title="Add an observation." alt="" coords="145,185,299,240"/>
+<area shape="poly" title=" " alt="" coords="63,299,159,244,162,249,65,303"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae62ec6819e64b884c7760c0049d5747b" title="Get observation count." alt="" coords="145,56,299,111"/>
+<area shape="poly" title=" " alt="" coords="45,300,74,242,96,206,121,171,173,118,177,122,125,174,100,209,79,245,49,302"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a15eb9d03bc572c748fb551d9c307fec9" title="Get mean." alt="" coords="123,294,321,334"/>
+<area shape="poly" title=" " alt="" coords="75,311,109,311,109,317,75,317"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae14b5244b5610e4c7dd3308ad4a27886" title="Reset the aggregator." alt="" coords="145,359,299,413"/>
+<area shape="poly" title=" " alt="" coords="74,324,141,351,139,356,72,329"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ab3e18ed7c0bc4a17130e91048a99c6a6" title="Get variance." alt="" coords="145,437,299,492"/>
+<area shape="poly" title=" " alt="" coords="50,325,78,372,100,399,124,423,134,430,131,434,121,427,96,403,74,375,45,328"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf" title="Add a value to the statistics." alt="" coords="386,84,534,139"/>
+<area shape="poly" title=" " alt="" coords="286,183,381,142,384,147,288,188"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae" title="Get sample count." alt="" coords="386,5,534,60"/>
+<area shape="poly" title=" " alt="" coords="252,183,319,120,342,93,368,69,375,65,378,69,371,73,346,97,323,124,256,187"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="381,163,539,203"/>
+<area shape="poly" title=" " alt="" coords="299,200,367,192,367,197,300,206"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124" title="Get running mean." alt="" coords="369,307,551,347"/>
+<area shape="poly" title=" " alt="" coords="270,238,370,292,389,300,387,305,368,296,267,242"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a96b3000d209fca8bf2718c8cca30d410" title="Get running standard deviation." alt="" coords="386,228,534,283"/>
+<area shape="poly" title=" " alt="" coords="300,224,373,237,372,242,299,229"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e" title="Get running variance (sample variance)" alt="" coords="599,333,747,388"/>
+<area shape="poly" title=" " alt="" coords="525,280,552,293,612,324,609,329,549,298,523,285"/>
+<area shape="poly" title=" " alt="" coords="299,64,372,49,373,54,300,69"/>
+<area shape="poly" title=" " alt="" coords="322,317,356,319,355,324,321,322"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#afe0865f111e37ebcfe1654aeccb36fa9" title="Reset statistics." alt="" coords="386,372,534,427"/>
+<area shape="poly" title=" " alt="" coords="300,388,372,392,372,397,300,393"/>
+<area shape="poly" title=" " alt="" coords="300,466,356,466,419,462,486,452,550,435,590,417,626,394,629,398,592,422,552,441,487,457,420,467,356,471,300,471"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a655d41a2c943c855a7b07d0be4158469" name="a655d41a2c943c855a7b07d0be4158469"></a>
@@ -1159,7 +1558,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html#l00509">509</a> of file <a class="el" href="../../db/d5e/test__stream__aggregation_8cpp_source.html">test_stream_aggregation.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  509</span>                                                            {</div>
-<div class="line"><span class="lineno">  510</span>    stream_aggregator aggregator;</div>
+<div class="line"><span class="lineno">  510</span>    <a class="code hl_class" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html">stream_aggregator</a> aggregator;</div>
 <div class="line"><span class="lineno">  511</span>    </div>
 <div class="line"><span class="lineno">  512</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 4;</div>
 <div class="line"><span class="lineno">  513</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> observations_per_thread = 1000;</div>
@@ -1174,7 +1573,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  522</span>            </div>
 <div class="line"><span class="lineno">  523</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; observations_per_thread; ++i) {</div>
 <div class="line"><span class="lineno">  524</span>                <span class="keywordtype">double</span> value = dis(gen);</div>
-<div class="line"><span class="lineno">  525</span>                aggregator.add_observation(value);</div>
+<div class="line"><span class="lineno">  525</span>                aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803">add_observation</a>(value);</div>
 <div class="line"><span class="lineno">  526</span>                </div>
 <div class="line"><span class="lineno">  527</span>                <span class="comment">// Small delay to increase chance of contention</span></div>
 <div class="line"><span class="lineno">  528</span>                std::this_thread::sleep_for(std::chrono::microseconds(1));</div>
@@ -1188,19 +1587,49 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  536</span>    }</div>
 <div class="line"><span class="lineno">  537</span>    </div>
 <div class="line"><span class="lineno">  538</span>    <span class="comment">// Verify we processed all observations</span></div>
-<div class="line"><span class="lineno">  539</span>    EXPECT_EQ(aggregator.count(), num_threads * observations_per_thread);</div>
+<div class="line"><span class="lineno">  539</span>    EXPECT_EQ(aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae62ec6819e64b884c7760c0049d5747b">count</a>(), num_threads * observations_per_thread);</div>
 <div class="line"><span class="lineno">  540</span>    </div>
-<div class="line"><span class="lineno">  541</span>    <span class="keyword">auto</span> stats = aggregator.get_statistics();</div>
+<div class="line"><span class="lineno">  541</span>    <span class="keyword">auto</span> stats = aggregator.<a class="code hl_function" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a6040464852941cdad84d6d4dd13eb7a5">get_statistics</a>();</div>
 <div class="line"><span class="lineno">  542</span>    EXPECT_GT(stats.mean, 0.0);</div>
 <div class="line"><span class="lineno">  543</span>    EXPECT_GT(stats.std_deviation, 0.0);</div>
 <div class="line"><span class="lineno">  544</span>}</div>
-</div><!-- fragment -->
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1stream__aggregator_html_a6040464852941cdad84d6d4dd13eb7a5"><div class="ttname"><a href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a6040464852941cdad84d6d4dd13eb7a5">kcenon::monitoring::stream_aggregator::get_statistics</a></div><div class="ttdeci">streaming_statistics get_statistics() const</div><div class="ttdoc">Get full statistics.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d7b/stream__aggregator_8h_source.html#l00601">stream_aggregator.h:601</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d5e/test__stream__aggregation_8cpp_a655d41a2c943c855a7b07d0be4158469_cgraph.png" border="0" usemap="#adb/d5e/test__stream__aggregation_8cpp_a655d41a2c943c855a7b07d0be4158469_cgraph" alt=""/></div>
+<map name="adb/d5e/test__stream__aggregation_8cpp_a655d41a2c943c855a7b07d0be4158469_cgraph" id="adb/d5e/test__stream__aggregation_8cpp_a655d41a2c943c855a7b07d0be4158469_cgraph">
+<area shape="rect" title=" " alt="" coords="5,171,75,196"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#aab112b451840cf6a67935ebdb7c1c803" title="Add an observation." alt="" coords="123,156,277,211"/>
+<area shape="poly" title=" " alt="" coords="75,181,109,181,109,186,75,186"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#ae62ec6819e64b884c7760c0049d5747b" title="Get observation count." alt="" coords="123,41,277,96"/>
+<area shape="poly" title=" " alt="" coords="57,168,148,102,151,106,60,173"/>
+<area shape="rect" href="../../d3/d10/classkcenon_1_1monitoring_1_1stream__aggregator.html#a6040464852941cdad84d6d4dd13eb7a5" title="Get full statistics." alt="" coords="123,303,277,357"/>
+<area shape="poly" title=" " alt="" coords="57,194,161,291,157,295,53,198"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a82194409e4e712ccb2f60da2576c74cf" title="Add a value to the statistics." alt="" coords="342,84,490,139"/>
+<area shape="poly" title=" " alt="" coords="277,155,328,138,330,143,279,160"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af8777b1253df450eb2cf4b8ee3a43fae" title="Get sample count." alt="" coords="342,5,490,60"/>
+<area shape="poly" title=" " alt="" coords="225,154,269,111,324,69,332,64,335,69,327,74,273,115,229,158"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="337,163,495,203"/>
+<area shape="poly" title=" " alt="" coords="278,181,323,181,323,186,278,186"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af58b9b80277dae07ac8b964c75fd6124" title="Get running mean." alt="" coords="325,227,507,267"/>
+<area shape="poly" title=" " alt="" coords="279,204,336,221,334,226,277,209"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a96b3000d209fca8bf2718c8cca30d410" title="Get running standard deviation." alt="" coords="342,292,490,347"/>
+<area shape="poly" title=" " alt="" coords="234,209,277,243,327,277,338,283,335,288,324,282,274,247,231,213"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#a3df0289eb787ad8866a8ce611d440b3e" title="Get running variance (sample variance)" alt="" coords="555,292,703,347"/>
+<area shape="poly" title=" " alt="" coords="490,317,541,317,541,322,490,322"/>
+<area shape="poly" title=" " alt="" coords="277,53,328,45,329,50,278,58"/>
+<area shape="rect" href="../../d8/dca/classkcenon_1_1monitoring_1_1online__statistics.html#af747480f239c364c289c786d693fc68c" title="Get full statistics." alt="" coords="342,371,490,425"/>
+<area shape="poly" title=" " alt="" coords="279,352,330,368,328,373,277,357"/>
+</map>
+</div>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 06:11:08 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 06:29:10 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
