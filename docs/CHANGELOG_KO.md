@@ -166,13 +166,22 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
 
 ### 수정됨
+- **Windows MSVC 정렬 메모리 할당 지원** (#363)
+  - MSVC에서 `std::aligned_alloc` 컴파일 오류 C2039/C3861 수정
+  - `memory_pool.h`에 플랫폼별 정렬 메모리 할당 추가:
+    - Windows (MSVC)에서 `_aligned_malloc`/`_aligned_free` 사용
+    - POSIX 시스템에서 `std::aligned_alloc`/`std::free` 사용
+  - `detail::aligned_alloc_impl()` 및 `detail::aligned_free_impl()` 헬퍼 함수 추가
+- **CI 환경에서 동시성 큐 테스트 안정성** (#363)
+  - `LockfreeQueueConcurrentAccess` push 성공률 임계값을 90%에서 75%로 하향 조정
+  - Thread sanitizer가 atomic 연산을 상당히 느리게 만들어 성공률 저하 발생
+  - CI 변동에 더 탄력적이면서도 동시성 큐 동작을 검증하는 테스트 유지
 - **크로스 플랫폼 빌드를 위한 SIMD 아키텍처 감지 수정** (#363)
   - macOS ARM64에서 AVX2 SIMD 코드 컴파일 실패 수정
   - CMakeLists.txt에 아키텍처 확인 추가로 적절한 SIMD 지원
     - x86/x64 아키텍처에서만 AVX2 활성화
     - ARM64 아키텍처에서 NEON 활성화
   - `simd_aggregator.h`에 컴파일러 내장 가드 추가
-  - sanitizer 오버헤드가 있는 CI 환경을 위해 동시성 테스트 임계값 하향 조정
 - **예제 파일들을 현재 Result<T> API에 맞게 업데이트** (#326)
   - `distributed_tracing_example.cpp` 수정: Result bool 변환을 `.is_ok()`로, start_child_span 포인터를 참조로, API 메서드명 변경 (get_context_from_span -> extract_context, inject_context_into_carrier -> inject_context)
   - `result_pattern_example.cpp` 수정: Result bool 변환을 `.is_ok()`로 변경
