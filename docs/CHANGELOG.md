@@ -166,6 +166,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **SIMD architecture detection for cross-platform builds** (#363)
+  - Fixed AVX2 SIMD code compilation failure on macOS ARM64
+  - Added architecture checks in CMakeLists.txt for proper SIMD support
+    - Only enable AVX2 on x86/x64 architectures
+    - Enable NEON on ARM64 architectures
+  - Added compiler intrinsic guards in `simd_aggregator.h`
+  - Lowered concurrent test threshold for CI environments with sanitizer overhead
 - **Updated example files to use current Result<T> API** (#326)
   - Fixed `distributed_tracing_example.cpp`: Result bool conversion to `.is_ok()`, pointer to reference for start_child_span, renamed API methods (get_context_from_span -> extract_context, inject_context_into_carrier -> inject_context)
   - Fixed `result_pattern_example.cpp`: Result bool conversion to `.is_ok()`
