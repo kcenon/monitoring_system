@@ -57,6 +57,14 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **공용 ring_buffer.h 및 metric_storage.h API** (#339)
+  - 내부 ring buffer를 공용 API로 노출하는 `include/kcenon/monitoring/utils/ring_buffer.h` 추가
+  - 메모리 효율적인 메트릭 스토리지를 제공하는 `include/kcenon/monitoring/utils/metric_storage.h` 추가
+  - ring buffer 버퍼링과 시계열 스토리지를 갖춘 `metric_storage` 클래스
+  - 백그라운드 처리 지원이 포함된 스레드 안전 구현
+  - 용량, 보존 기간, flush 간격 설정이 가능한 `metric_storage_config`
+  - 스토리지 성능 모니터링을 위한 `metric_storage_stats`
+  - 14개의 테스트가 통과하는 `test_metric_storage.cpp` 활성화
 - **performance_monitor에서 다차원 메트릭을 위한 태그/라벨 지원** (#324)
   - 메트릭 라벨(키-값 쌍)을 위한 `tag_map` 타입 별칭 추가
   - 태그가 포함된 메트릭을 표현하기 위한 `tagged_metric` 구조체 추가
@@ -115,6 +123,9 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
 
 ### 수정됨
+- **test_metric_storage.cpp의 GCC Release 빌드 maybe-uninitialized 경고** (#354)
+  - `RingBufferBasicOperations` 및 `RingBufferPeek` 테스트에서 초기화되지 않은 지역 변수 수정
+  - GCC Release 빌드에서 발생하는 `-Werror=maybe-uninitialized` 오류 해결
 - **winsock 헤더 충돌로 인한 Windows MSVC 빌드 실패** (#323)
   - winsock2.h가 windows.h보다 먼저 include되도록 `system_resource_collector.h`의 헤더 포함 순서 수정
   - winsock.h가 windows.h를 통해 include되는 것을 방지하기 위해 WIN32_LEAN_AND_MEAN 및 NOMINMAX 매크로 추가

@@ -107,8 +107,11 @@ add_executable(monitoring_system_tests
     # Error boundaries and graceful degradation tests (Issue #338)
     test_error_boundaries.cpp
 
+    # Metric storage tests (Issue #339 - ring_buffer.h, metric_storage.h implemented)
+    test_metric_storage.cpp
+
     # =========================================================================
-    # MON-002: Deferred tests requiring API updates or missing headers (7 remaining)
+    # MON-002: Deferred tests requiring API updates or missing headers (6 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
@@ -121,7 +124,6 @@ add_executable(monitoring_system_tests
     # test_optimization.cpp           # Missing: optimization/ folder - See Issue #340
     # test_resource_management.cpp    # Missing: resource_manager.h - See Issue #341
     # test_data_consistency.cpp       # Missing: data_consistency.h - See Issue #342
-    # test_metric_storage.cpp         # Missing: ring_buffer.h, metric_storage.h - See Issue #339
     # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h - See Issue #344
     # test_stress_performance.cpp     # Missing: multiple headers - See Issue #345
     # test_integration_e2e.cpp        # Multiple missing headers - See Issue #346
