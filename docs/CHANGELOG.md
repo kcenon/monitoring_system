@@ -57,6 +57,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Health monitoring API** (#330)
+  - `health_check` abstract base class with `get_name()`, `get_type()`, `check()`, `get_timeout()`, `is_critical()`
+  - `functional_health_check` for lambda-based health checks
+  - `composite_health_check` for aggregating multiple health checks with all-required or any-required semantics
+  - `health_dependency_graph` DAG for health check dependencies with cycle detection, topological sort, failure impact analysis
+  - `health_check_builder` for fluent API health check creation
+  - `health_monitor` extended with `register_check()`, `unregister_check()`, `check()`, `add_dependency()`, `start()`/`stop()`, `get_stats()`, `get_health_report()`
+  - `health_monitor_stats` for tracking health check statistics
+  - `global_health_monitor()` singleton accessor
+  - All 22 tests in `test_health_monitoring.cpp` passing
 - **Resource management API** (#341)
   - Token bucket and leaky bucket rate limiters
   - Memory quota manager with threshold monitoring
@@ -128,6 +138,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **Thread sanitizer failures in health_monitor** (#356)
+  - Fixed data race in `check()`, `check_all()`, and `refresh()` methods by changing `shared_lock` to `lock_guard`
+  - Added missing `<condition_variable>` header required for `cv_` member variable
+  - Made `test_health_check` thread-safe with atomic status and mutex-protected message
+  - Resolved 4 thread sanitizer and 1 undefined behavior sanitizer test failures
 - **GCC Release build maybe-uninitialized warning in test_metric_storage.cpp** (#354)
   - Fixed uninitialized local variables in `RingBufferBasicOperations` and `RingBufferPeek` tests
   - Resolved `-Werror=maybe-uninitialized` errors occurring in GCC Release builds
