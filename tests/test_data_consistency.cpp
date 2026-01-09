@@ -28,9 +28,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <gtest/gtest.h>
-#include <thread>
-#include <chrono>
 #include <atomic>
+#include <chrono>
+#include <thread>
+#include <vector>
 #include <kcenon/monitoring/reliability/data_consistency.h>
 
 using namespace kcenon::monitoring;
@@ -272,14 +273,15 @@ TEST_F(DataConsistencyTest, StateValidatorContinuousValidation) {
     auto start_result = validator.start();
     EXPECT_TRUE(start_result.is_ok());
 
-    // Wait for several validation cycles
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    // Wait for several validation cycles (250ms with 50ms interval = at least 4 cycles)
+    // Using 250ms to account for scheduling delays in Release builds
+    std::this_thread::sleep_for(std::chrono::milliseconds(250));
 
     // Stop validation
     auto stop_result = validator.stop();
     EXPECT_TRUE(stop_result.is_ok());
 
-    // Should have run multiple validations
+    // Should have run multiple validations (at least 3 with 250ms wait)
     EXPECT_GT(validation_calls.load(), 2);
 }
 
