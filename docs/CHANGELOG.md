@@ -148,9 +148,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
-- **Flaky StateValidatorContinuousValidation test on macOS Release builds** (#342)
-  - Increased sleep duration from 200ms to 250ms to account for scheduling delays in Release builds
-  - Added explicit `<vector>` header include for better code practice
+- **Flaky StateValidatorContinuousValidation test on macOS** (#342)
+  - Increased sleep duration from 250ms to 400ms for more reliable timing
+  - Changed assertion from EXPECT_GT to EXPECT_GE to handle edge cases
+  - Addresses platform-specific thread scheduling delays on macOS CI
 - **Thread sanitizer failures in health_monitor** (#356)
   - Fixed data race in `check()`, `check_all()`, and `refresh()` methods by changing `shared_lock` to `lock_guard`
   - Added missing `<condition_variable>` header required for `cv_` member variable
