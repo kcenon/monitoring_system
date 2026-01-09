@@ -121,7 +121,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Configuration for memory pool. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00046">46</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00086">86</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae2e65c761fe33290ca0d913d39228ee0" name="ae2e65c761fe33290ca0d913d39228ee0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae2e65c761fe33290ca0d913d39228ee0">&#9670;&#160;</a></span>validate()</h2>
@@ -149,31 +149,31 @@ Public Attributes</h2></td></tr>
 <p>Validate configuration. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if configuration is valid </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00057">57</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   57</span>                          {</div>
-<div class="line"><span class="lineno">   58</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad993e7ecdbd9170f0a72a7a7deabf98f">initial_blocks</a> == 0) {</div>
-<div class="line"><span class="lineno">   59</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   60</span>        }</div>
-<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad09a811326adee84622e8c4d6fba4e89">max_blocks</a> != 0 &amp;&amp; <a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad09a811326adee84622e8c4d6fba4e89">max_blocks</a> &lt; <a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad993e7ecdbd9170f0a72a7a7deabf98f">initial_blocks</a>) {</div>
-<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   63</span>        }</div>
-<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#a3b03b89907912b64e437f762e0b38cfa">block_size</a> == 0) {</div>
-<div class="line"><span class="lineno">   65</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   66</span>        }</div>
-<div class="line"><span class="lineno">   67</span>        <span class="comment">// Block size must be 8-byte aligned</span></div>
-<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#a3b03b89907912b64e437f762e0b38cfa">block_size</a> % 8 != 0) {</div>
-<div class="line"><span class="lineno">   69</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   70</span>        }</div>
-<div class="line"><span class="lineno">   71</span>        <span class="comment">// Alignment must be power of 2</span></div>
-<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">alignment</a> == 0 || (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">alignment</a> &amp; (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">alignment</a> - 1)) != 0) {</div>
-<div class="line"><span class="lineno">   73</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   74</span>        }</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   76</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_a3b03b89907912b64e437f762e0b38cfa"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#a3b03b89907912b64e437f762e0b38cfa">kcenon::monitoring::memory_pool_config::block_size</a></div><div class="ttdeci">size_t block_size</div><div class="ttdoc">Size of each block in bytes.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00049">memory_pool.h:49</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_abe558cecacf1f18551fc8fce9f3e17db"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">kcenon::monitoring::memory_pool_config::alignment</a></div><div class="ttdeci">size_t alignment</div><div class="ttdoc">Memory alignment (must be power of 2)</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00050">memory_pool.h:50</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_ad09a811326adee84622e8c4d6fba4e89"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad09a811326adee84622e8c4d6fba4e89">kcenon::monitoring::memory_pool_config::max_blocks</a></div><div class="ttdeci">size_t max_blocks</div><div class="ttdoc">Maximum number of blocks (0 = unlimited)</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00048">memory_pool.h:48</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_ad993e7ecdbd9170f0a72a7a7deabf98f"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad993e7ecdbd9170f0a72a7a7deabf98f">kcenon::monitoring::memory_pool_config::initial_blocks</a></div><div class="ttdeci">size_t initial_blocks</div><div class="ttdoc">Initial number of blocks.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00047">memory_pool.h:47</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00097">97</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>                          {</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad993e7ecdbd9170f0a72a7a7deabf98f">initial_blocks</a> == 0) {</div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  100</span>        }</div>
+<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad09a811326adee84622e8c4d6fba4e89">max_blocks</a> != 0 &amp;&amp; <a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad09a811326adee84622e8c4d6fba4e89">max_blocks</a> &lt; <a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad993e7ecdbd9170f0a72a7a7deabf98f">initial_blocks</a>) {</div>
+<div class="line"><span class="lineno">  102</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  103</span>        }</div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#a3b03b89907912b64e437f762e0b38cfa">block_size</a> == 0) {</div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  106</span>        }</div>
+<div class="line"><span class="lineno">  107</span>        <span class="comment">// Block size must be 8-byte aligned</span></div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#a3b03b89907912b64e437f762e0b38cfa">block_size</a> % 8 != 0) {</div>
+<div class="line"><span class="lineno">  109</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  110</span>        }</div>
+<div class="line"><span class="lineno">  111</span>        <span class="comment">// Alignment must be power of 2</span></div>
+<div class="line"><span class="lineno">  112</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">alignment</a> == 0 || (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">alignment</a> &amp; (<a class="code hl_variable" href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">alignment</a> - 1)) != 0) {</div>
+<div class="line"><span class="lineno">  113</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  114</span>        }</div>
+<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  116</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_a3b03b89907912b64e437f762e0b38cfa"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#a3b03b89907912b64e437f762e0b38cfa">kcenon::monitoring::memory_pool_config::block_size</a></div><div class="ttdeci">size_t block_size</div><div class="ttdoc">Size of each block in bytes.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00089">memory_pool.h:89</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_abe558cecacf1f18551fc8fce9f3e17db"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#abe558cecacf1f18551fc8fce9f3e17db">kcenon::monitoring::memory_pool_config::alignment</a></div><div class="ttdeci">size_t alignment</div><div class="ttdoc">Memory alignment (must be power of 2)</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00090">memory_pool.h:90</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_ad09a811326adee84622e8c4d6fba4e89"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad09a811326adee84622e8c4d6fba4e89">kcenon::monitoring::memory_pool_config::max_blocks</a></div><div class="ttdeci">size_t max_blocks</div><div class="ttdoc">Maximum number of blocks (0 = unlimited)</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00088">memory_pool.h:88</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1memory__pool__config_html_ad993e7ecdbd9170f0a72a7a7deabf98f"><div class="ttname"><a href="../../d1/dfd/structkcenon_1_1monitoring_1_1memory__pool__config.html#ad993e7ecdbd9170f0a72a7a7deabf98f">kcenon::monitoring::memory_pool_config::initial_blocks</a></div><div class="ttdeci">size_t initial_blocks</div><div class="ttdoc">Initial number of blocks.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d5c/memory__pool_8h_source.html#l00087">memory_pool.h:87</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -202,7 +202,7 @@ Here is the caller graph for this function:</div>
 
 <p>Memory alignment (must be power of 2) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00050">50</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00090">90</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
 
 </div>
 </div>
@@ -220,7 +220,7 @@ Here is the caller graph for this function:</div>
 
 <p>Size of each block in bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00049">49</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00089">89</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
 
 </div>
 </div>
@@ -238,7 +238,7 @@ Here is the caller graph for this function:</div>
 
 <p>Initial number of blocks. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00047">47</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00087">87</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
 
 </div>
 </div>
@@ -256,7 +256,7 @@ Here is the caller graph for this function:</div>
 
 <p>Maximum number of blocks (0 = unlimited) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00048">48</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00088">88</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +274,7 @@ Here is the caller graph for this function:</div>
 
 <p>Use thread-local caching. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00051">51</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00091">91</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
 
 </div>
 </div>
@@ -284,7 +284,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 05:18:53 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 05:45:12 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

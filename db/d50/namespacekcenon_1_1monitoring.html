@@ -3825,19 +3825,19 @@ Here is the caller graph for this function:</div>
 <p>Create default pool configurations for different use cases. </p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of configurations </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00443">443</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  443</span>                                                                   {</div>
-<div class="line"><span class="lineno">  444</span>    <span class="keywordflow">return</span> {</div>
-<div class="line"><span class="lineno">  445</span>        <span class="comment">// Small objects pool</span></div>
-<div class="line"><span class="lineno">  446</span>        {.initial_blocks = 512, .max_blocks = 2048, .block_size = 32, .alignment = 8},</div>
-<div class="line"><span class="lineno">  447</span>        <span class="comment">// Medium objects pool</span></div>
-<div class="line"><span class="lineno">  448</span>        {.initial_blocks = 256, .max_blocks = 1024, .block_size = 128, .alignment = 16},</div>
-<div class="line"><span class="lineno">  449</span>        <span class="comment">// Large objects pool</span></div>
-<div class="line"><span class="lineno">  450</span>        {.initial_blocks = 64, .max_blocks = 256, .block_size = 512, .alignment = 32},</div>
-<div class="line"><span class="lineno">  451</span>        <span class="comment">// Thread-local cache enabled pool</span></div>
-<div class="line"><span class="lineno">  452</span>        {.initial_blocks = 256, .max_blocks = 1024, .block_size = 64, .alignment = 8, .use_thread_local_cache = <span class="keyword">true</span>}</div>
-<div class="line"><span class="lineno">  453</span>    };</div>
-<div class="line"><span class="lineno">  454</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00483">483</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  483</span>                                                                   {</div>
+<div class="line"><span class="lineno">  484</span>    <span class="keywordflow">return</span> {</div>
+<div class="line"><span class="lineno">  485</span>        <span class="comment">// Small objects pool</span></div>
+<div class="line"><span class="lineno">  486</span>        {.initial_blocks = 512, .max_blocks = 2048, .block_size = 32, .alignment = 8},</div>
+<div class="line"><span class="lineno">  487</span>        <span class="comment">// Medium objects pool</span></div>
+<div class="line"><span class="lineno">  488</span>        {.initial_blocks = 256, .max_blocks = 1024, .block_size = 128, .alignment = 16},</div>
+<div class="line"><span class="lineno">  489</span>        <span class="comment">// Large objects pool</span></div>
+<div class="line"><span class="lineno">  490</span>        {.initial_blocks = 64, .max_blocks = 256, .block_size = 512, .alignment = 32},</div>
+<div class="line"><span class="lineno">  491</span>        <span class="comment">// Thread-local cache enabled pool</span></div>
+<div class="line"><span class="lineno">  492</span>        {.initial_blocks = 256, .max_blocks = 1024, .block_size = 64, .alignment = 8, .use_thread_local_cache = <span class="keyword">true</span>}</div>
+<div class="line"><span class="lineno">  493</span>    };</div>
+<div class="line"><span class="lineno">  494</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -6929,10 +6929,10 @@ template&lt;typename T &gt; </div>
 <p>Create a memory pool with default configuration. </p>
 <dl class="section return"><dt>Returns</dt><dd>Unique pointer to the pool </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00426">426</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  426</span>                                                     {</div>
-<div class="line"><span class="lineno">  427</span>    <span class="keywordflow">return</span> std::make_unique&lt;memory_pool&gt;();</div>
-<div class="line"><span class="lineno">  428</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00466">466</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  466</span>                                                     {</div>
+<div class="line"><span class="lineno">  467</span>    <span class="keywordflow">return</span> std::make_unique&lt;memory_pool&gt;();</div>
+<div class="line"><span class="lineno">  468</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -6979,10 +6979,10 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Unique pointer to the pool </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00435">435</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  435</span>                                                                                     {</div>
-<div class="line"><span class="lineno">  436</span>    <span class="keywordflow">return</span> std::make_unique&lt;memory_pool&gt;(config);</div>
-<div class="line"><span class="lineno">  437</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d5c/memory__pool_8h_source.html#l00475">475</a> of file <a class="el" href="../../de/d5c/memory__pool_8h_source.html">memory_pool.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  475</span>                                                                                     {</div>
+<div class="line"><span class="lineno">  476</span>    <span class="keywordflow">return</span> std::make_unique&lt;memory_pool&gt;(config);</div>
+<div class="line"><span class="lineno">  477</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -7938,7 +7938,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 05:18:53 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 05:45:12 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
