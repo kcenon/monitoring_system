@@ -117,6 +117,7 @@ The following test files are commented out in `tests/CMakeLists.txt`:
 
 ### Test Stability Improvements
 
+- `StateValidatorContinuousValidation` test sleep duration increased from 200ms to 250ms in #342 to prevent flaky failures on macOS Release builds
 - `FaultToleranceManagerWithTimeout` test delay increased from 100ms to 500ms in #349 to prevent flaky failures on macOS Debug builds
 
 ---
