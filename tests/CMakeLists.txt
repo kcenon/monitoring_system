@@ -117,16 +117,18 @@ add_executable(monitoring_system_tests
     # health_dependency_graph, health_check_builder, global_health_monitor() implemented)
     test_health_monitoring.cpp
 
+    # Data consistency tests (Issue #342 - data_consistency.h implemented)
+    test_data_consistency.cpp
+
     # =========================================================================
     # MON-002: Deferred tests requiring API updates or missing headers (4 remaining)
     # =========================================================================
     # The following tests require significant updates due to:
     # - Result<T> API changes (need .is_ok() instead of bool conversion)
-    # - Missing header files (data_consistency.h, etc.)
+    # - Missing header files
     # - Missing API implementations
     #
     # test_optimization.cpp           # Missing: optimization/ folder - See Issue #340
-    # test_data_consistency.cpp       # Missing: data_consistency.h - See Issue #342
     # test_stream_aggregation.cpp     # Missing: stream_aggregator.h, aggregation_processor.h - See Issue #344
     # test_stress_performance.cpp     # Missing: multiple headers - See Issue #345
     # test_integration_e2e.cpp        # Multiple missing headers - See Issue #346

@@ -57,6 +57,16 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 ## [Unreleased]
 
 ### 추가됨
+- **데이터 일관성 API** (#342)
+  - 실행/롤백 기능을 갖춘 `transaction_operation` 클래스
+  - 타임아웃 및 상태 관리를 갖춘 여러 작업을 관리하는 `transaction` 클래스
+  - 데드락 감지를 갖춘 트랜잭션 조정을 위한 `transaction_manager`
+  - 자동 복구 지원이 포함된 지속적인 시스템 상태 검증을 위한 `state_validator`
+  - 트랜잭션 관리자 및 검증자의 중앙 집중식 조정을 위한 `data_consistency_manager`
+  - 트랜잭션 상태(active, committed, aborted) 및 검증 결과(valid, invalid)
+  - 관리자 및 검증자 생성을 위한 팩토리 함수
+  - shared mutex를 사용한 스레드 안전 구현
+  - `test_data_consistency.cpp`의 22개 테스트 전체 통과
 - **Health monitoring API** (#330)
   - `health_check` 추상 기본 클래스: `get_name()`, `get_type()`, `check()`, `get_timeout()`, `is_critical()` 메서드 포함
   - 람다 기반 health check를 위한 `functional_health_check`
