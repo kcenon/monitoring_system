@@ -82,7 +82,9 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../d1/d7d/result__types_8h_source.html">kcenon/monitoring/core/result_types.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -90,28 +92,31 @@ Include dependency graph for lockfree_queue.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d8/d22/lockfree__queue_8h__incl.png" border="0" usemap="#ainclude_2kcenon_2monitoring_2optimization_2lockfree__queue_8h" alt=""/></div>
 <map name="ainclude_2kcenon_2monitoring_2optimization_2lockfree__queue_8h" id="ainclude_2kcenon_2monitoring_2optimization_2lockfree__queue_8h">
-<area shape="rect" title=" " alt="" coords="133,5,328,60"/>
+<area shape="rect" title=" " alt="" coords="184,5,379,60"/>
 <area shape="rect" title=" " alt="" coords="5,115,72,141"/>
-<area shape="poly" title=" " alt="" coords="178,62,76,112,73,107,176,58"/>
+<area shape="poly" title=" " alt="" coords="211,62,85,110,79,113,77,108,83,106,209,58"/>
 <area shape="rect" title=" " alt="" coords="97,115,167,141"/>
-<area shape="poly" title=" " alt="" coords="204,62,156,107,153,104,201,58"/>
-<area shape="rect" title=" " alt="" coords="192,115,269,141"/>
-<area shape="poly" title=" " alt="" coords="233,60,233,101,228,101,228,60"/>
-<area shape="rect" title=" " alt="" coords="294,115,357,141"/>
-<area shape="poly" title=" " alt="" coords="259,58,306,104,302,107,256,62"/>
-<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="381,108,557,148"/>
-<area shape="poly" title=" " alt="" coords="299,58,410,101,408,106,297,63"/>
-<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="254,203,365,229"/>
-<area shape="poly" title=" " alt="" coords="435,150,344,199,341,195,433,146"/>
-<area shape="rect" title=" " alt="" coords="369,284,428,309"/>
-<area shape="poly" title=" " alt="" coords="458,150,432,197,417,236,407,272,402,270,412,234,427,195,454,147"/>
-<area shape="rect" title=" " alt="" coords="441,196,629,236"/>
-<area shape="poly" title=" " alt="" coords="486,147,514,184,510,187,482,150"/>
-<area shape="rect" title=" " alt="" coords="653,203,728,229"/>
-<area shape="poly" title=" " alt="" coords="519,146,649,196,647,201,517,151"/>
-<area shape="rect" title=" " alt="" coords="276,284,343,309"/>
-<area shape="poly" title=" " alt="" coords="312,229,312,270,307,270,307,229"/>
-<area shape="poly" title=" " alt="" coords="324,227,377,273,374,277,321,231"/>
+<area shape="poly" title=" " alt="" coords="241,62,163,111,160,106,238,58"/>
+<area shape="rect" title=" " alt="" coords="263,284,329,309"/>
+<area shape="poly" title=" " alt="" coords="260,62,245,84,233,109,230,128,233,147,243,182,256,216,284,271,280,273,252,218,238,184,228,149,225,128,228,107,240,81,256,59"/>
+<area shape="rect" title=" " alt="" coords="243,115,320,141"/>
+<area shape="poly" title=" " alt="" coords="284,60,284,101,279,101,279,60"/>
+<area shape="rect" title=" " alt="" coords="345,115,405,141"/>
+<area shape="poly" title=" " alt="" coords="310,58,355,103,351,107,306,62"/>
+<area shape="rect" title=" " alt="" coords="429,115,491,141"/>
+<area shape="poly" title=" " alt="" coords="333,58,427,107,425,111,330,62"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="516,108,692,148"/>
+<area shape="poly" title=" " alt="" coords="373,57,526,102,525,107,371,63"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="323,203,434,229"/>
+<area shape="poly" title=" " alt="" coords="555,151,422,201,420,196,554,146"/>
+<area shape="rect" title=" " alt="" coords="396,284,455,309"/>
+<area shape="poly" title=" " alt="" coords="568,151,534,172,500,198,467,236,441,274,437,270,463,233,497,194,531,167,566,146"/>
+<area shape="rect" title=" " alt="" coords="510,196,698,236"/>
+<area shape="poly" title=" " alt="" coords="607,148,607,182,601,182,601,148"/>
+<area shape="rect" title=" " alt="" coords="723,203,797,229"/>
+<area shape="poly" title=" " alt="" coords="640,146,729,194,726,199,637,150"/>
+<area shape="poly" title=" " alt="" coords="368,231,320,276,316,273,365,227"/>
+<area shape="poly" title=" " alt="" coords="388,227,414,271,409,273,383,230"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -165,7 +170,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 05:45:12 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 06:01:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

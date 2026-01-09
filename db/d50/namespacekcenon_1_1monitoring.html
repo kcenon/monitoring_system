@@ -3877,19 +3877,19 @@ Here is the caller graph for this function:</div>
 <p>Create default queue configurations for different use cases. </p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of configurations </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d10/lockfree__queue_8h_source.html#l00348">348</a> of file <a class="el" href="../../da/d10/lockfree__queue_8h_source.html">lockfree_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  348</span>                                                                       {</div>
-<div class="line"><span class="lineno">  349</span>    <span class="keywordflow">return</span> {</div>
-<div class="line"><span class="lineno">  350</span>        <span class="comment">// Small queue for low-throughput scenarios</span></div>
-<div class="line"><span class="lineno">  351</span>        {.initial_capacity = 64, .max_capacity = 256, .allow_overwrite = <span class="keyword">false</span>},</div>
-<div class="line"><span class="lineno">  352</span>        <span class="comment">// Medium queue for general use</span></div>
-<div class="line"><span class="lineno">  353</span>        {.initial_capacity = 1024, .max_capacity = 4096, .allow_overwrite = <span class="keyword">false</span>},</div>
-<div class="line"><span class="lineno">  354</span>        <span class="comment">// Large queue for high-throughput scenarios</span></div>
-<div class="line"><span class="lineno">  355</span>        {.initial_capacity = 4096, .max_capacity = 65536, .allow_overwrite = <span class="keyword">false</span>},</div>
-<div class="line"><span class="lineno">  356</span>        <span class="comment">// Overwrite queue for streaming data</span></div>
-<div class="line"><span class="lineno">  357</span>        {.initial_capacity = 1024, .max_capacity = 1024, .allow_overwrite = <span class="keyword">true</span>}</div>
-<div class="line"><span class="lineno">  358</span>    };</div>
-<div class="line"><span class="lineno">  359</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../da/d10/lockfree__queue_8h_source.html#l00357">357</a> of file <a class="el" href="../../da/d10/lockfree__queue_8h_source.html">lockfree_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  357</span>                                                                       {</div>
+<div class="line"><span class="lineno">  358</span>    <span class="keywordflow">return</span> {</div>
+<div class="line"><span class="lineno">  359</span>        <span class="comment">// Small queue for low-throughput scenarios</span></div>
+<div class="line"><span class="lineno">  360</span>        {.initial_capacity = 64, .max_capacity = 256, .allow_overwrite = <span class="keyword">false</span>},</div>
+<div class="line"><span class="lineno">  361</span>        <span class="comment">// Medium queue for general use</span></div>
+<div class="line"><span class="lineno">  362</span>        {.initial_capacity = 1024, .max_capacity = 4096, .allow_overwrite = <span class="keyword">false</span>},</div>
+<div class="line"><span class="lineno">  363</span>        <span class="comment">// Large queue for high-throughput scenarios</span></div>
+<div class="line"><span class="lineno">  364</span>        {.initial_capacity = 4096, .max_capacity = 65536, .allow_overwrite = <span class="keyword">false</span>},</div>
+<div class="line"><span class="lineno">  365</span>        <span class="comment">// Overwrite queue for streaming data</span></div>
+<div class="line"><span class="lineno">  366</span>        {.initial_capacity = 1024, .max_capacity = 1024, .allow_overwrite = <span class="keyword">true</span>}</div>
+<div class="line"><span class="lineno">  367</span>    };</div>
+<div class="line"><span class="lineno">  368</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -6856,10 +6856,10 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Unique pointer to the queue </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d10/lockfree__queue_8h_source.html#l00329">329</a> of file <a class="el" href="../../da/d10/lockfree__queue_8h_source.html">lockfree_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  329</span>                                                       {</div>
-<div class="line"><span class="lineno">  330</span>    <span class="keywordflow">return</span> std::make_unique&lt;lockfree_queue&lt;T&gt;&gt;();</div>
-<div class="line"><span class="lineno">  331</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../da/d10/lockfree__queue_8h_source.html#l00338">338</a> of file <a class="el" href="../../da/d10/lockfree__queue_8h_source.html">lockfree_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  338</span>                                                       {</div>
+<div class="line"><span class="lineno">  339</span>    <span class="keywordflow">return</span> std::make_unique&lt;lockfree_queue&lt;T&gt;&gt;();</div>
+<div class="line"><span class="lineno">  340</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -6896,10 +6896,10 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Unique pointer to the queue </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d10/lockfree__queue_8h_source.html#l00340">340</a> of file <a class="el" href="../../da/d10/lockfree__queue_8h_source.html">lockfree_queue.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  340</span>                                                                                          {</div>
-<div class="line"><span class="lineno">  341</span>    <span class="keywordflow">return</span> std::make_unique&lt;lockfree_queue&lt;T&gt;&gt;(config);</div>
-<div class="line"><span class="lineno">  342</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../da/d10/lockfree__queue_8h_source.html#l00349">349</a> of file <a class="el" href="../../da/d10/lockfree__queue_8h_source.html">lockfree_queue.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  349</span>                                                                                          {</div>
+<div class="line"><span class="lineno">  350</span>    <span class="keywordflow">return</span> std::make_unique&lt;lockfree_queue&lt;T&gt;&gt;(config);</div>
+<div class="line"><span class="lineno">  351</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -7938,7 +7938,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 9 2026 05:45:12 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 9 2026 06:01:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
