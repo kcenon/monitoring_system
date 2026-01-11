@@ -141,10 +141,11 @@ Sanitizer(특히 AddressSanitizer)는 상당한 런타임 오버헤드를 추가
 
 ### 구현된 조정 사항
 
-| 테스트 | 일반 임계값 | ASAN 임계값 | 조정 배수 |
-|------|------------|------------|-----------|
-| BurstLoadTest (평균 지연) | 5,000ms | 10,000ms | 2.0x |
-| BurstLoadTest (최대 지연) | 10,000ms | 20,000ms | 2.0x |
+| 테스트 | 일반 임계값 | Sanitizer 임계값 | 조정 배수 |
+|------|------------|------------------|-----------|
+| BurstLoadTest (평균 지연) | 5,000ms | 10,000ms | 2.0x (ASAN) |
+| BurstLoadTest (최대 지연) | 10,000ms | 20,000ms | 2.0x (ASAN) |
+| LockfreeQueueConcurrentAccess (push 성공률) | 60% | 40% | 0.67x (TSAN) |
 
 ### 감지 메커니즘
 

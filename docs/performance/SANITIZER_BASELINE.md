@@ -141,10 +141,11 @@ Sanitizers (especially AddressSanitizer) add significant runtime overhead, typic
 
 ### Implemented Adjustments
 
-| Test | Normal Threshold | ASAN Threshold | Adjustment Factor |
-|------|-----------------|----------------|-------------------|
-| BurstLoadTest (avg latency) | 5,000ms | 10,000ms | 2.0x |
-| BurstLoadTest (max latency) | 10,000ms | 20,000ms | 2.0x |
+| Test | Normal Threshold | Sanitizer Threshold | Adjustment Factor |
+|------|-----------------|---------------------|-------------------|
+| BurstLoadTest (avg latency) | 5,000ms | 10,000ms | 2.0x (ASAN) |
+| BurstLoadTest (max latency) | 10,000ms | 20,000ms | 2.0x (ASAN) |
+| LockfreeQueueConcurrentAccess (push success rate) | 60% | 40% | 0.67x (TSAN) |
 
 ### Detection Mechanism
 
