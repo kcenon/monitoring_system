@@ -179,6 +179,10 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
   - 참고: `common_system`의 `monitoring_interface.h` (IMonitor)는 영향 없음
 
 ### 수정됨
+- **alert 파이프라인 누락 표준 라이브러리 헤더** (#380)
+  - `std::sort`와 `std::atomic`을 위해 `alert_types.h`에 `<algorithm>`과 `<atomic>` 헤더 추가
+  - `std::remove_if`를 위해 `alert_pipeline.h`에 `<algorithm>` 헤더 추가
+  - Windows MSVC 빌드 실패 수정 (error C2039/C3861)
 - **Windows MSVC 정렬 메모리 할당 지원** (#363)
   - MSVC에서 `std::aligned_alloc` 컴파일 오류 C2039/C3861 수정
   - `memory_pool.h`에 플랫폼별 정렬 메모리 할당 추가:
