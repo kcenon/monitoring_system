@@ -160,6 +160,7 @@ int main() {
 - **Performance Monitoring**: Real-time metrics (counters, gauges, histograms) - 10M+ ops/sec
 - **Distributed Tracing**: Request flow tracking across services - 2.5M spans/sec
 - **Health Monitoring**: Service health checks and dependency validation - 500K checks/sec
+- **Alert Pipeline**: Threshold, rate-of-change, and anomaly-based alerting with flexible notification routing
 - **Error Handling**: Robust Result<T> pattern for type-safe error management
 - **Dependency Injection**: Complete DI container with lifecycle management
 - **Circuit Breakers**: Automatic failure detection and recovery
