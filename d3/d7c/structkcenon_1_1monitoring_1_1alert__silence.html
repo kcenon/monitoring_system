@@ -145,7 +145,7 @@ Static Private Member Functions</h2></td></tr>
 <div class="textblock"><p>Silence configuration to suppress alerts. </p>
 <p>Silences prevent matching alerts from sending notifications for a specified duration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00408">408</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00410">410</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a15a6c2568e7e78463e14d8c13aae1ed0" name="a15a6c2568e7e78463e14d8c13aae1ed0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a15a6c2568e7e78463e14d8c13aae1ed0">&#9670;&#160;</a></span>alert_silence()</h2>
@@ -170,14 +170,14 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00416">416</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  417</span>        : <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a556c3b739b440d65ac05e924200f571c">id</a>(<a class="code hl_function" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a54e442d9762079148dc88cbaf3ca946f">generate_id</a>())</div>
-<div class="line"><span class="lineno">  418</span>        , <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">starts_at</a>(std::chrono::steady_clock::now())</div>
-<div class="line"><span class="lineno">  419</span>        , <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a771ddd3dc54d08412b2f046e6a2231da">ends_at</a>(<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">starts_at</a> + std::chrono::hours(1)) {}</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a54e442d9762079148dc88cbaf3ca946f"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a54e442d9762079148dc88cbaf3ca946f">kcenon::monitoring::alert_silence::generate_id</a></div><div class="ttdeci">static uint64_t generate_id()</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00450">alert_types.h:450</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a556c3b739b440d65ac05e924200f571c"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a556c3b739b440d65ac05e924200f571c">kcenon::monitoring::alert_silence::id</a></div><div class="ttdeci">uint64_t id</div><div class="ttdoc">Silence ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00409">alert_types.h:409</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a771ddd3dc54d08412b2f046e6a2231da"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a771ddd3dc54d08412b2f046e6a2231da">kcenon::monitoring::alert_silence::ends_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point ends_at</div><div class="ttdoc">Silence end time.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00414">alert_types.h:414</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_ab667943942df65552c8bf4eb38afe7bc"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">kcenon::monitoring::alert_silence::starts_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point starts_at</div><div class="ttdoc">Silence start time.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00413">alert_types.h:413</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00418">418</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  419</span>        : <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a556c3b739b440d65ac05e924200f571c">id</a>(<a class="code hl_function" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a54e442d9762079148dc88cbaf3ca946f">generate_id</a>())</div>
+<div class="line"><span class="lineno">  420</span>        , <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">starts_at</a>(std::chrono::steady_clock::now())</div>
+<div class="line"><span class="lineno">  421</span>        , <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a771ddd3dc54d08412b2f046e6a2231da">ends_at</a>(<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">starts_at</a> + std::chrono::hours(1)) {}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a54e442d9762079148dc88cbaf3ca946f"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a54e442d9762079148dc88cbaf3ca946f">kcenon::monitoring::alert_silence::generate_id</a></div><div class="ttdeci">static uint64_t generate_id()</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00452">alert_types.h:452</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a556c3b739b440d65ac05e924200f571c"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a556c3b739b440d65ac05e924200f571c">kcenon::monitoring::alert_silence::id</a></div><div class="ttdeci">uint64_t id</div><div class="ttdoc">Silence ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00411">alert_types.h:411</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a771ddd3dc54d08412b2f046e6a2231da"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a771ddd3dc54d08412b2f046e6a2231da">kcenon::monitoring::alert_silence::ends_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point ends_at</div><div class="ttdoc">Silence end time.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00416">alert_types.h:416</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_ab667943942df65552c8bf4eb38afe7bc"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">kcenon::monitoring::alert_silence::starts_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point starts_at</div><div class="ttdoc">Silence start time.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00415">alert_types.h:415</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -205,11 +205,11 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00450">450</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  450</span>                                  {</div>
-<div class="line"><span class="lineno">  451</span>        <span class="keyword">static</span> std::atomic&lt;uint64_t&gt; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>{0};</div>
-<div class="line"><span class="lineno">  452</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>.fetch_add(1, std::memory_order_relaxed);</div>
-<div class="line"><span class="lineno">  453</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00452">452</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  452</span>                                  {</div>
+<div class="line"><span class="lineno">  453</span>        <span class="keyword">static</span> std::atomic&lt;uint64_t&gt; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>{0};</div>
+<div class="line"><span class="lineno">  454</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>.fetch_add(1, std::memory_order_relaxed);</div>
+<div class="line"><span class="lineno">  455</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">kcenon::monitoring::recorded_metric_type::counter</a></div><div class="ttdeci">@ counter</div><div class="ttdoc">Monotonically increasing counter.</div></div>
 </div><!-- fragment -->
 </div>
@@ -240,11 +240,11 @@ Static Private Member Functions</h2></td></tr>
 <p>Check if silence is currently active. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if within active period </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00425">425</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  425</span>                           {</div>
-<div class="line"><span class="lineno">  426</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  427</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> &gt;= <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">starts_at</a> &amp;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> &lt; <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a771ddd3dc54d08412b2f046e6a2231da">ends_at</a>;</div>
-<div class="line"><span class="lineno">  428</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00427">427</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  427</span>                           {</div>
+<div class="line"><span class="lineno">  428</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  429</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> &gt;= <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#ab667943942df65552c8bf4eb38afe7bc">starts_at</a> &amp;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> &lt; <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a771ddd3dc54d08412b2f046e6a2231da">ends_at</a>;</div>
+<div class="line"><span class="lineno">  430</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -292,22 +292,22 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if alert should be silenced </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00435">435</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  435</span>                                       {</div>
-<div class="line"><span class="lineno">  436</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a030c4349631789525ae7365eade7e2af">is_active</a>()) {</div>
-<div class="line"><span class="lineno">  437</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  438</span>        }</div>
-<div class="line"><span class="lineno">  439</span> </div>
-<div class="line"><span class="lineno">  440</span>        <span class="comment">// All matcher labels must be present in alert labels</span></div>
-<div class="line"><span class="lineno">  441</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.labels) {</div>
-<div class="line"><span class="lineno">  442</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(key) != value) {</div>
-<div class="line"><span class="lineno">  443</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  444</span>            }</div>
-<div class="line"><span class="lineno">  445</span>        }</div>
-<div class="line"><span class="lineno">  446</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  447</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a030c4349631789525ae7365eade7e2af"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a030c4349631789525ae7365eade7e2af">kcenon::monitoring::alert_silence::is_active</a></div><div class="ttdeci">bool is_active() const</div><div class="ttdoc">Check if silence is currently active.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00425">alert_types.h:425</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a81bf1699303eb12486e01a4a3561284c"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">kcenon::monitoring::alert_silence::matchers</a></div><div class="ttdeci">alert_labels matchers</div><div class="ttdoc">Labels to match.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00412">alert_types.h:412</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00437">437</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  437</span>                                       {</div>
+<div class="line"><span class="lineno">  438</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a030c4349631789525ae7365eade7e2af">is_active</a>()) {</div>
+<div class="line"><span class="lineno">  439</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  440</span>        }</div>
+<div class="line"><span class="lineno">  441</span> </div>
+<div class="line"><span class="lineno">  442</span>        <span class="comment">// All matcher labels must be present in alert labels</span></div>
+<div class="line"><span class="lineno">  443</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.labels) {</div>
+<div class="line"><span class="lineno">  444</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(key) != value) {</div>
+<div class="line"><span class="lineno">  445</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  446</span>            }</div>
+<div class="line"><span class="lineno">  447</span>        }</div>
+<div class="line"><span class="lineno">  448</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  449</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a030c4349631789525ae7365eade7e2af"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a030c4349631789525ae7365eade7e2af">kcenon::monitoring::alert_silence::is_active</a></div><div class="ttdeci">bool is_active() const</div><div class="ttdoc">Check if silence is currently active.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00427">alert_types.h:427</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a81bf1699303eb12486e01a4a3561284c"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">kcenon::monitoring::alert_silence::matchers</a></div><div class="ttdeci">alert_labels matchers</div><div class="ttdoc">Labels to match.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00414">alert_types.h:414</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -336,7 +336,7 @@ Here is the call graph for this function:</div>
 
 <p>Reason for silence. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00410">410</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00412">412</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -354,7 +354,7 @@ Here is the call graph for this function:</div>
 
 <p>Creator identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00411">411</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00413">413</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ Here is the call graph for this function:</div>
 
 <p>Silence end time. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00414">414</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00416">416</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -390,7 +390,7 @@ Here is the call graph for this function:</div>
 
 <p>Silence ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00409">409</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00411">411</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -408,7 +408,7 @@ Here is the call graph for this function:</div>
 
 <p>Labels to match. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00412">412</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00414">414</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -426,7 +426,7 @@ Here is the call graph for this function:</div>
 
 <p>Silence start time. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00413">413</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00415">415</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -436,7 +436,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 10:10:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

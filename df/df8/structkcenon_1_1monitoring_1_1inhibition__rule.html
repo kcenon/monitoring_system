@@ -133,7 +133,7 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>Rule for inhibiting alerts based on other alerts. </p>
 <p>When a source alert is firing, target alerts matching the specified labels are inhibited (silenced). </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00285">285</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00286">286</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a76ba5d2139fedd7d272a8e9a85a64b44" name="a76ba5d2139fedd7d272a8e9a85a64b44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76ba5d2139fedd7d272a8e9a85a64b44">&#9670;&#160;</a></span>matches_source()</h2>
@@ -163,17 +163,17 @@ Public Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a25">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00294">294</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  294</span>                                              {</div>
-<div class="line"><span class="lineno">  295</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a8266064b6a56ccbdc345d5b631dcea34">source_match</a>.labels) {</div>
-<div class="line"><span class="lineno">  296</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(key) != value) {</div>
-<div class="line"><span class="lineno">  297</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  298</span>            }</div>
-<div class="line"><span class="lineno">  299</span>        }</div>
-<div class="line"><span class="lineno">  300</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  301</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00295">295</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  295</span>                                              {</div>
+<div class="line"><span class="lineno">  296</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a8266064b6a56ccbdc345d5b631dcea34">source_match</a>.labels) {</div>
+<div class="line"><span class="lineno">  297</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(key) != value) {</div>
+<div class="line"><span class="lineno">  298</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  299</span>            }</div>
+<div class="line"><span class="lineno">  300</span>        }</div>
+<div class="line"><span class="lineno">  301</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  302</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a8266064b6a56ccbdc345d5b631dcea34"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a8266064b6a56ccbdc345d5b631dcea34">kcenon::monitoring::inhibition_rule::source_match</a></div><div class="ttdeci">alert_labels source_match</div><div class="ttdoc">Labels that source alert must have.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00287">alert_pipeline.h:287</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a8266064b6a56ccbdc345d5b631dcea34"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a8266064b6a56ccbdc345d5b631dcea34">kcenon::monitoring::inhibition_rule::source_match</a></div><div class="ttdeci">alert_labels source_match</div><div class="ttdoc">Labels that source alert must have.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00288">alert_pipeline.h:288</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -225,32 +225,32 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a26">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00306">306</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  306</span>                                                                        {</div>
-<div class="line"><span class="lineno">  307</span>        <span class="comment">// Source must match</span></div>
-<div class="line"><span class="lineno">  308</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a76ba5d2139fedd7d272a8e9a85a64b44">matches_source</a>(source)) {</div>
-<div class="line"><span class="lineno">  309</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  310</span>        }</div>
-<div class="line"><span class="lineno">  311</span> </div>
-<div class="line"><span class="lineno">  312</span>        <span class="comment">// Target must match target_match labels</span></div>
-<div class="line"><span class="lineno">  313</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a3a471e65f0b0fe0c763befc81955c5a6">target_match</a>.labels) {</div>
-<div class="line"><span class="lineno">  314</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.labels.get(key) != value) {</div>
-<div class="line"><span class="lineno">  315</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  316</span>            }</div>
-<div class="line"><span class="lineno">  317</span>        }</div>
-<div class="line"><span class="lineno">  318</span> </div>
-<div class="line"><span class="lineno">  319</span>        <span class="comment">// Equal labels must match between source and target</span></div>
-<div class="line"><span class="lineno">  320</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">equal</a>) {</div>
-<div class="line"><span class="lineno">  321</span>            <span class="keywordflow">if</span> (source.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>) != <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>)) {</div>
-<div class="line"><span class="lineno">  322</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  323</span>            }</div>
-<div class="line"><span class="lineno">  324</span>        }</div>
-<div class="line"><span class="lineno">  325</span> </div>
-<div class="line"><span class="lineno">  326</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  327</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a2178fbae0e774e791f9caf0cdfa32321"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">kcenon::monitoring::inhibition_rule::equal</a></div><div class="ttdeci">std::vector&lt; std::string &gt; equal</div><div class="ttdoc">Labels that must be equal on both.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00289">alert_pipeline.h:289</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a3a471e65f0b0fe0c763befc81955c5a6"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a3a471e65f0b0fe0c763befc81955c5a6">kcenon::monitoring::inhibition_rule::target_match</a></div><div class="ttdeci">alert_labels target_match</div><div class="ttdoc">Labels that target alert must have.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00288">alert_pipeline.h:288</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a76ba5d2139fedd7d272a8e9a85a64b44"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a76ba5d2139fedd7d272a8e9a85a64b44">kcenon::monitoring::inhibition_rule::matches_source</a></div><div class="ttdeci">bool matches_source(const alert &amp;a) const</div><div class="ttdoc">Check if source alert matches this rule.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00294">alert_pipeline.h:294</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00307">307</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  307</span>                                                                        {</div>
+<div class="line"><span class="lineno">  308</span>        <span class="comment">// Source must match</span></div>
+<div class="line"><span class="lineno">  309</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a76ba5d2139fedd7d272a8e9a85a64b44">matches_source</a>(source)) {</div>
+<div class="line"><span class="lineno">  310</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  311</span>        }</div>
+<div class="line"><span class="lineno">  312</span> </div>
+<div class="line"><span class="lineno">  313</span>        <span class="comment">// Target must match target_match labels</span></div>
+<div class="line"><span class="lineno">  314</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a3a471e65f0b0fe0c763befc81955c5a6">target_match</a>.labels) {</div>
+<div class="line"><span class="lineno">  315</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.labels.get(key) != value) {</div>
+<div class="line"><span class="lineno">  316</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  317</span>            }</div>
+<div class="line"><span class="lineno">  318</span>        }</div>
+<div class="line"><span class="lineno">  319</span> </div>
+<div class="line"><span class="lineno">  320</span>        <span class="comment">// Equal labels must match between source and target</span></div>
+<div class="line"><span class="lineno">  321</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">equal</a>) {</div>
+<div class="line"><span class="lineno">  322</span>            <span class="keywordflow">if</span> (source.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>) != <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>)) {</div>
+<div class="line"><span class="lineno">  323</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  324</span>            }</div>
+<div class="line"><span class="lineno">  325</span>        }</div>
+<div class="line"><span class="lineno">  326</span> </div>
+<div class="line"><span class="lineno">  327</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  328</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a2178fbae0e774e791f9caf0cdfa32321"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">kcenon::monitoring::inhibition_rule::equal</a></div><div class="ttdeci">std::vector&lt; std::string &gt; equal</div><div class="ttdoc">Labels that must be equal on both.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00290">alert_pipeline.h:290</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a3a471e65f0b0fe0c763befc81955c5a6"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a3a471e65f0b0fe0c763befc81955c5a6">kcenon::monitoring::inhibition_rule::target_match</a></div><div class="ttdeci">alert_labels target_match</div><div class="ttdoc">Labels that target alert must have.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00289">alert_pipeline.h:289</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1inhibition__rule_html_a76ba5d2139fedd7d272a8e9a85a64b44"><div class="ttname"><a href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a76ba5d2139fedd7d272a8e9a85a64b44">kcenon::monitoring::inhibition_rule::matches_source</a></div><div class="ttdeci">bool matches_source(const alert &amp;a) const</div><div class="ttdoc">Check if source alert matches this rule.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00295">alert_pipeline.h:295</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -283,7 +283,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a24">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00289">289</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00290">290</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a21">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00286">286</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00287">287</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +321,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a22">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00287">287</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00288">288</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -341,7 +341,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a23">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00288">288</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00289">289</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -351,7 +351,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:30:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 10:10:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

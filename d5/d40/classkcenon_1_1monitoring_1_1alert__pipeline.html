@@ -121,7 +121,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Configurable alert processing pipeline. </p>
 <p>Allows building custom alert processing workflows by chaining multiple processing stages together. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00639">639</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00640">640</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a285085c6674a3981f90f16611b8563f3" name="a285085c6674a3981f90f16611b8563f3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a285085c6674a3981f90f16611b8563f3">&#9670;&#160;</a></span>add_stage()</h2>
@@ -151,11 +151,11 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a56">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00644">644</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  644</span>                                                        {</div>
-<div class="line"><span class="lineno">  645</span>        <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.push_back(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>));</div>
-<div class="line"><span class="lineno">  646</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__pipeline_html_a8b5d5beb30ca88ad86e867e64e87773e"><div class="ttname"><a href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">kcenon::monitoring::alert_pipeline::stages_</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; pipeline_stage &gt; &gt; stages_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00675">alert_pipeline.h:675</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00645">645</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  645</span>                                                        {</div>
+<div class="line"><span class="lineno">  646</span>        <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.push_back(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>));</div>
+<div class="line"><span class="lineno">  647</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__pipeline_html_a8b5d5beb30ca88ad86e867e64e87773e"><div class="ttname"><a href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">kcenon::monitoring::alert_pipeline::stages_</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; pipeline_stage &gt; &gt; stages_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00676">alert_pipeline.h:676</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -193,15 +193,15 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if alert passed all stages </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00653">653</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  653</span>                           {</div>
-<div class="line"><span class="lineno">  654</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a> : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
-<div class="line"><span class="lineno">  655</span>            <span class="keywordflow">if</span> (!<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>-&gt;process(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>)) {</div>
-<div class="line"><span class="lineno">  656</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  657</span>            }</div>
-<div class="line"><span class="lineno">  658</span>        }</div>
-<div class="line"><span class="lineno">  659</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  660</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00654">654</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  654</span>                           {</div>
+<div class="line"><span class="lineno">  655</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a> : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
+<div class="line"><span class="lineno">  656</span>            <span class="keywordflow">if</span> (!<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>-&gt;process(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>)) {</div>
+<div class="line"><span class="lineno">  657</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  658</span>            }</div>
+<div class="line"><span class="lineno">  659</span>        }</div>
+<div class="line"><span class="lineno">  660</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  661</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -232,15 +232,15 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a58">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00665">665</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  665</span>                                             {</div>
-<div class="line"><span class="lineno">  666</span>        std::vector&lt;std::string&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>;</div>
-<div class="line"><span class="lineno">  667</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>.reserve(<a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.size());</div>
-<div class="line"><span class="lineno">  668</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a> : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
-<div class="line"><span class="lineno">  669</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>.push_back(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>-&gt;name());</div>
-<div class="line"><span class="lineno">  670</span>        }</div>
-<div class="line"><span class="lineno">  671</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>;</div>
-<div class="line"><span class="lineno">  672</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00666">666</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  666</span>                                             {</div>
+<div class="line"><span class="lineno">  667</span>        std::vector&lt;std::string&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>;</div>
+<div class="line"><span class="lineno">  668</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>.reserve(<a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.size());</div>
+<div class="line"><span class="lineno">  669</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a> : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
+<div class="line"><span class="lineno">  670</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>.push_back(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>-&gt;name());</div>
+<div class="line"><span class="lineno">  671</span>        }</div>
+<div class="line"><span class="lineno">  672</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>;</div>
+<div class="line"><span class="lineno">  673</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -267,7 +267,7 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a57">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00675">675</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00676">676</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -277,7 +277,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 10:10:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -138,7 +138,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Manages alert inhibition rules. </p>
 <p>Alert inhibition prevents certain alerts from triggering when related, more important alerts are already firing. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00354">354</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00355">355</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aab80a05005502ab2b25ff05a24baf0d0" name="aab80a05005502ab2b25ff05a24baf0d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab80a05005502ab2b25ff05a24baf0d0">&#9670;&#160;</a></span>add_rule()</h2>
@@ -168,13 +168,13 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a27">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00359">359</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  359</span>                                               {</div>
-<div class="line"><span class="lineno">  360</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
-<div class="line"><span class="lineno">  361</span>        <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.push_back(rule);</div>
-<div class="line"><span class="lineno">  362</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__inhibitor_html_a403c1b10cef970698bfd8a5cac88bf0a"><div class="ttname"><a href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">kcenon::monitoring::alert_inhibitor::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00416">alert_pipeline.h:416</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__inhibitor_html_ad26c9994406e152cc368bfc60025493c"><div class="ttname"><a href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">kcenon::monitoring::alert_inhibitor::rules_</a></div><div class="ttdeci">std::vector&lt; inhibition_rule &gt; rules_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00417">alert_pipeline.h:417</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00360">360</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  360</span>                                               {</div>
+<div class="line"><span class="lineno">  361</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line"><span class="lineno">  362</span>        <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.push_back(rule);</div>
+<div class="line"><span class="lineno">  363</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__inhibitor_html_a403c1b10cef970698bfd8a5cac88bf0a"><div class="ttname"><a href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">kcenon::monitoring::alert_inhibitor::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00417">alert_pipeline.h:417</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__inhibitor_html_ad26c9994406e152cc368bfc60025493c"><div class="ttname"><a href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">kcenon::monitoring::alert_inhibitor::rules_</a></div><div class="ttdeci">std::vector&lt; inhibition_rule &gt; rules_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00418">alert_pipeline.h:418</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -206,11 +206,11 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a33">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00410">410</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  410</span>                                                 {</div>
-<div class="line"><span class="lineno">  411</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
-<div class="line"><span class="lineno">  412</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>;</div>
-<div class="line"><span class="lineno">  413</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00411">411</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  411</span>                                                 {</div>
+<div class="line"><span class="lineno">  412</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line"><span class="lineno">  413</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>;</div>
+<div class="line"><span class="lineno">  414</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -260,30 +260,30 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a31">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00382">382</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  383</span>                                                                   {</div>
-<div class="line"><span class="lineno">  384</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
-<div class="line"><span class="lineno">  385</span> </div>
-<div class="line"><span class="lineno">  386</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; rule : <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>) {</div>
-<div class="line"><span class="lineno">  387</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; source : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">active_alerts</a>) {</div>
-<div class="line"><span class="lineno">  388</span>                <span class="comment">// Source must be firing</span></div>
-<div class="line"><span class="lineno">  389</span>                <span class="keywordflow">if</span> (source.state != <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>) {</div>
-<div class="line"><span class="lineno">  390</span>                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  391</span>                }</div>
-<div class="line"><span class="lineno">  392</span> </div>
-<div class="line"><span class="lineno">  393</span>                <span class="comment">// Don&#39;t inhibit self</span></div>
-<div class="line"><span class="lineno">  394</span>                <span class="keywordflow">if</span> (source.fingerprint() == <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.fingerprint()) {</div>
-<div class="line"><span class="lineno">  395</span>                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  396</span>                }</div>
-<div class="line"><span class="lineno">  397</span> </div>
-<div class="line"><span class="lineno">  398</span>                <span class="keywordflow">if</span> (rule.should_inhibit(source, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>)) {</div>
-<div class="line"><span class="lineno">  399</span>                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  400</span>                }</div>
-<div class="line"><span class="lineno">  401</span>            }</div>
-<div class="line"><span class="lineno">  402</span>        }</div>
-<div class="line"><span class="lineno">  403</span> </div>
-<div class="line"><span class="lineno">  404</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  405</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00383">383</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  384</span>                                                                   {</div>
+<div class="line"><span class="lineno">  385</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line"><span class="lineno">  386</span> </div>
+<div class="line"><span class="lineno">  387</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; rule : <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>) {</div>
+<div class="line"><span class="lineno">  388</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; source : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">active_alerts</a>) {</div>
+<div class="line"><span class="lineno">  389</span>                <span class="comment">// Source must be firing</span></div>
+<div class="line"><span class="lineno">  390</span>                <span class="keywordflow">if</span> (source.state != <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>) {</div>
+<div class="line"><span class="lineno">  391</span>                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  392</span>                }</div>
+<div class="line"><span class="lineno">  393</span> </div>
+<div class="line"><span class="lineno">  394</span>                <span class="comment">// Don&#39;t inhibit self</span></div>
+<div class="line"><span class="lineno">  395</span>                <span class="keywordflow">if</span> (source.fingerprint() == <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.fingerprint()) {</div>
+<div class="line"><span class="lineno">  396</span>                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  397</span>                }</div>
+<div class="line"><span class="lineno">  398</span> </div>
+<div class="line"><span class="lineno">  399</span>                <span class="keywordflow">if</span> (rule.should_inhibit(source, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>)) {</div>
+<div class="line"><span class="lineno">  400</span>                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  401</span>                }</div>
+<div class="line"><span class="lineno">  402</span>            }</div>
+<div class="line"><span class="lineno">  403</span>        }</div>
+<div class="line"><span class="lineno">  404</span> </div>
+<div class="line"><span class="lineno">  405</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  406</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">kcenon::monitoring::alert_state::firing</a></div><div class="ttdeci">@ firing</div><div class="ttdoc">Alert is active and notifications sent.</div></div>
 </div><!-- fragment -->
 </div>
@@ -316,15 +316,15 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a30">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00367">367</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  367</span>                                            {</div>
-<div class="line"><span class="lineno">  368</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
-<div class="line"><span class="lineno">  369</span>        <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.erase(</div>
-<div class="line"><span class="lineno">  370</span>            std::remove_if(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.begin(), <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.end(),</div>
-<div class="line"><span class="lineno">  371</span>                [&amp;name](<span class="keyword">const</span> inhibition_rule&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">r</a>) { return r.name == name; }),</div>
-<div class="line"><span class="lineno">  372</span>            <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.end()</div>
-<div class="line"><span class="lineno">  373</span>        );</div>
-<div class="line"><span class="lineno">  374</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00368">368</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  368</span>                                            {</div>
+<div class="line"><span class="lineno">  369</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line"><span class="lineno">  370</span>        <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.erase(</div>
+<div class="line"><span class="lineno">  371</span>            std::remove_if(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.begin(), <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.end(),</div>
+<div class="line"><span class="lineno">  372</span>                [&amp;name](<span class="keyword">const</span> inhibition_rule&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">r</a>) { return r.name == name; }),</div>
+<div class="line"><span class="lineno">  373</span>            <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.end()</div>
+<div class="line"><span class="lineno">  374</span>        );</div>
+<div class="line"><span class="lineno">  375</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -351,7 +351,7 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a28">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00416">416</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00417">417</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -377,7 +377,7 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a29">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00417">417</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00418">418</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +387,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 10:10:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

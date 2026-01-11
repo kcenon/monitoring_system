@@ -178,7 +178,7 @@ Private Attributes</h2></td></tr>
 <p>The aggregator collects alerts over time and groups them based on configured labels. This reduces notification noise by batching related alerts together.</p>
 <p>@thread_safety This class is thread-safe. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00103">103</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00104">104</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9e1726d0743afec394a7a1440253e0d2" name="a9e1726d0743afec394a7a1440253e0d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e1726d0743afec394a7a1440253e0d2">&#9670;&#160;</a></span>alert_aggregator()</h2>
@@ -206,9 +206,9 @@ Private Attributes</h2></td></tr>
 
 <p>Construct with configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00108">108</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  109</span>        : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>(config) {}</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_ae770f2a3d7408ec7fa3c8a97e12ad8df"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">kcenon::monitoring::alert_aggregator::config_</a></div><div class="ttdeci">alert_aggregator_config config_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00270">alert_pipeline.h:270</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00109">109</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  110</span>        : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>(config) {}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_ae770f2a3d7408ec7fa3c8a97e12ad8df"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">kcenon::monitoring::alert_aggregator::config_</a></div><div class="ttdeci">alert_aggregator_config config_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00271">alert_pipeline.h:271</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -248,42 +248,42 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a6">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00116">116</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  116</span>                                        {</div>
-<div class="line"><span class="lineno">  117</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
-<div class="line"><span class="lineno">  118</span> </div>
-<div class="line"><span class="lineno">  119</span>        std::string group_key = <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">compute_group_key</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
-<div class="line"><span class="lineno">  120</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  121</span> </div>
-<div class="line"><span class="lineno">  122</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.find(group_key);</div>
-<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end()) {</div>
-<div class="line"><span class="lineno">  124</span>            alert_group <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>(group_key);</div>
-<div class="line"><span class="lineno">  125</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>.common_labels = <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">extract_common_labels</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
-<div class="line"><span class="lineno">  126</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>.add_alert(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
-<div class="line"><span class="lineno">  127</span>            <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>[group_key] = std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>);</div>
-<div class="line"><span class="lineno">  128</span>            <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[group_key] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
-<div class="line"><span class="lineno">  129</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  130</span>            <span class="comment">// Check for duplicate</span></div>
-<div class="line"><span class="lineno">  131</span>            <span class="keywordtype">bool</span> is_duplicate = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  132</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a> : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">second</a>.alerts) {</div>
-<div class="line"><span class="lineno">  133</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a>.fingerprint() == <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.fingerprint()) {</div>
-<div class="line"><span class="lineno">  134</span>                    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>;  <span class="comment">// Update existing alert</span></div>
-<div class="line"><span class="lineno">  135</span>                    is_duplicate = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  136</span>                    <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  137</span>                }</div>
-<div class="line"><span class="lineno">  138</span>            }</div>
-<div class="line"><span class="lineno">  139</span>            <span class="keywordflow">if</span> (!is_duplicate) {</div>
-<div class="line"><span class="lineno">  140</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second.add_alert(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
-<div class="line"><span class="lineno">  141</span>            }</div>
-<div class="line"><span class="lineno">  142</span>        }</div>
-<div class="line"><span class="lineno">  143</span> </div>
-<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">return</span> group_key;</div>
-<div class="line"><span class="lineno">  145</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a54d653bc9647e9c9881c1e0f557450bb"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">kcenon::monitoring::alert_aggregator::extract_common_labels</a></div><div class="ttdeci">alert_labels extract_common_labels(const alert &amp;a) const</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00259">alert_pipeline.h:259</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a5a300d4718d3d233ccca335fdcb282f6"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">kcenon::monitoring::alert_aggregator::compute_group_key</a></div><div class="ttdeci">std::string compute_group_key(const alert &amp;a) const</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00247">alert_pipeline.h:247</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a6666f019ab664e7a7c0169b13d4c81ab"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">kcenon::monitoring::alert_aggregator::first_seen_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::steady_clock::time_point &gt; first_seen_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00274">alert_pipeline.h:274</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a9d4262ecb0b251c519ef274c01aa3caa"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">kcenon::monitoring::alert_aggregator::groups_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, alert_group &gt; groups_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00273">alert_pipeline.h:273</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_adc69005eb9f234886f80122d07ec6768"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">kcenon::monitoring::alert_aggregator::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00271">alert_pipeline.h:271</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00117">117</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>                                        {</div>
+<div class="line"><span class="lineno">  118</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>        std::string group_key = <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">compute_group_key</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
+<div class="line"><span class="lineno">  121</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.find(group_key);</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end()) {</div>
+<div class="line"><span class="lineno">  125</span>            alert_group <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>(group_key);</div>
+<div class="line"><span class="lineno">  126</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>.common_labels = <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">extract_common_labels</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
+<div class="line"><span class="lineno">  127</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>.add_alert(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
+<div class="line"><span class="lineno">  128</span>            <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>[group_key] = std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>);</div>
+<div class="line"><span class="lineno">  129</span>            <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[group_key] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
+<div class="line"><span class="lineno">  130</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  131</span>            <span class="comment">// Check for duplicate</span></div>
+<div class="line"><span class="lineno">  132</span>            <span class="keywordtype">bool</span> is_duplicate = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  133</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a> : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">second</a>.alerts) {</div>
+<div class="line"><span class="lineno">  134</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a>.fingerprint() == <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.fingerprint()) {</div>
+<div class="line"><span class="lineno">  135</span>                    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>;  <span class="comment">// Update existing alert</span></div>
+<div class="line"><span class="lineno">  136</span>                    is_duplicate = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  137</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  138</span>                }</div>
+<div class="line"><span class="lineno">  139</span>            }</div>
+<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">if</span> (!is_duplicate) {</div>
+<div class="line"><span class="lineno">  141</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second.add_alert(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
+<div class="line"><span class="lineno">  142</span>            }</div>
+<div class="line"><span class="lineno">  143</span>        }</div>
+<div class="line"><span class="lineno">  144</span> </div>
+<div class="line"><span class="lineno">  145</span>        <span class="keywordflow">return</span> group_key;</div>
+<div class="line"><span class="lineno">  146</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a54d653bc9647e9c9881c1e0f557450bb"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">kcenon::monitoring::alert_aggregator::extract_common_labels</a></div><div class="ttdeci">alert_labels extract_common_labels(const alert &amp;a) const</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00260">alert_pipeline.h:260</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a5a300d4718d3d233ccca335fdcb282f6"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">kcenon::monitoring::alert_aggregator::compute_group_key</a></div><div class="ttdeci">std::string compute_group_key(const alert &amp;a) const</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00248">alert_pipeline.h:248</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a6666f019ab664e7a7c0169b13d4c81ab"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">kcenon::monitoring::alert_aggregator::first_seen_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::steady_clock::time_point &gt; first_seen_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00275">alert_pipeline.h:275</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_a9d4262ecb0b251c519ef274c01aa3caa"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">kcenon::monitoring::alert_aggregator::groups_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, alert_group &gt; groups_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00274">alert_pipeline.h:274</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_adc69005eb9f234886f80122d07ec6768"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">kcenon::monitoring::alert_aggregator::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00272">alert_pipeline.h:272</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -329,41 +329,41 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a16">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00194">194</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  194</span>                   {</div>
-<div class="line"><span class="lineno">  195</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
-<div class="line"><span class="lineno">  196</span> </div>
-<div class="line"><span class="lineno">  197</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  198</span> </div>
-<div class="line"><span class="lineno">  199</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.begin(); <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end(); ) {</div>
-<div class="line"><span class="lineno">  200</span>            <span class="keyword">auto</span>&amp; group = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second;</div>
-<div class="line"><span class="lineno">  201</span> </div>
-<div class="line"><span class="lineno">  202</span>            <span class="comment">// Remove resolved alerts that have timed out</span></div>
-<div class="line"><span class="lineno">  203</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> = group.alerts.begin();</div>
-<div class="line"><span class="lineno">  204</span>            <span class="keywordflow">while</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> != group.alerts.end()) {</div>
-<div class="line"><span class="lineno">  205</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>-&gt;state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>) {</div>
-<div class="line"><span class="lineno">  206</span>                    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">resolved_time</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>-&gt;resolved_at.value_or(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>);</div>
-<div class="line"><span class="lineno">  207</span>                    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">resolved_time</a> &gt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4d15dac17aefe46419e248bbb5ef1e08">resolve_timeout</a>) {</div>
-<div class="line"><span class="lineno">  208</span>                        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> = group.alerts.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>);</div>
-<div class="line"><span class="lineno">  209</span>                        <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  210</span>                    }</div>
-<div class="line"><span class="lineno">  211</span>                }</div>
-<div class="line"><span class="lineno">  212</span>                ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>;</div>
-<div class="line"><span class="lineno">  213</span>            }</div>
-<div class="line"><span class="lineno">  214</span> </div>
-<div class="line"><span class="lineno">  215</span>            <span class="comment">// Remove empty groups</span></div>
-<div class="line"><span class="lineno">  216</span>            <span class="keywordflow">if</span> (group.empty()) {</div>
-<div class="line"><span class="lineno">  217</span>                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;first);</div>
-<div class="line"><span class="lineno">  218</span>                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;first);</div>
-<div class="line"><span class="lineno">  219</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>);</div>
-<div class="line"><span class="lineno">  220</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  221</span>                ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>;</div>
-<div class="line"><span class="lineno">  222</span>            }</div>
-<div class="line"><span class="lineno">  223</span>        }</div>
-<div class="line"><span class="lineno">  224</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_abdd4a5a7931441b69f1029abbe3931b1"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">kcenon::monitoring::alert_aggregator::last_sent_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::steady_clock::time_point &gt; last_sent_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00275">alert_pipeline.h:275</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00195">195</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  195</span>                   {</div>
+<div class="line"><span class="lineno">  196</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.begin(); <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end(); ) {</div>
+<div class="line"><span class="lineno">  201</span>            <span class="keyword">auto</span>&amp; group = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second;</div>
+<div class="line"><span class="lineno">  202</span> </div>
+<div class="line"><span class="lineno">  203</span>            <span class="comment">// Remove resolved alerts that have timed out</span></div>
+<div class="line"><span class="lineno">  204</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> = group.alerts.begin();</div>
+<div class="line"><span class="lineno">  205</span>            <span class="keywordflow">while</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> != group.alerts.end()) {</div>
+<div class="line"><span class="lineno">  206</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>-&gt;state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>) {</div>
+<div class="line"><span class="lineno">  207</span>                    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">resolved_time</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>-&gt;resolved_at.value_or(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>);</div>
+<div class="line"><span class="lineno">  208</span>                    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">resolved_time</a> &gt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4d15dac17aefe46419e248bbb5ef1e08">resolve_timeout</a>) {</div>
+<div class="line"><span class="lineno">  209</span>                        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> = group.alerts.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>);</div>
+<div class="line"><span class="lineno">  210</span>                        <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  211</span>                    }</div>
+<div class="line"><span class="lineno">  212</span>                }</div>
+<div class="line"><span class="lineno">  213</span>                ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>;</div>
+<div class="line"><span class="lineno">  214</span>            }</div>
+<div class="line"><span class="lineno">  215</span> </div>
+<div class="line"><span class="lineno">  216</span>            <span class="comment">// Remove empty groups</span></div>
+<div class="line"><span class="lineno">  217</span>            <span class="keywordflow">if</span> (group.empty()) {</div>
+<div class="line"><span class="lineno">  218</span>                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;first);</div>
+<div class="line"><span class="lineno">  219</span>                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;first);</div>
+<div class="line"><span class="lineno">  220</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>);</div>
+<div class="line"><span class="lineno">  221</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  222</span>                ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>;</div>
+<div class="line"><span class="lineno">  223</span>            }</div>
+<div class="line"><span class="lineno">  224</span>        }</div>
+<div class="line"><span class="lineno">  225</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__aggregator_html_abdd4a5a7931441b69f1029abbe3931b1"><div class="ttname"><a href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">kcenon::monitoring::alert_aggregator::last_sent_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::steady_clock::time_point &gt; last_sent_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00276">alert_pipeline.h:276</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">kcenon::monitoring::alert_state::resolved</a></div><div class="ttdeci">@ resolved</div><div class="ttdoc">Alert condition cleared.</div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a4d15dac17aefe46419e248bbb5ef1e08"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4d15dac17aefe46419e248bbb5ef1e08">kcenon::monitoring::alert_aggregator_config::resolve_timeout</a></div><div class="ttdeci">std::chrono::milliseconds resolve_timeout</div><div class="ttdoc">Time before removing resolved.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00060">alert_pipeline.h:60</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a4d15dac17aefe46419e248bbb5ef1e08"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4d15dac17aefe46419e248bbb5ef1e08">kcenon::monitoring::alert_aggregator_config::resolve_timeout</a></div><div class="ttdeci">std::chrono::milliseconds resolve_timeout</div><div class="ttdoc">Time before removing resolved.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00061">alert_pipeline.h:61</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -393,19 +393,19 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a9">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00247">247</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  247</span>                                                      {</div>
-<div class="line"><span class="lineno">  248</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">group_by_labels</a>.empty()) {</div>
-<div class="line"><span class="lineno">  249</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.rule_name;</div>
-<div class="line"><span class="lineno">  250</span>        }</div>
-<div class="line"><span class="lineno">  251</span> </div>
-<div class="line"><span class="lineno">  252</span>        std::string key;</div>
-<div class="line"><span class="lineno">  253</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.group_by_labels) {</div>
-<div class="line"><span class="lineno">  254</span>            key += <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>) + <span class="stringliteral">&quot;:&quot;</span>;</div>
-<div class="line"><span class="lineno">  255</span>        }</div>
-<div class="line"><span class="lineno">  256</span>        <span class="keywordflow">return</span> key;</div>
-<div class="line"><span class="lineno">  257</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a747040372caa4a6f5c68e9554c497bdc"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">kcenon::monitoring::alert_aggregator_config::group_by_labels</a></div><div class="ttdeci">std::vector&lt; std::string &gt; group_by_labels</div><div class="ttdoc">Labels to group by.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00061">alert_pipeline.h:61</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00248">248</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  248</span>                                                      {</div>
+<div class="line"><span class="lineno">  249</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">group_by_labels</a>.empty()) {</div>
+<div class="line"><span class="lineno">  250</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.rule_name;</div>
+<div class="line"><span class="lineno">  251</span>        }</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>        std::string key;</div>
+<div class="line"><span class="lineno">  254</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.group_by_labels) {</div>
+<div class="line"><span class="lineno">  255</span>            key += <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>) + <span class="stringliteral">&quot;:&quot;</span>;</div>
+<div class="line"><span class="lineno">  256</span>        }</div>
+<div class="line"><span class="lineno">  257</span>        <span class="keywordflow">return</span> key;</div>
+<div class="line"><span class="lineno">  258</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a747040372caa4a6f5c68e9554c497bdc"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">kcenon::monitoring::alert_aggregator_config::group_by_labels</a></div><div class="ttdeci">std::vector&lt; std::string &gt; group_by_labels</div><div class="ttdoc">Labels to group by.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00062">alert_pipeline.h:62</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -445,17 +445,17 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a11">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00259">259</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  259</span>                                                             {</div>
-<div class="line"><span class="lineno">  260</span>        alert_labels common;</div>
-<div class="line"><span class="lineno">  261</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.group_by_labels) {</div>
-<div class="line"><span class="lineno">  262</span>            std::string <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>);</div>
-<div class="line"><span class="lineno">  263</span>            <span class="keywordflow">if</span> (!<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a>.empty()) {</div>
-<div class="line"><span class="lineno">  264</span>                common.set(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a>);</div>
-<div class="line"><span class="lineno">  265</span>            }</div>
-<div class="line"><span class="lineno">  266</span>        }</div>
-<div class="line"><span class="lineno">  267</span>        <span class="keywordflow">return</span> common;</div>
-<div class="line"><span class="lineno">  268</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00260">260</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  260</span>                                                             {</div>
+<div class="line"><span class="lineno">  261</span>        alert_labels common;</div>
+<div class="line"><span class="lineno">  262</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.group_by_labels) {</div>
+<div class="line"><span class="lineno">  263</span>            std::string <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>);</div>
+<div class="line"><span class="lineno">  264</span>            <span class="keywordflow">if</span> (!<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a>.empty()) {</div>
+<div class="line"><span class="lineno">  265</span>                common.set(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a>);</div>
+<div class="line"><span class="lineno">  266</span>            }</div>
+<div class="line"><span class="lineno">  267</span>        }</div>
+<div class="line"><span class="lineno">  268</span>        <span class="keywordflow">return</span> common;</div>
+<div class="line"><span class="lineno">  269</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -507,39 +507,39 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a13">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00151">151</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  151</span>                                              {</div>
-<div class="line"><span class="lineno">  152</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>        std::vector&lt;alert_group&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>;</div>
-<div class="line"><span class="lineno">  155</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [key, group] : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>) {</div>
-<div class="line"><span class="lineno">  158</span>            <span class="keywordflow">if</span> (group.empty()) {</div>
-<div class="line"><span class="lineno">  159</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  160</span>            }</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>            <span class="comment">// Check if first wait has elapsed</span></div>
-<div class="line"><span class="lineno">  163</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">first_seen</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[key];</div>
-<div class="line"><span class="lineno">  164</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">first_seen</a> &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4b9745baf1d44ce158e4ed186ce0227e">group_wait</a>) {</div>
-<div class="line"><span class="lineno">  165</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  166</span>            }</div>
-<div class="line"><span class="lineno">  167</span> </div>
-<div class="line"><span class="lineno">  168</span>            <span class="comment">// Check if enough time since last send</span></div>
-<div class="line"><span class="lineno">  169</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.find(key);</div>
-<div class="line"><span class="lineno">  170</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a> != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.end()) {</div>
-<div class="line"><span class="lineno">  171</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a>-&gt;second &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a03a87dc2846ba7c222e5488744e3aeb0">group_interval</a>) {</div>
-<div class="line"><span class="lineno">  172</span>                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  173</span>                }</div>
-<div class="line"><span class="lineno">  174</span>            }</div>
-<div class="line"><span class="lineno">  175</span> </div>
-<div class="line"><span class="lineno">  176</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>.push_back(group);</div>
-<div class="line"><span class="lineno">  177</span>        }</div>
-<div class="line"><span class="lineno">  178</span> </div>
-<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>;</div>
-<div class="line"><span class="lineno">  180</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a03a87dc2846ba7c222e5488744e3aeb0"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a03a87dc2846ba7c222e5488744e3aeb0">kcenon::monitoring::alert_aggregator_config::group_interval</a></div><div class="ttdeci">std::chrono::milliseconds group_interval</div><div class="ttdoc">Interval between group sends.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00059">alert_pipeline.h:59</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a4b9745baf1d44ce158e4ed186ce0227e"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4b9745baf1d44ce158e4ed186ce0227e">kcenon::monitoring::alert_aggregator_config::group_wait</a></div><div class="ttdeci">std::chrono::milliseconds group_wait</div><div class="ttdoc">Initial wait before sending.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00058">alert_pipeline.h:58</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00152">152</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  152</span>                                              {</div>
+<div class="line"><span class="lineno">  153</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>        std::vector&lt;alert_group&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>;</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  157</span> </div>
+<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [key, group] : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>) {</div>
+<div class="line"><span class="lineno">  159</span>            <span class="keywordflow">if</span> (group.empty()) {</div>
+<div class="line"><span class="lineno">  160</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  161</span>            }</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>            <span class="comment">// Check if first wait has elapsed</span></div>
+<div class="line"><span class="lineno">  164</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">first_seen</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[key];</div>
+<div class="line"><span class="lineno">  165</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">first_seen</a> &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4b9745baf1d44ce158e4ed186ce0227e">group_wait</a>) {</div>
+<div class="line"><span class="lineno">  166</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  167</span>            }</div>
+<div class="line"><span class="lineno">  168</span> </div>
+<div class="line"><span class="lineno">  169</span>            <span class="comment">// Check if enough time since last send</span></div>
+<div class="line"><span class="lineno">  170</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.find(key);</div>
+<div class="line"><span class="lineno">  171</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a> != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.end()) {</div>
+<div class="line"><span class="lineno">  172</span>                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a>-&gt;second &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a03a87dc2846ba7c222e5488744e3aeb0">group_interval</a>) {</div>
+<div class="line"><span class="lineno">  173</span>                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  174</span>                }</div>
+<div class="line"><span class="lineno">  175</span>            }</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>.push_back(group);</div>
+<div class="line"><span class="lineno">  178</span>        }</div>
+<div class="line"><span class="lineno">  179</span> </div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>;</div>
+<div class="line"><span class="lineno">  181</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a03a87dc2846ba7c222e5488744e3aeb0"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a03a87dc2846ba7c222e5488744e3aeb0">kcenon::monitoring::alert_aggregator_config::group_interval</a></div><div class="ttdeci">std::chrono::milliseconds group_interval</div><div class="ttdoc">Interval between group sends.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00060">alert_pipeline.h:60</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a4b9745baf1d44ce158e4ed186ce0227e"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4b9745baf1d44ce158e4ed186ce0227e">kcenon::monitoring::alert_aggregator_config::group_wait</a></div><div class="ttdeci">std::chrono::milliseconds group_wait</div><div class="ttdoc">Initial wait before sending.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00059">alert_pipeline.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -570,11 +570,11 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a18">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00229">229</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  229</span>                               {</div>
-<div class="line"><span class="lineno">  230</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
-<div class="line"><span class="lineno">  231</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.size();</div>
-<div class="line"><span class="lineno">  232</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00230">230</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  230</span>                               {</div>
+<div class="line"><span class="lineno">  231</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line"><span class="lineno">  232</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.size();</div>
+<div class="line"><span class="lineno">  233</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -612,11 +612,11 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a15">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00186">186</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  186</span>                                               {</div>
-<div class="line"><span class="lineno">  187</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
-<div class="line"><span class="lineno">  188</span>        <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>[group_key] = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  189</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00187">187</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  187</span>                                               {</div>
+<div class="line"><span class="lineno">  188</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line"><span class="lineno">  189</span>        <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>[group_key] = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  190</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -647,15 +647,15 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a19">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00237">237</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  237</span>                                     {</div>
-<div class="line"><span class="lineno">  238</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
-<div class="line"><span class="lineno">  239</span>        <span class="keywordtype">size_t</span> count = 0;</div>
-<div class="line"><span class="lineno">  240</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, group] : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>) {</div>
-<div class="line"><span class="lineno">  241</span>            count += group.size();</div>
-<div class="line"><span class="lineno">  242</span>        }</div>
-<div class="line"><span class="lineno">  243</span>        <span class="keywordflow">return</span> count;</div>
-<div class="line"><span class="lineno">  244</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00238">238</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  238</span>                                     {</div>
+<div class="line"><span class="lineno">  239</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line"><span class="lineno">  240</span>        <span class="keywordtype">size_t</span> count = 0;</div>
+<div class="line"><span class="lineno">  241</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, group] : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>) {</div>
+<div class="line"><span class="lineno">  242</span>            count += group.size();</div>
+<div class="line"><span class="lineno">  243</span>        }</div>
+<div class="line"><span class="lineno">  244</span>        <span class="keywordflow">return</span> count;</div>
+<div class="line"><span class="lineno">  245</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -682,7 +682,7 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a5">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00270">270</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00271">271</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -708,7 +708,7 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a12">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00274">274</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00275">275</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -734,7 +734,7 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a10">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00273">273</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00274">274</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -760,7 +760,7 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a14">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00275">275</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00276">276</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -786,7 +786,7 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a8">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00271">271</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00272">272</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -796,7 +796,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 10:10:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

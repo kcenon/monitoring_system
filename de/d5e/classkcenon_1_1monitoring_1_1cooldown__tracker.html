@@ -150,7 +150,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Tracks cooldown periods for alert notifications. </p>
 <p>Prevents notification spam by enforcing minimum intervals between notifications for the same alert. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00427">427</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00428">428</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1fd7f732f4857e338fe148193e73e1ce" name="a1fd7f732f4857e338fe148193e73e1ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1fd7f732f4857e338fe148193e73e1ce">&#9670;&#160;</a></span>cooldown_tracker()</h2>
@@ -178,9 +178,9 @@ Private Attributes</h2></td></tr>
 
 <p>Set default cooldown period. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00432">432</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  433</span>        : <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">default_cooldown_</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">default_cooldown</a>) {}</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a226579253cab8c075e100397ccda4030"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">kcenon::monitoring::cooldown_tracker::default_cooldown_</a></div><div class="ttdeci">std::chrono::milliseconds default_cooldown_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00522">alert_pipeline.h:522</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00433">433</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  434</span>        : <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">default_cooldown_</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">default_cooldown</a>) {}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a226579253cab8c075e100397ccda4030"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">kcenon::monitoring::cooldown_tracker::default_cooldown_</a></div><div class="ttdeci">std::chrono::milliseconds default_cooldown_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00523">alert_pipeline.h:523</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -214,13 +214,13 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a43">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00500">500</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  500</span>                                                      {</div>
-<div class="line"><span class="lineno">  501</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
-<div class="line"><span class="lineno">  502</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.erase(fingerprint);</div>
-<div class="line"><span class="lineno">  503</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a2fd27424123fb5b4dec5fb9430d86fcd"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">kcenon::monitoring::cooldown_tracker::last_notification_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::steady_clock::time_point &gt; last_notification_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00524">alert_pipeline.h:524</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_acda3a0c66348bb9525d47a1639f5e2a3"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">kcenon::monitoring::cooldown_tracker::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00523">alert_pipeline.h:523</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00501">501</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  501</span>                                                      {</div>
+<div class="line"><span class="lineno">  502</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line"><span class="lineno">  503</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.erase(fingerprint);</div>
+<div class="line"><span class="lineno">  504</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a2fd27424123fb5b4dec5fb9430d86fcd"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">kcenon::monitoring::cooldown_tracker::last_notification_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::steady_clock::time_point &gt; last_notification_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00525">alert_pipeline.h:525</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_acda3a0c66348bb9525d47a1639f5e2a3"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">kcenon::monitoring::cooldown_tracker::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00524">alert_pipeline.h:524</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,15 +250,15 @@ Private Attributes</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a38">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00514">514</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  514</span>                                                                               {</div>
-<div class="line"><span class="lineno">  515</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.find(fingerprint);</div>
-<div class="line"><span class="lineno">  516</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> != <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.end()) {</div>
-<div class="line"><span class="lineno">  517</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second;</div>
-<div class="line"><span class="lineno">  518</span>        }</div>
-<div class="line"><span class="lineno">  519</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">default_cooldown_</a>;</div>
-<div class="line"><span class="lineno">  520</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a4ec2d8782c09c79b3807c759ec498fa6"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">kcenon::monitoring::cooldown_tracker::custom_cooldowns_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::milliseconds &gt; custom_cooldowns_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00525">alert_pipeline.h:525</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00515">515</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  515</span>                                                                               {</div>
+<div class="line"><span class="lineno">  516</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.find(fingerprint);</div>
+<div class="line"><span class="lineno">  517</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> != <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.end()) {</div>
+<div class="line"><span class="lineno">  518</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second;</div>
+<div class="line"><span class="lineno">  519</span>        }</div>
+<div class="line"><span class="lineno">  520</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">default_cooldown_</a>;</div>
+<div class="line"><span class="lineno">  521</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a4ec2d8782c09c79b3807c759ec498fa6"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">kcenon::monitoring::cooldown_tracker::custom_cooldowns_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::chrono::milliseconds &gt; custom_cooldowns_</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00526">alert_pipeline.h:526</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -309,20 +309,20 @@ Here is the caller graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a35">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00440">440</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  440</span>                                                            {</div>
-<div class="line"><span class="lineno">  441</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
-<div class="line"><span class="lineno">  442</span> </div>
-<div class="line"><span class="lineno">  443</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
-<div class="line"><span class="lineno">  444</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
-<div class="line"><span class="lineno">  445</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  446</span>        }</div>
-<div class="line"><span class="lineno">  447</span> </div>
-<div class="line"><span class="lineno">  448</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  449</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> = <a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
-<div class="line"><span class="lineno">  450</span>        <span class="keywordflow">return</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second) &lt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>;</div>
-<div class="line"><span class="lineno">  451</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a56d962dcb66edea621e4004f2a2b370f"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">kcenon::monitoring::cooldown_tracker::get_cooldown_for</a></div><div class="ttdeci">std::chrono::milliseconds get_cooldown_for(const std::string &amp;fingerprint) const</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00514">alert_pipeline.h:514</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00441">441</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  441</span>                                                            {</div>
+<div class="line"><span class="lineno">  442</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line"><span class="lineno">  443</span> </div>
+<div class="line"><span class="lineno">  444</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
+<div class="line"><span class="lineno">  445</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
+<div class="line"><span class="lineno">  446</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  447</span>        }</div>
+<div class="line"><span class="lineno">  448</span> </div>
+<div class="line"><span class="lineno">  449</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  450</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> = <a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
+<div class="line"><span class="lineno">  451</span>        <span class="keywordflow">return</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second) &lt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>;</div>
+<div class="line"><span class="lineno">  452</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1cooldown__tracker_html_a56d962dcb66edea621e4004f2a2b370f"><div class="ttname"><a href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">kcenon::monitoring::cooldown_tracker::get_cooldown_for</a></div><div class="ttdeci">std::chrono::milliseconds get_cooldown_for(const std::string &amp;fingerprint) const</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00515">alert_pipeline.h:515</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -370,11 +370,11 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a39">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00457">457</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  457</span>                                                           {</div>
-<div class="line"><span class="lineno">  458</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
-<div class="line"><span class="lineno">  459</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>[fingerprint] = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  460</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00458">458</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  458</span>                                                           {</div>
+<div class="line"><span class="lineno">  459</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line"><span class="lineno">  460</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>[fingerprint] = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  461</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -413,25 +413,25 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a42">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00478">478</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  478</span>                                                                                 {</div>
-<div class="line"><span class="lineno">  479</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
-<div class="line"><span class="lineno">  480</span> </div>
-<div class="line"><span class="lineno">  481</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
-<div class="line"><span class="lineno">  482</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
-<div class="line"><span class="lineno">  483</span>            <span class="keywordflow">return</span> std::chrono::milliseconds::zero();</div>
-<div class="line"><span class="lineno">  484</span>        }</div>
-<div class="line"><span class="lineno">  485</span> </div>
-<div class="line"><span class="lineno">  486</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  487</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> = <a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
-<div class="line"><span class="lineno">  488</span>        <span class="keyword">auto</span> elapsed = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(</div>
-<div class="line"><span class="lineno">  489</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second);</div>
-<div class="line"><span class="lineno">  490</span> </div>
-<div class="line"><span class="lineno">  491</span>        <span class="keywordflow">if</span> (elapsed &gt;= <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>) {</div>
-<div class="line"><span class="lineno">  492</span>            <span class="keywordflow">return</span> std::chrono::milliseconds::zero();</div>
-<div class="line"><span class="lineno">  493</span>        }</div>
-<div class="line"><span class="lineno">  494</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> - elapsed;</div>
-<div class="line"><span class="lineno">  495</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00479">479</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  479</span>                                                                                 {</div>
+<div class="line"><span class="lineno">  480</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line"><span class="lineno">  481</span> </div>
+<div class="line"><span class="lineno">  482</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
+<div class="line"><span class="lineno">  483</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
+<div class="line"><span class="lineno">  484</span>            <span class="keywordflow">return</span> std::chrono::milliseconds::zero();</div>
+<div class="line"><span class="lineno">  485</span>        }</div>
+<div class="line"><span class="lineno">  486</span> </div>
+<div class="line"><span class="lineno">  487</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  488</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> = <a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
+<div class="line"><span class="lineno">  489</span>        <span class="keyword">auto</span> elapsed = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(</div>
+<div class="line"><span class="lineno">  490</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second);</div>
+<div class="line"><span class="lineno">  491</span> </div>
+<div class="line"><span class="lineno">  492</span>        <span class="keywordflow">if</span> (elapsed &gt;= <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>) {</div>
+<div class="line"><span class="lineno">  493</span>            <span class="keywordflow">return</span> std::chrono::milliseconds::zero();</div>
+<div class="line"><span class="lineno">  494</span>        }</div>
+<div class="line"><span class="lineno">  495</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> - elapsed;</div>
+<div class="line"><span class="lineno">  496</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -472,11 +472,11 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a44">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00508">508</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  508</span>                 {</div>
-<div class="line"><span class="lineno">  509</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
-<div class="line"><span class="lineno">  510</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.clear();</div>
-<div class="line"><span class="lineno">  511</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00509">509</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  509</span>                 {</div>
+<div class="line"><span class="lineno">  510</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line"><span class="lineno">  511</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.clear();</div>
+<div class="line"><span class="lineno">  512</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -525,11 +525,11 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a40">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00467">467</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  468</span>                                                      {</div>
-<div class="line"><span class="lineno">  469</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
-<div class="line"><span class="lineno">  470</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>[fingerprint] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>;</div>
-<div class="line"><span class="lineno">  471</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00468">468</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  469</span>                                                      {</div>
+<div class="line"><span class="lineno">  470</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line"><span class="lineno">  471</span>        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>[fingerprint] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>;</div>
+<div class="line"><span class="lineno">  472</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -556,7 +556,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a41">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00525">525</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00526">526</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -582,7 +582,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a34">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00522">522</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00523">523</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -608,7 +608,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a37">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00524">524</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00525">525</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -634,7 +634,7 @@ Here is the call graph for this function:</div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../da/db0/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2alert_2alert_pipeline_8h-example.html#a36">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/alert/alert_pipeline.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00523">523</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d71/alert__pipeline_8h_source.html#l00524">524</a> of file <a class="el" href="../../de/d71/alert__pipeline_8h_source.html">alert_pipeline.h</a>.</p>
 
 </div>
 </div>
@@ -644,7 +644,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 10:10:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

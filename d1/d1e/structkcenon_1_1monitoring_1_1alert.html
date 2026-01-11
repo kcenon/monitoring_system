@@ -187,7 +187,7 @@ Static Private Member Functions</h2></td></tr>
 <p>Represents a single alert instance with its current state, metadata, and lifecycle timestamps.</p>
 <p>@thread_safety This structure is not thread-safe. External synchronization is required when accessed from multiple threads. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00208">208</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00210">210</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a316f9a363bbf97ff381dd0a4ce8e597f" name="a316f9a363bbf97ff381dd0a4ce8e597f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a316f9a363bbf97ff381dd0a4ce8e597f">&#9670;&#160;</a></span>alert() <span class="overload">[1/2]</span></h2>
@@ -214,14 +214,14 @@ Static Private Member Functions</h2></td></tr>
 
 <p>Default constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00228">228</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  229</span>        : <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>(std::chrono::steady_clock::now())</div>
-<div class="line"><span class="lineno">  230</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a>(<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>)</div>
-<div class="line"><span class="lineno">  231</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a9b6a604d3331e82d4d8ce95203863a1c">id</a>(<a class="code hl_function" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a86cc44f382d70f99d612cbf2b793c5d6">generate_id</a>()) {}</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a2b32aa94d3d0128565b7d22311a715e5"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">kcenon::monitoring::alert::created_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point created_at</div><div class="ttdoc">When alert was created.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00216">alert_types.h:216</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a5b724fef0df45a99d99b310fe1251b32"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">kcenon::monitoring::alert::updated_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point updated_at</div><div class="ttdoc">Last state change.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00217">alert_types.h:217</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a86cc44f382d70f99d612cbf2b793c5d6"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a86cc44f382d70f99d612cbf2b793c5d6">kcenon::monitoring::alert::generate_id</a></div><div class="ttdeci">static uint64_t generate_id()</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00304">alert_types.h:304</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a9b6a604d3331e82d4d8ce95203863a1c"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a9b6a604d3331e82d4d8ce95203863a1c">kcenon::monitoring::alert::id</a></div><div class="ttdeci">uint64_t id</div><div class="ttdoc">Unique alert ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00221">alert_types.h:221</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00230">230</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  231</span>        : <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>(std::chrono::steady_clock::now())</div>
+<div class="line"><span class="lineno">  232</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a>(<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>)</div>
+<div class="line"><span class="lineno">  233</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a9b6a604d3331e82d4d8ce95203863a1c">id</a>(<a class="code hl_function" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a86cc44f382d70f99d612cbf2b793c5d6">generate_id</a>()) {}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a2b32aa94d3d0128565b7d22311a715e5"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">kcenon::monitoring::alert::created_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point created_at</div><div class="ttdoc">When alert was created.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00218">alert_types.h:218</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a5b724fef0df45a99d99b310fe1251b32"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">kcenon::monitoring::alert::updated_at</a></div><div class="ttdeci">std::chrono::steady_clock::time_point updated_at</div><div class="ttdoc">Last state change.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00219">alert_types.h:219</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a86cc44f382d70f99d612cbf2b793c5d6"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a86cc44f382d70f99d612cbf2b793c5d6">kcenon::monitoring::alert::generate_id</a></div><div class="ttdeci">static uint64_t generate_id()</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00306">alert_types.h:306</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a9b6a604d3331e82d4d8ce95203863a1c"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a9b6a604d3331e82d4d8ce95203863a1c">kcenon::monitoring::alert::id</a></div><div class="ttdeci">uint64_t id</div><div class="ttdoc">Unique alert ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00223">alert_types.h:223</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -268,15 +268,15 @@ Static Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00238">238</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  239</span>        : <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">name</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_name</a>))</div>
-<div class="line"><span class="lineno">  240</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lbl</a>))</div>
-<div class="line"><span class="lineno">  241</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>(std::chrono::steady_clock::now())</div>
-<div class="line"><span class="lineno">  242</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a>(<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>)</div>
-<div class="line"><span class="lineno">  243</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a9b6a604d3331e82d4d8ce95203863a1c">id</a>(<a class="code hl_function" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a86cc44f382d70f99d612cbf2b793c5d6">generate_id</a>()) {}</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00240">240</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  241</span>        : <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">name</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_name</a>))</div>
+<div class="line"><span class="lineno">  242</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lbl</a>))</div>
+<div class="line"><span class="lineno">  243</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>(std::chrono::steady_clock::now())</div>
+<div class="line"><span class="lineno">  244</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a>(<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2b32aa94d3d0128565b7d22311a715e5">created_at</a>)</div>
+<div class="line"><span class="lineno">  245</span>        , <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a9b6a604d3331e82d4d8ce95203863a1c">id</a>(<a class="code hl_function" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a86cc44f382d70f99d612cbf2b793c5d6">generate_id</a>()) {}</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_ab13132560079c6696d8c60d82900f97c"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">kcenon::monitoring::alert::name</a></div><div class="ttdeci">std::string name</div><div class="ttdoc">Alert name/identifier.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00209">alert_types.h:209</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_acace61d342c6bee9a0002c00ec7398ce"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">kcenon::monitoring::alert::labels</a></div><div class="ttdeci">alert_labels labels</div><div class="ttdoc">Identifying labels.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00210">alert_types.h:210</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_ab13132560079c6696d8c60d82900f97c"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">kcenon::monitoring::alert::name</a></div><div class="ttdeci">std::string name</div><div class="ttdoc">Alert name/identifier.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00211">alert_types.h:211</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_acace61d342c6bee9a0002c00ec7398ce"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">kcenon::monitoring::alert::labels</a></div><div class="ttdeci">alert_labels labels</div><div class="ttdoc">Identifying labels.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00212">alert_types.h:212</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -307,11 +307,11 @@ Static Private Member Functions</h2></td></tr>
 <p>Get alert fingerprint for deduplication. </p>
 <dl class="section return"><dt>Returns</dt><dd>Unique fingerprint based on name and labels </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00249">249</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  249</span>                                  {</div>
-<div class="line"><span class="lineno">  250</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">name</a> + <span class="stringliteral">&quot;{&quot;</span> + <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a488722d980f95dd16aa717630b2c77ef">fingerprint</a>() + <span class="stringliteral">&quot;}&quot;</span>;</div>
-<div class="line"><span class="lineno">  251</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__labels_html_a488722d980f95dd16aa717630b2c77ef"><div class="ttname"><a href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a488722d980f95dd16aa717630b2c77ef">kcenon::monitoring::alert_labels::fingerprint</a></div><div class="ttdeci">std::string fingerprint() const</div><div class="ttdoc">Generate a fingerprint for deduplication.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00163">alert_types.h:163</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00251">251</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  251</span>                                  {</div>
+<div class="line"><span class="lineno">  252</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">name</a> + <span class="stringliteral">&quot;{&quot;</span> + <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a488722d980f95dd16aa717630b2c77ef">fingerprint</a>() + <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><span class="lineno">  253</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__labels_html_a488722d980f95dd16aa717630b2c77ef"><div class="ttname"><a href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a488722d980f95dd16aa717630b2c77ef">kcenon::monitoring::alert_labels::fingerprint</a></div><div class="ttdeci">std::string fingerprint() const</div><div class="ttdoc">Generate a fingerprint for deduplication.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00165">alert_types.h:165</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -351,16 +351,16 @@ Here is the call graph for this function:</div>
 <p>Get firing duration (if currently firing) </p>
 <dl class="section return"><dt>Returns</dt><dd>Duration since firing started, or zero if not firing </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00273">273</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  273</span>                                                          {</div>
-<div class="line"><span class="lineno">  274</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a> &amp;&amp; <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a>.has_value()) {</div>
-<div class="line"><span class="lineno">  275</span>            <span class="keywordflow">return</span> std::chrono::steady_clock::now() - *<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a>;</div>
-<div class="line"><span class="lineno">  276</span>        }</div>
-<div class="line"><span class="lineno">  277</span>        <span class="keywordflow">return</span> std::chrono::steady_clock::duration::zero();</div>
-<div class="line"><span class="lineno">  278</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00275">275</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  275</span>                                                          {</div>
+<div class="line"><span class="lineno">  276</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a> &amp;&amp; <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a>.has_value()) {</div>
+<div class="line"><span class="lineno">  277</span>            <span class="keywordflow">return</span> std::chrono::steady_clock::now() - *<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a>;</div>
+<div class="line"><span class="lineno">  278</span>        }</div>
+<div class="line"><span class="lineno">  279</span>        <span class="keywordflow">return</span> std::chrono::steady_clock::duration::zero();</div>
+<div class="line"><span class="lineno">  280</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">kcenon::monitoring::alert_state::firing</a></div><div class="ttdeci">@ firing</div><div class="ttdoc">Alert is active and notifications sent.</div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a0aa753f7c644fd9bd36a582e8d5b49e5"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">kcenon::monitoring::alert::state</a></div><div class="ttdeci">alert_state state</div><div class="ttdoc">Current state.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00213">alert_types.h:213</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a2618d457a7d1f54f9b1653c4a4beb7ee"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">kcenon::monitoring::alert::started_at</a></div><div class="ttdeci">std::optional&lt; std::chrono::steady_clock::time_point &gt; started_at</div><div class="ttdoc">When firing started.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00218">alert_types.h:218</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a0aa753f7c644fd9bd36a582e8d5b49e5"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">kcenon::monitoring::alert::state</a></div><div class="ttdeci">alert_state state</div><div class="ttdoc">Current state.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00215">alert_types.h:215</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a2618d457a7d1f54f9b1653c4a4beb7ee"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">kcenon::monitoring::alert::started_at</a></div><div class="ttdeci">std::optional&lt; std::chrono::steady_clock::time_point &gt; started_at</div><div class="ttdoc">When firing started.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00220">alert_types.h:220</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -387,11 +387,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00304">304</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  304</span>                                  {</div>
-<div class="line"><span class="lineno">  305</span>        <span class="keyword">static</span> std::atomic&lt;uint64_t&gt; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>{0};</div>
-<div class="line"><span class="lineno">  306</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>.fetch_add(1, std::memory_order_relaxed);</div>
-<div class="line"><span class="lineno">  307</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00306">306</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  306</span>                                  {</div>
+<div class="line"><span class="lineno">  307</span>        <span class="keyword">static</span> std::atomic&lt;uint64_t&gt; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>{0};</div>
+<div class="line"><span class="lineno">  308</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">counter</a>.fetch_add(1, std::memory_order_relaxed);</div>
+<div class="line"><span class="lineno">  309</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab830c9f495024f76608cea5c9874e846a886bb73b3156b0aa24aac99d2de0b238">kcenon::monitoring::recorded_metric_type::counter</a></div><div class="ttdeci">@ counter</div><div class="ttdoc">Monotonically increasing counter.</div></div>
 </div><!-- fragment -->
 </div>
@@ -422,10 +422,10 @@ Here is the call graph for this function:</div>
 <p>Check if alert is currently active (pending or firing) </p>
 <dl class="section return"><dt>Returns</dt><dd>True if alert is active </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00257">257</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  257</span>                           {</div>
-<div class="line"><span class="lineno">  258</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a> || <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>;</div>
-<div class="line"><span class="lineno">  259</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00259">259</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  259</span>                           {</div>
+<div class="line"><span class="lineno">  260</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a> || <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>;</div>
+<div class="line"><span class="lineno">  261</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">kcenon::monitoring::alert_state::pending</a></div><div class="ttdeci">@ pending</div><div class="ttdoc">Condition met, waiting for duration threshold.</div></div>
 </div><!-- fragment -->
 </div>
@@ -466,31 +466,31 @@ Here is the call graph for this function:</div>
 
 <p>Check if state transition is valid. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00312">312</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  312</span>                                                                      {</div>
-<div class="line"><span class="lineno">  313</span>        <span class="comment">// All transitions are valid from suppressed (when silence expires)</span></div>
-<div class="line"><span class="lineno">  314</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">from</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a4f431d971bc2dd6ab44c1fa7a6a17062">alert_state::suppressed</a>) {</div>
-<div class="line"><span class="lineno">  315</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  316</span>        }</div>
-<div class="line"><span class="lineno">  317</span> </div>
-<div class="line"><span class="lineno">  318</span>        <span class="comment">// Transition to suppressed is always valid</span></div>
-<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a4f431d971bc2dd6ab44c1fa7a6a17062">alert_state::suppressed</a>) {</div>
-<div class="line"><span class="lineno">  320</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  321</span>        }</div>
-<div class="line"><span class="lineno">  322</span> </div>
-<div class="line"><span class="lineno">  323</span>        <span class="keywordflow">switch</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">from</a>) {</div>
-<div class="line"><span class="lineno">  324</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b">alert_state::inactive</a>:</div>
-<div class="line"><span class="lineno">  325</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a>;</div>
-<div class="line"><span class="lineno">  326</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a>:</div>
-<div class="line"><span class="lineno">  327</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a> || <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b">alert_state::inactive</a>;</div>
-<div class="line"><span class="lineno">  328</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>:</div>
-<div class="line"><span class="lineno">  329</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>;</div>
-<div class="line"><span class="lineno">  330</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>:</div>
-<div class="line"><span class="lineno">  331</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a> || <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b">alert_state::inactive</a>;</div>
-<div class="line"><span class="lineno">  332</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  333</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  334</span>        }</div>
-<div class="line"><span class="lineno">  335</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00314">314</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  314</span>                                                                      {</div>
+<div class="line"><span class="lineno">  315</span>        <span class="comment">// All transitions are valid from suppressed (when silence expires)</span></div>
+<div class="line"><span class="lineno">  316</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">from</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a4f431d971bc2dd6ab44c1fa7a6a17062">alert_state::suppressed</a>) {</div>
+<div class="line"><span class="lineno">  317</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  318</span>        }</div>
+<div class="line"><span class="lineno">  319</span> </div>
+<div class="line"><span class="lineno">  320</span>        <span class="comment">// Transition to suppressed is always valid</span></div>
+<div class="line"><span class="lineno">  321</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a4f431d971bc2dd6ab44c1fa7a6a17062">alert_state::suppressed</a>) {</div>
+<div class="line"><span class="lineno">  322</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  323</span>        }</div>
+<div class="line"><span class="lineno">  324</span> </div>
+<div class="line"><span class="lineno">  325</span>        <span class="keywordflow">switch</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">from</a>) {</div>
+<div class="line"><span class="lineno">  326</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b">alert_state::inactive</a>:</div>
+<div class="line"><span class="lineno">  327</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a>;</div>
+<div class="line"><span class="lineno">  328</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a>:</div>
+<div class="line"><span class="lineno">  329</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a> || <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b">alert_state::inactive</a>;</div>
+<div class="line"><span class="lineno">  330</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>:</div>
+<div class="line"><span class="lineno">  331</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>;</div>
+<div class="line"><span class="lineno">  332</span>            <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>:</div>
+<div class="line"><span class="lineno">  333</span>                <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a7c6c2e5d48ab37a007cbf70d3ea25fa4">alert_state::pending</a> || <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">to</a> == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b">alert_state::inactive</a>;</div>
+<div class="line"><span class="lineno">  334</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  335</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  336</span>        }</div>
+<div class="line"><span class="lineno">  337</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a19d3894f53ce79c3f836f26cf8a3be3b">kcenon::monitoring::alert_state::inactive</a></div><div class="ttdeci">@ inactive</div><div class="ttdoc">Alert condition not met.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346a4f431d971bc2dd6ab44c1fa7a6a17062"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346a4f431d971bc2dd6ab44c1fa7a6a17062">kcenon::monitoring::alert_state::suppressed</a></div><div class="ttdeci">@ suppressed</div><div class="ttdoc">Alert is silenced.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">kcenon::monitoring::alert_state::resolved</a></div><div class="ttdeci">@ resolved</div><div class="ttdoc">Alert condition cleared.</div></div>
@@ -533,10 +533,10 @@ Here is the caller graph for this function:</div>
 <p>Get duration in current state. </p>
 <dl class="section return"><dt>Returns</dt><dd>Duration since last state change </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00265">265</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  265</span>                                                         {</div>
-<div class="line"><span class="lineno">  266</span>        <span class="keywordflow">return</span> std::chrono::steady_clock::now() - <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a>;</div>
-<div class="line"><span class="lineno">  267</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00267">267</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  267</span>                                                         {</div>
+<div class="line"><span class="lineno">  268</span>        <span class="keywordflow">return</span> std::chrono::steady_clock::now() - <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a>;</div>
+<div class="line"><span class="lineno">  269</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -573,26 +573,26 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if transition was valid </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00285">285</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  285</span>                                              {</div>
-<div class="line"><span class="lineno">  286</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a1e350a839c5265a005ab65ef3454d359">is_valid_transition</a>(<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a>, new_state)) {</div>
-<div class="line"><span class="lineno">  287</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  288</span>        }</div>
-<div class="line"><span class="lineno">  289</span> </div>
-<div class="line"><span class="lineno">  290</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line"><span class="lineno">  291</span>        <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> = new_state;</div>
-<div class="line"><span class="lineno">  292</span>        <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
-<div class="line"><span class="lineno">  293</span> </div>
-<div class="line"><span class="lineno">  294</span>        <span class="keywordflow">if</span> (new_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a> &amp;&amp; !<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a>.has_value()) {</div>
-<div class="line"><span class="lineno">  295</span>            <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
-<div class="line"><span class="lineno">  296</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (new_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>) {</div>
-<div class="line"><span class="lineno">  297</span>            <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a41977dd9c48f20026eac1949ac5d43f4">resolved_at</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
-<div class="line"><span class="lineno">  298</span>        }</div>
-<div class="line"><span class="lineno">  299</span> </div>
-<div class="line"><span class="lineno">  300</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  301</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a1e350a839c5265a005ab65ef3454d359"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a1e350a839c5265a005ab65ef3454d359">kcenon::monitoring::alert::is_valid_transition</a></div><div class="ttdeci">static bool is_valid_transition(alert_state from, alert_state to)</div><div class="ttdoc">Check if state transition is valid.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00312">alert_types.h:312</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a41977dd9c48f20026eac1949ac5d43f4"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a41977dd9c48f20026eac1949ac5d43f4">kcenon::monitoring::alert::resolved_at</a></div><div class="ttdeci">std::optional&lt; std::chrono::steady_clock::time_point &gt; resolved_at</div><div class="ttdoc">When resolved.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00219">alert_types.h:219</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00287">287</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  287</span>                                              {</div>
+<div class="line"><span class="lineno">  288</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a1e350a839c5265a005ab65ef3454d359">is_valid_transition</a>(<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a>, new_state)) {</div>
+<div class="line"><span class="lineno">  289</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  290</span>        }</div>
+<div class="line"><span class="lineno">  291</span> </div>
+<div class="line"><span class="lineno">  292</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line"><span class="lineno">  293</span>        <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> = new_state;</div>
+<div class="line"><span class="lineno">  294</span>        <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5b724fef0df45a99d99b310fe1251b32">updated_at</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
+<div class="line"><span class="lineno">  295</span> </div>
+<div class="line"><span class="lineno">  296</span>        <span class="keywordflow">if</span> (new_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a> &amp;&amp; !<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a>.has_value()) {</div>
+<div class="line"><span class="lineno">  297</span>            <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a2618d457a7d1f54f9b1653c4a4beb7ee">started_at</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
+<div class="line"><span class="lineno">  298</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (new_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>) {</div>
+<div class="line"><span class="lineno">  299</span>            <a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a41977dd9c48f20026eac1949ac5d43f4">resolved_at</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
+<div class="line"><span class="lineno">  300</span>        }</div>
+<div class="line"><span class="lineno">  301</span> </div>
+<div class="line"><span class="lineno">  302</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  303</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a1e350a839c5265a005ab65ef3454d359"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a1e350a839c5265a005ab65ef3454d359">kcenon::monitoring::alert::is_valid_transition</a></div><div class="ttdeci">static bool is_valid_transition(alert_state from, alert_state to)</div><div class="ttdoc">Check if state transition is valid.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00314">alert_types.h:314</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a41977dd9c48f20026eac1949ac5d43f4"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a41977dd9c48f20026eac1949ac5d43f4">kcenon::monitoring::alert::resolved_at</a></div><div class="ttdeci">std::optional&lt; std::chrono::steady_clock::time_point &gt; resolved_at</div><div class="ttdoc">When resolved.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00221">alert_types.h:221</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -621,7 +621,7 @@ Here is the call graph for this function:</div>
 
 <p>Descriptive annotations. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00211">211</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00213">213</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -639,7 +639,7 @@ Here is the call graph for this function:</div>
 
 <p>When alert was created. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00216">216</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00218">218</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -657,7 +657,7 @@ Here is the call graph for this function:</div>
 
 <p>Grouping key for dedup. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00223">223</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00225">225</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -675,7 +675,7 @@ Here is the call graph for this function:</div>
 
 <p>Unique alert ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00221">221</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00223">223</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -693,7 +693,7 @@ Here is the call graph for this function:</div>
 
 <p>Identifying labels. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00210">210</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00212">212</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -711,7 +711,7 @@ Here is the call graph for this function:</div>
 
 <p>Alert name/identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00209">209</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00211">211</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -729,7 +729,7 @@ Here is the call graph for this function:</div>
 
 <p>When resolved. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00219">219</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00221">221</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -747,7 +747,7 @@ Here is the call graph for this function:</div>
 
 <p>Name of triggering rule. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00222">222</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00224">224</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -765,7 +765,7 @@ Here is the call graph for this function:</div>
 
 <p>Alert severity level. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00212">212</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00214">214</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -783,7 +783,7 @@ Here is the call graph for this function:</div>
 
 <p>When firing started. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00218">218</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00220">220</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -801,7 +801,7 @@ Here is the call graph for this function:</div>
 
 <p>Current state. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00213">213</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00215">215</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -819,7 +819,7 @@ Here is the call graph for this function:</div>
 
 <p>Last state change. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00217">217</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00219">219</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -837,7 +837,7 @@ Here is the call graph for this function:</div>
 
 <p>Current metric value. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00214">214</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dee/alert__types_8h_source.html#l00216">216</a> of file <a class="el" href="../../dd/dee/alert__types_8h_source.html">alert_types.h</a>.</p>
 
 </div>
 </div>
@@ -847,7 +847,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 10:10:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
