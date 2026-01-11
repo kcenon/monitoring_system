@@ -135,6 +135,43 @@ Sanitizer는 다음 상황에서 자동으로 실행됩니다:
 
 ---
 
+## Sanitizer용 성능 테스트 조정
+
+Sanitizer(특히 AddressSanitizer)는 상당한 런타임 오버헤드를 추가하며, 일반적으로 2-10배의 속도 저하가 발생합니다. 거짓 양성 테스트 실패를 방지하기 위해, 타이밍에 민감한 테스트는 sanitizer 환경에서 실행될 때 임계값을 자동으로 조정합니다.
+
+### 구현된 조정 사항
+
+| 테스트 | 일반 임계값 | Sanitizer 임계값 | 조정 배수 |
+|------|------------|------------------|-----------|
+| BurstLoadTest (평균 지연) | 5,000ms | 10,000ms | 2.0x (ASAN) |
+| BurstLoadTest (최대 지연) | 10,000ms | 20,000ms | 2.0x (ASAN) |
+| LockfreeQueueConcurrentAccess (push 성공률) | 60% | 40% | 0.67x (TSAN) |
+
+### 감지 메커니즘
+
+테스트는 컴파일러별 매크로를 사용하여 sanitizer 환경을 감지합니다:
+
+```cpp
+// GCC는 __SANITIZE_ADDRESS__를, Clang은 __has_feature를 사용
+#ifdef __SANITIZE_ADDRESS__
+    #define RUNNING_WITH_ASAN 1
+#elif defined(__has_feature)
+    #if __has_feature(address_sanitizer)
+        #define RUNNING_WITH_ASAN 1
+    #else
+        #define RUNNING_WITH_ASAN 0
+    #endif
+#else
+    #define RUNNING_WITH_ASAN 0
+#endif
+
+constexpr double SANITIZER_OVERHEAD_FACTOR = RUNNING_WITH_ASAN ? 2.0 : 1.0;
+```
+
+이를 통해 비-sanitizer 빌드에서는 엄격한 요구 사항을 유지하면서 테스트가 동적으로 임계값을 조정할 수 있습니다.
+
+---
+
 ## Phase 1 작업 항목
 
 기준선 측정에 기반하여 Phase 1에서는 다음을 해결할 예정입니다:
