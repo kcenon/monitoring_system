@@ -38,6 +38,8 @@
  * attention or notification.
  */
 
+#include <algorithm>
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <optional>

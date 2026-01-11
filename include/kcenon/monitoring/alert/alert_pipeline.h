@@ -37,6 +37,7 @@
  * grouping, deduplicating, and routing alerts through various stages.
  */
 
+#include <algorithm>
 #include <chrono>
 #include <functional>
 #include <memory>
