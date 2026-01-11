@@ -179,6 +179,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: `common_system`'s `monitoring_interface.h` (IMonitor) is unaffected
 
 ### Fixed
+- **Missing standard library headers in alert pipeline** (#380)
+  - Added `<algorithm>` and `<atomic>` headers to `alert_types.h` for `std::sort` and `std::atomic`
+  - Added `<algorithm>` header to `alert_pipeline.h` for `std::remove_if`
+  - Fixed Windows MSVC build failure (error C2039/C3861)
 - **Windows MSVC aligned memory allocation support** (#363)
   - Fixed `std::aligned_alloc` compilation error C2039/C3861 on MSVC
   - Added platform-specific aligned memory allocation in `memory_pool.h`:

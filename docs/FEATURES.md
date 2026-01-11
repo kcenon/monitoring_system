@@ -25,6 +25,7 @@ This document provides comprehensive details about all features available in the
 - [Dependency Injection](#dependency-injection)
 - [Storage Backends](#storage-backends)
 - [Reliability Patterns](#reliability-patterns)
+- [Alert Pipeline](#alert-pipeline)
 - [Advanced Features](#advanced-features)
 - [Load Average History Tracking](#load-average-history-tracking)
 
@@ -1837,6 +1838,68 @@ if (!result) {
     return use_cached_response();
 }
 ```
+
+---
+
+## Alert Pipeline
+
+Automated alerting based on metric thresholds, patterns, and anomalies.
+
+### Overview
+
+The alert pipeline provides comprehensive alerting capabilities:
+
+| Feature | Description |
+|---------|-------------|
+| **Threshold Triggers** | Simple comparison operators (>, >=, <, <=, ==, !=) |
+| **Rate of Change** | Alert on rapid metric changes |
+| **Anomaly Detection** | Statistical deviation from normal behavior |
+| **Alert Grouping** | Reduce notification noise by grouping related alerts |
+| **Flexible Routing** | Route alerts to webhooks, files, or custom handlers |
+
+### Quick Example
+
+```cpp
+#include <kcenon/monitoring/alert/alert_manager.h>
+#include <kcenon/monitoring/alert/alert_triggers.h>
+
+using namespace kcenon::monitoring;
+
+// Create manager and rule
+alert_manager manager;
+auto rule = std::make_shared<alert_rule>("high_cpu");
+rule->set_metric_name("cpu_usage")
+    .set_severity(alert_severity::critical)
+    .set_for_duration(std::chrono::minutes(1))
+    .set_trigger(threshold_trigger::above(80.0));
+
+manager.add_rule(rule);
+manager.add_notifier(std::make_shared<log_notifier>());
+manager.start();
+
+// Process metrics
+manager.process_metric("cpu_usage", 85.0);
+```
+
+### Available Triggers
+
+| Trigger Type | Use Case | Example |
+|--------------|----------|---------|
+| `threshold_trigger` | Value crosses threshold | `threshold_trigger::above(80.0)` |
+| `rate_of_change_trigger` | Rapid changes | Rate > 20/min |
+| `anomaly_trigger` | Statistical outliers | 3+ std devs from mean |
+| `composite_trigger` | Combined conditions | CPU > 80 AND memory > 90 |
+| `absent_trigger` | Missing data | No data for 5 minutes |
+
+### Notification Options
+
+- **webhook_notifier**: HTTP webhook integration with retries
+- **file_notifier**: Append alerts to files
+- **log_notifier**: Write to logging system
+- **routing_notifier**: Route by severity or labels
+- **multi_notifier**: Send to multiple targets
+
+📖 [Alert Pipeline Guide →](guides/ALERT_PIPELINE.md)
 
 ---
 
