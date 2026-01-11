@@ -195,6 +195,41 @@ int main() {
 
 ---
 
+## Collector Factory
+
+The monitoring system includes a unified **MetricFactory** for standardized collector creation and configuration:
+
+```cpp
+#include <kcenon/monitoring/factory/builtin_collectors.h>
+
+// Register all built-in collectors (call once at startup)
+kcenon::monitoring::register_builtin_collectors();
+
+// Create collectors via factory
+auto& factory = kcenon::monitoring::metric_factory::instance();
+auto result = factory.create("system_resource_collector", {{"enabled", "true"}});
+
+if (result) {
+    auto& collector = result.collector;
+    // Use collector...
+}
+
+// Register custom collectors
+factory.register_collector("my_collector", []() {
+    return std::make_unique<my_custom_collector>();
+});
+```
+
+**Features**:
+- Type-safe configuration parsing via `config_parser`
+- Thread-safe singleton factory pattern
+- Support for plugin, CRTP, and standalone collector types
+- Consistent error handling and initialization
+
+📖 [Factory API Reference →](docs/02-API_REFERENCE.md#metric-factory)
+
+---
+
 ## Architecture Overview
 
 ```

@@ -46,6 +46,24 @@ All rights reserved.
 #include <kcenon/monitoring/exporters/opentelemetry_adapter.h>
 #include <kcenon/monitoring/storage/storage_backends.h>
 
+// Sanitizer detection for adjusting test thresholds
+// AddressSanitizer adds significant runtime overhead (2-10x)
+// Clang uses __has_feature, GCC uses __SANITIZE_ADDRESS__
+#ifdef __SANITIZE_ADDRESS__
+    #define RUNNING_WITH_ASAN 1
+#elif defined(__has_feature)
+    #if __has_feature(address_sanitizer)
+        #define RUNNING_WITH_ASAN 1
+    #else
+        #define RUNNING_WITH_ASAN 0
+    #endif
+#else
+    #define RUNNING_WITH_ASAN 0
+#endif
+
+// Multiplier for timing thresholds when running under sanitizers
+constexpr double SANITIZER_OVERHEAD_FACTOR = RUNNING_WITH_ASAN ? 2.0 : 1.0;
+
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
@@ -470,8 +488,11 @@ TEST_F(StressPerformanceTest, BurstLoadTest) {
     std::cout << "Max burst latency: " << max_latency << "ms" << std::endl;
     
     // System should handle bursts efficiently
-    EXPECT_LT(avg_latency, 5000); // Average under 5 seconds
-    EXPECT_LT(max_latency, 10000); // Max under 10 seconds
+    // Note: Thresholds adjusted for sanitizer overhead
+    const double avg_threshold = 5000 * SANITIZER_OVERHEAD_FACTOR;
+    const double max_threshold = 10000 * SANITIZER_OVERHEAD_FACTOR;
+    EXPECT_LT(avg_latency, avg_threshold); // Average under threshold
+    EXPECT_LT(max_latency, max_threshold); // Max under threshold
 }
 
 /**

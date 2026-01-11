@@ -132,6 +132,9 @@ add_executable(monitoring_system_tests
 
     # Integration E2E tests (Issue #346)
     test_integration_e2e.cpp
+
+    # Metric factory tests (Issue #366)
+    test_metric_factory.cpp
 )
 
 # Interface compilation test (standalone executable with main())
