@@ -1,5 +1,6 @@
 
 #include <kcenon/monitoring/collectors/system_resource_collector.h>
+#include <kcenon/monitoring/utils/config_parser.h>
 
 #include <algorithm>
 #include <fstream>
@@ -779,22 +780,12 @@ system_resource_collector::system_resource_collector()
 }
 
 bool system_resource_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
-    auto it = config.find("load_history_max_samples");
-    if (it != config.end()) {
-        try {
-            size_t max_samples = std::stoull(it->second);
-            if (max_samples > 0) {
-                load_history_ = std::make_unique<load_average_history>(max_samples);
-            }
-        } catch (...) {
-            // Ignore invalid config, use default
-        }
+    size_t max_samples = config_parser::get<size_t>(config, "load_history_max_samples", 1000);
+    if (max_samples > 0) {
+        load_history_ = std::make_unique<load_average_history>(max_samples);
     }
 
-    it = config.find("enable_load_history");
-    if (it != config.end()) {
-        enable_load_history_ = (it->second == "true" || it->second == "1");
-    }
+    enable_load_history_ = config_parser::get<bool>(config, "enable_load_history", false);
 
     return true;
 }
