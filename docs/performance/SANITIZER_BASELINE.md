@@ -135,6 +135,36 @@ See `.github/workflows/sanitizers.yml` for configuration.
 
 ---
 
+## Performance Test Adjustments for Sanitizers
+
+Sanitizers (especially AddressSanitizer) add significant runtime overhead, typically 2-10x slowdown. To prevent false test failures, timing-sensitive tests automatically adjust their thresholds when running under sanitizers.
+
+### Implemented Adjustments
+
+| Test | Normal Threshold | ASAN Threshold | Adjustment Factor |
+|------|-----------------|----------------|-------------------|
+| BurstLoadTest (avg latency) | 5,000ms | 10,000ms | 2.0x |
+| BurstLoadTest (max latency) | 10,000ms | 20,000ms | 2.0x |
+
+### Detection Mechanism
+
+Tests detect sanitizer environments using compiler-specific macros:
+
+```cpp
+#if defined(__SANITIZE_ADDRESS__) || \
+    (defined(__has_feature) && __has_feature(address_sanitizer))
+    #define RUNNING_WITH_ASAN 1
+#else
+    #define RUNNING_WITH_ASAN 0
+#endif
+
+constexpr double SANITIZER_OVERHEAD_FACTOR = RUNNING_WITH_ASAN ? 2.0 : 1.0;
+```
+
+This allows tests to dynamically adjust thresholds while maintaining strict requirements for non-sanitizer builds.
+
+---
+
 ## Phase 1 Action Items
 
 Based on baseline measurements, Phase 1 will address:
