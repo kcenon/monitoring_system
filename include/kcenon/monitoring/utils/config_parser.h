@@ -49,6 +49,7 @@
  * @endcode
  */
 
+#include <cctype>
 #include <optional>
 #include <string>
 #include <type_traits>

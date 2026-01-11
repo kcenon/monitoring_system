@@ -29,6 +29,8 @@
 
 #include <gtest/gtest.h>
 
+#include <algorithm>
+
 #include <kcenon/monitoring/factory/builtin_collectors.h>
 #include <kcenon/monitoring/factory/metric_factory.h>
 #include <kcenon/monitoring/utils/config_parser.h>
