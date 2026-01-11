@@ -151,9 +151,15 @@ Sanitizers (especially AddressSanitizer) add significant runtime overhead, typic
 Tests detect sanitizer environments using compiler-specific macros:
 
 ```cpp
-#if defined(__SANITIZE_ADDRESS__) || \
-    (defined(__has_feature) && __has_feature(address_sanitizer))
+// GCC uses __SANITIZE_ADDRESS__, Clang uses __has_feature
+#ifdef __SANITIZE_ADDRESS__
     #define RUNNING_WITH_ASAN 1
+#elif defined(__has_feature)
+    #if __has_feature(address_sanitizer)
+        #define RUNNING_WITH_ASAN 1
+    #else
+        #define RUNNING_WITH_ASAN 0
+    #endif
 #else
     #define RUNNING_WITH_ASAN 0
 #endif

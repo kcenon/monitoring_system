@@ -151,9 +151,15 @@ Sanitizer(특히 AddressSanitizer)는 상당한 런타임 오버헤드를 추가
 테스트는 컴파일러별 매크로를 사용하여 sanitizer 환경을 감지합니다:
 
 ```cpp
-#if defined(__SANITIZE_ADDRESS__) || \
-    (defined(__has_feature) && __has_feature(address_sanitizer))
+// GCC는 __SANITIZE_ADDRESS__를, Clang은 __has_feature를 사용
+#ifdef __SANITIZE_ADDRESS__
     #define RUNNING_WITH_ASAN 1
+#elif defined(__has_feature)
+    #if __has_feature(address_sanitizer)
+        #define RUNNING_WITH_ASAN 1
+    #else
+        #define RUNNING_WITH_ASAN 0
+    #endif
 #else
     #define RUNNING_WITH_ASAN 0
 #endif

@@ -48,8 +48,15 @@ All rights reserved.
 
 // Sanitizer detection for adjusting test thresholds
 // AddressSanitizer adds significant runtime overhead (2-10x)
-#if defined(__SANITIZE_ADDRESS__) || (defined(__has_feature) && __has_feature(address_sanitizer))
+// Clang uses __has_feature, GCC uses __SANITIZE_ADDRESS__
+#ifdef __SANITIZE_ADDRESS__
     #define RUNNING_WITH_ASAN 1
+#elif defined(__has_feature)
+    #if __has_feature(address_sanitizer)
+        #define RUNNING_WITH_ASAN 1
+    #else
+        #define RUNNING_WITH_ASAN 0
+    #endif
 #else
     #define RUNNING_WITH_ASAN 0
 #endif
