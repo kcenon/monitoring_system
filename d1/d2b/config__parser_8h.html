@@ -83,26 +83,41 @@ $(function() {
 <p>Unified configuration parsing utility.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cctype&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;regex&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;unordered_set&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for config_parser.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d8/d34/config__parser_8h__incl.png" border="0" usemap="#ainclude_2kcenon_2monitoring_2utils_2config__parser_8h" alt=""/></div>
 <map name="ainclude_2kcenon_2monitoring_2utils_2config__parser_8h" id="ainclude_2kcenon_2monitoring_2utils_2config__parser_8h">
-<area shape="rect" title="Unified configuration parsing utility." alt="" coords="126,5,321,45"/>
+<area shape="rect" title="Unified configuration parsing utility." alt="" coords="370,5,565,45"/>
 <area shape="rect" title=" " alt="" coords="5,93,71,119"/>
-<area shape="poly" title=" " alt="" coords="180,48,79,90,77,85,178,43"/>
-<area shape="rect" title=" " alt="" coords="95,93,170,119"/>
-<area shape="poly" title=" " alt="" coords="203,48,158,86,155,82,200,44"/>
-<area shape="rect" title=" " alt="" coords="194,93,253,119"/>
-<area shape="poly" title=" " alt="" coords="226,46,226,79,221,79,221,46"/>
-<area shape="rect" title=" " alt="" coords="277,93,369,119"/>
-<area shape="poly" title=" " alt="" coords="249,43,299,82,296,87,246,48"/>
-<area shape="rect" title=" " alt="" coords="393,93,517,119"/>
-<area shape="poly" title=" " alt="" coords="280,43,409,86,408,91,278,48"/>
+<area shape="poly" title=" " alt="" coords="370,44,239,66,85,96,84,91,238,61,369,39"/>
+<area shape="rect" title=" " alt="" coords="95,93,162,119"/>
+<area shape="poly" title=" " alt="" coords="383,48,176,96,175,90,382,43"/>
+<area shape="rect" title=" " alt="" coords="187,93,273,119"/>
+<area shape="poly" title=" " alt="" coords="411,48,278,92,277,87,410,43"/>
+<area shape="rect" title=" " alt="" coords="298,93,373,119"/>
+<area shape="poly" title=" " alt="" coords="437,48,368,88,366,84,434,43"/>
+<area shape="rect" title=" " alt="" coords="397,93,455,119"/>
+<area shape="poly" title=" " alt="" coords="460,47,441,82,436,80,455,44"/>
+<area shape="rect" title=" " alt="" coords="479,93,538,119"/>
+<area shape="poly" title=" " alt="" coords="480,44,498,80,494,82,475,47"/>
+<area shape="rect" title=" " alt="" coords="563,93,655,119"/>
+<area shape="poly" title=" " alt="" coords="502,43,577,84,574,89,500,48"/>
+<area shape="rect" title=" " alt="" coords="679,93,803,119"/>
+<area shape="poly" title=" " alt="" coords="534,43,688,87,687,92,532,48"/>
+<area shape="rect" title=" " alt="" coords="827,93,942,119"/>
+<area shape="poly" title=" " alt="" coords="566,42,815,89,814,94,565,48"/>
+<area shape="rect" title=" " alt="" coords="967,93,1029,119"/>
+<area shape="poly" title=" " alt="" coords="565,34,742,56,953,91,953,96,741,61,565,39"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -149,13 +164,13 @@ Namespaces</h2></td></tr>
 <div class="line"><span class="keywordtype">bool</span> enabled = config_parser::get&lt;bool&gt;(config, <span class="stringliteral">&quot;enabled&quot;</span>, <span class="keyword">true</span>);</div>
 <div class="line"><span class="keywordtype">int</span> interval = config_parser::get&lt;int&gt;(config, <span class="stringliteral">&quot;interval&quot;</span>, 500);</div>
 <div class="line">std::string name = config_parser::get&lt;std::string&gt;(config, <span class="stringliteral">&quot;name&quot;</span>, <span class="stringliteral">&quot;default&quot;</span>);</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1config__parser_html"><div class="ttname"><a href="../../db/d90/classkcenon_1_1monitoring_1_1config__parser.html">kcenon::monitoring::config_parser</a></div><div class="ttdoc">Unified configuration parsing utility.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d2b/config__parser_8h_source.html#l00072">config_parser.h:72</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1config__parser_html"><div class="ttname"><a href="../../db/d90/classkcenon_1_1monitoring_1_1config__parser.html">kcenon::monitoring::config_parser</a></div><div class="ttdoc">Unified configuration parsing utility.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d2b/config__parser_8h_source.html#l00077">config_parser.h:77</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition in file <a class="el" href="../../d1/d2b/config__parser_8h_source.html">config_parser.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 08:45:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 08:58:20 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
