@@ -30,6 +30,8 @@
 #include <gtest/gtest.h>
 
 #include <algorithm>
+#include <chrono>
+#include <unordered_set>
 
 #include <kcenon/monitoring/factory/builtin_collectors.h>
 #include <kcenon/monitoring/factory/metric_factory.h>
@@ -302,6 +304,156 @@ TEST_F(ConfigParserTest, GetClamped) {
     EXPECT_EQ(config_parser::get_clamped<int>(config, "low", 50, 10, 100), 10);
     EXPECT_EQ(config_parser::get_clamped<int>(config, "high", 50, 10, 100), 100);
     EXPECT_EQ(config_parser::get_clamped<int>(config, "normal", 0, 10, 100), 50);
+}
+
+// Test get_enum
+TEST_F(ConfigParserTest, GetEnum) {
+    config_map config = {{"level", "debug"}, {"invalid_level", "unknown"}};
+
+    std::unordered_set<std::string> allowed = {"debug", "info", "warning", "error"};
+
+    EXPECT_EQ(config_parser::get_enum<std::string>(config, "level", "info", allowed), "debug");
+    EXPECT_EQ(config_parser::get_enum<std::string>(config, "invalid_level", "info", allowed), "info");
+    EXPECT_EQ(config_parser::get_enum<std::string>(config, "missing", "info", allowed), "info");
+}
+
+// Test get_enum with integer
+TEST_F(ConfigParserTest, GetEnumInteger) {
+    config_map config = {{"priority", "1"}, {"invalid_priority", "5"}};
+
+    std::unordered_set<int> allowed = {0, 1, 2, 3};
+
+    EXPECT_EQ(config_parser::get_enum<int>(config, "priority", 0, allowed), 1);
+    EXPECT_EQ(config_parser::get_enum<int>(config, "invalid_priority", 0, allowed), 0);
+}
+
+// Test get_matching (regex validation)
+TEST_F(ConfigParserTest, GetMatching) {
+    config_map config = {
+        {"valid_email", "test@example.com"},
+        {"invalid_email", "not-an-email"},
+        {"ipv4", "192.168.1.1"}
+    };
+
+    // Simple email pattern
+    std::string email_pattern = R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})";
+    EXPECT_EQ(config_parser::get_matching(config, "valid_email", "", email_pattern), "test@example.com");
+    EXPECT_EQ(config_parser::get_matching(config, "invalid_email", "default@test.com", email_pattern), "default@test.com");
+
+    // IPv4 pattern
+    std::string ipv4_pattern = R"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})";
+    EXPECT_EQ(config_parser::get_matching(config, "ipv4", "0.0.0.0", ipv4_pattern), "192.168.1.1");
+}
+
+// Test get_validated with custom validator
+TEST_F(ConfigParserTest, GetValidated) {
+    config_map config = {{"port", "8080"}, {"invalid_port", "70000"}};
+
+    auto port_validator = [](const int& value) { return value > 0 && value < 65536; };
+
+    EXPECT_EQ(config_parser::get_validated<int>(config, "port", 80, port_validator), 8080);
+    EXPECT_EQ(config_parser::get_validated<int>(config, "invalid_port", 80, port_validator), 80);
+    EXPECT_EQ(config_parser::get_validated<int>(config, "missing", 80, port_validator), 80);
+}
+
+// Test get_validated with size validation
+TEST_F(ConfigParserTest, GetValidatedSizeConstraint) {
+    config_map config = {{"buffer_size", "1024"}, {"too_small", "10"}};
+
+    auto min_size_validator = [](const size_t& value) { return value >= 100; };
+
+    EXPECT_EQ(config_parser::get_validated<size_t>(config, "buffer_size", 512, min_size_validator), 1024u);
+    EXPECT_EQ(config_parser::get_validated<size_t>(config, "too_small", 512, min_size_validator), 512u);
+}
+
+// Test get_duration with various suffixes
+TEST_F(ConfigParserTest, GetDurationMilliseconds) {
+    config_map config = {
+        {"plain", "1000"},
+        {"ms", "500ms"},
+        {"seconds", "2s"},
+        {"minutes", "1m"},
+        {"hours", "1h"}
+    };
+
+    using ms = std::chrono::milliseconds;
+
+    EXPECT_EQ(config_parser::get_duration<ms>(config, "plain", ms(0)).count(), 1000);
+    EXPECT_EQ(config_parser::get_duration<ms>(config, "ms", ms(0)).count(), 500);
+    EXPECT_EQ(config_parser::get_duration<ms>(config, "seconds", ms(0)).count(), 2000);
+    EXPECT_EQ(config_parser::get_duration<ms>(config, "minutes", ms(0)).count(), 60000);
+    EXPECT_EQ(config_parser::get_duration<ms>(config, "hours", ms(0)).count(), 3600000);
+}
+
+// Test get_duration with seconds as target type
+TEST_F(ConfigParserTest, GetDurationSeconds) {
+    config_map config = {
+        {"ms", "5000ms"},
+        {"sec", "30sec"},
+        {"min", "2min"}
+    };
+
+    using sec = std::chrono::seconds;
+
+    EXPECT_EQ(config_parser::get_duration<sec>(config, "ms", sec(0)).count(), 5);
+    EXPECT_EQ(config_parser::get_duration<sec>(config, "sec", sec(0)).count(), 30);
+    EXPECT_EQ(config_parser::get_duration<sec>(config, "min", sec(0)).count(), 120);
+}
+
+// Test get_duration with default value
+TEST_F(ConfigParserTest, GetDurationDefault) {
+    config_map config = {{"invalid", "not_a_duration"}};
+
+    using ms = std::chrono::milliseconds;
+
+    EXPECT_EQ(config_parser::get_duration<ms>(config, "missing", ms(100)).count(), 100);
+    EXPECT_EQ(config_parser::get_duration<ms>(config, "invalid", ms(100)).count(), 100);
+}
+
+// Test get_list with integers
+TEST_F(ConfigParserTest, GetListInt) {
+    config_map config = {
+        {"ports", "80, 443, 8080"},
+        {"single", "9000"},
+        {"empty", ""}
+    };
+
+    auto ports = config_parser::get_list<int>(config, "ports", {});
+    EXPECT_EQ(ports.size(), 3u);
+    EXPECT_EQ(ports[0], 80);
+    EXPECT_EQ(ports[1], 443);
+    EXPECT_EQ(ports[2], 8080);
+
+    auto single = config_parser::get_list<int>(config, "single", {});
+    EXPECT_EQ(single.size(), 1u);
+    EXPECT_EQ(single[0], 9000);
+
+    auto empty = config_parser::get_list<int>(config, "empty", {100});
+    EXPECT_EQ(empty.size(), 1u);  // Uses default
+    EXPECT_EQ(empty[0], 100);
+}
+
+// Test get_list with strings
+TEST_F(ConfigParserTest, GetListString) {
+    config_map config = {{"tags", "cpu, memory, disk"}};
+
+    auto tags = config_parser::get_list<std::string>(config, "tags", {});
+    EXPECT_EQ(tags.size(), 3u);
+    EXPECT_EQ(tags[0], "cpu");
+    EXPECT_EQ(tags[1], "memory");
+    EXPECT_EQ(tags[2], "disk");
+}
+
+// Test get_list with default values
+TEST_F(ConfigParserTest, GetListDefault) {
+    config_map config = {};
+
+    std::vector<int> defaults = {1, 2, 3};
+    auto result = config_parser::get_list<int>(config, "missing", defaults);
+    EXPECT_EQ(result.size(), 3u);
+    EXPECT_EQ(result[0], 1);
+    EXPECT_EQ(result[1], 2);
+    EXPECT_EQ(result[2], 3);
 }
 
 }  // namespace

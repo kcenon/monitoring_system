@@ -221,7 +221,10 @@ factory.register_collector("my_collector", []() {
 ```
 
 **Features**:
-- Type-safe configuration parsing via `config_parser`
+- Type-safe configuration parsing via `config_parser`:
+  - Basic types: `get<bool>`, `get<int>`, `get<double>`, `get<std::string>`
+  - Validation: `get_clamped`, `get_enum`, `get_matching`, `get_validated`
+  - Advanced: `get_duration` (with ms/s/m/h suffixes), `get_list` (comma-separated)
 - Thread-safe singleton factory pattern
 - Support for plugin, CRTP, and standalone collector types
 - Consistent error handling and initialization

@@ -50,10 +50,15 @@
  */
 
 #include <cctype>
+#include <chrono>
+#include <functional>
 #include <optional>
+#include <regex>
 #include <string>
 #include <type_traits>
 #include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 namespace kcenon::monitoring {
 
@@ -136,6 +141,109 @@ class config_parser {
             return max_value;
         }
         return value;
+    }
+
+    /**
+     * @brief Get a configuration value from a set of allowed values
+     * @tparam T The target type
+     * @param config The configuration map
+     * @param key The configuration key to look up
+     * @param default_value The default value if key is not found or invalid
+     * @param allowed_values Set of valid values
+     * @return The parsed value if valid, otherwise default
+     */
+    template <typename T>
+    static T get_enum(const config_map& config, const std::string& key, const T& default_value,
+                      const std::unordered_set<T>& allowed_values) {
+        T value = get<T>(config, key, default_value);
+        if (allowed_values.find(value) != allowed_values.end()) {
+            return value;
+        }
+        return default_value;
+    }
+
+    /**
+     * @brief Get a string configuration value matching a regex pattern
+     * @param config The configuration map
+     * @param key The configuration key to look up
+     * @param default_value The default value if key is not found or invalid
+     * @param pattern The regex pattern to match against
+     * @return The value if it matches the pattern, otherwise default
+     */
+    static std::string get_matching(const config_map& config, const std::string& key,
+                                     const std::string& default_value, const std::string& pattern) {
+        auto it = config.find(key);
+        if (it == config.end()) {
+            return default_value;
+        }
+        try {
+            std::regex regex(pattern);
+            if (std::regex_match(it->second, regex)) {
+                return it->second;
+            }
+        } catch (...) {
+            // Invalid regex or no match
+        }
+        return default_value;
+    }
+
+    /**
+     * @brief Get a configuration value with custom validation
+     * @tparam T The target type
+     * @param config The configuration map
+     * @param key The configuration key to look up
+     * @param default_value The default value if key is not found or validation fails
+     * @param validator A function that returns true if the value is valid
+     * @return The parsed value if valid, otherwise default
+     */
+    template <typename T>
+    static T get_validated(const config_map& config, const std::string& key, const T& default_value,
+                           std::function<bool(const T&)> validator) {
+        T value = get<T>(config, key, default_value);
+        if (validator(value)) {
+            return value;
+        }
+        return default_value;
+    }
+
+    /**
+     * @brief Get a duration value from configuration
+     * @tparam Duration The chrono duration type (e.g., std::chrono::milliseconds)
+     * @param config The configuration map
+     * @param key The configuration key to look up
+     * @param default_value The default duration if key is not found
+     * @return The parsed duration value
+     *
+     * Supported formats:
+     * - Plain number: interpreted as the Duration's unit (e.g., 1000 = 1000ms for milliseconds)
+     * - With suffix: 100ms, 5s, 2m, 1h (milliseconds, seconds, minutes, hours)
+     */
+    template <typename Duration>
+    static Duration get_duration(const config_map& config, const std::string& key,
+                                  const Duration& default_value) {
+        auto it = config.find(key);
+        if (it == config.end()) {
+            return default_value;
+        }
+        return parse_duration<Duration>(it->second, default_value);
+    }
+
+    /**
+     * @brief Get a list of values from a comma-separated string
+     * @tparam T The element type
+     * @param config The configuration map
+     * @param key The configuration key to look up
+     * @param default_values The default list if key is not found
+     * @return Vector of parsed values
+     */
+    template <typename T>
+    static std::vector<T> get_list(const config_map& config, const std::string& key,
+                                    const std::vector<T>& default_values) {
+        auto it = config.find(key);
+        if (it == config.end()) {
+            return default_values;
+        }
+        return parse_list<T>(it->second, default_values);
     }
 
    private:
@@ -227,6 +335,108 @@ class config_parser {
             return std::stod(str);
         } else {
             return static_cast<T>(std::stold(str));
+        }
+    }
+
+    /**
+     * @brief Parse duration string with optional suffix
+     * Supported suffixes: ms (milliseconds), s (seconds), m (minutes), h (hours)
+     */
+    template <typename Duration>
+    static Duration parse_duration(const std::string& str, const Duration& default_value) {
+        try {
+            if (str.empty()) {
+                return default_value;
+            }
+
+            // Find where the number ends and suffix begins
+            size_t suffix_start = str.find_first_not_of("0123456789.-");
+
+            if (suffix_start == std::string::npos) {
+                // Plain number, interpret as Duration's unit
+                long long value = std::stoll(str);
+                return Duration(value);
+            }
+
+            // Parse the numeric part
+            long long value = std::stoll(str.substr(0, suffix_start));
+            std::string suffix = str.substr(suffix_start);
+
+            // Trim whitespace from suffix
+            while (!suffix.empty() && std::isspace(static_cast<unsigned char>(suffix.front()))) {
+                suffix.erase(0, 1);
+            }
+
+            // Convert to lowercase
+            for (auto& c : suffix) {
+                c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+            }
+
+            // Parse suffix and convert to Duration
+            if (suffix == "ms" || suffix == "millisecond" || suffix == "milliseconds") {
+                return std::chrono::duration_cast<Duration>(std::chrono::milliseconds(value));
+            } else if (suffix == "s" || suffix == "sec" || suffix == "second" || suffix == "seconds") {
+                return std::chrono::duration_cast<Duration>(std::chrono::seconds(value));
+            } else if (suffix == "m" || suffix == "min" || suffix == "minute" || suffix == "minutes") {
+                return std::chrono::duration_cast<Duration>(std::chrono::minutes(value));
+            } else if (suffix == "h" || suffix == "hr" || suffix == "hour" || suffix == "hours") {
+                return std::chrono::duration_cast<Duration>(std::chrono::hours(value));
+            } else {
+                // Unknown suffix, treat as plain number
+                return Duration(value);
+            }
+        } catch (...) {
+            return default_value;
+        }
+    }
+
+    /**
+     * @brief Parse comma-separated list of values
+     */
+    template <typename T>
+    static std::vector<T> parse_list(const std::string& str, const std::vector<T>& default_values) {
+        try {
+            if (str.empty()) {
+                return default_values;
+            }
+
+            std::vector<T> result;
+            std::string current;
+
+            for (char c : str) {
+                if (c == ',') {
+                    // Trim whitespace
+                    size_t start = current.find_first_not_of(" \t");
+                    size_t end = current.find_last_not_of(" \t");
+                    if (start != std::string::npos) {
+                        std::string trimmed = current.substr(start, end - start + 1);
+                        auto parsed = parse_value_optional<T>(trimmed);
+                        if (parsed) {
+                            result.push_back(*parsed);
+                        }
+                    }
+                    current.clear();
+                } else {
+                    current += c;
+                }
+            }
+
+            // Handle last element
+            if (!current.empty()) {
+                size_t start = current.find_first_not_of(" \t");
+                size_t end = current.find_last_not_of(" \t");
+                if (start != std::string::npos) {
+                    std::string trimmed = current.substr(start, end - start + 1);
+                    auto parsed = parse_value_optional<T>(trimmed);
+                    if (parsed) {
+                        result.push_back(*parsed);
+                    }
+                }
+            }
+
+            return result.empty() ? default_values : result;
+        } catch (...) {
+            return default_values;
         }
     }
 };
