@@ -28,6 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "kcenon/monitoring/collectors/vm_collector.h"
+#include "kcenon/monitoring/utils/config_parser.h"
 
 #include <fstream>
 #include <sstream>
@@ -205,9 +206,7 @@ vm_metrics vm_info_collector::collect_metrics() {
 vm_collector::vm_collector() : collector_(std::make_unique<vm_info_collector>()) {}
 
 bool vm_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
-    if (config.find("enabled") != config.end()) {
-        enabled_ = (config.at("enabled") == "true");
-    }
+    enabled_ = config_parser::get<bool>(config, "enabled", true);
     return true;
 }
 
