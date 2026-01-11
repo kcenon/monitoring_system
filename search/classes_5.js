@@ -10,7 +10,8 @@ var searchData=
   ['fd_5finfo_7',['fd_info',['../d4/de8/structkcenon_1_1monitoring_1_1platform_1_1fd__info.html',1,'kcenon::monitoring::platform']]],
   ['fd_5finfo_5fcollector_8',['fd_info_collector',['../d8/d4c/classkcenon_1_1monitoring_1_1fd__info__collector.html',1,'kcenon::monitoring']]],
   ['fd_5fmetrics_9',['fd_metrics',['../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html',1,'kcenon::monitoring']]],
-  ['file_5fstorage_5fbackend_10',['file_storage_backend',['../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html',1,'kcenon::monitoring']]],
-  ['filesystem_5finode_5finfo_11',['filesystem_inode_info',['../d2/db1/structkcenon_1_1monitoring_1_1filesystem__inode__info.html',1,'kcenon::monitoring']]],
-  ['functional_5fhealth_5fcheck_12',['functional_health_check',['../d7/dfb/classkcenon_1_1monitoring_1_1functional__health__check.html',1,'kcenon::monitoring']]]
+  ['file_5fnotifier_10',['file_notifier',['../dc/dea/classkcenon_1_1monitoring_1_1file__notifier.html',1,'kcenon::monitoring']]],
+  ['file_5fstorage_5fbackend_11',['file_storage_backend',['../df/d62/classkcenon_1_1monitoring_1_1file__storage__backend.html',1,'kcenon::monitoring']]],
+  ['filesystem_5finode_5finfo_12',['filesystem_inode_info',['../d2/db1/structkcenon_1_1monitoring_1_1filesystem__inode__info.html',1,'kcenon::monitoring']]],
+  ['functional_5fhealth_5fcheck_13',['functional_health_check',['../d7/dfb/classkcenon_1_1monitoring_1_1functional__health__check.html',1,'kcenon::monitoring']]]
 ];

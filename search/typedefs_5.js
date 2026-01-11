@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['metric_5fmap_0',['metric_map',['../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html#ac09e4f8fa3280fb2e53b9b18b5aa1899',1,'kcenon::monitoring::monitoring_data']]],
-  ['monitor_5fadapter_1',['monitor_adapter',['../d3/d54/namespacekcenon_1_1monitoring_1_1adapters.html#ab0b17503bbf9494c742d8e7e60b3c219',1,'kcenon::monitoring::adapters']]]
+  ['handler_5ffunc_0',['handler_func',['../d0/d89/classkcenon_1_1monitoring_1_1event__handler.html#a1610c575f2d4571803e53fecc3b485b0',1,'kcenon::monitoring::event_handler']]],
+  ['http_5fsender_5ffunc_1',['http_sender_func',['../dd/dc5/classkcenon_1_1monitoring_1_1webhook__notifier.html#a3047fff39b973052b21d5f9adbae9566',1,'kcenon::monitoring::webhook_notifier']]]
 ];

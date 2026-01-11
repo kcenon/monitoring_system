@@ -84,11 +84,12 @@ $(function() {
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="../../de/dcc/conceptkcenon_1_1monitoring_1_1concepts_1_1MetricType.html">kcenon::monitoring::concepts::MetricType</a> = </div>
-<div class="line">    std::is_class_v&lt;T&gt; &amp;&amp; std::is_copy_constructible_v&lt;T&gt; &amp;&amp; <span class="keyword">requires</span>(<span class="keyword">const</span> T t) {</div>
-<div class="line">        { t.name } -&gt; std::convertible_to&lt;std::string&gt;;</div>
-<div class="line">        { t.value } -&gt; std::convertible_to&lt;double&gt;;</div>
+<div class="line">    std::is_class_v&lt;T&gt; &amp;&amp; std::is_copy_constructible_v&lt;T&gt; &amp;&amp; <span class="keyword">requires</span>(<span class="keyword">const</span> T <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">t</a>) {</div>
+<div class="line">        { <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">t</a>.name } -&gt; std::convertible_to&lt;std::string&gt;;</div>
+<div class="line">        { <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">t</a>.value } -&gt; std::convertible_to&lt;double&gt;;</div>
 <div class="line">    }</div>
 <div class="ttc" id="aconceptkcenon_1_1monitoring_1_1concepts_1_1MetricType_html"><div class="ttname"><a href="../../de/dcc/conceptkcenon_1_1monitoring_1_1concepts_1_1MetricType.html">kcenon::monitoring::concepts::MetricType</a></div><div class="ttdoc">A type that can be used as a metric in the monitoring system.</div><div class="ttdef"><b>Definition</b> <a href="../../da/d74/monitoring__concepts_8h_source.html#l00077">monitoring_concepts.h:77</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A type that can be used as a metric in the monitoring system. </p>
 <p>Metrics must be class types that are copy-constructible and provide name and value access.</p>
@@ -102,7 +103,7 @@ $(function() {
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:08:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 09:30:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

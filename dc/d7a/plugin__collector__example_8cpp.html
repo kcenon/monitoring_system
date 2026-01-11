@@ -334,7 +334,7 @@ Include dependency graph for plugin_collector_example.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d7a/plugin__collector__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d7a/plugin__collector__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -345,7 +345,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int main </td>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">int</a> main </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -367,24 +367,24 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   51</span>    <span class="keyword">auto</span> collector = std::make_unique&lt;plugin_metric_collector&gt;(config);</div>
 <div class="line"><span class="lineno">   52</span> </div>
 <div class="line"><span class="lineno">   53</span>    <span class="comment">// Create and register system resource collector</span></div>
-<div class="line"><span class="lineno">   54</span>    <span class="keyword">auto</span> sys_collector = std::make_unique&lt;system_resource_collector&gt;();</div>
-<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">if</span> (sys_collector-&gt;initialize({})) {</div>
+<div class="line"><span class="lineno">   54</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sys_collector</a> = std::make_unique&lt;system_resource_collector&gt;();</div>
+<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sys_collector</a>-&gt;initialize({})) {</div>
 <div class="line"><span class="lineno">   56</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;System resource collector initialized&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   57</span>        collector-&gt;register_plugin(std::move(sys_collector));</div>
+<div class="line"><span class="lineno">   57</span>        collector-&gt;register_plugin(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sys_collector</a>));</div>
 <div class="line"><span class="lineno">   58</span>    }</div>
 <div class="line"><span class="lineno">   59</span> </div>
 <div class="line"><span class="lineno">   60</span>    <span class="comment">// Create and register thread system collector</span></div>
-<div class="line"><span class="lineno">   61</span>    <span class="keyword">auto</span> thread_collector = std::make_unique&lt;thread_system_collector&gt;();</div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">if</span> (thread_collector-&gt;initialize({})) {</div>
+<div class="line"><span class="lineno">   61</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">thread_collector</a> = std::make_unique&lt;thread_system_collector&gt;();</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">thread_collector</a>-&gt;initialize({})) {</div>
 <div class="line"><span class="lineno">   63</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Thread system collector initialized&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   64</span>        collector-&gt;register_plugin(std::move(thread_collector));</div>
+<div class="line"><span class="lineno">   64</span>        collector-&gt;register_plugin(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">thread_collector</a>));</div>
 <div class="line"><span class="lineno">   65</span>    }</div>
 <div class="line"><span class="lineno">   66</span> </div>
 <div class="line"><span class="lineno">   67</span>    <span class="comment">// Create and register logger system collector</span></div>
-<div class="line"><span class="lineno">   68</span>    <span class="keyword">auto</span> logger_collector = std::make_unique&lt;logger_system_collector&gt;();</div>
-<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">if</span> (logger_collector-&gt;initialize({})) {</div>
+<div class="line"><span class="lineno">   68</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">logger_collector</a> = std::make_unique&lt;logger_system_collector&gt;();</div>
+<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">logger_collector</a>-&gt;initialize({})) {</div>
 <div class="line"><span class="lineno">   70</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Logger system collector initialized&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   71</span>        collector-&gt;register_plugin(std::move(logger_collector));</div>
+<div class="line"><span class="lineno">   71</span>        collector-&gt;register_plugin(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">logger_collector</a>));</div>
 <div class="line"><span class="lineno">   72</span>    }</div>
 <div class="line"><span class="lineno">   73</span> </div>
 <div class="line"><span class="lineno">   74</span>    <span class="comment">// List registered plugins</span></div>
@@ -403,7 +403,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   87</span> </div>
 <div class="line"><span class="lineno">   88</span>    <span class="comment">// Run for a few seconds and collect metrics</span></div>
 <div class="line"><span class="lineno">   89</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nCollecting metrics for 5 seconds...&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> = 0; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> &lt; 5; ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a>) {</div>
 <div class="line"><span class="lineno">   91</span>        std::this_thread::sleep_for(std::chrono::seconds(1));</div>
 <div class="line"><span class="lineno">   92</span> </div>
 <div class="line"><span class="lineno">   93</span>        <span class="comment">// Force immediate collection</span></div>
@@ -412,15 +412,15 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   96</span> </div>
 <div class="line"><span class="lineno">   97</span>        <span class="comment">// Display some metrics</span></div>
 <div class="line"><span class="lineno">   98</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> : metrics) {</div>
-<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">if</span> (i == 0) {  <span class="comment">// Only show first iteration to avoid clutter</span></div>
+<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> == 0) {  <span class="comment">// Only show first iteration to avoid clutter</span></div>
 <div class="line"><span class="lineno">  100</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#a1d1e2a7a2c83b8cdf0747076e0081174">name</a> &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>.<a class="code hl_variable" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#abd5d2a90c17aaa351ec39d77d6e0528a">value</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>.unit &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  101</span>            }</div>
 <div class="line"><span class="lineno">  102</span>        }</div>
 <div class="line"><span class="lineno">  103</span>    }</div>
 <div class="line"><span class="lineno">  104</span> </div>
 <div class="line"><span class="lineno">  105</span>    <span class="comment">// Get cached metrics</span></div>
-<div class="line"><span class="lineno">  106</span>    <span class="keyword">auto</span> cached = collector-&gt;get_cached_metrics();</div>
-<div class="line"><span class="lineno">  107</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nTotal cached metrics: &quot;</span> &lt;&lt; cached.size() &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cached</a> = collector-&gt;get_cached_metrics();</div>
+<div class="line"><span class="lineno">  107</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nTotal cached metrics: &quot;</span> &lt;&lt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cached</a>.size() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  108</span> </div>
 <div class="line"><span class="lineno">  109</span>    <span class="comment">// Stop collection</span></div>
 <div class="line"><span class="lineno">  110</span>    collector-&gt;stop();</div>
@@ -428,6 +428,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  112</span> </div>
 <div class="line"><span class="lineno">  113</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><span class="lineno">  114</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">kcenon::monitoring::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00078">metric_types_adapter.h:78</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_a1d1e2a7a2c83b8cdf0747076e0081174"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#a1d1e2a7a2c83b8cdf0747076e0081174">kcenon::monitoring::metric::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00079">metric_types_adapter.h:79</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_abd5d2a90c17aaa351ec39d77d6e0528a"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#abd5d2a90c17aaa351ec39d77d6e0528a">kcenon::monitoring::metric::value</a></div><div class="ttdeci">std::variant&lt; double, int64_t, std::string &gt; value</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00080">metric_types_adapter.h:80</a></div></div>
@@ -442,7 +443,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:08:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

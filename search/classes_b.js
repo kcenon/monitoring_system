@@ -9,7 +9,8 @@ var searchData=
   ['lockfree_5fqueue_5fconfig_6',['lockfree_queue_config',['../da/d03/structkcenon_1_1monitoring_1_1lockfree__queue__config.html',1,'kcenon::monitoring']]],
   ['lockfree_5fqueue_5fstatistics_7',['lockfree_queue_statistics',['../d6/d70/structkcenon_1_1monitoring_1_1lockfree__queue__statistics.html',1,'kcenon::monitoring']]],
   ['lockfreecollectortest_8',['LockFreeCollectorTest',['../d6/dab/classLockFreeCollectorTest.html',1,'']]],
-  ['logger_5fsystem_5fadapter_9',['logger_system_adapter',['../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html',1,'kcenon::monitoring']]],
-  ['logging_5fmetric_5fevent_10',['logging_metric_event',['../d5/df9/classkcenon_1_1monitoring_1_1logging__metric__event.html',1,'kcenon::monitoring']]],
-  ['logging_5fstats_11',['logging_stats',['../d2/dad/structkcenon_1_1monitoring_1_1logging__metric__event_1_1logging__stats.html',1,'kcenon::monitoring::logging_metric_event']]]
+  ['log_5fnotifier_9',['log_notifier',['../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html',1,'kcenon::monitoring']]],
+  ['logger_5fsystem_5fadapter_10',['logger_system_adapter',['../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html',1,'kcenon::monitoring']]],
+  ['logging_5fmetric_5fevent_11',['logging_metric_event',['../d5/df9/classkcenon_1_1monitoring_1_1logging__metric__event.html',1,'kcenon::monitoring']]],
+  ['logging_5fstats_12',['logging_stats',['../d2/dad/structkcenon_1_1monitoring_1_1logging__metric__event_1_1logging__stats.html',1,'kcenon::monitoring::logging_metric_event']]]
 ];

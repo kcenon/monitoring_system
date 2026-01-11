@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['handler_5ffunc_0',['handler_func',['../d0/d89/classkcenon_1_1monitoring_1_1event__handler.html#a1610c575f2d4571803e53fecc3b485b0',1,'kcenon::monitoring::event_handler']]]
+  ['group_5fcallback_5ffunc_0',['group_callback_func',['../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a66347448e8a06b31319174dbe32f157f',1,'kcenon::monitoring::callback_notifier']]]
 ];

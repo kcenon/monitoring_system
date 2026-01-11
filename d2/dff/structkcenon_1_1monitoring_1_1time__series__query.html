@@ -98,9 +98,9 @@ Collaboration diagram for kcenon::monitoring::time_series_query:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6cac8b7d7d6ae08a7ee7f5b78b6ca166" id="r_a6cac8b7d7d6ae08a7ee7f5b78b6ca166"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a6cac8b7d7d6ae08a7ee7f5b78b6ca166">time_series_query</a> ()</td></tr>
 <tr class="separator:a6cac8b7d7d6ae08a7ee7f5b78b6ca166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b1e334733739d34850caeb27e7b2027" id="r_a5b1e334733739d34850caeb27e7b2027"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a5b1e334733739d34850caeb27e7b2027">time_series_query</a> (std::chrono::system_clock::time_point start, std::chrono::system_clock::time_point end, std::chrono::milliseconds step_size=std::chrono::milliseconds(1000))</td></tr>
+<tr class="memitem:a5b1e334733739d34850caeb27e7b2027" id="r_a5b1e334733739d34850caeb27e7b2027"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a5b1e334733739d34850caeb27e7b2027">time_series_query</a> (std::chrono::system_clock::time_point start, std::chrono::system_clock::time_point <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a>, std::chrono::milliseconds <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">step_size</a>=std::chrono::milliseconds(1000))</td></tr>
 <tr class="separator:a5b1e334733739d34850caeb27e7b2027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62c702325914e38d2902707161d7f1da" id="r_a62c702325914e38d2902707161d7f1da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a62c702325914e38d2902707161d7f1da">validate</a> () const</td></tr>
+<tr class="memitem:a62c702325914e38d2902707161d7f1da" id="r_a62c702325914e38d2902707161d7f1da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a62c702325914e38d2902707161d7f1da">validate</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a></td></tr>
 <tr class="memdesc:a62c702325914e38d2902707161d7f1da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate query parameters.  <br /></td></tr>
 <tr class="separator:a62c702325914e38d2902707161d7f1da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -143,10 +143,11 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d8/d51/time__series_8h_source.html#l00115">115</a> of file <a class="el" href="../../d8/d51/time__series_8h_source.html">time_series.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  115</span>                        {</div>
-<div class="line"><span class="lineno">  116</span>        <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  117</span>        <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a7af5082b1ab6f79c5d208bddaa2fd3bd">end_time</a> = now;</div>
-<div class="line"><span class="lineno">  118</span>        <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a51b9559cb221b02a22d87cca701bb49c">start_time</a> = now - std::chrono::hours(1);  <span class="comment">// Default: last hour</span></div>
+<div class="line"><span class="lineno">  116</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  117</span>        <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a7af5082b1ab6f79c5d208bddaa2fd3bd">end_time</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
+<div class="line"><span class="lineno">  118</span>        <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a51b9559cb221b02a22d87cca701bb49c">start_time</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - std::chrono::hours(1);  <span class="comment">// Default: last hour</span></div>
 <div class="line"><span class="lineno">  119</span>    }</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1time__series__query_html_a51b9559cb221b02a22d87cca701bb49c"><div class="ttname"><a href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a51b9559cb221b02a22d87cca701bb49c">kcenon::monitoring::time_series_query::start_time</a></div><div class="ttdeci">std::chrono::system_clock::time_point start_time</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d51/time__series_8h_source.html#l00111">time_series.h:111</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1time__series__query_html_a7af5082b1ab6f79c5d208bddaa2fd3bd"><div class="ttname"><a href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a7af5082b1ab6f79c5d208bddaa2fd3bd">kcenon::monitoring::time_series_query::end_time</a></div><div class="ttdeci">std::chrono::system_clock::time_point end_time</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d51/time__series_8h_source.html#l00112">time_series.h:112</a></div></div>
 </div><!-- fragment -->
@@ -193,7 +194,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../d8/d51/time__series_8h_source.html#l00121">121</a> of file <a class="el" href="../../d8/d51/time__series_8h_source.html">time_series.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  124</span>        : <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a51b9559cb221b02a22d87cca701bb49c">start_time</a>(start), <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a7af5082b1ab6f79c5d208bddaa2fd3bd">end_time</a>(end), <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a41869d06c16eeff88ec15f2246035658">step</a>(step_size) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">  124</span>        : <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a51b9559cb221b02a22d87cca701bb49c">start_time</a>(start), <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a7af5082b1ab6f79c5d208bddaa2fd3bd">end_time</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a>), <a class="code hl_variable" href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a41869d06c16eeff88ec15f2246035658">step</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">step_size</a>) {}</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1time__series__query_html_a41869d06c16eeff88ec15f2246035658"><div class="ttname"><a href="../../d2/dff/structkcenon_1_1monitoring_1_1time__series__query.html#a41869d06c16eeff88ec15f2246035658">kcenon::monitoring::time_series_query::step</a></div><div class="ttdeci">std::chrono::milliseconds step</div><div class="ttdef"><b>Definition</b> <a href="../../d8/d51/time__series_8h_source.html#l00113">time_series.h:113</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -251,8 +252,6 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="156,43,195,37,196,42,157,48"/>
 <area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478" title="Helper function to create successful VoidResult." alt="" coords="204,69,363,109"/>
 <area shape="poly" title=" " alt="" coords="157,67,191,72,190,77,156,72"/>
-<area shape="rect" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html#a708459545c76e0e9c5d07ffa9b9e2785" title="Convert to common_system error_info." alt="" coords="411,5,627,45"/>
-<area shape="poly" title=" " alt="" coords="358,23,397,23,397,28,358,28"/>
 </map>
 </div>
 
@@ -314,7 +313,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:08:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 09:30:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

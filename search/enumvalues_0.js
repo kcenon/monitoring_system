@@ -13,5 +13,6 @@ var searchData=
   ['already_5fstarted_10',['already_started',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea8188a22e80d543c15b09f9d72113ef8e',1,'kcenon::monitoring']]],
   ['ambient_11',['ambient',['../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88afff66a4d00c8ed7bb7814ff29d0faca2',1,'kcenon::monitoring']]],
   ['amd_12',['amd',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597a5dc984e2aef527ea2daaeffe646a6a52',1,'kcenon::monitoring']]],
-  ['apple_13',['apple',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597a1f3870be274f6c49b3e31a0c6728957f',1,'kcenon::monitoring']]]
+  ['and_13',['AND',['../db/d50/namespacekcenon_1_1monitoring.html#a8d375d6d7ae844ebc1311b6729bc7d52a558ffc8f5770d8e4f95f51d822685532',1,'kcenon::monitoring']]],
+  ['apple_14',['apple',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597a1f3870be274f6c49b3e31a0c6728957f',1,'kcenon::monitoring']]]
 ];

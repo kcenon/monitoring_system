@@ -110,7 +110,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#if KCENON_HAS_COMMON_SYSTEM</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span>common_system_monitor_adapter : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitor {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">common_system_monitor_adapter</a> : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitor {</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">explicit</span> common_system_monitor_adapter(</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        std::shared_ptr&lt;monitoring_interface&gt; monitor)</div>
@@ -227,7 +227,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    std::vector&lt;metric_value&gt; pending_metrics_;</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>};</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">class </span>monitor_from_common_adapter : <span class="keyword">public</span> metrics_collector {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">monitor_from_common_adapter</a> : <span class="keyword">public</span> metrics_collector {</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">explicit</span> monitor_from_common_adapter(</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        std::shared_ptr&lt;::kcenon::common::interfaces::IMonitor&gt; common_monitor,</div>
@@ -294,7 +294,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordtype">bool</span> enabled_ = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>};</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">class </span>common_system_monitorable_adapter : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitorable {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">common_system_monitorable_adapter</a> : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitorable {</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keyword">explicit</span> common_system_monitorable_adapter(</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        std::shared_ptr&lt;monitorable_interface&gt; monitorable,</div>
@@ -329,7 +329,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    std::string component_name_;</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>};</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keyword">class </span>common_monitor_factory {</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">common_monitor_factory</a> {</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keyword">static</span> std::shared_ptr&lt;::kcenon::common::interfaces::IMonitor&gt; create_common_monitor(</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        std::shared_ptr&lt;monitoring_interface&gt; monitor) {</div>
@@ -360,7 +360,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 09:08:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jan 11 2026 09:30:45 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
