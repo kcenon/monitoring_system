@@ -56,6 +56,7 @@
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
 #include "../interfaces/monitoring_core.h"
+#include "../utils/statistics.h"
 
 // Use common_system interfaces (Phase 2.3.4)
 #include <kcenon/common/interfaces/monitoring_interface.h>
@@ -133,42 +134,29 @@ struct performance_metrics {
     
     /**
      * @brief Calculate percentile from sorted durations
+     * @deprecated Use stats::percentile() directly for new code
      */
     static std::chrono::nanoseconds calculate_percentile(
         const std::vector<std::chrono::nanoseconds>& sorted_durations,
-        double percentile) {
-        
-        if (sorted_durations.empty()) {
-            return std::chrono::nanoseconds::zero();
-        }
-        
-        size_t index = static_cast<size_t>(
-            (percentile / 100.0) * (sorted_durations.size() - 1)
-        );
-        return sorted_durations[index];
+        double percentile_value) {
+        return stats::percentile(sorted_durations, percentile_value);
     }
-    
+
     /**
      * @brief Update statistics with new duration samples
+     * @deprecated Use stats::compute() directly for new code
      */
     void update_statistics(const std::vector<std::chrono::nanoseconds>& durations) {
         if (durations.empty()) return;
-        
-        auto sorted = durations;
-        std::sort(sorted.begin(), sorted.end());
-        
-        min_duration = sorted.front();
-        max_duration = sorted.back();
-        median_duration = calculate_percentile(sorted, 50.0);
-        p95_duration = calculate_percentile(sorted, 95.0);
-        p99_duration = calculate_percentile(sorted, 99.0);
-        
-        total_duration = std::accumulate(
-            sorted.begin(), sorted.end(),
-            std::chrono::nanoseconds::zero()
-        );
-        
-        mean_duration = total_duration / sorted.size();
+
+        auto computed = stats::compute(durations);
+        min_duration = computed.min;
+        max_duration = computed.max;
+        mean_duration = computed.mean;
+        median_duration = computed.median;
+        p95_duration = computed.p95;
+        p99_duration = computed.p99;
+        total_duration = computed.total;
     }
 };
 
@@ -544,24 +532,17 @@ public:
      *
      * @param name Metric name (must not be empty)
      * @param value Value to add (should be >= 0 for counters)
-     * @return result_void Success or error with details
-     *
-     * @thread_safety Thread-safe, uses shared_mutex for synchronization
-     */
-    result_void record_counter(const std::string& name, double value);
-
-    /**
-     * @brief Record a counter metric with tags
-     *
-     * @param name Metric name (must not be empty)
-     * @param value Value to add (should be >= 0 for counters)
-     * @param tags Key-value labels for metric dimensions
+     * @param tags Key-value labels for metric dimensions (default: empty)
      * @return result_void Success or error with details
      *
      * @thread_safety Thread-safe, uses shared_mutex for synchronization
      *
      * @example
      * @code
+     * // Without tags
+     * monitor.record_counter("requests_total", 1);
+     *
+     * // With tags
      * monitor.record_counter("http_requests_total", 1, {
      *     {"method", "GET"},
      *     {"endpoint", "/api/users"},
@@ -570,31 +551,24 @@ public:
      * @endcode
      */
     result_void record_counter(const std::string& name, double value,
-                               const tag_map& tags);
+                               const tag_map& tags = {});
 
     /**
      * @brief Record a gauge metric (instantaneous value)
      *
      * @param name Metric name (must not be empty)
      * @param value Current value (can be positive or negative)
-     * @return result_void Success or error with details
-     *
-     * @thread_safety Thread-safe, uses shared_mutex for synchronization
-     */
-    result_void record_gauge(const std::string& name, double value);
-
-    /**
-     * @brief Record a gauge metric with tags
-     *
-     * @param name Metric name (must not be empty)
-     * @param value Current value (can be positive or negative)
-     * @param tags Key-value labels for metric dimensions
+     * @param tags Key-value labels for metric dimensions (default: empty)
      * @return result_void Success or error with details
      *
      * @thread_safety Thread-safe, uses shared_mutex for synchronization
      *
      * @example
      * @code
+     * // Without tags
+     * monitor.record_gauge("temperature", 25.5);
+     *
+     * // With tags
      * monitor.record_gauge("active_connections", 42, {
      *     {"pool", "database"},
      *     {"host", "db-primary"}
@@ -602,31 +576,24 @@ public:
      * @endcode
      */
     result_void record_gauge(const std::string& name, double value,
-                             const tag_map& tags);
+                             const tag_map& tags = {});
 
     /**
      * @brief Record a histogram metric (distribution of values)
      *
      * @param name Metric name (must not be empty)
      * @param value Observed value to record
-     * @return result_void Success or error with details
-     *
-     * @thread_safety Thread-safe, uses shared_mutex for synchronization
-     */
-    result_void record_histogram(const std::string& name, double value);
-
-    /**
-     * @brief Record a histogram metric with tags
-     *
-     * @param name Metric name (must not be empty)
-     * @param value Observed value to record
-     * @param tags Key-value labels for metric dimensions
+     * @param tags Key-value labels for metric dimensions (default: empty)
      * @return result_void Success or error with details
      *
      * @thread_safety Thread-safe, uses shared_mutex for synchronization
      *
      * @example
      * @code
+     * // Without tags
+     * monitor.record_histogram("response_time_ms", 150.5);
+     *
+     * // With tags
      * monitor.record_histogram("request_duration_ms", 150.5, {
      *     {"service", "auth"},
      *     {"operation", "login"}
@@ -634,7 +601,7 @@ public:
      * @endcode
      */
     result_void record_histogram(const std::string& name, double value,
-                                 const tag_map& tags);
+                                 const tag_map& tags = {});
 
     /**
      * @brief Get all recorded tagged metrics

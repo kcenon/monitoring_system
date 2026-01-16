@@ -172,27 +172,20 @@ kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::moni
     metrics.error_count = profile->error_count.load();
 
     if (!profile->samples.empty()) {
-        auto total = std::chrono::nanoseconds::zero();
-        auto min_sample = profile->samples[0];
-        auto max_sample = profile->samples[0];
+        // Convert deque to vector for statistics computation
+        std::vector<std::chrono::nanoseconds> samples_vec(
+            profile->samples.begin(), profile->samples.end());
 
-        for (const auto& sample : profile->samples) {
-            total += sample;
-            if (sample < min_sample) min_sample = sample;
-            if (sample > max_sample) max_sample = sample;
-        }
+        // Use centralized statistics utilities
+        auto computed = stats::compute(samples_vec);
 
-        metrics.min_duration = min_sample;
-        metrics.max_duration = max_sample;
-        metrics.mean_duration = total / profile->samples.size();
-
-        // Calculate percentiles using sorted samples
-        std::vector<std::chrono::nanoseconds> sorted_samples(profile->samples.begin(), profile->samples.end());
-        std::sort(sorted_samples.begin(), sorted_samples.end());
-
-        metrics.median_duration = performance_metrics::calculate_percentile(sorted_samples, 50.0);
-        metrics.p95_duration = performance_metrics::calculate_percentile(sorted_samples, 95.0);
-        metrics.p99_duration = performance_metrics::calculate_percentile(sorted_samples, 99.0);
+        metrics.min_duration = computed.min;
+        metrics.max_duration = computed.max;
+        metrics.mean_duration = computed.mean;
+        metrics.median_duration = computed.median;
+        metrics.p95_duration = computed.p95;
+        metrics.p99_duration = computed.p99;
+        metrics.total_duration = computed.total;
 
         // Use atomic call_count, don't overwrite with samples.size()
         metrics.call_count = profile->call_count.load(std::memory_order_acquire);
@@ -446,28 +439,20 @@ std::vector<performance_metrics> performance_profiler::get_all_metrics() const {
         std::lock_guard sample_lock(profile->mutex);
 
         if (!profile->samples.empty()) {
-            auto total = std::chrono::nanoseconds::zero();
-            auto min_sample = profile->samples[0];
-            auto max_sample = profile->samples[0];
-
-            for (const auto& sample : profile->samples) {
-                total += sample;
-                if (sample < min_sample) min_sample = sample;
-                if (sample > max_sample) max_sample = sample;
-            }
-
-            metrics.min_duration = min_sample;
-            metrics.max_duration = max_sample;
-            metrics.mean_duration = total / profile->samples.size();
-
-            // Calculate percentiles using sorted samples
-            std::vector<std::chrono::nanoseconds> sorted_samples(
+            // Convert deque to vector for statistics computation
+            std::vector<std::chrono::nanoseconds> samples_vec(
                 profile->samples.begin(), profile->samples.end());
-            std::sort(sorted_samples.begin(), sorted_samples.end());
 
-            metrics.median_duration = performance_metrics::calculate_percentile(sorted_samples, 50.0);
-            metrics.p95_duration = performance_metrics::calculate_percentile(sorted_samples, 95.0);
-            metrics.p99_duration = performance_metrics::calculate_percentile(sorted_samples, 99.0);
+            // Use centralized statistics utilities
+            auto computed = stats::compute(samples_vec);
+
+            metrics.min_duration = computed.min;
+            metrics.max_duration = computed.max;
+            metrics.mean_duration = computed.mean;
+            metrics.median_duration = computed.median;
+            metrics.p95_duration = computed.p95;
+            metrics.p99_duration = computed.p99;
+            metrics.total_duration = computed.total;
         }
 
         result.push_back(metrics);
@@ -586,26 +571,14 @@ result_void performance_monitor::record_metric_internal(
     return make_void_success();
 }
 
-result_void performance_monitor::record_counter(const std::string& name, double value) {
-    return record_metric_internal(name, value, recorded_metric_type::counter, {});
-}
-
 result_void performance_monitor::record_counter(const std::string& name, double value,
                                                  const tag_map& tags) {
     return record_metric_internal(name, value, recorded_metric_type::counter, tags);
 }
 
-result_void performance_monitor::record_gauge(const std::string& name, double value) {
-    return record_metric_internal(name, value, recorded_metric_type::gauge, {});
-}
-
 result_void performance_monitor::record_gauge(const std::string& name, double value,
                                                const tag_map& tags) {
     return record_metric_internal(name, value, recorded_metric_type::gauge, tags);
-}
-
-result_void performance_monitor::record_histogram(const std::string& name, double value) {
-    return record_metric_internal(name, value, recorded_metric_type::histogram, {});
 }
 
 result_void performance_monitor::record_histogram(const std::string& name, double value,
