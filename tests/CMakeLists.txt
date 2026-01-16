@@ -135,6 +135,9 @@ add_executable(monitoring_system_tests
 
     # Metric factory tests (Issue #366)
     test_metric_factory.cpp
+
+    # Statistics utilities tests (Issue #381)
+    test_statistics_utils.cpp
 )
 
 # Interface compilation test (standalone executable with main())
