@@ -21,5 +21,7 @@ var searchData=
   ['interrupt_5finfo_5fcollector_18',['interrupt_info_collector',['../d0/d3a/classkcenon_1_1monitoring_1_1interrupt__info__collector.html',1,'kcenon::monitoring']]],
   ['interrupt_5fmetrics_19',['interrupt_metrics',['../d1/dc6/structkcenon_1_1monitoring_1_1interrupt__metrics.html',1,'kcenon::monitoring']]],
   ['io_5fthroughput_20',['io_throughput',['../de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput.html',1,'kcenon::monitoring::system_resources::disk_metrics']]],
-  ['iservice_21',['IService',['../df/d8b/classIService.html',1,'']]]
+  ['is_5fchrono_5fduration_21',['is_chrono_duration',['../d9/d03/structkcenon_1_1monitoring_1_1stats_1_1detail_1_1is__chrono__duration.html',1,'kcenon::monitoring::stats::detail']]],
+  ['is_5fchrono_5fduration_3c_20std_3a_3achrono_3a_3aduration_3c_20rep_2c_20period_20_3e_20_3e_22',['is_chrono_duration&lt; std::chrono::duration&lt; Rep, Period &gt; &gt;',['../d6/d8e/structkcenon_1_1monitoring_1_1stats_1_1detail_1_1is__chrono__duration_3_01std_1_1chrono_1_1durat67ba77e32eb716cbe525f0013060fa95.html',1,'kcenon::monitoring::stats::detail']]],
+  ['iservice_23',['IService',['../df/d8b/classIService.html',1,'']]]
 ];

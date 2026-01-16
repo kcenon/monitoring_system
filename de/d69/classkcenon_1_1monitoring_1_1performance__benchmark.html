@@ -152,7 +152,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Performance benchmark utility. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00688">688</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00655">655</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af8731855e9b58d02e1950374f5c9cbc0" name="af8731855e9b58d02e1950374f5c9cbc0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af8731855e9b58d02e1950374f5c9cbc0">&#9670;&#160;</a></span>performance_benchmark()</h2>
@@ -178,9 +178,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00696">696</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  697</span>        : <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a1860e2e3afb543d3dbcae80c9bd5eb76">name_</a>(name) {}</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a1860e2e3afb543d3dbcae80c9bd5eb76"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a1860e2e3afb543d3dbcae80c9bd5eb76">kcenon::monitoring::performance_benchmark::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00691">performance_monitor.h:691</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00663">663</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  664</span>        : <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a1860e2e3afb543d3dbcae80c9bd5eb76">name_</a>(name) {}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a1860e2e3afb543d3dbcae80c9bd5eb76"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a1860e2e3afb543d3dbcae80c9bd5eb76">kcenon::monitoring::performance_benchmark::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00658">performance_monitor.h:658</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -234,24 +234,24 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </div><div class="memdoc">
 
 <p>Compare two operations. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a127">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a129">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00756">756</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  761</span>      {</div>
-<div class="line"><span class="lineno">  762</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a> = <a class="code hl_function" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a562828a9e538af97d9c6817f7c82f481">run</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">operation1_name</a>, std::forward&lt;Func1&gt;(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func1</a>));</div>
-<div class="line"><span class="lineno">  763</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a>.is_err()) {</div>
-<div class="line"><span class="lineno">  764</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;std::pair&lt;performance_metrics, performance_metrics&gt;</a>&gt;<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">::err</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a>.error());</div>
-<div class="line"><span class="lineno">  765</span>        }</div>
-<div class="line"><span class="lineno">  766</span> </div>
-<div class="line"><span class="lineno">  767</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a> = <a class="code hl_function" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a562828a9e538af97d9c6817f7c82f481">run</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">operation2_name</a>, std::forward&lt;Func2&gt;(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func2</a>));</div>
-<div class="line"><span class="lineno">  768</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a>.is_err()) {</div>
-<div class="line"><span class="lineno">  769</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;std::pair&lt;performance_metrics, performance_metrics&gt;</a>&gt;<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">::err</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a>.error());</div>
-<div class="line"><span class="lineno">  770</span>        }</div>
-<div class="line"><span class="lineno">  771</span>        </div>
-<div class="line"><span class="lineno">  772</span>        <span class="keywordflow">return</span> std::make_pair(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a>.value(), <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a>.value());</div>
-<div class="line"><span class="lineno">  773</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a562828a9e538af97d9c6817f7c82f481"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a562828a9e538af97d9c6817f7c82f481">kcenon::monitoring::performance_benchmark::run</a></div><div class="ttdeci">kcenon::monitoring::result&lt; performance_metrics &gt; run(const std::string &amp;operation_name, Func &amp;&amp;func)</div><div class="ttdoc">Run a benchmark.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00717">performance_monitor.h:717</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00723">723</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  728</span>      {</div>
+<div class="line"><span class="lineno">  729</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a> = <a class="code hl_function" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a562828a9e538af97d9c6817f7c82f481">run</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">operation1_name</a>, std::forward&lt;Func1&gt;(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func1</a>));</div>
+<div class="line"><span class="lineno">  730</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a>.is_err()) {</div>
+<div class="line"><span class="lineno">  731</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;std::pair&lt;performance_metrics, performance_metrics&gt;</a>&gt;<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">::err</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a>.error());</div>
+<div class="line"><span class="lineno">  732</span>        }</div>
+<div class="line"><span class="lineno">  733</span> </div>
+<div class="line"><span class="lineno">  734</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a> = <a class="code hl_function" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a562828a9e538af97d9c6817f7c82f481">run</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">operation2_name</a>, std::forward&lt;Func2&gt;(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func2</a>));</div>
+<div class="line"><span class="lineno">  735</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a>.is_err()) {</div>
+<div class="line"><span class="lineno">  736</span>            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result&lt;std::pair&lt;performance_metrics, performance_metrics&gt;</a>&gt;<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">::err</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a>.error());</div>
+<div class="line"><span class="lineno">  737</span>        }</div>
+<div class="line"><span class="lineno">  738</span>        </div>
+<div class="line"><span class="lineno">  739</span>        <span class="keywordflow">return</span> std::make_pair(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result1</a>.value(), <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result2</a>.value());</div>
+<div class="line"><span class="lineno">  740</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a562828a9e538af97d9c6817f7c82f481"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a562828a9e538af97d9c6817f7c82f481">kcenon::monitoring::performance_benchmark::run</a></div><div class="ttdeci">kcenon::monitoring::result&lt; performance_metrics &gt; run(const std::string &amp;operation_name, Func &amp;&amp;func)</div><div class="ttdoc">Run a benchmark.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00684">performance_monitor.h:684</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -293,44 +293,44 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </div><div class="memdoc">
 
 <p>Run a benchmark. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a126">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a128">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00717">717</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  720</span>      {</div>
-<div class="line"><span class="lineno">  721</span>        <span class="comment">// Warmup</span></div>
-<div class="line"><span class="lineno">  722</span>        <span class="keywordflow">for</span> (std::uint32_t <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> = 0; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> &lt; <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#afd4b83294142afc5bc6fe3aaad0008fd">warmup_iterations_</a>; ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a>) {</div>
-<div class="line"><span class="lineno">  723</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func</a>();</div>
-<div class="line"><span class="lineno">  724</span>        }</div>
-<div class="line"><span class="lineno">  725</span>        </div>
-<div class="line"><span class="lineno">  726</span>        <span class="comment">// Actual benchmark</span></div>
-<div class="line"><span class="lineno">  727</span>        <span class="keywordflow">for</span> (std::uint32_t <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> = 0; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> &lt; <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a0285b68a18bcfad11d0516023407321b">iterations_</a>; ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a>) {</div>
-<div class="line"><span class="lineno">  728</span>            <span class="keyword">auto</span> start = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  729</span>            </div>
-<div class="line"><span class="lineno">  730</span>            <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  731</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func</a>();</div>
-<div class="line"><span class="lineno">  732</span>            } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><span class="lineno">  733</span>                <span class="comment">// Record error</span></div>
-<div class="line"><span class="lineno">  734</span>                <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  735</span>                <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(</div>
-<div class="line"><span class="lineno">  736</span>                    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> - start</div>
-<div class="line"><span class="lineno">  737</span>                );</div>
-<div class="line"><span class="lineno">  738</span>                <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">profiler_</a>.<a class="code hl_function" href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#ae2ddde2a3746a59e6372769c724babb0">record_sample</a>(operation_name, duration, <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  739</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  740</span>            }</div>
-<div class="line"><span class="lineno">  741</span>            </div>
-<div class="line"><span class="lineno">  742</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><span class="lineno">  743</span>            <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(</div>
-<div class="line"><span class="lineno">  744</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> - start</div>
-<div class="line"><span class="lineno">  745</span>            );</div>
-<div class="line"><span class="lineno">  746</span>            <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">profiler_</a>.<a class="code hl_function" href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#ae2ddde2a3746a59e6372769c724babb0">record_sample</a>(operation_name, duration, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  747</span>        }</div>
-<div class="line"><span class="lineno">  748</span>        </div>
-<div class="line"><span class="lineno">  749</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">profiler_</a>.<a class="code hl_function" href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#a08f3661f76bd7f933930ef6478ac4c51">get_metrics</a>(operation_name);</div>
-<div class="line"><span class="lineno">  750</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a0285b68a18bcfad11d0516023407321b"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a0285b68a18bcfad11d0516023407321b">kcenon::monitoring::performance_benchmark::iterations_</a></div><div class="ttdeci">std::uint32_t iterations_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00692">performance_monitor.h:692</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a3d40665a07fdec917c822d53333c64b9"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">kcenon::monitoring::performance_benchmark::profiler_</a></div><div class="ttdeci">performance_profiler profiler_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00690">performance_monitor.h:690</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_afd4b83294142afc5bc6fe3aaad0008fd"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#afd4b83294142afc5bc6fe3aaad0008fd">kcenon::monitoring::performance_benchmark::warmup_iterations_</a></div><div class="ttdeci">std::uint32_t warmup_iterations_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00693">performance_monitor.h:693</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00684">684</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  687</span>      {</div>
+<div class="line"><span class="lineno">  688</span>        <span class="comment">// Warmup</span></div>
+<div class="line"><span class="lineno">  689</span>        <span class="keywordflow">for</span> (std::uint32_t <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> = 0; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> &lt; <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#afd4b83294142afc5bc6fe3aaad0008fd">warmup_iterations_</a>; ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a>) {</div>
+<div class="line"><span class="lineno">  690</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func</a>();</div>
+<div class="line"><span class="lineno">  691</span>        }</div>
+<div class="line"><span class="lineno">  692</span>        </div>
+<div class="line"><span class="lineno">  693</span>        <span class="comment">// Actual benchmark</span></div>
+<div class="line"><span class="lineno">  694</span>        <span class="keywordflow">for</span> (std::uint32_t <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> = 0; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a> &lt; <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a0285b68a18bcfad11d0516023407321b">iterations_</a>; ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">i</a>) {</div>
+<div class="line"><span class="lineno">  695</span>            <span class="keyword">auto</span> start = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  696</span>            </div>
+<div class="line"><span class="lineno">  697</span>            <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  698</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">func</a>();</div>
+<div class="line"><span class="lineno">  699</span>            } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><span class="lineno">  700</span>                <span class="comment">// Record error</span></div>
+<div class="line"><span class="lineno">  701</span>                <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  702</span>                <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(</div>
+<div class="line"><span class="lineno">  703</span>                    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> - start</div>
+<div class="line"><span class="lineno">  704</span>                );</div>
+<div class="line"><span class="lineno">  705</span>                <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">profiler_</a>.<a class="code hl_function" href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#ae2ddde2a3746a59e6372769c724babb0">record_sample</a>(operation_name, duration, <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  706</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  707</span>            }</div>
+<div class="line"><span class="lineno">  708</span>            </div>
+<div class="line"><span class="lineno">  709</span>            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><span class="lineno">  710</span>            <span class="keyword">auto</span> duration = std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(</div>
+<div class="line"><span class="lineno">  711</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">end</a> - start</div>
+<div class="line"><span class="lineno">  712</span>            );</div>
+<div class="line"><span class="lineno">  713</span>            <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">profiler_</a>.<a class="code hl_function" href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#ae2ddde2a3746a59e6372769c724babb0">record_sample</a>(operation_name, duration, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  714</span>        }</div>
+<div class="line"><span class="lineno">  715</span>        </div>
+<div class="line"><span class="lineno">  716</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">profiler_</a>.<a class="code hl_function" href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#a08f3661f76bd7f933930ef6478ac4c51">get_metrics</a>(operation_name);</div>
+<div class="line"><span class="lineno">  717</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a0285b68a18bcfad11d0516023407321b"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a0285b68a18bcfad11d0516023407321b">kcenon::monitoring::performance_benchmark::iterations_</a></div><div class="ttdeci">std::uint32_t iterations_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00659">performance_monitor.h:659</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_a3d40665a07fdec917c822d53333c64b9"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a3d40665a07fdec917c822d53333c64b9">kcenon::monitoring::performance_benchmark::profiler_</a></div><div class="ttdeci">performance_profiler profiler_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00657">performance_monitor.h:657</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__benchmark_html_afd4b83294142afc5bc6fe3aaad0008fd"><div class="ttname"><a href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#afd4b83294142afc5bc6fe3aaad0008fd">kcenon::monitoring::performance_benchmark::warmup_iterations_</a></div><div class="ttdeci">std::uint32_t warmup_iterations_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00660">performance_monitor.h:660</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__profiler_html_a08f3661f76bd7f933930ef6478ac4c51"><div class="ttname"><a href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#a08f3661f76bd7f933930ef6478ac4c51">kcenon::monitoring::performance_profiler::get_metrics</a></div><div class="ttdeci">kcenon::monitoring::result&lt; performance_metrics &gt; get_metrics(const std::string &amp;operation_name) const</div><div class="ttdoc">Get performance metrics for an operation.</div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1performance__profiler_html_ae2ddde2a3746a59e6372769c724babb0"><div class="ttname"><a href="../../d4/d20/classkcenon_1_1monitoring_1_1performance__profiler.html#ae2ddde2a3746a59e6372769c724babb0">kcenon::monitoring::performance_profiler::record_sample</a></div><div class="ttdeci">kcenon::monitoring::result&lt; bool &gt; record_sample(const std::string &amp;operation_name, std::chrono::nanoseconds duration, bool success=true)</div><div class="ttdoc">Record a performance sample.</div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -373,13 +373,13 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Set number of iterations. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a124">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a126">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00702">702</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  702</span>                                                {</div>
-<div class="line"><span class="lineno">  703</span>        <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a0285b68a18bcfad11d0516023407321b">iterations_</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">iterations</a>;</div>
-<div class="line"><span class="lineno">  704</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00669">669</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  669</span>                                                {</div>
+<div class="line"><span class="lineno">  670</span>        <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#a0285b68a18bcfad11d0516023407321b">iterations_</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">iterations</a>;</div>
+<div class="line"><span class="lineno">  671</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -408,13 +408,13 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Set warmup iterations. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a125">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a127">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00709">709</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  709</span>                                                   {</div>
-<div class="line"><span class="lineno">  710</span>        <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#afd4b83294142afc5bc6fe3aaad0008fd">warmup_iterations_</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">warmup</a>;</div>
-<div class="line"><span class="lineno">  711</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00676">676</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  676</span>                                                   {</div>
+<div class="line"><span class="lineno">  677</span>        <a class="code hl_variable" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#afd4b83294142afc5bc6fe3aaad0008fd">warmup_iterations_</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">warmup</a>;</div>
+<div class="line"><span class="lineno">  678</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -438,11 +438,11 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a122">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a124">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00692">692</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  692</span>{1000};</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00659">659</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  659</span>{1000};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -465,10 +465,10 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a121">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a123">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00691">691</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00658">658</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
 
 </div>
 </div>
@@ -491,10 +491,10 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a120">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a122">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00690">690</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00657">657</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
 
 </div>
 </div>
@@ -517,11 +517,11 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a123">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a125">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00693">693</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  693</span>{100};</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00660">660</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  660</span>{100};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -531,7 +531,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 10:45:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 16 2026 16:25:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -316,13 +316,15 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="line"><span class="lineno">  135</span>        <span class="keyword">static_assert</span>(std::is_arithmetic_v&lt;T&gt;, <span class="stringliteral">&quot;get_clamped requires arithmetic type&quot;</span>);</div>
 <div class="line"><span class="lineno">  136</span>        T value = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">get&lt;T&gt;</a>(config, key, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">default_value</a>);</div>
 <div class="line"><span class="lineno">  137</span>        <span class="keywordflow">if</span> (value &lt; min_value) {</div>
-<div class="line"><span class="lineno">  138</span>            <span class="keywordflow">return</span> min_value;</div>
+<div class="line"><span class="lineno">  138</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a7d41a3c959d8efa9c2057dd95d47c75b">min_value</a>;</div>
 <div class="line"><span class="lineno">  139</span>        }</div>
 <div class="line"><span class="lineno">  140</span>        <span class="keywordflow">if</span> (value &gt; max_value) {</div>
-<div class="line"><span class="lineno">  141</span>            <span class="keywordflow">return</span> max_value;</div>
+<div class="line"><span class="lineno">  141</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#afc913ddc8a075a8e49668d2846602cc2">max_value</a>;</div>
 <div class="line"><span class="lineno">  142</span>        }</div>
 <div class="line"><span class="lineno">  143</span>        <span class="keywordflow">return</span> value;</div>
 <div class="line"><span class="lineno">  144</span>    }</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_1_1stats_1_1detail_html_a7d41a3c959d8efa9c2057dd95d47c75b"><div class="ttname"><a href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a7d41a3c959d8efa9c2057dd95d47c75b">kcenon::monitoring::stats::detail::min_value</a></div><div class="ttdeci">constexpr T min_value()</div><div class="ttdoc">Get minimum (lowest) value for a type.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00112">statistics.h:112</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_1_1stats_1_1detail_html_afc913ddc8a075a8e49668d2846602cc2"><div class="ttname"><a href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#afc913ddc8a075a8e49668d2846602cc2">kcenon::monitoring::stats::detail::max_value</a></div><div class="ttdeci">constexpr T max_value()</div><div class="ttdoc">Get maximum value for a type.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00100">statistics.h:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1269,7 +1271,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 11 2026 10:45:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 16 2026 16:25:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
