@@ -151,7 +151,7 @@ Protected Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d3/d83/test__fault__tolerance_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d3/d83/test__fault__tolerance_8cpp_source.html">test_fault_tolerance.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   68</span>                                           {</div>
 <div class="line"><span class="lineno">   69</span>        ++<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">call_count</a>;</div>
-<div class="line"><span class="lineno">   70</span>        <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Always fails&quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span>        <span class="keywordflow">return</span> kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed), <span class="stringliteral">&quot;Always fails&quot;</span>);</div>
 <div class="line"><span class="lineno">   71</span>    }</div>
 <div class="ttc" id="aclassFaultToleranceTest_html_aa7698d71e738783355a6016ce09e4a32"><div class="ttname"><a href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">FaultToleranceTest::call_count</a></div><div class="ttdeci">std::atomic&lt; int &gt; call_count</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d83/test__fault__tolerance_8cpp_source.html#l00054">test_fault_tolerance.cpp:54</a></div></div>
 </div><!-- fragment -->
@@ -215,7 +215,7 @@ Protected Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   58</span>                                    {</div>
 <div class="line"><span class="lineno">   59</span>        <span class="keywordtype">int</span> current_call = ++<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#aa7698d71e738783355a6016ce09e4a32">call_count</a>;</div>
 <div class="line"><span class="lineno">   60</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#a92bd18aa7262989508b775b9c7d42527">success_after_attempts</a> &gt; 0 &amp;&amp; current_call &lt;= <a class="code hl_variable" href="../../d4/d91/classFaultToleranceTest.html#a92bd18aa7262989508b775b9c7d42527">success_after_attempts</a>) {</div>
-<div class="line"><span class="lineno">   61</span>            <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, </div>
+<div class="line"><span class="lineno">   61</span>            <span class="keywordflow">return</span> kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed), </div>
 <div class="line"><span class="lineno">   62</span>                                 <span class="stringliteral">&quot;Simulated failure on attempt &quot;</span> + std::to_string(current_call));</div>
 <div class="line"><span class="lineno">   63</span>        }</div>
 <div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> make_success(42);</div>
@@ -405,7 +405,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:29:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -154,7 +154,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">   64</a></span>    result_void <a class="code hl_function" href="../../d8/d07/classDataConsistencyTest.html#ac6b460595d48414db0d100b08cc5e40f">failing_operation</a>() {</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        ++<a class="code hl_variable" href="../../d8/d07/classDataConsistencyTest.html#a3e871adb7c0e22de7bca259d3da96e8d">call_count</a>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> make_void_error(monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Simulated failure&quot;</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> kcenon::common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed), <span class="stringliteral">&quot;Simulated failure&quot;</span>);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    </div>
@@ -787,7 +787,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:23:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:29:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

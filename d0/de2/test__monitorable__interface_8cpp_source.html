@@ -111,7 +111,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d9/db4/classtest__monitorable__component.html#a95f9d9faed79a1550f9a9c6919438c5c">   33</a></span>    kcenon::common::Result&lt;monitoring_data&gt; <a class="code hl_function" href="../../d9/db4/classtest__monitorable__component.html#a95f9d9faed79a1550f9a9c6919438c5c">get_monitoring_data</a>()<span class="keyword"> const override </span>{</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../d7/da1/classkcenon_1_1monitoring_1_1monitorable__component.html#acdc6c930de8cabbcf434ef2c7b2b7538">is_monitoring_enabled</a>()) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">return</span> kcenon::common::make_error&lt;monitoring_data&gt;(</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">return</span> kcenon::common::kcenon::common::make_error&lt;monitoring_data&gt;(</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::monitoring_disabled),</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                <span class="stringliteral">&quot;Monitoring is disabled for this component&quot;</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            );</div>
@@ -642,7 +642,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:23:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:29:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

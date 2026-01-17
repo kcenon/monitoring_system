@@ -151,7 +151,7 @@ Protected Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d6/d82/test__error__boundaries_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../d6/d82/test__error__boundaries_8cpp_source.html">test_error_boundaries.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   65</span>                                           {</div>
 <div class="line"><span class="lineno">   66</span>        ++<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74">call_count</a>;</div>
-<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, <span class="stringliteral">&quot;Always fails&quot;</span>);</div>
+<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">return</span> kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed), <span class="stringliteral">&quot;Always fails&quot;</span>);</div>
 <div class="line"><span class="lineno">   68</span>    }</div>
 <div class="ttc" id="aclassErrorBoundariesTest_html_a21b76c7976343a329762c1ae973efa74"><div class="ttname"><a href="../../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74">ErrorBoundariesTest::call_count</a></div><div class="ttdeci">std::atomic&lt; int &gt; call_count</div><div class="ttdef"><b>Definition</b> <a href="../../d6/d82/test__error__boundaries_8cpp_source.html#l00051">test_error_boundaries.cpp:51</a></div></div>
 </div><!-- fragment -->
@@ -215,7 +215,7 @@ Protected Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   55</span>                                    {</div>
 <div class="line"><span class="lineno">   56</span>        <span class="keywordtype">int</span> current_call = ++<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a21b76c7976343a329762c1ae973efa74">call_count</a>;</div>
 <div class="line"><span class="lineno">   57</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a38dfd5bfddad774c3d6eb7fa5914c53f">success_after_attempts</a> &gt; 0 &amp;&amp; current_call &lt;= <a class="code hl_variable" href="../../db/d11/classErrorBoundariesTest.html#a38dfd5bfddad774c3d6eb7fa5914c53f">success_after_attempts</a>) {</div>
-<div class="line"><span class="lineno">   58</span>            <span class="keywordflow">return</span> make_error&lt;int&gt;(monitoring_error_code::operation_failed, </div>
+<div class="line"><span class="lineno">   58</span>            <span class="keywordflow">return</span> kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed), </div>
 <div class="line"><span class="lineno">   59</span>                                 <span class="stringliteral">&quot;Simulated failure on attempt &quot;</span> + std::to_string(current_call));</div>
 <div class="line"><span class="lineno">   60</span>        }</div>
 <div class="line"><span class="lineno">   61</span>        <span class="keywordflow">return</span> make_success(42);</div>
@@ -388,7 +388,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:29:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

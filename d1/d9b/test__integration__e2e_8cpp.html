@@ -411,7 +411,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  311</span> </div>
 <div class="line"><span class="lineno">  312</span>        <span class="comment">// Fail first 3 calls, then succeed</span></div>
 <div class="line"><span class="lineno">  313</span>        <span class="keywordflow">if</span> (call_count &lt;= 3 &amp;&amp; should_fail) {</div>
-<div class="line"><span class="lineno">  314</span>            <span class="keywordflow">return</span> make_error&lt;bool&gt;(monitoring_error_code::operation_failed,</div>
+<div class="line"><span class="lineno">  314</span>            <span class="keywordflow">return</span> kcenon::common::make_error&lt;bool&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed),</div>
 <div class="line"><span class="lineno">  315</span>                                    <span class="stringliteral">&quot;Simulated failure&quot;</span>);</div>
 <div class="line"><span class="lineno">  316</span>        }</div>
 <div class="line"><span class="lineno">  317</span> </div>
@@ -992,7 +992,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  233</span>                service_healthy = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  234</span>                <span class="keywordflow">return</span> make_success(<span class="keyword">true</span>);</div>
 <div class="line"><span class="lineno">  235</span>            }</div>
-<div class="line"><span class="lineno">  236</span>            <span class="keywordflow">return</span> make_error&lt;bool&gt;(monitoring_error_code::operation_failed,</div>
+<div class="line"><span class="lineno">  236</span>            <span class="keywordflow">return</span> kcenon::common::make_error&lt;bool&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed),</div>
 <div class="line"><span class="lineno">  237</span>                                    <span class="stringliteral">&quot;Still recovering&quot;</span>);</div>
 <div class="line"><span class="lineno">  238</span>        }</div>
 <div class="line"><span class="lineno">  239</span>    );</div>
@@ -1222,7 +1222,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:23:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:29:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
