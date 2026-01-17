@@ -32,7 +32,7 @@ public:
     
     kcenon::common::Result<monitoring_data> get_monitoring_data() const override {
         if (!is_monitoring_enabled()) {
-            return kcenon::common::kcenon::common::make_error<monitoring_data>(
+            return kcenon::common::make_error<monitoring_data>(
                 static_cast<int>(monitoring_error_code::monitoring_disabled),
                 "Monitoring is disabled for this component"
             );
