@@ -60,7 +60,7 @@ namespace kcenon::monitoring {
             : parent_(parent) {}
 
         template<typename TInterface>
-        result<bool> register_factory(
+        kcenon::common::Result<bool> register_factory(
             std::function<std::shared_ptr<TInterface>()> factory,
             service_lifetime lifetime) {
 
@@ -69,11 +69,11 @@ namespace kcenon::monitoring {
                 return std::static_pointer_cast<void>(factory());
             };
             lifetimes_[key] = lifetime;
-            return make_success(true);
+            return kcenon::common::ok(true);
         }
 
         template<typename TInterface>
-        result<bool> register_factory(
+        kcenon::common::Result<bool> register_factory(
             const std::string& name,
             std::function<std::shared_ptr<TInterface>()> factory,
             service_lifetime lifetime) {
@@ -83,15 +83,15 @@ namespace kcenon::monitoring {
                 return std::static_pointer_cast<void>(factory());
             };
             lifetimes_[key] = lifetime;
-            return make_success(true);
+            return kcenon::common::ok(true);
         }
 
         template<typename TInterface>
-        result<bool> register_singleton(std::shared_ptr<TInterface> instance) {
+        kcenon::common::Result<bool> register_singleton(std::shared_ptr<TInterface> instance) {
             std::string key = get_type_key(typeid(TInterface));
             singletons_[key] = std::static_pointer_cast<void>(instance);
             lifetimes_[key] = service_lifetime::singleton;
-            return make_success(true);
+            return kcenon::common::ok(true);
         }
 
         template<typename TInterface>
@@ -113,7 +113,7 @@ namespace kcenon::monitoring {
         }
 
         template<typename TInterface>
-        result<std::shared_ptr<TInterface>> resolve() const {
+        kcenon::common::Result<std::shared_ptr<TInterface>> resolve() const {
             std::lock_guard<std::recursive_mutex> lock(mutex_);
 
             std::string key = get_type_key(typeid(TInterface));
@@ -121,7 +121,7 @@ namespace kcenon::monitoring {
             // Check singletons first
             auto singleton_it = singletons_.find(key);
             if (singleton_it != singletons_.end()) {
-                return make_success(std::static_pointer_cast<TInterface>(singleton_it->second));
+                return kcenon::common::ok(std::static_pointer_cast<TInterface>(singleton_it->second));
             }
 
             // Check factories
@@ -134,11 +134,11 @@ namespace kcenon::monitoring {
                     // Create singleton/scoped instance
                     auto instance = factory_it->second();
                     singletons_[key] = instance;
-                    return make_success(std::static_pointer_cast<TInterface>(instance));
+                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
                 } else {
                     // Create transient instance
                     auto instance = factory_it->second();
-                    return make_success(std::static_pointer_cast<TInterface>(instance));
+                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
                 }
             }
 
@@ -147,12 +147,12 @@ namespace kcenon::monitoring {
                 return parent_->resolve<TInterface>();
             }
 
-            return make_error<std::shared_ptr<TInterface>>(
-                monitoring_error_code::collector_not_found, "Service not found");
+            return kcenon::common::make_error<std::shared_ptr<TInterface>>(
+                static_cast<int>(monitoring_error_code::collector_not_found), "Service not found");
         }
 
         template<typename TInterface>
-        result<std::shared_ptr<TInterface>> resolve(const std::string& name) const {
+        kcenon::common::Result<std::shared_ptr<TInterface>> resolve(const std::string& name) const {
             std::lock_guard<std::recursive_mutex> lock(mutex_);
 
             std::string key = get_named_key(typeid(TInterface), name);
@@ -160,7 +160,7 @@ namespace kcenon::monitoring {
             // Check singletons first
             auto singleton_it = singletons_.find(key);
             if (singleton_it != singletons_.end()) {
-                return make_success(std::static_pointer_cast<TInterface>(singleton_it->second));
+                return kcenon::common::ok(std::static_pointer_cast<TInterface>(singleton_it->second));
             }
 
             // Check factories
@@ -173,11 +173,11 @@ namespace kcenon::monitoring {
                     // Create singleton/scoped instance
                     auto instance = factory_it->second();
                     singletons_[key] = instance;
-                    return make_success(std::static_pointer_cast<TInterface>(instance));
+                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
                 } else {
                     // Create transient instance
                     auto instance = factory_it->second();
-                    return make_success(std::static_pointer_cast<TInterface>(instance));
+                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
                 }
             }
 
@@ -186,16 +186,16 @@ namespace kcenon::monitoring {
                 return parent_->resolve<TInterface>(name);
             }
 
-            return make_error<std::shared_ptr<TInterface>>(
-                monitoring_error_code::collector_not_found, "Named service not found");
+            return kcenon::common::make_error<std::shared_ptr<TInterface>>(
+                static_cast<int>(monitoring_error_code::collector_not_found), "Named service not found");
         }
 
         // Additional methods needed by tests
-        virtual result<bool> clear() {
+        virtual kcenon::common::Result<bool> clear() {
             factories_.clear();
             singletons_.clear();
             lifetimes_.clear();
-            return make_success(true);
+            return kcenon::common::ok(true);
         }
 
         virtual std::unique_ptr<service_container_interface> create_scope() {

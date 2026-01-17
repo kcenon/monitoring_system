@@ -62,17 +62,17 @@ public:
 // Test that interfaces can be used as base classes
 class test_collector : public interface_metric_collector {
 public:
-    result<std::vector<metric>> collect_metrics() override {
-        return result<std::vector<metric>>(std::vector<metric>{});
+    kcenon::common::Result<std::vector<metric>> collect_metrics() override {
+        return kcenon::common::ok(std::vector<metric>{});
     }
 
-    result_void start_collection(const collection_config& config) override {
+    kcenon::common::VoidResult start_collection(const collection_config& config) override {
         (void)config;
-        return make_void_success();
+        return kcenon::common::ok();
     }
 
-    result_void stop_collection() override {
-        return make_void_success();
+    kcenon::common::VoidResult stop_collection() override {
+        return kcenon::common::ok();
     }
 
     bool is_collecting() const override {
@@ -87,12 +87,12 @@ public:
         return collection_config{};
     }
 
-    result_void update_config(const collection_config& config) override {
+    kcenon::common::VoidResult update_config(const collection_config& config) override {
         (void)config;
-        return make_void_success();
+        return kcenon::common::ok();
     }
 
-    result<std::vector<metric>> force_collect() override {
+    kcenon::common::Result<std::vector<metric>> force_collect() override {
         return collect_metrics();
     }
 
@@ -103,14 +103,14 @@ public:
     void reset_stats() override {}
 
     // Observable interface methods
-    result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
+    kcenon::common::VoidResult register_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
         (void)observer;
-        return make_void_success();
+        return kcenon::common::ok();
     }
 
-    result_void unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
+    kcenon::common::VoidResult unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
         (void)observer;
-        return make_void_success();
+        return kcenon::common::ok();
     }
 
     void notify_metric(const metric_event& event) override { (void)event; }
