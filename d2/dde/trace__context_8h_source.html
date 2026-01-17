@@ -117,18 +117,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d03/namespacekcenon.html">kcenon</a> { <span class="keyword">namespace </span>monitoring {</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">struct </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">trace_context</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">struct </span>trace_context {</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::string trace_id;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    std::string span_id;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::optional&lt;std::string&gt; parent_span_id;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::chrono::system_clock::time_point start_time;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">trace_context</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">create_root</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">operation</a>) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> trace_context create_root(<span class="keyword">const</span> std::string&amp; operation) {</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> {generate_id(), generate_id(), std::nullopt, </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                std::chrono::system_clock::now()};</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">trace_context</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">create_child</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">operation</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    trace_context create_child(<span class="keyword">const</span> std::string&amp; operation)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> {trace_id, generate_id(), span_id,</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                std::chrono::system_clock::now()};</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
@@ -138,12 +138,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>} <span class="comment">// namespace</span></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00027">common_monitor_adapter.h:27</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

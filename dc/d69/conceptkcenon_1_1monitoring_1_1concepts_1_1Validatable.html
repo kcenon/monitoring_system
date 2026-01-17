@@ -83,19 +83,18 @@ $(function() {
 <p><code>#include &lt;<a class="el" href="../../d7/d8d/metric__collector__interface_8h_source.html">metric_collector_interface.h</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="../../dc/d69/conceptkcenon_1_1monitoring_1_1concepts_1_1Validatable.html">kcenon::monitoring::concepts::Validatable</a> =  <span class="keyword">requires</span>(<span class="keyword">const</span> T <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">t</a>) {</div>
-<div class="line">    { <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">t</a>.validate() };</div>
+<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="../../dc/d69/conceptkcenon_1_1monitoring_1_1concepts_1_1Validatable.html">kcenon::monitoring::concepts::Validatable</a> =  <span class="keyword">requires</span>(<span class="keyword">const</span> T t) {</div>
+<div class="line">    { t.validate() };</div>
 <div class="line">}</div>
 <div class="ttc" id="aconceptkcenon_1_1monitoring_1_1concepts_1_1Validatable_html"><div class="ttname"><a href="../../dc/d69/conceptkcenon_1_1monitoring_1_1concepts_1_1Validatable.html">kcenon::monitoring::concepts::Validatable</a></div><div class="ttdoc">A type that can validate its own state.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d8d/metric__collector__interface_8h_source.html#l00085">metric_collector_interface.h:85</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A type that can validate its own state. </p>
 <p>Validatable types provide a validate() method that checks internal consistency and returns a result indicating success or validation errors.</p>
 <p>Example usage: </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;Val<span class="keywordtype">id</span>atable C&gt;</div>
 <div class="line"><span class="keyword">auto</span> apply_config(<span class="keyword">const</span> C&amp; config) {</div>
-<div class="line">    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = config.validate();</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_err()) {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line">    <span class="keyword">auto</span> result = config.validate();</div>
+<div class="line">    <span class="keywordflow">if</span> (result.is_err()) {</div>
+<div class="line">        <span class="keywordflow">return</span> result;</div>
 <div class="line">    }</div>
 <div class="line">    <span class="comment">// Apply configuration</span></div>
 <div class="line">}</div>
@@ -104,7 +103,7 @@ $(function() {
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:24 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -151,42 +151,42 @@ $(function() {
 <div class="line">    <span class="keyword">explicit</span> alert_aggregator(<span class="keyword">const</span> alert_aggregator_config&amp; config)</div>
 <div class="line">        : <a id="a5" name="a5"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>(config) {}</div>
 <div class="line"> </div>
-<div class="line">    std::string <a id="a6" name="a6"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a3565dda73ac437990459395d93785edb">add_alert</a>(<span class="keyword">const</span> alert&amp; <a id="a7" name="a7"></a><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a id="a8" name="a8"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line">    std::string <a id="a6" name="a6"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a3565dda73ac437990459395d93785edb">add_alert</a>(<span class="keyword">const</span> alert&amp; a) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a id="a7" name="a7"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
 <div class="line"> </div>
-<div class="line">        std::string group_key = <a id="a9" name="a9"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">compute_group_key</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line">        std::string group_key = <a id="a8" name="a8"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">compute_group_key</a>(a);</div>
+<div class="line">        <span class="keyword">auto</span> now = std::chrono::steady_clock::now();</div>
 <div class="line"> </div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a id="a10" name="a10"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.find(group_key);</div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end()) {</div>
-<div class="line">            alert_group <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>(group_key);</div>
-<div class="line">            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>.common_labels = <a id="a11" name="a11"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">extract_common_labels</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
-<div class="line">            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>.add_alert(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
-<div class="line">            <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>[group_key] = std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">new_group</a>);</div>
-<div class="line">            <a id="a12" name="a12"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[group_key] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>;</div>
+<div class="line">        <span class="keyword">auto</span> it = <a id="a9" name="a9"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.find(group_key);</div>
+<div class="line">        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end()) {</div>
+<div class="line">            alert_group new_group(group_key);</div>
+<div class="line">            new_group.common_labels = <a id="a10" name="a10"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">extract_common_labels</a>(a);</div>
+<div class="line">            new_group.add_alert(a);</div>
+<div class="line">            <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>[group_key] = std::move(new_group);</div>
+<div class="line">            <a id="a11" name="a11"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[group_key] = now;</div>
 <div class="line">        } <span class="keywordflow">else</span> {</div>
 <div class="line">            <span class="comment">// Check for duplicate</span></div>
 <div class="line">            <span class="keywordtype">bool</span> is_duplicate = <span class="keyword">false</span>;</div>
-<div class="line">            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a> : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second.alerts) {</div>
-<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a>.fingerprint() == <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.fingerprint()) {</div>
-<div class="line">                    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">existing</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>;  <span class="comment">// Update existing alert</span></div>
+<div class="line">            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; existing : it-&gt;second.alerts) {</div>
+<div class="line">                <span class="keywordflow">if</span> (existing.fingerprint() == a.fingerprint()) {</div>
+<div class="line">                    existing = a;  <span class="comment">// Update existing alert</span></div>
 <div class="line">                    is_duplicate = <span class="keyword">true</span>;</div>
 <div class="line">                    <span class="keywordflow">break</span>;</div>
 <div class="line">                }</div>
 <div class="line">            }</div>
 <div class="line">            <span class="keywordflow">if</span> (!is_duplicate) {</div>
-<div class="line">                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second.add_alert(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>);</div>
+<div class="line">                it-&gt;second.add_alert(a);</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">return</span> group_key;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;alert_group&gt; <a id="a13" name="a13"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae464eb5b92379e7fe111b34d7102e6ae">get_ready_groups</a>() {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line">    std::vector&lt;alert_group&gt; <a id="a12" name="a12"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae464eb5b92379e7fe111b34d7102e6ae">get_ready_groups</a>() {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
 <div class="line"> </div>
-<div class="line">        std::vector&lt;alert_group&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>;</div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line">        std::vector&lt;alert_group&gt; ready;</div>
+<div class="line">        <span class="keyword">auto</span> now = std::chrono::steady_clock::now();</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [key, group] : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>) {</div>
 <div class="line">            <span class="keywordflow">if</span> (group.empty()) {</div>
@@ -194,69 +194,69 @@ $(function() {
 <div class="line">            }</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Check if first wait has elapsed</span></div>
-<div class="line">            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">first_seen</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[key];</div>
-<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">first_seen</a> &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4b9745baf1d44ce158e4ed186ce0227e">group_wait</a>) {</div>
+<div class="line">            <span class="keyword">auto</span> first_seen = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>[key];</div>
+<div class="line">            <span class="keywordflow">if</span> (now - first_seen &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4b9745baf1d44ce158e4ed186ce0227e">group_wait</a>) {</div>
 <div class="line">                <span class="keywordflow">continue</span>;</div>
 <div class="line">            }</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Check if enough time since last send</span></div>
-<div class="line">            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a> = <a id="a14" name="a14"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.find(key);</div>
-<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a> != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.end()) {</div>
-<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">last_sent_it</a>-&gt;second &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a03a87dc2846ba7c222e5488744e3aeb0">group_interval</a>) {</div>
+<div class="line">            <span class="keyword">auto</span> last_sent_it = <a id="a13" name="a13"></a><a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.find(key);</div>
+<div class="line">            <span class="keywordflow">if</span> (last_sent_it != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.end()) {</div>
+<div class="line">                <span class="keywordflow">if</span> (now - last_sent_it-&gt;second &lt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a03a87dc2846ba7c222e5488744e3aeb0">group_interval</a>) {</div>
 <div class="line">                    <span class="keywordflow">continue</span>;</div>
 <div class="line">                }</div>
 <div class="line">            }</div>
 <div class="line"> </div>
-<div class="line">            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>.push_back(group);</div>
+<div class="line">            ready.push_back(group);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">ready</a>;</div>
+<div class="line">        <span class="keywordflow">return</span> ready;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a15" name="a15"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a456c412a666f0e6486f670d1dc7d6b35">mark_sent</a>(<span class="keyword">const</span> std::string&amp; group_key) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a14" name="a14"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a456c412a666f0e6486f670d1dc7d6b35">mark_sent</a>(<span class="keyword">const</span> std::string&amp; group_key) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
 <div class="line">        <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>[group_key] = std::chrono::steady_clock::now();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a16" name="a16"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a1e282d52ffa9fa437914eca503f8efe1">cleanup</a>() {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a15" name="a15"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a1e282d52ffa9fa437914eca503f8efe1">cleanup</a>() {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
 <div class="line"> </div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
+<div class="line">        <span class="keyword">auto</span> now = std::chrono::steady_clock::now();</div>
 <div class="line"> </div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.begin(); <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end(); ) {</div>
-<div class="line">            <span class="keyword">auto</span>&amp; group = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second;</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.begin(); it != <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.end(); ) {</div>
+<div class="line">            <span class="keyword">auto</span>&amp; group = it-&gt;second;</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Remove resolved alerts that have timed out</span></div>
-<div class="line">            <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> = group.alerts.begin();</div>
-<div class="line">            <span class="keywordflow">while</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> != group.alerts.end()) {</div>
-<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>-&gt;state == <a id="a17" name="a17"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>) {</div>
-<div class="line">                    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">resolved_time</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>-&gt;resolved_at.value_or(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a>);</div>
-<div class="line">                    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">resolved_time</a> &gt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4d15dac17aefe46419e248bbb5ef1e08">resolve_timeout</a>) {</div>
-<div class="line">                        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a> = group.alerts.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>);</div>
+<div class="line">            <span class="keyword">auto</span> alert_it = group.alerts.begin();</div>
+<div class="line">            <span class="keywordflow">while</span> (alert_it != group.alerts.end()) {</div>
+<div class="line">                <span class="keywordflow">if</span> (alert_it-&gt;state == <a id="a16" name="a16"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">alert_state::resolved</a>) {</div>
+<div class="line">                    <span class="keyword">auto</span> resolved_time = alert_it-&gt;resolved_at.value_or(now);</div>
+<div class="line">                    <span class="keywordflow">if</span> (now - resolved_time &gt; <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a4d15dac17aefe46419e248bbb5ef1e08">resolve_timeout</a>) {</div>
+<div class="line">                        alert_it = group.alerts.erase(alert_it);</div>
 <div class="line">                        <span class="keywordflow">continue</span>;</div>
 <div class="line">                    }</div>
 <div class="line">                }</div>
-<div class="line">                ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">alert_it</a>;</div>
+<div class="line">                ++alert_it;</div>
 <div class="line">            }</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Remove empty groups</span></div>
 <div class="line">            <span class="keywordflow">if</span> (group.empty()) {</div>
-<div class="line">                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;first);</div>
-<div class="line">                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;first);</div>
-<div class="line">                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>);</div>
+<div class="line">                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a6666f019ab664e7a7c0169b13d4c81ab">first_seen_</a>.erase(it-&gt;first);</div>
+<div class="line">                <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#abdd4a5a7931441b69f1029abbe3931b1">last_sent_</a>.erase(it-&gt;first);</div>
+<div class="line">                it = <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.erase(it);</div>
 <div class="line">            } <span class="keywordflow">else</span> {</div>
-<div class="line">                ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>;</div>
+<div class="line">                ++it;</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">size_t</span> <a id="a18" name="a18"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a1ca5a543212493d42952c3c6050540d9">group_count</a>()<span class="keyword"> const </span>{</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">size_t</span> <a id="a17" name="a17"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a1ca5a543212493d42952c3c6050540d9">group_count</a>()<span class="keyword"> const </span>{</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
 <div class="line">        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>.size();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">size_t</span> <a id="a19" name="a19"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#af0e8a63d634625bcabdec5fb498ea206">total_alert_count</a>()<span class="keyword"> const </span>{</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">size_t</span> <a id="a18" name="a18"></a><a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#af0e8a63d634625bcabdec5fb498ea206">total_alert_count</a>()<span class="keyword"> const </span>{</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#adc69005eb9f234886f80122d07ec6768">mutex_</a>);</div>
 <div class="line">        <span class="keywordtype">size_t</span> count = 0;</div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, group] : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a9d4262ecb0b251c519ef274c01aa3caa">groups_</a>) {</div>
 <div class="line">            count += group.size();</div>
@@ -265,24 +265,24 @@ $(function() {
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
-<div class="line">    std::string <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">compute_group_key</a>(<span class="keyword">const</span> alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>)<span class="keyword"> const </span>{</div>
+<div class="line">    std::string <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a5a300d4718d3d233ccca335fdcb282f6">compute_group_key</a>(<span class="keyword">const</span> alert&amp; a)<span class="keyword"> const </span>{</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">group_by_labels</a>.empty()) {</div>
-<div class="line">            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.rule_name;</div>
+<div class="line">            <span class="keywordflow">return</span> a.rule_name;</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        std::string key;</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">group_by_labels</a>) {</div>
-<div class="line">            key += <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>) + <span class="stringliteral">&quot;:&quot;</span>;</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; label : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">group_by_labels</a>) {</div>
+<div class="line">            key += a.labels.get(label) + <span class="stringliteral">&quot;:&quot;</span>;</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> key;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    alert_labels <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">extract_common_labels</a>(<span class="keyword">const</span> alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>)<span class="keyword"> const </span>{</div>
+<div class="line">    alert_labels <a class="code hl_function" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#a54d653bc9647e9c9881c1e0f557450bb">extract_common_labels</a>(<span class="keyword">const</span> alert&amp; a)<span class="keyword"> const </span>{</div>
 <div class="line">        alert_labels common;</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">group_by_labels</a>) {</div>
-<div class="line">            std::string <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.<a id="a20" name="a20"></a><a class="code hl_variable" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a4df003363dbadb002974edb8eb84c2bd">labels</a>.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>);</div>
-<div class="line">            <span class="keywordflow">if</span> (!<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a>.empty()) {</div>
-<div class="line">                common.set(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">val</a>);</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; label : <a class="code hl_variable" href="../../de/d7b/classkcenon_1_1monitoring_1_1alert__aggregator.html#ae770f2a3d7408ec7fa3c8a97e12ad8df">config_</a>.<a class="code hl_variable" href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a747040372caa4a6f5c68e9554c497bdc">group_by_labels</a>) {</div>
+<div class="line">            std::string val = a.<a id="a19" name="a19"></a><a class="code hl_variable" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a4df003363dbadb002974edb8eb84c2bd">labels</a>.get(label);</div>
+<div class="line">            <span class="keywordflow">if</span> (!val.empty()) {</div>
+<div class="line">                common.set(label, val);</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> common;</div>
@@ -297,21 +297,21 @@ $(function() {
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">struct </span>inhibition_rule {</div>
-<div class="line">    std::string <a id="a21" name="a21"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#aa8852db218b78e776aa7781a98d7fcab">name</a>;</div>
-<div class="line">    alert_labels <a id="a22" name="a22"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a8266064b6a56ccbdc345d5b631dcea34">source_match</a>;      </div>
-<div class="line">    alert_labels <a id="a23" name="a23"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a3a471e65f0b0fe0c763befc81955c5a6">target_match</a>;      </div>
-<div class="line">    std::vector&lt;std::string&gt; <a id="a24" name="a24"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">equal</a>; </div>
+<div class="line">    std::string <a id="a20" name="a20"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#aa8852db218b78e776aa7781a98d7fcab">name</a>;</div>
+<div class="line">    alert_labels <a id="a21" name="a21"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a8266064b6a56ccbdc345d5b631dcea34">source_match</a>;      </div>
+<div class="line">    alert_labels <a id="a22" name="a22"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a3a471e65f0b0fe0c763befc81955c5a6">target_match</a>;      </div>
+<div class="line">    std::vector&lt;std::string&gt; <a id="a23" name="a23"></a><a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">equal</a>; </div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a25" name="a25"></a><a class="code hl_function" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a76ba5d2139fedd7d272a8e9a85a64b44">matches_source</a>(<span class="keyword">const</span> alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>)<span class="keyword"> const </span>{</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a24" name="a24"></a><a class="code hl_function" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a76ba5d2139fedd7d272a8e9a85a64b44">matches_source</a>(<span class="keyword">const</span> alert&amp; a)<span class="keyword"> const </span>{</div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a8266064b6a56ccbdc345d5b631dcea34">source_match</a>.<a class="code hl_variable" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a4df003363dbadb002974edb8eb84c2bd">labels</a>) {</div>
-<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.labels.get(key) != value) {</div>
+<div class="line">            <span class="keywordflow">if</span> (a.labels.get(key) != value) {</div>
 <div class="line">                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a26" name="a26"></a><a class="code hl_function" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a30aaa3536dbc027c34d7f78d170582ff">should_inhibit</a>(<span class="keyword">const</span> alert&amp; source, <span class="keyword">const</span> alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>)<span class="keyword"> const </span>{</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a25" name="a25"></a><a class="code hl_function" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a30aaa3536dbc027c34d7f78d170582ff">should_inhibit</a>(<span class="keyword">const</span> alert&amp; source, <span class="keyword">const</span> alert&amp; target)<span class="keyword"> const </span>{</div>
 <div class="line">        <span class="comment">// Source must match</span></div>
 <div class="line">        <span class="keywordflow">if</span> (!<a class="code hl_function" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a76ba5d2139fedd7d272a8e9a85a64b44">matches_source</a>(source)) {</div>
 <div class="line">            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
@@ -319,14 +319,14 @@ $(function() {
 <div class="line"> </div>
 <div class="line">        <span class="comment">// Target must match target_match labels</span></div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a3a471e65f0b0fe0c763befc81955c5a6">target_match</a>.<a class="code hl_variable" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a4df003363dbadb002974edb8eb84c2bd">labels</a>) {</div>
-<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.labels.get(key) != value) {</div>
+<div class="line">            <span class="keywordflow">if</span> (target.labels.get(key) != value) {</div>
 <div class="line">                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="comment">// Equal labels must match between source and target</span></div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a> : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">equal</a>) {</div>
-<div class="line">            <span class="keywordflow">if</span> (source.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>) != <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.labels.get(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">label</a>)) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; label : <a class="code hl_variable" href="../../df/df8/structkcenon_1_1monitoring_1_1inhibition__rule.html#a2178fbae0e774e791f9caf0cdfa32321">equal</a>) {</div>
+<div class="line">            <span class="keywordflow">if</span> (source.labels.get(label) != target.labels.get(label)) {</div>
 <div class="line">                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
@@ -337,37 +337,37 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>alert_inhibitor {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a27" name="a27"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#aab80a05005502ab2b25ff05a24baf0d0">add_rule</a>(<span class="keyword">const</span> inhibition_rule&amp; rule) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a id="a28" name="a28"></a><a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
-<div class="line">        <a id="a29" name="a29"></a><a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.push_back(rule);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a26" name="a26"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#aab80a05005502ab2b25ff05a24baf0d0">add_rule</a>(<span class="keyword">const</span> inhibition_rule&amp; rule) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a id="a27" name="a27"></a><a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line">        <a id="a28" name="a28"></a><a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.push_back(rule);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a30" name="a30"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a1a4ddab3fb1a70fe33d28b814c28c06e">remove_rule</a>(<span class="keyword">const</span> std::string&amp; name) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a29" name="a29"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a1a4ddab3fb1a70fe33d28b814c28c06e">remove_rule</a>(<span class="keyword">const</span> std::string&amp; name) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
 <div class="line">        <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.erase(</div>
 <div class="line">            std::remove_if(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.begin(), <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.end(),</div>
-<div class="line">                [&amp;name](<span class="keyword">const</span> inhibition_rule&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">r</a>) { return r.name == name; }),</div>
+<div class="line">                [&amp;name](<span class="keyword">const</span> inhibition_rule&amp; r) { return r.name == name; }),</div>
 <div class="line">            <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>.end()</div>
 <div class="line">        );</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a31" name="a31"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a32dd3ab034c2f7343b9f117c826ebff9">is_inhibited</a>(<span class="keyword">const</span> alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>,</div>
-<div class="line">                      <span class="keyword">const</span> std::vector&lt;alert&gt;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">active_alerts</a>)<span class="keyword"> const </span>{</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a30" name="a30"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a32dd3ab034c2f7343b9f117c826ebff9">is_inhibited</a>(<span class="keyword">const</span> alert&amp; target,</div>
+<div class="line">                      <span class="keyword">const</span> std::vector&lt;alert&gt;&amp; active_alerts)<span class="keyword"> const </span>{</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; rule : <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>) {</div>
-<div class="line">            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; source : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">active_alerts</a>) {</div>
+<div class="line">            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; source : active_alerts) {</div>
 <div class="line">                <span class="comment">// Source must be firing</span></div>
-<div class="line">                <span class="keywordflow">if</span> (source.state != <a id="a32" name="a32"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>) {</div>
+<div class="line">                <span class="keywordflow">if</span> (source.state != <a id="a31" name="a31"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">alert_state::firing</a>) {</div>
 <div class="line">                    <span class="keywordflow">continue</span>;</div>
 <div class="line">                }</div>
 <div class="line"> </div>
 <div class="line">                <span class="comment">// Don&#39;t inhibit self</span></div>
-<div class="line">                <span class="keywordflow">if</span> (source.fingerprint() == <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>.fingerprint()) {</div>
+<div class="line">                <span class="keywordflow">if</span> (source.fingerprint() == target.fingerprint()) {</div>
 <div class="line">                    <span class="keywordflow">continue</span>;</div>
 <div class="line">                }</div>
 <div class="line"> </div>
-<div class="line">                <span class="keywordflow">if</span> (rule.should_inhibit(source, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">target</a>)) {</div>
+<div class="line">                <span class="keywordflow">if</span> (rule.should_inhibit(source, target)) {</div>
 <div class="line">                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">                }</div>
 <div class="line">            }</div>
@@ -376,8 +376,8 @@ $(function() {
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;inhibition_rule&gt; <a id="a33" name="a33"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ab97e47242ed95165f018e28fbe3c1286">get_rules</a>()<span class="keyword"> const </span>{</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
+<div class="line">    std::vector&lt;inhibition_rule&gt; <a id="a32" name="a32"></a><a class="code hl_function" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ab97e47242ed95165f018e28fbe3c1286">get_rules</a>()<span class="keyword"> const </span>{</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#a403c1b10cef970698bfd8a5cac88bf0a">mutex_</a>);</div>
 <div class="line">        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d9/d97/classkcenon_1_1monitoring_1_1alert__inhibitor.html#ad26c9994406e152cc368bfc60025493c">rules_</a>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
@@ -388,67 +388,67 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>cooldown_tracker {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">explicit</span> cooldown_tracker(std::chrono::milliseconds <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">default_cooldown</a>)</div>
-<div class="line">        : <a id="a34" name="a34"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">default_cooldown_</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">default_cooldown</a>) {}</div>
+<div class="line">    <span class="keyword">explicit</span> cooldown_tracker(std::chrono::milliseconds default_cooldown)</div>
+<div class="line">        : <a id="a33" name="a33"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">default_cooldown_</a>(default_cooldown) {}</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a35" name="a35"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a073b0e354a57a558b9f462eef4ae04d2">is_in_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint)<span class="keyword"> const </span>{</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a id="a36" name="a36"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a34" name="a34"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a073b0e354a57a558b9f462eef4ae04d2">is_in_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint)<span class="keyword"> const </span>{</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a id="a35" name="a35"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
 <div class="line"> </div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a id="a37" name="a37"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
+<div class="line">        <span class="keyword">auto</span> it = <a id="a36" name="a36"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
+<div class="line">        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
 <div class="line">            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">        }</div>
 <div class="line"> </div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> = <a id="a38" name="a38"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
-<div class="line">        <span class="keywordflow">return</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second) &lt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>;</div>
+<div class="line">        <span class="keyword">auto</span> now = std::chrono::steady_clock::now();</div>
+<div class="line">        <span class="keyword">auto</span> cooldown = <a id="a37" name="a37"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
+<div class="line">        <span class="keywordflow">return</span> (now - it-&gt;second) &lt; cooldown;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a39" name="a39"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a00b665aa767937c3558c8e0210549e0a">record_notification</a>(<span class="keyword">const</span> std::string&amp; fingerprint) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a38" name="a38"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a00b665aa767937c3558c8e0210549e0a">record_notification</a>(<span class="keyword">const</span> std::string&amp; fingerprint) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
 <div class="line">        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>[fingerprint] = std::chrono::steady_clock::now();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a40" name="a40"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#af72b5f440822ae10ba79e75cd47a4789">set_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint,</div>
-<div class="line">                      std::chrono::milliseconds <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
-<div class="line">        <a id="a41" name="a41"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>[fingerprint] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>;</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a39" name="a39"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#af72b5f440822ae10ba79e75cd47a4789">set_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint,</div>
+<div class="line">                      std::chrono::milliseconds cooldown) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line">        <a id="a40" name="a40"></a><a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>[fingerprint] = cooldown;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::chrono::milliseconds <a id="a42" name="a42"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#aab6489323ade3bb5fc3cfb87656c0138">remaining_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint)<span class="keyword"> const </span>{</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line">    std::chrono::milliseconds <a id="a41" name="a41"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#aab6489323ade3bb5fc3cfb87656c0138">remaining_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint)<span class="keyword"> const </span>{</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
 <div class="line"> </div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
+<div class="line">        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.find(fingerprint);</div>
+<div class="line">        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.end()) {</div>
 <div class="line">            <span class="keywordflow">return</span> std::chrono::milliseconds::zero();</div>
 <div class="line">        }</div>
 <div class="line"> </div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> = <a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
+<div class="line">        <span class="keyword">auto</span> now = std::chrono::steady_clock::now();</div>
+<div class="line">        <span class="keyword">auto</span> cooldown = <a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(fingerprint);</div>
 <div class="line">        <span class="keyword">auto</span> elapsed = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(</div>
-<div class="line">            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second);</div>
+<div class="line">            now - it-&gt;second);</div>
 <div class="line"> </div>
-<div class="line">        <span class="keywordflow">if</span> (elapsed &gt;= <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a>) {</div>
+<div class="line">        <span class="keywordflow">if</span> (elapsed &gt;= cooldown) {</div>
 <div class="line">            <span class="keywordflow">return</span> std::chrono::milliseconds::zero();</div>
 <div class="line">        }</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">cooldown</a> - elapsed;</div>
+<div class="line">        <span class="keywordflow">return</span> cooldown - elapsed;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a43" name="a43"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#ac52be5a090502cad5be790e22ac34456">clear_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a42" name="a42"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#ac52be5a090502cad5be790e22ac34456">clear_cooldown</a>(<span class="keyword">const</span> std::string&amp; fingerprint) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
 <div class="line">        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.erase(fingerprint);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a44" name="a44"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a3a6044e613ba844f5f60b1976e4a11cb">reset</a>() {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a43" name="a43"></a><a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a3a6044e613ba844f5f60b1976e4a11cb">reset</a>() {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#acda3a0c66348bb9525d47a1639f5e2a3">mutex_</a>);</div>
 <div class="line">        <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a2fd27424123fb5b4dec5fb9430d86fcd">last_notification_</a>.clear();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line">    std::chrono::milliseconds <a class="code hl_function" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a56d962dcb66edea621e4004f2a2b370f">get_cooldown_for</a>(<span class="keyword">const</span> std::string&amp; fingerprint)<span class="keyword"> const </span>{</div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.find(fingerprint);</div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> != <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.end()) {</div>
-<div class="line">            <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second;</div>
+<div class="line">        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.find(fingerprint);</div>
+<div class="line">        <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a4ec2d8782c09c79b3807c759ec498fa6">custom_cooldowns_</a>.end()) {</div>
+<div class="line">            <span class="keywordflow">return</span> it-&gt;second;</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../de/d5e/classkcenon_1_1monitoring_1_1cooldown__tracker.html#a226579253cab8c075e100397ccda4030">default_cooldown_</a>;</div>
 <div class="line">    }</div>
@@ -462,54 +462,54 @@ $(function() {
 <div class="line"><span class="keyword">class </span>alert_deduplicator {</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    <span class="keyword">explicit</span> alert_deduplicator(std::chrono::milliseconds cache_duration)</div>
-<div class="line">        : <a id="a45" name="a45"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a98f72896fc1ffa3d8dca7f85df26d82c">cache_duration_</a>(cache_duration) {}</div>
+<div class="line">        : <a id="a44" name="a44"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a98f72896fc1ffa3d8dca7f85df26d82c">cache_duration_</a>(cache_duration) {}</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a46" name="a46"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a4f78b0325c1011a38123b5b07eab0521">is_duplicate</a>(<span class="keyword">const</span> alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a id="a47" name="a47"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a96ec45b47e752e58657cebced615e457">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a45" name="a45"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a4f78b0325c1011a38123b5b07eab0521">is_duplicate</a>(<span class="keyword">const</span> alert&amp; a) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a id="a46" name="a46"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a96ec45b47e752e58657cebced615e457">mutex_</a>);</div>
 <div class="line"> </div>
-<div class="line">        <a id="a48" name="a48"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a82b1741379a0fa3505f52f137b297264">cleanup_expired</a>();</div>
+<div class="line">        <a id="a47" name="a47"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a82b1741379a0fa3505f52f137b297264">cleanup_expired</a>();</div>
 <div class="line"> </div>
-<div class="line">        <span class="keyword">auto</span> fingerprint = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.fingerprint();</div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a id="a49" name="a49"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.find(fingerprint);</div>
+<div class="line">        <span class="keyword">auto</span> fingerprint = a.fingerprint();</div>
+<div class="line">        <span class="keyword">auto</span> it = <a id="a48" name="a48"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.find(fingerprint);</div>
 <div class="line"> </div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> == <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.end()) {</div>
+<div class="line">        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.end()) {</div>
 <div class="line">            <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>[fingerprint] = std::chrono::steady_clock::now();</div>
 <div class="line">            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="comment">// Same state is duplicate</span></div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">state_it</a> = <a id="a50" name="a50"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>.find(fingerprint);</div>
-<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">state_it</a> != <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>.end() &amp;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">state_it</a>-&gt;second == <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.state) {</div>
+<div class="line">        <span class="keyword">auto</span> state_it = <a id="a49" name="a49"></a><a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>.find(fingerprint);</div>
+<div class="line">        <span class="keywordflow">if</span> (state_it != <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>.end() &amp;&amp; state_it-&gt;second == a.state) {</div>
 <div class="line">            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="comment">// State changed - not duplicate</span></div>
-<div class="line">        <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>[fingerprint] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.state;</div>
+<div class="line">        <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>[fingerprint] = a.state;</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a51" name="a51"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a80f628c7f9e9d17a1f314f8717ea2aba">mark_seen</a>(<span class="keyword">const</span> alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>) {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a96ec45b47e752e58657cebced615e457">mutex_</a>);</div>
-<div class="line">        <span class="keyword">auto</span> fingerprint = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.fingerprint();</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a50" name="a50"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a80f628c7f9e9d17a1f314f8717ea2aba">mark_seen</a>(<span class="keyword">const</span> alert&amp; a) {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a96ec45b47e752e58657cebced615e457">mutex_</a>);</div>
+<div class="line">        <span class="keyword">auto</span> fingerprint = a.fingerprint();</div>
 <div class="line">        <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>[fingerprint] = std::chrono::steady_clock::now();</div>
-<div class="line">        <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>[fingerprint] = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>.state;</div>
+<div class="line">        <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>[fingerprint] = a.state;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a52" name="a52"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#ae28d95f4021009e080c30c7aaed8853a">reset</a>() {</div>
-<div class="line">        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a96ec45b47e752e58657cebced615e457">mutex_</a>);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a51" name="a51"></a><a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#ae28d95f4021009e080c30c7aaed8853a">reset</a>() {</div>
+<div class="line">        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a96ec45b47e752e58657cebced615e457">mutex_</a>);</div>
 <div class="line">        <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.clear();</div>
 <div class="line">        <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>.clear();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a82b1741379a0fa3505f52f137b297264">cleanup_expired</a>() {</div>
-<div class="line">        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> = std::chrono::steady_clock::now();</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.begin(); <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> != <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.end(); ) {</div>
-<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">now</a> - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;second &gt; <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a98f72896fc1ffa3d8dca7f85df26d82c">cache_duration_</a>) {</div>
-<div class="line">                <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>-&gt;first);</div>
-<div class="line">                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a> = <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.erase(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>);</div>
+<div class="line">        <span class="keyword">auto</span> now = std::chrono::steady_clock::now();</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.begin(); it != <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.end(); ) {</div>
+<div class="line">            <span class="keywordflow">if</span> (now - it-&gt;second &gt; <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a98f72896fc1ffa3d8dca7f85df26d82c">cache_duration_</a>) {</div>
+<div class="line">                <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#a16390c93910ce55d5ddc047497e0388c">last_state_</a>.erase(it-&gt;first);</div>
+<div class="line">                it = <a class="code hl_variable" href="../../d4/d46/classkcenon_1_1monitoring_1_1alert__deduplicator.html#acb1efb93afe21aea84315436213ceb17">seen_</a>.erase(it);</div>
 <div class="line">            } <span class="keywordflow">else</span> {</div>
-<div class="line">                ++<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">it</a>;</div>
+<div class="line">                ++it;</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
@@ -522,35 +522,35 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>pipeline_stage {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <a id="a53" name="a53"></a><a class="code hl_function" href="../../d2/d82/classkcenon_1_1monitoring_1_1pipeline__stage.html#aba6e4d16542ce7fc5b9b4cc6136b0dc2">~pipeline_stage</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line">    <span class="keyword">virtual</span> <a id="a52" name="a52"></a><a class="code hl_function" href="../../d2/d82/classkcenon_1_1monitoring_1_1pipeline__stage.html#aba6e4d16542ce7fc5b9b4cc6136b0dc2">~pipeline_stage</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a id="a54" name="a54"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b">process</a>(alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>) = 0;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a id="a53" name="a53"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b">process</a>(alert&amp; a) = 0;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> std::string <a id="a55" name="a55"></a><a class="code hl_function" href="../../d2/d82/classkcenon_1_1monitoring_1_1pipeline__stage.html#ae0faf195fda4f64402d727080933777a">name</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line">    <span class="keyword">virtual</span> std::string <a id="a54" name="a54"></a><a class="code hl_function" href="../../d2/d82/classkcenon_1_1monitoring_1_1pipeline__stage.html#ae0faf195fda4f64402d727080933777a">name</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>alert_pipeline {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a56" name="a56"></a><a class="code hl_function" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a285085c6674a3981f90f16611b8563f3">add_stage</a>(std::shared_ptr&lt;pipeline_stage&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>) {</div>
-<div class="line">        <a id="a57" name="a57"></a><a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.push_back(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>));</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a55" name="a55"></a><a class="code hl_function" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a285085c6674a3981f90f16611b8563f3">add_stage</a>(std::shared_ptr&lt;pipeline_stage&gt; stage) {</div>
+<div class="line">        <a id="a56" name="a56"></a><a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.push_back(std::move(stage));</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b">process</a>(alert&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>) {</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a> : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
-<div class="line">            <span class="keywordflow">if</span> (!<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>-&gt;process(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">a</a>)) {</div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b">process</a>(alert&amp; a) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; stage : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
+<div class="line">            <span class="keywordflow">if</span> (!stage-&gt;process(a)) {</div>
 <div class="line">                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;std::string&gt; <a id="a58" name="a58"></a><a class="code hl_function" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#ad70ccdf3d1be6fb029e2cd3b361e1701">stage_names</a>()<span class="keyword"> const </span>{</div>
-<div class="line">        std::vector&lt;std::string&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>;</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>.reserve(<a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.size());</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a> : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
-<div class="line">            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>.push_back(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">stage</a>-&gt;name());</div>
+<div class="line">    std::vector&lt;std::string&gt; <a id="a57" name="a57"></a><a class="code hl_function" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#ad70ccdf3d1be6fb029e2cd3b361e1701">stage_names</a>()<span class="keyword"> const </span>{</div>
+<div class="line">        std::vector&lt;std::string&gt; names;</div>
+<div class="line">        names.reserve(<a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>.size());</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; stage : <a class="code hl_variable" href="../../d5/d40/classkcenon_1_1monitoring_1_1alert__pipeline.html#a8b5d5beb30ca88ad86e867e64e87773e">stages_</a>) {</div>
+<div class="line">            names.push_back(stage-&gt;name());</div>
 <div class="line">        }</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">names</a>;</div>
+<div class="line">        <span class="keywordflow">return</span> names;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
@@ -604,7 +604,6 @@ $(function() {
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1pipeline__stage_html_ae0faf195fda4f64402d727080933777a"><div class="ttname"><a href="../../d2/d82/classkcenon_1_1monitoring_1_1pipeline__stage.html#ae0faf195fda4f64402d727080933777a">kcenon::monitoring::pipeline_stage::name</a></div><div class="ttdeci">virtual std::string name() const =0</div><div class="ttdoc">Get stage name.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00028">common_monitor_adapter.h:28</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b">kcenon::monitoring::otel_resource_type::process</a></div><div class="ttdeci">@ process</div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346aa766706e0c4e3fdbfe418b2f56dc5829">kcenon::monitoring::alert_state::firing</a></div><div class="ttdeci">@ firing</div><div class="ttdoc">Alert is active and notifications sent.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346afafdd4fbb3fee9a56e17d43689f48d18">kcenon::monitoring::alert_state::resolved</a></div><div class="ttdeci">@ resolved</div><div class="ttdoc">Alert condition cleared.</div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__aggregator__config_html_a03a87dc2846ba7c222e5488744e3aeb0"><div class="ttname"><a href="../../d4/dbb/structkcenon_1_1monitoring_1_1alert__aggregator__config.html#a03a87dc2846ba7c222e5488744e3aeb0">kcenon::monitoring::alert_aggregator_config::group_interval</a></div><div class="ttdeci">std::chrono::milliseconds group_interval</div><div class="ttdoc">Interval between group sends.</div><div class="ttdef"><b>Definition</b> <a href="../../de/d71/alert__pipeline_8h_source.html#l00060">alert_pipeline.h:60</a></div></div>
@@ -622,7 +621,7 @@ $(function() {
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

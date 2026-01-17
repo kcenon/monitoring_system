@@ -95,36 +95,36 @@ Collaboration diagram for kcenon::monitoring::storage_backend:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2ce00845ceea6afa64287eafb664326a" id="r_a2ce00845ceea6afa64287eafb664326a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a2ce00845ceea6afa64287eafb664326a">~storage_backend</a> ()=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">default</a></td></tr>
+<tr class="memitem:a2ce00845ceea6afa64287eafb664326a" id="r_a2ce00845ceea6afa64287eafb664326a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a2ce00845ceea6afa64287eafb664326a">~storage_backend</a> ()=default</td></tr>
 <tr class="separator:a2ce00845ceea6afa64287eafb664326a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a014abbf6ae41271c38334a88b8cd89cc" id="r_a014abbf6ae41271c38334a88b8cd89cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a014abbf6ae41271c38334a88b8cd89cc">store</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &amp;snapshot)=0</td></tr>
-<tr class="memdesc:a014abbf6ae41271c38334a88b8cd89cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store a metrics snapshot.  <br /></td></tr>
-<tr class="separator:a014abbf6ae41271c38334a88b8cd89cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a71daaf8406b1f409cbc973ec69dc0d" id="r_a7a71daaf8406b1f409cbc973ec69dc0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a7a71daaf8406b1f409cbc973ec69dc0d">retrieve</a> (std::size_t <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">index</a>) <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> =0</td></tr>
-<tr class="memdesc:a7a71daaf8406b1f409cbc973ec69dc0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a stored snapshot by index.  <br /></td></tr>
-<tr class="separator:a7a71daaf8406b1f409cbc973ec69dc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4d50841622585b4560d18c357474d54" id="r_ad4d50841622585b4560d18c357474d54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; std::vector&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#ad4d50841622585b4560d18c357474d54">retrieve_range</a> (std::size_t <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">start_index</a>, std::size_t count) <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> =0</td></tr>
-<tr class="memdesc:ad4d50841622585b4560d18c357474d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve multiple snapshots.  <br /></td></tr>
-<tr class="separator:ad4d50841622585b4560d18c357474d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bb7f3134b824f48b035d85e595d0519" id="r_a4bb7f3134b824f48b035d85e595d0519"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a4bb7f3134b824f48b035d85e595d0519">capacity</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> =0</td></tr>
+<tr class="memitem:a0a95d89f2221c723eda0c2e00e2cc907" id="r_a0a95d89f2221c723eda0c2e00e2cc907"><td class="memItemLeft" align="right" valign="top">virtual common::VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a0a95d89f2221c723eda0c2e00e2cc907">store</a> (const <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &amp;snapshot)=0</td></tr>
+<tr class="memdesc:a0a95d89f2221c723eda0c2e00e2cc907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store a metrics snapshot.  <br /></td></tr>
+<tr class="separator:a0a95d89f2221c723eda0c2e00e2cc907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a000df956089d4795f5594eebf155a0d6" id="r_a000df956089d4795f5594eebf155a0d6"><td class="memItemLeft" align="right" valign="top">virtual common::Result&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a000df956089d4795f5594eebf155a0d6">retrieve</a> (std::size_t index) const =0</td></tr>
+<tr class="memdesc:a000df956089d4795f5594eebf155a0d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a stored snapshot by index.  <br /></td></tr>
+<tr class="separator:a000df956089d4795f5594eebf155a0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af01ed5f4bd728767d6921d4ef81478fe" id="r_af01ed5f4bd728767d6921d4ef81478fe"><td class="memItemLeft" align="right" valign="top">virtual common::Result&lt; std::vector&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#af01ed5f4bd728767d6921d4ef81478fe">retrieve_range</a> (std::size_t start_index, std::size_t count) const =0</td></tr>
+<tr class="memdesc:af01ed5f4bd728767d6921d4ef81478fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve multiple snapshots.  <br /></td></tr>
+<tr class="separator:af01ed5f4bd728767d6921d4ef81478fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bb7f3134b824f48b035d85e595d0519" id="r_a4bb7f3134b824f48b035d85e595d0519"><td class="memItemLeft" align="right" valign="top">virtual std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a4bb7f3134b824f48b035d85e595d0519">capacity</a> () const =0</td></tr>
 <tr class="memdesc:a4bb7f3134b824f48b035d85e595d0519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get storage capacity.  <br /></td></tr>
 <tr class="separator:a4bb7f3134b824f48b035d85e595d0519"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84a06f3c9b7a3022f820533dcc907115" id="r_a84a06f3c9b7a3022f820533dcc907115"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a84a06f3c9b7a3022f820533dcc907115">size</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> =0</td></tr>
+<tr class="memitem:a84a06f3c9b7a3022f820533dcc907115" id="r_a84a06f3c9b7a3022f820533dcc907115"><td class="memItemLeft" align="right" valign="top">virtual std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a84a06f3c9b7a3022f820533dcc907115">size</a> () const =0</td></tr>
 <tr class="memdesc:a84a06f3c9b7a3022f820533dcc907115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current storage usage.  <br /></td></tr>
 <tr class="separator:a84a06f3c9b7a3022f820533dcc907115"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32c8bb3c73a70a60cb9ff8f552324a7f" id="r_a32c8bb3c73a70a60cb9ff8f552324a7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a32c8bb3c73a70a60cb9ff8f552324a7f">clear</a> ()=0</td></tr>
-<tr class="memdesc:a32c8bb3c73a70a60cb9ff8f552324a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all stored data.  <br /></td></tr>
-<tr class="separator:a32c8bb3c73a70a60cb9ff8f552324a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59b7e6ffbd2f690e446be4988a4f760e" id="r_a59b7e6ffbd2f690e446be4988a4f760e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a59b7e6ffbd2f690e446be4988a4f760e">flush</a> ()=0</td></tr>
-<tr class="memdesc:a59b7e6ffbd2f690e446be4988a4f760e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush any buffered data to persistent storage.  <br /></td></tr>
-<tr class="separator:a59b7e6ffbd2f690e446be4988a4f760e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73349e89be5c58e628f06f76bce128f1" id="r_a73349e89be5c58e628f06f76bce128f1"><td class="memItemLeft" align="right" valign="top">virtual common::VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a73349e89be5c58e628f06f76bce128f1">clear</a> ()=0</td></tr>
+<tr class="memdesc:a73349e89be5c58e628f06f76bce128f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all stored data.  <br /></td></tr>
+<tr class="separator:a73349e89be5c58e628f06f76bce128f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c4a45b8ba2425c239a4e1a8f9873eb8" id="r_a1c4a45b8ba2425c239a4e1a8f9873eb8"><td class="memItemLeft" align="right" valign="top">virtual common::VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dab/classkcenon_1_1monitoring_1_1storage__backend.html#a1c4a45b8ba2425c239a4e1a8f9873eb8">flush</a> ()=0</td></tr>
+<tr class="memdesc:a1c4a45b8ba2425c239a4e1a8f9873eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush any buffered data to persistent storage.  <br /></td></tr>
+<tr class="separator:a1c4a45b8ba2425c239a4e1a8f9873eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract interface for metrics storage. </p>
 <p>Provides persistence capabilities for metric snapshots. Implementations can store data in memory, on disk, or in external databases.</p>
 <p>@thread_safety Implementations MUST be thread-safe. Store and retrieve operations may be called concurrently. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d6e/monitoring__core_8h_source.html#l00419">419</a> of file <a class="el" href="../../d1/d6e/monitoring__core_8h_source.html">monitoring_core.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d6e/monitoring__core_8h_source.html#l00422">422</a> of file <a class="el" href="../../d1/d6e/monitoring__core_8h_source.html">monitoring_core.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ce00845ceea6afa64287eafb664326a" name="a2ce00845ceea6afa64287eafb664326a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ce00845ceea6afa64287eafb664326a">&#9670;&#160;</a></span>~storage_backend()</h2>
@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> kcenon::monitoring::storage_backend::~storage_backend </td>
+          <td class="memname">virtual kcenon::monitoring::storage_backend::~storage_backend </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -148,7 +148,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a67">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a63">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
@@ -164,7 +164,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> std::size_t kcenon::monitoring::storage_backend::capacity </td>
+          <td class="memname">virtual std::size_t kcenon::monitoring::storage_backend::capacity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -179,13 +179,13 @@ Public Member Functions</h2></td></tr>
 
 <p>Get storage capacity. </p>
 <dl class="section return"><dt>Returns</dt><dd>Maximum number of snapshots that can be stored </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a71">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a67">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
 </div>
-<a id="a32c8bb3c73a70a60cb9ff8f552324a7f" name="a32c8bb3c73a70a60cb9ff8f552324a7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32c8bb3c73a70a60cb9ff8f552324a7f">&#9670;&#160;</a></span>clear()</h2>
+<a id="a73349e89be5c58e628f06f76bce128f1" name="a73349e89be5c58e628f06f76bce128f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73349e89be5c58e628f06f76bce128f1">&#9670;&#160;</a></span>clear()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,7 +194,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::storage_backend::clear </td>
+          <td class="memname">virtual common::VoidResult kcenon::monitoring::storage_backend::clear </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -209,13 +209,13 @@ Public Member Functions</h2></td></tr>
 
 <p>Clear all stored data. </p>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success or error </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a73">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a69">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
 </div>
-<a id="a59b7e6ffbd2f690e446be4988a4f760e" name="a59b7e6ffbd2f690e446be4988a4f760e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59b7e6ffbd2f690e446be4988a4f760e">&#9670;&#160;</a></span>flush()</h2>
+<a id="a1c4a45b8ba2425c239a4e1a8f9873eb8" name="a1c4a45b8ba2425c239a4e1a8f9873eb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c4a45b8ba2425c239a4e1a8f9873eb8">&#9670;&#160;</a></span>flush()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +224,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::storage_backend::flush </td>
+          <td class="memname">virtual common::VoidResult kcenon::monitoring::storage_backend::flush </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -239,13 +239,13 @@ Public Member Functions</h2></td></tr>
 
 <p>Flush any buffered data to persistent storage. </p>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success or error </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a74">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a70">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
 </div>
-<a id="a7a71daaf8406b1f409cbc973ec69dc0d" name="a7a71daaf8406b1f409cbc973ec69dc0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a71daaf8406b1f409cbc973ec69dc0d">&#9670;&#160;</a></span>retrieve()</h2>
+<a id="a000df956089d4795f5594eebf155a0d6" name="a000df956089d4795f5594eebf155a0d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a000df956089d4795f5594eebf155a0d6">&#9670;&#160;</a></span>retrieve()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +254,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; kcenon::monitoring::storage_backend::retrieve </td>
+          <td class="memname">virtual common::Result&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; kcenon::monitoring::storage_backend::retrieve </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -276,13 +276,13 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result containing the snapshot or error </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a69">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a65">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
 </div>
-<a id="ad4d50841622585b4560d18c357474d54" name="ad4d50841622585b4560d18c357474d54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4d50841622585b4560d18c357474d54">&#9670;&#160;</a></span>retrieve_range()</h2>
+<a id="af01ed5f4bd728767d6921d4ef81478fe" name="af01ed5f4bd728767d6921d4ef81478fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af01ed5f4bd728767d6921d4ef81478fe">&#9670;&#160;</a></span>retrieve_range()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -291,7 +291,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; std::vector&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; &gt; kcenon::monitoring::storage_backend::retrieve_range </td>
+          <td class="memname">virtual common::Result&lt; std::vector&lt; <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &gt; &gt; kcenon::monitoring::storage_backend::retrieve_range </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>start_index</em>, </td>
@@ -324,7 +324,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result containing snapshots or error </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a70">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a66">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
@@ -339,7 +339,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> std::size_t kcenon::monitoring::storage_backend::size </td>
+          <td class="memname">virtual std::size_t kcenon::monitoring::storage_backend::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -354,13 +354,13 @@ Public Member Functions</h2></td></tr>
 
 <p>Get current storage usage. </p>
 <dl class="section return"><dt>Returns</dt><dd>Number of stored snapshots </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a72">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a68">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
 </div>
-<a id="a014abbf6ae41271c38334a88b8cd89cc" name="a014abbf6ae41271c38334a88b8cd89cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a014abbf6ae41271c38334a88b8cd89cc">&#9670;&#160;</a></span>store()</h2>
+<a id="a0a95d89f2221c723eda0c2e00e2cc907" name="a0a95d89f2221c723eda0c2e00e2cc907"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a95d89f2221c723eda0c2e00e2cc907">&#9670;&#160;</a></span>store()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -369,9 +369,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::storage_backend::store </td>
+          <td class="memname">virtual common::VoidResult kcenon::monitoring::storage_backend::store </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> &amp;&#160;</td>
           <td class="paramname"><em>snapshot</em></td><td>)</td>
           <td></td>
         </tr>
@@ -391,7 +391,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result indicating success or storage error </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a68">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d0/d5d/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2interfaces_2monitoring_core_8h-example.html#a64">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/interfaces/monitoring_core.h</a>.</dd>
 </dl>
 
 </div>
@@ -402,7 +402,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:24 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

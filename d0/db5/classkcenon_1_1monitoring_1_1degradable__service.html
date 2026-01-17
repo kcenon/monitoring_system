@@ -130,19 +130,19 @@ Collaboration diagram for kcenon::monitoring::degradable_service&lt; T &gt;:</di
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:acf8e118936b394f1c1aa9ff712df5200" id="r_acf8e118936b394f1c1aa9ff712df5200"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#acf8e118936b394f1c1aa9ff712df5200">normal_operation</a> = std::function&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; T &gt;()&gt;</td></tr>
-<tr class="separator:acf8e118936b394f1c1aa9ff712df5200"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69249ce43fa1a03f1a29bff4dfa7914a" id="r_a69249ce43fa1a03f1a29bff4dfa7914a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a69249ce43fa1a03f1a29bff4dfa7914a">degraded_operation</a> = std::function&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; T &gt;(<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a>)&gt;</td></tr>
-<tr class="separator:a69249ce43fa1a03f1a29bff4dfa7914a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f8be2aaf7ee1dfb7c073b39c88079a" id="r_a35f8be2aaf7ee1dfb7c073b39c88079a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a35f8be2aaf7ee1dfb7c073b39c88079a">normal_operation</a> = std::function&lt; common::Result&lt; T &gt;()&gt;</td></tr>
+<tr class="separator:a35f8be2aaf7ee1dfb7c073b39c88079a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae550d68fa0e86d9a77eaf66483179668" id="r_ae550d68fa0e86d9a77eaf66483179668"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae550d68fa0e86d9a77eaf66483179668">degraded_operation</a> = std::function&lt; common::Result&lt; T &gt;(<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a>)&gt;</td></tr>
+<tr class="separator:ae550d68fa0e86d9a77eaf66483179668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af8b0cb8244afaa6606618a74c148bc81" id="r_af8b0cb8244afaa6606618a74c148bc81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#af8b0cb8244afaa6606618a74c148bc81">degradable_service</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp;name, std::shared_ptr&lt; <a class="el" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html">graceful_degradation_manager</a> &gt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">manager</a>, <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#acf8e118936b394f1c1aa9ff712df5200">normal_operation</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">normal_op</a>, <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a69249ce43fa1a03f1a29bff4dfa7914a">degraded_operation</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">degraded_op</a>)</td></tr>
+<tr class="memitem:af8b0cb8244afaa6606618a74c148bc81" id="r_af8b0cb8244afaa6606618a74c148bc81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#af8b0cb8244afaa6606618a74c148bc81">degradable_service</a> (const std::string &amp;name, std::shared_ptr&lt; <a class="el" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html">graceful_degradation_manager</a> &gt; manager, <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a35f8be2aaf7ee1dfb7c073b39c88079a">normal_operation</a> normal_op, <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae550d68fa0e86d9a77eaf66483179668">degraded_operation</a> degraded_op)</td></tr>
 <tr class="separator:af8b0cb8244afaa6606618a74c148bc81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b632affa5723c9cba6962358731b0b" id="r_ac5b632affa5723c9cba6962358731b0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ac5b632affa5723c9cba6962358731b0b">execute</a> ()</td></tr>
-<tr class="memdesc:ac5b632affa5723c9cba6962358731b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the service operation.  <br /></td></tr>
-<tr class="separator:ac5b632affa5723c9cba6962358731b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a878616bc8a459b109d9e5c635d3c48bd" id="r_a878616bc8a459b109d9e5c635d3c48bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a878616bc8a459b109d9e5c635d3c48bd">get_name</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a></td></tr>
+<tr class="memitem:aba11ec3f2114cfc92d1790f4d457144a" id="r_aba11ec3f2114cfc92d1790f4d457144a"><td class="memItemLeft" align="right" valign="top">common::Result&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#aba11ec3f2114cfc92d1790f4d457144a">execute</a> ()</td></tr>
+<tr class="memdesc:aba11ec3f2114cfc92d1790f4d457144a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the service operation.  <br /></td></tr>
+<tr class="separator:aba11ec3f2114cfc92d1790f4d457144a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a878616bc8a459b109d9e5c635d3c48bd" id="r_a878616bc8a459b109d9e5c635d3c48bd"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a878616bc8a459b109d9e5c635d3c48bd">get_name</a> () const</td></tr>
 <tr class="memdesc:a878616bc8a459b109d9e5c635d3c48bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get service name.  <br /></td></tr>
 <tr class="separator:a878616bc8a459b109d9e5c635d3c48bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -152,51 +152,51 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a0cc12c695f37be7997ccaa1b2b302f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3631d4bf503552c013e77a676ab2071" id="r_ae3631d4bf503552c013e77a676ab2071"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html">graceful_degradation_manager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">manager_</a></td></tr>
 <tr class="separator:ae3631d4bf503552c013e77a676ab2071"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1449a343b4e354ed8466d7dd518b206d" id="r_a1449a343b4e354ed8466d7dd518b206d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#acf8e118936b394f1c1aa9ff712df5200">normal_operation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a></td></tr>
+<tr class="memitem:a1449a343b4e354ed8466d7dd518b206d" id="r_a1449a343b4e354ed8466d7dd518b206d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a35f8be2aaf7ee1dfb7c073b39c88079a">normal_operation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a></td></tr>
 <tr class="separator:a1449a343b4e354ed8466d7dd518b206d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f4b8accc25e20fc6d454c9f0855a784" id="r_a8f4b8accc25e20fc6d454c9f0855a784"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a69249ce43fa1a03f1a29bff4dfa7914a">degraded_operation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a></td></tr>
+<tr class="memitem:a8f4b8accc25e20fc6d454c9f0855a784" id="r_a8f4b8accc25e20fc6d454c9f0855a784"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae550d68fa0e86d9a77eaf66483179668">degraded_operation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a></td></tr>
 <tr class="separator:a8f4b8accc25e20fc6d454c9f0855a784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class kcenon::monitoring::degradable_service&lt; T &gt;</div><p>Degradable service wrapper. </p>
 <p>Wraps a service with degradation support. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00365">365</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00363">363</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a69249ce43fa1a03f1a29bff4dfa7914a" name="a69249ce43fa1a03f1a29bff4dfa7914a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69249ce43fa1a03f1a29bff4dfa7914a">&#9670;&#160;</a></span>degraded_operation</h2>
+<a id="ae550d68fa0e86d9a77eaf66483179668" name="ae550d68fa0e86d9a77eaf66483179668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae550d68fa0e86d9a77eaf66483179668">&#9670;&#160;</a></span>degraded_operation</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">using</a> <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::degraded_operation =  std::function&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt;T&gt;(<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a>)&gt;</td>
+          <td class="memname">using <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::degraded_operation =  std::function&lt;common::Result&lt;T&gt;(<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a>)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00368">368</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00366">366</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
-<a id="acf8e118936b394f1c1aa9ff712df5200" name="acf8e118936b394f1c1aa9ff712df5200"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf8e118936b394f1c1aa9ff712df5200">&#9670;&#160;</a></span>normal_operation</h2>
+<a id="a35f8be2aaf7ee1dfb7c073b39c88079a" name="a35f8be2aaf7ee1dfb7c073b39c88079a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f8be2aaf7ee1dfb7c073b39c88079a">&#9670;&#160;</a></span>normal_operation</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">using</a> <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::normal_operation =  std::function&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt;T&gt;()&gt;</td>
+          <td class="memname">using <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::normal_operation =  std::function&lt;common::Result&lt;T&gt;()&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00367">367</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00365">365</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
@@ -207,7 +207,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -215,7 +215,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
         <tr>
           <td class="memname"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::degradable_service </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
@@ -227,13 +227,13 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#acf8e118936b394f1c1aa9ff712df5200">normal_operation</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a35f8be2aaf7ee1dfb7c073b39c88079a">normal_operation</a>&#160;</td>
           <td class="paramname"><em>normal_op</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a69249ce43fa1a03f1a29bff4dfa7914a">degraded_operation</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae550d68fa0e86d9a77eaf66483179668">degraded_operation</a>&#160;</td>
           <td class="paramname"><em>degraded_op</em>&#160;</td>
         </tr>
         <tr>
@@ -249,33 +249,32 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00370">370</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  374</span>        : <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">name_</a>(name)</div>
-<div class="line"><span class="lineno">  375</span>        , <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">manager_</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">manager</a>))</div>
-<div class="line"><span class="lineno">  376</span>        , <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">normal_op</a>))</div>
-<div class="line"><span class="lineno">  377</span>        , <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a>(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">degraded_op</a>)) {}</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_a0cc12c695f37be7997ccaa1b2b302f02"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">kcenon::monitoring::degradable_service::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00408">graceful_degradation.h:408</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_a1449a343b4e354ed8466d7dd518b206d"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">kcenon::monitoring::degradable_service::normal_op_</a></div><div class="ttdeci">normal_operation normal_op_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00410">graceful_degradation.h:410</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_a8f4b8accc25e20fc6d454c9f0855a784"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">kcenon::monitoring::degradable_service::degraded_op_</a></div><div class="ttdeci">degraded_operation degraded_op_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00411">graceful_degradation.h:411</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_ae3631d4bf503552c013e77a676ab2071"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">kcenon::monitoring::degradable_service::manager_</a></div><div class="ttdeci">std::shared_ptr&lt; graceful_degradation_manager &gt; manager_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00409">graceful_degradation.h:409</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00368">368</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  372</span>        : <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">name_</a>(name)</div>
+<div class="line"><span class="lineno">  373</span>        , <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">manager_</a>(std::move(manager))</div>
+<div class="line"><span class="lineno">  374</span>        , <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a>(std::move(normal_op))</div>
+<div class="line"><span class="lineno">  375</span>        , <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a>(std::move(degraded_op)) {}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_a0cc12c695f37be7997ccaa1b2b302f02"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">kcenon::monitoring::degradable_service::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00405">graceful_degradation.h:405</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_a1449a343b4e354ed8466d7dd518b206d"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">kcenon::monitoring::degradable_service::normal_op_</a></div><div class="ttdeci">normal_operation normal_op_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00407">graceful_degradation.h:407</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_a8f4b8accc25e20fc6d454c9f0855a784"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">kcenon::monitoring::degradable_service::degraded_op_</a></div><div class="ttdeci">degraded_operation degraded_op_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00408">graceful_degradation.h:408</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1degradable__service_html_ae3631d4bf503552c013e77a676ab2071"><div class="ttname"><a href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">kcenon::monitoring::degradable_service::manager_</a></div><div class="ttdeci">std::shared_ptr&lt; graceful_degradation_manager &gt; manager_</div><div class="ttdef"><b>Definition</b> <a href="../../d0/df6/graceful__degradation_8h_source.html#l00406">graceful_degradation.h:406</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac5b632affa5723c9cba6962358731b0b" name="ac5b632affa5723c9cba6962358731b0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5b632affa5723c9cba6962358731b0b">&#9670;&#160;</a></span>execute()</h2>
+<a id="aba11ec3f2114cfc92d1790f4d457144a" name="aba11ec3f2114cfc92d1790f4d457144a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba11ec3f2114cfc92d1790f4d457144a">&#9670;&#160;</a></span>execute()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>&lt; T &gt; <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::execute </td>
+          <td class="memname">common::Result&lt; T &gt; <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::execute </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -290,24 +289,23 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 
 <p>Execute the service operation. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00382">382</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  382</span>                        {</div>
-<div class="line"><span class="lineno">  383</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">manager_</a>) {</div>
-<div class="line"><span class="lineno">  384</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a>();</div>
-<div class="line"><span class="lineno">  385</span>        }</div>
-<div class="line"><span class="lineno">  386</span> </div>
-<div class="line"><span class="lineno">  387</span>        <span class="keyword">auto</span> level = <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">manager_</a>-&gt;get_service_level(<a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">name_</a>);</div>
-<div class="line"><span class="lineno">  388</span>        <span class="keywordflow">if</span> (level == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001afea087517c26fadd409bd4b9dc642555">degradation_level::normal</a>) {</div>
-<div class="line"><span class="lineno">  389</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a>();</div>
-<div class="line"><span class="lineno">  390</span>        }</div>
-<div class="line"><span class="lineno">  391</span> </div>
-<div class="line"><span class="lineno">  392</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a>) {</div>
-<div class="line"><span class="lineno">  393</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a>(level);</div>
-<div class="line"><span class="lineno">  394</span>        }</div>
-<div class="line"><span class="lineno">  395</span> </div>
-<div class="line"><span class="lineno">  396</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">make_error&lt;T&gt;</a>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac87ed2939e63bc8bf29f82947b896d6b">monitoring_error_code::service_degraded</a>,</div>
-<div class="line"><span class="lineno">  397</span>                            <span class="stringliteral">&quot;Service is degraded and no fallback available&quot;</span>);</div>
-<div class="line"><span class="lineno">  398</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00380">380</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  380</span>                              {</div>
+<div class="line"><span class="lineno">  381</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">manager_</a>) {</div>
+<div class="line"><span class="lineno">  382</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a>();</div>
+<div class="line"><span class="lineno">  383</span>        }</div>
+<div class="line"><span class="lineno">  384</span> </div>
+<div class="line"><span class="lineno">  385</span>        <span class="keyword">auto</span> level = <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae3631d4bf503552c013e77a676ab2071">manager_</a>-&gt;get_service_level(<a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">name_</a>);</div>
+<div class="line"><span class="lineno">  386</span>        <span class="keywordflow">if</span> (level == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001afea087517c26fadd409bd4b9dc642555">degradation_level::normal</a>) {</div>
+<div class="line"><span class="lineno">  387</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a1449a343b4e354ed8466d7dd518b206d">normal_op_</a>();</div>
+<div class="line"><span class="lineno">  388</span>        }</div>
+<div class="line"><span class="lineno">  389</span> </div>
+<div class="line"><span class="lineno">  390</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a>) {</div>
+<div class="line"><span class="lineno">  391</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a8f4b8accc25e20fc6d454c9f0855a784">degraded_op_</a>(level);</div>
+<div class="line"><span class="lineno">  392</span>        }</div>
+<div class="line"><span class="lineno">  393</span> </div>
+<div class="line"><span class="lineno">  394</span>        <span class="keywordflow">return</span> common::Result&lt;T&gt;::err(error_info(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac87ed2939e63bc8bf29f82947b896d6b">monitoring_error_code::service_degraded</a>, <span class="stringliteral">&quot;Service is degraded and no fallback available&quot;</span>).to_common_error());</div>
+<div class="line"><span class="lineno">  395</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a987dca6741f6c68e38102336e2bd8001afea087517c26fadd409bd4b9dc642555"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001afea087517c26fadd409bd4b9dc642555">kcenon::monitoring::degradation_level::normal</a></div><div class="ttdeci">@ normal</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83eac87ed2939e63bc8bf29f82947b896d6b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eac87ed2939e63bc8bf29f82947b896d6b">kcenon::monitoring::monitoring_error_code::service_degraded</a></div><div class="ttdeci">@ service_degraded</div></div>
 </div><!-- fragment -->
@@ -319,13 +317,13 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp; <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::get_name </td>
+          <td class="memname">const std::string &amp; <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::get_name </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -340,10 +338,10 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 
 <p>Get service name. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00403">403</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  403</span>                                      {</div>
-<div class="line"><span class="lineno">  404</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">name_</a>;</div>
-<div class="line"><span class="lineno">  405</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00400">400</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  400</span>                                      {</div>
+<div class="line"><span class="lineno">  401</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a0cc12c695f37be7997ccaa1b2b302f02">name_</a>;</div>
+<div class="line"><span class="lineno">  402</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -354,13 +352,13 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a69249ce43fa1a03f1a29bff4dfa7914a">degraded_operation</a> <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::degraded_op_</td>
+          <td class="memname"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#ae550d68fa0e86d9a77eaf66483179668">degraded_operation</a> <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::degraded_op_</td>
         </tr>
       </table>
   </td>
@@ -370,7 +368,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00411">411</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00408">408</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
@@ -380,7 +378,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -396,7 +394,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00409">409</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00406">406</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
@@ -406,7 +404,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -422,7 +420,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00408">408</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00405">405</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
@@ -432,13 +430,13 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T &gt; </div>
+template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#acf8e118936b394f1c1aa9ff712df5200">normal_operation</a> <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::normal_op_</td>
+          <td class="memname"><a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html#a35f8be2aaf7ee1dfb7c073b39c88079a">normal_operation</a> <a class="el" href="../../d0/db5/classkcenon_1_1monitoring_1_1degradable__service.html">kcenon::monitoring::degradable_service</a>&lt; T &gt;::normal_op_</td>
         </tr>
       </table>
   </td>
@@ -448,7 +446,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00410">410</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html#l00407">407</a> of file <a class="el" href="../../d0/df6/graceful__degradation_8h_source.html">graceful_degradation.h</a>.</p>
 
 </div>
 </div>
@@ -458,7 +456,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -113,18 +113,18 @@ Collaboration diagram for kcenon::monitoring::trace_exporter_interface:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af04613a0207d7df61df6246f0d0fa062" id="r_af04613a0207d7df61df6246f0d0fa062"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#af04613a0207d7df61df6246f0d0fa062">~trace_exporter_interface</a> ()=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">default</a></td></tr>
+<tr class="memitem:af04613a0207d7df61df6246f0d0fa062" id="r_af04613a0207d7df61df6246f0d0fa062"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#af04613a0207d7df61df6246f0d0fa062">~trace_exporter_interface</a> ()=default</td></tr>
 <tr class="separator:af04613a0207d7df61df6246f0d0fa062"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38e1fd39d6e8a2778aded68f6972f303" id="r_a38e1fd39d6e8a2778aded68f6972f303"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#a38e1fd39d6e8a2778aded68f6972f303">export_spans</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::vector&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">trace_span</a> &gt; &amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">spans</a>)=0</td></tr>
-<tr class="memdesc:a38e1fd39d6e8a2778aded68f6972f303"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export a batch of spans.  <br /></td></tr>
-<tr class="separator:a38e1fd39d6e8a2778aded68f6972f303"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae62313b20be7f70d167ecbe11696bb62" id="r_ae62313b20be7f70d167ecbe11696bb62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#ae62313b20be7f70d167ecbe11696bb62">flush</a> ()=0</td></tr>
-<tr class="memdesc:ae62313b20be7f70d167ecbe11696bb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush any pending spans.  <br /></td></tr>
-<tr class="separator:ae62313b20be7f70d167ecbe11696bb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ab96d66a22121a0aa25283a26728e2" id="r_a45ab96d66a22121a0aa25283a26728e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#a45ab96d66a22121a0aa25283a26728e2">shutdown</a> ()=0</td></tr>
-<tr class="memdesc:a45ab96d66a22121a0aa25283a26728e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown the exporter.  <br /></td></tr>
-<tr class="separator:a45ab96d66a22121a0aa25283a26728e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13aaab9861e204475ff242114b8431f6" id="r_a13aaab9861e204475ff242114b8431f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> std::unordered_map&lt; std::string, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#a13aaab9861e204475ff242114b8431f6">get_stats</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> =0</td></tr>
+<tr class="memitem:ad45bb6d7b84726250401db90407b097b" id="r_ad45bb6d7b84726250401db90407b097b"><td class="memItemLeft" align="right" valign="top">virtual common::VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#ad45bb6d7b84726250401db90407b097b">export_spans</a> (const std::vector&lt; trace_span &gt; &amp;spans)=0</td></tr>
+<tr class="memdesc:ad45bb6d7b84726250401db90407b097b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export a batch of spans.  <br /></td></tr>
+<tr class="separator:ad45bb6d7b84726250401db90407b097b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3a19c71a2173ff537a3526e97bad084" id="r_ac3a19c71a2173ff537a3526e97bad084"><td class="memItemLeft" align="right" valign="top">virtual common::VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#ac3a19c71a2173ff537a3526e97bad084">flush</a> ()=0</td></tr>
+<tr class="memdesc:ac3a19c71a2173ff537a3526e97bad084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush any pending spans.  <br /></td></tr>
+<tr class="separator:ac3a19c71a2173ff537a3526e97bad084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12c83537e37a9c8ff35bb4ca74c6e76e" id="r_a12c83537e37a9c8ff35bb4ca74c6e76e"><td class="memItemLeft" align="right" valign="top">virtual common::VoidResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#a12c83537e37a9c8ff35bb4ca74c6e76e">shutdown</a> ()=0</td></tr>
+<tr class="memdesc:a12c83537e37a9c8ff35bb4ca74c6e76e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown the exporter.  <br /></td></tr>
+<tr class="separator:a12c83537e37a9c8ff35bb4ca74c6e76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13aaab9861e204475ff242114b8431f6" id="r_a13aaab9861e204475ff242114b8431f6"><td class="memItemLeft" align="right" valign="top">virtual std::unordered_map&lt; std::string, std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#a13aaab9861e204475ff242114b8431f6">get_stats</a> () const =0</td></tr>
 <tr class="memdesc:a13aaab9861e204475ff242114b8431f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get exporter statistics.  <br /></td></tr>
 <tr class="separator:a13aaab9861e204475ff242114b8431f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> kcenon::monitoring::trace_exporter_interface::~trace_exporter_interface </td>
+          <td class="memname">virtual kcenon::monitoring::trace_exporter_interface::~trace_exporter_interface </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -159,8 +159,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a38e1fd39d6e8a2778aded68f6972f303" name="a38e1fd39d6e8a2778aded68f6972f303"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38e1fd39d6e8a2778aded68f6972f303">&#9670;&#160;</a></span>export_spans()</h2>
+<a id="ad45bb6d7b84726250401db90407b097b" name="ad45bb6d7b84726250401db90407b097b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad45bb6d7b84726250401db90407b097b">&#9670;&#160;</a></span>export_spans()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,9 +169,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::trace_exporter_interface::export_spans </td>
+          <td class="memname">virtual common::VoidResult kcenon::monitoring::trace_exporter_interface::export_spans </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::vector&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">trace_span</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; trace_span &gt; &amp;&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td></td>
         </tr>
@@ -185,12 +185,12 @@ Public Member Functions</h2></td></tr>
 
 <p>Export a batch of spans. </p>
 
-<p>Implemented in <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1b11a34ad5a4e1ad8be8a9f84989ddd1">kcenon::monitoring::otlp_grpc_exporter</a>, <a class="el" href="../../d2/dc2/classkcenon_1_1monitoring_1_1jaeger__exporter.html#af934ab91835777999961be86580db96c">kcenon::monitoring::jaeger_exporter</a>, <a class="el" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a03374caefa4b8935eb602b0fc7673a20">kcenon::monitoring::zipkin_exporter</a>, <a class="el" href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#a4a556bb6b7eb8d17d6f5aa9ef1304a06">kcenon::monitoring::otlp_exporter</a>, and <a class="el" href="../../d7/da2/classMockTraceExporter.html#a95c2c24b09c3ce8e6226169fe30fdfc2">MockTraceExporter</a>.</p>
+<p>Implemented in <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#ae9310376bc6568505a59a76ab5549d1f">kcenon::monitoring::otlp_grpc_exporter</a>, <a class="el" href="../../d2/dc2/classkcenon_1_1monitoring_1_1jaeger__exporter.html#af3836bc6a19f6badf26f438fa5ce4a17">kcenon::monitoring::jaeger_exporter</a>, <a class="el" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a10ecc0f69e3ac2f63d58ee521130696a">kcenon::monitoring::zipkin_exporter</a>, <a class="el" href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#a86c9e1c71e193507f040ad23ced43612">kcenon::monitoring::otlp_exporter</a>, and <a class="el" href="../../d7/da2/classMockTraceExporter.html#a95c2c24b09c3ce8e6226169fe30fdfc2">MockTraceExporter</a>.</p>
 
 </div>
 </div>
-<a id="ae62313b20be7f70d167ecbe11696bb62" name="ae62313b20be7f70d167ecbe11696bb62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae62313b20be7f70d167ecbe11696bb62">&#9670;&#160;</a></span>flush()</h2>
+<a id="ac3a19c71a2173ff537a3526e97bad084" name="ac3a19c71a2173ff537a3526e97bad084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3a19c71a2173ff537a3526e97bad084">&#9670;&#160;</a></span>flush()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,7 +199,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::trace_exporter_interface::flush </td>
+          <td class="memname">virtual common::VoidResult kcenon::monitoring::trace_exporter_interface::flush </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -214,7 +214,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Flush any pending spans. </p>
 
-<p>Implemented in <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#aa25af2602600d2d3edc21d89607df914">kcenon::monitoring::otlp_grpc_exporter</a>, <a class="el" href="../../d2/dc2/classkcenon_1_1monitoring_1_1jaeger__exporter.html#ae24ac44eee16b3167a97bdd895d3ab00">kcenon::monitoring::jaeger_exporter</a>, <a class="el" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#add5476594fe5e5375c855ef9d20316f2">kcenon::monitoring::zipkin_exporter</a>, <a class="el" href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#a2416251a5beb0c768961b6e1284a586c">kcenon::monitoring::otlp_exporter</a>, and <a class="el" href="../../d7/da2/classMockTraceExporter.html#ac99cb5d3a7b6d1caba992fa4ca2b618b">MockTraceExporter</a>.</p>
+<p>Implemented in <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a09214cdf92a3567cbac6e682f2888b98">kcenon::monitoring::otlp_grpc_exporter</a>, <a class="el" href="../../d2/dc2/classkcenon_1_1monitoring_1_1jaeger__exporter.html#a24cf68c3433305b93b4ba1ad205e52b1">kcenon::monitoring::jaeger_exporter</a>, <a class="el" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a74517e518a8ba8afec928c65c2ad0e77">kcenon::monitoring::zipkin_exporter</a>, <a class="el" href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#a82826dc149385e98a1f9b0a177f3cb53">kcenon::monitoring::otlp_exporter</a>, and <a class="el" href="../../d7/da2/classMockTraceExporter.html#ac99cb5d3a7b6d1caba992fa4ca2b618b">MockTraceExporter</a>.</p>
 
 </div>
 </div>
@@ -228,7 +228,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> std::unordered_map&lt; std::string, std::size_t &gt; kcenon::monitoring::trace_exporter_interface::get_stats </td>
+          <td class="memname">virtual std::unordered_map&lt; std::string, std::size_t &gt; kcenon::monitoring::trace_exporter_interface::get_stats </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -247,8 +247,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a45ab96d66a22121a0aa25283a26728e2" name="a45ab96d66a22121a0aa25283a26728e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45ab96d66a22121a0aa25283a26728e2">&#9670;&#160;</a></span>shutdown()</h2>
+<a id="a12c83537e37a9c8ff35bb4ca74c6e76e" name="a12c83537e37a9c8ff35bb4ca74c6e76e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c83537e37a9c8ff35bb4ca74c6e76e">&#9670;&#160;</a></span>shutdown()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -257,7 +257,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">virtual</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> kcenon::monitoring::trace_exporter_interface::shutdown </td>
+          <td class="memname">virtual common::VoidResult kcenon::monitoring::trace_exporter_interface::shutdown </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -272,7 +272,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Shutdown the exporter. </p>
 
-<p>Implemented in <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a0d1079175e44583acf0cf8995a3dca52">kcenon::monitoring::otlp_grpc_exporter</a>, <a class="el" href="../../d2/dc2/classkcenon_1_1monitoring_1_1jaeger__exporter.html#a5da775db57493c81316701db9116c30f">kcenon::monitoring::jaeger_exporter</a>, <a class="el" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a1c42416da97f2105f3decaccffc03a60">kcenon::monitoring::zipkin_exporter</a>, <a class="el" href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#a34b47a448db2aa43a63f483f2bc2abf0">kcenon::monitoring::otlp_exporter</a>, and <a class="el" href="../../d7/da2/classMockTraceExporter.html#a9ff0a7c99ba149940e9d7ea732103b02">MockTraceExporter</a>.</p>
+<p>Implemented in <a class="el" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a1f49aa1e63664ac5115703d95134a054">kcenon::monitoring::otlp_grpc_exporter</a>, <a class="el" href="../../d2/dc2/classkcenon_1_1monitoring_1_1jaeger__exporter.html#ae509746922fc9b51d249dbce70bb994f">kcenon::monitoring::jaeger_exporter</a>, <a class="el" href="../../db/d0a/classkcenon_1_1monitoring_1_1zipkin__exporter.html#a2e5286ddec9b08d27772e40ea73510ad">kcenon::monitoring::zipkin_exporter</a>, <a class="el" href="../../d5/d71/classkcenon_1_1monitoring_1_1otlp__exporter.html#a2115cfb134e01bac64553d36af24bacd">kcenon::monitoring::otlp_exporter</a>, and <a class="el" href="../../d7/da2/classMockTraceExporter.html#a9ff0a7c99ba149940e9d7ea732103b02">MockTraceExporter</a>.</p>
 
 </div>
 </div>
@@ -282,7 +282,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:24 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

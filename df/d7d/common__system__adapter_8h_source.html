@@ -110,7 +110,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#if KCENON_HAS_COMMON_SYSTEM</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">common_system_monitor_adapter</a> : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitor {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span>common_system_monitor_adapter : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitor {</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">explicit</span> common_system_monitor_adapter(</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        std::shared_ptr&lt;monitoring_interface&gt; monitor)</div>
@@ -157,18 +157,18 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            return ::kcenon::common::error_info(1, <span class="stringliteral">&quot;Monitor not initialized&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        }</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = monitor_-&gt;collect_now();</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_err()) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keyword">auto</span> result = monitor_-&gt;collect_now();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">if</span> (result.is_err()) {</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            return ::kcenon::common::error_info(2, <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>);</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        }</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="comment">// Convert monitoring_system snapshot to common snapshot</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        ::kcenon::common::interfaces::metrics_snapshot snapshot;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        snapshot.capture_time = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().capture_time;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        snapshot.source_id = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().source_id;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        snapshot.capture_time = result.value().capture_time;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        snapshot.source_id = result.value().source_id;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="comment">// Add collected metrics</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().metrics) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : result.value().metrics) {</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            snapshot.metrics.emplace_back(m.name, m.value);</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        }</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
@@ -186,15 +186,15 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            return ::kcenon::common::error_info(1, <span class="stringliteral">&quot;Monitor not initialized&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>);</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = monitor_-&gt;check_health();</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_err()) {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keyword">auto</span> result = monitor_-&gt;check_health();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">if</span> (result.is_err()) {</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            return ::kcenon::common::error_info(2, <span class="stringliteral">&quot;Health check failed&quot;</span>, <span class="stringliteral">&quot;monitoring_system&quot;</span>);</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        }</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="comment">// Convert monitoring_system health to common health</span></div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        ::kcenon::common::interfaces::health_check_result health;</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">switch</span>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().status) {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">switch</span>(result.value().status) {</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <span class="keywordflow">case</span> health_status::healthy:</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                health.status = ::kcenon::common::interfaces::health_status::healthy;</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                <span class="keywordflow">break</span>;</div>
@@ -208,10 +208,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                health.status = ::kcenon::common::interfaces::health_status::unknown;</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        }</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        health.message = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().message;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        health.timestamp = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().timestamp;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        health.check_duration = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().check_duration;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        health.metadata = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.value().metadata;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        health.message = result.value().message;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        health.timestamp = result.value().timestamp;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        health.check_duration = result.value().check_duration;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        health.metadata = result.value().metadata;</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> health;</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
@@ -227,7 +227,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    std::vector&lt;metric_value&gt; pending_metrics_;</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>};</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">monitor_from_common_adapter</a> : <span class="keyword">public</span> metrics_collector {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">class </span>monitor_from_common_adapter : <span class="keyword">public</span> metrics_collector {</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">explicit</span> monitor_from_common_adapter(</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        std::shared_ptr&lt;::kcenon::common::interfaces::IMonitor&gt; common_monitor,</div>
@@ -236,16 +236,16 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    ~monitor_from_common_adapter() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    result&lt;metrics_snapshot&gt; collect()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    common::Result&lt;metrics_snapshot&gt; collect()<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keywordflow">if</span> (!common_monitor_) {</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            <span class="keywordflow">return</span> result&lt;metrics_snapshot&gt;(</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            <span class="keywordflow">return</span> common::Result&lt;metrics_snapshot&gt;(</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                monitoring_error_code::collection_failed,</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                <span class="stringliteral">&quot;Common monitor not initialized&quot;</span>);</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keyword">auto</span> common_result = common_monitor_-&gt;get_metrics();</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="keywordflow">if</span> (common_result.is_err()) {</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            <span class="keywordflow">return</span> result&lt;metrics_snapshot&gt;(</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            <span class="keywordflow">return</span> common::Result&lt;metrics_snapshot&gt;(</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                monitoring_error_code::collection_failed,</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                common_result.error().message);</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        }</div>
@@ -261,7 +261,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            snapshot.add_metric(m.name, m.value);</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        }</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">return</span> result&lt;metrics_snapshot&gt;(snapshot);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">return</span> common::Result&lt;metrics_snapshot&gt;(snapshot);</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    std::string get_name()<span class="keyword"> const override </span>{</div>
@@ -272,20 +272,20 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keywordflow">return</span> enabled_;</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    }</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> set_enabled(<span class="keywordtype">bool</span> enable)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    common::VoidResult set_enabled(<span class="keywordtype">bool</span> enable)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        enabled_ = enable;</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">return</span> common::ok();</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    }</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> initialize()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    common::VoidResult initialize()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordflow">return</span> common::ok();</div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    }</div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">result_void</a> cleanup()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    common::VoidResult cleanup()<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        <span class="keywordflow">if</span> (common_monitor_) {</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            common_monitor_-&gt;reset();</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        }</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">make_void_success</a>();</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        <span class="keywordflow">return</span> common::ok();</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    }</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="keyword">private</span>:</div>
@@ -294,7 +294,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordtype">bool</span> enabled_ = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>};</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">common_system_monitorable_adapter</a> : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitorable {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">class </span>common_system_monitorable_adapter : <span class="keyword">public</span> ::kcenon::common::interfaces::IMonitorable {</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keyword">explicit</span> common_system_monitorable_adapter(</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        std::shared_ptr&lt;monitorable_interface&gt; monitorable,</div>
@@ -314,10 +314,10 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    ::kcenon::common::Result&lt;::kcenon::common::interfaces::health_check_result&gt; health_check()<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        <span class="comment">// monitoring_system monitorable doesn&#39;t have health_check</span></div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        <span class="comment">// Return healthy status</span></div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        ::kcenon::common::interfaces::health_check_result <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.status = ::kcenon::common::interfaces::health_status::healthy;</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.message = <span class="stringliteral">&quot;Component operational&quot;</span>;</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        ::kcenon::common::interfaces::health_check_result result;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        result.status = ::kcenon::common::interfaces::health_status::healthy;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        result.message = <span class="stringliteral">&quot;Component operational&quot;</span>;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        <span class="keywordflow">return</span> result;</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    }</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    std::string get_component_name()<span class="keyword"> const override </span>{</div>
@@ -329,7 +329,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    std::string component_name_;</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>};</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keyword">class </span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">common_monitor_factory</a> {</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keyword">class </span>common_monitor_factory {</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keyword">static</span> std::shared_ptr&lt;::kcenon::common::interfaces::IMonitor&gt; create_common_monitor(</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        std::shared_ptr&lt;monitoring_interface&gt; monitor) {</div>
@@ -353,14 +353,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>} <span class="comment">// namespace adapters</span></div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>} } <span class="comment">// namespace kcenon::monitoring</span></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a5831822659b3edfa93f8cc4b75357478"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a5831822659b3edfa93f8cc4b75357478">kcenon::monitoring::make_void_success</a></div><div class="ttdeci">common::VoidResult make_void_success()</div><div class="ttdoc">Helper function to create successful VoidResult.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00240">result_types.h:240</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a6931ba7fb7341c1e6c5c408ee09e48ea"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a6931ba7fb7341c1e6c5c408ee09e48ea">kcenon::monitoring::result_void</a></div><div class="ttdeci">common::VoidResult result_void</div><div class="ttdoc">Backward-compatible alias for common::VoidResult.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00129">result_types.h:129</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00027">common_monitor_adapter.h:27</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

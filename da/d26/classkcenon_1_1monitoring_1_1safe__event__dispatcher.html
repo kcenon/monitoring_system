@@ -127,71 +127,71 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a9e91bda37c39ba24806e282aadb0c275" id="r_a9e91bda37c39ba24806e282aadb0c275"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">error_callback</a> = std::function&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>(<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> <a class="el" href="../../d0/ddf/structkcenon_1_1monitoring_1_1handler__error__info.html">handler_error_info</a> &amp;)&gt;</td></tr>
+<tr class="memitem:a9e91bda37c39ba24806e282aadb0c275" id="r_a9e91bda37c39ba24806e282aadb0c275"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">error_callback</a> = std::function&lt; void(const <a class="el" href="../../d0/ddf/structkcenon_1_1monitoring_1_1handler__error__info.html">handler_error_info</a> &amp;)&gt;</td></tr>
 <tr class="separator:a9e91bda37c39ba24806e282aadb0c275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abd9b4ce253a448f35b60b50e96ad19de" id="r_abd9b4ce253a448f35b60b50e96ad19de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abd9b4ce253a448f35b60b50e96ad19de">safe_event_dispatcher</a> (std::shared_ptr&lt; <a class="el" href="../../d5/df2/classkcenon_1_1monitoring_1_1interface__event__bus.html">interface_event_bus</a> &gt; bus=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">nullptr</a>)</td></tr>
+<tr class="memitem:abd9b4ce253a448f35b60b50e96ad19de" id="r_abd9b4ce253a448f35b60b50e96ad19de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abd9b4ce253a448f35b60b50e96ad19de">safe_event_dispatcher</a> (std::shared_ptr&lt; <a class="el" href="../../d5/df2/classkcenon_1_1monitoring_1_1interface__event__bus.html">interface_event_bus</a> &gt; bus=nullptr)</td></tr>
 <tr class="separator:abd9b4ce253a448f35b60b50e96ad19de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a356ec30ce8e86211cfae0bfbcd025b9b" id="r_a356ec30ce8e86211cfae0bfbcd025b9b"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> EventType , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">Handler</a> &gt; </td></tr>
-<tr class="memitem:a356ec30ce8e86211cfae0bfbcd025b9b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a356ec30ce8e86211cfae0bfbcd025b9b">subscribe_safe</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">Handler</a> &amp;&amp;handler, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1">event_priority</a> priority=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1afea087517c26fadd409bd4b9dc642555">event_priority::normal</a>)</td></tr>
+<tr class="memitem:a356ec30ce8e86211cfae0bfbcd025b9b" id="r_a356ec30ce8e86211cfae0bfbcd025b9b"><td class="memTemplParams" colspan="2">template&lt;typename EventType , typename Handler &gt; </td></tr>
+<tr class="memitem:a356ec30ce8e86211cfae0bfbcd025b9b"><td class="memTemplItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a356ec30ce8e86211cfae0bfbcd025b9b">subscribe_safe</a> (Handler &amp;&amp;handler, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1">event_priority</a> priority=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1afea087517c26fadd409bd4b9dc642555">event_priority::normal</a>)</td></tr>
 <tr class="memdesc:a356ec30ce8e86211cfae0bfbcd025b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe to events with automatic exception handling.  <br /></td></tr>
 <tr class="separator:a356ec30ce8e86211cfae0bfbcd025b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03352b804e9ab2cac24f5b92882caa84" id="r_a03352b804e9ab2cac24f5b92882caa84"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> EventType &gt; </td></tr>
-<tr class="memitem:a03352b804e9ab2cac24f5b92882caa84"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">bool</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a03352b804e9ab2cac24f5b92882caa84">publish_safe</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> EventType &amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">event</a>, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1">event_priority</a> priority=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1afea087517c26fadd409bd4b9dc642555">event_priority::normal</a>)</td></tr>
+<tr class="memitem:a03352b804e9ab2cac24f5b92882caa84" id="r_a03352b804e9ab2cac24f5b92882caa84"><td class="memTemplParams" colspan="2">template&lt;typename EventType &gt; </td></tr>
+<tr class="memitem:a03352b804e9ab2cac24f5b92882caa84"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a03352b804e9ab2cac24f5b92882caa84">publish_safe</a> (const EventType &amp;event, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1">event_priority</a> priority=<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a499abc28810ce4234d85eeaafafc21c1afea087517c26fadd409bd4b9dc642555">event_priority::normal</a>)</td></tr>
 <tr class="memdesc:a03352b804e9ab2cac24f5b92882caa84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publish event with error recovery.  <br /></td></tr>
 <tr class="separator:a03352b804e9ab2cac24f5b92882caa84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90799e197e52bafbeebfbee3f54cb300" id="r_a90799e197e52bafbeebfbee3f54cb300"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a90799e197e52bafbeebfbee3f54cb300">set_error_callback</a> (<a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">error_callback</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">callback</a>)</td></tr>
+<tr class="memitem:a90799e197e52bafbeebfbee3f54cb300" id="r_a90799e197e52bafbeebfbee3f54cb300"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a90799e197e52bafbeebfbee3f54cb300">set_error_callback</a> (<a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">error_callback</a> callback)</td></tr>
 <tr class="memdesc:a90799e197e52bafbeebfbee3f54cb300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set callback for handler errors.  <br /></td></tr>
 <tr class="separator:a90799e197e52bafbeebfbee3f54cb300"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe8e637be34f49bc24c77efb57bdacdc" id="r_abe8e637be34f49bc24c77efb57bdacdc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d0/ddf/structkcenon_1_1monitoring_1_1handler__error__info.html">handler_error_info</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe8e637be34f49bc24c77efb57bdacdc">get_handler_errors</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a></td></tr>
+<tr class="memitem:abe8e637be34f49bc24c77efb57bdacdc" id="r_abe8e637be34f49bc24c77efb57bdacdc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d0/ddf/structkcenon_1_1monitoring_1_1handler__error__info.html">handler_error_info</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe8e637be34f49bc24c77efb57bdacdc">get_handler_errors</a> () const</td></tr>
 <tr class="memdesc:abe8e637be34f49bc24c77efb57bdacdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get recent handler errors.  <br /></td></tr>
 <tr class="separator:abe8e637be34f49bc24c77efb57bdacdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad731428d7778df75096358b1d3be60ac" id="r_ad731428d7778df75096358b1d3be60ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad731428d7778df75096358b1d3be60ac">get_total_exceptions</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a></td></tr>
+<tr class="memitem:ad731428d7778df75096358b1d3be60ac" id="r_ad731428d7778df75096358b1d3be60ac"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad731428d7778df75096358b1d3be60ac">get_total_exceptions</a> () const</td></tr>
 <tr class="memdesc:ad731428d7778df75096358b1d3be60ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get total exception count.  <br /></td></tr>
 <tr class="separator:ad731428d7778df75096358b1d3be60ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af44009ffcc90a3b5ac3e4ce229357f20" id="r_af44009ffcc90a3b5ac3e4ce229357f20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#af44009ffcc90a3b5ac3e4ce229357f20">clear_errors</a> ()</td></tr>
+<tr class="memitem:af44009ffcc90a3b5ac3e4ce229357f20" id="r_af44009ffcc90a3b5ac3e4ce229357f20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#af44009ffcc90a3b5ac3e4ce229357f20">clear_errors</a> ()</td></tr>
 <tr class="memdesc:af44009ffcc90a3b5ac3e4ce229357f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear error history.  <br /></td></tr>
 <tr class="separator:af44009ffcc90a3b5ac3e4ce229357f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a853510a16f013f07b8ef0532f8fe8b21" id="r_a853510a16f013f07b8ef0532f8fe8b21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a853510a16f013f07b8ef0532f8fe8b21">set_circuit_breaker_threshold</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a> threshold)</td></tr>
+<tr class="memitem:a853510a16f013f07b8ef0532f8fe8b21" id="r_a853510a16f013f07b8ef0532f8fe8b21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a853510a16f013f07b8ef0532f8fe8b21">set_circuit_breaker_threshold</a> (size_t threshold)</td></tr>
 <tr class="memdesc:a853510a16f013f07b8ef0532f8fe8b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set circuit breaker threshold.  <br /></td></tr>
 <tr class="separator:a853510a16f013f07b8ef0532f8fe8b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae721c2138de39682d029f21a6940df33" id="r_ae721c2138de39682d029f21a6940df33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae721c2138de39682d029f21a6940df33">get_dead_letter_queue_size</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a></td></tr>
+<tr class="memitem:ae721c2138de39682d029f21a6940df33" id="r_ae721c2138de39682d029f21a6940df33"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae721c2138de39682d029f21a6940df33">get_dead_letter_queue_size</a> () const</td></tr>
 <tr class="memdesc:ae721c2138de39682d029f21a6940df33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get dead letter queue size.  <br /></td></tr>
 <tr class="separator:ae721c2138de39682d029f21a6940df33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a7f07458ff5f8d4a09a3f1e65b73c2d" id="r_a3a7f07458ff5f8d4a09a3f1e65b73c2d"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">RecoveryHandler</a> &gt; </td></tr>
-<tr class="memitem:a3a7f07458ff5f8d4a09a3f1e65b73c2d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a3a7f07458ff5f8d4a09a3f1e65b73c2d">process_dead_letters</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">RecoveryHandler</a> &amp;&amp;handler)</td></tr>
+<tr class="memitem:a3a7f07458ff5f8d4a09a3f1e65b73c2d" id="r_a3a7f07458ff5f8d4a09a3f1e65b73c2d"><td class="memTemplParams" colspan="2">template&lt;typename RecoveryHandler &gt; </td></tr>
+<tr class="memitem:a3a7f07458ff5f8d4a09a3f1e65b73c2d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a3a7f07458ff5f8d4a09a3f1e65b73c2d">process_dead_letters</a> (RecoveryHandler &amp;&amp;handler)</td></tr>
 <tr class="memdesc:a3a7f07458ff5f8d4a09a3f1e65b73c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process dead letter queue with recovery handler.  <br /></td></tr>
 <tr class="separator:a3a7f07458ff5f8d4a09a3f1e65b73c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a974f0f1b47f0f1dd9f246aa39e6d9da2" id="r_a974f0f1b47f0f1dd9f246aa39e6d9da2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d5/df2/classkcenon_1_1monitoring_1_1interface__event__bus.html">interface_event_bus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a974f0f1b47f0f1dd9f246aa39e6d9da2">get_bus</a> () <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a></td></tr>
+<tr class="memitem:a974f0f1b47f0f1dd9f246aa39e6d9da2" id="r_a974f0f1b47f0f1dd9f246aa39e6d9da2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d5/df2/classkcenon_1_1monitoring_1_1interface__event__bus.html">interface_event_bus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a974f0f1b47f0f1dd9f246aa39e6d9da2">get_bus</a> () const</td></tr>
 <tr class="memdesc:a974f0f1b47f0f1dd9f246aa39e6d9da2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get underlying event bus.  <br /></td></tr>
 <tr class="separator:a974f0f1b47f0f1dd9f246aa39e6d9da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a65a6f2b8636cffe0366340c05f29d1cc" id="r_a65a6f2b8636cffe0366340c05f29d1cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc">handle_exception</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a> handler_id, std::type_index event_type, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">error_msg</a>)</td></tr>
+<tr class="memitem:a65a6f2b8636cffe0366340c05f29d1cc" id="r_a65a6f2b8636cffe0366340c05f29d1cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc">handle_exception</a> (uint64_t handler_id, std::type_index event_type, const std::string &amp;error_msg)</td></tr>
 <tr class="separator:a65a6f2b8636cffe0366340c05f29d1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe2f679edaf297c197ebc10684aa1df2" id="r_abe2f679edaf297c197ebc10684aa1df2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe2f679edaf297c197ebc10684aa1df2">add_to_dead_letter_queue</a> (std::type_index event_type, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">error_msg</a>)</td></tr>
+<tr class="memitem:abe2f679edaf297c197ebc10684aa1df2" id="r_abe2f679edaf297c197ebc10684aa1df2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe2f679edaf297c197ebc10684aa1df2">add_to_dead_letter_queue</a> (std::type_index event_type, const std::string &amp;error_msg)</td></tr>
 <tr class="separator:abe2f679edaf297c197ebc10684aa1df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad8da98ba38fa933d02bc0185dbed6944" id="r_ad8da98ba38fa933d02bc0185dbed6944"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d5/df2/classkcenon_1_1monitoring_1_1interface__event__bus.html">interface_event_bus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad8da98ba38fa933d02bc0185dbed6944">bus_</a></td></tr>
 <tr class="separator:ad8da98ba38fa933d02bc0185dbed6944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2d3119094dc2ee3458702b251ebb4cf" id="r_ac2d3119094dc2ee3458702b251ebb4cf"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2d3119094dc2ee3458702b251ebb4cf">next_id_</a> {1}</td></tr>
+<tr class="memitem:ac2d3119094dc2ee3458702b251ebb4cf" id="r_ac2d3119094dc2ee3458702b251ebb4cf"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2d3119094dc2ee3458702b251ebb4cf">next_id_</a> {1}</td></tr>
 <tr class="separator:ac2d3119094dc2ee3458702b251ebb4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a398e5ed1bb8323995fd643fa99454349" id="r_a398e5ed1bb8323995fd643fa99454349"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a398e5ed1bb8323995fd643fa99454349">total_exceptions_</a> {0}</td></tr>
+<tr class="memitem:a398e5ed1bb8323995fd643fa99454349" id="r_a398e5ed1bb8323995fd643fa99454349"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a398e5ed1bb8323995fd643fa99454349">total_exceptions_</a> {0}</td></tr>
 <tr class="separator:a398e5ed1bb8323995fd643fa99454349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a144a9ea0b17c65e03083003c87a4667d" id="r_a144a9ea0b17c65e03083003c87a4667d"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a></td></tr>
 <tr class="separator:a144a9ea0b17c65e03083003c87a4667d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ef19a0cf4e96c974ae993278a26a0d9" id="r_a3ef19a0cf4e96c974ae993278a26a0d9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d0/ddf/structkcenon_1_1monitoring_1_1handler__error__info.html">handler_error_info</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a3ef19a0cf4e96c974ae993278a26a0d9">recent_errors_</a></td></tr>
 <tr class="separator:a3ef19a0cf4e96c974ae993278a26a0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad58e8d5e64bb951c81677624ea421cb1" id="r_ad58e8d5e64bb951c81677624ea421cb1"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a>, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad58e8d5e64bb951c81677624ea421cb1">failed_handler_counts_</a></td></tr>
+<tr class="memitem:ad58e8d5e64bb951c81677624ea421cb1" id="r_ad58e8d5e64bb951c81677624ea421cb1"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; uint64_t, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad58e8d5e64bb951c81677624ea421cb1">failed_handler_counts_</a></td></tr>
 <tr class="separator:ad58e8d5e64bb951c81677624ea421cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace9ef72bfc365f29425e746d42b90ccb" id="r_ace9ef72bfc365f29425e746d42b90ccb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">error_callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ace9ef72bfc365f29425e746d42b90ccb">error_callback_</a></td></tr>
 <tr class="separator:ace9ef72bfc365f29425e746d42b90ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef944b2c429d51bb3017ab263dbd095f" id="r_aef944b2c429d51bb3017ab263dbd095f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#aef944b2c429d51bb3017ab263dbd095f">circuit_breaker_threshold_</a></td></tr>
+<tr class="memitem:aef944b2c429d51bb3017ab263dbd095f" id="r_aef944b2c429d51bb3017ab263dbd095f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#aef944b2c429d51bb3017ab263dbd095f">circuit_breaker_threshold_</a></td></tr>
 <tr class="separator:aef944b2c429d51bb3017ab263dbd095f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae969d5bf3cd3f28a332bb82dd02e7e63" id="r_ae969d5bf3cd3f28a332bb82dd02e7e63"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63">dlq_mutex_</a></td></tr>
 <tr class="separator:ae969d5bf3cd3f28a332bb82dd02e7e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,23 +208,22 @@ Private Attributes</h2></td></tr>
 </ul>
 <h3><a class="anchor" id="autotoc_md0"></a>
 Production Safety</h3>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">dispatcher</a> = std::make_shared&lt;safe_event_dispatcher&gt;();</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> dispatcher = std::make_shared&lt;safe_event_dispatcher&gt;();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Subscribe with automatic exception handling</span></div>
-<div class="line"><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">dispatcher</a>-&gt;subscribe&lt;<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">my_event</a>&gt;([](<span class="keyword">const</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">my_event</a>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">evt</a>) {</div>
+<div class="line">dispatcher-&gt;subscribe&lt;my_event&gt;([](<span class="keyword">const</span> my_event&amp; evt) {</div>
 <div class="line">    <span class="comment">// This might throw, but won&#39;t crash the bus</span></div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">process_event</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">evt</a>);</div>
+<div class="line">    process_event(evt);</div>
 <div class="line">});</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Publish events safely</span></div>
-<div class="line"><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">dispatcher</a>-&gt;publish(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">my_event</a>{});</div>
+<div class="line">dispatcher-&gt;publish(my_event{});</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Monitor failed handlers</span></div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">errors</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">dispatcher</a>-&gt;get_handler_errors();</div>
-<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">error</a> : <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">errors</a>) {</div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">log_error</a>(<span class="stringliteral">&quot;Handler {} failed: {}&quot;</span>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">error</a>.handler_id, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">error</a>.error_message);</div>
+<div class="line"><span class="keyword">auto</span> errors = dispatcher-&gt;get_handler_errors();</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">error</a> : errors) {</div>
+<div class="line">    log_error(<span class="stringliteral">&quot;Handler {} failed: {}&quot;</span>, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">error</a>.handler_id, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">error</a>.error_message);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">kcenon::monitoring::otel_status_code::error</a></div><div class="ttdeci">@ error</div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00058">58</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
@@ -236,7 +235,7 @@ Production Safety</h3>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">using</a> <a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">kcenon::monitoring::safe_event_dispatcher::error_callback</a> =  std::function&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>(<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> <a class="el" href="../../d0/ddf/structkcenon_1_1monitoring_1_1handler__error__info.html">handler_error_info</a>&amp;)&gt;</td>
+          <td class="memname">using <a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">kcenon::monitoring::safe_event_dispatcher::error_callback</a> =  std::function&lt;void(const <a class="el" href="../../d0/ddf/structkcenon_1_1monitoring_1_1handler__error__info.html">handler_error_info</a>&amp;)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -259,7 +258,7 @@ Production Safety</h3>
           <td class="memname">kcenon::monitoring::safe_event_dispatcher::safe_event_dispatcher </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="../../d5/df2/classkcenon_1_1monitoring_1_1interface__event__bus.html">interface_event_bus</a> &gt;&#160;</td>
-          <td class="paramname"><em>bus</em> = <code><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">nullptr</a></code></td><td>)</td>
+          <td class="paramname"><em>bus</em> = <code>nullptr</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -293,7 +292,7 @@ Production Safety</h3>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a> kcenon::monitoring::safe_event_dispatcher::add_to_dead_letter_queue </td>
+          <td class="memname">void kcenon::monitoring::safe_event_dispatcher::add_to_dead_letter_queue </td>
           <td>(</td>
           <td class="paramtype">std::type_index&#160;</td>
           <td class="paramname"><em>event_type</em>, </td>
@@ -301,7 +300,7 @@ Production Safety</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>error_msg</em>&#160;</td>
         </tr>
         <tr>
@@ -319,11 +318,11 @@ Production Safety</h3>
 
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00257">257</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  258</span>                                                              {</div>
-<div class="line"><span class="lineno">  259</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63">dlq_mutex_</a>);</div>
+<div class="line"><span class="lineno">  259</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63">dlq_mutex_</a>);</div>
 <div class="line"><span class="lineno">  260</span> </div>
 <div class="line"><span class="lineno">  261</span>        dead_letter_entry entry{</div>
 <div class="line"><span class="lineno">  262</span>            event_type,</div>
-<div class="line"><span class="lineno">  263</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">error_msg</a>,</div>
+<div class="line"><span class="lineno">  263</span>            error_msg,</div>
 <div class="line"><span class="lineno">  264</span>            std::chrono::steady_clock::now()</div>
 <div class="line"><span class="lineno">  265</span>        };</div>
 <div class="line"><span class="lineno">  266</span> </div>
@@ -359,7 +358,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a> kcenon::monitoring::safe_event_dispatcher::clear_errors </td>
+          <td class="memname">void kcenon::monitoring::safe_event_dispatcher::clear_errors </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -376,7 +375,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00161">161</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  161</span>                        {</div>
-<div class="line"><span class="lineno">  162</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
+<div class="line"><span class="lineno">  162</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
 <div class="line"><span class="lineno">  163</span>        <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a3ef19a0cf4e96c974ae993278a26a0d9">recent_errors_</a>.clear();</div>
 <div class="line"><span class="lineno">  164</span>        <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad58e8d5e64bb951c81677624ea421cb1">failed_handler_counts_</a>.clear();</div>
 <div class="line"><span class="lineno">  165</span>        <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a398e5ed1bb8323995fd643fa99454349">total_exceptions_</a> = 0;</div>
@@ -429,7 +428,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a> kcenon::monitoring::safe_event_dispatcher::get_dead_letter_queue_size </td>
+          <td class="memname">size_t kcenon::monitoring::safe_event_dispatcher::get_dead_letter_queue_size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -446,7 +445,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00179">179</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  179</span>                                              {</div>
-<div class="line"><span class="lineno">  180</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63">dlq_mutex_</a>);</div>
+<div class="line"><span class="lineno">  180</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63">dlq_mutex_</a>);</div>
 <div class="line"><span class="lineno">  181</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2eb6281cf7a8a04f83e64ee2516f6a0">dead_letter_queue_</a>.size();</div>
 <div class="line"><span class="lineno">  182</span>    }</div>
 </div><!-- fragment -->
@@ -479,7 +478,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00146">146</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  146</span>                                                             {</div>
-<div class="line"><span class="lineno">  147</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
+<div class="line"><span class="lineno">  147</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
 <div class="line"><span class="lineno">  148</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a3ef19a0cf4e96c974ae993278a26a0d9">recent_errors_</a>;</div>
 <div class="line"><span class="lineno">  149</span>    }</div>
 </div><!-- fragment -->
@@ -495,7 +494,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a> kcenon::monitoring::safe_event_dispatcher::get_total_exceptions </td>
+          <td class="memname">uint64_t kcenon::monitoring::safe_event_dispatcher::get_total_exceptions </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -527,9 +526,9 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a> kcenon::monitoring::safe_event_dispatcher::handle_exception </td>
+          <td class="memname">void kcenon::monitoring::safe_event_dispatcher::handle_exception </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a>&#160;</td>
+          <td class="paramtype">uint64_t&#160;</td>
           <td class="paramname"><em>handler_id</em>, </td>
         </tr>
         <tr>
@@ -541,7 +540,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::string &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>error_msg</em>&#160;</td>
         </tr>
         <tr>
@@ -561,12 +560,12 @@ Here is the caller graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">  218</span>                                                     {</div>
 <div class="line"><span class="lineno">  219</span>        <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a398e5ed1bb8323995fd643fa99454349">total_exceptions_</a>.fetch_add(1, std::memory_order_relaxed);</div>
 <div class="line"><span class="lineno">  220</span> </div>
-<div class="line"><span class="lineno">  221</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
+<div class="line"><span class="lineno">  221</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
 <div class="line"><span class="lineno">  222</span> </div>
 <div class="line"><span class="lineno">  223</span>        <span class="comment">// Record error</span></div>
 <div class="line"><span class="lineno">  224</span>        handler_error_info <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#abf3d64d411b3ad343bc59e8ab439b2d1acaf9b6b99962bf5c2264824231d7a40c">info</a>{</div>
 <div class="line"><span class="lineno">  225</span>            handler_id,</div>
-<div class="line"><span class="lineno">  226</span>            <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">error_msg</a>,</div>
+<div class="line"><span class="lineno">  226</span>            error_msg,</div>
 <div class="line"><span class="lineno">  227</span>            event_type,</div>
 <div class="line"><span class="lineno">  228</span>            std::chrono::steady_clock::now()</div>
 <div class="line"><span class="lineno">  229</span>        };</div>
@@ -617,15 +616,15 @@ Here is the caller graph for this function:</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">RecoveryHandler</a> &gt; </div>
+template&lt;typename RecoveryHandler &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a> kcenon::monitoring::safe_event_dispatcher::process_dead_letters </td>
+          <td class="memname">void kcenon::monitoring::safe_event_dispatcher::process_dead_letters </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">RecoveryHandler</a> &amp;&amp;&#160;</td>
+          <td class="paramtype">RecoveryHandler &amp;&amp;&#160;</td>
           <td class="paramname"><em>handler</em></td><td>)</td>
           <td></td>
         </tr>
@@ -641,11 +640,11 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00188">188</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  188</span>                                                         {</div>
-<div class="line"><span class="lineno">  189</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63">dlq_mutex_</a>);</div>
+<div class="line"><span class="lineno">  189</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63">dlq_mutex_</a>);</div>
 <div class="line"><span class="lineno">  190</span> </div>
-<div class="line"><span class="lineno">  191</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">dlq_entry</a> : <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2eb6281cf7a8a04f83e64ee2516f6a0">dead_letter_queue_</a>) {</div>
+<div class="line"><span class="lineno">  191</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; dlq_entry : <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2eb6281cf7a8a04f83e64ee2516f6a0">dead_letter_queue_</a>) {</div>
 <div class="line"><span class="lineno">  192</span>            <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  193</span>                handler(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">dlq_entry</a>);</div>
+<div class="line"><span class="lineno">  193</span>                handler(dlq_entry);</div>
 <div class="line"><span class="lineno">  194</span>            } <span class="keywordflow">catch</span> (...) {</div>
 <div class="line"><span class="lineno">  195</span>                <span class="comment">// Recovery handler failed, skip</span></div>
 <div class="line"><span class="lineno">  196</span>            }</div>
@@ -662,15 +661,15 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> EventType &gt; </div>
+template&lt;typename EventType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">bool</a> kcenon::monitoring::safe_event_dispatcher::publish_safe </td>
+          <td class="memname">bool kcenon::monitoring::safe_event_dispatcher::publish_safe </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> EventType &amp;&#160;</td>
+          <td class="paramtype">const EventType &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -705,14 +704,14 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00099">99</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   99</span>                                                                                              {</div>
 <div class="line"><span class="lineno">  100</span>        <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  101</span>            <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad8da98ba38fa933d02bc0185dbed6944">bus_</a>-&gt;publish(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">event</a>, priority);</div>
+<div class="line"><span class="lineno">  101</span>            <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad8da98ba38fa933d02bc0185dbed6944">bus_</a>-&gt;publish(event, priority);</div>
 <div class="line"><span class="lineno">  102</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  103</span>        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">e</a>) {</div>
+<div class="line"><span class="lineno">  103</span>        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
 <div class="line"><span class="lineno">  104</span>            <span class="comment">// Log error</span></div>
 <div class="line"><span class="lineno">  105</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ace9ef72bfc365f29425e746d42b90ccb">error_callback_</a>) {</div>
 <div class="line"><span class="lineno">  106</span>                handler_error_info <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#abf3d64d411b3ad343bc59e8ab439b2d1acaf9b6b99962bf5c2264824231d7a40c">info</a>{</div>
 <div class="line"><span class="lineno">  107</span>                    0, <span class="comment">// No specific handler</span></div>
-<div class="line"><span class="lineno">  108</span>                    std::string(<span class="stringliteral">&quot;Publish failed: &quot;</span>) + <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">e</a>.what(),</div>
+<div class="line"><span class="lineno">  108</span>                    std::string(<span class="stringliteral">&quot;Publish failed: &quot;</span>) + e.what(),</div>
 <div class="line"><span class="lineno">  109</span>                    <span class="keyword">typeid</span>(EventType),</div>
 <div class="line"><span class="lineno">  110</span>                    std::chrono::steady_clock::now()</div>
 <div class="line"><span class="lineno">  111</span>                };</div>
@@ -720,7 +719,7 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <div class="line"><span class="lineno">  113</span>            }</div>
 <div class="line"><span class="lineno">  114</span> </div>
 <div class="line"><span class="lineno">  115</span>            <span class="comment">// Add to dead letter queue</span></div>
-<div class="line"><span class="lineno">  116</span>            <a class="code hl_function" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe2f679edaf297c197ebc10684aa1df2">add_to_dead_letter_queue</a>(<span class="keyword">typeid</span>(EventType), <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">e</a>.what());</div>
+<div class="line"><span class="lineno">  116</span>            <a class="code hl_function" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe2f679edaf297c197ebc10684aa1df2">add_to_dead_letter_queue</a>(<span class="keyword">typeid</span>(EventType), e.what());</div>
 <div class="line"><span class="lineno">  117</span> </div>
 <div class="line"><span class="lineno">  118</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  119</span>        } <span class="keywordflow">catch</span> (...) {</div>
@@ -762,9 +761,9 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a> kcenon::monitoring::safe_event_dispatcher::set_circuit_breaker_threshold </td>
+          <td class="memname">void kcenon::monitoring::safe_event_dispatcher::set_circuit_breaker_threshold </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>threshold</em></td><td>)</td>
           <td></td>
         </tr>
@@ -801,7 +800,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a> kcenon::monitoring::safe_event_dispatcher::set_error_callback </td>
+          <td class="memname">void kcenon::monitoring::safe_event_dispatcher::set_error_callback </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275">error_callback</a>&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
@@ -819,8 +818,8 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00138">138</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  138</span>                                                     {</div>
-<div class="line"><span class="lineno">  139</span>        std::lock_guard&lt;std::mutex&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lock</a>(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
-<div class="line"><span class="lineno">  140</span>        <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ace9ef72bfc365f29425e746d42b90ccb">error_callback_</a> = std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">callback</a>);</div>
+<div class="line"><span class="lineno">  139</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d">error_mutex_</a>);</div>
+<div class="line"><span class="lineno">  140</span>        <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ace9ef72bfc365f29425e746d42b90ccb">error_callback_</a> = std::move(callback);</div>
 <div class="line"><span class="lineno">  141</span>    }</div>
 </div><!-- fragment -->
 </div>
@@ -831,15 +830,15 @@ Here is the call graph for this function:</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> EventType , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">Handler</a> &gt; </div>
+template&lt;typename EventType , typename Handler &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a> kcenon::monitoring::safe_event_dispatcher::subscribe_safe </td>
+          <td class="memname">uint64_t kcenon::monitoring::safe_event_dispatcher::subscribe_safe </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">Handler</a> &amp;&amp;&#160;</td>
+          <td class="paramtype">Handler &amp;&amp;&#160;</td>
           <td class="paramname"><em>handler</em>, </td>
         </tr>
         <tr>
@@ -874,18 +873,18 @@ template&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#
 <p class="definition">Definition at line <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00076">76</a> of file <a class="el" href="../../df/dbc/safe__event__dispatcher_8h_source.html">safe_event_dispatcher.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   76</span>                                                                                               {</div>
 <div class="line"><span class="lineno">   77</span>        <span class="comment">// Wrap handler with exception handling</span></div>
-<div class="line"><span class="lineno">   78</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">safe_handler</a> = [<span class="keyword">this</span>, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">h</a> = std::forward&lt;Handler&gt;(handler), <span class="keywordtype">id</span> = <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2d3119094dc2ee3458702b251ebb4cf">next_id_</a>++]</div>
-<div class="line"><span class="lineno">   79</span>                           (<span class="keyword">const</span> EventType&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">event</a>) {</div>
+<div class="line"><span class="lineno">   78</span>        <span class="keyword">auto</span> safe_handler = [<span class="keyword">this</span>, h = std::forward&lt;Handler&gt;(handler), <span class="keywordtype">id</span> = <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2d3119094dc2ee3458702b251ebb4cf">next_id_</a>++]</div>
+<div class="line"><span class="lineno">   79</span>                           (<span class="keyword">const</span> EventType&amp; event) {</div>
 <div class="line"><span class="lineno">   80</span>            <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">   81</span>                <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">h</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">event</a>);</div>
-<div class="line"><span class="lineno">   82</span>            } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">e</a>) {</div>
-<div class="line"><span class="lineno">   83</span>                <a class="code hl_function" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc">handle_exception</a>(<span class="keywordtype">id</span>, <span class="keyword">typeid</span>(EventType), <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">e</a>.what());</div>
+<div class="line"><span class="lineno">   81</span>                h(event);</div>
+<div class="line"><span class="lineno">   82</span>            } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><span class="lineno">   83</span>                <a class="code hl_function" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc">handle_exception</a>(<span class="keywordtype">id</span>, <span class="keyword">typeid</span>(EventType), e.what());</div>
 <div class="line"><span class="lineno">   84</span>            } <span class="keywordflow">catch</span> (...) {</div>
 <div class="line"><span class="lineno">   85</span>                <a class="code hl_function" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc">handle_exception</a>(<span class="keywordtype">id</span>, <span class="keyword">typeid</span>(EventType), <span class="stringliteral">&quot;Unknown exception&quot;</span>);</div>
 <div class="line"><span class="lineno">   86</span>            }</div>
 <div class="line"><span class="lineno">   87</span>        };</div>
 <div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad8da98ba38fa933d02bc0185dbed6944">bus_</a>-&gt;subscribe&lt;EventType&gt;(std::move(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">safe_handler</a>));</div>
+<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad8da98ba38fa933d02bc0185dbed6944">bus_</a>-&gt;subscribe&lt;EventType&gt;(std::move(safe_handler));</div>
 <div class="line"><span class="lineno">   90</span>    }</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1safe__event__dispatcher_html_a65a6f2b8636cffe0366340c05f29d1cc"><div class="ttname"><a href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc">kcenon::monitoring::safe_event_dispatcher::handle_exception</a></div><div class="ttdeci">void handle_exception(uint64_t handler_id, std::type_index event_type, const std::string &amp;error_msg)</div><div class="ttdef"><b>Definition</b> <a href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00216">safe_event_dispatcher.h:216</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1safe__event__dispatcher_html_ac2d3119094dc2ee3458702b251ebb4cf"><div class="ttname"><a href="../../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2d3119094dc2ee3458702b251ebb4cf">kcenon::monitoring::safe_event_dispatcher::next_id_</a></div><div class="ttdeci">std::atomic&lt; uint64_t &gt; next_id_</div><div class="ttdef"><b>Definition</b> <a href="../../df/dbc/safe__event__dispatcher_8h_source.html#l00277">safe_event_dispatcher.h:277</a></div></div>
@@ -937,7 +936,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a> kcenon::monitoring::safe_event_dispatcher::circuit_breaker_threshold_</td>
+          <td class="memname">size_t kcenon::monitoring::safe_event_dispatcher::circuit_breaker_threshold_</td>
         </tr>
       </table>
   </td>
@@ -1057,7 +1056,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a>, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">size_t</a>&gt; kcenon::monitoring::safe_event_dispatcher::failed_handler_counts_</td>
+          <td class="memname">std::unordered_map&lt;uint64_t, size_t&gt; kcenon::monitoring::safe_event_dispatcher::failed_handler_counts_</td>
         </tr>
       </table>
   </td>
@@ -1081,7 +1080,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::atomic&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a>&gt; kcenon::monitoring::safe_event_dispatcher::next_id_ {1}</td>
+          <td class="memname">std::atomic&lt;uint64_t&gt; kcenon::monitoring::safe_event_dispatcher::next_id_ {1}</td>
         </tr>
       </table>
   </td>
@@ -1130,7 +1129,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::atomic&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">uint64_t</a>&gt; kcenon::monitoring::safe_event_dispatcher::total_exceptions_ {0}</td>
+          <td class="memname">std::atomic&lt;uint64_t&gt; kcenon::monitoring::safe_event_dispatcher::total_exceptions_ {0}</td>
         </tr>
       </table>
   </td>
@@ -1151,7 +1150,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:24 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

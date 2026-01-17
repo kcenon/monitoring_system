@@ -195,7 +195,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dc5/test__interfaces__compile_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -211,7 +211,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">int</a> main </td>
+          <td class="memname">int main </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -224,30 +224,30 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  122</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;=== Interface Compilation Test ===&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  123</span> </div>
 <div class="line"><span class="lineno">  124</span>    <span class="comment">// Test that interfaces can be instantiated through implementations</span></div>
-<div class="line"><span class="lineno">  125</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">observer</a> = std::make_shared&lt;test_observer&gt;();</div>
+<div class="line"><span class="lineno">  125</span>    <span class="keyword">auto</span> observer = std::make_shared&lt;test_observer&gt;();</div>
 <div class="line"><span class="lineno">  126</span>    <span class="keyword">auto</span> collector = std::make_shared&lt;test_collector&gt;();</div>
 <div class="line"><span class="lineno">  127</span> </div>
 <div class="line"><span class="lineno">  128</span>    <span class="comment">// Test that interfaces can be used</span></div>
-<div class="line"><span class="lineno">  129</span>    <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">m</a>{<span class="stringliteral">&quot;test&quot;</span>, 42.0, {}};</div>
-<div class="line"><span class="lineno">  130</span>    <a class="code hl_class" href="../../d1/d65/classkcenon_1_1monitoring_1_1metric__event.html">metric_event</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">me</a>(<span class="stringliteral">&quot;test_source&quot;</span>, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">m</a>);</div>
-<div class="line"><span class="lineno">  131</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">observer</a>-&gt;on_metric_collected(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">me</a>);</div>
+<div class="line"><span class="lineno">  129</span>    <a class="code hl_struct" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> m{<span class="stringliteral">&quot;test&quot;</span>, 42.0, {}};</div>
+<div class="line"><span class="lineno">  130</span>    <a class="code hl_class" href="../../d1/d65/classkcenon_1_1monitoring_1_1metric__event.html">metric_event</a> me(<span class="stringliteral">&quot;test_source&quot;</span>, m);</div>
+<div class="line"><span class="lineno">  131</span>    observer-&gt;on_metric_collected(me);</div>
 <div class="line"><span class="lineno">  132</span> </div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_class" href="../../db/d0d/classkcenon_1_1monitoring_1_1system__event.html">system_event</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">se</a>(system_event::event_type::component_started, <span class="stringliteral">&quot;test_component&quot;</span>, <span class="stringliteral">&quot;Started&quot;</span>);</div>
-<div class="line"><span class="lineno">  134</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">observer</a>-&gt;on_event_occurred(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">se</a>);</div>
+<div class="line"><span class="lineno">  133</span>    <a class="code hl_class" href="../../db/d0d/classkcenon_1_1monitoring_1_1system__event.html">system_event</a> se(system_event::event_type::component_started, <span class="stringliteral">&quot;test_component&quot;</span>, <span class="stringliteral">&quot;Started&quot;</span>);</div>
+<div class="line"><span class="lineno">  134</span>    observer-&gt;on_event_occurred(se);</div>
 <div class="line"><span class="lineno">  135</span> </div>
-<div class="line"><span class="lineno">  136</span>    <a class="code hl_class" href="../../d6/d27/classkcenon_1_1monitoring_1_1state__change__event.html">state_change_event</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sce</a>(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
+<div class="line"><span class="lineno">  136</span>    <a class="code hl_class" href="../../d6/d27/classkcenon_1_1monitoring_1_1state__change__event.html">state_change_event</a> sce(<span class="stringliteral">&quot;test_component&quot;</span>,</div>
 <div class="line"><span class="lineno">  137</span>                          state_change_event::state::healthy,</div>
 <div class="line"><span class="lineno">  138</span>                          state_change_event::state::degraded);</div>
-<div class="line"><span class="lineno">  139</span>    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">observer</a>-&gt;on_system_state_changed(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sce</a>);</div>
+<div class="line"><span class="lineno">  139</span>    observer-&gt;on_system_state_changed(sce);</div>
 <div class="line"><span class="lineno">  140</span> </div>
 <div class="line"><span class="lineno">  141</span>    <span class="comment">// Test collector interface</span></div>
-<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = collector-&gt;collect_metrics();</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok()) {</div>
+<div class="line"><span class="lineno">  142</span>    <span class="keyword">auto</span> result = collector-&gt;collect_metrics();</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><span class="lineno">  144</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Metrics collected successfully&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  145</span>    }</div>
 <div class="line"><span class="lineno">  146</span> </div>
-<div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">types</a> = collector-&gt;get_metric_types();</div>
-<div class="line"><span class="lineno">  148</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collector supports &quot;</span> &lt;&lt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">types</a>.size() &lt;&lt; <span class="stringliteral">&quot; metric type(s)&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> types = collector-&gt;get_metric_types();</div>
+<div class="line"><span class="lineno">  148</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Collector supports &quot;</span> &lt;&lt; types.size() &lt;&lt; <span class="stringliteral">&quot; metric type(s)&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  149</span> </div>
 <div class="line"><span class="lineno">  150</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;✅ All interface compilation tests passed!&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  151</span> </div>
@@ -256,7 +256,6 @@ Functions</h2></td></tr>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1metric__event_html"><div class="ttname"><a href="../../d1/d65/classkcenon_1_1monitoring_1_1metric__event.html">kcenon::monitoring::metric_event</a></div><div class="ttdoc">Event fired when a metric is collected.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/df2/observer__interface_8h_source.html#l00076">observer_interface.h:76</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1state__change__event_html"><div class="ttname"><a href="../../d6/d27/classkcenon_1_1monitoring_1_1state__change__event.html">kcenon::monitoring::state_change_event</a></div><div class="ttdoc">Event fired when system state changes.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/df2/observer__interface_8h_source.html#l00166">observer_interface.h:166</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1system__event_html"><div class="ttname"><a href="../../db/d0d/classkcenon_1_1monitoring_1_1system__event.html">kcenon::monitoring::system_event</a></div><div class="ttdoc">Generic system event for monitoring components.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/df2/observer__interface_8h_source.html#l00115">observer_interface.h:115</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">kcenon::monitoring::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00078">metric_types_adapter.h:78</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -264,7 +263,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

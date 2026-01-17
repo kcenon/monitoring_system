@@ -76,7 +76,7 @@ var searchData=
   ['test_5fresult_5ftypes_2ecpp_73',['test_result_types.cpp',['../df/de8/test__result__types_8cpp.html',1,'']]],
   ['test_5fsecurity_5fcollector_2ecpp_74',['test_security_collector.cpp',['../db/db2/test__security__collector_8cpp.html',1,'']]],
   ['test_5fservice_5fregistration_2ecpp_75',['test_service_registration.cpp',['../db/d71/test__service__registration_8cpp.html',1,'']]],
-  ['test_5fsimd_76',['test_simd',['../d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a29b80cadd8445e10b37834594f313f11',1,'kcenon::monitoring::simd_aggregator']]],
+  ['test_5fsimd_76',['test_simd',['../d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#ab0d3f639bc664abc69679a7f804a14ed',1,'kcenon::monitoring::simd_aggregator']]],
   ['test_5fsmart_5fcollector_2ecpp_77',['test_smart_collector.cpp',['../d7/d50/test__smart__collector_8cpp.html',1,'']]],
   ['test_5fsnapshot_5f_78',['test_snapshot_',['../d9/d66/classMetricExportersTest.html#adaf1bb4ba527798f4b255d27c732ae84',1,'MetricExportersTest']]],
   ['test_5fsnapshots_5f_79',['test_snapshots_',['../d4/dcd/classStorageBackendsTest.html#a9a658822aa30b1e817ad2120503a6a45',1,'StorageBackendsTest']]],

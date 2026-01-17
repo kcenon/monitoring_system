@@ -158,7 +158,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">constexpr</span> T <a id="a9" name="a9"></a><a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a26de2f69b3820122a298167abb54e544">zero_value</a>() {</div>
-<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a id="a10" name="a10"></a><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">is_chrono_duration_v&lt;T&gt;</a>) {</div>
+<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (is_chrono_duration_v&lt;T&gt;) {</div>
 <div class="line">        <span class="keywordflow">return</span> T::zero();</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        <span class="keywordflow">return</span> T{0};</div>
@@ -166,8 +166,8 @@ $(function() {
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><span class="keyword">constexpr</span> T <a id="a11" name="a11"></a><a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#afc913ddc8a075a8e49668d2846602cc2">max_value</a>() {</div>
-<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">is_chrono_duration_v&lt;T&gt;</a>) {</div>
+<div class="line"><span class="keyword">constexpr</span> T <a id="a10" name="a10"></a><a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#afc913ddc8a075a8e49668d2846602cc2">max_value</a>() {</div>
+<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (is_chrono_duration_v&lt;T&gt;) {</div>
 <div class="line">        <span class="keywordflow">return</span> T::max();</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        <span class="keywordflow">return</span> std::numeric_limits&lt;T&gt;::max();</div>
@@ -175,8 +175,8 @@ $(function() {
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><span class="keyword">constexpr</span> T <a id="a12" name="a12"></a><a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a7d41a3c959d8efa9c2057dd95d47c75b">min_value</a>() {</div>
-<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">is_chrono_duration_v&lt;T&gt;</a>) {</div>
+<div class="line"><span class="keyword">constexpr</span> T <a id="a11" name="a11"></a><a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a7d41a3c959d8efa9c2057dd95d47c75b">min_value</a>() {</div>
+<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (is_chrono_duration_v&lt;T&gt;) {</div>
 <div class="line">        <span class="keywordflow">return</span> T::min();</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        <span class="keywordflow">return</span> std::numeric_limits&lt;T&gt;::lowest();</div>
@@ -184,12 +184,12 @@ $(function() {
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line">T <a id="a13" name="a13"></a><a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a9222491890c4bf7a9f9e4ea0da499297">divide</a>(<span class="keyword">const</span> T&amp; value, <span class="keywordtype">size_t</span> count) {</div>
+<div class="line">T <a id="a12" name="a12"></a><a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a9222491890c4bf7a9f9e4ea0da499297">divide</a>(<span class="keyword">const</span> T&amp; value, <span class="keywordtype">size_t</span> count) {</div>
 <div class="line">    <span class="keywordflow">if</span> (count == 0) {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">zero_value&lt;T&gt;</a>();</div>
+<div class="line">        <span class="keywordflow">return</span> zero_value&lt;T&gt;();</div>
 <div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">is_chrono_duration_v&lt;T&gt;</a>) {</div>
-<div class="line">        <span class="keywordflow">return</span> value / <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">typename</a> T::rep<span class="keyword">&gt;</span>(count);</div>
+<div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (is_chrono_duration_v&lt;T&gt;) {</div>
+<div class="line">        <span class="keywordflow">return</span> value / <span class="keyword">static_cast&lt;</span>typename T::rep<span class="keyword">&gt;</span>(count);</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        <span class="keywordflow">return</span> value / <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(count);</div>
 <div class="line">    }</div>
@@ -198,93 +198,93 @@ $(function() {
 <div class="line">}  <span class="comment">// namespace detail</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line">T <a id="a14" name="a14"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>, <span class="keywordtype">double</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">percentile_value</a>) {</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.empty()) {</div>
+<div class="line">T <a id="a13" name="a13"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; sorted_values, <span class="keywordtype">double</span> percentile_value) {</div>
+<div class="line">    <span class="keywordflow">if</span> (sorted_values.empty()) {</div>
 <div class="line">        <span class="keywordflow">return</span> detail::zero_value&lt;T&gt;();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">percentile_value</a> &lt;= 0.0) {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.front();</div>
+<div class="line">    <span class="keywordflow">if</span> (percentile_value &lt;= 0.0) {</div>
+<div class="line">        <span class="keywordflow">return</span> sorted_values.front();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">percentile_value</a> &gt;= 100.0) {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.back();</div>
+<div class="line">    <span class="keywordflow">if</span> (percentile_value &gt;= 100.0) {</div>
+<div class="line">        <span class="keywordflow">return</span> sorted_values.back();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">double</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">rank</a> = (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">percentile_value</a> / 100.0) * (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.size() - 1);</div>
-<div class="line">    <span class="keywordtype">size_t</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lower_idx</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">rank</a>);</div>
-<div class="line">    <span class="keywordtype">size_t</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">upper_idx</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lower_idx</a> + 1;</div>
+<div class="line">    <span class="keywordtype">double</span> rank = (percentile_value / 100.0) * (sorted_values.size() - 1);</div>
+<div class="line">    <span class="keywordtype">size_t</span> lower_idx = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(rank);</div>
+<div class="line">    <span class="keywordtype">size_t</span> upper_idx = lower_idx + 1;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">upper_idx</a> &gt;= <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.size()) {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>[<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lower_idx</a>];</div>
+<div class="line">    <span class="keywordflow">if</span> (upper_idx &gt;= sorted_values.size()) {</div>
+<div class="line">        <span class="keywordflow">return</span> sorted_values[lower_idx];</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// For chrono types, use simple index-based selection</span></div>
 <div class="line">    <span class="comment">// For numeric types, use linear interpolation</span></div>
 <div class="line">    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (detail::is_chrono_duration_v&lt;T&gt;) {</div>
 <div class="line">        <span class="comment">// Use nearest-rank method for duration types</span></div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(std::round(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">rank</a>))];</div>
+<div class="line">        <span class="keywordflow">return</span> sorted_values[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(std::round(rank))];</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
-<div class="line">        <span class="keywordtype">double</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">fraction</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">rank</a> - <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lower_idx</a>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>[<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lower_idx</a>] +</div>
-<div class="line">               <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">fraction</a> * (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>[<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">upper_idx</a>] - <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>[<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">lower_idx</a>]));</div>
+<div class="line">        <span class="keywordtype">double</span> fraction = rank - <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(lower_idx);</div>
+<div class="line">        <span class="keywordflow">return</span> sorted_values[lower_idx] +</div>
+<div class="line">               <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(fraction * (sorted_values[upper_idx] - sorted_values[lower_idx]));</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">statistics&lt;T&gt;</a> <a id="a15" name="a15"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a4b519299bafae5a711f9c3c40d1cc045">compute_sorted</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>) {</div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">statistics&lt;T&gt;</a> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>{};</div>
+<div class="line">statistics&lt;T&gt; <a id="a14" name="a14"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a4b519299bafae5a711f9c3c40d1cc045">compute_sorted</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; sorted_values) {</div>
+<div class="line">    statistics&lt;T&gt; result{};</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.empty()) {</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.min = detail::zero_value&lt;T&gt;();</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.max = detail::zero_value&lt;T&gt;();</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.mean = detail::zero_value&lt;T&gt;();</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.median = detail::zero_value&lt;T&gt;();</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.p95 = detail::zero_value&lt;T&gt;();</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.p99 = detail::zero_value&lt;T&gt;();</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.total = detail::zero_value&lt;T&gt;();</div>
-<div class="line">        <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.count = 0;</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line">    <span class="keywordflow">if</span> (sorted_values.empty()) {</div>
+<div class="line">        result.min = detail::zero_value&lt;T&gt;();</div>
+<div class="line">        result.max = detail::zero_value&lt;T&gt;();</div>
+<div class="line">        result.mean = detail::zero_value&lt;T&gt;();</div>
+<div class="line">        result.median = detail::zero_value&lt;T&gt;();</div>
+<div class="line">        result.p95 = detail::zero_value&lt;T&gt;();</div>
+<div class="line">        result.p99 = detail::zero_value&lt;T&gt;();</div>
+<div class="line">        result.total = detail::zero_value&lt;T&gt;();</div>
+<div class="line">        result.count = 0;</div>
+<div class="line">        <span class="keywordflow">return</span> result;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.count = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.size();</div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.min = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.front();</div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.max = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.back();</div>
+<div class="line">    result.count = sorted_values.size();</div>
+<div class="line">    result.min = sorted_values.front();</div>
+<div class="line">    result.max = sorted_values.back();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Calculate total</span></div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.total = std::accumulate(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.begin(), <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>.end(),</div>
+<div class="line">    result.total = std::accumulate(sorted_values.begin(), sorted_values.end(),</div>
 <div class="line">                                   detail::zero_value&lt;T&gt;());</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Calculate mean</span></div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.mean = <a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a9222491890c4bf7a9f9e4ea0da499297">detail::divide</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.total, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.count);</div>
+<div class="line">    result.mean = <a class="code hl_function" href="../../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html#a9222491890c4bf7a9f9e4ea0da499297">detail::divide</a>(result.total, result.count);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Calculate percentiles</span></div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.median = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>, 50.0);</div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.p95 = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>, 95.0);</div>
-<div class="line">    <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.p99 = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_values</a>, 99.0);</div>
+<div class="line">    result.median = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(sorted_values, 50.0);</div>
+<div class="line">    result.p95 = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(sorted_values, 95.0);</div>
+<div class="line">    result.p99 = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">percentile</a>(sorted_values, 99.0);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line">    <span class="keywordflow">return</span> result;</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">statistics&lt;T&gt;</a> <a id="a16" name="a16"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#aea3289c2798c049779d4c7a539bdf816">compute</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>) {</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>.empty()) {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">compute_sorted&lt;T&gt;</a>({});</div>
+<div class="line">statistics&lt;T&gt; <a id="a15" name="a15"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#aea3289c2798c049779d4c7a539bdf816">compute</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; values) {</div>
+<div class="line">    <span class="keywordflow">if</span> (values.empty()) {</div>
+<div class="line">        <span class="keywordflow">return</span> compute_sorted&lt;T&gt;({});</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;T&gt; sorted = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>;</div>
+<div class="line">    std::vector&lt;T&gt; sorted = values;</div>
 <div class="line">    std::sort(sorted.begin(), sorted.end());</div>
 <div class="line">    <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a4b519299bafae5a711f9c3c40d1cc045">compute_sorted</a>(sorted);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">statistics&lt;T&gt;</a> <a id="a17" name="a17"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a64f36f40785a0ca9fb1128d04b764846">compute_inplace</a>(std::vector&lt;T&gt;&amp; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>) {</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>.empty()) {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">compute_sorted&lt;T&gt;</a>({});</div>
+<div class="line">statistics&lt;T&gt; <a id="a16" name="a16"></a><a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a64f36f40785a0ca9fb1128d04b764846">compute_inplace</a>(std::vector&lt;T&gt;&amp; values) {</div>
+<div class="line">    <span class="keywordflow">if</span> (values.empty()) {</div>
+<div class="line">        <span class="keywordflow">return</span> compute_sorted&lt;T&gt;({});</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::sort(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>.begin(), <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>.end());</div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a4b519299bafae5a711f9c3c40d1cc045">compute_sorted</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">values</a>);</div>
+<div class="line">    std::sort(values.begin(), values.end());</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a4b519299bafae5a711f9c3c40d1cc045">compute_sorted</a>(values);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line">}  <span class="comment">// namespace stats</span></div>
@@ -300,7 +300,6 @@ $(function() {
 <div class="ttc" id="anamespacekcenon_1_1monitoring_1_1stats_html_a64f36f40785a0ca9fb1128d04b764846"><div class="ttname"><a href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a64f36f40785a0ca9fb1128d04b764846">kcenon::monitoring::stats::compute_inplace</a></div><div class="ttdeci">statistics&lt; T &gt; compute_inplace(std::vector&lt; T &gt; &amp;values)</div><div class="ttdoc">Compute statistics in place (modifies input)</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00273">statistics.h:273</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_1_1stats_html_a9a52e3368f4e41c9446fb934d853ece7"><div class="ttname"><a href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">kcenon::monitoring::stats::percentile</a></div><div class="ttdeci">T percentile(const std::vector&lt; T &gt; &amp;sorted_values, double percentile_value)</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00155">statistics.h:155</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_1_1stats_html_aea3289c2798c049779d4c7a539bdf816"><div class="ttname"><a href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#aea3289c2798c049779d4c7a539bdf816">kcenon::monitoring::stats::compute</a></div><div class="ttdeci">statistics&lt; T &gt; compute(const std::vector&lt; T &gt; &amp;values)</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00253">statistics.h:253</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 <div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00027">common_monitor_adapter.h:27</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1stats_1_1statistics_html_a6c5236134eb92754958679d338361de4"><div class="ttname"><a href="../../db/de5/structkcenon_1_1monitoring_1_1stats_1_1statistics.html#a6c5236134eb92754958679d338361de4">kcenon::monitoring::stats::statistics::max</a></div><div class="ttdeci">T max</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00061">statistics.h:61</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1stats_1_1statistics_html_a6d8b0ffc8304a61744b6e6ac9c0eb0e5"><div class="ttname"><a href="../../db/de5/structkcenon_1_1monitoring_1_1stats_1_1statistics.html#a6d8b0ffc8304a61744b6e6ac9c0eb0e5">kcenon::monitoring::stats::statistics::median</a></div><div class="ttdeci">T median</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00063">statistics.h:63</a></div></div>
@@ -313,7 +312,7 @@ $(function() {
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

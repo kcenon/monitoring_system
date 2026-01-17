@@ -369,8 +369,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> monitor = std::make_shared&lt;mock_monitor&gt;();</div>
 <div class="line"><span class="lineno">  184</span> </div>
 <div class="line"><span class="lineno">  185</span>    EXPECT_NO_THROW({</div>
-<div class="line"><span class="lineno">  186</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 1.0);</div>
-<div class="line"><span class="lineno">  187</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><span class="lineno">  186</span>        <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 1.0);</div>
+<div class="line"><span class="lineno">  187</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  188</span>    });</div>
 <div class="line"><span class="lineno">  189</span> </div>
 <div class="line"><span class="lineno">  190</span>    <span class="comment">// Both should work independently</span></div>
@@ -378,7 +378,6 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  192</span>    ASSERT_TRUE(monitor_metrics.is_ok());</div>
 <div class="line"><span class="lineno">  193</span>    EXPECT_EQ(1, monitor_metrics.value().metrics.size());</div>
 <div class="line"><span class="lineno">  194</span>}</div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -524,8 +523,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  355</span>    });</div>
 <div class="line"><span class="lineno">  356</span> </div>
 <div class="line"><span class="lineno">  357</span>    <span class="comment">// Collect metrics using native interface</span></div>
-<div class="line"><span class="lineno">  358</span>    <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = monitor-&gt;collect();</div>
-<div class="line"><span class="lineno">  359</span>    ASSERT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><span class="lineno">  358</span>    <span class="keyword">auto</span> result = monitor-&gt;collect();</div>
+<div class="line"><span class="lineno">  359</span>    ASSERT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  360</span>}</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a02c7867f24a6cbd907fdc07b4f294727a2c127bf32ccb4edf2bf22fea5a00e494"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a02c7867f24a6cbd907fdc07b4f294727a2c127bf32ccb4edf2bf22fea5a00e494">kcenon::monitoring::metric_type::timer</a></div><div class="ttdeci">@ timer</div><div class="ttdoc">StatsD-specific timer metric.</div></div>
 </div><!-- fragment -->
@@ -565,8 +564,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  223</span> </div>
 <div class="line"><span class="lineno">  224</span>    <span class="comment">// Test IMonitor interface methods</span></div>
 <div class="line"><span class="lineno">  225</span>    EXPECT_NO_THROW({</div>
-<div class="line"><span class="lineno">  226</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a> = monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
-<div class="line"><span class="lineno">  227</span>        EXPECT_TRUE(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>.is_ok());</div>
+<div class="line"><span class="lineno">  226</span>        <span class="keyword">auto</span> result = monitor-&gt;record_metric(<span class="stringliteral">&quot;test_metric&quot;</span>, 42.0);</div>
+<div class="line"><span class="lineno">  227</span>        EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><span class="lineno">  228</span>    });</div>
 <div class="line"><span class="lineno">  229</span> </div>
 <div class="line"><span class="lineno">  230</span>    <span class="comment">// Monitor health check should work</span></div>
@@ -682,7 +681,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -91,18 +91,17 @@ $(function() {
 <p>Metric filters receive metrics and return a boolean indicating whether the metric should be processed.</p>
 <p>Example usage: </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;MetricType M, MetricFilterPredicate&lt;M&gt; F&gt;</div>
 <div class="line"><span class="keyword">auto</span> filter_metrics(<span class="keyword">const</span> std::vector&lt;M&gt;&amp; metrics, F&amp;&amp; filter) {</div>
-<div class="line">    std::vector&lt;M&gt; <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line">    std::vector&lt;M&gt; result;</div>
 <div class="line">    std::copy_if(metrics.begin(), metrics.end(),</div>
 <div class="line">                 std::back_inserter(result), filter);</div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">result</a>;</div>
+<div class="line">    <span class="keywordflow">return</span> result;</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="../../da/d74/monitoring__concepts_8h_source.html#l00200">200</a> of file <a class="el" href="../../da/d74/monitoring__concepts_8h_source.html">monitoring_concepts.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:24 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

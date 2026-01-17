@@ -101,13 +101,13 @@ Collaboration diagram for kcenon::monitoring::performance_metrics:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ada6260d8daaceaa8e855fc96602aa131" id="r_ada6260d8daaceaa8e855fc96602aa131"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#ada6260d8daaceaa8e855fc96602aa131">update_statistics</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::vector&lt; std::chrono::nanoseconds &gt; &amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">durations</a>)</td></tr>
+<tr class="memitem:ada6260d8daaceaa8e855fc96602aa131" id="r_ada6260d8daaceaa8e855fc96602aa131"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#ada6260d8daaceaa8e855fc96602aa131">update_statistics</a> (const std::vector&lt; std::chrono::nanoseconds &gt; &amp;durations)</td></tr>
 <tr class="memdesc:ada6260d8daaceaa8e855fc96602aa131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update statistics with new duration samples.  <br /></td></tr>
 <tr class="separator:ada6260d8daaceaa8e855fc96602aa131"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ad4d6a0287889fa0e8fa014274665602e" id="r_ad4d6a0287889fa0e8fa014274665602e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">static</a> std::chrono::nanoseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#ad4d6a0287889fa0e8fa014274665602e">calculate_percentile</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::vector&lt; std::chrono::nanoseconds &gt; &amp;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_durations</a>, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">double</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">percentile_value</a>)</td></tr>
+<tr class="memitem:ad4d6a0287889fa0e8fa014274665602e" id="r_ad4d6a0287889fa0e8fa014274665602e"><td class="memItemLeft" align="right" valign="top">static std::chrono::nanoseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#ad4d6a0287889fa0e8fa014274665602e">calculate_percentile</a> (const std::vector&lt; std::chrono::nanoseconds &gt; &amp;sorted_durations, double percentile_value)</td></tr>
 <tr class="memdesc:ad4d6a0287889fa0e8fa014274665602e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate percentile from sorted durations.  <br /></td></tr>
 <tr class="separator:ad4d6a0287889fa0e8fa014274665602e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -133,7 +133,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ac4214f23295321919fb4ee49a62bc685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafb797500a6d4580eaf6f37ad93a21f4" id="r_aafb797500a6d4580eaf6f37ad93a21f4"><td class="memItemLeft" align="right" valign="top">std::uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#aafb797500a6d4580eaf6f37ad93a21f4">error_count</a> {0}</td></tr>
 <tr class="separator:aafb797500a6d4580eaf6f37ad93a21f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1df8084acd573504c548b2189706b703" id="r_a1df8084acd573504c548b2189706b703"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a1df8084acd573504c548b2189706b703">throughput</a> {0.0}</td></tr>
+<tr class="memitem:a1df8084acd573504c548b2189706b703" id="r_a1df8084acd573504c548b2189706b703"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a1df8084acd573504c548b2189706b703">throughput</a> {0.0}</td></tr>
 <tr class="separator:a1df8084acd573504c548b2189706b703"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -151,15 +151,15 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">static</a> std::chrono::nanoseconds kcenon::monitoring::performance_metrics::calculate_percentile </td>
+          <td class="memname">static std::chrono::nanoseconds kcenon::monitoring::performance_metrics::calculate_percentile </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::vector&lt; std::chrono::nanoseconds &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::chrono::nanoseconds &gt; &amp;&#160;</td>
           <td class="paramname"><em>sorted_durations</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">double</a>&#160;</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>percentile_value</em>&#160;</td>
         </tr>
         <tr>
@@ -177,15 +177,14 @@ Public Attributes</h2></td></tr>
 
 <p>Calculate percentile from sorted durations. </p>
 <dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Use <a class="el" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">stats::percentile()</a> directly for new code </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a23">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a22">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00139">139</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  141</span>                                 {</div>
-<div class="line"><span class="lineno">  142</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">stats::percentile</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">sorted_durations</a>, <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">percentile_value</a>);</div>
+<div class="line"><span class="lineno">  142</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">stats::percentile</a>(sorted_durations, percentile_value);</div>
 <div class="line"><span class="lineno">  143</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_1_1stats_html_a9a52e3368f4e41c9446fb934d853ece7"><div class="ttname"><a href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#a9a52e3368f4e41c9446fb934d853ece7">kcenon::monitoring::stats::percentile</a></div><div class="ttdeci">T percentile(const std::vector&lt; T &gt; &amp;sorted_values, double percentile_value)</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00155">statistics.h:155</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa50eefd048f6e0abb82f1ec84a421dd0"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">kcenon::monitoring::result</a></div><div class="ttdeci">common::Result&lt; T &gt; result</div><div class="ttdoc">Backward-compatible alias for common::Result&lt;T&gt;</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d7d/result__types_8h_source.html#l00114">result_types.h:114</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -209,9 +208,9 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">void</a> kcenon::monitoring::performance_metrics::update_statistics </td>
+          <td class="memname">void kcenon::monitoring::performance_metrics::update_statistics </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">const</a> std::vector&lt; std::chrono::nanoseconds &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::chrono::nanoseconds &gt; &amp;&#160;</td>
           <td class="paramname"><em>durations</em></td><td>)</td>
           <td></td>
         </tr>
@@ -225,21 +224,21 @@ Here is the call graph for this function:</div>
 
 <p>Update statistics with new duration samples. </p>
 <dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Use <a class="el" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#aea3289c2798c049779d4c7a539bdf816">stats::compute()</a> directly for new code </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a25">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a24">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00149">149</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  149</span>                                                                             {</div>
-<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">if</span> (<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">durations</a>.empty()) <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">if</span> (durations.empty()) <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>        <span class="keyword">auto</span> <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a> = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#aea3289c2798c049779d4c7a539bdf816">stats::compute</a>(<a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">durations</a>);</div>
-<div class="line"><span class="lineno">  153</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a20b5894c7264939dfead9907611cb0ab">min_duration</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a>.min;</div>
-<div class="line"><span class="lineno">  154</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a14c964197e7b7b9ff01c1386af31bd76">max_duration</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a>.max;</div>
-<div class="line"><span class="lineno">  155</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#aaf55bc065b9c5d95e79e265bb3d8e6f7">mean_duration</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a>.mean;</div>
-<div class="line"><span class="lineno">  156</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a88178306b783001503dd08bfd8bd4e3e">median_duration</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a>.median;</div>
-<div class="line"><span class="lineno">  157</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#ac0d742cc9cd1d2a85cfc1990d3545aa9">p95_duration</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a>.p95;</div>
-<div class="line"><span class="lineno">  158</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a4e2c28285c6e4ee7c30ca6201292b2f1">p99_duration</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a>.p99;</div>
-<div class="line"><span class="lineno">  159</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a82b08db76f8ef6828e48a4989247014f">total_duration</a> = <a class="code hl_typedef" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">computed</a>.total;</div>
+<div class="line"><span class="lineno">  152</span>        <span class="keyword">auto</span> computed = <a class="code hl_function" href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#aea3289c2798c049779d4c7a539bdf816">stats::compute</a>(durations);</div>
+<div class="line"><span class="lineno">  153</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a20b5894c7264939dfead9907611cb0ab">min_duration</a> = computed.min;</div>
+<div class="line"><span class="lineno">  154</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a14c964197e7b7b9ff01c1386af31bd76">max_duration</a> = computed.max;</div>
+<div class="line"><span class="lineno">  155</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#aaf55bc065b9c5d95e79e265bb3d8e6f7">mean_duration</a> = computed.mean;</div>
+<div class="line"><span class="lineno">  156</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a88178306b783001503dd08bfd8bd4e3e">median_duration</a> = computed.median;</div>
+<div class="line"><span class="lineno">  157</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#ac0d742cc9cd1d2a85cfc1990d3545aa9">p95_duration</a> = computed.p95;</div>
+<div class="line"><span class="lineno">  158</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a4e2c28285c6e4ee7c30ca6201292b2f1">p99_duration</a> = computed.p99;</div>
+<div class="line"><span class="lineno">  159</span>        <a class="code hl_variable" href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a82b08db76f8ef6828e48a4989247014f">total_duration</a> = computed.total;</div>
 <div class="line"><span class="lineno">  160</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_1_1stats_html_aea3289c2798c049779d4c7a539bdf816"><div class="ttname"><a href="../../db/d19/namespacekcenon_1_1monitoring_1_1stats.html#aea3289c2798c049779d4c7a539bdf816">kcenon::monitoring::stats::compute</a></div><div class="ttdeci">statistics&lt; T &gt; compute(const std::vector&lt; T &gt; &amp;values)</div><div class="ttdef"><b>Definition</b> <a href="../../d7/dc5/statistics_8h_source.html#l00253">statistics.h:253</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1performance__metrics_html_a14c964197e7b7b9ff01c1386af31bd76"><div class="ttname"><a href="../../db/d4d/structkcenon_1_1monitoring_1_1performance__metrics.html#a14c964197e7b7b9ff01c1386af31bd76">kcenon::monitoring::performance_metrics::max_duration</a></div><div class="ttdeci">std::chrono::nanoseconds max_duration</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00125">performance_monitor.h:125</a></div></div>
@@ -280,7 +279,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a20">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a19">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00131">131</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -299,7 +298,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a21">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a20">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00132">132</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -318,7 +317,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a14">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a13">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00125">125</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -337,7 +336,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a16">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a15">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00127">127</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -356,7 +355,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a17">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a16">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00128">128</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -375,7 +374,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a13">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a12">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00124">124</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -394,7 +393,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a12">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a11">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00123">123</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -412,7 +411,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a18">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a17">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00129">129</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -431,7 +430,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a19">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a18">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00130">130</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -446,11 +445,11 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa50eefd048f6e0abb82f1ec84a421dd0">double</a> kcenon::monitoring::performance_metrics::throughput {0.0}</td>
+          <td class="memname">double kcenon::monitoring::performance_metrics::throughput {0.0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a22">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a21">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00133">133</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -469,7 +468,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a15">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../de/d4a/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2core_2performance_monitor_8h-example.html#a14">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/core/performance_monitor.h</a>.</dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/db1/performance__monitor_8h_source.html#l00126">126</a> of file <a class="el" href="../../d7/db1/performance__monitor_8h_source.html">performance_monitor.h</a>.</p>
@@ -483,7 +482,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2026 22:43:33 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 14:24:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
