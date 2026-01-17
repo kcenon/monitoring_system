@@ -50,10 +50,10 @@ protected:
     std::atomic<int> success_count{0};
     
     // Helper function for testing operations
-    result<int> test_operation() {
+    kcenon::common::Result<int> test_operation() {
         ++call_count;
         ++success_count;
-        return make_success(42);
+        return kcenon::common::ok(42);
     }
     
     // Helper function that simulates work

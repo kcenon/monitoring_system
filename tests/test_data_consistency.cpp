@@ -54,22 +54,22 @@ protected:
     std::atomic<int> rollback_count{0};
     
     // Helper function for testing operations
-    result_void test_operation() {
+    kcenon::common::VoidResult test_operation() {
         ++call_count;
         ++success_count;
-        return common::ok();
+        return kcenon::common::ok();
     }
-    
+
     // Helper function that fails
-    result_void failing_operation() {
+    kcenon::common::VoidResult failing_operation() {
         ++call_count;
         return kcenon::common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed), "Simulated failure");
     }
-    
+
     // Helper function for rollback
-    result_void rollback_operation() {
+    kcenon::common::VoidResult rollback_operation() {
         ++rollback_count;
-        return common::ok();
+        return kcenon::common::ok();
     }
     
     // Helper validation function
@@ -81,8 +81,8 @@ protected:
         return validation_result::invalid;
     }
     
-    result_void test_repair() {
-        return common::ok();
+    kcenon::common::VoidResult test_repair() {
+        return kcenon::common::ok();
     }
 };
 

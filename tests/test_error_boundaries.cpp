@@ -52,29 +52,29 @@ protected:
     std::atomic<int> success_after_attempts{0};
     
     // Helper function that fails for the first N attempts
-    result<int> failing_operation() {
+    kcenon::common::Result<int> failing_operation() {
         int current_call = ++call_count;
         if (success_after_attempts > 0 && current_call <= success_after_attempts) {
-            return kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::operation_failed), 
+            return kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::operation_failed),
                                  "Simulated failure on attempt " + std::to_string(current_call));
         }
-        return make_success(42);
+        return kcenon::common::ok(42);
     }
-    
+
     // Helper function that always fails
-    result<int> always_failing_operation() {
+    kcenon::common::Result<int> always_failing_operation() {
         ++call_count;
         return kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::operation_failed), "Always fails");
     }
-    
+
     // Helper function that always succeeds
-    result<int> always_succeeding_operation() {
+    kcenon::common::Result<int> always_succeeding_operation() {
         ++call_count;
-        return make_success(100);
+        return kcenon::common::ok(100);
     }
-    
+
     // Throwing operation for exception handling
-    result<int> throwing_operation() {
+    kcenon::common::Result<int> throwing_operation() {
         ++call_count;
         throw std::runtime_error("Simulated exception");
     }
@@ -145,7 +145,7 @@ TEST_F(ErrorBoundariesTest, ErrorBoundaryWithFallback) {
     error_boundary<int> boundary("test_boundary", config);
     
     auto fallback = [](const error_info&, degradation_level) {
-        return make_success(999);
+        return kcenon::common::ok(999);
     };
     
     auto result = boundary.execute([this]() { return always_failing_operation(); }, fallback);
@@ -244,7 +244,7 @@ TEST_F(ErrorBoundariesTest, CachedValueStrategy) {
 }
 
 TEST_F(ErrorBoundariesTest, AlternativeServiceStrategy) {
-    auto alternative_op = []() { return make_success(888); };
+    auto alternative_op = []() { return kcenon::common::ok(888); };
     auto strategy = std::make_shared<alternative_service_strategy<int>>(alternative_op);
     
     error_boundary_config config;
@@ -360,8 +360,8 @@ TEST_F(ErrorBoundariesTest, DegradableServiceWrapper) {
     manager->register_service(config);
     
     auto normal_op = [this]() { return always_succeeding_operation(); };
-    auto degraded_op = [](degradation_level level) { 
-        return make_success(static_cast<int>(level) * 100); 
+    auto degraded_op = [](degradation_level level) {
+        return kcenon::common::ok(static_cast<int>(level) * 100);
     };
     
     auto service = create_degradable_service<int>("wrapper_service", manager, normal_op, degraded_op);

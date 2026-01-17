@@ -227,11 +227,11 @@ TEST_F(IntegrationE2ETest, HealthMonitoringWithRecovery) {
     // 5. Attempt recovery with retry logic
     int recovery_attempts = 0;
     auto recovery_result = retry_exec.execute(
-        [&service_healthy, &recovery_attempts]() -> result<bool> {
+        [&service_healthy, &recovery_attempts]() -> kcenon::common::Result<bool> {
             recovery_attempts++;
             if (recovery_attempts >= 2) {
                 service_healthy = true;
-                return make_success(true);
+                return kcenon::common::ok(true);
             }
             return kcenon::common::make_error<bool>(static_cast<int>(monitoring_error_code::operation_failed),
                                     "Still recovering");
@@ -306,7 +306,7 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
     std::atomic<int> call_count{0};
     std::atomic<bool> should_fail{true};
 
-    auto unreliable_operation = [&call_count, &should_fail]() -> result<bool> {
+    auto unreliable_operation = [&call_count, &should_fail]() -> kcenon::common::Result<bool> {
         call_count++;
 
         // Fail first 3 calls, then succeed
@@ -315,7 +315,7 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
                                     "Simulated failure");
         }
 
-        return make_success(true);
+        return kcenon::common::ok(true);
     };
 
     // 3. Test fault tolerance execution

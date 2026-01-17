@@ -292,12 +292,12 @@ public:
 
         auto validation = config.validate();
         if (validation.is_err()) {
-            return make_error<std::unique_ptr<time_series>>(
-                monitoring_error_code::invalid_configuration,
+            return common::make_error<std::unique_ptr<time_series>>(
+                static_cast<int>(monitoring_error_code::invalid_configuration),
                 validation.error().message);
         }
 
-        return make_success(std::unique_ptr<time_series>(
+        return common::ok(std::unique_ptr<time_series>(
             new time_series(name, config)));
     }
     
