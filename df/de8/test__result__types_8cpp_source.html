@@ -127,7 +127,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">   46</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, SuccessResultContainsValue) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(42);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">auto</span> result = kcenon::common::ok(42);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    EXPECT_FALSE(result.is_err());</div>
@@ -137,7 +137,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a3b197e1052ec204e782294f39553f9a7">   54</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ErrorResultContainsError) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">auto</span> result = make_error&lt;int&gt;(monitoring_error_code::collector_not_found, <span class="stringliteral">&quot;Test error&quot;</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">auto</span> result = kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::collector_not_found), <span class="stringliteral">&quot;Test error&quot;</span>);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    EXPECT_FALSE(result.is_ok());</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    EXPECT_TRUE(result.is_err());</div>
@@ -148,17 +148,17 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a6a8c2e7db966694728688a345163d632">   63</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ValueOrReturnsDefaultOnError) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">auto</span> error_result = make_error&lt;int&gt;(monitoring_error_code::unknown_error);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">auto</span> error_result = kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::unknown_error), <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    EXPECT_EQ(error_result.value_or(100), 100);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">auto</span> success_result = make_success&lt;int&gt;(42);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">auto</span> success_result = kcenon::common::ok(42);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    EXPECT_EQ(success_result.value_or(100), 42);</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
 </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#aa74e1010969130b2ecea2ce7be45319c">   71</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, MapTransformsSuccessValue) {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(10);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">auto</span> result = kcenon::common::ok(10);</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">auto</span> mapped = result.map([](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span> x * 2; });</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    EXPECT_TRUE(mapped.is_ok());</div>
@@ -168,7 +168,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#ad25eec3fdcbc4cf517d923a434b60dfe">   79</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, MapPropagatesError) {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">auto</span> result = make_error&lt;int&gt;(monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">auto</span> result = kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">auto</span> mapped = result.map([](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span> x * 2; });</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    EXPECT_FALSE(mapped.is_ok());</div>
@@ -178,12 +178,12 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
 <div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#aa81f74f8ede6d0ea820377fb62710705">   87</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, AndThenChainsOperations) {</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">auto</span> result = make_success&lt;int&gt;(10);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">auto</span> result = kcenon::common::ok(10);</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">auto</span> chained = result.and_then([](<span class="keywordtype">int</span> x) {</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">if</span> (x &gt; 5) {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keywordflow">return</span> make_success&lt;std::string&gt;(<span class="stringliteral">&quot;Large&quot;</span>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keywordflow">return</span> kcenon::common::ok(std::string(<span class="stringliteral">&quot;Large&quot;</span>));</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> make_error&lt;std::string&gt;(monitoring_error_code::invalid_configuration);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> kcenon::common::make_error&lt;std::string&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    });</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    EXPECT_TRUE(chained.is_ok());</div>
@@ -193,7 +193,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="foldopen" id="foldopen00100" data-start="{" data-end="}">
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#ac38d910a56f1c8aa2c0b797868eb27d4">  100</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ResultVoidSuccess) {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">auto</span> result = make_void_success();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">auto</span> result = kcenon::common::ok();</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    EXPECT_TRUE(result.is_ok());</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    EXPECT_FALSE(result.is_err());</div>
@@ -202,7 +202,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a18fb4caa1c073bc4d63b96d1b8115adf">  107</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ResultVoidError) {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">auto</span> result = make_void_error(monitoring_error_code::storage_full, <span class="stringliteral">&quot;Storage is full&quot;</span>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">auto</span> result = kcenon::common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::storage_full), <span class="stringliteral">&quot;Storage is full&quot;</span>);</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    EXPECT_FALSE(result.is_ok());</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    EXPECT_TRUE(result.is_err());</div>
@@ -221,85 +221,86 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a62ac79fd617e0999d4feede1c8009d64">  122</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ErrorInfoWithContext) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">auto</span> result = make_error_with_context&lt;int&gt;(</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        monitoring_error_code::collection_failed,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">auto</span> result = kcenon::common::make_error&lt;int&gt;(</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::collection_failed),</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>,</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="stringliteral">&quot;CPU collector timeout&quot;</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    );</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collection_failed);</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    EXPECT_EQ(result.error().message, <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    EXPECT_TRUE(result.error().details.has_value());</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    EXPECT_EQ(result.error().details.value(), <span class="stringliteral">&quot;CPU collector timeout&quot;</span>);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="stringliteral">&quot;&quot;</span>,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="stringliteral">&quot;CPU collector timeout&quot;</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    );</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::collection_failed);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    EXPECT_EQ(result.error().message, <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    EXPECT_TRUE(result.error().details.has_value());</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    EXPECT_EQ(result.error().details.value(), <span class="stringliteral">&quot;CPU collector timeout&quot;</span>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
 </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#aa2e12af73aa38f8d12cea91d47f8863f">  136</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, MetricsSnapshotOperations) {</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 45.5);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;memory_usage&quot;</span>, 2048.0);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    EXPECT_EQ(snapshot.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a64d114e9e18a2248dcf9d489d65dbf14">metrics</a>.size(), 2);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a> = snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a37e4fb3082b43691186b1fc164482356">get_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    EXPECT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.has_value());</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    EXPECT_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.value(), 45.5);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a646130481f6be4ea221dedce5c089419aad921d60486366258809553a3db49a4a">unknown</a> = snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a37e4fb3082b43691186b1fc164482356">get_metric</a>(<span class="stringliteral">&quot;unknown_metric&quot;</span>);</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    EXPECT_FALSE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a646130481f6be4ea221dedce5c089419aad921d60486366258809553a3db49a4a">unknown</a>.has_value());</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>}</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#aa2e12af73aa38f8d12cea91d47f8863f">  137</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, MetricsSnapshotOperations) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_struct" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html">metrics_snapshot</a> snapshot;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>, 45.5);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a91c4bb5a196e0ace7716f2d6c54eb1a7">add_metric</a>(<span class="stringliteral">&quot;memory_usage&quot;</span>, 2048.0);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    EXPECT_EQ(snapshot.<a class="code hl_variable" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a64d114e9e18a2248dcf9d489d65dbf14">metrics</a>.size(), 2);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a> = snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a37e4fb3082b43691186b1fc164482356">get_metric</a>(<span class="stringliteral">&quot;cpu_usage&quot;</span>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    EXPECT_TRUE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.has_value());</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    EXPECT_EQ(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932ad9747e2da342bdb995f6389533ad1a3d">cpu</a>.value(), 45.5);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a646130481f6be4ea221dedce5c089419aad921d60486366258809553a3db49a4a">unknown</a> = snapshot.<a class="code hl_function" href="../../dd/dd7/structkcenon_1_1monitoring_1_1metrics__snapshot.html#a37e4fb3082b43691186b1fc164482356">get_metric</a>(<span class="stringliteral">&quot;unknown_metric&quot;</span>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    EXPECT_FALSE(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a646130481f6be4ea221dedce5c089419aad921d60486366258809553a3db49a4a">unknown</a>.has_value());</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
 </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="foldopen" id="foldopen00151" data-start="{" data-end="}">
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a05f07fab64f44f3c458b838f2fc2ccba">  151</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, MonitoringConfigValidation) {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_struct" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html">monitoring_config</a> config;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="comment">// Valid configuration</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> = 100;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a> = std::chrono::milliseconds(100);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a21bcf7acedd777ebbdc77dce1042a5bc">buffer_size</a> = 1000;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keyword">auto</span> result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">// Invalid history size</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> = 0;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// Invalid interval</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> = 100;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a> = std::chrono::milliseconds(5);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_interval);</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// Invalid buffer size</span></div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a> = std::chrono::milliseconds(100);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a21bcf7acedd777ebbdc77dce1042a5bc">buffer_size</a> = 50; <span class="comment">// Less than history_size</span></div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>}</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a05f07fab64f44f3c458b838f2fc2ccba">  152</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, MonitoringConfigValidation) {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_struct" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html">monitoring_config</a> config;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="comment">// Valid configuration</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> = 100;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a> = std::chrono::milliseconds(100);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a21bcf7acedd777ebbdc77dce1042a5bc">buffer_size</a> = 1000;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">auto</span> result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// Invalid history size</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> = 0;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// Invalid interval</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#ad2ee0ad1098e60b2a9cf06a2b25288db">history_size</a> = 100;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a> = std::chrono::milliseconds(5);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_interval);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// Invalid buffer size</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a0ea175d4d00dd2f1f22664afdf296f8f">collection_interval</a> = std::chrono::milliseconds(100);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    config.<a class="code hl_variable" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a21bcf7acedd777ebbdc77dce1042a5bc">buffer_size</a> = 50; <span class="comment">// Less than history_size</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    result = config.<a class="code hl_function" href="../../dc/db5/structkcenon_1_1monitoring_1_1monitoring__config.html#a3d8ef5a6e5320699aa42b67dc7e91b00">validate</a>();</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    EXPECT_EQ(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83e">monitoring_error_code</a><span class="keyword">&gt;</span>(result.error().code), monitoring_error_code::invalid_capacity);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
 </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a3f5a85968f902ac838de1c26d6bd1be7">  182</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, HealthCheckResult) {</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_struct" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> health;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    </div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    EXPECT_EQ(health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a>, health_status::unknown);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    EXPECT_FALSE(health.<a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ada9164584461c5e4eb17b1fb04569d95">is_healthy</a>());</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a> = health_status::healthy;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    EXPECT_TRUE(health.<a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ada9164584461c5e4eb17b1fb04569d95">is_healthy</a>());</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a> = health_status::degraded;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#af4866eff682a30ea90ddc23a111179de">issues</a>.push_back(<span class="stringliteral">&quot;High memory usage&quot;</span>);</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    EXPECT_FALSE(health.<a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ada9164584461c5e4eb17b1fb04569d95">is_healthy</a>());</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    EXPECT_EQ(health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#af4866eff682a30ea90ddc23a111179de">issues</a>.size(), 1);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>}</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="foldopen" id="foldopen00183" data-start="{" data-end="}">
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a3f5a85968f902ac838de1c26d6bd1be7">  183</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, HealthCheckResult) {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <a class="code hl_struct" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">health_check_result</a> health;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    EXPECT_EQ(health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a>, health_status::unknown);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    EXPECT_FALSE(health.<a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ada9164584461c5e4eb17b1fb04569d95">is_healthy</a>());</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a> = health_status::healthy;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    EXPECT_TRUE(health.<a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ada9164584461c5e4eb17b1fb04569d95">is_healthy</a>());</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#a91388685dd31af13e8e25caa9ad4c995">status</a> = health_status::degraded;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#af4866eff682a30ea90ddc23a111179de">issues</a>.push_back(<span class="stringliteral">&quot;High memory usage&quot;</span>);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    EXPECT_FALSE(health.<a class="code hl_function" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#ada9164584461c5e4eb17b1fb04569d95">is_healthy</a>());</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    EXPECT_EQ(health.<a class="code hl_variable" href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html#af4866eff682a30ea90ddc23a111179de">issues</a>.size(), 1);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>}</div>
 </div>
 <div class="ttc" id="aclassResultTypesTest_html"><div class="ttname"><a href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a></div><div class="ttdoc">Test basic Result pattern functionality.</div><div class="ttdef"><b>Definition</b> <a href="../../df/de8/test__result__types_8cpp_source.html#l00040">test_result_types.cpp:40</a></div></div>
 <div class="ttc" id="aclassResultTypesTest_html_ac1234e9923260bf5d29e6678bd67c6e2"><div class="ttname"><a href="../../d3/d70/classResultTypesTest.html#ac1234e9923260bf5d29e6678bd67c6e2">ResultTypesTest::SetUp</a></div><div class="ttdeci">void SetUp() override</div><div class="ttdef"><b>Definition</b> <a href="../../df/de8/test__result__types_8cpp_source.html#l00042">test_result_types.cpp:42</a></div></div>
@@ -329,7 +330,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 14:24:23 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:03:03 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
