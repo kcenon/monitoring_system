@@ -338,8 +338,8 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  270</span> </div>
 <div class="line"><span class="lineno">  271</span>        <span class="comment">// Check for duplicate transaction</span></div>
 <div class="line"><span class="lineno">  272</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/ddf/classkcenon_1_1monitoring_1_1transaction__manager.html#a0ed279221ac8ac5f7cb66a1457b7fc01">active_transactions_</a>.find(<span class="keywordtype">id</span>) != <a class="code hl_variable" href="../../d3/ddf/classkcenon_1_1monitoring_1_1transaction__manager.html#a0ed279221ac8ac5f7cb66a1457b7fc01">active_transactions_</a>.end()) {</div>
-<div class="line"><span class="lineno">  273</span>            <span class="keywordflow">return</span> make_error&lt;std::shared_ptr&lt;transaction&gt;&gt;(</div>
-<div class="line"><span class="lineno">  274</span>                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>,</div>
+<div class="line"><span class="lineno">  273</span>            <span class="keywordflow">return</span> common::make_error&lt;std::shared_ptr&lt;transaction&gt;&gt;(</div>
+<div class="line"><span class="lineno">  274</span>                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>),</div>
 <div class="line"><span class="lineno">  275</span>                <span class="stringliteral">&quot;Transaction with ID &#39;&quot;</span> + <span class="keywordtype">id</span> + <span class="stringliteral">&quot;&#39; already exists&quot;</span>);</div>
 <div class="line"><span class="lineno">  276</span>        }</div>
 <div class="line"><span class="lineno">  277</span> </div>
@@ -830,7 +830,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:12:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -494,7 +494,7 @@ template&lt;typename Func &gt; </div>
 <div class="line"><span class="lineno">  187</span> </div>
 <div class="line"><span class="lineno">  188</span>        <span class="keywordflow">if</span> (current_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>) {</div>
 <div class="line"><span class="lineno">  189</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">rejected_calls</a>++;</div>
-<div class="line"><span class="lineno">  190</span>            <span class="keywordflow">return</span> make_error&lt;T&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaeaea2bb7fff1770e1947ec04f021aee9">monitoring_error_code::circuit_breaker_open</a>,</div>
+<div class="line"><span class="lineno">  190</span>            <span class="keywordflow">return</span> common::make_error&lt;T&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaeaea2bb7fff1770e1947ec04f021aee9">monitoring_error_code::circuit_breaker_open</a>),</div>
 <div class="line"><span class="lineno">  191</span>                               <span class="stringliteral">&quot;Circuit breaker &#39;&quot;</span> + <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a> + <span class="stringliteral">&quot;&#39; is open&quot;</span>);</div>
 <div class="line"><span class="lineno">  192</span>        }</div>
 <div class="line"><span class="lineno">  193</span> </div>
@@ -1403,7 +1403,7 @@ template&lt;typename T  = void&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:12:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

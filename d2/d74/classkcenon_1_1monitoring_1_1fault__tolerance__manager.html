@@ -725,7 +725,7 @@ template&lt;typename Func &gt; </div>
 <div class="line"><span class="lineno">  156</span>        <span class="keywordflow">if</span> (future_result.wait_for(timeout) == std::future_status::timeout) {</div>
 <div class="line"><span class="lineno">  157</span>            <a class="code hl_variable" href="../../d2/d74/classkcenon_1_1monitoring_1_1fault__tolerance__manager.html#aea608eba10930e9fb09cd3d5287f84c6">metrics_</a>.<a class="code hl_variable" href="../../df/d26/structkcenon_1_1monitoring_1_1fault__tolerance__metrics.html#a95a40d439cc93ba1af4d49e5abbb0bbe">timeouts</a>++;</div>
 <div class="line"><span class="lineno">  158</span>            <a class="code hl_variable" href="../../d2/d74/classkcenon_1_1monitoring_1_1fault__tolerance__manager.html#aea608eba10930e9fb09cd3d5287f84c6">metrics_</a>.<a class="code hl_variable" href="../../df/d26/structkcenon_1_1monitoring_1_1fault__tolerance__metrics.html#ab37fe20aedf5e08b0d4599458cbdaa28">failed_operations</a>++;</div>
-<div class="line"><span class="lineno">  159</span>            <span class="keywordflow">return</span> make_error&lt;T&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaa09332d99869fd7d67c72c1e9187f8e1">monitoring_error_code::operation_timeout</a>,</div>
+<div class="line"><span class="lineno">  159</span>            <span class="keywordflow">return</span> common::make_error&lt;T&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaa09332d99869fd7d67c72c1e9187f8e1">monitoring_error_code::operation_timeout</a>),</div>
 <div class="line"><span class="lineno">  160</span>                               <span class="stringliteral">&quot;Operation timed out after &quot;</span> + std::to_string(timeout.count()) + <span class="stringliteral">&quot;ms&quot;</span>);</div>
 <div class="line"><span class="lineno">  161</span>        }</div>
 <div class="line"><span class="lineno">  162</span> </div>
@@ -1088,7 +1088,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:12:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

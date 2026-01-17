@@ -236,8 +236,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#adbd931641dc38216b2708840b966d789">aggregators_</a>.find(metric_name);</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#adbd931641dc38216b2708840b966d789">aggregators_</a>.end()) {</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            <span class="keywordflow">return</span> make_error&lt;streaming_statistics&gt;(</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea56d6e1482db93bec9f173a8a021b9735">monitoring_error_code::metric_not_found</a>,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            <span class="keywordflow">return</span> common::make_error&lt;streaming_statistics&gt;(</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea56d6e1482db93bec9f173a8a021b9735">monitoring_error_code::metric_not_found</a>),</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                <span class="stringliteral">&quot;No aggregator found for metric: &quot;</span> + metric_name);</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        }</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
@@ -268,8 +268,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#adbd931641dc38216b2708840b966d789">aggregators_</a>.find(metric_name);</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../df/d6f/classkcenon_1_1monitoring_1_1aggregation__processor.html#adbd931641dc38216b2708840b966d789">aggregators_</a>.end()) {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            <span class="keywordflow">return</span> make_error&lt;stream_aggregation_result&gt;(</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea56d6e1482db93bec9f173a8a021b9735">monitoring_error_code::metric_not_found</a>,</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            <span class="keywordflow">return</span> common::make_error&lt;stream_aggregation_result&gt;(</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea56d6e1482db93bec9f173a8a021b9735">monitoring_error_code::metric_not_found</a>),</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                <span class="stringliteral">&quot;No aggregator found for metric: &quot;</span> + metric_name);</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        }</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
@@ -488,7 +488,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:11:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

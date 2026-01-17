@@ -260,7 +260,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  548</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#a270c11cc3664a81a186c306a01f1057b">mutex_</a>);</div>
 <div class="line"><span class="lineno">  549</span> </div>
 <div class="line"><span class="lineno">  550</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#aefdb2bd5ddca9eb86ee7c0130d014cbf">cpu_throttlers_</a>.find(name) != <a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#aefdb2bd5ddca9eb86ee7c0130d014cbf">cpu_throttlers_</a>.end()) {</div>
-<div class="line"><span class="lineno">  551</span>            <span class="keywordflow">return</span> make_error&lt;bool&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>,</div>
+<div class="line"><span class="lineno">  551</span>            <span class="keywordflow">return</span> common::make_error&lt;bool&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>),</div>
 <div class="line"><span class="lineno">  552</span>                                   <span class="stringliteral">&quot;CPU throttler &#39;&quot;</span> + name + <span class="stringliteral">&quot;&#39; already exists&quot;</span>);</div>
 <div class="line"><span class="lineno">  553</span>        }</div>
 <div class="line"><span class="lineno">  554</span> </div>
@@ -322,7 +322,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  519</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#a270c11cc3664a81a186c306a01f1057b">mutex_</a>);</div>
 <div class="line"><span class="lineno">  520</span> </div>
 <div class="line"><span class="lineno">  521</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#a4848534dec9dbfe0f9e795878a809b78">memory_quotas_</a>.find(name) != <a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#a4848534dec9dbfe0f9e795878a809b78">memory_quotas_</a>.end()) {</div>
-<div class="line"><span class="lineno">  522</span>            <span class="keywordflow">return</span> make_error&lt;bool&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>,</div>
+<div class="line"><span class="lineno">  522</span>            <span class="keywordflow">return</span> common::make_error&lt;bool&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>),</div>
 <div class="line"><span class="lineno">  523</span>                                   <span class="stringliteral">&quot;Memory quota &#39;&quot;</span> + name + <span class="stringliteral">&quot;&#39; already exists&quot;</span>);</div>
 <div class="line"><span class="lineno">  524</span>        }</div>
 <div class="line"><span class="lineno">  525</span> </div>
@@ -382,7 +382,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  489</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#a270c11cc3664a81a186c306a01f1057b">mutex_</a>);</div>
 <div class="line"><span class="lineno">  490</span> </div>
 <div class="line"><span class="lineno">  491</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#aa77dfe1b92246f19f6e0bc7c8b134d9f">rate_limiters_</a>.find(name) != <a class="code hl_variable" href="../../df/dfd/classkcenon_1_1monitoring_1_1resource__manager.html#aa77dfe1b92246f19f6e0bc7c8b134d9f">rate_limiters_</a>.end()) {</div>
-<div class="line"><span class="lineno">  492</span>            <span class="keywordflow">return</span> make_error&lt;bool&gt;(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>,</div>
+<div class="line"><span class="lineno">  492</span>            <span class="keywordflow">return</span> common::make_error&lt;bool&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>),</div>
 <div class="line"><span class="lineno">  493</span>                                   <span class="stringliteral">&quot;Rate limiter &#39;&quot;</span> + name + <span class="stringliteral">&quot;&#39; already exists&quot;</span>);</div>
 <div class="line"><span class="lineno">  494</span>        }</div>
 <div class="line"><span class="lineno">  495</span> </div>
@@ -736,7 +736,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:12:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

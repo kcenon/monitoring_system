@@ -634,8 +634,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>                }</div>
 <div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span> </div>
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>                <span class="comment">// Non-retryable error</span></div>
-<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>                <span class="keywordflow">return</span> make_error&lt;grpc_response&gt;(</div>
-<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>                    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>,</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>                <span class="keywordflow">return</span> common::make_error&lt;grpc_response&gt;(</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>                    <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>),</div>
 <div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>                    <span class="stringliteral">&quot;OTLP export failed with status: &quot;</span> +</div>
 <div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>                        std::to_string(response.status_code) + <span class="stringliteral">&quot; - &quot;</span> + response.status_message);</div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>            }</div>
@@ -649,8 +649,8 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>            }</div>
 <div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>        }</div>
 <div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
-<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>        <span class="keywordflow">return</span> make_error&lt;grpc_response&gt;(</div>
-<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>,</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>        <span class="keywordflow">return</span> common::make_error&lt;grpc_response&gt;(</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>            <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>),</div>
 <div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>            <span class="stringliteral">&quot;OTLP export failed after &quot;</span> + std::to_string(<a class="code hl_variable" href="../../da/daa/classkcenon_1_1monitoring_1_1otlp__grpc__exporter.html#a03cc2df3ab6cbd2125da3aebf52dcc2f">config_</a>.<a class="code hl_variable" href="../../db/dca/structkcenon_1_1monitoring_1_1otlp__grpc__config.html#a5d5c1f52cf393513bdc52ccfdab08dfb">max_retry_attempts</a>) + <span class="stringliteral">&quot; retries&quot;</span>);</div>
 <div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>    }</div>
 </div>
@@ -786,7 +786,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:11:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

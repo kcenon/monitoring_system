@@ -423,7 +423,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  135</span> </div>
 <div class="line"><span class="lineno">  136</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#a3d7123a91f28bd68db80eac306447f9e">bus_</a>) {</div>
 <div class="line"><span class="lineno">  137</span>            <a class="code hl_variable" href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#aaf437b81f31baf919c1a634e543b7842">running_</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  138</span>            <span class="keywordflow">return</span> make_common::VoidResult(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>, <span class="stringliteral">&quot;event_bus not set&quot;</span>);</div>
+<div class="line"><span class="lineno">  138</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>), <span class="stringliteral">&quot;event_bus not set&quot;</span>);</div>
 <div class="line"><span class="lineno">  139</span>        }</div>
 <div class="line"><span class="lineno">  140</span> </div>
 <div class="line"><span class="lineno">  141</span>        <a class="code hl_variable" href="../../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#a245aab22a8f29c5528b00b4c594f28cc">worker_</a> = std::thread([<span class="keyword">this</span>, cfg]() {</div>
@@ -580,7 +580,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:12:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -260,13 +260,13 @@ $(function() {
 <div class="line">    <span class="keyword">static</span> common::Result&lt;std::shared_ptr&lt;alert_rule&gt;&gt; <a id="a31" name="a31"></a><a class="code hl_function" href="../../d0/d76/classkcenon_1_1monitoring_1_1rule__builder.html#ab3a951a4671e38eb807b7534bd2ff592">build</a>(<span class="keyword">const</span> rule_definition&amp; def) {</div>
 <div class="line">        <span class="comment">// Validate required fields</span></div>
 <div class="line">        <span class="keywordflow">if</span> (def.name.empty()) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
-<div class="line">                <a id="a32" name="a32"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">            <span class="keywordflow">return</span> common::make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
+<div class="line">                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a id="a32" name="a32"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">                <span class="stringliteral">&quot;Rule name is required&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">if</span> (def.metric_name.empty()) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
-<div class="line">                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">            <span class="keywordflow">return</span> common::make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
+<div class="line">                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">                <span class="stringliteral">&quot;Metric name is required&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
@@ -283,8 +283,8 @@ $(function() {
 <div class="line">        <span class="comment">// Set severity</span></div>
 <div class="line">        <span class="keyword">auto</span> severity = <a id="a33" name="a33"></a><a class="code hl_function" href="../../d0/d76/classkcenon_1_1monitoring_1_1rule__builder.html#aed873ca7670d78fec40a895ef1fb3c53">parse_severity</a>(def.severity);</div>
 <div class="line">        <span class="keywordflow">if</span> (!severity.is_ok()) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
-<div class="line">                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">            <span class="keywordflow">return</span> common::make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
+<div class="line">                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">                severity.error().message);</div>
 <div class="line">        }</div>
 <div class="line">        rule-&gt;set_severity(severity.value());</div>
@@ -295,8 +295,8 @@ $(function() {
 <div class="line">        <span class="comment">// Build trigger</span></div>
 <div class="line">        <span class="keyword">auto</span> trigger = <a id="a34" name="a34"></a><a class="code hl_function" href="../../d0/d76/classkcenon_1_1monitoring_1_1rule__builder.html#ae9a258ee76325ec002185365b8a5243b">build_trigger</a>(def.trigger);</div>
 <div class="line">        <span class="keywordflow">if</span> (!trigger.is_ok()) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
-<div class="line">                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">            <span class="keywordflow">return</span> common::make_error&lt;std::shared_ptr&lt;alert_rule&gt;&gt;(</div>
+<div class="line">                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">                trigger.error().message);</div>
 <div class="line">        }</div>
 <div class="line">        rule-&gt;set_trigger(trigger.value());</div>
@@ -342,8 +342,8 @@ $(function() {
 <div class="line">        <span class="keywordflow">if</span> (str == <span class="stringliteral">&quot;emergency&quot;</span>) {</div>
 <div class="line">            <span class="keywordflow">return</span> common::ok(<a id="a38" name="a38"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#abf3d64d411b3ad343bc59e8ab439b2d1ab65d50673fb197078c78f3a448a958bf">alert_severity::emergency</a>);</div>
 <div class="line">        }</div>
-<div class="line">        <span class="keywordflow">return</span> make_error&lt;alert_severity&gt;(</div>
-<div class="line">            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">        <span class="keywordflow">return</span> common::make_error&lt;alert_severity&gt;(</div>
+<div class="line">            <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">            <span class="stringliteral">&quot;Unknown severity: &quot;</span> + str);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
@@ -352,36 +352,36 @@ $(function() {
 <div class="line">        <span class="keywordflow">if</span> (cfg.type.empty() || cfg.type == <span class="stringliteral">&quot;threshold&quot;</span>) {</div>
 <div class="line">            <span class="keyword">auto</span> op = <a id="a39" name="a39"></a><a class="code hl_function" href="../../d0/d76/classkcenon_1_1monitoring_1_1rule__builder.html#add8526704cc19496c181b57c473b320e">parse_operator</a>(cfg.operator_str);</div>
 <div class="line">            <span class="keywordflow">if</span> (!op.is_ok()) {</div>
-<div class="line">                <span class="keywordflow">return</span> make_error&lt;std::shared_ptr&lt;alert_trigger&gt;&gt;(</div>
-<div class="line">                    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">                <span class="keywordflow">return</span> common::make_error&lt;std::shared_ptr&lt;alert_trigger&gt;&gt;(</div>
+<div class="line">                    <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">                    op.error().message);</div>
 <div class="line">            }</div>
-<div class="line">            <span class="keywordflow">return</span> make_success(std::shared_ptr&lt;alert_trigger&gt;(</div>
+<div class="line">            <span class="keywordflow">return</span> common::ok(std::shared_ptr&lt;alert_trigger&gt;(</div>
 <div class="line">                std::make_shared&lt;threshold_trigger&gt;(cfg.threshold, op.value())));</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> (cfg.type == <span class="stringliteral">&quot;rate&quot;</span>) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_success(std::shared_ptr&lt;alert_trigger&gt;(</div>
+<div class="line">            <span class="keywordflow">return</span> common::ok(std::shared_ptr&lt;alert_trigger&gt;(</div>
 <div class="line">                std::make_shared&lt;rate_of_change_trigger&gt;(</div>
 <div class="line">                    cfg.rate_threshold,</div>
 <div class="line">                    std::chrono::seconds(cfg.window_seconds))));</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> (cfg.type == <span class="stringliteral">&quot;anomaly&quot;</span>) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_success(std::shared_ptr&lt;alert_trigger&gt;(</div>
+<div class="line">            <span class="keywordflow">return</span> common::ok(std::shared_ptr&lt;alert_trigger&gt;(</div>
 <div class="line">                std::make_shared&lt;anomaly_trigger&gt;(</div>
 <div class="line">                    cfg.sensitivity,</div>
 <div class="line">                    <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(cfg.window_seconds))));</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> (cfg.type == <span class="stringliteral">&quot;absent&quot;</span>) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_success(std::shared_ptr&lt;alert_trigger&gt;(</div>
+<div class="line">            <span class="keywordflow">return</span> common::ok(std::shared_ptr&lt;alert_trigger&gt;(</div>
 <div class="line">                std::make_shared&lt;absent_trigger&gt;(</div>
 <div class="line">                    std::chrono::seconds(cfg.absent_seconds))));</div>
 <div class="line">        }</div>
 <div class="line"> </div>
-<div class="line">        <span class="keywordflow">return</span> make_error&lt;std::shared_ptr&lt;alert_trigger&gt;&gt;(</div>
-<div class="line">            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">        <span class="keywordflow">return</span> common::make_error&lt;std::shared_ptr&lt;alert_trigger&gt;&gt;(</div>
+<div class="line">            <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">            <span class="stringliteral">&quot;Unknown trigger type: &quot;</span> + cfg.type);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
@@ -404,8 +404,8 @@ $(function() {
 <div class="line">        <span class="keywordflow">if</span> (str == <span class="stringliteral">&quot;!=&quot;</span> || str == <span class="stringliteral">&quot;&lt;&gt;&quot;</span>) {</div>
 <div class="line">            <span class="keywordflow">return</span> common::ok(<a id="a45" name="a45"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4489a3d47ddac9012b00ebf5817f5b53a96ee5c0e2a7149613e7fd0b83316486e">comparison_operator::not_equal</a>);</div>
 <div class="line">        }</div>
-<div class="line">        <span class="keywordflow">return</span> make_error&lt;comparison_operator&gt;(</div>
-<div class="line">            <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>,</div>
+<div class="line">        <span class="keywordflow">return</span> common::make_error&lt;comparison_operator&gt;(</div>
+<div class="line">            <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae55d43eabeefe5a8271b4a3c898bd18f">monitoring_error_code::invalid_argument</a>),</div>
 <div class="line">            <span class="stringliteral">&quot;Unknown operator: &quot;</span> + str);</div>
 <div class="line">    }</div>
 <div class="line">};</div>
@@ -440,7 +440,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line">        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../df/d96/classkcenon_1_1monitoring_1_1rule__registry.html#a4addb57dd13c13f0d42aa8bfdda940d0">rules_</a>.find(name);</div>
 <div class="line">        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../df/d96/classkcenon_1_1monitoring_1_1rule__registry.html#a4addb57dd13c13f0d42aa8bfdda940d0">rules_</a>.end()) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_void_error(<a id="a52" name="a52"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line">            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a id="a52" name="a52"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>),</div>
 <div class="line">                                   <span class="stringliteral">&quot;Rule not found: &quot;</span> + name);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
@@ -512,8 +512,8 @@ $(function() {
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> (!errors.empty() &amp;&amp; loaded == 0) {</div>
-<div class="line">            <span class="keywordflow">return</span> make_error&lt;size_t&gt;(</div>
-<div class="line">                <a id="a59" name="a59"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaf4a8914f1b2e8cbddcc8680f344eb857">monitoring_error_code::configuration_parse_error</a>,</div>
+<div class="line">            <span class="keywordflow">return</span> common::make_error&lt;size_t&gt;(</div>
+<div class="line">                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a id="a59" name="a59"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaf4a8914f1b2e8cbddcc8680f344eb857">monitoring_error_code::configuration_parse_error</a>),</div>
 <div class="line">                <span class="stringliteral">&quot;Failed to load any rules: &quot;</span> + errors.front());</div>
 <div class="line">        }</div>
 <div class="line"> </div>
@@ -607,7 +607,7 @@ $(function() {
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:11:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

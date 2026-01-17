@@ -343,7 +343,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  186</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.find(name);</div>
 <div class="line"><span class="lineno">  187</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.end()) {</div>
 <div class="line"><span class="lineno">  188</span>            <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a9af82be790e916833d899b4d62c7c51b">metrics_</a>.<a class="code hl_variable" href="../../d9/d96/structkcenon_1_1monitoring_1_1graceful__degradation__metrics.html#a176c376ce146e57f71424a933ee23bc1">failed_degradations</a>++;</div>
-<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>),</div>
 <div class="line"><span class="lineno">  190</span>                                  <span class="stringliteral">&quot;Service not found: &quot;</span> + name);</div>
 <div class="line"><span class="lineno">  191</span>        }</div>
 <div class="line"><span class="lineno">  192</span> </div>
@@ -405,7 +405,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  266</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a7627d85c02d129f373da8c1a18bc153e">mutex_</a>);</div>
 <div class="line"><span class="lineno">  267</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f2052444487b98a22effa7f0dfb4c">plans_</a>.find(plan_name);</div>
 <div class="line"><span class="lineno">  268</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f2052444487b98a22effa7f0dfb4c">plans_</a>.end()) {</div>
-<div class="line"><span class="lineno">  269</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  269</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>),</div>
 <div class="line"><span class="lineno">  270</span>                                  <span class="stringliteral">&quot;Plan not found: &quot;</span> + plan_name);</div>
 <div class="line"><span class="lineno">  271</span>        }</div>
 <div class="line"><span class="lineno">  272</span> </div>
@@ -700,7 +700,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  206</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a7627d85c02d129f373da8c1a18bc153e">mutex_</a>);</div>
 <div class="line"><span class="lineno">  207</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.find(name);</div>
 <div class="line"><span class="lineno">  208</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.end()) {</div>
-<div class="line"><span class="lineno">  209</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  209</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>),</div>
 <div class="line"><span class="lineno">  210</span>                                  <span class="stringliteral">&quot;Service not found: &quot;</span> + name);</div>
 <div class="line"><span class="lineno">  211</span>        }</div>
 <div class="line"><span class="lineno">  212</span> </div>
@@ -749,7 +749,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  150</span> </div>
 <div class="line"><span class="lineno">  151</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a7627d85c02d129f373da8c1a18bc153e">mutex_</a>);</div>
 <div class="line"><span class="lineno">  152</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.find(config.name) != <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.end()) {</div>
-<div class="line"><span class="lineno">  153</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>,</div>
+<div class="line"><span class="lineno">  153</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea">monitoring_error_code::already_exists</a>),</div>
 <div class="line"><span class="lineno">  154</span>                                  <span class="stringliteral">&quot;Service already registered: &quot;</span> + config.name);</div>
 <div class="line"><span class="lineno">  155</span>        }</div>
 <div class="line"><span class="lineno">  156</span> </div>
@@ -806,7 +806,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  170</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a7627d85c02d129f373da8c1a18bc153e">mutex_</a>);</div>
 <div class="line"><span class="lineno">  171</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.find(name);</div>
 <div class="line"><span class="lineno">  172</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.end()) {</div>
-<div class="line"><span class="lineno">  173</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  173</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>),</div>
 <div class="line"><span class="lineno">  174</span>                                  <span class="stringliteral">&quot;Service not found: &quot;</span> + name);</div>
 <div class="line"><span class="lineno">  175</span>        }</div>
 <div class="line"><span class="lineno">  176</span>        <a class="code hl_variable" href="../../d0/df6/classkcenon_1_1monitoring_1_1graceful__degradation__manager.html#a727f085153bd6bb192ee3b698f50528f">services_</a>.erase(it);</div>
@@ -942,7 +942,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:12:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

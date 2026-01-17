@@ -338,7 +338,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>            }</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        }</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea4ab077528cea6da0e59592e3fb2948aa">monitoring_error_code::retry_attempts_exhausted</a>,</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea4ab077528cea6da0e59592e3fb2948aa">monitoring_error_code::retry_attempts_exhausted</a>),</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>                               <span class="stringliteral">&quot;Failed to send webhook after &quot;</span> +</div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                               std::to_string(<a class="code hl_variable" href="../../dd/dc5/classkcenon_1_1monitoring_1_1webhook__notifier.html#a3941e7e5ddba543eaa4a83608b2d7a3d">config_</a>.<a class="code hl_variable" href="../../da/d26/structkcenon_1_1monitoring_1_1webhook__config.html#a5db3bbd10e0695529df6a5c6d4bfd3d1">max_retries</a>) + <span class="stringliteral">&quot; retries&quot;</span>);</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    }</div>
@@ -391,7 +391,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>        std::ofstream file(<a class="code hl_variable" href="../../dc/dea/classkcenon_1_1monitoring_1_1file__notifier.html#acddf3a550215ca5dd81d24a52bd6ff57">file_path_</a>, std::ios::app);</div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        <span class="keywordflow">if</span> (!file) {</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eabed540ca883e83742de2b38073c0aa19">monitoring_error_code::storage_write_failed</a>,</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eabed540ca883e83742de2b38073c0aa19">monitoring_error_code::storage_write_failed</a>),</div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>                                   <span class="stringliteral">&quot;Failed to open file: &quot;</span> + <a class="code hl_variable" href="../../dc/dea/classkcenon_1_1monitoring_1_1file__notifier.html#acddf3a550215ca5dd81d24a52bd6ff57">file_path_</a>);</div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>        }</div>
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
@@ -443,7 +443,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>        }</div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> </div>
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        <span class="keywordflow">if</span> (!failures.empty()) {</div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>,</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>),</div>
 <div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>                                   <span class="stringliteral">&quot;Failed notifiers: &quot;</span> + <a class="code hl_function" href="../../d0/d50/classkcenon_1_1monitoring_1_1multi__notifier.html#a71043952b034ee92992c5c58e68fb68b">join_strings</a>(failures, <span class="stringliteral">&quot;, &quot;</span>));</div>
 <div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>        }</div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>        <span class="keywordflow">return</span> common::ok();</div>
@@ -465,7 +465,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>        }</div>
 <div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        <span class="keywordflow">if</span> (!failures.empty()) {</div>
-<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>,</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>),</div>
 <div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>                                   <span class="stringliteral">&quot;Failed notifiers: &quot;</span> + <a class="code hl_function" href="../../d0/d50/classkcenon_1_1monitoring_1_1multi__notifier.html#a71043952b034ee92992c5c58e68fb68b">join_strings</a>(failures, <span class="stringliteral">&quot;, &quot;</span>));</div>
 <div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        }</div>
 <div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>        <span class="keywordflow">return</span> common::ok();</div>
@@ -833,7 +833,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:11:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -413,8 +413,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  541</span>        }</div>
 <div class="line"><span class="lineno">  542</span> </div>
 <div class="line"><span class="lineno">  543</span>        <span class="keywordflow">if</span> (!errors.empty() &amp;&amp; loaded == 0) {</div>
-<div class="line"><span class="lineno">  544</span>            <span class="keywordflow">return</span> make_error&lt;size_t&gt;(</div>
-<div class="line"><span class="lineno">  545</span>                <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaf4a8914f1b2e8cbddcc8680f344eb857">monitoring_error_code::configuration_parse_error</a>,</div>
+<div class="line"><span class="lineno">  544</span>            <span class="keywordflow">return</span> common::make_error&lt;size_t&gt;(</div>
+<div class="line"><span class="lineno">  545</span>                <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaf4a8914f1b2e8cbddcc8680f344eb857">monitoring_error_code::configuration_parse_error</a>),</div>
 <div class="line"><span class="lineno">  546</span>                <span class="stringliteral">&quot;Failed to load any rules: &quot;</span> + errors.front());</div>
 <div class="line"><span class="lineno">  547</span>        }</div>
 <div class="line"><span class="lineno">  548</span> </div>
@@ -623,7 +623,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  449</span> </div>
 <div class="line"><span class="lineno">  450</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../df/d96/classkcenon_1_1monitoring_1_1rule__registry.html#a4addb57dd13c13f0d42aa8bfdda940d0">rules_</a>.find(name);</div>
 <div class="line"><span class="lineno">  451</span>        <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../df/d96/classkcenon_1_1monitoring_1_1rule__registry.html#a4addb57dd13c13f0d42aa8bfdda940d0">rules_</a>.end()) {</div>
-<div class="line"><span class="lineno">  452</span>            <span class="keywordflow">return</span> make_void_error(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>,</div>
+<div class="line"><span class="lineno">  452</span>            <span class="keywordflow">return</span> common::VoidResult::err(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7500611bf7030bc99d25c354e7b64714">monitoring_error_code::not_found</a>),</div>
 <div class="line"><span class="lineno">  453</span>                                   <span class="stringliteral">&quot;Rule not found: &quot;</span> + name);</div>
 <div class="line"><span class="lineno">  454</span>        }</div>
 <div class="line"><span class="lineno">  455</span> </div>
@@ -726,7 +726,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:12:00 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:23:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
