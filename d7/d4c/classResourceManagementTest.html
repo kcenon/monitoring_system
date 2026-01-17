@@ -105,8 +105,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a245f3c97b271badefdb43dc1a244369f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbfca33743175a12f5910683d067c0c0" id="r_adbfca33743175a12f5910683d067c0c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#adbfca33743175a12f5910683d067c0c0">TearDown</a> () override</td></tr>
 <tr class="separator:adbfca33743175a12f5910683d067c0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3d265b01ce05886b4a9112e7d88c47c" id="r_aa3d265b01ce05886b4a9112e7d88c47c"><td class="memItemLeft" align="right" valign="top">result&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#aa3d265b01ce05886b4a9112e7d88c47c">test_operation</a> ()</td></tr>
-<tr class="separator:aa3d265b01ce05886b4a9112e7d88c47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a211c69be44081d53b8c0a933b45cfea4" id="r_a211c69be44081d53b8c0a933b45cfea4"><td class="memItemLeft" align="right" valign="top">kcenon::common::Result&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#a211c69be44081d53b8c0a933b45cfea4">test_operation</a> ()</td></tr>
+<tr class="separator:a211c69be44081d53b8c0a933b45cfea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89282f04d90c42d01a8a9c3e4d640ab3" id="r_a89282f04d90c42d01a8a9c3e4d640ab3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d4c/classResourceManagementTest.html#a89282f04d90c42d01a8a9c3e4d640ab3">simulate_work</a> (std::chrono::milliseconds duration=std::chrono::milliseconds(10))</td></tr>
 <tr class="separator:a89282f04d90c42d01a8a9c3e4d640ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -215,8 +215,8 @@ Protected Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aa3d265b01ce05886b4a9112e7d88c47c" name="aa3d265b01ce05886b4a9112e7d88c47c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3d265b01ce05886b4a9112e7d88c47c">&#9670;&#160;</a></span>test_operation()</h2>
+<a id="a211c69be44081d53b8c0a933b45cfea4" name="a211c69be44081d53b8c0a933b45cfea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a211c69be44081d53b8c0a933b45cfea4">&#9670;&#160;</a></span>test_operation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,7 +225,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">result&lt; int &gt; ResourceManagementTest::test_operation </td>
+          <td class="memname">kcenon::common::Result&lt; int &gt; ResourceManagementTest::test_operation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -239,10 +239,10 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../db/dcc/test__resource__management_8cpp_source.html">test_resource_management.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   53</span>                                 {</div>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>                                             {</div>
 <div class="line"><span class="lineno">   54</span>        ++<a class="code hl_variable" href="../../d7/d4c/classResourceManagementTest.html#a6a695f17e740a5f54b3e1b03f956dfc6">call_count</a>;</div>
 <div class="line"><span class="lineno">   55</span>        ++<a class="code hl_variable" href="../../d7/d4c/classResourceManagementTest.html#a0a84e208e81abf4ead9ca8168afb5b1c">success_count</a>;</div>
-<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">return</span> make_success(42);</div>
+<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">return</span> kcenon::common::ok(42);</div>
 <div class="line"><span class="lineno">   57</span>    }</div>
 </div><!-- fragment -->
 </div>
@@ -304,7 +304,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:35:56 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:46:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

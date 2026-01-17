@@ -228,7 +228,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d6/d82/test__error__boundaries_8cpp_source.html#l00246">246</a> of file <a class="el" href="../../d6/d82/test__error__boundaries_8cpp_source.html">test_error_boundaries.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  246</span>                                                        {</div>
-<div class="line"><span class="lineno">  247</span>    <span class="keyword">auto</span> alternative_op = []() { <span class="keywordflow">return</span> make_success(888); };</div>
+<div class="line"><span class="lineno">  247</span>    <span class="keyword">auto</span> alternative_op = []() { <span class="keywordflow">return</span> kcenon::common::ok(888); };</div>
 <div class="line"><span class="lineno">  248</span>    <span class="keyword">auto</span> strategy = std::make_shared&lt;alternative_service_strategy&lt;int&gt;&gt;(alternative_op);</div>
 <div class="line"><span class="lineno">  249</span>    </div>
 <div class="line"><span class="lineno">  250</span>    <a class="code hl_struct" href="../../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html">error_boundary_config</a> config;</div>
@@ -445,8 +445,8 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  360</span>    manager-&gt;register_service(config);</div>
 <div class="line"><span class="lineno">  361</span>    </div>
 <div class="line"><span class="lineno">  362</span>    <span class="keyword">auto</span> normal_op = [<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_succeeding_operation(); };</div>
-<div class="line"><span class="lineno">  363</span>    <span class="keyword">auto</span> degraded_op = [](<a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a> level) { </div>
-<div class="line"><span class="lineno">  364</span>        <span class="keywordflow">return</span> make_success(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(level) * 100); </div>
+<div class="line"><span class="lineno">  363</span>    <span class="keyword">auto</span> degraded_op = [](<a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a> level) {</div>
+<div class="line"><span class="lineno">  364</span>        <span class="keywordflow">return</span> kcenon::common::ok(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(level) * 100);</div>
 <div class="line"><span class="lineno">  365</span>    };</div>
 <div class="line"><span class="lineno">  366</span>    </div>
 <div class="line"><span class="lineno">  367</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443aaaabf0d39951f3e6c3e8a7911df524c2">service</a> = create_degradable_service&lt;int&gt;(<span class="stringliteral">&quot;wrapper_service&quot;</span>, manager, normal_op, degraded_op);</div>
@@ -1301,7 +1301,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  145</span>    <a class="code hl_class" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary&lt;int&gt;</a> boundary(<span class="stringliteral">&quot;test_boundary&quot;</span>, config);</div>
 <div class="line"><span class="lineno">  146</span>    </div>
 <div class="line"><span class="lineno">  147</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a> = [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d5/d36/structkcenon_1_1monitoring_1_1error__info.html">error_info</a>&amp;, <a class="code hl_enumeration" href="../../db/d50/namespacekcenon_1_1monitoring.html#a987dca6741f6c68e38102336e2bd8001">degradation_level</a>) {</div>
-<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">return</span> make_success(999);</div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">return</span> kcenon::common::ok(999);</div>
 <div class="line"><span class="lineno">  149</span>    };</div>
 <div class="line"><span class="lineno">  150</span>    </div>
 <div class="line"><span class="lineno">  151</span>    <span class="keyword">auto</span> result = boundary.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); }, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>);</div>
@@ -1748,7 +1748,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:35:56 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:46:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

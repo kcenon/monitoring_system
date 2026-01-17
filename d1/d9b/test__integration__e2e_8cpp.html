@@ -406,7 +406,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  306</span>    std::atomic&lt;int&gt; call_count{0};</div>
 <div class="line"><span class="lineno">  307</span>    std::atomic&lt;bool&gt; should_fail{<span class="keyword">true</span>};</div>
 <div class="line"><span class="lineno">  308</span> </div>
-<div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> unreliable_operation = [&amp;call_count, &amp;should_fail]() -&gt; result&lt;bool&gt; {</div>
+<div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> unreliable_operation = [&amp;call_count, &amp;should_fail]() -&gt; kcenon::common::Result&lt;bool&gt; {</div>
 <div class="line"><span class="lineno">  310</span>        call_count++;</div>
 <div class="line"><span class="lineno">  311</span> </div>
 <div class="line"><span class="lineno">  312</span>        <span class="comment">// Fail first 3 calls, then succeed</span></div>
@@ -415,7 +415,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  315</span>                                    <span class="stringliteral">&quot;Simulated failure&quot;</span>);</div>
 <div class="line"><span class="lineno">  316</span>        }</div>
 <div class="line"><span class="lineno">  317</span> </div>
-<div class="line"><span class="lineno">  318</span>        <span class="keywordflow">return</span> make_success(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  318</span>        <span class="keywordflow">return</span> kcenon::common::ok(<span class="keyword">true</span>);</div>
 <div class="line"><span class="lineno">  319</span>    };</div>
 <div class="line"><span class="lineno">  320</span> </div>
 <div class="line"><span class="lineno">  321</span>    <span class="comment">// 3. Test fault tolerance execution</span></div>
@@ -986,11 +986,11 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  227</span>    <span class="comment">// 5. Attempt recovery with retry logic</span></div>
 <div class="line"><span class="lineno">  228</span>    <span class="keywordtype">int</span> recovery_attempts = 0;</div>
 <div class="line"><span class="lineno">  229</span>    <span class="keyword">auto</span> recovery_result = retry_exec.execute(</div>
-<div class="line"><span class="lineno">  230</span>        [&amp;service_healthy, &amp;recovery_attempts]() -&gt; result&lt;bool&gt; {</div>
+<div class="line"><span class="lineno">  230</span>        [&amp;service_healthy, &amp;recovery_attempts]() -&gt; kcenon::common::Result&lt;bool&gt; {</div>
 <div class="line"><span class="lineno">  231</span>            recovery_attempts++;</div>
 <div class="line"><span class="lineno">  232</span>            <span class="keywordflow">if</span> (recovery_attempts &gt;= 2) {</div>
 <div class="line"><span class="lineno">  233</span>                service_healthy = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  234</span>                <span class="keywordflow">return</span> make_success(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  234</span>                <span class="keywordflow">return</span> kcenon::common::ok(<span class="keyword">true</span>);</div>
 <div class="line"><span class="lineno">  235</span>            }</div>
 <div class="line"><span class="lineno">  236</span>            <span class="keywordflow">return</span> kcenon::common::make_error&lt;bool&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::operation_failed),</div>
 <div class="line"><span class="lineno">  237</span>                                    <span class="stringliteral">&quot;Still recovering&quot;</span>);</div>
@@ -1222,7 +1222,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:35:56 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:46:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

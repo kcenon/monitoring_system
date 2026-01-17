@@ -339,7 +339,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  536</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_threads; ++i) {</div>
 <div class="line"><span class="lineno">  537</span>        threads.emplace_back([&amp;breaker, &amp;successful_operations, operations_per_thread]() {</div>
 <div class="line"><span class="lineno">  538</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; operations_per_thread; ++j) {</div>
-<div class="line"><span class="lineno">  539</span>                <span class="keyword">auto</span> result = breaker.execute([]() { <span class="keywordflow">return</span> make_success(1); });</div>
+<div class="line"><span class="lineno">  539</span>                <span class="keyword">auto</span> result = breaker.execute([]() { <span class="keywordflow">return</span> kcenon::common::ok(1); });</div>
 <div class="line"><span class="lineno">  540</span>                <span class="keywordflow">if</span> (result.is_ok()) {</div>
 <div class="line"><span class="lineno">  541</span>                    successful_operations++;</div>
 <div class="line"><span class="lineno">  542</span>                }</div>
@@ -904,7 +904,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  179</span>    EXPECT_EQ(breaker.get_state(), circuit_state::open);</div>
 <div class="line"><span class="lineno">  180</span>    </div>
 <div class="line"><span class="lineno">  181</span>    <span class="comment">// Use fallback</span></div>
-<div class="line"><span class="lineno">  182</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a> = []() { <span class="keywordflow">return</span> make_success(999); };</div>
+<div class="line"><span class="lineno">  182</span>    <span class="keyword">auto</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a> = []() { <span class="keywordflow">return</span> kcenon::common::ok(999); };</div>
 <div class="line"><span class="lineno">  183</span>    <span class="keyword">auto</span> result = breaker.execute([<span class="keyword">this</span>]() { <span class="keywordflow">return</span> always_failing_operation(); }, <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>);</div>
 <div class="line"><span class="lineno">  184</span>    </div>
 <div class="line"><span class="lineno">  185</span>    EXPECT_TRUE(result.is_ok());</div>
@@ -2024,7 +2024,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:35:56 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:46:32 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
