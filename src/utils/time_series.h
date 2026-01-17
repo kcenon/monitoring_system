@@ -45,18 +45,18 @@ struct time_series_config {
      */
     common::VoidResult validate() const {
         if (retention_period.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Retention period must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Retention period must be positive").to_common_error());
         }
-        
+
         if (resolution.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Resolution must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Resolution must be positive").to_common_error());
         }
-        
+
         if (max_points == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Max points must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max points must be positive").to_common_error());
         }
         
         return common::ok();
@@ -128,13 +128,13 @@ struct time_series_query {
      */
     common::VoidResult validate() const {
         if (start_time >= end_time) {
-            return make_common::VoidResult(monitoring_error_code::invalid_argument,
-                             "Start time must be before end time");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument,
+                             "Start time must be before end time").to_common_error());
         }
-        
+
         if (step.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_argument,
-                             "Step size must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument,
+                             "Step size must be positive").to_common_error());
         }
         
         return common::ok();

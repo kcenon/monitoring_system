@@ -48,23 +48,23 @@ struct metric_storage_config {
      */
     common::VoidResult validate() const {
         if (ring_buffer_capacity == 0 || (ring_buffer_capacity & (ring_buffer_capacity - 1)) != 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Ring buffer capacity must be a power of 2");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Ring buffer capacity must be a power of 2").to_common_error());
         }
 
         if (max_metrics == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Max metrics must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max metrics must be positive").to_common_error());
         }
 
         if (time_series_max_points == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Time series max points must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Time series max points must be positive").to_common_error());
         }
 
         if (retention_period.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Retention period must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Retention period must be positive").to_common_error());
         }
 
         return common::ok();

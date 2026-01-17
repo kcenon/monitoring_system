@@ -48,24 +48,24 @@ struct aggregation_rule {
      */
     common::VoidResult validate() const {
         if (source_metric.empty()) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Source metric name cannot be empty");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Source metric name cannot be empty").to_common_error());
         }
         
         if (target_metric_prefix.empty()) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Target metric prefix cannot be empty");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Target metric prefix cannot be empty").to_common_error());
         }
         
         if (aggregation_interval.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Aggregation interval must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Aggregation interval must be positive").to_common_error());
         }
         
         for (double p : percentiles) {
             if (p < 0.0 || p > 1.0) {
-                return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                                 "Percentiles must be between 0 and 1");
+                return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                 "Percentiles must be between 0 and 1").to_common_error());
             }
         }
         
@@ -296,8 +296,8 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (aggregators_.find(rule.source_metric) != aggregators_.end()) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Aggregation rule already exists for metric: " + rule.source_metric);
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Aggregation rule already exists for metric: " + rule.source_metric).to_common_error());
         }
         
         aggregators_[rule.source_metric] = std::make_unique<metric_aggregator_state>(rule);
@@ -313,8 +313,8 @@ public:
         
         auto it = aggregators_.find(source_metric);
         if (it == aggregators_.end()) {
-            return make_common::VoidResult(monitoring_error_code::collector_not_found,
-                             "Aggregation rule not found for metric: " + source_metric);
+            return common::VoidResult::err(error_info(monitoring_error_code::collector_not_found,
+                             "Aggregation rule not found for metric: " + source_metric).to_common_error());
         }
         
         aggregators_.erase(it);
@@ -332,10 +332,10 @@ public:
         
         auto it = aggregators_.find(metric_name);
         if (it == aggregators_.end()) {
-            return make_common::VoidResult(monitoring_error_code::collector_not_found,
-                             "No aggregation rule found for metric: " + metric_name);
+            return common::VoidResult::err(error_info(monitoring_error_code::collector_not_found,
+                             "No aggregation rule found for metric: " + metric_name).to_common_error());
         }
-        
+
         return it->second->aggregator->add_observation(value, timestamp);
     }
     
@@ -390,8 +390,8 @@ public:
      */
     common::VoidResult start_background_processing(std::chrono::milliseconds interval = std::chrono::milliseconds(10000)) {
         if (running_.load(std::memory_order_acquire)) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Background processing already running");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Background processing already running").to_common_error());
         }
         
         processing_interval_ = interval;

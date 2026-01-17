@@ -50,23 +50,23 @@ struct metric_storage_config {
      */
     common::VoidResult validate() const {
         if (ring_buffer_capacity == 0 || (ring_buffer_capacity & (ring_buffer_capacity - 1)) != 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Ring buffer capacity must be a power of 2");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Ring buffer capacity must be a power of 2").to_common_error());
         }
         
         if (max_metrics == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Max metrics must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max metrics must be positive").to_common_error());
         }
         
         if (retention_period.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Retention period must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Retention period must be positive").to_common_error());
         }
-        
+
         if (flush_interval.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Flush interval must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Flush interval must be positive").to_common_error());
         }
         
         return common::ok();
@@ -339,8 +339,8 @@ public:
         auto series = get_or_create_series(metadata);
         if (!series) {
             stats_.total_metrics_dropped.fetch_add(1, std::memory_order_relaxed);
-            return make_common::VoidResult(monitoring_error_code::storage_full,
-                             "Storage capacity exceeded");
+            return common::VoidResult::err(error_info(monitoring_error_code::storage_full,
+                             "Storage capacity exceeded").to_common_error());
         }
 
         auto result = series->buffer->write(std::move(metric));

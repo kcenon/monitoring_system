@@ -57,13 +57,13 @@ struct buffer_manager_config {
      */
     common::VoidResult validate() const {
         if (background_check_interval.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Background check interval must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Background check interval must be positive").to_common_error());
         }
         
         if (max_concurrent_flushes == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Max concurrent flushes must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max concurrent flushes must be positive").to_common_error());
         }
         
         return default_buffering_config.validate();
@@ -201,20 +201,20 @@ private:
             std::lock_guard<std::mutex> lock(buffers_mutex_);
             auto it = buffers_.find(metric_name);
             if (it == buffers_.end()) {
-                return make_common::VoidResult(monitoring_error_code::collector_not_found,
-                                 "Buffer not found: " + metric_name);
+                return common::VoidResult::err(error_info(monitoring_error_code::collector_not_found,
+                                 "Buffer not found: " + metric_name).to_common_error());
             }
-            
+
             // We can't move the entry here as we need to keep it in the map
             // Just access it directly
         }
-        
+
         // Flush the buffer
         std::lock_guard<std::mutex> lock(buffers_mutex_);
         auto it = buffers_.find(metric_name);
         if (it == buffers_.end()) {
-            return make_common::VoidResult(monitoring_error_code::collector_not_found,
-                             "Buffer not found: " + metric_name);
+            return common::VoidResult::err(error_info(monitoring_error_code::collector_not_found,
+                             "Buffer not found: " + metric_name).to_common_error());
         }
         
         auto flush_result = it->second->strategy->flush();
@@ -435,13 +435,13 @@ public:
      */
     common::VoidResult start_background_processing() {
         if (running_.load(std::memory_order_acquire)) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Background processing already running");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Background processing already running").to_common_error());
         }
-        
+
         if (!config_.enable_automatic_flushing) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Automatic flushing is disabled");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Automatic flushing is disabled").to_common_error());
         }
         
         running_.store(true, std::memory_order_release);
@@ -514,10 +514,10 @@ public:
         
         auto it = buffers_.find(metric_name);
         if (it == buffers_.end()) {
-            return make_common::VoidResult(monitoring_error_code::collector_not_found,
-                             "Buffer not found: " + metric_name);
+            return common::VoidResult::err(error_info(monitoring_error_code::collector_not_found,
+                             "Buffer not found: " + metric_name).to_common_error());
         }
-        
+
         // Flush before removing
         auto flush_result = it->second->strategy->flush();
         if (flush_result && !flush_result.value().empty() && storage_) {

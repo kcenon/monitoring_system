@@ -144,40 +144,40 @@ struct buffering_config {
      */
     common::VoidResult validate() const {
         if (max_buffer_size == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Max buffer size must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max buffer size must be positive").to_common_error());
         }
-        
+
         if (flush_threshold_size > max_buffer_size) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Flush threshold cannot exceed max buffer size");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Flush threshold cannot exceed max buffer size").to_common_error());
         }
-        
+
         if (flush_interval.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Flush interval must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Flush interval must be positive").to_common_error());
         }
-        
+
         if (max_age.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Max age must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max age must be positive").to_common_error());
         }
-        
+
         if (min_priority > max_priority) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Min priority cannot exceed max priority");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Min priority cannot exceed max priority").to_common_error());
         }
-        
+
         if (load_factor_threshold <= 0.0 || load_factor_threshold > 1.0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Load factor threshold must be between 0 and 1");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Load factor threshold must be between 0 and 1").to_common_error());
         }
-        
+
         if (compression_ratio_threshold <= 0.0 || compression_ratio_threshold > 1.0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Compression ratio threshold must be between 0 and 1");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Compression ratio threshold must be between 0 and 1").to_common_error());
         }
-        
+
         return common::ok();
     }
 };

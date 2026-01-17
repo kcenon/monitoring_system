@@ -71,16 +71,16 @@ struct aggregation_rule {
      */
     common::VoidResult validate() const {
         if (source_metric.empty()) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                                   "Source metric name cannot be empty");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Source metric name cannot be empty").to_common_error());
         }
         if (target_metric_prefix.empty()) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                                   "Target metric prefix cannot be empty");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Target metric prefix cannot be empty").to_common_error());
         }
         if (aggregation_interval.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                                   "Aggregation interval must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Aggregation interval must be positive").to_common_error());
         }
         return common::ok();
     }
@@ -138,9 +138,9 @@ public:
 
         // Check for duplicate
         if (aggregators_.find(rule.source_metric) != aggregators_.end()) {
-            return make_common::VoidResult(monitoring_error_code::already_exists,
+            return common::VoidResult::err(error_info(monitoring_error_code::already_exists,
                                    "Aggregation rule already exists for metric: " +
-                                   rule.source_metric);
+                                   rule.source_metric).to_common_error());
         }
 
         // Create stream aggregator config
@@ -280,8 +280,8 @@ public:
 
         auto it = aggregators_.find(metric_name);
         if (it == aggregators_.end()) {
-            return make_common::VoidResult(monitoring_error_code::metric_not_found,
-                                   "No aggregator found for metric: " + metric_name);
+            return common::VoidResult::err(error_info(monitoring_error_code::metric_not_found,
+                                   "No aggregator found for metric: " + metric_name).to_common_error());
         }
 
         aggregators_.erase(it);

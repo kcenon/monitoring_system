@@ -51,15 +51,15 @@ struct ring_buffer_config {
      */
     common::VoidResult validate() const {
         if (capacity == 0 || (capacity & (capacity - 1)) != 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Capacity must be a power of 2");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Capacity must be a power of 2").to_common_error());
         }
-        
+
         if (batch_size == 0 || batch_size > capacity) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Invalid batch size");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Invalid batch size").to_common_error());
         }
-        
+
         return common::ok();
     }
 };
@@ -246,12 +246,12 @@ public:
 
                     // Provide more detailed error information
                     size_t current_size = size();
-                    return make_common::VoidResult(monitoring_error_code::storage_full,
+                    return common::VoidResult::err(error_info(monitoring_error_code::storage_full,
                                      "Ring buffer is full (size: " +
                                      std::to_string(current_size) +
                                      "/" + std::to_string(config_.capacity) +
                                      ", overwrites: " +
-                                     std::to_string(stats_.overwrites.load()) + ")");
+                                     std::to_string(stats_.overwrites.load()) + ")").to_common_error());
                 }
             }
 
@@ -260,9 +260,9 @@ public:
             // Prevent infinite loop in case of extreme contention
             if (++retry_count > max_retries) {
                 stats_.failed_writes.fetch_add(1, std::memory_order_relaxed);
-                return make_common::VoidResult(monitoring_error_code::collection_failed,
+                return common::VoidResult::err(error_info(monitoring_error_code::collection_failed,
                                  "Failed to write to ring buffer after " +
-                                 std::to_string(max_retries) + " retries (high contention)");
+                                 std::to_string(max_retries) + " retries (high contention)").to_common_error());
             }
 
             // Atomically claim the write slot
@@ -321,8 +321,8 @@ public:
         
         if (is_empty_unsafe(current_write, current_read)) {
             stats_.failed_reads.fetch_add(1, std::memory_order_relaxed);
-            return make_common::VoidResult(monitoring_error_code::collection_failed,
-                             "Ring buffer is empty");
+            return common::VoidResult::err(error_info(monitoring_error_code::collection_failed,
+                             "Ring buffer is empty").to_common_error());
         }
         
         // Read the item
@@ -375,10 +375,10 @@ public:
         size_t current_write = write_index_.load(std::memory_order_acquire);
         
         if (is_empty_unsafe(current_write, current_read)) {
-            return make_common::VoidResult(monitoring_error_code::collection_failed,
-                             "Ring buffer is empty");
+            return common::VoidResult::err(error_info(monitoring_error_code::collection_failed,
+                             "Ring buffer is empty").to_common_error());
         }
-        
+
         item = buffer_[current_read]; // Copy, don't move
         return common::ok();
     }

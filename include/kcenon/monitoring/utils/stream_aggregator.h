@@ -523,16 +523,16 @@ struct stream_aggregator_config {
      */
     common::VoidResult validate() const {
         if (window_size == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                                   "Window size must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Window size must be positive").to_common_error());
         }
         if (window_duration.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                                   "Window duration must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Window duration must be positive").to_common_error());
         }
         if (outlier_threshold <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                                   "Outlier threshold must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Outlier threshold must be positive").to_common_error());
         }
         return common::ok();
     }

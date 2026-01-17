@@ -47,18 +47,18 @@ struct stream_aggregator_config {
      */
     common::VoidResult validate() const {
         if (window_size == 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Window size must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Window size must be positive").to_common_error());
         }
-        
+
         if (window_duration.count() <= 0) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Window duration must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Window duration must be positive").to_common_error());
         }
-        
+
         if (percentile_precision <= 0 || percentile_precision >= 1) {
-            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
-                             "Percentile precision must be between 0 and 1");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Percentile precision must be between 0 and 1").to_common_error());
         }
         
         return common::ok();
