@@ -273,12 +273,12 @@ public:
             std::string body_str(request.body.begin(), request.body.end());
             net_result = client_->patch(request.url, body_str, headers);
         } else {
-            return make_error<http_response>(monitoring_error_code::invalid_configuration,
+            return common::make_error<http_response>(static_cast<int>(monitoring_error_code::invalid_configuration),
                 "Unsupported HTTP method: " + request.method);
         }
 
         if (!net_result) {
-            return make_error<http_response>(monitoring_error_code::operation_failed,
+            return common::make_error<http_response>(static_cast<int>(monitoring_error_code::operation_failed),
                 "HTTP request failed: " + net_result.error().message);
         }
 

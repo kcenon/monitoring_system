@@ -270,8 +270,8 @@ public:
 
         // Check for duplicate transaction
         if (active_transactions_.find(id) != active_transactions_.end()) {
-            return make_error<std::shared_ptr<transaction>>(
-                monitoring_error_code::already_exists,
+            return common::make_error<std::shared_ptr<transaction>>(
+                static_cast<int>(monitoring_error_code::already_exists),
                 "Transaction with ID '" + id + "' already exists");
         }
 

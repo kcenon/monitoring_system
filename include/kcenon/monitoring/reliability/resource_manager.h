@@ -209,7 +209,7 @@ public:
         using value_type = typename result_type::value_type;
 
         if (!try_acquire(1)) {
-            return make_error<value_type>(monitoring_error_code::resource_exhausted,
+            return common::make_error<value_type>(static_cast<int>(monitoring_error_code::resource_exhausted),
                                           "Rate limit exceeded for '" + get_name() + "'");
         }
         return func();
@@ -352,7 +352,7 @@ public:
 
         if (metrics_.current_usage.load() + bytes > quota_.max_value) {
             metrics_.rejected_operations++;
-            return make_error<bool>(monitoring_error_code::resource_exhausted,
+            return common::make_error<bool>(static_cast<int>(monitoring_error_code::resource_exhausted),
                                    "Memory quota exceeded for '" + name_ + "'");
         }
 
@@ -489,7 +489,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (rate_limiters_.find(name) != rate_limiters_.end()) {
-            return make_error<bool>(monitoring_error_code::already_exists,
+            return common::make_error<bool>(static_cast<int>(monitoring_error_code::already_exists),
                                    "Rate limiter '" + name + "' already exists");
         }
 
@@ -519,7 +519,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (memory_quotas_.find(name) != memory_quotas_.end()) {
-            return make_error<bool>(monitoring_error_code::already_exists,
+            return common::make_error<bool>(static_cast<int>(monitoring_error_code::already_exists),
                                    "Memory quota '" + name + "' already exists");
         }
 
@@ -548,7 +548,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (cpu_throttlers_.find(name) != cpu_throttlers_.end()) {
-            return make_error<bool>(monitoring_error_code::already_exists,
+            return common::make_error<bool>(static_cast<int>(monitoring_error_code::already_exists),
                                    "CPU throttler '" + name + "' already exists");
         }
 

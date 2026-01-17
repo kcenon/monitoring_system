@@ -187,7 +187,7 @@ public:
 
         if (current_state == circuit_state::open) {
             metrics_.rejected_calls++;
-            return make_error<T>(monitoring_error_code::circuit_breaker_open,
+            return common::make_error<T>(static_cast<int>(monitoring_error_code::circuit_breaker_open),
                                "Circuit breaker '" + name_ + "' is open");
         }
 

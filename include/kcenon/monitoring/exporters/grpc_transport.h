@@ -504,14 +504,14 @@ public:
                 return common::ok(response);
             } else {
                 send_failures_.fetch_add(1, std::memory_order_relaxed);
-                return make_error<grpc_response>(
-                    monitoring_error_code::network_error,
+                return common::make_error<grpc_response>(
+                    static_cast<int>(monitoring_error_code::network_error),
                     "gRPC call failed: " + status.error_message());
             }
         } catch (const std::exception& e) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return make_error<grpc_response>(
-                monitoring_error_code::network_error,
+            return common::make_error<grpc_response>(
+                static_cast<int>(monitoring_error_code::network_error),
                 "gRPC exception: " + std::string(e.what()));
         }
     }

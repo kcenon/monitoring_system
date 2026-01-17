@@ -156,7 +156,7 @@ public:
         if (future_result.wait_for(timeout) == std::future_status::timeout) {
             metrics_.timeouts++;
             metrics_.failed_operations++;
-            return make_error<T>(monitoring_error_code::operation_timeout,
+            return common::make_error<T>(static_cast<int>(monitoring_error_code::operation_timeout),
                                "Operation timed out after " + std::to_string(timeout.count()) + "ms");
         }
 

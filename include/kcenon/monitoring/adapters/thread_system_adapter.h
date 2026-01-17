@@ -135,7 +135,7 @@ public:
 
         if (!bus_) {
             running_ = false;
-            return make_common::VoidResult(monitoring_error_code::operation_failed, "event_bus not set");
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed), "event_bus not set");
         }
 
         worker_ = std::thread([this, cfg]() {

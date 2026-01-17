@@ -188,8 +188,8 @@ public:
 
         auto it = aggregators_.find(metric_name);
         if (it == aggregators_.end()) {
-            return make_error<streaming_statistics>(
-                monitoring_error_code::metric_not_found,
+            return common::make_error<streaming_statistics>(
+                static_cast<int>(monitoring_error_code::metric_not_found),
                 "No aggregator found for metric: " + metric_name);
         }
 
@@ -225,8 +225,8 @@ public:
 
         auto it = aggregators_.find(metric_name);
         if (it == aggregators_.end()) {
-            return make_error<stream_aggregation_result>(
-                monitoring_error_code::metric_not_found,
+            return common::make_error<stream_aggregation_result>(
+                static_cast<int>(monitoring_error_code::metric_not_found),
                 "No aggregator found for metric: " + metric_name);
         }
 

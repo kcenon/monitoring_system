@@ -303,7 +303,7 @@ private:
             }
         }
 
-        return make_void_error(monitoring_error_code::retry_attempts_exhausted,
+        return common::VoidResult::err(static_cast<int>(monitoring_error_code::retry_attempts_exhausted),
                                "Failed to send webhook after " +
                                std::to_string(config_.max_retries) + " retries");
     }
@@ -354,7 +354,7 @@ private:
 
         std::ofstream file(file_path_, std::ios::app);
         if (!file) {
-            return make_void_error(monitoring_error_code::storage_write_failed,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::storage_write_failed),
                                    "Failed to open file: " + file_path_);
         }
 
@@ -411,7 +411,7 @@ public:
         }
 
         if (!failures.empty()) {
-            return make_void_error(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed),
                                    "Failed notifiers: " + join_strings(failures, ", "));
         }
         return common::ok();
@@ -431,7 +431,7 @@ public:
         }
 
         if (!failures.empty()) {
-            return make_void_error(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed),
                                    "Failed notifiers: " + join_strings(failures, ", "));
         }
         return common::ok();

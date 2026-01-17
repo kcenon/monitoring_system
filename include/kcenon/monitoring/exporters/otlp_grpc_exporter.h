@@ -580,8 +580,8 @@ private:
                 }
 
                 // Non-retryable error
-                return make_error<grpc_response>(
-                    monitoring_error_code::operation_failed,
+                return common::make_error<grpc_response>(
+                    static_cast<int>(monitoring_error_code::operation_failed),
                     "OTLP export failed with status: " +
                         std::to_string(response.status_code) + " - " + response.status_message);
             }
@@ -595,8 +595,8 @@ private:
             }
         }
 
-        return make_error<grpc_response>(
-            monitoring_error_code::operation_failed,
+        return common::make_error<grpc_response>(
+            static_cast<int>(monitoring_error_code::operation_failed),
             "OTLP export failed after " + std::to_string(config_.max_retry_attempts) + " retries");
     }
 

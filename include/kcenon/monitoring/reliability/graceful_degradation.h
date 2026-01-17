@@ -150,7 +150,7 @@ public:
 
         std::lock_guard<std::mutex> lock(mutex_);
         if (services_.find(config.name) != services_.end()) {
-            return make_void_error(monitoring_error_code::already_exists,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::already_exists),
                                   "Service already registered: " + config.name);
         }
 
@@ -170,7 +170,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = services_.find(name);
         if (it == services_.end()) {
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Service not found: " + name);
         }
         services_.erase(it);
@@ -186,7 +186,7 @@ public:
         auto it = services_.find(name);
         if (it == services_.end()) {
             metrics_.failed_degradations++;
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Service not found: " + name);
         }
 
@@ -206,7 +206,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = services_.find(name);
         if (it == services_.end()) {
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Service not found: " + name);
         }
 
@@ -266,7 +266,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = plans_.find(plan_name);
         if (it == plans_.end()) {
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Plan not found: " + plan_name);
         }
 

@@ -252,13 +252,13 @@ public:
     static common::Result<std::shared_ptr<alert_rule>> build(const rule_definition& def) {
         // Validate required fields
         if (def.name.empty()) {
-            return make_error<std::shared_ptr<alert_rule>>(
-                monitoring_error_code::invalid_argument,
+            return common::make_error<std::shared_ptr<alert_rule>>(
+                static_cast<int>(monitoring_error_code::invalid_argument),
                 "Rule name is required");
         }
         if (def.metric_name.empty()) {
-            return make_error<std::shared_ptr<alert_rule>>(
-                monitoring_error_code::invalid_argument,
+            return common::make_error<std::shared_ptr<alert_rule>>(
+                static_cast<int>(monitoring_error_code::invalid_argument),
                 "Metric name is required");
         }
 
@@ -275,8 +275,8 @@ public:
         // Set severity
         auto severity = parse_severity(def.severity);
         if (!severity.is_ok()) {
-            return make_error<std::shared_ptr<alert_rule>>(
-                monitoring_error_code::invalid_argument,
+            return common::make_error<std::shared_ptr<alert_rule>>(
+                static_cast<int>(monitoring_error_code::invalid_argument),
                 severity.error().message);
         }
         rule->set_severity(severity.value());
@@ -287,8 +287,8 @@ public:
         // Build trigger
         auto trigger = build_trigger(def.trigger);
         if (!trigger.is_ok()) {
-            return make_error<std::shared_ptr<alert_rule>>(
-                monitoring_error_code::invalid_argument,
+            return common::make_error<std::shared_ptr<alert_rule>>(
+                static_cast<int>(monitoring_error_code::invalid_argument),
                 trigger.error().message);
         }
         rule->set_trigger(trigger.value());
@@ -334,8 +334,8 @@ private:
         if (str == "emergency") {
             return common::ok(alert_severity::emergency);
         }
-        return make_error<alert_severity>(
-            monitoring_error_code::invalid_argument,
+        return common::make_error<alert_severity>(
+            static_cast<int>(monitoring_error_code::invalid_argument),
             "Unknown severity: " + str);
     }
 
@@ -344,36 +344,36 @@ private:
         if (cfg.type.empty() || cfg.type == "threshold") {
             auto op = parse_operator(cfg.operator_str);
             if (!op.is_ok()) {
-                return make_error<std::shared_ptr<alert_trigger>>(
-                    monitoring_error_code::invalid_argument,
+                return common::make_error<std::shared_ptr<alert_trigger>>(
+                    static_cast<int>(monitoring_error_code::invalid_argument),
                     op.error().message);
             }
-            return make_success(std::shared_ptr<alert_trigger>(
+            return common::ok(std::shared_ptr<alert_trigger>(
                 std::make_shared<threshold_trigger>(cfg.threshold, op.value())));
         }
 
         if (cfg.type == "rate") {
-            return make_success(std::shared_ptr<alert_trigger>(
+            return common::ok(std::shared_ptr<alert_trigger>(
                 std::make_shared<rate_of_change_trigger>(
                     cfg.rate_threshold,
                     std::chrono::seconds(cfg.window_seconds))));
         }
 
         if (cfg.type == "anomaly") {
-            return make_success(std::shared_ptr<alert_trigger>(
+            return common::ok(std::shared_ptr<alert_trigger>(
                 std::make_shared<anomaly_trigger>(
                     cfg.sensitivity,
                     static_cast<size_t>(cfg.window_seconds))));
         }
 
         if (cfg.type == "absent") {
-            return make_success(std::shared_ptr<alert_trigger>(
+            return common::ok(std::shared_ptr<alert_trigger>(
                 std::make_shared<absent_trigger>(
                     std::chrono::seconds(cfg.absent_seconds))));
         }
 
-        return make_error<std::shared_ptr<alert_trigger>>(
-            monitoring_error_code::invalid_argument,
+        return common::make_error<std::shared_ptr<alert_trigger>>(
+            static_cast<int>(monitoring_error_code::invalid_argument),
             "Unknown trigger type: " + cfg.type);
     }
 
@@ -396,8 +396,8 @@ private:
         if (str == "!=" || str == "<>") {
             return common::ok(comparison_operator::not_equal);
         }
-        return make_error<comparison_operator>(
-            monitoring_error_code::invalid_argument,
+        return common::make_error<comparison_operator>(
+            static_cast<int>(monitoring_error_code::invalid_argument),
             "Unknown operator: " + str);
     }
 };
@@ -449,7 +449,7 @@ public:
 
         auto it = rules_.find(name);
         if (it == rules_.end()) {
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                    "Rule not found: " + name);
         }
 
@@ -541,8 +541,8 @@ public:
         }
 
         if (!errors.empty() && loaded == 0) {
-            return make_error<size_t>(
-                monitoring_error_code::configuration_parse_error,
+            return common::make_error<size_t>(
+                static_cast<int>(monitoring_error_code::configuration_parse_error),
                 "Failed to load any rules: " + errors.front());
         }
 
