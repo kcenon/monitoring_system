@@ -85,7 +85,7 @@ public:
     }
 
     // One‑shot collection. When thread_system is not available, returns empty.
-    result<std::vector<metric>> collect_metrics() {
+    common::Result<std::vector<metric>> collect_metrics() {
         std::vector<metric> out;
 
 #if MONITORING_THREAD_SYSTEM_AVAILABLE && defined(MONITORING_HAS_COMMON_INTERFACES)
@@ -110,7 +110,7 @@ public:
         }
 #endif
 
-        return make_success(std::move(out));
+        return common::ok(std::move(out));
     }
 
     // Supported metric names. Empty in fallback mode to satisfy tests.
@@ -128,14 +128,14 @@ public:
 
     // Start periodic collection (best‑effort). When publish_events is true,
     // collected metrics are emitted via metric_collection_event.
-    result_void start_collection(const collection_config& cfg) {
+    common::VoidResult start_collection(const collection_config& cfg) {
         if (running_.exchange(true)) {
-            return make_void_success(); // already running
+            return common::ok(); // already running
         }
 
         if (!bus_) {
             running_ = false;
-            return make_result_void(monitoring_error_code::operation_failed, "event_bus not set");
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed), "event_bus not set");
         }
 
         worker_ = std::thread([this, cfg]() {
@@ -148,17 +148,17 @@ public:
             }
         });
 
-        return make_void_success();
+        return common::ok();
     }
 
-    result_void stop_collection() {
+    common::VoidResult stop_collection() {
         if (!running_.exchange(false)) {
-            return make_void_success();
+            return common::ok();
         }
         if (worker_.joinable()) {
             worker_.join();
         }
-        return make_void_success();
+        return common::ok();
     }
 
     ~thread_system_adapter() { (void)stop_collection(); }

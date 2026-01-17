@@ -74,11 +74,11 @@ public:
      * @brief Get aggregated profile for an operation
      *
      * @param operation_name Name of the operation
-     * @return result<performance_profile> Profile data or error
+     * @return common::Result<performance_profile> Profile data or error
      *
      * @thread_safety Thread-safe. Uses shared lock for read access.
      */
-    result<performance_profile> get_profile(const std::string& operation_name) const;
+    common::Result<performance_profile> get_profile(const std::string& operation_name) const;
 
     /**
      * @brief Get all aggregated profiles

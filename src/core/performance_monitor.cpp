@@ -63,13 +63,13 @@
 
 namespace kcenon { namespace monitoring {
 
-result<bool> performance_profiler::record_sample(
+common::Result<bool> performance_profiler::record_sample(
     const std::string& operation_name,
     std::chrono::nanoseconds duration,
     bool success) {
 
     if (!enabled_) {
-        return result<bool>(true);
+        return common::ok(true);
     }
 
     profile_data* profile = nullptr;
@@ -140,20 +140,19 @@ result<bool> performance_profiler::record_sample(
 
     profile->samples.push_back(duration);
 
-    return kcenon::monitoring::result<bool>(true);
+    return common::ok(true);
 }
 
-kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::monitoring::performance_profiler::get_metrics(
+common::Result<performance_metrics> performance_profiler::get_metrics(
     const std::string& operation_name) const {
 
     std::shared_lock<std::shared_mutex> lock(profiles_mutex_);
 
     auto it = profiles_.find(operation_name);
     if (it == profiles_.end()) {
-        return kcenon::monitoring::make_error<kcenon::monitoring::performance_metrics>(
-            kcenon::monitoring::monitoring_error_code::not_found,
-            "Operation not found: " + operation_name
-        );
+        error_info err(monitoring_error_code::not_found,
+                      "Operation not found: " + operation_name);
+        return common::Result<performance_metrics>::err(err.to_common_error());
     }
 
     const auto& profile = it->second;
@@ -166,7 +165,7 @@ kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::moni
 
     std::lock_guard sample_lock(profile->mutex);
 
-    kcenon::monitoring::performance_metrics metrics;
+    performance_metrics metrics;
     metrics.operation_name = operation_name;
     metrics.call_count = profile->call_count.load();
     metrics.error_count = profile->error_count.load();
@@ -191,7 +190,7 @@ kcenon::monitoring::result<kcenon::monitoring::performance_metrics> kcenon::moni
         metrics.call_count = profile->call_count.load(std::memory_order_acquire);
     }
 
-    return result<performance_metrics>(metrics);
+    return common::ok(metrics);
 }
 
 // system_monitor implementation
@@ -219,7 +218,7 @@ system_monitor::~system_monitor() = default;
 system_monitor::system_monitor(system_monitor&&) noexcept = default;
 system_monitor& system_monitor::operator=(system_monitor&&) noexcept = default;
 
-result<system_metrics> system_monitor::get_current_metrics() const {
+common::Result<system_metrics> system_monitor::get_current_metrics() const {
 #if defined(__APPLE__)
     // macOS implementation using mach APIs
     system_metrics metrics;
@@ -311,7 +310,7 @@ result<system_metrics> system_monitor::get_current_metrics() const {
         }
     }
 
-    return make_success(metrics);
+    return common::ok(metrics);
 
 #elif defined(__linux__)
     // Linux implementation using /proc filesystem
@@ -323,16 +322,16 @@ result<system_metrics> system_monitor::get_current_metrics() const {
 
 #else
     // Unknown platform
-    return make_error<system_metrics>(
-        monitoring_error_code::system_resource_unavailable,
-        "Platform-specific system metrics not implemented for this platform. "
-        "Supported platforms: macOS (implemented), Linux (TODO), Windows (TODO).");
+    error_info err(monitoring_error_code::system_resource_unavailable,
+                  "Platform-specific system metrics not implemented for this platform. "
+                  "Supported platforms: macOS (implemented), Linux (TODO), Windows (TODO).");
+    return common::Result<system_metrics>::err(err.to_common_error());
 #endif
 }
 
-result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval) {
+common::Result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval) {
     if (impl_->monitoring) {
-        return make_success(true);
+        return common::ok(true);
     }
 
     impl_->interval = interval;
@@ -356,12 +355,12 @@ result<bool> system_monitor::start_monitoring(std::chrono::milliseconds interval
         }
     });
 
-    return make_success(true);
+    return common::ok(true);
 }
 
-result<bool> system_monitor::stop_monitoring() {
+common::Result<bool> system_monitor::stop_monitoring() {
     if (!impl_->monitoring) {
-        return make_success(true);
+        return common::ok(true);
     }
 
     impl_->monitoring = false;
@@ -369,7 +368,7 @@ result<bool> system_monitor::stop_monitoring() {
         impl_->monitor_thread.join();
     }
 
-    return make_success(true);
+    return common::ok(true);
 }
 
 bool system_monitor::is_monitoring() const {
@@ -384,7 +383,7 @@ std::vector<system_metrics> system_monitor::get_history(std::chrono::seconds dur
 }
 
 // performance_monitor additional methods
-result<metrics_snapshot> performance_monitor::collect() {
+common::Result<metrics_snapshot> performance_monitor::collect() {
     metrics_snapshot snapshot;
     snapshot.capture_time = std::chrono::system_clock::now();
     snapshot.source_id = name_;
@@ -415,11 +414,11 @@ result<metrics_snapshot> performance_monitor::collect() {
         snapshot.add_metric(metric.name, metric.value, metric.tags);
     }
 
-    return make_success(snapshot);
+    return common::ok(snapshot);
 }
 
-result<bool> performance_monitor::check_thresholds() const {
-    return make_success(true); // Stub implementation
+common::Result<bool> performance_monitor::check_thresholds() const {
+    return common::ok(true); // Stub implementation
 }
 
 // performance_profiler additional methods
@@ -461,7 +460,7 @@ std::vector<performance_metrics> performance_profiler::get_all_metrics() const {
     return result;
 }
 
-result<bool> performance_profiler::clear_samples(const std::string& operation_name) {
+common::Result<bool> performance_profiler::clear_samples(const std::string& operation_name) {
     std::unique_lock<std::shared_mutex> lock(profiles_mutex_);
 
     auto it = profiles_.find(operation_name);
@@ -472,7 +471,7 @@ result<bool> performance_profiler::clear_samples(const std::string& operation_na
         it->second->error_count = 0;
     }
 
-    return make_success(true);
+    return common::ok(true);
 }
 
 void performance_profiler::clear_all_samples() {
@@ -509,17 +508,18 @@ std::string performance_monitor::make_metric_key(const std::string& name, const 
     return key;
 }
 
-result_void performance_monitor::record_metric_internal(
+common::VoidResult performance_monitor::record_metric_internal(
     const std::string& name, double value,
     recorded_metric_type type, const tag_map& tags) {
 
     if (!enabled_) {
-        return make_void_success();
+        return common::ok();
     }
 
     if (name.empty()) {
-        return make_void_error(monitoring_error_code::invalid_configuration,
-                               "Metric name cannot be empty");
+        error_info err(monitoring_error_code::invalid_configuration,
+                      "Metric name cannot be empty");
+        return common::VoidResult::err(err.to_common_error());
     }
 
     const std::string key = make_metric_key(name, tags);
@@ -568,21 +568,21 @@ result_void performance_monitor::record_metric_internal(
             break;
     }
 
-    return make_void_success();
+    return common::ok();
 }
 
-result_void performance_monitor::record_counter(const std::string& name, double value,
-                                                 const tag_map& tags) {
+common::VoidResult performance_monitor::record_counter(const std::string& name, double value,
+                                                        const tag_map& tags) {
     return record_metric_internal(name, value, recorded_metric_type::counter, tags);
 }
 
-result_void performance_monitor::record_gauge(const std::string& name, double value,
-                                               const tag_map& tags) {
+common::VoidResult performance_monitor::record_gauge(const std::string& name, double value,
+                                                      const tag_map& tags) {
     return record_metric_internal(name, value, recorded_metric_type::gauge, tags);
 }
 
-result_void performance_monitor::record_histogram(const std::string& name, double value,
-                                                   const tag_map& tags) {
+common::VoidResult performance_monitor::record_histogram(const std::string& name, double value,
+                                                          const tag_map& tags) {
     return record_metric_internal(name, value, recorded_metric_type::histogram, tags);
 }
 

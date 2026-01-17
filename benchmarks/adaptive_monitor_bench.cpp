@@ -62,11 +62,11 @@ private:
     bool enabled_{true};
 
 public:
-    result<metrics_snapshot> collect() override {
+    kcenon::common::Result<metrics_snapshot> collect() override {
         metrics_snapshot snapshot;
         snapshot.add_metric("cpu_usage", 50.0);
         snapshot.add_metric("memory_usage", 60.0);
-        return make_success(std::move(snapshot));
+        return kcenon::common::ok(std::move(snapshot));
     }
 
     std::string get_name() const override {
@@ -77,17 +77,17 @@ public:
         return enabled_;
     }
 
-    result_void set_enabled(bool enable) override {
+    kcenon::common::VoidResult set_enabled(bool enable) override {
         enabled_ = enable;
-        return make_void_success();
+        return kcenon::common::ok();
     }
 
-    result_void initialize() override {
-        return make_void_success();
+    kcenon::common::VoidResult initialize() override {
+        return kcenon::common::ok();
     }
 
-    result_void cleanup() override {
-        return make_void_success();
+    kcenon::common::VoidResult cleanup() override {
+        return kcenon::common::ok();
     }
 };
 

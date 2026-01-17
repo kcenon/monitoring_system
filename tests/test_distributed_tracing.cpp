@@ -392,9 +392,9 @@ public:
     std::atomic<std::size_t> shutdown_count{0};
     bool should_fail = false;
 
-    result_void export_spans(const std::vector<trace_span>& spans) override {
+    kcenon::common::VoidResult export_spans(const std::vector<trace_span>& spans) override {
         if (should_fail) {
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return kcenon::common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                 "Mock export failure", "test").to_common_error());
         }
         for (const auto& span : spans) {
@@ -404,12 +404,12 @@ public:
         return kcenon::common::ok();
     }
 
-    result_void flush() override {
+    kcenon::common::VoidResult flush() override {
         flush_count++;
         return kcenon::common::ok();
     }
 
-    result_void shutdown() override {
+    kcenon::common::VoidResult shutdown() override {
         shutdown_count++;
         return kcenon::common::ok();
     }

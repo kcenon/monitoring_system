@@ -132,20 +132,19 @@ void central_collector::evict_lru() {
     }
 }
 
-result<performance_profile> central_collector::get_profile(const std::string& operation_name) const {
+common::Result<performance_profile> central_collector::get_profile(const std::string& operation_name) const {
     std::shared_lock<std::shared_mutex> lock(profiles_mutex_);
 
     auto it = profiles_.find(operation_name);
     if (it == profiles_.end()) {
-        return make_error<performance_profile>(
-            monitoring_error_code::metric_not_found,
-            "Operation profile not found: " + operation_name
-        );
+        error_info err(monitoring_error_code::metric_not_found,
+                      "Operation profile not found: " + operation_name);
+        return common::Result<performance_profile>::err(err.to_common_error());
     }
 
     // Lock the profile while copying
     std::lock_guard<std::mutex> profile_lock(it->second->mutex);
-    return result<performance_profile>(it->second->profile);
+    return common::Result<performance_profile>(it->second->profile);
 }
 
 std::unordered_map<std::string, performance_profile> central_collector::get_all_profiles() const {

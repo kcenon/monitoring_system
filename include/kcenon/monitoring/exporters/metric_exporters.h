@@ -92,24 +92,24 @@ struct metric_export_config {
     /**
      * @brief Validate export configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (endpoint.empty() && port == 0) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Either endpoint or port must be specified", "monitoring_system").to_common_error());
         }
 
         if (push_interval.count() <= 0) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Push interval must be positive", "monitoring_system").to_common_error());
         }
 
         if (max_batch_size == 0) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Batch size must be greater than 0", "monitoring_system").to_common_error());
         }
 
         if (max_queue_size < max_batch_size) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Queue size must be at least batch size", "monitoring_system").to_common_error());
         }
 
@@ -248,22 +248,22 @@ public:
     /**
      * @brief Export a batch of metrics
      */
-    virtual result_void export_metrics(const std::vector<monitoring_data>& metrics) = 0;
+    virtual common::VoidResult export_metrics(const std::vector<monitoring_data>& metrics) = 0;
     
     /**
      * @brief Export a single metrics snapshot
      */
-    virtual result_void export_snapshot(const metrics_snapshot& snapshot) = 0;
+    virtual common::VoidResult export_snapshot(const metrics_snapshot& snapshot) = 0;
     
     /**
      * @brief Flush any pending metrics
      */
-    virtual result_void flush() = 0;
+    virtual common::VoidResult flush() = 0;
     
     /**
      * @brief Shutdown the exporter
      */
-    virtual result_void shutdown() = 0;
+    virtual common::VoidResult shutdown() = 0;
     
     /**
      * @brief Get exporter statistics
@@ -273,12 +273,12 @@ public:
     /**
      * @brief Start the exporter (for pull-based systems)
      */
-    virtual result_void start() { return common::ok(); }
+    virtual common::VoidResult start() { return common::ok(); }
 
     /**
      * @brief Stop the exporter
      */
-    virtual result_void stop() { return common::ok(); }
+    virtual common::VoidResult stop() { return common::ok(); }
 };
 
 /**
@@ -374,7 +374,7 @@ public:
         return prom_metrics;
     }
     
-    result_void export_metrics(const std::vector<monitoring_data>& metrics) override {
+    common::VoidResult export_metrics(const std::vector<monitoring_data>& metrics) override {
         try {
             std::lock_guard<std::mutex> lock(metrics_mutex_);
             current_metrics_.clear();
@@ -390,12 +390,12 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "Prometheus export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void export_snapshot(const metrics_snapshot& snapshot) override {
+    common::VoidResult export_snapshot(const metrics_snapshot& snapshot) override {
         try {
             std::lock_guard<std::mutex> lock(metrics_mutex_);
             auto prom_metrics = convert_snapshot(snapshot);
@@ -407,7 +407,7 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "Prometheus snapshot export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
@@ -429,12 +429,12 @@ public:
         return ss.str();
     }
     
-    result_void flush() override {
+    common::VoidResult flush() override {
         // Prometheus is pull-based, so flush is a no-op
         return common::ok();
     }
     
-    result_void shutdown() override {
+    common::VoidResult shutdown() override {
         return flush();
     }
     
@@ -606,7 +606,7 @@ public:
         return statsd_metrics;
     }
     
-    result_void export_metrics(const std::vector<monitoring_data>& metrics) override {
+    common::VoidResult export_metrics(const std::vector<monitoring_data>& metrics) override {
         try {
             std::vector<std::string> statsd_lines;
             
@@ -632,12 +632,12 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "StatsD export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void export_snapshot(const metrics_snapshot& snapshot) override {
+    common::VoidResult export_snapshot(const metrics_snapshot& snapshot) override {
         try {
             auto statsd_metrics = convert_snapshot(snapshot);
             std::vector<std::string> statsd_lines;
@@ -661,18 +661,18 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "StatsD snapshot export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void start() override {
+    common::VoidResult start() override {
         if (started_) {
             return common::ok();
         }
 
         if (!transport_) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::dependency_missing,
                 "UDP transport not available",
                 "statsd_exporter"
@@ -689,7 +689,7 @@ public:
         return common::ok();
     }
 
-    result_void stop() override {
+    common::VoidResult stop() override {
         if (!started_) {
             return common::ok();
         }
@@ -702,12 +702,12 @@ public:
         return common::ok();
     }
 
-    result_void flush() override {
+    common::VoidResult flush() override {
         // StatsD is push-based and sends immediately, so flush is a no-op
         return common::ok();
     }
 
-    result_void shutdown() override {
+    common::VoidResult shutdown() override {
         return stop();
     }
     
@@ -730,9 +730,9 @@ public:
     }
     
 private:
-    result_void send_udp_batch(const std::vector<std::string>& lines) {
+    common::VoidResult send_udp_batch(const std::vector<std::string>& lines) {
         if (!transport_) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::dependency_missing,
                 "UDP transport not available",
                 "statsd_exporter"
@@ -832,14 +832,14 @@ public:
         , http_transport_(std::move(http_transport))
         , grpc_transport_(std::move(grpc_transport)) {}
     
-    result_void export_metrics(const std::vector<monitoring_data>& metrics) override {
+    common::VoidResult export_metrics(const std::vector<monitoring_data>& metrics) override {
         try {
             for (const auto& data : metrics) {
                 // Convert to OpenTelemetry format
                 auto otel_result = otel_adapter_->convert_monitoring_data(data);
                 if (otel_result.is_err()) {
                     failed_exports_++;
-                    return result_void::err(error_info(monitoring_error_code::processing_failed,
+                    return common::VoidResult::err(error_info(monitoring_error_code::processing_failed,
                                      "Failed to convert metrics to OTEL format: " + otel_result.error().message, "monitoring_system").to_common_error());
                 }
                 
@@ -858,18 +858,18 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "OTLP metrics export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void export_snapshot(const metrics_snapshot& snapshot) override {
+    common::VoidResult export_snapshot(const metrics_snapshot& snapshot) override {
         try {
             // Convert to OpenTelemetry format
             auto otel_result = otel_adapter_->convert_metrics(snapshot);
             if (otel_result.is_err()) {
                 failed_exports_++;
-                return result_void::err(error_info(monitoring_error_code::processing_failed,
+                return common::VoidResult::err(error_info(monitoring_error_code::processing_failed,
                                  "Failed to convert snapshot to OTEL format: " + otel_result.error().message, "monitoring_system").to_common_error());
             }
             
@@ -887,12 +887,12 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "OTLP snapshot export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void start() override {
+    common::VoidResult start() override {
         if (started_) {
             return common::ok();
         }
@@ -903,7 +903,7 @@ public:
         return common::ok();
     }
 
-    result_void stop() override {
+    common::VoidResult stop() override {
         if (!started_) {
             return common::ok();
         }
@@ -916,12 +916,12 @@ public:
         return common::ok();
     }
 
-    result_void flush() override {
+    common::VoidResult flush() override {
         // OTLP exporter typically sends immediately, so flush is a no-op
         return common::ok();
     }
 
-    result_void shutdown() override {
+    common::VoidResult shutdown() override {
         return stop();
     }
 
@@ -963,7 +963,7 @@ private:
         }
     }
 
-    result_void send_otlp_batch(const std::vector<otel_metric_data>& metrics) {
+    common::VoidResult send_otlp_batch(const std::vector<otel_metric_data>& metrics) {
         if (is_grpc_protocol()) {
             return send_via_grpc(metrics);
         } else {
@@ -971,9 +971,9 @@ private:
         }
     }
 
-    result_void send_via_http(const std::vector<otel_metric_data>& metrics) {
+    common::VoidResult send_via_http(const std::vector<otel_metric_data>& metrics) {
         if (!http_transport_) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::dependency_missing,
                 "HTTP transport not available",
                 "otlp_metrics_exporter"
@@ -1004,7 +1004,7 @@ private:
 
         auto result = http_transport_->send(request);
         if (result.is_err()) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "HTTP send failed: " + result.error().message,
                 "otlp_metrics_exporter"
@@ -1013,7 +1013,7 @@ private:
 
         const auto& response = result.value();
         if (response.status_code < 200 || response.status_code >= 300) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::operation_failed,
                 "OTLP HTTP request failed with status " + std::to_string(response.status_code),
                 "otlp_metrics_exporter"
@@ -1023,9 +1023,9 @@ private:
         return common::ok();
     }
 
-    result_void send_via_grpc(const std::vector<otel_metric_data>& metrics) {
+    common::VoidResult send_via_grpc(const std::vector<otel_metric_data>& metrics) {
         if (!grpc_transport_) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::dependency_missing,
                 "gRPC transport not available",
                 "otlp_metrics_exporter"
@@ -1051,7 +1051,7 @@ private:
 
         auto result = grpc_transport_->send(request);
         if (result.is_err()) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "gRPC send failed: " + result.error().message,
                 "otlp_metrics_exporter"
@@ -1060,7 +1060,7 @@ private:
 
         const auto& response = result.value();
         if (response.status_code != 0) { // gRPC OK is 0
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::operation_failed,
                 "OTLP gRPC request failed: " + response.status_message,
                 "otlp_metrics_exporter"

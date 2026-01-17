@@ -521,20 +521,20 @@ struct stream_aggregator_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (window_size == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                                   "Window size must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Window size must be positive").to_common_error());
         }
         if (window_duration.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                                   "Window duration must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Window duration must be positive").to_common_error());
         }
         if (outlier_threshold <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                                   "Outlier threshold must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                                   "Outlier threshold must be positive").to_common_error());
         }
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -569,7 +569,7 @@ public:
      * @param value The observation value
      * @return Result indicating success or failure
      */
-    result_void add_observation(double value) {
+    common::VoidResult add_observation(double value) {
         std::unique_lock<std::shared_mutex> lock(mutex_);
 
         // Check for outlier
@@ -592,7 +592,7 @@ public:
             estimator.add_observation(value);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**

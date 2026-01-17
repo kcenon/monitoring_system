@@ -212,16 +212,16 @@ public:
     /**
      * @brief Record a performance sample
      */
-    kcenon::monitoring::result<bool> record_sample(
+    common::Result<bool> record_sample(
         const std::string& operation_name,
         std::chrono::nanoseconds duration,
         bool success = true
     );
-    
+
     /**
      * @brief Get performance metrics for an operation
      */
-    kcenon::monitoring::result<performance_metrics> get_metrics(
+    common::Result<performance_metrics> get_metrics(
         const std::string& operation_name
     ) const;
     
@@ -233,7 +233,7 @@ public:
     /**
      * @brief Clear samples for an operation
      */
-    kcenon::monitoring::result<bool> clear_samples(const std::string& operation_name);
+    common::Result<bool> clear_samples(const std::string& operation_name);
     
     /**
      * @brief Clear all samples
@@ -359,19 +359,19 @@ public:
     /**
      * @brief Get current system metrics
      */
-    kcenon::monitoring::result<system_metrics> get_current_metrics() const;
-    
+    common::Result<system_metrics> get_current_metrics() const;
+
     /**
      * @brief Start monitoring system resources
      */
-    kcenon::monitoring::result<bool> start_monitoring(
+    common::Result<bool> start_monitoring(
         std::chrono::milliseconds interval = std::chrono::milliseconds(1000)
     );
-    
+
     /**
      * @brief Stop monitoring
      */
-    kcenon::monitoring::result<bool> stop_monitoring();
+    common::Result<bool> stop_monitoring();
     
     /**
      * @brief Check if monitoring is active
@@ -434,31 +434,29 @@ public:
     std::string get_name() const override { return name_; }
     bool is_enabled() const override { return enabled_; }
     
-    result_void set_enabled(bool enable) override {
+    common::VoidResult set_enabled(bool enable) override {
         enabled_ = enable;
         profiler_.set_enabled(enable);
-        return make_void_success();
+        return common::ok();
     }
 
-    result_void initialize() override {
+    common::VoidResult initialize() override {
         auto result = system_monitor_.start_monitoring();
         if (result.is_err()) {
-            auto& err = result.error();
-            return make_void_error(static_cast<monitoring_error_code>(err.code), err.message);
+            return common::VoidResult::err(result.error());
         }
-        return make_void_success();
+        return common::ok();
     }
 
-    result_void cleanup() override {
+    common::VoidResult cleanup() override {
         auto result = system_monitor_.stop_monitoring();
         if (result.is_err()) {
-            auto& err = result.error();
-            return make_void_error(static_cast<monitoring_error_code>(err.code), err.message);
+            return common::VoidResult::err(result.error());
         }
-        return make_void_success();
+        return common::ok();
     }
-    
-    kcenon::monitoring::result<metrics_snapshot> collect() override;
+
+    common::Result<metrics_snapshot> collect() override;
     
     /**
      * @brief Create a scoped timer for an operation
@@ -510,7 +508,7 @@ public:
     /**
      * @brief Check if any thresholds are exceeded
      */
-    kcenon::monitoring::result<bool> check_thresholds() const;
+    common::Result<bool> check_thresholds() const;
 
     // IMonitor interface implementation (Phase 2.3.4)
 
@@ -533,7 +531,7 @@ public:
      * @param name Metric name (must not be empty)
      * @param value Value to add (should be >= 0 for counters)
      * @param tags Key-value labels for metric dimensions (default: empty)
-     * @return result_void Success or error with details
+     * @return common::VoidResult Success or error with details
      *
      * @thread_safety Thread-safe, uses shared_mutex for synchronization
      *
@@ -550,8 +548,8 @@ public:
      * });
      * @endcode
      */
-    result_void record_counter(const std::string& name, double value,
-                               const tag_map& tags = {});
+    common::VoidResult record_counter(const std::string& name, double value,
+                                      const tag_map& tags = {});
 
     /**
      * @brief Record a gauge metric (instantaneous value)
@@ -559,7 +557,7 @@ public:
      * @param name Metric name (must not be empty)
      * @param value Current value (can be positive or negative)
      * @param tags Key-value labels for metric dimensions (default: empty)
-     * @return result_void Success or error with details
+     * @return common::VoidResult Success or error with details
      *
      * @thread_safety Thread-safe, uses shared_mutex for synchronization
      *
@@ -575,8 +573,8 @@ public:
      * });
      * @endcode
      */
-    result_void record_gauge(const std::string& name, double value,
-                             const tag_map& tags = {});
+    common::VoidResult record_gauge(const std::string& name, double value,
+                                    const tag_map& tags = {});
 
     /**
      * @brief Record a histogram metric (distribution of values)
@@ -584,7 +582,7 @@ public:
      * @param name Metric name (must not be empty)
      * @param value Observed value to record
      * @param tags Key-value labels for metric dimensions (default: empty)
-     * @return result_void Success or error with details
+     * @return common::VoidResult Success or error with details
      *
      * @thread_safety Thread-safe, uses shared_mutex for synchronization
      *
@@ -600,8 +598,8 @@ public:
      * });
      * @endcode
      */
-    result_void record_histogram(const std::string& name, double value,
-                                 const tag_map& tags = {});
+    common::VoidResult record_histogram(const std::string& name, double value,
+                                        const tag_map& tags = {});
 
     /**
      * @brief Get all recorded tagged metrics
@@ -628,8 +626,8 @@ private:
     /**
      * @brief Internal method to record a metric with type and tags
      */
-    result_void record_metric_internal(const std::string& name, double value,
-                                       recorded_metric_type type, const tag_map& tags);
+    common::VoidResult record_metric_internal(const std::string& name, double value,
+                                              recorded_metric_type type, const tag_map& tags);
 };
 
 /**
@@ -681,7 +679,7 @@ public:
      * @brief Run a benchmark
      */
     template<typename Func>
-    kcenon::monitoring::result<performance_metrics> run(
+    common::Result<performance_metrics> run(
         const std::string& operation_name,
         Func&& func
     ) {
@@ -720,7 +718,7 @@ public:
      * @brief Compare two operations
      */
     template<typename Func1, typename Func2>
-    kcenon::monitoring::result<std::pair<performance_metrics, performance_metrics>> compare(
+    common::Result<std::pair<performance_metrics, performance_metrics>> compare(
         const std::string& operation1_name,
         Func1&& func1,
         const std::string& operation2_name,
@@ -728,15 +726,15 @@ public:
     ) {
         auto result1 = run(operation1_name, std::forward<Func1>(func1));
         if (result1.is_err()) {
-            return result<std::pair<performance_metrics, performance_metrics>>::err(result1.error());
+            return common::Result<std::pair<performance_metrics, performance_metrics>>::err(result1.error());
         }
 
         auto result2 = run(operation2_name, std::forward<Func2>(func2));
         if (result2.is_err()) {
-            return result<std::pair<performance_metrics, performance_metrics>>::err(result2.error());
+            return common::Result<std::pair<performance_metrics, performance_metrics>>::err(result2.error());
         }
-        
-        return std::make_pair(result1.value(), result2.value());
+
+        return common::ok(std::make_pair(result1.value(), result2.value()));
     }
 };
 
@@ -746,7 +744,7 @@ public:
  * @brief Get system metrics on Linux using /proc filesystem
  * @return System metrics or error
  */
-result<system_metrics> get_linux_system_metrics();
+common::Result<system_metrics> get_linux_system_metrics();
 #endif
 
 #if defined(_WIN32)
@@ -754,7 +752,7 @@ result<system_metrics> get_linux_system_metrics();
  * @brief Get system metrics on Windows using PDH API
  * @return System metrics or error
  */
-result<system_metrics> get_windows_system_metrics();
+common::Result<system_metrics> get_windows_system_metrics();
 #endif
 
 } } // namespace kcenon::monitoring

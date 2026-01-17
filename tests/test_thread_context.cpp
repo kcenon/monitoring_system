@@ -352,10 +352,10 @@ TEST_F(ThreadContextTest, ContextMetricsCollector) {
         explicit test_collector(const std::string& name)
             : context_metrics_collector(name) {}
         
-        result<metrics_snapshot> collect() override {
+        kcenon::common::Result<metrics_snapshot> collect() override {
             auto snapshot = create_snapshot_with_context();
             snapshot.add_metric("test_metric", 42.0);
-            return make_success(std::move(snapshot));
+            return kcenon::common::ok(std::move(snapshot));
         }
     };
     

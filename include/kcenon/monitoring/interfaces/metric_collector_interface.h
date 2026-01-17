@@ -218,16 +218,14 @@ struct collection_config {
      * - Collection interval must be positive
      * - Batch size must be positive when batch collection is enabled
      */
-    [[nodiscard]] result_void validate() const {
+    [[nodiscard]] common::VoidResult validate() const {
         if (interval.count() <= 0) {
-            return make_void_error(monitoring_error_code::invalid_configuration,
-                                   "Collection interval must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration, "Collection interval must be positive").to_common_error());
         }
         if (batch_collection && batch_size == 0) {
-            return make_void_error(monitoring_error_code::invalid_configuration,
-                                   "Batch size must be positive when batch collection is enabled");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration, "Batch size must be positive when batch collection is enabled").to_common_error());
         }
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -253,10 +251,10 @@ static_assert(concepts::Validatable<collection_config>,
  * @code
  * class cpu_metric_collector : public interface_metric_collector {
  * public:
- *     result<std::vector<metric>> collect_metrics() override {
+ *     common::Result<std::vector<metric>> collect_metrics() override {
  *         std::vector<metric> metrics;
  *         metrics.push_back({"cpu_usage", get_cpu_usage(), {}, metric_type::gauge});
- *         return make_success(std::move(metrics));
+ *         return common::ok(std::move(metrics));
  *     }
  *     // ... implement other methods
  * };
@@ -283,20 +281,20 @@ public:
      * @brief Collect metrics based on current configuration
      * @return Result containing collected metrics or error
      */
-    virtual result<std::vector<metric>> collect_metrics() = 0;
+    virtual common::Result<std::vector<metric>> collect_metrics() = 0;
 
     /**
      * @brief Start automatic metric collection
      * @param config Collection configuration
      * @return Result indicating success or failure
      */
-    virtual result_void start_collection(const collection_config& config) = 0;
+    virtual common::VoidResult start_collection(const collection_config& config) = 0;
 
     /**
      * @brief Stop automatic metric collection
      * @return Result indicating success or failure
      */
-    virtual result_void stop_collection() = 0;
+    virtual common::VoidResult stop_collection() = 0;
 
     /**
      * @brief Check if collector is currently active
@@ -321,13 +319,13 @@ public:
      * @param config New configuration
      * @return Result indicating success or failure
      */
-    virtual result_void update_config(const collection_config& config) = 0;
+    virtual common::VoidResult update_config(const collection_config& config) = 0;
 
     /**
      * @brief Force immediate metric collection
      * @return Result containing collected metrics or error
      */
-    virtual result<std::vector<metric>> force_collect() = 0;
+    virtual common::Result<std::vector<metric>> force_collect() = 0;
 
     /**
      * @brief Get collector statistics
@@ -445,14 +443,14 @@ public:
      * @param source The metric source to register
      * @return Result indicating success or failure
      */
-    virtual result_void register_source(std::shared_ptr<interface_metric_source> source) = 0;
+    virtual common::VoidResult register_source(std::shared_ptr<interface_metric_source> source) = 0;
 
     /**
      * @brief Unregister a metric source
      * @param source_name The name of the source to unregister
      * @return Result indicating success or failure
      */
-    virtual result_void unregister_source(const std::string& source_name) = 0;
+    virtual common::VoidResult unregister_source(const std::string& source_name) = 0;
 
     /**
      * @brief Get all registered sources
