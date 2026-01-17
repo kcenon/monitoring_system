@@ -243,12 +243,12 @@ public:
  * @code
  * class database_connection : public monitorable_interface {
  * public:
- *     result<monitoring_data> get_monitoring_data() const override {
+ *     common::Result<monitoring_data> get_monitoring_data() const override {
  *         monitoring_data data(get_monitoring_id());
  *         data.add_metric("active_queries", active_queries_.load());
  *         data.add_metric("connection_pool_size", pool_size_);
  *         data.add_tag("database", database_name_);
- *         return make_success(std::move(data));
+ *         return common::ok(std::move(data));
  *     }
  *
  *     std::string get_monitoring_id() const override {
@@ -272,7 +272,7 @@ public:
      * @brief Get current monitoring data from the component
      * @return Result containing monitoring data or error
      */
-    virtual result<monitoring_data> get_monitoring_data() const = 0;
+    virtual common::Result<monitoring_data> get_monitoring_data() const = 0;
     
     /**
      * @brief Get the component's monitoring identifier
@@ -293,19 +293,19 @@ public:
      * @param enable true to enable, false to disable
      * @return Result indicating success or error
      */
-    virtual result_void set_monitoring_enabled(bool enable) {
+    virtual common::VoidResult set_monitoring_enabled(bool enable) {
         // Default implementation - can be overridden
         (void)enable; // Suppress unused parameter warning
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Reset monitoring counters and state
      * @return Result indicating success or error
      */
-    virtual result_void reset_monitoring() {
+    virtual common::VoidResult reset_monitoring() {
         // Default implementation - can be overridden
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -327,11 +327,11 @@ public:
  * public:
  *     web_server() : monitorable_component("web_server") {}
  *
- *     result<monitoring_data> get_monitoring_data() const override {
+ *     common::Result<monitoring_data> get_monitoring_data() const override {
  *         update_metric("requests_total", requests_.load());
  *         update_metric("avg_response_time_ms", avg_response_time_.load());
  *         update_tag("status", is_running_ ? "running" : "stopped");
- *         return make_success(cached_data_);
+ *         return common::ok(cached_data_);
  *     }
  * private:
  *     std::atomic<uint64_t> requests_{0};
@@ -378,19 +378,19 @@ public:
      * @param enable true to enable, false to disable
      * @return Result indicating success
      */
-    result_void set_monitoring_enabled(bool enable) override {
+    common::VoidResult set_monitoring_enabled(bool enable) override {
         monitoring_enabled_ = enable;
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Reset monitoring data
      * @return Result indicating success
      */
-    result_void reset_monitoring() override {
+    common::VoidResult reset_monitoring() override {
         cached_data_.clear();
         cached_data_.set_component_name(monitoring_id_);
-        return make_void_success();
+        return common::ok();
     }
     
 protected:
@@ -497,7 +497,7 @@ public:
      * @brief Collect data from all components
      * @return Aggregated monitoring data
      */
-    result<monitoring_data> collect_all() const {
+    common::Result<monitoring_data> collect_all() const {
         monitoring_data aggregated(aggregator_id_);
         
         for (const auto& component : components_) {
@@ -523,7 +523,7 @@ public:
         aggregated.add_metric("aggregator.total_metrics", 
                             static_cast<double>(aggregated.metric_count()));
         
-        return make_success(std::move(aggregated));
+        return common::ok(std::move(aggregated));
     }
     
     /**

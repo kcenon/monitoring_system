@@ -97,13 +97,13 @@ struct otel_resource {
         attributes.emplace_back(key, value);
     }
     
-    result<std::string> get_attribute(const std::string& key) const {
+    common::Result<std::string> get_attribute(const std::string& key) const {
         for (const auto& attr : attributes) {
             if (attr.key == key) {
-                return result<std::string>::ok(attr.value);
+                return common::Result<std::string>::ok(attr.value);
             }
         }
-        return result<std::string>::err(error_info(monitoring_error_code::not_found,
+        return common::Result<std::string>::err(error_info(monitoring_error_code::not_found,
                                      "Attribute not found: " + key, "monitoring_system").to_common_error());
     }
 };
@@ -192,7 +192,7 @@ public:
     /**
      * @brief Convert internal span to OpenTelemetry span data
      */
-    result<otel_span_data> convert_span(const trace_span& span) {
+    common::Result<otel_span_data> convert_span(const trace_span& span) {
         otel_span_data otel_span;
         
         // Convert basic span information
@@ -233,33 +233,33 @@ public:
             }
         }
         
-        return result<otel_span_data>::ok(std::move(otel_span));
+        return common::Result<otel_span_data>::ok(std::move(otel_span));
     }
     
     /**
      * @brief Convert multiple spans to OpenTelemetry format
      */
-    result<std::vector<otel_span_data>> convert_spans(const std::vector<trace_span>& spans) {
+    common::Result<std::vector<otel_span_data>> convert_spans(const std::vector<trace_span>& spans) {
         std::vector<otel_span_data> otel_spans;
         otel_spans.reserve(spans.size());
         
         for (const auto& span : spans) {
             auto convert_result = convert_span(span);
             if (convert_result.is_err()) {
-                return result<std::vector<otel_span_data>>::err(error_info(monitoring_error_code::processing_failed,
+                return common::Result<std::vector<otel_span_data>>::err(error_info(monitoring_error_code::processing_failed,
                     "Failed to convert span: " + convert_result.error().message).to_common_error());
             }
             otel_spans.push_back(convert_result.value());
         }
 
-        return result<std::vector<otel_span_data>>::ok(std::move(otel_spans));
+        return common::Result<std::vector<otel_span_data>>::ok(std::move(otel_spans));
     }
     
     /**
      * @brief Create OpenTelemetry context from internal trace context
      */
-    result<otel_span_context> create_context(const trace_context& context) {
-        return result<otel_span_context>::ok(otel_span_context(context.trace_id, context.span_id));
+    common::Result<otel_span_context> create_context(const trace_context& context) {
+        return common::Result<otel_span_context>::ok(otel_span_context(context.trace_id, context.span_id));
     }
     
 private:
@@ -287,7 +287,7 @@ public:
     /**
      * @brief Convert metrics snapshot to OpenTelemetry metric data
      */
-    result<std::vector<otel_metric_data>> convert_metrics(const metrics_snapshot& snapshot) {
+    common::Result<std::vector<otel_metric_data>> convert_metrics(const metrics_snapshot& snapshot) {
         std::vector<otel_metric_data> otel_metrics;
         
         for (const auto& metric_value : snapshot.metrics) {
@@ -309,13 +309,13 @@ public:
             otel_metrics.push_back(std::move(metric));
         }
 
-        return result<std::vector<otel_metric_data>>::ok(std::move(otel_metrics));
+        return common::Result<std::vector<otel_metric_data>>::ok(std::move(otel_metrics));
     }
 
     /**
      * @brief Convert monitoring data to OpenTelemetry metric data
      */
-    result<std::vector<otel_metric_data>> convert_monitoring_data(const monitoring_data& data) {
+    common::Result<std::vector<otel_metric_data>> convert_monitoring_data(const monitoring_data& data) {
         std::vector<otel_metric_data> otel_metrics;
         
         for (const auto& [name, value] : data.get_metrics()) {
@@ -333,7 +333,7 @@ public:
             otel_metrics.push_back(std::move(metric));
         }
 
-        return result<std::vector<otel_metric_data>>::ok(std::move(otel_metrics));
+        return common::Result<std::vector<otel_metric_data>>::ok(std::move(otel_metrics));
     }
 
 private:
@@ -354,21 +354,21 @@ struct opentelemetry_exporter_config {
     bool compression_enabled{true};
     std::string compression_type{"gzip"};
     
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (endpoint.empty()) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                                     "Exporter endpoint cannot be empty", "monitoring_system").to_common_error());
         }
         if (protocol != "grpc" && protocol != "http/protobuf" && protocol != "http/json") {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                                     "Invalid protocol: " + protocol, "monitoring_system").to_common_error());
         }
         if (timeout <= std::chrono::milliseconds(0)) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                                     "Timeout must be positive", "monitoring_system").to_common_error());
         }
         if (max_batch_size == 0) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                                     "Batch size must be positive", "monitoring_system").to_common_error());
         }
         return common::ok();
@@ -389,10 +389,10 @@ public:
     /**
      * @brief Initialize the compatibility layer
      */
-    result_void initialize() {
+    common::VoidResult initialize() {
         std::lock_guard<std::mutex> lock(mutex_);
         if (initialized_) {
-            return result_void::err(error_info(monitoring_error_code::already_exists,
+            return common::VoidResult::err(error_info(monitoring_error_code::already_exists,
                                     "Compatibility layer already initialized", "monitoring_system").to_common_error());
         }
 
@@ -403,7 +403,7 @@ public:
     /**
      * @brief Shutdown the compatibility layer
      */
-    result_void shutdown() {
+    common::VoidResult shutdown() {
         std::lock_guard<std::mutex> lock(mutex_);
         if (!initialized_) {
             return common::ok();
@@ -421,15 +421,15 @@ public:
     /**
      * @brief Export spans using OpenTelemetry format
      */
-    result_void export_spans(const std::vector<trace_span>& spans) {
+    common::VoidResult export_spans(const std::vector<trace_span>& spans) {
         if (!initialized_) {
-            return result_void::err(error_info(monitoring_error_code::invalid_state,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_state,
                                     "Compatibility layer not initialized", "monitoring_system").to_common_error());
         }
 
         auto convert_result = tracer_adapter_.convert_spans(spans);
         if (convert_result.is_err()) {
-            return result_void::err(error_info(monitoring_error_code::processing_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::processing_failed,
                                     "Failed to convert spans: " + convert_result.error().message).to_common_error());
         }
 
@@ -444,15 +444,15 @@ public:
     /**
      * @brief Export metrics using OpenTelemetry format
      */
-    result_void export_metrics(const monitoring_data& data) {
+    common::VoidResult export_metrics(const monitoring_data& data) {
         if (!initialized_) {
-            return result_void::err(error_info(monitoring_error_code::invalid_state,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_state,
                                     "Compatibility layer not initialized", "monitoring_system").to_common_error());
         }
 
         auto convert_result = metrics_adapter_.convert_monitoring_data(data);
         if (convert_result.is_err()) {
-            return result_void::err(error_info(monitoring_error_code::processing_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::processing_failed,
                                     "Failed to convert metrics: " + convert_result.error().message).to_common_error());
         }
 
@@ -467,7 +467,7 @@ public:
     /**
      * @brief Flush pending data to exporters
      */
-    result_void flush() {
+    common::VoidResult flush() {
         std::lock_guard<std::mutex> lock(mutex_);
         
         // In a real implementation, this would send data to OpenTelemetry collectors

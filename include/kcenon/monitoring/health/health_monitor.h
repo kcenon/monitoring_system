@@ -232,40 +232,36 @@ private:
  */
 class health_dependency_graph {
 public:
-    result<bool> add_node(const std::string& name, std::shared_ptr<health_check> check) {
+    common::Result<bool> add_node(const std::string& name, std::shared_ptr<health_check> check) {
         std::lock_guard<std::shared_mutex> lock(mutex_);
 
         if (nodes_.find(name) != nodes_.end()) {
-            return make_error<bool>(monitoring_error_code::already_exists,
-                                   "Node '" + name + "' already exists");
+            return common::Result<bool>::err(error_info(monitoring_error_code::already_exists, "Node '" + name + "' already exists").to_common_error());
         }
 
         nodes_[name] = std::move(check);
         dependencies_[name] = {};
         dependents_[name] = {};
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<bool> add_dependency(const std::string& dependent, const std::string& dependency) {
+    common::Result<bool> add_dependency(const std::string& dependent, const std::string& dependency) {
         std::lock_guard<std::shared_mutex> lock(mutex_);
 
         if (nodes_.find(dependent) == nodes_.end()) {
-            return make_error<bool>(monitoring_error_code::not_found,
-                                   "Dependent '" + dependent + "' not found");
+            return common::Result<bool>::err(error_info(monitoring_error_code::not_found, "Dependent '" + dependent + "' not found").to_common_error());
         }
         if (nodes_.find(dependency) == nodes_.end()) {
-            return make_error<bool>(monitoring_error_code::not_found,
-                                   "Dependency '" + dependency + "' not found");
+            return common::Result<bool>::err(error_info(monitoring_error_code::not_found, "Dependency '" + dependency + "' not found").to_common_error());
         }
 
         if (would_create_cycle_internal(dependent, dependency)) {
-            return make_error<bool>(monitoring_error_code::invalid_state,
-                                   "Adding dependency would create a cycle");
+            return common::Result<bool>::err(error_info(monitoring_error_code::invalid_state, "Adding dependency would create a cycle").to_common_error());
         }
 
         dependencies_[dependent].push_back(dependency);
         dependents_[dependency].push_back(dependent);
-        return make_success(true);
+        return common::ok(true);
     }
 
     std::vector<std::string> get_dependencies(const std::string& name) const {
@@ -493,12 +489,11 @@ public:
     explicit health_monitor(const health_monitor_config& config) : config_(config) {}
     virtual ~health_monitor() { stop(); }
 
-    result<bool> register_check(const std::string& name, std::shared_ptr<health_check> check) {
+    common::Result<bool> register_check(const std::string& name, std::shared_ptr<health_check> check) {
         std::lock_guard<std::shared_mutex> lock(mutex_);
 
         if (checks_.find(name) != checks_.end()) {
-            return make_error<bool>(monitoring_error_code::already_exists,
-                                   "Check '" + name + "' already registered");
+            return common::Result<bool>::err(error_info(monitoring_error_code::already_exists, "Check '" + name + "' already registered").to_common_error());
         }
 
         checks_[name] = std::move(check);
@@ -507,35 +502,37 @@ public:
             checks_.erase(name);
             return common::Result<bool>::err(graph_result.error());
         }
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<bool> unregister_check(const std::string& name) {
+    common::Result<bool> unregister_check(const std::string& name) {
         std::lock_guard<std::shared_mutex> lock(mutex_);
 
         if (checks_.find(name) == checks_.end()) {
-            return make_error<bool>(monitoring_error_code::not_found,
-                                   "Check '" + name + "' not found");
+            error_info err(monitoring_error_code::not_found,
+                          "Check '" + name + "' not found");
+            return common::Result<bool>::err(err.to_common_error());
         }
 
         checks_.erase(name);
         recovery_handlers_.erase(name);
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<health_check_result> check(const std::string& name) {
+    common::Result<health_check_result> check(const std::string& name) {
         std::lock_guard<std::shared_mutex> lock(mutex_);
 
         auto it = checks_.find(name);
         if (it == checks_.end()) {
-            return make_error<health_check_result>(monitoring_error_code::not_found,
-                                                   "Check '" + name + "' not found");
+            error_info err(monitoring_error_code::not_found,
+                          "Check '" + name + "' not found");
+            return common::Result<health_check_result>::err(err.to_common_error());
         }
 
         auto result = dependency_graph_.check_with_dependencies(name);
         update_stats(result);
         cached_results_[name] = result;
-        return make_success(result);
+        return common::ok(result);
     }
 
     std::unordered_map<std::string, health_check_result> check_all() {
@@ -551,28 +548,28 @@ public:
         return results;
     }
 
-    result<bool> add_dependency(const std::string& dependent, const std::string& dependency) {
+    common::Result<bool> add_dependency(const std::string& dependent, const std::string& dependency) {
         std::lock_guard<std::shared_mutex> lock(mutex_);
         return dependency_graph_.add_dependency(dependent, dependency);
     }
 
-    result_void start() {
+    common::VoidResult start() {
         std::lock_guard<std::mutex> lock(lifecycle_mutex_);
 
         if (running_.load()) {
-            return make_void_success();
+            return common::ok();
         }
 
         running_.store(true);
         monitor_thread_ = std::thread([this]() { run_monitoring_loop(); });
-        return make_void_success();
+        return common::ok();
     }
 
-    result_void stop() {
+    common::VoidResult stop() {
         std::lock_guard<std::mutex> lock(lifecycle_mutex_);
 
         if (!running_.load()) {
-            return make_void_success();
+            return common::ok();
         }
 
         running_.store(false);
@@ -582,7 +579,7 @@ public:
             monitor_thread_.join();
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     bool is_running() const {

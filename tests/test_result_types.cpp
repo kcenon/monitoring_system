@@ -44,7 +44,7 @@ protected:
 };
 
 TEST_F(ResultTypesTest, SuccessResultContainsValue) {
-    auto result = make_success<int>(42);
+    auto result = kcenon::common::ok(42);
 
     EXPECT_TRUE(result.is_ok());
     EXPECT_FALSE(result.is_err());
@@ -52,7 +52,7 @@ TEST_F(ResultTypesTest, SuccessResultContainsValue) {
 }
 
 TEST_F(ResultTypesTest, ErrorResultContainsError) {
-    auto result = make_error<int>(monitoring_error_code::collector_not_found, "Test error");
+    auto result = kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::collector_not_found), "Test error");
 
     EXPECT_FALSE(result.is_ok());
     EXPECT_TRUE(result.is_err());
@@ -61,15 +61,15 @@ TEST_F(ResultTypesTest, ErrorResultContainsError) {
 }
 
 TEST_F(ResultTypesTest, ValueOrReturnsDefaultOnError) {
-    auto error_result = make_error<int>(monitoring_error_code::unknown_error);
+    auto error_result = kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::unknown_error), "");
     EXPECT_EQ(error_result.value_or(100), 100);
-    
-    auto success_result = make_success<int>(42);
+
+    auto success_result = kcenon::common::ok(42);
     EXPECT_EQ(success_result.value_or(100), 42);
 }
 
 TEST_F(ResultTypesTest, MapTransformsSuccessValue) {
-    auto result = make_success<int>(10);
+    auto result = kcenon::common::ok(10);
     auto mapped = result.map([](int x) { return x * 2; });
 
     EXPECT_TRUE(mapped.is_ok());
@@ -77,7 +77,7 @@ TEST_F(ResultTypesTest, MapTransformsSuccessValue) {
 }
 
 TEST_F(ResultTypesTest, MapPropagatesError) {
-    auto result = make_error<int>(monitoring_error_code::invalid_configuration);
+    auto result = kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::invalid_configuration), "");
     auto mapped = result.map([](int x) { return x * 2; });
 
     EXPECT_FALSE(mapped.is_ok());
@@ -85,12 +85,12 @@ TEST_F(ResultTypesTest, MapPropagatesError) {
 }
 
 TEST_F(ResultTypesTest, AndThenChainsOperations) {
-    auto result = make_success<int>(10);
+    auto result = kcenon::common::ok(10);
     auto chained = result.and_then([](int x) {
         if (x > 5) {
-            return make_success<std::string>("Large");
+            return kcenon::common::ok(std::string("Large"));
         }
-        return make_error<std::string>(monitoring_error_code::invalid_configuration);
+        return kcenon::common::make_error<std::string>(static_cast<int>(monitoring_error_code::invalid_configuration), "");
     });
 
     EXPECT_TRUE(chained.is_ok());
@@ -98,14 +98,14 @@ TEST_F(ResultTypesTest, AndThenChainsOperations) {
 }
 
 TEST_F(ResultTypesTest, ResultVoidSuccess) {
-    auto result = make_void_success();
+    auto result = kcenon::common::ok();
 
     EXPECT_TRUE(result.is_ok());
     EXPECT_FALSE(result.is_err());
 }
 
 TEST_F(ResultTypesTest, ResultVoidError) {
-    auto result = make_void_error(monitoring_error_code::storage_full, "Storage is full");
+    auto result = kcenon::common::VoidResult::err(static_cast<int>(monitoring_error_code::storage_full), "Storage is full");
 
     EXPECT_FALSE(result.is_ok());
     EXPECT_TRUE(result.is_err());
@@ -120,9 +120,10 @@ TEST_F(ResultTypesTest, ErrorCodeToString) {
 }
 
 TEST_F(ResultTypesTest, ErrorInfoWithContext) {
-    auto result = make_error_with_context<int>(
-        monitoring_error_code::collection_failed,
+    auto result = kcenon::common::make_error<int>(
+        static_cast<int>(monitoring_error_code::collection_failed),
         "Failed to collect metrics",
+        "",
         "CPU collector timeout"
     );
 

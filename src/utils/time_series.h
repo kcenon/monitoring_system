@@ -43,23 +43,23 @@ struct time_series_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (retention_period.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Retention period must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Retention period must be positive").to_common_error());
         }
-        
+
         if (resolution.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Resolution must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Resolution must be positive").to_common_error());
         }
-        
+
         if (max_points == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Max points must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max points must be positive").to_common_error());
         }
         
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -126,18 +126,18 @@ struct time_series_query {
     /**
      * @brief Validate query parameters
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (start_time >= end_time) {
-            return make_result_void(monitoring_error_code::invalid_argument,
-                             "Start time must be before end time");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument,
+                             "Start time must be before end time").to_common_error());
         }
-        
+
         if (step.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_argument,
-                             "Step size must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument,
+                             "Step size must be positive").to_common_error());
         }
         
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -286,25 +286,25 @@ public:
     /**
      * @brief Factory method to create time_series with validation
      */
-    static result<std::unique_ptr<time_series>> create(
+    static common::Result<std::unique_ptr<time_series>> create(
         const std::string& name,
         const time_series_config& config = {}) {
 
         auto validation = config.validate();
         if (validation.is_err()) {
-            return make_error<std::unique_ptr<time_series>>(
-                monitoring_error_code::invalid_configuration,
+            return common::make_error<std::unique_ptr<time_series>>(
+                static_cast<int>(monitoring_error_code::invalid_configuration),
                 validation.error().message);
         }
 
-        return make_success(std::unique_ptr<time_series>(
+        return common::ok(std::unique_ptr<time_series>(
             new time_series(name, config)));
     }
     
     /**
      * @brief Add a data point
      */
-    result_void add_point(double value,
+    common::VoidResult add_point(double value,
                          std::chrono::system_clock::time_point timestamp =
                          std::chrono::system_clock::now()) {
         std::lock_guard<std::mutex> lock(mutex_);
@@ -327,13 +327,13 @@ public:
             inserts_since_maintenance_ = 0;
         }
 
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Add multiple data points
      */
-    result_void add_points(const std::vector<time_point_data>& points) {
+    common::VoidResult add_points(const std::vector<time_point_data>& points) {
         std::lock_guard<std::mutex> lock(mutex_);
         
         for (const auto& point : points) {
@@ -350,13 +350,13 @@ public:
         compress_data();
         enforce_size_limit();
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Query data for a time range
      */
-    result<aggregation_result> query(const time_series_query& query) const {
+    common::Result<aggregation_result> query(const time_series_query& query) const {
         auto validation = query.validate();
         if (validation.is_err()) {
             return make_error<aggregation_result>(monitoring_error_code::invalid_argument,
@@ -381,7 +381,7 @@ public:
             });
         
         if (start_it == end_it) {
-            return make_success(std::move(result));  // No data in range
+            return common::ok(std::move(result));  // No data in range
         }
         
         // Aggregate data by step size
@@ -417,7 +417,7 @@ public:
             current_step_start = current_step_end;
         }
         
-        return make_success(std::move(result));
+        return common::ok(std::move(result));
     }
     
     /**
@@ -461,15 +461,14 @@ public:
     /**
      * @brief Get latest value
      */
-    result<double> get_latest_value() const {
+    common::Result<double> get_latest_value() const {
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (data_.empty()) {
-            return make_error<double>(monitoring_error_code::collection_failed,
-                                    "No data available");
+            return common::Result<double>::err(error_info(monitoring_error_code::collection_failed, "No data available").to_common_error());
         }
         
-        return make_success(data_.back().value);
+        return common::ok(data_.back().value);
     }
     
     /**
@@ -487,7 +486,7 @@ public:
  * @brief Helper function to create a time series with default configuration
  * @deprecated Use time_series::create() instead
  */
-inline result<std::unique_ptr<time_series>> make_time_series(const std::string& name) {
+inline common::Result<std::unique_ptr<time_series>> make_time_series(const std::string& name) {
     return time_series::create(name);
 }
 
@@ -495,7 +494,7 @@ inline result<std::unique_ptr<time_series>> make_time_series(const std::string& 
  * @brief Helper function to create a time series with custom configuration
  * @deprecated Use time_series::create() instead
  */
-inline result<std::unique_ptr<time_series>> make_time_series(const std::string& name,
+inline common::Result<std::unique_ptr<time_series>> make_time_series(const std::string& name,
                                                     const time_series_config& config) {
     return time_series::create(name, config);
 }

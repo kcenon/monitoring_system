@@ -54,12 +54,13 @@ namespace kcenon { namespace monitoring {
 struct time_series_buffer_config {
     size_t max_samples = 1000;
 
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (max_samples == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                                    "Max samples must be positive");
+            error_info err(monitoring_error_code::invalid_configuration,
+                          "Max samples must be positive");
+            return common::VoidResult::err(err.to_common_error());
         }
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -277,16 +278,15 @@ class time_series_ring_buffer {
         return result;
     }
 
-    result<Sample> get_latest() const {
+    common::Result<Sample> get_latest() const {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (count_ == 0) {
-            return make_error<Sample>(monitoring_error_code::collection_failed,
-                                      "No samples available");
+            return common::Result<Sample>::err(error_info(monitoring_error_code::collection_failed, "No samples available").to_common_error());
         }
 
         size_t latest_idx = (head_ == 0) ? max_samples_ - 1 : head_ - 1;
-        return make_success(buffer_[latest_idx]);
+        return common::ok(buffer_[latest_idx]);
     }
 
     size_t size() const noexcept {
@@ -409,19 +409,19 @@ class time_series_buffer {
      * @brief Get the latest sample value
      * @return Result containing the latest value or error
      */
-    result<T> get_latest() const {
+    common::Result<T> get_latest() const {
         auto sample_result = buffer_.get_latest();
         if (sample_result.is_err()) {
             return common::Result<T>::err(sample_result.error());
         }
-        return make_success(sample_result.value().value);
+        return common::ok(sample_result.value().value);
     }
 
     /**
      * @brief Get the latest sample with timestamp
      * @return Result containing the latest sample or error
      */
-    result<time_series_sample<T>> get_latest_sample() const {
+    common::Result<time_series_sample<T>> get_latest_sample() const {
         return buffer_.get_latest();
     }
 
@@ -595,7 +595,7 @@ class load_average_history {
      * @brief Get the latest sample
      * @return Result containing the latest sample or error
      */
-    result<load_average_sample> get_latest() const {
+    common::Result<load_average_sample> get_latest() const {
         return buffer_.get_latest();
     }
 

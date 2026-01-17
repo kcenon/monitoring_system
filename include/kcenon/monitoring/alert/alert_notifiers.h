@@ -220,7 +220,7 @@ public:
  */
 class webhook_notifier : public alert_notifier {
 public:
-    using http_sender_func = std::function<result_void(
+    using http_sender_func = std::function<common::VoidResult(
         const std::string& url,
         const std::string& method,
         const std::unordered_map<std::string, std::string>& headers,
@@ -241,16 +241,16 @@ public:
         return "webhook:" + config_.url;
     }
 
-    result_void notify(const alert& a) override {
+    common::VoidResult notify(const alert& a) override {
         if (!config_.send_resolved && a.state == alert_state::resolved) {
-            return make_void_success();
+            return common::ok();
         }
 
         std::string payload = formatter_->format(a);
         return send_with_retry(payload);
     }
 
-    result_void notify_group(const alert_group& group) override {
+    common::VoidResult notify_group(const alert_group& group) override {
         std::string payload = formatter_->format_group(group);
         return send_with_retry(payload);
     }
@@ -284,10 +284,9 @@ public:
     const webhook_config& config() const { return config_; }
 
 private:
-    result_void send_with_retry(const std::string& payload) {
+    common::VoidResult send_with_retry(const std::string& payload) {
         if (!http_sender_) {
-            return make_void_error(monitoring_error_code::operation_failed,
-                                   "No HTTP sender configured");
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed, "No HTTP sender configured").to_common_error());
         }
 
         auto headers = config_.headers;
@@ -304,7 +303,7 @@ private:
             }
         }
 
-        return make_void_error(monitoring_error_code::retry_attempts_exhausted,
+        return common::VoidResult::err(static_cast<int>(monitoring_error_code::retry_attempts_exhausted),
                                "Failed to send webhook after " +
                                std::to_string(config_.max_retries) + " retries");
     }
@@ -337,11 +336,11 @@ public:
         return "file:" + file_path_;
     }
 
-    result_void notify(const alert& a) override {
+    common::VoidResult notify(const alert& a) override {
         return write_to_file(formatter_->format(a));
     }
 
-    result_void notify_group(const alert_group& group) override {
+    common::VoidResult notify_group(const alert_group& group) override {
         return write_to_file(formatter_->format_group(group));
     }
 
@@ -350,12 +349,12 @@ public:
     }
 
 private:
-    result_void write_to_file(const std::string& content) {
+    common::VoidResult write_to_file(const std::string& content) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         std::ofstream file(file_path_, std::ios::app);
         if (!file) {
-            return make_void_error(monitoring_error_code::storage_write_failed,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::storage_write_failed),
                                    "Failed to open file: " + file_path_);
         }
 
@@ -365,7 +364,7 @@ private:
         file << "=== " << std::ctime(&time_t_now);
         file << content << "\n\n";
 
-        return make_void_success();
+        return common::ok();
     }
 
     std::string file_path_;
@@ -398,7 +397,7 @@ public:
 
     std::string name() const override { return name_; }
 
-    result_void notify(const alert& a) override {
+    common::VoidResult notify(const alert& a) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         std::vector<std::string> failures;
@@ -412,13 +411,13 @@ public:
         }
 
         if (!failures.empty()) {
-            return make_void_error(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed),
                                    "Failed notifiers: " + join_strings(failures, ", "));
         }
-        return make_void_success();
+        return common::ok();
     }
 
-    result_void notify_group(const alert_group& group) override {
+    common::VoidResult notify_group(const alert_group& group) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         std::vector<std::string> failures;
@@ -432,10 +431,10 @@ public:
         }
 
         if (!failures.empty()) {
-            return make_void_error(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed),
                                    "Failed notifiers: " + join_strings(failures, ", "));
         }
-        return make_void_success();
+        return common::ok();
     }
 
     bool is_ready() const override {
@@ -486,7 +485,7 @@ public:
         return "buffered:" + (inner_ ? inner_->name() : "none");
     }
 
-    result_void notify(const alert& a) override {
+    common::VoidResult notify(const alert& a) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         buffer_.push_back(a);
@@ -495,10 +494,10 @@ public:
             return flush_internal();
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
-    result_void notify_group(const alert_group& group) override {
+    common::VoidResult notify_group(const alert_group& group) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         for (const auto& a : group.alerts) {
@@ -509,7 +508,7 @@ public:
             return flush_internal();
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     bool is_ready() const override {
@@ -519,7 +518,7 @@ public:
     /**
      * @brief Flush buffered alerts
      */
-    result_void flush() {
+    common::VoidResult flush() {
         std::lock_guard<std::mutex> lock(mutex_);
         return flush_internal();
     }
@@ -541,9 +540,9 @@ private:
         return (now - last_flush_) >= flush_interval_;
     }
 
-    result_void flush_internal() {
+    common::VoidResult flush_internal() {
         if (buffer_.empty() || !inner_) {
-            return make_void_success();
+            return common::ok();
         }
 
         // Create a group from buffered alerts
@@ -605,7 +604,7 @@ public:
 
     std::string name() const override { return name_; }
 
-    result_void notify(const alert& a) override {
+    common::VoidResult notify(const alert& a) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         for (const auto& [condition, notifier] : routes_) {
@@ -618,10 +617,10 @@ public:
             return default_route_->notify(a);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
-    result_void notify_group(const alert_group& group) override {
+    common::VoidResult notify_group(const alert_group& group) override {
         // Route each alert individually
         for (const auto& a : group.alerts) {
             auto result = notify(a);
@@ -629,7 +628,7 @@ public:
                 return result;
             }
         }
-        return make_void_success();
+        return common::ok();
     }
 
     bool is_ready() const override {

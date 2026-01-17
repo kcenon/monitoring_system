@@ -138,8 +138,8 @@ struct validation_metrics {
  */
 class transaction_operation {
 public:
-    using execute_func_t = std::function<result_void()>;
-    using rollback_func_t = std::function<result_void()>;
+    using execute_func_t = std::function<common::VoidResult()>;
+    using rollback_func_t = std::function<common::VoidResult()>;
 
     transaction_operation(const std::string& name,
                           execute_func_t execute_func,
@@ -152,7 +152,7 @@ public:
     std::string name() const { return name_; }
     bool is_executed() const { return executed_; }
 
-    result_void execute() {
+    common::VoidResult execute() {
         if (execute_func_) {
             auto result = execute_func_();
             if (result.is_ok()) {
@@ -265,20 +265,20 @@ public:
 
     std::string get_name() const { return name_; }
 
-    result<std::shared_ptr<transaction>> begin_transaction(const std::string& id) {
+    common::Result<std::shared_ptr<transaction>> begin_transaction(const std::string& id) {
         std::unique_lock<std::shared_mutex> lock(mutex_);
 
         // Check for duplicate transaction
         if (active_transactions_.find(id) != active_transactions_.end()) {
-            return make_error<std::shared_ptr<transaction>>(
-                monitoring_error_code::already_exists,
+            return common::make_error<std::shared_ptr<transaction>>(
+                static_cast<int>(monitoring_error_code::already_exists),
                 "Transaction with ID '" + id + "' already exists");
         }
 
         auto tx = std::make_shared<transaction>(id, config_);
         active_transactions_[id] = tx;
         metrics_.total_transactions++;
-        return make_success(tx);
+        return common::ok(tx);
     }
 
     bool commit_transaction(const std::string& id) {
@@ -328,7 +328,7 @@ public:
         return completed_transactions_.size();
     }
 
-    result<std::vector<std::string>> detect_deadlocks() {
+    common::Result<std::vector<std::string>> detect_deadlocks() {
         std::shared_lock<std::shared_mutex> lock(mutex_);
 
         std::vector<std::string> deadlocked;
@@ -343,7 +343,7 @@ public:
             }
         }
 
-        return make_success(deadlocked);
+        return common::ok(deadlocked);
     }
 
     void cleanup_completed_transactions(std::chrono::milliseconds /*max_age*/) {
@@ -369,7 +369,7 @@ private:
 class state_validator {
 public:
     using validation_func_t = std::function<validation_result()>;
-    using repair_func_t = std::function<result_void()>;
+    using repair_func_t = std::function<common::VoidResult()>;
 
     state_validator(const std::string& name, const validation_config& config)
         : name_(name)
@@ -396,7 +396,7 @@ public:
         return true;
     }
 
-    result<std::unordered_map<std::string, validation_result>> validate() {
+    common::Result<std::unordered_map<std::string, validation_result>> validate() {
         std::unique_lock<std::mutex> lock(mutex_);
 
         std::unordered_map<std::string, validation_result> results;
@@ -419,12 +419,12 @@ public:
             }
         }
 
-        return make_success(results);
+        return common::ok(results);
     }
 
-    result_void start() {
+    common::VoidResult start() {
         if (running_.exchange(true)) {
-            return make_void_error(monitoring_error_code::already_started, "Validator already running");
+            return common::VoidResult::err(error_info(monitoring_error_code::already_started, "Validator already running").to_common_error());
         }
 
         validation_thread_ = std::thread([this]() {
@@ -447,7 +447,7 @@ public:
         return common::ok();
     }
 
-    result_void stop() {
+    common::VoidResult stop() {
         if (!running_.exchange(false)) {
             return common::ok();
         }
@@ -464,9 +464,9 @@ public:
         return common::ok();
     }
 
-    result<bool> is_healthy() const {
+    common::Result<bool> is_healthy() const {
         // Simple health check - all validation rules should pass
-        return make_success(true);
+        return common::ok(true);
     }
 
     validation_metrics& get_metrics() { return metrics_; }
@@ -498,7 +498,7 @@ public:
     explicit data_consistency_manager(const std::string& name)
         : name_(name) {}
 
-    result_void add_transaction_manager(const std::string& name,
+    common::VoidResult add_transaction_manager(const std::string& name,
                                         const transaction_config& config) {
         std::unique_lock<std::mutex> lock(mutex_);
 
@@ -523,7 +523,7 @@ public:
         return it->second.get();
     }
 
-    result_void add_state_validator(const std::string& name,
+    common::VoidResult add_state_validator(const std::string& name,
                                     const validation_config& config) {
         std::unique_lock<std::mutex> lock(mutex_);
 
@@ -548,7 +548,7 @@ public:
         return it->second.get();
     }
 
-    result_void start_all_validators() {
+    common::VoidResult start_all_validators() {
         std::unique_lock<std::mutex> lock(mutex_);
 
         for (auto& [name, validator] : state_validators_) {
@@ -560,7 +560,7 @@ public:
         return common::ok();
     }
 
-    result_void stop_all_validators() {
+    common::VoidResult stop_all_validators() {
         std::unique_lock<std::mutex> lock(mutex_);
 
         for (auto& [name, validator] : state_validators_) {
@@ -569,8 +569,8 @@ public:
         return common::ok();
     }
 
-    result<bool> is_healthy() const {
-        return make_success(true);
+    common::Result<bool> is_healthy() const {
+        return common::ok(true);
     }
 
     std::unordered_map<std::string, std::string> get_all_metrics() const {

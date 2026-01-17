@@ -262,10 +262,10 @@ public:
  * @code
  * class metric_collector : public interface_observable {
  * public:
- *     result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
+ *     common::VoidResult register_observer(std::shared_ptr<interface_monitoring_observer> observer) override {
  *         std::lock_guard<std::mutex> lock(mutex_);
  *         observers_.push_back(observer);
- *         return make_void_success();
+ *         return common::ok();
  *     }
  *
  *     void notify_metric(const metric_event& event) override {
@@ -292,14 +292,14 @@ public:
      * @param observer The observer to register
      * @return Result indicating success or failure
      */
-    virtual result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) = 0;
+    virtual common::VoidResult register_observer(std::shared_ptr<interface_monitoring_observer> observer) = 0;
 
     /**
      * @brief Unregister an observer
      * @param observer The observer to unregister
      * @return Result indicating success or failure
      */
-    virtual result_void unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) = 0;
+    virtual common::VoidResult unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) = 0;
 
     /**
      * @brief Notify all observers of a metric event

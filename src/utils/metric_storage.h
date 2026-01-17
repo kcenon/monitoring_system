@@ -48,28 +48,28 @@ struct metric_storage_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (ring_buffer_capacity == 0 || (ring_buffer_capacity & (ring_buffer_capacity - 1)) != 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Ring buffer capacity must be a power of 2");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Ring buffer capacity must be a power of 2").to_common_error());
         }
         
         if (max_metrics == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Max metrics must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Max metrics must be positive").to_common_error());
         }
         
         if (retention_period.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Retention period must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Retention period must be positive").to_common_error());
         }
-        
+
         if (flush_interval.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Flush interval must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Flush interval must be positive").to_common_error());
         }
         
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -325,7 +325,7 @@ public:
     /**
      * @brief Store a metric value
      */
-    result_void store_metric(const std::string& name,
+    common::VoidResult store_metric(const std::string& name,
                            double value,
                            metric_type type = metric_type::gauge,
                            std::chrono::system_clock::time_point timestamp =
@@ -339,8 +339,8 @@ public:
         auto series = get_or_create_series(metadata);
         if (!series) {
             stats_.total_metrics_dropped.fetch_add(1, std::memory_order_relaxed);
-            return make_result_void(monitoring_error_code::storage_full,
-                             "Storage capacity exceeded");
+            return common::VoidResult::err(error_info(monitoring_error_code::storage_full,
+                             "Storage capacity exceeded").to_common_error());
         }
 
         auto result = series->buffer->write(std::move(metric));
@@ -380,7 +380,7 @@ public:
     /**
      * @brief Query time series data for a metric
      */
-    result<aggregation_result> query_metric(const std::string& name,
+    common::Result<aggregation_result> query_metric(const std::string& name,
                                            const time_series_query& query) const {
         auto hash = hash_metric_name(name);
         
@@ -398,7 +398,7 @@ public:
     /**
      * @brief Get latest value for a metric
      */
-    result<double> get_latest_value(const std::string& name) const {
+    common::Result<double> get_latest_value(const std::string& name) const {
         auto hash = hash_metric_name(name);
         
         std::lock_guard<std::mutex> lock(storage_mutex_);

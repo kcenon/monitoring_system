@@ -45,23 +45,23 @@ struct stream_aggregator_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (window_size == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Window size must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Window size must be positive").to_common_error());
         }
-        
+
         if (window_duration.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Window duration must be positive");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Window duration must be positive").to_common_error());
         }
-        
+
         if (percentile_precision <= 0 || percentile_precision >= 1) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Percentile precision must be between 0 and 1");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
+                             "Percentile precision must be between 0 and 1").to_common_error());
         }
         
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -533,7 +533,7 @@ public:
     /**
      * @brief Add observation to stream
      */
-    result_void add_observation(double value, 
+    common::VoidResult add_observation(double value, 
                                std::chrono::system_clock::time_point timestamp = 
                                std::chrono::system_clock::now()) {
         std::lock_guard<std::mutex> lock(mutex_);
@@ -558,7 +558,7 @@ public:
             estimator->add_observation(value);
         }
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**
@@ -605,21 +605,19 @@ public:
     /**
      * @brief Get specific percentile
      */
-    result<double> get_percentile(double p) const {
+    common::Result<double> get_percentile(double p) const {
         if (p < 0.0 || p > 1.0) {
-            return make_error<double>(monitoring_error_code::invalid_argument,
-                                    "Percentile must be between 0 and 1");
+            return common::Result<double>::err(error_info(monitoring_error_code::invalid_argument, "Percentile must be between 0 and 1").to_common_error());
         }
         
         std::lock_guard<std::mutex> lock(mutex_);
         
         auto it = percentile_estimators_.find(p);
         if (it != percentile_estimators_.end()) {
-            return make_success(it->second->get_quantile());
+            return common::ok(it->second->get_quantile());
         }
         
-        return make_error<double>(monitoring_error_code::collector_not_found,
-                                "Percentile estimator not found");
+        return common::Result<double>::err(error_info(monitoring_error_code::collector_not_found, "Percentile estimator not found").to_common_error());
     }
     
     /**

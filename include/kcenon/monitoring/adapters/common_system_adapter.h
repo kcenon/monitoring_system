@@ -192,16 +192,16 @@ public:
     /**
      * @brief Collect metrics
      */
-    result<metrics_snapshot> collect() override {
+    common::Result<metrics_snapshot> collect() override {
         if (!common_monitor_) {
-            return result<metrics_snapshot>(
+            return common::Result<metrics_snapshot>(
                 monitoring_error_code::collection_failed,
                 "Common monitor not initialized");
         }
 
         auto common_result = common_monitor_->get_metrics();
         if (common_result.is_err()) {
-            return result<metrics_snapshot>(
+            return common::Result<metrics_snapshot>(
                 monitoring_error_code::collection_failed,
                 common_result.error().message);
         }
@@ -217,7 +217,7 @@ public:
             snapshot.add_metric(m.name, m.value);
         }
 
-        return result<metrics_snapshot>(snapshot);
+        return common::Result<metrics_snapshot>(snapshot);
     }
 
     /**
@@ -237,26 +237,26 @@ public:
     /**
      * @brief Enable or disable the collector
      */
-    result_void set_enabled(bool enable) override {
+    common::VoidResult set_enabled(bool enable) override {
         enabled_ = enable;
-        return make_void_success();
+        return common::ok();
     }
 
     /**
      * @brief Initialize the collector
      */
-    result_void initialize() override {
-        return make_void_success();
+    common::VoidResult initialize() override {
+        return common::ok();
     }
 
     /**
      * @brief Cleanup collector resources
      */
-    result_void cleanup() override {
+    common::VoidResult cleanup() override {
         if (common_monitor_) {
             common_monitor_->reset();
         }
-        return make_void_success();
+        return common::ok();
     }
 
 private:

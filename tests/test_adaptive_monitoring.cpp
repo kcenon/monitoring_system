@@ -55,28 +55,28 @@ public:
     std::string get_name() const override { return name_; }
     bool is_enabled() const override { return enabled_; }
     
-    result_void set_enabled(bool enable) override {
+    kcenon::common::VoidResult set_enabled(bool enable) override {
         enabled_ = enable;
-        return make_void_success();
+        return kcenon::common::ok();
     }
-    
-    result_void initialize() override {
-        return make_void_success();
+
+    kcenon::common::VoidResult initialize() override {
+        return kcenon::common::ok();
     }
-    
-    result_void cleanup() override {
-        return make_void_success();
+
+    kcenon::common::VoidResult cleanup() override {
+        return kcenon::common::ok();
     }
-    
-    kcenon::monitoring::result<metrics_snapshot> collect() override {
+
+    kcenon::common::Result<metrics_snapshot> collect() override {
         collect_count_++;
-        
+
         metrics_snapshot snapshot;
         snapshot.capture_time = std::chrono::system_clock::now();
         snapshot.source_id = name_;
         snapshot.add_metric("test_metric", static_cast<double>(collect_count_.load()));
-        
-        return snapshot;
+
+        return kcenon::common::ok(std::move(snapshot));
     }
     
     int get_collect_count() const { return collect_count_; }

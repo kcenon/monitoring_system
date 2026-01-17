@@ -48,26 +48,24 @@ alert_manager::~alert_manager() {
     }
 }
 
-result_void alert_manager::start() {
+common::VoidResult alert_manager::start() {
     if (running_.load()) {
-        return make_void_error(monitoring_error_code::already_started,
-                              "Alert manager is already running");
+        return common::VoidResult::err(error_info(monitoring_error_code::already_started, "Alert manager is already running").to_common_error());
     }
 
     if (!config_.validate()) {
-        return make_void_error(monitoring_error_code::invalid_configuration,
-                              "Invalid alert manager configuration");
+        return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration, "Invalid alert manager configuration").to_common_error());
     }
 
     running_.store(true);
     evaluation_thread_ = std::thread(&alert_manager::evaluation_loop, this);
 
-    return make_void_success();
+    return common::ok();
 }
 
-result_void alert_manager::stop() {
+common::VoidResult alert_manager::stop() {
     if (!running_.load()) {
-        return make_void_success();
+        return common::ok();
     }
 
     running_.store(false);
@@ -81,17 +79,16 @@ result_void alert_manager::stop() {
         evaluation_thread_.join();
     }
 
-    return make_void_success();
+    return common::ok();
 }
 
 bool alert_manager::is_running() const {
     return running_.load();
 }
 
-result_void alert_manager::add_rule(std::shared_ptr<alert_rule> rule) {
+common::VoidResult alert_manager::add_rule(std::shared_ptr<alert_rule> rule) {
     if (!rule) {
-        return make_void_error(monitoring_error_code::invalid_argument,
-                              "Rule cannot be null");
+        return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument, "Rule cannot be null").to_common_error());
     }
 
     auto validation = rule->validate();
@@ -102,25 +99,24 @@ result_void alert_manager::add_rule(std::shared_ptr<alert_rule> rule) {
     std::lock_guard<std::mutex> lock(rules_mutex_);
 
     if (rules_.find(rule->name()) != rules_.end()) {
-        return make_void_error(monitoring_error_code::already_exists,
-                              "Rule with name '" + rule->name() + "' already exists");
+        return common::VoidResult::err(error_info(monitoring_error_code::already_exists,
+            "Rule with name '" + rule->name() + "' already exists").to_common_error());
     }
 
     rules_[rule->name()] = std::move(rule);
-    return make_void_success();
+    return common::ok();
 }
 
-result_void alert_manager::remove_rule(const std::string& rule_name) {
+common::VoidResult alert_manager::remove_rule(const std::string& rule_name) {
     std::lock_guard<std::mutex> lock(rules_mutex_);
 
     auto it = rules_.find(rule_name);
     if (it == rules_.end()) {
-        return make_void_error(monitoring_error_code::not_found,
-                              "Rule '" + rule_name + "' not found");
+        return common::VoidResult::err(error_info(monitoring_error_code::not_found, "Rule '" + rule_name + "' not found").to_common_error());
     }
 
     rules_.erase(it);
-    return make_void_success();
+    return common::ok();
 }
 
 std::shared_ptr<alert_rule> alert_manager::get_rule(const std::string& rule_name) const {
@@ -144,18 +140,17 @@ std::vector<std::shared_ptr<alert_rule>> alert_manager::get_rules() const {
     return result;
 }
 
-result_void alert_manager::add_rule_group(std::shared_ptr<alert_rule_group> group) {
+common::VoidResult alert_manager::add_rule_group(std::shared_ptr<alert_rule_group> group) {
     if (!group) {
-        return make_void_error(monitoring_error_code::invalid_argument,
-                              "Rule group cannot be null");
+        return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument, "Rule group cannot be null").to_common_error());
     }
 
     std::lock_guard<std::mutex> lock(rules_mutex_);
 
     for (const auto& rule : group->rules()) {
         if (rules_.find(rule->name()) != rules_.end()) {
-            return make_void_error(monitoring_error_code::already_exists,
-                                  "Rule with name '" + rule->name() + "' already exists");
+            return common::VoidResult::err(error_info(monitoring_error_code::already_exists,
+                "Rule with name '" + rule->name() + "' already exists").to_common_error());
         }
     }
 
@@ -165,10 +160,10 @@ result_void alert_manager::add_rule_group(std::shared_ptr<alert_rule_group> grou
     }
 
     rule_groups_.push_back(std::move(group));
-    return make_void_success();
+    return common::ok();
 }
 
-result_void alert_manager::process_metric(const std::string& metric_name, double value) {
+common::VoidResult alert_manager::process_metric(const std::string& metric_name, double value) {
     std::vector<std::shared_ptr<alert_rule>> matching_rules;
 
     {
@@ -185,17 +180,17 @@ result_void alert_manager::process_metric(const std::string& metric_name, double
         metrics_.rules_evaluated++;
     }
 
-    return make_void_success();
+    return common::ok();
 }
 
-result_void alert_manager::process_metrics(const std::unordered_map<std::string, double>& metrics) {
+common::VoidResult alert_manager::process_metrics(const std::unordered_map<std::string, double>& metrics) {
     for (const auto& [metric_name, value] : metrics) {
         auto result = process_metric(metric_name, value);
         if (!result.is_ok()) {
             return result;
         }
     }
-    return make_void_success();
+    return common::ok();
 }
 
 std::vector<alert> alert_manager::get_active_alerts() const {
@@ -220,13 +215,12 @@ std::optional<alert> alert_manager::get_alert(const std::string& fingerprint) co
     return std::nullopt;
 }
 
-result_void alert_manager::resolve_alert(const std::string& fingerprint) {
+common::VoidResult alert_manager::resolve_alert(const std::string& fingerprint) {
     std::lock_guard<std::mutex> lock(alerts_mutex_);
 
     auto it = alerts_.find(fingerprint);
     if (it == alerts_.end()) {
-        return make_void_error(monitoring_error_code::not_found,
-                              "Alert not found: " + fingerprint);
+        return common::VoidResult::err(error_info(monitoring_error_code::not_found, "Alert not found: " + fingerprint).to_common_error());
     }
 
     if (it->second.transition_to(alert_state::resolved)) {
@@ -234,33 +228,31 @@ result_void alert_manager::resolve_alert(const std::string& fingerprint) {
         send_notifications(it->second);
     }
 
-    return make_void_success();
+    return common::ok();
 }
 
-result<uint64_t> alert_manager::create_silence(const alert_silence& silence) {
+common::Result<uint64_t> alert_manager::create_silence(const alert_silence& silence) {
     std::lock_guard<std::mutex> lock(silences_mutex_);
 
     if (silences_.size() >= config_.max_silences) {
-        return make_error<uint64_t>(monitoring_error_code::resource_exhausted,
-                                   "Maximum number of silences reached");
+        return common::Result<uint64_t>::err(error_info(monitoring_error_code::resource_exhausted, "Maximum number of silences reached").to_common_error());
     }
 
     alert_silence new_silence = silence;
     silences_[new_silence.id] = new_silence;
-    return make_success(new_silence.id);
+    return common::ok(new_silence.id);
 }
 
-result_void alert_manager::delete_silence(uint64_t silence_id) {
+common::VoidResult alert_manager::delete_silence(uint64_t silence_id) {
     std::lock_guard<std::mutex> lock(silences_mutex_);
 
     auto it = silences_.find(silence_id);
     if (it == silences_.end()) {
-        return make_void_error(monitoring_error_code::not_found,
-                              "Silence not found");
+        return common::VoidResult::err(error_info(monitoring_error_code::not_found, "Silence not found").to_common_error());
     }
 
     silences_.erase(it);
-    return make_void_success();
+    return common::ok();
 }
 
 std::vector<alert_silence> alert_manager::get_silences() const {
@@ -287,10 +279,9 @@ bool alert_manager::is_silenced(const alert& a) const {
     return false;
 }
 
-result_void alert_manager::add_notifier(std::shared_ptr<alert_notifier> notifier) {
+common::VoidResult alert_manager::add_notifier(std::shared_ptr<alert_notifier> notifier) {
     if (!notifier) {
-        return make_void_error(monitoring_error_code::invalid_argument,
-                              "Notifier cannot be null");
+        return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument, "Notifier cannot be null").to_common_error());
     }
 
     std::lock_guard<std::mutex> lock(notifiers_mutex_);
@@ -298,16 +289,16 @@ result_void alert_manager::add_notifier(std::shared_ptr<alert_notifier> notifier
     // Check for duplicate names
     for (const auto& n : notifiers_) {
         if (n->name() == notifier->name()) {
-            return make_void_error(monitoring_error_code::already_exists,
-                                  "Notifier with name '" + notifier->name() + "' already exists");
+            return common::VoidResult::err(error_info(monitoring_error_code::already_exists,
+                "Notifier with name '" + notifier->name() + "' already exists").to_common_error());
         }
     }
 
     notifiers_.push_back(std::move(notifier));
-    return make_void_success();
+    return common::ok();
 }
 
-result_void alert_manager::remove_notifier(const std::string& notifier_name) {
+common::VoidResult alert_manager::remove_notifier(const std::string& notifier_name) {
     std::lock_guard<std::mutex> lock(notifiers_mutex_);
 
     auto it = std::remove_if(notifiers_.begin(), notifiers_.end(),
@@ -316,12 +307,11 @@ result_void alert_manager::remove_notifier(const std::string& notifier_name) {
         });
 
     if (it == notifiers_.end()) {
-        return make_void_error(monitoring_error_code::not_found,
-                              "Notifier '" + notifier_name + "' not found");
+        return common::VoidResult::err(error_info(monitoring_error_code::not_found, "Notifier '" + notifier_name + "' not found").to_common_error());
     }
 
     notifiers_.erase(it, notifiers_.end());
-    return make_void_success();
+    return common::ok();
 }
 
 std::vector<std::shared_ptr<alert_notifier>> alert_manager::get_notifiers() const {
@@ -528,7 +518,7 @@ void alert_manager::cleanup_resolved_alerts() {
 
 // ========== log_notifier Implementation ==========
 
-result_void log_notifier::notify(const alert& a) {
+common::VoidResult log_notifier::notify(const alert& a) {
     std::ostringstream oss;
     oss << "[ALERT] " << alert_state_to_string(a.state) << " - "
         << a.name << " (" << alert_severity_to_string(a.severity) << "): "
@@ -536,10 +526,10 @@ result_void log_notifier::notify(const alert& a) {
         << " | Value: " << a.value;
 
     std::cout << oss.str() << std::endl;
-    return make_void_success();
+    return common::ok();
 }
 
-result_void log_notifier::notify_group(const alert_group& group) {
+common::VoidResult log_notifier::notify_group(const alert_group& group) {
     std::ostringstream oss;
     oss << "[ALERT GROUP] " << group.group_key
         << " (" << group.size() << " alerts, max severity: "
@@ -554,7 +544,7 @@ result_void log_notifier::notify_group(const alert_group& group) {
         }
     }
 
-    return make_void_success();
+    return common::ok();
 }
 
 } // namespace kcenon::monitoring

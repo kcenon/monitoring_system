@@ -74,24 +74,24 @@ struct trace_export_config {
     /**
      * @brief Validate export configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (endpoint.empty()) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Export endpoint cannot be empty", "monitoring_system").to_common_error());
         }
 
         if (timeout.count() <= 0) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Timeout must be positive", "monitoring_system").to_common_error());
         }
 
         if (max_batch_size == 0) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Batch size must be greater than 0", "monitoring_system").to_common_error());
         }
 
         if (max_queue_size < max_batch_size) {
-            return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                              "Queue size must be at least batch size", "monitoring_system").to_common_error());
         }
 
@@ -242,17 +242,17 @@ public:
     /**
      * @brief Export a batch of spans
      */
-    virtual result_void export_spans(const std::vector<trace_span>& spans) = 0;
+    virtual common::VoidResult export_spans(const std::vector<trace_span>& spans) = 0;
     
     /**
      * @brief Flush any pending spans
      */
-    virtual result_void flush() = 0;
+    virtual common::VoidResult flush() = 0;
     
     /**
      * @brief Shutdown the exporter
      */
-    virtual result_void shutdown() = 0;
+    virtual common::VoidResult shutdown() = 0;
     
     /**
      * @brief Get exporter statistics
@@ -313,7 +313,7 @@ public:
         return jaeger_span;
     }
     
-    result_void export_spans(const std::vector<trace_span>& spans) override {
+    common::VoidResult export_spans(const std::vector<trace_span>& spans) override {
         try {
             std::vector<jaeger_span_data> jaeger_spans;
             jaeger_spans.reserve(spans.size());
@@ -323,13 +323,13 @@ public:
             }
 
             // Convert to appropriate format and send
-            result_void send_result = common::ok();
+            common::VoidResult send_result = common::ok();
             if (config_.format == trace_export_format::jaeger_thrift) {
                 send_result = send_thrift_batch(jaeger_spans);
             } else if (config_.format == trace_export_format::jaeger_grpc) {
                 send_result = send_grpc_batch(jaeger_spans);
             } else {
-                return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                                  "Invalid Jaeger export format", "monitoring_system").to_common_error());
             }
 
@@ -344,17 +344,17 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "Jaeger export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void flush() override {
+    common::VoidResult flush() override {
         // Jaeger exporter typically sends immediately, so flush is a no-op
         return common::ok();
     }
     
-    result_void shutdown() override {
+    common::VoidResult shutdown() override {
         return flush();
     }
     
@@ -367,7 +367,7 @@ public:
     }
     
 private:
-    result_void send_thrift_batch(const std::vector<jaeger_span_data>& spans) {
+    common::VoidResult send_thrift_batch(const std::vector<jaeger_span_data>& spans) {
         // Build JSON payload for Thrift over HTTP
         std::ostringstream payload;
         payload << "{\"data\":[{\"spans\":[";
@@ -397,7 +397,7 @@ private:
         return send_with_retry(request);
     }
 
-    result_void send_grpc_batch(const std::vector<jaeger_span_data>& spans) {
+    common::VoidResult send_grpc_batch(const std::vector<jaeger_span_data>& spans) {
         // gRPC would require a different transport mechanism
         // For now, fall back to HTTP POST with protobuf
         std::vector<uint8_t> payload;
@@ -419,7 +419,7 @@ private:
         return send_with_retry(request);
     }
 
-    result_void send_with_retry(const http_request& request) {
+    common::VoidResult send_with_retry(const http_request& request) {
         std::size_t attempt = 0;
         std::chrono::milliseconds delay = base_retry_delay_;
 
@@ -440,7 +440,7 @@ private:
                     continue;
                 }
                 // Non-retryable error
-                return result_void::err(error_info(monitoring_error_code::operation_failed,
+                return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                     "Jaeger export failed with status: " + std::to_string(response.status_code),
                     "monitoring_system").to_common_error());
             }
@@ -450,7 +450,7 @@ private:
                 delay *= 2;
             }
         }
-        return result_void::err(error_info(monitoring_error_code::operation_failed,
+        return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
             "Jaeger export failed after " + std::to_string(max_retries_) + " retries",
             "monitoring_system").to_common_error());
     }
@@ -516,7 +516,7 @@ public:
         return zipkin_span;
     }
     
-    result_void export_spans(const std::vector<trace_span>& spans) override {
+    common::VoidResult export_spans(const std::vector<trace_span>& spans) override {
         try {
             std::vector<zipkin_span_data> zipkin_spans;
             zipkin_spans.reserve(spans.size());
@@ -526,13 +526,13 @@ public:
             }
 
             // Convert to appropriate format and send
-            result_void send_result = common::ok();
+            common::VoidResult send_result = common::ok();
             if (config_.format == trace_export_format::zipkin_json) {
                 send_result = send_json_batch(zipkin_spans);
             } else if (config_.format == trace_export_format::zipkin_protobuf) {
                 send_result = send_protobuf_batch(zipkin_spans);
             } else {
-                return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                                  "Invalid Zipkin export format", "monitoring_system").to_common_error());
             }
 
@@ -547,17 +547,17 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "Zipkin export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void flush() override {
+    common::VoidResult flush() override {
         // Zipkin exporter typically sends immediately, so flush is a no-op
         return common::ok();
     }
     
-    result_void shutdown() override {
+    common::VoidResult shutdown() override {
         return flush();
     }
     
@@ -570,7 +570,7 @@ public:
     }
     
 private:
-    result_void send_json_batch(const std::vector<zipkin_span_data>& spans) {
+    common::VoidResult send_json_batch(const std::vector<zipkin_span_data>& spans) {
         // Build JSON array payload for Zipkin v2 API
         std::ostringstream payload;
         payload << "[";
@@ -599,7 +599,7 @@ private:
         return send_with_retry(request);
     }
 
-    result_void send_protobuf_batch(const std::vector<zipkin_span_data>& spans) {
+    common::VoidResult send_protobuf_batch(const std::vector<zipkin_span_data>& spans) {
         // Build protobuf payload
         std::vector<uint8_t> payload;
         for (const auto& span : spans) {
@@ -620,7 +620,7 @@ private:
         return send_with_retry(request);
     }
 
-    result_void send_with_retry(const http_request& request) {
+    common::VoidResult send_with_retry(const http_request& request) {
         std::size_t attempt = 0;
         std::chrono::milliseconds delay = base_retry_delay_;
 
@@ -641,7 +641,7 @@ private:
                     continue;
                 }
                 // Non-retryable error
-                return result_void::err(error_info(monitoring_error_code::operation_failed,
+                return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                     "Zipkin export failed with status: " + std::to_string(response.status_code),
                     "monitoring_system").to_common_error());
             }
@@ -651,7 +651,7 @@ private:
                 delay *= 2;
             }
         }
-        return result_void::err(error_info(monitoring_error_code::operation_failed,
+        return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
             "Zipkin export failed after " + std::to_string(max_retries_) + " retries",
             "monitoring_system").to_common_error());
     }
@@ -673,20 +673,20 @@ public:
     explicit otlp_exporter(const trace_export_config& config, const otel_resource& resource)
         : config_(config), otel_adapter_(std::make_unique<opentelemetry_tracer_adapter>(resource)) {}
     
-    result_void export_spans(const std::vector<trace_span>& spans) override {
+    common::VoidResult export_spans(const std::vector<trace_span>& spans) override {
         try {
             // Convert to OpenTelemetry format first
             auto otel_result = otel_adapter_->convert_spans(spans);
             if (otel_result.is_err()) {
                 failed_exports_++;
-                return result_void::err(error_info(monitoring_error_code::processing_failed,
+                return common::VoidResult::err(error_info(monitoring_error_code::processing_failed,
                                  "Failed to convert spans to OTEL format: " + otel_result.error().message, "monitoring_system").to_common_error());
             }
 
             const auto& otel_spans = otel_result.value();
 
             // Send via appropriate OTLP protocol
-            result_void send_result = common::ok();
+            common::VoidResult send_result = common::ok();
             if (config_.format == trace_export_format::otlp_grpc) {
                 send_result = send_grpc_batch(otel_spans);
             } else if (config_.format == trace_export_format::otlp_http_json) {
@@ -694,7 +694,7 @@ public:
             } else if (config_.format == trace_export_format::otlp_http_protobuf) {
                 send_result = send_http_protobuf_batch(otel_spans);
             } else {
-                return result_void::err(error_info(monitoring_error_code::invalid_configuration,
+                return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration,
                                  "Invalid OTLP export format", "monitoring_system").to_common_error());
             }
 
@@ -709,17 +709,17 @@ public:
 
         } catch (const std::exception& e) {
             failed_exports_++;
-            return result_void::err(error_info(monitoring_error_code::operation_failed,
+            return common::VoidResult::err(error_info(monitoring_error_code::operation_failed,
                              "OTLP export failed: " + std::string(e.what()), "monitoring_system").to_common_error());
         }
     }
     
-    result_void flush() override {
+    common::VoidResult flush() override {
         // OTLP exporter typically sends immediately, so flush is a no-op
         return common::ok();
     }
     
-    result_void shutdown() override {
+    common::VoidResult shutdown() override {
         return flush();
     }
     
@@ -732,21 +732,21 @@ public:
     }
     
 private:
-    result_void send_grpc_batch(const std::vector<otel_span_data>& spans) {
+    common::VoidResult send_grpc_batch(const std::vector<otel_span_data>& spans) {
         // Simulate OTLP gRPC sending
         // In real implementation, this would use OTLP gRPC client
         (void)spans; // Suppress unused parameter warning
         return common::ok();
     }
     
-    result_void send_http_json_batch(const std::vector<otel_span_data>& spans) {
+    common::VoidResult send_http_json_batch(const std::vector<otel_span_data>& spans) {
         // Simulate OTLP HTTP JSON sending
         // In real implementation, this would serialize OTEL spans to JSON and POST
         (void)spans; // Suppress unused parameter warning
         return common::ok();
     }
     
-    result_void send_http_protobuf_batch(const std::vector<otel_span_data>& spans) {
+    common::VoidResult send_http_protobuf_batch(const std::vector<otel_span_data>& spans) {
         // Simulate OTLP HTTP protobuf sending
         // In real implementation, this would serialize OTEL spans to protobuf and POST
         (void)spans; // Suppress unused parameter warning

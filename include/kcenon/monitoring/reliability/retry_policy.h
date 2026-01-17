@@ -165,15 +165,15 @@ public:
     /**
      * @brief Execute a function with retry logic
      *
-     * @tparam Func The function type to execute (must return result<T>)
+     * @tparam Func The function type to execute (must return common::Result<T>)
      * @param func The function to execute
-     * @return result<T> containing success value or error from last attempt
+     * @return common::Result<T> containing success value or error from last attempt
      */
     template<typename Func>
-    result<T> execute(Func&& func) {
+    common::Result<T> execute(Func&& func) {
         metrics_.total_executions++;
 
-        result<T> last_result = make_error<T>(monitoring_error_code::operation_failed, "No attempts made");
+        common::Result<T> last_result = common::Result<T>::err(error_info(monitoring_error_code::operation_failed, "No attempts made").to_common_error());
 
         for (size_t attempt = 0; attempt < config_.max_attempts; ++attempt) {
             if (attempt > 0) {

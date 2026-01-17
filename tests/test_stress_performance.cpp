@@ -64,6 +64,17 @@ All rights reserved.
 // Multiplier for timing thresholds when running under sanitizers
 constexpr double SANITIZER_OVERHEAD_FACTOR = RUNNING_WITH_ASAN ? 2.0 : 1.0;
 
+// Debug build detection for adjusting performance thresholds
+// Debug builds have no optimization and run significantly slower
+#ifdef NDEBUG
+    constexpr bool IS_RELEASE_BUILD = true;
+#else
+    constexpr bool IS_RELEASE_BUILD = false;
+#endif
+
+// Debug builds typically run 2-5x slower, especially on macOS
+constexpr double DEBUG_BUILD_OVERHEAD_FACTOR = IS_RELEASE_BUILD ? 1.0 : 2.0;
+
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
@@ -206,9 +217,11 @@ TEST_F(StressPerformanceTest, HighLoadStressTest) {
     std::cout << "P99 latency: " << p99 << " μs" << std::endl;
     
     // Assertions
+    // Note: Thresholds adjusted for debug builds which run significantly slower
+    const double p99_threshold = 10000 * DEBUG_BUILD_OVERHEAD_FACTOR;
     EXPECT_GT(throughput, 1000.0); // At least 1000 ops/sec
     EXPECT_LT(failed_operations, total_operations * 0.01); // Less than 1% failure
-    EXPECT_LT(p99, 10000); // P99 under 10ms
+    EXPECT_LT(p99, p99_threshold); // P99 under threshold (10ms for Release, 20ms for Debug)
 }
 
 /**

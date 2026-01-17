@@ -198,12 +198,11 @@ public:
     }
 
     // Start the event bus
-    result_void start() override {
+    common::VoidResult start() override {
         std::lock_guard<std::mutex> lock(bus_mutex_);
 
         if (is_running_) {
-            return make_void_error(monitoring_error_code::already_started,
-                                     "Event bus is already running");
+            return common::VoidResult::err(error_info(monitoring_error_code::already_started, "Event bus is already running").to_common_error());
         }
 
         stop_requested_ = false;
@@ -214,15 +213,15 @@ public:
             workers_.emplace_back(&event_bus::process_events_worker, this);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     // Stop the event bus
-    result_void stop() override {
+    common::VoidResult stop() override {
         {
             std::lock_guard<std::mutex> lock(bus_mutex_);
             if (!is_running_) {
-                return make_void_success();
+                return common::ok();
             }
 
             stop_requested_ = true;
@@ -243,7 +242,7 @@ public:
         // Process any remaining events
         process_all_pending();
 
-        return make_void_success();
+        return common::ok();
     }
 
     // Check if event bus is active
@@ -259,13 +258,13 @@ public:
     }
 
     // Process all pending events synchronously
-    result_void process_pending_events() override {
+    common::VoidResult process_pending_events() override {
         process_all_pending();
-        return make_void_success();
+        return common::ok();
     }
 
     // Unsubscribe from events
-    result_void unsubscribe_event(const subscription_token& token) override {
+    common::VoidResult unsubscribe_event(const subscription_token& token) override {
         std::lock_guard<std::mutex> lock(handlers_mutex_);
 
         auto it = handlers_.find(token.get_event_type());
@@ -284,7 +283,7 @@ public:
             }
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     // Get statistics
@@ -323,7 +322,7 @@ public:
 
 protected:
     // Publish event implementation
-    result_void publish_event_impl(std::type_index event_type,
+    common::VoidResult publish_event_impl(std::type_index event_type,
                                   std::any event) override {
         bool should_sleep = false;
 
@@ -334,9 +333,7 @@ protected:
                 const auto current_size = event_queue_.size();
                 if (current_size >= config_.max_queue_size) {
                     total_events_dropped_.fetch_add(1);
-                    return make_void_error(
-                        monitoring_error_code::resource_exhausted,
-                        "Event queue is full");
+                    return common::VoidResult::err(error_info(monitoring_error_code::resource_exhausted, "Event queue is full").to_common_error());
                 }
                 should_sleep = current_size >= config_.back_pressure_threshold;
             }
@@ -350,11 +347,11 @@ protected:
         }
 
         queue_cv_.notify_one();
-        return make_void_success();
+        return common::ok();
     }
 
     // Subscribe event implementation
-    result<subscription_token> subscribe_event_impl(
+    common::Result<subscription_token> subscribe_event_impl(
         std::type_index event_type,
         std::function<void(const std::any&)> handler,
         uint64_t handler_id,
@@ -374,10 +371,10 @@ protected:
     }
 
     // Clear subscriptions implementation
-    result_void clear_subscriptions_impl(std::type_index event_type) override {
+    common::VoidResult clear_subscriptions_impl(std::type_index event_type) override {
         std::lock_guard<std::mutex> lock(handlers_mutex_);
         handlers_.erase(event_type);
-        return make_void_success();
+        return common::ok();
     }
 
     // Get subscriber count implementation

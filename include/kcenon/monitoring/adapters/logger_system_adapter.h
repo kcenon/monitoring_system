@@ -76,7 +76,7 @@ public:
     /**
      * @brief Collect metrics from logger if available (Phase 2.3.3)
      */
-    result<std::vector<metric>> collect_metrics() {
+    common::Result<std::vector<metric>> collect_metrics() {
         std::vector<metric> out;
         if (logger_) {
             // If logger implements IMonitorable, collect its metrics
@@ -96,15 +96,15 @@ public:
                 }
             }
         }
-        return make_success(std::move(out));
+        return common::ok(std::move(out));
     }
 
     /**
      * @brief Register a logger instance by name
      */
-    result_void register_logger(const std::string& /*name*/) {
+    common::VoidResult register_logger(const std::string& /*name*/) {
         // Logger is now provided via DI, not registered by name
-        return make_void_success();
+        return common::ok();
     }
 
     /**

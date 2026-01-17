@@ -200,13 +200,10 @@ public:
     /**
      * @brief Collect metrics with adaptive sampling
      */
-    kcenon::monitoring::result<kcenon::monitoring::metrics_snapshot> collect() {
+    common::Result<kcenon::monitoring::metrics_snapshot> collect() {
         if (!should_sample()) {
             stats_.samples_dropped++;
-            return kcenon::monitoring::make_error<kcenon::monitoring::metrics_snapshot>(
-                kcenon::monitoring::monitoring_error_code::operation_cancelled,
-                "Sample dropped due to adaptive sampling"
-            );
+            return common::Result<kcenon::monitoring::metrics_snapshot>::err(error_info(kcenon::monitoring::monitoring_error_code::operation_cancelled, "Sample dropped due to adaptive sampling").to_common_error());
         }
         
         stats_.samples_collected++;
@@ -505,7 +502,7 @@ public:
     /**
      * @brief Register a collector for adaptive monitoring
      */
-    kcenon::monitoring::result<bool> register_collector(
+    common::Result<bool> register_collector(
         const std::string& name,
         std::shared_ptr<kcenon::monitoring::metrics_collector> collector,
         const adaptive_config& config = {}
@@ -514,17 +511,17 @@ public:
     /**
      * @brief Unregister a collector
      */
-    kcenon::monitoring::result<bool> unregister_collector(const std::string& name);
+    common::Result<bool> unregister_collector(const std::string& name);
     
     /**
      * @brief Start adaptive monitoring
      */
-    kcenon::monitoring::result<bool> start();
+    common::Result<bool> start();
     
     /**
      * @brief Stop adaptive monitoring
      */
-    kcenon::monitoring::result<bool> stop();
+    common::Result<bool> stop();
     
     /**
      * @brief Check if monitoring is active
@@ -534,7 +531,7 @@ public:
     /**
      * @brief Get adaptation statistics for a collector
      */
-    kcenon::monitoring::result<adaptation_stats> get_collector_stats(
+    common::Result<adaptation_stats> get_collector_stats(
         const std::string& name
     ) const;
     
@@ -551,7 +548,7 @@ public:
     /**
      * @brief Force adaptation cycle
      */
-    kcenon::monitoring::result<bool> force_adaptation();
+    common::Result<bool> force_adaptation();
     
     /**
      * @brief Get recommended collectors based on load
@@ -561,7 +558,7 @@ public:
     /**
      * @brief Set priority for a collector (higher priority = keep active longer)
      */
-    kcenon::monitoring::result<bool> set_collector_priority(
+    common::Result<bool> set_collector_priority(
         const std::string& name,
         int priority
     );

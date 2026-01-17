@@ -39,37 +39,33 @@ using namespace kcenon::monitoring;
  */
 
 // Example function that may fail
-result<double> divide(double a, double b) {
+kcenon::common::Result<double> divide(double a, double b) {
     if (b == 0) {
-        return make_error<double>(
-            monitoring_error_code::invalid_configuration,
-            "Division by zero"
-        );
+        return kcenon::common::Result<double>::err(error_info(monitoring_error_code::invalid_configuration, "Division by zero").to_common_error());
     }
-    return make_success<double>(a / b);
+    return kcenon::common::ok(a / b);
 }
 
-// Example function using result_void
-result_void validate_range(double value, double min, double max) {
+// Example function using kcenon::common::VoidResult
+kcenon::common::VoidResult validate_range(double value, double min, double max) {
     if (value < min || value > max) {
-        return make_result_void(
-            monitoring_error_code::invalid_configuration,
-            "Value out of range [" + std::to_string(min) + ", " + std::to_string(max) + "]"
-        );
+        error_info err(monitoring_error_code::invalid_configuration,
+                      "Value out of range [" + std::to_string(min) + ", " + std::to_string(max) + "]");
+        return kcenon::common::VoidResult::err(err.to_common_error());
     }
-    return make_void_success();
+    return kcenon::common::ok();
 }
 
 // Example using monadic operations
-result<std::string> process_metric(double value) {
+kcenon::common::Result<std::string> process_metric(double value) {
     // Chain operations using map and and_then
     return divide(100.0, value)
         .map([](double x) { return x * 2; })
         .and_then([](double x) {
             if (x > 50) {
-                return make_success<std::string>("High value: " + std::to_string(x));
+                return kcenon::common::ok("High value: " + std::to_string(x));
             }
-            return make_success<std::string>("Normal value: " + std::to_string(x));
+            return kcenon::common::ok("Normal value: " + std::to_string(x));
         });
 }
 
@@ -103,8 +99,8 @@ int main() {
     std::cout << "  Value (with default): " << value << std::endl;
     std::cout << std::endl;
 
-    // Example 4: result_void usage
-    std::cout << "Example 4: Validation with result_void" << std::endl;
+    // Example 4: kcenon::common::VoidResult usage
+    std::cout << "Example 4: Validation with kcenon::common::VoidResult" << std::endl;
     auto validation1 = validate_range(50.0, 0.0, 100.0);
     if (validation1.is_ok()) {
         std::cout << "  Validation passed" << std::endl;

@@ -143,15 +143,14 @@ public:
     /**
      * @brief Register a service for management
      */
-    result_void register_service(const service_config& config) {
+    common::VoidResult register_service(const service_config& config) {
         if (!config.validate()) {
-            return make_void_error(monitoring_error_code::invalid_configuration,
-                                  "Invalid service configuration");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration, "Invalid service configuration").to_common_error());
         }
 
         std::lock_guard<std::mutex> lock(mutex_);
         if (services_.find(config.name) != services_.end()) {
-            return make_void_error(monitoring_error_code::already_exists,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::already_exists),
                                   "Service already registered: " + config.name);
         }
 
@@ -161,33 +160,33 @@ public:
         state.last_state_change = std::chrono::steady_clock::now();
         services_[config.name] = state;
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**
      * @brief Unregister a service
      */
-    result_void unregister_service(const std::string& name) {
+    common::VoidResult unregister_service(const std::string& name) {
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = services_.find(name);
         if (it == services_.end()) {
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Service not found: " + name);
         }
         services_.erase(it);
-        return make_void_success();
+        return common::ok();
     }
 
     /**
      * @brief Degrade a specific service
      */
-    result_void degrade_service(const std::string& name, degradation_level level,
+    common::VoidResult degrade_service(const std::string& name, degradation_level level,
                                const std::string& reason) {
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = services_.find(name);
         if (it == services_.end()) {
             metrics_.failed_degradations++;
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Service not found: " + name);
         }
 
@@ -197,17 +196,17 @@ public:
         it->second.last_state_change = std::chrono::steady_clock::now();
         metrics_.successful_degradations++;
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**
      * @brief Recover a specific service to normal operation
      */
-    result_void recover_service(const std::string& name) {
+    common::VoidResult recover_service(const std::string& name) {
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = services_.find(name);
         if (it == services_.end()) {
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Service not found: " + name);
         }
 
@@ -217,13 +216,13 @@ public:
         it->second.last_state_change = std::chrono::steady_clock::now();
         metrics_.successful_recoveries++;
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**
      * @brief Recover all services to normal operation
      */
-    result_void recover_all_services() {
+    common::VoidResult recover_all_services() {
         std::lock_guard<std::mutex> lock(mutex_);
         for (auto& [name, state] : services_) {
             metrics_.recovery_attempts++;
@@ -232,7 +231,7 @@ public:
             state.last_state_change = std::chrono::steady_clock::now();
             metrics_.successful_recoveries++;
         }
-        return make_void_success();
+        return common::ok();
     }
 
     /**
@@ -250,25 +249,24 @@ public:
     /**
      * @brief Add a degradation plan
      */
-    result_void add_degradation_plan(const degradation_plan& plan) {
+    common::VoidResult add_degradation_plan(const degradation_plan& plan) {
         if (!plan.validate()) {
-            return make_void_error(monitoring_error_code::invalid_configuration,
-                                  "Invalid degradation plan");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_configuration, "Invalid degradation plan").to_common_error());
         }
 
         std::lock_guard<std::mutex> lock(mutex_);
         plans_[plan.name] = plan;
-        return make_void_success();
+        return common::ok();
     }
 
     /**
      * @brief Execute a degradation plan
      */
-    result_void execute_plan(const std::string& plan_name, const std::string& reason) {
+    common::VoidResult execute_plan(const std::string& plan_name, const std::string& reason) {
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = plans_.find(plan_name);
         if (it == plans_.end()) {
-            return make_void_error(monitoring_error_code::not_found,
+            return common::VoidResult::err(static_cast<int>(monitoring_error_code::not_found),
                                   "Plan not found: " + plan_name);
         }
 
@@ -298,16 +296,16 @@ public:
             }
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**
      * @brief Check if the manager is healthy (more than 50% services at normal level)
      */
-    result<bool> is_healthy() const {
+    common::Result<bool> is_healthy() const {
         std::lock_guard<std::mutex> lock(mutex_);
         if (services_.empty()) {
-            return make_success(true);
+            return common::ok(true);
         }
 
         size_t normal_count = 0;
@@ -318,7 +316,7 @@ public:
         }
 
         double healthy_ratio = static_cast<double>(normal_count) / static_cast<double>(services_.size());
-        return make_success(healthy_ratio > 0.5);
+        return common::ok(healthy_ratio > 0.5);
     }
 
     /**
@@ -364,8 +362,8 @@ private:
 template<typename T>
 class degradable_service {
 public:
-    using normal_operation = std::function<result<T>()>;
-    using degraded_operation = std::function<result<T>(degradation_level)>;
+    using normal_operation = std::function<common::Result<T>()>;
+    using degraded_operation = std::function<common::Result<T>(degradation_level)>;
 
     degradable_service(const std::string& name,
                        std::shared_ptr<graceful_degradation_manager> manager,
@@ -379,7 +377,7 @@ public:
     /**
      * @brief Execute the service operation
      */
-    result<T> execute() {
+    common::Result<T> execute() {
         if (!manager_) {
             return normal_op_();
         }
@@ -393,8 +391,7 @@ public:
             return degraded_op_(level);
         }
 
-        return make_error<T>(monitoring_error_code::service_degraded,
-                            "Service is degraded and no fallback available");
+        return common::Result<T>::err(error_info(monitoring_error_code::service_degraded, "Service is degraded and no fallback available").to_common_error());
     }
 
     /**

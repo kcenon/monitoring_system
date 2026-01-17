@@ -176,13 +176,13 @@ public:
      * @brief Start the alert manager
      * @return Result indicating success or failure
      */
-    result_void start();
+    common::VoidResult start();
 
     /**
      * @brief Stop the alert manager
      * @return Result indicating success or failure
      */
-    result_void stop();
+    common::VoidResult stop();
 
     /**
      * @brief Check if manager is running
@@ -197,14 +197,14 @@ public:
      * @param rule Rule to add
      * @return Result indicating success or failure
      */
-    result_void add_rule(std::shared_ptr<alert_rule> rule);
+    common::VoidResult add_rule(std::shared_ptr<alert_rule> rule);
 
     /**
      * @brief Remove an alert rule
      * @param rule_name Name of rule to remove
      * @return Result indicating success or failure
      */
-    result_void remove_rule(const std::string& rule_name);
+    common::VoidResult remove_rule(const std::string& rule_name);
 
     /**
      * @brief Get a rule by name
@@ -224,7 +224,7 @@ public:
      * @param group Rule group to add
      * @return Result indicating success or failure
      */
-    result_void add_rule_group(std::shared_ptr<alert_rule_group> group);
+    common::VoidResult add_rule_group(std::shared_ptr<alert_rule_group> group);
 
     // ========== Alert Operations ==========
 
@@ -234,14 +234,14 @@ public:
      * @param value Metric value
      * @return Result indicating success or failure
      */
-    result_void process_metric(const std::string& metric_name, double value);
+    common::VoidResult process_metric(const std::string& metric_name, double value);
 
     /**
      * @brief Process a batch of metrics
      * @param metrics Map of metric names to values
      * @return Result indicating success or failure
      */
-    result_void process_metrics(const std::unordered_map<std::string, double>& metrics);
+    common::VoidResult process_metrics(const std::unordered_map<std::string, double>& metrics);
 
     /**
      * @brief Get all active alerts
@@ -261,7 +261,7 @@ public:
      * @param fingerprint Alert fingerprint
      * @return Result indicating success or failure
      */
-    result_void resolve_alert(const std::string& fingerprint);
+    common::VoidResult resolve_alert(const std::string& fingerprint);
 
     // ========== Silence Management ==========
 
@@ -270,14 +270,14 @@ public:
      * @param silence Silence configuration
      * @return Result containing silence ID
      */
-    result<uint64_t> create_silence(const alert_silence& silence);
+    common::Result<uint64_t> create_silence(const alert_silence& silence);
 
     /**
      * @brief Delete a silence
      * @param silence_id Silence ID
      * @return Result indicating success or failure
      */
-    result_void delete_silence(uint64_t silence_id);
+    common::VoidResult delete_silence(uint64_t silence_id);
 
     /**
      * @brief Get all active silences
@@ -299,14 +299,14 @@ public:
      * @param notifier Notifier to add
      * @return Result indicating success or failure
      */
-    result_void add_notifier(std::shared_ptr<alert_notifier> notifier);
+    common::VoidResult add_notifier(std::shared_ptr<alert_notifier> notifier);
 
     /**
      * @brief Remove a notifier
      * @param notifier_name Name of notifier
      * @return Result indicating success or failure
      */
-    result_void remove_notifier(const std::string& notifier_name);
+    common::VoidResult remove_notifier(const std::string& notifier_name);
 
     /**
      * @brief Get all notifiers
@@ -446,14 +446,14 @@ public:
      * @param a Alert to notify about
      * @return Result indicating success or failure
      */
-    virtual result_void notify(const alert& a) = 0;
+    virtual common::VoidResult notify(const alert& a) = 0;
 
     /**
      * @brief Send a notification for an alert group
      * @param group Alert group to notify about
      * @return Result indicating success or failure
      */
-    virtual result_void notify_group(const alert_group& group) = 0;
+    virtual common::VoidResult notify_group(const alert_group& group) = 0;
 
     /**
      * @brief Check if notifier is ready
@@ -479,9 +479,9 @@ public:
 
     std::string name() const override { return name_; }
 
-    result_void notify(const alert& a) override;
+    common::VoidResult notify(const alert& a) override;
 
-    result_void notify_group(const alert_group& group) override;
+    common::VoidResult notify_group(const alert_group& group) override;
 
     bool is_ready() const override { return true; }
 
@@ -515,19 +515,18 @@ public:
 
     std::string name() const override { return name_; }
 
-    result_void notify(const alert& a) override {
+    common::VoidResult notify(const alert& a) override {
         if (callback_) {
             callback_(a);
-            return make_void_success();
+            return common::ok();
         }
-        return make_void_error(monitoring_error_code::operation_failed,
-                              "No callback configured");
+        return common::VoidResult::err(error_info(monitoring_error_code::operation_failed, "No callback configured").to_common_error());
     }
 
-    result_void notify_group(const alert_group& group) override {
+    common::VoidResult notify_group(const alert_group& group) override {
         if (group_callback_) {
             group_callback_(group);
-            return make_void_success();
+            return common::ok();
         }
         // Fall back to individual notifications
         for (const auto& a : group.alerts) {
@@ -536,7 +535,7 @@ public:
                 return result;
             }
         }
-        return make_void_success();
+        return common::ok();
     }
 
     bool is_ready() const override { return callback_ != nullptr; }

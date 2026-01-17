@@ -205,8 +205,8 @@ class plugin_metric_collector : public interface_metric_collector {
     bool is_running() const;
 
     // Missing methods from interface
-    result_void start_collection(const collection_config& config) override;
-    result_void stop_collection() override;
+    common::VoidResult start_collection(const collection_config& config) override;
+    common::VoidResult stop_collection() override;
     bool is_collecting() const override;
     collection_config get_config() const override;
     metric_stats get_stats() const override;
@@ -230,14 +230,14 @@ class plugin_metric_collector : public interface_metric_collector {
      * Force immediate collection from all plugins
      * @return Collected metrics
      */
-    result<std::vector<metric>> force_collect() override;
+    common::Result<std::vector<metric>> force_collect() override;
 
     // interface_metric_collector implementation
-    result<std::vector<metric>> collect_metrics() override;
-    result_void register_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
-    result_void unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
+    common::Result<std::vector<metric>> collect_metrics() override;
+    common::VoidResult register_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
+    common::VoidResult unregister_observer(std::shared_ptr<interface_monitoring_observer> observer) override;
     std::vector<std::string> get_metric_types() const override;
-    result_void update_config(const collection_config& config) override;
+    common::VoidResult update_config(const collection_config& config) override;
 
   private:
     // Plugin management

@@ -55,32 +55,32 @@ protected:
     std::atomic<int> success_after_attempts{0};
     
     // Helper function that fails for the first N attempts
-    result<int> failing_operation() {
+    kcenon::common::Result<int> failing_operation() {
         int current_call = ++call_count;
         if (success_after_attempts > 0 && current_call <= success_after_attempts) {
-            return make_error<int>(monitoring_error_code::operation_failed, 
+            return kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::operation_failed),
                                  "Simulated failure on attempt " + std::to_string(current_call));
         }
-        return make_success(42);
+        return kcenon::common::ok(42);
     }
-    
+
     // Helper function that always fails
-    result<int> always_failing_operation() {
+    kcenon::common::Result<int> always_failing_operation() {
         ++call_count;
-        return make_error<int>(monitoring_error_code::operation_failed, "Always fails");
+        return kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::operation_failed), "Always fails");
     }
-    
+
     // Helper function that always succeeds
-    result<int> always_succeeding_operation() {
+    kcenon::common::Result<int> always_succeeding_operation() {
         ++call_count;
-        return make_success(100);
+        return kcenon::common::ok(100);
     }
-    
+
     // Slow operation for timeout testing
-    result<int> slow_operation(std::chrono::milliseconds delay) {
+    kcenon::common::Result<int> slow_operation(std::chrono::milliseconds delay) {
         ++call_count;
         std::this_thread::sleep_for(delay);
-        return make_success(200);
+        return kcenon::common::ok(200);
     }
 };
 
@@ -179,7 +179,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerWithFallback) {
     EXPECT_EQ(breaker.get_state(), circuit_state::open);
     
     // Use fallback
-    auto fallback = []() { return make_success(999); };
+    auto fallback = []() { return kcenon::common::ok(999); };
     auto result = breaker.execute([this]() { return always_failing_operation(); }, fallback);
     
     EXPECT_TRUE(result.is_ok());
@@ -536,7 +536,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerConcurrency) {
     for (int i = 0; i < num_threads; ++i) {
         threads.emplace_back([&breaker, &successful_operations, operations_per_thread]() {
             for (int j = 0; j < operations_per_thread; ++j) {
-                auto result = breaker.execute([]() { return make_success(1); });
+                auto result = breaker.execute([]() { return kcenon::common::ok(1); });
                 if (result.is_ok()) {
                     successful_operations++;
                 }

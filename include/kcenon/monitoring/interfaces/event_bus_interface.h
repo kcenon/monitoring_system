@@ -288,7 +288,7 @@ public:
      * when these requirements are not met.
      */
     template <concepts::EventType E>
-    result_void publish_event(const E& event) {
+    common::VoidResult publish_event(const E& event) {
         return publish_event_impl(std::type_index(typeid(E)), std::make_any<E>(event));
     }
 
@@ -304,7 +304,7 @@ public:
      * when these requirements are not met.
      */
     template <concepts::EventType E>
-    result<subscription_token> subscribe_event(std::function<void(const E&)> handler,
+    common::Result<subscription_token> subscribe_event(std::function<void(const E&)> handler,
                                                event_priority priority = event_priority::normal) {
         auto wrapped_handler = event_handler<E>(handler, priority);
         return subscribe_event_impl(
@@ -325,7 +325,7 @@ public:
      * providing more flexibility than the std::function overload.
      */
     template <concepts::EventType E, concepts::EventHandler<E> H>
-    result<subscription_token> subscribe_event(H&& handler,
+    common::Result<subscription_token> subscribe_event(H&& handler,
                                                event_priority priority = event_priority::normal) {
         return subscribe_event(std::function<void(const E&)>(std::forward<H>(handler)), priority);
     }
@@ -335,7 +335,7 @@ public:
      * @param token The subscription token
      * @return Result indicating success or failure
      */
-    virtual result_void unsubscribe_event(const subscription_token& token) = 0;
+    virtual common::VoidResult unsubscribe_event(const subscription_token& token) = 0;
 
     /**
      * @brief Clear all subscriptions for a specific event type
@@ -343,7 +343,7 @@ public:
      * @return Result indicating success or failure
      */
     template <concepts::EventType E>
-    result_void clear_subscriptions() {
+    common::VoidResult clear_subscriptions() {
         return clear_subscriptions_impl(std::type_index(typeid(E)));
     }
 
@@ -367,13 +367,13 @@ public:
      * @brief Start the event bus
      * @return Result indicating success or failure
      */
-    virtual result_void start() = 0;
+    virtual common::VoidResult start() = 0;
 
     /**
      * @brief Stop the event bus
      * @return Result indicating success or failure
      */
-    virtual result_void stop() = 0;
+    virtual common::VoidResult stop() = 0;
 
     /**
      * @brief Get pending event count
@@ -385,21 +385,21 @@ public:
      * @brief Process all pending events synchronously
      * @return Result indicating success or failure
      */
-    virtual result_void process_pending_events() = 0;
+    virtual common::VoidResult process_pending_events() = 0;
 
 protected:
     // Implementation methods to be overridden by concrete classes
-    virtual result_void publish_event_impl(
+    virtual common::VoidResult publish_event_impl(
         std::type_index event_type,
         std::any event) = 0;
 
-    virtual result<subscription_token> subscribe_event_impl(
+    virtual common::Result<subscription_token> subscribe_event_impl(
         std::type_index event_type,
         std::function<void(const std::any&)> handler,
         uint64_t handler_id,
         event_priority priority) = 0;
 
-    virtual result_void clear_subscriptions_impl(
+    virtual common::VoidResult clear_subscriptions_impl(
         std::type_index event_type) = 0;
 
     virtual size_t get_subscriber_count_impl(
@@ -420,9 +420,9 @@ protected:
  * @code
  * class metric_alerter : public interface_event_publisher {
  * public:
- *     result_void set_event_bus(std::shared_ptr<interface_event_bus> bus) override {
+ *     common::VoidResult set_event_bus(std::shared_ptr<interface_event_bus> bus) override {
  *         bus_ = bus;
- *         return make_void_success();
+ *         return common::ok();
  *     }
  *
  *     std::shared_ptr<interface_event_bus> get_event_bus() const override {
@@ -450,7 +450,7 @@ public:
      * @param bus The event bus to use
      * @return Result indicating success or failure
      */
-    virtual result_void set_event_bus(std::shared_ptr<interface_event_bus> bus) = 0;
+    virtual common::VoidResult set_event_bus(std::shared_ptr<interface_event_bus> bus) = 0;
 
     /**
      * @brief Get the current event bus
@@ -474,7 +474,7 @@ public:
  * @code
  * class metric_logger : public interface_event_subscriber {
  * public:
- *     result_void subscribe_to_events(std::shared_ptr<interface_event_bus> bus) override {
+ *     common::VoidResult subscribe_to_events(std::shared_ptr<interface_event_bus> bus) override {
  *         auto token = bus->subscribe_event<metric_event>(
  *             [this](const metric_event& e) { log_metric(e); }
  *         );
@@ -482,17 +482,17 @@ public:
  *             tokens_.push_back(token.value());
  *             bus_ = bus;
  *         }
- *         return make_void_success();
+ *         return common::ok();
  *     }
  *
- *     result_void unsubscribe_from_events() override {
+ *     common::VoidResult unsubscribe_from_events() override {
  *         if (auto bus = bus_) {
  *             for (const auto& token : tokens_) {
  *                 bus->unsubscribe_event(token);
  *             }
  *             tokens_.clear();
  *         }
- *         return make_void_success();
+ *         return common::ok();
  *     }
  *
  *     std::vector<subscription_token> get_subscriptions() const override {
@@ -516,13 +516,13 @@ public:
      * @param bus The event bus to subscribe to
      * @return Result indicating success or failure
      */
-    virtual result_void subscribe_to_events(std::shared_ptr<interface_event_bus> bus) = 0;
+    virtual common::VoidResult subscribe_to_events(std::shared_ptr<interface_event_bus> bus) = 0;
 
     /**
      * @brief Unsubscribe from all events
      * @return Result indicating success or failure
      */
-    virtual result_void unsubscribe_from_events() = 0;
+    virtual common::VoidResult unsubscribe_from_events() = 0;
 
     /**
      * @brief Get subscription tokens

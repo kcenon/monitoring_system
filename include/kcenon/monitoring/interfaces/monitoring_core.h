@@ -188,22 +188,25 @@ struct monitoring_config {
     
     /**
      * @brief Validate configuration parameters
-     * @return result_void indicating success or validation error
+     * @return common::VoidResult indicating success or validation error
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (history_size == 0) {
-            return make_void_error(monitoring_error_code::invalid_capacity,
-                                 "History size must be greater than 0");
+            error_info err(monitoring_error_code::invalid_capacity,
+                          "History size must be greater than 0");
+            return common::VoidResult::err(err.to_common_error());
         }
         if (collection_interval.count() < 10) {
-            return make_void_error(monitoring_error_code::invalid_interval,
-                                 "Collection interval must be at least 10ms");
+            error_info err(monitoring_error_code::invalid_interval,
+                          "Collection interval must be at least 10ms");
+            return common::VoidResult::err(err.to_common_error());
         }
         if (buffer_size < history_size) {
-            return make_void_error(monitoring_error_code::invalid_capacity,
-                                 "Buffer size must be at least as large as history size");
+            error_info err(monitoring_error_code::invalid_capacity,
+                          "Buffer size must be at least as large as history size");
+            return common::VoidResult::err(err.to_common_error());
         }
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -258,40 +261,40 @@ struct monitoring_config {
 class monitoring_interface {
 public:
     virtual ~monitoring_interface() = default;
-    
+
     // Configuration
-    virtual result_void configure(const monitoring_config& config) = 0;
-    virtual result<monitoring_config> get_configuration() const = 0;
-    
+    virtual common::VoidResult configure(const monitoring_config& config) = 0;
+    virtual common::Result<monitoring_config> get_configuration() const = 0;
+
     // Collector management
-    virtual result_void add_collector(std::unique_ptr<metrics_collector> collector) = 0;
-    virtual result_void remove_collector(const std::string& name) = 0;
-    virtual result<std::vector<std::string>> list_collectors() const = 0;
-    
+    virtual common::VoidResult add_collector(std::unique_ptr<metrics_collector> collector) = 0;
+    virtual common::VoidResult remove_collector(const std::string& name) = 0;
+    virtual common::Result<std::vector<std::string>> list_collectors() const = 0;
+
     // Metrics operations
-    virtual result_void start() = 0;
-    virtual result_void stop() = 0;
-    virtual result<metrics_snapshot> collect_now() = 0;
-    virtual result<metrics_snapshot> get_latest_snapshot() const = 0;
-    virtual result<std::vector<metrics_snapshot>> get_history(std::size_t count) const = 0;
-    
+    virtual common::VoidResult start() = 0;
+    virtual common::VoidResult stop() = 0;
+    virtual common::Result<metrics_snapshot> collect_now() = 0;
+    virtual common::Result<metrics_snapshot> get_latest_snapshot() const = 0;
+    virtual common::Result<std::vector<metrics_snapshot>> get_history(std::size_t count) const = 0;
+
     // Health checks
-    virtual result<health_check_result> check_health() const = 0;
-    virtual result_void register_health_check(
+    virtual common::Result<health_check_result> check_health() const = 0;
+    virtual common::VoidResult register_health_check(
         const std::string& name,
         std::function<health_check_result()> checker) = 0;
-    
+
     // Storage management
-    virtual result_void set_storage_backend(std::unique_ptr<storage_backend> storage) = 0;
-    virtual result_void flush_storage() = 0;
-    
+    virtual common::VoidResult set_storage_backend(std::unique_ptr<storage_backend> storage) = 0;
+    virtual common::VoidResult flush_storage() = 0;
+
     // Analysis
-    virtual result_void add_analyzer(std::unique_ptr<metrics_analyzer> analyzer) = 0;
-    virtual result<std::vector<std::string>> get_analysis_results() const = 0;
-    
+    virtual common::VoidResult add_analyzer(std::unique_ptr<metrics_analyzer> analyzer) = 0;
+    virtual common::Result<std::vector<std::string>> get_analysis_results() const = 0;
+
     // Status
     virtual bool is_running() const = 0;
-    virtual result<std::string> get_status_summary() const = 0;
+    virtual common::Result<std::string> get_status_summary() const = 0;
 };
 
 /**
@@ -310,22 +313,22 @@ public:
  * @code
  * class cpu_collector : public metrics_collector {
  * public:
- *     result<metrics_snapshot> collect() override {
+ *     common::Result<metrics_snapshot> collect() override {
  *         metrics_snapshot snapshot;
  *         snapshot.source_id = get_name();
  *         snapshot.add_metric("cpu_usage_percent", get_cpu_usage());
  *         snapshot.add_metric("cpu_load_1min", get_load_average());
- *         return make_success(std::move(snapshot));
+ *         return common::ok(std::move(snapshot));
  *     }
  *
  *     std::string get_name() const override { return "cpu"; }
  *     bool is_enabled() const override { return enabled_; }
- *     result_void set_enabled(bool enable) override {
+ *     common::VoidResult set_enabled(bool enable) override {
  *         enabled_ = enable;
- *         return make_void_success();
+ *         return common::ok();
  *     }
- *     result_void initialize() override { return make_void_success(); }
- *     result_void cleanup() override { return make_void_success(); }
+ *     common::VoidResult initialize() override { return common::ok(); }
+ *     common::VoidResult cleanup() override { return common::ok(); }
  * private:
  *     bool enabled_ = true;
  * };
@@ -336,43 +339,43 @@ public:
 class metrics_collector {
 public:
     virtual ~metrics_collector() = default;
-    
+
     /**
      * @brief Collect metrics
      * @return Result containing collected metrics or error
      */
-    virtual result<metrics_snapshot> collect() = 0;
-    
+    virtual common::Result<metrics_snapshot> collect() = 0;
+
     /**
      * @brief Get collector name
      * @return Collector identifier
      */
     virtual std::string get_name() const = 0;
-    
+
     /**
      * @brief Check if collector is enabled
      * @return true if collector is active
      */
     virtual bool is_enabled() const = 0;
-    
+
     /**
      * @brief Enable or disable the collector
      * @param enable true to enable, false to disable
      * @return Result indicating success or error
      */
-    virtual result_void set_enabled(bool enable) = 0;
-    
+    virtual common::VoidResult set_enabled(bool enable) = 0;
+
     /**
      * @brief Initialize the collector
      * @return Result indicating success or initialization error
      */
-    virtual result_void initialize() = 0;
-    
+    virtual common::VoidResult initialize() = 0;
+
     /**
      * @brief Cleanup collector resources
      * @return Result indicating success or cleanup error
      */
-    virtual result_void cleanup() = 0;
+    virtual common::VoidResult cleanup() = 0;
 };
 
 /**
@@ -389,22 +392,22 @@ public:
  * @code
  * class memory_storage : public storage_backend {
  * public:
- *     result_void store(const metrics_snapshot& snapshot) override {
+ *     common::VoidResult store(const metrics_snapshot& snapshot) override {
  *         std::lock_guard<std::mutex> lock(mutex_);
  *         if (data_.size() >= capacity_) {
  *             data_.erase(data_.begin());
  *         }
  *         data_.push_back(snapshot);
- *         return make_void_success();
+ *         return common::ok();
  *     }
  *
- *     result<metrics_snapshot> retrieve(std::size_t index) const override {
+ *     common::Result<metrics_snapshot> retrieve(std::size_t index) const override {
  *         std::lock_guard<std::mutex> lock(mutex_);
  *         if (index >= data_.size()) {
- *             return make_error<metrics_snapshot>(
- *                 monitoring_error_code::not_found, "Index out of range");
+ *             error_info err(monitoring_error_code::not_found, "Index out of range");
+ *             return common::Result<metrics_snapshot>::err(err.to_common_error());
  *         }
- *         return make_success(data_[index]);
+ *         return common::ok(data_[index]);
  *     }
  *     // ... other methods
  * private:
@@ -419,53 +422,53 @@ public:
 class storage_backend {
 public:
     virtual ~storage_backend() = default;
-    
+
     /**
      * @brief Store a metrics snapshot
      * @param snapshot The snapshot to store
      * @return Result indicating success or storage error
      */
-    virtual result_void store(const metrics_snapshot& snapshot) = 0;
-    
+    virtual common::VoidResult store(const metrics_snapshot& snapshot) = 0;
+
     /**
      * @brief Retrieve a stored snapshot by index
      * @param index The snapshot index
      * @return Result containing the snapshot or error
      */
-    virtual result<metrics_snapshot> retrieve(std::size_t index) const = 0;
-    
+    virtual common::Result<metrics_snapshot> retrieve(std::size_t index) const = 0;
+
     /**
      * @brief Retrieve multiple snapshots
      * @param start_index Starting index
      * @param count Number of snapshots to retrieve
      * @return Result containing snapshots or error
      */
-    virtual result<std::vector<metrics_snapshot>> retrieve_range(
+    virtual common::Result<std::vector<metrics_snapshot>> retrieve_range(
         std::size_t start_index, std::size_t count) const = 0;
-    
+
     /**
      * @brief Get storage capacity
      * @return Maximum number of snapshots that can be stored
      */
     virtual std::size_t capacity() const = 0;
-    
+
     /**
      * @brief Get current storage usage
      * @return Number of stored snapshots
      */
     virtual std::size_t size() const = 0;
-    
+
     /**
      * @brief Clear all stored data
      * @return Result indicating success or error
      */
-    virtual result_void clear() = 0;
-    
+    virtual common::VoidResult clear() = 0;
+
     /**
      * @brief Flush any buffered data to persistent storage
      * @return Result indicating success or error
      */
-    virtual result_void flush() = 0;
+    virtual common::VoidResult flush() = 0;
 };
 
 /**
@@ -486,24 +489,24 @@ public:
  *     threshold_analyzer(const std::string& metric, double threshold)
  *         : metric_name_(metric), threshold_(threshold) {}
  *
- *     result<std::string> analyze(const metrics_snapshot& snapshot) override {
+ *     common::Result<std::string> analyze(const metrics_snapshot& snapshot) override {
  *         auto value = snapshot.get_metric(metric_name_);
  *         if (value && *value > threshold_) {
- *             return make_success(fmt::format(
+ *             return common::ok(fmt::format(
  *                 "ALERT: {} = {} exceeds threshold {}",
  *                 metric_name_, *value, threshold_));
  *         }
- *         return make_success("OK");
+ *         return common::ok(std::string("OK"));
  *     }
  *
- *     result<std::string> analyze_trend(
+ *     common::Result<std::string> analyze_trend(
  *         const std::vector<metrics_snapshot>& snapshots) override {
  *         // Analyze trend over time
- *         return make_success("Trend: stable");
+ *         return common::ok(std::string("Trend: stable"));
  *     }
  *
  *     std::string get_name() const override { return "threshold_analyzer"; }
- *     result_void reset() override { return make_void_success(); }
+ *     common::VoidResult reset() override { return common::ok(); }
  * private:
  *     std::string metric_name_;
  *     double threshold_;
@@ -515,33 +518,33 @@ public:
 class metrics_analyzer {
 public:
     virtual ~metrics_analyzer() = default;
-    
+
     /**
      * @brief Analyze a metrics snapshot
      * @param snapshot The snapshot to analyze
      * @return Result containing analysis results or error
      */
-    virtual result<std::string> analyze(const metrics_snapshot& snapshot) = 0;
-    
+    virtual common::Result<std::string> analyze(const metrics_snapshot& snapshot) = 0;
+
     /**
      * @brief Analyze multiple snapshots for trends
      * @param snapshots The snapshots to analyze
      * @return Result containing trend analysis or error
      */
-    virtual result<std::string> analyze_trend(
+    virtual common::Result<std::string> analyze_trend(
         const std::vector<metrics_snapshot>& snapshots) = 0;
-    
+
     /**
      * @brief Get analyzer name
      * @return Analyzer identifier
      */
     virtual std::string get_name() const = 0;
-    
+
     /**
      * @brief Reset analyzer state
      * @return Result indicating success or error
      */
-    virtual result_void reset() = 0;
+    virtual common::VoidResult reset() = 0;
 };
 
 } } // namespace kcenon::monitoring

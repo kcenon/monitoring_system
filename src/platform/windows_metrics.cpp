@@ -178,7 +178,7 @@ uint64_t get_thread_count() {
 
 } // anonymous namespace
 
-result<system_metrics> get_windows_system_metrics() {
+common::Result<system_metrics> get_windows_system_metrics() {
     system_metrics metrics;
     metrics.timestamp = std::chrono::system_clock::now();
 
@@ -200,7 +200,7 @@ result<system_metrics> get_windows_system_metrics() {
     // Thread count
     metrics.thread_count = static_cast<uint32_t>(get_thread_count());
 
-    return make_success(metrics);
+    return common::ok(metrics);
 }
 
 } // namespace monitoring

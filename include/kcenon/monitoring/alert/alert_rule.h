@@ -292,20 +292,23 @@ public:
      * @brief Validate rule configuration
      * @return Result indicating if configuration is valid
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (name_.empty()) {
-            return make_void_error(monitoring_error_code::invalid_argument,
-                                   "Rule name cannot be empty");
+            error_info err(monitoring_error_code::invalid_argument,
+                          "Rule name cannot be empty");
+            return common::VoidResult::err(err.to_common_error());
         }
         if (!config_.validate()) {
-            return make_void_error(monitoring_error_code::invalid_configuration,
-                                   "Rule configuration is invalid");
+            error_info err(monitoring_error_code::invalid_configuration,
+                          "Rule configuration is invalid");
+            return common::VoidResult::err(err.to_common_error());
         }
         if (!trigger_) {
-            return make_void_error(monitoring_error_code::invalid_argument,
-                                   "Rule must have a trigger");
+            error_info err(monitoring_error_code::invalid_argument,
+                          "Rule must have a trigger");
+            return common::VoidResult::err(err.to_common_error());
         }
-        return make_void_success();
+        return common::ok();
     }
 
     /**

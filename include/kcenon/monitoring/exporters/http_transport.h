@@ -63,7 +63,7 @@ public:
     /**
      * @brief Send HTTP request and receive response
      */
-    virtual result<http_response> send(const http_request& request) = 0;
+    virtual common::Result<http_response> send(const http_request& request) = 0;
 
     /**
      * @brief Check if transport is available
@@ -105,9 +105,9 @@ public:
         simulate_success_ = success;
     }
 
-    result<http_response> send(const http_request& request) override {
+    common::Result<http_response> send(const http_request& request) override {
         if (response_handler_) {
-            return make_success(response_handler_(request));
+            return common::ok(response_handler_(request));
         }
 
         http_response response;
@@ -120,7 +120,7 @@ public:
         }
         response.elapsed = std::chrono::milliseconds(10);
 
-        return make_success(response);
+        return common::ok(response);
     }
 
     bool is_available() const override {
@@ -148,12 +148,13 @@ public:
     explicit simple_http_client(std::chrono::milliseconds timeout = std::chrono::milliseconds(30000))
         : default_timeout_(timeout) {}
 
-    result<http_response> send(const http_request& request) override {
+    common::Result<http_response> send(const http_request& request) override {
         // Parse URL to extract host, port, and path
         auto url_parts = parse_url(request.url);
         if (!url_parts.valid) {
-            return make_error<http_response>(monitoring_error_code::invalid_configuration,
-                "Invalid URL: " + request.url);
+            error_info err(monitoring_error_code::invalid_configuration,
+                          "Invalid URL: " + request.url);
+            return common::Result<http_response>::err(err.to_common_error());
         }
 
         use_tls_ = url_parts.scheme == "https";
@@ -168,7 +169,7 @@ public:
         // Log the request for debugging
         // In production, this would actually send the HTTP request
 
-        return make_success(response);
+        return common::ok(response);
     }
 
     bool is_available() const override {
@@ -250,7 +251,7 @@ public:
     explicit network_http_transport(std::chrono::milliseconds timeout = std::chrono::milliseconds(30000))
         : client_(std::make_shared<network_system::core::http_client>(timeout)) {}
 
-    result<http_response> send(const http_request& request) override {
+    common::Result<http_response> send(const http_request& request) override {
         // Convert headers from unordered_map to map
         std::map<std::string, std::string> headers(request.headers.begin(), request.headers.end());
 
@@ -272,12 +273,12 @@ public:
             std::string body_str(request.body.begin(), request.body.end());
             net_result = client_->patch(request.url, body_str, headers);
         } else {
-            return make_error<http_response>(monitoring_error_code::invalid_configuration,
+            return common::make_error<http_response>(static_cast<int>(monitoring_error_code::invalid_configuration),
                 "Unsupported HTTP method: " + request.method);
         }
 
         if (!net_result) {
-            return make_error<http_response>(monitoring_error_code::operation_failed,
+            return common::make_error<http_response>(static_cast<int>(monitoring_error_code::operation_failed),
                 "HTTP request failed: " + net_result.error().message);
         }
 
@@ -292,7 +293,7 @@ public:
             response.headers[key] = value;
         }
 
-        return make_success(response);
+        return common::ok(response);
     }
 
     bool is_available() const override {

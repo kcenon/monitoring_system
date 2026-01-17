@@ -62,23 +62,23 @@ public:
      * @brief Connect to a remote UDP endpoint
      * @param host Remote hostname or IP address
      * @param port Remote port number
-     * @return result_void indicating success or failure
+     * @return common::VoidResult indicating success or failure
      */
-    virtual result_void connect(const std::string& host, uint16_t port) = 0;
+    virtual common::VoidResult connect(const std::string& host, uint16_t port) = 0;
 
     /**
      * @brief Send data to the connected endpoint
      * @param data Data to send
-     * @return result_void indicating success or failure
+     * @return common::VoidResult indicating success or failure
      */
-    virtual result_void send(std::span<const uint8_t> data) = 0;
+    virtual common::VoidResult send(std::span<const uint8_t> data) = 0;
 
     /**
      * @brief Send string data to the connected endpoint
      * @param data String data to send
-     * @return result_void indicating success or failure
+     * @return common::VoidResult indicating success or failure
      */
-    result_void send(const std::string& data) {
+    common::VoidResult send(const std::string& data) {
         return send(std::span<const uint8_t>(
             reinterpret_cast<const uint8_t*>(data.data()),
             data.size()));
@@ -149,9 +149,9 @@ public:
         simulate_success_ = success;
     }
 
-    result_void connect(const std::string& host, uint16_t port) override {
+    common::VoidResult connect(const std::string& host, uint16_t port) override {
         if (!simulate_success_) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Simulated connection failure",
                 "stub_udp_transport"
@@ -163,10 +163,10 @@ public:
         return common::ok();
     }
 
-    result_void send(std::span<const uint8_t> data) override {
+    common::VoidResult send(std::span<const uint8_t> data) override {
         if (!connected_) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Not connected",
                 "stub_udp_transport"
@@ -175,7 +175,7 @@ public:
 
         if (!simulate_success_) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Simulated send failure",
                 "stub_udp_transport"
@@ -249,9 +249,9 @@ public:
     explicit common_udp_transport(std::shared_ptr<::kcenon::common::interfaces::IUdpClient> client)
         : client_(std::move(client)) {}
 
-    result_void connect(const std::string& host, uint16_t port) override {
+    common::VoidResult connect(const std::string& host, uint16_t port) override {
         if (!client_) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::dependency_missing,
                 "UDP client not available",
                 "common_udp_transport"
@@ -260,7 +260,7 @@ public:
 
         auto result = client_->connect(host, port);
         if (result.is_err()) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Connection failed: " + result.error().message,
                 "common_udp_transport"
@@ -269,10 +269,10 @@ public:
         return common::ok();
     }
 
-    result_void send(std::span<const uint8_t> data) override {
+    common::VoidResult send(std::span<const uint8_t> data) override {
         if (!client_) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::dependency_missing,
                 "UDP client not available",
                 "common_udp_transport"
@@ -281,7 +281,7 @@ public:
 
         if (!client_->is_connected()) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Not connected",
                 "common_udp_transport"
@@ -291,7 +291,7 @@ public:
         auto result = client_->send(data);
         if (result.is_err()) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Send failed: " + result.error().message,
                 "common_udp_transport"
@@ -368,7 +368,7 @@ private:
 public:
     network_udp_transport() = default;
 
-    result_void connect(const std::string& host, uint16_t port) override {
+    common::VoidResult connect(const std::string& host, uint16_t port) override {
         try {
             client_ = std::make_unique<network_system::udp::udp_client>(host, port);
             host_ = host;
@@ -376,7 +376,7 @@ public:
             connected_ = true;
             return common::ok();
         } catch (const std::exception& e) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 std::string("Connection failed: ") + e.what(),
                 "network_udp_transport"
@@ -384,10 +384,10 @@ public:
         }
     }
 
-    result_void send(std::span<const uint8_t> data) override {
+    common::VoidResult send(std::span<const uint8_t> data) override {
         if (!connected_ || !client_) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Not connected",
                 "network_udp_transport"
@@ -398,7 +398,7 @@ public:
             auto result = client_->send(data);
             if (!result) {
                 send_failures_.fetch_add(1, std::memory_order_relaxed);
-                return result_void::err(error_info(
+                return common::VoidResult::err(error_info(
                     monitoring_error_code::network_error,
                     "Send failed: " + result.error().message,
                     "network_udp_transport"
@@ -410,7 +410,7 @@ public:
             return common::ok();
         } catch (const std::exception& e) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 std::string("Send failed: ") + e.what(),
                 "network_udp_transport"

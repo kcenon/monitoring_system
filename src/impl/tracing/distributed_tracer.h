@@ -135,28 +135,32 @@ struct trace_context {
     /**
      * @brief Parse from W3C Trace Context format
      */
-    static kcenon::monitoring::result<trace_context> from_w3c_traceparent(const std::string& header) {
+    static common::Result<trace_context> from_w3c_traceparent(const std::string& header) {
         // Parse format: version-traceid-spanid-traceflags
         if (header.length() < 55) {  // Minimum valid length
-            return kcenon::monitoring::make_error<trace_context>(kcenon::monitoring::monitoring_error_code::invalid_argument);
+            error_info err(kcenon::monitoring::monitoring_error_code::invalid_argument,
+                          "Invalid traceparent header length");
+            return common::Result<trace_context>::err(err.to_common_error());
         }
-        
+
         trace_context ctx;
         // Simple parsing - production code would be more robust
         size_t pos = 0;
         size_t dash1 = header.find('-', pos);
         size_t dash2 = header.find('-', dash1 + 1);
         size_t dash3 = header.find('-', dash2 + 1);
-        
+
         if (dash1 == std::string::npos || dash2 == std::string::npos || dash3 == std::string::npos) {
-            return kcenon::monitoring::make_error<trace_context>(kcenon::monitoring::monitoring_error_code::invalid_argument);
+            error_info err(kcenon::monitoring::monitoring_error_code::invalid_argument,
+                          "Invalid traceparent header format");
+            return common::Result<trace_context>::err(err.to_common_error());
         }
-        
+
         ctx.trace_id = header.substr(dash1 + 1, dash2 - dash1 - 1);
         ctx.span_id = header.substr(dash2 + 1, dash3 - dash2 - 1);
         ctx.trace_flags = header.substr(dash3 + 1);
-        
-        return ctx;
+
+        return common::ok(ctx);
     }
 };
 
@@ -233,7 +237,7 @@ public:
     /**
      * @brief Start a new root span
      */
-    kcenon::monitoring::result<std::shared_ptr<trace_span>> start_span(
+    common::Result<std::shared_ptr<trace_span>> start_span(
         const std::string& operation_name,
         const std::string& service_name = "monitoring_system"
     );
@@ -241,7 +245,7 @@ public:
     /**
      * @brief Start a child span
      */
-    kcenon::monitoring::result<std::shared_ptr<trace_span>> start_child_span(
+    common::Result<std::shared_ptr<trace_span>> start_child_span(
         const trace_span& parent,
         const std::string& operation_name
     );
@@ -249,7 +253,7 @@ public:
     /**
      * @brief Start a span from trace context (for incoming requests)
      */
-    kcenon::monitoring::result<std::shared_ptr<trace_span>> start_span_from_context(
+    common::Result<std::shared_ptr<trace_span>> start_span_from_context(
         const trace_context& context,
         const std::string& operation_name
     );
@@ -257,7 +261,7 @@ public:
     /**
      * @brief Finish a span
      */
-    kcenon::monitoring::result<bool> finish_span(std::shared_ptr<trace_span> span);
+    common::Result<bool> finish_span(std::shared_ptr<trace_span> span);
     
     /**
      * @brief Get current active span for this thread
@@ -293,16 +297,16 @@ public:
      * @brief Extract trace context from carrier
      */
     template<typename Carrier>
-    kcenon::monitoring::result<trace_context> extract_context_from_carrier(const Carrier& carrier) {
+    common::Result<trace_context> extract_context_from_carrier(const Carrier& carrier) {
         auto traceparent_it = carrier.find("traceparent");
         if (traceparent_it == carrier.end()) {
-            return result<trace_context>::err(error_info(kcenon::monitoring::monitoring_error_code::not_found,
+            return common::Result<trace_context>::err(error_info(kcenon::monitoring::monitoring_error_code::not_found,
                 "Traceparent not found in carrier").to_common_error());
         }
         
         auto ctx_result = trace_context::from_w3c_traceparent(traceparent_it->second);
         if (ctx_result.is_err()) {
-            return result<trace_context>::err(ctx_result.error());
+            return common::Result<trace_context>::err(ctx_result.error());
         }
         
         auto ctx = ctx_result.value();
@@ -326,12 +330,12 @@ public:
     /**
      * @brief Get all spans for a trace
      */
-    kcenon::monitoring::result<std::vector<trace_span>> get_trace(const std::string& trace_id) const;
+    common::Result<std::vector<trace_span>> get_trace(const std::string& trace_id) const;
     
     /**
      * @brief Export spans to external system
      */
-    kcenon::monitoring::result<bool> export_spans(std::vector<trace_span> spans);
+    common::Result<bool> export_spans(std::vector<trace_span> spans);
 
     /**
      * @brief Set the trace exporter for span export
@@ -361,7 +365,7 @@ public:
      * @brief Manually flush all pending spans to exporter
      * @return Result indicating success or failure
      */
-    result_void flush();
+    common::VoidResult flush();
 
     /**
      * @brief Get export statistics
