@@ -142,43 +142,43 @@ struct buffering_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (max_buffer_size == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Max buffer size must be positive");
         }
         
         if (flush_threshold_size > max_buffer_size) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Flush threshold cannot exceed max buffer size");
         }
         
         if (flush_interval.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Flush interval must be positive");
         }
         
         if (max_age.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Max age must be positive");
         }
         
         if (min_priority > max_priority) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Min priority cannot exceed max priority");
         }
         
         if (load_factor_threshold <= 0.0 || load_factor_threshold > 1.0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Load factor threshold must be between 0 and 1");
         }
         
         if (compression_ratio_threshold <= 0.0 || compression_ratio_threshold > 1.0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Compression ratio threshold must be between 0 and 1");
         }
         
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -237,7 +237,7 @@ struct buffer_statistics {
     
     buffer_statistics() : creation_time(std::chrono::system_clock::now()) {}
     
-    // Copy constructor for result<buffer_statistics>
+    // Copy constructor for common::Result<buffer_statistics>
     buffer_statistics(const buffer_statistics& other) 
         : total_items_buffered(other.total_items_buffered.load())
         , total_items_flushed(other.total_items_flushed.load())
@@ -289,12 +289,12 @@ public:
     /**
      * @brief Add metric to buffer
      */
-    virtual result_void add_metric(buffered_metric&& metric) = 0;
+    virtual common::VoidResult add_metric(buffered_metric&& metric) = 0;
     
     /**
      * @brief Flush buffer contents
      */
-    virtual result<std::vector<buffered_metric>> flush() = 0;
+    virtual common::Result<std::vector<buffered_metric>> flush() = 0;
     
     /**
      * @brief Check if flush is needed
@@ -338,7 +338,7 @@ public:
         config_.strategy = buffering_strategy_type::immediate;
     }
     
-    result_void add_metric([[maybe_unused]] buffered_metric&& metric) override {
+    common::VoidResult add_metric([[maybe_unused]] buffered_metric&& metric) override {
         std::lock_guard<std::mutex> lock(mutex_);
         
         // Immediate processing - no actual buffering
@@ -346,12 +346,12 @@ public:
         stats_.total_items_flushed.fetch_add(1, std::memory_order_relaxed);
         stats_.total_flushes.fetch_add(1, std::memory_order_relaxed);
         
-        return make_void_success();
+        return common::ok();
     }
     
-    result<std::vector<buffered_metric>> flush() override {
+    common::Result<std::vector<buffered_metric>> flush() override {
         // No items to flush in immediate strategy
-        return make_success(std::vector<buffered_metric>{});
+        return common::ok(std::vector<buffered_metric>{});
     }
     
     bool should_flush() const override {
@@ -413,7 +413,7 @@ public:
         ring_buffer_ = std::make_unique<ring_buffer<buffered_metric>>(create_ring_buffer_config());
     }
 
-    result_void add_metric(buffered_metric&& metric) override {
+    common::VoidResult add_metric(buffered_metric&& metric) override {
         // Set sequence number
         metric.sequence_number = sequence_counter_.fetch_add(1, std::memory_order_relaxed);
 
@@ -422,7 +422,7 @@ public:
             std::lock_guard<std::mutex> lock(mutex_);
             if (ring_buffer_->size() >= config_.max_buffer_size) {
                 stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
-                return make_void_success();  // Drop the new item
+                return common::ok();  // Drop the new item
             }
         }
 
@@ -442,14 +442,14 @@ public:
             stats_.items_dropped_overflow.fetch_add(1, std::memory_order_relaxed);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
-    result<std::vector<buffered_metric>> flush() override {
+    common::Result<std::vector<buffered_metric>> flush() override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (ring_buffer_->empty()) {
-            return make_success(std::vector<buffered_metric>{});
+            return common::ok(std::vector<buffered_metric>{});
         }
 
         std::vector<buffered_metric> flushed_items;
@@ -468,7 +468,7 @@ public:
         stats_.total_items_flushed.fetch_add(flushed_items.size(), std::memory_order_relaxed);
         stats_.total_flushes.fetch_add(1, std::memory_order_relaxed);
 
-        return make_success(std::move(flushed_items));
+        return common::ok(std::move(flushed_items));
     }
 
     bool should_flush() const override {
@@ -547,7 +547,7 @@ public:
         set_last_flush_time(std::chrono::system_clock::now());
     }
 
-    result_void add_metric(buffered_metric&& metric) override {
+    common::VoidResult add_metric(buffered_metric&& metric) override {
         // Set sequence number
         metric.sequence_number = sequence_counter_.fetch_add(1, std::memory_order_relaxed);
 
@@ -563,14 +563,14 @@ public:
             stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
-    result<std::vector<buffered_metric>> flush() override {
+    common::Result<std::vector<buffered_metric>> flush() override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (ring_buffer_->empty()) {
-            return make_success(std::vector<buffered_metric>{});
+            return common::ok(std::vector<buffered_metric>{});
         }
 
         std::vector<buffered_metric> flushed_items;
@@ -587,7 +587,7 @@ public:
 
         set_last_flush_time(std::chrono::system_clock::now());
 
-        return make_success(std::move(flushed_items));
+        return common::ok(std::move(flushed_items));
     }
 
     bool should_flush() const override {
@@ -655,7 +655,7 @@ public:
         buffer_.reserve(config_.max_buffer_size);
     }
     
-    result_void add_metric(buffered_metric&& metric) override {
+    common::VoidResult add_metric(buffered_metric&& metric) override {
         std::lock_guard<std::mutex> lock(mutex_);
         
         // Set sequence number
@@ -675,14 +675,14 @@ public:
         buffer_.emplace_back(std::move(metric));
         stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
         
-        return make_void_success();
+        return common::ok();
     }
     
-    result<std::vector<buffered_metric>> flush() override {
+    common::Result<std::vector<buffered_metric>> flush() override {
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (buffer_.empty()) {
-            return make_success(std::vector<buffered_metric>{});
+            return common::ok(std::vector<buffered_metric>{});
         }
         
         // Sort by priority before flushing
@@ -701,7 +701,7 @@ public:
         
         buffer_.clear();
         
-        return make_success(std::move(flushed_items));
+        return common::ok(std::move(flushed_items));
     }
     
     bool should_flush() const override {
@@ -823,7 +823,7 @@ public:
         set_last_adaptation(std::chrono::system_clock::now());
     }
 
-    result_void add_metric(buffered_metric&& metric) override {
+    common::VoidResult add_metric(buffered_metric&& metric) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         // Periodic adaptation
@@ -856,14 +856,14 @@ public:
             stats_.total_items_buffered.fetch_add(1, std::memory_order_relaxed);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
-    result<std::vector<buffered_metric>> flush() override {
+    common::Result<std::vector<buffered_metric>> flush() override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (ring_buffer_->empty()) {
-            return make_success(std::vector<buffered_metric>{});
+            return common::ok(std::vector<buffered_metric>{});
         }
 
         std::vector<buffered_metric> flushed_items;
@@ -878,7 +878,7 @@ public:
         stats_.total_items_flushed.fetch_add(flushed_items.size(), std::memory_order_relaxed);
         stats_.total_flushes.fetch_add(1, std::memory_order_relaxed);
 
-        return make_success(std::move(flushed_items));
+        return common::ok(std::move(flushed_items));
     }
 
     bool should_flush() const override {

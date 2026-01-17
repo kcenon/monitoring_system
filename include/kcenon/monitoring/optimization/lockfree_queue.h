@@ -190,26 +190,26 @@ public:
     /**
      * @brief Push an element to the queue
      * @param value The value to push
-     * @return result<bool> containing true on success, false if queue is full
+     * @return common::Result<bool> containing true on success, false if queue is full
      */
-    result<bool> push(const T& value) {
+    common::Result<bool> push(const T& value) {
         return push_impl(value);
     }
 
     /**
      * @brief Push an element to the queue (move version)
      * @param value The value to push
-     * @return result<bool> containing true on success, false if queue is full
+     * @return common::Result<bool> containing true on success, false if queue is full
      */
-    result<bool> push(T&& value) {
+    common::Result<bool> push(T&& value) {
         return push_impl(std::move(value));
     }
 
     /**
      * @brief Pop an element from the queue
-     * @return result<T> containing the value on success, error if queue is empty
+     * @return common::Result<T> containing the value on success, error if queue is empty
      */
-    result<T> pop() {
+    common::Result<T> pop() {
         stats_.pop_attempts++;
 
         size_t current_head = head_.load(std::memory_order_relaxed);
@@ -233,8 +233,7 @@ public:
             } else if (diff < 0) {
                 // Queue is empty
                 stats_.pop_failures++;
-                return make_error<T>(monitoring_error_code::resource_unavailable,
-                                     "Queue is empty");
+                return common::Result<T>::err(error_info(monitoring_error_code::resource_unavailable, "Queue is empty").to_common_error());
             } else {
                 // Another thread is modifying, retry
                 current_head = head_.load(std::memory_order_relaxed);
@@ -288,7 +287,7 @@ private:
     };
 
     template<typename U>
-    result<bool> push_impl(U&& value) {
+    common::Result<bool> push_impl(U&& value) {
         stats_.push_attempts++;
 
         size_t current_tail = tail_.load(std::memory_order_relaxed);

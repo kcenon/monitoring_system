@@ -79,16 +79,16 @@ public:
      * @brief Connect to a gRPC server
      * @param host Server hostname or IP address
      * @param port Server port number
-     * @return result_void indicating success or failure
+     * @return common::VoidResult indicating success or failure
      */
-    virtual result_void connect(const std::string& host, uint16_t port) = 0;
+    virtual common::VoidResult connect(const std::string& host, uint16_t port) = 0;
 
     /**
      * @brief Send a gRPC request
      * @param request The gRPC request to send
      * @return Result containing response or error
      */
-    virtual result<grpc_response> send(const grpc_request& request) = 0;
+    virtual common::Result<grpc_response> send(const grpc_request& request) = 0;
 
     /**
      * @brief Check if connected to the server
@@ -160,9 +160,9 @@ public:
         response_handler_ = std::move(handler);
     }
 
-    result_void connect(const std::string& host, uint16_t port) override {
+    common::VoidResult connect(const std::string& host, uint16_t port) override {
         if (!simulate_success_) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Simulated connection failure",
                 "stub_grpc_transport"
@@ -174,26 +174,22 @@ public:
         return common::ok();
     }
 
-    result<grpc_response> send(const grpc_request& request) override {
+    common::Result<grpc_response> send(const grpc_request& request) override {
         if (!connected_) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return make_error<grpc_response>(
-                monitoring_error_code::network_error,
-                "Not connected");
+            return common::Result<grpc_response>::err(error_info(monitoring_error_code::network_error, "Not connected").to_common_error());
         }
 
         if (response_handler_) {
             auto response = response_handler_(request);
             requests_sent_.fetch_add(1, std::memory_order_relaxed);
             bytes_sent_.fetch_add(request.body.size(), std::memory_order_relaxed);
-            return make_success(response);
+            return common::ok(response);
         }
 
         if (!simulate_success_) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return make_error<grpc_response>(
-                monitoring_error_code::network_error,
-                "Simulated send failure");
+            return common::Result<grpc_response>::err(error_info(monitoring_error_code::network_error, "Simulated send failure").to_common_error());
         }
 
         grpc_response response;
@@ -204,7 +200,7 @@ public:
         requests_sent_.fetch_add(1, std::memory_order_relaxed);
         bytes_sent_.fetch_add(request.body.size(), std::memory_order_relaxed);
 
-        return make_success(response);
+        return common::ok(response);
     }
 
     bool is_connected() const override {
@@ -419,7 +415,7 @@ public:
     explicit network_grpc_transport(const grpc_channel_config& config = {})
         : config_(config) {}
 
-    result_void connect(const std::string& host, uint16_t port) override {
+    common::VoidResult connect(const std::string& host, uint16_t port) override {
         std::lock_guard<std::mutex> lock(connect_mutex_);
 
         host_ = host;
@@ -435,7 +431,7 @@ public:
             // Wait for channel to be ready (with timeout)
             auto deadline = std::chrono::system_clock::now() + config_.connect_timeout;
             if (!channel_->WaitForConnected(deadline)) {
-                return result_void::err(error_info(
+                return common::VoidResult::err(error_info(
                     monitoring_error_code::network_error,
                     "Connection timeout to " + target,
                     "network_grpc_transport"
@@ -444,7 +440,7 @@ public:
 
             return common::ok();
         } catch (const std::exception& e) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Failed to connect: " + std::string(e.what()),
                 "network_grpc_transport"
@@ -452,12 +448,10 @@ public:
         }
     }
 
-    result<grpc_response> send(const grpc_request& request) override {
+    common::Result<grpc_response> send(const grpc_request& request) override {
         if (!is_connected()) {
             send_failures_.fetch_add(1, std::memory_order_relaxed);
-            return make_error<grpc_response>(
-                monitoring_error_code::network_error,
-                "Not connected to server");
+            return common::Result<grpc_response>::err(error_info(monitoring_error_code::network_error, "Not connected to server").to_common_error());
         }
 
         try {
@@ -507,7 +501,7 @@ public:
             if (status.ok()) {
                 requests_sent_.fetch_add(1, std::memory_order_relaxed);
                 bytes_sent_.fetch_add(request.body.size(), std::memory_order_relaxed);
-                return make_success(response);
+                return common::ok(response);
             } else {
                 send_failures_.fetch_add(1, std::memory_order_relaxed);
                 return make_error<grpc_response>(

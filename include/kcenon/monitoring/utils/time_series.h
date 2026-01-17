@@ -43,23 +43,26 @@ struct time_series_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (retention_period.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Retention period must be positive");
+            error_info err(monitoring_error_code::invalid_configuration,
+                          "Retention period must be positive");
+            return common::VoidResult::err(err.to_common_error());
         }
-        
+
         if (resolution.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Resolution must be positive");
+            error_info err(monitoring_error_code::invalid_configuration,
+                          "Resolution must be positive");
+            return common::VoidResult::err(err.to_common_error());
         }
-        
+
         if (max_points == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
-                             "Max points must be positive");
+            error_info err(monitoring_error_code::invalid_configuration,
+                          "Max points must be positive");
+            return common::VoidResult::err(err.to_common_error());
         }
-        
-        return make_void_success();
+
+        return common::ok();
     }
 };
 
@@ -126,18 +129,20 @@ struct time_series_query {
     /**
      * @brief Validate query parameters
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (start_time >= end_time) {
-            return make_result_void(monitoring_error_code::invalid_argument,
-                             "Start time must be before end time");
+            error_info err(monitoring_error_code::invalid_argument,
+                          "Start time must be before end time");
+            return common::VoidResult::err(err.to_common_error());
         }
-        
+
         if (step.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_argument,
-                             "Step size must be positive");
+            error_info err(monitoring_error_code::invalid_argument,
+                          "Step size must be positive");
+            return common::VoidResult::err(err.to_common_error());
         }
-        
-        return make_void_success();
+
+        return common::ok();
     }
 };
 
@@ -285,26 +290,26 @@ public:
     /**
      * @brief Factory method to create time_series with validation
      */
-    static result<std::unique_ptr<time_series>> create(
+    static common::Result<std::unique_ptr<time_series>> create(
         const std::string& name,
         const time_series_config& config = {}) {
 
         auto validation = config.validate();
         if (validation.is_err()) {
-            return result<std::unique_ptr<time_series>>::err(error_info(monitoring_error_code::invalid_configuration,
-                validation.error().message, "monitoring_system").to_common_error());
+            return common::Result<std::unique_ptr<time_series>>::err(
+                error_info(monitoring_error_code::invalid_configuration,
+                          validation.error().message, "monitoring_system").to_common_error());
         }
 
-        return result<std::unique_ptr<time_series>>::ok(std::unique_ptr<time_series>(
-            new time_series(name, config)));
+        return common::ok(std::unique_ptr<time_series>(new time_series(name, config)));
     }
     
     /**
      * @brief Add a data point
      */
-    result_void add_point(double value,
-                         std::chrono::system_clock::time_point timestamp =
-                         std::chrono::system_clock::now()) {
+    common::VoidResult add_point(double value,
+                                 std::chrono::system_clock::time_point timestamp =
+                                 std::chrono::system_clock::now()) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         time_point_data point(timestamp, value);
@@ -330,13 +335,13 @@ public:
             enforce_size_limit();
         }
 
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Add multiple data points
      */
-    result_void add_points(const std::vector<time_point_data>& points) {
+    common::VoidResult add_points(const std::vector<time_point_data>& points) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         for (const auto& point : points) {
@@ -358,49 +363,50 @@ public:
         compress_data();
         enforce_size_limit();
 
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Query data for a time range
      */
-    result<aggregation_result> query(const time_series_query& query) const {
+    common::Result<aggregation_result> query(const time_series_query& query) const {
         auto validation = query.validate();
         if (validation.is_err()) {
-            return result<aggregation_result>::err(error_info(monitoring_error_code::invalid_argument,
-                                                validation.error().message, "monitoring_system").to_common_error());
+            return common::Result<aggregation_result>::err(
+                error_info(monitoring_error_code::invalid_argument,
+                          validation.error().message, "monitoring_system").to_common_error());
         }
-        
+
         std::lock_guard<std::mutex> lock(mutex_);
-        
+
         aggregation_result result;
         result.query_start = query.start_time;
         result.query_end = query.end_time;
-        
+
         // Find data points in the time range
         auto start_it = std::lower_bound(data_.begin(), data_.end(), query.start_time,
             [](const time_point_data& point, std::chrono::system_clock::time_point time) {
                 return point.timestamp < time;
             });
-        
+
         auto end_it = std::upper_bound(data_.begin(), data_.end(), query.end_time,
             [](std::chrono::system_clock::time_point time, const time_point_data& point) {
                 return time < point.timestamp;
             });
-        
+
         if (start_it == end_it) {
-            return make_success(std::move(result));  // No data in range
+            return common::ok(std::move(result));  // No data in range
         }
-        
+
         // Aggregate data by step size
         auto current_step_start = query.start_time;
-        
+
         while (current_step_start < query.end_time) {
             auto current_step_end = current_step_start + query.step;
             if (current_step_end > query.end_time) {
                 current_step_end = query.end_time;
             }
-            
+
             // Find points in this step
             std::vector<time_point_data> step_points;
             for (auto it = start_it; it != end_it; ++it) {
@@ -409,23 +415,23 @@ public:
                     result.total_samples += it->sample_count;
                 }
             }
-            
+
             // Aggregate points in this step
             if (!step_points.empty()) {
                 time_point_data aggregated_point;
                 aggregated_point.timestamp = current_step_start + query.step / 2;  // Middle of step
-                
+
                 for (const auto& point : step_points) {
                     aggregated_point.merge(point);
                 }
-                
+
                 result.points.push_back(aggregated_point);
             }
-            
+
             current_step_start = current_step_end;
         }
-        
-        return make_success(std::move(result));
+
+        return common::ok(std::move(result));
     }
     
     /**
@@ -469,15 +475,16 @@ public:
     /**
      * @brief Get latest value
      */
-    result<double> get_latest_value() const {
+    common::Result<double> get_latest_value() const {
         std::lock_guard<std::mutex> lock(mutex_);
-        
+
         if (data_.empty()) {
-            return result<double>::err(error_info(monitoring_error_code::collection_failed,
-                                    "No data available", "monitoring_system").to_common_error());
+            return common::Result<double>::err(
+                error_info(monitoring_error_code::collection_failed,
+                          "No data available", "monitoring_system").to_common_error());
         }
 
-        return result<double>::ok(data_.back().value);
+        return common::ok(data_.back().value);
     }
     
     /**
@@ -490,22 +497,5 @@ public:
                series_name_.capacity();
     }
 };
-
-/**
- * @brief Helper function to create a time series with default configuration
- * @deprecated Use time_series::create() instead
- */
-inline result<std::unique_ptr<time_series>> make_time_series(const std::string& name) {
-    return time_series::create(name);
-}
-
-/**
- * @brief Helper function to create a time series with custom configuration
- * @deprecated Use time_series::create() instead
- */
-inline result<std::unique_ptr<time_series>> make_time_series(const std::string& name,
-                                                    const time_series_config& config) {
-    return time_series::create(name, config);
-}
 
 } } // namespace kcenon::monitoring

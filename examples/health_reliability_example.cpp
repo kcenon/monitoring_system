@@ -65,7 +65,7 @@ public:
         is_healthy_ = healthy;
     }
     
-    result<std::string> execute_query(const std::string& query) {
+    kcenon::common::Result<std::string> execute_query(const std::string& query) {
         query_count_++;
         
         // Simulate latency
@@ -73,22 +73,16 @@ public:
         
         // Simulate failures
         if (!is_healthy_) {
-            return make_error<std::string>(
-                monitoring_error_code::service_unavailable,
-                "Database connection lost"
-            );
+            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::service_unavailable, "Database connection lost").to_common_error());
         }
         
         // Random transient failures (10% chance)
         std::uniform_int_distribution<> dist(1, 10);
         if (dist(rng_) == 1) {
-            return make_error<std::string>(
-                monitoring_error_code::operation_timeout,
-                "Query timeout"
-            );
+            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_timeout, "Query timeout").to_common_error());
         }
         
-        return make_success<std::string>("Query result for: " + query);
+        return kcenon::common::ok("Query result for: " + query);
     }
     
     int get_query_count() const { return query_count_; }
@@ -101,29 +95,23 @@ private:
     std::atomic<int> call_count_{0};
     
 public:
-    result<std::string> call_api(const std::string& endpoint) {
+    kcenon::common::Result<std::string> call_api(const std::string& endpoint) {
         call_count_++;
         
         // Simulate increasing failures
         if (failure_count_ > 5) {
             // API is down
-            return make_error<std::string>(
-                monitoring_error_code::service_unavailable,
-                "Service unavailable"
-            );
+            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::service_unavailable, "Service unavailable").to_common_error());
         }
         
         // Simulate intermittent failures
         if (call_count_ % 3 == 0) {
             failure_count_++;
-            return make_error<std::string>(
-                monitoring_error_code::operation_failed,
-                "Internal server error"
-            );
+            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_failed, "Internal server error").to_common_error());
         }
         
         failure_count_ = 0;  // Reset on success
-        return make_success<std::string>("API response from: " + endpoint);
+        return kcenon::common::ok("API response from: " + endpoint);
     }
     
     void reset() {
@@ -297,13 +285,13 @@ void demonstrate_circuit_breaker() {
     std::cout << "  Reset timeout: 2s" << std::endl;
     
     // Define the operation
-    auto api_operation = [api_client]() -> result<std::string> {
+    auto api_operation = [api_client]() -> kcenon::common::Result<std::string> {
         return api_client->call_api("/users");
     };
     
     // Define fallback
-    auto fallback = []() -> result<std::string> {
-        return make_success<std::string>("Cached response (fallback)");
+    auto fallback = []() -> kcenon::common::Result<std::string> {
+        return kcenon::common::ok(std::string("Cached response (fallback)"));
     };
     
     // Make calls through circuit breaker
@@ -378,23 +366,19 @@ void demonstrate_retry_policy() {
     std::cout << "\n1. Executing flaky operation with manual retry:" << std::endl;
     
     std::atomic<int> attempt_count{0};
-    auto flaky_operation = [&attempt_count]() -> result<std::string> {
+    auto flaky_operation = [&attempt_count]() -> kcenon::common::Result<std::string> {
         attempt_count++;
         std::cout << "  Attempt " << attempt_count << "..." << std::endl;
         
         // Fail first 2 attempts
         if (attempt_count <= 2) {
-            return make_error<std::string>(
-                monitoring_error_code::operation_timeout,
-                "Operation timed out"
-            );
+            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_timeout, "Operation timed out").to_common_error());
         }
         
-        return make_success<std::string>("Operation succeeded!");
+        return kcenon::common::ok(std::string("Operation succeeded!"));
     };
     
-    result<std::string> final_result = make_error<std::string>(
-        monitoring_error_code::operation_failed, "Initialization pending");
+    kcenon::common::Result<std::string> final_result = kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_failed, "Initialization pending").to_common_error());
     for (int i = 0; i < static_cast<int>(config.max_attempts); ++i) {
         final_result = flaky_operation();
         if (final_result.is_ok()) {
@@ -443,20 +427,19 @@ void demonstrate_error_boundaries() {
     std::cout << "\n1. Executing operations within error boundary:" << std::endl;
     
     for (int i = 1; i <= 7; ++i) {
-        auto result = boundary.execute([i]() -> ::result<std::string> {
+        auto result = boundary.execute([i]() -> ::kcenon::common::Result<std::string> {
             std::cout << "  Operation " << i << ": ";
             
             // Simulate failures on odd numbers
             if (i % 2 == 1) {
                 std::cout << "FAILED" << std::endl;
-                return make_error<std::string>(
-                    monitoring_error_code::operation_failed,
-                    "Operation " + std::to_string(i) + " failed"
-                );
+                error_info err(monitoring_error_code::operation_failed,
+                              "Operation " + std::to_string(i) + " failed");
+                return ::kcenon::common::Result<std::string>::err(err.to_common_error());
             }
             
             std::cout << "SUCCESS" << std::endl;
-            return make_success<std::string>("Result " + std::to_string(i));
+            return kcenon::common::ok("Result " + std::to_string(i));
         });
         
         if (result.is_err() && result.error().code == static_cast<int>(monitoring_error_code::circuit_breaker_open)) {

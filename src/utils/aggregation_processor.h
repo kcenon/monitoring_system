@@ -46,30 +46,30 @@ struct aggregation_rule {
     /**
      * @brief Validate rule
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (source_metric.empty()) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Source metric name cannot be empty");
         }
         
         if (target_metric_prefix.empty()) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Target metric prefix cannot be empty");
         }
         
         if (aggregation_interval.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Aggregation interval must be positive");
         }
         
         for (double p : percentiles) {
             if (p < 0.0 || p > 1.0) {
-                return make_result_void(monitoring_error_code::invalid_configuration,
+                return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                                  "Percentiles must be between 0 and 1");
             }
         }
         
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -126,7 +126,7 @@ private:
     /**
      * @brief Process aggregation for a metric
      */
-    result<metric_aggregation_result> process_metric_aggregation(const std::string& metric_name) {
+    common::Result<metric_aggregation_result> process_metric_aggregation(const std::string& metric_name) {
         std::lock_guard<std::mutex> lock(mutex_);
         
         auto it = aggregators_.find(metric_name);
@@ -140,8 +140,7 @@ private:
         
         // Check if it's time to aggregate
         if (now - state->last_aggregation < state->rule.aggregation_interval) {
-            return make_error<metric_aggregation_result>(monitoring_error_code::collection_failed,
-                                                "Aggregation interval not reached");
+            return common::Result<metric_aggregation_result>::err(error_info(monitoring_error_code::collection_failed, "Aggregation interval not reached").to_common_error());
         }
         
         auto start_time = std::chrono::high_resolution_clock::now();
@@ -170,7 +169,7 @@ private:
         // Reset aggregator for next interval
         state->aggregator->reset();
         
-        return make_success(std::move(result));
+        return common::ok(std::move(result));
     }
     
     /**
@@ -288,7 +287,7 @@ public:
     /**
      * @brief Add aggregation rule
      */
-    result_void add_aggregation_rule(const aggregation_rule& rule) {
+    common::VoidResult add_aggregation_rule(const aggregation_rule& rule) {
         auto validation = rule.validate();
         if (!validation) {
             return validation;
@@ -297,35 +296,35 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (aggregators_.find(rule.source_metric) != aggregators_.end()) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Aggregation rule already exists for metric: " + rule.source_metric);
         }
         
         aggregators_[rule.source_metric] = std::make_unique<metric_aggregator_state>(rule);
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Remove aggregation rule
      */
-    result_void remove_aggregation_rule(const std::string& source_metric) {
+    common::VoidResult remove_aggregation_rule(const std::string& source_metric) {
         std::lock_guard<std::mutex> lock(mutex_);
         
         auto it = aggregators_.find(source_metric);
         if (it == aggregators_.end()) {
-            return make_result_void(monitoring_error_code::collector_not_found,
+            return make_common::VoidResult(monitoring_error_code::collector_not_found,
                              "Aggregation rule not found for metric: " + source_metric);
         }
         
         aggregators_.erase(it);
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Process metric observation
      */
-    result_void process_observation(const std::string& metric_name, 
+    common::VoidResult process_observation(const std::string& metric_name, 
                                    double value,
                                    std::chrono::system_clock::time_point timestamp = 
                                    std::chrono::system_clock::now()) {
@@ -333,7 +332,7 @@ public:
         
         auto it = aggregators_.find(metric_name);
         if (it == aggregators_.end()) {
-            return make_result_void(monitoring_error_code::collector_not_found,
+            return make_common::VoidResult(monitoring_error_code::collector_not_found,
                              "No aggregation rule found for metric: " + metric_name);
         }
         
@@ -343,7 +342,7 @@ public:
     /**
      * @brief Get current statistics for a metric
      */
-    result<stream_statistics> get_current_statistics(const std::string& metric_name) const {
+    common::Result<stream_statistics> get_current_statistics(const std::string& metric_name) const {
         std::lock_guard<std::mutex> lock(mutex_);
         
         auto it = aggregators_.find(metric_name);
@@ -352,13 +351,13 @@ public:
                                                "Aggregation rule not found for metric: " + metric_name);
         }
         
-        return make_success(it->second->aggregator->get_statistics());
+        return common::ok(it->second->aggregator->get_statistics());
     }
     
     /**
      * @brief Force aggregation for a specific metric
      */
-    result<metric_aggregation_result> force_aggregation(const std::string& metric_name) {
+    common::Result<metric_aggregation_result> force_aggregation(const std::string& metric_name) {
         return process_metric_aggregation(metric_name);
     }
     
@@ -389,9 +388,9 @@ public:
     /**
      * @brief Start background processing
      */
-    result_void start_background_processing(std::chrono::milliseconds interval = std::chrono::milliseconds(10000)) {
+    common::VoidResult start_background_processing(std::chrono::milliseconds interval = std::chrono::milliseconds(10000)) {
         if (running_.load(std::memory_order_acquire)) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Background processing already running");
         }
         
@@ -399,7 +398,7 @@ public:
         running_.store(true, std::memory_order_release);
         background_thread_ = std::thread(&aggregation_processor::background_processing_loop, this);
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**
@@ -447,7 +446,7 @@ public:
     /**
      * @brief Get aggregation rule for a metric
      */
-    result<aggregation_rule> get_aggregation_rule(const std::string& metric_name) const {
+    common::Result<aggregation_rule> get_aggregation_rule(const std::string& metric_name) const {
         std::lock_guard<std::mutex> lock(mutex_);
         
         auto it = aggregators_.find(metric_name);
@@ -456,7 +455,7 @@ public:
                                               "Aggregation rule not found for metric: " + metric_name);
         }
         
-        return make_success(it->second->rule);
+        return common::ok(it->second->rule);
     }
     
     /**

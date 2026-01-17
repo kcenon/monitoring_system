@@ -46,28 +46,28 @@ struct metric_storage_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (ring_buffer_capacity == 0 || (ring_buffer_capacity & (ring_buffer_capacity - 1)) != 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Ring buffer capacity must be a power of 2");
         }
 
         if (max_metrics == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Max metrics must be positive");
         }
 
         if (time_series_max_points == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Time series max points must be positive");
         }
 
         if (retention_period.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Retention period must be positive");
         }
 
-        return make_void_success();
+        return common::ok();
     }
 };
 
@@ -210,7 +210,7 @@ public:
      * @param type Metric type (default: gauge)
      * @return Result indicating success or failure
      */
-    result_void store_metric(const std::string& name, double value,
+    common::VoidResult store_metric(const std::string& name, double value,
                             metric_type type = metric_type::gauge) {
         auto metadata = create_metric_metadata(name, type);
         compact_metric_value metric(metadata, value);
@@ -298,12 +298,12 @@ public:
      * @param name Metric name
      * @return Optional containing the latest value if available
      */
-    result<double> get_latest_value(const std::string& name) const {
+    common::Result<double> get_latest_value(const std::string& name) const {
         std::shared_lock<std::shared_mutex> lock(mutex_);
 
         auto it = time_series_map_.find(name);
         if (it == time_series_map_.end()) {
-            return result<double>::err(error_info(monitoring_error_code::collection_failed,
+            return common::Result<double>::err(error_info(monitoring_error_code::collection_failed,
                                       "Metric not found: " + name, "monitoring_system").to_common_error());
         }
 
@@ -333,13 +333,13 @@ public:
      * @param query Query parameters
      * @return Aggregation result
      */
-    result<aggregation_result> query_metric(const std::string& name,
+    common::Result<aggregation_result> query_metric(const std::string& name,
                                             const time_series_query& query) const {
         std::shared_lock<std::shared_mutex> lock(mutex_);
 
         auto it = time_series_map_.find(name);
         if (it == time_series_map_.end()) {
-            return result<aggregation_result>::err(error_info(monitoring_error_code::collection_failed,
+            return common::Result<aggregation_result>::err(error_info(monitoring_error_code::collection_failed,
                                                  "Metric not found: " + name, "monitoring_system").to_common_error());
         }
 

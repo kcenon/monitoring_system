@@ -56,6 +56,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+- **Deprecated Result type aliases and helper functions** (#383)
+  - Removed `result<T>` type alias - use `common::Result<T>` directly
+  - Removed `result_void` type alias - use `common::VoidResult` directly
+  - Removed `make_success<T>()` - use `common::ok()` instead
+  - Removed `make_error<T>()` - use `common::Result<T>::err()` with `error_info`
+  - Removed `make_void_success()` - use `common::ok()` instead
+  - Removed `make_void_error()` - use `common::VoidResult::err()` with `error_info`
+  - Removed `make_result_void()` - use `common::VoidResult::err()` with `error_info`
+  - Removed `make_error_with_context()` - use `error_info` with context parameter
+  - Removed `MONITORING_TRY` macro - use `COMMON_RETURN_IF_ERROR` instead
+  - Removed `MONITORING_TRY_ASSIGN` macro - use `COMMON_ASSIGN_OR_RETURN` instead
+  - Removed `make_time_series()` helper functions - use `time_series::create()` instead
+  - All usages migrated to `common::Result<T>` and `common::VoidResult` from common_system
+
 ### Added
 - **Stream aggregation module** (#344)
   - `stream_aggregator.h`: Streaming statistical aggregation for real-time metrics

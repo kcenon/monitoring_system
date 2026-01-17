@@ -112,15 +112,15 @@ public:
     /**
      * @brief Execute a function with fault tolerance
      *
-     * @tparam Func The function type to execute (must return result<T>)
+     * @tparam Func The function type to execute (must return common::Result<T>)
      * @param func The function to execute
-     * @return result<T> containing success value or error
+     * @return common::Result<T> containing success value or error
      */
     template<typename Func>
-    result<T> execute(Func&& func) {
+    common::Result<T> execute(Func&& func) {
         metrics_.total_operations++;
 
-        result<T> op_result = make_error<T>(monitoring_error_code::operation_failed, "Not executed");
+        common::Result<T> op_result = common::Result<T>::err(error_info(monitoring_error_code::operation_failed, "Not executed").to_common_error());
 
         if (config_.circuit_breaker_first) {
             op_result = execute_circuit_breaker_first(std::forward<Func>(func));
@@ -140,13 +140,13 @@ public:
     /**
      * @brief Execute a function with timeout
      *
-     * @tparam Func The function type to execute (must return result<T>)
+     * @tparam Func The function type to execute (must return common::Result<T>)
      * @param func The function to execute
      * @param timeout Maximum execution time
-     * @return result<T> containing success value or error
+     * @return common::Result<T> containing success value or error
      */
     template<typename Func>
-    result<T> execute_with_timeout(Func&& func, std::chrono::milliseconds timeout) {
+    common::Result<T> execute_with_timeout(Func&& func, std::chrono::milliseconds timeout) {
         metrics_.total_operations++;
 
         auto future_result = std::async(std::launch::async, [this, func = std::forward<Func>(func)]() mutable {
@@ -172,16 +172,16 @@ public:
 
     /**
      * @brief Check if fault tolerance manager is healthy
-     * @return result<bool> indicating health status
+     * @return common::Result<bool> indicating health status
      */
-    result<bool> is_healthy() {
+    common::Result<bool> is_healthy() {
         if (config_.enable_circuit_breaker && circuit_breaker_) {
             auto state = circuit_breaker_->get_state();
             if (state == circuit_state::open) {
-                return make_success(false);
+                return common::ok(false);
             }
         }
-        return make_success(true);
+        return common::ok(true);
     }
 
     /**
@@ -209,7 +209,7 @@ private:
     }
 
     template<typename Func>
-    result<T> execute_internal(Func&& func) {
+    common::Result<T> execute_internal(Func&& func) {
         if (config_.circuit_breaker_first) {
             return execute_circuit_breaker_first(std::forward<Func>(func));
         }
@@ -217,7 +217,7 @@ private:
     }
 
     template<typename Func>
-    result<T> execute_circuit_breaker_first(Func&& func) {
+    common::Result<T> execute_circuit_breaker_first(Func&& func) {
         if (config_.enable_circuit_breaker && circuit_breaker_) {
             if (config_.enable_retry && retry_executor_) {
                 return circuit_breaker_->execute([this, &func]() {
@@ -233,7 +233,7 @@ private:
     }
 
     template<typename Func>
-    result<T> execute_retry_first(Func&& func) {
+    common::Result<T> execute_retry_first(Func&& func) {
         if (config_.enable_retry && retry_executor_) {
             if (config_.enable_circuit_breaker && circuit_breaker_) {
                 return retry_executor_->execute([this, &func]() {

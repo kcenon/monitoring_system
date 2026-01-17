@@ -199,7 +199,7 @@ public:
 
     /**
      * @brief Execute a function with rate limiting
-     * @tparam Func Function type that returns result<T>
+     * @tparam Func Function type that returns common::Result<T>
      * @param func Function to execute
      * @return Result of the function or error if rate limited
      */
@@ -347,7 +347,7 @@ public:
      * @param bytes Number of bytes to allocate
      * @return Success or error if quota exceeded
      */
-    result<bool> allocate(size_t bytes) {
+    common::Result<bool> allocate(size_t bytes) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (metrics_.current_usage.load() + bytes > quota_.max_value) {
@@ -366,7 +366,7 @@ public:
             // Retry until successful
         }
 
-        return make_success(true);
+        return common::ok(true);
     }
 
     /**
@@ -435,7 +435,7 @@ public:
 
     /**
      * @brief Execute a function with CPU throttling
-     * @tparam Func Function type that returns result<T>
+     * @tparam Func Function type that returns common::Result<T>
      * @param func Function to execute
      * @return Result of the function or error if throttled
      */
@@ -485,7 +485,7 @@ public:
      * @param config Rate limit configuration
      * @return Success or error if name already exists
      */
-    result<bool> add_rate_limiter(const std::string& name, const rate_limit_config& config) {
+    common::Result<bool> add_rate_limiter(const std::string& name, const rate_limit_config& config) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (rate_limiters_.find(name) != rate_limiters_.end()) {
@@ -495,7 +495,7 @@ public:
 
         rate_limiters_[name] = std::make_unique<token_bucket_limiter>(
             name, config.rate_per_second, config.burst_capacity, config.strategy);
-        return make_success(true);
+        return common::ok(true);
     }
 
     /**
@@ -515,7 +515,7 @@ public:
      * @param quota Resource quota configuration
      * @return Success or error if name already exists
      */
-    result<bool> add_memory_quota(const std::string& name, const resource_quota& quota) {
+    common::Result<bool> add_memory_quota(const std::string& name, const resource_quota& quota) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (memory_quotas_.find(name) != memory_quotas_.end()) {
@@ -524,7 +524,7 @@ public:
         }
 
         memory_quotas_[name] = std::make_unique<memory_quota_manager>(name, quota);
-        return make_success(true);
+        return common::ok(true);
     }
 
     /**
@@ -544,7 +544,7 @@ public:
      * @param config CPU throttle configuration
      * @return Success or error if name already exists
      */
-    result<bool> add_cpu_throttler(const std::string& name, const cpu_throttle_config& config) {
+    common::Result<bool> add_cpu_throttler(const std::string& name, const cpu_throttle_config& config) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (cpu_throttlers_.find(name) != cpu_throttlers_.end()) {
@@ -553,7 +553,7 @@ public:
         }
 
         cpu_throttlers_[name] = std::make_unique<cpu_throttler>(name, config);
-        return make_success(true);
+        return common::ok(true);
     }
 
     /**
@@ -571,16 +571,16 @@ public:
      * @brief Check if all resources are healthy
      * @return Success with health status
      */
-    result<bool> is_healthy() const {
+    common::Result<bool> is_healthy() const {
         std::lock_guard<std::mutex> lock(mutex_);
 
         for (const auto& [name, manager] : memory_quotas_) {
             if (manager->is_over_critical_threshold()) {
-                return make_success(false);
+                return common::ok(false);
             }
         }
 
-        return make_success(true);
+        return common::ok(true);
     }
 
     /**

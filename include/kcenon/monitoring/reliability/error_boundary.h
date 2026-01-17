@@ -130,7 +130,7 @@ template<typename T>
 class fallback_strategy_interface {
 public:
     virtual ~fallback_strategy_interface() = default;
-    virtual result<T> get_fallback(const error_info& err, degradation_level level) = 0;
+    virtual common::Result<T> get_fallback(const error_info& err, degradation_level level) = 0;
 };
 
 /**
@@ -141,8 +141,8 @@ class default_value_strategy : public fallback_strategy_interface<T> {
 public:
     explicit default_value_strategy(T default_val) : default_value_(std::move(default_val)) {}
 
-    result<T> get_fallback(const error_info& /*err*/, degradation_level /*level*/) override {
-        return make_success(default_value_);
+    common::Result<T> get_fallback(const error_info& /*err*/, degradation_level /*level*/) override {
+        return common::ok(default_value_);
     }
 
 private:
@@ -165,19 +165,19 @@ public:
         has_value_ = true;
     }
 
-    result<T> get_fallback(const error_info& /*err*/, degradation_level /*level*/) override {
+    common::Result<T> get_fallback(const error_info& /*err*/, degradation_level /*level*/) override {
         std::lock_guard<std::mutex> lock(mutex_);
         if (!has_value_) {
-            return make_error<T>(monitoring_error_code::operation_failed, "No cached value available");
+            return common::Result<T>::err(error_info(monitoring_error_code::operation_failed, "No cached value available").to_common_error());
         }
 
         auto now = std::chrono::steady_clock::now();
         auto age = std::chrono::duration_cast<std::chrono::seconds>(now - cache_time_);
         if (age > ttl_) {
-            return make_error<T>(monitoring_error_code::operation_failed, "Cached value expired");
+            return common::Result<T>::err(error_info(monitoring_error_code::operation_failed, "Cached value expired").to_common_error());
         }
 
-        return make_success(cached_value_);
+        return common::ok(cached_value_);
     }
 
 private:
@@ -194,15 +194,15 @@ private:
 template<typename T>
 class alternative_service_strategy : public fallback_strategy_interface<T> {
 public:
-    using alternative_func = std::function<result<T>()>;
+    using alternative_func = std::function<common::Result<T>()>;
 
     explicit alternative_service_strategy(alternative_func func) : alternative_func_(std::move(func)) {}
 
-    result<T> get_fallback(const error_info& /*err*/, degradation_level /*level*/) override {
+    common::Result<T> get_fallback(const error_info& /*err*/, degradation_level /*level*/) override {
         if (alternative_func_) {
             return alternative_func_();
         }
-        return make_error<T>(monitoring_error_code::operation_failed, "No alternative service available");
+        return common::Result<T>::err(error_info(monitoring_error_code::operation_failed, "No alternative service available").to_common_error());
     }
 
 private:
@@ -232,7 +232,7 @@ public:
      * @brief Execute a function within the error boundary
      */
     template<typename Func>
-    auto execute(Func&& func) -> result<T> {
+    auto execute(Func&& func) -> common::Result<T> {
         metrics_.total_operations++;
 
         try {
@@ -262,7 +262,7 @@ public:
      * @brief Execute with custom fallback function
      */
     template<typename Func, typename FallbackFunc>
-    auto execute(Func&& func, FallbackFunc&& fallback) -> result<T> {
+    auto execute(Func&& func, FallbackFunc&& fallback) -> common::Result<T> {
         metrics_.total_operations++;
 
         try {
@@ -318,9 +318,9 @@ public:
     /**
      * @brief Check if the boundary is healthy
      */
-    result<bool> is_healthy() const {
+    common::Result<bool> is_healthy() const {
         bool healthy = (current_degradation_level_ == degradation_level::normal);
-        return make_success(healthy);
+        return common::ok(healthy);
     }
 
     /**
@@ -338,7 +338,7 @@ public:
     }
 
 private:
-    result<T> handle_failure(const common::error_info& err) {
+    common::Result<T> handle_failure(const common::error_info& err) {
         consecutive_failures_++;
 
         // Check if we should degrade
@@ -356,22 +356,21 @@ private:
         // Apply policy
         switch (config_.policy) {
             case error_boundary_policy::fail_fast:
-                return result<T>::err(err);
+                return common::Result<T>::err(err);
 
             case error_boundary_policy::isolate:
-                return make_error<T>(monitoring_error_code::service_degraded,
-                                    "Service isolated due to error");
+                return common::Result<T>::err(error_info(monitoring_error_code::service_degraded, "Service isolated due to error").to_common_error());
 
             case error_boundary_policy::fallback:
                 if (fallback_strategy_) {
                     error_info monitoring_err = error_info::from_common_error(err);
                     return fallback_strategy_->get_fallback(monitoring_err, current_degradation_level_);
                 }
-                return result<T>::err(err);
+                return common::Result<T>::err(err);
 
             case error_boundary_policy::degrade:
             default:
-                return result<T>::err(err);
+                return common::Result<T>::err(err);
         }
     }
 

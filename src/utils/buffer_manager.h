@@ -55,14 +55,14 @@ struct buffer_manager_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (background_check_interval.count() <= 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Background check interval must be positive");
         }
         
         if (max_concurrent_flushes == 0) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Max concurrent flushes must be positive");
         }
         
@@ -194,14 +194,14 @@ private:
     /**
      * @brief Flush a specific buffer
      */
-    result_void flush_buffer(const std::string& metric_name) {
+    common::VoidResult flush_buffer(const std::string& metric_name) {
         std::unique_ptr<metric_buffer_entry> entry;
         
         {
             std::lock_guard<std::mutex> lock(buffers_mutex_);
             auto it = buffers_.find(metric_name);
             if (it == buffers_.end()) {
-                return make_result_void(monitoring_error_code::collector_not_found,
+                return make_common::VoidResult(monitoring_error_code::collector_not_found,
                                  "Buffer not found: " + metric_name);
             }
             
@@ -213,19 +213,19 @@ private:
         std::lock_guard<std::mutex> lock(buffers_mutex_);
         auto it = buffers_.find(metric_name);
         if (it == buffers_.end()) {
-            return make_result_void(monitoring_error_code::collector_not_found,
+            return make_common::VoidResult(monitoring_error_code::collector_not_found,
                              "Buffer not found: " + metric_name);
         }
         
         auto flush_result = it->second->strategy->flush();
         if (flush_result.is_err()) {
             stats_.failed_flushes.fetch_add(1, std::memory_order_relaxed);
-            return result_void::err(flush_result.error());
+            return common::VoidResult::err(flush_result.error());
         }
         
         auto flushed_metrics = flush_result.value();
         if (flushed_metrics.empty()) {
-            return make_void_success();
+            return common::ok();
         }
         
         // Store metrics if storage is available
@@ -253,7 +253,7 @@ private:
         // Update last flush time
         it->second->last_flush_time = std::chrono::system_clock::now();
         
-        return make_void_success();
+        return common::ok();
     }
     
 public:
@@ -287,7 +287,7 @@ public:
     /**
      * @brief Add metric to buffer
      */
-    result_void add_metric(const std::string& metric_name,
+    common::VoidResult add_metric(const std::string& metric_name,
                           compact_metric_value&& metric,
                           uint8_t priority = 128) {
         
@@ -316,7 +316,7 @@ public:
     /**
      * @brief Configure buffer strategy for a specific metric
      */
-    result_void configure_metric_buffer(const std::string& metric_name,
+    common::VoidResult configure_metric_buffer(const std::string& metric_name,
                                        const buffering_config& config) {
         auto validation = config.validate();
         if (!validation) {
@@ -350,20 +350,20 @@ public:
         
         buffers_[metric_name] = std::move(entry);
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Force flush a specific metric buffer
      */
-    result_void force_flush(const std::string& metric_name) {
+    common::VoidResult force_flush(const std::string& metric_name) {
         return flush_buffer(metric_name);
     }
     
     /**
      * @brief Force flush all buffers
      */
-    result_void force_flush_all() {
+    common::VoidResult force_flush_all() {
         std::vector<std::string> buffer_names;
         
         {
@@ -381,13 +381,13 @@ public:
             }
         }
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**
      * @brief Get buffer statistics for a specific metric
      */
-    result<buffer_statistics> get_buffer_statistics(const std::string& metric_name) const {
+    common::Result<buffer_statistics> get_buffer_statistics(const std::string& metric_name) const {
         std::lock_guard<std::mutex> lock(buffers_mutex_);
         
         auto it = buffers_.find(metric_name);
@@ -396,13 +396,13 @@ public:
                                                "Buffer not found: " + metric_name);
         }
         
-        return make_success(it->second->strategy->get_statistics());
+        return common::ok(it->second->strategy->get_statistics());
     }
     
     /**
      * @brief Get buffer size for a specific metric
      */
-    result<size_t> get_buffer_size(const std::string& metric_name) const {
+    common::Result<size_t> get_buffer_size(const std::string& metric_name) const {
         std::lock_guard<std::mutex> lock(buffers_mutex_);
         
         auto it = buffers_.find(metric_name);
@@ -411,7 +411,7 @@ public:
                                     "Buffer not found: " + metric_name);
         }
         
-        return make_success(it->second->strategy->size());
+        return common::ok(it->second->strategy->size());
     }
     
     /**
@@ -433,21 +433,21 @@ public:
     /**
      * @brief Start background processing
      */
-    result_void start_background_processing() {
+    common::VoidResult start_background_processing() {
         if (running_.load(std::memory_order_acquire)) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Background processing already running");
         }
         
         if (!config_.enable_automatic_flushing) {
-            return make_result_void(monitoring_error_code::invalid_configuration,
+            return make_common::VoidResult(monitoring_error_code::invalid_configuration,
                              "Automatic flushing is disabled");
         }
         
         running_.store(true, std::memory_order_release);
         background_thread_ = std::thread(&buffer_manager::background_processing_loop, this);
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**
@@ -509,12 +509,12 @@ public:
     /**
      * @brief Remove buffer for a specific metric
      */
-    result_void remove_buffer(const std::string& metric_name) {
+    common::VoidResult remove_buffer(const std::string& metric_name) {
         std::lock_guard<std::mutex> lock(buffers_mutex_);
         
         auto it = buffers_.find(metric_name);
         if (it == buffers_.end()) {
-            return make_result_void(monitoring_error_code::collector_not_found,
+            return make_common::VoidResult(monitoring_error_code::collector_not_found,
                              "Buffer not found: " + metric_name);
         }
         
@@ -531,7 +531,7 @@ public:
         buffers_.erase(it);
         stats_.total_buffers.fetch_sub(1, std::memory_order_relaxed);
         
-        return make_void_success();
+        return common::ok();
     }
     
     /**

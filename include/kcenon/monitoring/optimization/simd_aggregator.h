@@ -223,12 +223,11 @@ public:
     /**
      * @brief Calculate sum of elements
      * @param data Input data vector
-     * @return result<double> containing sum
+     * @return common::Result<double> containing sum
      */
-    result<double> sum(const std::vector<double>& data) {
+    common::Result<double> sum(const std::vector<double>& data) {
         if (data.empty()) {
-            return make_error<double>(monitoring_error_code::invalid_argument,
-                                      "Cannot compute sum of empty data");
+            return common::Result<double>::err(error_info(monitoring_error_code::invalid_argument, "Cannot compute sum of empty data").to_common_error());
         }
 
         stats_.total_operations++;
@@ -250,12 +249,11 @@ public:
     /**
      * @brief Calculate mean of elements
      * @param data Input data vector
-     * @return result<double> containing mean
+     * @return common::Result<double> containing mean
      */
-    result<double> mean(const std::vector<double>& data) {
+    common::Result<double> mean(const std::vector<double>& data) {
         if (data.empty()) {
-            return make_error<double>(monitoring_error_code::invalid_argument,
-                                      "Cannot compute mean of empty data");
+            return common::Result<double>::err(error_info(monitoring_error_code::invalid_argument, "Cannot compute mean of empty data").to_common_error());
         }
 
         auto sum_result = sum(data);
@@ -269,12 +267,11 @@ public:
     /**
      * @brief Find minimum value
      * @param data Input data vector
-     * @return result<double> containing minimum
+     * @return common::Result<double> containing minimum
      */
-    result<double> min(const std::vector<double>& data) {
+    common::Result<double> min(const std::vector<double>& data) {
         if (data.empty()) {
-            return make_error<double>(monitoring_error_code::invalid_argument,
-                                      "Cannot compute min of empty data");
+            return common::Result<double>::err(error_info(monitoring_error_code::invalid_argument, "Cannot compute min of empty data").to_common_error());
         }
 
         stats_.total_operations++;
@@ -296,12 +293,11 @@ public:
     /**
      * @brief Find maximum value
      * @param data Input data vector
-     * @return result<double> containing maximum
+     * @return common::Result<double> containing maximum
      */
-    result<double> max(const std::vector<double>& data) {
+    common::Result<double> max(const std::vector<double>& data) {
         if (data.empty()) {
-            return make_error<double>(monitoring_error_code::invalid_argument,
-                                      "Cannot compute max of empty data");
+            return common::Result<double>::err(error_info(monitoring_error_code::invalid_argument, "Cannot compute max of empty data").to_common_error());
         }
 
         stats_.total_operations++;
@@ -323,12 +319,11 @@ public:
     /**
      * @brief Calculate variance of elements
      * @param data Input data vector
-     * @return result<double> containing variance
+     * @return common::Result<double> containing variance
      */
-    result<double> variance(const std::vector<double>& data) {
+    common::Result<double> variance(const std::vector<double>& data) {
         if (data.empty()) {
-            return make_error<double>(monitoring_error_code::invalid_argument,
-                                      "Cannot compute variance of empty data");
+            return common::Result<double>::err(error_info(monitoring_error_code::invalid_argument, "Cannot compute variance of empty data").to_common_error());
         }
 
         if (data.size() == 1) {
@@ -354,12 +349,11 @@ public:
     /**
      * @brief Compute full statistical summary
      * @param data Input data vector
-     * @return result<statistical_summary> containing statistics
+     * @return common::Result<statistical_summary> containing statistics
      */
-    result<statistical_summary> compute_summary(const std::vector<double>& data) {
+    common::Result<statistical_summary> compute_summary(const std::vector<double>& data) {
         if (data.empty()) {
-            return make_error<statistical_summary>(monitoring_error_code::invalid_argument,
-                                                   "Cannot compute summary of empty data");
+            return common::Result<statistical_summary>::err(error_info(monitoring_error_code::invalid_argument, "Cannot compute summary of empty data").to_common_error());
         }
 
         statistical_summary summary;
@@ -368,8 +362,7 @@ public:
         // Compute sum
         auto sum_result = sum(data);
         if (sum_result.is_err()) {
-            return make_error<statistical_summary>(monitoring_error_code::operation_failed,
-                                                   "Failed to compute sum");
+            return common::Result<statistical_summary>::err(error_info(monitoring_error_code::operation_failed, "Failed to compute sum").to_common_error());
         }
         summary.sum = sum_result.value();
         summary.mean = summary.sum / static_cast<double>(summary.count);
@@ -379,8 +372,7 @@ public:
         auto max_result = max(data);
 
         if (min_result.is_err() || max_result.is_err()) {
-            return make_error<statistical_summary>(monitoring_error_code::operation_failed,
-                                                   "Failed to compute min/max");
+            return common::Result<statistical_summary>::err(error_info(monitoring_error_code::operation_failed, "Failed to compute min/max").to_common_error());
         }
 
         summary.min_val = min_result.value();
@@ -408,9 +400,9 @@ public:
 
     /**
      * @brief Self-test SIMD functionality
-     * @return result<bool> indicating if SIMD is working correctly
+     * @return common::Result<bool> indicating if SIMD is working correctly
      */
-    result<bool> test_simd() {
+    common::Result<bool> test_simd() {
         // Create test data
         std::vector<double> test_data = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};
 

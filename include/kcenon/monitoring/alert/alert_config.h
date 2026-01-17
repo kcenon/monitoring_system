@@ -150,14 +150,13 @@ public:
      * @brief Validate template syntax
      * @return Result with validation errors if any
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         // Check for unclosed variable references
         std::regex pattern(R"(\$\{[^}]*$)");
         if (std::regex_search(template_str_, pattern)) {
-            return make_void_error(monitoring_error_code::validation_failed,
-                                   "Unclosed variable reference in template");
+            return common::VoidResult::err(error_info(monitoring_error_code::validation_failed, "Unclosed variable reference in template").to_common_error());
         }
-        return make_void_success();
+        return common::ok();
     }
 
 private:
@@ -250,7 +249,7 @@ public:
      * @param def Rule definition
      * @return Result containing built rule or error
      */
-    static result<std::shared_ptr<alert_rule>> build(const rule_definition& def) {
+    static common::Result<std::shared_ptr<alert_rule>> build(const rule_definition& def) {
         // Validate required fields
         if (def.name.empty()) {
             return make_error<std::shared_ptr<alert_rule>>(
@@ -318,29 +317,29 @@ public:
             rule->set_runbook_url(def.runbook_url);
         }
 
-        return make_success(std::move(rule));
+        return common::ok(std::move(rule));
     }
 
 private:
-    static result<alert_severity> parse_severity(const std::string& str) {
+    static common::Result<alert_severity> parse_severity(const std::string& str) {
         if (str.empty() || str == "warning") {
-            return make_success(alert_severity::warning);
+            return common::ok(alert_severity::warning);
         }
         if (str == "info") {
-            return make_success(alert_severity::info);
+            return common::ok(alert_severity::info);
         }
         if (str == "critical") {
-            return make_success(alert_severity::critical);
+            return common::ok(alert_severity::critical);
         }
         if (str == "emergency") {
-            return make_success(alert_severity::emergency);
+            return common::ok(alert_severity::emergency);
         }
         return make_error<alert_severity>(
             monitoring_error_code::invalid_argument,
             "Unknown severity: " + str);
     }
 
-    static result<std::shared_ptr<alert_trigger>> build_trigger(
+    static common::Result<std::shared_ptr<alert_trigger>> build_trigger(
             const rule_definition::trigger_config& cfg) {
         if (cfg.type.empty() || cfg.type == "threshold") {
             auto op = parse_operator(cfg.operator_str);
@@ -378,24 +377,24 @@ private:
             "Unknown trigger type: " + cfg.type);
     }
 
-    static result<comparison_operator> parse_operator(const std::string& str) {
+    static common::Result<comparison_operator> parse_operator(const std::string& str) {
         if (str.empty() || str == ">") {
-            return make_success(comparison_operator::greater_than);
+            return common::ok(comparison_operator::greater_than);
         }
         if (str == ">=") {
-            return make_success(comparison_operator::greater_or_equal);
+            return common::ok(comparison_operator::greater_or_equal);
         }
         if (str == "<") {
-            return make_success(comparison_operator::less_than);
+            return common::ok(comparison_operator::less_than);
         }
         if (str == "<=") {
-            return make_success(comparison_operator::less_or_equal);
+            return common::ok(comparison_operator::less_or_equal);
         }
         if (str == "==" || str == "=") {
-            return make_success(comparison_operator::equal);
+            return common::ok(comparison_operator::equal);
         }
         if (str == "!=" || str == "<>") {
-            return make_success(comparison_operator::not_equal);
+            return common::ok(comparison_operator::not_equal);
         }
         return make_error<comparison_operator>(
             monitoring_error_code::invalid_argument,
@@ -422,10 +421,9 @@ public:
      * @param rule Rule to register
      * @return Result indicating success or failure
      */
-    result_void register_rule(std::shared_ptr<alert_rule> rule) {
+    common::VoidResult register_rule(std::shared_ptr<alert_rule> rule) {
         if (!rule) {
-            return make_void_error(monitoring_error_code::invalid_argument,
-                                   "Rule cannot be null");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument, "Rule cannot be null").to_common_error());
         }
 
         std::lock_guard<std::mutex> lock(mutex_);
@@ -438,7 +436,7 @@ public:
             callback(name, rule, false);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**
@@ -446,7 +444,7 @@ public:
      * @param name Rule name
      * @return Result indicating success or failure
      */
-    result_void unregister_rule(const std::string& name) {
+    common::VoidResult unregister_rule(const std::string& name) {
         std::lock_guard<std::mutex> lock(mutex_);
 
         auto it = rules_.find(name);
@@ -463,7 +461,7 @@ public:
             callback(name, rule, true);
         }
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**
@@ -524,7 +522,7 @@ public:
      * @param definitions Vector of rule definitions
      * @return Result with count of successfully loaded rules
      */
-    result<size_t> load_definitions(const std::vector<rule_definition>& definitions) {
+    common::Result<size_t> load_definitions(const std::vector<rule_definition>& definitions) {
         size_t loaded = 0;
         std::vector<std::string> errors;
 
@@ -548,7 +546,7 @@ public:
                 "Failed to load any rules: " + errors.front());
         }
 
-        return make_success(loaded);
+        return common::ok(loaded);
     }
 
     /**

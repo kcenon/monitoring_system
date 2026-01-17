@@ -145,14 +145,14 @@ public:
     /**
      * @brief Execute a function with circuit breaker protection and fallback
      *
-     * @tparam Func The function type to execute (must return result<T>)
+     * @tparam Func The function type to execute (must return common::Result<T>)
      * @tparam Fallback The fallback function type
      * @param func The function to execute
      * @param fallback The fallback function to execute on failure or open circuit
-     * @return result<T> containing success value or error
+     * @return common::Result<T> containing success value or error
      */
     template<typename Func, typename Fallback>
-    result<T> execute(Func&& func, Fallback&& fallback) {
+    common::Result<T> execute(Func&& func, Fallback&& fallback) {
         metrics_.total_calls++;
 
         auto current_state = check_state();
@@ -175,12 +175,12 @@ public:
     /**
      * @brief Execute a function with circuit breaker protection
      *
-     * @tparam Func The function type to execute (must return result<T>)
+     * @tparam Func The function type to execute (must return common::Result<T>)
      * @param func The function to execute
-     * @return result<T> containing success value or error
+     * @return common::Result<T> containing success value or error
      */
     template<typename Func>
-    result<T> execute(Func&& func) {
+    common::Result<T> execute(Func&& func) {
         metrics_.total_calls++;
 
         auto current_state = check_state();

@@ -93,33 +93,29 @@ struct storage_config {
 
     /**
      * @brief Validate configuration
-     * @return result<bool> indicating validation success or failure
+     * @return common::Result<bool> indicating validation success or failure
      */
-    result<bool> validate() const {
+    common::Result<bool> validate() const {
         // Memory buffer doesn't require path
         if (type != storage_backend_type::memory_buffer) {
             if (path.empty() && host.empty()) {
-                return make_error<bool>(monitoring_error_code::invalid_configuration,
-                                       "Path or host required for non-memory storage");
+                return common::Result<bool>::err(error_info(monitoring_error_code::invalid_configuration, "Path or host required for non-memory storage").to_common_error());
             }
         }
 
         if (max_capacity == 0) {
-            return make_error<bool>(monitoring_error_code::invalid_capacity,
-                                   "Capacity must be greater than 0");
+            return common::Result<bool>::err(error_info(monitoring_error_code::invalid_capacity, "Capacity must be greater than 0").to_common_error());
         }
 
         if (batch_size == 0) {
-            return make_error<bool>(monitoring_error_code::invalid_configuration,
-                                   "Batch size must be greater than 0");
+            return common::Result<bool>::err(error_info(monitoring_error_code::invalid_configuration, "Batch size must be greater than 0").to_common_error());
         }
 
         if (batch_size > max_capacity) {
-            return make_error<bool>(monitoring_error_code::invalid_configuration,
-                                   "Batch size cannot exceed capacity");
+            return common::Result<bool>::err(error_info(monitoring_error_code::invalid_configuration, "Batch size cannot exceed capacity").to_common_error());
         }
 
-        return make_success(true);
+        return common::ok(true);
     }
 };
 
@@ -130,13 +126,13 @@ class snapshot_storage_backend {
 public:
     virtual ~snapshot_storage_backend() = default;
 
-    virtual result<bool> store(const metrics_snapshot& snapshot) = 0;
-    virtual result<metrics_snapshot> retrieve(size_t index) = 0;
-    virtual result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) = 0;
+    virtual common::Result<bool> store(const metrics_snapshot& snapshot) = 0;
+    virtual common::Result<metrics_snapshot> retrieve(size_t index) = 0;
+    virtual common::Result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) = 0;
     virtual size_t size() const = 0;
     virtual size_t capacity() const = 0;
-    virtual result<bool> flush() = 0;
-    virtual result<bool> clear() = 0;
+    virtual common::Result<bool> flush() = 0;
+    virtual common::Result<bool> clear() = 0;
     virtual std::unordered_map<std::string, size_t> get_stats() const = 0;
 };
 
@@ -150,7 +146,7 @@ public:
     explicit file_storage_backend(const storage_config& config)
         : config_(config) {}
 
-    result<bool> store(const metrics_snapshot& snapshot) override {
+    common::Result<bool> store(const metrics_snapshot& snapshot) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         // Remove oldest if at capacity
@@ -159,21 +155,20 @@ public:
         }
 
         snapshots_.push_back(snapshot);
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<metrics_snapshot> retrieve(size_t index) override {
+    common::Result<metrics_snapshot> retrieve(size_t index) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (index >= snapshots_.size()) {
-            return make_error<metrics_snapshot>(monitoring_error_code::not_found,
-                                               "Snapshot index out of range");
+            return common::Result<metrics_snapshot>::err(error_info(monitoring_error_code::not_found, "Snapshot index out of range").to_common_error());
         }
 
-        return make_success(snapshots_[index]);
+        return common::ok(snapshots_[index]);
     }
 
-    result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
+    common::Result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         std::vector<metrics_snapshot> result;
@@ -183,7 +178,7 @@ public:
             result.push_back(snapshots_[i]);
         }
 
-        return make_success(std::move(result));
+        return common::ok(std::move(result));
     }
 
     size_t size() const override {
@@ -195,15 +190,15 @@ public:
         return config_.max_capacity;
     }
 
-    result<bool> flush() override {
+    common::Result<bool> flush() override {
         // Stub implementation - actual file I/O would go here
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<bool> clear() override {
+    common::Result<bool> clear() override {
         std::lock_guard<std::mutex> lock(mutex_);
         snapshots_.clear();
-        return make_success(true);
+        return common::ok(true);
     }
 
     std::unordered_map<std::string, size_t> get_stats() const override {
@@ -230,7 +225,7 @@ public:
     explicit database_storage_backend(const storage_config& config)
         : config_(config), connected_(true) {}
 
-    result<bool> store(const metrics_snapshot& snapshot) override {
+    common::Result<bool> store(const metrics_snapshot& snapshot) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (snapshots_.size() >= config_.max_capacity) {
@@ -238,21 +233,20 @@ public:
         }
 
         snapshots_.push_back(snapshot);
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<metrics_snapshot> retrieve(size_t index) override {
+    common::Result<metrics_snapshot> retrieve(size_t index) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (index >= snapshots_.size()) {
-            return make_error<metrics_snapshot>(monitoring_error_code::not_found,
-                                               "Snapshot index out of range");
+            return common::Result<metrics_snapshot>::err(error_info(monitoring_error_code::not_found, "Snapshot index out of range").to_common_error());
         }
 
-        return make_success(snapshots_[index]);
+        return common::ok(snapshots_[index]);
     }
 
-    result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
+    common::Result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         std::vector<metrics_snapshot> result;
@@ -262,7 +256,7 @@ public:
             result.push_back(snapshots_[i]);
         }
 
-        return make_success(std::move(result));
+        return common::ok(std::move(result));
     }
 
     size_t size() const override {
@@ -274,14 +268,14 @@ public:
         return config_.max_capacity;
     }
 
-    result<bool> flush() override {
-        return make_success(true);
+    common::Result<bool> flush() override {
+        return common::ok(true);
     }
 
-    result<bool> clear() override {
+    common::Result<bool> clear() override {
         std::lock_guard<std::mutex> lock(mutex_);
         snapshots_.clear();
-        return make_success(true);
+        return common::ok(true);
     }
 
     std::unordered_map<std::string, size_t> get_stats() const override {
@@ -310,7 +304,7 @@ public:
     explicit cloud_storage_backend(const storage_config& config)
         : config_(config) {}
 
-    result<bool> store(const metrics_snapshot& snapshot) override {
+    common::Result<bool> store(const metrics_snapshot& snapshot) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (snapshots_.size() >= config_.max_capacity) {
@@ -318,21 +312,20 @@ public:
         }
 
         snapshots_.push_back(snapshot);
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<metrics_snapshot> retrieve(size_t index) override {
+    common::Result<metrics_snapshot> retrieve(size_t index) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (index >= snapshots_.size()) {
-            return make_error<metrics_snapshot>(monitoring_error_code::not_found,
-                                               "Snapshot index out of range");
+            return common::Result<metrics_snapshot>::err(error_info(monitoring_error_code::not_found, "Snapshot index out of range").to_common_error());
         }
 
-        return make_success(snapshots_[index]);
+        return common::ok(snapshots_[index]);
     }
 
-    result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
+    common::Result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         std::vector<metrics_snapshot> result;
@@ -342,7 +335,7 @@ public:
             result.push_back(snapshots_[i]);
         }
 
-        return make_success(std::move(result));
+        return common::ok(std::move(result));
     }
 
     size_t size() const override {
@@ -354,14 +347,14 @@ public:
         return config_.max_capacity;
     }
 
-    result<bool> flush() override {
-        return make_success(true);
+    common::Result<bool> flush() override {
+        return common::ok(true);
     }
 
-    result<bool> clear() override {
+    common::Result<bool> clear() override {
         std::lock_guard<std::mutex> lock(mutex_);
         snapshots_.clear();
-        return make_success(true);
+        return common::ok(true);
     }
 
     std::unordered_map<std::string, size_t> get_stats() const override {
@@ -388,7 +381,7 @@ public:
     explicit memory_storage_backend(const storage_config& config)
         : config_(config) {}
 
-    result<bool> store(const metrics_snapshot& snapshot) override {
+    common::Result<bool> store(const metrics_snapshot& snapshot) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (snapshots_.size() >= config_.max_capacity) {
@@ -396,21 +389,20 @@ public:
         }
 
         snapshots_.push_back(snapshot);
-        return make_success(true);
+        return common::ok(true);
     }
 
-    result<metrics_snapshot> retrieve(size_t index) override {
+    common::Result<metrics_snapshot> retrieve(size_t index) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (index >= snapshots_.size()) {
-            return make_error<metrics_snapshot>(monitoring_error_code::not_found,
-                                               "Snapshot index out of range");
+            return common::Result<metrics_snapshot>::err(error_info(monitoring_error_code::not_found, "Snapshot index out of range").to_common_error());
         }
 
-        return make_success(snapshots_[index]);
+        return common::ok(snapshots_[index]);
     }
 
-    result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
+    common::Result<std::vector<metrics_snapshot>> retrieve_range(size_t start, size_t count) override {
         std::lock_guard<std::mutex> lock(mutex_);
 
         std::vector<metrics_snapshot> result;
@@ -420,7 +412,7 @@ public:
             result.push_back(snapshots_[i]);
         }
 
-        return make_success(std::move(result));
+        return common::ok(std::move(result));
     }
 
     size_t size() const override {
@@ -432,14 +424,14 @@ public:
         return config_.max_capacity;
     }
 
-    result<bool> flush() override {
-        return make_success(true);
+    common::Result<bool> flush() override {
+        return common::ok(true);
     }
 
-    result<bool> clear() override {
+    common::Result<bool> clear() override {
         std::lock_guard<std::mutex> lock(mutex_);
         snapshots_.clear();
-        return make_success(true);
+        return common::ok(true);
     }
 
     std::unordered_map<std::string, size_t> get_stats() const override {
@@ -583,7 +575,7 @@ public:
     virtual bool store(const std::string& key, const std::string& value) = 0;
     virtual std::string retrieve(const std::string& key) = 0;
     virtual bool remove(const std::string& key) = 0;
-    virtual result<bool> flush() { return make_success(true); }
+    virtual common::Result<bool> flush() { return common::ok(true); }
 };
 
 /**

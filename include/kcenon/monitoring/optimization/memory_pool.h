@@ -244,17 +244,16 @@ public:
 
     /**
      * @brief Allocate a memory block
-     * @return result<void*> containing pointer to allocated block
+     * @return common::Result<void*> containing pointer to allocated block
      */
-    result<void*> allocate() {
+    common::Result<void*> allocate() {
         std::lock_guard<std::mutex> lock(mutex_);
 
         if (free_blocks_.empty()) {
             // Try to grow the pool
             if (!grow_pool()) {
                 stats_.allocation_failures++;
-                return make_error<void*>(monitoring_error_code::resource_unavailable,
-                                         "Memory pool exhausted");
+                return common::Result<void*>::err(error_info(monitoring_error_code::resource_unavailable, "Memory pool exhausted").to_common_error());
             }
         }
 
@@ -270,26 +269,24 @@ public:
     /**
      * @brief Deallocate a memory block
      * @param ptr Pointer to the block to deallocate
-     * @return result_void indicating success or error
+     * @return common::VoidResult indicating success or error
      */
-    result_void deallocate(void* ptr) {
+    common::VoidResult deallocate(void* ptr) {
         if (ptr == nullptr) {
-            return make_void_error(monitoring_error_code::invalid_argument,
-                                   "Cannot deallocate null pointer");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument, "Cannot deallocate null pointer").to_common_error());
         }
 
         std::lock_guard<std::mutex> lock(mutex_);
 
         // Verify the pointer belongs to this pool
         if (!is_owned_block(ptr)) {
-            return make_void_error(monitoring_error_code::invalid_argument,
-                                   "Pointer does not belong to this pool");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument, "Pointer does not belong to this pool").to_common_error());
         }
 
         free_blocks_.push_back(ptr);
         stats_.total_deallocations++;
 
-        return make_void_success();
+        return common::ok();
     }
 
     /**
@@ -297,19 +294,17 @@ public:
      * @tparam T The object type
      * @tparam Args Constructor argument types
      * @param args Constructor arguments
-     * @return result<T*> containing pointer to constructed object
+     * @return common::Result<T*> containing pointer to constructed object
      */
     template<typename T, typename... Args>
-    result<T*> allocate_object(Args&&... args) {
+    common::Result<T*> allocate_object(Args&&... args) {
         if (sizeof(T) > block_size_) {
-            return make_error<T*>(monitoring_error_code::invalid_argument,
-                                  "Object size exceeds block size");
+            return common::Result<T*>::err(error_info(monitoring_error_code::invalid_argument, "Object size exceeds block size").to_common_error());
         }
 
         auto result = allocate();
         if (result.is_err()) {
-            return make_error<T*>(monitoring_error_code::resource_unavailable,
-                                  "Failed to allocate memory for object");
+            return common::Result<T*>::err(error_info(monitoring_error_code::resource_unavailable, "Failed to allocate memory for object").to_common_error());
         }
 
         void* ptr = result.value();
@@ -322,13 +317,12 @@ public:
      * @brief Destroy and deallocate an object
      * @tparam T The object type
      * @param obj Pointer to the object
-     * @return result_void indicating success or error
+     * @return common::VoidResult indicating success or error
      */
     template<typename T>
-    result_void deallocate_object(T* obj) {
+    common::VoidResult deallocate_object(T* obj) {
         if (obj == nullptr) {
-            return make_void_error(monitoring_error_code::invalid_argument,
-                                   "Cannot deallocate null object");
+            return common::VoidResult::err(error_info(monitoring_error_code::invalid_argument, "Cannot deallocate null object").to_common_error());
         }
 
         obj->~T();

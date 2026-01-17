@@ -59,23 +59,23 @@ struct otlp_grpc_config {
     /**
      * @brief Validate configuration
      */
-    result_void validate() const {
+    common::VoidResult validate() const {
         if (endpoint.empty()) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::invalid_configuration,
                 "OTLP endpoint cannot be empty",
                 "otlp_grpc_config"
             ).to_common_error());
         }
         if (timeout.count() <= 0) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::invalid_configuration,
                 "Timeout must be positive",
                 "otlp_grpc_config"
             ).to_common_error());
         }
         if (max_batch_size == 0) {
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::invalid_configuration,
                 "Batch size must be greater than 0",
                 "otlp_grpc_config"
@@ -411,9 +411,9 @@ public:
 
     /**
      * @brief Start the exporter
-     * @return result_void indicating success or failure
+     * @return common::VoidResult indicating success or failure
      */
-    result_void start() {
+    common::VoidResult start() {
         auto validate_result = config_.validate();
         if (validate_result.is_err()) {
             return validate_result;
@@ -435,16 +435,16 @@ public:
     /**
      * @brief Export a batch of spans
      * @param spans Spans to export
-     * @return result_void indicating success or failure
+     * @return common::VoidResult indicating success or failure
      */
-    result_void export_spans(const std::vector<trace_span>& spans) override {
+    common::VoidResult export_spans(const std::vector<trace_span>& spans) override {
         if (spans.empty()) {
             return common::ok();
         }
 
         if (!transport_->is_connected()) {
             dropped_spans_ += spans.size();
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::network_error,
                 "Not connected to OTLP receiver",
                 "otlp_grpc_exporter"
@@ -487,7 +487,7 @@ public:
         } else {
             failed_exports_++;
             dropped_spans_ += spans.size();
-            return result_void::err(error_info(
+            return common::VoidResult::err(error_info(
                 monitoring_error_code::operation_failed,
                 "Failed to export spans: " + send_result.error().message,
                 "otlp_grpc_exporter"
@@ -498,7 +498,7 @@ public:
     /**
      * @brief Flush pending exports
      */
-    result_void flush() override {
+    common::VoidResult flush() override {
         // Synchronous exporter - nothing to flush
         return common::ok();
     }
@@ -506,7 +506,7 @@ public:
     /**
      * @brief Shutdown the exporter
      */
-    result_void shutdown() override {
+    common::VoidResult shutdown() override {
         running_ = false;
         transport_->disconnect();
         return common::ok();
@@ -554,7 +554,7 @@ public:
     }
 
 private:
-    result<grpc_response> send_with_retry(const grpc_request& request) {
+    common::Result<grpc_response> send_with_retry(const grpc_request& request) {
         std::size_t attempt = 0;
         auto backoff = config_.initial_backoff;
 
