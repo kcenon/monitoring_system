@@ -63,7 +63,7 @@ protected:
     // Helper function that fails
     result_void failing_operation() {
         ++call_count;
-        return make_void_error(monitoring_error_code::operation_failed, "Simulated failure");
+        return kcenon::common::VoidResult::err(static_cast<int>(monitoring_error_code::operation_failed), "Simulated failure");
     }
     
     // Helper function for rollback

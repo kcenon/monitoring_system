@@ -233,7 +233,7 @@ TEST_F(IntegrationE2ETest, HealthMonitoringWithRecovery) {
                 service_healthy = true;
                 return make_success(true);
             }
-            return make_error<bool>(monitoring_error_code::operation_failed,
+            return kcenon::common::make_error<bool>(static_cast<int>(monitoring_error_code::operation_failed),
                                     "Still recovering");
         }
     );
@@ -311,7 +311,7 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
 
         // Fail first 3 calls, then succeed
         if (call_count <= 3 && should_fail) {
-            return make_error<bool>(monitoring_error_code::operation_failed,
+            return kcenon::common::make_error<bool>(static_cast<int>(monitoring_error_code::operation_failed),
                                     "Simulated failure");
         }
 

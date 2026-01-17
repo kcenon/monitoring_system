@@ -58,7 +58,7 @@ protected:
     result<int> failing_operation() {
         int current_call = ++call_count;
         if (success_after_attempts > 0 && current_call <= success_after_attempts) {
-            return make_error<int>(monitoring_error_code::operation_failed, 
+            return kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::operation_failed), 
                                  "Simulated failure on attempt " + std::to_string(current_call));
         }
         return make_success(42);
@@ -67,7 +67,7 @@ protected:
     // Helper function that always fails
     result<int> always_failing_operation() {
         ++call_count;
-        return make_error<int>(monitoring_error_code::operation_failed, "Always fails");
+        return kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::operation_failed), "Always fails");
     }
     
     // Helper function that always succeeds

@@ -52,7 +52,7 @@ TEST_F(ResultTypesTest, SuccessResultContainsValue) {
 }
 
 TEST_F(ResultTypesTest, ErrorResultContainsError) {
-    auto result = kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::collector_not_found), "Test error");
+    auto result = kcenon::common::kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::collector_not_found), "Test error");
 
     EXPECT_FALSE(result.is_ok());
     EXPECT_TRUE(result.is_err());
@@ -61,7 +61,7 @@ TEST_F(ResultTypesTest, ErrorResultContainsError) {
 }
 
 TEST_F(ResultTypesTest, ValueOrReturnsDefaultOnError) {
-    auto error_result = kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::unknown_error), "");
+    auto error_result = kcenon::common::kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::unknown_error), "");
     EXPECT_EQ(error_result.value_or(100), 100);
 
     auto success_result = kcenon::common::ok(42);
@@ -77,7 +77,7 @@ TEST_F(ResultTypesTest, MapTransformsSuccessValue) {
 }
 
 TEST_F(ResultTypesTest, MapPropagatesError) {
-    auto result = kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::invalid_configuration), "");
+    auto result = kcenon::common::kcenon::common::make_error<int>(static_cast<int>(monitoring_error_code::invalid_configuration), "");
     auto mapped = result.map([](int x) { return x * 2; });
 
     EXPECT_FALSE(mapped.is_ok());
@@ -90,7 +90,7 @@ TEST_F(ResultTypesTest, AndThenChainsOperations) {
         if (x > 5) {
             return kcenon::common::ok(std::string("Large"));
         }
-        return kcenon::common::make_error<std::string>(static_cast<int>(monitoring_error_code::invalid_configuration), "");
+        return kcenon::common::kcenon::common::make_error<std::string>(static_cast<int>(monitoring_error_code::invalid_configuration), "");
     });
 
     EXPECT_TRUE(chained.is_ok());
@@ -120,7 +120,7 @@ TEST_F(ResultTypesTest, ErrorCodeToString) {
 }
 
 TEST_F(ResultTypesTest, ErrorInfoWithContext) {
-    auto result = kcenon::common::make_error<int>(
+    auto result = kcenon::common::kcenon::common::make_error<int>(
         static_cast<int>(monitoring_error_code::collection_failed),
         "Failed to collect metrics",
         "",

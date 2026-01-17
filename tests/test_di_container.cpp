@@ -147,7 +147,7 @@ namespace kcenon::monitoring {
                 return parent_->resolve<TInterface>();
             }
 
-            return kcenon::common::make_error<std::shared_ptr<TInterface>>(
+            return kcenon::common::kcenon::common::make_error<std::shared_ptr<TInterface>>(
                 static_cast<int>(monitoring_error_code::collector_not_found), "Service not found");
         }
 
@@ -186,7 +186,7 @@ namespace kcenon::monitoring {
                 return parent_->resolve<TInterface>(name);
             }
 
-            return kcenon::common::make_error<std::shared_ptr<TInterface>>(
+            return kcenon::common::kcenon::common::make_error<std::shared_ptr<TInterface>>(
                 static_cast<int>(monitoring_error_code::collector_not_found), "Named service not found");
         }
 
