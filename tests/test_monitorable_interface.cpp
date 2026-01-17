@@ -30,27 +30,27 @@ public:
     explicit test_monitorable_component(const std::string& id)
         : monitorable_component(id) {}
     
-    result<monitoring_data> get_monitoring_data() const override {
+    kcenon::common::Result<monitoring_data> get_monitoring_data() const override {
         if (!is_monitoring_enabled()) {
-            return make_error<monitoring_data>(
-                monitoring_error_code::monitoring_disabled,
+            return kcenon::common::make_error<monitoring_data>(
+                static_cast<int>(monitoring_error_code::monitoring_disabled),
                 "Monitoring is disabled for this component"
             );
         }
-        
+
         monitoring_data data(get_monitoring_id());
-        
+
         // Add metrics
         data.add_metric("operation_count", operation_count_.load());
         data.add_metric("cpu_usage", cpu_usage_.load());
         data.add_metric("memory_usage", memory_usage_.load());
-        
+
         // Add tags
         data.add_tag("component_type", "test");
         data.add_tag("version", "1.0.0");
         data.add_tag("status", "running");
-        
-        return make_success(std::move(data));
+
+        return kcenon::common::ok(std::move(data));
     }
     
     // Test methods to update internal state
