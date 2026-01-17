@@ -137,7 +137,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a3b197e1052ec204e782294f39553f9a7">   54</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ErrorResultContainsError) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">auto</span> result = kcenon::common::kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::collector_not_found), <span class="stringliteral">&quot;Test error&quot;</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">auto</span> result = kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::collector_not_found), <span class="stringliteral">&quot;Test error&quot;</span>);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    EXPECT_FALSE(result.is_ok());</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    EXPECT_TRUE(result.is_err());</div>
@@ -148,7 +148,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a6a8c2e7db966694728688a345163d632">   63</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ValueOrReturnsDefaultOnError) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">auto</span> error_result = kcenon::common::kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::unknown_error), <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">auto</span> error_result = kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::unknown_error), <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    EXPECT_EQ(error_result.value_or(100), 100);</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">auto</span> success_result = kcenon::common::ok(42);</div>
@@ -168,7 +168,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#ad25eec3fdcbc4cf517d923a434b60dfe">   79</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, MapPropagatesError) {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">auto</span> result = kcenon::common::kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">auto</span> result = kcenon::common::make_error&lt;int&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">auto</span> mapped = result.map([](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span> x * 2; });</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    EXPECT_FALSE(mapped.is_ok());</div>
@@ -183,7 +183,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">if</span> (x &gt; 5) {</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keywordflow">return</span> kcenon::common::ok(std::string(<span class="stringliteral">&quot;Large&quot;</span>));</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> kcenon::common::kcenon::common::make_error&lt;std::string&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> kcenon::common::make_error&lt;std::string&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::invalid_configuration), <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    });</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    EXPECT_TRUE(chained.is_ok());</div>
@@ -221,7 +221,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="../../df/de8/test__result__types_8cpp.html#a62ac79fd617e0999d4feede1c8009d64">  122</a></span><a class="code hl_function" href="../../df/de8/test__result__types_8cpp.html#aa345c4f50a2e4dae78c85e08d68ca32e">TEST_F</a>(<a class="code hl_class" href="../../d3/d70/classResultTypesTest.html">ResultTypesTest</a>, ErrorInfoWithContext) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">auto</span> result = kcenon::common::kcenon::common::make_error&lt;int&gt;(</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">auto</span> result = kcenon::common::make_error&lt;int&gt;(</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(monitoring_error_code::collection_failed),</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="stringliteral">&quot;Failed to collect metrics&quot;</span>,</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="stringliteral">&quot;&quot;</span>,</div>
@@ -330,7 +330,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 17 2026 15:29:42 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 17 2026 15:35:56 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
