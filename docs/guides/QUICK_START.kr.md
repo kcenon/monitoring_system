@@ -184,11 +184,11 @@ auto timer = monitor.start_timer("operation_duration_ms");
 - **[API 레퍼런스](../API_REFERENCE.md)** - 전체 API 문서
 - **[FAQ](FAQ.md)** - 자주 묻는 질문 (25개 이상의 Q&A)
 - **[모범 사례](BEST_PRACTICES.md)** - 프로덕션 패턴
-- **[문제 해결](TROUBLESHOOTING_KO.md)** - 일반적인 문제
+- **[문제 해결](TROUBLESHOOTING.kr.md)** - 일반적인 문제
 
 ### 예제
 
-- **[튜토리얼](TUTORIAL_KO.md)** - 예제를 포함한 단계별 튜토리얼
+- **[튜토리얼](TUTORIAL.kr.md)** - 예제를 포함한 단계별 튜토리얼
 - **[샘플](../../samples/)** - 예제 애플리케이션
 
 ---

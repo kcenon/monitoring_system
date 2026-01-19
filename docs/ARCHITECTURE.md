@@ -1,7 +1,7 @@
 Architecture Overview
 =====================
 
-> **Language:** **English** | [한국어](ARCHITECTURE_KO.md)
+> **Language:** **English** | [한국어](ARCHITECTURE.kr.md)
 
 Purpose
 - monitoring_system provides metrics collection, storage, analysis, health checks, and event‑driven observability for C++20 services.

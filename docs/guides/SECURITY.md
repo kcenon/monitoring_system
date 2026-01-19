@@ -1,6 +1,6 @@
 # Security Policy
 
-> **Language:** **English** | [한국어](SECURITY_KO.md)
+> **Language:** **English** | [한국어](SECURITY.kr.md)
 
 ## Table of Contents
 

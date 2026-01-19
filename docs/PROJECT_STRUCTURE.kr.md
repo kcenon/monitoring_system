@@ -163,7 +163,7 @@ monitoring_system/
 ├── 📄 .gitignore
 ├── 📄 LICENSE
 ├── 📄 README.md
-├── 📄 README_KO.md
+├── 📄 README.kr.md
 └── 📄 BASELINE.md
 ```
 
@@ -456,10 +456,10 @@ build/
 
 ## 참고 문서
 
-- [아키텍처 가이드](01-ARCHITECTURE.md) / [아키텍처 (한국어)](ARCHITECTURE_KO.md) - 시스템 설계 및 패턴
-- [API 레퍼런스](02-API_REFERENCE.md) / [API 레퍼런스 (한국어)](API_REFERENCE_KO.md) - 완전한 API 문서
-- [기능](FEATURES.md) / [기능 (한국어)](FEATURES_KO.md) - 상세 기능 문서
-- [벤치마크](BENCHMARKS.md) / [벤치마크 (한국어)](BENCHMARKS_KO.md) - 성능 메트릭
+- [아키텍처 가이드](01-ARCHITECTURE.md) / [아키텍처 (한국어)](ARCHITECTURE.kr.md) - 시스템 설계 및 패턴
+- [API 레퍼런스](02-API_REFERENCE.md) / [API 레퍼런스 (한국어)](API_REFERENCE.kr.md) - 완전한 API 문서
+- [기능](FEATURES.md) / [기능 (한국어)](FEATURES.kr.md) - 상세 기능 문서
+- [벤치마크](BENCHMARKS.md) / [벤치마크 (한국어)](BENCHMARKS.kr.md) - 성능 메트릭
 - [사용자 가이드](guides/USER_GUIDE.md) - 사용 예제
 
 ---

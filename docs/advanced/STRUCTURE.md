@@ -1,6 +1,6 @@
 # Monitoring System - Project Structure
 
-> **Language**: **English** | [한국어](STRUCTURE_KO.md)
+> **Language**: **English** | [한국어](STRUCTURE.kr.md)
 
 ## 📁 Directory Layout
 

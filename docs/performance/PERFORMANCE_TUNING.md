@@ -1,6 +1,6 @@
 # Performance Tuning Guide
 
-> **Language:** **English** | [한국어](PERFORMANCE_TUNING_KO.md)
+> **Language:** **English** | [한국어](PERFORMANCE_TUNING.kr.md)
 
 ## Table of Contents
 

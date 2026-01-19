@@ -224,20 +224,20 @@ monitoring_system/
 │   ├── integration/             # Integration guides
 │   ├── performance/             # Performance documentation
 │   ├── API_REFERENCE.md         # API documentation
-│   ├── API_REFERENCE_KO.md      # API documentation (Korean)
+│   ├── API_REFERENCE.kr.md      # API documentation (Korean)
 │   ├── ARCHITECTURE.md          # Architecture overview
-│   ├── ARCHITECTURE_KO.md
+│   ├── ARCHITECTURE.kr.md
 │   ├── BENCHMARKS.md            # Benchmark results
-│   ├── BENCHMARKS_KO.md
+│   ├── BENCHMARKS.kr.md
 │   ├── CHANGELOG.md             # Version history
-│   ├── CHANGELOG_KO.md
+│   ├── CHANGELOG.kr.md
 │   ├── FEATURES.md              # Feature documentation
-│   ├── FEATURES_KO.md
+│   ├── FEATURES.kr.md
 │   ├── KNOWN_ISSUES.md          # Known issues
 │   ├── PRODUCTION_QUALITY.md    # Production quality metrics
-│   ├── PRODUCTION_QUALITY_KO.md
+│   ├── PRODUCTION_QUALITY.kr.md
 │   ├── PROJECT_STRUCTURE.md     # This file
-│   ├── PROJECT_STRUCTURE_KO.md
+│   ├── PROJECT_STRUCTURE.kr.md
 │   └── README.md                # Documentation index
 ├── cmake/                       # CMake modules
 │   ├── monitoring_system-config.cmake.in
@@ -253,7 +253,7 @@ monitoring_system/
 ├── .gitignore                   # Git ignore patterns
 ├── LICENSE                      # BSD 3-Clause license
 ├── README.md                    # Main documentation
-└── README_KO.md                 # Korean documentation
+└── README.kr.md                 # Korean documentation
 ```
 
 ---
