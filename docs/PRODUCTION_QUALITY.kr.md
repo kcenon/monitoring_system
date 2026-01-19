@@ -310,9 +310,9 @@ Still reachable: 0 bytes in 0 blocks
 ---
 
 **참고 문서**:
-- [ARCHITECTURE.md](01-ARCHITECTURE.md) / [ARCHITECTURE_KO.md](ARCHITECTURE_KO.md) - 시스템 설계
-- [BENCHMARKS.md](BENCHMARKS.md) / [BENCHMARKS_KO.md](BENCHMARKS_KO.md) - 성능 메트릭
-- [API_REFERENCE.md](02-API_REFERENCE.md) / [API_REFERENCE_KO.md](API_REFERENCE_KO.md) - API 문서
+- [ARCHITECTURE.md](01-ARCHITECTURE.md) / [ARCHITECTURE.kr.md](ARCHITECTURE.kr.md) - 시스템 설계
+- [BENCHMARKS.md](BENCHMARKS.md) / [BENCHMARKS.kr.md](BENCHMARKS.kr.md) - 성능 메트릭
+- [API_REFERENCE.md](02-API_REFERENCE.md) / [API_REFERENCE.kr.md](API_REFERENCE.kr.md) - API 문서
 
 ---
 

@@ -1,6 +1,6 @@
 # Integration Guide - Monitoring System
 
-> **Language:** **English** | [한국어](INTEGRATION_KO.md)
+> **Language:** **English** | [한국어](INTEGRATION.kr.md)
 
 ## Overview
 

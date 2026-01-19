@@ -1,6 +1,6 @@
 # Migration Guide: Interface-Based Architecture
 
-> **Language:** **English** | [한국어](MIGRATION_GUIDE_V2_KO.md)
+> **Language:** **English** | [한국어](MIGRATION_GUIDE_V2.kr.md)
 
 **Target Audience**: Developers using logger_system and/or monitoring_system
 **Estimated Migration Time**: 1-2 hours for typical projects

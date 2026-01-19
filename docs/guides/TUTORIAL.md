@@ -1,6 +1,6 @@
 # Monitoring System Tutorial
 
-> **Language:** **English** | [한국어](TUTORIAL_KO.md)
+> **Language:** **English** | [한국어](TUTORIAL.kr.md)
 
 ## Introduction
 

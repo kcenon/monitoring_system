@@ -1,6 +1,6 @@
 # Monitoring System API Reference
 
-> **Language:** **English** | [한국어](API_REFERENCE_KO.md)
+> **Language:** **English** | [한국어](API_REFERENCE.kr.md)
 
 **Phase 4 - Current Implementation Status**
 

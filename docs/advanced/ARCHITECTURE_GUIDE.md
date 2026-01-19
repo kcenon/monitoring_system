@@ -1,6 +1,6 @@
 # Monitoring System Architecture Guide
 
-> **Language:** **English** | [한국어](ARCHITECTURE_GUIDE_KO.md)
+> **Language:** **English** | [한국어](ARCHITECTURE_GUIDE.kr.md)
 
 **Phase 4 - Current Implementation Architecture**
 

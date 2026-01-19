@@ -1,6 +1,6 @@
 # Monitoring System Documentation
 
-> **Language:** **English** | [한국어](README_KO.md)
+> **Language:** **English** | [한국어](README.kr.md)
 
 **Version:** 0.1.0
 **Last Updated:** 2025-11-11
@@ -42,8 +42,8 @@ Essential documents for understanding the system:
 
 | Document | Description | Korean | Lines |
 |----------|-------------|--------|-------|
-| [01-ARCHITECTURE.md](01-ARCHITECTURE.md) | System architecture, event bus, integration topology | [🇰🇷](01-ARCHITECTURE_KO.md) | 50+ |
-| [02-API_REFERENCE.md](02-API_REFERENCE.md) | Complete API docs: metrics, tracing, alerting, dashboard | [🇰🇷](02-API_REFERENCE_KO.md) | 1000+ |
+| [01-ARCHITECTURE.md](01-ARCHITECTURE.md) | System architecture, event bus, integration topology | [🇰🇷](01-ARCHITECTURE.kr.md) | 50+ |
+| [02-API_REFERENCE.md](02-API_REFERENCE.md) | Complete API docs: metrics, tracing, alerting, dashboard | [🇰🇷](02-API_REFERENCE.kr.md) | 1000+ |
 
 ### 📗 User Guides
 
@@ -53,10 +53,10 @@ Step-by-step guides for users:
 |----------|-------------|--------|-------|
 | [QUICK_START.md](guides/QUICK_START.md) | 5-minute getting started guide | - | 708 |
 | [FAQ.md](guides/FAQ.md) | 25 frequently asked questions with examples | - | 991 |
-| [TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md) | Common problems and solutions | [🇰🇷](guides/TROUBLESHOOTING_KO.md) | 600+ |
+| [TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md) | Common problems and solutions | [🇰🇷](guides/TROUBLESHOOTING.kr.md) | 600+ |
 | [BEST_PRACTICES.md](guides/BEST_PRACTICES.md) | Production patterns for metrics, alerting, tracing | - | 1190 |
-| [TUTORIAL.md](guides/TUTORIAL.md) | Step-by-step tutorial with examples | [🇰🇷](guides/TUTORIAL_KO.md) | 784 |
-| [SECURITY.md](guides/SECURITY.md) | Security policy and vulnerability reporting | [🇰🇷](guides/SECURITY_KO.md) | 200+ |
+| [TUTORIAL.md](guides/TUTORIAL.md) | Step-by-step tutorial with examples | [🇰🇷](guides/TUTORIAL.kr.md) | 784 |
+| [SECURITY.md](guides/SECURITY.md) | Security policy and vulnerability reporting | [🇰🇷](guides/SECURITY.kr.md) | 200+ |
 
 ### 📙 Advanced Topics
 
@@ -64,10 +64,10 @@ For experienced users and contributors:
 
 | Document | Description | Korean | Lines |
 |----------|-------------|--------|-------|
-| [ARCHITECTURE_GUIDE.md](advanced/ARCHITECTURE_GUIDE.md) | Detailed system design and patterns | [🇰🇷](advanced/ARCHITECTURE_GUIDE_KO.md) | 800+ |
-| [ARCHITECTURE_ISSUES.md](advanced/ARCHITECTURE_ISSUES.md) | Known architectural issues | [🇰🇷](advanced/ARCHITECTURE_ISSUES_KO.md) | 200+ |
-| [CURRENT_STATE.md](advanced/CURRENT_STATE.md) | Current implementation status | [🇰🇷](advanced/CURRENT_STATE_KO.md) | 150+ |
-| [MIGRATION_GUIDE_V2.md](advanced/MIGRATION_GUIDE_V2.md) | Migration guide to version 2 | [🇰🇷](advanced/MIGRATION_GUIDE_V2_KO.md) | 300+ |
+| [ARCHITECTURE_GUIDE.md](advanced/ARCHITECTURE_GUIDE.md) | Detailed system design and patterns | [🇰🇷](advanced/ARCHITECTURE_GUIDE.kr.md) | 800+ |
+| [ARCHITECTURE_ISSUES.md](advanced/ARCHITECTURE_ISSUES.md) | Known architectural issues | [🇰🇷](advanced/ARCHITECTURE_ISSUES.kr.md) | 200+ |
+| [CURRENT_STATE.md](advanced/CURRENT_STATE.md) | Current implementation status | [🇰🇷](advanced/CURRENT_STATE.kr.md) | 150+ |
+| [MIGRATION_GUIDE_V2.md](advanced/MIGRATION_GUIDE_V2.md) | Migration guide to version 2 | [🇰🇷](advanced/MIGRATION_GUIDE_V2.kr.md) | 300+ |
 | [INTERFACE_SEPARATION_STRATEGY.md](advanced/INTERFACE_SEPARATION_STRATEGY.md) | Interface design strategy | - | 200+ |
 | [THREAD_LOCAL_COLLECTOR_DESIGN.md](advanced/THREAD_LOCAL_COLLECTOR_DESIGN.md) | Thread-local collection design | - | 150+ |
 | [PROFILING_GUIDE.md](advanced/PROFILING_GUIDE.md) | Performance profiling guide | - | 200+ |
@@ -78,11 +78,11 @@ Performance metrics and optimization:
 
 | Document | Description | Korean | Lines |
 |----------|-------------|--------|-------|
-| [BASELINE.md](performance/BASELINE.md) | Performance baseline: 80ns record, 5M ops/s | [🇰🇷](performance/BASELINE_KO.md) | 300+ |
+| [BASELINE.md](performance/BASELINE.md) | Performance baseline: 80ns record, 5M ops/s | [🇰🇷](performance/BASELINE.kr.md) | 300+ |
 | [PERFORMANCE_BASELINE.md](performance/PERFORMANCE_BASELINE.md) | Detailed performance metrics | - | 200+ |
-| [PERFORMANCE_TUNING.md](performance/PERFORMANCE_TUNING.md) | Performance tuning strategies | [🇰🇷](performance/PERFORMANCE_TUNING_KO.md) | 400+ |
-| [SANITIZER_BASELINE.md](performance/SANITIZER_BASELINE.md) | Sanitizer results (TSan, ASan, UBSan) | [🇰🇷](performance/SANITIZER_BASELINE_KO.md) | 150+ |
-| [STATIC_ANALYSIS_BASELINE.md](performance/STATIC_ANALYSIS_BASELINE.md) | Static analysis results (Clang-Tidy, Cppcheck) | [🇰🇷](performance/STATIC_ANALYSIS_BASELINE_KO.md) | 100+ |
+| [PERFORMANCE_TUNING.md](performance/PERFORMANCE_TUNING.md) | Performance tuning strategies | [🇰🇷](performance/PERFORMANCE_TUNING.kr.md) | 400+ |
+| [SANITIZER_BASELINE.md](performance/SANITIZER_BASELINE.md) | Sanitizer results (TSan, ASan, UBSan) | [🇰🇷](performance/SANITIZER_BASELINE.kr.md) | 150+ |
+| [STATIC_ANALYSIS_BASELINE.md](performance/STATIC_ANALYSIS_BASELINE.md) | Static analysis results (Clang-Tidy, Cppcheck) | [🇰🇷](performance/STATIC_ANALYSIS_BASELINE.kr.md) | 100+ |
 | [SPRINT_2_PERFORMANCE_RESULTS.md](performance/SPRINT_2_PERFORMANCE_RESULTS.md) | Sprint 2 performance achievements | - | 100+ |
 
 ### 🤝 Contributing
@@ -91,7 +91,7 @@ For contributors and maintainers:
 
 | Document | Description | Korean | Lines |
 |----------|-------------|--------|-------|
-| [CONTRIBUTING.md](contributing/CONTRIBUTING.md) | Contribution guidelines, code style, testing | [🇰🇷](contributing/CONTRIBUTING_KO.md) | 600+ |
+| [CONTRIBUTING.md](contributing/CONTRIBUTING.md) | Contribution guidelines, code style, testing | [🇰🇷](contributing/CONTRIBUTING.kr.md) | 600+ |
 | [CI_CD_GUIDE.md](contributing/CI_CD_GUIDE.md) | CI/CD pipeline, sanitizers, benchmarks | - | 954 |
 | [TESTING_GUIDE.md](contributing/TESTING_GUIDE.md) | Testing strategy and procedures | - | 400+ |
 

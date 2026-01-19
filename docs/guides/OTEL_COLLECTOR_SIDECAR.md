@@ -1,6 +1,6 @@
 # OpenTelemetry Collector Sidecar Pattern
 
-> **Language:** **English** | [한국어](OTEL_COLLECTOR_SIDECAR_KO.md)
+> **Language:** **English** | [한국어](OTEL_COLLECTOR_SIDECAR.kr.md)
 
 ## Overview
 

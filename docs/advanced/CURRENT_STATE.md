@@ -1,6 +1,6 @@
 # System Current State - Phase 0 Baseline
 
-> **Language:** **English** | [한국어](CURRENT_STATE_KO.md)
+> **Language:** **English** | [한국어](CURRENT_STATE.kr.md)
 
 **Document Version**: 1.0
 **Date**: 2025-10-05

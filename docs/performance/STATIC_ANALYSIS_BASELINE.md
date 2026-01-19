@@ -1,6 +1,6 @@
 # Static Analysis Baseline - monitoring_system
 
-> **Language:** **English** | [한국어](STATIC_ANALYSIS_BASELINE_KO.md)
+> **Language:** **English** | [한국어](STATIC_ANALYSIS_BASELINE.kr.md)
 
 **Date**: 2025-10-03
 **Version**: 0.1.0.0  

@@ -1,6 +1,6 @@
 # monitoring_system Sanitizer Baseline
 
-> **Language:** **English** | [한국어](SANITIZER_BASELINE_KO.md)
+> **Language:** **English** | [한국어](SANITIZER_BASELINE.kr.md)
 
 **Phase**: 0 - Foundation and Tooling
 **Task**: 0.1 - CI/CD Pipeline Enhancement

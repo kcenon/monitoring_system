@@ -1,6 +1,6 @@
 # Troubleshooting Guide
 
-> **Language:** **English** | [한국어](TROUBLESHOOTING_KO.md)
+> **Language:** **English** | [한국어](TROUBLESHOOTING.kr.md)
 
 ## Table of Contents
 
