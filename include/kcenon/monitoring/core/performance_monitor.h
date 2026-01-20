@@ -56,7 +56,6 @@
 #include "../core/result_types.h"
 #include "../core/error_codes.h"
 #include "../interfaces/monitoring_core.h"
-#include "../utils/statistics.h"
 
 // Use common_system interfaces (Phase 2.3.4)
 #include <kcenon/common/interfaces/monitoring_interface.h>
@@ -132,32 +131,6 @@ struct performance_metrics {
     std::uint64_t error_count{0};
     double throughput{0.0};  // Operations per second
     
-    /**
-     * @brief Calculate percentile from sorted durations
-     * @deprecated Use stats::percentile() directly for new code
-     */
-    static std::chrono::nanoseconds calculate_percentile(
-        const std::vector<std::chrono::nanoseconds>& sorted_durations,
-        double percentile_value) {
-        return stats::percentile(sorted_durations, percentile_value);
-    }
-
-    /**
-     * @brief Update statistics with new duration samples
-     * @deprecated Use stats::compute() directly for new code
-     */
-    void update_statistics(const std::vector<std::chrono::nanoseconds>& durations) {
-        if (durations.empty()) return;
-
-        auto computed = stats::compute(durations);
-        min_duration = computed.min;
-        max_duration = computed.max;
-        mean_duration = computed.mean;
-        median_duration = computed.median;
-        p95_duration = computed.p95;
-        p99_duration = computed.p99;
-        total_duration = computed.total;
-    }
 };
 
 /**

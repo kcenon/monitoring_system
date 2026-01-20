@@ -57,6 +57,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Removed
+- **Deprecated statistics methods from performance_metrics** (#385)
+  - Removed `performance_metrics::calculate_percentile()` - use `stats::percentile()` directly
+  - Removed `performance_metrics::update_statistics()` - use `stats::compute()` directly
+  - Removed `make_time_series()` helper functions - use `time_series::create()` instead
+  - Moved `statistics.h` include from header to implementation file for better encapsulation
 - **Deprecated Result type aliases and helper functions** (#383)
   - Removed `result<T>` type alias - use `common::Result<T>` directly
   - Removed `result_void` type alias - use `common::VoidResult` directly
@@ -68,7 +73,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Removed `make_error_with_context()` - use `error_info` with context parameter
   - Removed `MONITORING_TRY` macro - use `COMMON_RETURN_IF_ERROR` instead
   - Removed `MONITORING_TRY_ASSIGN` macro - use `COMMON_ASSIGN_OR_RETURN` instead
-  - Removed `make_time_series()` helper functions - use `time_series::create()` instead
   - All usages migrated to `common::Result<T>` and `common::VoidResult` from common_system
 
 ### Added
