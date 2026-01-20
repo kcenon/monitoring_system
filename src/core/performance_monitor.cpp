@@ -33,6 +33,7 @@
  */
 
 #include <kcenon/monitoring/core/performance_monitor.h>
+#include <kcenon/monitoring/utils/statistics.h>
 #include <shared_mutex>
 #include <deque>
 #include <limits>

@@ -482,21 +482,4 @@ public:
     }
 };
 
-/**
- * @brief Helper function to create a time series with default configuration
- * @deprecated Use time_series::create() instead
- */
-inline common::Result<std::unique_ptr<time_series>> make_time_series(const std::string& name) {
-    return time_series::create(name);
-}
-
-/**
- * @brief Helper function to create a time series with custom configuration
- * @deprecated Use time_series::create() instead
- */
-inline common::Result<std::unique_ptr<time_series>> make_time_series(const std::string& name,
-                                                    const time_series_config& config) {
-    return time_series::create(name, config);
-}
-
 } } // namespace kcenon::monitoring
