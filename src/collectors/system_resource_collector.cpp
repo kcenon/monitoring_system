@@ -779,6 +779,19 @@ system_resource_collector::system_resource_collector()
     , load_history_(std::make_unique<load_average_history>(1000)) {
 }
 
+system_resource_collector::system_resource_collector(const system_metrics_config& config)
+    : collector_(std::make_unique<system_info_collector>())
+    , collect_cpu_metrics_(config.collect_cpu)
+    , collect_memory_metrics_(config.collect_memory)
+    , collect_disk_metrics_(config.collect_disk)
+    , collect_network_metrics_(config.collect_network)
+    , collect_process_metrics_(config.collect_process)
+    , load_history_(config.load_history_max_samples > 0
+                    ? std::make_unique<load_average_history>(config.load_history_max_samples)
+                    : nullptr)
+    , enable_load_history_(config.enable_load_history) {
+}
+
 bool system_resource_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
     size_t max_samples = config_parser::get<size_t>(config, "load_history_max_samples", 1000);
     if (max_samples > 0) {
@@ -829,20 +842,24 @@ std::vector<metric> system_resource_collector::collect() {
 std::vector<std::string> system_resource_collector::get_metric_types() const {
     return {
         // CPU metrics
-        "cpu_usage_percent", "cpu_user_percent", "cpu_system_percent",
-        "load_average_1min", "context_switches_total", "context_switches_per_sec",
+        "system.cpu.usage_percent", "system.cpu.user_percent", "system.cpu.system_percent",
+        "system.cpu.load_1m", "system.cpu.load_5m", "system.cpu.load_15m",
+        // Context switch metrics
+        "system.context_switches.total", "system.context_switches.per_sec",
         // Memory metrics
-        "memory_usage_percent", "memory_used_bytes", "memory_available_bytes",
+        "system.memory.usage_percent", "system.memory.used_bytes", "system.memory.available_bytes",
+        "system.memory.total_bytes",
         // Disk metrics
-        "disk_usage_percent", "disk_total_bytes", "disk_used_bytes", "disk_available_bytes",
-        "disk_read_bytes_per_sec", "disk_write_bytes_per_sec",
-        "disk_read_ops_per_sec", "disk_write_ops_per_sec",
+        "system.disk.usage_percent", "system.disk.total_bytes", "system.disk.used_bytes", "system.disk.available_bytes",
+        "system.disk.read_bytes_per_sec", "system.disk.write_bytes_per_sec",
+        "system.disk.read_ops_per_sec", "system.disk.write_ops_per_sec",
         // Network metrics
-        "network_rx_bytes_per_sec", "network_tx_bytes_per_sec",
-        "network_rx_packets_per_sec", "network_tx_packets_per_sec",
-        "network_rx_errors", "network_tx_errors", "network_rx_dropped", "network_tx_dropped",
+        "system.network.rx_bytes_per_sec", "system.network.tx_bytes_per_sec",
+        "system.network.rx_packets_per_sec", "system.network.tx_packets_per_sec",
+        "system.network.rx_errors", "system.network.tx_errors",
+        "system.network.rx_dropped", "system.network.tx_dropped",
         // Process metrics
-        "process_count"
+        "system.process.count"
     };
 }
 
@@ -855,6 +872,32 @@ std::unordered_map<std::string, double> system_resource_collector::get_statistic
         {"collection_count", (double)collection_count_},
         {"errors", (double)collection_errors_}
     };
+}
+
+system_metrics_config system_resource_collector::get_config() const {
+    system_metrics_config config;
+    config.collect_cpu = collect_cpu_metrics_;
+    config.collect_memory = collect_memory_metrics_;
+    config.collect_disk = collect_disk_metrics_;
+    config.collect_network = collect_network_metrics_;
+    config.collect_process = collect_process_metrics_;
+    config.enable_load_history = enable_load_history_;
+    if (load_history_) {
+        config.load_history_max_samples = load_history_->capacity();
+    }
+    return config;
+}
+
+void system_resource_collector::set_config(const system_metrics_config& config) {
+    collect_cpu_metrics_ = config.collect_cpu;
+    collect_memory_metrics_ = config.collect_memory;
+    collect_disk_metrics_ = config.collect_disk;
+    collect_network_metrics_ = config.collect_network;
+    collect_process_metrics_ = config.collect_process;
+    enable_load_history_ = config.enable_load_history;
+    if (config.load_history_max_samples > 0) {
+        load_history_ = std::make_unique<load_average_history>(config.load_history_max_samples);
+    }
 }
 
 void system_resource_collector::set_collection_filters(bool enable_cpu, bool enable_memory,
@@ -913,54 +956,57 @@ metric system_resource_collector::create_metric(const std::string& name, double 
 }
 
 void system_resource_collector::add_cpu_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    metrics.push_back(create_metric("cpu_usage_percent", resources.cpu.usage_percent, "%"));
-    metrics.push_back(create_metric("cpu_user_percent", resources.cpu.user_percent, "%"));
-    metrics.push_back(create_metric("cpu_system_percent", resources.cpu.system_percent, "%"));
-    metrics.push_back(create_metric("load_average_1min", resources.cpu.load.one_min));
+    metrics.push_back(create_metric("system.cpu.usage_percent", resources.cpu.usage_percent, "%"));
+    metrics.push_back(create_metric("system.cpu.user_percent", resources.cpu.user_percent, "%"));
+    metrics.push_back(create_metric("system.cpu.system_percent", resources.cpu.system_percent, "%"));
+    metrics.push_back(create_metric("system.cpu.load_1m", resources.cpu.load.one_min));
+    metrics.push_back(create_metric("system.cpu.load_5m", resources.cpu.load.five_min));
+    metrics.push_back(create_metric("system.cpu.load_15m", resources.cpu.load.fifteen_min));
 
-    // Add context switch metrics here as they are closely related to CPU
-    metrics.push_back(create_metric("context_switches_total", (double)resources.context_switches.total));
-    metrics.push_back(create_metric("context_switches_per_sec", (double)resources.context_switches.per_sec, "ops/s"));
+    // Context switch metrics
+    metrics.push_back(create_metric("system.context_switches.total", (double)resources.context_switches.total));
+    metrics.push_back(create_metric("system.context_switches.per_sec", (double)resources.context_switches.per_sec, "ops/s"));
 }
 
 void system_resource_collector::add_memory_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    metrics.push_back(create_metric("memory_usage_percent", resources.memory.usage_percent, "%"));
-    metrics.push_back(create_metric("memory_used_bytes", (double)resources.memory.used_bytes, "bytes"));
-    metrics.push_back(create_metric("memory_available_bytes", (double)resources.memory.available_bytes, "bytes"));
+    metrics.push_back(create_metric("system.memory.usage_percent", resources.memory.usage_percent, "%"));
+    metrics.push_back(create_metric("system.memory.total_bytes", (double)resources.memory.total_bytes, "bytes"));
+    metrics.push_back(create_metric("system.memory.used_bytes", (double)resources.memory.used_bytes, "bytes"));
+    metrics.push_back(create_metric("system.memory.available_bytes", (double)resources.memory.available_bytes, "bytes"));
 }
 
 void system_resource_collector::add_disk_metrics(std::vector<metric>& metrics, const system_resources& resources) {
     // Disk usage
-    metrics.push_back(create_metric("disk_usage_percent", resources.disk.usage_percent, "%"));
-    metrics.push_back(create_metric("disk_total_bytes", static_cast<double>(resources.disk.total_bytes), "bytes"));
-    metrics.push_back(create_metric("disk_used_bytes", static_cast<double>(resources.disk.used_bytes), "bytes"));
-    metrics.push_back(create_metric("disk_available_bytes", static_cast<double>(resources.disk.available_bytes), "bytes"));
+    metrics.push_back(create_metric("system.disk.usage_percent", resources.disk.usage_percent, "%"));
+    metrics.push_back(create_metric("system.disk.total_bytes", static_cast<double>(resources.disk.total_bytes), "bytes"));
+    metrics.push_back(create_metric("system.disk.used_bytes", static_cast<double>(resources.disk.used_bytes), "bytes"));
+    metrics.push_back(create_metric("system.disk.available_bytes", static_cast<double>(resources.disk.available_bytes), "bytes"));
 
     // I/O throughput
-    metrics.push_back(create_metric("disk_read_bytes_per_sec", static_cast<double>(resources.disk.io.read_bytes_per_sec), "bytes/s"));
-    metrics.push_back(create_metric("disk_write_bytes_per_sec", static_cast<double>(resources.disk.io.write_bytes_per_sec), "bytes/s"));
-    metrics.push_back(create_metric("disk_read_ops_per_sec", static_cast<double>(resources.disk.io.read_ops_per_sec), "ops/s"));
-    metrics.push_back(create_metric("disk_write_ops_per_sec", static_cast<double>(resources.disk.io.write_ops_per_sec), "ops/s"));
+    metrics.push_back(create_metric("system.disk.read_bytes_per_sec", static_cast<double>(resources.disk.io.read_bytes_per_sec), "bytes/s"));
+    metrics.push_back(create_metric("system.disk.write_bytes_per_sec", static_cast<double>(resources.disk.io.write_bytes_per_sec), "bytes/s"));
+    metrics.push_back(create_metric("system.disk.read_ops_per_sec", static_cast<double>(resources.disk.io.read_ops_per_sec), "ops/s"));
+    metrics.push_back(create_metric("system.disk.write_ops_per_sec", static_cast<double>(resources.disk.io.write_ops_per_sec), "ops/s"));
 }
 
 void system_resource_collector::add_network_metrics(std::vector<metric>& metrics, const system_resources& resources) {
     // Bandwidth
-    metrics.push_back(create_metric("network_rx_bytes_per_sec", static_cast<double>(resources.network.rx_bytes_per_sec), "bytes/s"));
-    metrics.push_back(create_metric("network_tx_bytes_per_sec", static_cast<double>(resources.network.tx_bytes_per_sec), "bytes/s"));
+    metrics.push_back(create_metric("system.network.rx_bytes_per_sec", static_cast<double>(resources.network.rx_bytes_per_sec), "bytes/s"));
+    metrics.push_back(create_metric("system.network.tx_bytes_per_sec", static_cast<double>(resources.network.tx_bytes_per_sec), "bytes/s"));
 
     // Packets
-    metrics.push_back(create_metric("network_rx_packets_per_sec", static_cast<double>(resources.network.rx_packets_per_sec), "pkts/s"));
-    metrics.push_back(create_metric("network_tx_packets_per_sec", static_cast<double>(resources.network.tx_packets_per_sec), "pkts/s"));
+    metrics.push_back(create_metric("system.network.rx_packets_per_sec", static_cast<double>(resources.network.rx_packets_per_sec), "pkts/s"));
+    metrics.push_back(create_metric("system.network.tx_packets_per_sec", static_cast<double>(resources.network.tx_packets_per_sec), "pkts/s"));
 
     // Errors
-    metrics.push_back(create_metric("network_rx_errors", static_cast<double>(resources.network.rx_errors)));
-    metrics.push_back(create_metric("network_tx_errors", static_cast<double>(resources.network.tx_errors)));
-    metrics.push_back(create_metric("network_rx_dropped", static_cast<double>(resources.network.rx_dropped)));
-    metrics.push_back(create_metric("network_tx_dropped", static_cast<double>(resources.network.tx_dropped)));
+    metrics.push_back(create_metric("system.network.rx_errors", static_cast<double>(resources.network.rx_errors)));
+    metrics.push_back(create_metric("system.network.tx_errors", static_cast<double>(resources.network.tx_errors)));
+    metrics.push_back(create_metric("system.network.rx_dropped", static_cast<double>(resources.network.rx_dropped)));
+    metrics.push_back(create_metric("system.network.tx_dropped", static_cast<double>(resources.network.tx_dropped)));
 }
 
 void system_resource_collector::add_process_metrics(std::vector<metric>& metrics, const system_resources& resources) {
-    metrics.push_back(create_metric("process_count", (double)resources.process.count));
+    metrics.push_back(create_metric("system.process.count", (double)resources.process.count));
 }
 
 // -----------------------------------------------------------------------------
