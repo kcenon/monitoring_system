@@ -78,6 +78,23 @@
 namespace kcenon { namespace monitoring {
 
 /**
+ * Configuration for system metrics collection
+ *
+ * Allows selective enabling/disabling of metric categories with
+ * configurable collection intervals for fine-grained control.
+ */
+struct system_metrics_config {
+    bool collect_cpu = true;
+    bool collect_memory = true;
+    bool collect_disk = true;
+    bool collect_network = true;
+    bool collect_process = true;
+    bool enable_load_history = false;
+    size_t load_history_max_samples = 1000;
+    std::chrono::milliseconds interval = std::chrono::seconds(10);
+};
+
+/**
  * System resource information structure with nested logical groupings
  *
  * This structure organizes system metrics into logical sub-structs for:
@@ -276,10 +293,25 @@ class system_info_collector {
 
 /**
  * System resource collector plugin implementation
+ *
+ * Collects system-level metrics with consistent naming convention:
+ * - system.cpu.* - CPU metrics
+ * - system.memory.* - Memory metrics
+ * - system.disk.* - Disk metrics
+ * - system.network.* - Network metrics
+ * - system.process.* - Process metrics
+ * - system.context_switches.* - Context switch metrics
  */
 class system_resource_collector : public metric_collector_plugin {
   public:
     system_resource_collector();
+
+    /**
+     * Construct with configuration
+     * @param config Collection configuration
+     */
+    explicit system_resource_collector(const system_metrics_config& config);
+
     ~system_resource_collector() override = default;
 
     // metric_collector_plugin implementation
@@ -291,12 +323,26 @@ class system_resource_collector : public metric_collector_plugin {
     std::unordered_map<std::string, double> get_statistics() const override;
 
     /**
+     * Get current configuration
+     * @return Current metrics configuration
+     */
+    system_metrics_config get_config() const;
+
+    /**
+     * Update configuration
+     * @param config New configuration to apply
+     */
+    void set_config(const system_metrics_config& config);
+
+    /**
      * Set collection filters
      * @param enable_cpu Enable CPU metrics collection
      * @param enable_memory Enable memory metrics collection
      * @param enable_disk Enable disk metrics collection
      * @param enable_network Enable network metrics collection
+     * @deprecated Use set_config() with system_metrics_config instead
      */
+    [[deprecated("Use set_config() with system_metrics_config instead")]]
     void set_collection_filters(bool enable_cpu = true, bool enable_memory = true,
                                  bool enable_disk = true, bool enable_network = true);
 
