@@ -34,10 +34,37 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <string>
+
+#ifdef _MSC_VER
+#include <cstring>
+#endif
 
 namespace kcenon {
 namespace monitoring {
 namespace plugins {
+
+namespace {
+
+// Cross-platform safe environment variable access
+// Returns empty string if the variable is not set
+std::string safe_getenv(const char* name) {
+#ifdef _MSC_VER
+    char* buffer = nullptr;
+    size_t size = 0;
+    if (_dupenv_s(&buffer, &size, name) == 0 && buffer != nullptr) {
+        std::string result(buffer);
+        free(buffer);
+        return result;
+    }
+    return "";
+#else
+    const char* value = std::getenv(name);
+    return value != nullptr ? std::string(value) : "";
+#endif
+}
+
+}  // anonymous namespace
 
 std::unique_ptr<container_plugin> container_plugin::create(const container_plugin_config& config) {
     return std::unique_ptr<container_plugin>(new container_plugin(config));
@@ -209,8 +236,8 @@ bool container_plugin::is_running_in_container() {
     }
 
     // Check for container-specific environment variables
-    const char* container_env = std::getenv("container");
-    if (container_env != nullptr) {
+    auto container_env = safe_getenv("container");
+    if (!container_env.empty()) {
         return true;
     }
 
@@ -228,10 +255,10 @@ bool container_plugin::is_kubernetes_environment() {
     }
 
     // Check for Kubernetes environment variables
-    const char* k8s_host = std::getenv("KUBERNETES_SERVICE_HOST");
-    const char* k8s_port = std::getenv("KUBERNETES_SERVICE_PORT");
+    auto k8s_host = safe_getenv("KUBERNETES_SERVICE_HOST");
+    auto k8s_port = safe_getenv("KUBERNETES_SERVICE_PORT");
 
-    return (k8s_host != nullptr && k8s_port != nullptr);
+    return (!k8s_host.empty() && !k8s_port.empty());
 }
 
 container_runtime container_plugin::detect_runtime() {
