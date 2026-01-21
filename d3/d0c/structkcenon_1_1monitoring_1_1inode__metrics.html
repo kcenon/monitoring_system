@@ -83,7 +83,7 @@ $(function() {
 <p>Aggregated inode usage metrics for all filesystems.  
  <a href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for kcenon::monitoring::inode_metrics:</div>
 <div class="dyncontent">
@@ -105,37 +105,28 @@ Collaboration diagram for kcenon::monitoring::inode_metrics:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae33e9c895e46b80621e93ddb9c9d37f6" id="r_ae33e9c895e46b80621e93ddb9c9d37f6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d2/db1/structkcenon_1_1monitoring_1_1filesystem__inode__info.html">filesystem_inode_info</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#ae33e9c895e46b80621e93ddb9c9d37f6">filesystems</a></td></tr>
-<tr class="memdesc:ae33e9c895e46b80621e93ddb9c9d37f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-filesystem inode info.  <br /></td></tr>
 <tr class="separator:ae33e9c895e46b80621e93ddb9c9d37f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af35949f07389be1bb92612d77e215ef8" id="r_af35949f07389be1bb92612d77e215ef8"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#af35949f07389be1bb92612d77e215ef8">total_inodes</a> {0}</td></tr>
-<tr class="memdesc:af35949f07389be1bb92612d77e215ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of all filesystem inodes.  <br /></td></tr>
 <tr class="separator:af35949f07389be1bb92612d77e215ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71c6249f1d8f727f379df24d1d1ffc02" id="r_a71c6249f1d8f727f379df24d1d1ffc02"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#a71c6249f1d8f727f379df24d1d1ffc02">total_inodes_used</a> {0}</td></tr>
-<tr class="memdesc:a71c6249f1d8f727f379df24d1d1ffc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of all used inodes.  <br /></td></tr>
 <tr class="separator:a71c6249f1d8f727f379df24d1d1ffc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a954485d860d4602e66d8b58f111fbf76" id="r_a954485d860d4602e66d8b58f111fbf76"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#a954485d860d4602e66d8b58f111fbf76">total_inodes_free</a> {0}</td></tr>
-<tr class="memdesc:a954485d860d4602e66d8b58f111fbf76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of all free inodes.  <br /></td></tr>
 <tr class="separator:a954485d860d4602e66d8b58f111fbf76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67ecc6f17564eb741cc3fc1624c3467e" id="r_a67ecc6f17564eb741cc3fc1624c3467e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#a67ecc6f17564eb741cc3fc1624c3467e">average_usage_percent</a> {0.0}</td></tr>
-<tr class="memdesc:a67ecc6f17564eb741cc3fc1624c3467e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Average usage across filesystems.  <br /></td></tr>
 <tr class="separator:a67ecc6f17564eb741cc3fc1624c3467e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ceef6a479dd8f5cb85b793a1afeaac0" id="r_a0ceef6a479dd8f5cb85b793a1afeaac0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#a0ceef6a479dd8f5cb85b793a1afeaac0">max_usage_percent</a> {0.0}</td></tr>
-<tr class="memdesc:a0ceef6a479dd8f5cb85b793a1afeaac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum usage among filesystems.  <br /></td></tr>
 <tr class="separator:a0ceef6a479dd8f5cb85b793a1afeaac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bc07c9c931c8feb64649b4bf3db1708" id="r_a8bc07c9c931c8feb64649b4bf3db1708"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#a8bc07c9c931c8feb64649b4bf3db1708">max_usage_mount_point</a></td></tr>
-<tr class="memdesc:a8bc07c9c931c8feb64649b4bf3db1708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mount point with highest usage.  <br /></td></tr>
 <tr class="separator:a8bc07c9c931c8feb64649b4bf3db1708"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad10a4c3f3bb6f095aa82efca095b6265" id="r_ad10a4c3f3bb6f095aa82efca095b6265"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#ad10a4c3f3bb6f095aa82efca095b6265">metrics_available</a> {false}</td></tr>
-<tr class="memdesc:ad10a4c3f3bb6f095aa82efca095b6265"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether inode metrics are available.  <br /></td></tr>
 <tr class="separator:ad10a4c3f3bb6f095aa82efca095b6265"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1906260c8360154d3e7e91af00b3982" id="r_ac1906260c8360154d3e7e91af00b3982"><td class="memItemLeft" align="right" valign="top">std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0c/structkcenon_1_1monitoring_1_1inode__metrics.html#ac1906260c8360154d3e7e91af00b3982">timestamp</a></td></tr>
-<tr class="memdesc:ac1906260c8360154d3e7e91af00b3982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading timestamp.  <br /></td></tr>
 <tr class="separator:ac1906260c8360154d3e7e91af00b3982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Aggregated inode usage metrics for all filesystems. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00078">78</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00100">100</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a67ecc6f17564eb741cc3fc1624c3467e" name="a67ecc6f17564eb741cc3fc1624c3467e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a67ecc6f17564eb741cc3fc1624c3467e">&#9670;&#160;</a></span>average_usage_percent</h2>
@@ -149,10 +140,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Average usage across filesystems. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00083">83</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   83</span>{0.0};               </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00105">105</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  105</span>{0.0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -168,9 +157,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Per-filesystem inode info. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00079">79</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00101">101</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
 
 </div>
 </div>
@@ -186,9 +173,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Mount point with highest usage. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00085">85</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00107">107</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
 
 </div>
 </div>
@@ -204,10 +189,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Maximum usage among filesystems. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00084">84</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   84</span>{0.0};                   </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00106">106</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>{0.0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -223,10 +206,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Whether inode metrics are available. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00086">86</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   86</span>{<span class="keyword">false</span>};                   </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00108">108</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  108</span>{<span class="keyword">false</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,9 +223,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reading timestamp. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00087">87</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00109">109</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
 
 </div>
 </div>
@@ -260,10 +239,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sum of all filesystem inodes. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00080">80</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   80</span>{0};                        </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00102">102</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  102</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -279,10 +256,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sum of all free inodes. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00082">82</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   82</span>{0};                   </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00104">104</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  104</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -298,20 +273,18 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sum of all used inodes. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/df7/inode__collector_8h_source.html#l00081">81</a> of file <a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   81</span>{0};                   </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00103">103</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  103</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/kcenon/monitoring/collectors/<a class="el" href="../../d6/df7/inode__collector_8h_source.html">inode_collector.h</a></li>
+<li>include/kcenon/monitoring/collectors/<a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 21 2026 14:54:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Jan 21 2026 15:22:13 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

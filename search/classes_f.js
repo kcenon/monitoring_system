@@ -25,8 +25,10 @@ var searchData=
   ['power_5freading_22',['power_reading',['../d7/d3f/structkcenon_1_1monitoring_1_1power__reading.html',1,'kcenon::monitoring']]],
   ['power_5fsource_5finfo_23',['power_source_info',['../d3/d78/structkcenon_1_1monitoring_1_1power__source__info.html',1,'kcenon::monitoring']]],
   ['process_5fcontext_5fswitch_5finfo_24',['process_context_switch_info',['../d7/d9e/structkcenon_1_1monitoring_1_1process__context__switch__info.html',1,'kcenon::monitoring']]],
-  ['process_5fmetrics_25',['process_metrics',['../dc/d13/structkcenon_1_1monitoring_1_1system__resources_1_1process__metrics.html',1,'kcenon::monitoring::system_resources']]],
-  ['profile_5fdata_26',['profile_data',['../d0/ddf/structkcenon_1_1monitoring_1_1central__collector_1_1profile__data.html',1,'kcenon::monitoring::central_collector::profile_data'],['../d1/d27/structkcenon_1_1monitoring_1_1performance__profiler_1_1profile__data.html',1,'kcenon::monitoring::performance_profiler::profile_data']]],
-  ['prometheus_5fexporter_27',['prometheus_exporter',['../d6/dd7/classkcenon_1_1monitoring_1_1prometheus__exporter.html',1,'kcenon::monitoring']]],
-  ['prometheus_5fmetric_5fdata_28',['prometheus_metric_data',['../d6/d21/structkcenon_1_1monitoring_1_1prometheus__metric__data.html',1,'kcenon::monitoring']]]
+  ['process_5fmetrics_25',['process_metrics',['../d9/dab/structkcenon_1_1monitoring_1_1process__metrics.html',1,'kcenon::monitoring::process_metrics'],['../dc/d13/structkcenon_1_1monitoring_1_1system__resources_1_1process__metrics.html',1,'kcenon::monitoring::system_resources::process_metrics']]],
+  ['process_5fmetrics_5fcollector_26',['process_metrics_collector',['../de/ddc/classkcenon_1_1monitoring_1_1process__metrics__collector.html',1,'kcenon::monitoring']]],
+  ['process_5fmetrics_5fconfig_27',['process_metrics_config',['../dc/d66/structkcenon_1_1monitoring_1_1process__metrics__config.html',1,'kcenon::monitoring']]],
+  ['profile_5fdata_28',['profile_data',['../d0/ddf/structkcenon_1_1monitoring_1_1central__collector_1_1profile__data.html',1,'kcenon::monitoring::central_collector::profile_data'],['../d1/d27/structkcenon_1_1monitoring_1_1performance__profiler_1_1profile__data.html',1,'kcenon::monitoring::performance_profiler::profile_data']]],
+  ['prometheus_5fexporter_29',['prometheus_exporter',['../d6/dd7/classkcenon_1_1monitoring_1_1prometheus__exporter.html',1,'kcenon::monitoring']]],
+  ['prometheus_5fmetric_5fdata_30',['prometheus_metric_data',['../d6/d21/structkcenon_1_1monitoring_1_1prometheus__metric__data.html',1,'kcenon::monitoring']]]
 ];

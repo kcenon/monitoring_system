@@ -83,7 +83,7 @@ $(function() {
 <p>File descriptor usage metrics.  
  <a href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for kcenon::monitoring::fd_metrics:</div>
 <div class="dyncontent">
@@ -96,34 +96,26 @@ Collaboration diagram for kcenon::monitoring::fd_metrics:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a18f3d26c809556272eb5e2b8d4a11754" id="r_a18f3d26c809556272eb5e2b8d4a11754"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#a18f3d26c809556272eb5e2b8d4a11754">fd_used_system</a> {0}</td></tr>
-<tr class="memdesc:a18f3d26c809556272eb5e2b8d4a11754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total system FDs in use (Linux only)  <br /></td></tr>
 <tr class="separator:a18f3d26c809556272eb5e2b8d4a11754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ed71c761e63b7ff6b9b6af79c292ef" id="r_ab1ed71c761e63b7ff6b9b6af79c292ef"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#ab1ed71c761e63b7ff6b9b6af79c292ef">fd_max_system</a> {0}</td></tr>
-<tr class="memdesc:ab1ed71c761e63b7ff6b9b6af79c292ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">System FD limit (Linux only)  <br /></td></tr>
 <tr class="separator:ab1ed71c761e63b7ff6b9b6af79c292ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60442210776b79d63c4f799f64ea5b3e" id="r_a60442210776b79d63c4f799f64ea5b3e"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#a60442210776b79d63c4f799f64ea5b3e">fd_used_process</a> {0}</td></tr>
-<tr class="memdesc:a60442210776b79d63c4f799f64ea5b3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current process FD count.  <br /></td></tr>
 <tr class="separator:a60442210776b79d63c4f799f64ea5b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad965e2e691d90fa0eb3aa5a53d452778" id="r_ad965e2e691d90fa0eb3aa5a53d452778"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#ad965e2e691d90fa0eb3aa5a53d452778">fd_soft_limit</a> {0}</td></tr>
-<tr class="memdesc:ad965e2e691d90fa0eb3aa5a53d452778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process FD soft limit.  <br /></td></tr>
 <tr class="separator:ad965e2e691d90fa0eb3aa5a53d452778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1e95258f17c8dc38b179ee4fc1f8312" id="r_ac1e95258f17c8dc38b179ee4fc1f8312"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#ac1e95258f17c8dc38b179ee4fc1f8312">fd_hard_limit</a> {0}</td></tr>
-<tr class="memdesc:ac1e95258f17c8dc38b179ee4fc1f8312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process FD hard limit.  <br /></td></tr>
 <tr class="separator:ac1e95258f17c8dc38b179ee4fc1f8312"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b2a9aef4daab632aabc418ce88a5fcd" id="r_a1b2a9aef4daab632aabc418ce88a5fcd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#a1b2a9aef4daab632aabc418ce88a5fcd">fd_usage_percent</a> {0.0}</td></tr>
-<tr class="memdesc:a1b2a9aef4daab632aabc418ce88a5fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Percentage of soft limit used.  <br /></td></tr>
 <tr class="separator:a1b2a9aef4daab632aabc418ce88a5fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abab6cd75cd4831de795eaa80ef6c3346" id="r_abab6cd75cd4831de795eaa80ef6c3346"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#abab6cd75cd4831de795eaa80ef6c3346">system_metrics_available</a> {false}</td></tr>
-<tr class="memdesc:abab6cd75cd4831de795eaa80ef6c3346"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether system-wide metrics are available.  <br /></td></tr>
 <tr class="separator:abab6cd75cd4831de795eaa80ef6c3346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f18112370bf3de136d97ae22cc34cf5" id="r_a0f18112370bf3de136d97ae22cc34cf5"><td class="memItemLeft" align="right" valign="top">std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d07/structkcenon_1_1monitoring_1_1fd__metrics.html#a0f18112370bf3de136d97ae22cc34cf5">timestamp</a></td></tr>
-<tr class="memdesc:a0f18112370bf3de136d97ae22cc34cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading timestamp.  <br /></td></tr>
 <tr class="separator:a0f18112370bf3de136d97ae22cc34cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File descriptor usage metrics. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00063">63</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00071">71</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="ac1e95258f17c8dc38b179ee4fc1f8312" name="ac1e95258f17c8dc38b179ee4fc1f8312"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1e95258f17c8dc38b179ee4fc1f8312">&#9670;&#160;</a></span>fd_hard_limit</h2>
@@ -137,10 +129,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Process FD hard limit. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00068">68</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>{0};                        </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00076">76</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -156,10 +146,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>System FD limit (Linux only) </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00065">65</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   65</span>{0};                        </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00073">73</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   73</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -175,10 +163,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Process FD soft limit. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00067">67</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   67</span>{0};                        </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00075">75</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   75</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -194,10 +180,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Percentage of soft limit used. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00069">69</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   69</span>{0.0};                     </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00077">77</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>{0.0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -213,10 +197,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Current process FD count. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00066">66</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   66</span>{0};                      </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00074">74</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -232,10 +214,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Total system FDs in use (Linux only) </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00064">64</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   64</span>{0};                       </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00072">72</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -251,10 +231,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Whether system-wide metrics are available. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00070">70</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   70</span>{<span class="keyword">false</span>};             </div>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00078">78</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   78</span>{<span class="keyword">false</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -270,19 +248,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reading timestamp. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d6/dd3/fd__collector_8h_source.html#l00071">71</a> of file <a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html#l00079">79</a> of file <a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/kcenon/monitoring/collectors/<a class="el" href="../../d6/dd3/fd__collector_8h_source.html">fd_collector.h</a></li>
+<li>include/kcenon/monitoring/collectors/<a class="el" href="../../de/ded/process__metrics__collector_8h_source.html">process_metrics_collector.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 21 2026 14:54:22 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Jan 21 2026 15:22:13 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -220,127 +220,127 @@ $(function() {
 <div class="line"> </div>
 <div class="line">    common::VoidResult <a id="a30" name="a30"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a516ed80f11bee195bd34ef558aba2756">process_metric</a>(<span class="keyword">const</span> std::string&amp; metric_name, <span class="keywordtype">double</span> value);</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a31" name="a31"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa0755da0cdba4b53b891373dff488cd1">process_metrics</a>(<span class="keyword">const</span> std::unordered_map&lt;std::string, double&gt;&amp; metrics);</div>
+<div class="line">    common::VoidResult process_metrics(<span class="keyword">const</span> std::unordered_map&lt;std::string, double&gt;&amp; metrics);</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;alert&gt; <a id="a32" name="a32"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a760a7177ed24bb5cb551a3c0879e7307">get_active_alerts</a>() <span class="keyword">const</span>;</div>
+<div class="line">    std::vector&lt;alert&gt; <a id="a31" name="a31"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a760a7177ed24bb5cb551a3c0879e7307">get_active_alerts</a>() <span class="keyword">const</span>;</div>
 <div class="line"> </div>
-<div class="line">    std::optional&lt;alert&gt; <a id="a33" name="a33"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a25fe596afeb3caff27d3409a5ed3e9a4">get_alert</a>(<span class="keyword">const</span> std::string&amp; fingerprint) <span class="keyword">const</span>;</div>
+<div class="line">    std::optional&lt;alert&gt; <a id="a32" name="a32"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a25fe596afeb3caff27d3409a5ed3e9a4">get_alert</a>(<span class="keyword">const</span> std::string&amp; fingerprint) <span class="keyword">const</span>;</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a34" name="a34"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ac85a052743f43e3314f7b6c94844296c">resolve_alert</a>(<span class="keyword">const</span> std::string&amp; fingerprint);</div>
+<div class="line">    common::VoidResult <a id="a33" name="a33"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ac85a052743f43e3314f7b6c94844296c">resolve_alert</a>(<span class="keyword">const</span> std::string&amp; fingerprint);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// ========== Silence Management ==========</span></div>
 <div class="line"> </div>
-<div class="line">    common::Result&lt;uint64_t&gt; <a id="a35" name="a35"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a7311208b6ff315741e2cd9b6dbbab1de">create_silence</a>(<span class="keyword">const</span> alert_silence&amp; silence);</div>
+<div class="line">    common::Result&lt;uint64_t&gt; <a id="a34" name="a34"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a7311208b6ff315741e2cd9b6dbbab1de">create_silence</a>(<span class="keyword">const</span> alert_silence&amp; silence);</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a36" name="a36"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a3de378be9b064b11d1b3da9b8f31d4e4">delete_silence</a>(uint64_t silence_id);</div>
+<div class="line">    common::VoidResult <a id="a35" name="a35"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a3de378be9b064b11d1b3da9b8f31d4e4">delete_silence</a>(uint64_t silence_id);</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;alert_silence&gt; <a id="a37" name="a37"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#afd0c0b1c7ae8f11b46f491b45aab3397">get_silences</a>() <span class="keyword">const</span>;</div>
+<div class="line">    std::vector&lt;alert_silence&gt; <a id="a36" name="a36"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#afd0c0b1c7ae8f11b46f491b45aab3397">get_silences</a>() <span class="keyword">const</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a38" name="a38"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#afb31ebd85fbd204e409ff1c735b43450">is_silenced</a>(<span class="keyword">const</span> alert&amp; a) <span class="keyword">const</span>;</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a37" name="a37"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#afb31ebd85fbd204e409ff1c735b43450">is_silenced</a>(<span class="keyword">const</span> alert&amp; a) <span class="keyword">const</span>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// ========== Notifier Management ==========</span></div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a39" name="a39"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aea869c3cf88e35a4f38c9bb3b370aa5e">add_notifier</a>(std::shared_ptr&lt;alert_notifier&gt; notifier);</div>
+<div class="line">    common::VoidResult <a id="a38" name="a38"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aea869c3cf88e35a4f38c9bb3b370aa5e">add_notifier</a>(std::shared_ptr&lt;alert_notifier&gt; notifier);</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a40" name="a40"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a004d95dfa2e8b70cb3bcb8f084f1ce7c">remove_notifier</a>(<span class="keyword">const</span> std::string&amp; notifier_name);</div>
+<div class="line">    common::VoidResult <a id="a39" name="a39"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a004d95dfa2e8b70cb3bcb8f084f1ce7c">remove_notifier</a>(<span class="keyword">const</span> std::string&amp; notifier_name);</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;std::shared_ptr&lt;alert_notifier&gt;&gt; <a id="a41" name="a41"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa16ee8952bde82cff2e95e2bc2b2b420">get_notifiers</a>() <span class="keyword">const</span>;</div>
+<div class="line">    std::vector&lt;std::shared_ptr&lt;alert_notifier&gt;&gt; <a id="a40" name="a40"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa16ee8952bde82cff2e95e2bc2b2b420">get_notifiers</a>() <span class="keyword">const</span>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// ========== Metric Provider ==========</span></div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a42" name="a42"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#abc12823702bde682aade973bee649e78">set_metric_provider</a>(<a class="code hl_typedef" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8e0876bbff6642c39ee530d2a6cacafb">metric_provider_func</a> provider);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a41" name="a41"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#abc12823702bde682aade973bee649e78">set_metric_provider</a>(<a class="code hl_typedef" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8e0876bbff6642c39ee530d2a6cacafb">metric_provider_func</a> provider);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// ========== Event Bus Integration ==========</span></div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a43" name="a43"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a0a68e9b5913c68be11366c9d5671250c">set_event_bus</a>(std::shared_ptr&lt;interface_event_bus&gt; event_bus);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a42" name="a42"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a0a68e9b5913c68be11366c9d5671250c">set_event_bus</a>(std::shared_ptr&lt;interface_event_bus&gt; event_bus);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// ========== Metrics ==========</span></div>
 <div class="line"> </div>
-<div class="line">    alert_manager_metrics <a id="a44" name="a44"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">get_metrics</a>() <span class="keyword">const</span>;</div>
+<div class="line">    alert_manager_metrics <a id="a43" name="a43"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">get_metrics</a>() <span class="keyword">const</span>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> alert_manager_config&amp; <a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a4e140e221535e6eeef3dee2daabb140b">config</a>() <span class="keyword">const</span>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a45" name="a45"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#af51f5a4fcdad960be068864f3a9191a8">evaluation_loop</a>();</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a44" name="a44"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#af51f5a4fcdad960be068864f3a9191a8">evaluation_loop</a>();</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a46" name="a46"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ae74261b2d69911a4a82b9a57a79132fe">evaluate_rule</a>(<span class="keyword">const</span> std::shared_ptr&lt;alert_rule&gt;&amp; rule, <span class="keywordtype">double</span> value);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a45" name="a45"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ae74261b2d69911a4a82b9a57a79132fe">evaluate_rule</a>(<span class="keyword">const</span> std::shared_ptr&lt;alert_rule&gt;&amp; rule, <span class="keywordtype">double</span> value);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a47" name="a47"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a77c571ad9fbbc6b1a7f9c3c986b0a4be">update_alert_state</a>(<span class="keyword">const</span> std::string&amp; fingerprint,</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a46" name="a46"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a77c571ad9fbbc6b1a7f9c3c986b0a4be">update_alert_state</a>(<span class="keyword">const</span> std::string&amp; fingerprint,</div>
 <div class="line">                           <span class="keywordtype">bool</span> condition_met,</div>
 <div class="line">                           <span class="keywordtype">double</span> value,</div>
 <div class="line">                           <span class="keyword">const</span> std::shared_ptr&lt;alert_rule&gt;&amp; rule);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a48" name="a48"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a7ac5d94b182d15962a9dfc317f0af064">send_notifications</a>(<span class="keyword">const</span> alert&amp; a);</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a47" name="a47"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a7ac5d94b182d15962a9dfc317f0af064">send_notifications</a>(<span class="keyword">const</span> alert&amp; a);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a49" name="a49"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ad18b20d4f9eb09fb8ecd984777a7ee3a">cleanup_silences</a>();</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a48" name="a48"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ad18b20d4f9eb09fb8ecd984777a7ee3a">cleanup_silences</a>();</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> <a id="a50" name="a50"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa52ab29ecdd0e66f9f1c988106bd6d51">cleanup_resolved_alerts</a>();</div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a49" name="a49"></a><a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa52ab29ecdd0e66f9f1c988106bd6d51">cleanup_resolved_alerts</a>();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Configuration</span></div>
-<div class="line">    alert_manager_config <a id="a51" name="a51"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8560fa15de74f7f10f1b9c207f75c4ae">config_</a>;</div>
+<div class="line">    alert_manager_config <a id="a50" name="a50"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8560fa15de74f7f10f1b9c207f75c4ae">config_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Rules</span></div>
-<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a52" name="a52"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ae5e2acd8cd8e012d958c3fe8bb9c5a4c">rules_mutex_</a>;</div>
-<div class="line">    std::unordered_map&lt;std::string, std::shared_ptr&lt;alert_rule&gt;&gt; <a id="a53" name="a53"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a80d250350b9bfecbfe37127d241ea9d7">rules_</a>;</div>
-<div class="line">    std::vector&lt;std::shared_ptr&lt;alert_rule_group&gt;&gt; <a id="a54" name="a54"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aeb32f931833c371a4e2f7fd50b980ac3">rule_groups_</a>;</div>
+<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a51" name="a51"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#ae5e2acd8cd8e012d958c3fe8bb9c5a4c">rules_mutex_</a>;</div>
+<div class="line">    std::unordered_map&lt;std::string, std::shared_ptr&lt;alert_rule&gt;&gt; <a id="a52" name="a52"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a80d250350b9bfecbfe37127d241ea9d7">rules_</a>;</div>
+<div class="line">    std::vector&lt;std::shared_ptr&lt;alert_rule_group&gt;&gt; <a id="a53" name="a53"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aeb32f931833c371a4e2f7fd50b980ac3">rule_groups_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Alerts</span></div>
-<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a55" name="a55"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8f351b36753a01a36f07fa4531948e55">alerts_mutex_</a>;</div>
-<div class="line">    std::unordered_map&lt;std::string, alert&gt; <a id="a56" name="a56"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a88676bc8f9f4e33c818e2c8acd639a71">alerts_</a>;</div>
+<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a54" name="a54"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8f351b36753a01a36f07fa4531948e55">alerts_mutex_</a>;</div>
+<div class="line">    std::unordered_map&lt;std::string, alert&gt; <a id="a55" name="a55"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a88676bc8f9f4e33c818e2c8acd639a71">alerts_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Silences</span></div>
-<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a57" name="a57"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a98033ea99e6b6a7712f76d5cd25ea488">silences_mutex_</a>;</div>
-<div class="line">    std::unordered_map&lt;uint64_t, alert_silence&gt; <a id="a58" name="a58"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a1669bc9d78b5fc012f02d9200498ee79">silences_</a>;</div>
+<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a56" name="a56"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a98033ea99e6b6a7712f76d5cd25ea488">silences_mutex_</a>;</div>
+<div class="line">    std::unordered_map&lt;uint64_t, alert_silence&gt; <a id="a57" name="a57"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a1669bc9d78b5fc012f02d9200498ee79">silences_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Notifiers</span></div>
-<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a59" name="a59"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a368467d9f5a34553dfc740618947fe48">notifiers_mutex_</a>;</div>
-<div class="line">    std::vector&lt;std::shared_ptr&lt;alert_notifier&gt;&gt; <a id="a60" name="a60"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a04dbb5676208a76d613e8c88e7842287">notifiers_</a>;</div>
+<div class="line">    <span class="keyword">mutable</span> std::mutex <a id="a58" name="a58"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a368467d9f5a34553dfc740618947fe48">notifiers_mutex_</a>;</div>
+<div class="line">    std::vector&lt;std::shared_ptr&lt;alert_notifier&gt;&gt; <a id="a59" name="a59"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a04dbb5676208a76d613e8c88e7842287">notifiers_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Metric provider</span></div>
-<div class="line">    std::mutex <a id="a61" name="a61"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a53aed1e568a00aed459ccf6574b6f69b">provider_mutex_</a>;</div>
-<div class="line">    <a class="code hl_typedef" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8e0876bbff6642c39ee530d2a6cacafb">metric_provider_func</a> <a id="a62" name="a62"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9915a765163c994b4bd419f1e05b2efe">metric_provider_</a>;</div>
+<div class="line">    std::mutex <a id="a60" name="a60"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a53aed1e568a00aed459ccf6574b6f69b">provider_mutex_</a>;</div>
+<div class="line">    <a class="code hl_typedef" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8e0876bbff6642c39ee530d2a6cacafb">metric_provider_func</a> <a id="a61" name="a61"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9915a765163c994b4bd419f1e05b2efe">metric_provider_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Event bus</span></div>
-<div class="line">    std::shared_ptr&lt;interface_event_bus&gt; <a id="a63" name="a63"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a51fd2b7598a14f94b15d371934a26335">event_bus_</a>;</div>
+<div class="line">    std::shared_ptr&lt;interface_event_bus&gt; <a id="a62" name="a62"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a51fd2b7598a14f94b15d371934a26335">event_bus_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Metrics</span></div>
-<div class="line">    <span class="keyword">mutable</span> alert_manager_metrics <a id="a64" name="a64"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#acf43088a8867b40e94c0b7c9ef1d5238">metrics_</a>;</div>
+<div class="line">    <span class="keyword">mutable</span> alert_manager_metrics <a id="a63" name="a63"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#acf43088a8867b40e94c0b7c9ef1d5238">metrics_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Evaluation thread</span></div>
-<div class="line">    std::atomic&lt;bool&gt; <a id="a65" name="a65"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a27c59a11327ced208faf7e48c76c987b">running_</a>{<span class="keyword">false</span>};</div>
-<div class="line">    std::thread <a id="a66" name="a66"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a2737046560252f61e93be0a9378562da">evaluation_thread_</a>;</div>
-<div class="line">    std::condition_variable <a id="a67" name="a67"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a826d984a641f7f8a967018ff1725d829">cv_</a>;</div>
-<div class="line">    std::mutex <a id="a68" name="a68"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8208d52471928966a0cf679d4b58997e">cv_mutex_</a>;</div>
+<div class="line">    std::atomic&lt;bool&gt; <a id="a64" name="a64"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a27c59a11327ced208faf7e48c76c987b">running_</a>{<span class="keyword">false</span>};</div>
+<div class="line">    std::thread <a id="a65" name="a65"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a2737046560252f61e93be0a9378562da">evaluation_thread_</a>;</div>
+<div class="line">    std::condition_variable <a id="a66" name="a66"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a826d984a641f7f8a967018ff1725d829">cv_</a>;</div>
+<div class="line">    std::mutex <a id="a67" name="a67"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a8208d52471928966a0cf679d4b58997e">cv_mutex_</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Last notification times</span></div>
-<div class="line">    std::unordered_map&lt;std::string, std::chrono::steady_clock::time_point&gt; <a id="a69" name="a69"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a7458b874af947dddb6d26b61a1f8c7e6">last_notification_times_</a>;</div>
+<div class="line">    std::unordered_map&lt;std::string, std::chrono::steady_clock::time_point&gt; <a id="a68" name="a68"></a><a class="code hl_variable" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a7458b874af947dddb6d26b61a1f8c7e6">last_notification_times_</a>;</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>alert_notifier {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <a id="a70" name="a70"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#af44872245168b1945d2465ae3d31f6ab">~alert_notifier</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line">    <span class="keyword">virtual</span> <a id="a69" name="a69"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#af44872245168b1945d2465ae3d31f6ab">~alert_notifier</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> std::string <a id="a71" name="a71"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#a28b9e8f356e2e152beeb316245030131">name</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line">    <span class="keyword">virtual</span> std::string <a id="a70" name="a70"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#a28b9e8f356e2e152beeb316245030131">name</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> common::VoidResult <a id="a72" name="a72"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#a5fcbfbf9dd8c4da3cb1247cf600b8830">notify</a>(<span class="keyword">const</span> alert&amp; a) = 0;</div>
+<div class="line">    <span class="keyword">virtual</span> common::VoidResult <a id="a71" name="a71"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#a5fcbfbf9dd8c4da3cb1247cf600b8830">notify</a>(<span class="keyword">const</span> alert&amp; a) = 0;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> common::VoidResult <a id="a73" name="a73"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#af8e704ab872156e7af4979fd59b2519d">notify_group</a>(<span class="keyword">const</span> alert_group&amp; group) = 0;</div>
+<div class="line">    <span class="keyword">virtual</span> common::VoidResult <a id="a72" name="a72"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#af8e704ab872156e7af4979fd59b2519d">notify_group</a>(<span class="keyword">const</span> alert_group&amp; group) = 0;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a id="a74" name="a74"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#ac1d8f604c0a3ec0cac06fbe692451d6c">is_ready</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a id="a73" name="a73"></a><a class="code hl_function" href="../../d5/d9f/classkcenon_1_1monitoring_1_1alert__notifier.html#ac1d8f604c0a3ec0cac06fbe692451d6c">is_ready</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>log_notifier : <span class="keyword">public</span> alert_notifier {</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    <span class="keyword">explicit</span> log_notifier(std::string notifier_name = <span class="stringliteral">&quot;log_notifier&quot;</span>)</div>
-<div class="line">        : <a id="a75" name="a75"></a><a class="code hl_variable" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a01c9a3b30822c9cb9498ecb1e34b8503">name_</a>(std::move(notifier_name)) {}</div>
+<div class="line">        : <a id="a74" name="a74"></a><a class="code hl_variable" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a01c9a3b30822c9cb9498ecb1e34b8503">name_</a>(std::move(notifier_name)) {}</div>
 <div class="line"> </div>
-<div class="line">    std::string <a id="a76" name="a76"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a946be81ba001905e67d12620675aae4e">name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a01c9a3b30822c9cb9498ecb1e34b8503">name_</a>; }</div>
+<div class="line">    std::string <a id="a75" name="a75"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a946be81ba001905e67d12620675aae4e">name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a01c9a3b30822c9cb9498ecb1e34b8503">name_</a>; }</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a77" name="a77"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a87f43fdcc1ffb61eeff045fbceec59b4">notify</a>(<span class="keyword">const</span> alert&amp; a) <span class="keyword">override</span>;</div>
+<div class="line">    common::VoidResult <a id="a76" name="a76"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a87f43fdcc1ffb61eeff045fbceec59b4">notify</a>(<span class="keyword">const</span> alert&amp; a) <span class="keyword">override</span>;</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a78" name="a78"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#adf4dee4006d5cb39b3eab56db0675f28">notify_group</a>(<span class="keyword">const</span> alert_group&amp; group) <span class="keyword">override</span>;</div>
+<div class="line">    common::VoidResult <a id="a77" name="a77"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#adf4dee4006d5cb39b3eab56db0675f28">notify_group</a>(<span class="keyword">const</span> alert_group&amp; group) <span class="keyword">override</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a79" name="a79"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a315c9c4fd0d52f275014cbc1acb22b8d">is_ready</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a78" name="a78"></a><a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a315c9c4fd0d52f275014cbc1acb22b8d">is_ready</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line">    std::string <a class="code hl_variable" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a01c9a3b30822c9cb9498ecb1e34b8503">name_</a>;</div>
@@ -348,27 +348,27 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>callback_notifier : <span class="keyword">public</span> alert_notifier {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">using </span><a id="a80" name="a80"></a><a class="code hl_typedef" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#acd1d45e2c78ed8e10449ab163c9f0aa3">callback_func</a> = std::function&lt;void(<span class="keyword">const</span> alert&amp;)&gt;;</div>
-<div class="line">    <span class="keyword">using </span><a id="a81" name="a81"></a><a class="code hl_typedef" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a66347448e8a06b31319174dbe32f157f">group_callback_func</a> = std::function&lt;void(<span class="keyword">const</span> alert_group&amp;)&gt;;</div>
+<div class="line">    <span class="keyword">using </span><a id="a79" name="a79"></a><a class="code hl_typedef" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#acd1d45e2c78ed8e10449ab163c9f0aa3">callback_func</a> = std::function&lt;void(<span class="keyword">const</span> alert&amp;)&gt;;</div>
+<div class="line">    <span class="keyword">using </span><a id="a80" name="a80"></a><a class="code hl_typedef" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a66347448e8a06b31319174dbe32f157f">group_callback_func</a> = std::function&lt;void(<span class="keyword">const</span> alert_group&amp;)&gt;;</div>
 <div class="line"> </div>
 <div class="line">    callback_notifier(std::string notifier_name,</div>
 <div class="line">                      <a class="code hl_typedef" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#acd1d45e2c78ed8e10449ab163c9f0aa3">callback_func</a> callback,</div>
 <div class="line">                      <a class="code hl_typedef" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a66347448e8a06b31319174dbe32f157f">group_callback_func</a> group_callback = <span class="keyword">nullptr</span>)</div>
-<div class="line">        : <a id="a82" name="a82"></a><a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a9c82a1b8a9ea11f78595a7cf12ce2159">name_</a>(std::move(notifier_name))</div>
-<div class="line">        , <a id="a83" name="a83"></a><a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#aaed84ed3665526bf53ce226f90a0623d">callback_</a>(std::move(callback))</div>
-<div class="line">        , <a id="a84" name="a84"></a><a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#ad1b2bb736c22591c6840c1768d8a1b55">group_callback_</a>(std::move(group_callback)) {}</div>
+<div class="line">        : <a id="a81" name="a81"></a><a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a9c82a1b8a9ea11f78595a7cf12ce2159">name_</a>(std::move(notifier_name))</div>
+<div class="line">        , <a id="a82" name="a82"></a><a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#aaed84ed3665526bf53ce226f90a0623d">callback_</a>(std::move(callback))</div>
+<div class="line">        , <a id="a83" name="a83"></a><a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#ad1b2bb736c22591c6840c1768d8a1b55">group_callback_</a>(std::move(group_callback)) {}</div>
 <div class="line"> </div>
-<div class="line">    std::string <a id="a85" name="a85"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a5ec24037d6ed5e26c6c1cda90abbf493">name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a9c82a1b8a9ea11f78595a7cf12ce2159">name_</a>; }</div>
+<div class="line">    std::string <a id="a84" name="a84"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a5ec24037d6ed5e26c6c1cda90abbf493">name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a9c82a1b8a9ea11f78595a7cf12ce2159">name_</a>; }</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a86" name="a86"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a46b69ebdf41bcdbc554fbc9bd32fb83d">notify</a>(<span class="keyword">const</span> alert&amp; a)<span class="keyword"> override </span>{</div>
+<div class="line">    common::VoidResult <a id="a85" name="a85"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a46b69ebdf41bcdbc554fbc9bd32fb83d">notify</a>(<span class="keyword">const</span> alert&amp; a)<span class="keyword"> override </span>{</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#aaed84ed3665526bf53ce226f90a0623d">callback_</a>) {</div>
 <div class="line">            <a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#aaed84ed3665526bf53ce226f90a0623d">callback_</a>(a);</div>
 <div class="line">            <span class="keywordflow">return</span> common::ok();</div>
 <div class="line">        }</div>
-<div class="line">        <span class="keywordflow">return</span> common::VoidResult::err(error_info(<a id="a87" name="a87"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>, <span class="stringliteral">&quot;No callback configured&quot;</span>).to_common_error());</div>
+<div class="line">        <span class="keywordflow">return</span> common::VoidResult::err(error_info(<a id="a86" name="a86"></a><a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae84e30f035632b055bfc113f1d7e0a67">monitoring_error_code::operation_failed</a>, <span class="stringliteral">&quot;No callback configured&quot;</span>).to_common_error());</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    common::VoidResult <a id="a88" name="a88"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#af4d93d2f45880797db0583c5747e20cd">notify_group</a>(<span class="keyword">const</span> alert_group&amp; group)<span class="keyword"> override </span>{</div>
+<div class="line">    common::VoidResult <a id="a87" name="a87"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#af4d93d2f45880797db0583c5747e20cd">notify_group</a>(<span class="keyword">const</span> alert_group&amp; group)<span class="keyword"> override </span>{</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#ad1b2bb736c22591c6840c1768d8a1b55">group_callback_</a>) {</div>
 <div class="line">            <a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#ad1b2bb736c22591c6840c1768d8a1b55">group_callback_</a>(group);</div>
 <div class="line">            <span class="keywordflow">return</span> common::ok();</div>
@@ -383,7 +383,7 @@ $(function() {
 <div class="line">        <span class="keywordflow">return</span> common::ok();</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">bool</span> <a id="a89" name="a89"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a0a8c3241ff0cb5340849a1fc1c468c2b">is_ready</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#aaed84ed3665526bf53ce226f90a0623d">callback_</a> != <span class="keyword">nullptr</span>; }</div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a88" name="a88"></a><a class="code hl_function" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a0a8c3241ff0cb5340849a1fc1c468c2b">is_ready</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#aaed84ed3665526bf53ce226f90a0623d">callback_</a> != <span class="keyword">nullptr</span>; }</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line">    std::string <a class="code hl_variable" href="../../db/da9/classkcenon_1_1monitoring_1_1callback__notifier.html#a9c82a1b8a9ea11f78595a7cf12ce2159">name_</a>;</div>
@@ -430,7 +430,6 @@ $(function() {
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a98033ea99e6b6a7712f76d5cd25ea488"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a98033ea99e6b6a7712f76d5cd25ea488">kcenon::monitoring::alert_manager::silences_mutex_</a></div><div class="ttdeci">std::mutex silences_mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00400">alert_manager.h:400</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a9915a765163c994b4bd419f1e05b2efe"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9915a765163c994b4bd419f1e05b2efe">kcenon::monitoring::alert_manager::metric_provider_</a></div><div class="ttdeci">metric_provider_func metric_provider_</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00409">alert_manager.h:409</a></div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a9f8f4b2514f91f7af9ba95a5e1c5dd31"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">kcenon::monitoring::alert_manager::get_metrics</a></div><div class="ttdeci">alert_manager_metrics get_metrics() const</div><div class="ttdoc">Get manager metrics.</div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_aa0755da0cdba4b53b891373dff488cd1"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa0755da0cdba4b53b891373dff488cd1">kcenon::monitoring::alert_manager::process_metrics</a></div><div class="ttdeci">common::VoidResult process_metrics(const std::unordered_map&lt; std::string, double &gt; &amp;metrics)</div><div class="ttdoc">Process a batch of metrics.</div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_aa16ee8952bde82cff2e95e2bc2b2b420"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa16ee8952bde82cff2e95e2bc2b2b420">kcenon::monitoring::alert_manager::get_notifiers</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; alert_notifier &gt; &gt; get_notifiers() const</div><div class="ttdoc">Get all notifiers.</div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_aa52ab29ecdd0e66f9f1c988106bd6d51"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#aa52ab29ecdd0e66f9f1c988106bd6d51">kcenon::monitoring::alert_manager::cleanup_resolved_alerts</a></div><div class="ttdeci">void cleanup_resolved_alerts()</div><div class="ttdoc">Clean up resolved alerts.</div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_abc12823702bde682aade973bee649e78"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#abc12823702bde682aade973bee649e78">kcenon::monitoring::alert_manager::set_metric_provider</a></div><div class="ttdeci">void set_metric_provider(metric_provider_func provider)</div><div class="ttdoc">Set the metric provider function.</div></div>
@@ -488,7 +487,7 @@ $(function() {
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 21 2026 14:54:21 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Jan 21 2026 15:22:12 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
