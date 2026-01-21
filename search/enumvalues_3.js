@@ -12,5 +12,5 @@ var searchData=
   ['dependency_5fmissing_9',['dependency_missing',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaedddbc5d589f1443c722ae62aa2649d4',1,'kcenon::monitoring']]],
   ['discharging_10',['discharging',['../db/d50/namespacekcenon_1_1monitoring.html#a646130481f6be4ea221dedce5c089419ac5506d5a14acd50bb34956446899fe2f',1,'kcenon::monitoring']]],
   ['discrete_11',['discrete',['../db/d50/namespacekcenon_1_1monitoring.html#a96427c6006bc9a120d9ec340927afca0a8c5f2fed7d3999790b2aeb843aee4610',1,'kcenon::monitoring']]],
-  ['docker_12',['docker',['../db/d50/namespacekcenon_1_1monitoring.html#a6dff9bff00ed0c62db51676e850d481da05b6053c41a2130afd6fc3b158bda4e6',1,'kcenon::monitoring']]]
+  ['docker_12',['docker',['../db/d50/namespacekcenon_1_1monitoring.html#a6dff9bff00ed0c62db51676e850d481da05b6053c41a2130afd6fc3b158bda4e6',1,'kcenon::monitoring::docker'],['../d6/d1d/namespacekcenon_1_1monitoring_1_1plugins.html#aef868dc9fa5de5034063d48897755986a05b6053c41a2130afd6fc3b158bda4e6',1,'kcenon::monitoring::plugins::docker']]]
 ];

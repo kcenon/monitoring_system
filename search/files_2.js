@@ -9,5 +9,6 @@ var searchData=
   ['compatibility_2eh_6',['compatibility.h',['../d1/d56/compatibility_8h.html',1,'']]],
   ['config_5fparser_2eh_7',['config_parser.h',['../d1/d2b/config__parser_8h.html',1,'']]],
   ['container_5fcollector_2eh_8',['container_collector.h',['../dc/d80/container__collector_8h.html',1,'']]],
-  ['custom_5fmetric_5ftypes_5fexample_2ecpp_9',['custom_metric_types_example.cpp',['../d7/dc6/custom__metric__types__example_8cpp.html',1,'']]]
+  ['container_5fplugin_2eh_9',['container_plugin.h',['../d1/d65/container__plugin_8h.html',1,'']]],
+  ['custom_5fmetric_5ftypes_5fexample_2ecpp_10',['custom_metric_types_example.cpp',['../d7/dc6/custom__metric__types__example_8cpp.html',1,'']]]
 ];
