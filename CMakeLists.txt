@@ -93,6 +93,10 @@ option(MONITORING_ENABLE_TSAN "Enable ThreadSanitizer" OFF)
 option(MONITORING_ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
 option(MONITORING_ENABLE_COVERAGE "Enable coverage reporting" OFF)
 
+# Optional hardware monitoring plugin (battery, power, temperature, GPU)
+# Disabled by default for server environments
+option(MONITORING_BUILD_HARDWARE_PLUGIN "Build hardware monitoring plugin" OFF)
+
 # Backward compatibility for legacy option names (can be removed in future versions)
 include(MonitoringLegacyOptions OPTIONAL)
 
@@ -694,6 +698,54 @@ if(MONITORING_WITH_GRPC)
     endif()
 endif()
 
+##################################################
+# Hardware Monitoring Plugin (Optional)
+##################################################
+# Build hardware monitoring plugin as a separate library.
+# This keeps hardware-specific collectors (battery, power, temperature, GPU)
+# out of the core library for server environments where they are unnecessary.
+##################################################
+if(MONITORING_BUILD_HARDWARE_PLUGIN)
+    message(STATUS "=== Building Hardware Monitoring Plugin ===")
+
+    add_library(monitoring_hardware_plugin STATIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/hardware/hardware_plugin.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/impl/battery_collector.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/power_collector.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/temperature_collector.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/gpu_collector.cpp
+    )
+
+    target_include_directories(monitoring_hardware_plugin
+        PUBLIC
+            $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
+            $<INSTALL_INTERFACE:include>
+    )
+
+    target_link_libraries(monitoring_hardware_plugin
+        PUBLIC
+            monitoring_system
+            Threads::Threads
+    )
+
+    # Platform-specific libraries for hardware monitoring
+    if(APPLE)
+        target_link_libraries(monitoring_hardware_plugin PUBLIC
+            "-framework IOKit"
+            "-framework CoreFoundation"
+        )
+    endif()
+
+    # Create alias for namespaced usage
+    add_library(kcenon::monitoring_hardware_plugin ALIAS monitoring_hardware_plugin)
+
+    message(STATUS "Hardware plugin: ENABLED")
+    message(STATUS "  Collectors: battery, power, temperature, gpu")
+else()
+    message(STATUS "Hardware plugin: DISABLED (use -DMONITORING_BUILD_HARDWARE_PLUGIN=ON to enable)")
+endif()
+
 # Tests
 if(MONITORING_BUILD_TESTS)
     enable_testing()
@@ -796,6 +848,7 @@ message(STATUS "  Build tests: ${MONITORING_BUILD_TESTS}")
 message(STATUS "  Build integration tests: ${MONITORING_BUILD_INTEGRATION_TESTS}")
 message(STATUS "  Build examples: ${MONITORING_BUILD_EXAMPLES}")
 message(STATUS "  Build benchmarks: ${MONITORING_BUILD_BENCHMARKS}")
+message(STATUS "  Hardware plugin: ${MONITORING_BUILD_HARDWARE_PLUGIN} [OPTIONAL - battery/power/temp/gpu]")
 message(STATUS "")
 message(STATUS "Sanitizers:")
 message(STATUS "  Coverage reporting: ${MONITORING_ENABLE_COVERAGE}")
