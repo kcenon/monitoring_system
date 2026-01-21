@@ -87,6 +87,9 @@ add_executable(monitoring_system_tests
     # Platform metrics provider (Issue #295)
     test_metrics_provider.cpp
 
+    # Platform metrics collector (Issue #393 - unified platform metrics using Strategy pattern)
+    test_platform_metrics_collector.cpp
+
     # Metric exporters and OpenTelemetry adapter tests (Issue #320 - Phase 1)
     test_metric_exporters.cpp
     test_opentelemetry_adapter.cpp

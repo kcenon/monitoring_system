@@ -56,6 +56,7 @@
 #include "../collectors/battery_collector.h"
 #include "../collectors/interrupt_collector.h"
 #include "../collectors/network_metrics_collector.h"
+#include "../collectors/platform_metrics_collector.h"
 #include "../collectors/process_metrics_collector.h"
 #include "../collectors/system_resource_collector.h"
 #include "../collectors/uptime_collector.h"
@@ -73,6 +74,7 @@ namespace kcenon::monitoring {
  * - battery_collector (CRTP-based)
  * - process_metrics_collector (CRTP-based, consolidated from fd, inode, context_switch)
  * - network_metrics_collector (CRTP-based, consolidated from tcp_state and socket_buffer)
+ * - platform_metrics_collector (CRTP-based, unified platform metrics using Strategy pattern)
  * - interrupt_collector (CRTP-based)
  *
  * Call this function once at application startup before using the factory.
@@ -93,6 +95,7 @@ inline bool register_builtin_collectors() {
     all_success &= register_crtp_collector<battery_collector>("battery_collector");
     all_success &= register_crtp_collector<process_metrics_collector>("process_metrics_collector");
     all_success &= register_crtp_collector<network_metrics_collector>("network_metrics_collector");
+    all_success &= register_crtp_collector<platform_metrics_collector>("platform_metrics_collector");
     all_success &= register_crtp_collector<interrupt_collector>("interrupt_collector");
 
     return all_success;
@@ -109,6 +112,7 @@ inline std::vector<std::string> get_builtin_collector_names() {
             "battery_collector",
             "process_metrics_collector",
             "network_metrics_collector",
+            "platform_metrics_collector",
             "interrupt_collector"};
 }
 
