@@ -51,11 +51,8 @@ add_executable(monitoring_system_tests
     # Hardware temperature monitoring (Issue #215)
     test_temperature_collector.cpp
 
-    # File descriptor usage monitoring (Issue #220)
-    test_fd_collector.cpp
-
-    # Inode usage monitoring (Issue #224)
-    test_inode_collector.cpp
+    # Process metrics monitoring (consolidated FD, inode, context switch - Issue #392)
+    test_process_metrics_collector.cpp
 
     # Network metrics monitoring (consolidated from Issue #225, #226)
     test_network_metrics_collector.cpp
@@ -69,9 +66,8 @@ add_executable(monitoring_system_tests
     # GPU metrics monitoring (Issue #221)
     test_gpu_collector.cpp
 
-    # Context switch monitoring (Issue #222)
+    # System resource monitoring (Issue #222)
     test_system_resource_collector.cpp
-    test_context_switch_collector.cpp
 
     # Security event monitoring (Issue #230)
     test_security_collector.cpp

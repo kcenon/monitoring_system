@@ -54,11 +54,9 @@
 
 // Include all collector headers
 #include "../collectors/battery_collector.h"
-#include "../collectors/context_switch_collector.h"
-#include "../collectors/fd_collector.h"
-#include "../collectors/inode_collector.h"
 #include "../collectors/interrupt_collector.h"
 #include "../collectors/network_metrics_collector.h"
+#include "../collectors/process_metrics_collector.h"
 #include "../collectors/system_resource_collector.h"
 #include "../collectors/uptime_collector.h"
 #include "../collectors/vm_collector.h"
@@ -73,10 +71,8 @@ namespace kcenon::monitoring {
  * - vm_collector (standalone)
  * - uptime_collector (CRTP-based)
  * - battery_collector (CRTP-based)
- * - fd_collector (CRTP-based)
- * - inode_collector (CRTP-based)
+ * - process_metrics_collector (CRTP-based, consolidated from fd, inode, context_switch)
  * - network_metrics_collector (CRTP-based, consolidated from tcp_state and socket_buffer)
- * - context_switch_collector (CRTP-based)
  * - interrupt_collector (CRTP-based)
  *
  * Call this function once at application startup before using the factory.
@@ -95,10 +91,8 @@ inline bool register_builtin_collectors() {
     // CRTP-based collectors
     all_success &= register_crtp_collector<uptime_collector>("uptime_collector");
     all_success &= register_crtp_collector<battery_collector>("battery_collector");
-    all_success &= register_crtp_collector<fd_collector>("fd_collector");
-    all_success &= register_crtp_collector<inode_collector>("inode_collector");
+    all_success &= register_crtp_collector<process_metrics_collector>("process_metrics_collector");
     all_success &= register_crtp_collector<network_metrics_collector>("network_metrics_collector");
-    all_success &= register_crtp_collector<context_switch_collector>("context_switch_collector");
     all_success &= register_crtp_collector<interrupt_collector>("interrupt_collector");
 
     return all_success;
@@ -113,10 +107,8 @@ inline std::vector<std::string> get_builtin_collector_names() {
             "vm_collector",
             "uptime_collector",
             "battery_collector",
-            "fd_collector",
-            "inode_collector",
+            "process_metrics_collector",
             "network_metrics_collector",
-            "context_switch_collector",
             "interrupt_collector"};
 }
 
