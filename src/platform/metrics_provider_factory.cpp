@@ -36,6 +36,8 @@
 #include "macos/macos_metrics_provider.h"
 #elif defined(_WIN32)
 #include "windows/windows_metrics_provider.h"
+#else
+#include "null/null_metrics_provider.h"
 #endif
 
 namespace kcenon {
@@ -50,8 +52,8 @@ std::unique_ptr<metrics_provider> metrics_provider::create() {
 #elif defined(_WIN32)
     return std::make_unique<windows_metrics_provider>();
 #else
-    // Unsupported platform - return nullptr
-    return nullptr;
+    // Unsupported platform - return null object for safe fallback
+    return std::make_unique<null_metrics_provider>();
 #endif
 }
 
