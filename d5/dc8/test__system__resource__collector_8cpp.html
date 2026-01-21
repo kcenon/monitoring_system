@@ -285,51 +285,56 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00213">213</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  213</span>                                                           {</div>
 <div class="line"><span class="lineno">  214</span>    <span class="comment">// Disable disk and network metrics using deprecated method for backward compat</span></div>
-<div class="line"><span class="lineno">  215</span><span class="preprocessor">    #if defined(__GNUC__) || defined(__clang__)</span></div>
-<div class="line"><span class="lineno">  216</span><span class="preprocessor">    #pragma GCC diagnostic push</span></div>
-<div class="line"><span class="lineno">  217</span><span class="preprocessor">    #pragma GCC diagnostic ignored &quot;-Wdeprecated-declarations&quot;</span></div>
-<div class="line"><span class="lineno">  218</span><span class="preprocessor">    #endif</span></div>
-<div class="line"><span class="lineno">  219</span>    collector-&gt;set_collection_filters(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  220</span><span class="preprocessor">    #if defined(__GNUC__) || defined(__clang__)</span></div>
-<div class="line"><span class="lineno">  221</span><span class="preprocessor">    #pragma GCC diagnostic pop</span></div>
-<div class="line"><span class="lineno">  222</span><span class="preprocessor">    #endif</span></div>
-<div class="line"><span class="lineno">  223</span> </div>
-<div class="line"><span class="lineno">  224</span>    <span class="keyword">auto</span> metrics = collector-&gt;collect();</div>
-<div class="line"><span class="lineno">  225</span> </div>
-<div class="line"><span class="lineno">  226</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  227</span>    <span class="keywordtype">bool</span> has_disk = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  228</span>    <span class="keywordtype">bool</span> has_network = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  229</span> </div>
-<div class="line"><span class="lineno">  230</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  231</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.cpu.usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  232</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  233</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  234</span>    }</div>
-<div class="line"><span class="lineno">  235</span> </div>
-<div class="line"><span class="lineno">  236</span>    EXPECT_TRUE(has_cpu) &lt;&lt; <span class="stringliteral">&quot;CPU metrics should be collected when enabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  237</span>    EXPECT_FALSE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should not be collected when disabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  238</span>    EXPECT_FALSE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should not be collected when disabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  239</span> </div>
-<div class="line"><span class="lineno">  240</span>    <span class="comment">// Re-enable all metrics using new config API</span></div>
-<div class="line"><span class="lineno">  241</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
-<div class="line"><span class="lineno">  242</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  243</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  244</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  245</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  246</span>    collector-&gt;set_config(config);</div>
-<div class="line"><span class="lineno">  247</span> </div>
-<div class="line"><span class="lineno">  248</span>    metrics = collector-&gt;collect();</div>
-<div class="line"><span class="lineno">  249</span>    has_disk = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  250</span>    has_network = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  251</span> </div>
-<div class="line"><span class="lineno">  252</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  253</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  254</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  255</span>    }</div>
+<div class="line"><span class="lineno">  215</span><span class="preprocessor">    #if defined(_MSC_VER)</span></div>
+<div class="line"><span class="lineno">  216</span><span class="preprocessor">    #pragma warning(push)</span></div>
+<div class="line"><span class="lineno">  217</span><span class="preprocessor">    #pragma warning(disable: 4996)  </span><span class="comment">// deprecated function</span></div>
+<div class="line"><span class="lineno">  218</span><span class="preprocessor">    #elif defined(__GNUC__) || defined(__clang__)</span></div>
+<div class="line"><span class="lineno">  219</span><span class="preprocessor">    #pragma GCC diagnostic push</span></div>
+<div class="line"><span class="lineno">  220</span><span class="preprocessor">    #pragma GCC diagnostic ignored &quot;-Wdeprecated-declarations&quot;</span></div>
+<div class="line"><span class="lineno">  221</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><span class="lineno">  222</span>    collector-&gt;set_collection_filters(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  223</span><span class="preprocessor">    #if defined(_MSC_VER)</span></div>
+<div class="line"><span class="lineno">  224</span><span class="preprocessor">    #pragma warning(pop)</span></div>
+<div class="line"><span class="lineno">  225</span><span class="preprocessor">    #elif defined(__GNUC__) || defined(__clang__)</span></div>
+<div class="line"><span class="lineno">  226</span><span class="preprocessor">    #pragma GCC diagnostic pop</span></div>
+<div class="line"><span class="lineno">  227</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>    <span class="keyword">auto</span> metrics = collector-&gt;collect();</div>
+<div class="line"><span class="lineno">  230</span> </div>
+<div class="line"><span class="lineno">  231</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  232</span>    <span class="keywordtype">bool</span> has_disk = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  233</span>    <span class="keywordtype">bool</span> has_network = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
+<div class="line"><span class="lineno">  236</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.cpu.usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  237</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  238</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  239</span>    }</div>
+<div class="line"><span class="lineno">  240</span> </div>
+<div class="line"><span class="lineno">  241</span>    EXPECT_TRUE(has_cpu) &lt;&lt; <span class="stringliteral">&quot;CPU metrics should be collected when enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  242</span>    EXPECT_FALSE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should not be collected when disabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  243</span>    EXPECT_FALSE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should not be collected when disabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  244</span> </div>
+<div class="line"><span class="lineno">  245</span>    <span class="comment">// Re-enable all metrics using new config API</span></div>
+<div class="line"><span class="lineno">  246</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
+<div class="line"><span class="lineno">  247</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  248</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  249</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  250</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  251</span>    collector-&gt;set_config(config);</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>    metrics = collector-&gt;collect();</div>
+<div class="line"><span class="lineno">  254</span>    has_disk = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  255</span>    has_network = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  256</span> </div>
-<div class="line"><span class="lineno">  257</span>    EXPECT_TRUE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should be collected when re-enabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  258</span>    EXPECT_TRUE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should be collected when re-enabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  259</span>}</div>
+<div class="line"><span class="lineno">  257</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
+<div class="line"><span class="lineno">  258</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  259</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  260</span>    }</div>
+<div class="line"><span class="lineno">  261</span> </div>
+<div class="line"><span class="lineno">  262</span>    EXPECT_TRUE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should be collected when re-enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  263</span>    EXPECT_TRUE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should be collected when re-enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  264</span>}</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">kcenon::monitoring::system_metrics_config</a></div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00086">system_resource_collector.h:86</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a0438339d4ce3063806c0dc1888abf0b2"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">kcenon::monitoring::system_metrics_config::collect_cpu</a></div><div class="ttdeci">bool collect_cpu</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00087">system_resource_collector.h:87</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a38badb75a72c95ee078f84754d3f6e3e"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">kcenon::monitoring::system_metrics_config::collect_memory</a></div><div class="ttdeci">bool collect_memory</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00088">system_resource_collector.h:88</a></div></div>
@@ -414,29 +419,29 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  261</span>                                                            {</div>
-<div class="line"><span class="lineno">  262</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
-<div class="line"><span class="lineno">  263</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  264</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  265</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  266</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  267</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  268</span> </div>
-<div class="line"><span class="lineno">  269</span>    <span class="keyword">auto</span> custom_collector = std::make_unique&lt;system_resource_collector&gt;(config);</div>
-<div class="line"><span class="lineno">  270</span>    <span class="keyword">auto</span> metrics = custom_collector-&gt;collect();</div>
-<div class="line"><span class="lineno">  271</span> </div>
-<div class="line"><span class="lineno">  272</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  273</span>    <span class="keywordtype">bool</span> has_memory = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  274</span> </div>
-<div class="line"><span class="lineno">  275</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  276</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.cpu.usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  277</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.memory.usage_percent&quot;</span>) has_memory = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  278</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00266">266</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  266</span>                                                            {</div>
+<div class="line"><span class="lineno">  267</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
+<div class="line"><span class="lineno">  268</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  269</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  270</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  271</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  272</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  273</span> </div>
+<div class="line"><span class="lineno">  274</span>    <span class="keyword">auto</span> custom_collector = std::make_unique&lt;system_resource_collector&gt;(config);</div>
+<div class="line"><span class="lineno">  275</span>    <span class="keyword">auto</span> metrics = custom_collector-&gt;collect();</div>
+<div class="line"><span class="lineno">  276</span> </div>
+<div class="line"><span class="lineno">  277</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  278</span>    <span class="keywordtype">bool</span> has_memory = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  279</span> </div>
-<div class="line"><span class="lineno">  280</span>    EXPECT_TRUE(has_cpu) &lt;&lt; <span class="stringliteral">&quot;CPU metrics should be collected&quot;</span>;</div>
-<div class="line"><span class="lineno">  281</span>    EXPECT_FALSE(has_memory) &lt;&lt; <span class="stringliteral">&quot;Memory metrics should not be collected when disabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  282</span>}</div>
+<div class="line"><span class="lineno">  280</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
+<div class="line"><span class="lineno">  281</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.cpu.usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.memory.usage_percent&quot;</span>) has_memory = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  283</span>    }</div>
+<div class="line"><span class="lineno">  284</span> </div>
+<div class="line"><span class="lineno">  285</span>    EXPECT_TRUE(has_cpu) &lt;&lt; <span class="stringliteral">&quot;CPU metrics should be collected&quot;</span>;</div>
+<div class="line"><span class="lineno">  286</span>    EXPECT_FALSE(has_memory) &lt;&lt; <span class="stringliteral">&quot;Memory metrics should not be collected when disabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  287</span>}</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a44fc726fc3ca860b0664c20b6a8a2db4"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">kcenon::monitoring::system_metrics_config::collect_process</a></div><div class="ttdeci">bool collect_process</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00091">system_resource_collector.h:91</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -632,24 +637,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00284">284</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  284</span>                                                                     {</div>
-<div class="line"><span class="lineno">  285</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
-<div class="line"><span class="lineno">  286</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  287</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  288</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  289</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  290</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  291</span> </div>
-<div class="line"><span class="lineno">  292</span>    collector-&gt;set_config(config);</div>
-<div class="line"><span class="lineno">  293</span>    <span class="keyword">auto</span> retrieved = collector-&gt;get_config();</div>
-<div class="line"><span class="lineno">  294</span> </div>
-<div class="line"><span class="lineno">  295</span>    EXPECT_EQ(retrieved.collect_cpu, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a>);</div>
-<div class="line"><span class="lineno">  296</span>    EXPECT_EQ(retrieved.collect_memory, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a>);</div>
-<div class="line"><span class="lineno">  297</span>    EXPECT_EQ(retrieved.collect_disk, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a>);</div>
-<div class="line"><span class="lineno">  298</span>    EXPECT_EQ(retrieved.collect_network, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a>);</div>
-<div class="line"><span class="lineno">  299</span>    EXPECT_EQ(retrieved.collect_process, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a>);</div>
-<div class="line"><span class="lineno">  300</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00289">289</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  289</span>                                                                     {</div>
+<div class="line"><span class="lineno">  290</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
+<div class="line"><span class="lineno">  291</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  292</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  293</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  294</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  295</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  296</span> </div>
+<div class="line"><span class="lineno">  297</span>    collector-&gt;set_config(config);</div>
+<div class="line"><span class="lineno">  298</span>    <span class="keyword">auto</span> retrieved = collector-&gt;get_config();</div>
+<div class="line"><span class="lineno">  299</span> </div>
+<div class="line"><span class="lineno">  300</span>    EXPECT_EQ(retrieved.collect_cpu, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a>);</div>
+<div class="line"><span class="lineno">  301</span>    EXPECT_EQ(retrieved.collect_memory, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a>);</div>
+<div class="line"><span class="lineno">  302</span>    EXPECT_EQ(retrieved.collect_disk, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a>);</div>
+<div class="line"><span class="lineno">  303</span>    EXPECT_EQ(retrieved.collect_network, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a>);</div>
+<div class="line"><span class="lineno">  304</span>    EXPECT_EQ(retrieved.collect_process, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a>);</div>
+<div class="line"><span class="lineno">  305</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -809,7 +814,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 21 2026 12:10:20 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Jan 21 2026 12:22:07 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
