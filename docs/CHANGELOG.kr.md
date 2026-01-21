@@ -56,6 +56,19 @@ Monitoring System의 모든 주목할 만한 변경 사항이 이 파일에 문�
 
 ## [Unreleased]
 
+### 변경됨
+- **Collector 통합 리팩토링** (#389)
+  - Collector 수를 20개 이상에서 6개의 코어 collector + 선택적 플러그인으로 축소
+  - `system_resource_collector`: CPU, 메모리, 디스크 메트릭 통합 (cpu_collector, memory_collector 병합)
+  - `network_metrics_collector`: 소켓 버퍼와 TCP 상태 수집 통합 (#391)
+  - `process_metrics_collector`: FD, inode, context switch 수집 통합 (#392)
+  - `platform_metrics_collector`: Strategy 패턴을 통한 Linux/macOS/Windows 메트릭 통합 (#393)
+  - 특수 환경용 선택적 플러그인 시스템 구현:
+    - `hardware_plugin`: 배터리, 전원, 온도, GPU collector (#394)
+    - `container_plugin`: Docker, Kubernetes, cgroups collector (#395)
+  - 선택적 플러그인 빌드용 CMake 옵션: `MONITORING_BUILD_HARDWARE_PLUGIN`, `MONITORING_BUILD_CONTAINER_PLUGIN`
+  - 메트릭 이름을 `system.*` 스키마로 표준화 (#396)
+
 ### 추가됨
 - **스트리밍 집계 모듈** (#344)
   - `stream_aggregator.h`: 실시간 메트릭을 위한 스트리밍 통계 집계

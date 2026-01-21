@@ -56,6 +56,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Collector consolidation refactoring** (#389)
+  - Reduced collector count from 20+ to 6 core collectors plus optional plugins
+  - `system_resource_collector`: Unified CPU, memory, and disk metrics (merged cpu_collector, memory_collector)
+  - `network_metrics_collector`: Consolidated socket buffer and TCP state collection (#391)
+  - `process_metrics_collector`: Consolidated FD, inode, and context switch collection (#392)
+  - `platform_metrics_collector`: Unified Linux/macOS/Windows metrics via Strategy pattern (#393)
+  - Implemented optional plugin system for specialized collectors:
+    - `hardware_plugin`: Battery, power, temperature, GPU collectors (#394)
+    - `container_plugin`: Docker, Kubernetes, cgroups collectors (#395)
+  - CMake options for selective plugin builds: `MONITORING_BUILD_HARDWARE_PLUGIN`, `MONITORING_BUILD_CONTAINER_PLUGIN`
+  - Metric naming standardized to `system.*` schema (#396)
+
 ### Removed
 - **Deprecated statistics methods from performance_metrics** (#385)
   - Removed `performance_metrics::calculate_percentile()` - use `stats::percentile()` directly
