@@ -30,17 +30,22 @@
 #pragma once
 
 /**
- * @file tcp_state_collector.h
- * @brief TCP connection state monitoring collector
+ * @file network_metrics_collector.h
+ * @brief Unified network metrics collector for socket buffers and TCP states
  *
- * This file provides TCP connection state monitoring using platform-specific APIs.
- * Tracking TCP connection states helps detect connection leaks, capacity issues,
- * and networking problems like TIME_WAIT accumulation.
+ * This file provides a consolidated network metrics collector that combines
+ * socket buffer monitoring and TCP connection state monitoring into a single
+ * collector. This reduces code duplication and provides a unified interface
+ * for network-related metrics.
  *
  * Platform APIs:
- * - Linux: /proc/net/tcp and /proc/net/tcp6 parsing
- * - macOS: sysctlbyname("net.inet.tcp.pcblist") or lsof-style enumeration
- * - Windows: GetExtendedTcpTable() API (stub implementation)
+ * - Linux: /proc/net/tcp, /proc/net/tcp6, /proc/net/sockstat
+ * - macOS: sysctlbyname, netstat equivalents
+ * - Windows: GetTcpStatistics(), GetExtendedTcpTable() (stub implementation)
+ *
+ * @note This collector consolidates the following deprecated collectors:
+ *       - socket_buffer_collector
+ *       - tcp_state_collector
  */
 
 #include <chrono>
@@ -169,16 +174,38 @@ struct tcp_state_counts {
 };
 
 /**
- * @struct tcp_state_metrics
- * @brief Aggregated TCP connection state metrics
+ * @struct network_metrics_config
+ * @brief Configuration for network metrics collector
  */
-struct tcp_state_metrics {
-    tcp_state_counts ipv4_counts;                    ///< IPv4 connection counts
-    tcp_state_counts ipv6_counts;                    ///< IPv6 connection counts
-    tcp_state_counts combined_counts;                ///< Combined IPv4+IPv6 counts
-    uint64_t total_connections{0};                   ///< Total connection count
-    bool metrics_available{false};                   ///< Whether metrics are available
-    std::chrono::system_clock::time_point timestamp; ///< Reading timestamp
+struct network_metrics_config {
+    bool collect_socket_buffers{true};    ///< Enable socket buffer collection
+    bool collect_tcp_states{true};        ///< Enable TCP state collection
+    uint64_t time_wait_warning_threshold{10000};    ///< TIME_WAIT warning threshold
+    uint64_t close_wait_warning_threshold{100};     ///< CLOSE_WAIT warning threshold
+    uint64_t queue_full_threshold_bytes{65536};     ///< Socket queue full threshold
+    uint64_t memory_warning_threshold_bytes{104857600};  ///< Socket memory warning (100MB)
+};
+
+/**
+ * @struct network_metrics
+ * @brief Aggregated network metrics from all sources
+ */
+struct network_metrics {
+    // Socket buffer metrics
+    uint64_t recv_buffer_bytes{0};        ///< Total bytes in receive buffers
+    uint64_t send_buffer_bytes{0};        ///< Total bytes in send buffers
+    uint64_t socket_memory_bytes{0};      ///< Total socket buffer memory used
+    uint64_t socket_count{0};             ///< Total number of sockets
+    uint64_t tcp_socket_count{0};         ///< Number of TCP sockets
+    uint64_t udp_socket_count{0};         ///< Number of UDP sockets
+    bool socket_buffer_available{false};  ///< Socket buffer metrics availability
+
+    // TCP state metrics
+    tcp_state_counts tcp_counts;          ///< TCP state counts
+    uint64_t total_connections{0};        ///< Total TCP connections
+    bool tcp_state_available{false};      ///< TCP state metrics availability
+
+    std::chrono::system_clock::time_point timestamp;  ///< Reading timestamp
 };
 
 // Forward declaration
@@ -187,22 +214,28 @@ class metrics_provider;
 }  // namespace platform
 
 /**
- * @class tcp_state_info_collector
- * @brief TCP state data collector using platform abstraction layer
+ * @class network_info_collector
+ * @brief Internal network data collector using platform abstraction layer
  *
- * This class provides TCP state data collection using the unified
+ * This class provides network data collection using the unified
  * metrics_provider interface, eliminating platform-specific code.
  */
-class tcp_state_info_collector {
+class network_info_collector {
    public:
-    tcp_state_info_collector();
-    ~tcp_state_info_collector();
+    network_info_collector();
+    ~network_info_collector();
 
     // Non-copyable, non-moveable due to internal state
-    tcp_state_info_collector(const tcp_state_info_collector&) = delete;
-    tcp_state_info_collector& operator=(const tcp_state_info_collector&) = delete;
-    tcp_state_info_collector(tcp_state_info_collector&&) = delete;
-    tcp_state_info_collector& operator=(tcp_state_info_collector&&) = delete;
+    network_info_collector(const network_info_collector&) = delete;
+    network_info_collector& operator=(const network_info_collector&) = delete;
+    network_info_collector(network_info_collector&&) = delete;
+    network_info_collector& operator=(network_info_collector&&) = delete;
+
+    /**
+     * Check if socket buffer monitoring is available on this system
+     * @return True if socket buffer metrics can be read
+     */
+    bool is_socket_buffer_monitoring_available() const;
 
     /**
      * Check if TCP state monitoring is available on this system
@@ -211,58 +244,60 @@ class tcp_state_info_collector {
     bool is_tcp_state_monitoring_available() const;
 
     /**
-     * Collect current TCP state metrics
-     * @return tcp_state_metrics structure with current values
+     * Collect all network metrics
+     * @param config Configuration specifying which metrics to collect
+     * @return network_metrics structure with current values
      */
-    tcp_state_metrics collect_metrics();
+    network_metrics collect_metrics(const network_metrics_config& config);
 
    private:
     std::unique_ptr<platform::metrics_provider> provider_;
 };
 
 /**
- * @class tcp_state_collector
- * @brief TCP connection state monitoring collector
+ * @class network_metrics_collector
+ * @brief Unified network metrics collector
  *
- * Collects TCP connection state metrics with cross-platform support.
- * Returns unavailable metrics on Windows (stub implementation).
+ * Combines socket buffer and TCP state monitoring into a single collector.
+ * Provides configurable collection of different metric types.
  *
  * Uses CRTP base class to reduce code duplication.
  */
-class tcp_state_collector : public collector_base<tcp_state_collector> {
+class network_metrics_collector : public collector_base<network_metrics_collector> {
    public:
-    /// Collector name for CRTP base class
-    static constexpr const char* collector_name = "tcp_state_collector";
+    static constexpr const char* collector_name = "network_metrics_collector";
 
-    tcp_state_collector();
-    ~tcp_state_collector() override = default;
+    network_metrics_collector();
+    ~network_metrics_collector() override = default;
 
-    // Non-copyable, non-moveable due to internal state
-    tcp_state_collector(const tcp_state_collector&) = delete;
-    tcp_state_collector& operator=(const tcp_state_collector&) = delete;
-    tcp_state_collector(tcp_state_collector&&) = delete;
-    tcp_state_collector& operator=(tcp_state_collector&&) = delete;
+    network_metrics_collector(const network_metrics_collector&) = delete;
+    network_metrics_collector& operator=(const network_metrics_collector&) = delete;
+    network_metrics_collector(network_metrics_collector&&) = delete;
+    network_metrics_collector& operator=(network_metrics_collector&&) = delete;
 
     // CRTP interface implementation
     /**
      * Collector-specific initialization
      * @param config Configuration options:
+     *   - "collect_socket_buffers": "true"/"false" (default: true)
+     *   - "collect_tcp_states": "true"/"false" (default: true)
      *   - "time_wait_warning_threshold": count (default: 10000)
      *   - "close_wait_warning_threshold": count (default: 100)
-     *   - "include_ipv6": "true"/"false" (default: true)
+     *   - "queue_full_threshold_bytes": bytes (default: 65536)
+     *   - "memory_warning_threshold_bytes": bytes (default: 104857600)
      * @return true if initialization successful
      */
     bool do_initialize(const config_map& config);
 
     /**
-     * Collect TCP state metrics
+     * Collect network metrics
      * @return Vector of collected metrics
      */
     std::vector<metric> do_collect();
 
     /**
-     * Check if TCP state monitoring is available
-     * @return True if TCP state metrics are accessible
+     * Check if network metrics monitoring is available
+     * @return True if any network metrics are accessible
      */
     bool is_available() const;
 
@@ -279,10 +314,16 @@ class tcp_state_collector : public collector_base<tcp_state_collector> {
     void do_add_statistics(stats_map& stats) const;
 
     /**
-     * Get last collected TCP state metrics
-     * @return Most recent tcp_state_metrics reading
+     * Get last collected network metrics
+     * @return Most recent network_metrics reading
      */
-    tcp_state_metrics get_last_metrics() const;
+    network_metrics get_last_metrics() const;
+
+    /**
+     * Check if socket buffer monitoring is available
+     * @return True if socket buffer metrics are accessible
+     */
+    bool is_socket_buffer_monitoring_available() const;
 
     /**
      * Check if TCP state monitoring is available
@@ -291,19 +332,14 @@ class tcp_state_collector : public collector_base<tcp_state_collector> {
     bool is_tcp_state_monitoring_available() const;
 
    private:
-    std::unique_ptr<tcp_state_info_collector> collector_;
+    std::unique_ptr<network_info_collector> collector_;
+    network_metrics_config config_;
+    network_metrics last_metrics_;
 
-    // Configuration
-    bool include_ipv6_{true};
-    uint64_t time_wait_warning_threshold_{10000};
-    uint64_t close_wait_warning_threshold_{100};
-
-    // Last metrics cache
-    tcp_state_metrics last_metrics_;
-
-    // Helper methods
+    void add_socket_buffer_metrics(std::vector<metric>& metrics,
+                                   const network_metrics& data);
     void add_tcp_state_metrics(std::vector<metric>& metrics,
-                               const tcp_state_metrics& tcp_data);
+                               const network_metrics& data);
 };
 
 }  // namespace monitoring
