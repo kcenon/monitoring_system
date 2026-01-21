@@ -9,7 +9,7 @@ var searchData=
   ['query_5fmetric_6',['query_metric',['../d4/dc5/classkcenon_1_1monitoring_1_1metric__storage.html#a5536cdb4d83ea6dee8173f687af2659b',1,'kcenon::monitoring::metric_storage']]],
   ['query_5fstart_7',['query_start',['../d2/d1f/structkcenon_1_1monitoring_1_1aggregation__result.html#ac6a72116c0a26a0fe63bae37603c7066',1,'kcenon::monitoring::aggregation_result']]],
   ['queue_5fcv_5f_8',['queue_cv_',['../df/d2a/classkcenon_1_1monitoring_1_1event__bus.html#a5ad9726b73d5006864d35db65cd6d44f',1,'kcenon::monitoring::event_bus']]],
-  ['queue_5ffull_5fthreshold_5fbytes_5f_9',['queue_full_threshold_bytes_',['../df/d68/classkcenon_1_1monitoring_1_1socket__buffer__collector.html#a3dd2b85c5851c9fe6d483efa30a54834',1,'kcenon::monitoring::socket_buffer_collector']]],
+  ['queue_5ffull_5fthreshold_5fbytes_9',['queue_full_threshold_bytes',['../d0/d3c/structkcenon_1_1monitoring_1_1network__metrics__config.html#a808e154ded8d64814724f4be72d7874b',1,'kcenon::monitoring::network_metrics_config']]],
   ['queue_5fmutex_5f_10',['queue_mutex_',['../df/d2a/classkcenon_1_1monitoring_1_1event__bus.html#a0d39f24c9c9f289f5274d8d2d4c73fe9',1,'kcenon::monitoring::event_bus']]],
   ['queued_5ftasks_11',['queued_tasks',['../d8/d14/structkcenon_1_1monitoring_1_1thread__pool__metric__event_1_1thread__pool__stats.html#a4fbfa810f787b3de4e2acfd79df281a6',1,'kcenon::monitoring::thread_pool_metric_event::thread_pool_stats']]],
   ['quota_5f_12',['quota_',['../db/d30/classkcenon_1_1monitoring_1_1memory__quota__manager.html#a79604c1b41add1d91308376310db2949',1,'kcenon::monitoring::memory_quota_manager']]],
