@@ -184,3 +184,24 @@ target_link_libraries(monitoring_thread_safety_test
 include(GoogleTest)
 gtest_discover_tests(monitoring_system_tests)
 gtest_discover_tests(monitoring_thread_safety_test)
+
+# Container plugin tests (only when plugin is built)
+if(MONITORING_BUILD_CONTAINER_PLUGIN)
+    add_executable(monitoring_container_plugin_test
+        test_container_plugin.cpp
+    )
+
+    target_link_libraries(monitoring_container_plugin_test
+        PRIVATE
+            monitoring_container_plugin
+            monitoring_system
+            GTest::gtest_main
+            Threads::Threads
+    )
+
+    if(MSVC)
+        target_compile_options(monitoring_container_plugin_test PRIVATE /wd4996)
+    endif()
+
+    gtest_discover_tests(monitoring_container_plugin_test)
+endif()

@@ -97,6 +97,10 @@ option(MONITORING_ENABLE_COVERAGE "Enable coverage reporting" OFF)
 # Disabled by default for server environments
 option(MONITORING_BUILD_HARDWARE_PLUGIN "Build hardware monitoring plugin" OFF)
 
+# Optional container monitoring plugin (Docker, Kubernetes, cgroups)
+# Disabled by default for non-containerized environments
+option(MONITORING_BUILD_CONTAINER_PLUGIN "Build container monitoring plugin" OFF)
+
 # Backward compatibility for legacy option names (can be removed in future versions)
 include(MonitoringLegacyOptions OPTIONAL)
 
@@ -746,6 +750,42 @@ else()
     message(STATUS "Hardware plugin: DISABLED (use -DMONITORING_BUILD_HARDWARE_PLUGIN=ON to enable)")
 endif()
 
+##################################################
+# Container Monitoring Plugin (Optional)
+##################################################
+# Build container monitoring plugin as a separate library.
+# This keeps container-specific collectors (Docker, Kubernetes, cgroups)
+# out of the core library for non-containerized environments.
+##################################################
+if(MONITORING_BUILD_CONTAINER_PLUGIN)
+    message(STATUS "=== Building Container Monitoring Plugin ===")
+
+    add_library(monitoring_container_plugin STATIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/container/container_plugin.cpp
+    )
+
+    target_include_directories(monitoring_container_plugin
+        PUBLIC
+            $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
+            $<INSTALL_INTERFACE:include>
+    )
+
+    target_link_libraries(monitoring_container_plugin
+        PUBLIC
+            monitoring_system
+            Threads::Threads
+    )
+
+    # Create alias for namespaced usage
+    add_library(kcenon::monitoring_container_plugin ALIAS monitoring_container_plugin)
+
+    message(STATUS "Container plugin: ENABLED")
+    message(STATUS "  Collectors: docker, cgroup, kubernetes (stub)")
+else()
+    message(STATUS "Container plugin: DISABLED (use -DMONITORING_BUILD_CONTAINER_PLUGIN=ON to enable)")
+endif()
+
 # Tests
 if(MONITORING_BUILD_TESTS)
     enable_testing()
@@ -849,6 +889,7 @@ message(STATUS "  Build integration tests: ${MONITORING_BUILD_INTEGRATION_TESTS}
 message(STATUS "  Build examples: ${MONITORING_BUILD_EXAMPLES}")
 message(STATUS "  Build benchmarks: ${MONITORING_BUILD_BENCHMARKS}")
 message(STATUS "  Hardware plugin: ${MONITORING_BUILD_HARDWARE_PLUGIN} [OPTIONAL - battery/power/temp/gpu]")
+message(STATUS "  Container plugin: ${MONITORING_BUILD_CONTAINER_PLUGIN} [OPTIONAL - docker/k8s/cgroup]")
 message(STATUS "")
 message(STATUS "Sanitizers:")
 message(STATUS "  Coverage reporting: ${MONITORING_ENABLE_COVERAGE}")
