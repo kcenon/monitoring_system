@@ -12,7 +12,8 @@ var searchData=
   ['kcenon_3a_3amonitoring_3a_3ainterfaces_9',['interfaces',['../d7/dbf/namespacekcenon_1_1monitoring_1_1interfaces.html',1,'kcenon::monitoring']]],
   ['kcenon_3a_3amonitoring_3a_3ametrics_10',['metrics',['../d3/d44/namespacekcenon_1_1monitoring_1_1metrics.html',1,'kcenon::monitoring']]],
   ['kcenon_3a_3amonitoring_3a_3aplatform_11',['platform',['../d1/dc0/namespacekcenon_1_1monitoring_1_1platform.html',1,'kcenon::monitoring']]],
-  ['kcenon_3a_3amonitoring_3a_3astats_12',['stats',['../db/d19/namespacekcenon_1_1monitoring_1_1stats.html',1,'kcenon::monitoring']]],
-  ['kcenon_3a_3amonitoring_3a_3astats_3a_3adetail_13',['detail',['../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html',1,'kcenon::monitoring::stats']]],
-  ['kcenon_3a_3amonitoring_3a_3autils_14',['utils',['../df/d5e/namespacekcenon_1_1monitoring_1_1utils.html',1,'kcenon::monitoring']]]
+  ['kcenon_3a_3amonitoring_3a_3aplugins_12',['plugins',['../d6/d1d/namespacekcenon_1_1monitoring_1_1plugins.html',1,'kcenon::monitoring']]],
+  ['kcenon_3a_3amonitoring_3a_3astats_13',['stats',['../db/d19/namespacekcenon_1_1monitoring_1_1stats.html',1,'kcenon::monitoring']]],
+  ['kcenon_3a_3amonitoring_3a_3astats_3a_3adetail_14',['detail',['../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html',1,'kcenon::monitoring::stats']]],
+  ['kcenon_3a_3amonitoring_3a_3autils_15',['utils',['../df/d5e/namespacekcenon_1_1monitoring_1_1utils.html',1,'kcenon::monitoring']]]
 ];
