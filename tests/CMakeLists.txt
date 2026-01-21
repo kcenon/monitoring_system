@@ -57,8 +57,8 @@ add_executable(monitoring_system_tests
     # Inode usage monitoring (Issue #224)
     test_inode_collector.cpp
 
-    # TCP connection state monitoring (Issue #225)
-    test_tcp_state_collector.cpp
+    # Network metrics monitoring (consolidated from Issue #225, #226)
+    test_network_metrics_collector.cpp
 
     # Interrupt statistics monitoring (Issue #223)
     test_interrupt_collector.cpp
@@ -68,9 +68,6 @@ add_executable(monitoring_system_tests
 
     # GPU metrics monitoring (Issue #221)
     test_gpu_collector.cpp
-
-    # Socket buffer usage monitoring (Issue #226)
-    test_socket_buffer_collector.cpp
 
     # Context switch monitoring (Issue #222)
     test_system_resource_collector.cpp

@@ -58,9 +58,8 @@
 #include "../collectors/fd_collector.h"
 #include "../collectors/inode_collector.h"
 #include "../collectors/interrupt_collector.h"
-#include "../collectors/socket_buffer_collector.h"
+#include "../collectors/network_metrics_collector.h"
 #include "../collectors/system_resource_collector.h"
-#include "../collectors/tcp_state_collector.h"
 #include "../collectors/uptime_collector.h"
 #include "../collectors/vm_collector.h"
 
@@ -76,8 +75,7 @@ namespace kcenon::monitoring {
  * - battery_collector (CRTP-based)
  * - fd_collector (CRTP-based)
  * - inode_collector (CRTP-based)
- * - tcp_state_collector (CRTP-based)
- * - socket_buffer_collector (CRTP-based)
+ * - network_metrics_collector (CRTP-based, consolidated from tcp_state and socket_buffer)
  * - context_switch_collector (CRTP-based)
  * - interrupt_collector (CRTP-based)
  *
@@ -99,8 +97,7 @@ inline bool register_builtin_collectors() {
     all_success &= register_crtp_collector<battery_collector>("battery_collector");
     all_success &= register_crtp_collector<fd_collector>("fd_collector");
     all_success &= register_crtp_collector<inode_collector>("inode_collector");
-    all_success &= register_crtp_collector<tcp_state_collector>("tcp_state_collector");
-    all_success &= register_crtp_collector<socket_buffer_collector>("socket_buffer_collector");
+    all_success &= register_crtp_collector<network_metrics_collector>("network_metrics_collector");
     all_success &= register_crtp_collector<context_switch_collector>("context_switch_collector");
     all_success &= register_crtp_collector<interrupt_collector>("interrupt_collector");
 
@@ -118,8 +115,7 @@ inline std::vector<std::string> get_builtin_collector_names() {
             "battery_collector",
             "fd_collector",
             "inode_collector",
-            "tcp_state_collector",
-            "socket_buffer_collector",
+            "network_metrics_collector",
             "context_switch_collector",
             "interrupt_collector"};
 }
