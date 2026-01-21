@@ -8,10 +8,11 @@ var searchData=
   ['kcenon_3a_3amonitoring_3a_3acore_5',['core',['../dc/d0e/namespacekcenon_1_1monitoring_1_1core.html',1,'kcenon::monitoring']]],
   ['kcenon_3a_3amonitoring_3a_3adetail_6',['detail',['../dc/d97/namespacekcenon_1_1monitoring_1_1detail.html',1,'kcenon::monitoring']]],
   ['kcenon_3a_3amonitoring_3a_3aexporters_7',['exporters',['../d6/dba/namespacekcenon_1_1monitoring_1_1exporters.html',1,'kcenon::monitoring']]],
-  ['kcenon_3a_3amonitoring_3a_3ainterfaces_8',['interfaces',['../d7/dbf/namespacekcenon_1_1monitoring_1_1interfaces.html',1,'kcenon::monitoring']]],
-  ['kcenon_3a_3amonitoring_3a_3ametrics_9',['metrics',['../d3/d44/namespacekcenon_1_1monitoring_1_1metrics.html',1,'kcenon::monitoring']]],
-  ['kcenon_3a_3amonitoring_3a_3aplatform_10',['platform',['../d1/dc0/namespacekcenon_1_1monitoring_1_1platform.html',1,'kcenon::monitoring']]],
-  ['kcenon_3a_3amonitoring_3a_3astats_11',['stats',['../db/d19/namespacekcenon_1_1monitoring_1_1stats.html',1,'kcenon::monitoring']]],
-  ['kcenon_3a_3amonitoring_3a_3astats_3a_3adetail_12',['detail',['../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html',1,'kcenon::monitoring::stats']]],
-  ['kcenon_3a_3amonitoring_3a_3autils_13',['utils',['../df/d5e/namespacekcenon_1_1monitoring_1_1utils.html',1,'kcenon::monitoring']]]
+  ['kcenon_3a_3amonitoring_3a_3ahot_5fpath_8',['hot_path',['../df/d67/namespacekcenon_1_1monitoring_1_1hot__path.html',1,'kcenon::monitoring']]],
+  ['kcenon_3a_3amonitoring_3a_3ainterfaces_9',['interfaces',['../d7/dbf/namespacekcenon_1_1monitoring_1_1interfaces.html',1,'kcenon::monitoring']]],
+  ['kcenon_3a_3amonitoring_3a_3ametrics_10',['metrics',['../d3/d44/namespacekcenon_1_1monitoring_1_1metrics.html',1,'kcenon::monitoring']]],
+  ['kcenon_3a_3amonitoring_3a_3aplatform_11',['platform',['../d1/dc0/namespacekcenon_1_1monitoring_1_1platform.html',1,'kcenon::monitoring']]],
+  ['kcenon_3a_3amonitoring_3a_3astats_12',['stats',['../db/d19/namespacekcenon_1_1monitoring_1_1stats.html',1,'kcenon::monitoring']]],
+  ['kcenon_3a_3amonitoring_3a_3astats_3a_3adetail_13',['detail',['../d8/dd4/namespacekcenon_1_1monitoring_1_1stats_1_1detail.html',1,'kcenon::monitoring::stats']]],
+  ['kcenon_3a_3amonitoring_3a_3autils_14',['utils',['../df/d5e/namespacekcenon_1_1monitoring_1_1utils.html',1,'kcenon::monitoring']]]
 ];

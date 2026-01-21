@@ -13,7 +13,8 @@ var searchData=
   ['histogram_5fbucket_10',['histogram_bucket',['../dd/d90/structkcenon_1_1monitoring_1_1histogram__bucket.html',1,'kcenon::monitoring']]],
   ['histogram_5fdata_11',['histogram_data',['../d4/da9/structkcenon_1_1monitoring_1_1histogram__data.html',1,'kcenon::monitoring']]],
   ['histogrammetricstest_12',['HistogramMetricsTest',['../d0/d7d/classHistogramMetricsTest.html',1,'']]],
-  ['http_5frequest_13',['http_request',['../d4/d99/structkcenon_1_1monitoring_1_1http__request.html',1,'kcenon::monitoring']]],
-  ['http_5fresponse_14',['http_response',['../da/d05/structkcenon_1_1monitoring_1_1http__response.html',1,'kcenon::monitoring']]],
-  ['http_5ftransport_15',['http_transport',['../de/d16/classkcenon_1_1monitoring_1_1http__transport.html',1,'kcenon::monitoring']]]
+  ['hotpathhelpertest_13',['HotPathHelperTest',['../de/d76/classHotPathHelperTest.html',1,'']]],
+  ['http_5frequest_14',['http_request',['../d4/d99/structkcenon_1_1monitoring_1_1http__request.html',1,'kcenon::monitoring']]],
+  ['http_5fresponse_15',['http_response',['../da/d05/structkcenon_1_1monitoring_1_1http__response.html',1,'kcenon::monitoring']]],
+  ['http_5ftransport_16',['http_transport',['../de/d16/classkcenon_1_1monitoring_1_1http__transport.html',1,'kcenon::monitoring']]]
 ];
