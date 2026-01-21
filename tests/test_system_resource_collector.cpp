@@ -212,12 +212,17 @@ TEST_F(SystemResourceCollectorTest, GetMetricTypesIncludesNewMetrics) {
 
 TEST_F(SystemResourceCollectorTest, CollectionFiltersWork) {
     // Disable disk and network metrics using deprecated method for backward compat
-    #if defined(__GNUC__) || defined(__clang__)
+    #if defined(_MSC_VER)
+    #pragma warning(push)
+    #pragma warning(disable: 4996)  // deprecated function
+    #elif defined(__GNUC__) || defined(__clang__)
     #pragma GCC diagnostic push
     #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     #endif
     collector->set_collection_filters(true, true, false, false);
-    #if defined(__GNUC__) || defined(__clang__)
+    #if defined(_MSC_VER)
+    #pragma warning(pop)
+    #elif defined(__GNUC__) || defined(__clang__)
     #pragma GCC diagnostic pop
     #endif
 
