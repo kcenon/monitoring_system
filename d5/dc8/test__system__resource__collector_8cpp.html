@@ -250,10 +250,14 @@ Functions</h2></td></tr>
 <tr class="separator:a31f143d9e5fd51d5fc1fcc5230b16a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a868f05767f99a1006c57c50d5807bf41" id="r_a868f05767f99a1006c57c50d5807bf41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp.html#a868f05767f99a1006c57c50d5807bf41">TEST_F</a> (<a class="el" href="../../da/df3/classSystemResourceCollectorTest.html">SystemResourceCollectorTest</a>, CollectionFiltersWork)</td></tr>
 <tr class="separator:a868f05767f99a1006c57c50d5807bf41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9475979c045a585ed5ae797373bbd369" id="r_a9475979c045a585ed5ae797373bbd369"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp.html#a9475979c045a585ed5ae797373bbd369">TEST_F</a> (<a class="el" href="../../da/df3/classSystemResourceCollectorTest.html">SystemResourceCollectorTest</a>, ConfigConstructorWorks)</td></tr>
+<tr class="separator:a9475979c045a585ed5ae797373bbd369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32ad6fd14a5d943b5228a19d912e5e28" id="r_a32ad6fd14a5d943b5228a19d912e5e28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp.html#a32ad6fd14a5d943b5228a19d912e5e28">TEST_F</a> (<a class="el" href="../../da/df3/classSystemResourceCollectorTest.html">SystemResourceCollectorTest</a>, GetConfigReturnsCurrentSettings)</td></tr>
+<tr class="separator:a32ad6fd14a5d943b5228a19d912e5e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a868f05767f99a1006c57c50d5807bf41" name="a868f05767f99a1006c57c50d5807bf41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a868f05767f99a1006c57c50d5807bf41">&#9670;&#160;</a></span>TEST_F() <span class="overload">[1/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a868f05767f99a1006c57c50d5807bf41">&#9670;&#160;</a></span>TEST_F() <span class="overload">[1/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -280,45 +284,58 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00213">213</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  213</span>                                                           {</div>
-<div class="line"><span class="lineno">  214</span>    <span class="comment">// Disable disk and network metrics</span></div>
-<div class="line"><span class="lineno">  215</span>    collector-&gt;set_collection_filters(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  216</span> </div>
-<div class="line"><span class="lineno">  217</span>    <span class="keyword">auto</span> metrics = collector-&gt;collect();</div>
-<div class="line"><span class="lineno">  218</span> </div>
-<div class="line"><span class="lineno">  219</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  220</span>    <span class="keywordtype">bool</span> has_disk = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  221</span>    <span class="keywordtype">bool</span> has_network = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  222</span> </div>
-<div class="line"><span class="lineno">  223</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  224</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;cpu_usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  225</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  226</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  227</span>    }</div>
-<div class="line"><span class="lineno">  228</span> </div>
-<div class="line"><span class="lineno">  229</span>    EXPECT_TRUE(has_cpu) &lt;&lt; <span class="stringliteral">&quot;CPU metrics should be collected when enabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  230</span>    EXPECT_FALSE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should not be collected when disabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  231</span>    EXPECT_FALSE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should not be collected when disabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  232</span> </div>
-<div class="line"><span class="lineno">  233</span>    <span class="comment">// Re-enable all metrics</span></div>
-<div class="line"><span class="lineno">  234</span>    collector-&gt;set_collection_filters(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  214</span>    <span class="comment">// Disable disk and network metrics using deprecated method for backward compat</span></div>
+<div class="line"><span class="lineno">  215</span><span class="preprocessor">    #pragma GCC diagnostic push</span></div>
+<div class="line"><span class="lineno">  216</span><span class="preprocessor">    #pragma GCC diagnostic ignored &quot;-Wdeprecated-declarations&quot;</span></div>
+<div class="line"><span class="lineno">  217</span>    collector-&gt;set_collection_filters(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  218</span><span class="preprocessor">    #pragma GCC diagnostic pop</span></div>
+<div class="line"><span class="lineno">  219</span> </div>
+<div class="line"><span class="lineno">  220</span>    <span class="keyword">auto</span> metrics = collector-&gt;collect();</div>
+<div class="line"><span class="lineno">  221</span> </div>
+<div class="line"><span class="lineno">  222</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  223</span>    <span class="keywordtype">bool</span> has_disk = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  224</span>    <span class="keywordtype">bool</span> has_network = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  225</span> </div>
+<div class="line"><span class="lineno">  226</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
+<div class="line"><span class="lineno">  227</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.cpu.usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  228</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  230</span>    }</div>
+<div class="line"><span class="lineno">  231</span> </div>
+<div class="line"><span class="lineno">  232</span>    EXPECT_TRUE(has_cpu) &lt;&lt; <span class="stringliteral">&quot;CPU metrics should be collected when enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  233</span>    EXPECT_FALSE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should not be collected when disabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  234</span>    EXPECT_FALSE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should not be collected when disabled&quot;</span>;</div>
 <div class="line"><span class="lineno">  235</span> </div>
-<div class="line"><span class="lineno">  236</span>    metrics = collector-&gt;collect();</div>
-<div class="line"><span class="lineno">  237</span>    has_disk = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  238</span>    has_network = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  239</span> </div>
-<div class="line"><span class="lineno">  240</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  241</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  242</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  243</span>    }</div>
-<div class="line"><span class="lineno">  244</span> </div>
-<div class="line"><span class="lineno">  245</span>    EXPECT_TRUE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should be collected when re-enabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  246</span>    EXPECT_TRUE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should be collected when re-enabled&quot;</span>;</div>
-<div class="line"><span class="lineno">  247</span>}</div>
+<div class="line"><span class="lineno">  236</span>    <span class="comment">// Re-enable all metrics using new config API</span></div>
+<div class="line"><span class="lineno">  237</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
+<div class="line"><span class="lineno">  238</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  239</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  240</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  241</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  242</span>    collector-&gt;set_config(config);</div>
+<div class="line"><span class="lineno">  243</span> </div>
+<div class="line"><span class="lineno">  244</span>    metrics = collector-&gt;collect();</div>
+<div class="line"><span class="lineno">  245</span>    has_disk = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  246</span>    has_network = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  247</span> </div>
+<div class="line"><span class="lineno">  248</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
+<div class="line"><span class="lineno">  249</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) has_disk = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  250</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) has_network = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  251</span>    }</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>    EXPECT_TRUE(has_disk) &lt;&lt; <span class="stringliteral">&quot;Disk metrics should be collected when re-enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  254</span>    EXPECT_TRUE(has_network) &lt;&lt; <span class="stringliteral">&quot;Network metrics should be collected when re-enabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  255</span>}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">kcenon::monitoring::system_metrics_config</a></div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00086">system_resource_collector.h:86</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a0438339d4ce3063806c0dc1888abf0b2"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">kcenon::monitoring::system_metrics_config::collect_cpu</a></div><div class="ttdeci">bool collect_cpu</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00087">system_resource_collector.h:87</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a38badb75a72c95ee078f84754d3f6e3e"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">kcenon::monitoring::system_metrics_config::collect_memory</a></div><div class="ttdeci">bool collect_memory</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00088">system_resource_collector.h:88</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a3dbc2eb8f09633c8f34b9aae13a71ba7"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">kcenon::monitoring::system_metrics_config::collect_disk</a></div><div class="ttdeci">bool collect_disk</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00089">system_resource_collector.h:89</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a94b3b4c60c276d52ef53d1eead0801e5"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">kcenon::monitoring::system_metrics_config::collect_network</a></div><div class="ttdeci">bool collect_network</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00090">system_resource_collector.h:90</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a5c554ea43d87ae0fd11fb140d267e07c" name="a5c554ea43d87ae0fd11fb140d267e07c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c554ea43d87ae0fd11fb140d267e07c">&#9670;&#160;</a></span>TEST_F() <span class="overload">[2/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c554ea43d87ae0fd11fb140d267e07c">&#9670;&#160;</a></span>TEST_F() <span class="overload">[2/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,18 +365,18 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   26</span>    <span class="comment">// First collection might be zero for rates</span></div>
 <div class="line"><span class="lineno">   27</span>    <span class="keyword">auto</span> metrics1 = collector-&gt;collect();</div>
 <div class="line"><span class="lineno">   28</span>    EXPECT_FALSE(metrics1.empty());</div>
-<div class="line"><span class="lineno">   29</span>    </div>
-<div class="line"><span class="lineno">   30</span>    <span class="comment">// Check metric names exist</span></div>
+<div class="line"><span class="lineno">   29</span> </div>
+<div class="line"><span class="lineno">   30</span>    <span class="comment">// Check metric names exist (using new system.* naming convention)</span></div>
 <div class="line"><span class="lineno">   31</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   32</span>    <span class="keywordtype">bool</span> has_memory = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   33</span>    <span class="keywordtype">bool</span> has_context = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   34</span>    </div>
+<div class="line"><span class="lineno">   34</span> </div>
 <div class="line"><span class="lineno">   35</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics1) {</div>
-<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;cpu_usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;memory_usage_percent&quot;</span>) has_memory = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;context_switches_total&quot;</span>) has_context = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.cpu.usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.memory.usage_percent&quot;</span>) has_memory = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.context_switches.total&quot;</span>) has_context = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   39</span>    }</div>
-<div class="line"><span class="lineno">   40</span>    </div>
+<div class="line"><span class="lineno">   40</span> </div>
 <div class="line"><span class="lineno">   41</span>    EXPECT_TRUE(has_cpu);</div>
 <div class="line"><span class="lineno">   42</span>    EXPECT_TRUE(has_memory);</div>
 <div class="line"><span class="lineno">   43</span>    EXPECT_TRUE(has_context);</div>
@@ -367,8 +384,61 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a9475979c045a585ed5ae797373bbd369" name="a9475979c045a585ed5ae797373bbd369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9475979c045a585ed5ae797373bbd369">&#9670;&#160;</a></span>TEST_F() <span class="overload">[3/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/df3/classSystemResourceCollectorTest.html">SystemResourceCollectorTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ConfigConstructorWorks&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00257">257</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  257</span>                                                            {</div>
+<div class="line"><span class="lineno">  258</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
+<div class="line"><span class="lineno">  259</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  260</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  261</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  262</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  263</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  264</span> </div>
+<div class="line"><span class="lineno">  265</span>    <span class="keyword">auto</span> custom_collector = std::make_unique&lt;system_resource_collector&gt;(config);</div>
+<div class="line"><span class="lineno">  266</span>    <span class="keyword">auto</span> metrics = custom_collector-&gt;collect();</div>
+<div class="line"><span class="lineno">  267</span> </div>
+<div class="line"><span class="lineno">  268</span>    <span class="keywordtype">bool</span> has_cpu = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  269</span>    <span class="keywordtype">bool</span> has_memory = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  270</span> </div>
+<div class="line"><span class="lineno">  271</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
+<div class="line"><span class="lineno">  272</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.cpu.usage_percent&quot;</span>) has_cpu = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  273</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.memory.usage_percent&quot;</span>) has_memory = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  274</span>    }</div>
+<div class="line"><span class="lineno">  275</span> </div>
+<div class="line"><span class="lineno">  276</span>    EXPECT_TRUE(has_cpu) &lt;&lt; <span class="stringliteral">&quot;CPU metrics should be collected&quot;</span>;</div>
+<div class="line"><span class="lineno">  277</span>    EXPECT_FALSE(has_memory) &lt;&lt; <span class="stringliteral">&quot;Memory metrics should not be collected when disabled&quot;</span>;</div>
+<div class="line"><span class="lineno">  278</span>}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1system__metrics__config_html_a44fc726fc3ca860b0664c20b6a8a2db4"><div class="ttname"><a href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">kcenon::monitoring::system_metrics_config::collect_process</a></div><div class="ttdeci">bool collect_process</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d9f/system__resource__collector_8h_source.html#l00091">system_resource_collector.h:91</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a74badee05d1d5d1c6529be9c295e9090" name="a74badee05d1d5d1c6529be9c295e9090"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74badee05d1d5d1c6529be9c295e9090">&#9670;&#160;</a></span>TEST_F() <span class="overload">[3/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a74badee05d1d5d1c6529be9c295e9090">&#9670;&#160;</a></span>TEST_F() <span class="overload">[4/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -398,9 +468,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   47</span>    <span class="comment">// First collection</span></div>
 <div class="line"><span class="lineno">   48</span>    <span class="keyword">auto</span> metrics1 = collector-&gt;collect();</div>
 <div class="line"><span class="lineno">   49</span>    uint64_t csw_total_1 = 0;</div>
-<div class="line"><span class="lineno">   50</span>    </div>
+<div class="line"><span class="lineno">   50</span> </div>
 <div class="line"><span class="lineno">   51</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics1) {</div>
-<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;context_switches_total&quot;</span>) {</div>
+<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.context_switches.total&quot;</span>) {</div>
 <div class="line"><span class="lineno">   53</span>            <span class="keywordflow">try</span> {</div>
 <div class="line"><span class="lineno">   54</span>                csw_total_1 = <span class="keyword">static_cast&lt;</span>uint64_t<span class="keyword">&gt;</span>(std::get&lt;double&gt;(m.value));</div>
 <div class="line"><span class="lineno">   55</span>            } <span class="keywordflow">catch</span> (...) {</div>
@@ -408,19 +478,19 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   57</span>            }</div>
 <div class="line"><span class="lineno">   58</span>        }</div>
 <div class="line"><span class="lineno">   59</span>    }</div>
-<div class="line"><span class="lineno">   60</span>    </div>
+<div class="line"><span class="lineno">   60</span> </div>
 <div class="line"><span class="lineno">   61</span>    EXPECT_GT(csw_total_1, 0) &lt;&lt; <span class="stringliteral">&quot;Context switches should be non-zero (unless platform stubbed)&quot;</span>;</div>
 <div class="line"><span class="lineno">   62</span> </div>
 <div class="line"><span class="lineno">   63</span>    <span class="comment">// Sleep to allow context switches to happen</span></div>
 <div class="line"><span class="lineno">   64</span>    std::this_thread::sleep_for(std::chrono::milliseconds(100));</div>
-<div class="line"><span class="lineno">   65</span>    </div>
+<div class="line"><span class="lineno">   65</span> </div>
 <div class="line"><span class="lineno">   66</span>    <span class="comment">// Second collection</span></div>
 <div class="line"><span class="lineno">   67</span>    <span class="keyword">auto</span> metrics2 = collector-&gt;collect();</div>
 <div class="line"><span class="lineno">   68</span>    uint64_t csw_total_2 = 0;</div>
 <div class="line"><span class="lineno">   69</span>    <span class="keywordtype">double</span> csw_rate = 0.0;</div>
-<div class="line"><span class="lineno">   70</span>    </div>
+<div class="line"><span class="lineno">   70</span> </div>
 <div class="line"><span class="lineno">   71</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics2) {</div>
-<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;context_switches_total&quot;</span>) {</div>
+<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.context_switches.total&quot;</span>) {</div>
 <div class="line"><span class="lineno">   73</span>            <span class="keywordflow">try</span> {</div>
 <div class="line"><span class="lineno">   74</span>                csw_total_2 = <span class="keyword">static_cast&lt;</span>uint64_t<span class="keyword">&gt;</span>(std::get&lt;double&gt;(m.value));</div>
 <div class="line"><span class="lineno">   75</span>            } <span class="keywordflow">catch</span> (...) {</div>
@@ -428,7 +498,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   77</span>                 <span class="keywordflow">try</span> { csw_total_2 = <span class="keyword">static_cast&lt;</span>uint64_t<span class="keyword">&gt;</span>(std::get&lt;int64_t&gt;(m.value)); } <span class="keywordflow">catch</span>(...) {}</div>
 <div class="line"><span class="lineno">   78</span>            }</div>
 <div class="line"><span class="lineno">   79</span>        }</div>
-<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;context_switches_per_sec&quot;</span>) {</div>
+<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.context_switches.per_sec&quot;</span>) {</div>
 <div class="line"><span class="lineno">   81</span>            <span class="keywordflow">try</span> {</div>
 <div class="line"><span class="lineno">   82</span>                csw_rate = std::get&lt;double&gt;(m.value);</div>
 <div class="line"><span class="lineno">   83</span>            } <span class="keywordflow">catch</span> (...) {</div>
@@ -453,7 +523,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="ab27974900a463b641d0c1b7d40113ba2" name="ab27974900a463b641d0c1b7d40113ba2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab27974900a463b641d0c1b7d40113ba2">&#9670;&#160;</a></span>TEST_F() <span class="overload">[4/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab27974900a463b641d0c1b7d40113ba2">&#9670;&#160;</a></span>TEST_F() <span class="overload">[5/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -500,27 +570,27 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  120</span>    <span class="keywordtype">double</span> disk_total = 0.0;</div>
 <div class="line"><span class="lineno">  121</span> </div>
 <div class="line"><span class="lineno">  122</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_usage_percent&quot;</span>) {</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) {</div>
 <div class="line"><span class="lineno">  124</span>            has_disk_usage = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  125</span>            disk_usage_percent = std::get&lt;double&gt;(m.value);</div>
 <div class="line"><span class="lineno">  126</span>        }</div>
-<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_total_bytes&quot;</span>) {</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.total_bytes&quot;</span>) {</div>
 <div class="line"><span class="lineno">  128</span>            has_disk_total = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  129</span>            disk_total = std::get&lt;double&gt;(m.value);</div>
 <div class="line"><span class="lineno">  130</span>        }</div>
-<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_used_bytes&quot;</span>) has_disk_used = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  132</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_available_bytes&quot;</span>) has_disk_available = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_read_bytes_per_sec&quot;</span>) has_disk_read_bytes = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  134</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;disk_write_bytes_per_sec&quot;</span>) has_disk_write_bytes = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.used_bytes&quot;</span>) has_disk_used = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  132</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.available_bytes&quot;</span>) has_disk_available = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.read_bytes_per_sec&quot;</span>) has_disk_read_bytes = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  134</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.disk.write_bytes_per_sec&quot;</span>) has_disk_write_bytes = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  135</span>    }</div>
 <div class="line"><span class="lineno">  136</span> </div>
 <div class="line"><span class="lineno">  137</span>    <span class="comment">// All disk metrics should be present</span></div>
-<div class="line"><span class="lineno">  138</span>    EXPECT_TRUE(has_disk_usage) &lt;&lt; <span class="stringliteral">&quot;disk_usage_percent metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  139</span>    EXPECT_TRUE(has_disk_total) &lt;&lt; <span class="stringliteral">&quot;disk_total_bytes metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  140</span>    EXPECT_TRUE(has_disk_used) &lt;&lt; <span class="stringliteral">&quot;disk_used_bytes metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  141</span>    EXPECT_TRUE(has_disk_available) &lt;&lt; <span class="stringliteral">&quot;disk_available_bytes metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  142</span>    EXPECT_TRUE(has_disk_read_bytes) &lt;&lt; <span class="stringliteral">&quot;disk_read_bytes_per_sec metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  143</span>    EXPECT_TRUE(has_disk_write_bytes) &lt;&lt; <span class="stringliteral">&quot;disk_write_bytes_per_sec metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  138</span>    EXPECT_TRUE(has_disk_usage) &lt;&lt; <span class="stringliteral">&quot;system.disk.usage_percent metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  139</span>    EXPECT_TRUE(has_disk_total) &lt;&lt; <span class="stringliteral">&quot;system.disk.total_bytes metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  140</span>    EXPECT_TRUE(has_disk_used) &lt;&lt; <span class="stringliteral">&quot;system.disk.used_bytes metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  141</span>    EXPECT_TRUE(has_disk_available) &lt;&lt; <span class="stringliteral">&quot;system.disk.available_bytes metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  142</span>    EXPECT_TRUE(has_disk_read_bytes) &lt;&lt; <span class="stringliteral">&quot;system.disk.read_bytes_per_sec metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  143</span>    EXPECT_TRUE(has_disk_write_bytes) &lt;&lt; <span class="stringliteral">&quot;system.disk.write_bytes_per_sec metric should be present&quot;</span>;</div>
 <div class="line"><span class="lineno">  144</span> </div>
 <div class="line"><span class="lineno">  145</span>    <span class="comment">// Disk usage should be a valid percentage</span></div>
 <div class="line"><span class="lineno">  146</span>    EXPECT_GE(disk_usage_percent, 0.0);</div>
@@ -532,8 +602,55 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a32ad6fd14a5d943b5228a19d912e5e28" name="a32ad6fd14a5d943b5228a19d912e5e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32ad6fd14a5d943b5228a19d912e5e28">&#9670;&#160;</a></span>TEST_F() <span class="overload">[6/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/df3/classSystemResourceCollectorTest.html">SystemResourceCollectorTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GetConfigReturnsCurrentSettings&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html#l00280">280</a> of file <a class="el" href="../../d5/dc8/test__system__resource__collector_8cpp_source.html">test_system_resource_collector.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  280</span>                                                                     {</div>
+<div class="line"><span class="lineno">  281</span>    <a class="code hl_struct" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html">system_metrics_config</a> config;</div>
+<div class="line"><span class="lineno">  282</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  283</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  284</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  285</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  286</span>    config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  287</span> </div>
+<div class="line"><span class="lineno">  288</span>    collector-&gt;set_config(config);</div>
+<div class="line"><span class="lineno">  289</span>    <span class="keyword">auto</span> retrieved = collector-&gt;get_config();</div>
+<div class="line"><span class="lineno">  290</span> </div>
+<div class="line"><span class="lineno">  291</span>    EXPECT_EQ(retrieved.collect_cpu, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a0438339d4ce3063806c0dc1888abf0b2">collect_cpu</a>);</div>
+<div class="line"><span class="lineno">  292</span>    EXPECT_EQ(retrieved.collect_memory, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a38badb75a72c95ee078f84754d3f6e3e">collect_memory</a>);</div>
+<div class="line"><span class="lineno">  293</span>    EXPECT_EQ(retrieved.collect_disk, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a3dbc2eb8f09633c8f34b9aae13a71ba7">collect_disk</a>);</div>
+<div class="line"><span class="lineno">  294</span>    EXPECT_EQ(retrieved.collect_network, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a94b3b4c60c276d52ef53d1eead0801e5">collect_network</a>);</div>
+<div class="line"><span class="lineno">  295</span>    EXPECT_EQ(retrieved.collect_process, config.<a class="code hl_variable" href="../../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html#a44fc726fc3ca860b0664c20b6a8a2db4">collect_process</a>);</div>
+<div class="line"><span class="lineno">  296</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a31f143d9e5fd51d5fc1fcc5230b16a09" name="a31f143d9e5fd51d5fc1fcc5230b16a09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31f143d9e5fd51d5fc1fcc5230b16a09">&#9670;&#160;</a></span>TEST_F() <span class="overload">[5/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a31f143d9e5fd51d5fc1fcc5230b16a09">&#9670;&#160;</a></span>TEST_F() <span class="overload">[7/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -566,22 +683,22 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  198</span>    std::unordered_set&lt;std::string&gt; type_set(types.begin(), types.end());</div>
 <div class="line"><span class="lineno">  199</span> </div>
 <div class="line"><span class="lineno">  200</span>    <span class="comment">// Check disk metrics are listed</span></div>
-<div class="line"><span class="lineno">  201</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;disk_usage_percent&quot;</span>) &gt; 0);</div>
-<div class="line"><span class="lineno">  202</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;disk_total_bytes&quot;</span>) &gt; 0);</div>
-<div class="line"><span class="lineno">  203</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;disk_read_bytes_per_sec&quot;</span>) &gt; 0);</div>
-<div class="line"><span class="lineno">  204</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;disk_read_ops_per_sec&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  201</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.disk.usage_percent&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  202</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.disk.total_bytes&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  203</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.disk.read_bytes_per_sec&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  204</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.disk.read_ops_per_sec&quot;</span>) &gt; 0);</div>
 <div class="line"><span class="lineno">  205</span> </div>
 <div class="line"><span class="lineno">  206</span>    <span class="comment">// Check network metrics are listed</span></div>
-<div class="line"><span class="lineno">  207</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;network_rx_bytes_per_sec&quot;</span>) &gt; 0);</div>
-<div class="line"><span class="lineno">  208</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;network_tx_bytes_per_sec&quot;</span>) &gt; 0);</div>
-<div class="line"><span class="lineno">  209</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;network_rx_errors&quot;</span>) &gt; 0);</div>
-<div class="line"><span class="lineno">  210</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;network_rx_dropped&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  207</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  208</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.network.tx_bytes_per_sec&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  209</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.network.rx_errors&quot;</span>) &gt; 0);</div>
+<div class="line"><span class="lineno">  210</span>    EXPECT_TRUE(type_set.count(<span class="stringliteral">&quot;system.network.rx_dropped&quot;</span>) &gt; 0);</div>
 <div class="line"><span class="lineno">  211</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a9736ddd1c62e0b1f58049c5427b97b2a" name="a9736ddd1c62e0b1f58049c5427b97b2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9736ddd1c62e0b1f58049c5427b97b2a">&#9670;&#160;</a></span>TEST_F() <span class="overload">[6/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9736ddd1c62e0b1f58049c5427b97b2a">&#9670;&#160;</a></span>TEST_F() <span class="overload">[8/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -616,7 +733,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a1845f3bf610e06a364959568731985a3" name="a1845f3bf610e06a364959568731985a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1845f3bf610e06a364959568731985a3">&#9670;&#160;</a></span>TEST_F() <span class="overload">[7/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1845f3bf610e06a364959568731985a3">&#9670;&#160;</a></span>TEST_F() <span class="overload">[9/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -662,25 +779,25 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  170</span>    <span class="keywordtype">bool</span> has_tx_dropped = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  171</span> </div>
 <div class="line"><span class="lineno">  172</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; m : metrics) {</div>
-<div class="line"><span class="lineno">  173</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_rx_bytes_per_sec&quot;</span>) has_rx_bytes = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_tx_bytes_per_sec&quot;</span>) has_tx_bytes = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_rx_packets_per_sec&quot;</span>) has_rx_packets = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  176</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_tx_packets_per_sec&quot;</span>) has_tx_packets = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_rx_errors&quot;</span>) has_rx_errors = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_tx_errors&quot;</span>) has_tx_errors = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_rx_dropped&quot;</span>) has_rx_dropped = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;network_tx_dropped&quot;</span>) has_tx_dropped = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  173</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_bytes_per_sec&quot;</span>) has_rx_bytes = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.tx_bytes_per_sec&quot;</span>) has_tx_bytes = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_packets_per_sec&quot;</span>) has_rx_packets = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  176</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.tx_packets_per_sec&quot;</span>) has_tx_packets = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_errors&quot;</span>) has_rx_errors = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.tx_errors&quot;</span>) has_tx_errors = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.rx_dropped&quot;</span>) has_rx_dropped = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">if</span> (m.name == <span class="stringliteral">&quot;system.network.tx_dropped&quot;</span>) has_tx_dropped = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  181</span>    }</div>
 <div class="line"><span class="lineno">  182</span> </div>
 <div class="line"><span class="lineno">  183</span>    <span class="comment">// All network metrics should be present</span></div>
-<div class="line"><span class="lineno">  184</span>    EXPECT_TRUE(has_rx_bytes) &lt;&lt; <span class="stringliteral">&quot;network_rx_bytes_per_sec metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  185</span>    EXPECT_TRUE(has_tx_bytes) &lt;&lt; <span class="stringliteral">&quot;network_tx_bytes_per_sec metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  186</span>    EXPECT_TRUE(has_rx_packets) &lt;&lt; <span class="stringliteral">&quot;network_rx_packets_per_sec metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  187</span>    EXPECT_TRUE(has_tx_packets) &lt;&lt; <span class="stringliteral">&quot;network_tx_packets_per_sec metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  188</span>    EXPECT_TRUE(has_rx_errors) &lt;&lt; <span class="stringliteral">&quot;network_rx_errors metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  189</span>    EXPECT_TRUE(has_tx_errors) &lt;&lt; <span class="stringliteral">&quot;network_tx_errors metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  190</span>    EXPECT_TRUE(has_rx_dropped) &lt;&lt; <span class="stringliteral">&quot;network_rx_dropped metric should be present&quot;</span>;</div>
-<div class="line"><span class="lineno">  191</span>    EXPECT_TRUE(has_tx_dropped) &lt;&lt; <span class="stringliteral">&quot;network_tx_dropped metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  184</span>    EXPECT_TRUE(has_rx_bytes) &lt;&lt; <span class="stringliteral">&quot;system.network.rx_bytes_per_sec metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  185</span>    EXPECT_TRUE(has_tx_bytes) &lt;&lt; <span class="stringliteral">&quot;system.network.tx_bytes_per_sec metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  186</span>    EXPECT_TRUE(has_rx_packets) &lt;&lt; <span class="stringliteral">&quot;system.network.rx_packets_per_sec metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  187</span>    EXPECT_TRUE(has_tx_packets) &lt;&lt; <span class="stringliteral">&quot;system.network.tx_packets_per_sec metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  188</span>    EXPECT_TRUE(has_rx_errors) &lt;&lt; <span class="stringliteral">&quot;system.network.rx_errors metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  189</span>    EXPECT_TRUE(has_tx_errors) &lt;&lt; <span class="stringliteral">&quot;system.network.tx_errors metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  190</span>    EXPECT_TRUE(has_rx_dropped) &lt;&lt; <span class="stringliteral">&quot;system.network.rx_dropped metric should be present&quot;</span>;</div>
+<div class="line"><span class="lineno">  191</span>    EXPECT_TRUE(has_tx_dropped) &lt;&lt; <span class="stringliteral">&quot;system.network.tx_dropped metric should be present&quot;</span>;</div>
 <div class="line"><span class="lineno">  192</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -688,7 +805,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 21 2026 01:19:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Jan 21 2026 11:47:11 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

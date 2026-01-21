@@ -61,9 +61,10 @@ var searchData=
   ['system_5fevent_58',['system_event',['../db/d0d/classkcenon_1_1monitoring_1_1system__event.html',1,'kcenon::monitoring']]],
   ['system_5finfo_5fcollector_59',['system_info_collector',['../d2/d4d/classkcenon_1_1monitoring_1_1system__info__collector.html',1,'kcenon::monitoring']]],
   ['system_5fmetrics_60',['system_metrics',['../df/de9/structkcenon_1_1monitoring_1_1system__metrics.html',1,'kcenon::monitoring']]],
-  ['system_5fmonitor_61',['system_monitor',['../dc/d4e/classkcenon_1_1monitoring_1_1system__monitor.html',1,'kcenon::monitoring']]],
-  ['system_5fresource_5fcollector_62',['system_resource_collector',['../d7/d5f/classkcenon_1_1monitoring_1_1system__resource__collector.html',1,'kcenon::monitoring']]],
-  ['system_5fresource_5fevent_63',['system_resource_event',['../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html',1,'kcenon::monitoring']]],
-  ['system_5fresources_64',['system_resources',['../dc/d4b/structkcenon_1_1monitoring_1_1system__resources.html',1,'kcenon::monitoring']]],
-  ['systemresourcecollectortest_65',['SystemResourceCollectorTest',['../da/df3/classSystemResourceCollectorTest.html',1,'']]]
+  ['system_5fmetrics_5fconfig_61',['system_metrics_config',['../de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html',1,'kcenon::monitoring']]],
+  ['system_5fmonitor_62',['system_monitor',['../dc/d4e/classkcenon_1_1monitoring_1_1system__monitor.html',1,'kcenon::monitoring']]],
+  ['system_5fresource_5fcollector_63',['system_resource_collector',['../d7/d5f/classkcenon_1_1monitoring_1_1system__resource__collector.html',1,'kcenon::monitoring']]],
+  ['system_5fresource_5fevent_64',['system_resource_event',['../d5/dd2/classkcenon_1_1monitoring_1_1system__resource__event.html',1,'kcenon::monitoring']]],
+  ['system_5fresources_65',['system_resources',['../dc/d4b/structkcenon_1_1monitoring_1_1system__resources.html',1,'kcenon::monitoring']]],
+  ['systemresourcecollectortest_66',['SystemResourceCollectorTest',['../da/df3/classSystemResourceCollectorTest.html',1,'']]]
 ];
