@@ -33,6 +33,7 @@
  */
 
 #include <kcenon/monitoring/core/performance_monitor.h>
+#include <kcenon/monitoring/utils/hot_path_helper.h>
 #include <kcenon/monitoring/utils/statistics.h>
 #include <shared_mutex>
 #include <deque>
@@ -524,31 +525,20 @@ common::VoidResult performance_monitor::record_metric_internal(
     }
 
     const std::string key = make_metric_key(name, tags);
-    metric_data* data = nullptr;
 
-    // First, try read lock (hot path optimization)
-    {
-        std::shared_lock<std::shared_mutex> read_lock(metrics_mutex_);
-        auto it = tagged_metrics_.find(key);
-        if (it != tagged_metrics_.end()) {
-            data = it->second.get();
+    // Use hot_path helper for get-or-create with initialization
+    metric_data* data = hot_path::get_or_create_with_init(
+        tagged_metrics_,
+        metrics_mutex_,
+        key,
+        []() { return std::make_unique<metric_data>(); },
+        [&type, &tags](metric_data& d) {
+            d.type = type;
+            d.tags = tags;
         }
-    }
+    );
 
-    // If not found, acquire write lock to create
-    if (data == nullptr) {
-        std::unique_lock<std::shared_mutex> write_lock(metrics_mutex_);
-        // Double-check after acquiring write lock
-        auto& data_ptr = tagged_metrics_[key];
-        if (!data_ptr) {
-            data_ptr = std::make_unique<metric_data>();
-            data_ptr->type = type;
-            data_ptr->tags = tags;
-        }
-        data = data_ptr.get();
-    }
-
-    // Update the metric value based on type
+    // Update the metric value based on type (protected by mutex inside data)
     std::unique_lock<std::shared_mutex> write_lock(metrics_mutex_);
     data->last_update = std::chrono::system_clock::now();
 

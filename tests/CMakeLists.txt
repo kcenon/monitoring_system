@@ -138,6 +138,9 @@ add_executable(monitoring_system_tests
 
     # Statistics utilities tests (Issue #381)
     test_statistics_utils.cpp
+
+    # Hot-path helper tests (Issue #387)
+    test_hot_path_helper.cpp
 )
 
 # Interface compilation test (standalone executable with main())
