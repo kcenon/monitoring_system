@@ -1,7 +1,7 @@
 # Monitoring System - Project Structure
 
-**Version**: 0.2.0
-**Last Updated**: 2025-12-10
+**Version**: 0.3.0
+**Last Updated**: 2026-01-22
 
 ---
 
@@ -37,26 +37,39 @@ monitoring_system/
 │   │   └── thread_system_adapter.h
 │   ├── adaptive/                # Adaptive monitoring
 │   │   └── adaptive_monitor.h
-│   ├── collectors/              # Metric collectors (19 collectors)
-│   │   ├── battery_collector.h       # Battery status monitoring
-│   │   ├── container_collector.h     # Docker/container metrics
-│   │   ├── context_switch_collector.h # Context switch stats
-│   │   ├── fd_collector.h            # File descriptor monitoring
-│   │   ├── gpu_collector.h           # GPU metrics
-│   │   ├── inode_collector.h         # Inode usage monitoring
-│   │   ├── interrupt_collector.h     # Interrupt statistics
+│   ├── collectors/              # Metric collectors (core + optional plugins)
+│   │   ├── collector_base.h          # CRTP base class for collectors
+│   │   │
+│   │   │   # Core Collectors (6) - Always included
+│   │   ├── system_resource_collector.h # Unified CPU, memory, disk metrics
+│   │   ├── network_metrics_collector.h # Socket buffer + TCP state (consolidated)
+│   │   ├── process_metrics_collector.h # FD, inode, context switch (consolidated)
+│   │   ├── platform_metrics_collector.h # Linux/macOS/Windows via Strategy pattern
+│   │   ├── thread_system_collector.h # Thread pool metrics
 │   │   ├── logger_system_collector.h # Logger system integration
-│   │   ├── plugin_metric_collector.h # Plugin-based collectors
-│   │   ├── power_collector.h         # Power consumption
-│   │   ├── security_collector.h      # Security events
-│   │   ├── smart_collector.h         # SMART disk health
-│   │   ├── socket_buffer_collector.h # Socket buffer usage
-│   │   ├── system_resource_collector.h # System resources
-│   │   ├── tcp_state_collector.h     # TCP connection states
-│   │   ├── temperature_collector.h   # Hardware temperature
-│   │   ├── thread_system_collector.h # Thread system integration
+│   │   │
+│   │   │   # Utility Collectors
+│   │   ├── plugin_metric_collector.h # Plugin system interface
 │   │   ├── uptime_collector.h        # System uptime
-│   │   └── vm_collector.h            # Virtualization metrics
+│   │   ├── vm_collector.h            # Virtualization metrics
+│   │   ├── interrupt_collector.h     # Interrupt statistics
+│   │   ├── security_collector.h      # Security events
+│   │   │
+│   │   │   # Hardware Collectors (optional plugin)
+│   │   ├── battery_collector.h       # Battery status (plugin)
+│   │   ├── power_collector.h         # Power consumption (plugin)
+│   │   ├── temperature_collector.h   # Hardware temperature (plugin)
+│   │   ├── gpu_collector.h           # GPU metrics (plugin)
+│   │   │
+│   │   │   # Container Collectors (optional plugin)
+│   │   ├── container_collector.h     # Docker/container metrics (plugin)
+│   │   └── smart_collector.h         # SMART disk health (plugin)
+│   │
+│   ├── plugins/                 # Optional plugin system (Issue #389)
+│   │   ├── hardware/            # Hardware monitoring plugin
+│   │   │   └── hardware_plugin.h     # Battery, power, temp, GPU
+│   │   └── container/           # Container monitoring plugin
+│   │       └── container_plugin.h    # Docker, Kubernetes, cgroups
 │   ├── concepts/                # C++20 Concepts
 │   │   └── monitoring_concepts.h     # Type constraints
 │   ├── context/                 # Context management
@@ -104,9 +117,9 @@ monitoring_system/
 │   ├── compatibility.h          # Backward compatibility
 │   └── forward.h                # Forward declarations
 ├── src/                         # Implementation files
-│   ├── collectors/              # Collector implementations
-│   │   ├── system_resource_collector.cpp
-│   │   └── vm_collector.cpp
+│   ├── collectors/              # Core collector implementations
+│   │   ├── system_resource_collector.cpp  # Unified system metrics
+│   │   └── vm_collector.cpp               # Virtualization metrics
 │   ├── context/                 # Context implementations
 │   │   └── thread_context.cpp
 │   ├── core/                    # Core implementations
@@ -137,6 +150,11 @@ monitoring_system/
 │   │   ├── smart_metrics.cpp
 │   │   ├── temperature_collector.cpp
 │   │   └── windows_*.cpp             # Windows implementations
+│   ├── plugins/                 # Optional plugin implementations
+│   │   ├── hardware/            # Hardware plugin (battery, power, temp, GPU)
+│   │   │   └── hardware_plugin.cpp
+│   │   └── container/           # Container plugin (Docker, K8s)
+│   │       └── container_plugin.cpp
 │   └── utils/                   # Utility implementations (@internal)
 │       ├── buffer_manager.h          # Buffer lifecycle management
 │       ├── buffering_strategy.h      # Configurable buffering strategies
@@ -306,28 +324,49 @@ monitoring_system/
 
 ## Collector Modules
 
-### System Collectors (`include/kcenon/monitoring/collectors/`)
+> **Refactored in Issue #389**: Collector count reduced from 20+ to 6 core collectors plus optional plugins.
 
-**Purpose**: Platform-specific metric collection
+### Core Collectors (Always Included)
+
+**Purpose**: Essential metric collection for all deployments
+
+| Collector | Purpose | Consolidated From | Platform Support |
+|-----------|---------|-------------------|------------------|
+| `system_resource_collector` | CPU, memory, disk metrics | cpu_collector, memory_collector | Linux, macOS, Windows |
+| `network_metrics_collector` | Network socket & TCP states | socket_buffer_collector, tcp_state_collector | Linux, macOS |
+| `process_metrics_collector` | FD, inode, context switches | fd_collector, inode_collector, context_switch_collector | Linux, macOS |
+| `platform_metrics_collector` | Platform-specific metrics | linux_metrics, macos_metrics, windows_metrics | All (Strategy pattern) |
+| `thread_system_collector` | Thread pool metrics | - | All |
+| `logger_system_collector` | Logger system integration | - | All |
+
+### Utility Collectors
+
+| Collector | Purpose | Platform Support |
+|-----------|---------|------------------|
+| `uptime_collector` | System uptime | Linux, macOS, Windows |
+| `vm_collector` | Virtualization metrics | Linux, macOS |
+| `interrupt_collector` | Interrupt statistics | Linux, macOS |
+| `security_collector` | Security event monitoring | Linux |
+
+### Optional Plugins (`include/kcenon/monitoring/plugins/`)
+
+**Purpose**: Optional collectors for specialized environments
+
+#### Hardware Plugin (`-DMONITORING_BUILD_HARDWARE_PLUGIN=ON`)
 
 | Collector | Purpose | Platform Support |
 |-----------|---------|------------------|
 | `battery_collector` | Battery status monitoring | Linux, macOS, Windows |
-| `container_collector` | Docker/container metrics | Linux (cgroups v1/v2) |
-| `context_switch_collector` | Context switch statistics | Linux, macOS |
-| `fd_collector` | File descriptor monitoring | Linux, macOS |
-| `gpu_collector` | GPU metrics (NVIDIA, AMD, Intel, Apple) | Linux, macOS |
-| `inode_collector` | Inode usage monitoring | Linux, macOS |
-| `interrupt_collector` | Interrupt statistics | Linux, macOS |
 | `power_collector` | Power consumption (RAPL) | Linux, macOS |
-| `security_collector` | Security event monitoring | Linux |
-| `smart_collector` | SMART disk health | Linux, macOS (smartmontools) |
-| `socket_buffer_collector` | Socket buffer usage | Linux, macOS |
-| `system_resource_collector` | CPU, memory, disk, network | Linux, macOS, Windows |
-| `tcp_state_collector` | TCP connection states | Linux, macOS |
 | `temperature_collector` | Hardware temperature | Linux, macOS |
-| `uptime_collector` | System uptime | Linux, macOS, Windows |
-| `vm_collector` | Virtualization metrics | Linux, macOS |
+| `gpu_collector` | GPU metrics (NVIDIA, AMD, Intel, Apple) | Linux, macOS |
+
+#### Container Plugin (`-DMONITORING_BUILD_CONTAINER_PLUGIN=ON`)
+
+| Collector | Purpose | Platform Support |
+|-----------|---------|------------------|
+| `container_collector` | Docker/container metrics | Linux (cgroups v1/v2) |
+| `smart_collector` | SMART disk health | Linux, macOS |
 
 ---
 
@@ -338,13 +377,16 @@ monitoring_system/
 ```
 build/
 ├── lib/                         # Libraries
-│   └── libmonitoring_system.a   # Static library
+│   ├── libmonitoring_system.a   # Core static library
+│   ├── libmonitoring_hardware_plugin.a  # Optional: Hardware plugin
+│   └── libmonitoring_container_plugin.a # Optional: Container plugin
 ├── bin/                         # Executables
 │   ├── basic_monitoring_example
 │   ├── distributed_tracing_example
 │   └── health_reliability_example
 ├── tests/                       # Test executables
-│   └── monitoring_system_tests  # All tests
+│   ├── monitoring_system_tests  # All tests
+│   └── monitoring_container_plugin_test  # Container plugin tests
 ├── benchmarks/                  # Benchmark executables
 │   └── monitoring_benchmarks
 └── docs/                        # Generated documentation
@@ -355,10 +397,19 @@ build/
 
 | Target | Type | Output | Purpose |
 |--------|------|--------|---------|
-| `monitoring_system` | Library | `libmonitoring_system.a` | Main library |
+| `monitoring_system` | Library | `libmonitoring_system.a` | Core library |
+| `monitoring_hardware_plugin` | Library | `libmonitoring_hardware_plugin.a` | Optional hardware plugin |
+| `monitoring_container_plugin` | Library | `libmonitoring_container_plugin.a` | Optional container plugin |
 | `monitoring_system_tests` | Executable | `monitoring_system_tests` | Unit tests |
 | `monitoring_benchmarks` | Executable | `monitoring_benchmarks` | Performance tests |
 | `*_example` | Executable | Example binaries | Example apps |
+
+### CMake Build Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `MONITORING_BUILD_HARDWARE_PLUGIN` | OFF | Build hardware monitoring plugin (battery, power, temp, GPU) |
+| `MONITORING_BUILD_CONTAINER_PLUGIN` | OFF | Build container monitoring plugin (Docker, K8s, cgroups) |
 
 ---
 
