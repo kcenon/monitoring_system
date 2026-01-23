@@ -15,7 +15,7 @@ var searchData=
   ['window_5fduration_5f_12',['window_duration_',['../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html#a588c607bdd4ecf0922d7441fec94321a',1,'kcenon::monitoring::moving_window_aggregator']]],
   ['window_5fseconds_13',['window_seconds',['../d4/d74/structkcenon_1_1monitoring_1_1rule__definition_1_1trigger__config.html#ad6dc81789c8b562d8f92db7df483c8c3',1,'kcenon::monitoring::rule_definition::trigger_config']]],
   ['window_5fsize_14',['window_size',['../dd/d14/structkcenon_1_1monitoring_1_1stream__aggregator__config.html#a0e2d1931ecaf34655ce7a8e298d5500c',1,'kcenon::monitoring::stream_aggregator_config']]],
-  ['window_5fsize_5f_15',['window_size_',['../de/d4f/classkcenon_1_1monitoring_1_1anomaly__trigger.html#a2eb83f08b6432f367919d16cb7042f7e',1,'kcenon::monitoring::anomaly_trigger']]],
+  ['window_5fsize_5f_15',['window_size_',['../de/d4f/classkcenon_1_1monitoring_1_1anomaly__trigger.html#a2eb83f08b6432f367919d16cb7042f7e',1,'kcenon::monitoring::anomaly_trigger::window_size_'],['../d9/d83/classmoving__average__trigger.html#a6be976ff10e01b8b84945933f422c5bd',1,'moving_average_trigger::window_size_']]],
   ['wireless_16',['wireless',['../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a5f62483a188d1c0fef6b7be151751e10',1,'kcenon::monitoring']]],
   ['with_5fcheck_17',['with_check',['../d2/d7c/classkcenon_1_1monitoring_1_1health__check__builder.html#a601b30b9c3dcd3ef36f0b43f2ec780d4',1,'kcenon::monitoring::health_check_builder']]],
   ['with_5fname_18',['with_name',['../d2/d7c/classkcenon_1_1monitoring_1_1health__check__builder.html#acf179134819876fb28cc1da173e1c339',1,'kcenon::monitoring::health_check_builder']]],

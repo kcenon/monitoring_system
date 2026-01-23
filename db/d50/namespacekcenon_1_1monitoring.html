@@ -261,6 +261,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html">configuration_change_event</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event fired when configuration changes.  <a href="../../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d1c/classkcenon_1_1monitoring_1_1console__color__notifier.html">console_color_notifier</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/ddb/classkcenon_1_1monitoring_1_1container__collector.html">container_collector</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dca/structkcenon_1_1monitoring_1_1container__info.html">container_info</a></td></tr>
@@ -913,6 +915,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc4/structkcenon_1_1monitoring_1_1statistical__summary.html">statistical_summary</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statistical summary result.  <a href="../../d4/dc4/structkcenon_1_1monitoring_1_1statistical__summary.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d28/classkcenon_1_1monitoring_1_1statistics__notifier.html">statistics_notifier</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dd1/classkcenon_1_1monitoring_1_1statsd__exporter.html">statsd_exporter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">StatsD metric exporter implementation.  <a href="../../d4/dd1/classkcenon_1_1monitoring_1_1statsd__exporter.html#details">More...</a><br /></td></tr>
@@ -1819,6 +1823,8 @@ Functions</h2></td></tr>
 <tr class="separator:a38656c671083061b5c65421a924df3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adacc86dd068c121466fa2066441a052b" id="r_adacc86dd068c121466fa2066441a052b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="../../dd/ddf/classkcenon_1_1monitoring_1_1service__container__interface.html">service_container_interface</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#adacc86dd068c121466fa2066441a052b">create_thread_system_adapter</a> ()</td></tr>
 <tr class="separator:adacc86dd068c121466fa2066441a052b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70e5bf91e06358d079408fe66979cfab" id="r_a70e5bf91e06358d079408fe66979cfab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a70e5bf91e06358d079408fe66979cfab">create_sample_alert</a> (const std::string &amp;name, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#abf3d64d411b3ad343bc59e8ab439b2d1">alert_severity</a> severity, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346">alert_state</a> state, double value, const std::string &amp;team=&quot;ops&quot;)</td></tr>
+<tr class="separator:a70e5bf91e06358d079408fe66979cfab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="aad0cb092fba522ae2b8b21234564e91b" name="aad0cb092fba522ae2b8b21234564e91b"></a>
@@ -3979,18 +3985,35 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_aeefa3995364d18ebf32690d4da5cdb98_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_aeefa3995364d18ebf32690d4da5cdb98_icgraph" alt=""/></div>
 <map name="adb/d50/namespacekcenon_1_1monitoring_aeefa3995364d18ebf32690d4da5cdb98_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_aeefa3995364d18ebf32690d4da5cdb98_icgraph">
-<area shape="rect" title="Convert alert severity to string." alt="" coords="440,136,588,191"/>
-<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a6b2f7223c3144b10eba4a5c3f5f9d3f6" title="Format a single alert." alt="" coords="223,5,385,60"/>
-<area shape="poly" title=" " alt="" coords="463,130,391,82,357,62,360,58,393,77,466,126"/>
-<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a06e9b251431d0e5dac70e6607c2c71be" title="Format an alert group." alt="" coords="5,39,168,93"/>
-<area shape="poly" title=" " alt="" coords="426,136,391,126,274,100,168,81,168,75,275,95,393,121,427,131"/>
-<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a5eb74c710f6d3aadeb1a03abf14d9472" title="Format a single alert." alt="" coords="223,136,385,191"/>
-<area shape="poly" title=" " alt="" coords="426,166,386,166,386,161,426,161"/>
-<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a58e7ad8a931579989dad4e66efeb1fa6" title="Format an alert group." alt="" coords="223,215,385,269"/>
-<area shape="poly" title=" " alt="" coords="429,198,378,217,377,212,427,193"/>
-<area shape="rect" href="../../df/dbb/classkcenon_1_1monitoring_1_1alert__template.html#adc57efb8db71b31c596fbc2aa0af7fa0" title="Render template with alert data." alt="" coords="216,294,392,334"/>
-<area shape="poly" title=" " alt="" coords="483,203,443,244,393,283,368,296,366,292,391,278,439,240,479,199"/>
-<area shape="poly" title=" " alt="" coords="209,50,169,56,168,51,208,45"/>
+<area shape="rect" title="Convert alert severity to string." alt="" coords="552,237,700,292"/>
+<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a6b2f7223c3144b10eba4a5c3f5f9d3f6" title="Format a single alert." alt="" coords="335,56,497,111"/>
+<area shape="poly" title=" " alt="" coords="594,228,553,180,502,132,474,113,477,109,506,128,557,176,598,225"/>
+<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a06e9b251431d0e5dac70e6607c2c71be" title="Format an alert group." alt="" coords="113,5,275,60"/>
+<area shape="poly" title=" " alt="" coords="613,225,599,181,577,131,545,83,525,63,503,46,476,32,448,22,389,12,330,12,276,17,275,12,330,6,389,7,450,17,478,27,505,41,529,59,549,80,581,128,604,179,618,223"/>
+<area shape="rect" href="../../d0/d30/alert__notifiers__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,111,60,136"/>
+<area shape="poly" title=" " alt="" coords="569,232,503,202,440,183,376,167,248,145,137,133,60,127,60,122,137,127,249,140,377,162,442,178,505,197,571,228"/>
+<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a5eb74c710f6d3aadeb1a03abf14d9472" title="Format a single alert." alt="" coords="113,187,275,241"/>
+<area shape="poly" title=" " alt="" coords="540,236,504,227,445,219,385,215,276,213,276,208,385,209,445,214,504,222,541,231"/>
+<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a58e7ad8a931579989dad4e66efeb1fa6" title="Format an alert group." alt="" coords="335,237,497,292"/>
+<area shape="poly" title=" " alt="" coords="538,267,498,267,498,262,538,262"/>
+<area shape="rect" href="../../de/d1c/classkcenon_1_1monitoring_1_1console__color__notifier.html#a9e75dfb84ab06ee3d48755ad6ece4352" title="Send a notification for an alert." alt="" coords="330,316,502,371"/>
+<area shape="poly" title=" " alt="" coords="541,299,490,318,489,313,539,294"/>
+<area shape="rect" href="../../dc/d16/alert__pipeline__example_8cpp.html#aefdce38ddfad3ca6ce4be24f9348eab1" title=" " alt="" coords="351,395,481,420"/>
+<area shape="poly" title=" " alt="" coords="597,305,556,347,505,386,480,397,478,392,503,381,553,343,593,301"/>
+<area shape="rect" href="../../d0/d28/classkcenon_1_1monitoring_1_1statistics__notifier.html#ab5018d951f8fcdf6a275a1626df64f93" title=" " alt="" coords="342,444,490,499"/>
+<area shape="poly" title=" " alt="" coords="606,306,565,371,537,405,506,435,489,446,486,442,502,431,533,401,561,368,602,303"/>
+<area shape="rect" href="../../df/dbb/classkcenon_1_1monitoring_1_1alert__template.html#adc57efb8db71b31c596fbc2aa0af7fa0" title="Render template with alert data." alt="" coords="328,523,504,563"/>
+<area shape="poly" title=" " alt="" coords="618,306,603,353,580,409,548,465,506,513,489,525,486,521,502,509,543,461,575,406,598,351,612,304"/>
+<area shape="poly" title=" " alt="" coords="320,64,275,54,276,49,322,59"/>
+<area shape="poly" title=" " alt="" coords="321,96,61,123,60,118,321,91"/>
+<area shape="poly" title=" " alt="" coords="132,69,109,82,57,113,54,108,107,77,129,64"/>
+<area shape="poly" title=" " alt="" coords="129,182,107,170,54,139,57,134,109,165,132,178"/>
+<area shape="rect" href="../../de/d1c/classkcenon_1_1monitoring_1_1console__color__notifier.html#a665e278b8efbba5c2a0e22f5942d9bcf" title="Send a notification for an alert group." alt="" coords="108,316,280,371"/>
+<area shape="poly" title=" " alt="" coords="316,346,280,346,280,341,316,341"/>
+<area shape="rect" href="../../dc/d16/alert__pipeline__example_8cpp.html#aa1f2bde99ec5e7028895c235b3d526a4" title=" " alt="" coords="123,395,265,420"/>
+<area shape="poly" title=" " alt="" coords="338,410,266,410,266,405,338,405"/>
+<area shape="rect" href="../../dc/d16/alert__pipeline__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,395,60,420"/>
+<area shape="poly" title=" " alt="" coords="109,410,60,410,60,405,109,405"/>
 </map>
 </div>
 
@@ -4047,17 +4070,34 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_addc6857810700b8d68a9cfee613aa9bc_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_addc6857810700b8d68a9cfee613aa9bc_icgraph" alt=""/></div>
 <map name="adb/d50/namespacekcenon_1_1monitoring_addc6857810700b8d68a9cfee613aa9bc_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_addc6857810700b8d68a9cfee613aa9bc_icgraph">
-<area shape="rect" title="Convert alert state to string." alt="" coords="440,131,604,171"/>
-<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a6b2f7223c3144b10eba4a5c3f5f9d3f6" title="Format a single alert." alt="" coords="223,5,385,60"/>
-<area shape="poly" title=" " alt="" coords="478,126,391,74,369,63,371,58,393,69,481,121"/>
-<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a5eb74c710f6d3aadeb1a03abf14d9472" title="Format a single alert." alt="" coords="223,84,385,139"/>
-<area shape="poly" title=" " alt="" coords="426,136,385,129,386,124,427,131"/>
-<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a58e7ad8a931579989dad4e66efeb1fa6" title="Format an alert group." alt="" coords="223,163,385,217"/>
-<area shape="poly" title=" " alt="" coords="427,171,386,178,385,173,426,166"/>
-<area shape="rect" href="../../df/dbb/classkcenon_1_1monitoring_1_1alert__template.html#adc57efb8db71b31c596fbc2aa0af7fa0" title="Render template with alert data." alt="" coords="216,242,392,282"/>
-<area shape="poly" title=" " alt="" coords="480,181,393,231,363,244,361,239,391,226,478,177"/>
-<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a06e9b251431d0e5dac70e6607c2c71be" title="Format an alert group." alt="" coords="5,5,168,60"/>
-<area shape="poly" title=" " alt="" coords="209,35,168,35,168,30,209,30"/>
+<area shape="rect" title="Convert alert state to string." alt="" coords="552,307,716,347"/>
+<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a6b2f7223c3144b10eba4a5c3f5f9d3f6" title="Format a single alert." alt="" coords="335,71,497,125"/>
+<area shape="poly" title=" " alt="" coords="614,297,568,223,537,183,502,147,476,128,479,123,506,143,541,180,573,220,618,294"/>
+<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a5eb74c710f6d3aadeb1a03abf14d9472" title="Format a single alert." alt="" coords="113,136,275,191"/>
+<area shape="poly" title=" " alt="" coords="611,297,567,240,537,213,503,191,447,171,387,160,329,156,276,157,276,152,329,151,388,155,448,166,505,186,540,209,571,237,616,294"/>
+<area shape="rect" href="../../d3/d8d/classkcenon_1_1monitoring_1_1text__alert__formatter.html#a58e7ad8a931579989dad4e66efeb1fa6" title="Format an alert group." alt="" coords="335,201,497,256"/>
+<area shape="poly" title=" " alt="" coords="575,304,476,259,478,254,578,299"/>
+<area shape="rect" href="../../dc/d16/alert__pipeline__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,345,60,371"/>
+<area shape="poly" title=" " alt="" coords="538,323,504,322,392,314,304,304,217,304,167,310,109,322,79,333,54,347,51,343,77,328,107,317,166,304,217,298,304,299,392,308,504,317,538,318"/>
+<area shape="rect" href="../../de/d1c/classkcenon_1_1monitoring_1_1console__color__notifier.html#a9e75dfb84ab06ee3d48755ad6ece4352" title="Send a notification for an alert." alt="" coords="330,332,502,387"/>
+<area shape="poly" title=" " alt="" coords="539,344,503,349,502,344,538,339"/>
+<area shape="rect" href="../../dc/d16/alert__pipeline__example_8cpp.html#aefdce38ddfad3ca6ce4be24f9348eab1" title=" " alt="" coords="351,411,481,436"/>
+<area shape="poly" title=" " alt="" coords="590,357,505,400,469,413,467,408,503,396,588,352"/>
+<area shape="rect" href="../../d0/d28/classkcenon_1_1monitoring_1_1statistics__notifier.html#ab5018d951f8fcdf6a275a1626df64f93" title=" " alt="" coords="342,460,490,515"/>
+<area shape="poly" title=" " alt="" coords="608,359,562,405,506,451,486,462,483,458,502,446,559,401,604,356"/>
+<area shape="rect" href="../../df/dbb/classkcenon_1_1monitoring_1_1alert__template.html#adc57efb8db71b31c596fbc2aa0af7fa0" title="Render template with alert data." alt="" coords="328,539,504,579"/>
+<area shape="poly" title=" " alt="" coords="622,361,604,399,578,444,545,490,506,529,487,541,484,537,502,525,541,486,574,441,599,397,617,359"/>
+<area shape="rect" href="../../d3/d68/classkcenon_1_1monitoring_1_1json__alert__formatter.html#a06e9b251431d0e5dac70e6607c2c71be" title="Format an alert group." alt="" coords="113,5,275,60"/>
+<area shape="poly" title=" " alt="" coords="320,73,275,59,276,54,322,68"/>
+<area shape="rect" href="../../d0/d30/alert__notifiers__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,85,60,111"/>
+<area shape="poly" title=" " alt="" coords="321,101,60,101,60,95,321,95"/>
+<area shape="poly" title=" " alt="" coords="114,68,61,90,59,85,112,63"/>
+<area shape="poly" title=" " alt="" coords="112,133,59,111,61,106,114,128"/>
+<area shape="rect" href="../../de/d1c/classkcenon_1_1monitoring_1_1console__color__notifier.html#a665e278b8efbba5c2a0e22f5942d9bcf" title="Send a notification for an alert group." alt="" coords="108,332,280,387"/>
+<area shape="poly" title=" " alt="" coords="316,362,280,362,280,357,316,357"/>
+<area shape="rect" href="../../dc/d16/alert__pipeline__example_8cpp.html#aa1f2bde99ec5e7028895c235b3d526a4" title=" " alt="" coords="123,411,265,436"/>
+<area shape="poly" title=" " alt="" coords="338,426,266,426,266,421,338,421"/>
+<area shape="poly" title=" " alt="" coords="130,409,107,400,54,373,56,368,109,396,132,404"/>
 </map>
 </div>
 
@@ -5908,6 +5948,98 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="160,170,74,205,72,200,158,165"/>
 <area shape="rect" href="../../db/dcc/test__resource__management_8cpp.html#ad076130e80025b484e3956e5013ff932" title=" " alt="" coords="5,252,75,277"/>
 <area shape="poly" title=" " alt="" coords="181,172,61,254,58,250,178,168"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a70e5bf91e06358d079408fe66979cfab" name="a70e5bf91e06358d079408fe66979cfab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70e5bf91e06358d079408fe66979cfab">&#9670;&#160;</a></span>create_sample_alert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> kcenon::monitoring::create_sample_alert </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#abf3d64d411b3ad343bc59e8ab439b2d1">alert_severity</a>&#160;</td>
+          <td class="paramname"><em>severity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#af8a63c56e21546ac44979fe649125346">alert_state</a>&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>team</em> = <code>&quot;ops&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d0/d30/alert__notifiers__example_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d0/d30/alert__notifiers__example_8cpp_source.html">alert_notifiers_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>                                                         {</div>
+<div class="line"><span class="lineno">   69</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
+<div class="line"><span class="lineno">   70</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">name</a> = name;</div>
+<div class="line"><span class="lineno">   71</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5262fa961771123b66463854b597ecca">severity</a> = severity;</div>
+<div class="line"><span class="lineno">   72</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">state</a> = state;</div>
+<div class="line"><span class="lineno">   73</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a388a9fba298ee6d7adc5df28c4668c5a">value</a> = value;</div>
+<div class="line"><span class="lineno">   74</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;team&quot;</span>, team);</div>
+<div class="line"><span class="lineno">   75</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;environment&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>);</div>
+<div class="line"><span class="lineno">   76</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ae257de3072af1f0bd82826547231f140">annotations</a>.<a class="code hl_variable" href="../../da/d7d/structkcenon_1_1monitoring_1_1alert__annotations.html#a901b727a3fd2e776b1bcff1266c5c2d0">summary</a> = <span class="stringliteral">&quot;Alert: &quot;</span> + name;</div>
+<div class="line"><span class="lineno">   77</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ae257de3072af1f0bd82826547231f140">annotations</a>.<a class="code hl_variable" href="../../da/d7d/structkcenon_1_1monitoring_1_1alert__annotations.html#a0957f9a6d2f0a8899900ea982c308949">description</a> = <span class="stringliteral">&quot;Detailed description for &quot;</span> + name;</div>
+<div class="line"><span class="lineno">   78</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a608231ba057cf9ef6c57351afd5807ce">rule_name</a> = name + <span class="stringliteral">&quot;_rule&quot;</span>;</div>
+<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">return</span> a;</div>
+<div class="line"><span class="lineno">   80</span>}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__annotations_html_a0957f9a6d2f0a8899900ea982c308949"><div class="ttname"><a href="../../da/d7d/structkcenon_1_1monitoring_1_1alert__annotations.html#a0957f9a6d2f0a8899900ea982c308949">kcenon::monitoring::alert_annotations::description</a></div><div class="ttdeci">std::string description</div><div class="ttdoc">Detailed description.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00190">alert_types.h:190</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__annotations_html_a901b727a3fd2e776b1bcff1266c5c2d0"><div class="ttname"><a href="../../da/d7d/structkcenon_1_1monitoring_1_1alert__annotations.html#a901b727a3fd2e776b1bcff1266c5c2d0">kcenon::monitoring::alert_annotations::summary</a></div><div class="ttdeci">std::string summary</div><div class="ttdoc">Brief description.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00189">alert_types.h:189</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__labels_html_a651c8857f3bc412172cc0e68ec38ef11"><div class="ttname"><a href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">kcenon::monitoring::alert_labels::set</a></div><div class="ttdeci">void set(const std::string &amp;key, const std::string &amp;value)</div><div class="ttdoc">Add or update a label.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00138">alert_types.h:138</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">kcenon::monitoring::alert</a></div><div class="ttdoc">Core alert data structure.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00210">alert_types.h:210</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a0aa753f7c644fd9bd36a582e8d5b49e5"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a0aa753f7c644fd9bd36a582e8d5b49e5">kcenon::monitoring::alert::state</a></div><div class="ttdeci">alert_state state</div><div class="ttdoc">Current state.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00215">alert_types.h:215</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a388a9fba298ee6d7adc5df28c4668c5a"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a388a9fba298ee6d7adc5df28c4668c5a">kcenon::monitoring::alert::value</a></div><div class="ttdeci">double value</div><div class="ttdoc">Current metric value.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00216">alert_types.h:216</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a5262fa961771123b66463854b597ecca"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a5262fa961771123b66463854b597ecca">kcenon::monitoring::alert::severity</a></div><div class="ttdeci">alert_severity severity</div><div class="ttdoc">Alert severity level.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00214">alert_types.h:214</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_a608231ba057cf9ef6c57351afd5807ce"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#a608231ba057cf9ef6c57351afd5807ce">kcenon::monitoring::alert::rule_name</a></div><div class="ttdeci">std::string rule_name</div><div class="ttdoc">Name of triggering rule.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00224">alert_types.h:224</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_ab13132560079c6696d8c60d82900f97c"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ab13132560079c6696d8c60d82900f97c">kcenon::monitoring::alert::name</a></div><div class="ttdeci">std::string name</div><div class="ttdoc">Alert name/identifier.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00211">alert_types.h:211</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_acace61d342c6bee9a0002c00ec7398ce"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">kcenon::monitoring::alert::labels</a></div><div class="ttdeci">alert_labels labels</div><div class="ttdoc">Identifying labels.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00212">alert_types.h:212</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_ae257de3072af1f0bd82826547231f140"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#ae257de3072af1f0bd82826547231f140">kcenon::monitoring::alert::annotations</a></div><div class="ttdeci">alert_annotations annotations</div><div class="ttdoc">Descriptive annotations.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00213">alert_types.h:213</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_cgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_cgraph" alt=""/></div>
+<map name="adb/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_cgraph" id="adb/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,168,45"/>
+<area shape="rect" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11" title="Add or update a label." alt="" coords="216,5,364,45"/>
+<area shape="poly" title=" " alt="" coords="168,23,202,23,202,28,168,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_icgraph" alt=""/></div>
+<map name="adb/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_a70e5bf91e06358d079408fe66979cfab_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,271,45"/>
+<area shape="rect" href="../../d0/d30/alert__notifiers__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,60,38"/>
+<area shape="poly" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
 </map>
 </div>
 
@@ -8368,7 +8500,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 22 2026 00:07:38 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jan 23 2026 13:09:07 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

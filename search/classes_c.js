@@ -45,6 +45,7 @@ var searchData=
   ['monitoring_5fdata_42',['monitoring_data',['../df/d98/structkcenon_1_1monitoring_1_1monitoring__data.html',1,'kcenon::monitoring']]],
   ['monitoring_5finterface_43',['monitoring_interface',['../da/d7d/classkcenon_1_1monitoring_1_1monitoring__interface.html',1,'kcenon::monitoring']]],
   ['monitoringthreadsafetytest_44',['MonitoringThreadSafetyTest',['../d9/d57/classMonitoringThreadSafetyTest.html',1,'']]],
-  ['moving_5fwindow_5faggregator_45',['moving_window_aggregator',['../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html',1,'kcenon::monitoring']]],
-  ['multi_5fnotifier_46',['multi_notifier',['../d0/d50/classkcenon_1_1monitoring_1_1multi__notifier.html',1,'kcenon::monitoring']]]
+  ['moving_5faverage_5ftrigger_45',['moving_average_trigger',['../d9/d83/classmoving__average__trigger.html',1,'']]],
+  ['moving_5fwindow_5faggregator_46',['moving_window_aggregator',['../db/d89/classkcenon_1_1monitoring_1_1moving__window__aggregator.html',1,'kcenon::monitoring']]],
+  ['multi_5fnotifier_47',['multi_notifier',['../d0/d50/classkcenon_1_1monitoring_1_1multi__notifier.html',1,'kcenon::monitoring']]]
 ];
