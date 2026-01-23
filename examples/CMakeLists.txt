@@ -51,6 +51,31 @@ target_link_libraries(custom_metric_types_example
     Threads::Threads
 )
 
+# Alert system examples
+add_executable(alert_pipeline_example
+    alert_pipeline_example.cpp
+)
+target_link_libraries(alert_pipeline_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
+add_executable(alert_triggers_example
+    alert_triggers_example.cpp
+)
+target_link_libraries(alert_triggers_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
+add_executable(alert_notifiers_example
+    alert_notifiers_example.cpp
+)
+target_link_libraries(alert_notifiers_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
 # Phase 4 DI Pattern examples - available when common_system integration is enabled
 if(MONITORING_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
     # Logger DI Integration example
