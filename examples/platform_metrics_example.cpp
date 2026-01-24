@@ -182,13 +182,9 @@ void demonstrate_platform_features(platform_metrics_collector& collector) {
     // Demonstrate feature availability checks before collection
     std::cout << "\nFeature Availability:" << std::endl;
 
-    // Check which features are available on this platform
-    auto config = collector.get_config();
-    std::cout << "  Uptime Collection: " << (config.collect_uptime ? "Enabled" : "Disabled") << std::endl;
-    std::cout << "  Context Switches: " << (config.collect_context_switches ? "Enabled" : "Disabled") << std::endl;
-    std::cout << "  TCP States: " << (config.collect_tcp_states ? "Enabled" : "Disabled") << std::endl;
-    std::cout << "  Socket Buffers: " << (config.collect_socket_buffers ? "Enabled" : "Disabled") << std::endl;
-    std::cout << "  Interrupts: " << (config.collect_interrupts ? "Enabled" : "Disabled") << std::endl;
+    // Display feature availability
+    std::cout << "  Platform Available: " << (collector.is_platform_available() ? "Yes" : "No") << std::endl;
+    std::cout << "  Collector Health: " << (collector.is_healthy() ? "Healthy" : "Unhealthy") << std::endl;
 
     std::cout << "\nNote: The Strategy pattern abstracts platform-specific implementations." << std::endl;
     std::cout << "      Features not supported on a platform return empty/unavailable values." << std::endl;
@@ -228,23 +224,15 @@ void demonstrate_metric_normalization(const std::vector<metric>& metrics) {
 
     std::cout << "\nCollected Metrics (" << metrics.size() << " total):" << std::endl;
 
-    // Group metrics by prefix for better readability
-    std::map<std::string, std::vector<metric>> grouped_metrics;
+    // Display metrics directly without grouping to avoid compilation issues
     for (const auto& m : metrics) {
-        auto pos = m.name.find('.', m.name.find('.') + 1); // Find second dot
-        std::string prefix = (pos != std::string::npos) ? m.name.substr(0, pos) : m.name;
-        grouped_metrics[prefix].push_back(m);
-    }
-
-    for (const auto& [prefix, group] : grouped_metrics) {
-        std::cout << "\n  " << prefix << ".*:" << std::endl;
-        for (const auto& m : group) {
-            std::cout << "    " << m.name << ": " << m.value;
-            if (!m.unit.empty()) {
-                std::cout << " " << m.unit;
-            }
-            std::cout << std::endl;
+        std::cout << "  " << m.name << ": ";
+        std::visit([](const auto& val) { std::cout << val; }, m.value);
+        auto unit_it = m.tags.find("unit");
+        if (unit_it != m.tags.end() && !unit_it->second.empty()) {
+            std::cout << " " << unit_it->second;
         }
+        std::cout << std::endl;
     }
 }
 
@@ -293,19 +281,15 @@ int main() {
             auto metrics = collector.collect();
             std::cout << "Metrics collected: " << metrics.size() << std::endl;
 
-            // Get structured metric data for detailed display
-            auto uptime = collector.get_uptime();
-            auto switches = collector.get_context_switches();
-            auto tcp = collector.get_tcp_info();
-            auto socket = collector.get_socket_info();
-            auto interrupts = collector.get_interrupt_info();
+            // Get last collected metrics for detailed display
+            auto last_metrics = collector.get_last_metrics();
 
             // Display each metric category
-            display_uptime_metrics(uptime);
-            display_context_switch_stats(switches);
-            display_tcp_info(tcp);
-            display_socket_info(socket);
-            display_interrupt_info(interrupts);
+            display_uptime_metrics(last_metrics.uptime);
+            display_context_switch_stats(last_metrics.context_switches);
+            display_tcp_info(last_metrics.tcp);
+            display_socket_info(last_metrics.socket);
+            display_interrupt_info(last_metrics.interrupts);
 
             // Wait before next collection
             if (i < 2) {
@@ -328,14 +312,9 @@ int main() {
         }
 
         // Step 7: Demonstrate dynamic configuration updates
-        std::cout << "\n7. Demonstrating dynamic configuration updates..." << std::endl;
-
-        std::cout << "   Disabling socket buffer collection..." << std::endl;
-        config.collect_socket_buffers = false;
-        collector.set_config(config);
-
-        auto reduced_metrics = collector.collect();
-        std::cout << "   Metrics collected after config update: " << reduced_metrics.size() << std::endl;
+        std::cout << "\n7. Configuration note:" << std::endl;
+        std::cout << "   Platform metrics collector configuration is set at initialization." << std::endl;
+        std::cout << "   To change configuration, recreate the collector with new config." << std::endl;
 
         std::cout << "\n=== Example completed successfully ===" << std::endl;
 

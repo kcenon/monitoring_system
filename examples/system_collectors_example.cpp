@@ -134,9 +134,11 @@ void display_network_collector_metrics(const std::vector<metric>& metrics) {
     std::cout << "\n=== Network Collector Metrics ===" << std::endl;
 
     for (const auto& m : metrics) {
-        std::cout << "  " << m.name << ": " << m.value;
-        if (!m.unit.empty()) {
-            std::cout << " " << m.unit;
+        std::cout << "  " << m.name << ": ";
+        std::visit([](const auto& val) { std::cout << val; }, m.value);
+        auto unit_it = m.tags.find("unit");
+        if (unit_it != m.tags.end() && !unit_it->second.empty()) {
+            std::cout << " " << unit_it->second;
         }
         std::cout << std::endl;
     }
@@ -149,9 +151,11 @@ void display_process_collector_metrics(const std::vector<metric>& metrics) {
     std::cout << "\n=== Process Collector Metrics ===" << std::endl;
 
     for (const auto& m : metrics) {
-        std::cout << "  " << m.name << ": " << m.value;
-        if (!m.unit.empty()) {
-            std::cout << " " << m.unit;
+        std::cout << "  " << m.name << ": ";
+        std::visit([](const auto& val) { std::cout << val; }, m.value);
+        auto unit_it = m.tags.find("unit");
+        if (unit_it != m.tags.end() && !unit_it->second.empty()) {
+            std::cout << " " << unit_it->second;
         }
         std::cout << std::endl;
     }
@@ -315,9 +319,9 @@ int main() {
 
             if (!load_history.empty()) {
                 auto load_stats = sys_collector.get_all_load_statistics();
-                std::cout << "   1-min avg: " << load_stats.one_min_avg << std::endl;
-                std::cout << "   5-min avg: " << load_stats.five_min_avg << std::endl;
-                std::cout << "   15-min avg: " << load_stats.fifteen_min_avg << std::endl;
+                std::cout << "   1-min avg: " << load_stats.load_1m_stats.avg << std::endl;
+                std::cout << "   5-min avg: " << load_stats.load_5m_stats.avg << std::endl;
+                std::cout << "   15-min avg: " << load_stats.load_15m_stats.avg << std::endl;
             }
         }
 
