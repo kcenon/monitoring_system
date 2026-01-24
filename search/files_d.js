@@ -8,5 +8,6 @@ var searchData=
   ['plugin_5fcollector_5fexample_2ecpp_5',['plugin_collector_example.cpp',['../dc/d7a/plugin__collector__example_8cpp.html',1,'']]],
   ['plugin_5fmetric_5fcollector_2eh_6',['plugin_metric_collector.h',['../d6/da5/plugin__metric__collector_8h.html',1,'']]],
   ['power_5fcollector_2eh_7',['power_collector.h',['../d0/d4c/power__collector_8h.html',1,'']]],
-  ['process_5fmetrics_5fcollector_2eh_8',['process_metrics_collector.h',['../de/ded/process__metrics__collector_8h.html',1,'']]]
+  ['process_5fmetrics_5fcollector_2eh_8',['process_metrics_collector.h',['../de/ded/process__metrics__collector_8h.html',1,'']]],
+  ['production_5fmonitoring_5fexample_2ecpp_9',['production_monitoring_example.cpp',['../de/d48/production__monitoring__example_8cpp.html',1,'']]]
 ];
