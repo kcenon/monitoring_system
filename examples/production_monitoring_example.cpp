@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
+// Copyright (c) 2021-2025, kcenon
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -29,461 +29,298 @@
 
 /**
  * @file production_monitoring_example.cpp
- * @brief Production monitoring patterns demonstration
+ * @brief Complete production-ready monitoring setup demonstration
  *
- * This example shows how to:
- * - Complete monitoring stack initialization
- * - Health checks integration with monitoring
- * - Alert pipeline configuration for production
- * - Storage backend selection and configuration
- * - Metric collection scheduling
- * - Graceful startup and shutdown sequences
- * - Configuration from environment variables
+ * This example demonstrates:
+ * - Configure complete monitoring stack
+ * - Integrate health checks with monitoring
+ * - Set up alert pipeline with multiple channels
+ * - Configure storage backend with retention
+ * - Demonstrate graceful shutdown procedures
+ * - Show configuration management patterns
  */
 
+#include <atomic>
+#include <chrono>
+#include <csignal>
 #include <iostream>
 #include <thread>
-#include <random>
-#include <atomic>
 
+#include "kcenon/monitoring/alert/alert_manager.h"
+#include "kcenon/monitoring/alert/alert_notifiers.h"
+#include "kcenon/monitoring/alert/alert_triggers.h"
+#include "kcenon/monitoring/core/performance_monitor.h"
 #include "kcenon/monitoring/health/health_monitor.h"
-#include "kcenon/monitoring/reliability/circuit_breaker.h"
-#include "kcenon/monitoring/reliability/retry_policy.h"
-#include "kcenon/monitoring/reliability/error_boundary.h"
-#include "kcenon/monitoring/core/result_types.h"
-#include "kcenon/monitoring/core/error_codes.h"
+#include "kcenon/monitoring/storage/storage_backends.h"
 
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
-// Simulate a database connection
-class DatabaseConnection {
+// Global shutdown flag for graceful shutdown
+std::atomic<bool> shutdown_requested{false};
+
+// Signal handler for graceful shutdown
+void signal_handler(int signal) {
+    std::cout << "\nReceived signal " << signal << ", initiating graceful shutdown..." << std::endl;
+    shutdown_requested = true;
+}
+
+// Custom health check for database simulation
+class database_health_check : public health_check {
 private:
-    std::atomic<bool> is_healthy_{true};
-    std::atomic<int> query_count_{0};
-    std::mt19937 rng_{std::random_device{}()};
-    
+    std::string name_;
+
 public:
-    void set_healthy(bool healthy) {
-        is_healthy_ = healthy;
+    explicit database_health_check(const std::string& name) : name_(name) {}
+
+    std::string get_name() const override {
+        return name_;
     }
-    
-    kcenon::common::Result<std::string> execute_query(const std::string& query) {
-        query_count_++;
-        
-        // Simulate latency
-        std::this_thread::sleep_for(10ms);
-        
-        // Simulate failures
-        if (!is_healthy_) {
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::service_unavailable, "Database connection lost").to_common_error());
-        }
-        
-        // Random transient failures (10% chance)
-        std::uniform_int_distribution<> dist(1, 10);
-        if (dist(rng_) == 1) {
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_timeout, "Query timeout").to_common_error());
-        }
-        
-        return kcenon::common::ok("Query result for: " + query);
+
+    health_check_type get_type() const override {
+        return health_check_type::readiness;
     }
-    
-    int get_query_count() const { return query_count_; }
+
+    health_check_result check() override {
+        // Simulate database connectivity check
+        return health_check_result::healthy("Database connection pool active");
+    }
+
+    bool is_critical() const override {
+        return true;
+    }
 };
 
-// Simulate an external API
-class ExternalApiClient {
+// Custom health check for external API
+class external_api_health_check : public health_check {
 private:
-    std::atomic<int> failure_count_{0};
-    std::atomic<int> call_count_{0};
-    
+    std::string name_;
+
 public:
-    kcenon::common::Result<std::string> call_api(const std::string& endpoint) {
-        call_count_++;
-        
-        // Simulate increasing failures
-        if (failure_count_ > 5) {
-            // API is down
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::service_unavailable, "Service unavailable").to_common_error());
-        }
-        
-        // Simulate intermittent failures
-        if (call_count_ % 3 == 0) {
-            failure_count_++;
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_failed, "Internal server error").to_common_error());
-        }
-        
-        failure_count_ = 0;  // Reset on success
-        return kcenon::common::ok("API response from: " + endpoint);
+    explicit external_api_health_check(const std::string& name) : name_(name) {}
+
+    std::string get_name() const override {
+        return name_;
     }
-    
-    void reset() {
-        failure_count_ = 0;
-        call_count_ = 0;
+
+    health_check_type get_type() const override {
+        return health_check_type::readiness;
     }
-    
-    int get_call_count() const { return call_count_; }
+
+    health_check_result check() override {
+        // Simulate external API health check
+        return health_check_result::healthy("External API responding");
+    }
+
+    bool is_critical() const override {
+        return false;
+    }
 };
-
-// Demonstrate health monitoring
-void demonstrate_health_monitoring() {
-    std::cout << "\n=== Health Monitoring Demo ===" << std::endl;
-    
-    // Create health monitor
-    health_monitor_config config;
-    config.check_interval = 2s;
-    config.cache_duration = 1s;
-    
-    health_monitor monitor(config);
-    
-    // Create database connection for health checks
-    auto database = std::make_shared<DatabaseConnection>();
-    
-    // Register liveness check
-    monitor.register_check("database_liveness",
-        std::make_shared<functional_health_check>(
-            "database_liveness",
-            health_check_type::liveness,
-            [database]() -> health_check_result {
-                // Simple ping check
-                auto result = database->execute_query("SELECT 1");
-                if (result.is_ok()) {
-                    return health_check_result::healthy("Database is alive");
-                } else {
-                    return health_check_result::unhealthy(
-                        "Database unreachable: " + result.error().message
-                    );
-                }
-            },
-            500ms,  // timeout
-            true    // critical
-        )
-    );
-    
-    // Register readiness check
-    monitor.register_check("database_readiness",
-        std::make_shared<functional_health_check>(
-            "database_readiness",
-            health_check_type::readiness,
-            [database]() -> health_check_result {
-                // Check if database can handle queries
-                auto result = database->execute_query("SELECT COUNT(*) FROM users");
-                if (result.is_ok()) {
-                    int query_count = database->get_query_count();
-                    if (query_count > 100) {
-                        return health_check_result::degraded(
-                            "High query count: " + std::to_string(query_count)
-                        );
-                    }
-                    return health_check_result::healthy("Database ready");
-                } else {
-                    return health_check_result::unhealthy(
-                        "Database not ready: " + result.error().message
-                    );
-                }
-            },
-            1000ms,  // timeout
-            false    // non-critical
-        )
-    );
-    
-    // Register startup check
-    monitor.register_check("system_startup",
-        std::make_shared<functional_health_check>(
-            "system_startup",
-            health_check_type::startup,
-            []() -> health_check_result {
-                // Check system initialization
-                static bool initialized = false;
-                if (!initialized) {
-                    std::this_thread::sleep_for(100ms);  // Simulate initialization
-                    initialized = true;
-                }
-                return health_check_result::healthy("System initialized");
-            }
-        )
-    );
-    
-    // Start health monitoring
-    monitor.start();
-    
-    std::cout << "Health monitoring started" << std::endl;
-    
-    // Perform health checks
-    std::cout << "\n1. Initial health check:" << std::endl;
-    auto all_checks = monitor.check_all();
-    for (const auto& [name, result] : all_checks) {
-        std::cout << "  " << name << ": " 
-                 << (result.status == health_status::healthy ? "HEALTHY" :
-                     result.status == health_status::degraded ? "DEGRADED" : "UNHEALTHY")
-                 << " - " << result.message << std::endl;
-    }
-    
-    // Get overall status
-    auto overall = monitor.get_overall_status();
-    std::cout << "  Overall status: " 
-             << (overall == health_status::healthy ? "HEALTHY" :
-                 overall == health_status::degraded ? "DEGRADED" : "UNHEALTHY")
-             << std::endl;
-    
-    // Simulate database failure
-    std::cout << "\n2. Simulating database failure..." << std::endl;
-    database->set_healthy(false);
-    std::this_thread::sleep_for(1s);
-    
-    all_checks = monitor.check_all();
-    for (const auto& [name, result] : all_checks) {
-        if (name.find("database") != std::string::npos) {
-            std::cout << "  " << name << ": " 
-                     << (result.status == health_status::healthy ? "HEALTHY" : "UNHEALTHY")
-                     << " - " << result.message << std::endl;
-        }
-    }
-    
-    // Register recovery handler
-    monitor.register_recovery_handler("database_liveness",
-        [database]() -> bool {
-            std::cout << "  Attempting database recovery..." << std::endl;
-            database->set_healthy(true);
-            return true;
-        }
-    );
-    
-    // Recover database
-    std::cout << "\n3. Triggering recovery..." << std::endl;
-    monitor.refresh();
-    std::this_thread::sleep_for(2s);
-    
-    all_checks = monitor.check_all();
-    std::cout << "  Database status after recovery: "
-             << (all_checks["database_liveness"].status == health_status::healthy ? 
-                 "HEALTHY" : "UNHEALTHY") << std::endl;
-    
-    // Get health report
-    std::cout << "\n4. Health Report:" << std::endl;
-    std::cout << monitor.get_health_report() << std::endl;
-    
-    monitor.stop();
-}
-
-// Demonstrate circuit breaker
-void demonstrate_circuit_breaker() {
-    std::cout << "\n=== Circuit Breaker Demo ===" << std::endl;
-    
-    // Create external API client
-    auto api_client = std::make_shared<ExternalApiClient>();
-    
-    // Configure circuit breaker
-    circuit_breaker_config cb_config;
-    cb_config.failure_threshold = 3;
-    // cb_config.failure_ratio = 0.5; // Not available in current API
-    cb_config.timeout = 100ms;
-    cb_config.reset_timeout = 2s;
-    cb_config.success_threshold = 2;
-    
-    circuit_breaker<std::string> breaker("api_breaker", cb_config);
-    
-    std::cout << "Circuit breaker configured:" << std::endl;
-    std::cout << "  Failure threshold: " << cb_config.failure_threshold << std::endl;
-    std::cout << "  Reset timeout: 2s" << std::endl;
-    
-    // Define the operation
-    auto api_operation = [api_client]() -> kcenon::common::Result<std::string> {
-        return api_client->call_api("/users");
-    };
-    
-    // Define fallback
-    auto fallback = []() -> kcenon::common::Result<std::string> {
-        return kcenon::common::ok(std::string("Cached response (fallback)"));
-    };
-    
-    // Make calls through circuit breaker
-    std::cout << "\n1. Making API calls through circuit breaker:" << std::endl;
-    
-    for (int i = 1; i <= 10; ++i) {
-        auto result = breaker.execute(api_operation, fallback);
-        
-        std::cout << "  Call " << i << ": ";
-        if (result.is_ok()) {
-            std::cout << "SUCCESS - " << result.value() << std::endl;
-        } else {
-            std::cout << "FAILED - " << result.error().message << std::endl;
-        }
-        
-        // Check circuit state
-        auto state = breaker.get_state();
-        if (state == circuit_state::open) {
-            std::cout << "    [Circuit OPEN - using fallback]" << std::endl;
-        } else if (state == circuit_state::half_open) {
-            std::cout << "    [Circuit HALF-OPEN - testing]" << std::endl;
-        }
-        
-        std::this_thread::sleep_for(300ms);
-    }
-    
-    // Get circuit breaker metrics
-    auto metrics = breaker.get_metrics();
-    std::cout << "\n2. Circuit Breaker Metrics:" << std::endl;
-    std::cout << "  Total calls: " << metrics.total_calls << std::endl;
-    std::cout << "  Successful calls: " << metrics.successful_calls << std::endl;
-    std::cout << "  Failed calls: " << metrics.failed_calls << std::endl;
-    std::cout << "  Rejected calls: " << metrics.rejected_calls << std::endl;
-    std::cout << "  State transitions: " << metrics.state_transitions << std::endl;
-    
-    // Wait for circuit to reset
-    std::cout << "\n3. Waiting for circuit reset..." << std::endl;
-    api_client->reset();  // Reset API client
-    std::this_thread::sleep_for(3s);
-    
-    // Try again after reset
-    std::cout << "\n4. Trying after reset:" << std::endl;
-    for (int i = 1; i <= 3; ++i) {
-        auto result = breaker.execute(api_operation, fallback);
-        std::cout << "  Call " << i << ": ";
-        if (result.is_ok()) {
-            std::cout << "SUCCESS" << std::endl;
-        } else {
-            std::cout << "FAILED" << std::endl;
-        }
-    }
-}
-
-// Demonstrate retry policy (simplified)
-void demonstrate_retry_policy() {
-    std::cout << "\n=== Retry Policy Demo ===" << std::endl;
-    
-    // Configure retry policy
-    retry_config config;
-    config.max_attempts = 3;
-    config.strategy = retry_strategy::exponential_backoff;
-    config.initial_delay = 100ms;
-    config.max_delay = 2s;
-    config.backoff_multiplier = 2.0;
-    
-    std::cout << "Retry policy configured:" << std::endl;
-    std::cout << "  Max attempts: " << config.max_attempts << std::endl;
-    std::cout << "  Strategy: exponential backoff" << std::endl;
-    std::cout << "  Initial delay: 100ms" << std::endl;
-    
-    // Simulate manual retry logic (since retry_policy class not available)
-    std::cout << "\n1. Executing flaky operation with manual retry:" << std::endl;
-    
-    std::atomic<int> attempt_count{0};
-    auto flaky_operation = [&attempt_count]() -> kcenon::common::Result<std::string> {
-        attempt_count++;
-        std::cout << "  Attempt " << attempt_count << "..." << std::endl;
-        
-        // Fail first 2 attempts
-        if (attempt_count <= 2) {
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_timeout, "Operation timed out").to_common_error());
-        }
-        
-        return kcenon::common::ok(std::string("Operation succeeded!"));
-    };
-    
-    kcenon::common::Result<std::string> final_result = kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_failed, "Initialization pending").to_common_error());
-    for (int i = 0; i < static_cast<int>(config.max_attempts); ++i) {
-        final_result = flaky_operation();
-        if (final_result.is_ok()) {
-            break;
-        }
-
-        // Wait before retry
-        if (i < static_cast<int>(config.max_attempts) - 1) {
-            auto delay = config.initial_delay * static_cast<int>(std::pow(config.backoff_multiplier, i));
-            std::this_thread::sleep_for(delay);
-        }
-    }
-
-    if (final_result.is_ok()) {
-        std::cout << "  Final result: SUCCESS - " << final_result.value() << std::endl;
-    } else {
-        std::cout << "  Final result: FAILED - " << final_result.error().message << std::endl;
-    }
-    
-    std::cout << "  Total attempts: " << attempt_count << std::endl;
-}
-
-// Demonstrate error boundaries
-void demonstrate_error_boundaries() {
-    std::cout << "\n=== Error Boundaries Demo ===" << std::endl;
-    
-    // Configure error boundary
-    error_boundary_config config;
-    config.error_threshold = 5;  // Use correct field name
-    config.error_window = 60s;
-    config.enable_fallback_logging = true;  // Use correct field name
-    
-    error_boundary<std::string> boundary("critical_section", config);  // Specify template type
-    
-    // Set error handler
-    boundary.set_error_handler([](const error_info& error, degradation_level level) {
-        std::cout << "  Error handler called: " << error.message 
-                 << " (degradation level: " << static_cast<int>(level) << ")" << std::endl;
-    });
-    
-    std::cout << "Error boundary configured:" << std::endl;
-    std::cout << "  Max errors: " << config.error_threshold << std::endl;
-    std::cout << "  Error window: 60s" << std::endl;
-    
-    // Execute operations within boundary
-    std::cout << "\n1. Executing operations within error boundary:" << std::endl;
-    
-    for (int i = 1; i <= 7; ++i) {
-        auto result = boundary.execute([i]() -> ::kcenon::common::Result<std::string> {
-            std::cout << "  Operation " << i << ": ";
-            
-            // Simulate failures on odd numbers
-            if (i % 2 == 1) {
-                std::cout << "FAILED" << std::endl;
-                error_info err(monitoring_error_code::operation_failed,
-                              "Operation " + std::to_string(i) + " failed");
-                return ::kcenon::common::Result<std::string>::err(err.to_common_error());
-            }
-            
-            std::cout << "SUCCESS" << std::endl;
-            return kcenon::common::ok("Result " + std::to_string(i));
-        });
-        
-        if (result.is_err() && result.error().code == static_cast<int>(monitoring_error_code::circuit_breaker_open)) {
-            std::cout << "    [Error boundary triggered - too many errors]" << std::endl;
-            break;
-        }
-    }
-    
-    // Get statistics
-    auto stats = boundary.get_metrics();
-    std::cout << "\n2. Error Boundary Statistics:" << std::endl;
-    std::cout << "  Total operations: " << stats.total_operations << std::endl;
-    std::cout << "  Failed operations: " << stats.failed_operations << std::endl;
-    std::cout << "  Success rate: " 
-             << (stats.total_operations > 0 ? 
-                 100.0 * (stats.total_operations - stats.failed_operations) / stats.total_operations : 0)
-             << "%" << std::endl;
-}
 
 int main() {
-    std::cout << "=== Production Monitoring Example ===" << std::endl;
-    
+    std::cout << "=== Production Monitoring Stack Example ===" << std::endl;
+    std::cout << std::endl;
+
     try {
-        // Part 1: Health Monitoring
-        demonstrate_health_monitoring();
-        
-        // Part 2: Circuit Breaker
-        demonstrate_circuit_breaker();
-        
-        // Part 3: Retry Policy
-        demonstrate_retry_policy();
-        
-        // Part 4: Error Boundaries
-        demonstrate_error_boundaries();
-        
+        // =====================================================================
+        // Section 1: Configuration Management
+        // =====================================================================
+        std::cout << "1. Configuring Production Monitoring Stack" << std::endl;
+        std::cout << "   =========================================" << std::endl;
+        std::cout << std::endl;
+
+        // Configure performance monitoring
+        monitoring_config perf_config;
+        perf_config.history_size = 10000;
+        perf_config.collection_interval = 5000ms;
+        perf_config.enable_compression = true;
+
+        std::cout << "   Performance Monitor:" << std::endl;
+        std::cout << "   - History size: " << perf_config.history_size << std::endl;
+        std::cout << "   - Collection interval: 5s" << std::endl;
+        std::cout << std::endl;
+
+        // Configure alert manager
+        alert_manager_config alert_config;
+        alert_config.default_evaluation_interval = 10000ms;
+        alert_config.default_repeat_interval = 300000ms;
+        alert_config.enable_grouping = true;
+
+        std::cout << "   Alert Manager:" << std::endl;
+        std::cout << "   - Evaluation interval: 10s" << std::endl;
+        std::cout << "   - Grouping: enabled" << std::endl;
+        std::cout << std::endl;
+
+        // Configure health monitoring
+        health_monitor_config health_config;
+        health_config.check_interval = 5000ms;
+        health_config.enable_auto_recovery = true;
+
+        std::cout << "   Health Monitor:" << std::endl;
+        std::cout << "   - Check interval: 5s" << std::endl;
+        std::cout << "   - Auto-recovery: enabled" << std::endl;
+        std::cout << std::endl;
+
+        // =====================================================================
+        // Section 2: Initialize Monitoring Components
+        // =====================================================================
+        std::cout << "2. Initializing Components" << std::endl;
+        std::cout << "   =======================  " << std::endl;
+        std::cout << std::endl;
+
+        // Initialize performance monitor
+        performance_monitor perf_monitor("production_monitor");
+        if (auto result = perf_monitor.initialize(); result.is_err()) {
+            std::cerr << "Failed to initialize performance monitor" << std::endl;
+            return 1;
+        }
+        std::cout << "   [OK] Performance monitor" << std::endl;
+
+        // Initialize health monitor
+        health_monitor health_mon(health_config);
+        std::cout << "   [OK] Health monitor" << std::endl;
+
+        // Initialize alert manager
+        alert_manager alert_mgr(alert_config);
+        std::cout << "   [OK] Alert manager" << std::endl;
+        std::cout << std::endl;
+
+        // =====================================================================
+        // Section 3: Configure Storage Backend
+        // =====================================================================
+        std::cout << "3. Configuring Storage" << std::endl;
+        std::cout << "   ====================" << std::endl;
+        std::cout << std::endl;
+
+        storage_config storage_cfg;
+        storage_cfg.type = storage_backend_type::file_json;
+        storage_cfg.path = "production_metrics.json";
+
+        auto storage = std::make_unique<file_storage_backend>(storage_cfg);
+        std::cout << "   [OK] JSON file storage configured" << std::endl;
+        std::cout << std::endl;
+
+        // =====================================================================
+        // Section 4: Register Health Checks
+        // =====================================================================
+        std::cout << "4. Registering Health Checks" << std::endl;
+        std::cout << "   ===========================" << std::endl;
+        std::cout << std::endl;
+
+        auto db_check = std::make_shared<database_health_check>("database");
+        health_mon.register_check("database", db_check);
+        std::cout << "   [OK] Database health check" << std::endl;
+
+        auto api_check = std::make_shared<external_api_health_check>("external_api");
+        health_mon.register_check("external_api", api_check);
+        std::cout << "   [OK] External API health check" << std::endl;
+        std::cout << std::endl;
+
+        // =====================================================================
+        // Section 5: Configure Alert Rules
+        // =====================================================================
+        std::cout << "5. Configuring Alert Rules" << std::endl;
+        std::cout << "   ========================" << std::endl;
+        std::cout << std::endl;
+
+        auto cpu_rule = std::make_shared<alert_rule>("high_cpu_usage");
+        cpu_rule->set_metric_name("cpu_usage")
+                .set_severity(alert_severity::warning)
+                .set_summary("CPU usage exceeds 80%")
+                .set_trigger(threshold_trigger::above(80.0));
+
+        alert_mgr.add_rule(cpu_rule);
+        std::cout << "   [OK] CPU usage alert rule" << std::endl;
+
+        auto log_notifier_ptr = std::make_shared<log_notifier>("console_logger");
+        alert_mgr.add_notifier(log_notifier_ptr);
+        std::cout << "   [OK] Console notifier" << std::endl;
+        std::cout << std::endl;
+
+        // =====================================================================
+        // Section 6: Start Monitoring
+        // =====================================================================
+        std::cout << "6. Starting Monitoring" << std::endl;
+        std::cout << "   ====================" << std::endl;
+        std::cout << std::endl;
+
+        health_mon.start();
+        std::cout << "   [OK] Health monitor started" << std::endl;
+
+        alert_mgr.start();
+        std::cout << "   [OK] Alert manager started" << std::endl;
+        std::cout << std::endl;
+
+        // Install signal handlers
+        std::signal(SIGINT, signal_handler);
+        std::signal(SIGTERM, signal_handler);
+
+        std::cout << "7. Monitoring Active (Ctrl+C to shutdown)" << std::endl;
+        std::cout << "   ========================================" << std::endl;
+        std::cout << std::endl;
+
+        // =====================================================================
+        // Section 7: Workload Simulation
+        // =====================================================================
+        int iteration = 0;
+        while (!shutdown_requested && iteration < 10) {
+            std::cout << "   Iteration " << (iteration + 1) << "/10" << std::endl;
+
+            // Collect performance metrics
+            {
+                auto timer = perf_monitor.time_operation("iteration_" + std::to_string(iteration));
+                std::this_thread::sleep_for(200ms);
+            }
+
+            // Check health
+            auto health_result = health_mon.check_health();
+            if (health_result.status == health_status::healthy) {
+                std::cout << "   Health: Healthy" << std::endl;
+            }
+
+            // Get system metrics
+            auto system_metrics = perf_monitor.get_system_monitor().get_current_metrics();
+            if (system_metrics.is_ok()) {
+                const auto& metrics = system_metrics.value();
+                std::cout << "   CPU: " << metrics.cpu_usage_percent
+                         << "%, Memory: " << (metrics.memory_usage_bytes / (1024.0 * 1024.0))
+                         << " MB" << std::endl;
+
+                // Process metrics for alerting
+                alert_mgr.process_metric("cpu_usage", metrics.cpu_usage_percent);
+            }
+
+            std::cout << std::endl;
+            std::this_thread::sleep_for(2s);
+            iteration++;
+        }
+
+        // =====================================================================
+        // Section 8: Graceful Shutdown
+        // =====================================================================
+        std::cout << "8. Graceful Shutdown" << std::endl;
+        std::cout << "   ==================" << std::endl;
+        std::cout << std::endl;
+
+        alert_mgr.stop();
+        std::cout << "   [OK] Alert manager stopped" << std::endl;
+
+        health_mon.stop();
+        std::cout << "   [OK] Health monitor stopped" << std::endl;
+
+        perf_monitor.cleanup();
+        std::cout << "   [OK] Performance monitor cleaned up" << std::endl;
+
+        storage->flush();
+        std::cout << "   [OK] Storage flushed" << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "=== Production Monitoring Completed Successfully ===" << std::endl;
+
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
         return 1;
     }
-    
-    std::cout << "\n=== Example completed successfully ===" << std::endl;
-    
+
     return 0;
 }
