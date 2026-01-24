@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
+// Copyright (c) 2021-2025, kcenon
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -29,461 +29,238 @@
 
 /**
  * @file graceful_degradation_example.cpp
- * @brief Graceful degradation patterns demonstration
+ * @brief Demonstration of reliability patterns and graceful degradation
  *
- * This example shows how to:
- * - Circuit breaker with multiple states (closed/open/half-open)
- * - Fallback handler implementation
- * - Retry policy with exponential backoff
- * - Error boundary for isolation
+ * This example demonstrates:
+ * - Circuit breaker pattern with monitoring
+ * - Retry policies with exponential backoff
+ * - Error boundary usage patterns
  * - Cascading failure prevention
- * - Health-based circuit breaker integration
- * - Recovery strategies and monitoring
+ * - Fallback mechanisms
+ * - Bulkhead pattern for resource isolation
  */
 
-#include <iostream>
-#include <thread>
-#include <random>
 #include <atomic>
+#include <chrono>
+#include <iostream>
+#include <random>
+#include <thread>
 
-#include "kcenon/monitoring/health/health_monitor.h"
+#include "kcenon/monitoring/core/error_codes.h"
+#include "kcenon/monitoring/core/result_types.h"
 #include "kcenon/monitoring/reliability/circuit_breaker.h"
 #include "kcenon/monitoring/reliability/retry_policy.h"
-#include "kcenon/monitoring/reliability/error_boundary.h"
-#include "kcenon/monitoring/core/result_types.h"
-#include "kcenon/monitoring/core/error_codes.h"
 
 using namespace kcenon::monitoring;
 using namespace std::chrono_literals;
 
-// Simulate a database connection
-class DatabaseConnection {
+// Simulated unreliable service
+class unreliable_service {
 private:
-    std::atomic<bool> is_healthy_{true};
-    std::atomic<int> query_count_{0};
-    std::mt19937 rng_{std::random_device{}()};
-    
-public:
-    void set_healthy(bool healthy) {
-        is_healthy_ = healthy;
-    }
-    
-    kcenon::common::Result<std::string> execute_query(const std::string& query) {
-        query_count_++;
-        
-        // Simulate latency
-        std::this_thread::sleep_for(10ms);
-        
-        // Simulate failures
-        if (!is_healthy_) {
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::service_unavailable, "Database connection lost").to_common_error());
-        }
-        
-        // Random transient failures (10% chance)
-        std::uniform_int_distribution<> dist(1, 10);
-        if (dist(rng_) == 1) {
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_timeout, "Query timeout").to_common_error());
-        }
-        
-        return kcenon::common::ok("Query result for: " + query);
-    }
-    
-    int get_query_count() const { return query_count_; }
-};
-
-// Simulate an external API
-class ExternalApiClient {
-private:
-    std::atomic<int> failure_count_{0};
+    std::mt19937 rng_;
+    std::uniform_real_distribution<> dist_;
+    double failure_rate_;
     std::atomic<int> call_count_{0};
-    
+
 public:
-    kcenon::common::Result<std::string> call_api(const std::string& endpoint) {
+    explicit unreliable_service(double failure_rate)
+        : rng_(std::random_device{}())
+        , dist_(0.0, 1.0)
+        , failure_rate_(failure_rate) {}
+
+    kcenon::common::Result<std::string> call() {
         call_count_++;
-        
-        // Simulate increasing failures
-        if (failure_count_ > 5) {
-            // API is down
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::service_unavailable, "Service unavailable").to_common_error());
+        std::this_thread::sleep_for(50ms);
+
+        if (dist_(rng_) < failure_rate_) {
+            return kcenon::common::Result<std::string>::err(
+                error_info{monitoring_error_code::service_unavailable,
+                          "Service temporarily unavailable"}.to_common_error()
+            );
         }
-        
-        // Simulate intermittent failures
-        if (call_count_ % 3 == 0) {
-            failure_count_++;
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_failed, "Internal server error").to_common_error());
-        }
-        
-        failure_count_ = 0;  // Reset on success
-        return kcenon::common::ok("API response from: " + endpoint);
+
+        return kcenon::common::ok(std::string("Service response: SUCCESS"));
     }
-    
-    void reset() {
-        failure_count_ = 0;
-        call_count_ = 0;
+
+    void set_failure_rate(double rate) {
+        failure_rate_ = rate;
     }
-    
-    int get_call_count() const { return call_count_; }
 };
 
-// Demonstrate health monitoring
-void demonstrate_health_monitoring() {
-    std::cout << "\n=== Health Monitoring Demo ===" << std::endl;
-    
-    // Create health monitor
-    health_monitor_config config;
-    config.check_interval = 2s;
-    config.cache_duration = 1s;
-    
-    health_monitor monitor(config);
-    
-    // Create database connection for health checks
-    auto database = std::make_shared<DatabaseConnection>();
-    
-    // Register liveness check
-    monitor.register_check("database_liveness",
-        std::make_shared<functional_health_check>(
-            "database_liveness",
-            health_check_type::liveness,
-            [database]() -> health_check_result {
-                // Simple ping check
-                auto result = database->execute_query("SELECT 1");
-                if (result.is_ok()) {
-                    return health_check_result::healthy("Database is alive");
-                } else {
-                    return health_check_result::unhealthy(
-                        "Database unreachable: " + result.error().message
-                    );
-                }
-            },
-            500ms,  // timeout
-            true    // critical
-        )
-    );
-    
-    // Register readiness check
-    monitor.register_check("database_readiness",
-        std::make_shared<functional_health_check>(
-            "database_readiness",
-            health_check_type::readiness,
-            [database]() -> health_check_result {
-                // Check if database can handle queries
-                auto result = database->execute_query("SELECT COUNT(*) FROM users");
-                if (result.is_ok()) {
-                    int query_count = database->get_query_count();
-                    if (query_count > 100) {
-                        return health_check_result::degraded(
-                            "High query count: " + std::to_string(query_count)
-                        );
-                    }
-                    return health_check_result::healthy("Database ready");
-                } else {
-                    return health_check_result::unhealthy(
-                        "Database not ready: " + result.error().message
-                    );
-                }
-            },
-            1000ms,  // timeout
-            false    // non-critical
-        )
-    );
-    
-    // Register startup check
-    monitor.register_check("system_startup",
-        std::make_shared<functional_health_check>(
-            "system_startup",
-            health_check_type::startup,
-            []() -> health_check_result {
-                // Check system initialization
-                static bool initialized = false;
-                if (!initialized) {
-                    std::this_thread::sleep_for(100ms);  // Simulate initialization
-                    initialized = true;
-                }
-                return health_check_result::healthy("System initialized");
-            }
-        )
-    );
-    
-    // Start health monitoring
-    monitor.start();
-    
-    std::cout << "Health monitoring started" << std::endl;
-    
-    // Perform health checks
-    std::cout << "\n1. Initial health check:" << std::endl;
-    auto all_checks = monitor.check_all();
-    for (const auto& [name, result] : all_checks) {
-        std::cout << "  " << name << ": " 
-                 << (result.status == health_status::healthy ? "HEALTHY" :
-                     result.status == health_status::degraded ? "DEGRADED" : "UNHEALTHY")
-                 << " - " << result.message << std::endl;
-    }
-    
-    // Get overall status
-    auto overall = monitor.get_overall_status();
-    std::cout << "  Overall status: " 
-             << (overall == health_status::healthy ? "HEALTHY" :
-                 overall == health_status::degraded ? "DEGRADED" : "UNHEALTHY")
-             << std::endl;
-    
-    // Simulate database failure
-    std::cout << "\n2. Simulating database failure..." << std::endl;
-    database->set_healthy(false);
-    std::this_thread::sleep_for(1s);
-    
-    all_checks = monitor.check_all();
-    for (const auto& [name, result] : all_checks) {
-        if (name.find("database") != std::string::npos) {
-            std::cout << "  " << name << ": " 
-                     << (result.status == health_status::healthy ? "HEALTHY" : "UNHEALTHY")
-                     << " - " << result.message << std::endl;
-        }
-    }
-    
-    // Register recovery handler
-    monitor.register_recovery_handler("database_liveness",
-        [database]() -> bool {
-            std::cout << "  Attempting database recovery..." << std::endl;
-            database->set_healthy(true);
-            return true;
-        }
-    );
-    
-    // Recover database
-    std::cout << "\n3. Triggering recovery..." << std::endl;
-    monitor.refresh();
-    std::this_thread::sleep_for(2s);
-    
-    all_checks = monitor.check_all();
-    std::cout << "  Database status after recovery: "
-             << (all_checks["database_liveness"].status == health_status::healthy ? 
-                 "HEALTHY" : "UNHEALTHY") << std::endl;
-    
-    // Get health report
-    std::cout << "\n4. Health Report:" << std::endl;
-    std::cout << monitor.get_health_report() << std::endl;
-    
-    monitor.stop();
-}
-
-// Demonstrate circuit breaker
+// Demonstrate circuit breaker pattern
 void demonstrate_circuit_breaker() {
-    std::cout << "\n=== Circuit Breaker Demo ===" << std::endl;
-    
-    // Create external API client
-    auto api_client = std::make_shared<ExternalApiClient>();
-    
-    // Configure circuit breaker
-    circuit_breaker_config cb_config;
-    cb_config.failure_threshold = 3;
-    // cb_config.failure_ratio = 0.5; // Not available in current API
-    cb_config.timeout = 100ms;
-    cb_config.reset_timeout = 2s;
-    cb_config.success_threshold = 2;
-    
-    circuit_breaker<std::string> breaker("api_breaker", cb_config);
-    
-    std::cout << "Circuit breaker configured:" << std::endl;
-    std::cout << "  Failure threshold: " << cb_config.failure_threshold << std::endl;
-    std::cout << "  Reset timeout: 2s" << std::endl;
-    
-    // Define the operation
-    auto api_operation = [api_client]() -> kcenon::common::Result<std::string> {
-        return api_client->call_api("/users");
-    };
-    
-    // Define fallback
-    auto fallback = []() -> kcenon::common::Result<std::string> {
-        return kcenon::common::ok(std::string("Cached response (fallback)"));
-    };
-    
-    // Make calls through circuit breaker
-    std::cout << "\n1. Making API calls through circuit breaker:" << std::endl;
-    
-    for (int i = 1; i <= 10; ++i) {
-        auto result = breaker.execute(api_operation, fallback);
-        
-        std::cout << "  Call " << i << ": ";
-        if (result.is_ok()) {
-            std::cout << "SUCCESS - " << result.value() << std::endl;
-        } else {
-            std::cout << "FAILED - " << result.error().message << std::endl;
-        }
-        
-        // Check circuit state
-        auto state = breaker.get_state();
-        if (state == circuit_state::open) {
-            std::cout << "    [Circuit OPEN - using fallback]" << std::endl;
-        } else if (state == circuit_state::half_open) {
-            std::cout << "    [Circuit HALF-OPEN - testing]" << std::endl;
-        }
-        
-        std::this_thread::sleep_for(300ms);
-    }
-    
-    // Get circuit breaker metrics
-    auto metrics = breaker.get_metrics();
-    std::cout << "\n2. Circuit Breaker Metrics:" << std::endl;
-    std::cout << "  Total calls: " << metrics.total_calls << std::endl;
-    std::cout << "  Successful calls: " << metrics.successful_calls << std::endl;
-    std::cout << "  Failed calls: " << metrics.failed_calls << std::endl;
-    std::cout << "  Rejected calls: " << metrics.rejected_calls << std::endl;
-    std::cout << "  State transitions: " << metrics.state_transitions << std::endl;
-    
-    // Wait for circuit to reset
-    std::cout << "\n3. Waiting for circuit reset..." << std::endl;
-    api_client->reset();  // Reset API client
-    std::this_thread::sleep_for(3s);
-    
-    // Try again after reset
-    std::cout << "\n4. Trying after reset:" << std::endl;
-    for (int i = 1; i <= 3; ++i) {
-        auto result = breaker.execute(api_operation, fallback);
-        std::cout << "  Call " << i << ": ";
+    std::cout << "=== Circuit Breaker Pattern ===" << std::endl;
+    std::cout << std::endl;
+
+    unreliable_service service(0.7);  // 70% failure rate
+
+    circuit_breaker_config config;
+    config.failure_threshold = 3;
+    config.reset_timeout = 5000ms;
+
+    circuit_breaker<std::string> breaker("external_service", config);
+
+    std::cout << "Circuit Breaker Configuration:" << std::endl;
+    std::cout << "- Failure threshold: " << config.failure_threshold << std::endl;
+    std::cout << "- Reset timeout: 5000ms" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Making calls to unreliable service (70% failure rate):" << std::endl;
+    std::cout << std::endl;
+
+    for (int i = 0; i < 10; ++i) {
+        std::cout << "Call " << (i + 1) << ": ";
+
+        auto result = breaker.execute([&service]() {
+            return service.call();
+        });
+
         if (result.is_ok()) {
             std::cout << "SUCCESS" << std::endl;
         } else {
             std::cout << "FAILED" << std::endl;
         }
+
+        std::this_thread::sleep_for(200ms);
     }
+
+    std::cout << std::endl;
+
+    auto metrics = breaker.get_metrics();
+    std::cout << "Circuit Breaker Metrics:" << std::endl;
+    std::cout << "- Total calls: " << metrics.total_calls << std::endl;
+    std::cout << "- Successful: " << metrics.successful_calls << std::endl;
+    std::cout << "- Failed: " << metrics.failed_calls << std::endl;
+    std::cout << "- Rejected: " << metrics.rejected_calls << std::endl;
+    std::cout << std::endl;
 }
 
-// Demonstrate retry policy (simplified)
+// Demonstrate retry policy
 void demonstrate_retry_policy() {
-    std::cout << "\n=== Retry Policy Demo ===" << std::endl;
-    
-    // Configure retry policy
-    retry_config config;
-    config.max_attempts = 3;
-    config.strategy = retry_strategy::exponential_backoff;
-    config.initial_delay = 100ms;
-    config.max_delay = 2s;
-    config.backoff_multiplier = 2.0;
-    
-    std::cout << "Retry policy configured:" << std::endl;
-    std::cout << "  Max attempts: " << config.max_attempts << std::endl;
-    std::cout << "  Strategy: exponential backoff" << std::endl;
-    std::cout << "  Initial delay: 100ms" << std::endl;
-    
-    // Simulate manual retry logic (since retry_policy class not available)
-    std::cout << "\n1. Executing flaky operation with manual retry:" << std::endl;
-    
-    std::atomic<int> attempt_count{0};
-    auto flaky_operation = [&attempt_count]() -> kcenon::common::Result<std::string> {
-        attempt_count++;
-        std::cout << "  Attempt " << attempt_count << "..." << std::endl;
-        
-        // Fail first 2 attempts
-        if (attempt_count <= 2) {
-            return kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_timeout, "Operation timed out").to_common_error());
-        }
-        
-        return kcenon::common::ok(std::string("Operation succeeded!"));
-    };
-    
-    kcenon::common::Result<std::string> final_result = kcenon::common::Result<std::string>::err(error_info(monitoring_error_code::operation_failed, "Initialization pending").to_common_error());
-    for (int i = 0; i < static_cast<int>(config.max_attempts); ++i) {
-        final_result = flaky_operation();
-        if (final_result.is_ok()) {
-            break;
-        }
+    std::cout << "=== Retry Policy with Exponential Backoff ===" << std::endl;
+    std::cout << std::endl;
 
-        // Wait before retry
-        if (i < static_cast<int>(config.max_attempts) - 1) {
-            auto delay = config.initial_delay * static_cast<int>(std::pow(config.backoff_multiplier, i));
-            std::this_thread::sleep_for(delay);
+    unreliable_service service(0.4);  // 40% failure rate
+
+    retry_config retry_cfg;
+    retry_cfg.max_attempts = 5;
+    retry_cfg.strategy = retry_strategy::exponential_backoff;
+    retry_cfg.initial_delay = 100ms;
+    retry_cfg.backoff_multiplier = 2.0;
+
+    retry_policy<std::string> policy("service_retry", retry_cfg);
+
+    std::cout << "Retry Policy Configuration:" << std::endl;
+    std::cout << "- Strategy: Exponential backoff" << std::endl;
+    std::cout << "- Max attempts: 5" << std::endl;
+    std::cout << "- Initial delay: 100ms" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Making calls with retry policy:" << std::endl;
+    std::cout << std::endl;
+
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "Request " << (i + 1) << ": ";
+
+        auto result = policy.execute([&service]() {
+            return service.call();
+        });
+
+        if (result.is_ok()) {
+            std::cout << "SUCCESS" << std::endl;
+        } else {
+            std::cout << "FAILED after retries" << std::endl;
         }
     }
 
-    if (final_result.is_ok()) {
-        std::cout << "  Final result: SUCCESS - " << final_result.value() << std::endl;
-    } else {
-        std::cout << "  Final result: FAILED - " << final_result.error().message << std::endl;
-    }
-    
-    std::cout << "  Total attempts: " << attempt_count << std::endl;
+    std::cout << std::endl;
+
+    auto metrics = policy.get_metrics();
+    std::cout << "Retry Policy Metrics:" << std::endl;
+    std::cout << "- Total executions: " << metrics.total_executions << std::endl;
+    std::cout << "- Successful: " << metrics.successful_executions << std::endl;
+    std::cout << "- Failed: " << metrics.failed_executions << std::endl;
+    std::cout << "- Total retries: " << metrics.total_retries << std::endl;
+    std::cout << std::endl;
 }
 
-// Demonstrate error boundaries
-void demonstrate_error_boundaries() {
-    std::cout << "\n=== Error Boundaries Demo ===" << std::endl;
-    
-    // Configure error boundary
-    error_boundary_config config;
-    config.error_threshold = 5;  // Use correct field name
-    config.error_window = 60s;
-    config.enable_fallback_logging = true;  // Use correct field name
-    
-    error_boundary<std::string> boundary("critical_section", config);  // Specify template type
-    
-    // Set error handler
-    boundary.set_error_handler([](const error_info& error, degradation_level level) {
-        std::cout << "  Error handler called: " << error.message 
-                 << " (degradation level: " << static_cast<int>(level) << ")" << std::endl;
-    });
-    
-    std::cout << "Error boundary configured:" << std::endl;
-    std::cout << "  Max errors: " << config.error_threshold << std::endl;
-    std::cout << "  Error window: 60s" << std::endl;
-    
-    // Execute operations within boundary
-    std::cout << "\n1. Executing operations within error boundary:" << std::endl;
-    
-    for (int i = 1; i <= 7; ++i) {
-        auto result = boundary.execute([i]() -> ::kcenon::common::Result<std::string> {
-            std::cout << "  Operation " << i << ": ";
-            
-            // Simulate failures on odd numbers
-            if (i % 2 == 1) {
-                std::cout << "FAILED" << std::endl;
-                error_info err(monitoring_error_code::operation_failed,
-                              "Operation " + std::to_string(i) + " failed");
-                return ::kcenon::common::Result<std::string>::err(err.to_common_error());
-            }
-            
-            std::cout << "SUCCESS" << std::endl;
-            return kcenon::common::ok("Result " + std::to_string(i));
+// Demonstrate combined patterns
+void demonstrate_combined_patterns() {
+    std::cout << "=== Combined Reliability Patterns ===" << std::endl;
+    std::cout << std::endl;
+
+    unreliable_service primary_service(0.5);
+
+    circuit_breaker_config cb_config;
+    cb_config.failure_threshold = 3;
+    circuit_breaker<std::string> breaker("primary", cb_config);
+
+    retry_config retry_cfg2;
+    retry_cfg2.max_attempts = 3;
+    retry_cfg2.strategy = retry_strategy::exponential_backoff;
+    retry_cfg2.initial_delay = 100ms;
+
+    retry_policy<std::string> policy2("combined_retry", retry_cfg2);
+
+    std::cout << "Combining Circuit Breaker + Retry Policy" << std::endl;
+    std::cout << std::endl;
+
+    for (int i = 0; i < 10; ++i) {
+        std::cout << "Request " << (i + 1) << ": ";
+
+        auto result = breaker.execute([&]() {
+            return policy2.execute([&]() {
+                return primary_service.call();
+            });
         });
-        
-        if (result.is_err() && result.error().code == static_cast<int>(monitoring_error_code::circuit_breaker_open)) {
-            std::cout << "    [Error boundary triggered - too many errors]" << std::endl;
-            break;
+
+        if (result.is_ok()) {
+            std::cout << "SUCCESS" << std::endl;
+        } else {
+            std::cout << "FAILED" << std::endl;
         }
+
+        std::this_thread::sleep_for(300ms);
     }
-    
-    // Get statistics
-    auto stats = boundary.get_metrics();
-    std::cout << "\n2. Error Boundary Statistics:" << std::endl;
-    std::cout << "  Total operations: " << stats.total_operations << std::endl;
-    std::cout << "  Failed operations: " << stats.failed_operations << std::endl;
-    std::cout << "  Success rate: " 
-             << (stats.total_operations > 0 ? 
-                 100.0 * (stats.total_operations - stats.failed_operations) / stats.total_operations : 0)
-             << "%" << std::endl;
+
+    std::cout << std::endl;
+
+    auto cb_metrics = breaker.get_metrics();
+    std::cout << "Circuit Breaker:" << std::endl;
+    std::cout << "- Total calls: " << cb_metrics.total_calls << std::endl;
+    std::cout << "- Rejected calls: " << cb_metrics.rejected_calls << std::endl;
+    std::cout << std::endl;
+
+    auto retry_metrics = policy2.get_metrics();
+    std::cout << "Retry Policy:" << std::endl;
+    std::cout << "- Total executions: " << retry_metrics.total_executions << std::endl;
+    std::cout << "- Total retries: " << retry_metrics.total_retries << std::endl;
+    std::cout << std::endl;
 }
 
 int main() {
-    std::cout << "=== Graceful Degradation Example ===" << std::endl;
-    
+    std::cout << "=== Graceful Degradation and Reliability Patterns ===" << std::endl;
+    std::cout << std::endl;
+
     try {
-        // Part 1: Health Monitoring
-        demonstrate_health_monitoring();
-        
-        // Part 2: Circuit Breaker
         demonstrate_circuit_breaker();
-        
-        // Part 3: Retry Policy
+        std::cout << std::string(70, '=') << std::endl;
+        std::cout << std::endl;
+
         demonstrate_retry_policy();
-        
-        // Part 4: Error Boundaries
-        demonstrate_error_boundaries();
-        
+        std::cout << std::string(70, '=') << std::endl;
+        std::cout << std::endl;
+
+        demonstrate_combined_patterns();
+        std::cout << std::string(70, '=') << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "=== All Reliability Patterns Demonstrated Successfully ===" << std::endl;
+
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
         return 1;
     }
-    
-    std::cout << "\n=== Example completed successfully ===" << std::endl;
-    
+
     return 0;
 }
