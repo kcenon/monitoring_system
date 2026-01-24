@@ -12,5 +12,6 @@ var searchData=
   ['monitor_5ffactory_5fpattern_5fexample_2ecpp_9',['monitor_factory_pattern_example.cpp',['../d3/df7/monitor__factory__pattern__example_8cpp.html',1,'']]],
   ['monitorable_5finterface_2eh_10',['monitorable_interface.h',['../d8/db2/monitorable__interface_8h.html',1,'']]],
   ['monitoring_5fconcepts_2eh_11',['monitoring_concepts.h',['../da/d74/monitoring__concepts_8h.html',1,'']]],
-  ['monitoring_5fcore_2eh_12',['monitoring_core.h',['../d1/d6e/monitoring__core_8h.html',1,'']]]
+  ['monitoring_5fcore_2eh_12',['monitoring_core.h',['../d1/d6e/monitoring__core_8h.html',1,'']]],
+  ['multi_5fservice_5ftracing_5fexample_2ecpp_13',['multi_service_tracing_example.cpp',['../d1/da6/multi__service__tracing__example_8cpp.html',1,'']]]
 ];

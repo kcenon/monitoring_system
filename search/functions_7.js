@@ -2,7 +2,7 @@ var searchData=
 [
   ['handle_5fexception_0',['handle_exception',['../da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc',1,'kcenon::monitoring::safe_event_dispatcher']]],
   ['handle_5ffailure_1',['handle_failure',['../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#ae44c9483bde4e7368fc05052315a3569',1,'kcenon::monitoring::error_boundary']]],
-  ['handle_5frequest_2',['handle_request',['../df/d65/classWebService.html#a10e06fdfedca551f44884365caaa338d',1,'WebService']]],
+  ['handle_5frequest_2',['handle_request',['../df/d65/classWebService.html#a10e06fdfedca551f44884365caaa338d',1,'WebService::handle_request()'],['../d2/d3d/classApiGatewayService.html#a500bef2349c277d5949296f58acb06d1',1,'ApiGatewayService::handle_request()']]],
   ['handle_5fsuccess_3',['handle_success',['../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#a23dcdf654ac183f16ef4010b4950f7ee',1,'kcenon::monitoring::error_boundary']]],
   ['hardware_5fplugin_4',['hardware_plugin',['../dc/d5a/classkcenon_1_1monitoring_1_1plugins_1_1hardware__plugin.html#acbca0c20898aedc512f239501d3db717',1,'kcenon::monitoring::plugins::hardware_plugin::hardware_plugin(const hardware_plugin &amp;)=delete'],['../dc/d5a/classkcenon_1_1monitoring_1_1plugins_1_1hardware__plugin.html#a841666ca2dc4a7e14da04175ac7a101b',1,'kcenon::monitoring::plugins::hardware_plugin::hardware_plugin(const hardware_plugin_config &amp;config)']]],
   ['has_5',['has',['../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a775a064ce0725b6f1a21e155e07d6012',1,'kcenon::monitoring::alert_labels']]],

@@ -7,5 +7,6 @@ var searchData=
   ['uptime_5finfo_4',['uptime_info',['../d7/d55/structkcenon_1_1monitoring_1_1platform_1_1uptime__info.html',1,'kcenon::monitoring::platform']]],
   ['uptime_5finfo_5fcollector_5',['uptime_info_collector',['../d1/d74/classkcenon_1_1monitoring_1_1uptime__info__collector.html',1,'kcenon::monitoring']]],
   ['uptime_5fmetrics_6',['uptime_metrics',['../d4/d40/structkcenon_1_1monitoring_1_1uptime__metrics.html',1,'kcenon::monitoring']]],
-  ['url_5fparts_7',['url_parts',['../d4/d69/structkcenon_1_1monitoring_1_1simple__http__client_1_1url__parts.html',1,'kcenon::monitoring::simple_http_client']]]
+  ['url_5fparts_7',['url_parts',['../d4/d69/structkcenon_1_1monitoring_1_1simple__http__client_1_1url__parts.html',1,'kcenon::monitoring::simple_http_client']]],
+  ['userservice_8',['UserService',['../d9/dd9/classUserService.html',1,'']]]
 ];

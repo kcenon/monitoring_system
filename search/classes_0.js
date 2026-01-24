@@ -28,5 +28,7 @@ var searchData=
   ['alert_5ftemplate_25',['alert_template',['../df/dbb/classkcenon_1_1monitoring_1_1alert__template.html',1,'kcenon::monitoring']]],
   ['alert_5ftrigger_26',['alert_trigger',['../d2/d59/classkcenon_1_1monitoring_1_1alert__trigger.html',1,'kcenon::monitoring']]],
   ['alternative_5fservice_5fstrategy_27',['alternative_service_strategy',['../d5/dbc/classkcenon_1_1monitoring_1_1alternative__service__strategy.html',1,'kcenon::monitoring']]],
-  ['anomaly_5ftrigger_28',['anomaly_trigger',['../de/d4f/classkcenon_1_1monitoring_1_1anomaly__trigger.html',1,'kcenon::monitoring']]]
+  ['anomaly_5ftrigger_28',['anomaly_trigger',['../de/d4f/classkcenon_1_1monitoring_1_1anomaly__trigger.html',1,'kcenon::monitoring']]],
+  ['apigatewayservice_29',['ApiGatewayService',['../d2/d3d/classApiGatewayService.html',1,'']]],
+  ['authservice_30',['AuthService',['../d6/d38/classAuthService.html',1,'']]]
 ];
