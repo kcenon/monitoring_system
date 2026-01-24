@@ -126,6 +126,23 @@ target_link_libraries(multi_service_tracing_example
     Threads::Threads
 )
 
+# Phase 4: Production Patterns Examples
+add_executable(production_monitoring_example
+    production_monitoring_example.cpp
+)
+target_link_libraries(production_monitoring_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
+add_executable(graceful_degradation_example
+    graceful_degradation_example.cpp
+)
+target_link_libraries(graceful_degradation_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
 # Phase 4 DI Pattern examples - available when common_system integration is enabled
 if(MONITORING_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
     # Logger DI Integration example
