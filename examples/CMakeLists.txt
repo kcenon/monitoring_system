@@ -101,6 +101,31 @@ target_link_libraries(collector_factory_example
     Threads::Threads
 )
 
+# Phase 3: Advanced Integration Examples
+add_executable(otlp_export_example
+    otlp_export_example.cpp
+)
+target_link_libraries(otlp_export_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
+add_executable(time_series_storage_example
+    time_series_storage_example.cpp
+)
+target_link_libraries(time_series_storage_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
+add_executable(multi_service_tracing_example
+    multi_service_tracing_example.cpp
+)
+target_link_libraries(multi_service_tracing_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
 # Phase 4 DI Pattern examples - available when common_system integration is enabled
 if(MONITORING_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
     # Logger DI Integration example
