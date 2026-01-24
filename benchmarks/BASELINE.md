@@ -8,7 +8,9 @@
 
 ---
 
-> **📖 User Documentation**: For user-friendly performance documentation and analysis,
+> **📖 For Users**: This is a **developer-focused technical reference** with detailed benchmark templates and CI/CD baseline thresholds.
+>
+> **For user-friendly performance summaries** with actual measured results and high-level metrics,
 > see [`docs/performance/BASELINE.md`](../docs/performance/BASELINE.md)
 
 ---

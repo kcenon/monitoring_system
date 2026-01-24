@@ -9,7 +9,10 @@
 
 ---
 
-> **Developer Note**: For raw benchmark data and CI baseline thresholds, see [`../../benchmarks/BASELINE.md`](../../benchmarks/BASELINE.md)
+> **👨‍💻 For Developers**: This is a **user-friendly performance summary** with actual measured results and high-level metrics.
+>
+> **For detailed benchmark templates and CI/CD baseline thresholds** used in regression detection,
+> see [`../../benchmarks/BASELINE.md`](../../benchmarks/BASELINE.md)
 
 ---
 

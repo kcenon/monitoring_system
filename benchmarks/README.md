@@ -170,7 +170,22 @@ Measures asynchronous logging performance:
 
 ## Baseline Results
 
-**To be measured**: Run benchmarks and record results in `docs/BASELINE.md`
+### Two BASELINE.md Files - Different Purposes
+
+This project maintains **two complementary BASELINE.md files**:
+
+| File | Audience | Purpose | Content |
+|------|----------|---------|---------|
+| [`benchmarks/BASELINE.md`](BASELINE.md) | **Developers & CI/CD** | Technical reference for regression detection | Detailed benchmark templates, empty tables (TBD values), CI baseline thresholds, ARC-002 notes |
+| [`docs/performance/BASELINE.md`](../docs/performance/BASELINE.md) | **Users & Stakeholders** | Performance summary | Actual measured results, high-level metrics (10M ops/s), feature list, Phase 0 validation |
+
+**When to use which**:
+- Building benchmarks or investigating regressions → Use `benchmarks/BASELINE.md`
+- Checking overall system performance → Use `docs/performance/BASELINE.md`
+
+### Recording Benchmark Results
+
+**To be measured**: Run benchmarks and record results in both files
 
 Expected baseline ranges (to be confirmed):
 
