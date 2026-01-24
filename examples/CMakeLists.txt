@@ -76,6 +76,31 @@ target_link_libraries(alert_notifiers_example
     Threads::Threads
 )
 
+# Phase 2: Unified Collector Examples
+add_executable(system_collectors_example
+    system_collectors_example.cpp
+)
+target_link_libraries(system_collectors_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
+add_executable(platform_metrics_example
+    platform_metrics_example.cpp
+)
+target_link_libraries(platform_metrics_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
+add_executable(collector_factory_example
+    collector_factory_example.cpp
+)
+target_link_libraries(collector_factory_example
+    PRIVATE monitoring_system
+    Threads::Threads
+)
+
 # Phase 4 DI Pattern examples - available when common_system integration is enabled
 if(MONITORING_WITH_COMMON_SYSTEM OR MONITORING_USING_COMMON_INTERFACES)
     # Logger DI Integration example
