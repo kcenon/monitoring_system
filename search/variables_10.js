@@ -1,7 +1,7 @@
 var searchData=
 [
   ['q_5f_0',['q_',['../dc/ded/classkcenon_1_1monitoring_1_1quantile__estimator.html#ad4405c2efcda11a91a8b26f341ca9711',1,'kcenon::monitoring::quantile_estimator']]],
-  ['query_5fcount_5f_1',['query_count_',['../d2/d12/classDatabaseConnection.html#ad567ab26ab27b0edeaae078c151ed775',1,'DatabaseConnection']]],
+  ['query_5fcount_5f_1',['query_count_',['../d2/d12/classDatabaseConnection.html#a05b95b59dad5bb5f3edb1c3801d23ce2',1,'DatabaseConnection']]],
   ['query_5fend_2',['query_end',['../d2/d1f/structkcenon_1_1monitoring_1_1aggregation__result.html#a353146a5d98da8b5c0120aeb41c875f0',1,'kcenon::monitoring::aggregation_result']]],
   ['query_5fstart_3',['query_start',['../d2/d1f/structkcenon_1_1monitoring_1_1aggregation__result.html#ac6a72116c0a26a0fe63bae37603c7066',1,'kcenon::monitoring::aggregation_result']]],
   ['queue_5fcv_5f_4',['queue_cv_',['../df/d2a/classkcenon_1_1monitoring_1_1event__bus.html#a5ad9726b73d5006864d35db65cd6d44f',1,'kcenon::monitoring::event_bus']]],

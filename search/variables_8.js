@@ -52,7 +52,7 @@ var searchData=
   ['is_5fcritical_49',['is_critical',['../dc/d0e/structkcenon_1_1monitoring_1_1temperature__reading.html#ac3196cf7f90725ab0ed678ded9c3b032',1,'kcenon::monitoring::temperature_reading']]],
   ['is_5fdischarging_50',['is_discharging',['../d7/d3f/structkcenon_1_1monitoring_1_1power__reading.html#a136a28d023303a9f57a74fec6369e1e9',1,'kcenon::monitoring::power_reading']]],
   ['is_5ffull_51',['is_full',['../d7/d3f/structkcenon_1_1monitoring_1_1power__reading.html#a10018b86593aacc579a82403c2e0576e',1,'kcenon::monitoring::power_reading']]],
-  ['is_5fhealthy_5f_52',['is_healthy_',['../d2/d12/classDatabaseConnection.html#ad71de7cb6038df8b02ba7f69c3a36110',1,'DatabaseConnection']]],
+  ['is_5fhealthy_5f_52',['is_healthy_',['../d2/d12/classDatabaseConnection.html#a9cb9d08e2f878567ada537db02998124',1,'DatabaseConnection']]],
   ['is_5frelease_5fbuild_53',['IS_RELEASE_BUILD',['../de/da5/test__stress__performance_8cpp.html#a3f683326c51962a3c43e20df0f0d700d',1,'test_stress_performance.cpp']]],
   ['is_5fremote_54',['is_remote',['../dd/d2f/structkcenon_1_1monitoring_1_1otel__span__context.html#a76f921645cc49650eeae54e4343c37e8',1,'kcenon::monitoring::otel_span_context']]],
   ['is_5frunning_55',['is_running',['../db/dca/structkcenon_1_1monitoring_1_1container__info.html#ab579ea0ee99c95ed154a6b04d2752288',1,'kcenon::monitoring::container_info']]],
