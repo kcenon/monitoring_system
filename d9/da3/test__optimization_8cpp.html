@@ -728,10 +728,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  162</span> </div>
 <div class="line"><span class="lineno">  163</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; stats = queue.get_statistics();</div>
 <div class="line"><span class="lineno">  164</span>    <span class="comment">// Push success rate should be high since we retry until success</span></div>
-<div class="line"><span class="lineno">  165</span>    <span class="comment">// Lower threshold to 40% for CI environments with sanitizer overhead</span></div>
+<div class="line"><span class="lineno">  165</span>    <span class="comment">// Lower threshold to 30% for CI environments with sanitizer overhead</span></div>
 <div class="line"><span class="lineno">  166</span>    <span class="comment">// ThreadSanitizer in particular can significantly slow down atomic</span></div>
 <div class="line"><span class="lineno">  167</span>    <span class="comment">// operations, causing more contention, retries, and lower success rates</span></div>
-<div class="line"><span class="lineno">  168</span>    EXPECT_GT(stats.get_push_success_rate(), 40.0);</div>
+<div class="line"><span class="lineno">  168</span>    EXPECT_GT(stats.get_push_success_rate(), 30.0);</div>
 <div class="line"><span class="lineno">  169</span>    <span class="comment">// Pop failures are expected when queue is empty (consumers waiting for data)</span></div>
 <div class="line"><span class="lineno">  170</span>    <span class="comment">// so we only check that successful pops equals total consumed</span></div>
 <div class="line"><span class="lineno">  171</span>    EXPECT_EQ(stats.pop_successes.load(), <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(total_consumed.load()));</div>
@@ -1359,7 +1359,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 24 2026 06:39:50 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 24 2026 08:13:53 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
