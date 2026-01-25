@@ -171,7 +171,7 @@ jobs:
         RESULTS="build/benchmarks/benchmark_results_${{ matrix.os }}.json"
 
         if [ -f "$RESULTS" ]; then
-          # Define regression thresholds (based on docs/PERFORMANCE_BASELINE.md)
+          # Define regression thresholds (based on docs/performance/BASELINE.md)
           # Recording (single): 292 ns baseline, 350 ns max (20% regression)
           # Recording (concurrent): 1094 ns baseline, 1200 ns max (10% regression)
           # Scoped timer: 326 ns baseline, 400 ns max (23% regression)
@@ -271,6 +271,6 @@ jobs:
 
         echo "## Next Steps" >> $GITHUB_STEP_SUMMARY
         echo "- Review benchmark results in artifacts" >> $GITHUB_STEP_SUMMARY
-        echo "- Baseline documented in docs/PERFORMANCE_BASELINE.md" >> $GITHUB_STEP_SUMMARY
+        echo "- Baseline documented in docs/performance/BASELINE.md" >> $GITHUB_STEP_SUMMARY
         echo "- Performance regression detection active" >> $GITHUB_STEP_SUMMARY
         echo "- Sprint 2 optimization targets defined" >> $GITHUB_STEP_SUMMARY
