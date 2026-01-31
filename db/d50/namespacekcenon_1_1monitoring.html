@@ -243,6 +243,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d5a/classkcenon_1_1monitoring_1_1collector__interface.html">collector_interface</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base interface for type-erased collectors.  <a href="../../d2/d5a/classkcenon_1_1monitoring_1_1collector__interface.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">collector_plugin</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual interface for metric collector plugins.  <a href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html">compact_metric_value</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory-efficient metric value storage.  <a href="../../d0/d41/structkcenon_1_1monitoring_1_1compact__metric__value.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -764,6 +767,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html">plugin_loader</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html">plugin_metadata</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metadata describing a collector plugin.  <a href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html">plugin_metric_collector</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/classkcenon_1_1monitoring_1_1power__collector.html">power_collector</a></td></tr>
@@ -1138,6 +1144,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a0fbcbb722d1db1992da25f01b4294df6" id="r_a0fbcbb722d1db1992da25f01b4294df6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fbcbb722d1db1992da25f01b4294df6">collector_factory_fn</a> = std::function&lt; std::unique_ptr&lt; <a class="el" href="../../d2/d5a/classkcenon_1_1monitoring_1_1collector__interface.html">collector_interface</a> &gt;()&gt;</td></tr>
 <tr class="memdesc:a0fbcbb722d1db1992da25f01b4294df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function type for creating collectors.  <br /></td></tr>
 <tr class="separator:a0fbcbb722d1db1992da25f01b4294df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a996670cea1a9a13c5725f5861142d250" id="r_a996670cea1a9a13c5725f5861142d250"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a996670cea1a9a13c5725f5861142d250">plugin_factory_fn</a> = std::unique_ptr&lt; <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">collector_plugin</a> &gt;(*)()</td></tr>
+<tr class="memdesc:a996670cea1a9a13c5725f5861142d250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for plugin factory function.  <br /></td></tr>
+<tr class="separator:a996670cea1a9a13c5725f5861142d250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad0cb092fba522ae2b8b21234564e91b" id="r_aad0cb092fba522ae2b8b21234564e91b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aad0cb092fba522ae2b8b21234564e91b">aggregation_result_stream</a> = <a class="el" href="../../d8/de5/structkcenon_1_1monitoring_1_1stream__aggregation__result.html">stream_aggregation_result</a></td></tr>
 <tr class="separator:aad0cb092fba522ae2b8b21234564e91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -1490,6 +1499,18 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:af2ff9ab97db453afdff0044149c54065"><td class="mdescLeft">&#160;</td><td class="mdescRight">System health status levels.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#af2ff9ab97db453afdff0044149c54065">More...</a><br /></td></tr>
 <tr class="separator:af2ff9ab97db453afdff0044149c54065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6d12e10ff6e73808cbf13a50877260a" id="r_aa6d12e10ff6e73808cbf13a50877260a"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260a">plugin_category</a> { <br />
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176">system</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f">hardware</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa34a6e5d64ade17ef4e51612c50dd72f5">platform</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4">network</a>
+, <br />
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa5075140835d0bc504791c76b04c33d2b">process</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa8b9035807842a4e4dbe009f3f1478127">custom</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:aa6d12e10ff6e73808cbf13a50877260a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categorization of collector plugins.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260a">More...</a><br /></td></tr>
+<tr class="separator:aa6d12e10ff6e73808cbf13a50877260a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace1993b179cabf2763451b7db758dcd3" id="r_ace1993b179cabf2763451b7db758dcd3"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a> { <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">closed</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">open</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">half_open</a>
@@ -1874,8 +1895,31 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Type alias for configuration map. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d9/dcc/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2plugins_2collector_plugin_8h-example.html#a20">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/plugins/collector_plugin.h</a>.</dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="../../de/d4d/collector__base_8h_source.html#l00088">88</a> of file <a class="el" href="../../de/d4d/collector__base_8h_source.html">collector_base.h</a>.</p>
+
+</div>
+</div>
+<a id="a996670cea1a9a13c5725f5861142d250" name="a996670cea1a9a13c5725f5861142d250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a996670cea1a9a13c5725f5861142d250">&#9670;&#160;</a></span>plugin_factory_fn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a996670cea1a9a13c5725f5861142d250">kcenon::monitoring::plugin_factory_fn</a> = typedef std::unique_ptr&lt;<a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">collector_plugin</a>&gt; (*)()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type alias for plugin factory function. </p>
+<p>Factories enable lazy instantiation and dynamic loading. Signature: unique_ptr&lt;collector_plugin&gt;(void) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d9/dcc/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2plugins_2collector_plugin_8h-example.html#a25">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/plugins/collector_plugin.h</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../dc/ded/collector__plugin_8h_source.html#l00281">281</a> of file <a class="el" href="../../dc/ded/collector__plugin_8h_source.html">collector_plugin.h</a>.</p>
 
 </div>
 </div>
@@ -1892,6 +1936,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Type alias for statistics map. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d9/dcc/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2plugins_2collector_plugin_8h-example.html#a23">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/plugins/collector_plugin.h</a>.</dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="../../de/d4d/collector__base_8h_source.html#l00093">93</a> of file <a class="el" href="../../de/d4d/collector__base_8h_source.html">collector_base.h</a>.</p>
 
@@ -3173,6 +3219,61 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="aa6d12e10ff6e73808cbf13a50877260a" name="aa6d12e10ff6e73808cbf13a50877260a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6d12e10ff6e73808cbf13a50877260a">&#9670;&#160;</a></span>plugin_category</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260a">kcenon::monitoring::plugin_category</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Categorization of collector plugins. </p>
+<p>Categories help organize plugins by their data source type, enabling selective loading and filtering. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176" name="aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176"></a>system&#160;</td><td class="fielddoc"><p>System integration (threads, loggers, containers) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f" name="aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f"></a>hardware&#160;</td><td class="fielddoc"><p>Hardware sensors (GPU, temperature, battery, power) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa6d12e10ff6e73808cbf13a50877260aa34a6e5d64ade17ef4e51612c50dd72f5" name="aa6d12e10ff6e73808cbf13a50877260aa34a6e5d64ade17ef4e51612c50dd72f5"></a>platform&#160;</td><td class="fielddoc"><p>Platform-specific (VM, uptime, interrupts) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4" name="aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4"></a>network&#160;</td><td class="fielddoc"><p>Network metrics (connectivity, bandwidth) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa6d12e10ff6e73808cbf13a50877260aa5075140835d0bc504791c76b04c33d2b" name="aa6d12e10ff6e73808cbf13a50877260aa5075140835d0bc504791c76b04c33d2b"></a>process&#160;</td><td class="fielddoc"><p>Process-level metrics (resources, performance) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa6d12e10ff6e73808cbf13a50877260aa8b9035807842a4e4dbe009f3f1478127" name="aa6d12e10ff6e73808cbf13a50877260aa8b9035807842a4e4dbe009f3f1478127"></a>custom&#160;</td><td class="fielddoc"><p>User-defined plugins. </p>
+</td></tr>
+</table>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="../../d9/dcc/_2home_2runner_2work_2monitoring_system_2monitoring_system_2include_2kcenon_2monitoring_2plugins_2collector_plugin_8h-example.html#a0">/home/runner/work/monitoring_system/monitoring_system/include/kcenon/monitoring/plugins/collector_plugin.h</a>.</dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../dc/ded/collector__plugin_8h_source.html#l00094">94</a> of file <a class="el" href="../../dc/ded/collector__plugin_8h_source.html">collector_plugin.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>                           {</div>
+<div class="line"><span class="lineno">   95</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176">system</a>,      </div>
+<div class="line"><span class="lineno">   96</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f">hardware</a>,    </div>
+<div class="line"><span class="lineno">   97</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5">platform</a>,    </div>
+<div class="line"><span class="lineno">   98</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4">network</a>,     </div>
+<div class="line"><span class="lineno">   99</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b">process</a>,     </div>
+<div class="line"><span class="lineno">  100</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a8b9035807842a4e4dbe009f3f1478127">custom</a>       </div>
+<div class="line"><span class="lineno">  101</span>};</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f">kcenon::monitoring::plugin_category::hardware</a></div><div class="ttdeci">@ hardware</div><div class="ttdoc">Hardware sensors (GPU, temperature, battery, power)</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176">kcenon::monitoring::plugin_category::system</a></div><div class="ttdeci">@ system</div><div class="ttdoc">System integration (threads, loggers, containers)</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4">kcenon::monitoring::plugin_category::network</a></div><div class="ttdeci">@ network</div><div class="ttdoc">Network metrics (connectivity, bandwidth)</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5">kcenon::monitoring::power_source_type::platform</a></div><div class="ttdeci">@ platform</div><div class="ttdoc">Platform/system power domain.</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ad728853b593df4724ea4f488af8a2932" name="ad728853b593df4724ea4f488af8a2932"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad728853b593df4724ea4f488af8a2932">&#9670;&#160;</a></span>power_source_type</h2>
 
@@ -3235,7 +3336,6 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   74</span>};</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932a0aa0be2a866411d9ff03515227454947"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a0aa0be2a866411d9ff03515227454947">kcenon::monitoring::power_source_type::gpu</a></div><div class="ttdeci">@ gpu</div><div class="ttdoc">GPU power domain.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932a20c1d18791a246001f5df7867d4e6bf5"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a20c1d18791a246001f5df7867d4e6bf5">kcenon::monitoring::power_source_type::battery</a></div><div class="ttdeci">@ battery</div><div class="ttdoc">Battery power source.</div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5">kcenon::monitoring::power_source_type::platform</a></div><div class="ttdeci">@ platform</div><div class="ttdoc">Platform/system power domain.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932a5f62483a188d1c0fef6b7be151751e10"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a5f62483a188d1c0fef6b7be151751e10">kcenon::monitoring::power_source_type::wireless</a></div><div class="ttdeci">@ wireless</div><div class="ttdoc">Wireless charging.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932a62ed973d963913bb55111a7b8116ace1"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a62ed973d963913bb55111a7b8116ace1">kcenon::monitoring::power_source_type::usb</a></div><div class="ttdeci">@ usb</div><div class="ttdoc">USB power delivery.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932acd69b4957f06cd818d7bf3d61980e291">kcenon::monitoring::power_source_type::memory</a></div><div class="ttdeci">@ memory</div><div class="ttdoc">Memory/DRAM power domain (RAPL)</div></div>
@@ -8507,7 +8607,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2026 02:46:13 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 09:17:13 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
