@@ -114,6 +114,10 @@ bool battery_collector::is_battery_available() const {
     return collector_->is_battery_available();
 }
 
+bool battery_collector::is_healthy() const {
+    return true;  // Battery collector is always healthy (gracefully handles no battery)
+}
+
 stats_map battery_collector::get_statistics() const {
     return {
         {"batteries_found", static_cast<double>(batteries_found_.load())},

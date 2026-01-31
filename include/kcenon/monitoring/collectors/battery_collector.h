@@ -227,6 +227,9 @@ class battery_collector : public collector_plugin {
     void shutdown() override {}
     auto get_statistics() const -> stats_map override;
 
+    // Legacy compatibility (deprecated)
+    bool is_healthy() const;
+
     /**
      * Get last collected battery readings
      * @return Vector of battery readings

@@ -69,9 +69,9 @@ namespace kcenon::monitoring {
  *
  * This function registers the following collectors:
  * - system_resource_collector (plugin-based)
+ * - battery_collector (plugin-based)
  * - vm_collector (standalone)
  * - uptime_collector (CRTP-based)
- * - battery_collector (CRTP-based)
  * - process_metrics_collector (CRTP-based, consolidated from fd, inode, context_switch)
  * - network_metrics_collector (CRTP-based, consolidated from tcp_state and socket_buffer)
  * - platform_metrics_collector (CRTP-based, unified platform metrics using Strategy pattern)
@@ -84,15 +84,15 @@ namespace kcenon::monitoring {
 inline bool register_builtin_collectors() {
     bool all_success = true;
 
-    // Plugin-based collectors
-    all_success &= register_plugin_collector<system_resource_collector>("system_resource_collector");
+    // Plugin-based collectors (collector_plugin interface)
+    all_success &= register_plugin_collector<battery_collector>("battery_collector");
 
     // Standalone collectors
+    all_success &= register_standalone_collector<system_resource_collector>("system_resource_collector");
     all_success &= register_standalone_collector<vm_collector>("vm_collector");
 
     // CRTP-based collectors
     all_success &= register_crtp_collector<uptime_collector>("uptime_collector");
-    all_success &= register_crtp_collector<battery_collector>("battery_collector");
     all_success &= register_crtp_collector<process_metrics_collector>("process_metrics_collector");
     all_success &= register_crtp_collector<network_metrics_collector>("network_metrics_collector");
     all_success &= register_crtp_collector<platform_metrics_collector>("platform_metrics_collector");
