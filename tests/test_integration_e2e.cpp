@@ -12,6 +12,20 @@ All rights reserved.
  * Tests complete workflows and interactions between all major components
  */
 
+// Suppress deprecation warnings for testing legacy compatibility layer
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996)
+#endif
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 #include <gtest/gtest.h>
 #include <thread>
 #include <chrono>
@@ -560,5 +574,16 @@ TEST_F(IntegrationE2ETest, CrossComponentIntegration) {
     EXPECT_TRUE(mem_metric.has_value());
     EXPECT_DOUBLE_EQ(mem_metric.value(), 60.0);
 }
+
+// Restore compiler warnings
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 // Note: main() function is provided by GTest framework or other test files
