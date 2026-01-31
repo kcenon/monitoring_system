@@ -404,11 +404,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00403" data-start="{" data-end="}">
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno"><a class="line" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#a0343c02ee05ecf2b98cc6f356fdf8faf">  403</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#a0343c02ee05ecf2b98cc6f356fdf8faf">performance_monitor</a>(<span class="keyword">const</span> std::string&amp; name = <span class="stringliteral">&quot;performance_monitor&quot;</span>)</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>        : name_(name) {}</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>        : <a class="code hl_variable" href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a>(name) {}</div>
 </div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    </div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="comment">// Implement metrics_collector interface</span></div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno"><a class="line" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#a49e001cd8969fda79895db1f3b69397c">  407</a></span>    std::string <a class="code hl_function" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#a49e001cd8969fda79895db1f3b69397c">get_name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> name_; }</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno"><a class="line" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#a49e001cd8969fda79895db1f3b69397c">  407</a></span>    std::string <a class="code hl_function" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#a49e001cd8969fda79895db1f3b69397c">get_name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a>; }</div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno"><a class="line" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#aaf2f8c5671ea7038cc1ae4f3484b6218">  408</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d6/daa/classkcenon_1_1monitoring_1_1performance__monitor.html#aaf2f8c5671ea7038cc1ae4f3484b6218">is_enabled</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> enabled_; }</div>
 <div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    </div>
 <div class="foldopen" id="foldopen00410" data-start="{" data-end="}">
@@ -543,7 +543,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00634" data-start="{" data-end="}">
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno"><a class="line" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#af8731855e9b58d02e1950374f5c9cbc0">  634</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="../../de/d69/classkcenon_1_1monitoring_1_1performance__benchmark.html#af8731855e9b58d02e1950374f5c9cbc0">performance_benchmark</a>(<span class="keyword">const</span> std::string&amp; name)</div>
-<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>        : name_(name) {}</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>        : <a class="code hl_variable" href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a>(name) {}</div>
 </div>
 <div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>    </div>
 <div class="foldopen" id="foldopen00640" data-start="{" data-end="}">
@@ -763,10 +763,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1tagged__metric_html_a5333ae0192db32f5d9293494a3d06ce2"><div class="ttname"><a href="../../d4/d55/structkcenon_1_1monitoring_1_1tagged__metric.html#a5333ae0192db32f5d9293494a3d06ce2">kcenon::monitoring::tagged_metric::type</a></div><div class="ttdeci">recorded_metric_type type</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00090">performance_monitor.h:90</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1tagged__metric_html_a7629b1a1da56930852f123ef0ca909f4"><div class="ttname"><a href="../../d4/d55/structkcenon_1_1monitoring_1_1tagged__metric.html#a7629b1a1da56930852f123ef0ca909f4">kcenon::monitoring::tagged_metric::timestamp</a></div><div class="ttdeci">std::chrono::system_clock::time_point timestamp</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00092">performance_monitor.h:92</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1tagged__metric_html_abdb0405ee5ec0cc28a5b3942722555bc"><div class="ttname"><a href="../../d4/d55/structkcenon_1_1monitoring_1_1tagged__metric.html#abdb0405ee5ec0cc28a5b3942722555bc">kcenon::monitoring::tagged_metric::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../d7/db1/performance__monitor_8h_source.html#l00088">performance_monitor.h:88</a></div></div>
+<div class="ttc" id="atest__collector__registry_8cpp_html_a4d739cc5d335052eb9f5b2ca559b81d1"><div class="ttname"><a href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/da5/test__collector__registry_8cpp_source.html#l00087">test_collector_registry.cpp:87</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 09:30:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 09:39:36 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

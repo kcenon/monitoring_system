@@ -36,7 +36,7 @@ var searchData=
   ['platform_5finfo_5fcached_5f_33',['platform_info_cached_',['../d8/d65/classkcenon_1_1monitoring_1_1platform__metrics__collector.html#aa806a40fb7ac38ec52d59d87e02ca3ae',1,'kcenon::monitoring::platform_metrics_collector']]],
   ['plugin_5f_34',['plugin_',['../d8/d14/test__container__plugin_8cpp.html#aec1ccba23e326a748cbfaddfc3fa429b',1,'test_container_plugin.cpp']]],
   ['plugin_5fname_35',['plugin_name',['../d2/d27/structkcenon_1_1monitoring_1_1plugin__metric__collector_1_1cached__metric.html#a6aceca9e23cd1e0c0f337dd0a3b39aef',1,'kcenon::monitoring::plugin_metric_collector::cached_metric']]],
-  ['plugins_5f_36',['plugins_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a39a8cf2d047f1b2787a93f52e72eaf4e',1,'kcenon::monitoring::plugin_metric_collector']]],
+  ['plugins_5f_36',['plugins_',['../d7/d36/classkcenon_1_1monitoring_1_1collector__registry.html#a5894854e4308333994bd6059ca7f62df',1,'kcenon::monitoring::collector_registry::plugins_'],['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a39a8cf2d047f1b2787a93f52e72eaf4e',1,'kcenon::monitoring::plugin_metric_collector::plugins_']]],
   ['plugins_5fmutex_5f_37',['plugins_mutex_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#adb8466244f49d16b9e765c3ac91368ac',1,'kcenon::monitoring::plugin_metric_collector']]],
   ['points_38',['points',['../d2/d1f/structkcenon_1_1monitoring_1_1aggregation__result.html#a854f3270f171aeca97eb9806dbbb29a5',1,'kcenon::monitoring::aggregation_result']]],
   ['policy_39',['policy',['../dd/dfd/structkcenon_1_1monitoring_1_1error__boundary__config.html#a3a6fcff1cd6fecf5218a475bce2790b9',1,'kcenon::monitoring::error_boundary_config']]],

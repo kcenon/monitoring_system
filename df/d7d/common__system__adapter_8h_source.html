@@ -232,7 +232,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">explicit</span> monitor_from_common_adapter(</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        std::shared_ptr&lt;::kcenon::common::interfaces::IMonitor&gt; common_monitor,</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keyword">const</span> std::string&amp; name = <span class="stringliteral">&quot;common_adapter&quot;</span>)</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        : common_monitor_(common_monitor), name_(name) {}</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        : common_monitor_(common_monitor), <a class="code hl_variable" href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a>(name) {}</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    ~monitor_from_common_adapter() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
@@ -265,7 +265,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    std::string get_name()<span class="keyword"> const override </span>{</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keywordflow">return</span> name_;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a>;</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    }</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordtype">bool</span> is_enabled()<span class="keyword"> const override </span>{</div>
@@ -290,7 +290,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    std::shared_ptr&lt;::kcenon::common::interfaces::IMonitor&gt; common_monitor_;</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    std::string name_;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    std::string <a class="code hl_variable" href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a>;</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordtype">bool</span> enabled_ = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>};</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
@@ -354,10 +354,11 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>} <span class="comment">// namespace adapters</span></div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>} } <span class="comment">// namespace kcenon::monitoring</span></div>
 <div class="ttc" id="anamespacekcenon_html"><div class="ttname"><a href="../../d9/d03/namespacekcenon.html">kcenon</a></div><div class="ttdef"><b>Definition</b> <a href="../../d4/d11/common__monitor__adapter_8h_source.html#l00027">common_monitor_adapter.h:27</a></div></div>
+<div class="ttc" id="atest__collector__registry_8cpp_html_a4d739cc5d335052eb9f5b2ca559b81d1"><div class="ttname"><a href="../../d5/da5/test__collector__registry_8cpp.html#a4d739cc5d335052eb9f5b2ca559b81d1">name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d5/da5/test__collector__registry_8cpp_source.html#l00087">test_collector_registry.cpp:87</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 09:30:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 09:39:36 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
