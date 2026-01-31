@@ -177,7 +177,7 @@ public:
     common::Result<bool> is_healthy() {
         if (config_.enable_circuit_breaker && circuit_breaker_) {
             auto state = circuit_breaker_->get_state();
-            if (state == circuit_state::open) {
+            if (state == circuit_state::OPEN) {
                 return common::ok(false);
             }
         }
