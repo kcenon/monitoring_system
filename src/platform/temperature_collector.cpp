@@ -76,7 +76,7 @@ std::vector<temperature_reading> temperature_info_collector::read_all_temperatur
 temperature_collector::temperature_collector()
     : collector_(std::make_unique<temperature_info_collector>()) {}
 
-bool temperature_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
+bool temperature_collector::initialize(const config_map& config) {
     // Parse enabled option
     auto enabled_it = config.find("enabled");
     if (enabled_it != config.end()) {
@@ -131,14 +131,16 @@ std::vector<std::string> temperature_collector::get_metric_types() const {
             "temperature_warning_threshold", "temperature_is_critical", "temperature_is_warning"};
 }
 
+bool temperature_collector::is_available() const {
+    return collector_ && collector_->is_thermal_available();
+}
+
 bool temperature_collector::is_healthy() const { return enabled_; }
 
-std::unordered_map<std::string, double> temperature_collector::get_statistics() const {
-    std::unordered_map<std::string, double> stats;
-    stats["collection_count"] = static_cast<double>(collection_count_.load());
-    stats["collection_errors"] = static_cast<double>(collection_errors_.load());
-    stats["sensors_found"] = static_cast<double>(sensors_found_.load());
-    return stats;
+stats_map temperature_collector::get_statistics() const {
+    return {{"collection_count", static_cast<double>(collection_count_.load())},
+            {"collection_errors", static_cast<double>(collection_errors_.load())},
+            {"sensors_found", static_cast<double>(sensors_found_.load())}};
 }
 
 std::vector<temperature_reading> temperature_collector::get_last_readings() const {
