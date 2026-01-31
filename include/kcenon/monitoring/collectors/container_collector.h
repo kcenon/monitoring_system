@@ -48,6 +48,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -172,15 +173,13 @@ class container_info_collector {
 };
 
 /**
- * Container metrics collector implementing a standalone plugin interface
- *
- * Note: This class implements its own plugin interface to avoid dependencies
- * on broken code in plugin_metric_collector.h
+ * Container metrics collector implementing the collector_plugin interface
+ * Collects metrics from Docker containers and cgroups
  */
-class container_collector {
+class container_collector : public collector_plugin {
    public:
     container_collector();
-    ~container_collector() = default;
+    ~container_collector() override = default;
 
     // Non-copyable, non-moveable due to internal state
     container_collector(const container_collector&) = delete;
@@ -188,42 +187,30 @@ class container_collector {
     container_collector(container_collector&&) = delete;
     container_collector& operator=(container_collector&&) = delete;
 
-    /**
-     * Initialize the collector with configuration
-     * @param config Configuration options
-     * @return true if initialization successful
-     */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    // collector_plugin implementation
+    auto name() const -> std::string_view override { return "container"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(10); }
+    auto is_available() const -> bool override;
+    auto get_metric_types() const -> std::vector<std::string> override;
 
-    /**
-     * Collect metrics from all containers
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
+    auto get_metadata() const -> plugin_metadata override {
+        return plugin_metadata{
+            .name = name(),
+            .description = "Container metrics from Docker and cgroups",
+            .category = plugin_category::system,
+            .version = "1.0.0",
+            .dependencies = {},
+            .requires_platform_support = true  // Linux-specific
+        };
+    }
 
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "container_collector"; }
+    auto initialize(const config_map& config) -> bool override;
+    void shutdown() override {}
+    auto get_statistics() const -> stats_map override;
 
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
+    // Legacy compatibility (deprecated)
     bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
 
     /**
      * Get last collected container metrics
