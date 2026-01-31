@@ -75,7 +75,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../db/df3/classkcenon_1_1monitoring_1_1uptime__collector-members.html">List of all members</a>  </div>
@@ -83,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>System uptime monitoring collector.  
+<p>System uptime monitoring collector implementing <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins.">collector_plugin</a> interface.  
  <a href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>&gt;</code></p>
@@ -92,9 +91,9 @@ Inheritance diagram for kcenon::monitoring::uptime_collector:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/df7/classkcenon_1_1monitoring_1_1uptime__collector__inherit__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1uptime__collector_inherit__map" alt="Inheritance graph"/></div>
 <map name="akcenon_1_1monitoring_1_1uptime__collector_inherit__map" id="akcenon_1_1monitoring_1_1uptime__collector_inherit__map">
-<area shape="rect" title="System uptime monitoring collector." alt="" coords="7,548,181,963"/>
-<area shape="rect" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html" title=" " alt="" coords="5,5,183,500"/>
-<area shape="poly" title=" " alt="" coords="97,514,97,548,91,548,91,514"/>
+<area shape="rect" title="System uptime monitoring collector implementing collector_plugin interface." alt="" coords="5,313,177,653"/>
+<area shape="rect" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins." alt="" coords="15,5,168,265"/>
+<area shape="poly" title=" " alt="" coords="94,279,94,313,89,313,89,279"/>
 </map>
 </div>
 <div class="dynheader">
@@ -102,23 +101,19 @@ Collaboration diagram for kcenon::monitoring::uptime_collector:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/df3/classkcenon_1_1monitoring_1_1uptime__collector__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1uptime__collector_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1uptime__collector_coll__map" id="akcenon_1_1monitoring_1_1uptime__collector_coll__map">
-<area shape="rect" title="System uptime monitoring collector." alt="" coords="304,1369,479,1744"/>
-<area shape="rect" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html" title=" " alt="" coords="100,872,277,1307"/>
-<area shape="poly" title=" " alt="" coords="285,1305,313,1368,308,1370,280,1307"/>
-<area shape="rect" title=" " alt="" coords="5,645,89,710"/>
-<area shape="poly" title=" " alt="" coords="54,710,66,774,85,847,97,882,92,884,79,849,61,775,49,711"/>
-<area shape="rect" title=" " alt="" coords="114,645,269,710"/>
-<area shape="poly" title=" " alt="" coords="194,710,193,855,188,855,188,710"/>
-<area shape="rect" title=" " alt="" coords="302,1042,481,1137"/>
-<area shape="poly" title=" " alt="" coords="394,1137,394,1352,389,1352,389,1137"/>
-<area shape="rect" href="../../d1/d74/classkcenon_1_1monitoring_1_1uptime__info__collector.html" title="Uptime data collector using platform abstraction layer." alt="" coords="296,560,487,795"/>
-<area shape="poly" title=" " alt="" coords="394,795,394,1026,389,1026,389,795"/>
-<area shape="rect" title=" " alt="" coords="305,403,478,497"/>
-<area shape="poly" title=" " alt="" coords="394,497,394,544,389,544,389,497"/>
-<area shape="rect" href="../../d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html" title="Abstract interface for platform&#45;specific metrics collection." alt="" coords="286,5,497,340"/>
-<area shape="poly" title=" " alt="" coords="394,340,394,386,389,386,389,340"/>
-<area shape="rect" href="../../d4/d40/structkcenon_1_1monitoring_1_1uptime__metrics.html" title="Aggregated uptime metrics for the system." alt="" coords="505,1009,651,1169"/>
-<area shape="poly" title=" " alt="" coords="549,1171,495,1308,476,1355,471,1353,490,1306,545,1169"/>
+<area shape="rect" title="System uptime monitoring collector implementing collector_plugin interface." alt="" coords="187,1180,359,1480"/>
+<area shape="rect" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins." alt="" coords="5,857,159,1117"/>
+<area shape="poly" title=" " alt="" coords="163,1128,192,1178,187,1181,159,1131"/>
+<area shape="rect" title=" " alt="" coords="183,940,362,1035"/>
+<area shape="poly" title=" " alt="" coords="275,1035,275,1164,270,1164,270,1035"/>
+<area shape="rect" href="../../d1/d74/classkcenon_1_1monitoring_1_1uptime__info__collector.html" title="Uptime data collector using platform abstraction layer." alt="" coords="177,560,368,795"/>
+<area shape="poly" title=" " alt="" coords="275,795,275,924,270,924,270,795"/>
+<area shape="rect" title=" " alt="" coords="186,403,359,497"/>
+<area shape="poly" title=" " alt="" coords="275,497,275,544,270,544,270,497"/>
+<area shape="rect" href="../../d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html" title="Abstract interface for platform&#45;specific metrics collection." alt="" coords="167,5,378,340"/>
+<area shape="poly" title=" " alt="" coords="275,340,275,386,270,386,270,340"/>
+<area shape="rect" href="../../d4/d40/structkcenon_1_1monitoring_1_1uptime__metrics.html" title="Aggregated uptime metrics for the system." alt="" coords="387,907,532,1067"/>
+<area shape="poly" title=" " alt="" coords="418,1069,364,1167,360,1164,414,1066"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -136,57 +131,38 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a962eaeb0117ee6d519d27168937e5a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a593a1aeb8a66360ee06d0eeb87cda357" id="r_a593a1aeb8a66360ee06d0eeb87cda357"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html">uptime_collector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a593a1aeb8a66360ee06d0eeb87cda357">operator=</a> (<a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html">uptime_collector</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a593a1aeb8a66360ee06d0eeb87cda357"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea77e8e3880484f53a290a7243698436" id="r_aea77e8e3880484f53a290a7243698436"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#aea77e8e3880484f53a290a7243698436">do_initialize</a> (const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;config)</td></tr>
-<tr class="separator:aea77e8e3880484f53a290a7243698436"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16a2203fe203c73e1ee892ed33a1fe18" id="r_a16a2203fe203c73e1ee892ed33a1fe18"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a16a2203fe203c73e1ee892ed33a1fe18">do_collect</a> ()</td></tr>
-<tr class="separator:a16a2203fe203c73e1ee892ed33a1fe18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a7e8387f14ee5842a1e511623afbea7" id="r_a7a7e8387f14ee5842a1e511623afbea7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a7a7e8387f14ee5842a1e511623afbea7">is_available</a> () const</td></tr>
-<tr class="separator:a7a7e8387f14ee5842a1e511623afbea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e61f6446bf82bfa1926600af5879309" id="r_a1e61f6446bf82bfa1926600af5879309"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a1e61f6446bf82bfa1926600af5879309">do_get_metric_types</a> () const</td></tr>
-<tr class="separator:a1e61f6446bf82bfa1926600af5879309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b4e989ff34cd5e4ffddc1c3cbb75863" id="r_a2b4e989ff34cd5e4ffddc1c3cbb75863"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a2b4e989ff34cd5e4ffddc1c3cbb75863">do_add_statistics</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a> &amp;stats) const</td></tr>
-<tr class="separator:a2b4e989ff34cd5e4ffddc1c3cbb75863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8e71ec00d379c7a1bbb2117121fa82a" id="r_ab8e71ec00d379c7a1bbb2117121fa82a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#ab8e71ec00d379c7a1bbb2117121fa82a">name</a> () const -&gt; std::string_view override</td></tr>
+<tr class="memdesc:ab8e71ec00d379c7a1bbb2117121fa82a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the unique name of this plugin.  <br /></td></tr>
+<tr class="separator:ab8e71ec00d379c7a1bbb2117121fa82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b6505144b0ec466c3129e242634730f" id="r_a1b6505144b0ec466c3129e242634730f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a1b6505144b0ec466c3129e242634730f">collect</a> () -&gt; std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt; override</td></tr>
+<tr class="memdesc:a1b6505144b0ec466c3129e242634730f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect current metrics from this plugin.  <br /></td></tr>
+<tr class="separator:a1b6505144b0ec466c3129e242634730f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac014ea48ad6998439f6a784983a06ebd" id="r_ac014ea48ad6998439f6a784983a06ebd"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#ac014ea48ad6998439f6a784983a06ebd">interval</a> () const -&gt; std::chrono::milliseconds override</td></tr>
+<tr class="memdesc:ac014ea48ad6998439f6a784983a06ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the collection interval for this plugin.  <br /></td></tr>
+<tr class="separator:ac014ea48ad6998439f6a784983a06ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33c74005a3891e7555af8ea0e1d31f72" id="r_a33c74005a3891e7555af8ea0e1d31f72"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a33c74005a3891e7555af8ea0e1d31f72">is_available</a> () const -&gt; bool override</td></tr>
+<tr class="memdesc:a33c74005a3891e7555af8ea0e1d31f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if this plugin is available on the current system.  <br /></td></tr>
+<tr class="separator:a33c74005a3891e7555af8ea0e1d31f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9ded5838b5f740446fa51fe4ed75bf" id="r_a6a9ded5838b5f740446fa51fe4ed75bf"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a6a9ded5838b5f740446fa51fe4ed75bf">get_metric_types</a> () const -&gt; std::vector&lt; std::string &gt; override</td></tr>
+<tr class="memdesc:a6a9ded5838b5f740446fa51fe4ed75bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get supported metric types.  <br /></td></tr>
+<tr class="separator:a6a9ded5838b5f740446fa51fe4ed75bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99d65f26bc65212d4b8e5f96522c06e6" id="r_a99d65f26bc65212d4b8e5f96522c06e6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a99d65f26bc65212d4b8e5f96522c06e6">get_metadata</a> () const -&gt; <a class="el" href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html">plugin_metadata</a> override</td></tr>
+<tr class="memdesc:a99d65f26bc65212d4b8e5f96522c06e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get plugin metadata.  <br /></td></tr>
+<tr class="separator:a99d65f26bc65212d4b8e5f96522c06e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62d2ea87b5427b5e0cbbe1b93ad1eef3" id="r_a62d2ea87b5427b5e0cbbe1b93ad1eef3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a62d2ea87b5427b5e0cbbe1b93ad1eef3">initialize</a> (const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;config) -&gt; bool override</td></tr>
+<tr class="separator:a62d2ea87b5427b5e0cbbe1b93ad1eef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf84f097915968b2cfae22af3f1e2b24" id="r_acf84f097915968b2cfae22af3f1e2b24"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#acf84f097915968b2cfae22af3f1e2b24">get_statistics</a> () const -&gt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a> override</td></tr>
+<tr class="separator:acf84f097915968b2cfae22af3f1e2b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a251448bf08b7cd0fbd136aa7bda4ada2" id="r_a251448bf08b7cd0fbd136aa7bda4ada2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d40/structkcenon_1_1monitoring_1_1uptime__metrics.html">uptime_metrics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a251448bf08b7cd0fbd136aa7bda4ada2">get_last_metrics</a> () const</td></tr>
 <tr class="separator:a251448bf08b7cd0fbd136aa7bda4ada2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a251f4a4bd49447441dbd672866b681b1" id="r_a251f4a4bd49447441dbd672866b681b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a251f4a4bd49447441dbd672866b681b1">is_uptime_monitoring_available</a> () const</td></tr>
 <tr class="separator:a251f4a4bd49447441dbd672866b681b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classkcenon_1_1monitoring_1_1collector__base')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">kcenon::monitoring::collector_base&lt; uptime_collector &gt;</a></td></tr>
-<tr class="memitem:aa7e07e8894e7a716f02ff24cabaab901 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_aa7e07e8894e7a716f02ff24cabaab901"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#aa7e07e8894e7a716f02ff24cabaab901">collector_base</a> ()=default</td></tr>
-<tr class="separator:aa7e07e8894e7a716f02ff24cabaab901 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a056d950be01409913ac4f0f15bb088a7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a056d950be01409913ac4f0f15bb088a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a056d950be01409913ac4f0f15bb088a7">collector_base</a> (const <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;)=delete</td></tr>
-<tr class="separator:a056d950be01409913ac4f0f15bb088a7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abed19f20b7d2df577b28f67bed4eb602 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_abed19f20b7d2df577b28f67bed4eb602"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#abed19f20b7d2df577b28f67bed4eb602">collector_base</a> (<a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&amp;)=delete</td></tr>
-<tr class="separator:abed19f20b7d2df577b28f67bed4eb602 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b4f897e37f991abc1632c9252b64309 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a8b4f897e37f991abc1632c9252b64309"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a8b4f897e37f991abc1632c9252b64309">~collector_base</a> ()=default</td></tr>
-<tr class="separator:a8b4f897e37f991abc1632c9252b64309 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bdd40ad6db539a0955ad108964405d4 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a9bdd40ad6db539a0955ad108964405d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a9bdd40ad6db539a0955ad108964405d4">operator=</a> (const <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;)=delete</td></tr>
-<tr class="separator:a9bdd40ad6db539a0955ad108964405d4 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af430896dcc3d1f477ace632581b12c54 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_af430896dcc3d1f477ace632581b12c54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#af430896dcc3d1f477ace632581b12c54">operator=</a> (<a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&amp;)=delete</td></tr>
-<tr class="separator:af430896dcc3d1f477ace632581b12c54 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7180423337037ee8c00f9b201b9535c5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a7180423337037ee8c00f9b201b9535c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a7180423337037ee8c00f9b201b9535c5">initialize</a> (const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;config)</td></tr>
-<tr class="separator:a7180423337037ee8c00f9b201b9535c5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8622373efc906e52e7eb685996f136cb inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a8622373efc906e52e7eb685996f136cb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a8622373efc906e52e7eb685996f136cb">collect</a> ()</td></tr>
-<tr class="separator:a8622373efc906e52e7eb685996f136cb inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1525434940824c59c736a7cd940782a5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a1525434940824c59c736a7cd940782a5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a1525434940824c59c736a7cd940782a5">get_name</a> () const</td></tr>
-<tr class="separator:a1525434940824c59c736a7cd940782a5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5b868edc93b79f138b4f4c3eaf8d1ee inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_ad5b868edc93b79f138b4f4c3eaf8d1ee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#ad5b868edc93b79f138b4f4c3eaf8d1ee">get_metric_types</a> () const</td></tr>
-<tr class="separator:ad5b868edc93b79f138b4f4c3eaf8d1ee inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b880908aae01c2bf543d9c709b3f7a3 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a7b880908aae01c2bf543d9c709b3f7a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a7b880908aae01c2bf543d9c709b3f7a3">is_healthy</a> () const</td></tr>
-<tr class="separator:a7b880908aae01c2bf543d9c709b3f7a3 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a076cf1bfdaed6be5a1bd9bd7b01ca88e inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a076cf1bfdaed6be5a1bd9bd7b01ca88e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a076cf1bfdaed6be5a1bd9bd7b01ca88e">get_statistics</a> () const</td></tr>
-<tr class="separator:a076cf1bfdaed6be5a1bd9bd7b01ca88e inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ef76df8e2c0d66867bcc82ad2712683 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a4ef76df8e2c0d66867bcc82ad2712683"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a4ef76df8e2c0d66867bcc82ad2712683">is_enabled</a> () const</td></tr>
-<tr class="separator:a4ef76df8e2c0d66867bcc82ad2712683 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d9f61c2b3ef7db7a63326d945cafec7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a8d9f61c2b3ef7db7a63326d945cafec7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a8d9f61c2b3ef7db7a63326d945cafec7">get_collection_count</a> () const</td></tr>
-<tr class="separator:a8d9f61c2b3ef7db7a63326d945cafec7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac49db22b6b21ef06e21ab507b7a7cb03 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_ac49db22b6b21ef06e21ab507b7a7cb03"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#ac49db22b6b21ef06e21ab507b7a7cb03">get_collection_errors</a> () const</td></tr>
-<tr class="separator:ac49db22b6b21ef06e21ab507b7a7cb03 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab8672af26e2a6ffa1281399b6fd10ab4" id="r_ab8672af26e2a6ffa1281399b6fd10ab4"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#ab8672af26e2a6ffa1281399b6fd10ab4">collector_name</a> = &quot;uptime_collector&quot;</td></tr>
-<tr class="memdesc:ab8672af26e2a6ffa1281399b6fd10ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector name for CRTP base class.  <br /></td></tr>
-<tr class="separator:ab8672af26e2a6ffa1281399b6fd10ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classkcenon_1_1monitoring_1_1collector__plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classkcenon_1_1monitoring_1_1collector__plugin')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">kcenon::monitoring::collector_plugin</a></td></tr>
+<tr class="memitem:ad2f93313e767dba8dba20f55f70d57a6 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__plugin" id="r_ad2f93313e767dba8dba20f55f70d57a6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#ad2f93313e767dba8dba20f55f70d57a6">~collector_plugin</a> ()=default</td></tr>
+<tr class="separator:ad2f93313e767dba8dba20f55f70d57a6 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b282c8a767a3768533c0f7f642df073 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__plugin" id="r_a8b282c8a767a3768533c0f7f642df073"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a8b282c8a767a3768533c0f7f642df073">shutdown</a> ()</td></tr>
+<tr class="memdesc:a8b282c8a767a3768533c0f7f642df073 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__plugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown plugin and release resources.  <br /></td></tr>
+<tr class="separator:a8b282c8a767a3768533c0f7f642df073 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -201,28 +177,12 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a83ebafab9cfd20c6717b2d3dbd45e9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11f17af699984315170a3e41a0b28069" id="r_a11f17af699984315170a3e41a0b28069"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d40/structkcenon_1_1monitoring_1_1uptime__metrics.html">uptime_metrics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a11f17af699984315170a3e41a0b28069">last_metrics_</a></td></tr>
 <tr class="separator:a11f17af699984315170a3e41a0b28069"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_classkcenon_1_1monitoring_1_1collector__base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classkcenon_1_1monitoring_1_1collector__base')"><img src="../../closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">kcenon::monitoring::collector_base&lt; uptime_collector &gt;</a></td></tr>
-<tr class="memitem:a2f293729a9cd80b8f506ee15e23b0a03 inherit pro_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a2f293729a9cd80b8f506ee15e23b0a03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a2f293729a9cd80b8f506ee15e23b0a03">create_base_metric</a> (const std::string &amp;name, double value, const std::unordered_map&lt; std::string, std::string &gt; &amp;tags={}, const std::string &amp;=&quot;&quot;) const</td></tr>
-<tr class="separator:a2f293729a9cd80b8f506ee15e23b0a03 inherit pro_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classkcenon_1_1monitoring_1_1collector__base')"><img src="../../closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">kcenon::monitoring::collector_base&lt; uptime_collector &gt;</a></td></tr>
-<tr class="memitem:a58a1da674d422d2488f704d09681d158 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a58a1da674d422d2488f704d09681d158"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a58a1da674d422d2488f704d09681d158">enabled_</a></td></tr>
-<tr class="separator:a58a1da674d422d2488f704d09681d158 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49fc801b389833c89dc04e0a7d98406c inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a49fc801b389833c89dc04e0a7d98406c"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a49fc801b389833c89dc04e0a7d98406c">stats_mutex_</a></td></tr>
-<tr class="separator:a49fc801b389833c89dc04e0a7d98406c inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a738e3ca934d4a98cf71b535d40c4dae8 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a738e3ca934d4a98cf71b535d40c4dae8"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a738e3ca934d4a98cf71b535d40c4dae8">collection_count_</a></td></tr>
-<tr class="separator:a738e3ca934d4a98cf71b535d40c4dae8 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bd466ab19aa28dad5cb45d3211f15ed inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a2bd466ab19aa28dad5cb45d3211f15ed"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a2bd466ab19aa28dad5cb45d3211f15ed">collection_errors_</a></td></tr>
-<tr class="separator:a2bd466ab19aa28dad5cb45d3211f15ed inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>System uptime monitoring collector. </p>
-<p>Collects system uptime metrics with cross-platform support. Provides boot timestamp and uptime duration for availability tracking.</p>
-<p>Uses CRTP base class to reduce code duplication. </p>
+<div class="textblock"><p>System uptime monitoring collector implementing <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins.">collector_plugin</a> interface. </p>
+<p>Collects system uptime metrics with cross-platform support. Provides boot timestamp and uptime duration for availability tracking. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00120">120</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00118">118</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aee4530c81850bcf3c9add1b7ac13f91c" name="aee4530c81850bcf3c9add1b7ac13f91c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aee4530c81850bcf3c9add1b7ac13f91c">&#9670;&#160;</a></span>uptime_collector() <span class="overload">[1/3]</span></h2>
@@ -355,91 +315,39 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a2b4e989ff34cd5e4ffddc1c3cbb75863" name="a2b4e989ff34cd5e4ffddc1c3cbb75863"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b4e989ff34cd5e4ffddc1c3cbb75863">&#9670;&#160;</a></span>do_add_statistics()</h2>
+<a id="a1b6505144b0ec466c3129e242634730f" name="a1b6505144b0ec466c3129e242634730f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b6505144b0ec466c3129e242634730f">&#9670;&#160;</a></span>collect()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void kcenon::monitoring::uptime_collector::do_add_statistics </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a> &amp;&#160;</td>
-          <td class="paramname"><em>stats</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Add collector-specific statistics </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stats</td><td>Map to add statistics to </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a16a2203fe203c73e1ee892ed33a1fe18" name="a16a2203fe203c73e1ee892ed33a1fe18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16a2203fe203c73e1ee892ed33a1fe18">&#9670;&#160;</a></span>do_collect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt; kcenon::monitoring::uptime_collector::do_collect </td>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::collect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> -&gt;  std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt;</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Collect uptime metrics </p><dl class="section return"><dt>Returns</dt><dd>Vector of collected metrics </dd></dl>
 
-</div>
-</div>
-<a id="a1e61f6446bf82bfa1926600af5879309" name="a1e61f6446bf82bfa1926600af5879309"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e61f6446bf82bfa1926600af5879309">&#9670;&#160;</a></span>do_get_metric_types()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::string &gt; kcenon::monitoring::uptime_collector::do_get_metric_types </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Get supported metric types </p><dl class="section return"><dt>Returns</dt><dd>Vector of supported metric type names </dd></dl>
-
-</div>
-</div>
-<a id="aea77e8e3880484f53a290a7243698436" name="aea77e8e3880484f53a290a7243698436"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea77e8e3880484f53a290a7243698436">&#9670;&#160;</a></span>do_initialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool kcenon::monitoring::uptime_collector::do_initialize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;&#160;</td>
-          <td class="paramname"><em>config</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Collector-specific initialization </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">config</td><td>Configuration options:<ul>
-<li>"collect_idle_time": "true"/"false" (default: true, Linux only) </li>
+<p>Collect current metrics from this plugin. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of collected metrics</dd></dl>
+<p>This method is called periodically based on <a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#ac014ea48ad6998439f6a784983a06ebd" title="Get the collection interval for this plugin.">interval()</a>. Implementations should:</p><ul>
+<li>Return quickly (&lt; 100ms recommended)</li>
+<li>Handle errors gracefully (return empty vector on failure)</li>
+<li>Be thread-safe if concurrent collection is enabled</li>
+<li>Avoid blocking I/O when possible </li>
 </ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if initialization successful </dd></dl>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a86d4dafa16846c37b6e53c21cdf75425">kcenon::monitoring::collector_plugin</a>.</p>
 
 </div>
 </div>
@@ -461,21 +369,230 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a7a7e8387f14ee5842a1e511623afbea7" name="a7a7e8387f14ee5842a1e511623afbea7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a7e8387f14ee5842a1e511623afbea7">&#9670;&#160;</a></span>is_available()</h2>
+<a id="a99d65f26bc65212d4b8e5f96522c06e6" name="a99d65f26bc65212d4b8e5f96522c06e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99d65f26bc65212d4b8e5f96522c06e6">&#9670;&#160;</a></span>get_metadata()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool kcenon::monitoring::uptime_collector::is_available </td>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::get_metadata </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td> const -&gt; <a class="el" href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html">plugin_metadata</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Check if uptime monitoring is available </p><dl class="section return"><dt>Returns</dt><dd>True if uptime metrics are accessible </dd></dl>
+
+<p>Get plugin metadata. </p>
+<dl class="section return"><dt>Returns</dt><dd>Metadata describing this plugin</dd></dl>
+<p>Default implementation returns minimal metadata. Override to provide rich plugin information. </p>
+
+<p>Reimplemented from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a9ce3dfab54b371fb42fe70570a46967d">kcenon::monitoring::collector_plugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00136">136</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  136</span>                                                          {</div>
+<div class="line"><span class="lineno">  137</span>        <span class="keywordflow">return</span> plugin_metadata{</div>
+<div class="line"><span class="lineno">  138</span>            .name = <a class="code hl_function" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#ab8e71ec00d379c7a1bbb2117121fa82a">name</a>(),</div>
+<div class="line"><span class="lineno">  139</span>            .description = <span class="stringliteral">&quot;System uptime metrics (boot time, uptime duration)&quot;</span>,</div>
+<div class="line"><span class="lineno">  140</span>            .category = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa34a6e5d64ade17ef4e51612c50dd72f5">plugin_category::platform</a>,</div>
+<div class="line"><span class="lineno">  141</span>            .version = <span class="stringliteral">&quot;1.0.0&quot;</span>,</div>
+<div class="line"><span class="lineno">  142</span>            .dependencies = {},</div>
+<div class="line"><span class="lineno">  143</span>            .requires_platform_support = <span class="keyword">true</span></div>
+<div class="line"><span class="lineno">  144</span>        };</div>
+<div class="line"><span class="lineno">  145</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1uptime__collector_html_ab8e71ec00d379c7a1bbb2117121fa82a"><div class="ttname"><a href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#ab8e71ec00d379c7a1bbb2117121fa82a">kcenon::monitoring::uptime_collector::name</a></div><div class="ttdeci">auto name() const -&gt; std::string_view override</div><div class="ttdoc">Get the unique name of this plugin.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d6e/uptime__collector_8h_source.html#l00130">uptime_collector.h:130</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa6d12e10ff6e73808cbf13a50877260aa34a6e5d64ade17ef4e51612c50dd72f5"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa34a6e5d64ade17ef4e51612c50dd72f5">kcenon::monitoring::plugin_category::platform</a></div><div class="ttdeci">@ platform</div><div class="ttdoc">Platform-specific (VM, uptime, interrupts)</div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector_a99d65f26bc65212d4b8e5f96522c06e6_cgraph.png" border="0" usemap="#ade/dfc/classkcenon_1_1monitoring_1_1uptime__collector_a99d65f26bc65212d4b8e5f96522c06e6_cgraph" alt=""/></div>
+<map name="ade/dfc/classkcenon_1_1monitoring_1_1uptime__collector_a99d65f26bc65212d4b8e5f96522c06e6_cgraph" id="ade/dfc/classkcenon_1_1monitoring_1_1uptime__collector_a99d65f26bc65212d4b8e5f96522c06e6_cgraph">
+<area shape="rect" title="Get plugin metadata." alt="" coords="5,5,153,60"/>
+<area shape="rect" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#ab8e71ec00d379c7a1bbb2117121fa82a" title="Get the unique name of this plugin." alt="" coords="201,13,385,53"/>
+<area shape="poly" title=" " alt="" coords="153,30,188,30,188,35,153,35"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6a9ded5838b5f740446fa51fe4ed75bf" name="a6a9ded5838b5f740446fa51fe4ed75bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a9ded5838b5f740446fa51fe4ed75bf">&#9670;&#160;</a></span>get_metric_types()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::get_metric_types </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::vector&lt; std::string &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get supported metric types. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of metric type names this plugin produces</dd></dl>
+<p>Used for filtering and documentation. </p>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a05223bc87aa479d1bf16057a9709d72c">kcenon::monitoring::collector_plugin</a>.</p>
+
+</div>
+</div>
+<a id="acf84f097915968b2cfae22af3f1e2b24" name="acf84f097915968b2cfae22af3f1e2b24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf84f097915968b2cfae22af3f1e2b24">&#9670;&#160;</a></span>get_statistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::get_statistics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get collector statistics </p><dl class="section return"><dt>Returns</dt><dd>Map of statistic name to value </dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a0b94ca08ffe3a6cf054b1993f50bdc0a">kcenon::monitoring::collector_plugin</a>.</p>
+
+</div>
+</div>
+<a id="a62d2ea87b5427b5e0cbbe1b93ad1eef3" name="a62d2ea87b5427b5e0cbbe1b93ad1eef3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62d2ea87b5427b5e0cbbe1b93ad1eef3">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td> -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the collector with configuration </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>Configuration options:<ul>
+<li>"collect_idle_time": "true"/"false" (default: true, Linux only) </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if initialization successful </dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a2bef732182f058d956ec60e7485da2d9">kcenon::monitoring::collector_plugin</a>.</p>
+
+</div>
+</div>
+<a id="ac014ea48ad6998439f6a784983a06ebd" name="ac014ea48ad6998439f6a784983a06ebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac014ea48ad6998439f6a784983a06ebd">&#9670;&#160;</a></span>interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::interval </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::chrono::milliseconds</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the collection interval for this plugin. </p>
+<dl class="section return"><dt>Returns</dt><dd>Collection interval in milliseconds</dd></dl>
+<p>The registry uses this value to schedule collection tasks. Typical values:</p><ul>
+<li>Fast metrics (CPU, memory): 1-5 seconds</li>
+<li>Slow metrics (disk, network): 10-60 seconds</li>
+<li>Very slow metrics (SMART data): 5-15 minutes </li>
+</ul>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a49b6d7daf18c610d7a230b478a576cd0">kcenon::monitoring::collector_plugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00132">132</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  132</span>{ <span class="keywordflow">return</span> std::chrono::seconds(30); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a33c74005a3891e7555af8ea0e1d31f72" name="a33c74005a3891e7555af8ea0e1d31f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33c74005a3891e7555af8ea0e1d31f72">&#9670;&#160;</a></span>is_available()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::is_available </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if this plugin is available on the current system. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if plugin can collect metrics, false otherwise</dd></dl>
+<p>Availability checks may include:</p><ul>
+<li>Platform compatibility (Linux-only, Windows-only)</li>
+<li>Hardware presence (GPU, sensors)</li>
+<li>Permission checks (root required)</li>
+<li>Resource availability (proc filesystem, WMI)</li>
+</ul>
+<p>The registry may skip unavailable plugins during registration. </p>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a9c4c3a0a9745c25af45cd24a43d0723a">kcenon::monitoring::collector_plugin</a>.</p>
 
 </div>
 </div>
@@ -494,6 +611,54 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Check if uptime monitoring is available </p><dl class="section return"><dt>Returns</dt><dd>True if uptime metrics are accessible </dd></dl>
+
+</div>
+</div>
+<a id="ab8e71ec00d379c7a1bbb2117121fa82a" name="ab8e71ec00d379c7a1bbb2117121fa82a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8e71ec00d379c7a1bbb2117121fa82a">&#9670;&#160;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::uptime_collector::name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::string_view</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the unique name of this plugin. </p>
+<dl class="section return"><dt>Returns</dt><dd>Plugin name (must be unique within registry)</dd></dl>
+<p>The name is used for:</p><ul>
+<li>Plugin lookup and discovery</li>
+<li>Configuration mapping</li>
+<li>Metric tagging (added as "collector" tag) </li>
+</ul>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#aadf48e73c6893aa3b25a813922057bac">kcenon::monitoring::collector_plugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00130">130</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  130</span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;uptime&quot;</span>; }</div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector_ab8e71ec00d379c7a1bbb2117121fa82a_icgraph.png" border="0" usemap="#ade/dfc/classkcenon_1_1monitoring_1_1uptime__collector_ab8e71ec00d379c7a1bbb2117121fa82a_icgraph" alt=""/></div>
+<map name="ade/dfc/classkcenon_1_1monitoring_1_1uptime__collector_ab8e71ec00d379c7a1bbb2117121fa82a_icgraph" id="ade/dfc/classkcenon_1_1monitoring_1_1uptime__collector_ab8e71ec00d379c7a1bbb2117121fa82a_icgraph">
+<area shape="rect" title="Get the unique name of this plugin." alt="" coords="201,13,385,53"/>
+<area shape="rect" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html#a99d65f26bc65212d4b8e5f96522c06e6" title="Get plugin metadata." alt="" coords="5,5,153,60"/>
+<area shape="poly" title=" " alt="" coords="188,35,154,35,154,30,188,30"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -570,8 +735,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00183">183</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  183</span>{<span class="keyword">true</span>};</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00177">177</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  177</span>{<span class="keyword">true</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -595,33 +760,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00180">180</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
-
-</div>
-</div>
-<a id="ab8672af26e2a6ffa1281399b6fd10ab4" name="ab8672af26e2a6ffa1281399b6fd10ab4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8672af26e2a6ffa1281399b6fd10ab4">&#9670;&#160;</a></span>collector_name</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr const char* kcenon::monitoring::uptime_collector::collector_name = &quot;uptime_collector&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Collector name for CRTP base class. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00123">123</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00174">174</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
 
 </div>
 </div>
@@ -645,7 +784,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00186">186</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html#l00180">180</a> of file <a class="el" href="../../d7/d6e/uptime__collector_8h_source.html">uptime_collector.h</a>.</p>
 
 </div>
 </div>
@@ -655,7 +794,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 15:43:30 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 16:51:28 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
