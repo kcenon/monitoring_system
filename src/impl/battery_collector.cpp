@@ -120,6 +120,8 @@ bool battery_collector::is_healthy() const {
 
 stats_map battery_collector::get_statistics() const {
     return {
+        {"collection_count", static_cast<double>(collection_count_.load())},
+        {"collection_errors", static_cast<double>(collection_errors_.load())},
         {"batteries_found", static_cast<double>(batteries_found_.load())},
         {"collect_health", collect_health_ ? 1.0 : 0.0},
         {"collect_thermal", collect_thermal_ ? 1.0 : 0.0}
@@ -294,6 +296,8 @@ void battery_collector::add_battery_metrics(
 
 std::vector<metric> battery_collector::collect() {
     std::vector<metric> metrics;
+
+    collection_count_++;
 
     auto readings = collector_->read_all_batteries();
 

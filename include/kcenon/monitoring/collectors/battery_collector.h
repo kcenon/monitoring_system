@@ -252,6 +252,8 @@ class battery_collector : public collector_plugin {
     // Statistics
     mutable std::mutex stats_mutex_;
     std::atomic<size_t> batteries_found_{0};
+    std::atomic<size_t> collection_count_{0};
+    std::atomic<size_t> collection_errors_{0};
     std::vector<battery_reading> last_readings_;
 
     // Helper methods
