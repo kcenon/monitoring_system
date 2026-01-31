@@ -8,7 +8,7 @@ All rights reserved.
 /**
  * @file test_stress_performance.cpp
  * @brief Stress testing for the monitoring system
- * 
+ *
  * Tests system behavior under extreme conditions:
  * - High load scenarios
  * - Memory leak detection
@@ -16,6 +16,20 @@ All rights reserved.
  * - Resource exhaustion handling
  * - Performance degradation analysis
  */
+
+// Suppress deprecation warnings for testing legacy compatibility layer
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996)
+#endif
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#endif
 
 #include <gtest/gtest.h>
 #include <thread>
@@ -655,3 +669,14 @@ TEST_F(StressPerformanceTest, PerformanceDegradationTest) {
     EXPECT_GT(load_levels.back().throughput, 10000.0)
         << "System should maintain >10K ops/sec at high load";
 }
+
+// Restore compiler warnings
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
