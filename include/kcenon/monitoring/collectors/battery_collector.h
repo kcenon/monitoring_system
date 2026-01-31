@@ -50,7 +50,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
-#include "collector_base.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -188,19 +188,14 @@ class battery_info_collector {
 
 /**
  * @class battery_collector
- * @brief Battery status monitoring collector
+ * @brief Battery status monitoring collector implementing collector_plugin interface
  *
  * Collects battery status metrics from available batteries
  * with cross-platform support. Returns empty/default metrics when
  * no battery is present.
- *
- * Uses CRTP base class to reduce code duplication.
  */
-class battery_collector : public collector_base<battery_collector> {
+class battery_collector : public collector_plugin {
    public:
-    /// Collector name for CRTP base class
-    static constexpr const char* collector_name = "battery_collector";
-
     battery_collector();
     ~battery_collector() override = default;
 
@@ -210,39 +205,27 @@ class battery_collector : public collector_base<battery_collector> {
     battery_collector(battery_collector&&) = delete;
     battery_collector& operator=(battery_collector&&) = delete;
 
-    // CRTP interface implementation
-    /**
-     * Collector-specific initialization
-     * @param config Configuration options:
-     *   - "collect_health": "true"/"false" (default: true)
-     *   - "collect_thermal": "true"/"false" (default: true)
-     * @return true if initialization successful
-     */
-    bool do_initialize(const config_map& config);
+    // collector_plugin implementation
+    auto name() const -> std::string_view override { return "battery"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(30); }
+    auto is_available() const -> bool override;
+    auto get_metric_types() const -> std::vector<std::string> override;
 
-    /**
-     * Collect battery metrics from all batteries
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> do_collect();
+    auto get_metadata() const -> plugin_metadata override {
+        return plugin_metadata{
+            .name = name(),
+            .description = "Battery status metrics (charge, health, temperature)",
+            .category = plugin_category::hardware,
+            .version = "1.0.0",
+            .dependencies = {},
+            .requires_platform_support = true
+        };
+    }
 
-    /**
-     * Check if battery monitoring is available
-     * @return True if batteries are accessible
-     */
-    bool is_available() const;
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> do_get_metric_types() const;
-
-    /**
-     * Add collector-specific statistics
-     * @param stats Map to add statistics to
-     */
-    void do_add_statistics(stats_map& stats) const;
+    auto initialize(const config_map& config) -> bool override;
+    void shutdown() override {}
+    auto get_statistics() const -> stats_map override;
 
     /**
      * Get last collected battery readings
@@ -264,6 +247,7 @@ class battery_collector : public collector_base<battery_collector> {
     bool collect_thermal_{true};
 
     // Statistics
+    mutable std::mutex stats_mutex_;
     std::atomic<size_t> batteries_found_{0};
     std::vector<battery_reading> last_readings_;
 

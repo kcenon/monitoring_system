@@ -76,7 +76,7 @@ std::vector<battery_reading> battery_info_collector::read_all_batteries() {
 battery_collector::battery_collector()
     : collector_(std::make_unique<battery_info_collector>()) {}
 
-bool battery_collector::do_initialize(const config_map& config) {
+bool battery_collector::initialize(const config_map& config) {
     if (auto it = config.find("collect_health"); it != config.end()) {
         collect_health_ = (it->second == "true" || it->second == "1");
     }
@@ -92,7 +92,7 @@ bool battery_collector::do_initialize(const config_map& config) {
     return true;
 }
 
-std::vector<std::string> battery_collector::do_get_metric_types() const {
+std::vector<std::string> battery_collector::get_metric_types() const {
     return {
         "battery_level_percent",
         "battery_charging",
@@ -114,10 +114,12 @@ bool battery_collector::is_battery_available() const {
     return collector_->is_battery_available();
 }
 
-void battery_collector::do_add_statistics(stats_map& stats) const {
-    stats["batteries_found"] = static_cast<double>(batteries_found_.load());
-    stats["collect_health"] = collect_health_ ? 1.0 : 0.0;
-    stats["collect_thermal"] = collect_thermal_ ? 1.0 : 0.0;
+stats_map battery_collector::get_statistics() const {
+    return {
+        {"batteries_found", static_cast<double>(batteries_found_.load())},
+        {"collect_health", collect_health_ ? 1.0 : 0.0},
+        {"collect_thermal", collect_thermal_ ? 1.0 : 0.0}
+    };
 }
 
 std::vector<battery_reading> battery_collector::get_last_readings() const {
@@ -135,7 +137,7 @@ metric battery_collector::create_battery_metric(
     m.name = name;
     m.value = value;
     m.timestamp = std::chrono::system_clock::now();
-    m.tags["collector"] = collector_name;
+    m.tags["collector"] = std::string(this->name());
     m.tags["battery_id"] = reading.info.id;
 
     if (!reading.info.name.empty()) {
@@ -286,7 +288,7 @@ void battery_collector::add_battery_metrics(
     }
 }
 
-std::vector<metric> battery_collector::do_collect() {
+std::vector<metric> battery_collector::collect() {
     std::vector<metric> metrics;
 
     auto readings = collector_->read_all_batteries();
