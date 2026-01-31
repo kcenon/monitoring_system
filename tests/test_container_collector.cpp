@@ -49,7 +49,7 @@ class ContainerCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(ContainerCollectorTest, InitializesSuccessfully) {
     EXPECT_TRUE(collector_->is_healthy());
-    EXPECT_EQ(collector_->get_name(), "container_collector");
+    EXPECT_EQ(collector_->name(), "container");
 }
 
 // Test metric types returned
