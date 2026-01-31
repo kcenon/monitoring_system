@@ -118,7 +118,14 @@ public:
 template<typename T = void>
 class [[deprecated("Migrate to kcenon::common::resilience::circuit_breaker directly")]] circuit_breaker {
 public:
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
+#endif
     using config = circuit_breaker_config;
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
     using clock = std::chrono::steady_clock;
 
     circuit_breaker()
@@ -217,9 +224,16 @@ public:
     /**
      * @brief Get circuit breaker metrics
      */
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
+#endif
     circuit_breaker_metrics get_metrics() const {
         return metrics_;
     }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
     /**
      * @brief Get circuit breaker name
@@ -246,9 +260,16 @@ public:
 
 private:
     std::string name_;
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
+#endif
     config config_;
-    std::unique_ptr<common::resilience::circuit_breaker> impl_;
     mutable circuit_breaker_metrics metrics_;
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+    std::unique_ptr<common::resilience::circuit_breaker> impl_;
 };
 
 } // namespace kcenon::monitoring

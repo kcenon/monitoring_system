@@ -68,16 +68,30 @@ struct fault_tolerance_config {
     bool enable_circuit_breaker = true;
     bool enable_retry = true;
     bool circuit_breaker_first = true;
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
+#endif
     circuit_breaker_config circuit_config;
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
     retry_config retry_cfg;
 
     bool validate() const {
         if (!enable_circuit_breaker && !enable_retry) {
             return false;
         }
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
+#endif
         if (enable_circuit_breaker && !circuit_config.validate()) {
             return false;
         }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
         if (enable_retry && !retry_cfg.validate()) {
             return false;
         }
@@ -250,7 +264,14 @@ private:
 
     std::string name_;
     fault_tolerance_config config_;
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
+#endif
     std::unique_ptr<circuit_breaker<T>> circuit_breaker_;
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
     std::unique_ptr<retry_executor<T>> retry_executor_;
     mutable fault_tolerance_metrics metrics_;
 };
@@ -260,6 +281,10 @@ private:
  */
 class circuit_breaker_registry {
 public:
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
+#endif
     template<typename T>
     void register_circuit_breaker(const std::string& name, std::shared_ptr<circuit_breaker<T>> breaker) {
         std::lock_guard<std::mutex> lock(mutex_);
@@ -275,6 +300,9 @@ public:
         }
         return nullptr;
     }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
     void remove_circuit_breaker(const std::string& name) {
         std::lock_guard<std::mutex> lock(mutex_);

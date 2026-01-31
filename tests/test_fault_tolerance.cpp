@@ -27,6 +27,20 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+// Suppress deprecation warnings for testing legacy compatibility layer
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996)
+#endif
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 #include <gtest/gtest.h>
 #include <thread>
 #include <chrono>
@@ -580,19 +594,30 @@ TEST_F(FaultToleranceTest, CircuitBreakerReset) {
 TEST_F(FaultToleranceTest, RetryExecutorResetMetrics) {
     auto config = create_exponential_backoff_config(3, std::chrono::milliseconds(10));
     retry_executor<int> executor("reset_test", config);
-    
+
     // Execute some operations
     executor.execute([this]() { return always_succeeding_operation(); });
     executor.execute([this]() { return always_failing_operation(); });
-    
+
     auto metrics_before = executor.get_metrics();
     EXPECT_GT(metrics_before.total_executions, 0);
-    
+
     // Reset metrics
     executor.reset_metrics();
-    
+
     auto metrics_after = executor.get_metrics();
     EXPECT_EQ(metrics_after.total_executions, 0);
     EXPECT_EQ(metrics_after.successful_executions, 0);
     EXPECT_EQ(metrics_after.failed_executions, 0);
 }
+
+// Restore compiler warnings
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
