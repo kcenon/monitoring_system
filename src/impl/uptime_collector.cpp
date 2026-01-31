@@ -78,7 +78,7 @@ uptime_metrics uptime_info_collector::collect_metrics() {
 uptime_collector::uptime_collector()
     : collector_(std::make_unique<uptime_info_collector>()) {}
 
-bool uptime_collector::do_initialize(const config_map& config) {
+auto uptime_collector::initialize(const config_map& config) -> bool {
     if (auto it = config.find("collect_idle_time"); it != config.end()) {
         collect_idle_time_ = (it->second == "true" || it->second == "1");
     }
@@ -86,7 +86,7 @@ bool uptime_collector::do_initialize(const config_map& config) {
     return true;
 }
 
-std::vector<std::string> uptime_collector::do_get_metric_types() const {
+auto uptime_collector::get_metric_types() const -> std::vector<std::string> {
     return {
         "system_uptime_seconds",
         "system_boot_timestamp",
@@ -94,7 +94,7 @@ std::vector<std::string> uptime_collector::do_get_metric_types() const {
     };
 }
 
-bool uptime_collector::is_available() const {
+auto uptime_collector::is_available() const -> bool {
     return collector_->is_uptime_monitoring_available();
 }
 
@@ -102,12 +102,13 @@ bool uptime_collector::is_uptime_monitoring_available() const {
     return collector_->is_uptime_monitoring_available();
 }
 
-void uptime_collector::do_add_statistics(stats_map& stats) const {
+auto uptime_collector::get_statistics() const -> stats_map {
+    stats_map stats;
     stats["collect_idle_time"] = collect_idle_time_ ? 1.0 : 0.0;
+    return stats;
 }
 
 uptime_metrics uptime_collector::get_last_metrics() const {
-    std::lock_guard<std::mutex> lock(stats_mutex_);
     return last_metrics_;
 }
 
@@ -120,41 +121,37 @@ void uptime_collector::add_uptime_metrics(
     }
 
     // System uptime in seconds
-    metrics.push_back(create_base_metric(
-        "system_uptime_seconds",
-        uptime_data.uptime_seconds,
-        {},
-        "seconds"
-    ));
+    metric m1;
+    m1.name = "system_uptime_seconds";
+    m1.value = uptime_data.uptime_seconds;
+    m1.timestamp = std::chrono::system_clock::now();
+    m1.tags["collector"] = "uptime";
+    metrics.push_back(m1);
 
     // Boot timestamp
-    metrics.push_back(create_base_metric(
-        "system_boot_timestamp",
-        static_cast<double>(uptime_data.boot_timestamp),
-        {},
-        "timestamp"
-    ));
+    metric m2;
+    m2.name = "system_boot_timestamp";
+    m2.value = static_cast<double>(uptime_data.boot_timestamp);
+    m2.timestamp = std::chrono::system_clock::now();
+    m2.tags["collector"] = "uptime";
+    metrics.push_back(m2);
 
     // Idle time (Linux only, when enabled)
     if (collect_idle_time_ && uptime_data.idle_seconds > 0.0) {
-        metrics.push_back(create_base_metric(
-            "system_idle_seconds",
-            uptime_data.idle_seconds,
-            {},
-            "seconds"
-        ));
+        metric m3;
+        m3.name = "system_idle_seconds";
+        m3.value = uptime_data.idle_seconds;
+        m3.timestamp = std::chrono::system_clock::now();
+        m3.tags["collector"] = "uptime";
+        metrics.push_back(m3);
     }
 }
 
-std::vector<metric> uptime_collector::do_collect() {
+auto uptime_collector::collect() -> std::vector<metric> {
     std::vector<metric> metrics;
 
     auto uptime_data = collector_->collect_metrics();
-
-    {
-        std::lock_guard<std::mutex> lock(stats_mutex_);
-        last_metrics_ = uptime_data;
-    }
+    last_metrics_ = uptime_data;
 
     add_uptime_metrics(metrics, uptime_data);
 
