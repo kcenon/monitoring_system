@@ -309,9 +309,9 @@ void demonstrate_circuit_breaker() {
         
         // Check circuit state
         auto state = breaker.get_state();
-        if (state == circuit_state::open) {
+        if (state == circuit_state::OPEN) {
             std::cout << "    [Circuit OPEN - using fallback]" << std::endl;
-        } else if (state == circuit_state::half_open) {
+        } else if (state == circuit_state::HALF_OPEN) {
             std::cout << "    [Circuit HALF-OPEN - testing]" << std::endl;
         }
         
