@@ -127,7 +127,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Retry executor registry. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00307">307</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00335">335</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5621468f468b5e862cf0c0f21bb041fe" name="a5621468f468b5e862cf0c0f21bb041fe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5621468f468b5e862cf0c0f21bb041fe">&#9670;&#160;</a></span>clear()</h2>
@@ -152,13 +152,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00340">340</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  340</span>                 {</div>
-<div class="line"><span class="lineno">  341</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
-<div class="line"><span class="lineno">  342</span>        <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.clear();</div>
-<div class="line"><span class="lineno">  343</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1retry__executor__registry_html_a0d4babdd280808b115b6f7a20193adf1"><div class="ttname"><a href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">kcenon::monitoring::retry_executor_registry::registry_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::any &gt; registry_</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00347">fault_tolerance_manager.h:347</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1retry__executor__registry_html_a26873c6a72200e82dc31d1c9f5c9900d"><div class="ttname"><a href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">kcenon::monitoring::retry_executor_registry::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00346">fault_tolerance_manager.h:346</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00368">368</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  368</span>                 {</div>
+<div class="line"><span class="lineno">  369</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
+<div class="line"><span class="lineno">  370</span>        <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.clear();</div>
+<div class="line"><span class="lineno">  371</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1retry__executor__registry_html_a0d4babdd280808b115b6f7a20193adf1"><div class="ttname"><a href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">kcenon::monitoring::retry_executor_registry::registry_</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::any &gt; registry_</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00375">fault_tolerance_manager.h:375</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1retry__executor__registry_html_a26873c6a72200e82dc31d1c9f5c9900d"><div class="ttname"><a href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">kcenon::monitoring::retry_executor_registry::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00374">fault_tolerance_manager.h:374</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -195,16 +195,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00330">330</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  330</span>                                               {</div>
-<div class="line"><span class="lineno">  331</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
-<div class="line"><span class="lineno">  332</span>        std::vector&lt;std::string&gt; names;</div>
-<div class="line"><span class="lineno">  333</span>        names.reserve(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.size());</div>
-<div class="line"><span class="lineno">  334</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; pair : <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>) {</div>
-<div class="line"><span class="lineno">  335</span>            names.push_back(pair.first);</div>
-<div class="line"><span class="lineno">  336</span>        }</div>
-<div class="line"><span class="lineno">  337</span>        <span class="keywordflow">return</span> names;</div>
-<div class="line"><span class="lineno">  338</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00358">358</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  358</span>                                               {</div>
+<div class="line"><span class="lineno">  359</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
+<div class="line"><span class="lineno">  360</span>        std::vector&lt;std::string&gt; names;</div>
+<div class="line"><span class="lineno">  361</span>        names.reserve(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.size());</div>
+<div class="line"><span class="lineno">  362</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; pair : <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>) {</div>
+<div class="line"><span class="lineno">  363</span>            names.push_back(pair.first);</div>
+<div class="line"><span class="lineno">  364</span>        }</div>
+<div class="line"><span class="lineno">  365</span>        <span class="keywordflow">return</span> names;</div>
+<div class="line"><span class="lineno">  366</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -234,15 +234,15 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00316">316</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  316</span>                                                                         {</div>
-<div class="line"><span class="lineno">  317</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
-<div class="line"><span class="lineno">  318</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.find(name);</div>
-<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.end()) {</div>
-<div class="line"><span class="lineno">  320</span>            <span class="keywordflow">return</span> std::any_cast&lt;std::shared_ptr&lt;retry_executor&lt;T&gt;&gt;&gt;(it-&gt;second);</div>
-<div class="line"><span class="lineno">  321</span>        }</div>
-<div class="line"><span class="lineno">  322</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  323</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00344">344</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  344</span>                                                                         {</div>
+<div class="line"><span class="lineno">  345</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
+<div class="line"><span class="lineno">  346</span>        <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.find(name);</div>
+<div class="line"><span class="lineno">  347</span>        <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.end()) {</div>
+<div class="line"><span class="lineno">  348</span>            <span class="keywordflow">return</span> std::any_cast&lt;std::shared_ptr&lt;retry_executor&lt;T&gt;&gt;&gt;(it-&gt;second);</div>
+<div class="line"><span class="lineno">  349</span>        }</div>
+<div class="line"><span class="lineno">  350</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  351</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -282,11 +282,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00310">310</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  310</span>                                                                                             {</div>
-<div class="line"><span class="lineno">  311</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
-<div class="line"><span class="lineno">  312</span>        <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>[name] = std::move(executor);</div>
-<div class="line"><span class="lineno">  313</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00338">338</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  338</span>                                                                                             {</div>
+<div class="line"><span class="lineno">  339</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
+<div class="line"><span class="lineno">  340</span>        <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>[name] = std::move(executor);</div>
+<div class="line"><span class="lineno">  341</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -314,11 +314,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00325">325</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  325</span>                                                {</div>
-<div class="line"><span class="lineno">  326</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
-<div class="line"><span class="lineno">  327</span>        <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.erase(name);</div>
-<div class="line"><span class="lineno">  328</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00353">353</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  353</span>                                                {</div>
+<div class="line"><span class="lineno">  354</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a26873c6a72200e82dc31d1c9f5c9900d">mutex_</a>);</div>
+<div class="line"><span class="lineno">  355</span>        <a class="code hl_variable" href="../../da/d65/classkcenon_1_1monitoring_1_1retry__executor__registry.html#a0d4babdd280808b115b6f7a20193adf1">registry_</a>.erase(name);</div>
+<div class="line"><span class="lineno">  356</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -343,7 +343,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00346">346</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00374">374</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
 
 </div>
 </div>
@@ -367,7 +367,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00347">347</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00375">375</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
 
 </div>
 </div>
@@ -377,7 +377,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 12:24:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 12:44:49 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

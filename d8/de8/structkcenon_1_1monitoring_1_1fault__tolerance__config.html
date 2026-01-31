@@ -144,24 +144,31 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00074">74</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   74</span>                          {</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a7942ce146d2f2e37a2265c86eec49569">enable_circuit_breaker</a> &amp;&amp; !<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aa461b3b1d9bb1d7a9e07a88cd9bb313a">enable_retry</a>) {</div>
-<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   77</span>        }</div>
-<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a7942ce146d2f2e37a2265c86eec49569">enable_circuit_breaker</a> &amp;&amp; !<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a92da2a8d9cdee2caa8d0bd38ba87e30d">circuit_config</a>.<a class="code hl_function" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#aff3453f1105695bed8e4cc3502aad832">validate</a>()) {</div>
-<div class="line"><span class="lineno">   79</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   80</span>        }</div>
-<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aa461b3b1d9bb1d7a9e07a88cd9bb313a">enable_retry</a> &amp;&amp; !<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#ad39ee6c28e4be22d328cfac39e3d8d0b">retry_cfg</a>.<a class="code hl_function" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#ad8e7a7dea61d29dbbb80da145fa2a11d">validate</a>()) {</div>
-<div class="line"><span class="lineno">   82</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   83</span>        }</div>
-<div class="line"><span class="lineno">   84</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   85</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00081">81</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>                          {</div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a7942ce146d2f2e37a2265c86eec49569">enable_circuit_breaker</a> &amp;&amp; !<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aa461b3b1d9bb1d7a9e07a88cd9bb313a">enable_retry</a>) {</div>
+<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   84</span>        }</div>
+<div class="line"><span class="lineno">   85</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><span class="lineno">   86</span><span class="preprocessor">#pragma warning(push)</span></div>
+<div class="line"><span class="lineno">   87</span><span class="preprocessor">#pragma warning(disable: 4996) </span><span class="comment">// Disable deprecation warnings for internal use</span></div>
+<div class="line"><span class="lineno">   88</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a7942ce146d2f2e37a2265c86eec49569">enable_circuit_breaker</a> &amp;&amp; !<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a92da2a8d9cdee2caa8d0bd38ba87e30d">circuit_config</a>.<a class="code hl_function" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#aff3453f1105695bed8e4cc3502aad832">validate</a>()) {</div>
+<div class="line"><span class="lineno">   90</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   91</span>        }</div>
+<div class="line"><span class="lineno">   92</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><span class="lineno">   93</span><span class="preprocessor">#pragma warning(pop)</span></div>
+<div class="line"><span class="lineno">   94</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aa461b3b1d9bb1d7a9e07a88cd9bb313a">enable_retry</a> &amp;&amp; !<a class="code hl_variable" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#ad39ee6c28e4be22d328cfac39e3d8d0b">retry_cfg</a>.<a class="code hl_function" href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#ad8e7a7dea61d29dbbb80da145fa2a11d">validate</a>()) {</div>
+<div class="line"><span class="lineno">   96</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   97</span>        }</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   99</span>    }</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_aff3453f1105695bed8e4cc3502aad832"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#aff3453f1105695bed8e4cc3502aad832">kcenon::monitoring::circuit_breaker_config::validate</a></div><div class="ttdeci">bool validate() const</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00059">circuit_breaker.h:59</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1fault__tolerance__config_html_a7942ce146d2f2e37a2265c86eec49569"><div class="ttname"><a href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a7942ce146d2f2e37a2265c86eec49569">kcenon::monitoring::fault_tolerance_config::enable_circuit_breaker</a></div><div class="ttdeci">bool enable_circuit_breaker</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00068">fault_tolerance_manager.h:68</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1fault__tolerance__config_html_a92da2a8d9cdee2caa8d0bd38ba87e30d"><div class="ttname"><a href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a92da2a8d9cdee2caa8d0bd38ba87e30d">kcenon::monitoring::fault_tolerance_config::circuit_config</a></div><div class="ttdeci">circuit_breaker_config circuit_config</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00071">fault_tolerance_manager.h:71</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1fault__tolerance__config_html_a92da2a8d9cdee2caa8d0bd38ba87e30d"><div class="ttname"><a href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#a92da2a8d9cdee2caa8d0bd38ba87e30d">kcenon::monitoring::fault_tolerance_config::circuit_config</a></div><div class="ttdeci">circuit_breaker_config circuit_config</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00075">fault_tolerance_manager.h:75</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1fault__tolerance__config_html_aa461b3b1d9bb1d7a9e07a88cd9bb313a"><div class="ttname"><a href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aa461b3b1d9bb1d7a9e07a88cd9bb313a">kcenon::monitoring::fault_tolerance_config::enable_retry</a></div><div class="ttdeci">bool enable_retry</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00069">fault_tolerance_manager.h:69</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1fault__tolerance__config_html_ad39ee6c28e4be22d328cfac39e3d8d0b"><div class="ttname"><a href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#ad39ee6c28e4be22d328cfac39e3d8d0b">kcenon::monitoring::fault_tolerance_config::retry_cfg</a></div><div class="ttdeci">retry_config retry_cfg</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00072">fault_tolerance_manager.h:72</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1fault__tolerance__config_html_ad39ee6c28e4be22d328cfac39e3d8d0b"><div class="ttname"><a href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#ad39ee6c28e4be22d328cfac39e3d8d0b">kcenon::monitoring::fault_tolerance_config::retry_cfg</a></div><div class="ttdeci">retry_config retry_cfg</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00079">fault_tolerance_manager.h:79</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1retry__config_html_ad8e7a7dea61d29dbbb80da145fa2a11d"><div class="ttname"><a href="../../d4/d7d/structkcenon_1_1monitoring_1_1retry__config.html#ad8e7a7dea61d29dbbb80da145fa2a11d">kcenon::monitoring::retry_config::validate</a></div><div class="ttdeci">bool validate() const</div><div class="ttdoc">Validate configuration.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/df4/retry__policy_8h_source.html#l00085">retry_policy.h:85</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -217,7 +224,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00071">71</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00075">75</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
 
 </div>
 </div>
@@ -265,7 +272,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00072">72</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html#l00079">79</a> of file <a class="el" href="../../dd/d82/fault__tolerance__manager_8h_source.html">fault_tolerance_manager.h</a>.</p>
 
 </div>
 </div>
@@ -275,7 +282,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 12:24:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 12:44:49 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
