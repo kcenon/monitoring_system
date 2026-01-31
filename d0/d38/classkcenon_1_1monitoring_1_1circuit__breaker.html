@@ -76,14 +76,13 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../d3/dcb/classkcenon_1_1monitoring_1_1circuit__breaker-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">kcenon::monitoring::circuit_breaker&lt; T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Thread-safe circuit breaker implementation.  
+<p>Adapter class for common_system <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html" title="Adapter class for common_system circuit_breaker with monitoring_system interface.">circuit_breaker</a> with monitoring_system interface.  
  <a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>&gt;</code></p>
@@ -92,24 +91,19 @@ Collaboration diagram for kcenon::monitoring::circuit_breaker&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d7/d5a/classkcenon_1_1monitoring_1_1circuit__breaker__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1circuit__breaker_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1circuit__breaker_3_01T_01_4_coll__map" id="akcenon_1_1monitoring_1_1circuit__breaker_3_01T_01_4_coll__map">
-<area shape="rect" title="Thread&#45;safe circuit breaker implementation." alt="" coords="550,409,706,749"/>
-<area shape="rect" title=" " alt="" coords="31,244,110,309"/>
-<area shape="poly" title=" " alt="" coords="91,308,106,327,123,345,143,359,161,367,204,383,536,534,534,539,202,388,159,372,141,363,120,349,102,331,87,311"/>
+<area shape="rect" title="Adapter class for common_system circuit_breaker with monitoring_system interface." alt="" coords="237,429,393,689"/>
+<area shape="rect" title=" " alt="" coords="31,254,110,319"/>
+<area shape="poly" title=" " alt="" coords="91,318,123,365,174,422,226,475,223,479,170,426,119,368,86,321"/>
 <area shape="rect" title=" " alt="" coords="5,5,136,85"/>
-<area shape="poly" title=" " alt="" coords="73,99,73,244,68,244,68,99"/>
-<area shape="rect" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html" title="Circuit breaker configuration." alt="" coords="134,207,298,347"/>
-<area shape="poly" title=" " alt="" coords="246,345,274,384,335,436,403,480,472,515,536,543,534,548,470,520,401,484,332,440,270,387,242,348"/>
-<area shape="rect" title=" " alt="" coords="351,13,505,78"/>
-<area shape="poly" title=" " alt="" coords="410,79,383,132,358,200,350,236,347,274,350,310,361,346,395,401,439,450,488,491,537,525,534,530,485,496,435,454,391,404,356,348,345,312,341,274,344,236,352,198,378,130,405,77"/>
-<area shape="rect" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html" title="Circuit breaker metrics." alt="" coords="533,217,723,337"/>
-<area shape="poly" title=" " alt="" coords="458,77,568,203,564,206,454,80"/>
-<area shape="rect" title=" " alt="" coords="747,237,890,317"/>
-<area shape="poly" title=" " alt="" coords="796,319,717,443,713,440,791,316"/>
-<area shape="rect" title=" " alt="" coords="915,237,1051,317"/>
-<area shape="poly" title=" " alt="" coords="939,319,904,349,721,504,717,500,901,345,936,315"/>
-<area shape="rect" title=" " alt="" coords="1086,244,1170,309"/>
-<area shape="poly" title=" " alt="" coords="1103,311,1064,349,1036,370,1005,388,857,469,722,537,719,532,854,464,1003,383,1033,365,1061,345,1099,308"/>
-<area shape="poly" title=" " alt="" coords="631,337,631,393,625,393,625,337"/>
+<area shape="poly" title=" " alt="" coords="73,99,73,254,68,254,68,99"/>
+<area shape="rect" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html" title=" " alt="" coords="134,207,298,367"/>
+<area shape="poly" title=" " alt="" coords="247,366,264,413,259,415,242,368"/>
+<area shape="rect" title=" " alt="" coords="322,239,505,334"/>
+<area shape="poly" title=" " alt="" coords="399,335,370,415,365,413,394,333"/>
+<area shape="rect" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html" title=" " alt="" coords="529,227,719,347"/>
+<area shape="poly" title=" " alt="" coords="558,349,407,481,403,477,555,345"/>
+<area shape="rect" title=" " alt="" coords="547,13,701,78"/>
+<area shape="poly" title=" " alt="" coords="627,78,627,210,621,210,621,78"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -136,11 +130,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2a697cd9b9981a1c020bd88417057d10"><td class="memTemplItemLeft" align="right" valign="top">common::Result&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a2a697cd9b9981a1c020bd88417057d10">execute</a> (Func &amp;&amp;func)</td></tr>
 <tr class="memdesc:a2a697cd9b9981a1c020bd88417057d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a function with circuit breaker protection.  <br /></td></tr>
 <tr class="separator:a2a697cd9b9981a1c020bd88417057d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af41897fbd8d5ca6c4e53e0ad4a8ec5d5" id="r_af41897fbd8d5ca6c4e53e0ad4a8ec5d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#af41897fbd8d5ca6c4e53e0ad4a8ec5d5">get_state</a> () const</td></tr>
+<tr class="memitem:af41897fbd8d5ca6c4e53e0ad4a8ec5d5" id="r_af41897fbd8d5ca6c4e53e0ad4a8ec5d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4acaff64b280341d038f255426f66ca3">circuit_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#af41897fbd8d5ca6c4e53e0ad4a8ec5d5">get_state</a> () const</td></tr>
 <tr class="memdesc:af41897fbd8d5ca6c4e53e0ad4a8ec5d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current circuit state.  <br /></td></tr>
 <tr class="separator:af41897fbd8d5ca6c4e53e0ad4a8ec5d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ce69c77a3aa00f022bf782e072ad1e1" id="r_a4ce69c77a3aa00f022bf782e072ad1e1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a4ce69c77a3aa00f022bf782e072ad1e1">get_failure_count</a> () const</td></tr>
-<tr class="memdesc:a4ce69c77a3aa00f022bf782e072ad1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current failure count.  <br /></td></tr>
+<tr class="memdesc:a4ce69c77a3aa00f022bf782e072ad1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current failure count (approximation from stats)  <br /></td></tr>
 <tr class="separator:a4ce69c77a3aa00f022bf782e072ad1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab35430a9fdd376ef35e27298787ff5d4" id="r_ab35430a9fdd376ef35e27298787ff5d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html">circuit_breaker_metrics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ab35430a9fdd376ef35e27298787ff5d4">get_metrics</a> () const</td></tr>
 <tr class="memdesc:ab35430a9fdd376ef35e27298787ff5d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get circuit breaker metrics.  <br /></td></tr>
@@ -152,52 +146,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a060f1d6129c224cc4e29ac3bcb04a8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually reset circuit to closed state.  <br /></td></tr>
 <tr class="separator:a060f1d6129c224cc4e29ac3bcb04a8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:ae8c79e4e1d3a0784f1186487b33c6dbf" id="r_ae8c79e4e1d3a0784f1186487b33c6dbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf">check_state</a> ()</td></tr>
-<tr class="memdesc:ae8c79e4e1d3a0784f1186487b33c6dbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check current state and handle timeout transitions.  <br /></td></tr>
-<tr class="separator:ae8c79e4e1d3a0784f1186487b33c6dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53ea63c1ac08a8b8362e77a41396c456" id="r_a53ea63c1ac08a8b8362e77a41396c456"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456">on_success</a> ()</td></tr>
-<tr class="memdesc:a53ea63c1ac08a8b8362e77a41396c456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle successful execution.  <br /></td></tr>
-<tr class="separator:a53ea63c1ac08a8b8362e77a41396c456"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a596ef11c724a9b70bbd199004c52459d" id="r_a596ef11c724a9b70bbd199004c52459d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d">on_failure</a> ()</td></tr>
-<tr class="memdesc:a596ef11c724a9b70bbd199004c52459d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle failed execution.  <br /></td></tr>
-<tr class="separator:a596ef11c724a9b70bbd199004c52459d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1502c21224593b1f4c64be51d50da712" id="r_a1502c21224593b1f4c64be51d50da712"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712">transition_to</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a> new_state)</td></tr>
-<tr class="memdesc:a1502c21224593b1f4c64be51d50da712"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transition to a new state (must be called with state_mutex_ held)  <br /></td></tr>
-<tr class="separator:a1502c21224593b1f4c64be51d50da712"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a16afea8294bc47952900e2b1ed301ab3" id="r_a16afea8294bc47952900e2b1ed301ab3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a></td></tr>
 <tr class="separator:a16afea8294bc47952900e2b1ed301ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dcaaa0c1d68d643a244dd5d22d020c2" id="r_a9dcaaa0c1d68d643a244dd5d22d020c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a059b34e0787f1de094e9943a983a77b1">config</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a></td></tr>
 <tr class="separator:a9dcaaa0c1d68d643a244dd5d22d020c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7307f09b46d167ff07c3dbf94ed1768d" id="r_a7307f09b46d167ff07c3dbf94ed1768d"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">failure_count_</a> {0}</td></tr>
-<tr class="separator:a7307f09b46d167ff07c3dbf94ed1768d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99ce8424654789522e765d1a940512f4" id="r_a99ce8424654789522e765d1a940512f4"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a99ce8424654789522e765d1a940512f4">consecutive_successes_</a> {0}</td></tr>
-<tr class="separator:a99ce8424654789522e765d1a940512f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25af01103049339bed3d59ddf374d145" id="r_a25af01103049339bed3d59ddf374d145"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a> {<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a>}</td></tr>
-<tr class="separator:a25af01103049339bed3d59ddf374d145"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae41461159840828e94780de3c3890600" id="r_ae41461159840828e94780de3c3890600"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; clock::time_point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae41461159840828e94780de3c3890600">last_failure_time_</a> {clock::now()}</td></tr>
-<tr class="separator:ae41461159840828e94780de3c3890600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a126d8629640a1748dee52fa46f6ba172" id="r_a126d8629640a1748dee52fa46f6ba172"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a126d8629640a1748dee52fa46f6ba172">state_mutex_</a></td></tr>
-<tr class="separator:a126d8629640a1748dee52fa46f6ba172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ce25a5d24d671870624e341eb76455" id="r_a60ce25a5d24d671870624e341eb76455"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; common::resilience::circuit_breaker &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a></td></tr>
+<tr class="separator:a60ce25a5d24d671870624e341eb76455"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ee6d9251f5c1f4ed929e9682f70aeeb" id="r_a3ee6d9251f5c1f4ed929e9682f70aeeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html">circuit_breaker_metrics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a></td></tr>
 <tr class="separator:a3ee6d9251f5c1f4ed929e9682f70aeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = void&gt;<br />
-class kcenon::monitoring::circuit_breaker&lt; T &gt;</div><p>Thread-safe circuit breaker implementation. </p>
-<p>Implements the circuit breaker pattern to prevent cascading failures. When a service experiences repeated failures, the circuit "opens" and subsequent requests fail fast without attempting the operation.</p>
+class kcenon::monitoring::circuit_breaker&lt; T &gt;</div><p>Adapter class for common_system <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html" title="Adapter class for common_system circuit_breaker with monitoring_system interface.">circuit_breaker</a> with monitoring_system interface. </p>
+<p>This class wraps common_system's <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html" title="Adapter class for common_system circuit_breaker with monitoring_system interface.">circuit_breaker</a> and provides the <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a637d6a76a071fc66145ae0b75bb4c23a" title="Execute a function with circuit breaker protection and fallback.">execute()</a> interface that monitoring_system components expect. It translates between the allow_request/record_* pattern and the functional <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a637d6a76a071fc66145ae0b75bb4c23a" title="Execute a function with circuit breaker protection and fallback.">execute()</a> pattern.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The return value type of operations </td></tr>
+    <tr><td class="paramname">T</td><td>The return value type of operations</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>This adapter is temporary. Migrate to common::resilience::circuit_breaker directly. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00132">132</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00119">119</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a2318a7dffb5a01eda57bbc10e90bb4ee" name="a2318a7dffb5a01eda57bbc10e90bb4ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2318a7dffb5a01eda57bbc10e90bb4ee">&#9670;&#160;</a></span>clock</h2>
@@ -213,7 +185,7 @@ template&lt;typename T  = void&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00135">135</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00122">122</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -231,7 +203,7 @@ template&lt;typename T  = void&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00134">134</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00121">121</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -261,10 +233,14 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00137">137</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  137</span>: <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>(<span class="stringliteral">&quot;default&quot;</span>), <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>() {}</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a16afea8294bc47952900e2b1ed301ab3"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">kcenon::monitoring::circuit_breaker::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00329">circuit_breaker.h:329</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a9dcaaa0c1d68d643a244dd5d22d020c2"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">kcenon::monitoring::circuit_breaker::config_</a></div><div class="ttdeci">config config_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00330">circuit_breaker.h:330</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00124">124</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  125</span>        : <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>(<span class="stringliteral">&quot;default&quot;</span>)</div>
+<div class="line"><span class="lineno">  126</span>        , <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>()</div>
+<div class="line"><span class="lineno">  127</span>        , <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>(std::make_unique&lt;common::resilience::circuit_breaker&gt;(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_function" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a85ce682c1a176594d325a03e71921478">to_common</a>())) {}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a16afea8294bc47952900e2b1ed301ab3"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">kcenon::monitoring::circuit_breaker::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00248">circuit_breaker.h:248</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a60ce25a5d24d671870624e341eb76455"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">kcenon::monitoring::circuit_breaker::impl_</a></div><div class="ttdeci">std::unique_ptr&lt; common::resilience::circuit_breaker &gt; impl_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00250">circuit_breaker.h:250</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a9dcaaa0c1d68d643a244dd5d22d020c2"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">kcenon::monitoring::circuit_breaker::config_</a></div><div class="ttdeci">config config_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00249">circuit_breaker.h:249</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_a85ce682c1a176594d325a03e71921478"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a85ce682c1a176594d325a03e71921478">kcenon::monitoring::circuit_breaker_config::to_common</a></div><div class="ttdeci">common::resilience::circuit_breaker_config to_common() const</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00064">circuit_breaker.h:64</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -294,8 +270,10 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00139">139</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  140</span>        : <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>(name), <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>() {}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00129">129</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  130</span>        : <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>(name)</div>
+<div class="line"><span class="lineno">  131</span>        , <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>()</div>
+<div class="line"><span class="lineno">  132</span>        , <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>(std::make_unique&lt;common::resilience::circuit_breaker&gt;(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_function" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a85ce682c1a176594d325a03e71921478">to_common</a>())) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -335,117 +313,14 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00142">142</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  143</span>        : <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>(name), <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>(cfg) {}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00134">134</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  135</span>        : <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>(name)</div>
+<div class="line"><span class="lineno">  136</span>        , <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>(cfg)</div>
+<div class="line"><span class="lineno">  137</span>        , <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>(std::make_unique&lt;common::resilience::circuit_breaker&gt;(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_function" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a85ce682c1a176594d325a03e71921478">to_common</a>())) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae8c79e4e1d3a0784f1186487b33c6dbf" name="ae8c79e4e1d3a0784f1186487b33c6dbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8c79e4e1d3a0784f1186487b33c6dbf">&#9670;&#160;</a></span>check_state()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a> <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::check_state </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check current state and handle timeout transitions. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00246">246</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  246</span>                                {</div>
-<div class="line"><span class="lineno">  247</span>        <span class="keyword">auto</span> current = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  248</span> </div>
-<div class="line"><span class="lineno">  249</span>        <span class="keywordflow">if</span> (current == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>) {</div>
-<div class="line"><span class="lineno">  250</span>            <span class="keyword">auto</span> now = clock::now();</div>
-<div class="line"><span class="lineno">  251</span>            <span class="keyword">auto</span> opened_at = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae41461159840828e94780de3c3890600">last_failure_time_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  252</span> </div>
-<div class="line"><span class="lineno">  253</span>            <span class="keywordflow">if</span> (now - opened_at &gt;= <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a6b360c1d83507168e0e93b8d50c1b6a3">reset_timeout</a>) {</div>
-<div class="line"><span class="lineno">  254</span>                std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a126d8629640a1748dee52fa46f6ba172">state_mutex_</a>);</div>
-<div class="line"><span class="lineno">  255</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire) == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>) {</div>
-<div class="line"><span class="lineno">  256</span>                    <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712">transition_to</a>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">circuit_state::half_open</a>);</div>
-<div class="line"><span class="lineno">  257</span>                    <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a99ce8424654789522e765d1a940512f4">consecutive_successes_</a>.store(0, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  258</span>                    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">circuit_state::half_open</a>;</div>
-<div class="line"><span class="lineno">  259</span>                }</div>
-<div class="line"><span class="lineno">  260</span>            }</div>
-<div class="line"><span class="lineno">  261</span>        }</div>
-<div class="line"><span class="lineno">  262</span> </div>
-<div class="line"><span class="lineno">  263</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  264</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a126d8629640a1748dee52fa46f6ba172"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a126d8629640a1748dee52fa46f6ba172">kcenon::monitoring::circuit_breaker::state_mutex_</a></div><div class="ttdeci">std::mutex state_mutex_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00337">circuit_breaker.h:337</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a1502c21224593b1f4c64be51d50da712"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712">kcenon::monitoring::circuit_breaker::transition_to</a></div><div class="ttdeci">void transition_to(circuit_state new_state)</div><div class="ttdoc">Transition to a new state (must be called with state_mutex_ held)</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00321">circuit_breaker.h:321</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a25af01103049339bed3d59ddf374d145"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">kcenon::monitoring::circuit_breaker::state_</a></div><div class="ttdeci">std::atomic&lt; circuit_state &gt; state_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00334">circuit_breaker.h:334</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a99ce8424654789522e765d1a940512f4"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a99ce8424654789522e765d1a940512f4">kcenon::monitoring::circuit_breaker::consecutive_successes_</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; consecutive_successes_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00333">circuit_breaker.h:333</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_ae41461159840828e94780de3c3890600"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae41461159840828e94780de3c3890600">kcenon::monitoring::circuit_breaker::last_failure_time_</a></div><div class="ttdeci">std::atomic&lt; clock::time_point &gt; last_failure_time_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00335">circuit_breaker.h:335</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">kcenon::monitoring::circuit_state::half_open</a></div><div class="ttdeci">@ half_open</div><div class="ttdoc">Testing state, limited requests allowed.</div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">kcenon::monitoring::circuit_state::open</a></div><div class="ttdeci">@ open</div><div class="ttdoc">Circuit is open, requests are rejected.</div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_a6b360c1d83507168e0e93b8d50c1b6a3"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a6b360c1d83507168e0e93b8d50c1b6a3">kcenon::monitoring::circuit_breaker_config::reset_timeout</a></div><div class="ttdeci">std::chrono::milliseconds reset_timeout</div><div class="ttdoc">Time before half_open.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00064">circuit_breaker.h:64</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_cgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_cgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_cgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_cgraph">
-<area shape="rect" title="Check current state and handle timeout transitions." alt="" coords="5,5,217,45"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="265,5,481,45"/>
-<area shape="poly" title=" " alt="" coords="217,23,252,23,252,28,217,28"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_icgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_icgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_icgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_ae8c79e4e1d3a0784f1186487b33c6dbf_icgraph">
-<area shape="rect" title="Check current state and handle timeout transitions." alt="" coords="565,243,777,283"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a2a697cd9b9981a1c020bd88417057d10" title="Execute a function with circuit breaker protection." alt="" coords="332,211,517,251"/>
-<area shape="poly" title=" " alt="" coords="551,250,517,245,518,240,552,244"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a637d6a76a071fc66145ae0b75bb4c23a" title="Execute a function with circuit breaker protection and fallback." alt="" coords="332,275,517,315"/>
-<area shape="poly" title=" " alt="" coords="552,281,518,285,517,280,551,276"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#a8bfc1a7efa3a960d500cf0f98f36d486" title=" " alt="" coords="120,5,272,45"/>
-<area shape="poly" title=" " alt="" coords="334,268,330,264,312,238,304,211,303,186,305,160,307,135,306,110,299,85,282,59,268,48,272,43,286,56,304,82,311,109,313,135,310,160,308,186,309,211,317,236,334,261,338,265"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ab7e32a7c3dc99cfab361ea91267b5dfa" title=" " alt="" coords="108,69,284,109"/>
-<area shape="poly" title=" " alt="" coords="334,268,330,264,316,246,309,228,305,192,302,157,295,140,282,123,267,112,270,107,286,119,300,138,307,156,311,192,314,227,321,244,334,261,338,264"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a5fc5e0d80d66bd405a7c20d88974f148" title=" " alt="" coords="161,134,231,159"/>
-<area shape="poly" title=" " alt="" coords="337,270,330,265,312,241,306,217,299,194,282,173,257,159,230,152,231,147,259,154,286,169,304,192,311,216,317,238,334,261,340,265"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ae66e18478e05441d8338348b0fee8c0c" title=" " alt="" coords="161,183,231,209"/>
-<area shape="poly" title=" " alt="" coords="342,271,331,265,316,254,306,243,297,232,283,222,257,211,230,204,231,199,258,206,285,218,300,228,310,239,319,250,333,260,345,267"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#af876caa94189f9615f8787caccc601c9" title=" " alt="" coords="161,233,231,258"/>
-<area shape="poly" title=" " alt="" coords="317,274,231,255,232,250,319,269"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a3851178db22611ff708e98e85fdd8de3" title=" " alt="" coords="161,282,231,307"/>
-<area shape="poly" title=" " alt="" coords="318,297,231,297,231,292,318,292"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a6a80b67c917d02951561eb306e003055" title=" " alt="" coords="161,331,231,357"/>
-<area shape="poly" title=" " alt="" coords="319,320,232,339,231,334,317,315"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ab0108d7569f7c5775587720f3597a9e8" title=" " alt="" coords="161,381,231,406"/>
-<area shape="poly" title=" " alt="" coords="379,324,285,370,232,388,230,383,283,366,377,319"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a1c8d214bf61bafc8f1d2fb5fb617826f" title=" " alt="" coords="161,430,231,455"/>
-<area shape="poly" title=" " alt="" coords="398,327,349,375,318,399,285,420,258,431,232,439,230,434,257,426,283,415,315,394,345,370,395,323"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a0548ce1e00f3c96a5ddf2bc9d323e13a" title=" " alt="" coords="161,479,231,505"/>
-<area shape="poly" title=" " alt="" coords="408,328,359,399,325,437,285,469,259,482,232,490,230,484,257,477,283,464,321,433,355,396,404,325"/>
-<area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html#ae5f4fd19dd4d35e662f8ca4a44fc2549" title=" " alt="" coords="161,529,231,554"/>
-<area shape="poly" title=" " alt="" coords="414,329,395,372,367,423,331,474,286,518,259,532,231,540,230,535,257,527,282,514,327,471,363,420,390,370,409,327"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,45,60,70"/>
-<area shape="poly" title=" " alt="" coords="107,45,61,55,60,50,106,40"/>
-<area shape="poly" title=" " alt="" coords="94,72,60,65,61,60,95,67"/>
-</map>
-</div>
-
-</div>
-</div>
 <a id="a2a697cd9b9981a1c020bd88417057d10" name="a2a697cd9b9981a1c020bd88417057d10"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2a697cd9b9981a1c020bd88417057d10">&#9670;&#160;</a></span>execute() <span class="overload">[1/2]</span></h2>
 
@@ -489,53 +364,34 @@ template&lt;typename Func &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>common::Result&lt;T&gt; containing success value or error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00183">183</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  183</span>                                         {</div>
-<div class="line"><span class="lineno">  184</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a64628b5eab60ed0dc99677bc0b4538bd">total_calls</a>++;</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00177">177</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  177</span>                                         {</div>
+<div class="line"><span class="lineno">  178</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a64628b5eab60ed0dc99677bc0b4538bd">total_calls</a>++;</div>
+<div class="line"><span class="lineno">  179</span> </div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;allow_request()) {</div>
+<div class="line"><span class="lineno">  181</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">rejected_calls</a>++;</div>
+<div class="line"><span class="lineno">  182</span>            <span class="keywordflow">return</span> common::make_error&lt;T&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaeaea2bb7fff1770e1947ec04f021aee9">monitoring_error_code::circuit_breaker_open</a>),</div>
+<div class="line"><span class="lineno">  183</span>                               <span class="stringliteral">&quot;Circuit breaker &#39;&quot;</span> + <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a> + <span class="stringliteral">&quot;&#39; is open&quot;</span>);</div>
+<div class="line"><span class="lineno">  184</span>        }</div>
 <div class="line"><span class="lineno">  185</span> </div>
-<div class="line"><span class="lineno">  186</span>        <span class="keyword">auto</span> current_state = <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf">check_state</a>();</div>
-<div class="line"><span class="lineno">  187</span> </div>
-<div class="line"><span class="lineno">  188</span>        <span class="keywordflow">if</span> (current_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>) {</div>
-<div class="line"><span class="lineno">  189</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">rejected_calls</a>++;</div>
-<div class="line"><span class="lineno">  190</span>            <span class="keywordflow">return</span> common::make_error&lt;T&gt;(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaeaea2bb7fff1770e1947ec04f021aee9">monitoring_error_code::circuit_breaker_open</a>),</div>
-<div class="line"><span class="lineno">  191</span>                               <span class="stringliteral">&quot;Circuit breaker &#39;&quot;</span> + <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a> + <span class="stringliteral">&quot;&#39; is open&quot;</span>);</div>
-<div class="line"><span class="lineno">  192</span>        }</div>
-<div class="line"><span class="lineno">  193</span> </div>
-<div class="line"><span class="lineno">  194</span>        <span class="keyword">auto</span> op_result = func();</div>
-<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">if</span> (op_result.is_ok()) {</div>
-<div class="line"><span class="lineno">  196</span>            <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456">on_success</a>();</div>
-<div class="line"><span class="lineno">  197</span>            <span class="keywordflow">return</span> op_result;</div>
-<div class="line"><span class="lineno">  198</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  199</span>            <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d">on_failure</a>();</div>
-<div class="line"><span class="lineno">  200</span>            <span class="keywordflow">return</span> op_result;</div>
-<div class="line"><span class="lineno">  201</span>        }</div>
-<div class="line"><span class="lineno">  202</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a3ee6d9251f5c1f4ed929e9682f70aeeb"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">kcenon::monitoring::circuit_breaker::metrics_</a></div><div class="ttdeci">circuit_breaker_metrics metrics_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00338">circuit_breaker.h:338</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a53ea63c1ac08a8b8362e77a41396c456"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456">kcenon::monitoring::circuit_breaker::on_success</a></div><div class="ttdeci">void on_success()</div><div class="ttdoc">Handle successful execution.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00269">circuit_breaker.h:269</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a596ef11c724a9b70bbd199004c52459d"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d">kcenon::monitoring::circuit_breaker::on_failure</a></div><div class="ttdeci">void on_failure()</div><div class="ttdoc">Handle failed execution.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00293">circuit_breaker.h:293</a></div></div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_ae8c79e4e1d3a0784f1186487b33c6dbf"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf">kcenon::monitoring::circuit_breaker::check_state</a></div><div class="ttdeci">circuit_state check_state()</div><div class="ttdoc">Check current state and handle timeout transitions.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00246">circuit_breaker.h:246</a></div></div>
+<div class="line"><span class="lineno">  186</span>        <span class="keyword">auto</span> op_result = func();</div>
+<div class="line"><span class="lineno">  187</span>        <span class="keywordflow">if</span> (op_result.is_ok()) {</div>
+<div class="line"><span class="lineno">  188</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;record_success();</div>
+<div class="line"><span class="lineno">  189</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a3ac387a4737dbe17368185366ea7b31c">successful_calls</a>++;</div>
+<div class="line"><span class="lineno">  190</span>            <span class="keywordflow">return</span> op_result;</div>
+<div class="line"><span class="lineno">  191</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  192</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;record_failure();</div>
+<div class="line"><span class="lineno">  193</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a69807145607ce73cbdb248f1f6de6c4b">failed_calls</a>++;</div>
+<div class="line"><span class="lineno">  194</span>            <span class="keywordflow">return</span> op_result;</div>
+<div class="line"><span class="lineno">  195</span>        }</div>
+<div class="line"><span class="lineno">  196</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a3ee6d9251f5c1f4ed929e9682f70aeeb"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">kcenon::monitoring::circuit_breaker::metrics_</a></div><div class="ttdeci">circuit_breaker_metrics metrics_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00251">circuit_breaker.h:251</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ab0f9a44e05c0521f5686fd2ac5d2c83eaeaea2bb7fff1770e1947ec04f021aee9"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eaeaea2bb7fff1770e1947ec04f021aee9">kcenon::monitoring::monitoring_error_code::circuit_breaker_open</a></div><div class="ttdeci">@ circuit_breaker_open</div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a15d0f2242f993ca3e45994f57f39119d"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">kcenon::monitoring::circuit_breaker_metrics::rejected_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; rejected_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00089">circuit_breaker.h:89</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a64628b5eab60ed0dc99677bc0b4538bd"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a64628b5eab60ed0dc99677bc0b4538bd">kcenon::monitoring::circuit_breaker_metrics::total_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; total_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00086">circuit_breaker.h:86</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a2a697cd9b9981a1c020bd88417057d10_cgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a2a697cd9b9981a1c020bd88417057d10_cgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a2a697cd9b9981a1c020bd88417057d10_cgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a2a697cd9b9981a1c020bd88417057d10_cgraph">
-<area shape="rect" title="Execute a function with circuit breaker protection." alt="" coords="5,77,191,117"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf" title="Check current state and handle timeout transitions." alt="" coords="239,5,451,45"/>
-<area shape="poly" title=" " alt="" coords="167,75,262,47,263,52,168,80"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d" title="Handle failed execution." alt="" coords="269,70,420,125"/>
-<area shape="poly" title=" " alt="" coords="191,95,256,95,256,100,191,100"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456" title="Handle successful execution." alt="" coords="269,149,420,203"/>
-<area shape="poly" title=" " alt="" coords="162,115,257,145,256,150,161,120"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="499,77,715,117"/>
-<area shape="poly" title=" " alt="" coords="419,43,521,71,519,76,418,48"/>
-<area shape="poly" title=" " alt="" coords="420,95,485,95,485,100,420,100"/>
-<area shape="poly" title=" " alt="" coords="420,151,525,119,527,124,421,156"/>
-</map>
-</div>
-
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a15d0f2242f993ca3e45994f57f39119d"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">kcenon::monitoring::circuit_breaker_metrics::rejected_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; rejected_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00080">circuit_breaker.h:80</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a3ac387a4737dbe17368185366ea7b31c"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a3ac387a4737dbe17368185366ea7b31c">kcenon::monitoring::circuit_breaker_metrics::successful_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; successful_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00078">circuit_breaker.h:78</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a64628b5eab60ed0dc99677bc0b4538bd"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a64628b5eab60ed0dc99677bc0b4538bd">kcenon::monitoring::circuit_breaker_metrics::total_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; total_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00077">circuit_breaker.h:77</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a69807145607ce73cbdb248f1f6de6c4b"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a69807145607ce73cbdb248f1f6de6c4b">kcenon::monitoring::circuit_breaker_metrics::failed_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; failed_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00079">circuit_breaker.h:79</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a637d6a76a071fc66145ae0b75bb4c23a" name="a637d6a76a071fc66145ae0b75bb4c23a"></a>
@@ -593,46 +449,28 @@ template&lt;typename Func , typename Fallback &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>common::Result&lt;T&gt; containing success value or error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00155">155</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  155</span>                                                              {</div>
-<div class="line"><span class="lineno">  156</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a64628b5eab60ed0dc99677bc0b4538bd">total_calls</a>++;</div>
-<div class="line"><span class="lineno">  157</span> </div>
-<div class="line"><span class="lineno">  158</span>        <span class="keyword">auto</span> current_state = <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf">check_state</a>();</div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">if</span> (current_state == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>) {</div>
-<div class="line"><span class="lineno">  161</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">rejected_calls</a>++;</div>
-<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>();</div>
-<div class="line"><span class="lineno">  163</span>        }</div>
-<div class="line"><span class="lineno">  164</span> </div>
-<div class="line"><span class="lineno">  165</span>        <span class="keyword">auto</span> op_result = func();</div>
-<div class="line"><span class="lineno">  166</span>        <span class="keywordflow">if</span> (op_result.is_ok()) {</div>
-<div class="line"><span class="lineno">  167</span>            <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456">on_success</a>();</div>
-<div class="line"><span class="lineno">  168</span>            <span class="keywordflow">return</span> op_result;</div>
-<div class="line"><span class="lineno">  169</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  170</span>            <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d">on_failure</a>();</div>
-<div class="line"><span class="lineno">  171</span>            <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>();</div>
-<div class="line"><span class="lineno">  172</span>        }</div>
-<div class="line"><span class="lineno">  173</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00149">149</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  149</span>                                                              {</div>
+<div class="line"><span class="lineno">  150</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a64628b5eab60ed0dc99677bc0b4538bd">total_calls</a>++;</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;allow_request()) {</div>
+<div class="line"><span class="lineno">  153</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">rejected_calls</a>++;</div>
+<div class="line"><span class="lineno">  154</span>            <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>();</div>
+<div class="line"><span class="lineno">  155</span>        }</div>
+<div class="line"><span class="lineno">  156</span> </div>
+<div class="line"><span class="lineno">  157</span>        <span class="keyword">auto</span> op_result = func();</div>
+<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">if</span> (op_result.is_ok()) {</div>
+<div class="line"><span class="lineno">  159</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;record_success();</div>
+<div class="line"><span class="lineno">  160</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a3ac387a4737dbe17368185366ea7b31c">successful_calls</a>++;</div>
+<div class="line"><span class="lineno">  161</span>            <span class="keywordflow">return</span> op_result;</div>
+<div class="line"><span class="lineno">  162</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  163</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;record_failure();</div>
+<div class="line"><span class="lineno">  164</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a69807145607ce73cbdb248f1f6de6c4b">failed_calls</a>++;</div>
+<div class="line"><span class="lineno">  165</span>            <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">fallback</a>();</div>
+<div class="line"><span class="lineno">  166</span>        }</div>
+<div class="line"><span class="lineno">  167</span>    }</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f93d3b8e902a252b11073cf6666b7cda4ccb1142ebdd7ca505d88c28df648283">kcenon::monitoring::error_boundary_policy::fallback</a></div><div class="ttdeci">@ fallback</div></div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a637d6a76a071fc66145ae0b75bb4c23a_cgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a637d6a76a071fc66145ae0b75bb4c23a_cgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a637d6a76a071fc66145ae0b75bb4c23a_cgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a637d6a76a071fc66145ae0b75bb4c23a_cgraph">
-<area shape="rect" title="Execute a function with circuit breaker protection and fallback." alt="" coords="5,77,191,117"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf" title="Check current state and handle timeout transitions." alt="" coords="239,5,451,45"/>
-<area shape="poly" title=" " alt="" coords="167,75,262,47,263,52,168,80"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d" title="Handle failed execution." alt="" coords="269,70,420,125"/>
-<area shape="poly" title=" " alt="" coords="191,95,256,95,256,100,191,100"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456" title="Handle successful execution." alt="" coords="269,149,420,203"/>
-<area shape="poly" title=" " alt="" coords="162,115,257,145,256,150,161,120"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="499,77,715,117"/>
-<area shape="poly" title=" " alt="" coords="419,43,521,71,519,76,418,48"/>
-<area shape="poly" title=" " alt="" coords="420,95,485,95,485,100,420,100"/>
-<area shape="poly" title=" " alt="" coords="420,151,525,119,527,124,421,156"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a637d6a76a071fc66145ae0b75bb4c23a_icgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a637d6a76a071fc66145ae0b75bb4c23a_icgraph" alt=""/></div>
@@ -693,13 +531,17 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Get current failure count. </p>
+<p>Get current failure count (approximation from stats) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00214">214</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  214</span>                                     {</div>
-<div class="line"><span class="lineno">  215</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">failure_count_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  216</span>    }</div>
-<div class="ttc" id="aclasskcenon_1_1monitoring_1_1circuit__breaker_html_a7307f09b46d167ff07c3dbf94ed1768d"><div class="ttname"><a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">kcenon::monitoring::circuit_breaker::failure_count_</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; failure_count_</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00332">circuit_breaker.h:332</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00208">208</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  208</span>                                     {</div>
+<div class="line"><span class="lineno">  209</span>        <span class="keyword">auto</span> stats = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;get_stats();</div>
+<div class="line"><span class="lineno">  210</span>        <span class="keyword">auto</span> it = stats.find(<span class="stringliteral">&quot;failure_count&quot;</span>);</div>
+<div class="line"><span class="lineno">  211</span>        <span class="keywordflow">if</span> (it != stats.end() &amp;&amp; std::holds_alternative&lt;std::int64_t&gt;(it-&gt;second)) {</div>
+<div class="line"><span class="lineno">  212</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(std::get&lt;std::int64_t&gt;(it-&gt;second));</div>
+<div class="line"><span class="lineno">  213</span>        }</div>
+<div class="line"><span class="lineno">  214</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  215</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -730,10 +572,10 @@ template&lt;typename T  = void&gt; </div>
 
 <p>Get circuit breaker metrics. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00221">221</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  221</span>                                                {</div>
-<div class="line"><span class="lineno">  222</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>;</div>
-<div class="line"><span class="lineno">  223</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00220">220</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  220</span>                                                {</div>
+<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>;</div>
+<div class="line"><span class="lineno">  222</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -783,10 +625,10 @@ template&lt;typename T  = void&gt; </div>
 
 <p>Get circuit breaker name. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00228">228</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  228</span>                                      {</div>
-<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>;</div>
-<div class="line"><span class="lineno">  230</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00227">227</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  227</span>                                      {</div>
+<div class="line"><span class="lineno">  228</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a16afea8294bc47952900e2b1ed301ab3">name_</a>;</div>
+<div class="line"><span class="lineno">  229</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -802,7 +644,7 @@ template&lt;typename T  = void&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a> <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::get_state </td>
+          <td class="memname"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4acaff64b280341d038f255426f66ca3">circuit_state</a> <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::get_state </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -817,10 +659,10 @@ template&lt;typename T  = void&gt; </div>
 
 <p>Get current circuit state. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00207">207</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  207</span>                                    {</div>
-<div class="line"><span class="lineno">  208</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  209</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00201">201</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  201</span>                                    {</div>
+<div class="line"><span class="lineno">  202</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a>-&gt;get_state();</div>
+<div class="line"><span class="lineno">  203</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -845,211 +687,6 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="383,240,331,298,298,329,261,356,220,373,218,368,259,351,294,325,327,295,379,236"/>
 <area shape="rect" href="../../d2/d84/health__reliability__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,60,38"/>
 <area shape="poly" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a596ef11c724a9b70bbd199004c52459d" name="a596ef11c724a9b70bbd199004c52459d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a596ef11c724a9b70bbd199004c52459d">&#9670;&#160;</a></span>on_failure()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::on_failure </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Handle failed execution. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00293">293</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  293</span>                      {</div>
-<div class="line"><span class="lineno">  294</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a69807145607ce73cbdb248f1f6de6c4b">failed_calls</a>++;</div>
-<div class="line"><span class="lineno">  295</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae41461159840828e94780de3c3890600">last_failure_time_</a>.store(clock::now(), std::memory_order_release);</div>
-<div class="line"><span class="lineno">  296</span> </div>
-<div class="line"><span class="lineno">  297</span>        <span class="keyword">auto</span> current = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  298</span> </div>
-<div class="line"><span class="lineno">  299</span>        <span class="keywordflow">if</span> (current == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">circuit_state::half_open</a>) {</div>
-<div class="line"><span class="lineno">  300</span>            std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a126d8629640a1748dee52fa46f6ba172">state_mutex_</a>);</div>
-<div class="line"><span class="lineno">  301</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire) == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">circuit_state::half_open</a>) {</div>
-<div class="line"><span class="lineno">  302</span>                <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712">transition_to</a>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>);</div>
-<div class="line"><span class="lineno">  303</span>                <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a99ce8424654789522e765d1a940512f4">consecutive_successes_</a>.store(0, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  304</span>            }</div>
-<div class="line"><span class="lineno">  305</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (current == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a>) {</div>
-<div class="line"><span class="lineno">  306</span>            <span class="keyword">auto</span> failures = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">failure_count_</a>.fetch_add(1, std::memory_order_acq_rel) + 1;</div>
-<div class="line"><span class="lineno">  307</span> </div>
-<div class="line"><span class="lineno">  308</span>            <span class="keywordflow">if</span> (failures &gt;= <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a>) {</div>
-<div class="line"><span class="lineno">  309</span>                std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a126d8629640a1748dee52fa46f6ba172">state_mutex_</a>);</div>
-<div class="line"><span class="lineno">  310</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire) == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a> &amp;&amp;</div>
-<div class="line"><span class="lineno">  311</span>                    <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">failure_count_</a>.load(std::memory_order_acquire) &gt;= <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a>) {</div>
-<div class="line"><span class="lineno">  312</span>                    <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712">transition_to</a>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">circuit_state::open</a>);</div>
-<div class="line"><span class="lineno">  313</span>                }</div>
-<div class="line"><span class="lineno">  314</span>            }</div>
-<div class="line"><span class="lineno">  315</span>        }</div>
-<div class="line"><span class="lineno">  316</span>    }</div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">kcenon::monitoring::circuit_state::closed</a></div><div class="ttdeci">@ closed</div><div class="ttdoc">Normal operation, requests are allowed.</div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ad9b2e2d082a0b5b27861de5590f917a2"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">kcenon::monitoring::circuit_breaker_config::failure_threshold</a></div><div class="ttdeci">size_t failure_threshold</div><div class="ttdoc">Number of failures before opening.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00062">circuit_breaker.h:62</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a69807145607ce73cbdb248f1f6de6c4b"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a69807145607ce73cbdb248f1f6de6c4b">kcenon::monitoring::circuit_breaker_metrics::failed_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; failed_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00088">circuit_breaker.h:88</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_cgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_cgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_cgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_cgraph">
-<area shape="rect" title="Handle failed execution." alt="" coords="5,5,156,60"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="204,13,420,53"/>
-<area shape="poly" title=" " alt="" coords="156,30,190,30,190,35,156,35"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_icgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_icgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_icgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a596ef11c724a9b70bbd199004c52459d_icgraph">
-<area shape="rect" title="Handle failed execution." alt="" coords="565,235,716,290"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a2a697cd9b9981a1c020bd88417057d10" title="Execute a function with circuit breaker protection." alt="" coords="332,211,517,251"/>
-<area shape="poly" title=" " alt="" coords="552,252,517,247,518,242,553,247"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a637d6a76a071fc66145ae0b75bb4c23a" title="Execute a function with circuit breaker protection and fallback." alt="" coords="332,275,517,315"/>
-<area shape="poly" title=" " alt="" coords="553,278,518,284,517,278,552,273"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#a8bfc1a7efa3a960d500cf0f98f36d486" title=" " alt="" coords="120,5,272,45"/>
-<area shape="poly" title=" " alt="" coords="334,268,330,264,312,238,304,211,303,186,305,160,307,135,306,110,299,85,282,59,268,48,272,43,286,56,304,82,311,109,313,135,310,160,308,186,309,211,317,236,334,261,338,265"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ab7e32a7c3dc99cfab361ea91267b5dfa" title=" " alt="" coords="108,69,284,109"/>
-<area shape="poly" title=" " alt="" coords="334,268,330,264,316,246,309,228,305,192,302,157,295,140,282,123,267,112,270,107,286,119,300,138,307,156,311,192,314,227,321,244,334,261,338,264"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a5fc5e0d80d66bd405a7c20d88974f148" title=" " alt="" coords="161,134,231,159"/>
-<area shape="poly" title=" " alt="" coords="337,270,330,265,312,241,306,217,299,194,282,173,257,159,230,152,231,147,259,154,286,169,304,192,311,216,317,238,334,261,340,265"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ae66e18478e05441d8338348b0fee8c0c" title=" " alt="" coords="161,183,231,209"/>
-<area shape="poly" title=" " alt="" coords="342,271,331,265,316,254,306,243,297,232,283,222,257,211,230,204,231,199,258,206,285,218,300,228,310,239,319,250,333,260,345,267"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#af876caa94189f9615f8787caccc601c9" title=" " alt="" coords="161,233,231,258"/>
-<area shape="poly" title=" " alt="" coords="317,274,231,255,232,250,319,269"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a3851178db22611ff708e98e85fdd8de3" title=" " alt="" coords="161,282,231,307"/>
-<area shape="poly" title=" " alt="" coords="318,297,231,297,231,292,318,292"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a6a80b67c917d02951561eb306e003055" title=" " alt="" coords="161,331,231,357"/>
-<area shape="poly" title=" " alt="" coords="319,320,232,339,231,334,317,315"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ab0108d7569f7c5775587720f3597a9e8" title=" " alt="" coords="161,381,231,406"/>
-<area shape="poly" title=" " alt="" coords="379,324,285,370,232,388,230,383,283,366,377,319"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a1c8d214bf61bafc8f1d2fb5fb617826f" title=" " alt="" coords="161,430,231,455"/>
-<area shape="poly" title=" " alt="" coords="398,327,349,375,318,399,285,420,258,431,232,439,230,434,257,426,283,415,315,394,345,370,395,323"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a0548ce1e00f3c96a5ddf2bc9d323e13a" title=" " alt="" coords="161,479,231,505"/>
-<area shape="poly" title=" " alt="" coords="408,328,359,399,325,437,285,469,259,482,232,490,230,484,257,477,283,464,321,433,355,396,404,325"/>
-<area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html#ae5f4fd19dd4d35e662f8ca4a44fc2549" title=" " alt="" coords="161,529,231,554"/>
-<area shape="poly" title=" " alt="" coords="414,329,395,372,367,423,331,474,286,518,259,532,231,540,230,535,257,527,282,514,327,471,363,420,390,370,409,327"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,45,60,70"/>
-<area shape="poly" title=" " alt="" coords="107,45,61,55,60,50,106,40"/>
-<area shape="poly" title=" " alt="" coords="94,72,60,65,61,60,95,67"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a53ea63c1ac08a8b8362e77a41396c456" name="a53ea63c1ac08a8b8362e77a41396c456"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53ea63c1ac08a8b8362e77a41396c456">&#9670;&#160;</a></span>on_success()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::on_success </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Handle successful execution. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00269">269</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  269</span>                      {</div>
-<div class="line"><span class="lineno">  270</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a3ac387a4737dbe17368185366ea7b31c">successful_calls</a>++;</div>
-<div class="line"><span class="lineno">  271</span> </div>
-<div class="line"><span class="lineno">  272</span>        <span class="keyword">auto</span> current = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  273</span> </div>
-<div class="line"><span class="lineno">  274</span>        <span class="keywordflow">if</span> (current == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">circuit_state::half_open</a>) {</div>
-<div class="line"><span class="lineno">  275</span>            <span class="keyword">auto</span> successes = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a99ce8424654789522e765d1a940512f4">consecutive_successes_</a>.fetch_add(1, std::memory_order_acq_rel) + 1;</div>
-<div class="line"><span class="lineno">  276</span> </div>
-<div class="line"><span class="lineno">  277</span>            <span class="keywordflow">if</span> (successes &gt;= <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">success_threshold</a>) {</div>
-<div class="line"><span class="lineno">  278</span>                std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a126d8629640a1748dee52fa46f6ba172">state_mutex_</a>);</div>
-<div class="line"><span class="lineno">  279</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire) == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">circuit_state::half_open</a>) {</div>
-<div class="line"><span class="lineno">  280</span>                    <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712">transition_to</a>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a>);</div>
-<div class="line"><span class="lineno">  281</span>                    <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">failure_count_</a>.store(0, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  282</span>                    <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a99ce8424654789522e765d1a940512f4">consecutive_successes_</a>.store(0, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  283</span>                }</div>
-<div class="line"><span class="lineno">  284</span>            }</div>
-<div class="line"><span class="lineno">  285</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (current == <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a>) {</div>
-<div class="line"><span class="lineno">  286</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">failure_count_</a>.store(0, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  287</span>        }</div>
-<div class="line"><span class="lineno">  288</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ae65aa87b580a625079e153349191d5fe"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">kcenon::monitoring::circuit_breaker_config::success_threshold</a></div><div class="ttdeci">size_t success_threshold</div><div class="ttdoc">Successes in half_open to close.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00065">circuit_breaker.h:65</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_a3ac387a4737dbe17368185366ea7b31c"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a3ac387a4737dbe17368185366ea7b31c">kcenon::monitoring::circuit_breaker_metrics::successful_calls</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; successful_calls</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00087">circuit_breaker.h:87</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_cgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_cgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_cgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_cgraph">
-<area shape="rect" title="Handle successful execution." alt="" coords="5,5,156,60"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="204,13,420,53"/>
-<area shape="poly" title=" " alt="" coords="156,30,190,30,190,35,156,35"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_icgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_icgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_icgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a53ea63c1ac08a8b8362e77a41396c456_icgraph">
-<area shape="rect" title="Handle successful execution." alt="" coords="565,235,716,290"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a2a697cd9b9981a1c020bd88417057d10" title="Execute a function with circuit breaker protection." alt="" coords="332,211,517,251"/>
-<area shape="poly" title=" " alt="" coords="552,252,517,247,518,242,553,247"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a637d6a76a071fc66145ae0b75bb4c23a" title="Execute a function with circuit breaker protection and fallback." alt="" coords="332,275,517,315"/>
-<area shape="poly" title=" " alt="" coords="553,278,518,284,517,278,552,273"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#a8bfc1a7efa3a960d500cf0f98f36d486" title=" " alt="" coords="120,5,272,45"/>
-<area shape="poly" title=" " alt="" coords="334,268,330,264,312,238,304,211,303,186,305,160,307,135,306,110,299,85,282,59,268,48,272,43,286,56,304,82,311,109,313,135,310,160,308,186,309,211,317,236,334,261,338,265"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ab7e32a7c3dc99cfab361ea91267b5dfa" title=" " alt="" coords="108,69,284,109"/>
-<area shape="poly" title=" " alt="" coords="334,268,330,264,316,246,309,228,305,192,302,157,295,140,282,123,267,112,270,107,286,119,300,138,307,156,311,192,314,227,321,244,334,261,338,264"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a5fc5e0d80d66bd405a7c20d88974f148" title=" " alt="" coords="161,134,231,159"/>
-<area shape="poly" title=" " alt="" coords="337,270,330,265,312,241,306,217,299,194,282,173,257,159,230,152,231,147,259,154,286,169,304,192,311,216,317,238,334,261,340,265"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ae66e18478e05441d8338348b0fee8c0c" title=" " alt="" coords="161,183,231,209"/>
-<area shape="poly" title=" " alt="" coords="342,271,331,265,316,254,306,243,297,232,283,222,257,211,230,204,231,199,258,206,285,218,300,228,310,239,319,250,333,260,345,267"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#af876caa94189f9615f8787caccc601c9" title=" " alt="" coords="161,233,231,258"/>
-<area shape="poly" title=" " alt="" coords="317,274,231,255,232,250,319,269"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a3851178db22611ff708e98e85fdd8de3" title=" " alt="" coords="161,282,231,307"/>
-<area shape="poly" title=" " alt="" coords="318,297,231,297,231,292,318,292"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a6a80b67c917d02951561eb306e003055" title=" " alt="" coords="161,331,231,357"/>
-<area shape="poly" title=" " alt="" coords="319,320,232,339,231,334,317,315"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ab0108d7569f7c5775587720f3597a9e8" title=" " alt="" coords="161,381,231,406"/>
-<area shape="poly" title=" " alt="" coords="379,324,285,370,232,388,230,383,283,366,377,319"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a1c8d214bf61bafc8f1d2fb5fb617826f" title=" " alt="" coords="161,430,231,455"/>
-<area shape="poly" title=" " alt="" coords="398,327,349,375,318,399,285,420,258,431,232,439,230,434,257,426,283,415,315,394,345,370,395,323"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a0548ce1e00f3c96a5ddf2bc9d323e13a" title=" " alt="" coords="161,479,231,505"/>
-<area shape="poly" title=" " alt="" coords="408,328,359,399,325,437,285,469,259,482,232,490,230,484,257,477,283,464,321,433,355,396,404,325"/>
-<area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html#ae5f4fd19dd4d35e662f8ca4a44fc2549" title=" " alt="" coords="161,529,231,554"/>
-<area shape="poly" title=" " alt="" coords="414,329,395,372,367,423,331,474,286,518,259,532,231,540,230,535,257,527,282,514,327,471,363,420,390,370,409,327"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,45,60,70"/>
-<area shape="poly" title=" " alt="" coords="107,45,61,55,60,50,106,40"/>
-<area shape="poly" title=" " alt="" coords="94,72,60,65,61,60,95,67"/>
 </map>
 </div>
 
@@ -1082,24 +719,21 @@ template&lt;typename T  = void&gt; </div>
 
 <p>Manually reset circuit to closed state. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00235">235</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  235</span>                 {</div>
-<div class="line"><span class="lineno">  236</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a126d8629640a1748dee52fa46f6ba172">state_mutex_</a>);</div>
-<div class="line"><span class="lineno">  237</span>        <a class="code hl_function" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712">transition_to</a>(<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a>);</div>
-<div class="line"><span class="lineno">  238</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a7307f09b46d167ff07c3dbf94ed1768d">failure_count_</a>.store(0, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  239</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a99ce8424654789522e765d1a940512f4">consecutive_successes_</a>.store(0, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  240</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00234">234</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  234</span>                 {</div>
+<div class="line"><span class="lineno">  235</span>        <span class="comment">// common_system circuit_breaker doesn&#39;t expose reset()</span></div>
+<div class="line"><span class="lineno">  236</span>        <span class="comment">// Recreate the instance to reset state</span></div>
+<div class="line"><span class="lineno">  237</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a60ce25a5d24d671870624e341eb76455">impl_</a> = std::make_unique&lt;common::resilience::circuit_breaker&gt;(<a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a9dcaaa0c1d68d643a244dd5d22d020c2">config_</a>.<a class="code hl_function" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a85ce682c1a176594d325a03e71921478">to_common</a>());</div>
+<div class="line"><span class="lineno">  238</span> </div>
+<div class="line"><span class="lineno">  239</span>        <span class="comment">// Reset metrics</span></div>
+<div class="line"><span class="lineno">  240</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a64628b5eab60ed0dc99677bc0b4538bd">total_calls</a> = 0;</div>
+<div class="line"><span class="lineno">  241</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a3ac387a4737dbe17368185366ea7b31c">successful_calls</a> = 0;</div>
+<div class="line"><span class="lineno">  242</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a69807145607ce73cbdb248f1f6de6c4b">failed_calls</a> = 0;</div>
+<div class="line"><span class="lineno">  243</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#a15d0f2242f993ca3e45994f57f39119d">rejected_calls</a> = 0;</div>
+<div class="line"><span class="lineno">  244</span>        <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#aaabf84ed73e5c3c3dcbbc62d7554914c">state_transitions</a> = 0;</div>
+<div class="line"><span class="lineno">  245</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_aaabf84ed73e5c3c3dcbbc62d7554914c"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#aaabf84ed73e5c3c3dcbbc62d7554914c">kcenon::monitoring::circuit_breaker_metrics::state_transitions</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; state_transitions</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00081">circuit_breaker.h:81</a></div></div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a060f1d6129c224cc4e29ac3bcb04a8ab_cgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a060f1d6129c224cc4e29ac3bcb04a8ab_cgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a060f1d6129c224cc4e29ac3bcb04a8ab_cgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a060f1d6129c224cc4e29ac3bcb04a8ab_cgraph">
-<area shape="rect" title="Manually reset circuit to closed state." alt="" coords="5,5,172,45"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a1502c21224593b1f4c64be51d50da712" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="220,5,436,45"/>
-<area shape="poly" title=" " alt="" coords="172,23,206,23,206,28,172,28"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a060f1d6129c224cc4e29ac3bcb04a8ab_icgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a060f1d6129c224cc4e29ac3bcb04a8ab_icgraph" alt=""/></div>
@@ -1107,96 +741,6 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Manually reset circuit to closed state." alt="" coords="123,5,289,45"/>
 <area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a1c8d214bf61bafc8f1d2fb5fb617826f" title=" " alt="" coords="5,13,75,38"/>
 <area shape="poly" title=" " alt="" coords="109,28,75,28,75,23,109,23"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a1502c21224593b1f4c64be51d50da712" name="a1502c21224593b1f4c64be51d50da712"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1502c21224593b1f4c64be51d50da712">&#9670;&#160;</a></span>transition_to()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::transition_to </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a>&#160;</td>
-          <td class="paramname"><em>new_state</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Transition to a new state (must be called with state_mutex_ held) </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00321">321</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  321</span>                                                {</div>
-<div class="line"><span class="lineno">  322</span>        <span class="keyword">auto</span> old_state = <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.load(std::memory_order_acquire);</div>
-<div class="line"><span class="lineno">  323</span>        <span class="keywordflow">if</span> (old_state != new_state) {</div>
-<div class="line"><span class="lineno">  324</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a25af01103049339bed3d59ddf374d145">state_</a>.store(new_state, std::memory_order_release);</div>
-<div class="line"><span class="lineno">  325</span>            <a class="code hl_variable" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a3ee6d9251f5c1f4ed929e9682f70aeeb">metrics_</a>.<a class="code hl_variable" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#aaabf84ed73e5c3c3dcbbc62d7554914c">state_transitions</a>++;</div>
-<div class="line"><span class="lineno">  326</span>        }</div>
-<div class="line"><span class="lineno">  327</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__metrics_html_aaabf84ed73e5c3c3dcbbc62d7554914c"><div class="ttname"><a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#aaabf84ed73e5c3c3dcbbc62d7554914c">kcenon::monitoring::circuit_breaker_metrics::state_transitions</a></div><div class="ttdeci">std::atomic&lt; size_t &gt; state_transitions</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00090">circuit_breaker.h:90</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a1502c21224593b1f4c64be51d50da712_icgraph.png" border="0" usemap="#ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a1502c21224593b1f4c64be51d50da712_icgraph" alt=""/></div>
-<map name="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a1502c21224593b1f4c64be51d50da712_icgraph" id="ad0/d38/classkcenon_1_1monitoring_1_1circuit__breaker_a1502c21224593b1f4c64be51d50da712_icgraph">
-<area shape="rect" title="Transition to a new state (must be called with state_mutex_ held)" alt="" coords="825,385,1041,425"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#ae8c79e4e1d3a0784f1186487b33c6dbf" title="Check current state and handle timeout transitions." alt="" coords="565,273,777,313"/>
-<area shape="poly" title=" " alt="" coords="884,380,833,353,776,327,744,315,746,310,778,322,835,348,887,375"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a596ef11c724a9b70bbd199004c52459d" title="Handle failed execution." alt="" coords="596,337,747,392"/>
-<area shape="poly" title=" " alt="" coords="811,389,747,379,747,373,812,383"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a53ea63c1ac08a8b8362e77a41396c456" title="Handle successful execution." alt="" coords="596,416,747,471"/>
-<area shape="poly" title=" " alt="" coords="812,425,747,435,747,430,811,420"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a060f1d6129c224cc4e29ac3bcb04a8ab" title="Manually reset circuit to closed state." alt="" coords="341,517,508,557"/>
-<area shape="poly" title=" " alt="" coords="890,434,837,462,778,486,708,505,637,519,509,534,508,529,636,513,707,500,776,481,835,457,887,429"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a2a697cd9b9981a1c020bd88417057d10" title="Execute a function with circuit breaker protection." alt="" coords="332,345,517,385"/>
-<area shape="poly" title=" " alt="" coords="590,319,495,347,493,342,588,314"/>
-<area shape="rect" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#a637d6a76a071fc66145ae0b75bb4c23a" title="Execute a function with circuit breaker protection and fallback." alt="" coords="332,278,517,318"/>
-<area shape="poly" title=" " alt="" coords="552,298,517,299,517,293,552,293"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#a8bfc1a7efa3a960d500cf0f98f36d486" title=" " alt="" coords="120,218,272,258"/>
-<area shape="poly" title=" " alt="" coords="333,277,272,260,273,255,335,272"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ab7e32a7c3dc99cfab361ea91267b5dfa" title=" " alt="" coords="108,154,284,194"/>
-<area shape="poly" title=" " alt="" coords="384,272,337,240,283,208,256,197,258,192,285,204,340,235,387,268"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a5fc5e0d80d66bd405a7c20d88974f148" title=" " alt="" coords="161,283,231,308"/>
-<area shape="poly" title=" " alt="" coords="318,299,231,298,231,293,318,294"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ae66e18478e05441d8338348b0fee8c0c" title=" " alt="" coords="161,332,231,357"/>
-<area shape="poly" title=" " alt="" coords="319,322,232,340,231,335,317,317"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#af876caa94189f9615f8787caccc601c9" title=" " alt="" coords="161,381,231,407"/>
-<area shape="poly" title=" " alt="" coords="352,326,333,335,310,353,285,371,232,390,230,385,283,366,307,349,331,330,350,321"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a3851178db22611ff708e98e85fdd8de3" title=" " alt="" coords="161,431,231,456"/>
-<area shape="poly" title=" " alt="" coords="344,327,334,335,318,355,311,377,304,399,286,420,259,435,232,442,230,437,257,430,282,416,299,396,306,375,313,353,330,331,341,323"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a6a80b67c917d02951561eb306e003055" title=" " alt="" coords="161,480,231,505"/>
-<area shape="poly" title=" " alt="" coords="342,328,334,334,321,351,315,368,311,402,308,436,300,454,286,471,260,486,232,493,230,488,258,481,282,467,295,451,302,435,306,401,310,366,317,349,330,331,338,324"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#ab0108d7569f7c5775587720f3597a9e8" title=" " alt="" coords="161,5,231,31"/>
-<area shape="poly" title=" " alt="" coords="412,266,395,216,369,156,331,95,308,68,282,44,257,31,230,24,232,18,259,26,286,40,312,64,335,92,373,154,400,214,417,264"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a1c8d214bf61bafc8f1d2fb5fb617826f" title=" " alt="" coords="161,529,231,555"/>
-<area shape="poly" title=" " alt="" coords="341,328,334,334,318,357,312,380,312,426,313,449,311,473,303,496,286,520,260,536,232,543,230,538,258,531,282,516,299,494,306,472,308,449,306,426,306,379,314,355,330,331,337,324"/>
-<area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a0548ce1e00f3c96a5ddf2bc9d323e13a" title=" " alt="" coords="161,55,231,80"/>
-<area shape="poly" title=" " alt="" coords="408,266,388,226,361,179,325,133,282,94,257,81,230,74,232,68,259,76,286,89,329,129,365,176,393,224,412,264"/>
-<area shape="rect" href="../../d1/d9b/test__integration__e2e_8cpp.html#ae5f4fd19dd4d35e662f8ca4a44fc2549" title=" " alt="" coords="161,104,231,129"/>
-<area shape="poly" title=" " alt="" coords="401,268,352,205,319,172,283,144,257,132,230,124,232,119,259,127,285,140,323,168,356,201,405,265"/>
-<area shape="rect" href="../../de/ddf/graceful__degradation__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,193,60,219"/>
-<area shape="poly" title=" " alt="" coords="106,223,60,214,61,209,107,218"/>
-<area shape="poly" title=" " alt="" coords="95,197,61,203,60,198,94,191"/>
-<area shape="poly" title=" " alt="" coords="582,367,518,367,518,362,582,362"/>
-<area shape="poly" title=" " alt="" coords="582,343,499,321,500,315,583,338"/>
-<area shape="poly" title=" " alt="" coords="582,418,487,387,489,382,584,413"/>
-<area shape="poly" title=" " alt="" coords="582,418,564,405,547,387,539,369,531,352,516,335,492,320,495,316,519,331,535,349,544,367,552,384,567,401,585,413"/>
-<area shape="poly" title=" " alt="" coords="328,542,231,544,231,539,327,536"/>
 </map>
 </div>
 
@@ -1225,12 +769,12 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00330">330</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00249">249</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
-<a id="a99ce8424654789522e765d1a940512f4" name="a99ce8424654789522e765d1a940512f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99ce8424654789522e765d1a940512f4">&#9670;&#160;</a></span>consecutive_successes_</h2>
+<a id="a60ce25a5d24d671870624e341eb76455" name="a60ce25a5d24d671870624e341eb76455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ce25a5d24d671870624e341eb76455">&#9670;&#160;</a></span>impl_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1241,7 +785,7 @@ template&lt;typename T  = void&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::atomic&lt;size_t&gt; <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::consecutive_successes_ {0}</td>
+          <td class="memname">std::unique_ptr&lt;common::resilience::circuit_breaker&gt; <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::impl_</td>
         </tr>
       </table>
   </td>
@@ -1251,63 +795,8 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00333">333</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  333</span>{0};</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a7307f09b46d167ff07c3dbf94ed1768d" name="a7307f09b46d167ff07c3dbf94ed1768d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7307f09b46d167ff07c3dbf94ed1768d">&#9670;&#160;</a></span>failure_count_</h2>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00250">250</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::atomic&lt;size_t&gt; <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::failure_count_ {0}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00332">332</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  332</span>{0};</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ae41461159840828e94780de3c3890600" name="ae41461159840828e94780de3c3890600"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae41461159840828e94780de3c3890600">&#9670;&#160;</a></span>last_failure_time_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::atomic&lt;clock::time_point&gt; <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::last_failure_time_ {clock::now()}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00335">335</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  335</span>{clock::now()};</div>
-</div><!-- fragment -->
 </div>
 </div>
 <a id="a3ee6d9251f5c1f4ed929e9682f70aeeb" name="a3ee6d9251f5c1f4ed929e9682f70aeeb"></a>
@@ -1332,7 +821,7 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00338">338</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00251">251</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -1358,60 +847,7 @@ template&lt;typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00329">329</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-
-</div>
-</div>
-<a id="a25af01103049339bed3d59ddf374d145" name="a25af01103049339bed3d59ddf374d145"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25af01103049339bed3d59ddf374d145">&#9670;&#160;</a></span>state_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::atomic&lt;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a>&gt; <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::state_ {<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a>}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00334">334</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  334</span>{<a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">circuit_state::closed</a>};</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a126d8629640a1748dee52fa46f6ba172" name="a126d8629640a1748dee52fa46f6ba172"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a126d8629640a1748dee52fa46f6ba172">&#9670;&#160;</a></span>state_mutex_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::mutex <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker</a>&lt; T &gt;::state_mutex_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00337">337</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00248">248</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -1421,7 +857,7 @@ template&lt;typename T  = void&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 12:13:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 12:24:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

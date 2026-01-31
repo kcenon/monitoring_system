@@ -76,47 +76,42 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle"><div class="title">circuit_breaker.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;atomic&gt;</code><br />
-<code>#include &lt;chrono&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
-<code>#include &lt;mutex&gt;</code><br />
-<code>#include &lt;stdexcept&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &lt;kcenon/common/resilience/circuit_breaker.h&gt;</code><br />
+<code>#include &lt;kcenon/common/resilience/circuit_state.h&gt;</code><br />
+<code>#include &lt;kcenon/common/resilience/circuit_breaker_config.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../d1/d7d/result__types_8h_source.html">kcenon/monitoring/core/result_types.h</a>&quot;</code><br />
+<code>#include &lt;memory&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for circuit_breaker.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d99/circuit__breaker_8h__incl.png" border="0" usemap="#ainclude_2kcenon_2monitoring_2reliability_2circuit__breaker_8h" alt=""/></div>
 <map name="ainclude_2kcenon_2monitoring_2reliability_2circuit__breaker_8h" id="ainclude_2kcenon_2monitoring_2reliability_2circuit__breaker_8h">
-<area shape="rect" title=" " alt="" coords="231,5,430,45"/>
-<area shape="rect" title=" " alt="" coords="5,101,72,126"/>
-<area shape="poly" title=" " alt="" coords="252,48,171,70,85,96,78,98,77,93,83,91,169,64,250,43"/>
-<area shape="rect" title=" " alt="" coords="96,101,163,126"/>
-<area shape="poly" title=" " alt="" coords="288,48,170,98,168,93,285,43"/>
-<area shape="rect" title=" " alt="" coords="187,101,274,126"/>
-<area shape="poly" title=" " alt="" coords="310,48,257,93,253,89,307,44"/>
-<area shape="rect" title=" " alt="" coords="299,101,363,126"/>
-<area shape="poly" title=" " alt="" coords="333,46,333,87,328,87,328,46"/>
-<area shape="rect" title=" " alt="" coords="387,101,474,126"/>
-<area shape="poly" title=" " alt="" coords="355,44,408,89,405,93,351,48"/>
-<area shape="rect" title=" " alt="" coords="533,269,592,295"/>
-<area shape="poly" title=" " alt="" coords="406,43,449,63,487,91,517,131,538,176,553,219,561,255,556,256,548,220,534,178,513,134,483,95,446,67,403,48"/>
-<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="568,93,744,133"/>
-<area shape="poly" title=" " alt="" coords="403,43,572,87,571,92,401,48"/>
-<area shape="poly" title=" " alt="" coords="633,136,611,157,592,183,576,220,568,256,563,255,571,218,587,180,607,153,629,132"/>
-<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="601,189,711,214"/>
-<area shape="poly" title=" " alt="" coords="659,134,659,175,653,175,653,134"/>
-<area shape="rect" title=" " alt="" coords="735,181,923,221"/>
-<area shape="poly" title=" " alt="" coords="695,131,781,173,778,178,693,136"/>
-<area shape="rect" title=" " alt="" coords="948,189,1023,214"/>
-<area shape="poly" title=" " alt="" coords="745,130,838,152,937,179,945,181,943,186,935,184,837,157,744,135"/>
-<area shape="poly" title=" " alt="" coords="644,216,589,262,585,258,641,212"/>
-<area shape="rect" title=" " alt="" coords="623,269,689,295"/>
-<area shape="poly" title=" " alt="" coords="659,214,659,255,653,255,653,214"/>
+<area shape="rect" title=" " alt="" coords="447,5,646,45"/>
+<area shape="rect" title=" " alt="" coords="5,93,203,133"/>
+<area shape="poly" title=" " alt="" coords="450,48,215,93,214,88,449,43"/>
+<area shape="rect" title=" " alt="" coords="227,93,424,133"/>
+<area shape="poly" title=" " alt="" coords="499,48,387,91,385,86,497,43"/>
+<area shape="rect" title=" " alt="" coords="448,93,645,133"/>
+<area shape="poly" title=" " alt="" coords="549,46,549,79,544,79,544,46"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="669,93,845,133"/>
+<area shape="poly" title=" " alt="" coords="594,43,700,86,698,91,592,48"/>
+<area shape="rect" title=" " alt="" coords="869,101,947,126"/>
+<area shape="poly" title=" " alt="" coords="647,42,749,63,858,91,867,94,866,99,857,96,748,68,646,47"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="542,189,653,214"/>
+<area shape="poly" title=" " alt="" coords="723,136,632,185,629,180,721,131"/>
+<area shape="rect" title=" " alt="" coords="657,269,716,295"/>
+<area shape="poly" title=" " alt="" coords="746,135,720,182,705,221,695,257,690,256,700,220,715,180,742,133"/>
+<area shape="rect" title=" " alt="" coords="729,181,917,221"/>
+<area shape="poly" title=" " alt="" coords="774,132,802,169,798,172,770,135"/>
+<area shape="rect" title=" " alt="" coords="941,189,1016,214"/>
+<area shape="poly" title=" " alt="" coords="807,131,937,181,935,186,805,136"/>
+<area shape="rect" title=" " alt="" coords="564,269,631,295"/>
+<area shape="poly" title=" " alt="" coords="600,214,600,255,595,255,595,214"/>
+<area shape="poly" title=" " alt="" coords="612,212,665,258,662,262,609,216"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -148,16 +143,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html">kcenon::monitoring::circuit_breaker_config</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Circuit breaker configuration.  <a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html">kcenon::monitoring::circuit_breaker_metrics</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Circuit breaker metrics.  <a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/de6/classkcenon_1_1monitoring_1_1circuit__open__exception.html">kcenon::monitoring::circuit_open_exception</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception thrown when circuit breaker is open.  <a href="../../d8/de6/classkcenon_1_1monitoring_1_1circuit__open__exception.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">kcenon::monitoring::circuit_breaker&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe circuit breaker implementation.  <a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapter class for common_system <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html" title="Adapter class for common_system circuit_breaker with monitoring_system interface.">circuit_breaker</a> with monitoring_system interface.  <a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -167,19 +159,15 @@ Namespaces</h2></td></tr>
 <tr class="memitem:db/d50/namespacekcenon_1_1monitoring" id="r_db/d50/namespacekcenon_1_1monitoring"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:ace1993b179cabf2763451b7db758dcd3" id="r_ace1993b179cabf2763451b7db758dcd3"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">kcenon::monitoring::circuit_state</a> { <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">kcenon::monitoring::closed</a>
-, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">kcenon::monitoring::open</a>
-, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">kcenon::monitoring::half_open</a>
- }</td></tr>
-<tr class="memdesc:ace1993b179cabf2763451b7db758dcd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Circuit breaker states.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">More...</a><br /></td></tr>
-<tr class="separator:ace1993b179cabf2763451b7db758dcd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a4acaff64b280341d038f255426f66ca3" id="r_a4acaff64b280341d038f255426f66ca3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4acaff64b280341d038f255426f66ca3">kcenon::monitoring::circuit_state</a> = common::resilience::circuit_state</td></tr>
+<tr class="separator:a4acaff64b280341d038f255426f66ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 12:13:04 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 12:24:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

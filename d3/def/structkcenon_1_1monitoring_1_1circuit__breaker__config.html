@@ -81,45 +81,77 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Circuit breaker configuration.  
- <a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for kcenon::monitoring::circuit_breaker_config:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/dbb/structkcenon_1_1monitoring_1_1circuit__breaker__config__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1circuit__breaker__config_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1circuit__breaker__config_coll__map" id="akcenon_1_1monitoring_1_1circuit__breaker__config_coll__map">
-<area shape="rect" title="Circuit breaker configuration." alt="" coords="5,5,169,145"/>
+<area shape="rect" title=" " alt="" coords="5,5,169,165"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aff3453f1105695bed8e4cc3502aad832" id="r_aff3453f1105695bed8e4cc3502aad832"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#aff3453f1105695bed8e4cc3502aad832">validate</a> () const</td></tr>
-<tr class="memdesc:aff3453f1105695bed8e4cc3502aad832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate configuration.  <br /></td></tr>
 <tr class="separator:aff3453f1105695bed8e4cc3502aad832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ce682c1a176594d325a03e71921478" id="r_a85ce682c1a176594d325a03e71921478"><td class="memItemLeft" align="right" valign="top">common::resilience::circuit_breaker_config&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a85ce682c1a176594d325a03e71921478">to_common</a> () const</td></tr>
+<tr class="separator:a85ce682c1a176594d325a03e71921478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad9b2e2d082a0b5b27861de5590f917a2" id="r_ad9b2e2d082a0b5b27861de5590f917a2"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a> = 5</td></tr>
-<tr class="memdesc:ad9b2e2d082a0b5b27861de5590f917a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of failures before opening.  <br /></td></tr>
 <tr class="separator:ad9b2e2d082a0b5b27861de5590f917a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8d638ca6252eb954c1ba8d870957b43" id="r_ae8d638ca6252eb954c1ba8d870957b43"><td class="memItemLeft" align="right" valign="top">std::chrono::milliseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae8d638ca6252eb954c1ba8d870957b43">timeout</a> = std::chrono::milliseconds(30000)</td></tr>
-<tr class="memdesc:ae8d638ca6252eb954c1ba8d870957b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call timeout.  <br /></td></tr>
 <tr class="separator:ae8d638ca6252eb954c1ba8d870957b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b360c1d83507168e0e93b8d50c1b6a3" id="r_a6b360c1d83507168e0e93b8d50c1b6a3"><td class="memItemLeft" align="right" valign="top">std::chrono::milliseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a6b360c1d83507168e0e93b8d50c1b6a3">reset_timeout</a> = std::chrono::milliseconds(60000)</td></tr>
-<tr class="memdesc:a6b360c1d83507168e0e93b8d50c1b6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time before half_open.  <br /></td></tr>
 <tr class="separator:a6b360c1d83507168e0e93b8d50c1b6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae65aa87b580a625079e153349191d5fe" id="r_ae65aa87b580a625079e153349191d5fe"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">success_threshold</a> = 3</td></tr>
-<tr class="memdesc:ae65aa87b580a625079e153349191d5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Successes in half_open to close.  <br /></td></tr>
 <tr class="separator:ae65aa87b580a625079e153349191d5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Circuit breaker configuration. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00061">61</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00053">53</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a85ce682c1a176594d325a03e71921478" name="a85ce682c1a176594d325a03e71921478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85ce682c1a176594d325a03e71921478">&#9670;&#160;</a></span>to_common()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">common::resilience::circuit_breaker_config kcenon::monitoring::circuit_breaker_config::to_common </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00064">64</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>                                                             {</div>
+<div class="line"><span class="lineno">   65</span>        common::resilience::circuit_breaker_config config;</div>
+<div class="line"><span class="lineno">   66</span>        config.failure_threshold = <a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a>;</div>
+<div class="line"><span class="lineno">   67</span>        config.timeout = <a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a6b360c1d83507168e0e93b8d50c1b6a3">reset_timeout</a>;  <span class="comment">// OPEN -&gt; HALF_OPEN transition time</span></div>
+<div class="line"><span class="lineno">   68</span>        config.success_threshold = <a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">success_threshold</a>;</div>
+<div class="line"><span class="lineno">   69</span>        config.failure_window = std::chrono::seconds(60);  <span class="comment">// Default window</span></div>
+<div class="line"><span class="lineno">   70</span>        config.half_open_max_requests = <a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">success_threshold</a> + 1;  <span class="comment">// Allow enough requests for testing</span></div>
+<div class="line"><span class="lineno">   71</span>        <span class="keywordflow">return</span> config;</div>
+<div class="line"><span class="lineno">   72</span>    }</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_a6b360c1d83507168e0e93b8d50c1b6a3"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#a6b360c1d83507168e0e93b8d50c1b6a3">kcenon::monitoring::circuit_breaker_config::reset_timeout</a></div><div class="ttdeci">std::chrono::milliseconds reset_timeout</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00056">circuit_breaker.h:56</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ad9b2e2d082a0b5b27861de5590f917a2"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">kcenon::monitoring::circuit_breaker_config::failure_threshold</a></div><div class="ttdeci">size_t failure_threshold</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00054">circuit_breaker.h:54</a></div></div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ae65aa87b580a625079e153349191d5fe"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">kcenon::monitoring::circuit_breaker_config::success_threshold</a></div><div class="ttdeci">size_t success_threshold</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00057">circuit_breaker.h:57</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="aff3453f1105695bed8e4cc3502aad832" name="aff3453f1105695bed8e4cc3502aad832"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff3453f1105695bed8e4cc3502aad832">&#9670;&#160;</a></span>validate()</h2>
 
@@ -143,27 +175,16 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Validate configuration. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if configuration is valid </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00071">71</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>                          {</div>
-<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a> == 0) {</div>
-<div class="line"><span class="lineno">   73</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   74</span>        }</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">success_threshold</a> == 0) {</div>
-<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   77</span>        }</div>
-<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   79</span>    }</div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ad9b2e2d082a0b5b27861de5590f917a2"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">kcenon::monitoring::circuit_breaker_config::failure_threshold</a></div><div class="ttdeci">size_t failure_threshold</div><div class="ttdoc">Number of failures before opening.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00062">circuit_breaker.h:62</a></div></div>
-<div class="ttc" id="astructkcenon_1_1monitoring_1_1circuit__breaker__config_html_ae65aa87b580a625079e153349191d5fe"><div class="ttname"><a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">kcenon::monitoring::circuit_breaker_config::success_threshold</a></div><div class="ttdeci">size_t success_threshold</div><div class="ttdoc">Successes in half_open to close.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dd4/circuit__breaker_8h_source.html#l00065">circuit_breaker.h:65</a></div></div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00059">59</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   59</span>                          {</div>
+<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ad9b2e2d082a0b5b27861de5590f917a2">failure_threshold</a> &gt; 0 &amp;&amp; <a class="code hl_variable" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#ae65aa87b580a625079e153349191d5fe">success_threshold</a> &gt; 0;</div>
+<div class="line"><span class="lineno">   61</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph.png" border="0" usemap="#ad3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph" alt=""/></div>
 <map name="ad3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph" id="ad3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config_aff3453f1105695bed8e4cc3502aad832_icgraph">
-<area shape="rect" title="Validate configuration." alt="" coords="345,23,517,77"/>
+<area shape="rect" title=" " alt="" coords="345,23,517,77"/>
 <area shape="rect" href="../../d3/d83/test__fault__tolerance_8cpp.html#a690012918be3f423827231a7464218fe" title=" " alt="" coords="175,5,245,31"/>
 <area shape="poly" title=" " alt="" coords="331,38,244,26,245,20,332,33"/>
 <area shape="rect" href="../../d8/de8/structkcenon_1_1monitoring_1_1fault__tolerance__config.html#aec1508b171fe8dcb9c4b6935b675c7aa" title=" " alt="" coords="123,55,297,109"/>
@@ -188,9 +209,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Number of failures before opening. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00062">62</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00054">54</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -206,9 +225,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Time before half_open. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00064">64</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00056">56</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -224,9 +241,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Successes in half_open to close. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00065">65</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00057">57</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -242,9 +257,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Call timeout. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00063">63</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00055">55</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
 
 </div>
 </div>
@@ -254,7 +267,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 12:13:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 12:24:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

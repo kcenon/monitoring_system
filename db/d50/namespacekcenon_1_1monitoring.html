@@ -217,19 +217,16 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Central collector for aggregating metrics from thread-local buffers.  <a href="../../d8/df1/classkcenon_1_1monitoring_1_1central__collector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html">circuit_breaker</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe circuit breaker implementation.  <a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapter class for common_system <a class="el" href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html" title="Adapter class for common_system circuit_breaker with monitoring_system interface.">circuit_breaker</a> with monitoring_system interface.  <a href="../../d0/d38/classkcenon_1_1monitoring_1_1circuit__breaker.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html">circuit_breaker_config</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Circuit breaker configuration.  <a href="../../d3/def/structkcenon_1_1monitoring_1_1circuit__breaker__config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html">circuit_breaker_metrics</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Circuit breaker metrics.  <a href="../../d8/d90/structkcenon_1_1monitoring_1_1circuit__breaker__metrics.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d51/classkcenon_1_1monitoring_1_1circuit__breaker__registry.html">circuit_breaker_registry</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Circuit breaker registry.  <a href="../../d5/d51/classkcenon_1_1monitoring_1_1circuit__breaker__registry.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/de6/classkcenon_1_1monitoring_1_1circuit__open__exception.html">circuit_open_exception</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception thrown when circuit breaker is open.  <a href="../../d8/de6/classkcenon_1_1monitoring_1_1circuit__open__exception.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d36/classkcenon_1_1monitoring_1_1cloud__storage__backend.html">cloud_storage_backend</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cloud storage backend (stub implementation)  <a href="../../d9/d36/classkcenon_1_1monitoring_1_1cloud__storage__backend.html#details">More...</a><br /></td></tr>
@@ -1150,6 +1147,8 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a996670cea1a9a13c5725f5861142d250" id="r_a996670cea1a9a13c5725f5861142d250"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a996670cea1a9a13c5725f5861142d250">plugin_factory_fn</a> = std::unique_ptr&lt; <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">collector_plugin</a> &gt;(*)()</td></tr>
 <tr class="memdesc:a996670cea1a9a13c5725f5861142d250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for plugin factory function.  <br /></td></tr>
 <tr class="separator:a996670cea1a9a13c5725f5861142d250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4acaff64b280341d038f255426f66ca3" id="r_a4acaff64b280341d038f255426f66ca3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4acaff64b280341d038f255426f66ca3">circuit_state</a> = common::resilience::circuit_state</td></tr>
+<tr class="separator:a4acaff64b280341d038f255426f66ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad0cb092fba522ae2b8b21234564e91b" id="r_aad0cb092fba522ae2b8b21234564e91b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aad0cb092fba522ae2b8b21234564e91b">aggregation_result_stream</a> = <a class="el" href="../../d8/de5/structkcenon_1_1monitoring_1_1stream__aggregation__result.html">stream_aggregation_result</a></td></tr>
 <tr class="separator:aad0cb092fba522ae2b8b21234564e91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -1514,12 +1513,6 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:aa6d12e10ff6e73808cbf13a50877260a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categorization of collector plugins.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260a">More...</a><br /></td></tr>
 <tr class="separator:aa6d12e10ff6e73808cbf13a50877260a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace1993b179cabf2763451b7db758dcd3" id="r_ace1993b179cabf2763451b7db758dcd3"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">circuit_state</a> { <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">closed</a>
-, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">open</a>
-, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">half_open</a>
- }</td></tr>
-<tr class="memdesc:ace1993b179cabf2763451b7db758dcd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Circuit breaker states.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">More...</a><br /></td></tr>
-<tr class="separator:ace1993b179cabf2763451b7db758dcd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2a0498983777027e42f1fe29216556d" id="r_ab2a0498983777027e42f1fe29216556d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556d">transaction_state</a> { <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79">active</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dafebbaa1b242d391642fb9eddfb06ff83">committed</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dadfb7069bfc6e0064a6c667626eca07b4">aborted</a>
@@ -1867,6 +1860,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a4acaff64b280341d038f255426f66ca3" name="a4acaff64b280341d038f255426f66ca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acaff64b280341d038f255426f66ca3">&#9670;&#160;</a></span>circuit_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a4acaff64b280341d038f255426f66ca3">kcenon::monitoring::circuit_state</a> = typedef common::resilience::circuit_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00043">43</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
+
+</div>
+</div>
 <a id="a0fbcbb722d1db1992da25f01b4294df6" name="a0fbcbb722d1db1992da25f01b4294df6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0fbcbb722d1db1992da25f01b4294df6">&#9670;&#160;</a></span>collector_factory_fn</h2>
 
@@ -2156,49 +2165,6 @@ Functions</h2></td></tr>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a041b3c5418e379895427abfcd514812ba1b267619c4812cc46ee281747884ca50"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a041b3c5418e379895427abfcd514812ba1b267619c4812cc46ee281747884ca50">kcenon::monitoring::cgroup_version::v2</a></div><div class="ttdeci">@ v2</div><div class="ttdoc">Unified cgroups v2 hierarchy.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a041b3c5418e379895427abfcd514812ba334c4a4c42fdb79d7ebc3e73b517e6f8"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a041b3c5418e379895427abfcd514812ba334c4a4c42fdb79d7ebc3e73b517e6f8">kcenon::monitoring::cgroup_version::none</a></div><div class="ttdeci">@ none</div><div class="ttdoc">Not in a cgroup or not Linux.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a041b3c5418e379895427abfcd514812ba6654c734ccab8f440ff0825eb443dc7f"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a041b3c5418e379895427abfcd514812ba6654c734ccab8f440ff0825eb443dc7f">kcenon::monitoring::cgroup_version::v1</a></div><div class="ttdeci">@ v1</div><div class="ttdoc">Legacy cgroups v1.</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ace1993b179cabf2763451b7db758dcd3" name="ace1993b179cabf2763451b7db758dcd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace1993b179cabf2763451b7db758dcd3">&#9670;&#160;</a></span>circuit_state</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3">kcenon::monitoring::circuit_state</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Circuit breaker states. </p>
-<p>State machine: closed ─[failures &gt;= threshold]─&gt; open open ─[reset_timeout elapsed]─&gt; half_open half_open ─[success]─&gt; closed half_open ─[failure]─&gt; open </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac" name="ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac"></a>closed&#160;</td><td class="fielddoc"><p>Normal operation, requests are allowed. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69" name="ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69"></a>open&#160;</td><td class="fielddoc"><p>Circuit is open, requests are rejected. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8" name="ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8"></a>half_open&#160;</td><td class="fielddoc"><p>Testing state, limited requests allowed. </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html#l00052">52</a> of file <a class="el" href="../../d2/dd4/circuit__breaker_8h_source.html">circuit_breaker.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   52</span>                         {</div>
-<div class="line"><span class="lineno">   53</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">closed</a>,     </div>
-<div class="line"><span class="lineno">   54</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">open</a>,       </div>
-<div class="line"><span class="lineno">   55</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">half_open</a>   </div>
-<div class="line"><span class="lineno">   56</span>};</div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a19b68b9675242d0153b6085920a5dad8">kcenon::monitoring::circuit_state::half_open</a></div><div class="ttdeci">@ half_open</div><div class="ttdoc">Testing state, limited requests allowed.</div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a349e686330723975502e9ef4f939a5ac">kcenon::monitoring::circuit_state::closed</a></div><div class="ttdeci">@ closed</div><div class="ttdoc">Normal operation, requests are allowed.</div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ace1993b179cabf2763451b7db758dcd3a7cef8a734855777c2a9d0caf42666e69">kcenon::monitoring::circuit_state::open</a></div><div class="ttdeci">@ open</div><div class="ttdoc">Circuit is open, requests are rejected.</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -8610,7 +8576,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 12:13:05 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 12:24:18 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
