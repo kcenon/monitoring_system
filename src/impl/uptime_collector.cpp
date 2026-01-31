@@ -79,6 +79,10 @@ uptime_collector::uptime_collector()
     : collector_(std::make_unique<uptime_info_collector>()) {}
 
 auto uptime_collector::initialize(const config_map& config) -> bool {
+    if (auto it = config.find("enabled"); it != config.end()) {
+        enabled_ = (it->second == "true" || it->second == "1");
+    }
+
     if (auto it = config.find("collect_idle_time"); it != config.end()) {
         collect_idle_time_ = (it->second == "true" || it->second == "1");
     }
@@ -104,7 +108,10 @@ bool uptime_collector::is_uptime_monitoring_available() const {
 
 auto uptime_collector::get_statistics() const -> stats_map {
     stats_map stats;
+    stats["enabled"] = enabled_ ? 1.0 : 0.0;
     stats["collect_idle_time"] = collect_idle_time_ ? 1.0 : 0.0;
+    stats["collection_count"] = static_cast<double>(collection_count_.load());
+    stats["collection_errors"] = static_cast<double>(collection_errors_.load());
     return stats;
 }
 
@@ -150,10 +157,19 @@ void uptime_collector::add_uptime_metrics(
 auto uptime_collector::collect() -> std::vector<metric> {
     std::vector<metric> metrics;
 
-    auto uptime_data = collector_->collect_metrics();
-    last_metrics_ = uptime_data;
+    if (!enabled_) {
+        return metrics;
+    }
 
-    add_uptime_metrics(metrics, uptime_data);
+    try {
+        auto uptime_data = collector_->collect_metrics();
+        last_metrics_ = uptime_data;
+
+        add_uptime_metrics(metrics, uptime_data);
+        ++collection_count_;
+    } catch (...) {
+        ++collection_errors_;
+    }
 
     return metrics;
 }

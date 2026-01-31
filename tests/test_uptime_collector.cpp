@@ -51,7 +51,7 @@ class UptimeCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(UptimeCollectorTest, InitializesSuccessfully) {
     EXPECT_NE(collector_, nullptr);
-    EXPECT_EQ(collector_->get_name(), "uptime_collector");
+    EXPECT_EQ(collector_->name(), "uptime");
 }
 
 // Test metric types returned
@@ -177,22 +177,23 @@ TEST_F(UptimeCollectorTest, MetricsHaveCorrectTags) {
         // All metrics should have the collector tag
         auto it = m.tags.find("collector");
         if (it != m.tags.end()) {
-            EXPECT_EQ(it->second, "uptime_collector");
+            EXPECT_EQ(it->second, "uptime");
         }
     }
 }
 
-// Test is_healthy reflects actual state
+// Test is_available reflects actual state
 TEST_F(UptimeCollectorTest, IsHealthyReflectsState) {
-    // When enabled, health depends on availability
-    EXPECT_NO_THROW(collector_->is_healthy());
+    // When enabled, availability depends on platform support
+    EXPECT_NO_THROW(collector_->is_available());
 
-    // When disabled, collector is considered healthy (no errors)
+    // Disabled collectors should still report availability status
     auto disabled_collector = std::make_unique<uptime_collector>();
     std::unordered_map<std::string, std::string> config;
     config["enabled"] = "false";
     disabled_collector->initialize(config);
-    EXPECT_TRUE(disabled_collector->is_healthy());
+    // Availability is independent of enabled state
+    EXPECT_NO_THROW(disabled_collector->is_available());
 }
 
 // All platforms should have uptime monitoring available

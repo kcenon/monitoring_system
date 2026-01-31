@@ -43,6 +43,7 @@
  * - Windows: GetTickCount64()
  */
 
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
@@ -158,6 +159,10 @@ class uptime_collector : public collector_plugin {
      */
     auto get_statistics() const -> stats_map override;
 
+    // Legacy compatibility (deprecated)
+    [[nodiscard]] std::string get_name() const { return std::string(name()); }
+    [[nodiscard]] bool is_healthy() const { return is_available(); }
+
     /**
      * Get last collected uptime metrics
      * @return Most recent uptime_metrics reading
@@ -174,10 +179,15 @@ class uptime_collector : public collector_plugin {
     std::unique_ptr<uptime_info_collector> collector_;
 
     // Configuration
+    bool enabled_{true};
     bool collect_idle_time_{true};
 
     // Last metrics cache
     uptime_metrics last_metrics_;
+
+    // Statistics
+    std::atomic<size_t> collection_count_{0};
+    std::atomic<size_t> collection_errors_{0};
 
     // Helper methods
     void add_uptime_metrics(std::vector<metric>& metrics,
