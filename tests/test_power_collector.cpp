@@ -49,7 +49,7 @@ class PowerCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(PowerCollectorTest, InitializesSuccessfully) {
     EXPECT_TRUE(collector_->is_healthy());
-    EXPECT_EQ(collector_->get_name(), "power_collector");
+    EXPECT_EQ(collector_->name(), "power");
 }
 
 // Test metric types returned

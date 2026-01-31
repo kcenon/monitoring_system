@@ -61,7 +61,7 @@ class plugin_collector_adapter : public collector_interface {
         return collector_->initialize(config);
     }
 
-    [[nodiscard]] std::string get_name() const override { return collector_->get_name(); }
+    [[nodiscard]] std::string get_name() const override { return std::string(collector_->name()); }
 
     [[nodiscard]] bool is_healthy() const override { return collector_->is_healthy(); }
 
