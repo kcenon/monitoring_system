@@ -338,7 +338,7 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
     }
 
     // Circuit should be open
-    EXPECT_EQ(breaker.get_state(), circuit_state::open);
+    EXPECT_EQ(breaker.get_state(), circuit_state::OPEN);
 
     // Further calls should fail fast (circuit open)
     auto open_result = breaker.execute(unreliable_operation);
@@ -361,7 +361,7 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
         EXPECT_TRUE(stable_result.is_ok());
     }
 
-    EXPECT_EQ(breaker.get_state(), circuit_state::closed);
+    EXPECT_EQ(breaker.get_state(), circuit_state::CLOSED);
 }
 
 /**

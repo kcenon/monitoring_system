@@ -91,12 +91,12 @@ TEST_F(FaultToleranceTest, CircuitBreakerClosedState) {
     
     circuit_breaker<int> breaker("test_breaker", config);
     
-    EXPECT_EQ(breaker.get_state(), circuit_state::closed);
+    EXPECT_EQ(breaker.get_state(), circuit_state::CLOSED);
     
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
     EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(result.value(), 100);
-    EXPECT_EQ(breaker.get_state(), circuit_state::closed);
+    EXPECT_EQ(breaker.get_state(), circuit_state::CLOSED);
     EXPECT_EQ(call_count.load(), 1);
 }
 
@@ -112,7 +112,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerOpensAfterFailures) {
         EXPECT_TRUE(result.is_err());
     }
     
-    EXPECT_EQ(breaker.get_state(), circuit_state::open);
+    EXPECT_EQ(breaker.get_state(), circuit_state::OPEN);
     EXPECT_EQ(call_count.load(), 3);
     
     // Next call should be rejected without calling operation
@@ -133,7 +133,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenTransition) {
     for (int i = 0; i < 2; ++i) {
         breaker.execute([this]() { return always_failing_operation(); });
     }
-    EXPECT_EQ(breaker.get_state(), circuit_state::open);
+    EXPECT_EQ(breaker.get_state(), circuit_state::OPEN);
     
     // Wait for reset timeout
     std::this_thread::sleep_for(std::chrono::milliseconds(150));
@@ -141,7 +141,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenTransition) {
     // Next call should transition to half-open
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
     EXPECT_TRUE(result.is_ok());
-    EXPECT_EQ(breaker.get_state(), circuit_state::half_open);
+    EXPECT_EQ(breaker.get_state(), circuit_state::HALF_OPEN);
 }
 
 TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenToClosedTransition) {
@@ -160,12 +160,12 @@ TEST_F(FaultToleranceTest, CircuitBreakerHalfOpenToClosedTransition) {
     // Wait and transition to half-open
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     breaker.execute([this]() { return always_succeeding_operation(); });
-    EXPECT_EQ(breaker.get_state(), circuit_state::half_open);
+    EXPECT_EQ(breaker.get_state(), circuit_state::HALF_OPEN);
     
     // One more success should close the circuit
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
     EXPECT_TRUE(result.is_ok());
-    EXPECT_EQ(breaker.get_state(), circuit_state::closed);
+    EXPECT_EQ(breaker.get_state(), circuit_state::CLOSED);
 }
 
 TEST_F(FaultToleranceTest, CircuitBreakerWithFallback) {
@@ -176,7 +176,7 @@ TEST_F(FaultToleranceTest, CircuitBreakerWithFallback) {
     
     // Open the circuit with one failure
     breaker.execute([this]() { return always_failing_operation(); });
-    EXPECT_EQ(breaker.get_state(), circuit_state::open);
+    EXPECT_EQ(breaker.get_state(), circuit_state::OPEN);
     
     // Use fallback
     auto fallback = []() { return kcenon::common::ok(999); };
@@ -566,11 +566,11 @@ TEST_F(FaultToleranceTest, CircuitBreakerReset) {
     for (int i = 0; i < 2; ++i) {
         breaker.execute([this]() { return always_failing_operation(); });
     }
-    EXPECT_EQ(breaker.get_state(), circuit_state::open);
+    EXPECT_EQ(breaker.get_state(), circuit_state::OPEN);
     
     // Reset the circuit
     breaker.reset();
-    EXPECT_EQ(breaker.get_state(), circuit_state::closed);
+    EXPECT_EQ(breaker.get_state(), circuit_state::CLOSED);
     
     // Should work normally now
     auto result = breaker.execute([this]() { return always_succeeding_operation(); });
