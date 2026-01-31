@@ -75,7 +75,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../d8/d8c/classkcenon_1_1monitoring_1_1battery__collector-members.html">List of all members</a>  </div>
@@ -83,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Battery status monitoring collector.  
+<p>Battery status monitoring collector implementing <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins.">collector_plugin</a> interface.  
  <a href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>&gt;</code></p>
@@ -92,9 +91,9 @@ Inheritance diagram for kcenon::monitoring::battery_collector:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d9a/classkcenon_1_1monitoring_1_1battery__collector__inherit__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1battery__collector_inherit__map" alt="Inheritance graph"/></div>
 <map name="akcenon_1_1monitoring_1_1battery__collector_inherit__map" id="akcenon_1_1monitoring_1_1battery__collector_inherit__map">
-<area shape="rect" title="Battery status monitoring collector." alt="" coords="5,548,188,1008"/>
-<area shape="rect" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html" title=" " alt="" coords="7,5,186,500"/>
-<area shape="poly" title=" " alt="" coords="99,513,99,548,94,548,94,513"/>
+<area shape="rect" title="Battery status monitoring collector implementing collector_plugin interface." alt="" coords="5,313,188,733"/>
+<area shape="rect" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins." alt="" coords="20,5,173,265"/>
+<area shape="poly" title=" " alt="" coords="99,279,99,313,94,313,94,279"/>
 </map>
 </div>
 <div class="dynheader">
@@ -102,32 +101,31 @@ Collaboration diagram for kcenon::monitoring::battery_collector:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../da/db3/classkcenon_1_1monitoring_1_1battery__collector__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1battery__collector_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1battery__collector_coll__map" id="akcenon_1_1monitoring_1_1battery__collector_coll__map">
-<area shape="rect" title="Battery status monitoring collector." alt="" coords="308,1632,491,2032"/>
-<area shape="rect" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html" title=" " alt="" coords="93,1135,271,1569"/>
-<area shape="poly" title=" " alt="" coords="280,1561,311,1631,306,1633,275,1563"/>
-<area shape="rect" title=" " alt="" coords="5,885,89,950"/>
-<area shape="poly" title=" " alt="" coords="50,950,55,1024,62,1067,71,1110,89,1162,84,1164,66,1111,56,1068,50,1025,45,950"/>
-<area shape="rect" title=" " alt="" coords="185,885,339,950"/>
-<area shape="poly" title=" " alt="" coords="277,950,297,1010,315,1081,327,1155,333,1217,334,1325,334,1432,338,1495,346,1569,353,1616,348,1616,341,1570,332,1496,329,1432,329,1325,327,1218,321,1155,310,1082,292,1011,272,951"/>
-<area shape="poly" title=" " alt="" coords="244,951,212,1011,197,1046,186,1082,179,1119,174,1118,181,1081,192,1044,207,1008,239,949"/>
-<area shape="rect" title=" " alt="" coords="474,1305,647,1399"/>
-<area shape="poly" title=" " alt="" coords="548,1400,474,1617,469,1615,543,1399"/>
-<area shape="rect" href="../../d0/d42/classkcenon_1_1monitoring_1_1battery__info__collector.html" title="Battery data collector using platform abstraction layer." alt="" coords="446,797,638,1037"/>
-<area shape="poly" title=" " alt="" coords="550,1038,561,1288,555,1288,544,1038"/>
-<area shape="rect" title=" " alt="" coords="455,620,629,715"/>
-<area shape="poly" title=" " alt="" coords="545,715,545,781,539,781,539,715"/>
-<area shape="rect" href="../../d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html" title="Abstract interface for platform&#45;specific metrics collection." alt="" coords="437,135,647,469"/>
-<area shape="poly" title=" " alt="" coords="545,470,545,604,539,604,539,470"/>
-<area shape="rect" title=" " alt="" coords="679,1305,827,1399"/>
-<area shape="poly" title=" " alt="" coords="741,1401,709,1482,687,1528,662,1571,626,1619,586,1664,505,1745,502,1741,583,1661,622,1615,657,1568,683,1525,704,1480,736,1399"/>
-<area shape="rect" href="../../d1/d09/structkcenon_1_1monitoring_1_1battery__reading.html" title="A single battery reading." alt="" coords="662,777,851,1057"/>
-<area shape="poly" title=" " alt="" coords="758,1058,756,1289,751,1289,753,1058"/>
-<area shape="rect" href="../../da/d26/structkcenon_1_1monitoring_1_1battery__info.html" title="Information about a battery source." alt="" coords="687,627,827,707"/>
-<area shape="poly" title=" " alt="" coords="759,708,759,761,754,761,754,708"/>
-<area shape="rect" title=" " alt="" coords="717,269,796,335"/>
-<area shape="poly" title=" " alt="" coords="759,335,759,611,754,611,754,335"/>
-<area shape="rect" title=" " alt="" coords="691,5,822,85"/>
-<area shape="poly" title=" " alt="" coords="759,100,759,269,754,269,754,100"/>
+<area shape="rect" title="Battery status monitoring collector implementing collector_plugin interface." alt="" coords="332,1443,515,1783"/>
+<area shape="rect" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins." alt="" coords="5,1120,159,1380"/>
+<area shape="poly" title=" " alt="" coords="170,1374,173,1378,253,1461,334,1534,330,1538,249,1465,169,1382,166,1378"/>
+<area shape="rect" title=" " alt="" coords="183,1203,357,1297"/>
+<area shape="poly" title=" " alt="" coords="292,1297,347,1426,343,1429,287,1299"/>
+<area shape="rect" href="../../d0/d42/classkcenon_1_1monitoring_1_1battery__info__collector.html" title="Battery data collector using platform abstraction layer." alt="" coords="174,797,366,1037"/>
+<area shape="poly" title=" " alt="" coords="273,1037,273,1186,267,1186,267,1037"/>
+<area shape="rect" title=" " alt="" coords="183,620,357,715"/>
+<area shape="poly" title=" " alt="" coords="273,715,273,781,267,781,267,715"/>
+<area shape="rect" href="../../d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html" title="Abstract interface for platform&#45;specific metrics collection." alt="" coords="165,135,375,469"/>
+<area shape="poly" title=" " alt="" coords="273,470,273,604,267,604,267,470"/>
+<area shape="rect" title=" " alt="" coords="381,1217,465,1283"/>
+<area shape="poly" title=" " alt="" coords="426,1283,426,1426,421,1426,421,1283"/>
+<area shape="rect" title=" " alt="" coords="490,1217,645,1283"/>
+<area shape="poly" title=" " alt="" coords="565,1283,551,1347,529,1420,524,1432,519,1430,523,1418,546,1346,559,1282"/>
+<area shape="rect" title=" " alt="" coords="669,1203,817,1297"/>
+<area shape="poly" title=" " alt="" coords="727,1299,698,1359,657,1420,596,1485,530,1541,526,1537,592,1481,653,1417,693,1356,723,1296"/>
+<area shape="rect" href="../../d1/d09/structkcenon_1_1monitoring_1_1battery__reading.html" title="A single battery reading." alt="" coords="649,777,838,1057"/>
+<area shape="poly" title=" " alt="" coords="746,1058,746,1186,741,1186,741,1058"/>
+<area shape="rect" href="../../da/d26/structkcenon_1_1monitoring_1_1battery__info.html" title="Information about a battery source." alt="" coords="673,627,813,707"/>
+<area shape="poly" title=" " alt="" coords="746,708,746,761,741,761,741,708"/>
+<area shape="rect" title=" " alt="" coords="704,269,783,335"/>
+<area shape="poly" title=" " alt="" coords="746,335,746,611,741,611,741,335"/>
+<area shape="rect" title=" " alt="" coords="678,5,809,85"/>
+<area shape="poly" title=" " alt="" coords="746,100,746,269,741,269,741,100"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -145,61 +143,46 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1b14af32ac2863481166ea61b5d25ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fd007d6781050df092480a617981968" id="r_a0fd007d6781050df092480a617981968"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html">battery_collector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a0fd007d6781050df092480a617981968">operator=</a> (<a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html">battery_collector</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a0fd007d6781050df092480a617981968"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a123e40537e86ac41476407c1383ae29b" id="r_a123e40537e86ac41476407c1383ae29b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a123e40537e86ac41476407c1383ae29b">do_initialize</a> (const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;config)</td></tr>
-<tr class="separator:a123e40537e86ac41476407c1383ae29b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af38990cc0e7a75a1ad07293b2290144d" id="r_af38990cc0e7a75a1ad07293b2290144d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#af38990cc0e7a75a1ad07293b2290144d">do_collect</a> ()</td></tr>
-<tr class="separator:af38990cc0e7a75a1ad07293b2290144d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1a96056d599845e6bd2e420ab196f57" id="r_aa1a96056d599845e6bd2e420ab196f57"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#aa1a96056d599845e6bd2e420ab196f57">is_available</a> () const</td></tr>
-<tr class="separator:aa1a96056d599845e6bd2e420ab196f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a320520f6a3f6e478e15e285e0694aefb" id="r_a320520f6a3f6e478e15e285e0694aefb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a320520f6a3f6e478e15e285e0694aefb">do_get_metric_types</a> () const</td></tr>
-<tr class="separator:a320520f6a3f6e478e15e285e0694aefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1b63616d8dcd101c9401eacd48a3de0" id="r_aa1b63616d8dcd101c9401eacd48a3de0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#aa1b63616d8dcd101c9401eacd48a3de0">do_add_statistics</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a> &amp;stats) const</td></tr>
-<tr class="separator:aa1b63616d8dcd101c9401eacd48a3de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78c23160b5ab20fe79bc1094f80a4942" id="r_a78c23160b5ab20fe79bc1094f80a4942"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a78c23160b5ab20fe79bc1094f80a4942">name</a> () const -&gt; std::string_view override</td></tr>
+<tr class="memdesc:a78c23160b5ab20fe79bc1094f80a4942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the unique name of this plugin.  <br /></td></tr>
+<tr class="separator:a78c23160b5ab20fe79bc1094f80a4942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95a575fbaadea9e7afc2cbf00f797ef9" id="r_a95a575fbaadea9e7afc2cbf00f797ef9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a95a575fbaadea9e7afc2cbf00f797ef9">collect</a> () -&gt; std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt; override</td></tr>
+<tr class="memdesc:a95a575fbaadea9e7afc2cbf00f797ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect current metrics from this plugin.  <br /></td></tr>
+<tr class="separator:a95a575fbaadea9e7afc2cbf00f797ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ab75dcc7e70b518ef006c0f4f131a11" id="r_a0ab75dcc7e70b518ef006c0f4f131a11"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a0ab75dcc7e70b518ef006c0f4f131a11">interval</a> () const -&gt; std::chrono::milliseconds override</td></tr>
+<tr class="memdesc:a0ab75dcc7e70b518ef006c0f4f131a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the collection interval for this plugin.  <br /></td></tr>
+<tr class="separator:a0ab75dcc7e70b518ef006c0f4f131a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af626bbc27c9d19641d2ada72f8273b84" id="r_af626bbc27c9d19641d2ada72f8273b84"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#af626bbc27c9d19641d2ada72f8273b84">is_available</a> () const -&gt; bool override</td></tr>
+<tr class="memdesc:af626bbc27c9d19641d2ada72f8273b84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if this plugin is available on the current system.  <br /></td></tr>
+<tr class="separator:af626bbc27c9d19641d2ada72f8273b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97fa5f55f046ae3b04fca0fb4538db91" id="r_a97fa5f55f046ae3b04fca0fb4538db91"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a97fa5f55f046ae3b04fca0fb4538db91">get_metric_types</a> () const -&gt; std::vector&lt; std::string &gt; override</td></tr>
+<tr class="memdesc:a97fa5f55f046ae3b04fca0fb4538db91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get supported metric types.  <br /></td></tr>
+<tr class="separator:a97fa5f55f046ae3b04fca0fb4538db91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba5e22c2c5161320e83e039910193662" id="r_aba5e22c2c5161320e83e039910193662"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#aba5e22c2c5161320e83e039910193662">get_metadata</a> () const -&gt; <a class="el" href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html">plugin_metadata</a> override</td></tr>
+<tr class="memdesc:aba5e22c2c5161320e83e039910193662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get plugin metadata.  <br /></td></tr>
+<tr class="separator:aba5e22c2c5161320e83e039910193662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b5b6a1a7bdf9a7b8c2a0aceec90cca2" id="r_a6b5b6a1a7bdf9a7b8c2a0aceec90cca2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a6b5b6a1a7bdf9a7b8c2a0aceec90cca2">initialize</a> (const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;config) -&gt; bool override</td></tr>
+<tr class="memdesc:a6b5b6a1a7bdf9a7b8c2a0aceec90cca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize plugin with configuration.  <br /></td></tr>
+<tr class="separator:a6b5b6a1a7bdf9a7b8c2a0aceec90cca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da6a8858541a3db69cd2f7cc6e328ab" id="r_a4da6a8858541a3db69cd2f7cc6e328ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a4da6a8858541a3db69cd2f7cc6e328ab">shutdown</a> () override</td></tr>
+<tr class="memdesc:a4da6a8858541a3db69cd2f7cc6e328ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown plugin and release resources.  <br /></td></tr>
+<tr class="separator:a4da6a8858541a3db69cd2f7cc6e328ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a54002444688974df1f3d18d4009191" id="r_a6a54002444688974df1f3d18d4009191"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a6a54002444688974df1f3d18d4009191">get_statistics</a> () const -&gt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a> override</td></tr>
+<tr class="memdesc:a6a54002444688974df1f3d18d4009191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get plugin statistics.  <br /></td></tr>
+<tr class="separator:a6a54002444688974df1f3d18d4009191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a188939f4b132165bd0abfbd5ffa8e9ff" id="r_a188939f4b132165bd0abfbd5ffa8e9ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a188939f4b132165bd0abfbd5ffa8e9ff">is_healthy</a> () const</td></tr>
+<tr class="separator:a188939f4b132165bd0abfbd5ffa8e9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01b10270664df432f8501d57d240a0ae" id="r_a01b10270664df432f8501d57d240a0ae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d1/d09/structkcenon_1_1monitoring_1_1battery__reading.html">battery_reading</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a01b10270664df432f8501d57d240a0ae">get_last_readings</a> () const</td></tr>
 <tr class="separator:a01b10270664df432f8501d57d240a0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a742af9c51d0235eb0fe4ef9575e18f0b" id="r_a742af9c51d0235eb0fe4ef9575e18f0b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a742af9c51d0235eb0fe4ef9575e18f0b">is_battery_available</a> () const</td></tr>
 <tr class="separator:a742af9c51d0235eb0fe4ef9575e18f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classkcenon_1_1monitoring_1_1collector__base')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">kcenon::monitoring::collector_base&lt; battery_collector &gt;</a></td></tr>
-<tr class="memitem:aa7e07e8894e7a716f02ff24cabaab901 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_aa7e07e8894e7a716f02ff24cabaab901"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#aa7e07e8894e7a716f02ff24cabaab901">collector_base</a> ()=default</td></tr>
-<tr class="separator:aa7e07e8894e7a716f02ff24cabaab901 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a056d950be01409913ac4f0f15bb088a7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a056d950be01409913ac4f0f15bb088a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a056d950be01409913ac4f0f15bb088a7">collector_base</a> (const <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;)=delete</td></tr>
-<tr class="separator:a056d950be01409913ac4f0f15bb088a7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abed19f20b7d2df577b28f67bed4eb602 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_abed19f20b7d2df577b28f67bed4eb602"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#abed19f20b7d2df577b28f67bed4eb602">collector_base</a> (<a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&amp;)=delete</td></tr>
-<tr class="separator:abed19f20b7d2df577b28f67bed4eb602 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b4f897e37f991abc1632c9252b64309 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a8b4f897e37f991abc1632c9252b64309"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a8b4f897e37f991abc1632c9252b64309">~collector_base</a> ()=default</td></tr>
-<tr class="separator:a8b4f897e37f991abc1632c9252b64309 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bdd40ad6db539a0955ad108964405d4 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a9bdd40ad6db539a0955ad108964405d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a9bdd40ad6db539a0955ad108964405d4">operator=</a> (const <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;)=delete</td></tr>
-<tr class="separator:a9bdd40ad6db539a0955ad108964405d4 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af430896dcc3d1f477ace632581b12c54 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_af430896dcc3d1f477ace632581b12c54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#af430896dcc3d1f477ace632581b12c54">operator=</a> (<a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">collector_base</a> &amp;&amp;)=delete</td></tr>
-<tr class="separator:af430896dcc3d1f477ace632581b12c54 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7180423337037ee8c00f9b201b9535c5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a7180423337037ee8c00f9b201b9535c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a7180423337037ee8c00f9b201b9535c5">initialize</a> (const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;config)</td></tr>
-<tr class="separator:a7180423337037ee8c00f9b201b9535c5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8622373efc906e52e7eb685996f136cb inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a8622373efc906e52e7eb685996f136cb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a8622373efc906e52e7eb685996f136cb">collect</a> ()</td></tr>
-<tr class="separator:a8622373efc906e52e7eb685996f136cb inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1525434940824c59c736a7cd940782a5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a1525434940824c59c736a7cd940782a5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a1525434940824c59c736a7cd940782a5">get_name</a> () const</td></tr>
-<tr class="separator:a1525434940824c59c736a7cd940782a5 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5b868edc93b79f138b4f4c3eaf8d1ee inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_ad5b868edc93b79f138b4f4c3eaf8d1ee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#ad5b868edc93b79f138b4f4c3eaf8d1ee">get_metric_types</a> () const</td></tr>
-<tr class="separator:ad5b868edc93b79f138b4f4c3eaf8d1ee inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b880908aae01c2bf543d9c709b3f7a3 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a7b880908aae01c2bf543d9c709b3f7a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a7b880908aae01c2bf543d9c709b3f7a3">is_healthy</a> () const</td></tr>
-<tr class="separator:a7b880908aae01c2bf543d9c709b3f7a3 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a076cf1bfdaed6be5a1bd9bd7b01ca88e inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a076cf1bfdaed6be5a1bd9bd7b01ca88e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a076cf1bfdaed6be5a1bd9bd7b01ca88e">get_statistics</a> () const</td></tr>
-<tr class="separator:a076cf1bfdaed6be5a1bd9bd7b01ca88e inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ef76df8e2c0d66867bcc82ad2712683 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a4ef76df8e2c0d66867bcc82ad2712683"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a4ef76df8e2c0d66867bcc82ad2712683">is_enabled</a> () const</td></tr>
-<tr class="separator:a4ef76df8e2c0d66867bcc82ad2712683 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d9f61c2b3ef7db7a63326d945cafec7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a8d9f61c2b3ef7db7a63326d945cafec7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a8d9f61c2b3ef7db7a63326d945cafec7">get_collection_count</a> () const</td></tr>
-<tr class="separator:a8d9f61c2b3ef7db7a63326d945cafec7 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac49db22b6b21ef06e21ab507b7a7cb03 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_ac49db22b6b21ef06e21ab507b7a7cb03"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#ac49db22b6b21ef06e21ab507b7a7cb03">get_collection_errors</a> () const</td></tr>
-<tr class="separator:ac49db22b6b21ef06e21ab507b7a7cb03 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a8eea62e71b9bdf26b0e7cea4884c24fe" id="r_a8eea62e71b9bdf26b0e7cea4884c24fe"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a8eea62e71b9bdf26b0e7cea4884c24fe">collector_name</a> = &quot;battery_collector&quot;</td></tr>
-<tr class="memdesc:a8eea62e71b9bdf26b0e7cea4884c24fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector name for CRTP base class.  <br /></td></tr>
-<tr class="separator:a8eea62e71b9bdf26b0e7cea4884c24fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classkcenon_1_1monitoring_1_1collector__plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classkcenon_1_1monitoring_1_1collector__plugin')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">kcenon::monitoring::collector_plugin</a></td></tr>
+<tr class="memitem:ad2f93313e767dba8dba20f55f70d57a6 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__plugin" id="r_ad2f93313e767dba8dba20f55f70d57a6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#ad2f93313e767dba8dba20f55f70d57a6">~collector_plugin</a> ()=default</td></tr>
+<tr class="separator:ad2f93313e767dba8dba20f55f70d57a6 inherit pub_methods_classkcenon_1_1monitoring_1_1collector__plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:aa33f96ebeb1146dacb25727a4f0e428c" id="r_aa33f96ebeb1146dacb25727a4f0e428c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#aa33f96ebeb1146dacb25727a4f0e428c">create_battery_metric</a> (const std::string &amp;name, double value, const <a class="el" href="../../d1/d09/structkcenon_1_1monitoring_1_1battery__reading.html">battery_reading</a> &amp;reading, const std::string &amp;unit=&quot;&quot;) const</td></tr>
+<tr class="memitem:aa33f96ebeb1146dacb25727a4f0e428c" id="r_aa33f96ebeb1146dacb25727a4f0e428c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#aa33f96ebeb1146dacb25727a4f0e428c">create_battery_metric</a> (const std::string &amp;<a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a78c23160b5ab20fe79bc1094f80a4942">name</a>, double value, const <a class="el" href="../../d1/d09/structkcenon_1_1monitoring_1_1battery__reading.html">battery_reading</a> &amp;reading, const std::string &amp;unit=&quot;&quot;) const</td></tr>
 <tr class="separator:aa33f96ebeb1146dacb25727a4f0e428c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1288df4e17618663bd6f95f6a261b95" id="r_ac1288df4e17618663bd6f95f6a261b95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#ac1288df4e17618663bd6f95f6a261b95">add_battery_metrics</a> (std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt; &amp;metrics, const <a class="el" href="../../d1/d09/structkcenon_1_1monitoring_1_1battery__reading.html">battery_reading</a> &amp;reading)</td></tr>
 <tr class="separator:ac1288df4e17618663bd6f95f6a261b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,32 +195,18 @@ Private Attributes</h2></td></tr>
 <tr class="separator:af4ff2a65c4ba9bd5624b9ea299fab1c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34d9e80e18c390e05ff0d73f104b003c" id="r_a34d9e80e18c390e05ff0d73f104b003c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a34d9e80e18c390e05ff0d73f104b003c">collect_thermal_</a> {true}</td></tr>
 <tr class="separator:a34d9e80e18c390e05ff0d73f104b003c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b0a4e0896d354c1aae200b4f53c81e8" id="r_a3b0a4e0896d354c1aae200b4f53c81e8"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a3b0a4e0896d354c1aae200b4f53c81e8">stats_mutex_</a></td></tr>
+<tr class="separator:a3b0a4e0896d354c1aae200b4f53c81e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ba4b558e72b748fb1f2126d542d6dd0" id="r_a4ba4b558e72b748fb1f2126d542d6dd0"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a4ba4b558e72b748fb1f2126d542d6dd0">batteries_found_</a> {0}</td></tr>
 <tr class="separator:a4ba4b558e72b748fb1f2126d542d6dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecbf776d1b5433da46a2046502378d6e" id="r_aecbf776d1b5433da46a2046502378d6e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d1/d09/structkcenon_1_1monitoring_1_1battery__reading.html">battery_reading</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#aecbf776d1b5433da46a2046502378d6e">last_readings_</a></td></tr>
 <tr class="separator:aecbf776d1b5433da46a2046502378d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_classkcenon_1_1monitoring_1_1collector__base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classkcenon_1_1monitoring_1_1collector__base')"><img src="../../closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">kcenon::monitoring::collector_base&lt; battery_collector &gt;</a></td></tr>
-<tr class="memitem:a2f293729a9cd80b8f506ee15e23b0a03 inherit pro_methods_classkcenon_1_1monitoring_1_1collector__base" id="r_a2f293729a9cd80b8f506ee15e23b0a03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a2f293729a9cd80b8f506ee15e23b0a03">create_base_metric</a> (const std::string &amp;name, double value, const std::unordered_map&lt; std::string, std::string &gt; &amp;tags={}, const std::string &amp;=&quot;&quot;) const</td></tr>
-<tr class="separator:a2f293729a9cd80b8f506ee15e23b0a03 inherit pro_methods_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classkcenon_1_1monitoring_1_1collector__base')"><img src="../../closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html">kcenon::monitoring::collector_base&lt; battery_collector &gt;</a></td></tr>
-<tr class="memitem:a58a1da674d422d2488f704d09681d158 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a58a1da674d422d2488f704d09681d158"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a58a1da674d422d2488f704d09681d158">enabled_</a></td></tr>
-<tr class="separator:a58a1da674d422d2488f704d09681d158 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49fc801b389833c89dc04e0a7d98406c inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a49fc801b389833c89dc04e0a7d98406c"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a49fc801b389833c89dc04e0a7d98406c">stats_mutex_</a></td></tr>
-<tr class="separator:a49fc801b389833c89dc04e0a7d98406c inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a738e3ca934d4a98cf71b535d40c4dae8 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a738e3ca934d4a98cf71b535d40c4dae8"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a738e3ca934d4a98cf71b535d40c4dae8">collection_count_</a></td></tr>
-<tr class="separator:a738e3ca934d4a98cf71b535d40c4dae8 inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bd466ab19aa28dad5cb45d3211f15ed inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base" id="r_a2bd466ab19aa28dad5cb45d3211f15ed"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d97/classkcenon_1_1monitoring_1_1collector__base.html#a2bd466ab19aa28dad5cb45d3211f15ed">collection_errors_</a></td></tr>
-<tr class="separator:a2bd466ab19aa28dad5cb45d3211f15ed inherit pro_attribs_classkcenon_1_1monitoring_1_1collector__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Battery status monitoring collector. </p>
-<p>Collects battery status metrics from available batteries with cross-platform support. Returns empty/default metrics when no battery is present.</p>
-<p>Uses CRTP base class to reduce code duplication. </p>
+<div class="textblock"><p>Battery status monitoring collector implementing <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins.">collector_plugin</a> interface. </p>
+<p>Collects battery status metrics from available batteries with cross-platform support. Returns empty/default metrics when no battery is present. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00199">199</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00197">197</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a80467190f700f6dd6a37fd04a05cfccb" name="a80467190f700f6dd6a37fd04a05cfccb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80467190f700f6dd6a37fd04a05cfccb">&#9670;&#160;</a></span>battery_collector() <span class="overload">[1/3]</span></h2>
@@ -370,6 +339,42 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a95a575fbaadea9e7afc2cbf00f797ef9" name="a95a575fbaadea9e7afc2cbf00f797ef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95a575fbaadea9e7afc2cbf00f797ef9">&#9670;&#160;</a></span>collect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::battery_collector::collect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt;  std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Collect current metrics from this plugin. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of collected metrics</dd></dl>
+<p>This method is called periodically based on <a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a0ab75dcc7e70b518ef006c0f4f131a11" title="Get the collection interval for this plugin.">interval()</a>. Implementations should:</p><ul>
+<li>Return quickly (&lt; 100ms recommended)</li>
+<li>Handle errors gracefully (return empty vector on failure)</li>
+<li>Be thread-safe if concurrent collection is enabled</li>
+<li>Avoid blocking I/O when possible </li>
+</ul>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a86d4dafa16846c37b6e53c21cdf75425">kcenon::monitoring::collector_plugin</a>.</p>
+
+</div>
+</div>
 <a id="aa33f96ebeb1146dacb25727a4f0e428c" name="aa33f96ebeb1146dacb25727a4f0e428c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa33f96ebeb1146dacb25727a4f0e428c">&#9670;&#160;</a></span>create_battery_metric()</h2>
 
@@ -418,95 +423,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1b63616d8dcd101c9401eacd48a3de0" name="aa1b63616d8dcd101c9401eacd48a3de0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1b63616d8dcd101c9401eacd48a3de0">&#9670;&#160;</a></span>do_add_statistics()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void kcenon::monitoring::battery_collector::do_add_statistics </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a> &amp;&#160;</td>
-          <td class="paramname"><em>stats</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Add collector-specific statistics </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stats</td><td>Map to add statistics to </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="af38990cc0e7a75a1ad07293b2290144d" name="af38990cc0e7a75a1ad07293b2290144d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af38990cc0e7a75a1ad07293b2290144d">&#9670;&#160;</a></span>do_collect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">metric</a> &gt; kcenon::monitoring::battery_collector::do_collect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Collect battery metrics from all batteries </p><dl class="section return"><dt>Returns</dt><dd>Vector of collected metrics </dd></dl>
-
-</div>
-</div>
-<a id="a320520f6a3f6e478e15e285e0694aefb" name="a320520f6a3f6e478e15e285e0694aefb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a320520f6a3f6e478e15e285e0694aefb">&#9670;&#160;</a></span>do_get_metric_types()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::string &gt; kcenon::monitoring::battery_collector::do_get_metric_types </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Get supported metric types </p><dl class="section return"><dt>Returns</dt><dd>Vector of supported metric type names </dd></dl>
-
-</div>
-</div>
-<a id="a123e40537e86ac41476407c1383ae29b" name="a123e40537e86ac41476407c1383ae29b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a123e40537e86ac41476407c1383ae29b">&#9670;&#160;</a></span>do_initialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool kcenon::monitoring::battery_collector::do_initialize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;&#160;</td>
-          <td class="paramname"><em>config</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Collector-specific initialization </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">config</td><td>Configuration options:<ul>
-<li>"collect_health": "true"/"false" (default: true)</li>
-<li>"collect_thermal": "true"/"false" (default: true) </li>
-</ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if initialization successful </dd></dl>
-
-</div>
-</div>
 <a id="a01b10270664df432f8501d57d240a0ae" name="a01b10270664df432f8501d57d240a0ae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01b10270664df432f8501d57d240a0ae">&#9670;&#160;</a></span>get_last_readings()</h2>
 
@@ -525,21 +441,233 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1a96056d599845e6bd2e420ab196f57" name="aa1a96056d599845e6bd2e420ab196f57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1a96056d599845e6bd2e420ab196f57">&#9670;&#160;</a></span>is_available()</h2>
+<a id="aba5e22c2c5161320e83e039910193662" name="aba5e22c2c5161320e83e039910193662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba5e22c2c5161320e83e039910193662">&#9670;&#160;</a></span>get_metadata()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool kcenon::monitoring::battery_collector::is_available </td>
+          <td class="memname">auto kcenon::monitoring::battery_collector::get_metadata </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td> const -&gt; <a class="el" href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html">plugin_metadata</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Check if battery monitoring is available </p><dl class="section return"><dt>Returns</dt><dd>True if batteries are accessible </dd></dl>
+
+<p>Get plugin metadata. </p>
+<dl class="section return"><dt>Returns</dt><dd>Metadata describing this plugin</dd></dl>
+<p>Default implementation returns minimal metadata. Override to provide rich plugin information. </p>
+
+<p>Reimplemented from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a9ce3dfab54b371fb42fe70570a46967d">kcenon::monitoring::collector_plugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00215">215</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  215</span>                                                          {</div>
+<div class="line"><span class="lineno">  216</span>        <span class="keywordflow">return</span> plugin_metadata{</div>
+<div class="line"><span class="lineno">  217</span>            .name = <a class="code hl_function" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a78c23160b5ab20fe79bc1094f80a4942">name</a>(),</div>
+<div class="line"><span class="lineno">  218</span>            .description = <span class="stringliteral">&quot;Battery status metrics (charge, health, temperature)&quot;</span>,</div>
+<div class="line"><span class="lineno">  219</span>            .category = <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f">plugin_category::hardware</a>,</div>
+<div class="line"><span class="lineno">  220</span>            .version = <span class="stringliteral">&quot;1.0.0&quot;</span>,</div>
+<div class="line"><span class="lineno">  221</span>            .dependencies = {},</div>
+<div class="line"><span class="lineno">  222</span>            .requires_platform_support = <span class="keyword">true</span></div>
+<div class="line"><span class="lineno">  223</span>        };</div>
+<div class="line"><span class="lineno">  224</span>    }</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1battery__collector_html_a78c23160b5ab20fe79bc1094f80a4942"><div class="ttname"><a href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a78c23160b5ab20fe79bc1094f80a4942">kcenon::monitoring::battery_collector::name</a></div><div class="ttdeci">auto name() const -&gt; std::string_view override</div><div class="ttdoc">Get the unique name of this plugin.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dde/battery__collector_8h_source.html#l00209">battery_collector.h:209</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa3ca14c518d1bf901acc339e7c9cd6d7f">kcenon::monitoring::plugin_category::hardware</a></div><div class="ttdeci">@ hardware</div><div class="ttdoc">Hardware sensors (GPU, temperature, battery, power)</div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector_aba5e22c2c5161320e83e039910193662_cgraph.png" border="0" usemap="#ada/d8c/classkcenon_1_1monitoring_1_1battery__collector_aba5e22c2c5161320e83e039910193662_cgraph" alt=""/></div>
+<map name="ada/d8c/classkcenon_1_1monitoring_1_1battery__collector_aba5e22c2c5161320e83e039910193662_cgraph" id="ada/d8c/classkcenon_1_1monitoring_1_1battery__collector_aba5e22c2c5161320e83e039910193662_cgraph">
+<area shape="rect" title="Get plugin metadata." alt="" coords="5,5,153,60"/>
+<area shape="rect" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#a78c23160b5ab20fe79bc1094f80a4942" title="Get the unique name of this plugin." alt="" coords="201,13,387,53"/>
+<area shape="poly" title=" " alt="" coords="154,30,188,30,188,35,154,35"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a97fa5f55f046ae3b04fca0fb4538db91" name="a97fa5f55f046ae3b04fca0fb4538db91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97fa5f55f046ae3b04fca0fb4538db91">&#9670;&#160;</a></span>get_metric_types()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::battery_collector::get_metric_types </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::vector&lt; std::string &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get supported metric types. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of metric type names this plugin produces</dd></dl>
+<p>Used for filtering and documentation. </p>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a05223bc87aa479d1bf16057a9709d72c">kcenon::monitoring::collector_plugin</a>.</p>
+
+</div>
+</div>
+<a id="a6a54002444688974df1f3d18d4009191" name="a6a54002444688974df1f3d18d4009191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a54002444688974df1f3d18d4009191">&#9670;&#160;</a></span>get_statistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::battery_collector::get_statistics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a72af7bf3c41800351c253463678a355a">stats_map</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get plugin statistics. </p>
+<dl class="section return"><dt>Returns</dt><dd>Map of statistic name to value</dd></dl>
+<p>Optional: Override to provide plugin-specific statistics. </p>
+
+<p>Reimplemented from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a0b94ca08ffe3a6cf054b1993f50bdc0a">kcenon::monitoring::collector_plugin</a>.</p>
+
+</div>
+</div>
+<a id="a6b5b6a1a7bdf9a7b8c2a0aceec90cca2" name="a6b5b6a1a7bdf9a7b8c2a0aceec90cca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b5b6a1a7bdf9a7b8c2a0aceec90cca2">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::battery_collector::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a2f6036067a6209b4db3dd1ed9677406b">config_map</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize plugin with configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>Configuration key-value pairs </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if initialization succeeded</dd></dl>
+<p>Called once after plugin registration. Optional: Default implementation always succeeds. </p>
+
+<p>Reimplemented from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a2bef732182f058d956ec60e7485da2d9">kcenon::monitoring::collector_plugin</a>.</p>
+
+</div>
+</div>
+<a id="a0ab75dcc7e70b518ef006c0f4f131a11" name="a0ab75dcc7e70b518ef006c0f4f131a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ab75dcc7e70b518ef006c0f4f131a11">&#9670;&#160;</a></span>interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::battery_collector::interval </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::chrono::milliseconds</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the collection interval for this plugin. </p>
+<dl class="section return"><dt>Returns</dt><dd>Collection interval in milliseconds</dd></dl>
+<p>The registry uses this value to schedule collection tasks. Typical values:</p><ul>
+<li>Fast metrics (CPU, memory): 1-5 seconds</li>
+<li>Slow metrics (disk, network): 10-60 seconds</li>
+<li>Very slow metrics (SMART data): 5-15 minutes </li>
+</ul>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a49b6d7daf18c610d7a230b478a576cd0">kcenon::monitoring::collector_plugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00211">211</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  211</span>{ <span class="keywordflow">return</span> std::chrono::seconds(30); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af626bbc27c9d19641d2ada72f8273b84" name="af626bbc27c9d19641d2ada72f8273b84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af626bbc27c9d19641d2ada72f8273b84">&#9670;&#160;</a></span>is_available()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::battery_collector::is_available </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if this plugin is available on the current system. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if plugin can collect metrics, false otherwise</dd></dl>
+<p>Availability checks may include:</p><ul>
+<li>Platform compatibility (Linux-only, Windows-only)</li>
+<li>Hardware presence (GPU, sensors)</li>
+<li>Permission checks (root required)</li>
+<li>Resource availability (proc filesystem, WMI)</li>
+</ul>
+<p>The registry may skip unavailable plugins during registration. </p>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a9c4c3a0a9745c25af45cd24a43d0723a">kcenon::monitoring::collector_plugin</a>.</p>
 
 </div>
 </div>
@@ -558,6 +686,71 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Check if battery monitoring is available </p><dl class="section return"><dt>Returns</dt><dd>True if batteries are accessible </dd></dl>
+
+</div>
+</div>
+<a id="a188939f4b132165bd0abfbd5ffa8e9ff" name="a188939f4b132165bd0abfbd5ffa8e9ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a188939f4b132165bd0abfbd5ffa8e9ff">&#9670;&#160;</a></span>is_healthy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kcenon::monitoring::battery_collector::is_healthy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78c23160b5ab20fe79bc1094f80a4942" name="a78c23160b5ab20fe79bc1094f80a4942"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78c23160b5ab20fe79bc1094f80a4942">&#9670;&#160;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::battery_collector::name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::string_view</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the unique name of this plugin. </p>
+<dl class="section return"><dt>Returns</dt><dd>Plugin name (must be unique within registry)</dd></dl>
+<p>The name is used for:</p><ul>
+<li>Plugin lookup and discovery</li>
+<li>Configuration mapping</li>
+<li>Metric tagging (added as "collector" tag) </li>
+</ul>
+
+<p>Implements <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#aadf48e73c6893aa3b25a813922057bac">kcenon::monitoring::collector_plugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00209">209</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  209</span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;battery&quot;</span>; }</div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector_a78c23160b5ab20fe79bc1094f80a4942_icgraph.png" border="0" usemap="#ada/d8c/classkcenon_1_1monitoring_1_1battery__collector_a78c23160b5ab20fe79bc1094f80a4942_icgraph" alt=""/></div>
+<map name="ada/d8c/classkcenon_1_1monitoring_1_1battery__collector_a78c23160b5ab20fe79bc1094f80a4942_icgraph" id="ada/d8c/classkcenon_1_1monitoring_1_1battery__collector_a78c23160b5ab20fe79bc1094f80a4942_icgraph">
+<area shape="rect" title="Get the unique name of this plugin." alt="" coords="201,13,387,53"/>
+<area shape="rect" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html#aba5e22c2c5161320e83e039910193662" title="Get plugin metadata." alt="" coords="5,5,153,60"/>
+<area shape="poly" title=" " alt="" coords="187,35,153,35,153,30,187,30"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -613,6 +806,39 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a4da6a8858541a3db69cd2f7cc6e328ab" name="a4da6a8858541a3db69cd2f7cc6e328ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4da6a8858541a3db69cd2f7cc6e328ab">&#9670;&#160;</a></span>shutdown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kcenon::monitoring::battery_collector::shutdown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shutdown plugin and release resources. </p>
+<p>Called before plugin destruction. Optional: Default implementation is no-op. </p>
+
+<p>Reimplemented from <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html#a8b282c8a767a3768533c0f7f642df073">kcenon::monitoring::collector_plugin</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00227">227</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  227</span>{}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a4ba4b558e72b748fb1f2126d542d6dd0" name="a4ba4b558e72b748fb1f2126d542d6dd0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ba4b558e72b748fb1f2126d542d6dd0">&#9670;&#160;</a></span>batteries_found_</h2>
@@ -634,8 +860,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00267">267</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  267</span>{0};</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00254">254</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  254</span>{0};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -659,8 +885,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00263">263</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  263</span>{<span class="keyword">true</span>};</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00249">249</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  249</span>{<span class="keyword">true</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -684,8 +910,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00264">264</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  264</span>{<span class="keyword">true</span>};</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00250">250</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  250</span>{<span class="keyword">true</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -709,33 +935,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00260">260</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
-
-</div>
-</div>
-<a id="a8eea62e71b9bdf26b0e7cea4884c24fe" name="a8eea62e71b9bdf26b0e7cea4884c24fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8eea62e71b9bdf26b0e7cea4884c24fe">&#9670;&#160;</a></span>collector_name</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr const char* kcenon::monitoring::battery_collector::collector_name = &quot;battery_collector&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Collector name for CRTP base class. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00202">202</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00246">246</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
 
 </div>
 </div>
@@ -759,7 +959,31 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00268">268</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00255">255</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
+
+</div>
+</div>
+<a id="a3b0a4e0896d354c1aae200b4f53c81e8" name="a3b0a4e0896d354c1aae200b4f53c81e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b0a4e0896d354c1aae200b4f53c81e8">&#9670;&#160;</a></span>stats_mutex_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex kcenon::monitoring::battery_collector::stats_mutex_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dc/dde/battery__collector_8h_source.html#l00253">253</a> of file <a class="el" href="../../dc/dde/battery__collector_8h_source.html">battery_collector.h</a>.</p>
 
 </div>
 </div>
@@ -769,7 +993,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 11:16:59 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 11:33:57 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

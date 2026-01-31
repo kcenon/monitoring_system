@@ -132,7 +132,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// Test basic initialization</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><a class="code hl_function" href="../../d2/dee/test__adaptive__monitoring_8cpp.html#a595b5fbbcee10830ce03cdba8d572f74">TEST_F</a>(TemperatureCollectorTest, InitializesSuccessfully) {</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    EXPECT_TRUE(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;is_healthy());</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_EQ(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;get_name(), <span class="stringliteral">&quot;temperature_collector&quot;</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    EXPECT_EQ(<a class="code hl_variable" href="../../d9/d1f/test__battery__collector_8cpp.html#a534ca6f7d2a3f8a4309322cc0353bb05">collector_</a>-&gt;name(), <span class="stringliteral">&quot;temperature&quot;</span>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// Test metric types returned</span></div>
@@ -329,7 +329,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>}  <span class="comment">// namespace</span></div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>}  <span class="comment">// namespace monitoring</span></div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>}  <span class="comment">// namespace kcenon</span></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a23f3e5827b22a94a0409b46aaec0760c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a23f3e5827b22a94a0409b46aaec0760c">kcenon::monitoring::sensor_type_to_string</a></div><div class="ttdeci">std::string sensor_type_to_string(sensor_type type)</div><div class="ttdoc">Convert sensor_type to string representation.</div><div class="ttdef"><b>Definition</b> <a href="../../df/df5/temperature__collector_8h_source.html#l00074">temperature_collector.h:74</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a23f3e5827b22a94a0409b46aaec0760c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a23f3e5827b22a94a0409b46aaec0760c">kcenon::monitoring::sensor_type_to_string</a></div><div class="ttdeci">std::string sensor_type_to_string(sensor_type type)</div><div class="ttdoc">Convert sensor_type to string representation.</div><div class="ttdef"><b>Definition</b> <a href="../../df/df5/temperature__collector_8h_source.html#l00075">temperature_collector.h:75</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_abf3d64d411b3ad343bc59e8ab439b2d1acaf9b6b99962bf5c2264824231d7a40c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#abf3d64d411b3ad343bc59e8ab439b2d1acaf9b6b99962bf5c2264824231d7a40c">kcenon::monitoring::alert_severity::info</a></div><div class="ttdeci">@ info</div><div class="ttdoc">Informational, no action required.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad5391888a20ee60ea1d9e24da879aa88a0aa0be2a866411d9ff03515227454947"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88a0aa0be2a866411d9ff03515227454947">kcenon::monitoring::sensor_type::gpu</a></div><div class="ttdeci">@ gpu</div><div class="ttdoc">GPU temperature sensor.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad5391888a20ee60ea1d9e24da879aa88a63ea45b84052361ae0ae6315fc7ba87b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88a63ea45b84052361ae0ae6315fc7ba87b">kcenon::monitoring::sensor_type::motherboard</a></div><div class="ttdeci">@ motherboard</div><div class="ttdoc">Motherboard/chipset sensor.</div></div>
@@ -346,7 +346,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 11:16:58 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jan 31 2026 11:33:56 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
