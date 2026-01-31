@@ -37,7 +37,7 @@ namespace monitoring {
 container_collector::container_collector()
     : collector_(std::make_unique<container_info_collector>()) {}
 
-bool container_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
+bool container_collector::initialize(const config_map& config) {
     // Parse configuration options
     auto it = config.find("enabled");
     if (it != config.end()) {
@@ -100,9 +100,17 @@ std::vector<std::string> container_collector::get_metric_types() const {
             "container_pids_current"};
 }
 
+bool container_collector::is_available() const {
+#if defined(__linux__)
+    return collector_ && collector_->detect_cgroup_version() != cgroup_version::none;
+#else
+    return false;  // Container metrics only available on Linux
+#endif
+}
+
 bool container_collector::is_healthy() const { return enabled_ && collector_ != nullptr; }
 
-std::unordered_map<std::string, double> container_collector::get_statistics() const {
+stats_map container_collector::get_statistics() const {
     return {{"collection_count", static_cast<double>(collection_count_.load())},
             {"collection_errors", static_cast<double>(collection_errors_.load())},
             {"containers_found", static_cast<double>(containers_found_.load())}};

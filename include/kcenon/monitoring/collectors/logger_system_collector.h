@@ -47,7 +47,7 @@
 #include "../adapters/logger_system_adapter.h"
 #include "../core/event_bus.h"
 #include "../core/event_types.h"
-#include "plugin_metric_collector.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon { namespace monitoring {
 
@@ -123,18 +123,35 @@ struct log_pattern_analysis {
  * Logger system metrics collector plugin
  * Collects metrics from logging systems and analyzes log patterns
  */
-class logger_system_collector : public metric_collector_plugin {
+class logger_system_collector : public collector_plugin {
   public:
     logger_system_collector();
     ~logger_system_collector() override;
 
-    // metric_collector_plugin implementation
-    bool initialize(const std::unordered_map<std::string, std::string>& config) override;
-    std::vector<metric> collect() override;
-    std::string get_name() const override { return "logger_system_collector"; }
-    std::vector<std::string> get_metric_types() const override;
-    bool is_healthy() const override;
-    std::unordered_map<std::string, double> get_statistics() const override;
+    // collector_plugin implementation
+    auto name() const -> std::string_view override { return "logger_system"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(10); }
+    auto is_available() const -> bool override { return true; }
+    auto get_metric_types() const -> std::vector<std::string> override;
+
+    auto get_metadata() const -> plugin_metadata override {
+        return plugin_metadata{
+            .name = name(),
+            .description = "Logger system metrics and log pattern analysis",
+            .category = plugin_category::system,
+            .version = "1.0.0",
+            .dependencies = {},
+            .requires_platform_support = false
+        };
+    }
+
+    auto initialize(const config_map& config) -> bool override;
+    void shutdown() override {}
+    auto get_statistics() const -> stats_map override;
+
+    // Legacy compatibility (deprecated)
+    bool is_healthy() const;
 
     /**
      * Set the logger system adapter for metric collection
