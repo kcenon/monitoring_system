@@ -176,9 +176,17 @@ void collector_registry::shutdown_all() {
     }
 
     // Shutdown in reverse order of registration
-    for (auto it = plugins_.rbegin(); it != plugins_.rend(); ++it) {
-        const auto& name = it->first;
-        const auto& plugin = it->second;
+    // Collect plugin names first since unordered_map doesn't support reverse iteration
+    std::vector<std::string> plugin_names;
+    plugin_names.reserve(plugins_.size());
+    for (const auto& [name, _] : plugins_) {
+        plugin_names.push_back(name);
+    }
+
+    // Shutdown in reverse order
+    for (auto it = plugin_names.rbegin(); it != plugin_names.rend(); ++it) {
+        const auto& name = *it;
+        const auto& plugin = plugins_[name];
 
         if (initialized_[name]) {
             plugin->shutdown();
