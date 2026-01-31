@@ -49,7 +49,7 @@ class TemperatureCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(TemperatureCollectorTest, InitializesSuccessfully) {
     EXPECT_TRUE(collector_->is_healthy());
-    EXPECT_EQ(collector_->get_name(), "temperature_collector");
+    EXPECT_EQ(collector_->name(), "temperature");
 }
 
 // Test metric types returned
