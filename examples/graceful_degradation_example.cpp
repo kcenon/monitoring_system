@@ -148,7 +148,7 @@ void demonstrate_retry_policy() {
     retry_cfg.initial_delay = 100ms;
     retry_cfg.backoff_multiplier = 2.0;
 
-    retry_policy<std::string> policy("service_retry", retry_cfg);
+    retry_executor<std::string> policy("service_retry", retry_cfg);
 
     std::cout << "Retry Policy Configuration:" << std::endl;
     std::cout << "- Strategy: Exponential backoff" << std::endl;
@@ -200,7 +200,7 @@ void demonstrate_combined_patterns() {
     retry_cfg2.strategy = retry_strategy::exponential_backoff;
     retry_cfg2.initial_delay = 100ms;
 
-    retry_policy<std::string> policy2("combined_retry", retry_cfg2);
+    retry_executor<std::string> policy2("combined_retry", retry_cfg2);
 
     std::cout << "Combining Circuit Breaker + Retry Policy" << std::endl;
     std::cout << std::endl;
