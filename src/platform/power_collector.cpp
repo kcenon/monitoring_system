@@ -93,7 +93,7 @@ std::vector<power_reading> power_info_collector::read_all_power() {
 power_collector::power_collector()
     : collector_(std::make_unique<power_info_collector>()) {}
 
-bool power_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
+bool power_collector::initialize(const config_map& config) {
     // Parse enabled option
     auto enabled_it = config.find("enabled");
     if (enabled_it != config.end()) {
@@ -162,14 +162,22 @@ std::vector<std::string> power_collector::get_metric_types() const {
             "battery_charge_rate", "battery_is_charging", "battery_is_discharging"};
 }
 
+bool power_collector::is_available() const {
+#if defined(__linux__)
+    return collector_ && collector_->is_power_available();
+#elif defined(__APPLE__) || defined(_WIN32)
+    return collector_ && collector_->is_power_available();
+#else
+    return false;
+#endif
+}
+
 bool power_collector::is_healthy() const { return enabled_; }
 
-std::unordered_map<std::string, double> power_collector::get_statistics() const {
-    std::unordered_map<std::string, double> stats;
-    stats["collection_count"] = static_cast<double>(collection_count_.load());
-    stats["collection_errors"] = static_cast<double>(collection_errors_.load());
-    stats["sources_found"] = static_cast<double>(sources_found_.load());
-    return stats;
+stats_map power_collector::get_statistics() const {
+    return {{"collection_count", static_cast<double>(collection_count_.load())},
+            {"collection_errors", static_cast<double>(collection_errors_.load())},
+            {"sources_found", static_cast<double>(sources_found_.load())}};
 }
 
 std::vector<power_reading> power_collector::get_last_readings() const {

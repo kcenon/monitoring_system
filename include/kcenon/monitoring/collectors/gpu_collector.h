@@ -50,6 +50,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -214,16 +215,16 @@ class gpu_info_collector {
 
 /**
  * @class gpu_collector
- * @brief GPU metrics monitoring collector
+ * @brief GPU metrics monitoring collector implementing collector_plugin interface
  *
  * Collects GPU metrics data from available GPUs with cross-platform
  * support. Gracefully degrades when GPUs are not available or when
  * vendor-specific libraries are not installed.
  */
-class gpu_collector {
+class gpu_collector : public collector_plugin {
    public:
     gpu_collector();
-    ~gpu_collector() = default;
+    ~gpu_collector() override = default;
 
     // Non-copyable, non-moveable due to internal state
     gpu_collector(const gpu_collector&) = delete;
@@ -231,42 +232,30 @@ class gpu_collector {
     gpu_collector(gpu_collector&&) = delete;
     gpu_collector& operator=(gpu_collector&&) = delete;
 
-    /**
-     * Initialize the collector with configuration
-     * @param config Configuration options
-     * @return true if initialization successful
-     */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    // collector_plugin implementation
+    auto name() const -> std::string_view override { return "gpu"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(5); }
+    auto is_available() const -> bool override;
+    auto get_metric_types() const -> std::vector<std::string> override;
 
-    /**
-     * Collect GPU metrics from all devices
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
+    auto get_metadata() const -> plugin_metadata override {
+        return plugin_metadata{
+            .name = name(),
+            .description = "GPU metrics (utilization, memory, temperature, power)",
+            .category = plugin_category::hardware,
+            .version = "1.0.0",
+            .dependencies = {},
+            .requires_platform_support = true
+        };
+    }
 
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "gpu_collector"; }
+    auto initialize(const config_map& config) -> bool override;
+    void shutdown() override {}
+    auto get_statistics() const -> stats_map override;
 
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
+    // Legacy compatibility (deprecated)
     bool is_healthy() const;
-
-    /**
-     * Get collector statistics
-     * @return Map of statistic name to value
-     */
-    std::unordered_map<std::string, double> get_statistics() const;
 
     /**
      * Get last collected GPU readings

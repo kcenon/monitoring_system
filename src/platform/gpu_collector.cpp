@@ -107,7 +107,7 @@ std::vector<gpu_reading> gpu_info_collector::read_all_gpu_metrics() {
 
 gpu_collector::gpu_collector() : collector_(std::make_unique<gpu_info_collector>()) {}
 
-bool gpu_collector::initialize(const std::unordered_map<std::string, std::string>& config) {
+bool gpu_collector::initialize(const config_map& config) {
     // Parse enabled option
     auto enabled_it = config.find("enabled");
     if (enabled_it != config.end()) {
@@ -194,14 +194,22 @@ std::vector<std::string> gpu_collector::get_metric_types() const {
             "gpu_fan_speed_percent"};
 }
 
+bool gpu_collector::is_available() const {
+#if defined(__linux__) || defined(__APPLE__)
+    return collector_ && collector_->is_gpu_available();
+#elif defined(_WIN32)
+    return false;  // Not yet implemented on Windows
+#else
+    return false;
+#endif
+}
+
 bool gpu_collector::is_healthy() const { return enabled_; }
 
-std::unordered_map<std::string, double> gpu_collector::get_statistics() const {
-    std::unordered_map<std::string, double> stats;
-    stats["collection_count"] = static_cast<double>(collection_count_.load());
-    stats["collection_errors"] = static_cast<double>(collection_errors_.load());
-    stats["gpus_found"] = static_cast<double>(gpus_found_.load());
-    return stats;
+stats_map gpu_collector::get_statistics() const {
+    return {{"collection_count", static_cast<double>(collection_count_.load())},
+            {"collection_errors", static_cast<double>(collection_errors_.load())},
+            {"gpus_found", static_cast<double>(gpus_found_.load())}};
 }
 
 std::vector<gpu_reading> gpu_collector::get_last_readings() const {

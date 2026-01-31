@@ -51,7 +51,7 @@ class BatteryCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(BatteryCollectorTest, InitializesSuccessfully) {
     EXPECT_NE(collector_, nullptr);
-    EXPECT_EQ(collector_->get_name(), "battery_collector");
+    EXPECT_EQ(collector_->name(), "battery");
 }
 
 // Test metric types returned
