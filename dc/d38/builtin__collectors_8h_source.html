@@ -120,56 +120,60 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#include &quot;../collectors/network_metrics_collector.h&quot;</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#include &quot;../collectors/platform_metrics_collector.h&quot;</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#include &quot;../collectors/process_metrics_collector.h&quot;</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#include &quot;../collectors/system_resource_collector.h&quot;</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#include &quot;../collectors/uptime_collector.h&quot;</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#include &quot;../collectors/vm_collector.h&quot;</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#include &quot;../collectors/security_collector.h&quot;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#include &quot;../collectors/smart_collector.h&quot;</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#include &quot;../collectors/system_resource_collector.h&quot;</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#include &quot;../collectors/uptime_collector.h&quot;</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#include &quot;../collectors/vm_collector.h&quot;</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="../../db/d50/namespacekcenon_1_1monitoring.html#afa67b262c914bd24d2eb60839692dfdf">   84</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#afa67b262c914bd24d2eb60839692dfdf">register_builtin_collectors</a>() {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">bool</span> all_success = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// Plugin-based collectors (collector_plugin interface)</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    all_success &amp;= register_plugin_collector&lt;battery_collector&gt;(<span class="stringliteral">&quot;battery_collector&quot;</span>);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// Standalone collectors</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    all_success &amp;= register_standalone_collector&lt;system_resource_collector&gt;(<span class="stringliteral">&quot;system_resource_collector&quot;</span>);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    all_success &amp;= register_standalone_collector&lt;vm_collector&gt;(<span class="stringliteral">&quot;vm_collector&quot;</span>);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// CRTP-based collectors</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    all_success &amp;= register_crtp_collector&lt;uptime_collector&gt;(<span class="stringliteral">&quot;uptime_collector&quot;</span>);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    all_success &amp;= register_crtp_collector&lt;process_metrics_collector&gt;(<span class="stringliteral">&quot;process_metrics_collector&quot;</span>);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    all_success &amp;= register_crtp_collector&lt;network_metrics_collector&gt;(<span class="stringliteral">&quot;network_metrics_collector&quot;</span>);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    all_success &amp;= register_crtp_collector&lt;platform_metrics_collector&gt;(<span class="stringliteral">&quot;platform_metrics_collector&quot;</span>);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    all_success &amp;= register_crtp_collector&lt;interrupt_collector&gt;(<span class="stringliteral">&quot;interrupt_collector&quot;</span>);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> all_success;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a> {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="../../db/d50/namespacekcenon_1_1monitoring.html#afa67b262c914bd24d2eb60839692dfdf">   88</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#afa67b262c914bd24d2eb60839692dfdf">register_builtin_collectors</a>() {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">bool</span> all_success = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// Plugin-based collectors (collector_plugin interface)</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    all_success &amp;= register_plugin_collector&lt;battery_collector&gt;(<span class="stringliteral">&quot;battery_collector&quot;</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    all_success &amp;= register_plugin_collector&lt;uptime_collector&gt;(<span class="stringliteral">&quot;uptime_collector&quot;</span>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    all_success &amp;= register_plugin_collector&lt;interrupt_collector&gt;(<span class="stringliteral">&quot;interrupt_collector&quot;</span>);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    all_success &amp;= register_plugin_collector&lt;network_metrics_collector&gt;(<span class="stringliteral">&quot;network_metrics_collector&quot;</span>);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    all_success &amp;= register_plugin_collector&lt;platform_metrics_collector&gt;(<span class="stringliteral">&quot;platform_metrics_collector&quot;</span>);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    all_success &amp;= register_plugin_collector&lt;process_metrics_collector&gt;(<span class="stringliteral">&quot;process_metrics_collector&quot;</span>);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    all_success &amp;= register_plugin_collector&lt;security_collector&gt;(<span class="stringliteral">&quot;security_collector&quot;</span>);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    all_success &amp;= register_plugin_collector&lt;smart_collector&gt;(<span class="stringliteral">&quot;smart_collector&quot;</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    all_success &amp;= register_plugin_collector&lt;vm_collector&gt;(<span class="stringliteral">&quot;vm_collector&quot;</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// Standalone collectors</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    all_success &amp;= register_standalone_collector&lt;system_resource_collector&gt;(<span class="stringliteral">&quot;system_resource_collector&quot;</span>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">return</span> all_success;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
 </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fd0a72e4a5f7c78be3b6055d516bf0c">  108</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fd0a72e4a5f7c78be3b6055d516bf0c">get_builtin_collector_names</a>() {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">return</span> {<span class="stringliteral">&quot;system_resource_collector&quot;</span>,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="stringliteral">&quot;vm_collector&quot;</span>,</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="stringliteral">&quot;uptime_collector&quot;</span>,</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="stringliteral">&quot;battery_collector&quot;</span>,</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <span class="stringliteral">&quot;process_metrics_collector&quot;</span>,</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="stringliteral">&quot;network_metrics_collector&quot;</span>,</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="stringliteral">&quot;platform_metrics_collector&quot;</span>,</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <span class="stringliteral">&quot;interrupt_collector&quot;</span>};</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00112" data-start="{" data-end="}">
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fd0a72e4a5f7c78be3b6055d516bf0c">  112</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fd0a72e4a5f7c78be3b6055d516bf0c">get_builtin_collector_names</a>() {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">return</span> {<span class="stringliteral">&quot;system_resource_collector&quot;</span>,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="stringliteral">&quot;battery_collector&quot;</span>,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="stringliteral">&quot;uptime_collector&quot;</span>,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <span class="stringliteral">&quot;interrupt_collector&quot;</span>,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <span class="stringliteral">&quot;network_metrics_collector&quot;</span>,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="stringliteral">&quot;platform_metrics_collector&quot;</span>,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            <span class="stringliteral">&quot;process_metrics_collector&quot;</span>,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="stringliteral">&quot;security_collector&quot;</span>,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <span class="stringliteral">&quot;smart_collector&quot;</span>,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="stringliteral">&quot;vm_collector&quot;</span>};</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>}</div>
 </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}  <span class="comment">// namespace kcenon::monitoring</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}  <span class="comment">// namespace kcenon::monitoring</span></div>
 <div class="ttc" id="acollector__adapters_8h_html"><div class="ttname"><a href="../../d6/d75/collector__adapters_8h.html">collector_adapters.h</a></div><div class="ttdoc">Adapters to connect existing collectors to collector_interface.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/common__to__monitoring__adapter_8h_source.html#l00025">common_to_monitoring_adapter.h:25</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a0fd0a72e4a5f7c78be3b6055d516bf0c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fd0a72e4a5f7c78be3b6055d516bf0c">kcenon::monitoring::get_builtin_collector_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_builtin_collector_names()</div><div class="ttdoc">Get list of all built-in collector names.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d38/builtin__collectors_8h_source.html#l00108">builtin_collectors.h:108</a></div></div>
-<div class="ttc" id="anamespacekcenon_1_1monitoring_html_afa67b262c914bd24d2eb60839692dfdf"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#afa67b262c914bd24d2eb60839692dfdf">kcenon::monitoring::register_builtin_collectors</a></div><div class="ttdeci">bool register_builtin_collectors()</div><div class="ttdoc">Register all built-in collectors with the metric_factory.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d38/builtin__collectors_8h_source.html#l00084">builtin_collectors.h:84</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a0fd0a72e4a5f7c78be3b6055d516bf0c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fd0a72e4a5f7c78be3b6055d516bf0c">kcenon::monitoring::get_builtin_collector_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_builtin_collector_names()</div><div class="ttdoc">Get list of all built-in collector names.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d38/builtin__collectors_8h_source.html#l00112">builtin_collectors.h:112</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_afa67b262c914bd24d2eb60839692dfdf"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#afa67b262c914bd24d2eb60839692dfdf">kcenon::monitoring::register_builtin_collectors</a></div><div class="ttdeci">bool register_builtin_collectors()</div><div class="ttdoc">Register all built-in collectors with the metric_factory.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d38/builtin__collectors_8h_source.html#l00088">builtin_collectors.h:88</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 02:06:41 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 02:33:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
