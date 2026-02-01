@@ -58,6 +58,8 @@
 #include "../collectors/network_metrics_collector.h"
 #include "../collectors/platform_metrics_collector.h"
 #include "../collectors/process_metrics_collector.h"
+#include "../collectors/security_collector.h"
+#include "../collectors/smart_collector.h"
 #include "../collectors/system_resource_collector.h"
 #include "../collectors/uptime_collector.h"
 #include "../collectors/vm_collector.h"
@@ -70,12 +72,14 @@ namespace kcenon::monitoring {
  * This function registers the following collectors:
  * - system_resource_collector (plugin-based)
  * - battery_collector (plugin-based)
- * - vm_collector (standalone)
- * - uptime_collector (CRTP-based)
- * - process_metrics_collector (CRTP-based, consolidated from fd, inode, context_switch)
- * - network_metrics_collector (CRTP-based, consolidated from tcp_state and socket_buffer)
- * - platform_metrics_collector (CRTP-based, unified platform metrics using Strategy pattern)
- * - interrupt_collector (CRTP-based)
+ * - uptime_collector (plugin-based)
+ * - interrupt_collector (plugin-based)
+ * - network_metrics_collector (plugin-based)
+ * - platform_metrics_collector (plugin-based)
+ * - process_metrics_collector (plugin-based)
+ * - security_collector (plugin-based)
+ * - smart_collector (plugin-based)
+ * - vm_collector (plugin-based)
  *
  * Call this function once at application startup before using the factory.
  *
@@ -86,17 +90,17 @@ inline bool register_builtin_collectors() {
 
     // Plugin-based collectors (collector_plugin interface)
     all_success &= register_plugin_collector<battery_collector>("battery_collector");
+    all_success &= register_plugin_collector<uptime_collector>("uptime_collector");
+    all_success &= register_plugin_collector<interrupt_collector>("interrupt_collector");
+    all_success &= register_plugin_collector<network_metrics_collector>("network_metrics_collector");
+    all_success &= register_plugin_collector<platform_metrics_collector>("platform_metrics_collector");
+    all_success &= register_plugin_collector<process_metrics_collector>("process_metrics_collector");
+    all_success &= register_plugin_collector<security_collector>("security_collector");
+    all_success &= register_plugin_collector<smart_collector>("smart_collector");
+    all_success &= register_plugin_collector<vm_collector>("vm_collector");
 
     // Standalone collectors
     all_success &= register_standalone_collector<system_resource_collector>("system_resource_collector");
-    all_success &= register_standalone_collector<vm_collector>("vm_collector");
-
-    // CRTP-based collectors
-    all_success &= register_crtp_collector<uptime_collector>("uptime_collector");
-    all_success &= register_crtp_collector<process_metrics_collector>("process_metrics_collector");
-    all_success &= register_crtp_collector<network_metrics_collector>("network_metrics_collector");
-    all_success &= register_crtp_collector<platform_metrics_collector>("platform_metrics_collector");
-    all_success &= register_crtp_collector<interrupt_collector>("interrupt_collector");
 
     return all_success;
 }
@@ -107,13 +111,15 @@ inline bool register_builtin_collectors() {
  */
 inline std::vector<std::string> get_builtin_collector_names() {
     return {"system_resource_collector",
-            "vm_collector",
-            "uptime_collector",
             "battery_collector",
-            "process_metrics_collector",
+            "uptime_collector",
+            "interrupt_collector",
             "network_metrics_collector",
             "platform_metrics_collector",
-            "interrupt_collector"};
+            "process_metrics_collector",
+            "security_collector",
+            "smart_collector",
+            "vm_collector"};
 }
 
 }  // namespace kcenon::monitoring

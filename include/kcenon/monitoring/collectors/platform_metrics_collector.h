@@ -60,6 +60,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "../plugins/collector_plugin.h"
 #include "collector_base.h"
 
 namespace kcenon {
@@ -269,12 +270,10 @@ class platform_info_collector {
  * - "collect_socket_buffers": "true"/"false" (default: true)
  * - "collect_interrupts": "true"/"false" (default: true)
  *
- * Uses CRTP base class to reduce code duplication.
+ * Implements collector_plugin interface for plugin-based architecture.
  */
-class platform_metrics_collector : public collector_base<platform_metrics_collector> {
+class platform_metrics_collector : public collector_plugin {
    public:
-    static constexpr const char* collector_name = "platform_metrics_collector";
-
     platform_metrics_collector();
     explicit platform_metrics_collector(platform_metrics_config config);
     ~platform_metrics_collector() override = default;
@@ -284,37 +283,55 @@ class platform_metrics_collector : public collector_base<platform_metrics_collec
     platform_metrics_collector(platform_metrics_collector&&) = delete;
     platform_metrics_collector& operator=(platform_metrics_collector&&) = delete;
 
-    // CRTP interface implementation
+    // collector_plugin interface implementation
     /**
-     * Collector-specific initialization
-     * @param config Configuration options
-     * @return true if initialization successful
+     * Get the unique name of this plugin
+     * @return Plugin name
      */
-    bool do_initialize(const config_map& config);
+    auto name() const -> std::string_view override { return "platform_metrics"; }
 
     /**
      * Collect platform metrics
      * @return Vector of collected metrics
      */
-    std::vector<metric> do_collect();
+    auto collect() -> std::vector<metric> override;
+
+    /**
+     * Get the collection interval for this plugin
+     * @return Collection interval
+     */
+    auto interval() const -> std::chrono::milliseconds override { return collection_interval_; }
 
     /**
      * Check if platform monitoring is available
      * @return True if platform metrics are accessible
      */
-    bool is_available() const;
+    auto is_available() const -> bool override;
+
+    /**
+     * Check if collector is in a healthy state
+     * @return True if collector is operational
+     */
+    bool is_healthy() const { return is_available(); }
 
     /**
      * Get supported metric types
      * @return Vector of supported metric type names
      */
-    std::vector<std::string> do_get_metric_types() const;
+    auto get_metric_types() const -> std::vector<std::string> override;
 
     /**
-     * Add collector-specific statistics
-     * @param stats Map to add statistics to
+     * Initialize collector with configuration
+     * @param config Configuration map
+     * @return True on success
      */
-    void do_add_statistics(stats_map& stats) const;
+    bool initialize(const config_map& config) override;
+
+    /**
+     * Get collector statistics
+     * @return Map of statistics
+     */
+    auto get_statistics() const -> stats_map override;
 
     // Accessors
     /**
@@ -350,6 +367,10 @@ class platform_metrics_collector : public collector_base<platform_metrics_collec
     // Cached platform info (doesn't change during runtime)
     platform_info cached_platform_info_;
     bool platform_info_cached_{false};
+
+    // Collection interval
+    std::chrono::milliseconds collection_interval_{std::chrono::seconds(10)};
+    mutable std::mutex metrics_mutex_;
 
     // Helper methods
     void collect_platform_info_metrics(std::vector<metric>& metrics);
