@@ -43,6 +43,7 @@
  * - Windows: Not implemented (future: Performance counters)
  */
 
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
@@ -51,7 +52,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
-#include "collector_base.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -130,37 +131,84 @@ class interrupt_info_collector {
  * @class interrupt_collector
  * @brief Hardware and software interrupt statistics monitoring collector
  *
- * Uses CRTP base class to reduce code duplication.
+ * Implements collector_plugin interface for unified plugin architecture.
  */
-class interrupt_collector : public collector_base<interrupt_collector> {
+class interrupt_collector : public collector_plugin {
    public:
-    static constexpr const char* collector_name = "interrupt_collector";
-
     interrupt_collector();
     ~interrupt_collector() override = default;
 
+    // Non-copyable, non-moveable due to internal state
     interrupt_collector(const interrupt_collector&) = delete;
     interrupt_collector& operator=(const interrupt_collector&) = delete;
     interrupt_collector(interrupt_collector&&) = delete;
     interrupt_collector& operator=(interrupt_collector&&) = delete;
 
-    // CRTP interface
-    bool do_initialize(const config_map& config);
-    std::vector<metric> do_collect();
-    bool is_available() const;
-    std::vector<std::string> do_get_metric_types() const;
-    void do_add_statistics(stats_map& stats) const;
+    // collector_plugin implementation
+    auto name() const -> std::string_view override { return "interrupt_collector"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(15); }
+    auto is_available() const -> bool override;
+    auto get_metric_types() const -> std::vector<std::string> override;
 
+    auto get_metadata() const -> plugin_metadata override {
+        return plugin_metadata{
+            .name = name(),
+            .description = "Hardware and software interrupt statistics",
+            .category = plugin_category::platform,
+            .version = "1.0.0",
+            .dependencies = {},
+            .requires_platform_support = true
+        };
+    }
+
+    /**
+     * Initialize the collector with configuration
+     * @param config Configuration options:
+     *   - "collect_per_cpu": "true"/"false" (default: false)
+     *   - "collect_soft_interrupts": "true"/"false" (default: true)
+     * @return true if initialization successful
+     */
+    auto initialize(const config_map& config) -> bool override;
+
+    /**
+     * Get collector statistics
+     * @return Map of statistic name to value
+     */
+    auto get_statistics() const -> stats_map override;
+
+    // Legacy compatibility (deprecated)
+    [[nodiscard]] std::string get_name() const { return std::string(name()); }
+    [[nodiscard]] bool is_healthy() const { return is_available(); }
+
+    /**
+     * Get last collected interrupt metrics
+     * @return Most recent interrupt_metrics reading
+     */
     interrupt_metrics get_last_metrics() const;
+
+    /**
+     * Check if interrupt monitoring is available
+     * @return True if interrupt metrics are accessible
+     */
     bool is_interrupt_monitoring_available() const;
 
    private:
     std::unique_ptr<interrupt_info_collector> collector_;
 
+    // Configuration
+    bool enabled_{true};
     bool collect_per_cpu_{false};
     bool collect_soft_interrupts_{true};
+
+    // Last metrics cache
     interrupt_metrics last_metrics_;
 
+    // Statistics
+    std::atomic<size_t> collection_count_{0};
+    std::atomic<size_t> collection_errors_{0};
+
+    // Helper methods
     void add_interrupt_metrics(std::vector<metric>& metrics, const interrupt_metrics& data);
 };
 
