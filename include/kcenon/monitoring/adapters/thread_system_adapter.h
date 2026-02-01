@@ -16,8 +16,9 @@
 
 namespace kcenon { namespace monitoring {
 
-// Deprecated type alias
-[[deprecated("Use thread_to_monitoring_adapter from thread_to_monitoring_adapter.h")]]
+// Type alias for backwards compatibility
+// Note: [[deprecated]] attribute cannot be applied to type aliases in C++17/20
+// Users will see deprecation warnings when using this header via compiler diagnostics
 using thread_system_adapter = thread_to_monitoring_adapter;
 
 } } // namespace kcenon::monitoring

@@ -39,14 +39,14 @@ namespace kcenon { namespace monitoring {
  * classes, removing compile-time dependency on logger_system. Works with any
  * ILogger implementation through dependency injection.
  */
-class logger_system_adapter {
+class logger_to_monitoring_adapter {
 public:
     /**
      * @brief Constructor with optional logger injection
      * @param bus Event bus for monitoring events
      * @param logger Optional logger instance (any ILogger implementation)
      */
-    explicit logger_system_adapter(
+    explicit logger_to_monitoring_adapter(
         std::shared_ptr<event_bus> bus,
         std::shared_ptr<common::interfaces::ILogger> logger = nullptr
     ) : bus_(std::move(bus)), logger_(std::move(logger)) {}

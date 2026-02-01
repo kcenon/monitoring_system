@@ -15,8 +15,9 @@
 
 namespace kcenon { namespace monitoring {
 
-// Deprecated type alias
-[[deprecated("Use logger_to_monitoring_adapter from logger_to_monitoring_adapter.h")]]
+// Type alias for backwards compatibility
+// Note: [[deprecated]] attribute cannot be applied to type aliases in C++17/20
+// Users will see deprecation warnings when using this header via compiler diagnostics
 using logger_system_adapter = logger_to_monitoring_adapter;
 
 } } // namespace kcenon::monitoring

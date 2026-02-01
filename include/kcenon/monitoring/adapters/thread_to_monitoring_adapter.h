@@ -52,14 +52,14 @@
 
 namespace kcenon { namespace monitoring {
 
-class thread_system_adapter {
+class thread_to_monitoring_adapter {
 public:
     struct collection_config {
         std::chrono::milliseconds interval{std::chrono::milliseconds{1000}};
         bool publish_events{true};
     };
 
-    explicit thread_system_adapter(std::shared_ptr<event_bus> bus)
+    explicit thread_to_monitoring_adapter(std::shared_ptr<event_bus> bus)
         : bus_(std::move(bus)) {}
 
     // Returns true when thread_system headers are available and a monitorable
@@ -161,7 +161,7 @@ public:
         return common::ok();
     }
 
-    ~thread_system_adapter() { (void)stop_collection(); }
+    ~thread_to_monitoring_adapter() { (void)stop_collection(); }
 
 private:
     std::shared_ptr<event_bus> bus_;
