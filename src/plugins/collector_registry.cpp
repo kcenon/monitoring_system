@@ -39,6 +39,72 @@ auto collector_registry::instance() -> collector_registry& {
     return instance;
 }
 
+auto collector_registry::load_plugin(std::string_view path) -> bool {
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    // Lazy initialization of plugin loader
+    if (!plugin_loader_) {
+        plugin_loader_ = std::make_unique<dynamic_plugin_loader>();
+    }
+
+    // Load the plugin from shared library
+    auto plugin = plugin_loader_->load_plugin(path);
+    if (!plugin) {
+        return false;
+    }
+
+    // Get plugin name before moving
+    auto name = std::string(plugin->name());
+
+    // Check for duplicates
+    if (plugins_.find(name) != plugins_.end()) {
+        return false;
+    }
+
+    // Register the plugin
+    plugins_[name] = std::move(plugin);
+    initialized_[name] = false;
+
+    return true;
+}
+
+auto collector_registry::unload_plugin(std::string_view name) -> bool {
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    // Check if plugin exists
+    auto it = plugins_.find(std::string(name));
+    if (it == plugins_.end()) {
+        return false;
+    }
+
+    // Shutdown if initialized
+    if (initialized_[std::string(name)]) {
+        it->second->shutdown();
+        initialized_[std::string(name)] = false;
+    }
+
+    // Remove from plugins map (this destroys the plugin instance)
+    plugins_.erase(it);
+    initialized_.erase(std::string(name));
+
+    // Unload the shared library
+    if (plugin_loader_) {
+        return plugin_loader_->unload_plugin(name);
+    }
+
+    return true;
+}
+
+auto collector_registry::get_plugin_loader_error() const -> std::string {
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    if (!plugin_loader_) {
+        return "";
+    }
+
+    return plugin_loader_->get_last_error_message();
+}
+
 auto collector_registry::register_plugin(std::unique_ptr<collector_plugin> plugin)
     -> bool {
     if (!plugin) {
