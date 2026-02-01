@@ -317,6 +317,21 @@ bool process_metrics_collector::is_available() const {
     return false;
 }
 
+bool process_metrics_collector::is_healthy() const {
+    // is_healthy() checks if the collector is operational,
+    // regardless of whether it's enabled or not
+    if (config_.collect_fd && fd_collector_ && fd_collector_->is_fd_monitoring_available()) {
+        return true;
+    }
+    if (config_.collect_inodes && inode_collector_ && inode_collector_->is_inode_monitoring_available()) {
+        return true;
+    }
+    if (config_.collect_context_switches && cs_collector_ && cs_collector_->is_context_switch_monitoring_available()) {
+        return true;
+    }
+    return false;
+}
+
 auto process_metrics_collector::get_statistics() const -> stats_map {
     stats_map stats;
     stats["enabled"] = config_.enabled ? 1.0 : 0.0;

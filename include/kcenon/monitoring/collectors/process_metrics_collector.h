@@ -280,9 +280,9 @@ class process_metrics_collector : public collector_plugin {
     auto is_available() const -> bool override;
     /**
      * Check if collector is in a healthy state
-     * @return True if collector is operational
+     * @return True if collector is operational (regardless of enabled state)
      */
-    bool is_healthy() const { return is_available(); }
+    bool is_healthy() const;
     auto get_metric_types() const -> std::vector<std::string> override;
 
     // Configuration
