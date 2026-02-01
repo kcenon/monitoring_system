@@ -321,6 +321,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd7/structkcenon_1_1monitoring_1_1disk__info.html">disk_info</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html">dynamic_plugin_loader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concrete implementation of <a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html" title="Abstract interface for plugin loading.">plugin_loader</a> using OS dynamic loading APIs.  <a href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html">error_boundary</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error boundary implementation for resilient operations.  <a href="../../d0/d55/classkcenon_1_1monitoring_1_1error__boundary.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -766,6 +769,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d90/classkcenon_1_1monitoring_1_1plugin__factory.html">plugin_factory</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html">plugin_loader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract interface for plugin loading.  <a href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html">plugin_metadata</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metadata describing a collector plugin.  <a href="../../df/d8e/structkcenon_1_1monitoring_1_1plugin__metadata.html#details">More...</a><br /></td></tr>
@@ -1517,6 +1521,23 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:aa6d12e10ff6e73808cbf13a50877260a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categorization of collector plugins.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260a">More...</a><br /></td></tr>
 <tr class="separator:aa6d12e10ff6e73808cbf13a50877260a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e9bad62d193e0d17e218aaaa9f56349" id="r_a3e9bad62d193e0d17e218aaaa9f56349"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349">plugin_load_error</a> { <br />
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a334c4a4c42fdb79d7ebc3e73b517e6f8">none</a> = 0
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a4cbd4f831bcb7891ccf9a70c3957cf49">file_not_found</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a7bc0e7d11d939f152adb08bd9760bb5c">library_load_failed</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349af45fa1a923d4432cf1930dca6b8e465a">symbol_not_found</a>
+, <br />
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a0bbf3962c4d1576658e23833570f904e">incompatible_api_version</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349ad6c05754a87177f08db2ec1d9ddece82">create_function_failed</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a00ce668da82f4d56ea0b217d47dfc5b3">plugin_unavailable</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a87eaad3e236d82261f86e38af8e5e724">already_loaded</a>
+, <br />
+&#160;&#160;<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a9f1699716b628b19e53db24da3881c1b">not_loaded</a>
+, <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349acd653cb02dff27e58cf3db7a5c42c6e9">invalid_metadata</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a3e9bad62d193e0d17e218aaaa9f56349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error codes for plugin loading operations.  <a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349">More...</a><br /></td></tr>
+<tr class="separator:a3e9bad62d193e0d17e218aaaa9f56349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2a0498983777027e42f1fe29216556d" id="r_ab2a0498983777027e42f1fe29216556d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556d">transaction_state</a> { <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dac76a5e84e4bdee527e274ea30c680d79">active</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dafebbaa1b242d391642fb9eddfb06ff83">committed</a>
 , <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#ab2a0498983777027e42f1fe29216556dadfb7069bfc6e0064a6c667626eca07b4">aborted</a>
@@ -1761,6 +1782,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aad7e6cd65182ba5ea47403d0ce023dfa" id="r_aad7e6cd65182ba5ea47403d0ce023dfa"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d9/df8/structkcenon_1_1monitoring_1_1simd__config.html">simd_config</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aad7e6cd65182ba5ea47403d0ce023dfa">create_default_simd_configs</a> ()</td></tr>
 <tr class="memdesc:aad7e6cd65182ba5ea47403d0ce023dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create default SIMD configurations for different use cases.  <br /></td></tr>
 <tr class="separator:aad7e6cd65182ba5ea47403d0ce023dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a45c5e8ced3445d3f794bcf4f93888" id="r_a14a45c5e8ced3445d3f794bcf4f93888"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a> (<a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349">plugin_load_error</a> <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#aace03f45bacd21477abe312e36bb4f51acb5e100e5a9a3e7f6d1fd97512215282">error</a>) -&gt; std::string</td></tr>
+<tr class="memdesc:a14a45c5e8ced3445d3f794bcf4f93888"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert plugin_load_error to string.  <br /></td></tr>
+<tr class="separator:a14a45c5e8ced3445d3f794bcf4f93888"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affbb2f459c1d46bd8c4fea9640cfe951" id="r_affbb2f459c1d46bd8c4fea9640cfe951"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d3/ddf/classkcenon_1_1monitoring_1_1transaction__manager.html">transaction_manager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#affbb2f459c1d46bd8c4fea9640cfe951">create_transaction_manager</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:affbb2f459c1d46bd8c4fea9640cfe951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function to create a transaction manager.  <br /></td></tr>
 <tr class="separator:affbb2f459c1d46bd8c4fea9640cfe951"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3276,6 +3300,65 @@ Functions</h2></td></tr>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa54b53072540eeeb8f8e9343e71f28176">kcenon::monitoring::plugin_category::system</a></div><div class="ttdeci">@ system</div><div class="ttdoc">System integration (threads, loggers, containers)</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa91e02cd2b8621d0c05197f645668c5c4">kcenon::monitoring::plugin_category::network</a></div><div class="ttdeci">@ network</div><div class="ttdoc">Network metrics (connectivity, bandwidth)</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5">kcenon::monitoring::power_source_type::platform</a></div><div class="ttdeci">@ platform</div><div class="ttdoc">Platform/system power domain.</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3e9bad62d193e0d17e218aaaa9f56349" name="a3e9bad62d193e0d17e218aaaa9f56349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e9bad62d193e0d17e218aaaa9f56349">&#9670;&#160;</a></span>plugin_load_error</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349">kcenon::monitoring::plugin_load_error</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Error codes for plugin loading operations. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349a334c4a4c42fdb79d7ebc3e73b517e6f8" name="a3e9bad62d193e0d17e218aaaa9f56349a334c4a4c42fdb79d7ebc3e73b517e6f8"></a>none&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349a4cbd4f831bcb7891ccf9a70c3957cf49" name="a3e9bad62d193e0d17e218aaaa9f56349a4cbd4f831bcb7891ccf9a70c3957cf49"></a>file_not_found&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349a7bc0e7d11d939f152adb08bd9760bb5c" name="a3e9bad62d193e0d17e218aaaa9f56349a7bc0e7d11d939f152adb08bd9760bb5c"></a>library_load_failed&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349af45fa1a923d4432cf1930dca6b8e465a" name="a3e9bad62d193e0d17e218aaaa9f56349af45fa1a923d4432cf1930dca6b8e465a"></a>symbol_not_found&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349a0bbf3962c4d1576658e23833570f904e" name="a3e9bad62d193e0d17e218aaaa9f56349a0bbf3962c4d1576658e23833570f904e"></a>incompatible_api_version&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349ad6c05754a87177f08db2ec1d9ddece82" name="a3e9bad62d193e0d17e218aaaa9f56349ad6c05754a87177f08db2ec1d9ddece82"></a>create_function_failed&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349a00ce668da82f4d56ea0b217d47dfc5b3" name="a3e9bad62d193e0d17e218aaaa9f56349a00ce668da82f4d56ea0b217d47dfc5b3"></a>plugin_unavailable&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349a87eaad3e236d82261f86e38af8e5e724" name="a3e9bad62d193e0d17e218aaaa9f56349a87eaad3e236d82261f86e38af8e5e724"></a>already_loaded&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349a9f1699716b628b19e53db24da3881c1b" name="a3e9bad62d193e0d17e218aaaa9f56349a9f1699716b628b19e53db24da3881c1b"></a>not_loaded&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3e9bad62d193e0d17e218aaaa9f56349acd653cb02dff27e58cf3db7a5c42c6e9" name="a3e9bad62d193e0d17e218aaaa9f56349acd653cb02dff27e58cf3db7a5c42c6e9"></a>invalid_metadata&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="../../de/db6/plugin__loader_8h_source.html#l00077">77</a> of file <a class="el" href="../../de/db6/plugin__loader_8h_source.html">plugin_loader.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>                             {</div>
+<div class="line"><span class="lineno">   78</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a041b3c5418e379895427abfcd514812ba334c4a4c42fdb79d7ebc3e73b517e6f8">none</a> = 0,</div>
+<div class="line"><span class="lineno">   79</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a4cbd4f831bcb7891ccf9a70c3957cf49">file_not_found</a>,</div>
+<div class="line"><span class="lineno">   80</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a7bc0e7d11d939f152adb08bd9760bb5c">library_load_failed</a>,</div>
+<div class="line"><span class="lineno">   81</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349af45fa1a923d4432cf1930dca6b8e465a">symbol_not_found</a>,</div>
+<div class="line"><span class="lineno">   82</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a0bbf3962c4d1576658e23833570f904e">incompatible_api_version</a>,</div>
+<div class="line"><span class="lineno">   83</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349ad6c05754a87177f08db2ec1d9ddece82">create_function_failed</a>,</div>
+<div class="line"><span class="lineno">   84</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a00ce668da82f4d56ea0b217d47dfc5b3">plugin_unavailable</a>,</div>
+<div class="line"><span class="lineno">   85</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a87eaad3e236d82261f86e38af8e5e724">already_loaded</a>,</div>
+<div class="line"><span class="lineno">   86</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a9f1699716b628b19e53db24da3881c1b">not_loaded</a>,</div>
+<div class="line"><span class="lineno">   87</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349acd653cb02dff27e58cf3db7a5c42c6e9">invalid_metadata</a></div>
+<div class="line"><span class="lineno">   88</span>};</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349a00ce668da82f4d56ea0b217d47dfc5b3"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a00ce668da82f4d56ea0b217d47dfc5b3">kcenon::monitoring::plugin_load_error::plugin_unavailable</a></div><div class="ttdeci">@ plugin_unavailable</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349a0bbf3962c4d1576658e23833570f904e"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a0bbf3962c4d1576658e23833570f904e">kcenon::monitoring::plugin_load_error::incompatible_api_version</a></div><div class="ttdeci">@ incompatible_api_version</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349a4cbd4f831bcb7891ccf9a70c3957cf49"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a4cbd4f831bcb7891ccf9a70c3957cf49">kcenon::monitoring::plugin_load_error::file_not_found</a></div><div class="ttdeci">@ file_not_found</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349a7bc0e7d11d939f152adb08bd9760bb5c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a7bc0e7d11d939f152adb08bd9760bb5c">kcenon::monitoring::plugin_load_error::library_load_failed</a></div><div class="ttdeci">@ library_load_failed</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349a87eaad3e236d82261f86e38af8e5e724"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a87eaad3e236d82261f86e38af8e5e724">kcenon::monitoring::plugin_load_error::already_loaded</a></div><div class="ttdeci">@ already_loaded</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349a9f1699716b628b19e53db24da3881c1b"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a9f1699716b628b19e53db24da3881c1b">kcenon::monitoring::plugin_load_error::not_loaded</a></div><div class="ttdeci">@ not_loaded</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349acd653cb02dff27e58cf3db7a5c42c6e9"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349acd653cb02dff27e58cf3db7a5c42c6e9">kcenon::monitoring::plugin_load_error::invalid_metadata</a></div><div class="ttdeci">@ invalid_metadata</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349ad6c05754a87177f08db2ec1d9ddece82"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349ad6c05754a87177f08db2ec1d9ddece82">kcenon::monitoring::plugin_load_error::create_function_failed</a></div><div class="ttdeci">@ create_function_failed</div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a3e9bad62d193e0d17e218aaaa9f56349af45fa1a923d4432cf1930dca6b8e465a"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349af45fa1a923d4432cf1930dca6b8e465a">kcenon::monitoring::plugin_load_error::symbol_not_found</a></div><div class="ttdeci">@ symbol_not_found</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -8615,6 +8698,61 @@ Here is the call graph for this function:</div>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a14a45c5e8ced3445d3f794bcf4f93888" name="a14a45c5e8ced3445d3f794bcf4f93888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a45c5e8ced3445d3f794bcf4f93888">&#9670;&#160;</a></span>to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto kcenon::monitoring::to_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349">plugin_load_error</a>&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td> -&gt;  std::string</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert plugin_load_error to string. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_a14a45c5e8ced3445d3f794bcf4f93888_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_a14a45c5e8ced3445d3f794bcf4f93888_icgraph" alt=""/></div>
+<map name="adb/d50/namespacekcenon_1_1monitoring_a14a45c5e8ced3445d3f794bcf4f93888_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_a14a45c5e8ced3445d3f794bcf4f93888_icgraph">
+<area shape="rect" title="Convert plugin_load_error to string." alt="" coords="500,149,648,189"/>
+<area shape="rect" href="../../d7/d24/bidirectional__di__example_8cpp.html#ae6d743dfd328f538670b7f1a5a517227" title="Scenario 4: Bidirectional DI (THE KEY DEMO!)" alt="" coords="279,5,425,45"/>
+<area shape="poly" title=" " alt="" coords="545,141,503,99,451,60,424,47,427,42,453,55,507,95,549,137"/>
+<area shape="rect" href="../../d7/d24/bidirectional__di__example_8cpp.html#aee4298f3e388b607ba1f9d20799ea6e1" title="Scenario 3: Monitor with Logger Injection (via adapter)" alt="" coords="252,70,452,95"/>
+<area shape="poly" title=" " alt="" coords="525,145,451,110,411,98,413,93,453,106,527,140"/>
+<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#a1cb7839e57a7ea78e4d2fd0e8e50b8dd" title="Example 5: Provider interface usage." alt="" coords="275,120,429,160"/>
+<area shape="poly" title=" " alt="" coords="486,160,429,153,430,148,487,155"/>
+<area shape="rect" href="../../d4/d06/classconsole__logger.html#a8cb156f70c9d2c174207b160fdb5f944" title=" " alt="" coords="278,185,426,210"/>
+<area shape="poly" title=" " alt="" coords="486,183,426,191,426,185,486,178"/>
+<area shape="rect" href="../../d2/d10/classsimple__console__logger.html#a9b5787ed3000f83ceeb8e3332951a19d" title=" " alt="" coords="253,234,451,259"/>
+<area shape="poly" title=" " alt="" coords="519,197,453,224,410,237,408,231,451,219,517,193"/>
+<area shape="rect" href="../../d3/dfa/classexample__logger.html#aec789f688257acd89c20d92b76f94ebf" title=" " alt="" coords="275,283,429,309"/>
+<area shape="poly" title=" " alt="" coords="546,201,505,239,453,273,421,286,419,281,451,268,501,235,543,197"/>
+<area shape="rect" href="../../d7/d24/bidirectional__di__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="77,25,132,50"/>
+<area shape="poly" title=" " alt="" coords="265,32,132,39,132,33,265,27"/>
+<area shape="poly" title=" " alt="" coords="268,70,132,45,133,40,269,65"/>
+<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="77,86,132,111"/>
+<area shape="poly" title=" " alt="" coords="261,128,132,106,133,100,262,122"/>
+<area shape="rect" href="../../d4/d06/classconsole__logger.html#a2025224f6b065329eb1076768f018c79" title=" " alt="" coords="31,135,179,161"/>
+<area shape="poly" title=" " alt="" coords="274,185,169,163,170,158,275,179"/>
+<area shape="rect" href="../../d4/d06/classconsole__logger.html#a0cb2192c1807fb4918aec7bccc1e2fb4" title=" " alt="" coords="31,185,179,210"/>
+<area shape="poly" title=" " alt="" coords="264,200,179,200,179,195,264,195"/>
+<area shape="rect" href="../../d2/d10/classsimple__console__logger.html#ad0abddaf4555c7103098bbc12e1b41a7" title=" " alt="" coords="5,234,204,259"/>
+<area shape="poly" title=" " alt="" coords="239,249,204,249,204,244,239,244"/>
+<area shape="rect" href="../../d3/dfa/classexample__logger.html#aef5e0fec2589cbb39f194f517f9e69ac" title=" " alt="" coords="27,283,182,309"/>
+<area shape="poly" title=" " alt="" coords="261,299,182,299,182,293,261,293"/>
+<area shape="rect" href="../../d3/dfa/classexample__logger.html#a63630414096d94c81c098dae70a6cbf5" title=" " alt="" coords="27,333,182,358"/>
+<area shape="poly" title=" " alt="" coords="275,314,170,335,169,330,274,309"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ad0ce7313028eee6e6592c8fffd54b1d0" name="ad0ce7313028eee6e6592c8fffd54b1d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0ce7313028eee6e6592c8fffd54b1d0">&#9670;&#160;</a></span>vm_type_to_string()</h2>
 
@@ -8668,7 +8806,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 06:34:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 06:44:20 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

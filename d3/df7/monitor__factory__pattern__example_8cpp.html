@@ -513,7 +513,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  309</span>        <span class="keyword">auto</span> health = monitor-&gt;check_health();</div>
 <div class="line"><span class="lineno">  310</span>        <span class="keywordflow">if</span> (health) {</div>
 <div class="line"><span class="lineno">  311</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor health: &quot;</span></div>
-<div class="line"><span class="lineno">  312</span>                      &lt;&lt; to_string(health.value().status) &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  312</span>                      &lt;&lt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(health.value().status) &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  313</span>        }</div>
 <div class="line"><span class="lineno">  314</span>    }</div>
 <div class="line"><span class="lineno">  315</span> </div>
@@ -522,14 +522,17 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  318</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Created named monitor through provider&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  319</span>    }</div>
 <div class="line"><span class="lineno">  320</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a14a45c5e8ced3445d3f794bcf4f93888"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">kcenon::monitoring::to_string</a></div><div class="ttdeci">auto to_string(plugin_load_error error) -&gt; std::string</div><div class="ttdoc">Convert plugin_load_error to string.</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/df7/monitor__factory__pattern__example_8cpp_a1cb7839e57a7ea78e4d2fd0e8e50b8dd_cgraph.png" border="0" usemap="#ad3/df7/monitor__factory__pattern__example_8cpp_a1cb7839e57a7ea78e4d2fd0e8e50b8dd_cgraph" alt=""/></div>
 <map name="ad3/df7/monitor__factory__pattern__example_8cpp_a1cb7839e57a7ea78e4d2fd0e8e50b8dd_cgraph" id="ad3/df7/monitor__factory__pattern__example_8cpp_a1cb7839e57a7ea78e4d2fd0e8e50b8dd_cgraph">
-<area shape="rect" title="Example 5: Provider interface usage." alt="" coords="5,5,160,45"/>
+<area shape="rect" title="Example 5: Provider interface usage." alt="" coords="5,35,160,75"/>
 <area shape="rect" href="../../da/db2/classmonitor__factory.html#aee8e342a29c4e268af67e520dd45ae4d" title=" " alt="" coords="208,13,396,38"/>
-<area shape="poly" title=" " alt="" coords="160,23,194,23,194,28,160,28"/>
+<area shape="poly" title=" " alt="" coords="160,42,194,37,195,42,161,47"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="228,63,376,103"/>
+<area shape="poly" title=" " alt="" coords="161,62,215,69,214,74,160,67"/>
 <area shape="rect" href="../../da/db2/classmonitor__factory.html#a5c45b673ef0aefc7b705fdf1c0527f0c" title=" " alt="" coords="444,5,628,45"/>
 <area shape="poly" title=" " alt="" coords="396,23,430,23,430,28,396,28"/>
 </map>
@@ -750,12 +753,12 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="59,170,107,154,132,146,134,151,109,159,61,175"/>
 <area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#a34b771a94af141919418400e378a738f" title="Example 4: Monitor reuse via factory." alt="" coords="116,169,311,195"/>
 <area shape="poly" title=" " alt="" coords="60,179,102,179,102,185,60,185"/>
-<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#a1cb7839e57a7ea78e4d2fd0e8e50b8dd" title="Example 5: Provider interface usage." alt="" coords="136,219,291,259"/>
+<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#a1cb7839e57a7ea78e4d2fd0e8e50b8dd" title="Example 5: Provider interface usage." alt="" coords="136,334,291,374"/>
+<area shape="poly" title=" " alt="" coords="40,194,62,255,82,290,110,320,125,330,122,335,106,324,78,293,57,257,35,196"/>
+<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#a2bfe43f46c9eaf038b242846aa26648e" title=" " alt="" coords="124,219,303,259"/>
 <area shape="poly" title=" " alt="" coords="61,188,109,203,137,213,136,218,107,209,59,193"/>
-<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#a2bfe43f46c9eaf038b242846aa26648e" title=" " alt="" coords="124,283,303,323"/>
-<area shape="poly" title=" " alt="" coords="44,193,70,231,88,252,110,269,119,275,116,279,106,274,85,255,66,234,39,196"/>
-<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#ad272805948d6f72d3ca030bb7b088880" title="Example 7: Factory cleanup and reset." alt="" coords="109,348,318,373"/>
-<area shape="poly" title=" " alt="" coords="39,194,46,223,60,261,80,300,110,333,118,339,115,344,106,337,76,303,55,263,41,225,34,196"/>
+<area shape="rect" href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#ad272805948d6f72d3ca030bb7b088880" title="Example 7: Factory cleanup and reset." alt="" coords="109,284,318,309"/>
+<area shape="poly" title=" " alt="" coords="43,194,69,232,88,252,109,269,124,277,121,281,107,274,84,256,65,235,39,197"/>
 <area shape="rect" href="../../da/db2/classmonitor__factory.html#aee8e342a29c4e268af67e520dd45ae4d" title=" " alt="" coords="367,169,555,195"/>
 <area shape="poly" title=" " alt="" coords="293,28,320,40,359,66,393,98,444,157,440,160,390,101,355,70,317,44,291,33"/>
 <area shape="rect" href="../../da/db2/classmonitor__factory.html#a5c45b673ef0aefc7b705fdf1c0527f0c" title=" " alt="" coords="603,162,787,202"/>
@@ -763,9 +766,11 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="282,78,320,90,382,124,434,159,431,163,380,128,318,95,280,83"/>
 <area shape="poly" title=" " alt="" coords="301,142,393,164,391,169,300,147"/>
 <area shape="poly" title=" " alt="" coords="311,179,353,179,353,185,311,185"/>
-<area shape="poly" title=" " alt="" coords="290,219,391,195,393,200,291,224"/>
-<area shape="poly" title=" " alt="" coords="288,281,318,269,379,235,430,201,433,205,382,240,320,274,290,286"/>
-<area shape="poly" title=" " alt="" coords="289,346,317,333,357,304,392,270,442,205,446,208,396,273,360,308,320,338,291,350"/>
+<area shape="poly" title=" " alt="" coords="290,333,317,320,355,293,389,262,440,204,444,207,392,266,358,297,320,324,292,338"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="387,334,535,374"/>
+<area shape="poly" title=" " alt="" coords="291,351,373,351,373,357,291,357"/>
+<area shape="poly" title=" " alt="" coords="300,217,391,195,393,200,301,222"/>
+<area shape="poly" title=" " alt="" coords="280,281,318,269,380,236,431,201,434,205,382,240,320,274,282,286"/>
 </map>
 </div>
 
@@ -774,7 +779,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 06:34:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 06:44:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -234,7 +234,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
 <div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="../../d3/dfa/classexample__logger.html#aec789f688257acd89c20d92b76f94ebf">  147</a></span>    common::VoidResult <a class="code hl_function" href="../../d3/dfa/classexample__logger.html#aec789f688257acd89c20d92b76f94ebf">log</a>(log_level level, <span class="keyword">const</span> std::string&amp; message)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d3/dfa/classexample__logger.html#ac81ee8f3c5faa9939f1d2b71ab04f58e">prefix_</a> &lt;&lt; <span class="stringliteral">&quot;] [&quot;</span> &lt;&lt; to_string(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d3/dfa/classexample__logger.html#ac81ee8f3c5faa9939f1d2b71ab04f58e">prefix_</a> &lt;&lt; <span class="stringliteral">&quot;] [&quot;</span> &lt;&lt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                  &lt;&lt; message &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <a class="code hl_variable" href="../../d3/dfa/classexample__logger.html#ad1d427438fce8454032897e58906be49">count_</a>++;</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">return</span> common::ok();</div>
@@ -406,7 +406,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keyword">auto</span> health = monitor-&gt;check_health();</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        <span class="keywordflow">if</span> (health) {</div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;✓ Monitor health: &quot;</span></div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                      &lt;&lt; to_string(health.value().status) &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                      &lt;&lt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(health.value().status) &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        }</div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    }</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
@@ -643,6 +643,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="ttc" id="amonitor__factory__pattern__example_8cpp_html_ad272805948d6f72d3ca030bb7b088880"><div class="ttname"><a href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#ad272805948d6f72d3ca030bb7b088880">example_7_factory_lifecycle</a></div><div class="ttdeci">void example_7_factory_lifecycle()</div><div class="ttdoc">Example 7: Factory cleanup and reset.</div><div class="ttdef"><b>Definition</b> <a href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00432">monitor_factory_pattern_example.cpp:432</a></div></div>
 <div class="ttc" id="amonitor__factory__pattern__example_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="../../d3/df7/monitor__factory__pattern__example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="../../d3/df7/monitor__factory__pattern__example_8cpp_source.html#l00452">monitor_factory_pattern_example.cpp:452</a></div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html">kcenon::monitoring</a></div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/common__to__monitoring__adapter_8h_source.html#l00025">common_to_monitoring_adapter.h:25</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a14a45c5e8ced3445d3f794bcf4f93888"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">kcenon::monitoring::to_string</a></div><div class="ttdeci">auto to_string(plugin_load_error error) -&gt; std::string</div><div class="ttdoc">Convert plugin_load_error to string.</div></div>
 <div class="ttc" id="aperformance__monitor_8h_html"><div class="ttname"><a href="../../d7/db1/performance__monitor_8h.html">performance_monitor.h</a></div><div class="ttdoc">Performance monitoring and profiling implementation.</div></div>
 <div class="ttc" id="aresult__types_8h_html"><div class="ttname"><a href="../../d1/d7d/result__types_8h.html">result_types.h</a></div><div class="ttdoc">Result pattern type definitions for monitoring system.</div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1health__check__result_html"><div class="ttname"><a href="../../dd/d56/structkcenon_1_1monitoring_1_1health__check__result.html">kcenon::monitoring::health_check_result</a></div><div class="ttdoc">Result of a health check operation.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d6e/monitoring__core_8h_source.html#l00126">monitoring_core.h:126</a></div></div>
@@ -657,7 +658,7 @@ $(document).ready(function() { init_codefold(1); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 06:34:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 06:44:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

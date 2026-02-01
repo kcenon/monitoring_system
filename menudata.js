@@ -173,6 +173,7 @@ var menudata={children:[
 {text:"d",url:"globals_d.html#index_d"},
 {text:"e",url:"globals_e.html#index_e"},
 {text:"f",url:"globals_f.html#index_f"},
+{text:"g",url:"globals_g.html#index_g"},
 {text:"h",url:"globals_h.html#index_h"},
 {text:"i",url:"globals_i.html#index_i"},
 {text:"k",url:"globals_k.html#index_k"},
@@ -196,5 +197,6 @@ var menudata={children:[
 {text:"t",url:"globals_func_t.html#index_t"},
 {text:"v",url:"globals_func_v.html#index_v"}]},
 {text:"Variables",url:"globals_vars.html"},
+{text:"Typedefs",url:"globals_type.html"},
 {text:"Macros",url:"globals_defs.html"}]}]},
 {text:"Examples",url:"examples.html"}]}

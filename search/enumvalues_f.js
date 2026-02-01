@@ -7,10 +7,11 @@ var searchData=
   ['permission_5fchange_4',['permission_change',['../db/d50/namespacekcenon_1_1monitoring.html#a81271d377da09a5d6d1c03b1ec5f658ea4e29a4647d32563ca0b6a52d53804ea1',1,'kcenon::monitoring']]],
   ['permission_5fdenied_5',['permission_denied',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83eae8ee838822072f02738dbd7d97ea03fc',1,'kcenon::monitoring']]],
   ['platform_6',['platform',['../db/d50/namespacekcenon_1_1monitoring.html#ad728853b593df4724ea4f488af8a2932a34a6e5d64ade17ef4e51612c50dd72f5',1,'kcenon::monitoring::platform'],['../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa34a6e5d64ade17ef4e51612c50dd72f5',1,'kcenon::monitoring::platform']]],
-  ['podman_7',['podman',['../d6/d1d/namespacekcenon_1_1monitoring_1_1plugins.html#aef868dc9fa5de5034063d48897755986aabe31bcfb59f2265c2fb97dde407366c',1,'kcenon::monitoring::plugins']]],
-  ['process_8',['process',['../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b',1,'kcenon::monitoring::process'],['../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa5075140835d0bc504791c76b04c33d2b',1,'kcenon::monitoring::process']]],
-  ['processing_5ffailed_9',['processing_failed',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ead1d24eb94ee39e41e17b65cc63118672',1,'kcenon::monitoring']]],
-  ['producer_10',['producer',['../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5af18122ddebc4341b4ed758b3f0817da8',1,'kcenon::monitoring']]],
-  ['prometheus_5fprotobuf_11',['prometheus_protobuf',['../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23a10eb2f0e24f2277a2cf1537b85ca0772',1,'kcenon::monitoring']]],
-  ['prometheus_5ftext_12',['prometheus_text',['../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23ac4aad31613fcff4e713b3b9f3b6b3251',1,'kcenon::monitoring']]]
+  ['plugin_5funavailable_7',['plugin_unavailable',['../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a00ce668da82f4d56ea0b217d47dfc5b3',1,'kcenon::monitoring']]],
+  ['podman_8',['podman',['../d6/d1d/namespacekcenon_1_1monitoring_1_1plugins.html#aef868dc9fa5de5034063d48897755986aabe31bcfb59f2265c2fb97dde407366c',1,'kcenon::monitoring::plugins']]],
+  ['process_9',['process',['../db/d50/namespacekcenon_1_1monitoring.html#a4884f61728e7662f1482ddacb7925443a5075140835d0bc504791c76b04c33d2b',1,'kcenon::monitoring::process'],['../db/d50/namespacekcenon_1_1monitoring.html#aa6d12e10ff6e73808cbf13a50877260aa5075140835d0bc504791c76b04c33d2b',1,'kcenon::monitoring::process']]],
+  ['processing_5ffailed_10',['processing_failed',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ead1d24eb94ee39e41e17b65cc63118672',1,'kcenon::monitoring']]],
+  ['producer_11',['producer',['../db/d50/namespacekcenon_1_1monitoring.html#acd9f2e67b943ef7ce9aee431900de7b5af18122ddebc4341b4ed758b3f0817da8',1,'kcenon::monitoring']]],
+  ['prometheus_5fprotobuf_12',['prometheus_protobuf',['../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23a10eb2f0e24f2277a2cf1537b85ca0772',1,'kcenon::monitoring']]],
+  ['prometheus_5ftext_13',['prometheus_text',['../db/d50/namespacekcenon_1_1monitoring.html#a0ae0c187afb749d396a5293dba5a0f23ac4aad31613fcff4e713b3b9f3b6b3251',1,'kcenon::monitoring']]]
 ];

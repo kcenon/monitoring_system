@@ -16,7 +16,8 @@ var searchData=
   ['event_5fpriority_13',['event_priority',['../dd/d73/classevent__priority.html',1,'']]],
   ['eventbustest_14',['EventBusTest',['../d7/d12/classEventBusTest.html',1,'']]],
   ['example_5flogger_15',['example_logger',['../d3/dfa/classexample__logger.html',1,'']]],
-  ['exporterintegrationtest_16',['ExporterIntegrationTest',['../dd/d3d/classExporterIntegrationTest.html',1,'']]],
-  ['external_5fapi_5fhealth_5fcheck_17',['external_api_health_check',['../d4/db5/classexternal__api__health__check.html',1,'']]],
-  ['externalapiclient_18',['ExternalApiClient',['../d6/d98/classExternalApiClient.html',1,'']]]
+  ['example_5fplugin_16',['example_plugin',['../d8/d5a/classexample__plugin.html',1,'']]],
+  ['exporterintegrationtest_17',['ExporterIntegrationTest',['../dd/d3d/classExporterIntegrationTest.html',1,'']]],
+  ['external_5fapi_5fhealth_5fcheck_18',['external_api_health_check',['../d4/db5/classexternal__api__health__check.html',1,'']]],
+  ['externalapiclient_19',['ExternalApiClient',['../d6/d98/classExternalApiClient.html',1,'']]]
 ];

@@ -14,5 +14,6 @@ var searchData=
   ['disk_5finfo_11',['disk_info',['../d6/dd7/structkcenon_1_1monitoring_1_1disk__info.html',1,'kcenon::monitoring']]],
   ['disk_5fmetrics_12',['disk_metrics',['../d6/d0b/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics.html',1,'kcenon::monitoring::system_resources']]],
   ['disk_5fstats_13',['disk_stats',['../de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats.html',1,'kcenon::monitoring::system_info_collector']]],
-  ['distributedtracingtest_14',['DistributedTracingTest',['../d9/d51/classDistributedTracingTest.html',1,'']]]
+  ['distributedtracingtest_14',['DistributedTracingTest',['../d9/d51/classDistributedTracingTest.html',1,'']]],
+  ['dynamic_5fplugin_5floader_15',['dynamic_plugin_loader',['../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html',1,'kcenon::monitoring']]]
 ];

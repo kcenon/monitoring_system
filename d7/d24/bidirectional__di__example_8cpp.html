@@ -257,7 +257,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  263</span>    <span class="keyword">auto</span> logger_health = logger-&gt;health_check();</div>
 <div class="line"><span class="lineno">  264</span>    <span class="keywordflow">if</span> (std::holds_alternative&lt;health_check_result&gt;(logger_health)) {</div>
 <div class="line"><span class="lineno">  265</span>        <span class="keyword">auto</span>&amp; health = std::get&lt;health_check_result&gt;(logger_health);</div>
-<div class="line"><span class="lineno">  266</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Logger Status: &quot;</span> &lt;&lt; to_string(health.status)</div>
+<div class="line"><span class="lineno">  266</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Logger Status: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(health.status)</div>
 <div class="line"><span class="lineno">  267</span>                  &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; health.message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  268</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;  Messages logged: &quot;</span> &lt;&lt; logger-&gt;get_message_count() &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  269</span>    }</div>
@@ -265,7 +265,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  271</span>    <span class="keyword">auto</span> monitor_health = monitor-&gt;check_health();</div>
 <div class="line"><span class="lineno">  272</span>    <span class="keywordflow">if</span> (std::holds_alternative&lt;health_check_result&gt;(monitor_health)) {</div>
 <div class="line"><span class="lineno">  273</span>        <span class="keyword">auto</span>&amp; health = std::get&lt;health_check_result&gt;(monitor_health);</div>
-<div class="line"><span class="lineno">  274</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Monitor Status: &quot;</span> &lt;&lt; to_string(health.status)</div>
+<div class="line"><span class="lineno">  274</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Monitor Status: &quot;</span> &lt;&lt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(health.status)</div>
 <div class="line"><span class="lineno">  275</span>                  &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; health.message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  276</span>    }</div>
 <div class="line"><span class="lineno">  277</span> </div>
@@ -292,10 +292,21 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  298</span> </div>
 <div class="line"><span class="lineno">  299</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n✓ Both systems fully operational and integrated!&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  300</span>}</div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a14a45c5e8ced3445d3f794bcf4f93888"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">kcenon::monitoring::to_string</a></div><div class="ttdeci">auto to_string(plugin_load_error error) -&gt; std::string</div><div class="ttdoc">Convert plugin_load_error to string.</div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html">kcenon::monitoring::metric</a></div><div class="ttdoc">Basic metric structure for interface compatibility.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00078">metric_types_adapter.h:78</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_a1d1e2a7a2c83b8cdf0747076e0081174"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#a1d1e2a7a2c83b8cdf0747076e0081174">kcenon::monitoring::metric::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00079">metric_types_adapter.h:79</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1metric_html_abd5d2a90c17aaa351ec39d77d6e0528a"><div class="ttname"><a href="../../d2/d54/structkcenon_1_1monitoring_1_1metric.html#abd5d2a90c17aaa351ec39d77d6e0528a">kcenon::monitoring::metric::value</a></div><div class="ttdeci">std::variant&lt; double, int64_t, std::string &gt; value</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d0b/metric__types__adapter_8h_source.html#l00080">metric_types_adapter.h:80</a></div></div>
 </div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d7/d24/bidirectional__di__example_8cpp_ae6d743dfd328f538670b7f1a5a517227_cgraph.png" border="0" usemap="#ad7/d24/bidirectional__di__example_8cpp_ae6d743dfd328f538670b7f1a5a517227_cgraph" alt=""/></div>
+<map name="ad7/d24/bidirectional__di__example_8cpp_ae6d743dfd328f538670b7f1a5a517227_cgraph" id="ad7/d24/bidirectional__di__example_8cpp_ae6d743dfd328f538670b7f1a5a517227_cgraph">
+<area shape="rect" title="Scenario 4: Bidirectional DI (THE KEY DEMO!)" alt="" coords="5,5,152,45"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="200,5,348,45"/>
+<area shape="poly" title=" " alt="" coords="152,23,187,23,187,28,152,28"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d7/d24/bidirectional__di__example_8cpp_ae6d743dfd328f538670b7f1a5a517227_icgraph.png" border="0" usemap="#ad7/d24/bidirectional__di__example_8cpp_ae6d743dfd328f538670b7f1a5a517227_icgraph" alt=""/></div>
@@ -399,13 +410,23 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  218</span>    <span class="keyword">auto</span> health_result = monitor-&gt;check_health();</div>
 <div class="line"><span class="lineno">  219</span>    <span class="keywordflow">if</span> (std::holds_alternative&lt;health_check_result&gt;(health_result)) {</div>
 <div class="line"><span class="lineno">  220</span>        <span class="keyword">auto</span>&amp; health = std::get&lt;health_check_result&gt;(health_result);</div>
-<div class="line"><span class="lineno">  221</span>        std::string health_msg = <span class="stringliteral">&quot;Monitor health: &quot;</span> + to_string(health.status);</div>
+<div class="line"><span class="lineno">  221</span>        std::string health_msg = <span class="stringliteral">&quot;Monitor health: &quot;</span> + <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(health.status);</div>
 <div class="line"><span class="lineno">  222</span>        logger-&gt;log(log_level::info, health_msg);</div>
 <div class="line"><span class="lineno">  223</span>    }</div>
 <div class="line"><span class="lineno">  224</span> </div>
 <div class="line"><span class="lineno">  225</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\n✓ Monitor can report status to logger&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  226</span>}</div>
 </div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d7/d24/bidirectional__di__example_8cpp_aee4298f3e388b607ba1f9d20799ea6e1_cgraph.png" border="0" usemap="#ad7/d24/bidirectional__di__example_8cpp_aee4298f3e388b607ba1f9d20799ea6e1_cgraph" alt=""/></div>
+<map name="ad7/d24/bidirectional__di__example_8cpp_aee4298f3e388b607ba1f9d20799ea6e1_cgraph" id="ad7/d24/bidirectional__di__example_8cpp_aee4298f3e388b607ba1f9d20799ea6e1_cgraph">
+<area shape="rect" title="Scenario 3: Monitor with Logger Injection (via adapter)" alt="" coords="5,13,205,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="253,5,401,45"/>
+<area shape="poly" title=" " alt="" coords="205,23,239,23,239,28,205,28"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d7/d24/bidirectional__di__example_8cpp_aee4298f3e388b607ba1f9d20799ea6e1_icgraph.png" border="0" usemap="#ad7/d24/bidirectional__di__example_8cpp_aee4298f3e388b607ba1f9d20799ea6e1_icgraph" alt=""/></div>
@@ -584,6 +605,9 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="61,138,109,153,142,163,141,168,107,159,59,143"/>
 <area shape="rect" href="../../d7/d24/bidirectional__di__example_8cpp.html#a808a5661ab40ea7f466c3fd70cacac1e" title="Scenario 1: Standalone Systems." alt="" coords="108,218,308,243"/>
 <area shape="poly" title=" " alt="" coords="45,143,72,174,109,203,126,211,123,216,107,208,68,177,41,147"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="356,59,504,99"/>
+<area shape="poly" title=" " alt="" coords="282,40,343,55,342,60,281,46"/>
+<area shape="poly" title=" " alt="" coords="261,117,342,97,343,102,262,122"/>
 </map>
 </div>
 
@@ -592,7 +616,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 06:34:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 06:44:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

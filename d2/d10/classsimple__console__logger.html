@@ -335,11 +335,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d10/classsimple__console__logger_ad0abddaf4555c7103098bbc12e1b41a7_cgraph.png" border="0" usemap="#ad2/d10/classsimple__console__logger_ad0abddaf4555c7103098bbc12e1b41a7_cgraph" alt=""/></div>
 <map name="ad2/d10/classsimple__console__logger_ad0abddaf4555c7103098bbc12e1b41a7_cgraph" id="ad2/d10/classsimple__console__logger_ad0abddaf4555c7103098bbc12e1b41a7_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,204,38"/>
-<area shape="rect" href="../../d2/d10/classsimple__console__logger.html#a9b5787ed3000f83ceeb8e3332951a19d" title=" " alt="" coords="252,13,451,38"/>
-<area shape="poly" title=" " alt="" coords="204,23,238,23,238,28,204,28"/>
+<area shape="rect" title=" " alt="" coords="5,45,204,70"/>
+<area shape="rect" href="../../d2/d10/classsimple__console__logger.html#a9b5787ed3000f83ceeb8e3332951a19d" title=" " alt="" coords="252,45,451,70"/>
+<area shape="poly" title=" " alt="" coords="204,55,238,55,238,60,204,60"/>
 <area shape="rect" href="../../d2/d10/classsimple__console__logger.html#a611cd961fc5e5eb80e845030ebe2ba01" title=" " alt="" coords="499,5,669,45"/>
-<area shape="poly" title=" " alt="" coords="451,23,485,23,485,28,451,28"/>
+<area shape="poly" title=" " alt="" coords="444,42,485,36,485,42,445,47"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="510,69,658,109"/>
+<area shape="poly" title=" " alt="" coords="445,67,497,75,496,80,444,73"/>
 </map>
 </div>
 
@@ -397,21 +399,24 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
 <div class="line"><span class="lineno">   78</span> </div>
 <div class="line"><span class="lineno">   79</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; std::put_time(&amp;tm_buf, <span class="stringliteral">&quot;%H:%M:%S&quot;</span>)</div>
-<div class="line"><span class="lineno">   80</span>                  &lt;&lt; <span class="stringliteral">&quot;] [&quot;</span> &lt;&lt; to_string(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
+<div class="line"><span class="lineno">   80</span>                  &lt;&lt; <span class="stringliteral">&quot;] [&quot;</span> &lt;&lt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
 <div class="line"><span class="lineno">   81</span>                  &lt;&lt; message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   82</span> </div>
 <div class="line"><span class="lineno">   83</span>        <a class="code hl_variable" href="../../d2/d10/classsimple__console__logger.html#a77a91a14643ea3fd64cb70d119a0a330">log_count_</a>++;</div>
 <div class="line"><span class="lineno">   84</span>        <span class="keywordflow">return</span> kcenon::common::ok();</div>
 <div class="line"><span class="lineno">   85</span>    }</div>
 <div class="ttc" id="aclasssimple__console__logger_html_a611cd961fc5e5eb80e845030ebe2ba01"><div class="ttname"><a href="../../d2/d10/classsimple__console__logger.html#a611cd961fc5e5eb80e845030ebe2ba01">simple_console_logger::is_enabled</a></div><div class="ttdeci">bool is_enabled(log_level level) const override</div><div class="ttdef"><b>Definition</b> <a href="../../d0/d34/logger__di__integration__example_8cpp_source.html#l00095">logger_di_integration_example.cpp:95</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a14a45c5e8ced3445d3f794bcf4f93888"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">kcenon::monitoring::to_string</a></div><div class="ttdeci">auto to_string(plugin_load_error error) -&gt; std::string</div><div class="ttdoc">Convert plugin_load_error to string.</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d10/classsimple__console__logger_a9b5787ed3000f83ceeb8e3332951a19d_cgraph.png" border="0" usemap="#ad2/d10/classsimple__console__logger_a9b5787ed3000f83ceeb8e3332951a19d_cgraph" alt=""/></div>
 <map name="ad2/d10/classsimple__console__logger_a9b5787ed3000f83ceeb8e3332951a19d_cgraph" id="ad2/d10/classsimple__console__logger_a9b5787ed3000f83ceeb8e3332951a19d_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,204,38"/>
+<area shape="rect" title=" " alt="" coords="5,45,204,70"/>
 <area shape="rect" href="../../d2/d10/classsimple__console__logger.html#a611cd961fc5e5eb80e845030ebe2ba01" title=" " alt="" coords="252,5,423,45"/>
-<area shape="poly" title=" " alt="" coords="204,23,238,23,238,28,204,28"/>
+<area shape="poly" title=" " alt="" coords="197,42,238,36,239,42,198,47"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="263,69,411,109"/>
+<area shape="poly" title=" " alt="" coords="198,67,250,75,249,80,197,73"/>
 </map>
 </div>
 <div class="dynheader">
@@ -515,7 +520,7 @@ Here is the caller graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 06:34:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 06:44:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -80,13 +80,26 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Abstract interface for plugin loading.  
+ <a href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../d6/da5/plugin__metric__collector_8h_source.html">plugin_metric_collector.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kcenon::monitoring::plugin_loader:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d7/d80/classkcenon_1_1monitoring_1_1plugin__loader__inherit__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1plugin__loader_inherit__map" alt="Inheritance graph"/></div>
+<map name="akcenon_1_1monitoring_1_1plugin__loader_inherit__map" id="akcenon_1_1monitoring_1_1plugin__loader_inherit__map">
+<area shape="rect" title="Abstract interface for plugin loading." alt="" coords="9,5,203,265"/>
+<area shape="rect" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html" title="Concrete implementation of plugin_loader using OS dynamic loading APIs." alt="" coords="5,313,207,773"/>
+<area shape="poly" title=" " alt="" coords="109,279,109,313,103,313,103,279"/>
+</map>
+</div>
 <div class="dynheader">
 Collaboration diagram for kcenon::monitoring::plugin_loader:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d8/d30/classkcenon_1_1monitoring_1_1plugin__loader__coll__graph.png" border="0" usemap="#akcenon_1_1monitoring_1_1plugin__loader_coll__map" alt="Collaboration graph"/></div>
 <map name="akcenon_1_1monitoring_1_1plugin__loader_coll__map" id="akcenon_1_1monitoring_1_1plugin__loader_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,145,125"/>
+<area shape="rect" title="Abstract interface for plugin loading." alt="" coords="5,5,200,265"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -98,14 +111,61 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a25327d39a64ee18096da180aeadd6e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94540e84c0028ee3de6950e12dbcab5c" id="r_a94540e84c0028ee3de6950e12dbcab5c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#a94540e84c0028ee3de6950e12dbcab5c">unload_plugin</a> (const std::string &amp;plugin_name)=0</td></tr>
 <tr class="separator:a94540e84c0028ee3de6950e12dbcab5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af220f7a2f5c1e30da0a2da91f6f4d673" id="r_af220f7a2f5c1e30da0a2da91f6f4d673"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#af220f7a2f5c1e30da0a2da91f6f4d673">~plugin_loader</a> ()=default</td></tr>
+<tr class="separator:af220f7a2f5c1e30da0a2da91f6f4d673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef072ed14f20f6f1f047463b06a8c1f3" id="r_aef072ed14f20f6f1f047463b06a8c1f3"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#aef072ed14f20f6f1f047463b06a8c1f3">load_plugin</a> (std::string_view path) -&gt; std::unique_ptr&lt; <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">collector_plugin</a> &gt;=0</td></tr>
+<tr class="memdesc:aef072ed14f20f6f1f047463b06a8c1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a plugin from a shared library.  <br /></td></tr>
+<tr class="separator:aef072ed14f20f6f1f047463b06a8c1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e5494f3c460184cff0854f7fedd3c85" id="r_a7e5494f3c460184cff0854f7fedd3c85"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#a7e5494f3c460184cff0854f7fedd3c85">unload_plugin</a> (std::string_view plugin_name) -&gt; bool=0</td></tr>
+<tr class="memdesc:a7e5494f3c460184cff0854f7fedd3c85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unload a previously loaded plugin.  <br /></td></tr>
+<tr class="separator:a7e5494f3c460184cff0854f7fedd3c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59af72114ec3120cc4ddf1291142d32e" id="r_a59af72114ec3120cc4ddf1291142d32e"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#a59af72114ec3120cc4ddf1291142d32e">get_last_error</a> () const -&gt; <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349">plugin_load_error</a>=0</td></tr>
+<tr class="memdesc:a59af72114ec3120cc4ddf1291142d32e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last error that occurred.  <br /></td></tr>
+<tr class="separator:a59af72114ec3120cc4ddf1291142d32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed97fe88f45f14b2c2bf6c38d86dcddc" id="r_aed97fe88f45f14b2c2bf6c38d86dcddc"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#aed97fe88f45f14b2c2bf6c38d86dcddc">get_last_error_message</a> () const -&gt; std::string=0</td></tr>
+<tr class="memdesc:aed97fe88f45f14b2c2bf6c38d86dcddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get detailed error message for the last error.  <br /></td></tr>
+<tr class="separator:aed97fe88f45f14b2c2bf6c38d86dcddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb8c972029b18a691eb64e3991123a7" id="r_a7cb8c972029b18a691eb64e3991123a7"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#a7cb8c972029b18a691eb64e3991123a7">is_plugin_loaded</a> (std::string_view plugin_name) const -&gt; bool=0</td></tr>
+<tr class="memdesc:a7cb8c972029b18a691eb64e3991123a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a plugin is currently loaded.  <br /></td></tr>
+<tr class="separator:a7cb8c972029b18a691eb64e3991123a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d37c70e7cfcbc20666aef54f7c14e20" id="r_a2d37c70e7cfcbc20666aef54f7c14e20"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#a2d37c70e7cfcbc20666aef54f7c14e20">get_loaded_plugins</a> () const -&gt; std::vector&lt; std::string &gt;=0</td></tr>
+<tr class="memdesc:a2d37c70e7cfcbc20666aef54f7c14e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get list of loaded plugin names.  <br /></td></tr>
+<tr class="separator:a2d37c70e7cfcbc20666aef54f7c14e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Plugin loading and management interface </p>
+<div class="textblock"><p>Abstract interface for plugin loading. </p>
+<p>Plugin loading and management interface</p>
+<p>This interface defines the contract for loading and unloading plugins. Concrete implementations provide platform-specific loading mechanisms. </p>
 
 <p class="definition">Definition at line <a class="el" href="../../d6/da5/plugin__metric__collector_8h_source.html#l00105">105</a> of file <a class="el" href="../../d6/da5/plugin__metric__collector_8h_source.html">plugin_metric_collector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af220f7a2f5c1e30da0a2da91f6f4d673" name="af220f7a2f5c1e30da0a2da91f6f4d673"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af220f7a2f5c1e30da0a2da91f6f4d673">&#9670;&#160;</a></span>~plugin_loader()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af220f7a2f5c1e30da0a2da91f6f4d673">&#9670;&#160;</a></span>~plugin_loader() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual kcenon::monitoring::plugin_loader::~plugin_loader </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af220f7a2f5c1e30da0a2da91f6f4d673" name="af220f7a2f5c1e30da0a2da91f6f4d673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af220f7a2f5c1e30da0a2da91f6f4d673">&#9670;&#160;</a></span>~plugin_loader() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,8 +190,135 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a59af72114ec3120cc4ddf1291142d32e" name="a59af72114ec3120cc4ddf1291142d32e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59af72114ec3120cc4ddf1291142d32e">&#9670;&#160;</a></span>get_last_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto kcenon::monitoring::plugin_loader::get_last_error </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  <a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349">plugin_load_error</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the last error that occurred. </p>
+<dl class="section return"><dt>Returns</dt><dd>Error code </dd></dl>
+
+<p>Implemented in <a class="el" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html#accccaa0f0d618c8f7abce80fa8d9e61a">kcenon::monitoring::dynamic_plugin_loader</a>.</p>
+
+</div>
+</div>
+<a id="aed97fe88f45f14b2c2bf6c38d86dcddc" name="aed97fe88f45f14b2c2bf6c38d86dcddc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed97fe88f45f14b2c2bf6c38d86dcddc">&#9670;&#160;</a></span>get_last_error_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto kcenon::monitoring::plugin_loader::get_last_error_message </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::string</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get detailed error message for the last error. </p>
+<dl class="section return"><dt>Returns</dt><dd>Error message string </dd></dl>
+
+<p>Implemented in <a class="el" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html#a4463a7e2808b31542db587b368f8ff0c">kcenon::monitoring::dynamic_plugin_loader</a>.</p>
+
+</div>
+</div>
+<a id="a2d37c70e7cfcbc20666aef54f7c14e20" name="a2d37c70e7cfcbc20666aef54f7c14e20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d37c70e7cfcbc20666aef54f7c14e20">&#9670;&#160;</a></span>get_loaded_plugins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto kcenon::monitoring::plugin_loader::get_loaded_plugins </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::vector&lt; std::string &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get list of loaded plugin names. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of plugin names </dd></dl>
+
+<p>Implemented in <a class="el" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html#a17b5ea8e79e6f6863d21bee2daa78ac2">kcenon::monitoring::dynamic_plugin_loader</a>.</p>
+
+</div>
+</div>
+<a id="a7cb8c972029b18a691eb64e3991123a7" name="a7cb8c972029b18a691eb64e3991123a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb8c972029b18a691eb64e3991123a7">&#9670;&#160;</a></span>is_plugin_loaded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto kcenon::monitoring::plugin_loader::is_plugin_loaded </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>plugin_name</em></td><td>)</td>
+          <td> const -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a plugin is currently loaded. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plugin_name</td><td>Name of the plugin </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the plugin is loaded </dd></dl>
+
+<p>Implemented in <a class="el" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html#a3df4f1f2b604f68f6112196ac0433572">kcenon::monitoring::dynamic_plugin_loader</a>.</p>
+
+</div>
+</div>
 <a id="a25327d39a64ee18096da180aeadd6e8a" name="a25327d39a64ee18096da180aeadd6e8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25327d39a64ee18096da180aeadd6e8a">&#9670;&#160;</a></span>load_plugin()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a25327d39a64ee18096da180aeadd6e8a">&#9670;&#160;</a></span>load_plugin() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,8 +350,53 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aef072ed14f20f6f1f047463b06a8c1f3" name="aef072ed14f20f6f1f047463b06a8c1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef072ed14f20f6f1f047463b06a8c1f3">&#9670;&#160;</a></span>load_plugin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto kcenon::monitoring::plugin_loader::load_plugin </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td> -&gt;  std::unique_ptr&lt; <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html">collector_plugin</a> &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load a plugin from a shared library. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Path to the plugin library (.so/.dylib/.dll) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Unique pointer to the loaded plugin, or nullptr on failure</dd></dl>
+<p>The loader will:</p><ol type="1">
+<li>Load the shared library</li>
+<li>Resolve required symbols (create_plugin, etc.)</li>
+<li>Verify API version compatibility</li>
+<li>Create the plugin instance</li>
+<li>Track the plugin for cleanup</li>
+</ol>
+<p>On failure, check <a class="el" href="../../dd/d7e/classkcenon_1_1monitoring_1_1plugin__loader.html#a59af72114ec3120cc4ddf1291142d32e" title="Get the last error that occurred.">get_last_error()</a> for details. </p>
+
+<p>Implemented in <a class="el" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html#af7277a0827c700280c9c512c305f91cc">kcenon::monitoring::dynamic_plugin_loader</a>.</p>
+
+</div>
+</div>
 <a id="a94540e84c0028ee3de6950e12dbcab5c" name="a94540e84c0028ee3de6950e12dbcab5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94540e84c0028ee3de6950e12dbcab5c">&#9670;&#160;</a></span>unload_plugin()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a94540e84c0028ee3de6950e12dbcab5c">&#9670;&#160;</a></span>unload_plugin() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,13 +428,57 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="a7e5494f3c460184cff0854f7fedd3c85" name="a7e5494f3c460184cff0854f7fedd3c85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e5494f3c460184cff0854f7fedd3c85">&#9670;&#160;</a></span>unload_plugin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto kcenon::monitoring::plugin_loader::unload_plugin </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>plugin_name</em></td><td>)</td>
+          <td> -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unload a previously loaded plugin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plugin_name</td><td>Name of the plugin to unload </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if unloaded successfully</dd></dl>
+<p>This will:</p><ol type="1">
+<li>Destroy the plugin instance</li>
+<li>Unload the shared library</li>
+<li>Clean up tracking data</li>
+</ol>
+<p>The plugin instance must have been destroyed before calling this. </p>
+
+<p>Implemented in <a class="el" href="../../de/d25/classkcenon_1_1monitoring_1_1dynamic__plugin__loader.html#af1ca5fb8cbb409b5e8062c95c2638e55">kcenon::monitoring::dynamic_plugin_loader</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/kcenon/monitoring/collectors/<a class="el" href="../../d6/da5/plugin__metric__collector_8h_source.html">plugin_metric_collector.h</a></li>
+<li>include/kcenon/monitoring/plugins/<a class="el" href="../../de/db6/plugin__loader_8h_source.html">plugin_loader.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 06:34:47 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 06:44:20 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

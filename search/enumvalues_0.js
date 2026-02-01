@@ -10,10 +10,11 @@ var searchData=
   ['added_7',['added',['../da/d7a/classkcenon_1_1monitoring_1_1configuration__change__event.html#afe231ef6a381a630a9bd8022a1765c4aab60ed88355ac3f6898fd8a7ab1734d06',1,'kcenon::monitoring::configuration_change_event']]],
   ['aggregation_5ffailed_8',['aggregation_failed',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea4b93f9c81050c0f1646ad0f9a0bbab5e',1,'kcenon::monitoring']]],
   ['already_5fexists_9',['already_exists',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea7a6f43ded24333b44b8a5d5dc159c4ea',1,'kcenon::monitoring']]],
-  ['already_5fstarted_10',['already_started',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea8188a22e80d543c15b09f9d72113ef8e',1,'kcenon::monitoring']]],
-  ['ambient_11',['ambient',['../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88afff66a4d00c8ed7bb7814ff29d0faca2',1,'kcenon::monitoring']]],
-  ['amd_12',['amd',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597a5dc984e2aef527ea2daaeffe646a6a52',1,'kcenon::monitoring']]],
-  ['and_13',['AND',['../db/d50/namespacekcenon_1_1monitoring.html#a8d375d6d7ae844ebc1311b6729bc7d52a558ffc8f5770d8e4f95f51d822685532',1,'kcenon::monitoring']]],
-  ['apple_14',['apple',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597a1f3870be274f6c49b3e31a0c6728957f',1,'kcenon::monitoring']]],
-  ['auto_5fdetect_15',['auto_detect',['../d6/d1d/namespacekcenon_1_1monitoring_1_1plugins.html#aef868dc9fa5de5034063d48897755986a60db33599fbe80f2d536ce9ffb5f2377',1,'kcenon::monitoring::plugins']]]
+  ['already_5floaded_10',['already_loaded',['../db/d50/namespacekcenon_1_1monitoring.html#a3e9bad62d193e0d17e218aaaa9f56349a87eaad3e236d82261f86e38af8e5e724',1,'kcenon::monitoring']]],
+  ['already_5fstarted_11',['already_started',['../db/d50/namespacekcenon_1_1monitoring.html#ab0f9a44e05c0521f5686fd2ac5d2c83ea8188a22e80d543c15b09f9d72113ef8e',1,'kcenon::monitoring']]],
+  ['ambient_12',['ambient',['../db/d50/namespacekcenon_1_1monitoring.html#ad5391888a20ee60ea1d9e24da879aa88afff66a4d00c8ed7bb7814ff29d0faca2',1,'kcenon::monitoring']]],
+  ['amd_13',['amd',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597a5dc984e2aef527ea2daaeffe646a6a52',1,'kcenon::monitoring']]],
+  ['and_14',['AND',['../db/d50/namespacekcenon_1_1monitoring.html#a8d375d6d7ae844ebc1311b6729bc7d52a558ffc8f5770d8e4f95f51d822685532',1,'kcenon::monitoring']]],
+  ['apple_15',['apple',['../db/d50/namespacekcenon_1_1monitoring.html#abf797274f6590fdb0670e7fec40a1597a1f3870be274f6c49b3e31a0c6728957f',1,'kcenon::monitoring']]],
+  ['auto_5fdetect_16',['auto_detect',['../d6/d1d/namespacekcenon_1_1monitoring_1_1plugins.html#aef868dc9fa5de5034063d48897755986a60db33599fbe80f2d536ce9ffb5f2377',1,'kcenon::monitoring::plugins']]]
 ];

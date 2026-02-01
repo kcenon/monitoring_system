@@ -436,9 +436,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d06/classconsole__logger_a2025224f6b065329eb1076768f018c79_cgraph.png" border="0" usemap="#ad4/d06/classconsole__logger_a2025224f6b065329eb1076768f018c79_cgraph" alt=""/></div>
 <map name="ad4/d06/classconsole__logger_a2025224f6b065329eb1076768f018c79_cgraph" id="ad4/d06/classconsole__logger_a2025224f6b065329eb1076768f018c79_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,153,31"/>
-<area shape="rect" href="../../d4/d06/classconsole__logger.html#a8cb156f70c9d2c174207b160fdb5f944" title=" " alt="" coords="201,5,349,31"/>
-<area shape="poly" title=" " alt="" coords="154,15,187,15,187,21,154,21"/>
+<area shape="rect" title=" " alt="" coords="5,13,153,38"/>
+<area shape="rect" href="../../d4/d06/classconsole__logger.html#a8cb156f70c9d2c174207b160fdb5f944" title=" " alt="" coords="201,13,349,38"/>
+<area shape="poly" title=" " alt="" coords="154,23,187,23,187,28,154,28"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="397,5,545,45"/>
+<area shape="poly" title=" " alt="" coords="350,23,383,23,383,28,350,28"/>
 </map>
 </div>
 
@@ -491,7 +493,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   77</span>        <span class="keyword">auto</span> tm = *std::localtime(&amp;time_t);</div>
 <div class="line"><span class="lineno">   78</span> </div>
 <div class="line"><span class="lineno">   79</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; std::put_time(&amp;tm, <span class="stringliteral">&quot;%Y-%m-%d %H:%M:%S&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
-<div class="line"><span class="lineno">   80</span>                  &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; to_string(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
+<div class="line"><span class="lineno">   80</span>                  &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; <a class="code hl_function" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">to_string</a>(level) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
 <div class="line"><span class="lineno">   81</span>                  &lt;&lt; message &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">   82</span> </div>
 <div class="line"><span class="lineno">   83</span>        <span class="comment">// If monitor is injected, record logging metrics</span></div>
@@ -502,7 +504,18 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   88</span>        <span class="keywordflow">return</span> std::monostate{};</div>
 <div class="line"><span class="lineno">   89</span>    }</div>
 <div class="ttc" id="aclassconsole__logger_html_a9ee65f26128484d5e51295bf53d990fe"><div class="ttname"><a href="../../d4/d06/classconsole__logger.html#a9ee65f26128484d5e51295bf53d990fe">console_logger::monitor_</a></div><div class="ttdeci">std::shared_ptr&lt; IMonitor &gt; monitor_</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d24/bidirectional__di__example_8cpp_source.html#l00065">bidirectional_di_example.cpp:65</a></div></div>
+<div class="ttc" id="anamespacekcenon_1_1monitoring_html_a14a45c5e8ced3445d3f794bcf4f93888"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888">kcenon::monitoring::to_string</a></div><div class="ttdeci">auto to_string(plugin_load_error error) -&gt; std::string</div><div class="ttdoc">Convert plugin_load_error to string.</div></div>
 </div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d06/classconsole__logger_a8cb156f70c9d2c174207b160fdb5f944_cgraph.png" border="0" usemap="#ad4/d06/classconsole__logger_a8cb156f70c9d2c174207b160fdb5f944_cgraph" alt=""/></div>
+<map name="ad4/d06/classconsole__logger_a8cb156f70c9d2c174207b160fdb5f944_cgraph" id="ad4/d06/classconsole__logger_a8cb156f70c9d2c174207b160fdb5f944_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,153,38"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="201,5,349,45"/>
+<area shape="poly" title=" " alt="" coords="154,23,187,23,187,28,154,28"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d06/classconsole__logger_a8cb156f70c9d2c174207b160fdb5f944_icgraph.png" border="0" usemap="#ad4/d06/classconsole__logger_a8cb156f70c9d2c174207b160fdb5f944_icgraph" alt=""/></div>
@@ -580,9 +593,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d06/classconsole__logger_a0cb2192c1807fb4918aec7bccc1e2fb4_cgraph.png" border="0" usemap="#ad4/d06/classconsole__logger_a0cb2192c1807fb4918aec7bccc1e2fb4_cgraph" alt=""/></div>
 <map name="ad4/d06/classconsole__logger_a0cb2192c1807fb4918aec7bccc1e2fb4_cgraph" id="ad4/d06/classconsole__logger_a0cb2192c1807fb4918aec7bccc1e2fb4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,153,31"/>
-<area shape="rect" href="../../d4/d06/classconsole__logger.html#a8cb156f70c9d2c174207b160fdb5f944" title=" " alt="" coords="201,5,349,31"/>
-<area shape="poly" title=" " alt="" coords="154,15,187,15,187,21,154,21"/>
+<area shape="rect" title=" " alt="" coords="5,13,153,38"/>
+<area shape="rect" href="../../d4/d06/classconsole__logger.html#a8cb156f70c9d2c174207b160fdb5f944" title=" " alt="" coords="201,13,349,38"/>
+<area shape="poly" title=" " alt="" coords="154,23,187,23,187,28,154,28"/>
+<area shape="rect" href="../../db/d50/namespacekcenon_1_1monitoring.html#a14a45c5e8ced3445d3f794bcf4f93888" title="Convert plugin_load_error to string." alt="" coords="397,5,545,45"/>
+<area shape="poly" title=" " alt="" coords="350,23,383,23,383,28,350,28"/>
 </map>
 </div>
 
@@ -732,7 +747,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 06:34:46 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 06:44:19 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
