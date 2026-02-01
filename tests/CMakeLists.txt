@@ -81,6 +81,9 @@ add_executable(monitoring_system_tests
     # Battery status monitoring (Issue #218)
     test_battery_collector.cpp
 
+    # Collector registry integration (Issue #446)
+    test_collector_registry_integration.cpp
+
     # Load average history tracking (Issue #219)
     test_time_series_buffer.cpp
 
