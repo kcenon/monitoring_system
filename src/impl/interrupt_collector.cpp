@@ -179,7 +179,7 @@ void interrupt_collector::add_interrupt_metrics(std::vector<metric>& metrics, co
     m1.name = "interrupts_total";
     m1.value = static_cast<double>(data.interrupts_total);
     m1.timestamp = now;
-    m1.tags["collector"] = "interrupt";
+    m1.tags["collector"] = "interrupt_collector";
     metrics.push_back(m1);
 
     // Hardware interrupt rate
@@ -187,7 +187,7 @@ void interrupt_collector::add_interrupt_metrics(std::vector<metric>& metrics, co
     m2.name = "interrupts_per_sec";
     m2.value = data.interrupts_per_sec;
     m2.timestamp = now;
-    m2.tags["collector"] = "interrupt";
+    m2.tags["collector"] = "interrupt_collector";
     metrics.push_back(m2);
 
     // Soft interrupt metrics (when available and configured)
@@ -196,14 +196,14 @@ void interrupt_collector::add_interrupt_metrics(std::vector<metric>& metrics, co
         m3.name = "soft_interrupts_total";
         m3.value = static_cast<double>(data.soft_interrupts_total);
         m3.timestamp = now;
-        m3.tags["collector"] = "interrupt";
+        m3.tags["collector"] = "interrupt_collector";
         metrics.push_back(m3);
 
         metric m4;
         m4.name = "soft_interrupts_per_sec";
         m4.value = data.soft_interrupts_per_sec;
         m4.timestamp = now;
-        m4.tags["collector"] = "interrupt";
+        m4.tags["collector"] = "interrupt_collector";
         metrics.push_back(m4);
     }
 
@@ -214,7 +214,7 @@ void interrupt_collector::add_interrupt_metrics(std::vector<metric>& metrics, co
             cpu_m1.name = "interrupts_total";
             cpu_m1.value = static_cast<double>(cpu.interrupt_count);
             cpu_m1.timestamp = now;
-            cpu_m1.tags["collector"] = "interrupt";
+            cpu_m1.tags["collector"] = "interrupt_collector";
             cpu_m1.tags["cpu"] = std::to_string(cpu.cpu_id);
             metrics.push_back(cpu_m1);
 
@@ -222,7 +222,7 @@ void interrupt_collector::add_interrupt_metrics(std::vector<metric>& metrics, co
             cpu_m2.name = "interrupts_per_sec";
             cpu_m2.value = cpu.interrupts_per_sec;
             cpu_m2.timestamp = now;
-            cpu_m2.tags["collector"] = "interrupt";
+            cpu_m2.tags["collector"] = "interrupt_collector";
             cpu_m2.tags["cpu"] = std::to_string(cpu.cpu_id);
             metrics.push_back(cpu_m2);
         }

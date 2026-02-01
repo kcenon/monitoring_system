@@ -273,14 +273,14 @@ void network_metrics_collector::add_socket_buffer_metrics(
     m1.name = "network_socket_recv_buffer_bytes";
     m1.value = static_cast<double>(data.recv_buffer_bytes);
     m1.timestamp = now;
-    m1.tags["collector"] = "network_metrics";
+    m1.tags["collector"] = "network_metrics_collector";
     metrics.push_back(m1);
 
     metric m2;
     m2.name = "network_socket_send_buffer_bytes";
     m2.value = static_cast<double>(data.send_buffer_bytes);
     m2.timestamp = now;
-    m2.tags["collector"] = "network_metrics";
+    m2.tags["collector"] = "network_metrics_collector";
     metrics.push_back(m2);
 
     // Memory usage
@@ -288,7 +288,7 @@ void network_metrics_collector::add_socket_buffer_metrics(
     m3.name = "network_socket_memory_bytes";
     m3.value = static_cast<double>(data.socket_memory_bytes);
     m3.timestamp = now;
-    m3.tags["collector"] = "network_metrics";
+    m3.tags["collector"] = "network_metrics_collector";
     metrics.push_back(m3);
 
     // Socket counts
@@ -296,21 +296,21 @@ void network_metrics_collector::add_socket_buffer_metrics(
     m4.name = "network_socket_count_total";
     m4.value = static_cast<double>(data.socket_count);
     m4.timestamp = now;
-    m4.tags["collector"] = "network_metrics";
+    m4.tags["collector"] = "network_metrics_collector";
     metrics.push_back(m4);
 
     metric m5;
     m5.name = "network_socket_tcp_count";
     m5.value = static_cast<double>(data.tcp_socket_count);
     m5.timestamp = now;
-    m5.tags["collector"] = "network_metrics";
+    m5.tags["collector"] = "network_metrics_collector";
     metrics.push_back(m5);
 
     metric m6;
     m6.name = "network_socket_udp_count";
     m6.value = static_cast<double>(data.udp_socket_count);
     m6.timestamp = now;
-    m6.tags["collector"] = "network_metrics";
+    m6.tags["collector"] = "network_metrics_collector";
     metrics.push_back(m6);
 
     // Warning indicators for high memory usage
@@ -319,7 +319,7 @@ void network_metrics_collector::add_socket_buffer_metrics(
         w1.name = "network_socket_warning";
         w1.value = static_cast<double>(data.socket_memory_bytes);
         w1.timestamp = now;
-        w1.tags["collector"] = "network_metrics";
+        w1.tags["collector"] = "network_metrics_collector";
         w1.tags["alert"] = "memory_high";
         metrics.push_back(w1);
     }
@@ -332,7 +332,7 @@ void network_metrics_collector::add_socket_buffer_metrics(
         w2.name = "network_socket_warning";
         w2.value = static_cast<double>(total_queued);
         w2.timestamp = now;
-        w2.tags["collector"] = "network_metrics";
+        w2.tags["collector"] = "network_metrics_collector";
         w2.tags["alert"] = "queue_buildup";
         metrics.push_back(w2);
     }
@@ -351,7 +351,7 @@ void network_metrics_collector::add_tcp_state_metrics(
         m.name = name;
         m.value = value;
         m.timestamp = now;
-        m.tags["collector"] = "network_metrics";
+        m.tags["collector"] = "network_metrics_collector";
         return m;
     };
 
@@ -389,7 +389,7 @@ void network_metrics_collector::add_tcp_state_metrics(
         w1.name = "network_tcp_warning";
         w1.value = static_cast<double>(counts.time_wait);
         w1.timestamp = now;
-        w1.tags["collector"] = "network_metrics";
+        w1.tags["collector"] = "network_metrics_collector";
         w1.tags["alert"] = "time_wait_high";
         metrics.push_back(w1);
     }
@@ -399,7 +399,7 @@ void network_metrics_collector::add_tcp_state_metrics(
         w2.name = "network_tcp_warning";
         w2.value = static_cast<double>(counts.close_wait);
         w2.timestamp = now;
-        w2.tags["collector"] = "network_metrics";
+        w2.tags["collector"] = "network_metrics_collector";
         w2.tags["alert"] = "close_wait_high";
         metrics.push_back(w2);
     }

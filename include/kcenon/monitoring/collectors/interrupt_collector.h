@@ -145,7 +145,7 @@ class interrupt_collector : public collector_plugin {
     interrupt_collector& operator=(interrupt_collector&&) = delete;
 
     // collector_plugin implementation
-    auto name() const -> std::string_view override { return "interrupt"; }
+    auto name() const -> std::string_view override { return "interrupt_collector"; }
     auto collect() -> std::vector<metric> override;
     auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(15); }
     auto is_available() const -> bool override;

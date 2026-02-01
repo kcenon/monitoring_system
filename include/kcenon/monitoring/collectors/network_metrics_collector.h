@@ -274,7 +274,7 @@ class network_metrics_collector : public collector_plugin {
     network_metrics_collector& operator=(network_metrics_collector&&) = delete;
 
     // collector_plugin implementation
-    auto name() const -> std::string_view override { return "network_metrics"; }
+    auto name() const -> std::string_view override { return "network_metrics_collector"; }
     auto collect() -> std::vector<metric> override;
     auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(10); }
     auto is_available() const -> bool override;
