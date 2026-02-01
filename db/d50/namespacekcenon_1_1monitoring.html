@@ -651,7 +651,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggregated network metrics from all sources.  <a href="../../d0/d8f/structkcenon_1_1monitoring_1_1network__metrics.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/db1/classkcenon_1_1monitoring_1_1network__metrics__collector.html">network_metrics_collector</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unified network metrics collector.  <a href="../../d9/db1/classkcenon_1_1monitoring_1_1network__metrics__collector.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unified network metrics collector implementing <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins.">collector_plugin</a> interface.  <a href="../../d9/db1/classkcenon_1_1monitoring_1_1network__metrics__collector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d3c/structkcenon_1_1monitoring_1_1network__metrics__config.html">network_metrics_config</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration for network metrics collector.  <a href="../../d0/d3c/structkcenon_1_1monitoring_1_1network__metrics__config.html#details">More...</a><br /></td></tr>
@@ -3745,21 +3745,21 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html#l00068">68</a> of file <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html">network_metrics_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>                     {</div>
-<div class="line"><span class="lineno">   69</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea7640f170af693e00a6c91df543aa2b76">ESTABLISHED</a> = 1,   </div>
-<div class="line"><span class="lineno">   70</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea22ee0e543a2820dcbb2dcc90ed8fdb7c">SYN_SENT</a> = 2,      </div>
-<div class="line"><span class="lineno">   71</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea6aad9bb470606a56f666f08fe223d00a">SYN_RECV</a> = 3,      </div>
-<div class="line"><span class="lineno">   72</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea15691d3bea993fbf8cc16e3373caa548">FIN_WAIT1</a> = 4,     </div>
-<div class="line"><span class="lineno">   73</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea6371b3c24c873501dacae75d744aedec">FIN_WAIT2</a> = 5,     </div>
-<div class="line"><span class="lineno">   74</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea29766b42abee01f792492da03e732083">TIME_WAIT</a> = 6,     </div>
-<div class="line"><span class="lineno">   75</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea7286293c9125ac7d7bace94c190bc16d">CLOSE</a> = 7,         </div>
-<div class="line"><span class="lineno">   76</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea831862ab9b2e65d7f51841e0c739180f">CLOSE_WAIT</a> = 8,    </div>
-<div class="line"><span class="lineno">   77</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea9cbd9a647dc3edd29dd880e97c352032">LAST_ACK</a> = 9,      </div>
-<div class="line"><span class="lineno">   78</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1eac1f9314a03f63f33410be3489b12b29b">LISTEN</a> = 10,       </div>
-<div class="line"><span class="lineno">   79</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1eaa71a44c4c886bfc66b1edd511e6a677e">CLOSING</a> = 11,      </div>
-<div class="line"><span class="lineno">   80</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea696b031073e74bf2cb98e5ef201d4aa3">UNKNOWN</a> = 0        </div>
-<div class="line"><span class="lineno">   81</span>};</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html#l00069">69</a> of file <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html">network_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   69</span>                     {</div>
+<div class="line"><span class="lineno">   70</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea7640f170af693e00a6c91df543aa2b76">ESTABLISHED</a> = 1,   </div>
+<div class="line"><span class="lineno">   71</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea22ee0e543a2820dcbb2dcc90ed8fdb7c">SYN_SENT</a> = 2,      </div>
+<div class="line"><span class="lineno">   72</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea6aad9bb470606a56f666f08fe223d00a">SYN_RECV</a> = 3,      </div>
+<div class="line"><span class="lineno">   73</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea15691d3bea993fbf8cc16e3373caa548">FIN_WAIT1</a> = 4,     </div>
+<div class="line"><span class="lineno">   74</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea6371b3c24c873501dacae75d744aedec">FIN_WAIT2</a> = 5,     </div>
+<div class="line"><span class="lineno">   75</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea29766b42abee01f792492da03e732083">TIME_WAIT</a> = 6,     </div>
+<div class="line"><span class="lineno">   76</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea7286293c9125ac7d7bace94c190bc16d">CLOSE</a> = 7,         </div>
+<div class="line"><span class="lineno">   77</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea831862ab9b2e65d7f51841e0c739180f">CLOSE_WAIT</a> = 8,    </div>
+<div class="line"><span class="lineno">   78</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea9cbd9a647dc3edd29dd880e97c352032">LAST_ACK</a> = 9,      </div>
+<div class="line"><span class="lineno">   79</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1eac1f9314a03f63f33410be3489b12b29b">LISTEN</a> = 10,       </div>
+<div class="line"><span class="lineno">   80</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1eaa71a44c4c886bfc66b1edd511e6a677e">CLOSING</a> = 11,      </div>
+<div class="line"><span class="lineno">   81</span>    <a class="code hl_enumvalue" href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea696b031073e74bf2cb98e5ef201d4aa3">UNKNOWN</a> = 0        </div>
+<div class="line"><span class="lineno">   82</span>};</div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a554bccdbbd49c51204bacd71ba86fc1ea15691d3bea993fbf8cc16e3373caa548"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea15691d3bea993fbf8cc16e3373caa548">kcenon::monitoring::tcp_state::FIN_WAIT1</a></div><div class="ttdeci">@ FIN_WAIT1</div><div class="ttdoc">FIN sent, waiting for ACK or FIN.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a554bccdbbd49c51204bacd71ba86fc1ea22ee0e543a2820dcbb2dcc90ed8fdb7c"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea22ee0e543a2820dcbb2dcc90ed8fdb7c">kcenon::monitoring::tcp_state::SYN_SENT</a></div><div class="ttdeci">@ SYN_SENT</div><div class="ttdoc">SYN sent, waiting for SYN-ACK.</div></div>
 <div class="ttc" id="anamespacekcenon_1_1monitoring_html_a554bccdbbd49c51204bacd71ba86fc1ea29766b42abee01f792492da03e732083"><div class="ttname"><a href="../../db/d50/namespacekcenon_1_1monitoring.html#a554bccdbbd49c51204bacd71ba86fc1ea29766b42abee01f792492da03e732083">kcenon::monitoring::tcp_state::TIME_WAIT</a></div><div class="ttdeci">@ TIME_WAIT</div><div class="ttdoc">Waiting for enough time to pass (2MSL)</div></div>
@@ -8175,7 +8175,7 @@ Here is the caller graph for this function:</div>
 <li><a class="el" href="../../d5/d6e/classkcenon_1_1monitoring_1_1vm__collector.html" title="Virtualization metrics monitoring collector.">vm_collector</a> (standalone)</li>
 <li><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html" title="System uptime monitoring collector implementing collector_plugin interface.">uptime_collector</a> (CRTP-based)</li>
 <li><a class="el" href="../../de/ddc/classkcenon_1_1monitoring_1_1process__metrics__collector.html" title="Unified process-level metrics collector.">process_metrics_collector</a> (CRTP-based, consolidated from fd, inode, context_switch)</li>
-<li><a class="el" href="../../d9/db1/classkcenon_1_1monitoring_1_1network__metrics__collector.html" title="Unified network metrics collector.">network_metrics_collector</a> (CRTP-based, consolidated from tcp_state and socket_buffer)</li>
+<li><a class="el" href="../../d9/db1/classkcenon_1_1monitoring_1_1network__metrics__collector.html" title="Unified network metrics collector implementing collector_plugin interface.">network_metrics_collector</a> (CRTP-based, consolidated from tcp_state and socket_buffer)</li>
 <li><a class="el" href="../../d8/d65/classkcenon_1_1monitoring_1_1platform__metrics__collector.html" title="Unified platform-agnostic metrics collector.">platform_metrics_collector</a> (CRTP-based, unified platform metrics using Strategy pattern)</li>
 <li><a class="el" href="../../d3/d80/classkcenon_1_1monitoring_1_1interrupt__collector.html" title="Hardware and software interrupt statistics monitoring collector.">interrupt_collector</a> (CRTP-based)</li>
 </ul>
@@ -8503,23 +8503,23 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String name of the state </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html#l00088">88</a> of file <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html">network_metrics_collector.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>                                                      {</div>
-<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">switch</span> (state) {</div>
-<div class="line"><span class="lineno">   90</span>        <span class="keywordflow">case</span> tcp_state::ESTABLISHED: <span class="keywordflow">return</span> <span class="stringliteral">&quot;ESTABLISHED&quot;</span>;</div>
-<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">case</span> tcp_state::SYN_SENT: <span class="keywordflow">return</span> <span class="stringliteral">&quot;SYN_SENT&quot;</span>;</div>
-<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">case</span> tcp_state::SYN_RECV: <span class="keywordflow">return</span> <span class="stringliteral">&quot;SYN_RECV&quot;</span>;</div>
-<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">case</span> tcp_state::FIN_WAIT1: <span class="keywordflow">return</span> <span class="stringliteral">&quot;FIN_WAIT1&quot;</span>;</div>
-<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">case</span> tcp_state::FIN_WAIT2: <span class="keywordflow">return</span> <span class="stringliteral">&quot;FIN_WAIT2&quot;</span>;</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">case</span> tcp_state::TIME_WAIT: <span class="keywordflow">return</span> <span class="stringliteral">&quot;TIME_WAIT&quot;</span>;</div>
-<div class="line"><span class="lineno">   96</span>        <span class="keywordflow">case</span> tcp_state::CLOSE: <span class="keywordflow">return</span> <span class="stringliteral">&quot;CLOSE&quot;</span>;</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">case</span> tcp_state::CLOSE_WAIT: <span class="keywordflow">return</span> <span class="stringliteral">&quot;CLOSE_WAIT&quot;</span>;</div>
-<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">case</span> tcp_state::LAST_ACK: <span class="keywordflow">return</span> <span class="stringliteral">&quot;LAST_ACK&quot;</span>;</div>
-<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">case</span> tcp_state::LISTEN: <span class="keywordflow">return</span> <span class="stringliteral">&quot;LISTEN&quot;</span>;</div>
-<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">case</span> tcp_state::CLOSING: <span class="keywordflow">return</span> <span class="stringliteral">&quot;CLOSING&quot;</span>;</div>
-<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">default</span>: <span class="keywordflow">return</span> <span class="stringliteral">&quot;UNKNOWN&quot;</span>;</div>
-<div class="line"><span class="lineno">  102</span>    }</div>
-<div class="line"><span class="lineno">  103</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html#l00089">89</a> of file <a class="el" href="../../d8/dab/network__metrics__collector_8h_source.html">network_metrics_collector.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   89</span>                                                      {</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">switch</span> (state) {</div>
+<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">case</span> tcp_state::ESTABLISHED: <span class="keywordflow">return</span> <span class="stringliteral">&quot;ESTABLISHED&quot;</span>;</div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">case</span> tcp_state::SYN_SENT: <span class="keywordflow">return</span> <span class="stringliteral">&quot;SYN_SENT&quot;</span>;</div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">case</span> tcp_state::SYN_RECV: <span class="keywordflow">return</span> <span class="stringliteral">&quot;SYN_RECV&quot;</span>;</div>
+<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">case</span> tcp_state::FIN_WAIT1: <span class="keywordflow">return</span> <span class="stringliteral">&quot;FIN_WAIT1&quot;</span>;</div>
+<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">case</span> tcp_state::FIN_WAIT2: <span class="keywordflow">return</span> <span class="stringliteral">&quot;FIN_WAIT2&quot;</span>;</div>
+<div class="line"><span class="lineno">   96</span>        <span class="keywordflow">case</span> tcp_state::TIME_WAIT: <span class="keywordflow">return</span> <span class="stringliteral">&quot;TIME_WAIT&quot;</span>;</div>
+<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">case</span> tcp_state::CLOSE: <span class="keywordflow">return</span> <span class="stringliteral">&quot;CLOSE&quot;</span>;</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">case</span> tcp_state::CLOSE_WAIT: <span class="keywordflow">return</span> <span class="stringliteral">&quot;CLOSE_WAIT&quot;</span>;</div>
+<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">case</span> tcp_state::LAST_ACK: <span class="keywordflow">return</span> <span class="stringliteral">&quot;LAST_ACK&quot;</span>;</div>
+<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">case</span> tcp_state::LISTEN: <span class="keywordflow">return</span> <span class="stringliteral">&quot;LISTEN&quot;</span>;</div>
+<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">case</span> tcp_state::CLOSING: <span class="keywordflow">return</span> <span class="stringliteral">&quot;CLOSING&quot;</span>;</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">default</span>: <span class="keywordflow">return</span> <span class="stringliteral">&quot;UNKNOWN&quot;</span>;</div>
+<div class="line"><span class="lineno">  103</span>    }</div>
+<div class="line"><span class="lineno">  104</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -8576,7 +8576,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2026 23:41:29 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 00:36:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
