@@ -31,11 +31,11 @@
 
 /**
  * @file builtin_collectors.h
- * @brief Registration of built-in metric collectors with the factory
+ * @brief Registration of built-in metric collectors with the registry
  *
  * This file provides a single function to register all built-in collectors
- * with the metric_factory. Call register_builtin_collectors() once at
- * application startup to enable factory-based collector creation.
+ * with the collector_registry. Call register_builtin_collectors() once at
+ * application startup to enable runtime plugin management.
  *
  * Usage:
  * @code
@@ -44,13 +44,14 @@
  * int main() {
  *     kcenon::monitoring::register_builtin_collectors();
  *
- *     auto& factory = kcenon::monitoring::metric_factory::instance();
- *     auto collector = factory.create("system_resource_collector", {});
+ *     auto& registry = kcenon::monitoring::collector_registry::instance();
+ *     auto* collector = registry.get_plugin("battery_collector");
  * }
  * @endcode
  */
 
 #include "collector_adapters.h"
+#include "../plugins/collector_registry.h"
 
 // Include all collector headers
 #include "../collectors/battery_collector.h"
@@ -67,10 +68,9 @@
 namespace kcenon::monitoring {
 
 /**
- * @brief Register all built-in collectors with the metric_factory
+ * @brief Register all built-in collectors with the collector_registry
  *
  * This function registers the following collectors:
- * - system_resource_collector (plugin-based)
  * - battery_collector (plugin-based)
  * - uptime_collector (plugin-based)
  * - interrupt_collector (plugin-based)
@@ -80,15 +80,35 @@ namespace kcenon::monitoring {
  * - security_collector (plugin-based)
  * - smart_collector (plugin-based)
  * - vm_collector (plugin-based)
+ * - system_resource_collector (standalone, metric_factory only)
  *
- * Call this function once at application startup before using the factory.
+ * Plugin-based collectors (using collector_plugin interface) are registered
+ * with the collector_registry using factory-based lazy loading, enabling
+ * runtime enable/disable and plugin management.
+ *
+ * All collectors are also registered with metric_factory for backward compatibility.
+ *
+ * Call this function once at application startup before using the registry.
  *
  * @return true if all collectors were registered successfully
  */
 inline bool register_builtin_collectors() {
     bool all_success = true;
+    auto& registry = collector_registry::instance();
 
-    // Plugin-based collectors (collector_plugin interface)
+    // Register plugin-based collectors with collector_registry for runtime plugin management
+    // (Only collectors that implement collector_plugin interface)
+    registry.register_factory<battery_collector>("battery_collector");
+    registry.register_factory<uptime_collector>("uptime_collector");
+    registry.register_factory<interrupt_collector>("interrupt_collector");
+    registry.register_factory<network_metrics_collector>("network_metrics_collector");
+    registry.register_factory<platform_metrics_collector>("platform_metrics_collector");
+    registry.register_factory<process_metrics_collector>("process_metrics_collector");
+    registry.register_factory<security_collector>("security_collector");
+    registry.register_factory<smart_collector>("smart_collector");
+    registry.register_factory<vm_collector>("vm_collector");
+
+    // Also register all collectors with metric_factory for backward compatibility
     all_success &= register_plugin_collector<battery_collector>("battery_collector");
     all_success &= register_plugin_collector<uptime_collector>("uptime_collector");
     all_success &= register_plugin_collector<interrupt_collector>("interrupt_collector");
@@ -98,8 +118,6 @@ inline bool register_builtin_collectors() {
     all_success &= register_plugin_collector<security_collector>("security_collector");
     all_success &= register_plugin_collector<smart_collector>("smart_collector");
     all_success &= register_plugin_collector<vm_collector>("vm_collector");
-
-    // Standalone collectors
     all_success &= register_standalone_collector<system_resource_collector>("system_resource_collector");
 
     return all_success;
@@ -110,8 +128,7 @@ inline bool register_builtin_collectors() {
  * @return Vector of built-in collector names
  */
 inline std::vector<std::string> get_builtin_collector_names() {
-    return {"system_resource_collector",
-            "battery_collector",
+    return {"battery_collector",
             "uptime_collector",
             "interrupt_collector",
             "network_metrics_collector",
@@ -119,7 +136,8 @@ inline std::vector<std::string> get_builtin_collector_names() {
             "process_metrics_collector",
             "security_collector",
             "smart_collector",
-            "vm_collector"};
+            "vm_collector",
+            "system_resource_collector"};
 }
 
 }  // namespace kcenon::monitoring
