@@ -78,6 +78,7 @@
 #include <vector>
 
 #include "collector_plugin.h"
+#include "plugin_loader.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -222,6 +223,40 @@ public:
     auto plugin_count() const -> size_t;
 
     /**
+     * @brief Load a plugin from a shared library
+     * @param path Path to the shared library (.so/.dylib/.dll)
+     * @return True if plugin loaded and registered successfully
+     *
+     * This method:
+     * 1. Loads the shared library using dynamic_plugin_loader
+     * 2. Creates the plugin instance
+     * 3. Registers it in the registry
+     *
+     * If loading fails, check the loader's error message via get_plugin_loader_error().
+     */
+    auto load_plugin(std::string_view path) -> bool;
+
+    /**
+     * @brief Unload a dynamically loaded plugin
+     * @param name Plugin name
+     * @return True if plugin was unloaded successfully
+     *
+     * This method:
+     * 1. Unregisters the plugin from registry
+     * 2. Destroys the plugin instance
+     * 3. Unloads the shared library
+     *
+     * Only plugins loaded via load_plugin() can be unloaded this way.
+     */
+    auto unload_plugin(std::string_view name) -> bool;
+
+    /**
+     * @brief Get the last error from plugin loader
+     * @return Error message string (empty if no error)
+     */
+    auto get_plugin_loader_error() const -> std::string;
+
+    /**
      * @brief Clear all plugins (for testing)
      *
      * Calls shutdown_all() and removes all plugins.
@@ -260,6 +295,9 @@ private:
 
     // Shutdown flag
     bool shutdown_{false};
+
+    // Dynamic plugin loader
+    std::unique_ptr<dynamic_plugin_loader> plugin_loader_;
 };
 
 } // namespace monitoring
