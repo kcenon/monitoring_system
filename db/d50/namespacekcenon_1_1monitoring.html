@@ -1712,7 +1712,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a5d2eb411c45a402007e5b42c7b128f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create stub UDP transport for testing.  <br /></td></tr>
 <tr class="separator:a5d2eb411c45a402007e5b42c7b128f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa67b262c914bd24d2eb60839692dfdf" id="r_afa67b262c914bd24d2eb60839692dfdf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#afa67b262c914bd24d2eb60839692dfdf">register_builtin_collectors</a> ()</td></tr>
-<tr class="memdesc:afa67b262c914bd24d2eb60839692dfdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register all built-in collectors with the <a class="el" href="../../d3/df2/classkcenon_1_1monitoring_1_1metric__factory.html" title="Unified factory for metric collector instantiation.">metric_factory</a>.  <br /></td></tr>
+<tr class="memdesc:afa67b262c914bd24d2eb60839692dfdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register all built-in collectors with the <a class="el" href="../../d7/d36/classkcenon_1_1monitoring_1_1collector__registry.html" title="Thread-safe registry for managing collector plugins.">collector_registry</a>.  <br /></td></tr>
 <tr class="separator:afa67b262c914bd24d2eb60839692dfdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fd0a72e4a5f7c78be3b6055d516bf0c" id="r_a0fd0a72e4a5f7c78be3b6055d516bf0c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a0fd0a72e4a5f7c78be3b6055d516bf0c">get_builtin_collector_names</a> ()</td></tr>
 <tr class="memdesc:a0fd0a72e4a5f7c78be3b6055d516bf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get list of all built-in collector names.  <br /></td></tr>
@@ -7158,19 +7158,19 @@ Here is the caller graph for this function:</div>
 <p>Get list of all built-in collector names. </p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of built-in collector names </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html#l00112">112</a> of file <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html">builtin_collectors.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                          {</div>
-<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">return</span> {<span class="stringliteral">&quot;system_resource_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  114</span>            <span class="stringliteral">&quot;battery_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  115</span>            <span class="stringliteral">&quot;uptime_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  116</span>            <span class="stringliteral">&quot;interrupt_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  117</span>            <span class="stringliteral">&quot;network_metrics_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  118</span>            <span class="stringliteral">&quot;platform_metrics_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  119</span>            <span class="stringliteral">&quot;process_metrics_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  120</span>            <span class="stringliteral">&quot;security_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  121</span>            <span class="stringliteral">&quot;smart_collector&quot;</span>,</div>
-<div class="line"><span class="lineno">  122</span>            <span class="stringliteral">&quot;vm_collector&quot;</span>};</div>
-<div class="line"><span class="lineno">  123</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html#l00130">130</a> of file <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html">builtin_collectors.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  130</span>                                                          {</div>
+<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">return</span> {<span class="stringliteral">&quot;battery_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  132</span>            <span class="stringliteral">&quot;uptime_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  133</span>            <span class="stringliteral">&quot;interrupt_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  134</span>            <span class="stringliteral">&quot;network_metrics_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  135</span>            <span class="stringliteral">&quot;platform_metrics_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  136</span>            <span class="stringliteral">&quot;process_metrics_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  137</span>            <span class="stringliteral">&quot;security_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  138</span>            <span class="stringliteral">&quot;smart_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  139</span>            <span class="stringliteral">&quot;vm_collector&quot;</span>,</div>
+<div class="line"><span class="lineno">  140</span>            <span class="stringliteral">&quot;system_resource_collector&quot;</span>};</div>
+<div class="line"><span class="lineno">  141</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -8206,9 +8206,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Register all built-in collectors with the <a class="el" href="../../d3/df2/classkcenon_1_1monitoring_1_1metric__factory.html" title="Unified factory for metric collector instantiation.">metric_factory</a>. </p>
+<p>Register all built-in collectors with the <a class="el" href="../../d7/d36/classkcenon_1_1monitoring_1_1collector__registry.html" title="Thread-safe registry for managing collector plugins.">collector_registry</a>. </p>
 <p>This function registers the following collectors:</p><ul>
-<li><a class="el" href="../../d7/d5f/classkcenon_1_1monitoring_1_1system__resource__collector.html">system_resource_collector</a> (plugin-based)</li>
 <li><a class="el" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html" title="Battery status monitoring collector implementing collector_plugin interface.">battery_collector</a> (plugin-based)</li>
 <li><a class="el" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html" title="System uptime monitoring collector implementing collector_plugin interface.">uptime_collector</a> (plugin-based)</li>
 <li><a class="el" href="../../d3/d80/classkcenon_1_1monitoring_1_1interrupt__collector.html" title="Hardware and software interrupt statistics monitoring collector.">interrupt_collector</a> (plugin-based)</li>
@@ -8218,31 +8217,84 @@ Here is the caller graph for this function:</div>
 <li><a class="el" href="../../dd/d8c/classkcenon_1_1monitoring_1_1security__collector.html" title="Security event monitoring collector.">security_collector</a> (plugin-based)</li>
 <li><a class="el" href="../../d6/d04/classkcenon_1_1monitoring_1_1smart__collector.html">smart_collector</a> (plugin-based)</li>
 <li><a class="el" href="../../d5/d6e/classkcenon_1_1monitoring_1_1vm__collector.html" title="Virtualization metrics monitoring collector.">vm_collector</a> (plugin-based)</li>
+<li><a class="el" href="../../d7/d5f/classkcenon_1_1monitoring_1_1system__resource__collector.html">system_resource_collector</a> (standalone, <a class="el" href="../../d3/df2/classkcenon_1_1monitoring_1_1metric__factory.html" title="Unified factory for metric collector instantiation.">metric_factory</a> only)</li>
 </ul>
-<p>Call this function once at application startup before using the factory.</p>
+<p>Plugin-based collectors (using <a class="el" href="../../d6/d59/classkcenon_1_1monitoring_1_1collector__plugin.html" title="Pure virtual interface for metric collector plugins.">collector_plugin</a> interface) are registered with the <a class="el" href="../../d7/d36/classkcenon_1_1monitoring_1_1collector__registry.html" title="Thread-safe registry for managing collector plugins.">collector_registry</a> using factory-based lazy loading, enabling runtime enable/disable and plugin management.</p>
+<p>All collectors are also registered with <a class="el" href="../../d3/df2/classkcenon_1_1monitoring_1_1metric__factory.html" title="Unified factory for metric collector instantiation.">metric_factory</a> for backward compatibility.</p>
+<p>Call this function once at application startup before using the registry.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if all collectors were registered successfully </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html#l00088">88</a> of file <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html">builtin_collectors.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>                                          {</div>
-<div class="line"><span class="lineno">   89</span>    <span class="keywordtype">bool</span> all_success = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   90</span> </div>
-<div class="line"><span class="lineno">   91</span>    <span class="comment">// Plugin-based collectors (collector_plugin interface)</span></div>
-<div class="line"><span class="lineno">   92</span>    all_success &amp;= register_plugin_collector&lt;battery_collector&gt;(<span class="stringliteral">&quot;battery_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   93</span>    all_success &amp;= register_plugin_collector&lt;uptime_collector&gt;(<span class="stringliteral">&quot;uptime_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   94</span>    all_success &amp;= register_plugin_collector&lt;interrupt_collector&gt;(<span class="stringliteral">&quot;interrupt_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   95</span>    all_success &amp;= register_plugin_collector&lt;network_metrics_collector&gt;(<span class="stringliteral">&quot;network_metrics_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   96</span>    all_success &amp;= register_plugin_collector&lt;platform_metrics_collector&gt;(<span class="stringliteral">&quot;platform_metrics_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   97</span>    all_success &amp;= register_plugin_collector&lt;process_metrics_collector&gt;(<span class="stringliteral">&quot;process_metrics_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   98</span>    all_success &amp;= register_plugin_collector&lt;security_collector&gt;(<span class="stringliteral">&quot;security_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">   99</span>    all_success &amp;= register_plugin_collector&lt;smart_collector&gt;(<span class="stringliteral">&quot;smart_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  100</span>    all_success &amp;= register_plugin_collector&lt;vm_collector&gt;(<span class="stringliteral">&quot;vm_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>    <span class="comment">// Standalone collectors</span></div>
-<div class="line"><span class="lineno">  103</span>    all_success &amp;= register_standalone_collector&lt;system_resource_collector&gt;(<span class="stringliteral">&quot;system_resource_collector&quot;</span>);</div>
-<div class="line"><span class="lineno">  104</span> </div>
-<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">return</span> all_success;</div>
-<div class="line"><span class="lineno">  106</span>}</div>
-</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html#l00095">95</a> of file <a class="el" href="../../dc/d38/builtin__collectors_8h_source.html">builtin_collectors.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>                                          {</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordtype">bool</span> all_success = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   97</span>    <span class="keyword">auto</span>&amp; registry = collector_registry::instance();</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>    <span class="comment">// Register plugin-based collectors with collector_registry for runtime plugin management</span></div>
+<div class="line"><span class="lineno">  100</span>    <span class="comment">// (Only collectors that implement collector_plugin interface)</span></div>
+<div class="line"><span class="lineno">  101</span>    registry.register_factory&lt;<a class="code hl_class" href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html">battery_collector</a>&gt;(<span class="stringliteral">&quot;battery_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  102</span>    registry.register_factory&lt;<a class="code hl_class" href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html">uptime_collector</a>&gt;(<span class="stringliteral">&quot;uptime_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  103</span>    registry.register_factory&lt;<a class="code hl_class" href="../../d3/d80/classkcenon_1_1monitoring_1_1interrupt__collector.html">interrupt_collector</a>&gt;(<span class="stringliteral">&quot;interrupt_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  104</span>    registry.register_factory&lt;<a class="code hl_class" href="../../d9/db1/classkcenon_1_1monitoring_1_1network__metrics__collector.html">network_metrics_collector</a>&gt;(<span class="stringliteral">&quot;network_metrics_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  105</span>    registry.register_factory&lt;<a class="code hl_class" href="../../d8/d65/classkcenon_1_1monitoring_1_1platform__metrics__collector.html">platform_metrics_collector</a>&gt;(<span class="stringliteral">&quot;platform_metrics_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  106</span>    registry.register_factory&lt;<a class="code hl_class" href="../../de/ddc/classkcenon_1_1monitoring_1_1process__metrics__collector.html">process_metrics_collector</a>&gt;(<span class="stringliteral">&quot;process_metrics_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  107</span>    registry.register_factory&lt;<a class="code hl_class" href="../../dd/d8c/classkcenon_1_1monitoring_1_1security__collector.html">security_collector</a>&gt;(<span class="stringliteral">&quot;security_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  108</span>    registry.register_factory&lt;<a class="code hl_class" href="../../d6/d04/classkcenon_1_1monitoring_1_1smart__collector.html">smart_collector</a>&gt;(<span class="stringliteral">&quot;smart_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  109</span>    registry.register_factory&lt;<a class="code hl_class" href="../../d5/d6e/classkcenon_1_1monitoring_1_1vm__collector.html">vm_collector</a>&gt;(<span class="stringliteral">&quot;vm_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  110</span> </div>
+<div class="line"><span class="lineno">  111</span>    <span class="comment">// Also register all collectors with metric_factory for backward compatibility</span></div>
+<div class="line"><span class="lineno">  112</span>    all_success &amp;= register_plugin_collector&lt;battery_collector&gt;(<span class="stringliteral">&quot;battery_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  113</span>    all_success &amp;= register_plugin_collector&lt;uptime_collector&gt;(<span class="stringliteral">&quot;uptime_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  114</span>    all_success &amp;= register_plugin_collector&lt;interrupt_collector&gt;(<span class="stringliteral">&quot;interrupt_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  115</span>    all_success &amp;= register_plugin_collector&lt;network_metrics_collector&gt;(<span class="stringliteral">&quot;network_metrics_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  116</span>    all_success &amp;= register_plugin_collector&lt;platform_metrics_collector&gt;(<span class="stringliteral">&quot;platform_metrics_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  117</span>    all_success &amp;= register_plugin_collector&lt;process_metrics_collector&gt;(<span class="stringliteral">&quot;process_metrics_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  118</span>    all_success &amp;= register_plugin_collector&lt;security_collector&gt;(<span class="stringliteral">&quot;security_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  119</span>    all_success &amp;= register_plugin_collector&lt;smart_collector&gt;(<span class="stringliteral">&quot;smart_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  120</span>    all_success &amp;= register_plugin_collector&lt;vm_collector&gt;(<span class="stringliteral">&quot;vm_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  121</span>    all_success &amp;= register_standalone_collector&lt;system_resource_collector&gt;(<span class="stringliteral">&quot;system_resource_collector&quot;</span>);</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>    <span class="keywordflow">return</span> all_success;</div>
+<div class="line"><span class="lineno">  124</span>}</div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1battery__collector_html"><div class="ttname"><a href="../../da/d8c/classkcenon_1_1monitoring_1_1battery__collector.html">kcenon::monitoring::battery_collector</a></div><div class="ttdoc">Battery status monitoring collector implementing collector_plugin interface.</div><div class="ttdef"><b>Definition</b> <a href="../../dc/dde/battery__collector_8h_source.html#l00197">battery_collector.h:197</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1interrupt__collector_html"><div class="ttname"><a href="../../d3/d80/classkcenon_1_1monitoring_1_1interrupt__collector.html">kcenon::monitoring::interrupt_collector</a></div><div class="ttdoc">Hardware and software interrupt statistics monitoring collector.</div><div class="ttdef"><b>Definition</b> <a href="../../da/dba/interrupt__collector_8h_source.html#l00136">interrupt_collector.h:136</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1network__metrics__collector_html"><div class="ttname"><a href="../../d9/db1/classkcenon_1_1monitoring_1_1network__metrics__collector.html">kcenon::monitoring::network_metrics_collector</a></div><div class="ttdoc">Unified network metrics collector implementing collector_plugin interface.</div><div class="ttdef"><b>Definition</b> <a href="../../d8/dab/network__metrics__collector_8h_source.html#l00265">network_metrics_collector.h:265</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1platform__metrics__collector_html"><div class="ttname"><a href="../../d8/d65/classkcenon_1_1monitoring_1_1platform__metrics__collector.html">kcenon::monitoring::platform_metrics_collector</a></div><div class="ttdoc">Unified platform-agnostic metrics collector.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/dc2/platform__metrics__collector_8h_source.html#l00275">platform_metrics_collector.h:275</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1process__metrics__collector_html"><div class="ttname"><a href="../../de/ddc/classkcenon_1_1monitoring_1_1process__metrics__collector.html">kcenon::monitoring::process_metrics_collector</a></div><div class="ttdoc">Unified process-level metrics collector.</div><div class="ttdef"><b>Definition</b> <a href="../../de/ded/process__metrics__collector_8h_source.html#l00265">process_metrics_collector.h:265</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1security__collector_html"><div class="ttname"><a href="../../dd/d8c/classkcenon_1_1monitoring_1_1security__collector.html">kcenon::monitoring::security_collector</a></div><div class="ttdoc">Security event monitoring collector.</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d94/security__collector_8h_source.html#l00251">security_collector.h:251</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1smart__collector_html"><div class="ttname"><a href="../../d6/d04/classkcenon_1_1monitoring_1_1smart__collector.html">kcenon::monitoring::smart_collector</a></div><div class="ttdef"><b>Definition</b> <a href="../../d0/dbb/smart__collector_8h_source.html#l00146">smart_collector.h:146</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1uptime__collector_html"><div class="ttname"><a href="../../de/dfc/classkcenon_1_1monitoring_1_1uptime__collector.html">kcenon::monitoring::uptime_collector</a></div><div class="ttdoc">System uptime monitoring collector implementing collector_plugin interface.</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d6e/uptime__collector_8h_source.html#l00119">uptime_collector.h:119</a></div></div>
+<div class="ttc" id="aclasskcenon_1_1monitoring_1_1vm__collector_html"><div class="ttname"><a href="../../d5/d6e/classkcenon_1_1monitoring_1_1vm__collector.html">kcenon::monitoring::vm_collector</a></div><div class="ttdoc">Virtualization metrics monitoring collector.</div><div class="ttdef"><b>Definition</b> <a href="../../df/d6f/vm__collector_8h_source.html#l00132">vm_collector.h:132</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_cgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_cgraph" alt=""/></div>
+<map name="adb/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_cgraph" id="adb/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_cgraph">
+<area shape="rect" title="Register all built&#45;in collectors with the collector_registry." alt="" coords="5,13,204,53"/>
+<area shape="rect" href="../../d7/d36/classkcenon_1_1monitoring_1_1collector__registry.html#afdc59e9198f6dc25d72babcc6edfee69" title="Get the singleton instance." alt="" coords="252,5,400,60"/>
+<area shape="poly" title=" " alt="" coords="204,30,238,30,238,35,204,35"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_icgraph.png" border="0" usemap="#adb/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_icgraph" alt=""/></div>
+<map name="adb/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_icgraph" id="adb/d50/namespacekcenon_1_1monitoring_afa67b262c914bd24d2eb60839692dfdf_icgraph">
+<area shape="rect" title="Register all built&#45;in collectors with the collector_registry." alt="" coords="123,122,321,162"/>
+<area shape="rect" href="../../d8/d48/test__collector__registry__integration_8cpp.html#a9b5e6584e862163fe4209ecafab21084" title=" " alt="" coords="5,5,75,31"/>
+<area shape="poly" title=" " alt="" coords="179,116,59,33,62,29,182,112"/>
+<area shape="rect" href="../../d8/d48/test__collector__registry__integration_8cpp.html#ab687fde75e672ad343b1a745ea291b17" title=" " alt="" coords="5,55,75,80"/>
+<area shape="poly" title=" " alt="" coords="159,119,71,83,73,78,161,114"/>
+<area shape="rect" href="../../d8/d48/test__collector__registry__integration_8cpp.html#a37366116b9e6199bce645f94791d36ea" title=" " alt="" coords="5,104,75,129"/>
+<area shape="poly" title=" " alt="" coords="109,129,75,124,75,119,109,124"/>
+<area shape="rect" href="../../d8/d48/test__collector__registry__integration_8cpp.html#a0da27729860e38e76318dc76b01f644f" title=" " alt="" coords="5,153,75,179"/>
+<area shape="poly" title=" " alt="" coords="109,160,75,164,75,159,109,154"/>
+<area shape="rect" href="../../d8/d48/test__collector__registry__integration_8cpp.html#ad0cc2a0190764e76d0a9a9c2e353d648" title=" " alt="" coords="5,203,75,228"/>
+<area shape="poly" title=" " alt="" coords="160,170,74,205,72,200,158,165"/>
+<area shape="rect" href="../../d8/d48/test__collector__registry__integration_8cpp.html#a960d5fce95cff7d17831304f0c8e0af3" title=" " alt="" coords="5,252,75,277"/>
+<area shape="poly" title=" " alt="" coords="181,172,61,254,58,250,178,168"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a385e86bd2fb97b41dc3334f4361c3ec3" name="a385e86bd2fb97b41dc3334f4361c3ec3"></a>
@@ -8616,7 +8668,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 05:21:48 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 05:53:08 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
