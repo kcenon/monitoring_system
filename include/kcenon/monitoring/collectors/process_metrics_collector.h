@@ -47,6 +47,7 @@
  * - Windows: GetProcessHandleCount() (partial support)
  */
 
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
@@ -137,6 +138,7 @@ struct context_switch_metrics {
  * @brief Configuration for selective metric collection
  */
 struct process_metrics_config {
+    bool enabled{true};
     bool collect_fd{true};
     bool collect_inodes{true};
     bool collect_context_switches{true};
@@ -312,6 +314,10 @@ class process_metrics_collector : public collector_plugin {
     process_metrics last_metrics_;
     std::chrono::milliseconds collection_interval_{std::chrono::seconds(5)};
     mutable std::mutex metrics_mutex_;
+
+    // Statistics tracking
+    mutable std::atomic<uint64_t> collection_count_{0};
+    mutable std::atomic<uint64_t> collection_errors_{0};
 
     void collect_fd_metrics(std::vector<metric>& metrics);
     void collect_inode_metrics(std::vector<metric>& metrics);

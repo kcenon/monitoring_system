@@ -229,6 +229,9 @@ bool process_metrics_collector::initialize(const config_map& config) {
         }
     };
 
+    if (auto it = config.find("enabled"); it != config.end()) {
+        config_.enabled = parse_bool(it->second);
+    }
     if (auto it = config.find("collect_fd"); it != config.end()) {
         config_.collect_fd = parse_bool(it->second);
     }
@@ -299,6 +302,9 @@ std::vector<std::string> process_metrics_collector::get_metric_types() const {
 }
 
 bool process_metrics_collector::is_available() const {
+    if (!config_.enabled) {
+        return false;
+    }
     if (config_.collect_fd && fd_collector_ && fd_collector_->is_fd_monitoring_available()) {
         return true;
     }
@@ -313,6 +319,7 @@ bool process_metrics_collector::is_available() const {
 
 auto process_metrics_collector::get_statistics() const -> stats_map {
     stats_map stats;
+    stats["enabled"] = config_.enabled ? 1.0 : 0.0;
     stats["collect_fd"] = config_.collect_fd ? 1.0 : 0.0;
     stats["collect_inodes"] = config_.collect_inodes ? 1.0 : 0.0;
     stats["collect_context_switches"] = config_.collect_context_switches ? 1.0 : 0.0;
@@ -322,6 +329,8 @@ auto process_metrics_collector::get_statistics() const -> stats_map {
     stats["inode_warning_threshold"] = config_.inode_warning_threshold;
     stats["inode_critical_threshold"] = config_.inode_critical_threshold;
     stats["context_switch_rate_warning"] = config_.context_switch_rate_warning;
+    stats["collection_count"] = static_cast<double>(collection_count_.load());
+    stats["collection_errors"] = static_cast<double>(collection_errors_.load());
     return stats;
 }
 
@@ -364,7 +373,7 @@ void process_metrics_collector::add_fd_metrics(std::vector<metric>& metrics, con
     m1.name = "process.fd.open_count";
     m1.value = static_cast<double>(fd_data.fd_used_process);
     m1.timestamp = now;
-    m1.tags["collector"] = "process";
+    m1.tags["collector"] = std::string(name());
     m1.tags["unit"] = "count";
     metrics.push_back(m1);
 
@@ -372,7 +381,7 @@ void process_metrics_collector::add_fd_metrics(std::vector<metric>& metrics, con
     m2.name = "process.fd.soft_limit";
     m2.value = static_cast<double>(fd_data.fd_soft_limit);
     m2.timestamp = now;
-    m2.tags["collector"] = "process";
+    m2.tags["collector"] = std::string(name());
     m2.tags["unit"] = "count";
     metrics.push_back(m2);
 
@@ -380,7 +389,7 @@ void process_metrics_collector::add_fd_metrics(std::vector<metric>& metrics, con
     m3.name = "process.fd.hard_limit";
     m3.value = static_cast<double>(fd_data.fd_hard_limit);
     m3.timestamp = now;
-    m3.tags["collector"] = "process";
+    m3.tags["collector"] = std::string(name());
     m3.tags["unit"] = "count";
     metrics.push_back(m3);
 
@@ -388,7 +397,7 @@ void process_metrics_collector::add_fd_metrics(std::vector<metric>& metrics, con
     m4.name = "process.fd.usage_percent";
     m4.value = fd_data.fd_usage_percent;
     m4.timestamp = now;
-    m4.tags["collector"] = "process";
+    m4.tags["collector"] = std::string(name());
     m4.tags["unit"] = "percent";
     metrics.push_back(m4);
 
@@ -397,7 +406,7 @@ void process_metrics_collector::add_fd_metrics(std::vector<metric>& metrics, con
         m5.name = "process.fd.system_used";
         m5.value = static_cast<double>(fd_data.fd_used_system);
         m5.timestamp = now;
-        m5.tags["collector"] = "process";
+        m5.tags["collector"] = std::string(name());
         m5.tags["scope"] = "system";
         m5.tags["unit"] = "count";
         metrics.push_back(m5);
@@ -406,7 +415,7 @@ void process_metrics_collector::add_fd_metrics(std::vector<metric>& metrics, con
         m6.name = "process.fd.system_max";
         m6.value = static_cast<double>(fd_data.fd_max_system);
         m6.timestamp = now;
-        m6.tags["collector"] = "process";
+        m6.tags["collector"] = std::string(name());
         m6.tags["scope"] = "system";
         m6.tags["unit"] = "count";
         metrics.push_back(m6);
@@ -415,7 +424,7 @@ void process_metrics_collector::add_fd_metrics(std::vector<metric>& metrics, con
     metric m7;
     m7.name = "process.fd.threshold_state";
     m7.timestamp = now;
-    m7.tags["collector"] = "process";
+    m7.tags["collector"] = std::string(name());
 
     if (fd_data.fd_usage_percent >= config_.fd_critical_threshold) {
         m7.value = 2.0;
@@ -441,7 +450,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
     m1.name = "process.fs.inodes_total";
     m1.value = static_cast<double>(inode_data.total_inodes);
     m1.timestamp = now;
-    m1.tags["collector"] = "process";
+    m1.tags["collector"] = std::string(name());
     m1.tags["unit"] = "count";
     metrics.push_back(m1);
 
@@ -449,7 +458,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
     m2.name = "process.fs.inodes_used";
     m2.value = static_cast<double>(inode_data.total_inodes_used);
     m2.timestamp = now;
-    m2.tags["collector"] = "process";
+    m2.tags["collector"] = std::string(name());
     m2.tags["unit"] = "count";
     metrics.push_back(m2);
 
@@ -457,7 +466,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
     m3.name = "process.fs.inodes_free";
     m3.value = static_cast<double>(inode_data.total_inodes_free);
     m3.timestamp = now;
-    m3.tags["collector"] = "process";
+    m3.tags["collector"] = std::string(name());
     m3.tags["unit"] = "count";
     metrics.push_back(m3);
 
@@ -465,7 +474,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
     m4.name = "process.fs.inodes_average_usage_percent";
     m4.value = inode_data.average_usage_percent;
     m4.timestamp = now;
-    m4.tags["collector"] = "process";
+    m4.tags["collector"] = std::string(name());
     m4.tags["unit"] = "percent";
     metrics.push_back(m4);
 
@@ -473,7 +482,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
     m5.name = "process.fs.inodes_max_usage_percent";
     m5.value = inode_data.max_usage_percent;
     m5.timestamp = now;
-    m5.tags["collector"] = "process";
+    m5.tags["collector"] = std::string(name());
     m5.tags["mount_point"] = inode_data.max_usage_mount_point;
     m5.tags["unit"] = "percent";
     metrics.push_back(m5);
@@ -482,7 +491,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
     m6.name = "process.fs.filesystem_count";
     m6.value = static_cast<double>(inode_data.filesystems.size());
     m6.timestamp = now;
-    m6.tags["collector"] = "process";
+    m6.tags["collector"] = std::string(name());
     m6.tags["unit"] = "count";
     metrics.push_back(m6);
 
@@ -491,7 +500,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
         fs_usage.name = "process.fs.inodes_usage_percent";
         fs_usage.value = fs.inodes_usage_percent;
         fs_usage.timestamp = now;
-        fs_usage.tags["collector"] = "process";
+        fs_usage.tags["collector"] = std::string(name());
         fs_usage.tags["mount_point"] = fs.mount_point;
         fs_usage.tags["filesystem_type"] = fs.filesystem_type;
         fs_usage.tags["device"] = fs.device;
@@ -502,7 +511,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
         fs_total.name = "process.fs.inodes_total";
         fs_total.value = static_cast<double>(fs.inodes_total);
         fs_total.timestamp = now;
-        fs_total.tags["collector"] = "process";
+        fs_total.tags["collector"] = std::string(name());
         fs_total.tags["mount_point"] = fs.mount_point;
         fs_total.tags["filesystem_type"] = fs.filesystem_type;
         fs_total.tags["device"] = fs.device;
@@ -513,7 +522,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
         fs_used.name = "process.fs.inodes_used";
         fs_used.value = static_cast<double>(fs.inodes_used);
         fs_used.timestamp = now;
-        fs_used.tags["collector"] = "process";
+        fs_used.tags["collector"] = std::string(name());
         fs_used.tags["mount_point"] = fs.mount_point;
         fs_used.tags["filesystem_type"] = fs.filesystem_type;
         fs_used.tags["device"] = fs.device;
@@ -524,7 +533,7 @@ void process_metrics_collector::add_inode_metrics(std::vector<metric>& metrics, 
         fs_free.name = "process.fs.inodes_free";
         fs_free.value = static_cast<double>(fs.inodes_free);
         fs_free.timestamp = now;
-        fs_free.tags["collector"] = "process";
+        fs_free.tags["collector"] = std::string(name());
         fs_free.tags["mount_point"] = fs.mount_point;
         fs_free.tags["filesystem_type"] = fs.filesystem_type;
         fs_free.tags["device"] = fs.device;
@@ -547,7 +556,7 @@ void process_metrics_collector::add_context_switch_metrics(
     m1.name = "process.context_switches.total";
     m1.value = static_cast<double>(cs_data.system_context_switches_total);
     m1.timestamp = now;
-    m1.tags["collector"] = "process";
+    m1.tags["collector"] = std::string(name());
     m1.tags["type"] = "system";
     m1.tags["unit"] = "count";
     metrics.push_back(m1);
@@ -557,7 +566,7 @@ void process_metrics_collector::add_context_switch_metrics(
         m2.name = "process.context_switches.per_sec";
         m2.value = cs_data.context_switches_per_sec;
         m2.timestamp = now;
-        m2.tags["collector"] = "process";
+        m2.tags["collector"] = std::string(name());
         m2.tags["type"] = "system";
         m2.tags["unit"] = "switches/s";
         metrics.push_back(m2);
@@ -567,7 +576,7 @@ void process_metrics_collector::add_context_switch_metrics(
     m3.name = "process.context_switches.voluntary";
     m3.value = static_cast<double>(cs_data.process_info.voluntary_switches);
     m3.timestamp = now;
-    m3.tags["collector"] = "process";
+    m3.tags["collector"] = std::string(name());
     m3.tags["type"] = "process";
     m3.tags["unit"] = "count";
     metrics.push_back(m3);
@@ -576,7 +585,7 @@ void process_metrics_collector::add_context_switch_metrics(
     m4.name = "process.context_switches.involuntary";
     m4.value = static_cast<double>(cs_data.process_info.nonvoluntary_switches);
     m4.timestamp = now;
-    m4.tags["collector"] = "process";
+    m4.tags["collector"] = std::string(name());
     m4.tags["type"] = "process";
     m4.tags["unit"] = "count";
     metrics.push_back(m4);
@@ -585,7 +594,7 @@ void process_metrics_collector::add_context_switch_metrics(
     m5.name = "process.context_switches.process_total";
     m5.value = static_cast<double>(cs_data.process_info.total_switches);
     m5.timestamp = now;
-    m5.tags["collector"] = "process";
+    m5.tags["collector"] = std::string(name());
     m5.tags["type"] = "process";
     m5.tags["unit"] = "count";
     metrics.push_back(m5);
@@ -633,14 +642,25 @@ void process_metrics_collector::collect_context_switch_metrics(std::vector<metri
 std::vector<metric> process_metrics_collector::collect() {
     std::vector<metric> metrics;
 
+    if (!config_.enabled) {
+        return metrics;
+    }
+
     {
         std::lock_guard<std::mutex> lock(metrics_mutex_);
         last_metrics_.timestamp = std::chrono::system_clock::now();
     }
 
-    collect_fd_metrics(metrics);
-    collect_inode_metrics(metrics);
-    collect_context_switch_metrics(metrics);
+    try {
+        collect_fd_metrics(metrics);
+        collect_inode_metrics(metrics);
+        collect_context_switch_metrics(metrics);
+
+        collection_count_++;
+    } catch (...) {
+        collection_errors_++;
+        throw;
+    }
 
     return metrics;
 }

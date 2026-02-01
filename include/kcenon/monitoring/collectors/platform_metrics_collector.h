@@ -288,7 +288,7 @@ class platform_metrics_collector : public collector_plugin {
      * Get the unique name of this plugin
      * @return Plugin name
      */
-    auto name() const -> std::string_view override { return "platform_metrics"; }
+    auto name() const -> std::string_view override { return "platform_metrics_collector"; }
 
     /**
      * Collect platform metrics
