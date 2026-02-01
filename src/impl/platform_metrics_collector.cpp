@@ -178,7 +178,7 @@ platform_metrics_collector::platform_metrics_collector(platform_metrics_config c
     : collector_(std::make_unique<platform_info_collector>()),
       config_(config) {}
 
-bool platform_metrics_collector::do_initialize(const config_map& config) {
+bool platform_metrics_collector::initialize(const config_map& config) {
     if (auto it = config.find("collect_uptime"); it != config.end()) {
         config_.collect_uptime = (it->second == "true" || it->second == "1");
     }
@@ -198,7 +198,7 @@ bool platform_metrics_collector::do_initialize(const config_map& config) {
     return true;
 }
 
-std::vector<std::string> platform_metrics_collector::do_get_metric_types() const {
+std::vector<std::string> platform_metrics_collector::get_metric_types() const {
     std::vector<std::string> types;
     types.push_back("platform_info");
 
@@ -233,16 +233,18 @@ bool platform_metrics_collector::is_platform_available() const {
     return collector_->is_platform_available();
 }
 
-void platform_metrics_collector::do_add_statistics(stats_map& stats) const {
+auto platform_metrics_collector::get_statistics() const -> stats_map {
+    stats_map stats;
     stats["collect_uptime"] = config_.collect_uptime ? 1.0 : 0.0;
     stats["collect_context_switches"] = config_.collect_context_switches ? 1.0 : 0.0;
     stats["collect_tcp_states"] = config_.collect_tcp_states ? 1.0 : 0.0;
     stats["collect_socket_buffers"] = config_.collect_socket_buffers ? 1.0 : 0.0;
     stats["collect_interrupts"] = config_.collect_interrupts ? 1.0 : 0.0;
+    return stats;
 }
 
 platform_metrics platform_metrics_collector::get_last_metrics() const {
-    std::lock_guard<std::mutex> lock(stats_mutex_);
+    std::lock_guard<std::mutex> lock(metrics_mutex_);
     return last_metrics_;
 }
 
@@ -268,12 +270,14 @@ void platform_metrics_collector::collect_platform_info_metrics(std::vector<metri
     }
 
     if (cached_platform_info_.available) {
-        metrics.push_back(create_base_metric(
-            "platform_info",
-            1.0,
-            {{"platform", cached_platform_info_.name}},
-            "info"
-        ));
+        metric m;
+        m.name = "platform_info";
+        m.value = 1.0;
+        m.timestamp = std::chrono::system_clock::now();
+        m.tags["collector"] = "platform";
+        m.tags["platform"] = cached_platform_info_.name;
+        m.tags["unit"] = "info";
+        metrics.push_back(m);
     }
 }
 
@@ -289,27 +293,32 @@ void platform_metrics_collector::collect_uptime_metrics(std::vector<metric>& met
         return;
     }
 
-    metrics.push_back(create_base_metric(
-        "platform_uptime_seconds",
-        static_cast<double>(uptime.uptime_seconds),
-        {},
-        "seconds"
-    ));
+    auto now = std::chrono::system_clock::now();
 
-    metrics.push_back(create_base_metric(
-        "platform_boot_timestamp",
-        static_cast<double>(uptime.boot_timestamp),
-        {},
-        "timestamp"
-    ));
+    metric m1;
+    m1.name = "platform_uptime_seconds";
+    m1.value = static_cast<double>(uptime.uptime_seconds);
+    m1.timestamp = now;
+    m1.tags["collector"] = "platform";
+    m1.tags["unit"] = "seconds";
+    metrics.push_back(m1);
+
+    metric m2;
+    m2.name = "platform_boot_timestamp";
+    m2.value = static_cast<double>(uptime.boot_timestamp);
+    m2.timestamp = now;
+    m2.tags["collector"] = "platform";
+    m2.tags["unit"] = "timestamp";
+    metrics.push_back(m2);
 
     if (uptime.idle_seconds > 0) {
-        metrics.push_back(create_base_metric(
-            "platform_idle_seconds",
-            static_cast<double>(uptime.idle_seconds),
-            {},
-            "seconds"
-        ));
+        metric m3;
+        m3.name = "platform_idle_seconds";
+        m3.value = static_cast<double>(uptime.idle_seconds);
+        m3.timestamp = now;
+        m3.tags["collector"] = "platform";
+        m3.tags["unit"] = "seconds";
+        metrics.push_back(m3);
     }
 }
 
@@ -325,38 +334,44 @@ void platform_metrics_collector::collect_context_switch_metrics(std::vector<metr
         return;
     }
 
-    metrics.push_back(create_base_metric(
-        "platform_context_switches_total",
-        static_cast<double>(ctx.total_switches),
-        {},
-        "count"
-    ));
+    auto now = std::chrono::system_clock::now();
+
+    metric m1;
+    m1.name = "platform_context_switches_total";
+    m1.value = static_cast<double>(ctx.total_switches);
+    m1.timestamp = now;
+    m1.tags["collector"] = "platform";
+    m1.tags["unit"] = "count";
+    metrics.push_back(m1);
 
     if (ctx.voluntary_switches > 0) {
-        metrics.push_back(create_base_metric(
-            "platform_context_switches_voluntary",
-            static_cast<double>(ctx.voluntary_switches),
-            {},
-            "count"
-        ));
+        metric m2;
+        m2.name = "platform_context_switches_voluntary";
+        m2.value = static_cast<double>(ctx.voluntary_switches);
+        m2.timestamp = now;
+        m2.tags["collector"] = "platform";
+        m2.tags["unit"] = "count";
+        metrics.push_back(m2);
     }
 
     if (ctx.involuntary_switches > 0) {
-        metrics.push_back(create_base_metric(
-            "platform_context_switches_involuntary",
-            static_cast<double>(ctx.involuntary_switches),
-            {},
-            "count"
-        ));
+        metric m3;
+        m3.name = "platform_context_switches_involuntary";
+        m3.value = static_cast<double>(ctx.involuntary_switches);
+        m3.timestamp = now;
+        m3.tags["collector"] = "platform";
+        m3.tags["unit"] = "count";
+        metrics.push_back(m3);
     }
 
     if (ctx.switches_per_second > 0.0) {
-        metrics.push_back(create_base_metric(
-            "platform_context_switches_per_second",
-            ctx.switches_per_second,
-            {},
-            "rate"
-        ));
+        metric m4;
+        m4.name = "platform_context_switches_per_second";
+        m4.value = ctx.switches_per_second;
+        m4.timestamp = now;
+        m4.tags["collector"] = "platform";
+        m4.tags["unit"] = "rate";
+        metrics.push_back(m4);
     }
 }
 
@@ -372,40 +387,47 @@ void platform_metrics_collector::collect_tcp_metrics(std::vector<metric>& metric
         return;
     }
 
-    metrics.push_back(create_base_metric(
-        "platform_tcp_established",
-        static_cast<double>(tcp.established),
-        {},
-        "connections"
-    ));
+    auto now = std::chrono::system_clock::now();
 
-    metrics.push_back(create_base_metric(
-        "platform_tcp_time_wait",
-        static_cast<double>(tcp.time_wait),
-        {},
-        "connections"
-    ));
+    metric m1;
+    m1.name = "platform_tcp_established";
+    m1.value = static_cast<double>(tcp.established);
+    m1.timestamp = now;
+    m1.tags["collector"] = "platform";
+    m1.tags["unit"] = "connections";
+    metrics.push_back(m1);
 
-    metrics.push_back(create_base_metric(
-        "platform_tcp_close_wait",
-        static_cast<double>(tcp.close_wait),
-        {},
-        "connections"
-    ));
+    metric m2;
+    m2.name = "platform_tcp_time_wait";
+    m2.value = static_cast<double>(tcp.time_wait);
+    m2.timestamp = now;
+    m2.tags["collector"] = "platform";
+    m2.tags["unit"] = "connections";
+    metrics.push_back(m2);
 
-    metrics.push_back(create_base_metric(
-        "platform_tcp_listen",
-        static_cast<double>(tcp.listen),
-        {},
-        "connections"
-    ));
+    metric m3;
+    m3.name = "platform_tcp_close_wait";
+    m3.value = static_cast<double>(tcp.close_wait);
+    m3.timestamp = now;
+    m3.tags["collector"] = "platform";
+    m3.tags["unit"] = "connections";
+    metrics.push_back(m3);
 
-    metrics.push_back(create_base_metric(
-        "platform_tcp_total",
-        static_cast<double>(tcp.total),
-        {},
-        "connections"
-    ));
+    metric m4;
+    m4.name = "platform_tcp_listen";
+    m4.value = static_cast<double>(tcp.listen);
+    m4.timestamp = now;
+    m4.tags["collector"] = "platform";
+    m4.tags["unit"] = "connections";
+    metrics.push_back(m4);
+
+    metric m5;
+    m5.name = "platform_tcp_total";
+    m5.value = static_cast<double>(tcp.total);
+    m5.timestamp = now;
+    m5.tags["collector"] = "platform";
+    m5.tags["unit"] = "connections";
+    metrics.push_back(m5);
 }
 
 void platform_metrics_collector::collect_socket_metrics(std::vector<metric>& metrics) {
@@ -420,33 +442,39 @@ void platform_metrics_collector::collect_socket_metrics(std::vector<metric>& met
         return;
     }
 
-    metrics.push_back(create_base_metric(
-        "platform_socket_rx_buffer_size",
-        static_cast<double>(socket.rx_buffer_size),
-        {},
-        "bytes"
-    ));
+    auto now = std::chrono::system_clock::now();
 
-    metrics.push_back(create_base_metric(
-        "platform_socket_tx_buffer_size",
-        static_cast<double>(socket.tx_buffer_size),
-        {},
-        "bytes"
-    ));
+    metric m1;
+    m1.name = "platform_socket_rx_buffer_size";
+    m1.value = static_cast<double>(socket.rx_buffer_size);
+    m1.timestamp = now;
+    m1.tags["collector"] = "platform";
+    m1.tags["unit"] = "bytes";
+    metrics.push_back(m1);
 
-    metrics.push_back(create_base_metric(
-        "platform_socket_rx_buffer_used",
-        static_cast<double>(socket.rx_buffer_used),
-        {},
-        "bytes"
-    ));
+    metric m2;
+    m2.name = "platform_socket_tx_buffer_size";
+    m2.value = static_cast<double>(socket.tx_buffer_size);
+    m2.timestamp = now;
+    m2.tags["collector"] = "platform";
+    m2.tags["unit"] = "bytes";
+    metrics.push_back(m2);
 
-    metrics.push_back(create_base_metric(
-        "platform_socket_tx_buffer_used",
-        static_cast<double>(socket.tx_buffer_used),
-        {},
-        "bytes"
-    ));
+    metric m3;
+    m3.name = "platform_socket_rx_buffer_used";
+    m3.value = static_cast<double>(socket.rx_buffer_used);
+    m3.timestamp = now;
+    m3.tags["collector"] = "platform";
+    m3.tags["unit"] = "bytes";
+    metrics.push_back(m3);
+
+    metric m4;
+    m4.name = "platform_socket_tx_buffer_used";
+    m4.value = static_cast<double>(socket.tx_buffer_used);
+    m4.timestamp = now;
+    m4.tags["collector"] = "platform";
+    m4.tags["unit"] = "bytes";
+    metrics.push_back(m4);
 }
 
 void platform_metrics_collector::collect_interrupt_metrics(std::vector<metric>& metrics) {
@@ -461,15 +489,16 @@ void platform_metrics_collector::collect_interrupt_metrics(std::vector<metric>& 
         return;
     }
 
-    metrics.push_back(create_base_metric(
-        "platform_interrupts_total",
-        static_cast<double>(interrupts.total_interrupts),
-        {},
-        "count"
-    ));
+    metric m;
+    m.name = "platform_interrupts_total";
+    m.value = static_cast<double>(interrupts.total_interrupts);
+    m.timestamp = std::chrono::system_clock::now();
+    m.tags["collector"] = "platform";
+    m.tags["unit"] = "count";
+    metrics.push_back(m);
 }
 
-std::vector<metric> platform_metrics_collector::do_collect() {
+std::vector<metric> platform_metrics_collector::collect() {
     std::vector<metric> metrics;
 
     last_metrics_.timestamp = std::chrono::system_clock::now();
@@ -482,7 +511,7 @@ std::vector<metric> platform_metrics_collector::do_collect() {
     collect_interrupt_metrics(metrics);
 
     {
-        std::lock_guard<std::mutex> lock(stats_mutex_);
+        std::lock_guard<std::mutex> lock(metrics_mutex_);
         last_metrics_.info = cached_platform_info_;
     }
 

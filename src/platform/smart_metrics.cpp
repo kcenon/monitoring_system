@@ -415,6 +415,10 @@ std::vector<std::string> smart_collector::get_metric_types() const {
 
 bool smart_collector::is_healthy() const { return enabled_ && collector_ != nullptr; }
 
+bool smart_collector::is_available() const {
+    return collector_ && collector_->is_smartctl_available();
+}
+
 std::unordered_map<std::string, double> smart_collector::get_statistics() const {
     return {{"collection_count", static_cast<double>(collection_count_.load())},
             {"collection_errors", static_cast<double>(collection_errors_.load())},

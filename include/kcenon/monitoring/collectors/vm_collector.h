@@ -48,6 +48,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -128,7 +129,7 @@ class vm_info_collector {
  *
  * Collects metrics regarding the virtualization environment.
  */
-class vm_collector {
+class vm_collector : public collector_plugin {
    public:
     vm_collector();
     ~vm_collector() = default;
@@ -139,48 +140,38 @@ class vm_collector {
     vm_collector(vm_collector&&) = delete;
     vm_collector& operator=(vm_collector&&) = delete;
 
+    // collector_plugin interface implementation
+    auto name() const -> std::string_view override { return "vm_collector"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return collection_interval_; }
+    auto is_available() const -> bool override;
+    /**
+     * Check if collector is in a healthy state
+     * @return True if collector is operational
+     */
+    bool is_healthy() const;
+    auto get_metric_types() const -> std::vector<std::string> override;
+
     /**
      * Initialize the collector with configuration
      * @param config Configuration options
      * @return true if initialization successful
      */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    bool initialize(const std::unordered_map<std::string, std::string>& config) override;
 
-    /**
-     * Collect virtualization metrics
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
-
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "vm_collector"; }
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
-    bool is_healthy() const;
 
     /**
      * Get collector statistics
      * @return Map of statistic name to value
      */
-    std::unordered_map<std::string, double> get_statistics() const;
+    std::unordered_map<std::string, double> get_statistics() const override;
 
    private:
     std::unique_ptr<vm_info_collector> collector_;
 
     // Configuration
     bool enabled_{true};
+    std::chrono::milliseconds collection_interval_{std::chrono::seconds(30)};
 
     // Statistics
     mutable std::mutex stats_mutex_;

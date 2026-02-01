@@ -51,7 +51,7 @@ class InterruptCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(InterruptCollectorTest, InitializesSuccessfully) {
     EXPECT_NE(collector_, nullptr);
-    EXPECT_EQ(collector_->get_name(), "interrupt_collector");
+    EXPECT_EQ(collector_->name(), "interrupt_collector");
 }
 
 // Test metric types returned
