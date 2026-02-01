@@ -49,7 +49,7 @@ class SmartCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(SmartCollectorTest, InitializesSuccessfully) {
     EXPECT_TRUE(collector_->is_healthy());
-    EXPECT_EQ(collector_->get_name(), "smart_collector");
+    EXPECT_EQ(collector_->name(), "smart_collector");
 }
 
 // Test metric types returned

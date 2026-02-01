@@ -49,7 +49,7 @@ class NetworkMetricsCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(NetworkMetricsCollectorTest, InitializesSuccessfully) {
     EXPECT_NE(collector_, nullptr);
-    EXPECT_EQ(collector_->get_name(), "network_metrics_collector");
+    EXPECT_EQ(collector_->name(), "network_metrics_collector");
 }
 
 // Test metric types returned

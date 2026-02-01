@@ -49,7 +49,7 @@ class SecurityCollectorTest : public ::testing::Test {
 // Test basic initialization
 TEST_F(SecurityCollectorTest, InitializesSuccessfully) {
     EXPECT_NE(collector_, nullptr);
-    EXPECT_EQ(collector_->get_name(), "security_collector");
+    EXPECT_EQ(collector_->name(), "security_collector");
 }
 
 // Test metric types returned

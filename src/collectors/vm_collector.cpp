@@ -251,6 +251,11 @@ bool vm_collector::is_healthy() const {
     return true;
 }
 
+bool vm_collector::is_available() const {
+    // VM detection is available on all platforms
+    return true;
+}
+
 std::unordered_map<std::string, double> vm_collector::get_statistics() const {
     std::lock_guard<std::mutex> lock(stats_mutex_);
     return {

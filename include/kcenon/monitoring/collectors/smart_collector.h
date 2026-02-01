@@ -50,6 +50,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -137,12 +138,12 @@ class smart_info_collector {
 };
 
 /**
- * SMART disk health collector implementing a standalone plugin interface
+ * SMART disk health collector implementing the collector_plugin interface
  *
  * Collects S.M.A.R.T. disk health data using smartctl (smartmontools).
  * Gracefully degrades when smartctl is not available or disks don't support SMART.
  */
-class smart_collector {
+class smart_collector : public collector_plugin {
    public:
     smart_collector();
     ~smart_collector() = default;
@@ -153,42 +154,31 @@ class smart_collector {
     smart_collector(smart_collector&&) = delete;
     smart_collector& operator=(smart_collector&&) = delete;
 
+    // collector_plugin interface implementation
+    auto name() const -> std::string_view override { return "smart_collector"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return collection_interval_; }
+    auto is_available() const -> bool override;
+    /**
+     * Check if collector is in a healthy state
+     * @return True if collector is operational
+     */
+    bool is_healthy() const;
+    auto get_metric_types() const -> std::vector<std::string> override;
+
     /**
      * Initialize the collector with configuration
      * @param config Configuration options
      * @return true if initialization successful
      */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    bool initialize(const std::unordered_map<std::string, std::string>& config) override;
 
-    /**
-     * Collect SMART metrics from all disks
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
-
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "smart_collector"; }
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
-    bool is_healthy() const;
 
     /**
      * Get collector statistics
      * @return Map of statistic name to value
      */
-    std::unordered_map<std::string, double> get_statistics() const;
+    std::unordered_map<std::string, double> get_statistics() const override;
 
     /**
      * Get last collected SMART metrics
@@ -209,6 +199,7 @@ class smart_collector {
     bool enabled_{true};
     bool collect_temperature_{true};
     bool collect_error_rates_{true};
+    std::chrono::milliseconds collection_interval_{std::chrono::seconds(300)};
 
     // Statistics
     mutable std::mutex stats_mutex_;

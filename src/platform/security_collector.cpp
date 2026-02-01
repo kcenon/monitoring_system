@@ -154,17 +154,21 @@ bool security_collector::is_healthy() const {
     if (!enabled_) {
         return true;  // Disabled is not unhealthy
     }
-    
+
     // Check error rate
     size_t count = collection_count_.load();
     size_t errors = collection_errors_.load();
-    
+
     if (count == 0) {
         return true;
     }
-    
+
     double error_rate = static_cast<double>(errors) / static_cast<double>(count);
     return error_rate < 0.5;  // Less than 50% errors
+}
+
+bool security_collector::is_available() const {
+    return collector_->is_security_monitoring_available();
 }
 
 std::unordered_map<std::string, double> security_collector::get_statistics() const {

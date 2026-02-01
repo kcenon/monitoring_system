@@ -53,6 +53,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -247,7 +248,7 @@ class security_info_collector {
  * Collects security event metrics with cross-platform support.
  * Returns unavailable metrics on Windows (stub implementation).
  */
-class security_collector {
+class security_collector : public collector_plugin {
    public:
     security_collector();
     ~security_collector() = default;
@@ -258,6 +259,18 @@ class security_collector {
     security_collector(security_collector&&) = delete;
     security_collector& operator=(security_collector&&) = delete;
 
+    // collector_plugin interface implementation
+    auto name() const -> std::string_view override { return "security_collector"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return collection_interval_; }
+    auto is_available() const -> bool override;
+    /**
+     * Check if collector is in a healthy state
+     * @return True if collector is operational
+     */
+    bool is_healthy() const;
+    auto get_metric_types() const -> std::vector<std::string> override;
+
     /**
      * Initialize the collector with configuration
      * @param config Configuration options:
@@ -267,37 +280,14 @@ class security_collector {
      *   - "login_failure_rate_limit": events/sec (default: 1000)
      * @return true if initialization successful
      */
-    bool initialize(const std::unordered_map<std::string, std::string>& config);
+    bool initialize(const std::unordered_map<std::string, std::string>& config) override;
 
-    /**
-     * Collect security event metrics
-     * @return Vector of collected metrics
-     */
-    std::vector<metric> collect();
-
-    /**
-     * Get the name of this collector
-     * @return Collector name
-     */
-    std::string get_name() const { return "security_collector"; }
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> get_metric_types() const;
-
-    /**
-     * Check if the collector is healthy
-     * @return true if collector is operational
-     */
-    bool is_healthy() const;
 
     /**
      * Get collector statistics
      * @return Map of statistic name to value
      */
-    std::unordered_map<std::string, double> get_statistics() const;
+    std::unordered_map<std::string, double> get_statistics() const override;
 
     /**
      * Get last collected security metrics
@@ -319,6 +309,7 @@ class security_collector {
     bool mask_pii_{false};
     size_t max_recent_events_{100};
     double login_failure_rate_limit_{1000.0};
+    std::chrono::milliseconds collection_interval_{std::chrono::seconds(60)};
 
     // Statistics
     mutable std::mutex stats_mutex_;

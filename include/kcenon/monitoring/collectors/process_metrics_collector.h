@@ -47,6 +47,7 @@
  * - Windows: GetProcessHandleCount() (partial support)
  */
 
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
@@ -55,7 +56,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
-#include "collector_base.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -137,6 +138,7 @@ struct context_switch_metrics {
  * @brief Configuration for selective metric collection
  */
 struct process_metrics_config {
+    bool enabled{true};
     bool collect_fd{true};
     bool collect_inodes{true};
     bool collect_context_switches{true};
@@ -259,13 +261,9 @@ class context_switch_info_collector {
  * - "inode_warning_threshold": percentage (default: 80.0)
  * - "inode_critical_threshold": percentage (default: 95.0)
  * - "context_switch_rate_warning": rate (default: 100000.0)
- *
- * Uses CRTP base class to reduce code duplication.
  */
-class process_metrics_collector : public collector_base<process_metrics_collector> {
+class process_metrics_collector : public collector_plugin {
    public:
-    static constexpr const char* collector_name = "process_metrics_collector";
-
     process_metrics_collector();
     explicit process_metrics_collector(process_metrics_config config);
     ~process_metrics_collector() override = default;
@@ -275,12 +273,26 @@ class process_metrics_collector : public collector_base<process_metrics_collecto
     process_metrics_collector(process_metrics_collector&&) = delete;
     process_metrics_collector& operator=(process_metrics_collector&&) = delete;
 
-    // CRTP interface implementation
-    bool do_initialize(const config_map& config);
-    std::vector<metric> do_collect();
-    bool is_available() const;
-    std::vector<std::string> do_get_metric_types() const;
-    void do_add_statistics(stats_map& stats) const;
+    // collector_plugin interface implementation
+    auto name() const -> std::string_view override { return "process_metrics_collector"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return collection_interval_; }
+    auto is_available() const -> bool override;
+    /**
+     * Check if collector is in a healthy state
+     * @return True if collector is operational (regardless of enabled state)
+     */
+    bool is_healthy() const;
+    auto get_metric_types() const -> std::vector<std::string> override;
+
+    // Configuration
+    bool initialize(const config_map& config) override;
+
+    /**
+     * Get collector statistics
+     * @return Map of statistics
+     */
+    auto get_statistics() const -> stats_map override;
 
     // Accessors
     process_metrics get_last_metrics() const;
@@ -300,6 +312,12 @@ class process_metrics_collector : public collector_base<process_metrics_collecto
 
     process_metrics_config config_;
     process_metrics last_metrics_;
+    std::chrono::milliseconds collection_interval_{std::chrono::seconds(5)};
+    mutable std::mutex metrics_mutex_;
+
+    // Statistics tracking
+    mutable std::atomic<uint64_t> collection_count_{0};
+    mutable std::atomic<uint64_t> collection_errors_{0};
 
     void collect_fd_metrics(std::vector<metric>& metrics);
     void collect_inode_metrics(std::vector<metric>& metrics);
