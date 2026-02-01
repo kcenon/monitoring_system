@@ -199,7 +199,9 @@ TEST_F(InterruptCollectorTest, MetricsHaveCorrectTags) {
 // Test is_healthy reflects actual state
 TEST_F(InterruptCollectorTest, IsHealthyReflectsState) {
     // When enabled, health depends on availability
-    EXPECT_NO_THROW(collector_->is_healthy());
+    bool healthy = false;
+    EXPECT_NO_THROW(healthy = collector_->is_healthy());
+    (void)healthy;  // Suppress unused variable warning
 
     // When disabled, collector is considered healthy (no errors)
     auto disabled_collector = std::make_unique<interrupt_collector>();

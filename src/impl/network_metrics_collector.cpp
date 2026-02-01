@@ -107,7 +107,12 @@ network_metrics network_info_collector::collect_metrics(const network_metrics_co
 network_metrics_collector::network_metrics_collector()
     : collector_(std::make_unique<network_info_collector>()) {}
 
-bool network_metrics_collector::do_initialize(const config_map& config) {
+auto network_metrics_collector::initialize(const config_map& config) -> bool {
+    // Parse enabled
+    if (auto it = config.find("enabled"); it != config.end()) {
+        enabled_ = (it->second == "true" || it->second == "1");
+    }
+
     // Parse collect_socket_buffers
     if (auto it = config.find("collect_socket_buffers"); it != config.end()) {
         config_.collect_socket_buffers = (it->second == "true" || it->second == "1");
@@ -157,28 +162,37 @@ bool network_metrics_collector::do_initialize(const config_map& config) {
     return true;
 }
 
-std::vector<metric> network_metrics_collector::do_collect() {
+auto network_metrics_collector::collect() -> std::vector<metric> {
     std::vector<metric> metrics;
+
+    if (!enabled_) {
+        return metrics;
+    }
 
     auto data = collector_->collect_metrics(config_);
 
-    {
-        std::lock_guard<std::mutex> lock(stats_mutex_);
+    bool has_data = data.socket_buffer_available || data.tcp_state_available;
+
+    if (has_data) {
         last_metrics_ = data;
-    }
 
-    if (data.socket_buffer_available) {
-        add_socket_buffer_metrics(metrics, data);
-    }
+        if (data.socket_buffer_available) {
+            add_socket_buffer_metrics(metrics, data);
+        }
 
-    if (data.tcp_state_available) {
-        add_tcp_state_metrics(metrics, data);
+        if (data.tcp_state_available) {
+            add_tcp_state_metrics(metrics, data);
+        }
+
+        collection_count_++;
+    } else {
+        collection_errors_++;
     }
 
     return metrics;
 }
 
-std::vector<std::string> network_metrics_collector::do_get_metric_types() const {
+auto network_metrics_collector::get_metric_types() const -> std::vector<std::string> {
     std::vector<std::string> types;
 
     // Socket buffer metric types
@@ -214,7 +228,7 @@ std::vector<std::string> network_metrics_collector::do_get_metric_types() const 
     return types;
 }
 
-bool network_metrics_collector::is_available() const {
+auto network_metrics_collector::is_available() const -> bool {
     bool socket_available = config_.collect_socket_buffers &&
                             collector_->is_socket_buffer_monitoring_available();
     bool tcp_available = config_.collect_tcp_states &&
@@ -222,17 +236,21 @@ bool network_metrics_collector::is_available() const {
     return socket_available || tcp_available;
 }
 
-void network_metrics_collector::do_add_statistics(stats_map& stats) const {
+auto network_metrics_collector::get_statistics() const -> stats_map {
+    stats_map stats;
+    stats["enabled"] = enabled_ ? 1.0 : 0.0;
     stats["socket_buffer_available"] =
         collector_->is_socket_buffer_monitoring_available() ? 1.0 : 0.0;
     stats["tcp_state_available"] =
         collector_->is_tcp_state_monitoring_available() ? 1.0 : 0.0;
     stats["collect_socket_buffers"] = config_.collect_socket_buffers ? 1.0 : 0.0;
     stats["collect_tcp_states"] = config_.collect_tcp_states ? 1.0 : 0.0;
+    stats["collection_count"] = static_cast<double>(collection_count_.load());
+    stats["collection_errors"] = static_cast<double>(collection_errors_.load());
+    return stats;
 }
 
 network_metrics network_metrics_collector::get_last_metrics() const {
-    std::lock_guard<std::mutex> lock(stats_mutex_);
     return last_metrics_;
 }
 
@@ -248,42 +266,75 @@ void network_metrics_collector::add_socket_buffer_metrics(
     std::vector<metric>& metrics,
     const network_metrics& data) {
 
-    std::unordered_map<std::string, std::string> base_tags;
+    auto now = std::chrono::system_clock::now();
 
     // Buffer usage metrics
-    metrics.push_back(create_base_metric("network_socket_recv_buffer_bytes",
-        static_cast<double>(data.recv_buffer_bytes), base_tags, "bytes"));
-    metrics.push_back(create_base_metric("network_socket_send_buffer_bytes",
-        static_cast<double>(data.send_buffer_bytes), base_tags, "bytes"));
+    metric m1;
+    m1.name = "network_socket_recv_buffer_bytes";
+    m1.value = static_cast<double>(data.recv_buffer_bytes);
+    m1.timestamp = now;
+    m1.tags["collector"] = "network_metrics";
+    metrics.push_back(m1);
+
+    metric m2;
+    m2.name = "network_socket_send_buffer_bytes";
+    m2.value = static_cast<double>(data.send_buffer_bytes);
+    m2.timestamp = now;
+    m2.tags["collector"] = "network_metrics";
+    metrics.push_back(m2);
 
     // Memory usage
-    metrics.push_back(create_base_metric("network_socket_memory_bytes",
-        static_cast<double>(data.socket_memory_bytes), base_tags, "bytes"));
+    metric m3;
+    m3.name = "network_socket_memory_bytes";
+    m3.value = static_cast<double>(data.socket_memory_bytes);
+    m3.timestamp = now;
+    m3.tags["collector"] = "network_metrics";
+    metrics.push_back(m3);
 
     // Socket counts
-    metrics.push_back(create_base_metric("network_socket_count_total",
-        static_cast<double>(data.socket_count), base_tags, "count"));
-    metrics.push_back(create_base_metric("network_socket_tcp_count",
-        static_cast<double>(data.tcp_socket_count), base_tags, "count"));
-    metrics.push_back(create_base_metric("network_socket_udp_count",
-        static_cast<double>(data.udp_socket_count), base_tags, "count"));
+    metric m4;
+    m4.name = "network_socket_count_total";
+    m4.value = static_cast<double>(data.socket_count);
+    m4.timestamp = now;
+    m4.tags["collector"] = "network_metrics";
+    metrics.push_back(m4);
+
+    metric m5;
+    m5.name = "network_socket_tcp_count";
+    m5.value = static_cast<double>(data.tcp_socket_count);
+    m5.timestamp = now;
+    m5.tags["collector"] = "network_metrics";
+    metrics.push_back(m5);
+
+    metric m6;
+    m6.name = "network_socket_udp_count";
+    m6.value = static_cast<double>(data.udp_socket_count);
+    m6.timestamp = now;
+    m6.tags["collector"] = "network_metrics";
+    metrics.push_back(m6);
 
     // Warning indicators for high memory usage
     if (data.socket_memory_bytes >= config_.memory_warning_threshold_bytes) {
-        std::unordered_map<std::string, std::string> warning_tags = base_tags;
-        warning_tags["alert"] = "memory_high";
-        metrics.push_back(create_base_metric("network_socket_warning",
-            static_cast<double>(data.socket_memory_bytes), warning_tags, "bytes"));
+        metric w1;
+        w1.name = "network_socket_warning";
+        w1.value = static_cast<double>(data.socket_memory_bytes);
+        w1.timestamp = now;
+        w1.tags["collector"] = "network_metrics";
+        w1.tags["alert"] = "memory_high";
+        metrics.push_back(w1);
     }
 
     // Warning for queue buildup
     uint64_t total_queued = data.recv_buffer_bytes + data.send_buffer_bytes;
     if (data.tcp_socket_count > 0 &&
         total_queued >= config_.queue_full_threshold_bytes * data.tcp_socket_count) {
-        std::unordered_map<std::string, std::string> warning_tags = base_tags;
-        warning_tags["alert"] = "queue_buildup";
-        metrics.push_back(create_base_metric("network_socket_warning",
-            static_cast<double>(total_queued), warning_tags, "bytes"));
+        metric w2;
+        w2.name = "network_socket_warning";
+        w2.value = static_cast<double>(total_queued);
+        w2.timestamp = now;
+        w2.tags["collector"] = "network_metrics";
+        w2.tags["alert"] = "queue_buildup";
+        metrics.push_back(w2);
     }
 }
 
@@ -292,49 +343,65 @@ void network_metrics_collector::add_tcp_state_metrics(
     const network_metrics& data) {
 
     const auto& counts = data.tcp_counts;
-    std::unordered_map<std::string, std::string> base_tags;
+    auto now = std::chrono::system_clock::now();
+
+    // Helper lambda to create TCP state metrics
+    auto create_tcp_metric = [&](const std::string& name, double value) {
+        metric m;
+        m.name = name;
+        m.value = value;
+        m.timestamp = now;
+        m.tags["collector"] = "network_metrics";
+        return m;
+    };
 
     // Individual state metrics
-    metrics.push_back(create_base_metric("network_tcp_connections_established",
-        static_cast<double>(counts.established), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_syn_sent",
-        static_cast<double>(counts.syn_sent), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_syn_recv",
-        static_cast<double>(counts.syn_recv), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_fin_wait1",
-        static_cast<double>(counts.fin_wait1), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_fin_wait2",
-        static_cast<double>(counts.fin_wait2), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_time_wait",
-        static_cast<double>(counts.time_wait), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_close",
-        static_cast<double>(counts.close), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_close_wait",
-        static_cast<double>(counts.close_wait), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_last_ack",
-        static_cast<double>(counts.last_ack), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_listen",
-        static_cast<double>(counts.listen), base_tags, "connections"));
-    metrics.push_back(create_base_metric("network_tcp_connections_closing",
-        static_cast<double>(counts.closing), base_tags, "connections"));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_established",
+        static_cast<double>(counts.established)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_syn_sent",
+        static_cast<double>(counts.syn_sent)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_syn_recv",
+        static_cast<double>(counts.syn_recv)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_fin_wait1",
+        static_cast<double>(counts.fin_wait1)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_fin_wait2",
+        static_cast<double>(counts.fin_wait2)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_time_wait",
+        static_cast<double>(counts.time_wait)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_close",
+        static_cast<double>(counts.close)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_close_wait",
+        static_cast<double>(counts.close_wait)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_last_ack",
+        static_cast<double>(counts.last_ack)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_listen",
+        static_cast<double>(counts.listen)));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_closing",
+        static_cast<double>(counts.closing)));
 
     // Total connections
-    metrics.push_back(create_base_metric("network_tcp_connections_total",
-        static_cast<double>(data.total_connections), base_tags, "connections"));
+    metrics.push_back(create_tcp_metric("network_tcp_connections_total",
+        static_cast<double>(data.total_connections)));
 
     // Warning indicators
     if (counts.time_wait >= config_.time_wait_warning_threshold) {
-        std::unordered_map<std::string, std::string> warning_tags = base_tags;
-        warning_tags["alert"] = "time_wait_high";
-        metrics.push_back(create_base_metric("network_tcp_warning",
-            static_cast<double>(counts.time_wait), warning_tags, "connections"));
+        metric w1;
+        w1.name = "network_tcp_warning";
+        w1.value = static_cast<double>(counts.time_wait);
+        w1.timestamp = now;
+        w1.tags["collector"] = "network_metrics";
+        w1.tags["alert"] = "time_wait_high";
+        metrics.push_back(w1);
     }
 
     if (counts.close_wait >= config_.close_wait_warning_threshold) {
-        std::unordered_map<std::string, std::string> warning_tags = base_tags;
-        warning_tags["alert"] = "close_wait_high";
-        metrics.push_back(create_base_metric("network_tcp_warning",
-            static_cast<double>(counts.close_wait), warning_tags, "connections"));
+        metric w2;
+        w2.name = "network_tcp_warning";
+        w2.value = static_cast<double>(counts.close_wait);
+        w2.timestamp = now;
+        w2.tags["collector"] = "network_metrics";
+        w2.tags["alert"] = "close_wait_high";
+        metrics.push_back(w2);
     }
 }
 

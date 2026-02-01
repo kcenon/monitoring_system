@@ -48,6 +48,7 @@
  *       - tcp_state_collector
  */
 
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
@@ -56,7 +57,7 @@
 #include <vector>
 
 #include "../interfaces/metric_types_adapter.h"
-#include "collector_base.h"
+#include "../plugins/collector_plugin.h"
 
 namespace kcenon {
 namespace monitoring {
@@ -256,28 +257,42 @@ class network_info_collector {
 
 /**
  * @class network_metrics_collector
- * @brief Unified network metrics collector
+ * @brief Unified network metrics collector implementing collector_plugin interface
  *
  * Combines socket buffer and TCP state monitoring into a single collector.
  * Provides configurable collection of different metric types.
- *
- * Uses CRTP base class to reduce code duplication.
  */
-class network_metrics_collector : public collector_base<network_metrics_collector> {
+class network_metrics_collector : public collector_plugin {
    public:
-    static constexpr const char* collector_name = "network_metrics_collector";
-
     network_metrics_collector();
     ~network_metrics_collector() override = default;
 
+    // Non-copyable, non-moveable due to internal state
     network_metrics_collector(const network_metrics_collector&) = delete;
     network_metrics_collector& operator=(const network_metrics_collector&) = delete;
     network_metrics_collector(network_metrics_collector&&) = delete;
     network_metrics_collector& operator=(network_metrics_collector&&) = delete;
 
-    // CRTP interface implementation
+    // collector_plugin implementation
+    auto name() const -> std::string_view override { return "network_metrics"; }
+    auto collect() -> std::vector<metric> override;
+    auto interval() const -> std::chrono::milliseconds override { return std::chrono::seconds(10); }
+    auto is_available() const -> bool override;
+    auto get_metric_types() const -> std::vector<std::string> override;
+
+    auto get_metadata() const -> plugin_metadata override {
+        return plugin_metadata{
+            .name = name(),
+            .description = "Network metrics (socket buffers, TCP states)",
+            .category = plugin_category::network,
+            .version = "1.0.0",
+            .dependencies = {},
+            .requires_platform_support = true
+        };
+    }
+
     /**
-     * Collector-specific initialization
+     * Initialize the collector with configuration
      * @param config Configuration options:
      *   - "collect_socket_buffers": "true"/"false" (default: true)
      *   - "collect_tcp_states": "true"/"false" (default: true)
@@ -287,31 +302,17 @@ class network_metrics_collector : public collector_base<network_metrics_collecto
      *   - "memory_warning_threshold_bytes": bytes (default: 104857600)
      * @return true if initialization successful
      */
-    bool do_initialize(const config_map& config);
+    auto initialize(const config_map& config) -> bool override;
 
     /**
-     * Collect network metrics
-     * @return Vector of collected metrics
+     * Get collector statistics
+     * @return Map of statistic name to value
      */
-    std::vector<metric> do_collect();
+    auto get_statistics() const -> stats_map override;
 
-    /**
-     * Check if network metrics monitoring is available
-     * @return True if any network metrics are accessible
-     */
-    bool is_available() const;
-
-    /**
-     * Get supported metric types
-     * @return Vector of supported metric type names
-     */
-    std::vector<std::string> do_get_metric_types() const;
-
-    /**
-     * Add collector-specific statistics
-     * @param stats Map to add statistics to
-     */
-    void do_add_statistics(stats_map& stats) const;
+    // Legacy compatibility (deprecated)
+    [[nodiscard]] std::string get_name() const { return std::string(name()); }
+    [[nodiscard]] bool is_healthy() const { return is_available(); }
 
     /**
      * Get last collected network metrics
@@ -333,9 +334,19 @@ class network_metrics_collector : public collector_base<network_metrics_collecto
 
    private:
     std::unique_ptr<network_info_collector> collector_;
+
+    // Configuration
+    bool enabled_{true};
     network_metrics_config config_;
+
+    // Last metrics cache
     network_metrics last_metrics_;
 
+    // Statistics
+    std::atomic<size_t> collection_count_{0};
+    std::atomic<size_t> collection_errors_{0};
+
+    // Helper methods
     void add_socket_buffer_metrics(std::vector<metric>& metrics,
                                    const network_metrics& data);
     void add_tcp_state_metrics(std::vector<metric>& metrics,
