@@ -100,28 +100,6 @@ class metric_collector_plugin {
 };
 
 /**
- * Plugin loading and management interface
- */
-class plugin_loader {
-  public:
-    virtual ~plugin_loader() = default;
-
-    /**
-     * Load a plugin from a shared library
-     * @param path Path to the plugin library
-     * @return Loaded plugin instance or nullptr on failure
-     */
-    virtual std::unique_ptr<metric_collector_plugin> load_plugin(const std::string& path) = 0;
-
-    /**
-     * Unload a plugin
-     * @param plugin_name Name of the plugin to unload
-     * @return true if unloaded successfully
-     */
-    virtual bool unload_plugin(const std::string& plugin_name) = 0;
-};
-
-/**
  * Configuration for plugin metric collector
  */
 struct plugin_collector_config {
