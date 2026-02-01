@@ -78,7 +78,7 @@ TEST_F(PlatformMetricsCollectorTest, PlatformNameIsCorrect) {
 // Test initialization with default config
 TEST_F(PlatformMetricsCollectorTest, InitializationWithDefaultConfig) {
     config_map config;
-    EXPECT_TRUE(collector_->do_initialize(config));
+    EXPECT_TRUE(collector_->initialize(config));
 }
 
 // Test initialization with custom config
@@ -90,7 +90,7 @@ TEST_F(PlatformMetricsCollectorTest, InitializationWithCustomConfig) {
     config["collect_socket_buffers"] = "false";
     config["collect_interrupts"] = "false";
 
-    EXPECT_TRUE(collector_->do_initialize(config));
+    EXPECT_TRUE(collector_->initialize(config));
 }
 
 // Test metric collection
@@ -132,7 +132,7 @@ TEST_F(PlatformMetricsCollectorTest, GetPlatformInfoReturnsValidInfo) {
 
 // Test metric types
 TEST_F(PlatformMetricsCollectorTest, GetMetricTypesReturnsExpectedTypes) {
-    auto types = collector_->do_get_metric_types();
+    auto types = collector_->get_metric_types();
 
     EXPECT_FALSE(types.empty());
 
@@ -242,18 +242,19 @@ TEST_F(PlatformMetricsCollectorTest, HealthCheckReturnsCorrectly) {
 }
 
 // Test collection count tracking
-TEST_F(PlatformMetricsCollectorTest, CollectionCountIncrementsCorrectly) {
+// Note: collector_plugin interface doesn't expose collection count
+TEST_F(PlatformMetricsCollectorTest, CollectionSucceeds) {
     if (!collector_->is_available()) {
         GTEST_SKIP() << "Platform collector not available on this platform";
     }
 
-    EXPECT_EQ(collector_->get_collection_count(), 0u);
+    // First collection should succeed
+    auto metrics1 = collector_->collect();
+    EXPECT_FALSE(metrics1.empty());
 
-    collector_->collect();
-    EXPECT_EQ(collector_->get_collection_count(), 1u);
-
-    collector_->collect();
-    EXPECT_EQ(collector_->get_collection_count(), 2u);
+    // Second collection should also succeed
+    auto metrics2 = collector_->collect();
+    EXPECT_FALSE(metrics2.empty());
 }
 
 // Test info collector standalone
