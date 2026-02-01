@@ -12,7 +12,7 @@ var searchData=
   ['circuit_5fbreaker_5fregistry_9',['circuit_breaker_registry',['../d5/d51/classkcenon_1_1monitoring_1_1circuit__breaker__registry.html',1,'kcenon::monitoring']]],
   ['circuit_5fopen_5fexception_10',['circuit_open_exception',['../d8/de6/classkcenon_1_1monitoring_1_1circuit__open__exception.html',1,'kcenon::monitoring']]],
   ['cloud_5fstorage_5fbackend_11',['cloud_storage_backend',['../d9/d36/classkcenon_1_1monitoring_1_1cloud__storage__backend.html',1,'kcenon::monitoring']]],
-  ['collection_5fconfig_12',['collection_config',['../de/d9e/structkcenon_1_1monitoring_1_1thread__system__adapter_1_1collection__config.html',1,'kcenon::monitoring::thread_system_adapter::collection_config'],['../d6/d16/structkcenon_1_1monitoring_1_1collection__config.html',1,'kcenon::monitoring::collection_config']]],
+  ['collection_5fconfig_12',['collection_config',['../d3/dfc/structkcenon_1_1monitoring_1_1thread__to__monitoring__adapter_1_1collection__config.html',1,'kcenon::monitoring::thread_to_monitoring_adapter::collection_config'],['../d6/d16/structkcenon_1_1monitoring_1_1collection__config.html',1,'kcenon::monitoring::collection_config']]],
   ['collector_5fbase_13',['collector_base',['../db/d97/classkcenon_1_1monitoring_1_1collector__base.html',1,'kcenon::monitoring']]],
   ['collector_5fbase_3c_20platform_5fmetrics_5fcollector_20_3e_14',['collector_base&lt; platform_metrics_collector &gt;',['../db/d97/classkcenon_1_1monitoring_1_1collector__base.html',1,'kcenon::monitoring']]],
   ['collector_5fbase_3c_20process_5fmetrics_5fcollector_20_3e_15',['collector_base&lt; process_metrics_collector &gt;',['../db/d97/classkcenon_1_1monitoring_1_1collector__base.html',1,'kcenon::monitoring']]],

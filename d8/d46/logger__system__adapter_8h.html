@@ -74,139 +74,129 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle"><div class="title">logger_system_adapter.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;atomic&gt;</code><br />
-<code>#include &lt;chrono&gt;</code><br />
-<code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;optional&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-<code>#include &lt;thread&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="../../dd/d6d/event__bus_8h_source.html">../core/event_bus.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="../../de/d0f/event__types_8h_source.html">../core/event_types.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="../../d1/d7d/result__types_8h_source.html">../core/result_types.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="../../dc/d0b/metric__types__adapter_8h_source.html">../interfaces/metric_types_adapter.h</a>&quot;</code><br />
-<code>#include &lt;kcenon/common/interfaces/logger_interface.h&gt;</code><br />
-<code>#include &lt;kcenon/common/interfaces/monitoring_interface.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d7/d45/logger__to__monitoring__adapter_8h_source.html">logger_to_monitoring_adapter.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for logger_system_adapter.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d0/d74/logger__system__adapter_8h__incl.png" border="0" usemap="#ainclude_2kcenon_2monitoring_2adapters_2logger__system__adapter_8h" alt=""/></div>
 <map name="ainclude_2kcenon_2monitoring_2adapters_2logger__system__adapter_8h" id="ainclude_2kcenon_2monitoring_2adapters_2logger__system__adapter_8h">
 <area shape="rect" title=" " alt="" coords="1177,5,1372,60"/>
-<area shape="rect" title=" " alt="" coords="195,372,261,397"/>
-<area shape="poly" title=" " alt="" coords="1177,37,1036,41,857,52,660,74,560,91,463,111,395,125,342,139,293,160,236,198,202,226,177,254,170,269,166,285,167,303,173,323,186,344,203,362,199,365,182,347,168,325,162,304,161,284,165,267,173,251,198,222,233,194,290,155,340,134,394,120,462,105,559,85,659,69,857,47,1036,36,1177,32"/>
-<area shape="rect" title=" " alt="" coords="1239,372,1305,397"/>
-<area shape="poly" title=" " alt="" coords="1269,61,1259,108,1255,179,1257,249,1270,358,1265,359,1252,250,1249,179,1253,108,1264,60"/>
-<area shape="rect" title=" " alt="" coords="285,372,363,397"/>
-<area shape="poly" title=" " alt="" coords="1177,43,935,66,786,86,632,111,485,143,354,183,298,205,250,230,212,257,185,285,178,304,185,322,198,334,219,345,273,366,272,371,217,350,195,338,180,326,172,304,180,283,209,253,247,225,296,200,352,178,483,138,631,106,785,80,934,61,1177,38"/>
-<area shape="rect" title=" " alt="" coords="1355,453,1429,478"/>
-<area shape="poly" title=" " alt="" coords="1177,36,1011,38,794,49,551,71,428,89,308,111,255,118,202,120,105,122,65,129,35,144,23,156,15,171,10,191,8,215,8,305,12,333,23,352,40,365,63,373,119,383,183,395,289,415,430,431,594,443,770,451,1107,459,1341,461,1341,467,1106,465,770,456,594,448,429,436,288,420,182,400,118,388,61,378,38,370,19,356,7,335,3,306,3,215,5,190,10,169,19,153,31,140,63,123,104,116,202,114,255,113,308,105,427,83,551,66,794,43,1011,33,1177,30"/>
-<area shape="rect" title=" " alt="" coords="2307,533,2365,559"/>
-<area shape="poly" title=" " alt="" coords="1372,35,1689,50,1888,64,2091,82,2279,105,2436,134,2497,151,2543,170,2573,191,2581,202,2584,214,2584,386,2578,420,2562,449,2537,474,2508,494,2441,523,2379,540,2378,535,2439,518,2505,489,2534,470,2557,446,2573,418,2579,386,2579,215,2576,205,2569,195,2541,175,2495,156,2434,140,2278,111,2090,87,1888,69,1689,55,1372,40"/>
-<area shape="rect" title=" " alt="" coords="195,291,259,317"/>
-<area shape="poly" title=" " alt="" coords="1178,57,783,149,531,214,278,287,269,289,268,284,277,281,529,209,781,144,1176,52"/>
-<area shape="rect" title=" " alt="" coords="1330,372,1393,397"/>
-<area shape="poly" title=" " alt="" coords="1284,60,1358,358,1353,359,1279,61"/>
-<area shape="rect" href="../../dd/d6d/event__bus_8h.html" title="Lightweight event bus implementation for monitoring system." alt="" coords="758,203,903,229"/>
-<area shape="poly" title=" " alt="" coords="1212,63,872,201,870,196,1210,58"/>
-<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="1469,372,1627,397"/>
-<area shape="poly" title=" " alt="" coords="1373,47,1472,71,1512,87,1538,106,1557,137,1568,170,1574,206,1576,242,1569,308,1558,359,1553,358,1564,307,1570,241,1569,206,1563,172,1552,139,1534,110,1510,92,1470,76,1372,52"/>
-<area shape="rect" href="../../de/d0f/event__types_8h.html" title="Common event type definitions for monitoring system." alt="" coords="1365,115,1523,141"/>
-<area shape="poly" title=" " alt="" coords="1324,58,1413,106,1410,111,1321,62"/>
-<area shape="rect" href="../../dc/d0b/metric__types__adapter_8h.html" title="Adapter for metric types to support interface definitions." alt="" coords="2386,196,2531,236"/>
-<area shape="poly" title=" " alt="" coords="1372,44,1804,104,2084,147,2367,193,2373,194,2372,200,2366,199,2083,152,1804,109,1372,49"/>
-<area shape="rect" title=" " alt="" coords="2618,108,2817,148"/>
-<area shape="poly" title=" " alt="" coords="1372,33,1592,40,1897,53,2246,74,2600,105,2605,106,2604,111,2600,111,2246,79,1897,58,1592,45,1372,39"/>
-<area shape="rect" title=" " alt="" coords="2841,108,3039,148"/>
-<area shape="poly" title=" " alt="" coords="1372,32,1624,36,1982,47,2399,69,2615,85,2827,105,2827,111,2614,90,2399,74,1982,53,1624,41,1372,37"/>
-<area shape="poly" title=" " alt="" coords="758,221,678,226,582,237,479,256,378,286,257,367,254,362,376,282,477,251,581,231,678,220,758,216"/>
-<area shape="poly" title=" " alt="" coords="884,226,963,248,1048,282,1077,302,1105,322,1167,348,1226,368,1224,373,1165,353,1103,326,1074,306,1045,286,961,253,883,231"/>
-<area shape="poly" title=" " alt="" coords="758,221,689,226,608,237,523,256,441,286,413,303,386,323,344,364,341,360,383,319,410,298,439,282,521,251,607,232,688,221,758,216"/>
-<area shape="poly" title=" " alt="" coords="758,223,541,242,409,260,278,287,268,289,266,284,277,281,408,255,541,237,757,218"/>
-<area shape="poly" title=" " alt="" coords="883,226,981,250,1094,281,1319,365,1317,370,1093,287,980,255,882,231"/>
-<area shape="rect" title=" " alt="" coords="1852,372,1937,397"/>
-<area shape="poly" title=" " alt="" coords="904,219,1165,239,1330,257,1495,281,1593,301,1689,324,1844,366,1843,371,1688,329,1592,306,1494,287,1329,262,1165,244,903,224"/>
-<area shape="rect" title=" " alt="" coords="498,372,545,397"/>
-<area shape="poly" title=" " alt="" coords="804,231,752,255,693,286,668,306,641,326,558,370,556,365,639,322,664,302,691,282,749,250,802,226"/>
-<area shape="rect" title=" " alt="" coords="486,291,629,317"/>
-<area shape="poly" title=" " alt="" coords="795,231,608,290,606,285,793,226"/>
-<area shape="rect" title=" " alt="" coords="932,533,999,559"/>
-<area shape="poly" title=" " alt="" coords="758,224,648,232,519,245,400,263,352,274,316,286,302,295,294,304,272,326,246,340,222,346,202,354,185,373,180,385,185,396,206,416,236,434,317,465,417,490,529,509,643,522,752,532,919,541,918,546,752,537,643,528,528,514,416,495,315,470,234,439,203,420,180,399,175,385,180,371,199,350,221,341,244,335,269,322,290,301,299,291,314,282,350,269,399,258,519,240,647,227,757,219"/>
-<area shape="rect" title=" " alt="" coords="569,372,655,397"/>
-<area shape="poly" title=" " alt="" coords="831,230,816,276,801,303,782,326,763,338,735,350,669,371,668,366,733,345,760,333,778,322,797,300,811,274,826,228"/>
-<area shape="rect" title=" " alt="" coords="680,372,744,397"/>
-<area shape="poly" title=" " alt="" coords="836,228,840,273,837,300,826,325,812,342,795,355,759,374,756,369,793,351,809,338,822,323,832,299,835,273,831,229"/>
-<area shape="rect" title=" " alt="" coords="705,291,767,317"/>
-<area shape="poly" title=" " alt="" coords="820,231,761,284,757,280,816,227"/>
-<area shape="rect" title=" " alt="" coords="387,372,474,397"/>
-<area shape="poly" title=" " alt="" coords="758,226,681,234,598,246,524,264,495,274,475,286,460,302,450,321,437,359,432,358,445,318,456,299,472,282,493,269,522,259,597,241,680,228,757,220"/>
-<area shape="rect" title=" " alt="" coords="1703,372,1827,397"/>
-<area shape="poly" title=" " alt="" coords="904,220,1125,241,1260,259,1395,281,1574,324,1717,365,1716,370,1573,329,1394,287,1259,264,1124,247,903,225"/>
-<area shape="rect" href="../../dd/d70/event__bus__interface_8h.html" title="Event bus interface for decoupled component communication." alt="" coords="894,284,1034,324"/>
-<area shape="poly" title=" " alt="" coords="850,227,925,274,922,279,847,231"/>
-<area shape="poly" title=" " alt="" coords="894,226,1166,281,1347,326,1495,366,1494,371,1346,331,1165,287,893,231"/>
-<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="1718,453,1829,478"/>
-<area shape="poly" title=" " alt="" coords="904,223,1069,245,1263,281,1330,301,1395,321,1464,334,1520,339,1574,347,1641,370,1703,404,1752,442,1749,446,1700,409,1639,374,1573,353,1519,345,1464,339,1394,327,1328,306,1262,287,1068,251,903,228"/>
-<area shape="poly" title=" " alt="" coords="894,315,780,327,640,338,529,345,417,354,275,375,274,369,417,349,528,339,639,333,780,321,893,310"/>
-<area shape="poly" title=" " alt="" coords="1035,321,1226,369,1224,374,1034,326"/>
-<area shape="poly" title=" " alt="" coords="894,316,616,346,377,375,376,369,616,341,893,310"/>
-<area shape="poly" title=" " alt="" coords="1032,322,1114,346,1177,370,1226,400,1260,430,1294,459,1316,471,1343,483,1429,503,1544,518,1678,529,1823,536,2099,542,2293,542,2293,548,2099,548,1823,541,1678,534,1543,523,1428,508,1342,488,1313,476,1291,463,1256,434,1223,404,1175,374,1113,352,1030,327"/>
-<area shape="poly" title=" " alt="" coords="1035,315,1162,338,1317,369,1316,375,1161,343,1034,320"/>
-<area shape="poly" title=" " alt="" coords="894,316,743,338,558,375,557,369,742,333,893,311"/>
-<area shape="poly" title=" " alt="" coords="894,324,669,373,668,368,893,318"/>
-<area shape="poly" title=" " alt="" coords="904,327,758,372,756,367,903,321"/>
-<area shape="poly" title=" " alt="" coords="894,316,714,340,488,374,487,369,713,334,893,311"/>
-<area shape="poly" title=" " alt="" coords="1034,309,1690,373,1689,379,1034,315"/>
-<area shape="rect" title=" " alt="" coords="768,372,848,397"/>
-<area shape="poly" title=" " alt="" coords="928,326,844,368,842,363,925,322"/>
-<area shape="rect" title=" " alt="" coords="873,372,965,397"/>
-<area shape="poly" title=" " alt="" coords="955,326,935,361,930,359,951,323"/>
-<area shape="poly" title=" " alt="" coords="1035,312,1455,368,1455,374,1034,317"/>
-<area shape="rect" href="../../d5/daa/feature__flags_8h.html" title="Unified feature flags header for monitoring_system." alt="" coords="989,372,1163,397"/>
-<area shape="poly" title=" " alt="" coords="993,322,1050,362,1047,366,990,326"/>
-<area shape="poly" title=" " alt="" coords="1527,400,1428,449,1426,444,1524,395"/>
-<area shape="poly" title=" " alt="" coords="1572,395,1656,443,1681,465,1692,475,1708,483,1758,497,1827,509,1994,526,2164,536,2293,541,2293,546,2164,542,1993,532,1826,514,1757,502,1706,488,1689,479,1678,469,1653,448,1569,400"/>
-<area shape="poly" title=" " alt="" coords="1582,395,1729,446,1727,451,1580,400"/>
-<area shape="rect" title=" " alt="" coords="1454,445,1642,485"/>
-<area shape="poly" title=" " alt="" coords="1551,398,1551,432,1545,432,1545,398"/>
-<area shape="poly" title=" " alt="" coords="1829,472,2293,536,2292,541,1828,477"/>
-<area shape="poly" title=" " alt="" coords="1718,479,1655,488,1469,508,1285,524,1013,544,1012,539,1285,519,1468,503,1654,483,1718,474"/>
-<area shape="poly" title=" " alt="" coords="1438,142,1290,362,1285,359,1434,139"/>
-<area shape="poly" title=" " alt="" coords="1446,141,1436,236,1408,398,1400,440,1395,439,1403,397,1431,236,1440,141"/>
-<area shape="poly" title=" " alt="" coords="1524,137,1719,169,1839,191,1963,219,2084,250,2192,286,2280,326,2314,348,2339,370,2359,397,2368,423,2368,452,2363,486,2350,522,2345,520,2357,485,2363,451,2363,424,2355,400,2335,374,2310,352,2277,331,2190,291,2082,255,1962,224,1838,197,1718,174,1523,143"/>
-<area shape="poly" title=" " alt="" coords="1443,142,1372,360,1367,358,1438,140"/>
-<area shape="poly" title=" " alt="" coords="1365,136,1080,153,706,184,523,205,365,229,247,256,208,271,185,286,166,312,156,339,156,366,163,393,176,419,196,444,221,465,250,483,307,503,384,517,476,528,576,536,772,542,919,543,919,548,772,548,576,541,476,534,383,523,305,508,248,488,218,469,192,447,172,422,158,395,150,367,151,338,161,309,181,282,205,266,245,251,364,224,523,200,705,179,1080,148,1364,131"/>
-<area shape="poly" title=" " alt="" coords="1460,139,1742,361,1739,366,1457,143"/>
-<area shape="poly" title=" " alt="" coords="1413,143,1030,282,1028,277,1412,138"/>
-<area shape="rect" title=" " alt="" coords="2425,372,2493,397"/>
-<area shape="poly" title=" " alt="" coords="1524,131,1985,159,2207,177,2281,186,2317,194,2342,210,2365,229,2403,274,2432,320,2451,358,2446,361,2427,323,2399,278,2361,233,2339,214,2315,198,2280,191,2207,183,1985,165,1523,136"/>
-<area shape="poly" title=" " alt="" coords="1523,129,1889,147,2127,166,2367,193,2373,194,2372,199,2366,199,2126,171,1889,153,1523,134"/>
-<area shape="poly" title=" " alt="" coords="2474,235,2492,267,2509,308,2516,353,2515,376,2508,398,2481,441,2445,478,2407,507,2372,529,2370,524,2404,503,2442,474,2476,438,2503,396,2509,375,2511,354,2503,309,2487,269,2469,238"/>
-<area shape="poly" title=" " alt="" coords="2386,220,2293,224,2179,234,2054,254,1993,268,1933,287,1893,303,1854,324,1792,366,1789,361,1851,320,1890,299,1931,281,1991,263,2053,249,2178,229,2293,218,2386,215"/>
-<area shape="poly" title=" " alt="" coords="2461,236,2461,359,2456,359,2456,236"/>
-<area shape="rect" href="../../df/d4b/metric__types_8h.html" title="Common metric type definitions for efficient storage." alt="" coords="1944,291,2107,317"/>
-<area shape="poly" title=" " alt="" coords="2386,234,2097,291,2096,286,2385,229"/>
-<area shape="poly" title=" " alt="" coords="1944,312,1666,332,1493,350,1319,375,1319,375,1318,369,1318,369,1492,345,1666,326,1944,307"/>
-<area shape="poly" title=" " alt="" coords="2107,312,2227,333,2279,349,2299,359,2313,370,2325,387,2334,406,2344,447,2346,487,2343,520,2338,520,2340,487,2339,448,2329,408,2321,390,2309,374,2296,364,2277,354,2226,338,2106,317"/>
-<area shape="poly" title=" " alt="" coords="1944,318,1458,375,1407,381,1406,375,1457,369,1944,312"/>
-<area shape="poly" title=" " alt="" coords="2007,319,1927,367,1924,362,2005,315"/>
-<area shape="poly" title=" " alt="" coords="2025,318,2010,356,1998,378,1983,399,1950,433,1921,456,1887,472,1842,488,1768,505,1669,519,1428,536,1187,545,1012,547,1012,542,1187,539,1428,531,1668,513,1767,500,1841,483,1885,467,1918,451,1947,429,1979,396,1994,376,2005,354,2020,316"/>
-<area shape="poly" title=" " alt="" coords="1988,319,1817,371,1815,366,1987,314"/>
-<area shape="poly" title=" " alt="" coords="1956,319,1631,372,1630,367,1955,314"/>
-<area shape="poly" title=" " alt="" coords="2021,319,1993,358,1974,380,1951,400,1894,431,1837,451,1835,446,1892,426,1948,395,1970,376,1989,354,2016,316"/>
-<area shape="poly" title=" " alt="" coords="2089,314,2412,372,2411,377,2088,319"/>
-<area shape="rect" title=" " alt="" coords="2063,372,2126,397"/>
-<area shape="poly" title=" " alt="" coords="2038,315,2077,360,2073,363,2034,319"/>
-<area shape="rect" title=" " alt="" coords="2150,372,2215,397"/>
-<area shape="poly" title=" " alt="" coords="2049,314,2149,364,2146,368,2047,319"/>
-<area shape="rect" title=" " alt="" coords="2240,372,2299,397"/>
-<area shape="poly" title=" " alt="" coords="2062,314,2228,367,2226,372,2060,319"/>
+<area shape="rect" href="../../d7/d45/logger__to__monitoring__adapter_8h.html" title=" " alt="" coords="1194,108,1355,148"/>
+<area shape="poly" title=" " alt="" coords="1277,60,1277,94,1272,94,1272,60"/>
+<area shape="rect" title=" " alt="" coords="195,460,261,485"/>
+<area shape="poly" title=" " alt="" coords="1194,131,1055,133,872,142,667,163,564,178,463,199,395,213,342,227,293,248,236,286,202,314,177,342,170,357,166,373,167,391,173,411,186,432,203,450,199,453,182,435,168,413,162,392,161,372,165,355,173,339,198,310,233,282,290,243,340,222,394,208,462,193,563,173,667,157,871,137,1054,128,1194,126"/>
+<area shape="rect" title=" " alt="" coords="1239,460,1305,485"/>
+<area shape="poly" title=" " alt="" coords="1270,149,1259,196,1254,267,1256,337,1270,446,1265,447,1251,337,1249,267,1253,196,1265,148"/>
+<area shape="rect" title=" " alt="" coords="285,460,363,485"/>
+<area shape="poly" title=" " alt="" coords="1194,137,955,157,804,175,646,199,494,230,359,270,301,292,252,317,213,344,185,373,178,392,185,410,198,422,219,433,273,454,272,459,217,438,195,426,180,414,172,392,180,371,209,340,249,313,299,287,357,264,493,225,646,194,803,170,955,152,1194,131"/>
+<area shape="rect" title=" " alt="" coords="1355,541,1429,566"/>
+<area shape="poly" title=" " alt="" coords="1194,135,739,156,490,175,387,186,308,199,255,206,202,207,105,209,65,216,35,232,23,244,15,259,10,279,8,303,8,393,12,421,23,440,40,453,63,461,119,471,183,483,289,503,430,519,594,531,770,539,1107,547,1341,549,1341,555,1106,553,770,544,594,536,429,524,288,508,182,488,118,476,61,466,38,458,19,444,7,423,3,394,3,303,5,278,10,257,19,241,31,228,63,211,104,204,202,202,255,200,308,193,386,181,489,170,739,151,1194,129"/>
+<area shape="rect" title=" " alt="" coords="2307,621,2365,647"/>
+<area shape="poly" title=" " alt="" coords="1356,129,1667,142,1869,154,2075,171,2269,194,2430,222,2493,239,2542,258,2573,278,2581,290,2584,302,2584,474,2578,508,2562,537,2537,562,2508,582,2441,611,2379,628,2378,623,2439,606,2505,577,2534,558,2557,534,2573,506,2579,474,2579,303,2576,292,2569,282,2539,262,2492,244,2429,227,2268,199,2075,176,1868,159,1667,147,1355,134"/>
+<area shape="rect" title=" " alt="" coords="195,379,259,405"/>
+<area shape="poly" title=" " alt="" coords="1194,148,798,236,539,301,278,375,269,377,268,372,277,369,537,296,797,231,1193,143"/>
+<area shape="rect" title=" " alt="" coords="1330,460,1393,485"/>
+<area shape="poly" title=" " alt="" coords="1282,148,1358,446,1352,447,1277,149"/>
+<area shape="rect" href="../../dd/d6d/event__bus_8h.html" title="Lightweight event bus implementation for monitoring system." alt="" coords="758,291,903,317"/>
+<area shape="poly" title=" " alt="" coords="1228,151,874,289,872,284,1226,146"/>
+<area shape="rect" href="../../d1/d7d/result__types_8h.html" title="Result pattern type definitions for monitoring system." alt="" coords="1469,460,1627,485"/>
+<area shape="poly" title=" " alt="" coords="1356,137,1464,159,1509,174,1538,194,1557,225,1569,258,1575,293,1576,329,1570,396,1558,447,1553,446,1565,395,1571,329,1570,294,1564,259,1552,227,1534,198,1507,179,1462,164,1355,142"/>
+<area shape="rect" href="../../de/d0f/event__types_8h.html" title="Common event type definitions for monitoring system." alt="" coords="1365,203,1523,229"/>
+<area shape="poly" title=" " alt="" coords="1313,146,1411,195,1408,200,1311,150"/>
+<area shape="rect" href="../../dc/d0b/metric__types__adapter_8h.html" title="Adapter for metric types to support interface definitions." alt="" coords="2386,284,2531,324"/>
+<area shape="poly" title=" " alt="" coords="1356,136,1788,193,2076,235,2367,281,2373,282,2372,288,2366,287,2075,240,1787,198,1355,142"/>
+<area shape="rect" title=" " alt="" coords="2618,196,2817,236"/>
+<area shape="poly" title=" " alt="" coords="1356,128,1572,132,1880,143,2237,163,2600,193,2604,194,2604,199,2600,199,2236,168,1879,149,1571,138,1356,133"/>
+<area shape="rect" title=" " alt="" coords="2841,196,3039,236"/>
+<area shape="poly" title=" " alt="" coords="1355,127,1602,129,1963,138,2389,158,2610,173,2827,193,2827,199,2609,179,2389,163,1963,143,1602,134,1355,132"/>
+<area shape="poly" title=" " alt="" coords="758,309,678,314,582,325,479,344,378,374,257,455,254,450,376,370,477,339,581,319,678,308,758,304"/>
+<area shape="poly" title=" " alt="" coords="884,314,963,336,1048,370,1077,390,1105,410,1167,436,1226,456,1224,461,1165,441,1103,414,1074,394,1045,374,961,341,883,319"/>
+<area shape="poly" title=" " alt="" coords="758,309,689,314,608,325,523,344,441,374,413,391,386,411,344,452,341,448,383,407,410,386,439,370,521,339,607,320,688,309,758,304"/>
+<area shape="poly" title=" " alt="" coords="758,311,541,330,409,348,278,375,268,377,266,372,277,369,408,343,541,325,757,306"/>
+<area shape="poly" title=" " alt="" coords="883,314,981,338,1094,369,1319,453,1317,458,1093,375,980,343,882,319"/>
+<area shape="rect" title=" " alt="" coords="1852,460,1937,485"/>
+<area shape="poly" title=" " alt="" coords="904,307,1165,327,1330,345,1495,369,1593,389,1689,412,1844,454,1843,459,1688,417,1592,394,1494,375,1329,350,1165,332,903,312"/>
+<area shape="rect" title=" " alt="" coords="498,460,545,485"/>
+<area shape="poly" title=" " alt="" coords="804,319,752,343,693,374,668,394,641,414,558,458,556,453,639,410,664,390,691,370,749,338,802,314"/>
+<area shape="rect" title=" " alt="" coords="486,379,629,405"/>
+<area shape="poly" title=" " alt="" coords="795,319,608,378,606,373,793,314"/>
+<area shape="rect" title=" " alt="" coords="932,621,999,647"/>
+<area shape="poly" title=" " alt="" coords="758,312,648,320,519,333,400,351,352,362,316,374,302,383,294,392,272,414,246,428,222,434,202,442,185,461,180,473,185,484,206,504,236,522,317,553,417,578,529,597,643,610,752,620,919,629,918,634,752,625,643,616,528,602,416,583,315,558,234,527,203,508,180,487,175,473,180,459,199,438,221,429,244,423,269,410,290,389,299,379,314,370,350,357,399,346,519,328,647,315,757,307"/>
+<area shape="rect" title=" " alt="" coords="569,460,655,485"/>
+<area shape="poly" title=" " alt="" coords="831,318,816,364,801,391,782,414,763,426,735,438,669,459,668,454,733,433,760,421,778,410,797,388,811,362,826,316"/>
+<area shape="rect" title=" " alt="" coords="680,460,744,485"/>
+<area shape="poly" title=" " alt="" coords="836,316,840,361,837,388,826,413,812,430,795,443,759,462,756,457,793,439,809,426,822,411,832,387,835,361,831,317"/>
+<area shape="rect" title=" " alt="" coords="705,379,767,405"/>
+<area shape="poly" title=" " alt="" coords="820,319,761,372,757,368,816,315"/>
+<area shape="rect" title=" " alt="" coords="387,460,474,485"/>
+<area shape="poly" title=" " alt="" coords="758,314,681,322,598,334,524,352,495,362,475,374,460,390,450,409,437,447,432,446,445,406,456,387,472,370,493,357,522,347,597,329,680,316,757,308"/>
+<area shape="rect" title=" " alt="" coords="1703,460,1827,485"/>
+<area shape="poly" title=" " alt="" coords="904,308,1125,329,1260,347,1395,369,1574,412,1717,453,1716,458,1573,417,1394,375,1259,352,1124,335,903,313"/>
+<area shape="rect" href="../../dd/d70/event__bus__interface_8h.html" title="Event bus interface for decoupled component communication." alt="" coords="894,372,1034,412"/>
+<area shape="poly" title=" " alt="" coords="850,315,925,362,922,367,847,319"/>
+<area shape="poly" title=" " alt="" coords="894,314,1166,369,1347,414,1495,454,1494,459,1346,419,1165,375,893,319"/>
+<area shape="rect" href="../../de/d11/error__codes_8h.html" title="Monitoring system specific error codes." alt="" coords="1718,541,1829,566"/>
+<area shape="poly" title=" " alt="" coords="904,311,1069,333,1263,369,1330,389,1395,409,1464,422,1520,427,1574,435,1641,458,1703,492,1752,530,1749,534,1700,497,1639,462,1573,441,1519,433,1464,427,1394,415,1328,394,1262,375,1068,339,903,316"/>
+<area shape="poly" title=" " alt="" coords="894,403,780,415,640,426,529,433,417,442,275,463,274,457,417,437,528,427,639,421,780,409,893,398"/>
+<area shape="poly" title=" " alt="" coords="1035,409,1226,457,1224,462,1034,414"/>
+<area shape="poly" title=" " alt="" coords="894,404,616,434,377,463,376,457,616,429,893,398"/>
+<area shape="poly" title=" " alt="" coords="1032,410,1114,434,1177,458,1226,488,1260,518,1294,547,1316,559,1343,571,1429,591,1544,606,1678,617,1823,624,2099,630,2293,630,2293,636,2099,636,1823,629,1678,622,1543,611,1428,596,1342,576,1313,564,1291,551,1256,522,1223,492,1175,462,1113,440,1030,415"/>
+<area shape="poly" title=" " alt="" coords="1035,403,1162,426,1317,457,1316,463,1161,431,1034,408"/>
+<area shape="poly" title=" " alt="" coords="894,404,743,426,558,463,557,457,742,421,893,399"/>
+<area shape="poly" title=" " alt="" coords="894,412,669,461,668,456,893,406"/>
+<area shape="poly" title=" " alt="" coords="904,415,758,460,756,455,903,409"/>
+<area shape="poly" title=" " alt="" coords="894,404,714,428,488,462,487,457,713,422,893,399"/>
+<area shape="poly" title=" " alt="" coords="1034,397,1690,461,1689,467,1034,403"/>
+<area shape="rect" title=" " alt="" coords="768,460,848,485"/>
+<area shape="poly" title=" " alt="" coords="928,414,844,456,842,451,925,410"/>
+<area shape="rect" title=" " alt="" coords="873,460,965,485"/>
+<area shape="poly" title=" " alt="" coords="955,414,935,449,930,447,951,411"/>
+<area shape="poly" title=" " alt="" coords="1035,400,1455,456,1455,462,1034,405"/>
+<area shape="rect" href="../../d5/daa/feature__flags_8h.html" title="Unified feature flags header for monitoring_system." alt="" coords="989,460,1163,485"/>
+<area shape="poly" title=" " alt="" coords="993,410,1050,450,1047,454,990,414"/>
+<area shape="poly" title=" " alt="" coords="1527,488,1428,537,1426,532,1524,483"/>
+<area shape="poly" title=" " alt="" coords="1572,483,1656,531,1681,553,1692,563,1708,571,1758,585,1827,597,1994,614,2164,624,2293,629,2293,634,2164,630,1993,620,1826,602,1757,590,1706,576,1689,567,1678,557,1653,536,1569,488"/>
+<area shape="poly" title=" " alt="" coords="1582,483,1729,534,1727,539,1580,488"/>
+<area shape="rect" title=" " alt="" coords="1454,533,1642,573"/>
+<area shape="poly" title=" " alt="" coords="1551,486,1551,520,1545,520,1545,486"/>
+<area shape="poly" title=" " alt="" coords="1829,560,2293,624,2292,629,1828,565"/>
+<area shape="poly" title=" " alt="" coords="1718,567,1655,576,1469,596,1285,612,1013,632,1012,627,1285,607,1468,591,1654,571,1718,562"/>
+<area shape="poly" title=" " alt="" coords="1438,230,1290,450,1285,447,1434,227"/>
+<area shape="poly" title=" " alt="" coords="1446,229,1436,324,1408,486,1400,528,1395,527,1403,485,1431,324,1440,229"/>
+<area shape="poly" title=" " alt="" coords="1524,225,1719,257,1839,279,1963,307,2084,338,2192,374,2280,414,2314,436,2339,458,2359,485,2368,511,2368,540,2363,574,2350,610,2345,608,2357,573,2363,539,2363,512,2355,488,2335,462,2310,440,2277,419,2190,379,2082,343,1962,312,1838,285,1718,262,1523,231"/>
+<area shape="poly" title=" " alt="" coords="1443,230,1372,448,1367,446,1438,228"/>
+<area shape="poly" title=" " alt="" coords="1365,224,1080,241,706,272,523,293,365,317,247,344,208,359,185,374,166,400,156,427,156,454,163,481,176,507,196,532,221,553,250,571,307,591,384,605,476,616,576,624,772,630,919,631,919,636,772,636,576,629,476,622,383,611,305,596,248,576,218,557,192,535,172,510,158,483,150,455,151,426,161,397,181,370,205,354,245,339,364,312,523,288,705,267,1080,236,1364,219"/>
+<area shape="poly" title=" " alt="" coords="1460,227,1742,449,1739,454,1457,231"/>
+<area shape="poly" title=" " alt="" coords="1413,231,1030,370,1028,365,1412,226"/>
+<area shape="rect" title=" " alt="" coords="2425,460,2493,485"/>
+<area shape="poly" title=" " alt="" coords="1524,219,1985,247,2207,265,2281,274,2317,282,2342,298,2365,317,2403,362,2432,408,2451,446,2446,449,2427,411,2399,366,2361,321,2339,302,2315,286,2280,279,2207,271,1985,253,1523,224"/>
+<area shape="poly" title=" " alt="" coords="1523,217,1889,235,2127,254,2367,281,2373,282,2372,287,2366,287,2126,259,1889,241,1523,222"/>
+<area shape="poly" title=" " alt="" coords="2474,323,2492,355,2509,396,2516,441,2515,464,2508,486,2481,529,2445,566,2407,595,2372,617,2370,612,2404,591,2442,562,2476,526,2503,484,2509,463,2511,442,2503,397,2487,357,2469,326"/>
+<area shape="poly" title=" " alt="" coords="2386,308,2293,312,2179,322,2054,342,1993,356,1933,375,1893,391,1854,412,1792,454,1789,449,1851,408,1890,387,1931,369,1991,351,2053,337,2178,317,2293,306,2386,303"/>
+<area shape="poly" title=" " alt="" coords="2461,324,2461,447,2456,447,2456,324"/>
+<area shape="rect" href="../../df/d4b/metric__types_8h.html" title="Common metric type definitions for efficient storage." alt="" coords="1944,379,2107,405"/>
+<area shape="poly" title=" " alt="" coords="2386,322,2097,379,2096,374,2385,317"/>
+<area shape="poly" title=" " alt="" coords="1944,400,1666,420,1493,438,1319,463,1319,463,1318,457,1318,457,1492,433,1666,414,1944,395"/>
+<area shape="poly" title=" " alt="" coords="2107,400,2227,421,2279,437,2299,447,2313,458,2325,475,2334,494,2344,535,2346,575,2343,608,2338,608,2340,575,2339,536,2329,496,2321,478,2309,462,2296,452,2277,442,2226,426,2106,405"/>
+<area shape="poly" title=" " alt="" coords="1944,406,1458,463,1407,469,1406,463,1457,457,1944,400"/>
+<area shape="poly" title=" " alt="" coords="2007,407,1927,455,1924,450,2005,403"/>
+<area shape="poly" title=" " alt="" coords="2025,406,2010,444,1998,466,1983,487,1950,521,1921,544,1887,560,1842,576,1768,593,1669,607,1428,624,1187,633,1012,635,1012,630,1187,627,1428,619,1668,601,1767,588,1841,571,1885,555,1918,539,1947,517,1979,484,1994,464,2005,442,2020,404"/>
+<area shape="poly" title=" " alt="" coords="1988,407,1817,459,1815,454,1987,402"/>
+<area shape="poly" title=" " alt="" coords="1956,407,1631,460,1630,455,1955,402"/>
+<area shape="poly" title=" " alt="" coords="2021,407,1993,446,1974,468,1951,488,1894,519,1837,539,1835,534,1892,514,1948,483,1970,464,1989,442,2016,404"/>
+<area shape="poly" title=" " alt="" coords="2089,402,2412,460,2411,465,2088,407"/>
+<area shape="rect" title=" " alt="" coords="2063,460,2126,485"/>
+<area shape="poly" title=" " alt="" coords="2038,403,2077,448,2073,451,2034,407"/>
+<area shape="rect" title=" " alt="" coords="2150,460,2215,485"/>
+<area shape="poly" title=" " alt="" coords="2049,402,2149,452,2146,456,2047,407"/>
+<area shape="rect" title=" " alt="" coords="2240,460,2299,485"/>
+<area shape="poly" title=" " alt="" coords="2062,402,2228,455,2226,460,2060,407"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -230,12 +220,6 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="../../d8/d46/logger__system__adapter_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html">kcenon::monitoring::logger_system_adapter</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logger system adapter using dependency injection (Phase 2.3.3)  <a href="../../d7/d7a/classkcenon_1_1monitoring_1_1logger__system__adapter.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:d9/d03/namespacekcenon" id="r_d9/d03/namespacekcenon"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d03/namespacekcenon.html">kcenon</a></td></tr>
@@ -247,6 +231,11 @@ Namespaces</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:a739286adddcbbe48e15a737471d3eabf" id="r_a739286adddcbbe48e15a737471d3eabf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d46/logger__system__adapter_8h.html#a739286adddcbbe48e15a737471d3eabf">KCENON_MONITORING_ADAPTERS_LOGGER_SYSTEM_ADAPTER_H</a></td></tr>
 <tr class="separator:a739286adddcbbe48e15a737471d3eabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a9ec378fca3c80846b38ac68ddb89260d" id="r_a9ec378fca3c80846b38ac68ddb89260d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d50/namespacekcenon_1_1monitoring.html#a9ec378fca3c80846b38ac68ddb89260d">kcenon::monitoring::logger_system_adapter</a> = <a class="el" href="../../d7/d37/classkcenon_1_1monitoring_1_1logger__to__monitoring__adapter.html">logger_to_monitoring_adapter</a></td></tr>
+<tr class="separator:a9ec378fca3c80846b38ac68ddb89260d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a739286adddcbbe48e15a737471d3eabf" name="a739286adddcbbe48e15a737471d3eabf"></a>
@@ -268,7 +257,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 1 2026 01:16:09 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Feb 1 2026 01:41:16 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

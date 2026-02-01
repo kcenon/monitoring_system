@@ -13,5 +13,6 @@ var searchData=
   ['monitorable_5finterface_2eh_10',['monitorable_interface.h',['../d8/db2/monitorable__interface_8h.html',1,'']]],
   ['monitoring_5fconcepts_2eh_11',['monitoring_concepts.h',['../da/d74/monitoring__concepts_8h.html',1,'']]],
   ['monitoring_5fcore_2eh_12',['monitoring_core.h',['../d1/d6e/monitoring__core_8h.html',1,'']]],
-  ['multi_5fservice_5ftracing_5fexample_2ecpp_13',['multi_service_tracing_example.cpp',['../d1/da6/multi__service__tracing__example_8cpp.html',1,'']]]
+  ['monitoring_5fto_5fcommon_5fadapter_2eh_13',['monitoring_to_common_adapter.h',['../d0/d02/monitoring__to__common__adapter_8h.html',1,'']]],
+  ['multi_5fservice_5ftracing_5fexample_2ecpp_14',['multi_service_tracing_example.cpp',['../d1/da6/multi__service__tracing__example_8cpp.html',1,'']]]
 ];

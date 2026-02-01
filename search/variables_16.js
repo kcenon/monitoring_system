@@ -13,7 +13,7 @@ var searchData=
   ['window_5fsize_5f_10',['window_size_',['../de/d4f/classkcenon_1_1monitoring_1_1anomaly__trigger.html#a2eb83f08b6432f367919d16cb7042f7e',1,'kcenon::monitoring::anomaly_trigger::window_size_'],['../d9/d83/classmoving__average__trigger.html#a6be976ff10e01b8b84945933f422c5bd',1,'moving_average_trigger::window_size_']]],
   ['work_5fcv_5f_11',['work_cv_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a44c6ce0c503c99780901056dfa365c69',1,'kcenon::monitoring::plugin_metric_collector']]],
   ['work_5fmutex_5f_12',['work_mutex_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a3b070a02d09c2fa855dafc40eafec0ff',1,'kcenon::monitoring::plugin_metric_collector']]],
-  ['worker_5f_13',['worker_',['../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#a245aab22a8f29c5528b00b4c594f28cc',1,'kcenon::monitoring::thread_system_adapter']]],
+  ['worker_5f_13',['worker_',['../dc/d7f/classkcenon_1_1monitoring_1_1thread__to__monitoring__adapter.html#a1e2d0630b847bd43db54257935b5bfcf',1,'kcenon::monitoring::thread_to_monitoring_adapter']]],
   ['worker_5fthread_5fcount_14',['worker_thread_count',['../db/dc9/structkcenon_1_1monitoring_1_1event__bus__config.html#accfa3e72c448fc4720ba605bdb8288f9',1,'kcenon::monitoring::event_bus_config']]],
   ['worker_5fthreads_15',['worker_threads',['../dd/dd3/structkcenon_1_1monitoring_1_1plugin__collector__config.html#a95bed8c8430e01073760d2f0c6e46a56',1,'kcenon::monitoring::plugin_collector_config']]],
   ['worker_5fthreads_5f_16',['worker_threads_',['../de/d7a/classkcenon_1_1monitoring_1_1plugin__metric__collector.html#a69f99f05ae42d9ead57793df7a87fa65',1,'kcenon::monitoring::plugin_metric_collector']]],

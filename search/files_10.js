@@ -57,9 +57,10 @@ var searchData=
   ['thread_5fsafety_5ftests_2ecpp_54',['thread_safety_tests.cpp',['../df/d66/thread__safety__tests_8cpp.html',1,'']]],
   ['thread_5fsystem_5fadapter_2eh_55',['thread_system_adapter.h',['../d9/d7a/thread__system__adapter_8h.html',1,'']]],
   ['thread_5fsystem_5fcollector_2eh_56',['thread_system_collector.h',['../d0/d2d/thread__system__collector_8h.html',1,'']]],
-  ['time_5fseries_2eh_57',['time_series.h',['../d8/d51/time__series_8h.html',1,'']]],
-  ['time_5fseries_5fbuffer_2eh_58',['time_series_buffer.h',['../d3/db8/time__series__buffer_8h.html',1,'']]],
-  ['time_5fseries_5fstorage_5fexample_2ecpp_59',['time_series_storage_example.cpp',['../d2/d13/time__series__storage__example_8cpp.html',1,'']]],
-  ['trace_5fcontext_2eh_60',['trace_context.h',['../d2/dde/trace__context_8h.html',1,'']]],
-  ['trace_5fexporters_2eh_61',['trace_exporters.h',['../d6/db6/trace__exporters_8h.html',1,'']]]
+  ['thread_5fto_5fmonitoring_5fadapter_2eh_57',['thread_to_monitoring_adapter.h',['../d5/d95/thread__to__monitoring__adapter_8h.html',1,'']]],
+  ['time_5fseries_2eh_58',['time_series.h',['../d8/d51/time__series_8h.html',1,'']]],
+  ['time_5fseries_5fbuffer_2eh_59',['time_series_buffer.h',['../d3/db8/time__series__buffer_8h.html',1,'']]],
+  ['time_5fseries_5fstorage_5fexample_2ecpp_60',['time_series_storage_example.cpp',['../d2/d13/time__series__storage__example_8cpp.html',1,'']]],
+  ['trace_5fcontext_2eh_61',['trace_context.h',['../d2/dde/trace__context_8h.html',1,'']]],
+  ['trace_5fexporters_2eh_62',['trace_exporters.h',['../d6/db6/trace__exporters_8h.html',1,'']]]
 ];

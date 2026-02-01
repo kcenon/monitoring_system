@@ -77,7 +77,7 @@ var searchData=
   ['_7etemperature_5fcollector_74',['~temperature_collector',['../d9/ddf/classkcenon_1_1monitoring_1_1temperature__collector.html#aae2fce7bd3f3bf89f9fbd96012cb8e98',1,'kcenon::monitoring::temperature_collector']]],
   ['_7etemperature_5finfo_5fcollector_75',['~temperature_info_collector',['../d0/d06/classkcenon_1_1monitoring_1_1temperature__info__collector.html#a3106930033e44e495572549f4bafe787',1,'kcenon::monitoring::temperature_info_collector']]],
   ['_7ethread_5flocal_5fbuffer_76',['~thread_local_buffer',['../d6/dd1/classkcenon_1_1monitoring_1_1thread__local__buffer.html#a0fb7908e4598f88699516841693cd827',1,'kcenon::monitoring::thread_local_buffer']]],
-  ['_7ethread_5fsystem_5fadapter_77',['~thread_system_adapter',['../d5/db2/classkcenon_1_1monitoring_1_1thread__system__adapter.html#af415a1943a1ea82e135ef03d310a20ef',1,'kcenon::monitoring::thread_system_adapter']]],
+  ['_7ethread_5fto_5fmonitoring_5fadapter_77',['~thread_to_monitoring_adapter',['../dc/d7f/classkcenon_1_1monitoring_1_1thread__to__monitoring__adapter.html#a82064e4501214288f5838e3d8a857f25',1,'kcenon::monitoring::thread_to_monitoring_adapter']]],
   ['_7etimer_5fscope_78',['~timer_scope',['../d4/d01/classkcenon_1_1monitoring_1_1timer__scope.html#ace5f16be1db0a864076724855ed1957f',1,'kcenon::monitoring::timer_scope']]],
   ['_7etrace_5fexporter_5finterface_79',['~trace_exporter_interface',['../dd/d66/classkcenon_1_1monitoring_1_1trace__exporter__interface.html#af04613a0207d7df61df6246f0d0fa062',1,'kcenon::monitoring::trace_exporter_interface']]],
   ['_7eudp_5ftransport_80',['~udp_transport',['../d7/dda/classkcenon_1_1monitoring_1_1udp__transport.html#a851741cfb7c4f261e5bbe6f15effc1f5',1,'kcenon::monitoring::udp_transport']]],
