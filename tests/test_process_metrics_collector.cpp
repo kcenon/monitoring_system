@@ -49,7 +49,7 @@ class ProcessMetricsCollectorTest : public ::testing::Test {
 
 TEST_F(ProcessMetricsCollectorTest, InitializesSuccessfully) {
     EXPECT_NE(collector_, nullptr);
-    EXPECT_EQ(collector_->get_name(), "process_metrics_collector");
+    EXPECT_EQ(collector_->name(), "process_metrics_collector");
 }
 
 TEST_F(ProcessMetricsCollectorTest, ReturnsCorrectMetricTypes) {

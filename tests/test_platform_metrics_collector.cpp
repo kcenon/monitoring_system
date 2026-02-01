@@ -45,7 +45,7 @@ class PlatformMetricsCollectorTest : public ::testing::Test {
 
 // Test collector name
 TEST_F(PlatformMetricsCollectorTest, CollectorNameIsCorrect) {
-    EXPECT_EQ(collector_->get_name(), "platform_metrics_collector");
+    EXPECT_EQ(collector_->name(), "platform_metrics_collector");
 }
 
 // Test platform availability
