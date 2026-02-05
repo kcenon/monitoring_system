@@ -215,7 +215,7 @@ For contributors and maintainers:
 ## Project Information
 
 ### Current Status
-- **Version**: 3.0 (Phase 3 with Alerting & Dashboard)
+- **Version**: 0.3.0.0 (Phase 3 with Alerting & Dashboard)
 - **C++ Standard**: C++20
 - **License**: BSD 3-Clause
 - **Test Status**: Under Development
