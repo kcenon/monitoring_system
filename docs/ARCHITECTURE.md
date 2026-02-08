@@ -67,7 +67,7 @@ The system comprises 15+ modules organized in a layered architecture. Dependenci
 │  │ core         │ │_interface     │ │_interface   │ │interface   │  │
 │  └──────────────┘ └───────────────┘ └────────────┘ └────────────┘  │
 │  ┌──────────────┐ ┌───────────────┐                                 │
-│  │ observer_    │ │ monitoring_   │  (C++20 concepts: 12 concepts)  │
+│  │ observer_    │ │ monitoring_   │  (C++20 concepts: 14 concepts)  │
 │  │ interface    │ │ concepts.h    │                                  │
 │  └──────────────┘ └───────────────┘                                 │
 └──────────────────────────┬──────────────────────────────────────────┘
@@ -536,7 +536,7 @@ thread_system ──(metrics)──► monitoring_system ◄──(metrics)─�
 
 ### C++20 Concepts
 
-`concepts/monitoring_concepts.h` defines 12 compile-time constraints:
+`concepts/monitoring_concepts.h` defines 14 compile-time constraints:
 
 | Concept | Constrains | Requirements |
 |---------|-----------|--------------|
@@ -544,6 +544,7 @@ thread_system ──(metrics)──► monitoring_system ◄──(metrics)─�
 | `MetricType` | Metric structures | Class with `.name` and `.value` |
 | `MetricSourceLike` | Data sources | `get_current_metrics()`, `get_source_name()`, `is_healthy()` |
 | `MetricCollectorLike` | Collectors | `collect_metrics()`, `is_collecting()`, `get_metric_types()` |
+| `ObserverLike` | Observers | `on_metrics_updated()` |
 | `MonitoringEventType` | Events | Class, copy-constructible |
 | `MonitoringEventHandler<E>` | Event handlers | Invocable with `const E&`, returns void |
 | `MetricFilterPredicate<M>` | Filters | Invocable with `const M&`, returns bool |
@@ -638,18 +639,18 @@ thread_system ──(metrics)──► monitoring_system ◄──(metrics)─�
 
 ```
 include/kcenon/monitoring/
-├── core/                    # Core pipeline (7 headers)
+├── core/                    # Core pipeline (9 headers)
 ├── interfaces/              # Abstract contracts (6 headers)
 ├── concepts/                # C++20 concepts (1 header)
-├── collectors/              # Metric collectors (17 headers)
+├── collectors/              # Metric collectors (18 headers)
 ├── plugins/                 # Optional plugins (6 headers)
 │   ├── hardware/            # Battery, power, temp, GPU
 │   └── container/           # Docker, SMART
 ├── storage/                 # Storage backends (1 header, 5 backends)
 ├── exporters/               # Data export (7 headers)
-├── adapters/                # Cross-system adapters (8 headers)
-├── reliability/             # Fault tolerance (5 headers)
-├── alert/                   # Alert pipeline (6 headers)
+├── adapters/                # Cross-system adapters (10 headers)
+├── reliability/             # Fault tolerance (7 headers)
+├── alert/                   # Alert pipeline (7 headers)
 ├── tracing/                 # Distributed tracing (2 headers)
 ├── health/                  # Health monitoring (1 header)
 ├── optimization/            # Performance optimization (3 headers)
@@ -658,7 +659,7 @@ include/kcenon/monitoring/
 ├── di/                      # Dependency injection (1 header)
 ├── factory/                 # Factory patterns (3 headers)
 ├── config/                  # Feature flags (1 header)
-├── utils/                   # Utilities (6 headers)
+├── utils/                   # Utilities (10 headers)
 ├── compatibility.h          # Backward compatibility
 └── forward.h                # Forward declarations
 ```
