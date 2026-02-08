@@ -1,7 +1,7 @@
 # Monitoring System - Feature Documentation
 
-**Version**: 0.1.0.0
-**Last Updated**: 2025-11-15
+**Version**: 0.4.0.0
+**Last Updated**: 2026-02-08
 
 ## Overview
 
@@ -28,6 +28,9 @@ This document provides comprehensive details about all features available in the
 - [Alert Pipeline](#alert-pipeline)
 - [Advanced Features](#advanced-features)
 - [Load Average History Tracking](#load-average-history-tracking)
+- [Plugin System](#plugin-system)
+- [Adaptive Monitoring](#adaptive-monitoring)
+- [SIMD Optimization](#simd-optimization)
 
 ---
 
@@ -2126,12 +2129,429 @@ The memory footprint is bounded and predictable:
 
 ---
 
+## Plugin System
+
+### Overview
+
+The plugin system provides a dynamic, extensible architecture for loading metric collectors at runtime. Plugins are compiled as shared libraries (`.so`/`.dylib`/`.dll`) and loaded via a cross-platform loader with API version compatibility checking. This enables optional features (container monitoring, hardware sensors) to be loaded only when needed, reducing binary size and collection overhead for deployments that do not require them.
+
+**Architecture Components**:
+
+| Component | Header | Purpose |
+|-----------|--------|---------|
+| **collector_plugin** | `plugins/collector_plugin.h` | Pure virtual interface for all collector plugins |
+| **plugin_api** | `plugins/plugin_api.h` | C ABI interface for cross-compiler compatibility |
+| **plugin_loader** | `plugins/plugin_loader.h` | Dynamic shared library loading and symbol resolution |
+| **collector_registry** | `plugins/collector_registry.h` | Singleton registry for plugin lifecycle management |
+
+### Plugin Categories
+
+Plugins are organized by category via the `plugin_category` enum:
+
+| Category | Description | Example Plugins |
+|----------|-------------|-----------------|
+| `system` | System integration (threads, loggers, containers) | Container plugin |
+| `hardware` | Hardware sensors (GPU, temperature, battery, power) | Hardware plugin |
+| `platform` | Platform-specific (VM, uptime, interrupts) | - |
+| `network` | Network metrics (connectivity, bandwidth) | - |
+| `process` | Process-level metrics (resources, performance) | - |
+| `custom` | User-defined plugins | Any custom implementation |
+
+### Available Plugin Types
+
+#### Container Plugin
+
+The container plugin (`plugins/container/container_plugin.h`) provides monitoring for Docker, Kubernetes, and cgroup-based container runtimes.
+
+**Supported Runtimes**: Docker, containerd, Podman, CRI-O (with auto-detection)
+
+**Metrics**: Container CPU/memory/network/I/O, running container count, Kubernetes pod/deployment metrics, cgroup CPU time and memory usage/limits.
+
+```cpp
+#include <kcenon/monitoring/plugins/container/container_plugin.h>
+
+using namespace kcenon::monitoring::plugins;
+
+// Create with custom configuration
+container_plugin_config config;
+config.enable_docker = true;
+config.enable_kubernetes = false;
+config.docker_socket = "/var/run/docker.sock";
+config.collect_network_metrics = true;
+
+auto plugin = container_plugin::create(config);
+
+// Check container environment before loading
+if (container_plugin::is_running_in_container()) {
+    registry.register_plugin(std::move(plugin));
+}
+
+// Detect runtime automatically
+auto runtime = container_plugin::detect_runtime();
+```
+
+#### Hardware Plugin
+
+The hardware plugin (`plugins/hardware/hardware_plugin.h`) provides battery, power consumption, temperature, and GPU monitoring for desktop/laptop environments.
+
+**Metrics**: Battery level/health/cycles, power consumption (watts/RAPL), CPU/GPU/motherboard temperatures, GPU utilization/VRAM/clocks/fan speed.
+
+```cpp
+#include <kcenon/monitoring/plugins/hardware/hardware_plugin.h>
+
+using namespace kcenon::monitoring::plugins;
+
+// Create with custom configuration
+hardware_plugin_config config;
+config.enable_battery = true;
+config.enable_temperature = true;
+config.enable_gpu = true;
+config.gpu_collect_utilization = true;
+config.gpu_collect_memory = true;
+
+auto plugin = hardware_plugin::create(config);
+
+// Check individual sensor availability
+if (plugin->is_battery_available()) {
+    // Battery metrics will be collected
+}
+if (plugin->is_gpu_available()) {
+    // GPU metrics will be collected
+}
+```
+
+### Plugin Loading and Registration Flow
+
+The plugin lifecycle follows this sequence:
+
+1. **Load**: `dynamic_plugin_loader` opens the shared library and resolves `create_plugin`, `destroy_plugin`, and `get_plugin_info` symbols
+2. **Verify**: API version compatibility is checked via `plugin_api_metadata.api_version` against `PLUGIN_API_VERSION`
+3. **Create**: The plugin instance is created via the resolved `create_plugin` function
+4. **Register**: The plugin is added to `collector_registry` which manages ownership
+5. **Initialize**: `initialize()` is called with configuration parameters
+6. **Collect**: `collect()` is called periodically based on `interval()`
+7. **Shutdown**: `shutdown()` is called before plugin destruction and library unloading
+
+```cpp
+// Load and register a plugin from a shared library
+auto& registry = collector_registry::instance();
+bool loaded = registry.load_plugin("/path/to/libmy_plugin.so");
+
+if (!loaded) {
+    std::cerr << "Error: " << registry.get_plugin_loader_error() << std::endl;
+}
+
+// Access a registered plugin
+if (auto* plugin = registry.get_plugin("my_collector")) {
+    auto metrics = plugin->collect();
+}
+
+// List plugins by category
+auto hw_plugins = registry.get_plugins_by_category(plugin_category::hardware);
+
+// Factory-based lazy registration
+registry.register_factory<my_collector_plugin>("my_collector");
+
+// Initialize all plugins at once
+registry.initialize_all(config);
+
+// Shutdown all plugins
+registry.shutdown_all();
+```
+
+### Implementing a Custom Plugin
+
+Plugins must export three C-linkage functions. The `IMPLEMENT_PLUGIN` macro simplifies this:
+
+```cpp
+#include <kcenon/monitoring/plugins/plugin_api.h>
+#include <kcenon/monitoring/plugins/collector_plugin.h>
+
+class my_sensor_plugin : public kcenon::monitoring::collector_plugin {
+public:
+    auto name() const -> std::string_view override { return "my_sensor"; }
+
+    auto collect() -> std::vector<metric> override {
+        // Collect metrics from custom hardware/source
+        return { /* ... */ };
+    }
+
+    auto interval() const -> std::chrono::milliseconds override {
+        return std::chrono::seconds(5);
+    }
+
+    auto is_available() const -> bool override {
+        return true; // Check hardware availability
+    }
+
+    auto get_metric_types() const -> std::vector<std::string> override {
+        return {"gauge"};
+    }
+};
+
+// Export required C ABI functions
+IMPLEMENT_PLUGIN(
+    my_sensor_plugin,    // Plugin class
+    "my_sensor",         // Plugin name
+    "1.0.0",             // Version
+    "My Sensor Plugin",  // Description
+    "Author Name",       // Author
+    "hardware"           // Category
+)
+```
+
+> [!TIP]
+> For detailed plugin development instructions, see [Plugin Development Guide](plugin_development_guide.md). For a complete API reference, see [Plugin API Reference](plugin_api_reference.md). For architectural details, see [Plugin Architecture](plugin_architecture.md).
+
+---
+
+## Adaptive Monitoring
+
+### Overview
+
+The adaptive monitoring system automatically adjusts collection intervals, sampling rates, and metric granularity based on current system resource utilization. This ensures that monitoring overhead remains minimal during high-load situations while providing detailed data during idle periods.
+
+**Key Features**:
+- Automatic load level detection (idle, low, moderate, high, critical)
+- Per-level configurable collection intervals and sampling rates
+- Three adaptation strategies: conservative, balanced, aggressive
+- Hysteresis and cooldown mechanisms to prevent oscillation
+- Exponential smoothing for stable load estimation
+- Thread-safe operation with RAII scope management
+
+### Adaptation Strategies
+
+| Strategy | Behavior | Use Case |
+|----------|----------|----------|
+| `conservative` | Reduces effective load by 20% to maintain system stability | Production servers with strict SLAs |
+| `balanced` | No adjustment; uses raw load metrics directly | General-purpose monitoring |
+| `aggressive` | Increases effective load by 20% to preserve monitoring detail | Development and debugging environments |
+
+### Load Levels and Defaults
+
+| Load Level | CPU Threshold | Default Interval | Default Sampling Rate |
+|------------|--------------|------------------|-----------------------|
+| `idle` | < 20% | 100ms | 100% |
+| `low` | 20-40% | 250ms | 80% |
+| `moderate` | 40-60% | 500ms | 50% |
+| `high` | 60-80% | 1000ms | 20% |
+| `critical` | > 80% | 5000ms | 10% |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/adaptive/adaptive_monitor.h>
+
+using namespace kcenon::monitoring;
+
+// Configure adaptive behavior
+adaptive_config config;
+config.strategy = adaptation_strategy::balanced;
+config.idle_interval = std::chrono::milliseconds(100);
+config.critical_interval = std::chrono::milliseconds(5000);
+config.smoothing_factor = 0.7;
+config.enable_hysteresis = true;
+config.hysteresis_margin = 5.0;
+
+// Register a collector with the global adaptive monitor
+auto& monitor = global_adaptive_monitor();
+monitor.register_collector("my_service", my_collector, config);
+monitor.start();
+
+// Check adaptation statistics
+auto stats = monitor.get_collector_stats("my_service");
+if (stats.is_ok()) {
+    auto s = stats.value();
+    std::cout << "Current load: " << static_cast<int>(s.current_load_level) << std::endl;
+    std::cout << "Sampling rate: " << s.current_sampling_rate << std::endl;
+    std::cout << "Total adaptations: " << s.total_adaptations << std::endl;
+}
+
+// Stop when done
+monitor.stop();
+```
+
+### RAII Scope Management
+
+The `adaptive_scope` class provides automatic registration and cleanup:
+
+```cpp
+#include <kcenon/monitoring/adaptive/adaptive_monitor.h>
+
+using namespace kcenon::monitoring;
+
+{
+    // Automatically registers collector with the global adaptive monitor
+    adaptive_scope scope("my_service", my_collector, config);
+
+    if (scope.is_registered()) {
+        // Collector is active and will be adaptively monitored
+    }
+    // Collector is automatically unregistered when scope exits
+}
+```
+
+### Hysteresis and Cooldown
+
+To prevent rapid oscillation at threshold boundaries:
+
+- **Hysteresis**: The load must exceed the threshold by `hysteresis_margin` (default: 5%) to trigger a level change
+- **Cooldown**: A minimum `cooldown_period` (default: 1000ms) must elapse between level changes
+
+```cpp
+adaptive_config config;
+config.enable_hysteresis = true;
+config.hysteresis_margin = 5.0;      // 5% margin above/below thresholds
+config.enable_cooldown = true;
+config.cooldown_period = std::chrono::milliseconds(1000);
+```
+
+---
+
+## SIMD Optimization
+
+### Overview
+
+The SIMD aggregator provides high-performance statistical operations on metric data using SIMD (Single Instruction Multiple Data) instructions. It automatically detects available instruction sets at runtime and falls back to scalar operations when SIMD is not available or the dataset is too small to benefit.
+
+**Supported Instruction Sets**:
+
+| Instruction Set | Platform | Vector Width (doubles) |
+|-----------------|----------|------------------------|
+| AVX2 | x86_64 | 4 |
+| SSE2 | x86_64 | 2 |
+| NEON | ARM64 (aarch64) | 2 |
+| Scalar fallback | All platforms | 1 |
+
+### Statistical Operations
+
+| Operation | Method | Description |
+|-----------|--------|-------------|
+| Sum | `sum(data)` | Sum of all elements |
+| Mean | `mean(data)` | Arithmetic mean |
+| Min | `min(data)` | Minimum value |
+| Max | `max(data)` | Maximum value |
+| Variance | `variance(data)` | Sample variance |
+| Summary | `compute_summary(data)` | Full statistical summary (count, sum, mean, variance, std_dev, min, max) |
+
+### Basic Usage
+
+```cpp
+#include <kcenon/monitoring/optimization/simd_aggregator.h>
+
+using namespace kcenon::monitoring;
+
+// Create with default configuration (SIMD enabled, auto-detect)
+auto aggregator = make_simd_aggregator();
+
+// Or with custom configuration
+simd_config config;
+config.enable_simd = true;
+config.vector_size = 8;
+config.alignment = 32;
+config.use_fma = true;
+
+auto aggregator = make_simd_aggregator(config);
+
+// Perform operations
+std::vector<double> data = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};
+
+auto sum_result = aggregator->sum(data);
+if (sum_result.is_ok()) {
+    std::cout << "Sum: " << sum_result.value() << std::endl;  // 36.0
+}
+
+auto mean_result = aggregator->mean(data);
+if (mean_result.is_ok()) {
+    std::cout << "Mean: " << mean_result.value() << std::endl;  // 4.5
+}
+
+// Full statistical summary
+auto summary = aggregator->compute_summary(data);
+if (summary.is_ok()) {
+    auto s = summary.value();
+    std::cout << "Count: " << s.count << std::endl;
+    std::cout << "Sum: " << s.sum << std::endl;
+    std::cout << "Mean: " << s.mean << std::endl;
+    std::cout << "Std Dev: " << s.std_dev << std::endl;
+    std::cout << "Min: " << s.min_val << std::endl;
+    std::cout << "Max: " << s.max_val << std::endl;
+}
+```
+
+### Runtime Capability Detection
+
+```cpp
+auto aggregator = make_simd_aggregator();
+
+// Query available SIMD instruction sets
+const auto& caps = aggregator->get_capabilities();
+std::cout << "SSE2: " << caps.sse2_available << std::endl;
+std::cout << "AVX2: " << caps.avx2_available << std::endl;
+std::cout << "NEON: " << caps.neon_available << std::endl;
+
+// Self-test to verify SIMD correctness
+auto test_result = aggregator->test_simd();
+if (test_result.is_ok() && test_result.value()) {
+    std::cout << "SIMD self-test passed" << std::endl;
+}
+```
+
+### Performance Statistics
+
+The aggregator tracks how often SIMD vs. scalar paths are used:
+
+```cpp
+auto aggregator = make_simd_aggregator();
+
+// Perform several operations...
+aggregator->sum(data);
+aggregator->mean(data);
+aggregator->min(data);
+
+// Check utilization
+const auto& stats = aggregator->get_statistics();
+std::cout << "Total operations: " << stats.total_operations << std::endl;
+std::cout << "SIMD operations: " << stats.simd_operations << std::endl;
+std::cout << "Scalar operations: " << stats.scalar_operations << std::endl;
+std::cout << "SIMD utilization: " << stats.get_simd_utilization() << "%" << std::endl;
+std::cout << "Elements processed: " << stats.total_elements_processed << std::endl;
+
+// Reset statistics
+aggregator->reset_statistics();
+```
+
+### Performance Characteristics
+
+- SIMD paths are automatically selected for datasets larger than `2 * vector_size` elements
+- Smaller datasets use scalar paths to avoid SIMD setup overhead
+- AVX2 processes 4 doubles per cycle; SSE2 and NEON process 2 doubles per cycle
+- Automatic handling of remainder elements that do not fill a full SIMD vector
+- All operations return `Result<T>` with proper error handling for empty inputs
+
+### Configuration Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enable_simd` | true | Enable/disable SIMD acceleration |
+| `vector_size` | 8 | SIMD vector width for processing |
+| `alignment` | 32 | Memory alignment for SIMD operations (bytes) |
+| `use_fma` | true | Use fused multiply-add if available |
+
+> [!NOTE]
+> The SIMD aggregator automatically falls back to scalar operations on platforms without supported SIMD instruction sets, or when SIMD is explicitly disabled via configuration. No code changes are required for cross-platform compatibility.
+
+---
+
 ## See Also
 
 - [API Reference](02-API_REFERENCE.md) - Complete API documentation
 - [Architecture Guide](01-ARCHITECTURE.md) - System design and patterns
 - [User Guide](guides/USER_GUIDE.md) - Usage examples and best practices
 - [Benchmarks](BENCHMARKS.md) - Performance metrics and comparisons
+- [Plugin API Reference](plugin_api_reference.md) - Plugin C ABI documentation
+- [Plugin Development Guide](plugin_development_guide.md) - How to build custom plugins
+- [Plugin Architecture](plugin_architecture.md) - Plugin system design
 
 ---
 
