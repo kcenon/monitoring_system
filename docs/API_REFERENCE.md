@@ -224,10 +224,10 @@ class metrics_collector {
 public:
     virtual std::string get_name() const = 0;
     virtual bool is_enabled() const = 0;
-    virtual result_void set_enabled(bool enable) = 0;
-    virtual result_void initialize() = 0;
-    virtual result_void cleanup() = 0;
-    virtual result<metrics_snapshot> collect() = 0;
+    virtual common::VoidResult set_enabled(bool enable) = 0;
+    virtual common::VoidResult initialize() = 0;
+    virtual common::VoidResult cleanup() = 0;
+    virtual common::Result<metrics_snapshot> collect() = 0;
 };
 ```
 
@@ -238,9 +238,9 @@ Interface for objects that can be monitored.
 class monitorable {
 public:
     virtual std::string get_name() const = 0;
-    virtual result<metrics_snapshot> get_metrics() const = 0;
-    virtual result_void reset_metrics() = 0;
-    virtual result<std::string> get_status() const = 0;
+    virtual common::Result<metrics_snapshot> get_metrics() const = 0;
+    virtual common::VoidResult reset_metrics() = 0;
+    virtual common::Result<std::string> get_status() const = 0;
 };
 ```
 
@@ -308,10 +308,10 @@ public:
     
     explicit adaptive_optimizer(const optimization_config& config = {});
     
-    result<bool> start();
-    result<bool> stop();
-    result<optimization_decision> analyze_and_optimize();
-    result<bool> apply_optimization(const optimization_decision& decision);
+    common::Result<bool> start();
+    common::Result<bool> stop();
+    common::Result<optimization_decision> analyze_and_optimize();
+    common::Result<bool> apply_optimization(const optimization_decision& decision);
 };
 ```
 
@@ -1072,15 +1072,15 @@ public:
     health_monitor(const health_monitor_config& config = {});
     
     // Register health checks
-    result<bool> register_check(const std::string& name,
+    common::Result<bool> register_check(const std::string& name,
                                 std::shared_ptr<health_check> check);
-    
+
     // Add dependencies
-    result<bool> add_dependency(const std::string& dependent,
+    common::Result<bool> add_dependency(const std::string& dependent,
                                 const std::string& dependency);
-    
+
     // Perform checks
-    result<health_check_result> check(const std::string& name);
+    common::Result<health_check_result> check(const std::string& name);
     std::unordered_map<std::string, health_check_result> check_all();
     
     // Get status
@@ -1135,25 +1135,25 @@ Manages distributed traces across services.
 class distributed_tracer {
 public:
     // Start spans
-    result<std::shared_ptr<trace_span>> start_span(
+    common::Result<std::shared_ptr<trace_span>> start_span(
         const std::string& operation_name,
         const std::string& service_name = "monitoring_system");
-    
-    result<std::shared_ptr<trace_span>> start_child_span(
+
+    common::Result<std::shared_ptr<trace_span>> start_child_span(
         const trace_span& parent,
         const std::string& operation_name);
-    
+
     // Context propagation
     trace_context extract_context(const trace_span& span) const;
-    
+
     template<typename Carrier>
     void inject_context(const trace_context& context, Carrier& carrier);
-    
+
     template<typename Carrier>
-    result<trace_context> extract_context_from_carrier(const Carrier& carrier);
-    
+    common::Result<trace_context> extract_context_from_carrier(const Carrier& carrier);
+
     // Finish span
-    result<bool> finish_span(std::shared_ptr<trace_span> span);
+    common::Result<bool> finish_span(std::shared_ptr<trace_span> span);
 };
 ```
 
@@ -1202,12 +1202,12 @@ Abstract base class for all storage implementations.
 ```cpp
 class storage_backend {
 public:
-    virtual result<bool> initialize() = 0;
-    virtual result<bool> write(const std::string& key, const std::string& value) = 0;
-    virtual result<std::string> read(const std::string& key) = 0;
-    virtual result<bool> remove(const std::string& key) = 0;
-    virtual result<std::vector<std::string>> list(const std::string& prefix = "") = 0;
-    virtual result<bool> flush() = 0;
+    virtual common::Result<bool> initialize() = 0;
+    virtual common::Result<bool> write(const std::string& key, const std::string& value) = 0;
+    virtual common::Result<std::string> read(const std::string& key) = 0;
+    virtual common::Result<bool> remove(const std::string& key) = 0;
+    virtual common::Result<std::vector<std::string>> list(const std::string& prefix = "") = 0;
+    virtual common::Result<bool> flush() = 0;
     virtual storage_backend_type get_type() const = 0;
 };
 ```
@@ -1251,19 +1251,19 @@ Performs real-time aggregation on metric streams.
 class stream_aggregator {
 public:
     // Configure aggregation
-    result<bool> add_aggregation(const std::string& metric_name,
+    common::Result<bool> add_aggregation(const std::string& metric_name,
                                  aggregation_type type,
                                  std::chrono::seconds window);
-    
+
     // Process values
-    result<bool> add_value(const std::string& metric_name, double value);
-    
+    common::Result<bool> add_value(const std::string& metric_name, double value);
+
     // Get results
-    result<aggregation_result> get_aggregation(const std::string& metric_name);
-    
+    common::Result<aggregation_result> get_aggregation(const std::string& metric_name);
+
     // Windowing
-    result<bool> set_window_size(std::chrono::seconds size);
-    result<bool> set_sliding_interval(std::chrono::seconds interval);
+    common::Result<bool> set_window_size(std::chrono::seconds size);
+    common::Result<bool> set_sliding_interval(std::chrono::seconds interval);
 };
 ```
 
@@ -1292,10 +1292,10 @@ Base class for different buffering strategies.
 ```cpp
 class buffering_strategy {
 public:
-    virtual result<bool> add(const metric_data& data) = 0;
-    virtual result<std::vector<metric_data>> get_batch() = 0;
+    virtual common::Result<bool> add(const metric_data& data) = 0;
+    virtual common::Result<std::vector<metric_data>> get_batch() = 0;
     virtual bool should_flush() const = 0;
-    virtual result<bool> flush() = 0;
+    virtual common::Result<bool> flush() = 0;
 };
 ```
 
@@ -1321,8 +1321,8 @@ public:
     circuit_breaker(std::string name, circuit_breaker_config config = {});
     
     // Execute with circuit breaker protection
-    result<T> execute(std::function<result<T>()> operation,
-                     std::function<result<T>()> fallback = nullptr);
+    common::Result<T> execute(std::function<common::Result<T>()> operation,
+                     std::function<common::Result<T>()> fallback = nullptr);
     
     // Manual control
     void open();
@@ -1359,10 +1359,10 @@ public:
     retry_policy(retry_config config = {});
     
     // Execute with retry
-    result<T> execute(std::function<result<T>()> operation);
-    
+    common::Result<T> execute(std::function<common::Result<T>()> operation);
+
     // Execute async with retry
-    std::future<result<T>> execute_async(std::function<result<T>()> operation);
+    std::future<common::Result<T>> execute_async(std::function<common::Result<T>()> operation);
 };
 ```
 
@@ -1391,7 +1391,7 @@ public:
     
     // Execute within boundary
     template<typename T>
-    result<T> execute(std::function<result<T>()> operation);
+    common::Result<T> execute(std::function<common::Result<T>()> operation);
     
     // Set error handler
     void set_error_handler(std::function<void(const error_info&)> handler);
@@ -1417,14 +1417,14 @@ public:
     opentelemetry_adapter(const otel_config& config = {});
     
     // Convert to OpenTelemetry formats
-    result<otel_span> convert_span(const trace_span& span);
-    result<otel_metric> convert_metric(const metric_data& metric);
-    result<otel_log> convert_log(const log_entry& log);
-    
+    common::Result<otel_span> convert_span(const trace_span& span);
+    common::Result<otel_metric> convert_metric(const metric_data& metric);
+    common::Result<otel_log> convert_log(const log_entry& log);
+
     // Export to OpenTelemetry
-    result<bool> export_traces(const std::vector<trace_span>& spans);
-    result<bool> export_metrics(const std::vector<metric_data>& metrics);
-    result<bool> export_logs(const std::vector<log_entry>& logs);
+    common::Result<bool> export_traces(const std::vector<trace_span>& spans);
+    common::Result<bool> export_metrics(const std::vector<metric_data>& metrics);
+    common::Result<bool> export_logs(const std::vector<log_entry>& logs);
 };
 ```
 
@@ -1515,7 +1515,7 @@ circuit_breaker<std::string> breaker("external_api", config);
 
 auto result = breaker.execute(
     []() { return call_external_api(); },
-    []() { return result<std::string>::success("fallback_value"); }
+    []() -> common::Result<std::string> { return common::ok(std::string("fallback_value")); }
 );
 ```
 
@@ -1575,7 +1575,7 @@ All public interfaces in the monitoring system are thread-safe unless explicitly
 
 ## Best Practices
 
-1. **Error Handling**: Always check `result<T>` return values
+1. **Error Handling**: Always check `common::Result<T>` return values
 2. **Resource Management**: Use RAII patterns (scoped_timer, scoped_span)
 3. **Configuration**: Validate configs before use
 4. **Monitoring**: Start with conservative thresholds, tune based on metrics
@@ -1872,7 +1872,7 @@ Phase 4 focuses on **core foundation stability** rather than feature completenes
 - [Changelog](CHANGELOG.md) - Version history and changes
 ---
 
-*Last Updated: 2025-12-10*
+*Last Updated: 2026-02-08*
 
 ---
 

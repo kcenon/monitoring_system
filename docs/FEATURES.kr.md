@@ -2,8 +2,8 @@
 
 **언어:** [English](README.md) | **한국어**
 
-**최종 업데이트**: 2025-11-28
-**버전**: 3.0
+**최종 업데이트**: 2026-02-08
+**버전**: 0.4.0
 
 이 문서는 Monitoring System의 모든 기능에 대한 포괄적인 세부 정보를 제공합니다.
 
@@ -19,6 +19,9 @@
 - [스토리지 백엔드](#스토리지-백엔드)
 - [성능 특성](#성능-특성)
 - [통합 기능](#통합-기능)
+- [플러그인 시스템](#플러그인-시스템)
+- [적응형 모니터링](#적응형-모니터링)
+- [SIMD 최적화](#simd-최적화)
 
 ---
 
@@ -546,8 +549,422 @@ auto monitoring = create_monitoring_system({
 
 ---
 
-**최종 업데이트**: 2025-11-28
-**버전**: 3.0
+**최종 업데이트**: 2026-02-08
+**버전**: 0.4.0
+
+---
+
+## 플러그인 시스템
+
+### 개요
+
+플러그인 시스템은 런타임에 메트릭 수집기를 동적으로 로드할 수 있는 확장 가능한 아키텍처를 제공합니다. 플러그인은 공유 라이브러리(`.so`/`.dylib`/`.dll`)로 컴파일되며, API 버전 호환성 검사가 포함된 크로스 플랫폼 로더를 통해 로드됩니다. 이를 통해 컨테이너 모니터링, 하드웨어 센서 등의 선택적 기능을 필요한 경우에만 로드하여 바이너리 크기와 수집 오버헤드를 줄일 수 있습니다.
+
+**아키텍처 구성요소**:
+
+| 구성요소 | 헤더 | 목적 |
+|----------|------|------|
+| **collector_plugin** | `plugins/collector_plugin.h` | 모든 수집기 플러그인의 순수 가상 인터페이스 |
+| **plugin_api** | `plugins/plugin_api.h` | 크로스 컴파일러 호환을 위한 C ABI 인터페이스 |
+| **plugin_loader** | `plugins/plugin_loader.h` | 동적 공유 라이브러리 로딩 및 심볼 해석 |
+| **collector_registry** | `plugins/collector_registry.h` | 플러그인 수명 주기 관리를 위한 싱글턴 레지스트리 |
+
+### 플러그인 카테고리
+
+플러그인은 `plugin_category` 열거형으로 분류됩니다:
+
+| 카테고리 | 설명 | 예시 플러그인 |
+|----------|------|---------------|
+| `system` | 시스템 통합 (스레드, 로거, 컨테이너) | 컨테이너 플러그인 |
+| `hardware` | 하드웨어 센서 (GPU, 온도, 배터리, 전력) | 하드웨어 플러그인 |
+| `platform` | 플랫폼 특화 (VM, 업타임, 인터럽트) | - |
+| `network` | 네트워크 메트릭 (연결성, 대역폭) | - |
+| `process` | 프로세스 수준 메트릭 (리소스, 성능) | - |
+| `custom` | 사용자 정의 플러그인 | 커스텀 구현 |
+
+### 제공되는 플러그인 타입
+
+#### 컨테이너 플러그인
+
+컨테이너 플러그인(`plugins/container/container_plugin.h`)은 Docker, Kubernetes, cgroup 기반 컨테이너 런타임 모니터링을 제공합니다.
+
+**지원 런타임**: Docker, containerd, Podman, CRI-O (자동 감지 지원)
+
+**메트릭**: 컨테이너 CPU/메모리/네트워크/I/O, 실행 중인 컨테이너 수, Kubernetes 파드/디플로이먼트 메트릭, cgroup CPU 시간 및 메모리 사용량/제한.
+
+```cpp
+#include <kcenon/monitoring/plugins/container/container_plugin.h>
+
+using namespace kcenon::monitoring::plugins;
+
+// Create with custom configuration
+container_plugin_config config;
+config.enable_docker = true;
+config.enable_kubernetes = false;
+config.docker_socket = "/var/run/docker.sock";
+config.collect_network_metrics = true;
+
+auto plugin = container_plugin::create(config);
+
+// Check container environment before loading
+if (container_plugin::is_running_in_container()) {
+    registry.register_plugin(std::move(plugin));
+}
+
+// Detect runtime automatically
+auto runtime = container_plugin::detect_runtime();
+```
+
+#### 하드웨어 플러그인
+
+하드웨어 플러그인(`plugins/hardware/hardware_plugin.h`)은 배터리, 전력 소비, 온도, GPU 모니터링을 데스크톱/노트북 환경에 제공합니다.
+
+**메트릭**: 배터리 잔량/건강/사이클, 전력 소비(와트/RAPL), CPU/GPU/메인보드 온도, GPU 활용도/VRAM/클럭/팬 속도.
+
+```cpp
+#include <kcenon/monitoring/plugins/hardware/hardware_plugin.h>
+
+using namespace kcenon::monitoring::plugins;
+
+// Create with custom configuration
+hardware_plugin_config config;
+config.enable_battery = true;
+config.enable_temperature = true;
+config.enable_gpu = true;
+config.gpu_collect_utilization = true;
+config.gpu_collect_memory = true;
+
+auto plugin = hardware_plugin::create(config);
+
+// Check individual sensor availability
+if (plugin->is_battery_available()) {
+    // Battery metrics will be collected
+}
+if (plugin->is_gpu_available()) {
+    // GPU metrics will be collected
+}
+```
+
+### 플러그인 로딩 및 등록 흐름
+
+플러그인 수명 주기는 다음 순서를 따릅니다:
+
+1. **로드**: `dynamic_plugin_loader`가 공유 라이브러리를 열고 `create_plugin`, `destroy_plugin`, `get_plugin_info` 심볼을 해석
+2. **검증**: `plugin_api_metadata.api_version`을 `PLUGIN_API_VERSION`과 비교하여 API 버전 호환성 확인
+3. **생성**: 해석된 `create_plugin` 함수를 통해 플러그인 인스턴스 생성
+4. **등록**: `collector_registry`에 추가하여 소유권 관리
+5. **초기화**: 구성 매개변수와 함께 `initialize()` 호출
+6. **수집**: `interval()`에 따라 주기적으로 `collect()` 호출
+7. **종료**: 플러그인 파괴 및 라이브러리 언로드 전에 `shutdown()` 호출
+
+```cpp
+// Load and register a plugin from a shared library
+auto& registry = collector_registry::instance();
+bool loaded = registry.load_plugin("/path/to/libmy_plugin.so");
+
+if (!loaded) {
+    std::cerr << "Error: " << registry.get_plugin_loader_error() << std::endl;
+}
+
+// Access a registered plugin
+if (auto* plugin = registry.get_plugin("my_collector")) {
+    auto metrics = plugin->collect();
+}
+
+// List plugins by category
+auto hw_plugins = registry.get_plugins_by_category(plugin_category::hardware);
+
+// Factory-based lazy registration
+registry.register_factory<my_collector_plugin>("my_collector");
+
+// Initialize all plugins at once
+registry.initialize_all(config);
+
+// Shutdown all plugins
+registry.shutdown_all();
+```
+
+### 커스텀 플러그인 구현
+
+플러그인은 세 개의 C 링키지 함수를 내보내야 합니다. `IMPLEMENT_PLUGIN` 매크로로 간소화할 수 있습니다:
+
+```cpp
+#include <kcenon/monitoring/plugins/plugin_api.h>
+#include <kcenon/monitoring/plugins/collector_plugin.h>
+
+class my_sensor_plugin : public kcenon::monitoring::collector_plugin {
+public:
+    auto name() const -> std::string_view override { return "my_sensor"; }
+
+    auto collect() -> std::vector<metric> override {
+        // Collect metrics from custom hardware/source
+        return { /* ... */ };
+    }
+
+    auto interval() const -> std::chrono::milliseconds override {
+        return std::chrono::seconds(5);
+    }
+
+    auto is_available() const -> bool override {
+        return true; // Check hardware availability
+    }
+
+    auto get_metric_types() const -> std::vector<std::string> override {
+        return {"gauge"};
+    }
+};
+
+// Export required C ABI functions
+IMPLEMENT_PLUGIN(
+    my_sensor_plugin,    // Plugin class
+    "my_sensor",         // Plugin name
+    "1.0.0",             // Version
+    "My Sensor Plugin",  // Description
+    "Author Name",       // Author
+    "hardware"           // Category
+)
+```
+
+> [!TIP]
+> 자세한 플러그인 개발 지침은 [Plugin Development Guide](plugin_development_guide.md)를 참조하세요. 전체 API 참조는 [Plugin API Reference](plugin_api_reference.md)를, 아키텍처 세부 사항은 [Plugin Architecture](plugin_architecture.md)를 참조하세요.
+
+---
+
+## 적응형 모니터링
+
+### 개요
+
+적응형 모니터링 시스템은 현재 시스템 리소스 사용률에 따라 수집 간격, 샘플링 비율, 메트릭 세분화 수준을 자동으로 조정합니다. 고부하 상황에서는 모니터링 오버헤드를 최소화하고, 유휴 시에는 상세한 데이터를 제공합니다.
+
+**주요 기능**:
+- 자동 부하 수준 감지 (idle, low, moderate, high, critical)
+- 수준별 설정 가능한 수집 간격 및 샘플링 비율
+- 세 가지 적응 전략: conservative, balanced, aggressive
+- 진동 방지를 위한 히스테리시스 및 쿨다운 메커니즘
+- 안정적인 부하 추정을 위한 지수 평활법
+- RAII 스코프 관리를 통한 스레드 안전 운영
+
+### 적응 전략
+
+| 전략 | 동작 | 사용 사례 |
+|------|------|-----------|
+| `conservative` | 유효 부하를 20% 줄여 시스템 안정성 우선 | 엄격한 SLA가 있는 프로덕션 서버 |
+| `balanced` | 조정 없이 원시 부하 메트릭 직접 사용 | 범용 모니터링 |
+| `aggressive` | 유효 부하를 20% 높여 모니터링 상세도 유지 | 개발 및 디버깅 환경 |
+
+### 부하 수준 및 기본값
+
+| 부하 수준 | CPU 임계값 | 기본 간격 | 기본 샘플링 비율 |
+|-----------|-----------|----------|-----------------|
+| `idle` | < 20% | 100ms | 100% |
+| `low` | 20-40% | 250ms | 80% |
+| `moderate` | 40-60% | 500ms | 50% |
+| `high` | 60-80% | 1000ms | 20% |
+| `critical` | > 80% | 5000ms | 10% |
+
+### 기본 사용법
+
+```cpp
+#include <kcenon/monitoring/adaptive/adaptive_monitor.h>
+
+using namespace kcenon::monitoring;
+
+// Configure adaptive behavior
+adaptive_config config;
+config.strategy = adaptation_strategy::balanced;
+config.idle_interval = std::chrono::milliseconds(100);
+config.critical_interval = std::chrono::milliseconds(5000);
+config.smoothing_factor = 0.7;
+config.enable_hysteresis = true;
+config.hysteresis_margin = 5.0;
+
+// Register a collector with the global adaptive monitor
+auto& monitor = global_adaptive_monitor();
+monitor.register_collector("my_service", my_collector, config);
+monitor.start();
+
+// Check adaptation statistics
+auto stats = monitor.get_collector_stats("my_service");
+if (stats.is_ok()) {
+    auto s = stats.value();
+    std::cout << "Current load: " << static_cast<int>(s.current_load_level) << std::endl;
+    std::cout << "Sampling rate: " << s.current_sampling_rate << std::endl;
+    std::cout << "Total adaptations: " << s.total_adaptations << std::endl;
+}
+
+// Stop when done
+monitor.stop();
+```
+
+### RAII 스코프 관리
+
+`adaptive_scope` 클래스는 자동 등록 및 정리를 제공합니다:
+
+```cpp
+#include <kcenon/monitoring/adaptive/adaptive_monitor.h>
+
+using namespace kcenon::monitoring;
+
+{
+    // Automatically registers collector with the global adaptive monitor
+    adaptive_scope scope("my_service", my_collector, config);
+
+    if (scope.is_registered()) {
+        // Collector is active and will be adaptively monitored
+    }
+    // Collector is automatically unregistered when scope exits
+}
+```
+
+### 히스테리시스 및 쿨다운
+
+임계값 경계에서의 급격한 진동을 방지하기 위해:
+
+- **히스테리시스**: 부하가 임계값을 `hysteresis_margin`(기본: 5%)만큼 초과해야 수준 변경이 발생
+- **쿨다운**: 수준 변경 사이에 최소 `cooldown_period`(기본: 1000ms)가 경과해야 함
+
+```cpp
+adaptive_config config;
+config.enable_hysteresis = true;
+config.hysteresis_margin = 5.0;      // 5% margin above/below thresholds
+config.enable_cooldown = true;
+config.cooldown_period = std::chrono::milliseconds(1000);
+```
+
+---
+
+## SIMD 최적화
+
+### 개요
+
+SIMD 집계기는 SIMD(Single Instruction Multiple Data) 명령어를 사용하여 메트릭 데이터에 대한 고성능 통계 연산을 제공합니다. 런타임에 사용 가능한 명령어 세트를 자동 감지하며, SIMD를 사용할 수 없거나 데이터셋이 너무 작아 이점이 없는 경우 스칼라 연산으로 자동 대체됩니다.
+
+**지원 명령어 세트**:
+
+| 명령어 세트 | 플랫폼 | 벡터 폭 (double) |
+|-------------|--------|-------------------|
+| AVX2 | x86_64 | 4 |
+| SSE2 | x86_64 | 2 |
+| NEON | ARM64 (aarch64) | 2 |
+| 스칼라 대체 | 모든 플랫폼 | 1 |
+
+### 통계 연산
+
+| 연산 | 메서드 | 설명 |
+|------|--------|------|
+| 합계 | `sum(data)` | 모든 요소의 합 |
+| 평균 | `mean(data)` | 산술 평균 |
+| 최솟값 | `min(data)` | 최솟값 |
+| 최댓값 | `max(data)` | 최댓값 |
+| 분산 | `variance(data)` | 표본 분산 |
+| 요약 | `compute_summary(data)` | 전체 통계 요약 (count, sum, mean, variance, std_dev, min, max) |
+
+### 기본 사용법
+
+```cpp
+#include <kcenon/monitoring/optimization/simd_aggregator.h>
+
+using namespace kcenon::monitoring;
+
+// Create with default configuration (SIMD enabled, auto-detect)
+auto aggregator = make_simd_aggregator();
+
+// Or with custom configuration
+simd_config config;
+config.enable_simd = true;
+config.vector_size = 8;
+config.alignment = 32;
+config.use_fma = true;
+
+auto aggregator = make_simd_aggregator(config);
+
+// Perform operations
+std::vector<double> data = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};
+
+auto sum_result = aggregator->sum(data);
+if (sum_result.is_ok()) {
+    std::cout << "Sum: " << sum_result.value() << std::endl;  // 36.0
+}
+
+auto mean_result = aggregator->mean(data);
+if (mean_result.is_ok()) {
+    std::cout << "Mean: " << mean_result.value() << std::endl;  // 4.5
+}
+
+// Full statistical summary
+auto summary = aggregator->compute_summary(data);
+if (summary.is_ok()) {
+    auto s = summary.value();
+    std::cout << "Count: " << s.count << std::endl;
+    std::cout << "Sum: " << s.sum << std::endl;
+    std::cout << "Mean: " << s.mean << std::endl;
+    std::cout << "Std Dev: " << s.std_dev << std::endl;
+    std::cout << "Min: " << s.min_val << std::endl;
+    std::cout << "Max: " << s.max_val << std::endl;
+}
+```
+
+### 런타임 기능 감지
+
+```cpp
+auto aggregator = make_simd_aggregator();
+
+// Query available SIMD instruction sets
+const auto& caps = aggregator->get_capabilities();
+std::cout << "SSE2: " << caps.sse2_available << std::endl;
+std::cout << "AVX2: " << caps.avx2_available << std::endl;
+std::cout << "NEON: " << caps.neon_available << std::endl;
+
+// Self-test to verify SIMD correctness
+auto test_result = aggregator->test_simd();
+if (test_result.is_ok() && test_result.value()) {
+    std::cout << "SIMD self-test passed" << std::endl;
+}
+```
+
+### 성능 통계
+
+집계기는 SIMD 경로와 스칼라 경로의 사용 빈도를 추적합니다:
+
+```cpp
+auto aggregator = make_simd_aggregator();
+
+// Perform several operations...
+aggregator->sum(data);
+aggregator->mean(data);
+aggregator->min(data);
+
+// Check utilization
+const auto& stats = aggregator->get_statistics();
+std::cout << "Total operations: " << stats.total_operations << std::endl;
+std::cout << "SIMD operations: " << stats.simd_operations << std::endl;
+std::cout << "Scalar operations: " << stats.scalar_operations << std::endl;
+std::cout << "SIMD utilization: " << stats.get_simd_utilization() << "%" << std::endl;
+std::cout << "Elements processed: " << stats.total_elements_processed << std::endl;
+
+// Reset statistics
+aggregator->reset_statistics();
+```
+
+### 성능 특성
+
+- SIMD 경로는 `2 * vector_size` 요소보다 큰 데이터셋에 대해 자동으로 선택됩니다
+- 작은 데이터셋은 SIMD 설정 오버헤드를 피하기 위해 스칼라 경로를 사용합니다
+- AVX2는 사이클당 4개의 double을 처리합니다; SSE2와 NEON은 사이클당 2개의 double을 처리합니다
+- SIMD 벡터를 완전히 채우지 못하는 나머지 요소는 자동으로 처리됩니다
+- 모든 연산은 빈 입력에 대한 적절한 오류 처리와 함께 `Result<T>`를 반환합니다
+
+### 설정 옵션
+
+| 옵션 | 기본값 | 설명 |
+|------|--------|------|
+| `enable_simd` | true | SIMD 가속 활성화/비활성화 |
+| `vector_size` | 8 | 처리를 위한 SIMD 벡터 폭 |
+| `alignment` | 32 | SIMD 연산을 위한 메모리 정렬 (바이트) |
+| `use_fma` | true | 사용 가능한 경우 fused multiply-add 사용 |
+
+> [!NOTE]
+> SIMD 집계기는 지원되는 SIMD 명령어 세트가 없는 플랫폼이나 설정을 통해 SIMD를 명시적으로 비활성화한 경우 자동으로 스칼라 연산으로 대체됩니다. 크로스 플랫폼 호환을 위한 코드 변경이 필요하지 않습니다.
 
 ---
 
