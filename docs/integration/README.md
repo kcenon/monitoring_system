@@ -133,4 +133,4 @@ monitor->setGauge("users.active", active_user_count);
 ## Additional Resources
 
 - [Monitoring System API Reference](../API_REFERENCE.md)
-- [Ecosystem Integration Guide](../../../ECOSYSTEM_INTEGRATION.md)
+- [Ecosystem Integration Guide](../../../ECOSYSTEM.md)

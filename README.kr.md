@@ -25,7 +25,7 @@
 
 | 의존성 | 버전 | 필수 | 설명 |
 |--------|------|------|------|
-| C++20 컴파일러 | GCC 11+ / Clang 14+ / MSVC 2022+ / Apple Clang 14+ | 예 | C++20 기능 필요 |
+| C++20 컴파일러 | GCC 13+ / Clang 17+ / MSVC 2022+ / Apple Clang 14+ | 예 | thread_system 의존성으로 인한 높은 요구사항 |
 | CMake | 3.20+ | 예 | 빌드 시스템 |
 | [common_system](https://github.com/kcenon/common_system) | latest | 예 | 공통 인터페이스 (IMonitor, Result<T>) |
 | [thread_system](https://github.com/kcenon/thread_system) | latest | 예 | 스레드 풀 및 비동기 작업 |
@@ -78,7 +78,7 @@ common_system (interfaces) ← monitoring_system implements IMonitor
 
 **이점**: 인터페이스 전용 의존성, 독립 컴파일, 런타임 DI, 명확한 분리
 
-📖 [완전한 생태계 통합 가이드 →](../ECOSYSTEM_INTEGRATION.md)
+📖 [완전한 생태계 통합 가이드 →](../ECOSYSTEM.md)
 
 ---
 
@@ -411,7 +411,7 @@ auto collector = create_threaded_collector(thread_pool);
 monitoring_system::set_logger(logger_system::get_logger());
 ```
 
-🌐 [생태계 통합 가이드 →](../ECOSYSTEM_INTEGRATION.md)
+🌐 [생태계 통합 가이드 →](../ECOSYSTEM.md)
 
 ---
 

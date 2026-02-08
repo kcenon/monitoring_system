@@ -25,7 +25,7 @@ Modern C++20 observability platform with comprehensive monitoring, distributed t
 
 | Dependency | Version | Required | Description |
 |------------|---------|----------|-------------|
-| C++20 Compiler | GCC 11+ / Clang 14+ / MSVC 2022+ / Apple Clang 14+ | Yes | C++20 features required |
+| C++20 Compiler | GCC 13+ / Clang 17+ / MSVC 2022+ / Apple Clang 14+ | Yes | Higher requirements due to thread_system dependency |
 | CMake | 3.20+ | Yes | Build system |
 | [common_system](https://github.com/kcenon/common_system) | latest | Yes | Common interfaces (IMonitor, Result<T>) |
 | [thread_system](https://github.com/kcenon/thread_system) | latest | Yes | Thread pool and async operations |
@@ -78,7 +78,7 @@ common_system (interfaces) ← monitoring_system implements IMonitor
 
 **Benefits**: Interface-only dependencies, independent compilation, runtime DI, clean separation
 
-📖 [Complete Ecosystem Integration Guide →](../ECOSYSTEM_INTEGRATION.md)
+📖 [Complete Ecosystem Integration Guide →](../ECOSYSTEM.md)
 
 ---
 
@@ -450,7 +450,7 @@ auto collector = create_threaded_collector(thread_pool);
 monitoring_system::set_logger(logger_system::get_logger());
 ```
 
-🌐 [Ecosystem Integration Guide →](../ECOSYSTEM_INTEGRATION.md)
+🌐 [Ecosystem Integration Guide →](../ECOSYSTEM.md)
 
 ---
 
