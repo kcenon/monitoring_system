@@ -140,6 +140,11 @@ add_executable(monitoring_system_tests
 
     # Hot-path helper tests (Issue #387)
     test_hot_path_helper.cpp
+
+    # Alert system tests (alert types, triggers, manager)
+    test_alert_types.cpp
+    test_alert_triggers.cpp
+    test_alert_manager.cpp
 )
 
 # Interface compilation test (standalone executable with main())
