@@ -19,6 +19,7 @@ if(benchmark_FOUND OR BENCHMARK_FOUND)
 
     # Benchmark executable
     add_executable(monitoring_benchmarks
+        core_metrics_bench.cpp
         metric_collection_bench.cpp
         event_bus_bench.cpp
         collector_overhead_bench.cpp
