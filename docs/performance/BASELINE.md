@@ -1,342 +1,191 @@
 # Baseline Performance Metrics
 
-**Document Version**: 2.0
+**Document Version**: 3.0
 **Created**: 2025-10-07
-**Updated**: 2025-11-26
+**Updated**: 2026-02-12
 **System**: monitoring_system
 **Purpose**: Establish baseline performance metrics for regression detection
-
-
-> **Note**: This file consolidates both user-friendly summaries and detailed technical benchmarks.
-> Previously split between docs/performance/ and benchmarks/, now unified per standardization effort.
----
-
-> **📖 Unified Document**: This file contains both user-friendly performance summaries
-> and detailed benchmark templates for regression detection.
 
 ---
 
 ## Overview
 
-This document records baseline performance metrics for the monitoring_system. These metrics serve as reference points for detecting performance regressions during development.
+This document defines the benchmark suite and performance targets for the monitoring_system. Actual measurement values are populated by the CI workflow (`benchmarks.yml`) on each benchmark run. Results are stored in `benchmark_results.json`.
 
-**Regression Threshold**: <5% performance degradation is acceptable. Any regression >5% should be investigated and justified.
-
+**Regression Threshold**: Any degradation >5% from baseline triggers investigation.
 **Critical Requirement**: Monitoring overhead must remain <1% of monitored operation time.
 
 ---
 
 ## Test Environment
 
-### Hardware Specifications
-- **CPU**: To be recorded on first benchmark run
-- **Cores**: To be recorded on first benchmark run
-- **RAM**: To be recorded on first benchmark run
-- **OS**: macOS / Linux / Windows
+| Property | Value |
+|----------|-------|
+| **C++ Standard** | C++20 |
+| **Build Type** | Release (`-O3 -DNDEBUG`) |
+| **Framework** | Google Benchmark |
+| **CMake Version** | 3.20+ |
 
-### Software Configuration
-- **Compiler**: Clang/GCC/MSVC (see CI workflow)
-- **C++ Standard**: C++20
-- **Build Type**: Release with optimizations
-- **CMake Version**: 3.16+
+Hardware details are recorded automatically in `benchmark_results.json` by Google Benchmark.
 
 ---
 
-## Benchmark Categories
+## Benchmark Suite
 
-### 1. Metric Collection Performance
+### 1. Metric Collection — `metric_collection_bench.cpp`
 
-#### 1.1 Counter Operations
-**Metric**: Time to increment/record a counter
-**Test File**: `metric_collection_bench.cpp`
+Measures profiler recording and retrieval latency.
 
-| Operation | Mean (ns) | Median (ns) | P95 (ns) | P99 (ns) | Notes |
-|-----------|-----------|-------------|----------|----------|-------|
-| Increment (atomic) | TBD | TBD | TBD | TBD | Thread-safe |
-| Increment (local) | TBD | TBD | TBD | TBD | Thread-local |
-| Record value | TBD | TBD | TBD | TBD | |
-| Get value | TBD | TBD | TBD | TBD | Read operation |
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_ProfilerRecording_Single` | Record a single profiling entry | <100 ns |
+| `BM_ProfilerRecording_Multiple` | Record multiple profiling entries sequentially | <500 ns |
+| `BM_ProfilerRetrieval_Single` | Retrieve a single recorded profile | <200 ns |
+| `BM_ProfilerRetrieval_All` | Retrieve all recorded profiles | <1 μs |
+| `BM_ProfilerRecording_Concurrent` | Concurrent recording from 4 threads | Linear scaling |
+| `BM_ScopedTimer_Overhead` | RAII scoped timer construction + destruction | <50 ns |
 
-**Target**: <100ns for atomic increment
-**Status**: ⏳ Awaiting initial benchmark run
+### 2. Collector Overhead — `collector_overhead_bench.cpp`
 
-#### 1.2 Histogram Updates
-**Metric**: Time to record value in histogram
-**Test File**: `metric_collection_bench.cpp`
+Measures monitoring infrastructure overhead: TLS buffering, central collection, and real workload impact.
 
-| Histogram Type | Mean (ns) | Median (ns) | P95 (ns) | P99 (ns) | Notes |
-|----------------|-----------|-------------|----------|----------|-------|
-| Linear buckets | TBD | TBD | TBD | TBD | Fixed intervals |
-| Exponential buckets | TBD | TBD | TBD | TBD | Powers of 2 |
-| Custom buckets | TBD | TBD | TBD | TBD | User-defined |
+#### 2.1 TLS Buffer Performance
 
-**Target**: <200ns per update
-**Status**: ⏳ Awaiting initial benchmark run
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_TLSBuffer_Record_Single` | Record single entry to thread-local buffer | <100 ns |
+| `BM_TLSBuffer_Record_AutoFlush` | Record triggering automatic flush | — |
+| `BM_TLSBuffer_Flush` | Manual buffer flush to central collector | <1 μs |
+| `BM_TLSBuffer_BufferSize` | Buffer size variants: 64, 128, 256, 512, 1024 | Sublinear growth |
 
-#### 1.3 Gauge Operations
-**Metric**: Time to set/update a gauge value
-**Test File**: `metric_collection_bench.cpp`
+#### 2.2 Central Collector Performance
 
-| Operation | Mean (ns) | Median (ns) | P95 (ns) | P99 (ns) | Notes |
-|-----------|-----------|-------------|----------|----------|-------|
-| Set value | TBD | TBD | TBD | TBD | |
-| Increment | TBD | TBD | TBD | TBD | |
-| Decrement | TBD | TBD | TBD | TBD | |
-| Get value | TBD | TBD | TBD | TBD | |
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_CentralCollector_ReceiveBatch` | Receive batch: 64, 128, 256, 512 entries | Linear scaling |
+| `BM_CentralCollector_SingleOperation` | Record and collect single operation | <500 ns |
+| `BM_CentralCollector_ManyOperations` | Record 10–500 operations then collect | Linear scaling |
+| `BM_CentralCollector_GetProfile` | Retrieve collected profile data | <1 μs |
 
-**Status**: ⏳ Awaiting initial benchmark run
+#### 2.3 Monitoring Overhead (Workload Comparison)
 
-### 2. Event Bus Performance
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_Workload_Baseline` | Compute workload without monitoring | Reference |
+| `BM_Workload_WithMonitoring` | Same workload with monitoring enabled | <1% overhead |
+| `BM_IO_Workload_Baseline` | I/O workload without monitoring | Reference |
+| `BM_IO_Workload_WithMonitoring` | Same I/O workload with monitoring enabled | <1% overhead |
 
-#### 2.1 Event Publication
-**Metric**: Time to publish event to subscribers
-**Test File**: `event_bus_bench.cpp`
+#### 2.4 Concurrency & Memory
 
-| Subscriber Count | Mean (μs) | Median (μs) | P95 (μs) | P99 (μs) | Notes |
-|------------------|-----------|-------------|----------|----------|-------|
-| 0 | TBD | TBD | TBD | TBD | No-op case |
-| 1 | TBD | TBD | TBD | TBD | |
-| 10 | TBD | TBD | TBD | TBD | |
-| 100 | TBD | TBD | TBD | TBD | |
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_Concurrent_TLSBuffer` | TLS buffer recording at 1, 2, 4, 8 threads | >80% scaling at 8T |
+| `BM_Concurrent_Flush` | Concurrent flush at 1, 2, 4, 8 threads | >80% scaling at 8T |
+| `BM_Memory_SampleSize` | Memory footprint of sample storage | <1 KB per metric |
 
-**Target**: Linear scaling with subscriber count
-**Status**: ⏳ Awaiting initial benchmark run
+### 3. Adaptive Monitor — `adaptive_monitor_bench.cpp`
 
-#### 2.2 Event Queue Throughput
-**Metric**: Events processed per second
-**Test File**: `event_bus_bench.cpp`
+Measures adaptive monitoring behavior: configuration lookup, collection, and adaptation cycles.
 
-| Queue Type | Events/sec | Latency (μs) | Notes |
-|------------|------------|--------------|-------|
-| Lock-free | TBD | TBD | Concurrent |
-| Mutex-based | TBD | TBD | Simple |
+#### 3.1 Configuration Lookup
 
-**Target**: >1M events/sec for lock-free queue
-**Status**: ⏳ Awaiting initial benchmark run
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_AdaptiveConfig_GetIntervalForLoad` | Interval lookup by load level | <10 ns |
+| `BM_AdaptiveConfig_GetSamplingRateForLoad` | Sampling rate lookup by load level | <10 ns |
 
-### 3. Collector Overhead
+#### 3.2 Adaptive Collection
 
-#### 3.1 Monitoring Overhead
-**Metric**: Percentage overhead added by monitoring
-**Test File**: `collector_overhead_bench.cpp`
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_AdaptiveCollector_Collect_Enabled` | Collect with adaptive sampling enabled | <500 ns |
+| `BM_AdaptiveCollector_Collect_Disabled` | Collect with adaptive sampling disabled | <300 ns |
+| `BM_AdaptiveCollector_Adapt` | Single adaptation cycle | <1 μs |
+| `BM_AdaptiveCollector_Adapt_LoadTransition` | Adaptation across load level transitions | <1 μs |
+| `BM_AdaptiveCollector_GetStats` | Statistics retrieval | <500 ns |
+| `BM_AdaptiveMonitor_RegisterCollector` | Register a new collector | — |
+| `BM_AdaptiveMonitor_GetAllStats` | Retrieve stats for all collectors | — |
 
-| Operation Type | Baseline (ns) | With Monitoring (ns) | Overhead (%) | Notes |
-|----------------|---------------|---------------------|--------------|-------|
-| Function call | TBD | TBD | TBD | Simple function |
-| I/O operation | TBD | TBD | TBD | File read/write |
-| Network call | TBD | TBD | TBD | Socket operation |
-| Database query | TBD | TBD | TBD | SQL execution |
+#### 3.3 Concurrent Adaptive Collection
 
-**Target**: <1% overhead for all operations
-**Status**: ⏳ Awaiting initial benchmark run
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_AdaptiveCollector_Concurrent_Collect` | Concurrent collect from 4 threads | >90% scaling |
+| `BM_AdaptiveCollector_Concurrent_CollectAndAdapt` | Concurrent collect + adapt from 4 threads | >90% scaling |
 
-#### 3.2 Memory Overhead
-**Metric**: Memory used by monitoring infrastructure
+#### 3.4 Strategy Comparison
 
-| Component | Memory (KB) | Per-Metric (bytes) | Notes |
-|-----------|-------------|-------------------|-------|
-| Counter | TBD | TBD | Atomic variable |
-| Gauge | TBD | TBD | |
-| Histogram (10 buckets) | TBD | TBD | |
-| Histogram (100 buckets) | TBD | TBD | |
-| Event bus | TBD | TBD | Queue + subscribers |
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_AdaptiveCollector_Strategy_Conservative` | Conservative adaptation strategy | Fewer adaptations |
+| `BM_AdaptiveCollector_Strategy_Aggressive` | Aggressive adaptation strategy | More responsive |
 
-**Status**: ⏳ Awaiting measurement
+#### 3.5 Memory Pressure
 
-### 4. Time Series Performance
-
-#### 4.1 Data Point Insertion
-**Metric**: Time to add data point to time series
-**Test File**: `metric_collection_bench.cpp`
-
-| Series Size | Mean (ns) | Median (ns) | P95 (ns) | P99 (ns) | Notes |
-|-------------|-----------|-------------|----------|----------|-------|
-| 100 points | TBD | TBD | TBD | TBD | Small series |
-| 1,000 points | TBD | TBD | TBD | TBD | Medium series |
-| 10,000 points | TBD | TBD | TBD | TBD | Large series |
-
-**Status**: ⏳ Awaiting initial benchmark run
-
-#### 4.2 Query Performance
-**Metric**: Time to query time range from series
-
-| Query Range | Mean (μs) | Median (μs) | Notes |
-|-------------|-----------|-------------|-------|
-| Last 10 points | TBD | TBD | Recent data |
-| Last 100 points | TBD | TBD | |
-| Last 1000 points | TBD | TBD | |
-| All data | TBD | TBD | Full scan |
-
-**Status**: ⏳ Awaiting initial benchmark run
+| Benchmark | Description | Target |
+|-----------|-------------|--------|
+| `BM_AdaptiveCollector_HighMemoryPressure` | Collection under high memory pressure | Graceful degradation |
 
 ---
 
-## Concurrent Access Benchmarks
+## Planned Benchmarks
 
-### 5. Thread Safety Performance
+The following areas are not yet covered by benchmarks:
 
-#### 5.1 Concurrent Metric Updates
-**Metric**: Throughput with multiple writers
-
-| Thread Count | Updates/sec | Contention (%) | Notes |
-|--------------|-------------|----------------|-------|
-| 1 | TBD | 0% (baseline) | |
-| 2 | TBD | TBD | |
-| 4 | TBD | TBD | |
-| 8 | TBD | TBD | |
-| 16 | TBD | TBD | |
-
-**Target**: >80% scaling efficiency at 8 threads
-**Status**: ⏳ Awaiting initial benchmark run
-
----
-
-### 6. Adaptive Monitor Performance
-
-**Test File**: `adaptive_monitor_bench.cpp`
-
-#### 6.1 Configuration Lookup
-**Metric**: Time for configuration lookups
-
-| Operation | Target (ns) | Mean (ns) | Notes |
-|-----------|-------------|-----------|-------|
-| Get interval for load level | < 10 | TBD | Simple switch |
-| Get sampling rate for load level | < 10 | TBD | Simple switch |
-
-**Status**: ⏳ Awaiting initial benchmark run
-
-#### 6.2 Adaptive Collection
-**Metric**: Overhead of adaptive collection vs direct collection
-
-| Operation | Target (ns) | Mean (ns) | Notes |
-|-----------|-------------|-----------|-------|
-| Collect (adaptive enabled) | < 500 | TBD | Full path |
-| Collect (adaptive disabled) | < 300 | TBD | Bypass sampling |
-| Adaptation cycle | < 1000 | TBD | Load calculation |
-| Get stats | < 500 | TBD | Stats retrieval |
-
-**Target**: <20% overhead vs direct collection
-**Status**: ⏳ Awaiting initial benchmark run
-
-#### 6.3 Concurrent Adaptive Collection
-**Metric**: Throughput with multiple collectors
-
-| Threads | Operations/sec | Contention (%) | Notes |
-|---------|----------------|----------------|-------|
-| 1 | TBD | 0% (baseline) | |
-| 4 | TBD | TBD | Typical use case |
-
-**Target**: >90% scaling efficiency at 4 threads
-**Status**: ⏳ Awaiting initial benchmark run
-
-#### 6.4 Strategy Comparison
-**Metric**: Performance difference between adaptation strategies
-
-| Strategy | Collect Time (ns) | Adapt Time (ns) | Notes |
-|----------|-------------------|-----------------|-------|
-| Conservative | TBD | TBD | Fewer adaptations |
-| Balanced | TBD | TBD | Default |
-| Aggressive | TBD | TBD | More adaptations |
-
-**Status**: ⏳ Awaiting initial benchmark run
-
-#### 6.5 Memory Pressure Scenarios
-**Metric**: Performance under high memory pressure
-
-| Scenario | Collect Time (ns) | Notes |
-|----------|-------------------|-------|
-| Normal (50% memory) | TBD | Baseline |
-| High pressure (90% memory) | TBD | Critical state |
-
-**Status**: ⏳ Awaiting initial benchmark run
+- **Core metric types** (counter, gauge, histogram, summary, timer) — see [#476](https://github.com/kcenon/monitoring_system/issues/476)
+- **Event bus throughput** — `event_bus_bench.cpp` currently contains only a placeholder
+- **Time series insertion and query performance**
+- **Tagged/labeled metric overhead**
 
 ---
 
 ## How to Run Benchmarks
 
-### Building Benchmarks
 ```bash
-cd monitoring_system
-cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON
-cmake --build build --target benchmarks
-```
+# Build
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --target monitoring_benchmarks
 
-### Running Benchmarks
-```bash
-cd build/benchmarks
-./metric_collection_bench
-./event_bus_bench
-./collector_overhead_bench
-```
+# Run (console output)
+./build/benchmarks/monitoring_benchmarks
 
-### Recording Results
-1. Run each benchmark 10 times
-2. Ensure no other CPU-intensive processes running
-3. Record statistics: min, max, mean, median, p95, p99
-4. Update this document with actual values
-5. Commit updated BASELINE.md
+# Run (JSON output for CI comparison)
+./build/benchmarks/monitoring_benchmarks \
+  --benchmark_format=json \
+  --benchmark_out=benchmark_results.json
+```
 
 ---
 
 ## Regression Detection
 
-### Automated Checks
-The benchmarks.yml workflow runs benchmarks on every PR and compares results against this baseline.
-
 ### Critical Performance Requirements
-- **Monitoring overhead**: <1% of monitored operation
-- **Counter increment**: <100ns
-- **Event publication**: <10μs with 10 subscribers
-- **Memory per metric**: <1KB
-- **Thread scaling**: >80% efficiency at 8 threads
 
-### Acceptable Trade-offs
-- Slightly higher latency acceptable for added thread safety
-- Memory overhead acceptable for better accuracy
-- Must document any intentional performance reduction
+| Requirement | Threshold |
+|-------------|-----------|
+| Monitoring overhead | <1% of monitored operation |
+| Profiler recording | <100 ns |
+| Scoped timer overhead | <50 ns |
+| Thread scaling efficiency | >80% at 8 threads |
+| Memory per metric | <1 KB |
+| Adaptive config lookup | <10 ns |
+| Adaptive overhead vs direct | <20% |
+
+### CI Workflow
+
+The `benchmarks.yml` workflow:
+1. Builds benchmarks in Release mode
+2. Runs the full suite with JSON output
+3. Compares against the previous baseline
+4. Flags any regression >5%
 
 ---
 
 ## Historical Changes
 
-| Date | Version | Change | Impact | Approved By |
-|------|---------|--------|--------|-------------|
-| 2025-10-07 | 1.0 | Initial baseline document created | N/A | Initial setup |
-
----
-
-## Notes
-
-- All benchmarks use Google Benchmark framework
-- Overhead benchmarks compare with/without monitoring enabled
-- Results may vary based on hardware and system load
-- For accurate comparisons, run benchmarks on same hardware
-- CI environment results are used as primary baseline
-- Lock-free implementations should show better scaling than mutex-based
-
----
-
-**Status**: 📝 Benchmark suite complete - awaiting initial data collection
-
----
-
-## ARC-002 Implementation Notes
-
-This benchmark suite addresses ARC-002 requirements:
-
-1. ✅ **Complete benchmark suite for all monitors**
-   - metric_collection_bench.cpp - Performance profiler benchmarks
-   - event_bus_bench.cpp - Event bus throughput benchmarks
-   - collector_overhead_bench.cpp - Monitoring overhead benchmarks
-   - adaptive_monitor_bench.cpp - Adaptive monitoring benchmarks
-
-2. ✅ **Profile metric collection overhead**
-   - Collector overhead benchmark measures monitoring impact
-   - Target: <1% overhead for monitored operations
-
-3. 📋 **Compare with alternative monitoring solutions**
-   - To be documented when baseline data is collected
-
-4. ✅ **Baseline metrics documented**
-   - Target metrics defined for all benchmark categories
-   - CI/CD workflow configured for automated regression detection
+| Date | Version | Change |
+|------|---------|--------|
+| 2025-10-07 | 1.0 | Initial baseline document created |
+| 2025-11-26 | 2.0 | Consolidated user-friendly and technical benchmarks |
+| 2026-02-12 | 3.0 | Removed 66 unmeasured placeholders; restructured around actual benchmarks |
