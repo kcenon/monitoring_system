@@ -399,16 +399,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00719">719</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  719</span>                                                 {</div>
-<div class="line"><span class="lineno">  720</span>    <a class="code hl_struct" href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html">alert_manager_config</a> config;</div>
-<div class="line"><span class="lineno">  721</span>    config.<a class="code hl_variable" href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html#a856b73d881f41d37aa414686c5fb2190">default_evaluation_interval</a> = 5s;</div>
-<div class="line"><span class="lineno">  722</span>    config.<a class="code hl_variable" href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html#a8f35390241a70e226289a8f3d675e68a">max_alerts_per_rule</a> = 50;</div>
-<div class="line"><span class="lineno">  723</span> </div>
-<div class="line"><span class="lineno">  724</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager(config);</div>
-<div class="line"><span class="lineno">  725</span>    EXPECT_EQ(manager.config().default_evaluation_interval, 5s);</div>
-<div class="line"><span class="lineno">  726</span>    EXPECT_EQ(manager.config().max_alerts_per_rule, 50u);</div>
-<div class="line"><span class="lineno">  727</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00720">720</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  720</span>                                                 {</div>
+<div class="line"><span class="lineno">  721</span>    <a class="code hl_struct" href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html">alert_manager_config</a> config;</div>
+<div class="line"><span class="lineno">  722</span>    config.<a class="code hl_variable" href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html#a856b73d881f41d37aa414686c5fb2190">default_evaluation_interval</a> = 5s;</div>
+<div class="line"><span class="lineno">  723</span>    config.<a class="code hl_variable" href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html#a8f35390241a70e226289a8f3d675e68a">max_alerts_per_rule</a> = 50;</div>
+<div class="line"><span class="lineno">  724</span> </div>
+<div class="line"><span class="lineno">  725</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager(config);</div>
+<div class="line"><span class="lineno">  726</span>    EXPECT_EQ(manager.config().default_evaluation_interval, 5s);</div>
+<div class="line"><span class="lineno">  727</span>    EXPECT_EQ(manager.config().max_alerts_per_rule, 50u);</div>
+<div class="line"><span class="lineno">  728</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">kcenon::monitoring::alert_manager</a></div><div class="ttdoc">Central coordinator for the alert pipeline.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00147">alert_manager.h:147</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__manager__config_html"><div class="ttname"><a href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html">kcenon::monitoring::alert_manager_config</a></div><div class="ttdoc">Configuration for the alert manager.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00064">alert_manager.h:64</a></div></div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__manager__config_html_a856b73d881f41d37aa414686c5fb2190"><div class="ttname"><a href="../../da/d9b/structkcenon_1_1monitoring_1_1alert__manager__config.html#a856b73d881f41d37aa414686c5fb2190">kcenon::monitoring::alert_manager_config::default_evaluation_interval</a></div><div class="ttdeci">std::chrono::milliseconds default_evaluation_interval</div><div class="ttdoc">Default eval interval.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00065">alert_manager.h:65</a></div></div>
@@ -452,13 +452,13 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00712">712</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  712</span>                                                  {</div>
-<div class="line"><span class="lineno">  713</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
-<div class="line"><span class="lineno">  714</span>    <span class="keyword">auto</span>&amp; config = manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a4e140e221535e6eeef3dee2daabb140b">config</a>();</div>
-<div class="line"><span class="lineno">  715</span>    EXPECT_TRUE(config.validate());</div>
-<div class="line"><span class="lineno">  716</span>    EXPECT_EQ(config.default_evaluation_interval, 15000ms);</div>
-<div class="line"><span class="lineno">  717</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00713">713</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  713</span>                                                  {</div>
+<div class="line"><span class="lineno">  714</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
+<div class="line"><span class="lineno">  715</span>    <span class="keyword">auto</span>&amp; config = manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a4e140e221535e6eeef3dee2daabb140b">config</a>();</div>
+<div class="line"><span class="lineno">  716</span>    EXPECT_TRUE(config.validate());</div>
+<div class="line"><span class="lineno">  717</span>    EXPECT_EQ(config.default_evaluation_interval, 15000ms);</div>
+<div class="line"><span class="lineno">  718</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a4e140e221535e6eeef3dee2daabb140b"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a4e140e221535e6eeef3dee2daabb140b">kcenon::monitoring::alert_manager::config</a></div><div class="ttdeci">const alert_manager_config &amp; config() const</div><div class="ttdoc">Get configuration.</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -726,13 +726,13 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00759">759</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  759</span>                                                        {</div>
-<div class="line"><span class="lineno">  760</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
-<div class="line"><span class="lineno">  761</span>    <span class="comment">// Passing nullptr should be handled gracefully</span></div>
-<div class="line"><span class="lineno">  762</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a0a68e9b5913c68be11366c9d5671250c">set_event_bus</a>(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  763</span>    SUCCEED();</div>
-<div class="line"><span class="lineno">  764</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00760">760</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  760</span>                                                        {</div>
+<div class="line"><span class="lineno">  761</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
+<div class="line"><span class="lineno">  762</span>    <span class="comment">// Passing nullptr should be handled gracefully</span></div>
+<div class="line"><span class="lineno">  763</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a0a68e9b5913c68be11366c9d5671250c">set_event_bus</a>(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  764</span>    SUCCEED();</div>
+<div class="line"><span class="lineno">  765</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a0a68e9b5913c68be11366c9d5671250c"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a0a68e9b5913c68be11366c9d5671250c">kcenon::monitoring::alert_manager::set_event_bus</a></div><div class="ttdeci">void set_event_bus(std::shared_ptr&lt; interface_event_bus &gt; event_bus)</div><div class="ttdoc">Set event bus for publishing alert events.</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -773,22 +773,22 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00692">692</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  692</span>                                                        {</div>
-<div class="line"><span class="lineno">  693</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
-<div class="line"><span class="lineno">  694</span>    <span class="keywordtype">bool</span> called = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  695</span> </div>
-<div class="line"><span class="lineno">  696</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#abc12823702bde682aade973bee649e78">set_metric_provider</a>([&amp;](<span class="keyword">const</span> std::string&amp; name)</div>
-<div class="line"><span class="lineno">  697</span>                                    -&gt; std::optional&lt;double&gt; {</div>
-<div class="line"><span class="lineno">  698</span>        called = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  699</span>        <span class="keywordflow">if</span> (name == <span class="stringliteral">&quot;cpu&quot;</span>) <span class="keywordflow">return</span> 95.0;</div>
-<div class="line"><span class="lineno">  700</span>        <span class="keywordflow">return</span> std::nullopt;</div>
-<div class="line"><span class="lineno">  701</span>    });</div>
-<div class="line"><span class="lineno">  702</span> </div>
-<div class="line"><span class="lineno">  703</span>    <span class="comment">// The provider is used internally by the evaluation loop</span></div>
-<div class="line"><span class="lineno">  704</span>    <span class="comment">// Just verify it doesn&#39;t crash to set</span></div>
-<div class="line"><span class="lineno">  705</span>    SUCCEED();</div>
-<div class="line"><span class="lineno">  706</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00693">693</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  693</span>                                                        {</div>
+<div class="line"><span class="lineno">  694</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
+<div class="line"><span class="lineno">  695</span>    <span class="keywordtype">bool</span> called = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  696</span> </div>
+<div class="line"><span class="lineno">  697</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#abc12823702bde682aade973bee649e78">set_metric_provider</a>([&amp;](<span class="keyword">const</span> std::string&amp; name)</div>
+<div class="line"><span class="lineno">  698</span>                                    -&gt; std::optional&lt;double&gt; {</div>
+<div class="line"><span class="lineno">  699</span>        called = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  700</span>        <span class="keywordflow">if</span> (name == <span class="stringliteral">&quot;cpu&quot;</span>) <span class="keywordflow">return</span> 95.0;</div>
+<div class="line"><span class="lineno">  701</span>        <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><span class="lineno">  702</span>    });</div>
+<div class="line"><span class="lineno">  703</span> </div>
+<div class="line"><span class="lineno">  704</span>    <span class="comment">// The provider is used internally by the evaluation loop</span></div>
+<div class="line"><span class="lineno">  705</span>    <span class="comment">// Just verify it doesn&#39;t crash to set</span></div>
+<div class="line"><span class="lineno">  706</span>    SUCCEED();</div>
+<div class="line"><span class="lineno">  707</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_abc12823702bde682aade973bee649e78"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#abc12823702bde682aade973bee649e78">kcenon::monitoring::alert_manager::set_metric_provider</a></div><div class="ttdeci">void set_metric_provider(metric_provider_func provider)</div><div class="ttdoc">Set the metric provider function.</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -914,14 +914,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00733">733</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  733</span>                                                             {</div>
-<div class="line"><span class="lineno">  734</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
-<div class="line"><span class="lineno">  735</span>    <span class="keyword">auto</span> metrics = manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">get_metrics</a>();</div>
-<div class="line"><span class="lineno">  736</span>    EXPECT_EQ(metrics.rules_evaluated.load(), 0u);</div>
-<div class="line"><span class="lineno">  737</span>    EXPECT_EQ(metrics.alerts_created.load(), 0u);</div>
-<div class="line"><span class="lineno">  738</span>    EXPECT_EQ(metrics.alerts_resolved.load(), 0u);</div>
-<div class="line"><span class="lineno">  739</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00734">734</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  734</span>                                                             {</div>
+<div class="line"><span class="lineno">  735</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
+<div class="line"><span class="lineno">  736</span>    <span class="keyword">auto</span> metrics = manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">get_metrics</a>();</div>
+<div class="line"><span class="lineno">  737</span>    EXPECT_EQ(metrics.rules_evaluated.load(), 0u);</div>
+<div class="line"><span class="lineno">  738</span>    EXPECT_EQ(metrics.alerts_created.load(), 0u);</div>
+<div class="line"><span class="lineno">  739</span>    EXPECT_EQ(metrics.alerts_resolved.load(), 0u);</div>
+<div class="line"><span class="lineno">  740</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a9f8f4b2514f91f7af9ba95a5e1c5dd31"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">kcenon::monitoring::alert_manager::get_metrics</a></div><div class="ttdeci">alert_manager_metrics get_metrics() const</div><div class="ttdoc">Get manager metrics.</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -962,20 +962,20 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00741">741</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  741</span>                                                                    {</div>
-<div class="line"><span class="lineno">  742</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
-<div class="line"><span class="lineno">  743</span> </div>
-<div class="line"><span class="lineno">  744</span>    <span class="keyword">auto</span> rule = std::make_shared&lt;alert_rule&gt;(<span class="stringliteral">&quot;test_rule&quot;</span>);</div>
-<div class="line"><span class="lineno">  745</span>    rule-&gt;set_metric_name(<span class="stringliteral">&quot;test_metric&quot;</span>)</div>
-<div class="line"><span class="lineno">  746</span>        .set_trigger(<a class="code hl_function" href="../../da/d11/classkcenon_1_1monitoring_1_1threshold__trigger.html#ae871664d0d910ae8f29311557c30ea93">threshold_trigger::above</a>(80.0));</div>
-<div class="line"><span class="lineno">  747</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a3261568b0b9f05b1cfd5d690d1843b04">add_rule</a>(rule);</div>
-<div class="line"><span class="lineno">  748</span> </div>
-<div class="line"><span class="lineno">  749</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a516ed80f11bee195bd34ef558aba2756">process_metric</a>(<span class="stringliteral">&quot;test_metric&quot;</span>, 50.0);</div>
-<div class="line"><span class="lineno">  750</span> </div>
-<div class="line"><span class="lineno">  751</span>    <span class="keyword">auto</span> metrics = manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">get_metrics</a>();</div>
-<div class="line"><span class="lineno">  752</span>    EXPECT_GE(metrics.rules_evaluated.load(), 1u);</div>
-<div class="line"><span class="lineno">  753</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00742">742</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  742</span>                                                                    {</div>
+<div class="line"><span class="lineno">  743</span>    <a class="code hl_class" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html">alert_manager</a> manager;</div>
+<div class="line"><span class="lineno">  744</span> </div>
+<div class="line"><span class="lineno">  745</span>    <span class="keyword">auto</span> rule = std::make_shared&lt;alert_rule&gt;(<span class="stringliteral">&quot;test_rule&quot;</span>);</div>
+<div class="line"><span class="lineno">  746</span>    rule-&gt;set_metric_name(<span class="stringliteral">&quot;test_metric&quot;</span>)</div>
+<div class="line"><span class="lineno">  747</span>        .set_trigger(<a class="code hl_function" href="../../da/d11/classkcenon_1_1monitoring_1_1threshold__trigger.html#ae871664d0d910ae8f29311557c30ea93">threshold_trigger::above</a>(80.0));</div>
+<div class="line"><span class="lineno">  748</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a3261568b0b9f05b1cfd5d690d1843b04">add_rule</a>(rule);</div>
+<div class="line"><span class="lineno">  749</span> </div>
+<div class="line"><span class="lineno">  750</span>    manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a516ed80f11bee195bd34ef558aba2756">process_metric</a>(<span class="stringliteral">&quot;test_metric&quot;</span>, 50.0);</div>
+<div class="line"><span class="lineno">  751</span> </div>
+<div class="line"><span class="lineno">  752</span>    <span class="keyword">auto</span> metrics = manager.<a class="code hl_function" href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a9f8f4b2514f91f7af9ba95a5e1c5dd31">get_metrics</a>();</div>
+<div class="line"><span class="lineno">  753</span>    EXPECT_GE(metrics.rules_evaluated.load(), 1u);</div>
+<div class="line"><span class="lineno">  754</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a3261568b0b9f05b1cfd5d690d1843b04"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a3261568b0b9f05b1cfd5d690d1843b04">kcenon::monitoring::alert_manager::add_rule</a></div><div class="ttdeci">common::VoidResult add_rule(std::shared_ptr&lt; alert_rule &gt; rule)</div><div class="ttdoc">Add an alert rule.</div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1alert__manager_html_a516ed80f11bee195bd34ef558aba2756"><div class="ttname"><a href="../../d6/d6d/classkcenon_1_1monitoring_1_1alert__manager.html#a516ed80f11bee195bd34ef558aba2756">kcenon::monitoring::alert_manager::process_metric</a></div><div class="ttdeci">common::VoidResult process_metric(const std::string &amp;metric_name, double value)</div><div class="ttdoc">Process a metric value.</div></div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1threshold__trigger_html_ae871664d0d910ae8f29311557c30ea93"><div class="ttname"><a href="../../da/d11/classkcenon_1_1monitoring_1_1threshold__trigger.html#ae871664d0d910ae8f29311557c30ea93">kcenon::monitoring::threshold_trigger::above</a></div><div class="ttdeci">static std::shared_ptr&lt; threshold_trigger &gt; above(double threshold)</div><div class="ttdoc">Create trigger for value &gt; threshold.</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d39/alert__triggers_8h_source.html#l00158">alert_triggers.h:158</a></div></div>
@@ -1026,13 +1026,13 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00770">770</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  770</span>                                                {</div>
-<div class="line"><span class="lineno">  771</span>    EXPECT_FALSE(std::is_copy_constructible_v&lt;alert_manager&gt;);</div>
-<div class="line"><span class="lineno">  772</span>    EXPECT_FALSE(std::is_copy_assignable_v&lt;alert_manager&gt;);</div>
-<div class="line"><span class="lineno">  773</span>    EXPECT_FALSE(std::is_move_constructible_v&lt;alert_manager&gt;);</div>
-<div class="line"><span class="lineno">  774</span>    EXPECT_FALSE(std::is_move_assignable_v&lt;alert_manager&gt;);</div>
-<div class="line"><span class="lineno">  775</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00771">771</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  771</span>                                                {</div>
+<div class="line"><span class="lineno">  772</span>    EXPECT_FALSE(std::is_copy_constructible_v&lt;alert_manager&gt;);</div>
+<div class="line"><span class="lineno">  773</span>    EXPECT_FALSE(std::is_copy_assignable_v&lt;alert_manager&gt;);</div>
+<div class="line"><span class="lineno">  774</span>    EXPECT_FALSE(std::is_move_constructible_v&lt;alert_manager&gt;);</div>
+<div class="line"><span class="lineno">  775</span>    EXPECT_FALSE(std::is_move_assignable_v&lt;alert_manager&gt;);</div>
+<div class="line"><span class="lineno">  776</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2075,12 +2075,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00649">649</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  649</span>                                                {</div>
-<div class="line"><span class="lineno">  650</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
-<div class="line"><span class="lineno">  651</span>        <span class="stringliteral">&quot;test&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp;) {});</div>
-<div class="line"><span class="lineno">  652</span>    EXPECT_TRUE(notifier-&gt;is_ready());</div>
-<div class="line"><span class="lineno">  653</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00650">650</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  650</span>                                                {</div>
+<div class="line"><span class="lineno">  651</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
+<div class="line"><span class="lineno">  652</span>        <span class="stringliteral">&quot;test&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp;) {});</div>
+<div class="line"><span class="lineno">  653</span>    EXPECT_TRUE(notifier-&gt;is_ready());</div>
+<div class="line"><span class="lineno">  654</span>}</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">kcenon::monitoring::alert</a></div><div class="ttdoc">Core alert data structure.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00210">alert_types.h:210</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -2111,12 +2111,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00643">643</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  643</span>                                          {</div>
-<div class="line"><span class="lineno">  644</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
-<div class="line"><span class="lineno">  645</span>        <span class="stringliteral">&quot;my_notifier&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp;) {});</div>
-<div class="line"><span class="lineno">  646</span>    EXPECT_EQ(notifier-&gt;name(), <span class="stringliteral">&quot;my_notifier&quot;</span>);</div>
-<div class="line"><span class="lineno">  647</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00644">644</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  644</span>                                          {</div>
+<div class="line"><span class="lineno">  645</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
+<div class="line"><span class="lineno">  646</span>        <span class="stringliteral">&quot;my_notifier&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp;) {});</div>
+<div class="line"><span class="lineno">  647</span>    EXPECT_EQ(notifier-&gt;name(), <span class="stringliteral">&quot;my_notifier&quot;</span>);</div>
+<div class="line"><span class="lineno">  648</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2146,22 +2146,22 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00627">627</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  627</span>                                                             {</div>
-<div class="line"><span class="lineno">  628</span>    std::atomic&lt;int&gt; individual_count{0};</div>
-<div class="line"><span class="lineno">  629</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
-<div class="line"><span class="lineno">  630</span>        <span class="stringliteral">&quot;test_cb&quot;</span>,</div>
-<div class="line"><span class="lineno">  631</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp; a) { individual_count++; },</div>
-<div class="line"><span class="lineno">  632</span>        <span class="keyword">nullptr</span>); <span class="comment">// No group callback</span></div>
-<div class="line"><span class="lineno">  633</span> </div>
-<div class="line"><span class="lineno">  634</span>    <a class="code hl_struct" href="../../d5/d2f/structkcenon_1_1monitoring_1_1alert__group.html">alert_group</a> group(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  635</span>    group.add_alert(<a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>{});</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00628">628</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  628</span>                                                             {</div>
+<div class="line"><span class="lineno">  629</span>    std::atomic&lt;int&gt; individual_count{0};</div>
+<div class="line"><span class="lineno">  630</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
+<div class="line"><span class="lineno">  631</span>        <span class="stringliteral">&quot;test_cb&quot;</span>,</div>
+<div class="line"><span class="lineno">  632</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp; <span class="comment">/*a*/</span>) { individual_count++; },</div>
+<div class="line"><span class="lineno">  633</span>        <span class="keyword">nullptr</span>); <span class="comment">// No group callback</span></div>
+<div class="line"><span class="lineno">  634</span> </div>
+<div class="line"><span class="lineno">  635</span>    <a class="code hl_struct" href="../../d5/d2f/structkcenon_1_1monitoring_1_1alert__group.html">alert_group</a> group(<span class="stringliteral">&quot;test&quot;</span>);</div>
 <div class="line"><span class="lineno">  636</span>    group.add_alert(<a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>{});</div>
-<div class="line"><span class="lineno">  637</span> </div>
-<div class="line"><span class="lineno">  638</span>    <span class="keyword">auto</span> result = notifier-&gt;notify_group(group);</div>
-<div class="line"><span class="lineno">  639</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  640</span>    EXPECT_EQ(individual_count.load(), 2);</div>
-<div class="line"><span class="lineno">  641</span>}</div>
+<div class="line"><span class="lineno">  637</span>    group.add_alert(<a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>{});</div>
+<div class="line"><span class="lineno">  638</span> </div>
+<div class="line"><span class="lineno">  639</span>    <span class="keyword">auto</span> result = notifier-&gt;notify_group(group);</div>
+<div class="line"><span class="lineno">  640</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  641</span>    EXPECT_EQ(individual_count.load(), 2);</div>
+<div class="line"><span class="lineno">  642</span>}</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__group_html"><div class="ttname"><a href="../../d5/d2f/structkcenon_1_1monitoring_1_1alert__group.html">kcenon::monitoring::alert_group</a></div><div class="ttdoc">Group of related alerts for batch notification.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00347">alert_types.h:347</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -2192,19 +2192,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00614">614</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  614</span>                                                            {</div>
-<div class="line"><span class="lineno">  615</span>    std::atomic&lt;int&gt; group_count{0};</div>
-<div class="line"><span class="lineno">  616</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
-<div class="line"><span class="lineno">  617</span>        <span class="stringliteral">&quot;test_cb&quot;</span>,</div>
-<div class="line"><span class="lineno">  618</span>        [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp;) {},</div>
-<div class="line"><span class="lineno">  619</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="../../d5/d2f/structkcenon_1_1monitoring_1_1alert__group.html">alert_group</a>&amp; g) { group_count++; });</div>
-<div class="line"><span class="lineno">  620</span> </div>
-<div class="line"><span class="lineno">  621</span>    <a class="code hl_struct" href="../../d5/d2f/structkcenon_1_1monitoring_1_1alert__group.html">alert_group</a> group(<span class="stringliteral">&quot;test&quot;</span>);</div>
-<div class="line"><span class="lineno">  622</span>    <span class="keyword">auto</span> result = notifier-&gt;notify_group(group);</div>
-<div class="line"><span class="lineno">  623</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  624</span>    EXPECT_EQ(group_count.load(), 1);</div>
-<div class="line"><span class="lineno">  625</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00615">615</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  615</span>                                                            {</div>
+<div class="line"><span class="lineno">  616</span>    std::atomic&lt;int&gt; group_count{0};</div>
+<div class="line"><span class="lineno">  617</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
+<div class="line"><span class="lineno">  618</span>        <span class="stringliteral">&quot;test_cb&quot;</span>,</div>
+<div class="line"><span class="lineno">  619</span>        [](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp;) {},</div>
+<div class="line"><span class="lineno">  620</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="../../d5/d2f/structkcenon_1_1monitoring_1_1alert__group.html">alert_group</a>&amp; <span class="comment">/*g*/</span>) { group_count++; });</div>
+<div class="line"><span class="lineno">  621</span> </div>
+<div class="line"><span class="lineno">  622</span>    <a class="code hl_struct" href="../../d5/d2f/structkcenon_1_1monitoring_1_1alert__group.html">alert_group</a> group(<span class="stringliteral">&quot;test&quot;</span>);</div>
+<div class="line"><span class="lineno">  623</span>    <span class="keyword">auto</span> result = notifier-&gt;notify_group(group);</div>
+<div class="line"><span class="lineno">  624</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  625</span>    EXPECT_EQ(group_count.load(), 1);</div>
+<div class="line"><span class="lineno">  626</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2234,18 +2234,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00602">602</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  602</span>                                                  {</div>
-<div class="line"><span class="lineno">  603</span>    std::atomic&lt;int&gt; count{0};</div>
-<div class="line"><span class="lineno">  604</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
-<div class="line"><span class="lineno">  605</span>        <span class="stringliteral">&quot;test_cb&quot;</span>,</div>
-<div class="line"><span class="lineno">  606</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp; a) { count++; });</div>
-<div class="line"><span class="lineno">  607</span> </div>
-<div class="line"><span class="lineno">  608</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
-<div class="line"><span class="lineno">  609</span>    <span class="keyword">auto</span> result = notifier-&gt;notify(a);</div>
-<div class="line"><span class="lineno">  610</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  611</span>    EXPECT_EQ(count.load(), 1);</div>
-<div class="line"><span class="lineno">  612</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00603">603</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  603</span>                                                  {</div>
+<div class="line"><span class="lineno">  604</span>    std::atomic&lt;int&gt; count{0};</div>
+<div class="line"><span class="lineno">  605</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
+<div class="line"><span class="lineno">  606</span>        <span class="stringliteral">&quot;test_cb&quot;</span>,</div>
+<div class="line"><span class="lineno">  607</span>        [&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a>&amp; <span class="comment">/*a*/</span>) { count++; });</div>
+<div class="line"><span class="lineno">  608</span> </div>
+<div class="line"><span class="lineno">  609</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> test_alert;</div>
+<div class="line"><span class="lineno">  610</span>    <span class="keyword">auto</span> result = notifier-&gt;notify(test_alert);</div>
+<div class="line"><span class="lineno">  611</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  612</span>    EXPECT_EQ(count.load(), 1);</div>
+<div class="line"><span class="lineno">  613</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2275,14 +2275,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00661">661</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  661</span>                                                        {</div>
-<div class="line"><span class="lineno">  662</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
-<div class="line"><span class="lineno">  663</span>        <span class="stringliteral">&quot;test&quot;</span>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  664</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
-<div class="line"><span class="lineno">  665</span>    <span class="keyword">auto</span> result = notifier-&gt;notify(a);</div>
-<div class="line"><span class="lineno">  666</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  667</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00662">662</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  662</span>                                                        {</div>
+<div class="line"><span class="lineno">  663</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
+<div class="line"><span class="lineno">  664</span>        <span class="stringliteral">&quot;test&quot;</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  665</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
+<div class="line"><span class="lineno">  666</span>    <span class="keyword">auto</span> result = notifier-&gt;notify(a);</div>
+<div class="line"><span class="lineno">  667</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  668</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2312,12 +2312,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00655">655</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  655</span>                                                    {</div>
-<div class="line"><span class="lineno">  656</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
-<div class="line"><span class="lineno">  657</span>        <span class="stringliteral">&quot;test&quot;</span>, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  658</span>    EXPECT_FALSE(notifier-&gt;is_ready());</div>
-<div class="line"><span class="lineno">  659</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00656">656</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  656</span>                                                    {</div>
+<div class="line"><span class="lineno">  657</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;callback_notifier&gt;(</div>
+<div class="line"><span class="lineno">  658</span>        <span class="stringliteral">&quot;test&quot;</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  659</span>    EXPECT_FALSE(notifier-&gt;is_ready());</div>
+<div class="line"><span class="lineno">  660</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2347,11 +2347,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00678">678</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  678</span>                                  {</div>
-<div class="line"><span class="lineno">  679</span>    <a class="code hl_class" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html">log_notifier</a> notifier(<span class="stringliteral">&quot;custom_logger&quot;</span>);</div>
-<div class="line"><span class="lineno">  680</span>    EXPECT_EQ(notifier.name(), <span class="stringliteral">&quot;custom_logger&quot;</span>);</div>
-<div class="line"><span class="lineno">  681</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00679">679</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  679</span>                                  {</div>
+<div class="line"><span class="lineno">  680</span>    <a class="code hl_class" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html">log_notifier</a> notifier(<span class="stringliteral">&quot;custom_logger&quot;</span>);</div>
+<div class="line"><span class="lineno">  681</span>    EXPECT_EQ(notifier.name(), <span class="stringliteral">&quot;custom_logger&quot;</span>);</div>
+<div class="line"><span class="lineno">  682</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1log__notifier_html"><div class="ttname"><a href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html">kcenon::monitoring::log_notifier</a></div><div class="ttdoc">Simple notifier that logs alerts.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00471">alert_manager.h:471</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2392,11 +2392,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00673">673</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  673</span>                                   {</div>
-<div class="line"><span class="lineno">  674</span>    <a class="code hl_class" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html">log_notifier</a> notifier;</div>
-<div class="line"><span class="lineno">  675</span>    EXPECT_EQ(notifier.<a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a946be81ba001905e67d12620675aae4e">name</a>(), <span class="stringliteral">&quot;log_notifier&quot;</span>);</div>
-<div class="line"><span class="lineno">  676</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00674">674</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  674</span>                                   {</div>
+<div class="line"><span class="lineno">  675</span>    <a class="code hl_class" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html">log_notifier</a> notifier;</div>
+<div class="line"><span class="lineno">  676</span>    EXPECT_EQ(notifier.<a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a946be81ba001905e67d12620675aae4e">name</a>(), <span class="stringliteral">&quot;log_notifier&quot;</span>);</div>
+<div class="line"><span class="lineno">  677</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1log__notifier_html_a946be81ba001905e67d12620675aae4e"><div class="ttname"><a href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a946be81ba001905e67d12620675aae4e">kcenon::monitoring::log_notifier::name</a></div><div class="ttdeci">std::string name() const override</div><div class="ttdoc">Get notifier name.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00480">alert_manager.h:480</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2437,11 +2437,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00683">683</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  683</span>                                     {</div>
-<div class="line"><span class="lineno">  684</span>    <a class="code hl_class" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html">log_notifier</a> notifier;</div>
-<div class="line"><span class="lineno">  685</span>    EXPECT_TRUE(notifier.<a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a315c9c4fd0d52f275014cbc1acb22b8d">is_ready</a>());</div>
-<div class="line"><span class="lineno">  686</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00684">684</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  684</span>                                     {</div>
+<div class="line"><span class="lineno">  685</span>    <a class="code hl_class" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html">log_notifier</a> notifier;</div>
+<div class="line"><span class="lineno">  686</span>    EXPECT_TRUE(notifier.<a class="code hl_function" href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a315c9c4fd0d52f275014cbc1acb22b8d">is_ready</a>());</div>
+<div class="line"><span class="lineno">  687</span>}</div>
 <div class="ttc" id="aclasskcenon_1_1monitoring_1_1log__notifier_html_a315c9c4fd0d52f275014cbc1acb22b8d"><div class="ttname"><a href="../../d3/d26/classkcenon_1_1monitoring_1_1log__notifier.html#a315c9c4fd0d52f275014cbc1acb22b8d">kcenon::monitoring::log_notifier::is_ready</a></div><div class="ttdeci">bool is_ready() const override</div><div class="ttdoc">Check if notifier is ready.</div><div class="ttdef"><b>Definition</b> <a href="../../d6/dba/alert__manager_8h_source.html#l00486">alert_manager.h:486</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2772,12 +2772,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00567">567</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  567</span>                                              {</div>
-<div class="line"><span class="lineno">  568</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;test_log&quot;</span>);</div>
-<div class="line"><span class="lineno">  569</span>    <span class="keyword">auto</span> result = manager_.add_notifier(notifier);</div>
-<div class="line"><span class="lineno">  570</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  571</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00568">568</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  568</span>                                              {</div>
+<div class="line"><span class="lineno">  569</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;test_log&quot;</span>);</div>
+<div class="line"><span class="lineno">  570</span>    <span class="keyword">auto</span> result = manager_.add_notifier(notifier);</div>
+<div class="line"><span class="lineno">  571</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  572</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2807,11 +2807,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00573">573</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  573</span>                                                       {</div>
-<div class="line"><span class="lineno">  574</span>    <span class="keyword">auto</span> result = manager_.add_notifier(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  575</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  576</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00574">574</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  574</span>                                                       {</div>
+<div class="line"><span class="lineno">  575</span>    <span class="keyword">auto</span> result = manager_.add_notifier(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  576</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  577</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2841,14 +2841,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00590">590</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  590</span>                                               {</div>
-<div class="line"><span class="lineno">  591</span>    manager_.add_notifier(std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;n1&quot;</span>));</div>
-<div class="line"><span class="lineno">  592</span>    manager_.add_notifier(std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;n2&quot;</span>));</div>
-<div class="line"><span class="lineno">  593</span> </div>
-<div class="line"><span class="lineno">  594</span>    <span class="keyword">auto</span> notifiers = manager_.get_notifiers();</div>
-<div class="line"><span class="lineno">  595</span>    EXPECT_EQ(notifiers.size(), 2u);</div>
-<div class="line"><span class="lineno">  596</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00591">591</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  591</span>                                               {</div>
+<div class="line"><span class="lineno">  592</span>    manager_.add_notifier(std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;n1&quot;</span>));</div>
+<div class="line"><span class="lineno">  593</span>    manager_.add_notifier(std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;n2&quot;</span>));</div>
+<div class="line"><span class="lineno">  594</span> </div>
+<div class="line"><span class="lineno">  595</span>    <span class="keyword">auto</span> notifiers = manager_.get_notifiers();</div>
+<div class="line"><span class="lineno">  596</span>    EXPECT_EQ(notifiers.size(), 2u);</div>
+<div class="line"><span class="lineno">  597</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2878,11 +2878,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00585">585</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  585</span>                                                            {</div>
-<div class="line"><span class="lineno">  586</span>    <span class="keyword">auto</span> result = manager_.remove_notifier(<span class="stringliteral">&quot;missing&quot;</span>);</div>
-<div class="line"><span class="lineno">  587</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  588</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00586">586</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  586</span>                                                            {</div>
+<div class="line"><span class="lineno">  587</span>    <span class="keyword">auto</span> result = manager_.remove_notifier(<span class="stringliteral">&quot;missing&quot;</span>);</div>
+<div class="line"><span class="lineno">  588</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  589</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2912,13 +2912,13 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00578">578</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  578</span>                                                 {</div>
-<div class="line"><span class="lineno">  579</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;removable&quot;</span>);</div>
-<div class="line"><span class="lineno">  580</span>    manager_.add_notifier(notifier);</div>
-<div class="line"><span class="lineno">  581</span>    <span class="keyword">auto</span> result = manager_.remove_notifier(<span class="stringliteral">&quot;removable&quot;</span>);</div>
-<div class="line"><span class="lineno">  582</span>    EXPECT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  583</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00579">579</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  579</span>                                                 {</div>
+<div class="line"><span class="lineno">  580</span>    <span class="keyword">auto</span> notifier = std::make_shared&lt;log_notifier&gt;(<span class="stringliteral">&quot;removable&quot;</span>);</div>
+<div class="line"><span class="lineno">  581</span>    manager_.add_notifier(notifier);</div>
+<div class="line"><span class="lineno">  582</span>    <span class="keyword">auto</span> result = manager_.remove_notifier(<span class="stringliteral">&quot;removable&quot;</span>);</div>
+<div class="line"><span class="lineno">  583</span>    EXPECT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  584</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -3550,10 +3550,12 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00493">493</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  493</span>                                                        {</div>
 <div class="line"><span class="lineno">  494</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> silence;</div>
-<div class="line"><span class="lineno">  495</span>    <span class="keyword">auto</span> result = manager_.create_silence(silence);</div>
-<div class="line"><span class="lineno">  496</span>    ASSERT_TRUE(result.is_ok());</div>
-<div class="line"><span class="lineno">  497</span>    EXPECT_GT(result.value(), 0u);</div>
-<div class="line"><span class="lineno">  498</span>}</div>
+<div class="line"><span class="lineno">  495</span>    silence.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a556c3b739b440d65ac05e924200f571c">id</a> = 42;</div>
+<div class="line"><span class="lineno">  496</span>    <span class="keyword">auto</span> result = manager_.create_silence(silence);</div>
+<div class="line"><span class="lineno">  497</span>    ASSERT_TRUE(result.is_ok());</div>
+<div class="line"><span class="lineno">  498</span>    EXPECT_EQ(result.value(), 42u);</div>
+<div class="line"><span class="lineno">  499</span>}</div>
+<div class="ttc" id="astructkcenon_1_1monitoring_1_1alert__silence_html_a556c3b739b440d65ac05e924200f571c"><div class="ttname"><a href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a556c3b739b440d65ac05e924200f571c">kcenon::monitoring::alert_silence::id</a></div><div class="ttdeci">uint64_t id</div><div class="ttdoc">Silence ID.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00411">alert_types.h:411</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -3583,11 +3585,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00509">509</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  509</span>                                                          {</div>
-<div class="line"><span class="lineno">  510</span>    <span class="keyword">auto</span> result = manager_.delete_silence(99999);</div>
-<div class="line"><span class="lineno">  511</span>    EXPECT_FALSE(result.is_ok());</div>
-<div class="line"><span class="lineno">  512</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00510">510</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  510</span>                                                          {</div>
+<div class="line"><span class="lineno">  511</span>    <span class="keyword">auto</span> result = manager_.delete_silence(99999);</div>
+<div class="line"><span class="lineno">  512</span>    EXPECT_FALSE(result.is_ok());</div>
+<div class="line"><span class="lineno">  513</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -3617,15 +3619,15 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00500">500</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  500</span>                                               {</div>
-<div class="line"><span class="lineno">  501</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> silence;</div>
-<div class="line"><span class="lineno">  502</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../d0/d13/structkcenon_1_1monitoring_1_1create__result.html">create_result</a> = manager_.create_silence(silence);</div>
-<div class="line"><span class="lineno">  503</span>    ASSERT_TRUE(<a class="code hl_struct" href="../../d0/d13/structkcenon_1_1monitoring_1_1create__result.html">create_result</a>.is_ok());</div>
-<div class="line"><span class="lineno">  504</span> </div>
-<div class="line"><span class="lineno">  505</span>    <span class="keyword">auto</span> delete_result = manager_.delete_silence(<a class="code hl_struct" href="../../d0/d13/structkcenon_1_1monitoring_1_1create__result.html">create_result</a>.value());</div>
-<div class="line"><span class="lineno">  506</span>    EXPECT_TRUE(delete_result.is_ok());</div>
-<div class="line"><span class="lineno">  507</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00501">501</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  501</span>                                               {</div>
+<div class="line"><span class="lineno">  502</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> silence;</div>
+<div class="line"><span class="lineno">  503</span>    <span class="keyword">auto</span> <a class="code hl_struct" href="../../d0/d13/structkcenon_1_1monitoring_1_1create__result.html">create_result</a> = manager_.create_silence(silence);</div>
+<div class="line"><span class="lineno">  504</span>    ASSERT_TRUE(<a class="code hl_struct" href="../../d0/d13/structkcenon_1_1monitoring_1_1create__result.html">create_result</a>.is_ok());</div>
+<div class="line"><span class="lineno">  505</span> </div>
+<div class="line"><span class="lineno">  506</span>    <span class="keyword">auto</span> delete_result = manager_.delete_silence(<a class="code hl_struct" href="../../d0/d13/structkcenon_1_1monitoring_1_1create__result.html">create_result</a>.value());</div>
+<div class="line"><span class="lineno">  507</span>    EXPECT_TRUE(delete_result.is_ok());</div>
+<div class="line"><span class="lineno">  508</span>}</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1create__result_html"><div class="ttname"><a href="../../d0/d13/structkcenon_1_1monitoring_1_1create__result.html">kcenon::monitoring::create_result</a></div><div class="ttdoc">Result of collector creation.</div><div class="ttdef"><b>Definition</b> <a href="../../db/d8c/metric__factory_8h_source.html#l00117">metric_factory.h:117</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -3656,19 +3658,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00514">514</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  514</span>                                             {</div>
-<div class="line"><span class="lineno">  515</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> s1;</div>
-<div class="line"><span class="lineno">  516</span>    s1.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;env&quot;</span>, <span class="stringliteral">&quot;prod&quot;</span>);</div>
-<div class="line"><span class="lineno">  517</span>    manager_.create_silence(s1);</div>
-<div class="line"><span class="lineno">  518</span> </div>
-<div class="line"><span class="lineno">  519</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> s2;</div>
-<div class="line"><span class="lineno">  520</span>    s2.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;env&quot;</span>, <span class="stringliteral">&quot;staging&quot;</span>);</div>
-<div class="line"><span class="lineno">  521</span>    manager_.create_silence(s2);</div>
-<div class="line"><span class="lineno">  522</span> </div>
-<div class="line"><span class="lineno">  523</span>    <span class="keyword">auto</span> silences = manager_.get_silences();</div>
-<div class="line"><span class="lineno">  524</span>    EXPECT_EQ(silences.size(), 2u);</div>
-<div class="line"><span class="lineno">  525</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00515">515</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  515</span>                                             {</div>
+<div class="line"><span class="lineno">  516</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> s1;</div>
+<div class="line"><span class="lineno">  517</span>    s1.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;env&quot;</span>, <span class="stringliteral">&quot;prod&quot;</span>);</div>
+<div class="line"><span class="lineno">  518</span>    manager_.create_silence(s1);</div>
+<div class="line"><span class="lineno">  519</span> </div>
+<div class="line"><span class="lineno">  520</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> s2;</div>
+<div class="line"><span class="lineno">  521</span>    s2.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;env&quot;</span>, <span class="stringliteral">&quot;staging&quot;</span>);</div>
+<div class="line"><span class="lineno">  522</span>    manager_.create_silence(s2);</div>
+<div class="line"><span class="lineno">  523</span> </div>
+<div class="line"><span class="lineno">  524</span>    <span class="keyword">auto</span> silences = manager_.get_silences();</div>
+<div class="line"><span class="lineno">  525</span>    EXPECT_EQ(silences.size(), 2u);</div>
+<div class="line"><span class="lineno">  526</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3708,11 +3710,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00527">527</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  527</span>                                                  {</div>
-<div class="line"><span class="lineno">  528</span>    <span class="keyword">auto</span> silences = manager_.get_silences();</div>
-<div class="line"><span class="lineno">  529</span>    EXPECT_TRUE(silences.empty());</div>
-<div class="line"><span class="lineno">  530</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00528">528</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  528</span>                                                  {</div>
+<div class="line"><span class="lineno">  529</span>    <span class="keyword">auto</span> silences = manager_.get_silences();</div>
+<div class="line"><span class="lineno">  530</span>    EXPECT_TRUE(silences.empty());</div>
+<div class="line"><span class="lineno">  531</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -3742,16 +3744,16 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00542">542</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  542</span>                                                               {</div>
-<div class="line"><span class="lineno">  543</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> silence;</div>
-<div class="line"><span class="lineno">  544</span>    silence.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><span class="lineno">  545</span>    manager_.create_silence(silence);</div>
-<div class="line"><span class="lineno">  546</span> </div>
-<div class="line"><span class="lineno">  547</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
-<div class="line"><span class="lineno">  548</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;web&quot;</span>);</div>
-<div class="line"><span class="lineno">  549</span>    EXPECT_FALSE(manager_.is_silenced(a));</div>
-<div class="line"><span class="lineno">  550</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00543">543</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  543</span>                                                               {</div>
+<div class="line"><span class="lineno">  544</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> silence;</div>
+<div class="line"><span class="lineno">  545</span>    silence.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><span class="lineno">  546</span>    manager_.create_silence(silence);</div>
+<div class="line"><span class="lineno">  547</span> </div>
+<div class="line"><span class="lineno">  548</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
+<div class="line"><span class="lineno">  549</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;web&quot;</span>);</div>
+<div class="line"><span class="lineno">  550</span>    EXPECT_FALSE(manager_.is_silenced(a));</div>
+<div class="line"><span class="lineno">  551</span>}</div>
 <div class="ttc" id="astructkcenon_1_1monitoring_1_1alert_html_acace61d342c6bee9a0002c00ec7398ce"><div class="ttname"><a href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">kcenon::monitoring::alert::labels</a></div><div class="ttdeci">alert_labels labels</div><div class="ttdoc">Identifying labels.</div><div class="ttdef"><b>Definition</b> <a href="../../dd/dee/alert__types_8h_source.html#l00212">alert_types.h:212</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -3792,12 +3794,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00552">552</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  552</span>                                                         {</div>
-<div class="line"><span class="lineno">  553</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
-<div class="line"><span class="lineno">  554</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><span class="lineno">  555</span>    EXPECT_FALSE(manager_.is_silenced(a));</div>
-<div class="line"><span class="lineno">  556</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00553">553</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  553</span>                                                         {</div>
+<div class="line"><span class="lineno">  554</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
+<div class="line"><span class="lineno">  555</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><span class="lineno">  556</span>    EXPECT_FALSE(manager_.is_silenced(a));</div>
+<div class="line"><span class="lineno">  557</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3837,16 +3839,16 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00532">532</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  532</span>                                                         {</div>
-<div class="line"><span class="lineno">  533</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> silence;</div>
-<div class="line"><span class="lineno">  534</span>    silence.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><span class="lineno">  535</span>    manager_.create_silence(silence);</div>
-<div class="line"><span class="lineno">  536</span> </div>
-<div class="line"><span class="lineno">  537</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
-<div class="line"><span class="lineno">  538</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
-<div class="line"><span class="lineno">  539</span>    EXPECT_TRUE(manager_.is_silenced(a));</div>
-<div class="line"><span class="lineno">  540</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html#l00533">533</a> of file <a class="el" href="../../d2/dd9/test__alert__manager_8cpp_source.html">test_alert_manager.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  533</span>                                                         {</div>
+<div class="line"><span class="lineno">  534</span>    <a class="code hl_struct" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html">alert_silence</a> silence;</div>
+<div class="line"><span class="lineno">  535</span>    silence.<a class="code hl_variable" href="../../d3/d7c/structkcenon_1_1monitoring_1_1alert__silence.html#a81bf1699303eb12486e01a4a3561284c">matchers</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><span class="lineno">  536</span>    manager_.create_silence(silence);</div>
+<div class="line"><span class="lineno">  537</span> </div>
+<div class="line"><span class="lineno">  538</span>    <a class="code hl_struct" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html">alert</a> a;</div>
+<div class="line"><span class="lineno">  539</span>    a.<a class="code hl_variable" href="../../d1/d1e/structkcenon_1_1monitoring_1_1alert.html#acace61d342c6bee9a0002c00ec7398ce">labels</a>.<a class="code hl_function" href="../../d7/db4/structkcenon_1_1monitoring_1_1alert__labels.html#a651c8857f3bc412172cc0e68ec38ef11">set</a>(<span class="stringliteral">&quot;service&quot;</span>, <span class="stringliteral">&quot;api&quot;</span>);</div>
+<div class="line"><span class="lineno">  540</span>    EXPECT_TRUE(manager_.is_silenced(a));</div>
+<div class="line"><span class="lineno">  541</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3863,7 +3865,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 11 2026 11:53:52 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Feb 11 2026 12:28:12 for Monitoring System by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
