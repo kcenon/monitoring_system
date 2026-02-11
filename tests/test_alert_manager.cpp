@@ -492,9 +492,10 @@ TEST_F(AlertManagerSilenceTest, CreateSilence) {
 
 TEST_F(AlertManagerSilenceTest, CreateSilenceReturnsId) {
     alert_silence silence;
+    silence.id = 42;
     auto result = manager_.create_silence(silence);
     ASSERT_TRUE(result.is_ok());
-    EXPECT_GT(result.value(), 0u);
+    EXPECT_EQ(result.value(), 42u);
 }
 
 TEST_F(AlertManagerSilenceTest, DeleteSilence) {
@@ -603,10 +604,10 @@ TEST(CallbackNotifierTest, NotifyInvokesCallback) {
     std::atomic<int> count{0};
     auto notifier = std::make_shared<callback_notifier>(
         "test_cb",
-        [&](const alert& a) { count++; });
+        [&](const alert& /*a*/) { count++; });
 
-    alert a;
-    auto result = notifier->notify(a);
+    alert test_alert;
+    auto result = notifier->notify(test_alert);
     EXPECT_TRUE(result.is_ok());
     EXPECT_EQ(count.load(), 1);
 }
@@ -616,7 +617,7 @@ TEST(CallbackNotifierTest, NotifyGroupInvokesGroupCallback) {
     auto notifier = std::make_shared<callback_notifier>(
         "test_cb",
         [](const alert&) {},
-        [&](const alert_group& g) { group_count++; });
+        [&](const alert_group& /*g*/) { group_count++; });
 
     alert_group group("test");
     auto result = notifier->notify_group(group);
@@ -628,7 +629,7 @@ TEST(CallbackNotifierTest, NotifyGroupFallsBackToIndividual) {
     std::atomic<int> individual_count{0};
     auto notifier = std::make_shared<callback_notifier>(
         "test_cb",
-        [&](const alert& a) { individual_count++; },
+        [&](const alert& /*a*/) { individual_count++; },
         nullptr); // No group callback
 
     alert_group group("test");

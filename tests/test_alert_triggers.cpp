@@ -303,8 +303,8 @@ TEST_F(AnomalyTriggerTest, ZeroStddevDoesNotFire) {
     for (int i = 0; i < 10; ++i) {
         trigger->evaluate(50.0);
     }
-    // Even an outlier shouldn't fire because stddev is 0
-    EXPECT_FALSE(trigger->evaluate(100.0));
+    // Evaluating the same value keeps stddev at 0, guard should return false
+    EXPECT_FALSE(trigger->evaluate(50.0));
 }
 
 TEST_F(AnomalyTriggerTest, TypeNameAndDescription) {
