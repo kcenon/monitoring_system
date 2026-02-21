@@ -498,3 +498,127 @@ TEST_F(ErrorBoundariesTest, DegradationManagerHealthCheck) {
     EXPECT_TRUE(health.is_ok());
     EXPECT_FALSE(health.value());
 }
+
+// ============================================================================
+// Graceful Degradation Error Paths
+// ============================================================================
+
+TEST_F(ErrorBoundariesTest, UnregisterNonexistentService) {
+    auto manager = create_degradation_manager("test_manager");
+
+    auto result = manager->unregister_service("nonexistent");
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST_F(ErrorBoundariesTest, DegradeNonexistentService) {
+    auto manager = create_degradation_manager("test_manager");
+
+    auto result = manager->degrade_service("nonexistent", degradation_level::limited, "test");
+    EXPECT_TRUE(result.is_err());
+
+    auto metrics = manager->get_metrics();
+    EXPECT_EQ(metrics.failed_degradations.load(), 1);
+}
+
+TEST_F(ErrorBoundariesTest, RecoverNonexistentService) {
+    auto manager = create_degradation_manager("test_manager");
+
+    auto result = manager->recover_service("nonexistent");
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST_F(ErrorBoundariesTest, ExecuteNonexistentPlan) {
+    auto manager = create_degradation_manager("test_manager");
+
+    auto result = manager->execute_plan("nonexistent_plan", "reason");
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST_F(ErrorBoundariesTest, AddDegradationPlanEmptyName) {
+    auto manager = create_degradation_manager("test_manager");
+
+    degradation_plan plan;
+    plan.name = "";
+    auto result = manager->add_degradation_plan(plan);
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST_F(ErrorBoundariesTest, RegisterDuplicateService) {
+    auto manager = create_degradation_manager("test_manager");
+
+    auto config = create_service_config("dup_service", service_priority::normal);
+    auto result1 = manager->register_service(config);
+    EXPECT_TRUE(result1.is_ok());
+
+    auto result2 = manager->register_service(config);
+    EXPECT_TRUE(result2.is_err());
+}
+
+// ============================================================================
+// Accessor Coverage
+// ============================================================================
+
+TEST_F(ErrorBoundariesTest, DegradationManagerGetName) {
+    auto manager = create_degradation_manager("my_manager");
+    EXPECT_EQ(manager->get_name(), "my_manager");
+
+    graceful_degradation_manager default_mgr;
+    EXPECT_EQ(default_mgr.get_name(), "default");
+}
+
+TEST_F(ErrorBoundariesTest, DegradationManagerGetServiceNames) {
+    auto manager = create_degradation_manager("test_manager");
+
+    // Empty initially
+    auto names = manager->get_service_names();
+    EXPECT_TRUE(names.empty());
+
+    // Register services
+    manager->register_service(create_service_config("alpha", service_priority::normal));
+    manager->register_service(create_service_config("beta", service_priority::important));
+    manager->register_service(create_service_config("gamma", service_priority::critical));
+
+    names = manager->get_service_names();
+    EXPECT_EQ(names.size(), 3);
+
+    // Verify all names present (order may vary due to unordered_map)
+    std::sort(names.begin(), names.end());
+    EXPECT_EQ(names[0], "alpha");
+    EXPECT_EQ(names[1], "beta");
+    EXPECT_EQ(names[2], "gamma");
+}
+
+// ============================================================================
+// Config Validation Boundary Values
+// ============================================================================
+
+TEST_F(ErrorBoundariesTest, ServiceConfigValidationBoundaryValues) {
+    service_config config;
+    config.name = "test_service";
+
+    // error_rate_threshold = 0.0 should be valid
+    config.error_rate_threshold = 0.0;
+    EXPECT_TRUE(config.validate());
+
+    // error_rate_threshold = 1.0 should be valid
+    config.error_rate_threshold = 1.0;
+    EXPECT_TRUE(config.validate());
+}
+
+// ============================================================================
+// degradable_service Edge Cases
+// ============================================================================
+
+TEST_F(ErrorBoundariesTest, DegradableServiceNullptrManager) {
+    auto normal_op = []() { return kcenon::common::ok(42); };
+    auto degraded_op = [](degradation_level) { return kcenon::common::ok(0); };
+
+    // Create with nullptr manager
+    degradable_service<int> service("null_manager_service", nullptr, normal_op, degraded_op);
+
+    // Should use normal_op directly when manager is nullptr
+    auto result = service.execute();
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_EQ(result.value(), 42);
+    EXPECT_EQ(service.get_name(), "null_manager_service");
+}
