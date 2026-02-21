@@ -791,6 +791,151 @@ TEST_F(MetricExportersTest, OtlpExporterWithCustomHttpTransport) {
     EXPECT_TRUE(stop_result.is_ok());
 }
 
+// ============================================================================
+// simple_http_client URL Parser Tests
+// ============================================================================
+
+TEST(HttpTransportTest, SimpleHttpClientValidUrls) {
+    simple_http_client client;
+
+    // Standard HTTP URL with path
+    http_request req;
+    req.url = "http://example.com/api/v1/traces";
+    auto result = client.send(req);
+    EXPECT_TRUE(result.is_ok());
+
+    // HTTPS URL with port
+    req.url = "https://collector.example.com:4318/v1/metrics";
+    result = client.send(req);
+    EXPECT_TRUE(result.is_ok());
+
+    // HTTP URL without path
+    req.url = "http://localhost:9090";
+    result = client.send(req);
+    EXPECT_TRUE(result.is_ok());
+
+    // HTTP URL with only host
+    req.url = "http://prometheus";
+    result = client.send(req);
+    EXPECT_TRUE(result.is_ok());
+}
+
+TEST(HttpTransportTest, SimpleHttpClientInvalidUrls) {
+    simple_http_client client;
+
+    // Missing scheme
+    http_request req;
+    req.url = "example.com/api";
+    auto result = client.send(req);
+    EXPECT_TRUE(result.is_err());
+
+    // Empty host after scheme
+    req.url = "http://";
+    result = client.send(req);
+    EXPECT_TRUE(result.is_err());
+
+    // No URL at all
+    req.url = "";
+    result = client.send(req);
+    EXPECT_TRUE(result.is_err());
+}
+
+TEST(HttpTransportTest, SimpleHttpClientPortDefaults) {
+    simple_http_client client;
+
+    // HTTP default port should be 80 (we verify indirectly by successful send)
+    http_request req;
+    req.url = "http://example.com/path";
+    auto result = client.send(req);
+    EXPECT_TRUE(result.is_ok());
+
+    // HTTPS default port should be 443
+    req.url = "https://example.com/path";
+    result = client.send(req);
+    EXPECT_TRUE(result.is_ok());
+}
+
+TEST(HttpTransportTest, SimpleHttpClientNameAndAvailability) {
+    simple_http_client client;
+    EXPECT_EQ(client.name(), "simple");
+    EXPECT_TRUE(client.is_available());
+}
+
+// ============================================================================
+// stub_http_transport Explicit Tests
+// ============================================================================
+
+TEST(HttpTransportTest, StubHttpTransportIsAvailableAndName) {
+    auto transport = create_stub_transport();
+    ASSERT_TRUE(transport);
+    EXPECT_TRUE(transport->is_available());
+    EXPECT_EQ(transport->name(), "stub");
+}
+
+// ============================================================================
+// stub_grpc_transport Additional Tests
+// ============================================================================
+
+TEST(GrpcTransportTest, StubTransportResetStatistics) {
+    auto transport = create_stub_grpc_transport();
+    transport->connect("localhost", 4317);
+
+    grpc_request request;
+    request.body = {0x01, 0x02, 0x03};
+    transport->send(request);
+    transport->send(request);
+
+    auto stats = transport->get_statistics();
+    EXPECT_EQ(stats.requests_sent, 2);
+    EXPECT_EQ(stats.bytes_sent, 6);
+
+    transport->reset_statistics();
+    auto reset_stats = transport->get_statistics();
+    EXPECT_EQ(reset_stats.requests_sent, 0);
+    EXPECT_EQ(reset_stats.bytes_sent, 0);
+    EXPECT_EQ(reset_stats.send_failures, 0);
+}
+
+TEST(GrpcTransportTest, StubTransportDisconnectedState) {
+    auto transport = create_stub_grpc_transport();
+    transport->connect("localhost", 4317);
+    EXPECT_TRUE(transport->is_connected());
+
+    transport->disconnect();
+    EXPECT_FALSE(transport->is_connected());
+
+    // Send should fail after disconnect
+    grpc_request request;
+    request.body = {0x01};
+    auto result = transport->send(request);
+    EXPECT_TRUE(result.is_err());
+
+    auto stats = transport->get_statistics();
+    EXPECT_EQ(stats.send_failures, 1);
+}
+
+// ============================================================================
+// stub_udp_transport String Overload Test
+// ============================================================================
+
+TEST(UdpTransportTest, StubTransportStringSendDelegation) {
+    auto transport = create_stub_udp_transport();
+    transport->connect("localhost", 8125);
+
+    // Send using the string overload (inherited from udp_transport base class)
+    std::string metric_line = "test.metric:42|g";
+    auto result = transport->send(metric_line);
+    EXPECT_TRUE(result.is_ok());
+
+    auto stats = transport->get_statistics();
+    EXPECT_EQ(stats.packets_sent, 1);
+    EXPECT_EQ(stats.bytes_sent, metric_line.size());
+}
+
+// ============================================================================
+// OTLP Exporter with Custom Transport Tests (continued)
+// ============================================================================
+
 TEST_F(MetricExportersTest, OtlpExporterWithCustomGrpcTransport) {
     auto stub_http = create_stub_transport();
     auto stub_grpc = create_stub_grpc_transport();
