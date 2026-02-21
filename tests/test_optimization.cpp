@@ -171,6 +171,143 @@ TEST_F(OptimizationTest, LockfreeQueueConcurrentAccess) {
     EXPECT_EQ(stats.pop_successes.load(), static_cast<size_t>(total_consumed.load()));
 }
 
+// Lock-free Queue: Move Push
+TEST_F(OptimizationTest, LockfreeQueueMovePush) {
+    lockfree_queue<std::string> queue;
+
+    std::string value = "test_value";
+    auto result = queue.push(std::move(value));
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_TRUE(result.value());
+    EXPECT_EQ(queue.size(), 1);
+
+    auto pop_result = queue.pop();
+    EXPECT_TRUE(pop_result.is_ok());
+    EXPECT_EQ(pop_result.value(), "test_value");
+}
+
+// Lock-free Queue: Pop from Empty Queue
+TEST_F(OptimizationTest, LockfreeQueuePopEmpty) {
+    lockfree_queue<int> queue;
+    EXPECT_TRUE(queue.empty());
+
+    auto result = queue.pop();
+    EXPECT_TRUE(result.is_err());
+}
+
+// Lock-free Queue: Push when Full
+TEST_F(OptimizationTest, LockfreeQueuePushFull) {
+    lockfree_queue_config config;
+    config.initial_capacity = 4;
+    config.max_capacity = 4;
+
+    lockfree_queue<int> queue(config);
+
+    // Fill the queue to capacity
+    for (int i = 0; i < 4; ++i) {
+        auto result = queue.push(i);
+        EXPECT_TRUE(result.is_ok());
+        EXPECT_TRUE(result.value());
+    }
+
+    // Next push should return ok(false)
+    auto full_result = queue.push(999);
+    EXPECT_TRUE(full_result.is_ok());
+    EXPECT_FALSE(full_result.value());
+}
+
+// Lock-free Queue: Config Validation All Cases
+TEST_F(OptimizationTest, LockfreeQueueConfigValidationAllCases) {
+    // Valid config
+    lockfree_queue_config valid;
+    valid.initial_capacity = 16;
+    valid.max_capacity = 64;
+    EXPECT_TRUE(valid.validate());
+
+    // Zero initial capacity
+    lockfree_queue_config zero_cap;
+    zero_cap.initial_capacity = 0;
+    EXPECT_FALSE(zero_cap.validate());
+
+    // max_capacity < initial_capacity
+    lockfree_queue_config max_less;
+    max_less.initial_capacity = 100;
+    max_less.max_capacity = 50;
+    EXPECT_FALSE(max_less.validate());
+
+    // max_capacity == 0 (unlimited) should be valid
+    lockfree_queue_config unlimited;
+    unlimited.initial_capacity = 16;
+    unlimited.max_capacity = 0;
+    EXPECT_TRUE(unlimited.validate());
+}
+
+// Lock-free Queue: Reset Statistics and Success Rate at Zero Attempts
+TEST_F(OptimizationTest, LockfreeQueueStatisticsReset) {
+    lockfree_queue<int> queue;
+
+    queue.push(1);
+    queue.push(2);
+    queue.pop();
+
+    const auto& stats = queue.get_statistics();
+    EXPECT_GT(stats.push_attempts.load(), 0);
+    EXPECT_GT(stats.pop_attempts.load(), 0);
+
+    queue.reset_statistics();
+
+    EXPECT_EQ(stats.push_attempts.load(), 0);
+    EXPECT_EQ(stats.push_successes.load(), 0);
+    EXPECT_EQ(stats.push_failures.load(), 0);
+    EXPECT_EQ(stats.pop_attempts.load(), 0);
+    EXPECT_EQ(stats.pop_successes.load(), 0);
+    EXPECT_EQ(stats.pop_failures.load(), 0);
+
+    // Success rate should be 100.0 when attempts == 0
+    EXPECT_DOUBLE_EQ(stats.get_push_success_rate(), 100.0);
+    EXPECT_DOUBLE_EQ(stats.get_pop_success_rate(), 100.0);
+}
+
+// Lock-free Queue: Move Constructor
+TEST_F(OptimizationTest, LockfreeQueueMoveConstructor) {
+    lockfree_queue_config config;
+    config.initial_capacity = 16;
+    config.max_capacity = 64;
+
+    lockfree_queue<int> queue1(config);
+    queue1.push(10);
+    queue1.push(20);
+    queue1.push(30);
+
+    // Move constructor
+    lockfree_queue<int> queue2(std::move(queue1));
+    EXPECT_EQ(queue2.size(), 3);
+
+    auto pop_result = queue2.pop();
+    EXPECT_TRUE(pop_result.is_ok());
+    EXPECT_EQ(pop_result.value(), 10);
+
+    pop_result = queue2.pop();
+    EXPECT_TRUE(pop_result.is_ok());
+    EXPECT_EQ(pop_result.value(), 20);
+
+    pop_result = queue2.pop();
+    EXPECT_TRUE(pop_result.is_ok());
+    EXPECT_EQ(pop_result.value(), 30);
+}
+
+// Lock-free Queue: make_lockfree_queue Factory with Config
+TEST_F(OptimizationTest, LockfreeQueueFactoryWithConfig) {
+    lockfree_queue_config config;
+    config.initial_capacity = 32;
+    config.max_capacity = 128;
+
+    auto queue = make_lockfree_queue<double>(config);
+    EXPECT_NE(queue, nullptr);
+    EXPECT_TRUE(queue->empty());
+    EXPECT_EQ(queue->capacity(), 32);
+}
+
 // Memory Pool Tests
 TEST_F(OptimizationTest, MemoryPoolBasicOperations) {
     memory_pool_config config;
@@ -288,6 +425,112 @@ TEST_F(OptimizationTest, MemoryPoolConcurrentAccess) {
     EXPECT_GT(stats.get_allocation_success_rate(), 95.0);
 }
 
+// Memory Pool: Config Validation All Failure Cases
+TEST_F(OptimizationTest, MemoryPoolConfigValidationAllCases) {
+    // Valid config
+    memory_pool_config valid;
+    valid.initial_blocks = 64;
+    valid.max_blocks = 256;
+    valid.block_size = 64;
+    valid.alignment = 8;
+    EXPECT_TRUE(valid.validate());
+
+    // Zero initial blocks
+    memory_pool_config zero_blocks;
+    zero_blocks.initial_blocks = 0;
+    EXPECT_FALSE(zero_blocks.validate());
+
+    // Zero block size
+    memory_pool_config zero_size;
+    zero_size.block_size = 0;
+    EXPECT_FALSE(zero_size.validate());
+
+    // Block size not 8-byte aligned
+    memory_pool_config bad_align;
+    bad_align.block_size = 13;
+    EXPECT_FALSE(bad_align.validate());
+
+    // Alignment not power of 2
+    memory_pool_config bad_pow2;
+    bad_pow2.block_size = 64;
+    bad_pow2.alignment = 6;
+    EXPECT_FALSE(bad_pow2.validate());
+
+    // Zero alignment
+    memory_pool_config zero_align;
+    zero_align.block_size = 64;
+    zero_align.alignment = 0;
+    EXPECT_FALSE(zero_align.validate());
+
+    // max_blocks < initial_blocks
+    memory_pool_config max_less;
+    max_less.initial_blocks = 100;
+    max_less.max_blocks = 50;
+    max_less.block_size = 64;
+    EXPECT_FALSE(max_less.validate());
+}
+
+// Memory Pool: Allocate When Full
+TEST_F(OptimizationTest, MemoryPoolAllocateWhenFull) {
+    memory_pool_config config;
+    config.initial_blocks = 4;
+    config.max_blocks = 4;  // Cannot grow
+    config.block_size = 64;
+
+    memory_pool pool(config);
+
+    // Allocate all blocks
+    std::vector<void*> allocated;
+    for (int i = 0; i < 4; ++i) {
+        auto result = pool.allocate();
+        EXPECT_TRUE(result.is_ok());
+        allocated.push_back(result.value());
+    }
+    EXPECT_EQ(pool.available_blocks(), 0);
+
+    // Next allocation should fail with resource_unavailable
+    auto fail_result = pool.allocate();
+    EXPECT_TRUE(fail_result.is_err());
+
+    // Cleanup
+    for (auto* ptr : allocated) {
+        pool.deallocate(ptr);
+    }
+}
+
+// Memory Pool: Deallocate nullptr
+TEST_F(OptimizationTest, MemoryPoolDeallocateNullptr) {
+    memory_pool pool;
+
+    auto result = pool.deallocate(nullptr);
+    EXPECT_TRUE(result.is_err());
+}
+
+// Memory Pool: Deallocate Foreign Pointer
+TEST_F(OptimizationTest, MemoryPoolDeallocateForeignPtr) {
+    memory_pool pool;
+
+    int foreign_value = 42;
+    auto result = pool.deallocate(&foreign_value);
+    EXPECT_TRUE(result.is_err());
+}
+
+// Memory Pool: allocate_object When sizeof(T) > block_size
+TEST_F(OptimizationTest, MemoryPoolAllocateObjectOversized) {
+    memory_pool_config config;
+    config.initial_blocks = 16;
+    config.block_size = 8;  // Very small blocks
+
+    memory_pool pool(config);
+
+    struct LargeObject {
+        double data[16];  // 128 bytes > 8 bytes block_size
+    };
+
+    auto result = pool.allocate_object<LargeObject>();
+    EXPECT_TRUE(result.is_err());
+}
+
 // SIMD Aggregator Tests
 TEST_F(OptimizationTest, SIMDAggregatorBasicOperations) {
     simd_config config;
@@ -399,6 +642,98 @@ TEST_F(OptimizationTest, SIMDAggregatorPerformanceComparison) {
             std::cout << "[INFO] SIMD slower than scalar - this may be expected in CI/VM environments" << std::endl;
         }
     }
+}
+
+// SIMD Aggregator: Empty Vector Input
+TEST_F(OptimizationTest, SIMDAggregatorEmptyInput) {
+    simd_aggregator aggregator;
+    std::vector<double> empty_data;
+
+    auto sum_result = aggregator.sum(empty_data);
+    EXPECT_TRUE(sum_result.is_err());
+
+    auto mean_result = aggregator.mean(empty_data);
+    EXPECT_TRUE(mean_result.is_err());
+
+    auto min_result = aggregator.min(empty_data);
+    EXPECT_TRUE(min_result.is_err());
+
+    auto max_result = aggregator.max(empty_data);
+    EXPECT_TRUE(max_result.is_err());
+
+    auto var_result = aggregator.variance(empty_data);
+    EXPECT_TRUE(var_result.is_err());
+
+    auto summary_result = aggregator.compute_summary(empty_data);
+    EXPECT_TRUE(summary_result.is_err());
+}
+
+// SIMD Aggregator: Variance of Single Value
+TEST_F(OptimizationTest, SIMDAggregatorVarianceSingleValue) {
+    simd_aggregator aggregator;
+    std::vector<double> single = {42.0};
+
+    auto result = aggregator.variance(single);
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_DOUBLE_EQ(result.value(), 0.0);
+}
+
+// SIMD Aggregator: Scalar-Only Mode
+TEST_F(OptimizationTest, SIMDAggregatorScalarOnlyMode) {
+    simd_config config;
+    config.enable_simd = false;
+    simd_aggregator aggregator(config);
+
+    auto data = generate_test_data(100, 0.0, 100.0);
+
+    auto sum_result = aggregator.sum(data);
+    EXPECT_TRUE(sum_result.is_ok());
+
+    auto mean_result = aggregator.mean(data);
+    EXPECT_TRUE(mean_result.is_ok());
+
+    // All operations should use scalar path
+    const auto& stats = aggregator.get_statistics();
+    EXPECT_EQ(stats.simd_operations.load(), 0);
+    EXPECT_GT(stats.scalar_operations.load(), 0);
+    EXPECT_GT(stats.total_elements_processed.load(), 0);
+}
+
+// SIMD Aggregator: test_simd Self-Test
+TEST_F(OptimizationTest, SIMDAggregatorSelfTest) {
+    simd_aggregator aggregator;
+    auto result = aggregator.test_simd();
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_TRUE(result.value());
+}
+
+// SIMD Config: Additional Validation Cases
+TEST_F(OptimizationTest, SIMDConfigValidationAllCases) {
+    // Valid config
+    simd_config valid;
+    valid.vector_size = 8;
+    valid.alignment = 32;
+    EXPECT_TRUE(valid.validate());
+
+    // Zero vector size
+    simd_config zero_vec;
+    zero_vec.vector_size = 0;
+    EXPECT_FALSE(zero_vec.validate());
+
+    // Non-power-of-2 vector size
+    simd_config bad_vec;
+    bad_vec.vector_size = 5;
+    EXPECT_FALSE(bad_vec.validate());
+
+    // Zero alignment
+    simd_config zero_align;
+    zero_align.alignment = 0;
+    EXPECT_FALSE(zero_align.validate());
+
+    // Non-power-of-2 alignment
+    simd_config bad_align;
+    bad_align.alignment = 12;
+    EXPECT_FALSE(bad_align.validate());
 }
 
 // Configuration Tests
