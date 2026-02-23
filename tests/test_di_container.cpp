@@ -1,242 +1,31 @@
-/*****************************************************************************
-BSD 3-Clause License
-
-Copyright (c) 2025, monitoring_system contributors
-All rights reserved.
-*****************************************************************************/
+// BSD 3-Clause License
+// Copyright (c) 2025, kcenon
+// See the LICENSE file in the project root for full license information.
 
 /**
  * @file test_di_container.cpp
- * @brief Unit tests for dependency injection container
+ * @brief Unit tests for monitoring_system DI container integration.
+ *
+ * Tests validate that monitoring_system types work correctly with
+ * common_system's service_container, covering registration, resolution,
+ * lifetime management, dependency injection, scoping, and thread safety.
+ *
+ * Part of kcenon/common_system#368
  */
 
 #include <gtest/gtest.h>
-#include "kcenon/monitoring/core/result_types.h"
-#include "kcenon/monitoring/core/error_codes.h"
-// Note: DI container headers do not exist in include directory
-// #include <kcenon/monitoring/di/service_container_interface.h>
-// #include <kcenon/monitoring/di/lightweight_container.h>
-// #include <kcenon/monitoring/di/thread_system_container_adapter.h>
-#include <thread>
+
+#include <kcenon/common/di/service_container.h>
+
 #include <atomic>
-#include <mutex>
-#include <stdexcept>
+#include <chrono>
 #include <memory>
+#include <stdexcept>
 #include <string>
-#include <functional>
-#include <unordered_map>
-#include <typeinfo>
+#include <thread>
+#include <vector>
 
-// Add monitoring system types for testing
-namespace kcenon::monitoring {
-    // Stub enums and types for testing
-    enum class service_lifetime {
-        transient,
-        singleton,
-        scoped
-    };
-
-    // Stub interface for testing with basic functionality
-    class service_container_interface {
-    private:
-        mutable std::unordered_map<std::string, std::function<std::shared_ptr<void>()>> factories_;
-        mutable std::unordered_map<std::string, std::shared_ptr<void>> singletons_;
-        mutable std::unordered_map<std::string, service_lifetime> lifetimes_;
-        service_container_interface* parent_ = nullptr;
-        mutable std::recursive_mutex mutex_;
-
-        std::string get_type_key(const std::type_info& type) const {
-            return type.name();
-        }
-
-        std::string get_named_key(const std::type_info& type, const std::string& name) const {
-            return std::string(type.name()) + "_" + name;
-        }
-
-    public:
-        virtual ~service_container_interface() = default;
-
-        explicit service_container_interface(service_container_interface* parent = nullptr)
-            : parent_(parent) {}
-
-        template<typename TInterface>
-        kcenon::common::Result<bool> register_factory(
-            std::function<std::shared_ptr<TInterface>()> factory,
-            service_lifetime lifetime) {
-
-            std::string key = get_type_key(typeid(TInterface));
-            factories_[key] = [factory]() -> std::shared_ptr<void> {
-                return std::static_pointer_cast<void>(factory());
-            };
-            lifetimes_[key] = lifetime;
-            return kcenon::common::ok(true);
-        }
-
-        template<typename TInterface>
-        kcenon::common::Result<bool> register_factory(
-            const std::string& name,
-            std::function<std::shared_ptr<TInterface>()> factory,
-            service_lifetime lifetime) {
-
-            std::string key = get_named_key(typeid(TInterface), name);
-            factories_[key] = [factory]() -> std::shared_ptr<void> {
-                return std::static_pointer_cast<void>(factory());
-            };
-            lifetimes_[key] = lifetime;
-            return kcenon::common::ok(true);
-        }
-
-        template<typename TInterface>
-        kcenon::common::Result<bool> register_singleton(std::shared_ptr<TInterface> instance) {
-            std::string key = get_type_key(typeid(TInterface));
-            singletons_[key] = std::static_pointer_cast<void>(instance);
-            lifetimes_[key] = service_lifetime::singleton;
-            return kcenon::common::ok(true);
-        }
-
-        template<typename TInterface>
-        bool is_registered() const {
-            std::string key = get_type_key(typeid(TInterface));
-            if (factories_.find(key) != factories_.end() || singletons_.find(key) != singletons_.end()) {
-                return true;
-            }
-            return parent_ != nullptr && parent_->is_registered<TInterface>();
-        }
-
-        template<typename TInterface>
-        bool is_registered(const std::string& name) const {
-            std::string key = get_named_key(typeid(TInterface), name);
-            if (factories_.find(key) != factories_.end() || singletons_.find(key) != singletons_.end()) {
-                return true;
-            }
-            return parent_ != nullptr && parent_->is_registered<TInterface>(name);
-        }
-
-        template<typename TInterface>
-        kcenon::common::Result<std::shared_ptr<TInterface>> resolve() const {
-            std::lock_guard<std::recursive_mutex> lock(mutex_);
-
-            std::string key = get_type_key(typeid(TInterface));
-
-            // Check singletons first
-            auto singleton_it = singletons_.find(key);
-            if (singleton_it != singletons_.end()) {
-                return kcenon::common::ok(std::static_pointer_cast<TInterface>(singleton_it->second));
-            }
-
-            // Check factories
-            auto factory_it = factories_.find(key);
-            if (factory_it != factories_.end()) {
-                auto lifetime_it = lifetimes_.find(key);
-                if (lifetime_it != lifetimes_.end() &&
-                    (lifetime_it->second == service_lifetime::singleton ||
-                     lifetime_it->second == service_lifetime::scoped)) {
-                    // Create singleton/scoped instance
-                    auto instance = factory_it->second();
-                    singletons_[key] = instance;
-                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
-                } else {
-                    // Create transient instance
-                    auto instance = factory_it->second();
-                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
-                }
-            }
-
-            // Check parent container
-            if (parent_ != nullptr) {
-                return parent_->resolve<TInterface>();
-            }
-
-            return kcenon::common::make_error<std::shared_ptr<TInterface>>(
-                static_cast<int>(monitoring_error_code::collector_not_found), "Service not found");
-        }
-
-        template<typename TInterface>
-        kcenon::common::Result<std::shared_ptr<TInterface>> resolve(const std::string& name) const {
-            std::lock_guard<std::recursive_mutex> lock(mutex_);
-
-            std::string key = get_named_key(typeid(TInterface), name);
-
-            // Check singletons first
-            auto singleton_it = singletons_.find(key);
-            if (singleton_it != singletons_.end()) {
-                return kcenon::common::ok(std::static_pointer_cast<TInterface>(singleton_it->second));
-            }
-
-            // Check factories
-            auto factory_it = factories_.find(key);
-            if (factory_it != factories_.end()) {
-                auto lifetime_it = lifetimes_.find(key);
-                if (lifetime_it != lifetimes_.end() &&
-                    (lifetime_it->second == service_lifetime::singleton ||
-                     lifetime_it->second == service_lifetime::scoped)) {
-                    // Create singleton/scoped instance
-                    auto instance = factory_it->second();
-                    singletons_[key] = instance;
-                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
-                } else {
-                    // Create transient instance
-                    auto instance = factory_it->second();
-                    return kcenon::common::ok(std::static_pointer_cast<TInterface>(instance));
-                }
-            }
-
-            // Check parent container
-            if (parent_ != nullptr) {
-                return parent_->resolve<TInterface>(name);
-            }
-
-            return kcenon::common::make_error<std::shared_ptr<TInterface>>(
-                static_cast<int>(monitoring_error_code::collector_not_found), "Named service not found");
-        }
-
-        // Additional methods needed by tests
-        virtual kcenon::common::Result<bool> clear() {
-            factories_.clear();
-            singletons_.clear();
-            lifetimes_.clear();
-            return kcenon::common::ok(true);
-        }
-
-        virtual std::unique_ptr<service_container_interface> create_scope() {
-            return std::make_unique<service_container_interface>(this);
-        }
-    };
-
-    // Stub function for creating lightweight container
-    inline std::unique_ptr<service_container_interface> create_lightweight_container() {
-        return std::make_unique<service_container_interface>();
-    }
-
-    // Stub service_locator for testing
-    class service_locator {
-    private:
-        static inline std::unique_ptr<service_container_interface> container_;
-    public:
-        static bool has_container() {
-            return container_ != nullptr;
-        }
-
-        static service_container_interface* get_container() {
-            return container_.get();
-        }
-
-        static void set_container(std::unique_ptr<service_container_interface> container) {
-            container_ = std::move(container);
-        }
-
-        static void reset() {
-            container_.reset();
-        }
-    };
-
-    // Stub function for thread system adapter
-    inline std::unique_ptr<service_container_interface> create_thread_system_adapter() {
-        return std::make_unique<service_container_interface>();
-    }
-}
-
-using namespace kcenon::monitoring;
+using namespace kcenon::common::di;
 
 /**
  * Test interfaces and implementations
@@ -251,24 +40,21 @@ class ServiceA : public IService {
 private:
     static std::atomic<int> instance_count_;
     int id_;
-    
+
 public:
     ServiceA() : id_(++instance_count_) {}
-    ~ServiceA() { --instance_count_; }
-    
-    std::string get_name() const override {
+    ~ServiceA() override { --instance_count_; }
+
+    std::string get_name() const override
+    {
         return "ServiceA_" + std::to_string(id_);
     }
-    
+
     int get_id() const { return id_; }
-    
-    static int get_instance_count() { 
-        return instance_count_.load(); 
-    }
-    
-    static void reset_count() {
-        instance_count_ = 0;
-    }
+
+    static int get_instance_count() { return instance_count_.load(); }
+
+    static void reset_count() { instance_count_ = 0; }
 };
 
 std::atomic<int> ServiceA::instance_count_{0};
@@ -276,18 +62,16 @@ std::atomic<int> ServiceA::instance_count_{0};
 class ServiceB : public IService {
 private:
     std::shared_ptr<ServiceA> service_a_;
-    
+
 public:
-    explicit ServiceB(std::shared_ptr<ServiceA> a) 
-        : service_a_(std::move(a)) {}
-    
-    std::string get_name() const override {
+    explicit ServiceB(std::shared_ptr<ServiceA> a) : service_a_(std::move(a)) {}
+
+    std::string get_name() const override
+    {
         return "ServiceB_with_" + service_a_->get_name();
     }
-    
-    std::shared_ptr<ServiceA> get_dependency() const {
-        return service_a_;
-    }
+
+    std::shared_ptr<ServiceA> get_dependency() const { return service_a_; }
 };
 
 /**
@@ -295,44 +79,41 @@ public:
  */
 class DIContainerTest : public ::testing::Test {
 protected:
-    void SetUp() override {
+    service_container container_;
+
+    void SetUp() override { ServiceA::reset_count(); }
+
+    void TearDown() override
+    {
+        container_.clear();
         ServiceA::reset_count();
-        container_ = create_lightweight_container();
     }
-    
-    void TearDown() override {
-        container_.reset();
-    }
-    
-    std::unique_ptr<service_container_interface> container_;
 };
 
 /**
- * Test basic service registration and resolution
+ * Test basic service registration and resolution with transient lifetime
  */
-TEST_F(DIContainerTest, RegisterAndResolveTransient) {
-    // Register transient service
-    auto result = container_->register_factory<IService>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::transient
-    );
-    
+TEST_F(DIContainerTest, RegisterAndResolveTransient)
+{
+    auto result = container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::transient);
+
     ASSERT_TRUE(result.is_ok());
-    EXPECT_TRUE(container_->is_registered<IService>());
-    
+    EXPECT_TRUE(container_.is_registered<IService>());
+
     // Resolve service multiple times
-    auto service1_result = container_->resolve<IService>();
+    auto service1_result = container_.resolve<IService>();
     ASSERT_TRUE(service1_result.is_ok());
     auto service1 = service1_result.value();
     EXPECT_NE(service1, nullptr);
     EXPECT_EQ(service1->get_name(), "ServiceA_1");
-    
-    auto service2_result = container_->resolve<IService>();
+
+    auto service2_result = container_.resolve<IService>();
     ASSERT_TRUE(service2_result.is_ok());
     auto service2 = service2_result.value();
     EXPECT_NE(service2, nullptr);
     EXPECT_EQ(service2->get_name(), "ServiceA_2");
-    
+
     // Transient services should be different instances
     EXPECT_NE(service1, service2);
     EXPECT_EQ(ServiceA::get_instance_count(), 2);
@@ -341,25 +122,23 @@ TEST_F(DIContainerTest, RegisterAndResolveTransient) {
 /**
  * Test singleton lifetime
  */
-TEST_F(DIContainerTest, RegisterAndResolveSingleton) {
-    // Register singleton service
-    auto result = container_->register_factory<IService>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
+TEST_F(DIContainerTest, RegisterAndResolveSingleton)
+{
+    auto result = container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+
     ASSERT_TRUE(result.is_ok());
-    
+
     // Resolve multiple times
-    auto service1_result = container_->resolve<IService>();
-    auto service2_result = container_->resolve<IService>();
-    
+    auto service1_result = container_.resolve<IService>();
+    auto service2_result = container_.resolve<IService>();
+
     ASSERT_TRUE(service1_result.is_ok());
     ASSERT_TRUE(service2_result.is_ok());
-    
+
     auto service1 = service1_result.value();
     auto service2 = service2_result.value();
-    
+
     // Singleton services should be the same instance
     EXPECT_EQ(service1, service2);
     EXPECT_EQ(ServiceA::get_instance_count(), 1);
@@ -368,97 +147,56 @@ TEST_F(DIContainerTest, RegisterAndResolveSingleton) {
 }
 
 /**
- * Test direct singleton registration
+ * Test direct instance registration
  */
-TEST_F(DIContainerTest, RegisterSingletonInstance) {
+TEST_F(DIContainerTest, RegisterSingletonInstance)
+{
     auto instance = std::make_shared<ServiceA>();
     auto initial_name = instance->get_name();
-    
-    // Register existing instance as singleton
-    auto result = container_->register_singleton<IService>(instance);
+
+    auto result = container_.register_instance<IService>(instance);
     ASSERT_TRUE(result.is_ok());
-    
+
     // Resolve should return the same instance
-    auto resolved_result = container_->resolve<IService>();
+    auto resolved_result = container_.resolve<IService>();
     ASSERT_TRUE(resolved_result.is_ok());
     auto resolved = resolved_result.value();
-    
+
     EXPECT_EQ(resolved, instance);
     EXPECT_EQ(resolved->get_name(), initial_name);
 }
 
 /**
- * Test named service registration
+ * Test service with dependencies resolved through the container
  */
-TEST_F(DIContainerTest, NamedServiceRegistration) {
-    // Register multiple named services
-    auto result1 = container_->register_factory<IService>(
-        "primary",
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
-    auto result2 = container_->register_factory<IService>(
-        "secondary",
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
-    ASSERT_TRUE(result1.is_ok());
-    ASSERT_TRUE(result2.is_ok());
+TEST_F(DIContainerTest, ServiceWithDependencies)
+{
+    // Register dependency as singleton
+    container_.register_simple_factory<ServiceA>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
 
-    EXPECT_TRUE(container_->is_registered<IService>("primary"));
-    EXPECT_TRUE(container_->is_registered<IService>("secondary"));
-    EXPECT_FALSE(container_->is_registered<IService>("unknown"));
-    
-    // Resolve named services
-    auto primary_result = container_->resolve<IService>("primary");
-    auto secondary_result = container_->resolve<IService>("secondary");
-    
-    ASSERT_TRUE(primary_result.is_ok());
-    ASSERT_TRUE(secondary_result.is_ok());
-    
-    auto primary = primary_result.value();
-    auto secondary = secondary_result.value();
-    
-    EXPECT_NE(primary, secondary);
-    EXPECT_EQ(primary->get_name(), "ServiceA_1");
-    EXPECT_EQ(secondary->get_name(), "ServiceA_2");
-}
-
-/**
- * Test service with dependencies
- */
-TEST_F(DIContainerTest, ServiceWithDependencies) {
-    // Register dependency
-    container_->register_factory<ServiceA>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
-    // Register service that depends on ServiceA
-    container_->register_factory<ServiceB>(
-        [this]() {
-            auto dep_result = container_->resolve<ServiceA>();
+    // Register service that depends on ServiceA, using container to resolve
+    container_.register_factory<ServiceB>(
+        [](IServiceContainer& c) {
+            auto dep_result = c.resolve<ServiceA>();
             if (dep_result.is_err()) {
                 throw std::runtime_error("Failed to resolve dependency");
             }
             return std::make_shared<ServiceB>(dep_result.value());
         },
-        service_lifetime::transient
-    );
-    
+        service_lifetime::transient);
+
     // Resolve service with dependencies
-    auto service_result = container_->resolve<ServiceB>();
+    auto service_result = container_.resolve<ServiceB>();
     ASSERT_TRUE(service_result.is_ok());
     auto service = service_result.value();
-    
+
     EXPECT_NE(service, nullptr);
     auto dependency = service->get_dependency();
     EXPECT_NE(dependency, nullptr);
-    
-    // Dependency should be singleton
-    auto dep_result = container_->resolve<ServiceA>();
+
+    // Dependency should be the same singleton
+    auto dep_result = container_.resolve<ServiceA>();
     ASSERT_TRUE(dep_result.is_ok());
     EXPECT_EQ(dependency, dep_result.value());
 }
@@ -466,15 +204,14 @@ TEST_F(DIContainerTest, ServiceWithDependencies) {
 /**
  * Test scoped container
  */
-TEST_F(DIContainerTest, ScopedContainer) {
-    // Register services in parent container
-    container_->register_factory<IService>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
+TEST_F(DIContainerTest, ScopedContainer)
+{
+    // Register singleton in root container
+    container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
 
     // Create scoped container
-    auto scope = container_->create_scope();
+    auto scope = container_.create_scope();
     ASSERT_NE(scope, nullptr);
 
     // Scoped container should inherit parent registrations
@@ -484,179 +221,160 @@ TEST_F(DIContainerTest, ScopedContainer) {
     auto service_result = scope->resolve<IService>();
     ASSERT_TRUE(service_result.is_ok());
     EXPECT_NE(service_result.value(), nullptr);
-
-    // Register scoped service
-    scope->register_factory<ServiceA>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::scoped
-    );
-
-    // Resolve scoped service
-    auto scoped_result1 = scope->resolve<ServiceA>();
-    auto scoped_result2 = scope->resolve<ServiceA>();
-
-    ASSERT_TRUE(scoped_result1.is_ok());
-    ASSERT_TRUE(scoped_result2.is_ok());
-
-    // Should be same instance within scope
-    EXPECT_EQ(scoped_result1.value(), scoped_result2.value());
 }
 
 /**
- * Test error handling - unregistered service
+ * Test error handling - resolve unregistered service
  */
-TEST_F(DIContainerTest, ResolveUnregisteredService) {
-    // Try to resolve unregistered service
-    auto result = container_->resolve<IService>();
-
+TEST_F(DIContainerTest, ResolveUnregisteredService)
+{
+    auto result = container_.resolve<IService>();
     EXPECT_TRUE(result.is_err());
-    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::collector_not_found);
 }
 
 /**
- * Test error handling - unregistered named service
+ * Test resolve_or_null for unregistered service returns nullptr
  */
-TEST_F(DIContainerTest, ResolveUnregisteredNamedService) {
-    // Register unnamed service
-    container_->register_factory<IService>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::transient
-    );
-    
-    // Try to resolve with non-existent name
-    auto result = container_->resolve<IService>("nonexistent");
-
-    EXPECT_TRUE(result.is_err());
-    EXPECT_EQ(static_cast<monitoring_error_code>(result.error().code), monitoring_error_code::collector_not_found);
+TEST_F(DIContainerTest, ResolveOrNullUnregistered)
+{
+    auto ptr = container_.resolve_or_null<IService>();
+    EXPECT_EQ(ptr, nullptr);
 }
 
 /**
  * Test clear functionality
  */
-TEST_F(DIContainerTest, ClearContainer) {
-    // Register services
-    container_->register_factory<IService>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
-    container_->register_factory<IService>(
-        "named",
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
-    EXPECT_TRUE(container_->is_registered<IService>());
-    EXPECT_TRUE(container_->is_registered<IService>("named"));
-    
-    // Clear container
-    auto clear_result = container_->clear();
-    ASSERT_TRUE(clear_result.is_ok());
-    
-    // Services should no longer be registered
-    EXPECT_FALSE(container_->is_registered<IService>());
-    EXPECT_FALSE(container_->is_registered<IService>("named"));
-    
-    // Resolution should fail
-    auto resolve_result = container_->resolve<IService>();
+TEST_F(DIContainerTest, ClearContainer)
+{
+    container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+
+    EXPECT_TRUE(container_.is_registered<IService>());
+
+    container_.clear();
+
+    EXPECT_FALSE(container_.is_registered<IService>());
+
+    auto resolve_result = container_.resolve<IService>();
     EXPECT_TRUE(resolve_result.is_err());
 }
 
 /**
- * Test thread safety
+ * Test unregister specific service
  */
-TEST_F(DIContainerTest, ThreadSafety) {
-    // Register singleton service
-    container_->register_factory<IService>(
-        []() { 
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
-            return std::make_shared<ServiceA>(); 
+TEST_F(DIContainerTest, UnregisterService)
+{
+    container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+
+    EXPECT_TRUE(container_.is_registered<IService>());
+
+    auto result = container_.unregister<IService>();
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_FALSE(container_.is_registered<IService>());
+}
+
+/**
+ * Test duplicate registration fails
+ */
+TEST_F(DIContainerTest, DuplicateRegistrationFails)
+{
+    auto result1 = container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+    ASSERT_TRUE(result1.is_ok());
+
+    auto result2 = container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+    EXPECT_TRUE(result2.is_err());
+}
+
+/**
+ * Test thread safety of singleton resolution
+ */
+TEST_F(DIContainerTest, ThreadSafety)
+{
+    container_.register_simple_factory<IService>(
+        []() {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            return std::make_shared<ServiceA>();
         },
-        service_lifetime::singleton
-    );
-    
+        service_lifetime::singleton);
+
     // Resolve from multiple threads
+    const int num_threads = 10;
     std::vector<std::thread> threads;
-    std::vector<std::shared_ptr<IService>> results(10);
-    
-    for (size_t i = 0; i < 10; ++i) {
-        threads.emplace_back([this, &results, i]() {
-            auto result = container_->resolve<IService>();
-            if (result.is_ok()) {
-                results[i] = result.value();
-            }
-        });
+    std::vector<std::shared_ptr<IService>> results(num_threads);
+
+    for (int i = 0; i < num_threads; ++i) {
+        threads.emplace_back(
+            [this, &results, i]()
+            {
+                auto result = container_.resolve<IService>();
+                if (result.is_ok()) {
+                    results[i] = result.value();
+                }
+            });
     }
-    
+
     for (auto& t : threads) {
         t.join();
     }
-    
+
     // All threads should get the same singleton instance
     auto first = results[0];
     EXPECT_NE(first, nullptr);
-    
+
     for (const auto& result : results) {
         EXPECT_EQ(result, first);
     }
-    
+
     // Only one instance should have been created
     EXPECT_EQ(ServiceA::get_instance_count(), 1);
 }
 
 /**
- * Test service locator
+ * Test registered_services returns descriptors
  */
-TEST_F(DIContainerTest, ServiceLocator) {
-    // Initially no container
-    EXPECT_FALSE(service_locator::has_container());
-    EXPECT_EQ(service_locator::get_container(), nullptr);
-    
-    // Set container
-    auto container = create_lightweight_container();
-    container->register_factory<IService>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
-    service_locator::set_container(std::move(container));
-    
-    // Should have container now
-    EXPECT_TRUE(service_locator::has_container());
-    EXPECT_NE(service_locator::get_container(), nullptr);
-    
-    // Use container through locator
-    auto locator_container = service_locator::get_container();
-    EXPECT_TRUE(locator_container->is_registered<IService>());
-    
-    auto result = locator_container->resolve<IService>();
-    EXPECT_TRUE(result.is_ok());
-    
-    // Reset locator
-    service_locator::reset();
-    EXPECT_FALSE(service_locator::has_container());
-    EXPECT_EQ(service_locator::get_container(), nullptr);
+TEST_F(DIContainerTest, RegisteredServicesDescriptors)
+{
+    container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+
+    container_.register_simple_factory<ServiceA>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::transient);
+
+    auto services = container_.registered_services();
+    EXPECT_GE(services.size(), 2u);
 }
 
 /**
- * Test factory function for thread_system adapter
+ * Test freeze prevents new registrations
  */
-TEST_F(DIContainerTest, ThreadSystemAdapterFactory) {
-    // Test factory without thread_system (should return lightweight container)
-    auto adapter = create_thread_system_adapter();
-    ASSERT_NE(adapter, nullptr);
-    
-    // Should work like a normal container
-    auto result = adapter->register_factory<IService>(
-        []() { return std::make_shared<ServiceA>(); },
-        service_lifetime::singleton
-    );
-    
-    ASSERT_TRUE(result.is_ok());
-    
-    auto service_result = adapter->resolve<IService>();
-    ASSERT_TRUE(service_result.is_ok());
-    EXPECT_NE(service_result.value(), nullptr);
+TEST_F(DIContainerTest, FreezePreventsRegistration)
+{
+    container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+
+    container_.freeze();
+    EXPECT_TRUE(container_.is_frozen());
+
+    auto result = container_.register_simple_factory<ServiceA>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::transient);
+
+    EXPECT_TRUE(result.is_err());
 }
 
-// Main function provided by gtest_main
+/**
+ * Test freeze still allows resolution
+ */
+TEST_F(DIContainerTest, FreezeAllowsResolution)
+{
+    container_.register_simple_factory<IService>(
+        []() { return std::make_shared<ServiceA>(); }, service_lifetime::singleton);
+
+    container_.freeze();
+
+    auto result = container_.resolve<IService>();
+    EXPECT_TRUE(result.is_ok());
+    EXPECT_NE(result.value(), nullptr);
+}
