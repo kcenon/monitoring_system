@@ -1,0 +1,34 @@
+# Third-Party License Compliance
+
+This file documents third-party dependencies and their license compatibility
+with the project's BSD-3-Clause license.
+
+## gRPC (Optional — grpc feature)
+
+| Item               | Value                                          |
+|--------------------|--------------------------------------------- --|
+| Component          | gRPC C++                                       |
+| License            | Apache-2.0                                     |
+| Minimum Version    | 1.51.1                                         |
+| Usage              | gRPC transport for OTLP trace export           |
+| Linking            | Dynamic                                        |
+| BSD-3 Compatible   | Yes                                            |
+
+## protobuf (Optional — grpc feature)
+
+| Item               | Value                                          |
+|--------------------|--------------------------------------------- --|
+| Component          | Protocol Buffers                               |
+| License            | BSD-3-Clause                                   |
+| Minimum Version    | 3.21.0                                         |
+| Usage              | Serialization for gRPC/OTLP                    |
+| Linking            | Dynamic                                        |
+| BSD-3 Compatible   | Yes                                            |
+
+## All Dependencies (License Summary)
+
+| Dependency        | License        | Type     | BSD-3 Compatible |
+|-------------------|----------------|----------|------------------|
+| gRPC              | Apache-2.0     | Optional | Yes              |
+| protobuf          | BSD-3-Clause   | Optional | Yes              |
+| GTest/GMock       | BSD-3-Clause   | Testing  | Yes              |
