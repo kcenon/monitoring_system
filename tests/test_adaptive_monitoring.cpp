@@ -36,8 +36,7 @@
 #include <thread>
 #include <chrono>
 #include <memory>
-// Include impl headers directly (src directory is in include path via monitoring_system target)
-#include "impl/adaptive_monitor.h"
+#include <kcenon/monitoring/adaptive/adaptive_monitor.h>
 #include <kcenon/monitoring/core/performance_monitor.h>
 
 using namespace kcenon::monitoring;
