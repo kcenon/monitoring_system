@@ -3,32 +3,104 @@
 This file documents third-party dependencies and their license compatibility
 with the project's BSD-3-Clause license.
 
-## gRPC (Optional — grpc feature)
+## Dependency Tiers
+
+```
+monitoring_system (Tier 3, BSD-3-Clause)
+  ├── common_system  (Tier 0, Required)
+  ├── thread_system  (Tier 1, Required)
+  ├── logger_system  (Tier 2, Optional — MONITORING_WITH_LOGGER_SYSTEM)
+  ├── gRPC           (Optional — MONITORING_WITH_GRPC)
+  │   ├── protobuf   (transitive)
+  │   ├── abseil     (transitive)
+  │   ├── c-ares     (transitive)
+  │   └── re2        (transitive)
+  └── GTest/GMock    (Testing only)
+```
+
+---
+
+## kcenon-common-system (Required — Tier 0 core dependency)
+
+| Item               | Value                                          |
+|--------------------|--------------------------------------------- --|
+| Component          | kcenon Common System                           |
+| License            | BSD-3-Clause                                   |
+| Pinned Version     | 0.2.0                                          |
+| Usage              | ILogger interface, Result<T> pattern, common utilities |
+| Linking            | Static                                         |
+| BSD-3 Compatible   | Yes                                            |
+| Condition          | Always required                                |
+
+## kcenon-thread-system (Required — Tier 1)
+
+| Item               | Value                                          |
+|--------------------|--------------------------------------------- --|
+| Component          | kcenon Thread System                           |
+| License            | BSD-3-Clause                                   |
+| Pinned Version     | 0.3.0                                          |
+| Usage              | Thread pool, async task management, lock-free queues |
+| Linking            | Static                                         |
+| BSD-3 Compatible   | Yes                                            |
+| Condition          | Always required (MONITORING_WITH_THREAD_SYSTEM) |
+
+## kcenon-logger-system (Optional — MONITORING_WITH_LOGGER_SYSTEM)
+
+| Item               | Value                                          |
+|--------------------|--------------------------------------------- --|
+| Component          | kcenon Logger System                           |
+| License            | BSD-3-Clause                                   |
+| Pinned Version     | 0.1.0                                          |
+| Usage              | Audit logging, async log output                |
+| Linking            | Static                                         |
+| BSD-3 Compatible   | Yes                                            |
+| Condition          | Enabled when MONITORING_WITH_LOGGER_SYSTEM=ON  |
+
+## gRPC (Optional — MONITORING_WITH_GRPC)
 
 | Item               | Value                                          |
 |--------------------|--------------------------------------------- --|
 | Component          | gRPC C++                                       |
 | License            | Apache-2.0                                     |
-| Minimum Version    | 1.51.1                                         |
+| Pinned Version     | 1.51.1                                         |
 | Usage              | gRPC transport for OTLP trace export           |
 | Linking            | Dynamic                                        |
 | BSD-3 Compatible   | Yes                                            |
+| Condition          | Enabled when MONITORING_WITH_GRPC=ON           |
 
-## protobuf (Optional — grpc feature)
+### gRPC Transitive Dependencies
+
+When gRPC is enabled, the following transitive dependencies are pulled in
+automatically via the vcpkg dependency chain:
+
+| Dependency | License      | Usage                        | BSD-3 Compatible |
+|------------|-------------|------------------------------|------------------|
+| abseil     | Apache-2.0  | Core C++ utilities for gRPC  | Yes              |
+| c-ares     | MIT         | Async DNS resolution         | Yes              |
+| re2        | BSD-3-Clause| Regular expression engine    | Yes              |
+
+## Protocol Buffers (Optional — with gRPC)
 
 | Item               | Value                                          |
 |--------------------|--------------------------------------------- --|
-| Component          | Protocol Buffers                               |
+| Component          | Google Protocol Buffers                        |
 | License            | BSD-3-Clause                                   |
-| Minimum Version    | 3.21.0                                         |
+| Pinned Version     | 3.21.12                                        |
 | Usage              | Serialization for gRPC/OTLP                    |
 | Linking            | Dynamic                                        |
 | BSD-3 Compatible   | Yes                                            |
+| Condition          | Enabled when MONITORING_WITH_GRPC=ON           |
 
 ## All Dependencies (License Summary)
 
-| Dependency        | License        | Type     | BSD-3 Compatible |
-|-------------------|----------------|----------|------------------|
-| gRPC              | Apache-2.0     | Optional | Yes              |
-| protobuf          | BSD-3-Clause   | Optional | Yes              |
-| GTest/GMock       | BSD-3-Clause   | Testing  | Yes              |
+| Dependency         | License        | Type     | Tier | BSD-3 Compatible |
+|--------------------|----------------|----------|------|------------------|
+| common_system      | BSD-3-Clause   | Required | 0    | Yes              |
+| thread_system      | BSD-3-Clause   | Required | 1    | Yes              |
+| logger_system      | BSD-3-Clause   | Optional | 2    | Yes              |
+| gRPC               | Apache-2.0     | Optional | —    | Yes              |
+| Protocol Buffers   | BSD-3-Clause   | Optional | —    | Yes              |
+| abseil (via gRPC)  | Apache-2.0     | Transitive | —  | Yes              |
+| c-ares (via gRPC)  | MIT            | Transitive | —  | Yes              |
+| re2 (via gRPC)     | BSD-3-Clause   | Transitive | —  | Yes              |
+| GTest/GMock        | BSD-3-Clause   | Testing  | —    | Yes              |
