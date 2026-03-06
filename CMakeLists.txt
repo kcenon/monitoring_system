@@ -525,8 +525,9 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
         target_include_directories(monitoring_system
             PUBLIC
                 $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
                 $<INSTALL_INTERFACE:include>
+            PRIVATE
+                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
         )
     else()
         # Fall back to legacy structure
@@ -547,9 +548,10 @@ if(EXISTS ${MONITORING_INCLUDE_DIR}/kcenon/monitoring AND EXISTS ${MONITORING_SO
 
         target_include_directories(monitoring_system
             PUBLIC
-                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
                 $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
                 $<INSTALL_INTERFACE:include>
+            PRIVATE
+                $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
         )
     endif()
 else()
@@ -571,9 +573,10 @@ else()
 
     target_include_directories(monitoring_system
         PUBLIC
-            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
             $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
             $<INSTALL_INTERFACE:include>
+        PRIVATE
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
     )
 endif()
 
@@ -615,8 +618,9 @@ if(MONITORING_ENABLE_MODULES)
     target_include_directories(monitoring_system_modules
         PUBLIC
             $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
             $<INSTALL_INTERFACE:include>
+        PRIVATE
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
     )
 
     target_link_libraries(monitoring_system_modules
@@ -736,8 +740,9 @@ if(MONITORING_BUILD_HARDWARE_PLUGIN)
     target_include_directories(monitoring_hardware_plugin
         PUBLIC
             $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
             $<INSTALL_INTERFACE:include>
+        PRIVATE
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
     )
 
     target_link_libraries(monitoring_hardware_plugin
@@ -780,8 +785,9 @@ if(MONITORING_BUILD_CONTAINER_PLUGIN)
     target_include_directories(monitoring_container_plugin
         PUBLIC
             $<BUILD_INTERFACE:${MONITORING_INCLUDE_DIR}>
-            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
             $<INSTALL_INTERFACE:include>
+        PRIVATE
+            $<BUILD_INTERFACE:${MONITORING_SOURCE_DIR}>
     )
 
     target_link_libraries(monitoring_container_plugin
