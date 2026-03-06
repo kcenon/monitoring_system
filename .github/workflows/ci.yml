@@ -316,11 +316,9 @@ jobs:
         path: build/Testing/
         retention-days: 7
 
-  # Phase 0: Allow failures, just collect data
   sanitizers:
     name: Sanitizers (${{ matrix.sanitizer }})
     runs-on: ubuntu-24.04
-    continue-on-error: true
     timeout-minutes: 60
 
     strategy:
@@ -411,7 +409,7 @@ jobs:
         export ${{ matrix.sanitizer.env }}
         find bin -name "*_unit" -executable 2>/dev/null | while read test; do
           echo "Running $test with ${{ matrix.sanitizer.name }}..."
-          ./$test || echo "${{ matrix.sanitizer.name }} detected issues (expected in Phase 0)"
+          ./$test
         done
 
     - name: Upload sanitizer logs
