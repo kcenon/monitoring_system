@@ -27,9 +27,9 @@ Modern C++20 observability platform with comprehensive monitoring, distributed t
 |------------|---------|----------|-------------|
 | C++20 Compiler | GCC 13+ / Clang 17+ / MSVC 2022+ / Apple Clang 14+ | Yes | Higher requirements due to thread_system dependency |
 | CMake | 3.20+ | Yes | Build system |
-| [common_system](https://github.com/kcenon/common_system) | latest | Yes | Common interfaces (IMonitor, Result<T>) |
-| [thread_system](https://github.com/kcenon/thread_system) | latest | Yes | Thread pool and async operations |
-| [logger_system](https://github.com/kcenon/logger_system) | latest | Optional | Logging capabilities |
+| [common_system](https://github.com/kcenon/common_system) | 0.2.0 via overlay/vcpkg port, or exact source tag/commit recorded in SBOM | Yes | Common interfaces (IMonitor, Result<T>) |
+| [thread_system](https://github.com/kcenon/thread_system) | 0.3.0 via overlay/vcpkg port, or exact source tag/commit recorded in SBOM | Yes | Thread pool and async operations |
+| [logger_system](https://github.com/kcenon/logger_system) | 0.1.0 when `logging` is enabled, or exact source tag/commit recorded in SBOM | Optional | Logging capabilities |
 
 ### Dependency Flow
 
@@ -41,6 +41,15 @@ monitoring_system
 └── logger_system (optional)
     └── common_system
 ```
+
+### Feature and Build-Path Provenance
+
+| Path | Activation | Dependencies | Provenance Rule |
+|------|------------|--------------|-----------------|
+| Default root package | `vcpkg install kcenon-monitoring-system` | `kcenon-common-system`, `kcenon-thread-system` | Resolve through the pinned vcpkg baseline `c4af3593e1f1aa9e14a560a09e45ea2cb0dfd74d` and the package versions documented in `docs/guides/VCPKG_OVERLAY_PORTS.md` |
+| Logging integration | `kcenon-monitoring-system[logging]` or `-DMONITORING_WITH_LOGGER_SYSTEM=ON` | `kcenon-logger-system` | Use port version `0.1.0` when installed from vcpkg/overlay; for source builds record the exact git tag or commit SHA in the SBOM |
+| gRPC transport | `kcenon-monitoring-system[grpc]` or `-DMONITORING_WITH_GRPC=ON` | `grpc`, `protobuf` | Use `vcpkg.json` override versions (`grpc` `1.51.1`, `protobuf` `3.21.12`) |
+| Network export path | `-DMONITORING_WITH_NETWORK_SYSTEM=ON` | `network_system` | Source-resolved integration only; release SBOMs must record the exact git tag or commit SHA because the root manifest does not pin a package version |
 
 ### Building with Dependencies
 
@@ -66,9 +75,10 @@ cmake --build build
 Part of a modular C++ ecosystem with clean interface boundaries:
 
 **Dependencies**:
-- **[common_system](https://github.com/kcenon/common_system)**: Core interfaces (IMonitor, ILogger, Result<T>)
-- **[thread_system](https://github.com/kcenon/thread_system)**: Threading primitives (required)
-- **[logger_system](https://github.com/kcenon/logger_system)**: Logging capabilities (optional)
+- **[common_system](https://github.com/kcenon/common_system)**: Core interfaces (IMonitor, ILogger, Result<T>), provenance `0.2.0` or exact source revision
+- **[thread_system](https://github.com/kcenon/thread_system)**: Threading primitives (required), provenance `0.3.0` or exact source revision
+- **[logger_system](https://github.com/kcenon/logger_system)**: Logging capabilities (optional), provenance `0.1.0` or exact source revision
+- **[network_system](https://github.com/kcenon/network_system)**: HTTP transport backend for exporter paths enabled via `MONITORING_WITH_NETWORK_SYSTEM`, source revision must be captured in SBOM
 
 **Integration Pattern**:
 ```
