@@ -59,60 +59,8 @@ jobs:
       with:
         sarif_file: ${{ steps.grype-scan.outputs.sarif }}
 
-    - name: Parse vcpkg dependencies
-      run: |
-        if [ -f "vcpkg.json" ]; then
-          python3 << 'PYEOF' > vcpkg-dependencies.md
-        import json
-
-        with open('vcpkg.json', 'r') as f:
-            manifest = json.load(f)
-
-        print("# vcpkg Dependencies")
-        print()
-        print(f"**Project**: {manifest.get('name', 'N/A')}")
-        print(f"**Version**: {manifest.get('version', 'N/A')}")
-        print()
-        print("## Direct Dependencies")
-        print()
-        print("| Package | Version Constraint | Features |")
-        print("|---------|-------------------|----------|")
-
-        deps = manifest.get('dependencies', [])
-        for dep in deps:
-            if isinstance(dep, str):
-                print(f"| {dep} | - | - |")
-            elif isinstance(dep, dict):
-                name = dep.get('name', 'unknown')
-                version = dep.get('version>=', '-')
-                features = ', '.join(dep.get('features', [])) or '-'
-                print(f"| {name} | {version} | {features} |")
-
-        features = manifest.get('features', {})
-        if features:
-            print()
-            print("## Feature Dependencies")
-            print()
-            for feat_name, feat_data in features.items():
-                feat_deps = feat_data.get('dependencies', [])
-                if feat_deps:
-                    print(f"### {feat_name}")
-                    print()
-                    print("| Package | Version Constraint | Features |")
-                    print("|---------|-------------------|----------|")
-                    for dep in feat_deps:
-                        if isinstance(dep, str):
-                            print(f"| {dep} | - | - |")
-                        elif isinstance(dep, dict):
-                            name = dep.get('name', 'unknown')
-                            version = dep.get('version>=', '-')
-                            dep_features = ', '.join(dep.get('features', [])) or '-'
-                            print(f"| {name} | {version} | {dep_features} |")
-                    print()
-        PYEOF
-        else
-          echo "No vcpkg.json found" > vcpkg-dependencies.md
-        fi
+    - name: Generate dependency inventory report
+      run: python3 scripts/ci/generate_dependency_report.py > vcpkg-dependencies.md
 
     - name: Create combined SBOM report
       run: |
