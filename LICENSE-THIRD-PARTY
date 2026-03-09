@@ -27,6 +27,7 @@ monitoring_system (Tier 3, BSD-3-Clause)
 | Component          | kcenon Common System                           |
 | License            | BSD-3-Clause                                   |
 | Pinned Version     | 0.2.0                                          |
+| Provenance Rule    | Resolve via the pinned vcpkg baseline `c4af3593e1f1aa9e14a560a09e45ea2cb0dfd74d`; source builds must record the exact git tag or commit SHA in the release SBOM |
 | Usage              | ILogger interface, Result<T> pattern, common utilities |
 | Linking            | Static                                         |
 | BSD-3 Compatible   | Yes                                            |
@@ -39,6 +40,7 @@ monitoring_system (Tier 3, BSD-3-Clause)
 | Component          | kcenon Thread System                           |
 | License            | BSD-3-Clause                                   |
 | Pinned Version     | 0.3.0                                          |
+| Provenance Rule    | Resolve via the pinned vcpkg baseline `c4af3593e1f1aa9e14a560a09e45ea2cb0dfd74d`; source builds must record the exact git tag or commit SHA in the release SBOM |
 | Usage              | Thread pool, async task management, lock-free queues |
 | Linking            | Static                                         |
 | BSD-3 Compatible   | Yes                                            |
@@ -51,6 +53,7 @@ monitoring_system (Tier 3, BSD-3-Clause)
 | Component          | kcenon Logger System                           |
 | License            | BSD-3-Clause                                   |
 | Pinned Version     | 0.1.0                                          |
+| Provenance Rule    | Use overlay/vcpkg port version `0.1.0` when the `logging` feature is enabled; source builds must record the exact git tag or commit SHA in the release SBOM |
 | Usage              | Audit logging, async log output                |
 | Linking            | Static                                         |
 | BSD-3 Compatible   | Yes                                            |
@@ -91,6 +94,19 @@ automatically via the vcpkg dependency chain:
 | BSD-3 Compatible   | Yes                                            |
 | Condition          | Enabled when MONITORING_WITH_GRPC=ON           |
 
+## network_system (Optional — MONITORING_WITH_NETWORK_SYSTEM)
+
+| Item               | Value                                          |
+|--------------------|--------------------------------------------- --|
+| Component          | kcenon Network System                          |
+| License            | BSD-3-Clause                                   |
+| Pinned Version     | Source-defined                                 |
+| Provenance Rule    | Source-resolved integration only; release SBOMs must record the exact git tag or commit SHA because the root vcpkg manifest does not pin a package version |
+| Usage              | HTTP transport backend for exporters           |
+| Linking            | Runtime/source integration                     |
+| BSD-3 Compatible   | Yes                                            |
+| Condition          | Enabled when MONITORING_WITH_NETWORK_SYSTEM=ON |
+
 ## All Dependencies (License Summary)
 
 | Dependency         | License        | Type     | Tier | BSD-3 Compatible |
@@ -98,6 +114,7 @@ automatically via the vcpkg dependency chain:
 | common_system      | BSD-3-Clause   | Required | 0    | Yes              |
 | thread_system      | BSD-3-Clause   | Required | 1    | Yes              |
 | logger_system      | BSD-3-Clause   | Optional | 2    | Yes              |
+| network_system     | BSD-3-Clause   | Optional | 4    | Yes              |
 | gRPC               | Apache-2.0     | Optional | —    | Yes              |
 | Protocol Buffers   | BSD-3-Clause   | Optional | —    | Yes              |
 | abseil (via gRPC)  | Apache-2.0     | Transitive | —  | Yes              |
