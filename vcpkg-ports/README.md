@@ -14,6 +14,7 @@ These overlay ports enable local testing of the kcenon packages before official 
 | kcenon-thread-system | 0.3.0 | common-system, libiconv |
 | kcenon-logger-system | 0.1.0 | common-system, thread-system, fmt, libiconv |
 | kcenon-monitoring-system | 0.1.0 | common-system, thread-system, [logging], [network] |
+| kcenon-container-system | 0.1.0 | common-system |
 
 ## Quick Start
 
@@ -37,6 +38,7 @@ See [VCPKG_OVERLAY_PORTS.md](../docs/guides/VCPKG_OVERLAY_PORTS.md) for detailed
 - [x] thread_system - overlay port ready
 - [x] logger_system - overlay port ready
 - [x] monitoring_system - overlay port ready
+- [x] container_system - overlay port ready
 - [ ] Official vcpkg registry submission - pending
 
 ## Related Issues
