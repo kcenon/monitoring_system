@@ -4,7 +4,7 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/common_system
-    REF "${VERSION}"
+    REF "v${VERSION}"
     SHA512 7385ba3a073fea06604f71a7ffc016425408c768444cec2ec897537411926a7e1fad99f7215e6724b3668a6e227f0716dbdcdda462764f5c4e52709087751e26
     HEAD_REF main
 )
@@ -29,5 +29,6 @@ vcpkg_cmake_config_fixup(
 # Header-only library - remove all debug content and empty lib directories
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/lib")
+
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
