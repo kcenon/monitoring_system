@@ -5,7 +5,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/common_system
     REF "${VERSION}"
-    SHA512 0  # TODO: Update with actual SHA512 hash after release
+    SHA512 7385ba3a073fea06604f71a7ffc016425408c768444cec2ec897537411926a7e1fad99f7215e6724b3668a6e227f0716dbdcdda462764f5c4e52709087751e26
     HEAD_REF main
 )
 
