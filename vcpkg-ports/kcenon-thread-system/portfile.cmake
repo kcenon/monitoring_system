@@ -4,8 +4,8 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/thread_system
-    REF 80242646537034754121657f18649939cecd77c6
-    SHA512 0  # TODO: Update with actual SHA512 hash
+    REF v0.3.0
+    SHA512 7a3336340ec24230d8a5c94c7a0c0c9b671f0e9c9f2e88f9d122f86799afa3c6af7a271eb8d92d5c1d419e7d0a0a0a936c18ef7af845f737816f6800f9f9c4a3
     HEAD_REF main
 )
 
