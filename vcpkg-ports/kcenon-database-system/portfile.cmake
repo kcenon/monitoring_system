@@ -36,14 +36,18 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/DatabaseSystem
 )
 
-# Fix: ensure debug libs exist — integrated_database uses static-init registration
-# pattern and may not produce a debug .lib on Windows; copy from release if missing
-if(VCPKG_TARGET_IS_WINDOWS AND EXISTS "${CURRENT_PACKAGES_DIR}/lib/integrated_database.lib")
-    if(NOT EXISTS "${CURRENT_PACKAGES_DIR}/debug/lib/integrated_database.lib")
-        file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/debug/lib")
-        file(COPY "${CURRENT_PACKAGES_DIR}/lib/integrated_database.lib"
-             DESTINATION "${CURRENT_PACKAGES_DIR}/debug/lib")
-    endif()
+# Fix: integrated_database uses static-init registration pattern with zero source
+# files when all backends are disabled. MSVC produces no .lib for empty targets,
+# but CMake install(EXPORT) still references it. Create stub .lib (empty COFF
+# archive) so the imported target file-existence check passes.
+if(VCPKG_TARGET_IS_WINDOWS)
+    foreach(_libdir "${CURRENT_PACKAGES_DIR}/lib" "${CURRENT_PACKAGES_DIR}/debug/lib")
+        set(_lib "${_libdir}/integrated_database.lib")
+        if(NOT EXISTS "${_lib}")
+            file(MAKE_DIRECTORY "${_libdir}")
+            file(WRITE "${_lib}" "!<arch>\n")
+        endif()
+    endforeach()
 endif()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")

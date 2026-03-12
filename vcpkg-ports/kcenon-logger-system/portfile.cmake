@@ -76,6 +76,12 @@ set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
 )
 ]=])
 
+# Fix library names for Windows (MSVC produces LoggerSystem.lib, not libLoggerSystem.a)
+if(VCPKG_TARGET_IS_WINDOWS)
+    vcpkg_replace_string("${_rel_targets}" "libLoggerSystem.a" "LoggerSystem.lib")
+    vcpkg_replace_string("${_dbg_targets}" "libLoggerSystem.a" "LoggerSystem.lib")
+endif()
+
 # Fix upstream: LoggerSystemConfig.cmake references ThreadSystem but vcpkg installs as thread_system
 vcpkg_replace_string(
     "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemConfig.cmake"
