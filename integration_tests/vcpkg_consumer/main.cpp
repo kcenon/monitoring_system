@@ -22,7 +22,7 @@
 
 // Tier 1: thread_system (optional)
 #ifdef HAS_THREAD_SYSTEM
-#include <kcenon/thread/core/thread_pool.h>
+#include <thread_system/utilities/formatter.h>
 #endif
 
 // Tier 1: container_system (optional)
@@ -30,29 +30,29 @@
 #include <container.h>
 #endif
 
-// Tier 2: logger_system (optional)
+// Tier 2: logger_system (optional — use small_string.h to avoid broken internal
+// include paths in logger.h which references kcenon/logger/interfaces/ submodule layout)
 #ifdef HAS_LOGGER_SYSTEM
-#include <kcenon/logger/core/logger.h>
+#include <logger_system/core/small_string.h>
 #endif
 
-// Tier 3: monitoring_system (optional)
-#ifdef HAS_MONITORING_SYSTEM
-#include <kcenon/monitoring/core/metrics_registry.h>
-#endif
+// Tier 3: monitoring_system (optional — header-light, link-only validation)
+// monitoring_system exports static libraries but no public user-facing headers
 
 // Tier 3: database_system (optional)
 #ifdef HAS_DATABASE_SYSTEM
-#include <kcenon/database/database_manager.h>
+#include <database_system/database/database_manager.h>
 #endif
 
-// Tier 4: network_system (optional)
+// Tier 4: network_system (optional — use types/result.h to avoid network_system.h
+// which references internal/ headers not installed in vcpkg layout)
 #ifdef HAS_NETWORK_SYSTEM
-#include <kcenon/network/core/connection.h>
+#include <kcenon/network/types/result.h>
 #endif
 
 // Tier 5: pacs_system (optional)
 #ifdef HAS_PACS_SYSTEM
-#include <pacs/core/dicom_types.h>
+#include <pacs/core/dicom_dataset.hpp>
 #endif
 
 int main()
