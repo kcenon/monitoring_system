@@ -18,6 +18,10 @@ vcpkg_cmake_configure(
         -DCONTAINER_BUILD_INTEGRATION_TESTS=OFF
         -DCONTAINER_BUILD_BENCHMARKS=OFF
         -DBUILD_DOCUMENTATION=OFF
+        -DBUILD_SAMPLES=OFF
+        -DBUILD_EXAMPLES=OFF
+        -DCONTAINER_BUILD_SAMPLES=OFF
+        -DCONTAINER_BUILD_EXAMPLES=OFF
 )
 
 vcpkg_cmake_install()
@@ -25,6 +29,14 @@ vcpkg_cmake_install()
 vcpkg_cmake_config_fixup(
     PACKAGE_NAME ContainerSystem
     CONFIG_PATH lib/cmake/ContainerSystem
+)
+
+# Remove example and sample executables (not valid distribution targets)
+file(REMOVE_RECURSE
+    "${CURRENT_PACKAGES_DIR}/bin/examples"
+    "${CURRENT_PACKAGES_DIR}/bin/samples"
+    "${CURRENT_PACKAGES_DIR}/debug/bin/examples"
+    "${CURRENT_PACKAGES_DIR}/debug/bin/samples"
 )
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
