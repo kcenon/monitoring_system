@@ -1,0 +1,105 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -493,6 +493,19 @@
+            break()
+        endif()
+    endforeach()
++
++    # vcpkg: fallback to find_package
++    if(NOT COMMON_SYSTEM_FOUND)
++        find_package(common_system CONFIG QUIET)
++        if(TARGET kcenon::common_system)
++            get_target_property(_cs_incdirs kcenon::common_system INTERFACE_INCLUDE_DIRECTORIES)
++            if(_cs_incdirs)
++                list(GET _cs_incdirs 0 PACS_COMMON_SYSTEM_INCLUDE_DIR)
++            endif()
++            set(COMMON_SYSTEM_FOUND TRUE)
++            message(STATUS "Found common_system via find_package (target: kcenon::common_system)")
++        endif()
++    endif()
+
+     if(NOT COMMON_SYSTEM_FOUND)
+         message(FATAL_ERROR
+@@ -524,6 +537,18 @@
+            break()
+        endif()
+    endforeach()
++
++    # vcpkg: fallback to find_package
++    if(NOT CONTAINER_SYSTEM_FOUND)
++        find_package(ContainerSystem CONFIG QUIET)
++        if(TARGET ContainerSystem::container)
++            if(NOT TARGET container_system)
++                add_library(container_system ALIAS ContainerSystem::container)
++            endif()
++            set(CONTAINER_SYSTEM_FOUND TRUE)
++            message(STATUS "Found container_system via find_package (target: ContainerSystem::container)")
++        endif()
++    endif()
+
+     if(CONTAINER_SYSTEM_FOUND AND NOT TARGET container_system)
+         set(BUILD_CONTAINERSYSTEM_AS_SUBMODULE ON CACHE BOOL "" FORCE)
+@@ -571,6 +596,22 @@
+        break()
+    endif()
+ endforeach()
++
++# vcpkg: fallback to find_package
++if(NOT THREAD_SYSTEM_FOUND)
++    find_package(thread_system CONFIG QUIET)
++    if(TARGET kcenon::thread_system)
++        if(NOT TARGET thread_base)
++            add_library(thread_base ALIAS kcenon::thread_system)
++        endif()
++        set(THREAD_SYSTEM_FOUND TRUE)
++        get_target_property(_ts_incdirs kcenon::thread_system INTERFACE_INCLUDE_DIRECTORIES)
++        if(_ts_incdirs)
++            list(GET _ts_incdirs 0 PACS_THREAD_SYSTEM_INCLUDE_DIR)
++        endif()
++        message(STATUS "Found thread_system via find_package (target: kcenon::thread_system)")
++    endif()
++endif()
+
+ # Avoid re-adding thread_system when the unified build already provided the targets
+ if(TARGET thread_base OR TARGET ThreadSystem OR TARGET interfaces)
+@@ -609,6 +650,19 @@
+        break()
+    endif()
+ endforeach()
++
++# vcpkg: fallback to find_package
++if(NOT LOGGER_SYSTEM_FOUND)
++    find_package(LoggerSystem CONFIG QUIET)
++    if(TARGET LoggerSystem::LoggerSystem)
++        if(NOT TARGET LoggerSystem)
++            add_library(LoggerSystem ALIAS LoggerSystem::LoggerSystem)
++        endif()
++        set(LOGGER_SYSTEM_FOUND TRUE)
++        get_target_property(PACS_LOGGER_SYSTEM_INCLUDE_DIR LoggerSystem::LoggerSystem INTERFACE_INCLUDE_DIRECTORIES)
++        message(STATUS "Found logger_system via find_package")
++    endif()
++endif()
+
+ if(LOGGER_SYSTEM_FOUND AND NOT TARGET LoggerSystem)
+     set(BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
+@@ -740,6 +794,19 @@
+            break()
+        endif()
+    endforeach()
++
++    # vcpkg: fallback to find_package
++    if(NOT NETWORK_SYSTEM_FOUND)
++        find_package(NetworkSystem CONFIG QUIET)
++        if(TARGET NetworkSystem::NetworkSystem)
++            if(NOT TARGET NetworkSystem)
++                add_library(NetworkSystem ALIAS NetworkSystem::NetworkSystem)
++            endif()
++            set(NETWORK_SYSTEM_FOUND TRUE)
++            set(PACS_NETWORK_VCPKG TRUE)
++            message(STATUS "Found network_system via find_package")
++        endif()
++    endif()
+
+     if(NETWORK_SYSTEM_FOUND AND NOT TARGET NetworkSystem)
+         set(BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
