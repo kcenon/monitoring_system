@@ -41,6 +41,7 @@
 namespace kcenon { namespace monitoring {
 
 /**
+ * @class central_collector
  * @brief Central collector for aggregating metrics from thread-local buffers
  *
  * Receives batches of metric samples from multiple thread-local buffers and
