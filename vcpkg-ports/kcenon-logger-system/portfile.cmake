@@ -11,6 +11,9 @@ vcpkg_from_github(
         fix-unified-deps-target-names.patch
 )
 
+# Disable thread_system integration: upstream CMake does not link thread_system
+# library properly in vcpkg mode (unresolved externals for thread_pool symbols).
+# The logger falls back to its standalone executor which works correctly.
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
@@ -20,7 +23,7 @@ vcpkg_cmake_configure(
         -DBUILD_SHARED_LIBS=OFF
         -DLOGGER_BUILD_INTEGRATION_TESTS=OFF
         -DLOGGER_ENABLE_COVERAGE=OFF
-        -DLOGGER_USE_THREAD_SYSTEM=ON
+        -DLOGGER_USE_THREAD_SYSTEM=OFF
 )
 
 vcpkg_cmake_install()
@@ -30,7 +33,14 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/LoggerSystem
 )
 
-# Upstream omits install(EXPORT) — generate LoggerSystemTargets.cmake manually
+# Upstream omits install(EXPORT) — generate LoggerSystemTargets.cmake manually.
+# On Windows (x64-windows triplet), vcpkg builds SHARED (DLL); on Unix, STATIC.
+if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
+    set(_lib_type SHARED)
+else()
+    set(_lib_type STATIC)
+endif()
+
 set(_targets_file "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets.cmake")
 file(WRITE "${_targets_file}"
 [=[
@@ -40,7 +50,7 @@ cmake_minimum_required(VERSION 3.14)
 get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
 
 if(NOT TARGET LoggerSystem::LoggerSystem)
-    add_library(LoggerSystem::LoggerSystem STATIC IMPORTED)
+    add_library(LoggerSystem::LoggerSystem ]=] "${_lib_type}" [=[ IMPORTED)
     set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
     )
@@ -53,9 +63,33 @@ foreach(_config_file IN LISTS _config_files)
 endforeach()
 ]=])
 
-# Create per-config import files
+# Create per-config import files with platform-appropriate paths
 set(_rel_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-release.cmake")
-file(WRITE "${_rel_targets}"
+set(_dbg_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-debug.cmake")
+
+if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
+    # DLL: IMPORTED_LOCATION -> bin/*.dll, IMPORTED_IMPLIB -> lib/*.lib
+    file(WRITE "${_rel_targets}"
+[=[
+get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
+set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
+    IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/LoggerSystem.dll"
+    IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/LoggerSystem.lib"
+)
+]=])
+    file(WRITE "${_dbg_targets}"
+[=[
+get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../debug/" ABSOLUTE)
+set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
+    IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/LoggerSystem.dll"
+    IMPORTED_IMPLIB_DEBUG "${_IMPORT_PREFIX}/lib/LoggerSystem.lib"
+)
+]=])
+else()
+    # Static: IMPORTED_LOCATION -> lib/libLoggerSystem.a
+    file(WRITE "${_rel_targets}"
 [=[
 get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
 set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
@@ -64,9 +98,7 @@ set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
     IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libLoggerSystem.a"
 )
 ]=])
-
-set(_dbg_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-debug.cmake")
-file(WRITE "${_dbg_targets}"
+    file(WRITE "${_dbg_targets}"
 [=[
 get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../debug/" ABSOLUTE)
 set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -75,24 +107,7 @@ set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
     IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/libLoggerSystem.a"
 )
 ]=])
-
-# Fix library names for Windows (MSVC produces LoggerSystem.lib, not libLoggerSystem.a)
-if(VCPKG_TARGET_IS_WINDOWS)
-    vcpkg_replace_string("${_rel_targets}" "libLoggerSystem.a" "LoggerSystem.lib")
-    vcpkg_replace_string("${_dbg_targets}" "libLoggerSystem.a" "LoggerSystem.lib")
 endif()
-
-# Fix upstream: LoggerSystemConfig.cmake references ThreadSystem but vcpkg installs as thread_system
-vcpkg_replace_string(
-    "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemConfig.cmake"
-    "find_dependency(ThreadSystem QUIET)"
-    "find_dependency(thread_system QUIET)"
-)
-vcpkg_replace_string(
-    "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemConfig.cmake"
-    "if(NOT ThreadSystem_FOUND)"
-    "if(NOT thread_system_FOUND)"
-)
 
 # Fix include paths: upstream headers use kcenon/logger/ but vcpkg installs under logger_system/
 file(GLOB_RECURSE _logger_headers "${CURRENT_PACKAGES_DIR}/include/logger_system/*.h")

@@ -73,8 +73,10 @@ jobs:
         shell: bash
         run: |
           if [ -f validation_results.json ]; then
-            PYTHON=$(command -v python3 || command -v python)
-            CONSUMER=$($PYTHON -c "import json; print(json.load(open('validation_results.json'))['consumer_build'])" 2>/dev/null || echo "unknown")
+            # Use sed instead of Python for reliable cross-platform JSON extraction
+            # (Python path resolution can fail in Git Bash on Windows)
+            CONSUMER=$(sed -n 's/.*"consumer_build"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' validation_results.json)
+            CONSUMER="${CONSUMER:-unknown}"
             if [ "$CONSUMER" != "pass" ]; then
               echo "::error::Consumer build result: $CONSUMER"
               cat validation_results.json
