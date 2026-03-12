@@ -4,7 +4,14 @@
     "kind": "builtin",
     "baseline": "c4af3593e1f1aa9e14a560a09e45ea2cb0dfd74d"
   },
-  "overlay-ports": [
-    "./vcpkg-ports"
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/kcenon/vcpkg-registry.git",
+      "baseline": "c144e46f9efdd991b55679bbe402784d9271bce2",
+      "packages": [
+        "kcenon-*"
+      ]
+    }
   ]
 }
