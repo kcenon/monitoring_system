@@ -1,6 +1,9 @@
 # kcenon-database-system portfile
 # Pure, lightweight C++20 Core DAL library with multi-backend support
 
+# The integrated_database library exports no DLL symbols by design (static-init registration pattern)
+set(VCPKG_POLICY_DLLS_WITHOUT_EXPORTS enabled)
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/database_system
