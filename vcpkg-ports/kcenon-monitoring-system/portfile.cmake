@@ -4,8 +4,8 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/monitoring_system
-    REF 2d8802c2980b6b99acffc812fc588c377bedefa4
-    SHA512 0  # TODO: Update with actual SHA512 hash
+    REF v0.1.0
+    SHA512 65e6e23cfa8ae49b653230d13ff111c393eda35bcd45802e0b8318028fc36aeed9bf92300d5c7a8b41618e0da7689852930ad3d2ea0a82011ef45973de1d03e4
     HEAD_REF main
 )
 
