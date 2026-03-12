@@ -18,7 +18,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +            message(STATUS "Found common_system via find_package (target: kcenon::common_system)")
 +        endif()
 +    endif()
-
+ 
      if(NOT COMMON_SYSTEM_FOUND)
          message(FATAL_ERROR
 @@ -524,6 +537,18 @@
@@ -37,7 +37,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +            message(STATUS "Found container_system via find_package (target: ContainerSystem::container)")
 +        endif()
 +    endif()
-
+ 
      if(CONTAINER_SYSTEM_FOUND AND NOT TARGET container_system)
          set(BUILD_CONTAINERSYSTEM_AS_SUBMODULE ON CACHE BOOL "" FORCE)
 @@ -571,6 +596,22 @@
@@ -60,7 +60,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +        message(STATUS "Found thread_system via find_package (target: kcenon::thread_system)")
 +    endif()
 +endif()
-
+ 
  # Avoid re-adding thread_system when the unified build already provided the targets
  if(TARGET thread_base OR TARGET ThreadSystem OR TARGET interfaces)
 @@ -609,6 +650,19 @@
@@ -80,7 +80,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +        message(STATUS "Found logger_system via find_package")
 +    endif()
 +endif()
-
+ 
  if(LOGGER_SYSTEM_FOUND AND NOT TARGET LoggerSystem)
      set(BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
 @@ -740,6 +794,19 @@
@@ -100,6 +100,6 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +            message(STATUS "Found network_system via find_package")
 +        endif()
 +    endif()
-
+ 
      if(NETWORK_SYSTEM_FOUND AND NOT TARGET NetworkSystem)
          set(BUILD_SAMPLES OFF CACHE BOOL "" FORCE)

@@ -2,12 +2,10 @@ diff --git a/database/CMakeLists.txt b/database/CMakeLists.txt
 index 1111111..2222222 100644
 --- a/database/CMakeLists.txt
 +++ b/database/CMakeLists.txt
-@@ -155,6 +155,8 @@ if(BUILD_WITH_COMMON_SYSTEM)
+@@ -155,4 +155,6 @@ if(BUILD_WITH_COMMON_SYSTEM)
          set(_DATABASE_COMMON_TARGET common_system)
      elseif(TARGET kcenon::common)
          set(_DATABASE_COMMON_TARGET kcenon::common)
 +    elseif(TARGET kcenon::common_system)
 +        set(_DATABASE_COMMON_TARGET kcenon::common_system)
      endif()
-
-     if(_DATABASE_COMMON_TARGET)

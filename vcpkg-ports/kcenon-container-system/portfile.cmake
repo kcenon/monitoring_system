@@ -18,6 +18,10 @@ vcpkg_cmake_configure(
         -DCONTAINER_BUILD_INTEGRATION_TESTS=OFF
         -DCONTAINER_BUILD_BENCHMARKS=OFF
         -DBUILD_DOCUMENTATION=OFF
+        -DBUILD_SAMPLES=OFF
+        -DBUILD_EXAMPLES=OFF
+        -DCONTAINER_BUILD_SAMPLES=OFF
+        -DCONTAINER_BUILD_EXAMPLES=OFF
 )
 
 vcpkg_cmake_install()
@@ -26,6 +30,23 @@ vcpkg_cmake_config_fixup(
     PACKAGE_NAME ContainerSystem
     CONFIG_PATH lib/cmake/ContainerSystem
 )
+
+# Remove example/sample executables and empty bin directories
+file(REMOVE_RECURSE
+    "${CURRENT_PACKAGES_DIR}/bin/examples"
+    "${CURRENT_PACKAGES_DIR}/bin/samples"
+    "${CURRENT_PACKAGES_DIR}/debug/bin/examples"
+    "${CURRENT_PACKAGES_DIR}/debug/bin/samples"
+)
+# Clean up empty bin/debug/bin dirs left after removal (no DLLs on non-Windows)
+foreach(_bindir IN ITEMS "${CURRENT_PACKAGES_DIR}/bin" "${CURRENT_PACKAGES_DIR}/debug/bin")
+    if(IS_DIRECTORY "${_bindir}")
+        file(GLOB _remaining "${_bindir}/*")
+        if(NOT _remaining)
+            file(REMOVE_RECURSE "${_bindir}")
+        endif()
+    endif()
+endforeach()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
