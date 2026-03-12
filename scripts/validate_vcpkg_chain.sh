@@ -260,6 +260,7 @@ install_ports() {
         --triplet "${TRIPLET}" \
         --x-manifest-root="${BUILD_DIR}" \
         --x-install-root="${BUILD_DIR}/vcpkg_installed" \
+        --overlay-ports="${PROJECT_ROOT}/vcpkg-ports" \
         2>&1 | tee "$install_log"; then
         log_ok "vcpkg install completed successfully"
     else
@@ -312,6 +313,7 @@ build_consumer() {
         -DVCPKG_MANIFEST_DIR="${BUILD_DIR}" \
         -DVCPKG_INSTALLED_DIR="${BUILD_DIR}/vcpkg_installed" \
         -DVCPKG_TARGET_TRIPLET="${TRIPLET}" \
+        -DVCPKG_OVERLAY_PORTS="${PROJECT_ROOT}/vcpkg-ports" \
         -DCMAKE_CXX_STANDARD=20 \
         2>&1 | tee "$cmake_log"; then
 
