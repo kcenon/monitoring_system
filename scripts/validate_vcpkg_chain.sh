@@ -88,7 +88,7 @@ port_to_cmake_pkg() {
         kcenon-container-system)  echo "ContainerSystem" ;;
         kcenon-logger-system)     echo "LoggerSystem" ;;
         kcenon-monitoring-system) echo "monitoring_system" ;;
-        kcenon-database-system)   echo "database_system" ;;
+        kcenon-database-system)   echo "DatabaseSystem" ;;
         kcenon-network-system)    echo "NetworkSystem" ;;
         kcenon-pacs-system)       echo "pacs_system" ;;
     esac

@@ -30,10 +30,9 @@
 #include <container.h>
 #endif
 
-// Tier 2: logger_system (optional — use small_string.h to avoid broken internal
-// include paths in logger.h which references kcenon/logger/interfaces/ submodule layout)
+// Tier 2: logger_system (optional)
 #ifdef HAS_LOGGER_SYSTEM
-#include <logger_system/core/small_string.h>
+#include <logger_system/core/logger.h>
 #endif
 
 // Tier 3: monitoring_system (optional — header-light, link-only validation)

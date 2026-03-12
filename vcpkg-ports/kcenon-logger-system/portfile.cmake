@@ -88,6 +88,16 @@ vcpkg_replace_string(
     "if(NOT thread_system_FOUND)"
 )
 
+# Fix include paths: upstream headers use kcenon/logger/ but vcpkg installs under logger_system/
+file(GLOB_RECURSE _logger_headers "${CURRENT_PACKAGES_DIR}/include/logger_system/*.h")
+foreach(_header IN LISTS _logger_headers)
+    file(READ "${_header}" _content)
+    if(_content MATCHES "kcenon/logger/")
+        string(REPLACE "kcenon/logger/" "logger_system/" _content "${_content}")
+        file(WRITE "${_header}" "${_content}")
+    endif()
+endforeach()
+
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 

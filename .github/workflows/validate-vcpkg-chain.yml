@@ -64,13 +64,21 @@ jobs:
             --vcpkg-root "$VCPKG_ROOT" \
             --triplet ${{ matrix.triplet }} \
             --clean \
-            --json > validation_results.json 2>validation_stderr.log || true
-
+            --json > validation_results.json 2>validation_stderr.log
           echo "=== Validation Results ==="
           cat validation_results.json
-          echo ""
-          echo "=== Stderr ==="
-          cat validation_stderr.log || true
+
+      - name: Check validation results
+        if: always()
+        shell: bash
+        run: |
+          if [ -f validation_results.json ]; then
+            CONSUMER=$(python3 -c "import json; print(json.load(open('validation_results.json'))['consumer_build'])" 2>/dev/null || echo "unknown")
+            if [ "$CONSUMER" != "pass" ]; then
+              echo "::error::Consumer build result: $CONSUMER"
+              exit 1
+            fi
+          fi
 
       - name: Upload validation results
         if: always()
