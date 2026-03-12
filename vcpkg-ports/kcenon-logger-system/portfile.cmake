@@ -1,6 +1,10 @@
 # kcenon-logger-system portfile
 # High-performance C++20 async logging library with 4.34M msg/sec throughput
 
+# Upstream does not annotate symbols with __declspec(dllexport), so DLLs are
+# built without exports on Windows.  Force static linkage on all platforms.
+set(VCPKG_LIBRARY_LINKAGE static)
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/logger_system
@@ -34,11 +38,11 @@ vcpkg_cmake_config_fixup(
 )
 
 # Upstream omits install(EXPORT) — generate LoggerSystemTargets.cmake manually.
-# On Windows (x64-windows triplet), vcpkg builds SHARED (DLL); on Unix, STATIC.
-if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-    set(_lib_type SHARED)
+# With VCPKG_LIBRARY_LINKAGE forced to static, always generate STATIC targets.
+if(VCPKG_TARGET_IS_WINDOWS)
+    set(_lib_name "LoggerSystem.lib")
 else()
-    set(_lib_type STATIC)
+    set(_lib_name "libLoggerSystem.a")
 endif()
 
 set(_targets_file "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets.cmake")
@@ -50,7 +54,7 @@ cmake_minimum_required(VERSION 3.14)
 get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
 
 if(NOT TARGET LoggerSystem::LoggerSystem)
-    add_library(LoggerSystem::LoggerSystem ]=] "${_lib_type}" [=[ IMPORTED)
+    add_library(LoggerSystem::LoggerSystem STATIC IMPORTED)
     set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
     )
@@ -63,51 +67,27 @@ foreach(_config_file IN LISTS _config_files)
 endforeach()
 ]=])
 
-# Create per-config import files with platform-appropriate paths
+# Create per-config import files for static library
 set(_rel_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-release.cmake")
 set(_dbg_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-debug.cmake")
 
-if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-    # DLL: IMPORTED_LOCATION -> bin/*.dll, IMPORTED_IMPLIB -> lib/*.lib
-    file(WRITE "${_rel_targets}"
-[=[
-get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
+file(WRITE "${_rel_targets}"
+"get_filename_component(_IMPORT_PREFIX \"\${CMAKE_CURRENT_LIST_DIR}/../../\" ABSOLUTE)
 set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
-    IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/LoggerSystem.dll"
-    IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/LoggerSystem.lib"
+    IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE \"CXX\"
+    IMPORTED_LOCATION_RELEASE \"\${_IMPORT_PREFIX}/lib/${_lib_name}\"
 )
-]=])
-    file(WRITE "${_dbg_targets}"
-[=[
-get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../debug/" ABSOLUTE)
+")
+
+file(WRITE "${_dbg_targets}"
+"get_filename_component(_IMPORT_PREFIX \"\${CMAKE_CURRENT_LIST_DIR}/../../\" ABSOLUTE)
 set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
-    IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/LoggerSystem.dll"
-    IMPORTED_IMPLIB_DEBUG "${_IMPORT_PREFIX}/lib/LoggerSystem.lib"
+    IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG \"CXX\"
+    IMPORTED_LOCATION_DEBUG \"\${_IMPORT_PREFIX}/debug/lib/${_lib_name}\"
 )
-]=])
-else()
-    # Static: IMPORTED_LOCATION -> lib/libLoggerSystem.a
-    file(WRITE "${_rel_targets}"
-[=[
-get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
-set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
-    IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-    IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libLoggerSystem.a"
-)
-]=])
-    file(WRITE "${_dbg_targets}"
-[=[
-get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../debug/" ABSOLUTE)
-set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
-    IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-    IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/libLoggerSystem.a"
-)
-]=])
-endif()
+")
 
 # Fix include paths: upstream headers use kcenon/logger/ but vcpkg installs under logger_system/
 file(GLOB_RECURSE _logger_headers "${CURRENT_PACKAGES_DIR}/include/logger_system/*.h")
