@@ -11,6 +11,15 @@ on:
       - 'integration_tests/vcpkg_consumer/**'
       - 'scripts/validate_vcpkg_chain.sh'
       - '.github/workflows/validate-vcpkg-chain.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'vcpkg-ports/**'
+      - 'vcpkg.json'
+      - 'vcpkg-configuration.json'
+      - 'integration_tests/vcpkg_consumer/**'
+      - 'scripts/validate_vcpkg_chain.sh'
+      - '.github/workflows/validate-vcpkg-chain.yml'
 
 jobs:
   validate:
@@ -25,7 +34,7 @@ jobs:
           - os: ubuntu-24.04
             triplet: x64-linux
           - os: macos-14
-            triplet: arm64-osx
+            triplet: x64-osx
           - os: windows-2022
             triplet: x64-windows
 
