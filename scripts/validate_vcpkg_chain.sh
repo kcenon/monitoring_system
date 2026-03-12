@@ -323,10 +323,9 @@ build_consumer() {
             -S "${CONSUMER_DIR}" \
             -B "${consumer_build}" \
             -DCMAKE_TOOLCHAIN_FILE="${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" \
-            -DVCPKG_MANIFEST_DIR="${BUILD_DIR}" \
+            -DVCPKG_MANIFEST_MODE=OFF \
             -DVCPKG_INSTALLED_DIR="${BUILD_DIR}/vcpkg_installed" \
             -DVCPKG_TARGET_TRIPLET="${TRIPLET}" \
-            -DVCPKG_OVERLAY_PORTS="${PROJECT_ROOT}/vcpkg-ports" \
             -DCMAKE_CXX_STANDARD=20 \
             > "$cmake_log" 2>&1 || rc=$?
     else
@@ -334,10 +333,9 @@ build_consumer() {
             -S "${CONSUMER_DIR}" \
             -B "${consumer_build}" \
             -DCMAKE_TOOLCHAIN_FILE="${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" \
-            -DVCPKG_MANIFEST_DIR="${BUILD_DIR}" \
+            -DVCPKG_MANIFEST_MODE=OFF \
             -DVCPKG_INSTALLED_DIR="${BUILD_DIR}/vcpkg_installed" \
             -DVCPKG_TARGET_TRIPLET="${TRIPLET}" \
-            -DVCPKG_OVERLAY_PORTS="${PROJECT_ROOT}/vcpkg-ports" \
             -DCMAKE_CXX_STANDARD=20 \
             2>&1 | tee "$cmake_log" || rc=$?
     fi
