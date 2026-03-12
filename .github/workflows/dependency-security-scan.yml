@@ -34,7 +34,7 @@ jobs:
     # Trivy filesystem scan — detects vulnerabilities in source code,
     # configuration files, and any lock files present.
     - name: Trivy filesystem scan
-      uses: aquasecurity/trivy-action@master
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
