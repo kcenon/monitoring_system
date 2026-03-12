@@ -36,6 +36,16 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/DatabaseSystem
 )
 
+# Fix: ensure debug libs exist — integrated_database uses static-init registration
+# pattern and may not produce a debug .lib on Windows; copy from release if missing
+if(VCPKG_TARGET_IS_WINDOWS AND EXISTS "${CURRENT_PACKAGES_DIR}/lib/integrated_database.lib")
+    if(NOT EXISTS "${CURRENT_PACKAGES_DIR}/debug/lib/integrated_database.lib")
+        file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/debug/lib")
+        file(COPY "${CURRENT_PACKAGES_DIR}/lib/integrated_database.lib"
+             DESTINATION "${CURRENT_PACKAGES_DIR}/debug/lib")
+    endif()
+endif()
+
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 

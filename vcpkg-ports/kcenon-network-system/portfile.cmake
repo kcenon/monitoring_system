@@ -31,11 +31,12 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/NetworkSystem
 )
 
-# Fix upstream: NetworkSystemTargets links ZLIB::ZLIB but config omits find_dependency(ZLIB)
+# Fix upstream: NetworkSystemTargets links ZLIB::ZLIB and OpenSSL::SSL
+# but config omits find_dependency(ZLIB) and find_dependency(OpenSSL)
 vcpkg_replace_string(
     "${CURRENT_PACKAGES_DIR}/share/NetworkSystem/NetworkSystemConfig.cmake"
     "find_dependency(asio CONFIG REQUIRED)"
-    "find_dependency(ZLIB REQUIRED)\nfind_dependency(asio CONFIG REQUIRED)"
+    "find_dependency(OpenSSL REQUIRED)\nfind_dependency(ZLIB REQUIRED)\nfind_dependency(asio CONFIG REQUIRED)"
 )
 
 # Remove empty directories that cause vcpkg post-build validation warnings
