@@ -68,6 +68,9 @@ endif()
 
 # ─── Tier 4: Networking ──────────────────────────────────────────────────────
 
+# OpenSSL is a transitive dependency of NetworkSystem
+find_package(OpenSSL QUIET)
+
 find_package(NetworkSystem CONFIG)
 if(NetworkSystem_FOUND)
     message(STATUS "Found NetworkSystem: ${NetworkSystem_DIR}")

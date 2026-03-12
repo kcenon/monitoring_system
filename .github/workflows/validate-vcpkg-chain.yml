@@ -34,7 +34,7 @@ jobs:
           - os: ubuntu-24.04
             triplet: x64-linux
           - os: macos-14
-            triplet: x64-osx
+            triplet: arm64-osx
           - os: windows-2022
             triplet: x64-windows
 
@@ -45,7 +45,7 @@ jobs:
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: c4af3593e1f1aa9e14a560a09e45ea2cb0dfd74d
+          vcpkgGitCommitId: dd306f32e07d87fdb16837af64f33b6b415c770a
 
       - name: Install GCC 13 (Linux)
         if: runner.os == 'Linux'
@@ -64,19 +64,31 @@ jobs:
             --vcpkg-root "$VCPKG_ROOT" \
             --triplet ${{ matrix.triplet }} \
             --clean \
-            --json > validation_results.json 2>validation_stderr.log || true
-
+            --json > validation_results.json 2>validation_stderr.log
           echo "=== Validation Results ==="
           cat validation_results.json
-          echo ""
-          echo "=== Stderr ==="
-          cat validation_stderr.log || true
+
+      - name: Check validation results
+        if: always()
+        shell: bash
+        run: |
+          if [ -f validation_results.json ]; then
+            # Use sed instead of Python for reliable cross-platform JSON extraction
+            # (Python path resolution can fail in Git Bash on Windows)
+            CONSUMER=$(sed -n 's/.*"consumer_build"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' validation_results.json)
+            CONSUMER="${CONSUMER:-unknown}"
+            if [ "$CONSUMER" != "pass" ]; then
+              echo "::error::Consumer build result: $CONSUMER"
+              cat validation_results.json
+              exit 1
+            fi
+          fi
 
       - name: Upload validation results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: vcpkg-validation-${{ matrix.triplet }}
+          name: vcpkg-validation-${{ matrix.os }}-${{ matrix.triplet }}
           path: |
             validation_results.json
             validation_stderr.log

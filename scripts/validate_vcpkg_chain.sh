@@ -88,7 +88,7 @@ port_to_cmake_pkg() {
         kcenon-container-system)  echo "ContainerSystem" ;;
         kcenon-logger-system)     echo "LoggerSystem" ;;
         kcenon-monitoring-system) echo "monitoring_system" ;;
-        kcenon-database-system)   echo "database_system" ;;
+        kcenon-database-system)   echo "DatabaseSystem" ;;
         kcenon-network-system)    echo "NetworkSystem" ;;
         kcenon-pacs-system)       echo "pacs_system" ;;
     esac
@@ -255,13 +255,24 @@ install_ports() {
 
     local install_log="${BUILD_DIR}/vcpkg_install.log"
     local install_ok=true
+    local rc=0
 
-    if "${VCPKG_ROOT}/vcpkg" install \
-        --triplet "${TRIPLET}" \
-        --x-manifest-root="${BUILD_DIR}" \
-        --x-install-root="${BUILD_DIR}/vcpkg_installed" \
-        --overlay-ports="${PROJECT_ROOT}/vcpkg-ports" \
-        2>&1 | tee "$install_log"; then
+    if [[ "$JSON_OUTPUT" == true ]]; then
+        "${VCPKG_ROOT}/vcpkg" install \
+            --triplet "${TRIPLET}" \
+            --x-manifest-root="${BUILD_DIR}" \
+            --x-install-root="${BUILD_DIR}/vcpkg_installed" \
+            --overlay-ports="${PROJECT_ROOT}/vcpkg-ports" \
+            > "$install_log" 2>&1 || rc=$?
+    else
+        "${VCPKG_ROOT}/vcpkg" install \
+            --triplet "${TRIPLET}" \
+            --x-manifest-root="${BUILD_DIR}" \
+            --x-install-root="${BUILD_DIR}/vcpkg_installed" \
+            --overlay-ports="${PROJECT_ROOT}/vcpkg-ports" \
+            2>&1 | tee "$install_log" || rc=$?
+    fi
+    if [[ $rc -eq 0 ]]; then
         log_ok "vcpkg install completed successfully"
     else
         log_fail "vcpkg install failed. See ${install_log}"
@@ -306,16 +317,29 @@ build_consumer() {
     local build_log="${BUILD_DIR}/cmake_build.log"
 
     log_info "Configuring test consumer..."
-    if cmake \
-        -S "${CONSUMER_DIR}" \
-        -B "${consumer_build}" \
-        -DCMAKE_TOOLCHAIN_FILE="${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" \
-        -DVCPKG_MANIFEST_DIR="${BUILD_DIR}" \
-        -DVCPKG_INSTALLED_DIR="${BUILD_DIR}/vcpkg_installed" \
-        -DVCPKG_TARGET_TRIPLET="${TRIPLET}" \
-        -DVCPKG_OVERLAY_PORTS="${PROJECT_ROOT}/vcpkg-ports" \
-        -DCMAKE_CXX_STANDARD=20 \
-        2>&1 | tee "$cmake_log"; then
+    rc=0
+    if [[ "$JSON_OUTPUT" == true ]]; then
+        cmake \
+            -S "${CONSUMER_DIR}" \
+            -B "${consumer_build}" \
+            -DCMAKE_TOOLCHAIN_FILE="${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" \
+            -DVCPKG_MANIFEST_MODE=OFF \
+            -DVCPKG_INSTALLED_DIR="${BUILD_DIR}/vcpkg_installed" \
+            -DVCPKG_TARGET_TRIPLET="${TRIPLET}" \
+            -DCMAKE_CXX_STANDARD=20 \
+            > "$cmake_log" 2>&1 || rc=$?
+    else
+        cmake \
+            -S "${CONSUMER_DIR}" \
+            -B "${consumer_build}" \
+            -DCMAKE_TOOLCHAIN_FILE="${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" \
+            -DVCPKG_MANIFEST_MODE=OFF \
+            -DVCPKG_INSTALLED_DIR="${BUILD_DIR}/vcpkg_installed" \
+            -DVCPKG_TARGET_TRIPLET="${TRIPLET}" \
+            -DCMAKE_CXX_STANDARD=20 \
+            2>&1 | tee "$cmake_log" || rc=$?
+    fi
+    if [[ $rc -eq 0 ]]; then
 
         log_ok "CMake configure succeeded"
 
@@ -344,7 +368,13 @@ build_consumer() {
     fi
 
     log_info "Building test consumer..."
-    if cmake --build "${consumer_build}" 2>&1 | tee "$build_log"; then
+    rc=0
+    if [[ "$JSON_OUTPUT" == true ]]; then
+        cmake --build "${consumer_build}" > "$build_log" 2>&1 || rc=$?
+    else
+        cmake --build "${consumer_build}" 2>&1 | tee "$build_log" || rc=$?
+    fi
+    if [[ $rc -eq 0 ]]; then
         log_ok "Test consumer build succeeded"
         CONSUMER_BUILD_RESULT="pass"
     else

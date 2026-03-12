@@ -1,0 +1,22 @@
+{
+  "name": "kcenon-pacs-system",
+  "version": "0.1.0",
+  "port-version": 2,
+  "description": "Modern C++20 PACS (Picture Archiving and Communication System) built on the kcenon ecosystem",
+  "homepage": "https://github.com/kcenon/pacs_system",
+  "license": "BSD-3-Clause",
+  "supports": "!(uwp | xbox)",
+  "dependencies": [
+    "kcenon-common-system",
+    "kcenon-container-system",
+    "kcenon-network-system",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}

@@ -1,6 +1,10 @@
 # kcenon-logger-system portfile
 # High-performance C++20 async logging library with 4.34M msg/sec throughput
 
+# Upstream does not annotate symbols with __declspec(dllexport), so DLLs are
+# built without exports on Windows.  Force static linkage on all platforms.
+set(VCPKG_LIBRARY_LINKAGE static)
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/logger_system
@@ -11,6 +15,9 @@ vcpkg_from_github(
         fix-unified-deps-target-names.patch
 )
 
+# Disable thread_system integration: upstream CMake does not link thread_system
+# library properly in vcpkg mode (unresolved externals for thread_pool symbols).
+# The logger falls back to its standalone executor which works correctly.
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
@@ -20,7 +27,7 @@ vcpkg_cmake_configure(
         -DBUILD_SHARED_LIBS=OFF
         -DLOGGER_BUILD_INTEGRATION_TESTS=OFF
         -DLOGGER_ENABLE_COVERAGE=OFF
-        -DLOGGER_USE_THREAD_SYSTEM=ON
+        -DLOGGER_USE_THREAD_SYSTEM=OFF
 )
 
 vcpkg_cmake_install()
@@ -30,7 +37,14 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/LoggerSystem
 )
 
-# Upstream omits install(EXPORT) — generate LoggerSystemTargets.cmake manually
+# Upstream omits install(EXPORT) — generate LoggerSystemTargets.cmake manually.
+# With VCPKG_LIBRARY_LINKAGE forced to static, always generate STATIC targets.
+if(VCPKG_TARGET_IS_WINDOWS)
+    set(_lib_name "LoggerSystem.lib")
+else()
+    set(_lib_name "libLoggerSystem.a")
+endif()
+
 set(_targets_file "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets.cmake")
 file(WRITE "${_targets_file}"
 [=[
@@ -53,40 +67,37 @@ foreach(_config_file IN LISTS _config_files)
 endforeach()
 ]=])
 
-# Create per-config import files
+# Create per-config import files for static library
 set(_rel_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-release.cmake")
+set(_dbg_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-debug.cmake")
+
 file(WRITE "${_rel_targets}"
-[=[
-get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
+"get_filename_component(_IMPORT_PREFIX \"\${CMAKE_CURRENT_LIST_DIR}/../../\" ABSOLUTE)
 set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
-    IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-    IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libLoggerSystem.a"
+    IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE \"CXX\"
+    IMPORTED_LOCATION_RELEASE \"\${_IMPORT_PREFIX}/lib/${_lib_name}\"
 )
-]=])
+")
 
-set(_dbg_targets "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemTargets-debug.cmake")
 file(WRITE "${_dbg_targets}"
-[=[
-get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../debug/" ABSOLUTE)
+"get_filename_component(_IMPORT_PREFIX \"\${CMAKE_CURRENT_LIST_DIR}/../../\" ABSOLUTE)
 set_property(TARGET LoggerSystem::LoggerSystem APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(LoggerSystem::LoggerSystem PROPERTIES
-    IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-    IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/libLoggerSystem.a"
+    IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG \"CXX\"
+    IMPORTED_LOCATION_DEBUG \"\${_IMPORT_PREFIX}/debug/lib/${_lib_name}\"
 )
-]=])
+")
 
-# Fix upstream: LoggerSystemConfig.cmake references ThreadSystem but vcpkg installs as thread_system
-vcpkg_replace_string(
-    "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemConfig.cmake"
-    "find_dependency(ThreadSystem QUIET)"
-    "find_dependency(thread_system QUIET)"
-)
-vcpkg_replace_string(
-    "${CURRENT_PACKAGES_DIR}/share/LoggerSystem/LoggerSystemConfig.cmake"
-    "if(NOT ThreadSystem_FOUND)"
-    "if(NOT thread_system_FOUND)"
-)
+# Fix include paths: upstream headers use kcenon/logger/ but vcpkg installs under logger_system/
+file(GLOB_RECURSE _logger_headers "${CURRENT_PACKAGES_DIR}/include/logger_system/*.h")
+foreach(_header IN LISTS _logger_headers)
+    file(READ "${_header}" _content)
+    if(_content MATCHES "kcenon/logger/")
+        string(REPLACE "kcenon/logger/" "logger_system/" _content "${_content}")
+        file(WRITE "${_header}" "${_content}")
+    endif()
+endforeach()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
