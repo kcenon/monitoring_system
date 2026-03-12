@@ -31,13 +31,22 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/ContainerSystem
 )
 
-# Remove example and sample executables (not valid distribution targets)
+# Remove example/sample executables and empty bin directories
 file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/bin/examples"
     "${CURRENT_PACKAGES_DIR}/bin/samples"
     "${CURRENT_PACKAGES_DIR}/debug/bin/examples"
     "${CURRENT_PACKAGES_DIR}/debug/bin/samples"
 )
+# Clean up empty bin/debug/bin dirs left after removal (no DLLs on non-Windows)
+foreach(_bindir IN ITEMS "${CURRENT_PACKAGES_DIR}/bin" "${CURRENT_PACKAGES_DIR}/debug/bin")
+    if(IS_DIRECTORY "${_bindir}")
+        file(GLOB _remaining "${_bindir}/*")
+        if(NOT _remaining)
+            file(REMOVE_RECURSE "${_bindir}")
+        endif()
+    endif()
+endforeach()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
