@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(monitoring_system VERSION 0.1.0.0 LANGUAGES CXX)
+project(monitoring_system VERSION 0.1.0 LANGUAGES CXX)
 
 # C++ standard requirements
 set(CMAKE_CXX_STANDARD 20)
@@ -831,8 +831,12 @@ if(MONITORING_BUILD_INTEGRATION_TESTS)
     endif()
 endif()
 
-if(MONITORING_CAN_INSTALL)
-    # Installation
+if(NOT MONITORING_CAN_INSTALL)
+    message(WARNING "Monitoring System: Some dependency targets are not IMPORTED. "
+                    "Install targets may not work correctly in all configurations.")
+endif()
+
+# Installation (always run — vcpkg and standalone installs require it)
     include(GNUInstallDirs)
 
     install(TARGETS monitoring_system monitoring_system_interface
@@ -879,9 +883,8 @@ if(MONITORING_CAN_INSTALL)
         ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
     )
-else()
-    message(STATUS "Monitoring System: Skipping install/export (local dependency targets cannot be exported)")
-endif()
+
+
 
 ##################################################
 # Build Summary
