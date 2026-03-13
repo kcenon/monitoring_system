@@ -831,12 +831,10 @@ if(MONITORING_BUILD_INTEGRATION_TESTS)
     endif()
 endif()
 
-if(NOT MONITORING_CAN_INSTALL)
-    message(WARNING "Monitoring System: Some dependency targets are not IMPORTED. "
-                    "Install targets may not work correctly in all configurations.")
-endif()
-
-# Installation (always run — vcpkg and standalone installs require it)
+if(MONITORING_CAN_INSTALL)
+    # Installation — only when all dependency targets are IMPORTED (find_package / vcpkg).
+    # Subdirectory builds set MONITORING_CAN_INSTALL=FALSE because CMake cannot export
+    # non-IMPORTED dependency targets (e.g. "utilities" from common_system).
     include(GNUInstallDirs)
 
     install(TARGETS monitoring_system monitoring_system_interface
@@ -883,6 +881,9 @@ endif()
         ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config-version.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/monitoring_system
     )
+else()
+    message(STATUS "Monitoring System: Skipping install/export (subdirectory build with non-IMPORTED deps)")
+endif()
 
 
 
