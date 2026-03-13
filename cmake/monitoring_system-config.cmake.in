@@ -4,17 +4,18 @@ include(CMakeFindDependencyMacro)
 
 # Find required dependencies
 find_dependency(Threads REQUIRED)
+find_dependency(common_system CONFIG REQUIRED)
 
 # Optional dependencies
-set(MONITORING_USE_THREAD_SYSTEM @MONITORING_USE_THREAD_SYSTEM@)
-set(MONITORING_USE_LOGGER_SYSTEM @MONITORING_USE_LOGGER_SYSTEM@)
+set(MONITORING_USE_THREAD_SYSTEM @MONITORING_WITH_THREAD_SYSTEM@)
+set(MONITORING_USE_LOGGER_SYSTEM @MONITORING_WITH_LOGGER_SYSTEM@)
 
 if(MONITORING_USE_THREAD_SYSTEM)
     find_dependency(thread_system CONFIG)
 endif()
 
 if(MONITORING_USE_LOGGER_SYSTEM)
-    find_dependency(logger_system CONFIG)
+    find_dependency(LoggerSystem CONFIG)
 endif()
 
 # Include targets
