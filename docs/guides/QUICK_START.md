@@ -59,7 +59,7 @@ include(FetchContent)
 FetchContent_Declare(
     monitoring_system
     GIT_REPOSITORY https://github.com/kcenon/monitoring_system.git
-    GIT_TAG        v1.0.0  # or main for latest
+    GIT_TAG        v0.1.0 # Pin to a specific release tag; do NOT use main
 )
 
 FetchContent_MakeAvailable(monitoring_system)
