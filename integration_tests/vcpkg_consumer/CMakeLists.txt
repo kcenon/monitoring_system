@@ -26,24 +26,24 @@ else()
     list(APPEND MISSING_PORTS "thread_system")
 endif()
 
-find_package(ContainerSystem CONFIG)
-if(ContainerSystem_FOUND)
-    message(STATUS "Found ContainerSystem: ${ContainerSystem_DIR}")
-    list(APPEND FOUND_PORTS "ContainerSystem")
+find_package(container_system CONFIG)
+if(container_system_FOUND)
+    message(STATUS "Found container_system: ${container_system_DIR}")
+    list(APPEND FOUND_PORTS "container_system")
 else()
-    message(WARNING "ContainerSystem not found - skipping")
-    list(APPEND MISSING_PORTS "ContainerSystem")
+    message(WARNING "container_system not found - skipping")
+    list(APPEND MISSING_PORTS "container_system")
 endif()
 
 # ─── Tier 2: Logging ─────────────────────────────────────────────────────────
 
-find_package(LoggerSystem CONFIG)
-if(LoggerSystem_FOUND)
-    message(STATUS "Found LoggerSystem: ${LoggerSystem_DIR}")
-    list(APPEND FOUND_PORTS "LoggerSystem")
+find_package(logger_system CONFIG)
+if(logger_system_FOUND)
+    message(STATUS "Found logger_system: ${logger_system_DIR}")
+    list(APPEND FOUND_PORTS "logger_system")
 else()
-    message(WARNING "LoggerSystem not found - skipping")
-    list(APPEND MISSING_PORTS "LoggerSystem")
+    message(WARNING "logger_system not found - skipping")
+    list(APPEND MISSING_PORTS "logger_system")
 endif()
 
 # ─── Tier 3: Monitoring & Database ───────────────────────────────────────────
@@ -57,27 +57,27 @@ else()
     list(APPEND MISSING_PORTS "monitoring_system")
 endif()
 
-find_package(DatabaseSystem CONFIG)
-if(DatabaseSystem_FOUND)
-    message(STATUS "Found DatabaseSystem: ${DatabaseSystem_DIR}")
-    list(APPEND FOUND_PORTS "DatabaseSystem")
+find_package(database_system CONFIG)
+if(database_system_FOUND)
+    message(STATUS "Found database_system: ${database_system_DIR}")
+    list(APPEND FOUND_PORTS "database_system")
 else()
-    message(WARNING "DatabaseSystem not found - skipping")
-    list(APPEND MISSING_PORTS "DatabaseSystem")
+    message(WARNING "database_system not found - skipping")
+    list(APPEND MISSING_PORTS "database_system")
 endif()
 
 # ─── Tier 4: Networking ──────────────────────────────────────────────────────
 
-# OpenSSL is a transitive dependency of NetworkSystem
+# OpenSSL is a transitive dependency of network_system
 find_package(OpenSSL QUIET)
 
-find_package(NetworkSystem CONFIG)
-if(NetworkSystem_FOUND)
-    message(STATUS "Found NetworkSystem: ${NetworkSystem_DIR}")
-    list(APPEND FOUND_PORTS "NetworkSystem")
+find_package(network_system CONFIG)
+if(network_system_FOUND)
+    message(STATUS "Found network_system: ${network_system_DIR}")
+    list(APPEND FOUND_PORTS "network_system")
 else()
-    message(WARNING "NetworkSystem not found - skipping")
-    list(APPEND MISSING_PORTS "NetworkSystem")
+    message(WARNING "network_system not found - skipping")
+    list(APPEND MISSING_PORTS "network_system")
 endif()
 
 # ─── Tier 5: PACS ────────────────────────────────────────────────────────────
