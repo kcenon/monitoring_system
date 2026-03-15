@@ -86,7 +86,7 @@ jobs:
 
       - name: Upload validation results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vcpkg-validation-${{ matrix.os }}-${{ matrix.triplet }}
           path: |

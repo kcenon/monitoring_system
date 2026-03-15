@@ -117,7 +117,7 @@ jobs:
           --benchmark_repetitions=3
 
     - name: Upload benchmark results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: benchmark-results-${{ matrix.os }}
         path: monitoring_system/build/benchmarks/benchmark_results_${{ matrix.os }}.json
