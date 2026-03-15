@@ -33,12 +33,20 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
-    PACKAGE_NAME LoggerSystem
+    PACKAGE_NAME logger_system
     CONFIG_PATH lib/cmake/LoggerSystem
 )
 
-# v0.1.2: upstream now emits install(EXPORT LoggerSystemTargets) when
-# LOGGER_USE_THREAD_SYSTEM=OFF, so manual target generation is no longer needed.
+# Create snake_case config entry point for find_package(logger_system)
+# Upstream installs as LoggerSystem; this wrapper standardizes the package name
+file(WRITE "${CURRENT_PACKAGES_DIR}/share/logger_system/logger_system-config.cmake"
+    "include(\"\${CMAKE_CURRENT_LIST_DIR}/LoggerSystemConfig.cmake\")\n"
+)
+if(EXISTS "${CURRENT_PACKAGES_DIR}/share/logger_system/LoggerSystemConfigVersion.cmake")
+    file(WRITE "${CURRENT_PACKAGES_DIR}/share/logger_system/logger_system-config-version.cmake"
+        "include(\"\${CMAKE_CURRENT_LIST_DIR}/LoggerSystemConfigVersion.cmake\")\n"
+    )
+endif()
 
 # Fix include paths: upstream headers use kcenon/logger/ but vcpkg installs under logger_system/
 file(GLOB_RECURSE _logger_headers "${CURRENT_PACKAGES_DIR}/include/logger_system/*.h")
