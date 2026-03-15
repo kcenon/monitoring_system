@@ -32,9 +32,20 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
-    PACKAGE_NAME DatabaseSystem
+    PACKAGE_NAME database_system
     CONFIG_PATH lib/cmake/DatabaseSystem
 )
+
+# Create snake_case config entry point for find_package(database_system)
+# Upstream installs as DatabaseSystem; this wrapper standardizes the package name
+file(WRITE "${CURRENT_PACKAGES_DIR}/share/database_system/database_system-config.cmake"
+    "include(\"\${CMAKE_CURRENT_LIST_DIR}/DatabaseSystemConfig.cmake\")\n"
+)
+if(EXISTS "${CURRENT_PACKAGES_DIR}/share/database_system/DatabaseSystemConfigVersion.cmake")
+    file(WRITE "${CURRENT_PACKAGES_DIR}/share/database_system/database_system-config-version.cmake"
+        "include(\"\${CMAKE_CURRENT_LIST_DIR}/DatabaseSystemConfigVersion.cmake\")\n"
+    )
+endif()
 
 # Fix: integrated_database uses static-init registration pattern with zero source
 # files when all backends are disabled. MSVC produces no .lib for empty targets,

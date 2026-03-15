@@ -28,7 +28,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +
 +    # vcpkg: fallback to find_package
 +    if(NOT CONTAINER_SYSTEM_FOUND)
-+        find_package(ContainerSystem CONFIG QUIET)
++        find_package(container_system CONFIG QUIET)
 +        if(TARGET ContainerSystem::container)
 +            if(NOT TARGET container_system)
 +                add_library(container_system ALIAS ContainerSystem::container)
@@ -70,7 +70,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +
 +# vcpkg: fallback to find_package
 +if(NOT LOGGER_SYSTEM_FOUND)
-+    find_package(LoggerSystem CONFIG QUIET)
++    find_package(logger_system CONFIG QUIET)
 +    if(TARGET LoggerSystem::LoggerSystem)
 +        if(NOT TARGET LoggerSystem)
 +            add_library(LoggerSystem ALIAS LoggerSystem::LoggerSystem)
@@ -90,7 +90,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 +
 +    # vcpkg: fallback to find_package
 +    if(NOT NETWORK_SYSTEM_FOUND)
-+        find_package(NetworkSystem CONFIG QUIET)
++        find_package(network_system CONFIG QUIET)
 +        if(TARGET NetworkSystem::NetworkSystem)
 +            if(NOT TARGET NetworkSystem)
 +                add_library(NetworkSystem ALIAS NetworkSystem::NetworkSystem)

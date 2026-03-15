@@ -27,9 +27,20 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
-    PACKAGE_NAME ContainerSystem
+    PACKAGE_NAME container_system
     CONFIG_PATH lib/cmake/ContainerSystem
 )
+
+# Create snake_case config entry point for find_package(container_system)
+# Upstream installs as ContainerSystem; this wrapper standardizes the package name
+file(WRITE "${CURRENT_PACKAGES_DIR}/share/container_system/container_system-config.cmake"
+    "include(\"\${CMAKE_CURRENT_LIST_DIR}/ContainerSystemConfig.cmake\")\n"
+)
+if(EXISTS "${CURRENT_PACKAGES_DIR}/share/container_system/ContainerSystemConfigVersion.cmake")
+    file(WRITE "${CURRENT_PACKAGES_DIR}/share/container_system/container_system-config-version.cmake"
+        "include(\"\${CMAKE_CURRENT_LIST_DIR}/ContainerSystemConfigVersion.cmake\")\n"
+    )
+endif()
 
 # Remove example/sample executables and empty bin directories
 file(REMOVE_RECURSE
