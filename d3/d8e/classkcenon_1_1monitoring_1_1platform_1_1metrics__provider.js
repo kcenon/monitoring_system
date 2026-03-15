@@ -1,0 +1,27 @@
+var classkcenon_1_1monitoring_1_1platform_1_1metrics__provider =
+[
+    [ "~metrics_provider", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#ad2b5e49f16260374a579dbb906c936bb", null ],
+    [ "metrics_provider", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a794ee2c44b4e221e1389a65b30643a3b", null ],
+    [ "metrics_provider", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a136a8e9a7c88804177689dafb28758f9", null ],
+    [ "metrics_provider", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#af3b93538335bcad9aee4d288e07f3d0c", null ],
+    [ "create", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#abb850b486e9f3edb7e703e6c90b7e987", null ],
+    [ "get_battery_readings", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a90166964ad832b475124477378ddc757", null ],
+    [ "get_context_switches", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#aa53308a31e758f11208e696a879761c6", null ],
+    [ "get_fd_stats", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#addfedacd59a0e6b978c69f9be46990ca", null ],
+    [ "get_gpu_info", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#aea292c9c0203b8f9e6a72efeec3d1325", null ],
+    [ "get_inode_stats", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#ad4759f75fe14ae95bab8c14bad6884f6", null ],
+    [ "get_interrupt_stats", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#aff13f565956413030f8d778836c9f0a7", null ],
+    [ "get_platform_name", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a472f6427028d5c157cb0f2ab72165c40", null ],
+    [ "get_power_info", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a76acf21ba43ead3653c132dec220d04f", null ],
+    [ "get_security_info", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#af50a1df29c08b3c4b90670f07bfaa366", null ],
+    [ "get_socket_buffer_stats", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a52b4ac902d8ab6631c4995598f68e627", null ],
+    [ "get_tcp_states", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a2d9a2b7e41114a89cd3fcb23f876e382", null ],
+    [ "get_temperature_readings", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a492ad3943d94fb883d8e3e2cb2eb40a3", null ],
+    [ "get_uptime", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#ac6927af263bdbccb7e20ea5cbd0594b6", null ],
+    [ "is_battery_available", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a45d86a9def91f298151b2e27f645a762", null ],
+    [ "is_gpu_available", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a7c6c87354a77934808f3bc5982c2e098", null ],
+    [ "is_power_available", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#ab71d4e75a06db4ca847bd8250c629636", null ],
+    [ "is_temperature_available", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a37086b20c02a4b2ff08c3c6bbc50727a", null ],
+    [ "operator=", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#aa27b506c1f90aeda05ad2cea5358dc15", null ],
+    [ "operator=", "d3/d8e/classkcenon_1_1monitoring_1_1platform_1_1metrics__provider.html#a57d220e5f4a6025ab5b22a47f85c0cd0", null ]
+];

@@ -1,0 +1,27 @@
+var dir_d28a4824dc47e487b107a5db32ef43c4 =
+[
+    [ "plugin_example", "dir_d6dea23286941972b437f22813ac7539.html", "dir_d6dea23286941972b437f22813ac7539" ],
+    [ "alert_notifiers_example.cpp", "d0/d30/alert__notifiers__example_8cpp.html", "d0/d30/alert__notifiers__example_8cpp" ],
+    [ "alert_pipeline_example.cpp", "dc/d16/alert__pipeline__example_8cpp.html", "dc/d16/alert__pipeline__example_8cpp" ],
+    [ "alert_triggers_example.cpp", "d2/d24/alert__triggers__example_8cpp.html", "d2/d24/alert__triggers__example_8cpp" ],
+    [ "basic_monitoring_example.cpp", "d0/d97/basic__monitoring__example_8cpp.html", "d0/d97/basic__monitoring__example_8cpp" ],
+    [ "bidirectional_di_example.cpp", "d7/d24/bidirectional__di__example_8cpp.html", "d7/d24/bidirectional__di__example_8cpp" ],
+    [ "collector_factory_example.cpp", "d5/de5/collector__factory__example_8cpp.html", "d5/de5/collector__factory__example_8cpp" ],
+    [ "custom_metric_types_example.cpp", "d7/dc6/custom__metric__types__example_8cpp.html", "d7/dc6/custom__metric__types__example_8cpp" ],
+    [ "distributed_tracing_example.cpp", "d4/d6c/distributed__tracing__example_8cpp.html", "d4/d6c/distributed__tracing__example_8cpp" ],
+    [ "event_bus_example.cpp", "d4/d27/event__bus__example_8cpp.html", "d4/d27/event__bus__example_8cpp" ],
+    [ "facade_adapter_poc.cpp", "d0/d69/facade__adapter__poc_8cpp.html", "d0/d69/facade__adapter__poc_8cpp" ],
+    [ "graceful_degradation_example.cpp", "de/ddf/graceful__degradation__example_8cpp.html", "de/ddf/graceful__degradation__example_8cpp" ],
+    [ "health_reliability_example.cpp", "d2/d84/health__reliability__example_8cpp.html", "d2/d84/health__reliability__example_8cpp" ],
+    [ "logger_di_integration_example.cpp", "d0/d34/logger__di__integration__example_8cpp.html", "d0/d34/logger__di__integration__example_8cpp" ],
+    [ "monitor_factory_pattern_example.cpp", "d3/df7/monitor__factory__pattern__example_8cpp.html", "d3/df7/monitor__factory__pattern__example_8cpp" ],
+    [ "multi_service_tracing_example.cpp", "d1/da6/multi__service__tracing__example_8cpp.html", "d1/da6/multi__service__tracing__example_8cpp" ],
+    [ "otlp_export_example.cpp", "d8/d05/otlp__export__example_8cpp.html", "d8/d05/otlp__export__example_8cpp" ],
+    [ "platform_metrics_example.cpp", "db/d05/platform__metrics__example_8cpp.html", "db/d05/platform__metrics__example_8cpp" ],
+    [ "plugin_collector_example.cpp", "dc/d7a/plugin__collector__example_8cpp.html", "dc/d7a/plugin__collector__example_8cpp" ],
+    [ "production_monitoring_example.cpp", "de/d48/production__monitoring__example_8cpp.html", "de/d48/production__monitoring__example_8cpp" ],
+    [ "result_pattern_example.cpp", "de/dfb/result__pattern__example_8cpp.html", "de/dfb/result__pattern__example_8cpp" ],
+    [ "storage_example.cpp", "d9/d8e/storage__example_8cpp.html", "d9/d8e/storage__example_8cpp" ],
+    [ "system_collectors_example.cpp", "d7/d66/system__collectors__example_8cpp.html", "d7/d66/system__collectors__example_8cpp" ],
+    [ "time_series_storage_example.cpp", "d2/d13/time__series__storage__example_8cpp.html", "d2/d13/time__series__storage__example_8cpp" ]
+];
