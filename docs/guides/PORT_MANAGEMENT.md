@@ -132,23 +132,43 @@ cp -r vcpkg-ports/kcenon-<system>-system/ \
 
 ## Consumer Repository Setup
 
-Repositories that depend on kcenon packages should **not** maintain local
-port copies.  Instead, configure CMake to use monitoring_system's overlay:
+Repositories that depend on kcenon packages should configure
+`vcpkg-configuration.json` to reference the remote registry:
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json",
+  "default-registry": {
+    "kind": "builtin",
+    "baseline": "dd306f32e07d87fdb16837af64f33b6b415c770a"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/kcenon/vcpkg-registry.git",
+      "baseline": "<latest-vcpkg-registry-commit-sha>",
+      "packages": [
+        "kcenon-*"
+      ]
+    }
+  ]
+}
+```
+
+With this configuration, `vcpkg install kcenon-<package>` resolves
+automatically without `--overlay-ports`.  All eight ecosystem repositories
+(`common_system`, `thread_system`, `logger_system`, `container_system`,
+`monitoring_system`, `database_system`, `network_system`, `pacs_system`)
+use this pattern.
+
+For development or pre-release testing, the overlay approach remains
+available:
 
 ```bash
 cmake -B build \
   -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake \
   -DVCPKG_OVERLAY_PORTS=/path/to/monitoring_system/vcpkg-ports
 ```
-
-For CI pipelines, either:
-
-1. **Submodule**: Add `monitoring_system` as a git submodule and reference
-   `$(pwd)/monitoring_system/vcpkg-ports` as the overlay path.
-2. **Shallow clone**: Perform a sparse/shallow clone of `monitoring_system`
-   in the CI job and pass the path as an environment variable.
-3. **Remote registry**: Reference `kcenon/vcpkg-registry.git` in
-   `vcpkg-configuration.json` for stable released versions.
 
 ## Stale Local Ports — Cleanup Required
 
