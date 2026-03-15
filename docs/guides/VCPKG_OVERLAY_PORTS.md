@@ -1,19 +1,28 @@
 # vcpkg Overlay Ports Guide
 
-This guide explains how to use the vcpkg overlay ports for the kcenon ecosystem packages.
+This guide explains how to use the vcpkg overlay ports provided by the
+`monitoring_system` repository, which acts as the **canonical port registry**
+for the entire kcenon ecosystem.
 
 ## Overview
 
-The `vcpkg-ports/` directory contains overlay port definitions for local testing before official vcpkg registry submission. These ports allow you to install and test the kcenon ecosystem packages locally.
+The `vcpkg-ports/` directory contains port definitions for all eight kcenon
+ecosystem packages.  These overlay ports let you build against any version of
+the kcenon libraries — including unreleased commits — without waiting for the
+official vcpkg registry to be updated.
 
 ## Available Ports
 
-| Port | Version | Description |
-|------|---------|-------------|
-| kcenon-common-system | 0.2.0 | Foundation library with Result<T> pattern and interfaces |
-| kcenon-thread-system | 0.3.0 | High-performance multithreading framework |
-| kcenon-logger-system | 0.1.0 | High-performance async logging framework |
-| kcenon-monitoring-system | 0.1.0 | Monitoring system with metrics, tracing, and container monitoring |
+| Port | Version | Port-Version | Description |
+|------|---------|-------------|-------------|
+| kcenon-common-system | 0.2.0 | 0 | Foundation library with Result\<T\> pattern and interfaces |
+| kcenon-thread-system | 0.3.0 | 0 | High-performance multithreading framework |
+| kcenon-logger-system | 0.1.2 | 0 | High-performance async logging framework |
+| kcenon-container-system | 0.1.0 | 0 | Advanced container system with thread-safe operations |
+| kcenon-monitoring-system | 0.1.0 | 0 | Monitoring system with metrics, tracing, and container monitoring |
+| kcenon-database-system | 0.1.0 | 2 | Core DAL library with multi-backend support |
+| kcenon-network-system | 0.1.0 | 3 | Async network library with TCP/UDP, HTTP/1.1, WebSocket, TLS 1.3 |
+| kcenon-pacs-system | 0.1.0 | 2 | Modern C++20 PACS implementation |
 
 ## Prerequisites
 
@@ -29,7 +38,7 @@ The `vcpkg-ports/` directory contains overlay port definitions for local testing
 # Set the overlay ports path
 export VCPKG_OVERLAY_PORTS="/path/to/monitoring_system/vcpkg-ports"
 
-# Install packages using overlay ports
+# Install individual packages
 vcpkg install kcenon-common-system --overlay-ports=./vcpkg-ports
 vcpkg install kcenon-thread-system --overlay-ports=./vcpkg-ports
 vcpkg install kcenon-logger-system --overlay-ports=./vcpkg-ports
@@ -41,7 +50,6 @@ vcpkg install kcenon-monitoring-system --overlay-ports=./vcpkg-ports
 Add to your `CMakeLists.txt`:
 
 ```cmake
-# Using vcpkg toolchain
 cmake_minimum_required(VERSION 3.20)
 project(your_project)
 
@@ -91,13 +99,27 @@ kcenon-monitoring-system
 ├── kcenon-common-system (required)
 ├── kcenon-thread-system (required)
 │   └── kcenon-common-system
-│   └── libiconv (non-Windows)
+│   └── simdutf
 ├── [logging] kcenon-logger-system
 │   ├── kcenon-common-system
 │   ├── kcenon-thread-system
 │   ├── fmt
 │   └── libiconv (non-Windows)
-└── [network] (enables HTTP metrics export)
+└── [network] kcenon-network-system
+    ├── kcenon-common-system
+    ├── kcenon-thread-system
+    ├── kcenon-logger-system
+    ├── asio
+    └── openssl
+
+kcenon-database-system
+└── kcenon-common-system
+
+kcenon-pacs-system
+├── kcenon-common-system
+├── kcenon-container-system
+│   └── kcenon-common-system
+└── kcenon-network-system
 ```
 
 ## Optional Features
@@ -115,32 +137,35 @@ vcpkg install kcenon-monitoring-system[logging] --overlay-ports=./vcpkg-ports
 vcpkg install kcenon-monitoring-system[logging,network] --overlay-ports=./vcpkg-ports
 ```
 
-## Testing Status
+## Consumer Repository Setup
 
-| Port | vcpkg Install | Build | Notes |
-|------|---------------|-------|-------|
-| kcenon-common-system | ✅ Pass | ✅ Pass | Header-only library |
-| kcenon-thread-system | ✅ Pass | ⚠️ Blocked | Upstream CMake issue (common_system linking) |
-| kcenon-logger-system | ✅ Pass | ⚠️ Blocked | Depends on thread_system fix |
-| kcenon-monitoring-system | ✅ Pass | ⚠️ Blocked | Depends on thread_system fix |
+Projects that depend on kcenon packages should reference monitoring_system's
+overlay ports rather than maintaining their own local port copies.
 
-### Known Issues
+Add the monitoring_system overlay path to your CMake configure step:
 
-The `thread_system`, `logger_system`, and `monitoring_system` builds are blocked due to an upstream CMake configuration issue:
+```bash
+cmake -B build \
+  -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake \
+  -DVCPKG_OVERLAY_PORTS=/path/to/monitoring_system/vcpkg-ports
+```
 
-- **Problem**: `ThreadSystemDependencies.cmake` finds `common_system` via `find_package()` but doesn't link the `kcenon::common_system` target to the `ThreadSystem` library
-- **Symptom**: Build fails with "fatal error: 'kcenon/common/patterns/result.h' file not found"
-- **Solution**: Upstream repositories need to update their CMake configuration to properly link the `kcenon::common_system` target
+Or set the `VCPKG_OVERLAY_PORTS` environment variable in your CI pipeline.
+
+## Port Update Procedure
+
+See [PORT_MANAGEMENT.md](PORT_MANAGEMENT.md) for the step-by-step procedure for
+updating port definitions when a new upstream release is made.
 
 ## Notes
 
-- These overlay ports use specific commit SHA for reproducible builds
-- SHA512 hashes are placeholder values (update after release)
-- For production, wait for official vcpkg registry submission
-- Port definitions use project-specific CMake options for proper configuration
+- Port files pin specific upstream commits via SHA512 hashes for reproducible builds
+- Patches in each port directory fix upstream issues that are not yet merged upstream
+- Port-version increments indicate portfile-only fixes without upstream changes
 
 ## Related Issues
 
+- [#533](https://github.com/kcenon/monitoring_system/issues/533) - Single source of truth for vcpkg port management
 - [#279](https://github.com/kcenon/monitoring_system/issues/279) - vcpkg registry registration tracking
 - [#281](https://github.com/kcenon/monitoring_system/issues/281) - common_system port
 - [#282](https://github.com/kcenon/monitoring_system/issues/282) - thread_system port
