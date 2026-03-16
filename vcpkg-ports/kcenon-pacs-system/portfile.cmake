@@ -4,11 +4,16 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/pacs_system
-    REF 3844173e3334ea4d8bcb60d30338293319e0ec18
-    SHA512 71d5c452642559886b89ef71f6cb4e2feb4c88b1656e2477949bad067963a36975585c1420dd157ef31d87ab2df6220b14ba5996c6a5ebc769d41fa7a2216220
+    REF "v${VERSION}"
+    SHA512 242dd7bc82f56e0267e4978dd406aebeebd1bb50e70f93a8c809d3474ae6de1d0e692cc8fbbbaa81dbb68e2642b48c14100b8d5daa5f99097287af2d9465904c
     HEAD_REF main
-    PATCHES
-        fix-vcpkg-dependency-discovery.patch
+)
+
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        storage  PACS_BUILD_STORAGE
+        aws      PACS_WITH_AWS_SDK
+        azure    PACS_WITH_AZURE_SDK
 )
 
 vcpkg_cmake_configure(
@@ -20,15 +25,15 @@ vcpkg_cmake_configure(
         -DPACS_BUILD_SAMPLES=OFF
         -DPACS_WITH_COMMON_SYSTEM=ON
         -DPACS_WITH_CONTAINER_SYSTEM=ON
-        # Network integration disabled: upstream include paths assume submodule layout
-        # (kcenon/logger/ vs logger_system/, internal/ headers not installed)
-        # Re-enable when upstream fixes vcpkg-compatible include layout
-        -DPACS_WITH_NETWORK_SYSTEM=OFF
-        -DPACS_BUILD_STORAGE=OFF
-        -DPACS_WITH_AWS_SDK=OFF
-        -DPACS_WITH_AZURE_SDK=OFF
+        -DPACS_WITH_NETWORK_SYSTEM=ON
         -DPACS_BUILD_MODULES=OFF
         -DPACS_WARNINGS_AS_ERRORS=OFF
+        -DBUILD_SHARED_LIBS=OFF
+        # Disable all FetchContent fallbacks; all deps must be resolved via vcpkg
+        -DPACS_FETCH_OPENJPH=OFF
+        -DPACS_FETCH_CROW=OFF
+        -DFETCHCONTENT_FULLY_DISCONNECTED=ON
+        ${FEATURE_OPTIONS}
 )
 
 vcpkg_cmake_install()
@@ -36,29 +41,6 @@ vcpkg_cmake_install()
 vcpkg_cmake_config_fixup(
     PACKAGE_NAME pacs_system
     CONFIG_PATH lib/cmake/pacs_system
-)
-
-# Fix upstream: pacs_systemConfig.cmake uses PascalCase find_dependency calls
-# for ContainerSystem and NetworkSystem, but our vcpkg overlay installs these as
-# snake_case packages (container_system, network_system).
-# Use regex replace to handle any argument variant (with/without CONFIG REQUIRED).
-file(READ
-    "${CURRENT_PACKAGES_DIR}/share/pacs_system/pacs_systemConfig.cmake"
-    _pacs_config_content
-)
-string(REGEX REPLACE
-    "find_dependency\\(ContainerSystem([^)]*)"
-    "find_dependency(container_system\\1"
-    _pacs_config_content "${_pacs_config_content}"
-)
-string(REGEX REPLACE
-    "find_dependency\\(NetworkSystem([^)]*)"
-    "find_dependency(network_system\\1"
-    _pacs_config_content "${_pacs_config_content}"
-)
-file(WRITE
-    "${CURRENT_PACKAGES_DIR}/share/pacs_system/pacs_systemConfig.cmake"
-    "${_pacs_config_content}"
 )
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")

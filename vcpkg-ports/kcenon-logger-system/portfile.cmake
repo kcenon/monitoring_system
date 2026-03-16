@@ -1,15 +1,11 @@
 # kcenon-logger-system portfile
 # High-performance C++20 async logging library with 4.34M msg/sec throughput
 
-# Upstream does not annotate symbols with __declspec(dllexport), so DLLs are
-# built without exports on Windows.  Force static linkage on all platforms.
-set(VCPKG_LIBRARY_LINKAGE static)
-
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/logger_system
-    REF 99056eadee00ab33a4663e1663bdf1f3eacc8f3b
-    SHA512 8d2fe38089dd760baaff764664097c5a7c9c6f4fe8f0048d4c5e6e6451a5f615c2ac20b91879235c81f08b8ff4efebb505dd8884692fc4a5c2a52676e5351b11
+    REF "v${VERSION}"
+    SHA512 90884ec4210e6ebeb534aed2eb9928cfc2a80d0ab7220f9ed9be63d32bcfc6154e6bd2960c7d11cb196c3dcb345650c6e182f8edc44867b4bcf0efeb1dfed0f2
     HEAD_REF main
 )
 
@@ -22,7 +18,6 @@ vcpkg_cmake_configure(
         -DBUILD_TESTS=OFF
         -DBUILD_BENCHMARKS=OFF
         -DBUILD_SAMPLES=OFF
-        -DBUILD_SHARED_LIBS=OFF
         -DLOGGER_BUILD_INTEGRATION_TESTS=OFF
         -DLOGGER_ENABLE_COVERAGE=OFF
         -DLOGGER_USE_THREAD_SYSTEM=OFF
@@ -31,19 +26,9 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
-    PACKAGE_NAME logger_system
-    CONFIG_PATH lib/cmake/logger_system
+    PACKAGE_NAME LoggerSystem
+    CONFIG_PATH lib/cmake/LoggerSystem
 )
-
-# Fix include paths: upstream headers use kcenon/logger/ but vcpkg installs under logger_system/
-file(GLOB_RECURSE _logger_headers "${CURRENT_PACKAGES_DIR}/include/logger_system/*.h")
-foreach(_header IN LISTS _logger_headers)
-    file(READ "${_header}" _content)
-    if(_content MATCHES "kcenon/logger/")
-        string(REPLACE "kcenon/logger/" "logger_system/" _content "${_content}")
-        file(WRITE "${_header}" "${_content}")
-    endif()
-endforeach()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")

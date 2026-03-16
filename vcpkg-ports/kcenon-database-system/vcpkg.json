@@ -2,12 +2,16 @@
   "name": "kcenon-database-system",
   "version": "0.1.0",
   "port-version": 3,
-  "description": "Pure, lightweight C++20 Core DAL library with unified access to PostgreSQL, MySQL, SQLite, MongoDB, and Redis",
+  "description": "Pure, lightweight C++20 Core DAL library with unified access to PostgreSQL, SQLite, MongoDB, and Redis",
   "homepage": "https://github.com/kcenon/database_system",
   "license": "BSD-3-Clause",
   "supports": "!(uwp | xbox)",
   "dependencies": [
     "kcenon-common-system",
+    {
+      "name": "asio",
+      "version>=": "1.30.2"
+    },
     {
       "name": "vcpkg-cmake",
       "host": true
@@ -16,5 +20,51 @@
       "name": "vcpkg-cmake-config",
       "host": true
     }
-  ]
+  ],
+  "default-features": [
+    "postgresql"
+  ],
+  "features": {
+    "postgresql": {
+      "description": "Enable PostgreSQL database support",
+      "dependencies": [
+        "libpq",
+        {
+          "name": "libpqxx",
+          "default-features": false
+        },
+        {
+          "name": "openssl",
+          "version>=": "3.3.0"
+        }
+      ]
+    },
+    "sqlite": {
+      "description": "Enable SQLite database support",
+      "dependencies": [
+        {
+          "name": "sqlite3",
+          "version>=": "3.45.0"
+        }
+      ]
+    },
+    "mongodb": {
+      "description": "Enable MongoDB backend (experimental)",
+      "dependencies": [
+        {
+          "name": "mongo-cxx-driver",
+          "version>=": "3.8.0"
+        }
+      ]
+    },
+    "redis": {
+      "description": "Enable Redis backend (experimental)",
+      "dependencies": [
+        {
+          "name": "hiredis",
+          "version>=": "1.2.0"
+        }
+      ]
+    }
+  }
 }
