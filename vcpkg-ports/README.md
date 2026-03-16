@@ -10,12 +10,12 @@ real SHA512 hashes, upstream patches, and CI validation.
 |---------|---------|-------------|---------|--------------|
 | kcenon-common-system | 0.2.0 | 0 | — | None |
 | kcenon-thread-system | 0.3.0 | 0 | — | common-system, simdutf |
-| kcenon-logger-system | 0.1.2 | 1 | fix-unified-deps-target-names | common-system, thread-system, fmt, libiconv |
+| kcenon-logger-system | 0.1.2 | 2 | — | common-system, thread-system, fmt, libiconv |
 | kcenon-container-system | 0.1.0 | 1 | — | common-system |
 | kcenon-monitoring-system | 0.1.0 | 0 | — | common-system, thread-system |
 | kcenon-database-system | 0.1.0 | 3 | fix-common-system-target | common-system |
-| kcenon-network-system | 0.1.0 | 4 | fix-common-system-target | common-system, thread-system, logger-system, asio, openssl |
-| kcenon-pacs-system | 0.1.0 | 3 | fix-vcpkg-dependency-discovery | common-system, container-system, network-system |
+| kcenon-network-system | 0.1.0 | 5 | fix-common-system-target | common-system, thread-system, logger-system, asio, openssl |
+| kcenon-pacs-system | 0.1.0 | 5 | fix-vcpkg-dependency-discovery | common-system, container-system, network-system |
 
 ## PACKAGE_NAME Convention
 
@@ -75,19 +75,18 @@ When adding a new ecosystem port, follow these rules:
 
 ### Upstream Adoption Status
 
-Four upstream repositories still install CMake config files under a PascalCase path.
+Three upstream repositories still install CMake config files under a PascalCase path.
 Upstream issues have been filed requesting native snake_case support. Once each upstream
 merges the change, the corresponding portfile can drop its `CONFIG_PATH` override and
 wrapper config file.
 
 | Repository | Current Config Path | Target Config Path | Upstream Issue | Portfile Cleanup |
 |------------|--------------------|--------------------|----------------|------------------|
-| kcenon/logger_system | `lib/cmake/LoggerSystem` | `lib/cmake/logger_system` | [#502](https://github.com/kcenon/logger_system/issues/502) | Remove wrapper + `CONFIG_PATH` |
 | kcenon/container_system | `lib/cmake/ContainerSystem` | `lib/cmake/container_system` | [#424](https://github.com/kcenon/container_system/issues/424) | Remove wrapper + `CONFIG_PATH` |
 | kcenon/database_system | `lib/cmake/DatabaseSystem` | `lib/cmake/database_system` | [#455](https://github.com/kcenon/database_system/issues/455) | Remove wrapper + `CONFIG_PATH` |
 | kcenon/network_system | `lib/cmake/NetworkSystem` | `lib/cmake/network_system` | [#843](https://github.com/kcenon/network_system/issues/843) | Remove wrapper + `CONFIG_PATH` |
 
-The remaining four ports (common_system, thread_system, monitoring_system, pacs_system)
+The remaining five ports (common_system, logger_system, thread_system, monitoring_system, pacs_system)
 already install under snake_case paths and need no wrapper.
 
 ## Quick Start
