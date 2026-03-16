@@ -4,7 +4,7 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/container_system
-    REF v0.1.0
+    REF "v${VERSION}"
     SHA512 ca2feee08c7cef41d297c49c4a4eb8559dcb4c680d42e70bc011b8928e88b82e16fab3e54f44e15e3c1e1ce0738950de9e8c55fea6d090cd8d3db628a46fb444
     HEAD_REF main
 )
@@ -18,29 +18,16 @@ vcpkg_cmake_configure(
         -DCONTAINER_BUILD_INTEGRATION_TESTS=OFF
         -DCONTAINER_BUILD_BENCHMARKS=OFF
         -DBUILD_DOCUMENTATION=OFF
-        -DBUILD_SAMPLES=OFF
-        -DBUILD_EXAMPLES=OFF
-        -DCONTAINER_BUILD_SAMPLES=OFF
-        -DCONTAINER_BUILD_EXAMPLES=OFF
+        -DBUILD_CONTAINER_SAMPLES=OFF
+        -DBUILD_CONTAINER_EXAMPLES=OFF
 )
 
 vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
-    PACKAGE_NAME container_system
+    PACKAGE_NAME ContainerSystem
     CONFIG_PATH lib/cmake/ContainerSystem
 )
-
-# Create snake_case config entry point for find_package(container_system)
-# Upstream installs as ContainerSystem; this wrapper standardizes the package name
-file(WRITE "${CURRENT_PACKAGES_DIR}/share/container_system/container_system-config.cmake"
-    "include(\"\${CMAKE_CURRENT_LIST_DIR}/ContainerSystemConfig.cmake\")\n"
-)
-if(EXISTS "${CURRENT_PACKAGES_DIR}/share/container_system/ContainerSystemConfigVersion.cmake")
-    file(WRITE "${CURRENT_PACKAGES_DIR}/share/container_system/container_system-config-version.cmake"
-        "include(\"\${CMAKE_CURRENT_LIST_DIR}/ContainerSystemConfigVersion.cmake\")\n"
-    )
-endif()
 
 # Remove example/sample executables and empty bin directories
 file(REMOVE_RECURSE

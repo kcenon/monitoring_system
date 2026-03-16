@@ -4,8 +4,8 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/thread_system
-    REF v0.3.0
-    SHA512 7a3336340ec24230d8a5c94c7a0c0c9b671f0e9c9f2e88f9d122f86799afa3c6af7a271eb8d92d5c1d419e7d0a0a0a936c18ef7af845f737816f6800f9f9c4a3
+    REF "v${VERSION}"
+    SHA512 9e1bc834b3f523b55f948bc62d1496a0cfb61babe8258f6041e27b790ce8be51cbc8d495e9bdafb2d5bbc1148f05fca69542a1b97c36f030b688e8a022227d51
     HEAD_REF main
 )
 
@@ -31,13 +31,6 @@ file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/include/thread_system/interfaces")
 
 # Fix absolute paths in pkgconfig files
 vcpkg_fixup_pkgconfig()
-
-# Fix upstream bug: version file rejects 0.3.0 as below hardcoded minimum 1.0.0
-vcpkg_replace_string(
-    "${CURRENT_PACKAGES_DIR}/share/thread_system/thread_system-config-version.cmake"
-    "set(MINIMUM_SUPPORTED_VERSION \"1.0.0\")"
-    "set(MINIMUM_SUPPORTED_VERSION \"0.1.0\")"
-)
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
