@@ -38,6 +38,20 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/pacs_system
 )
 
+# Fix upstream: pacs_systemConfig.cmake.in uses PascalCase find_dependency calls
+# for ContainerSystem and NetworkSystem, but our vcpkg overlay installs these as
+# snake_case packages (container_system, network_system).
+vcpkg_replace_string(
+    "${CURRENT_PACKAGES_DIR}/share/pacs_system/pacs_systemConfig.cmake"
+    "find_dependency(ContainerSystem CONFIG REQUIRED)"
+    "find_dependency(container_system CONFIG REQUIRED)"
+)
+vcpkg_replace_string(
+    "${CURRENT_PACKAGES_DIR}/share/pacs_system/pacs_systemConfig.cmake"
+    "find_dependency(NetworkSystem CONFIG REQUIRED)"
+    "find_dependency(network_system CONFIG REQUIRED)"
+)
+
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 
