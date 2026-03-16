@@ -26,20 +26,9 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
-    PACKAGE_NAME LoggerSystem
-    CONFIG_PATH lib/cmake/LoggerSystem
+    PACKAGE_NAME logger_system
+    CONFIG_PATH lib/cmake/logger_system
 )
-
-# Create snake_case wrapper so find_package(logger_system CONFIG) also works
-# Upstream issue: PascalCase → snake_case migration pending
-file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/logger_system-config.cmake"
-    "include(\"\${CMAKE_CURRENT_LIST_DIR}/LoggerSystemConfig.cmake\")\n"
-)
-if(EXISTS "${CURRENT_PACKAGES_DIR}/share/${PORT}/LoggerSystemConfigVersion.cmake")
-    file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/logger_system-config-version.cmake"
-        "include(\"\${CMAKE_CURRENT_LIST_DIR}/LoggerSystemConfigVersion.cmake\")\n"
-    )
-endif()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
