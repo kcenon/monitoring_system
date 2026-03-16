@@ -96,10 +96,8 @@ endif()
 add_executable(vcpkg_chain_consumer main.cpp)
 
 # Always link common_system (required)
-if(TARGET kcenon::common_system)
-    target_link_libraries(vcpkg_chain_consumer PRIVATE kcenon::common_system)
-    target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_COMMON_SYSTEM)
-endif()
+target_link_libraries(vcpkg_chain_consumer PRIVATE kcenon::common_system)
+target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_COMMON_SYSTEM)
 
 # Conditionally link available ports (using actual vcpkg exported target names)
 if(TARGET thread_system::ThreadSystem)

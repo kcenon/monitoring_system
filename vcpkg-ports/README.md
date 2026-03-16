@@ -19,25 +19,25 @@ the canonical [vcpkg-registry](https://github.com/kcenon/vcpkg-registry) with CI
 
 ## PACKAGE_NAME Convention
 
-Package names follow upstream CMake `install(EXPORT)` conventions. Some ports use
-snake_case, others use PascalCase — matching their upstream project's native naming.
+All ecosystem ports support **snake_case** `find_package()` names for consumer consistency.
+Ports whose upstream uses PascalCase config files include snake_case wrapper files so
+both naming conventions work.
 
 ### find_package() Reference
 
-| Port | find_package() | Primary Target |
-|------|---------------|----------------|
-| kcenon-common-system | `find_package(common_system CONFIG)` | `kcenon::common_system` |
-| kcenon-thread-system | `find_package(thread_system CONFIG)` | `thread_system::ThreadSystem` |
-| kcenon-logger-system | `find_package(LoggerSystem CONFIG)` | `LoggerSystem::LoggerSystem` |
-| kcenon-container-system | `find_package(ContainerSystem CONFIG)` | `ContainerSystem::container` |
-| kcenon-monitoring-system | `find_package(monitoring_system CONFIG)` | `monitoring_system::monitoring_system` |
-| kcenon-database-system | `find_package(DatabaseSystem CONFIG)` | `DatabaseSystem::database` |
-| kcenon-network-system | `find_package(NetworkSystem CONFIG)` | `NetworkSystem::NetworkSystem` |
-| kcenon-pacs-system | `find_package(pacs_system CONFIG)` | `kcenon::pacs::core` |
+| Port | find_package() | Primary Target | Also accepts |
+|------|---------------|----------------|-------------|
+| kcenon-common-system | `find_package(common_system CONFIG)` | `kcenon::common_system` | — |
+| kcenon-thread-system | `find_package(thread_system CONFIG)` | `thread_system::ThreadSystem` | — |
+| kcenon-logger-system | `find_package(logger_system CONFIG)` | `LoggerSystem::LoggerSystem` | `LoggerSystem` |
+| kcenon-container-system | `find_package(container_system CONFIG)` | `ContainerSystem::container` | `ContainerSystem` |
+| kcenon-monitoring-system | `find_package(monitoring_system CONFIG)` | `monitoring_system::monitoring_system` | — |
+| kcenon-database-system | `find_package(database_system CONFIG)` | `DatabaseSystem::database` | `DatabaseSystem` |
+| kcenon-network-system | `find_package(network_system CONFIG)` | `NetworkSystem::NetworkSystem` | `NetworkSystem` |
+| kcenon-pacs-system | `find_package(pacs_system CONFIG)` | `kcenon::pacs::core` | — |
 
-> **Note**: Package names and target names are defined by each upstream project's
-> `install(EXPORT)` rules. These overlay ports mirror the registry without adding
-> naming wrappers.
+> **Note**: Target names in `target_link_libraries()` are defined by upstream `install(EXPORT)` rules
+> and use PascalCase. The snake_case wrappers only affect `find_package()` resolution.
 
 ### Upstream Adoption Status
 

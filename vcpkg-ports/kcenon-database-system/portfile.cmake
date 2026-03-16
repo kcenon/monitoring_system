@@ -55,6 +55,17 @@ vcpkg_cmake_config_fixup(
     CONFIG_PATH lib/cmake/DatabaseSystem
 )
 
+# Create snake_case wrapper so find_package(database_system CONFIG) also works
+# Upstream issue: kcenon/database_system#455
+file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/database_system-config.cmake"
+    "include(\"\${CMAKE_CURRENT_LIST_DIR}/DatabaseSystemConfig.cmake\")\n"
+)
+if(EXISTS "${CURRENT_PACKAGES_DIR}/share/${PORT}/DatabaseSystemConfigVersion.cmake")
+    file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/database_system-config-version.cmake"
+        "include(\"\${CMAKE_CURRENT_LIST_DIR}/DatabaseSystemConfigVersion.cmake\")\n"
+    )
+endif()
+
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 
