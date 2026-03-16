@@ -31,20 +31,9 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
-    PACKAGE_NAME NetworkSystem
-    CONFIG_PATH lib/cmake/NetworkSystem
+    PACKAGE_NAME network_system
+    CONFIG_PATH lib/cmake/network_system
 )
-
-# Create snake_case wrapper so find_package(network_system CONFIG) also works
-# Upstream issue: kcenon/network_system#843
-file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/network_system-config.cmake"
-    "include(\"\${CMAKE_CURRENT_LIST_DIR}/NetworkSystemConfig.cmake\")\n"
-)
-if(EXISTS "${CURRENT_PACKAGES_DIR}/share/${PORT}/NetworkSystemConfigVersion.cmake")
-    file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/network_system-config-version.cmake"
-        "include(\"\${CMAKE_CURRENT_LIST_DIR}/NetworkSystemConfigVersion.cmake\")\n"
-    )
-endif()
 
 # Remove empty directories that cause vcpkg post-build validation warnings
 file(REMOVE_RECURSE
