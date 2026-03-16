@@ -8,11 +8,9 @@ set(VCPKG_LIBRARY_LINKAGE static)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO kcenon/logger_system
-    REF v0.1.2
-    SHA512 668c03f997368831207c5865c1615b774a28a08bcd297e09a2bd7e207bf3e6024eab8ba25516dd16ad5b20c7156cdfb8a240770884a7fc4f17c1517f50019ba1
+    REF 99056eadee00ab33a4663e1663bdf1f3eacc8f3b
+    SHA512 8d2fe38089dd760baaff764664097c5a7c9c6f4fe8f0048d4c5e6e6451a5f615c2ac20b91879235c81f08b8ff4efebb505dd8884692fc4a5c2a52676e5351b11
     HEAD_REF main
-    PATCHES
-        fix-unified-deps-target-names.patch
 )
 
 # Disable thread_system integration: upstream CMake does not link thread_system
@@ -34,19 +32,8 @@ vcpkg_cmake_install()
 
 vcpkg_cmake_config_fixup(
     PACKAGE_NAME logger_system
-    CONFIG_PATH lib/cmake/LoggerSystem
+    CONFIG_PATH lib/cmake/logger_system
 )
-
-# Create snake_case config entry point for find_package(logger_system)
-# Upstream installs as LoggerSystem; this wrapper standardizes the package name
-file(WRITE "${CURRENT_PACKAGES_DIR}/share/logger_system/logger_system-config.cmake"
-    "include(\"\${CMAKE_CURRENT_LIST_DIR}/LoggerSystemConfig.cmake\")\n"
-)
-if(EXISTS "${CURRENT_PACKAGES_DIR}/share/logger_system/LoggerSystemConfigVersion.cmake")
-    file(WRITE "${CURRENT_PACKAGES_DIR}/share/logger_system/logger_system-config-version.cmake"
-        "include(\"\${CMAKE_CURRENT_LIST_DIR}/LoggerSystemConfigVersion.cmake\")\n"
-    )
-endif()
 
 # Fix include paths: upstream headers use kcenon/logger/ but vcpkg installs under logger_system/
 file(GLOB_RECURSE _logger_headers "${CURRENT_PACKAGES_DIR}/include/logger_system/*.h")
