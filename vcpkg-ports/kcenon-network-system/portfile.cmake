@@ -39,6 +39,22 @@ vcpkg_replace_string(
     "find_dependency(OpenSSL REQUIRED)\nfind_dependency(ZLIB REQUIRED)\nfind_dependency(asio CONFIG REQUIRED)"
 )
 
+# Fix upstream: NetworkSystemConfig.cmake uses PascalCase find_dependency(ContainerSystem)
+# but our vcpkg overlay installs container_system with snake_case package name.
+file(READ
+    "${CURRENT_PACKAGES_DIR}/share/network_system/NetworkSystemConfig.cmake"
+    _network_config_content
+)
+string(REGEX REPLACE
+    "find_dependency\\(ContainerSystem([^)]*)"
+    "find_dependency(container_system\\1"
+    _network_config_content "${_network_config_content}"
+)
+file(WRITE
+    "${CURRENT_PACKAGES_DIR}/share/network_system/NetworkSystemConfig.cmake"
+    "${_network_config_content}"
+)
+
 # Create snake_case config entry point for find_package(network_system)
 # Upstream installs as NetworkSystem; this wrapper standardizes the package name
 file(WRITE "${CURRENT_PACKAGES_DIR}/share/network_system/network_system-config.cmake"
