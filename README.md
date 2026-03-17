@@ -31,6 +31,8 @@ Modern C++20 observability platform with comprehensive monitoring, distributed t
 | [thread_system](https://github.com/kcenon/thread_system) | 0.3.0 via overlay/vcpkg port, or exact source tag/commit recorded in SBOM | Yes | Thread pool and async operations |
 | [logger_system](https://github.com/kcenon/logger_system) | 0.1.0 when `logging` is enabled, or exact source tag/commit recorded in SBOM | Optional | Logging capabilities |
 
+> **Note**: Although monitoring_system itself only requires C++20, the minimum compiler versions are GCC 13+ / Clang 17+ due to a transitive dependency on [thread_system](https://github.com/kcenon/thread_system), which requires these versions. See [common_system#454](https://github.com/kcenon/common_system/issues/454) for details.
+
 ### Dependency Flow
 
 ```
@@ -417,7 +419,7 @@ make coverage
 ### CI/CD Validation
 
 **Platforms Tested**:
-- Linux (Ubuntu 22.04): GCC 11+, Clang 14+
+- Linux (Ubuntu 22.04): GCC 13+, Clang 17+
 - macOS (macOS 12+): Apple Clang 14+
 - Windows (Server 2022): MSVC 2022+
 
@@ -492,7 +494,7 @@ This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICE
 ## Acknowledgments
 
 - Inspired by modern observability platforms and best practices
-- Built with C++20 features (GCC 11+, Clang 14+, MSVC 2022+) for maximum performance and safety
+- Built with C++20 features (GCC 13+, Clang 17+, MSVC 2022+) for maximum performance and safety
 - Maintained by kcenon@naver.com
 
 ---
