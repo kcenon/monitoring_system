@@ -10,7 +10,7 @@ the canonical [vcpkg-registry](https://github.com/kcenon/vcpkg-registry) with CI
 |---------|---------|-------------|---------|--------------|
 | kcenon-common-system | 0.2.0 | 0 | — | None |
 | kcenon-thread-system | 0.3.1 | — | — | common-system, simdutf |
-| kcenon-logger-system | 0.1.3 | — | — | common-system, thread-system, fmt, libiconv |
+| kcenon-logger-system | 0.1.3 | — | — | common-system, libiconv |
 | kcenon-container-system | 0.1.0 | 2 | — | common-system |
 | kcenon-monitoring-system | 0.1.0 | 1 | — | common-system, thread-system |
 | kcenon-database-system | 0.1.0 | 3 | — | common-system, asio |
