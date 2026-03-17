@@ -7,43 +7,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  generate-and-deploy:
-    if: github.ref != 'refs/heads/gh-pages'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          submodules: true
-          fetch-depth: 1
-
-      - name: Checkout common_system dependency
-        uses: actions/checkout@v6
-        with:
-          repository: kcenon/common_system
-          path: common_system
-
-      - name: Install Doxygen and Graphviz
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen graphviz
-
-      - name: Generate documentation
-        run: doxygen Doxyfile
-
-      - name: Deploy to GitHub Pages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./documents/html
-          force_orphan: true
-          enable_jekyll: false
-          commit_message: 'docs(gh-pages): update API documentation [skip ci]'
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+  docs:
+    uses: kcenon/common_system/.github/workflows/doxygen.yml@main
+    with:
+      checkout-submodules: 'true'
+      checkout-common-system: true
+    secrets: inherit
