@@ -1,0 +1,28 @@
+var classkcenon_1_1monitoring_1_1safe__event__dispatcher =
+[
+    [ "dead_letter_entry", "df/d3d/structkcenon_1_1monitoring_1_1safe__event__dispatcher_1_1dead__letter__entry.html", "df/d3d/structkcenon_1_1monitoring_1_1safe__event__dispatcher_1_1dead__letter__entry" ],
+    [ "error_callback", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a9e91bda37c39ba24806e282aadb0c275", null ],
+    [ "safe_event_dispatcher", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abd9b4ce253a448f35b60b50e96ad19de", null ],
+    [ "add_to_dead_letter_queue", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe2f679edaf297c197ebc10684aa1df2", null ],
+    [ "clear_errors", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#af44009ffcc90a3b5ac3e4ce229357f20", null ],
+    [ "get_bus", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a974f0f1b47f0f1dd9f246aa39e6d9da2", null ],
+    [ "get_dead_letter_queue_size", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae721c2138de39682d029f21a6940df33", null ],
+    [ "get_handler_errors", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#abe8e637be34f49bc24c77efb57bdacdc", null ],
+    [ "get_total_exceptions", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad731428d7778df75096358b1d3be60ac", null ],
+    [ "handle_exception", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a65a6f2b8636cffe0366340c05f29d1cc", null ],
+    [ "process_dead_letters", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a3a7f07458ff5f8d4a09a3f1e65b73c2d", null ],
+    [ "publish_safe", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a03352b804e9ab2cac24f5b92882caa84", null ],
+    [ "set_circuit_breaker_threshold", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a853510a16f013f07b8ef0532f8fe8b21", null ],
+    [ "set_error_callback", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a90799e197e52bafbeebfbee3f54cb300", null ],
+    [ "subscribe_safe", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a356ec30ce8e86211cfae0bfbcd025b9b", null ],
+    [ "bus_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad8da98ba38fa933d02bc0185dbed6944", null ],
+    [ "circuit_breaker_threshold_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#aef944b2c429d51bb3017ab263dbd095f", null ],
+    [ "dead_letter_queue_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2eb6281cf7a8a04f83e64ee2516f6a0", null ],
+    [ "dlq_mutex_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ae969d5bf3cd3f28a332bb82dd02e7e63", null ],
+    [ "error_callback_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ace9ef72bfc365f29425e746d42b90ccb", null ],
+    [ "error_mutex_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a144a9ea0b17c65e03083003c87a4667d", null ],
+    [ "failed_handler_counts_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ad58e8d5e64bb951c81677624ea421cb1", null ],
+    [ "next_id_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#ac2d3119094dc2ee3458702b251ebb4cf", null ],
+    [ "recent_errors_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a3ef19a0cf4e96c974ae993278a26a0d9", null ],
+    [ "total_exceptions_", "da/d26/classkcenon_1_1monitoring_1_1safe__event__dispatcher.html#a398e5ed1bb8323995fd643fa99454349", null ]
+];

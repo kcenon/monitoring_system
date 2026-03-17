@@ -1,0 +1,25 @@
+var classkcenon_1_1monitoring_1_1simd__aggregator =
+[
+    [ "simd_aggregator", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a01beb82c16a8fec5473c1824c0dfaf51", null ],
+    [ "simd_aggregator", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#acf009c1cb552d8ea0e769aef8cd3bb4d", null ],
+    [ "compute_summary", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a1d621e541029b17aef104b39c16d1fbb", null ],
+    [ "get_capabilities", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#ae4cd2aaa99a5432b55d2d1063a47e0b4", null ],
+    [ "get_statistics", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a401540862a88872588792b322397befa", null ],
+    [ "max", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#af23e190b5040689ad4d0b1194ba8558b", null ],
+    [ "max_scalar", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a45dbf5c78c78e70e1d46afedea971cf9", null ],
+    [ "max_simd", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a75c99b634d815782f227220d038222ce", null ],
+    [ "mean", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a6e410ec602d8d01166f1681f34f11f73", null ],
+    [ "min", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#aedbe746d0de48d4df0c35659d5057039", null ],
+    [ "min_scalar", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a2bb87a5c33699771e0671e91602a1103", null ],
+    [ "min_simd", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#acdca27b4e655b2450443db431124cfb1", null ],
+    [ "reset_statistics", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a1c0a70eddbb0392152a172bc2b6e229b", null ],
+    [ "should_use_simd", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a39b295c918d1100ea479dffb3727cd39", null ],
+    [ "sum", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#abff8d072825d4a1babdf0165df8e69da", null ],
+    [ "sum_scalar", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#af06236d3a0f734e4379cf76892b9ce83", null ],
+    [ "sum_simd", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#ad4015bccf8b765edb971732b005a84ae", null ],
+    [ "test_simd", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#ab0d3f639bc664abc69679a7f804a14ed", null ],
+    [ "variance", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#acba1e07914c77c213398ca963fb0a1c0", null ],
+    [ "capabilities_", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#a996559967d5ce3a55bc3708f41b66ea2", null ],
+    [ "config_", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#afed4f4a951aa44ecc9e961aab1db8b95", null ],
+    [ "stats_", "d0/d86/classkcenon_1_1monitoring_1_1simd__aggregator.html#acf41605ba1d9443042df8aa05e0fe38c", null ]
+];

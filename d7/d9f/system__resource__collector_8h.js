@@ -1,0 +1,22 @@
+var system__resource__collector_8h =
+[
+    [ "kcenon::monitoring::system_metrics_config", "de/da6/structkcenon_1_1monitoring_1_1system__metrics__config.html", "de/da6/structkcenon_1_1monitoring_1_1system__metrics__config" ],
+    [ "kcenon::monitoring::system_resources", "dc/d4b/structkcenon_1_1monitoring_1_1system__resources.html", "dc/d4b/structkcenon_1_1monitoring_1_1system__resources" ],
+    [ "kcenon::monitoring::system_resources::cpu_metrics", "d8/d58/structkcenon_1_1monitoring_1_1system__resources_1_1cpu__metrics.html", "d8/d58/structkcenon_1_1monitoring_1_1system__resources_1_1cpu__metrics" ],
+    [ "kcenon::monitoring::system_resources::cpu_metrics::load_average", "de/dc9/structkcenon_1_1monitoring_1_1system__resources_1_1cpu__metrics_1_1load__average.html", "de/dc9/structkcenon_1_1monitoring_1_1system__resources_1_1cpu__metrics_1_1load__average" ],
+    [ "kcenon::monitoring::system_resources::memory_metrics", "d1/dc9/structkcenon_1_1monitoring_1_1system__resources_1_1memory__metrics.html", "d1/dc9/structkcenon_1_1monitoring_1_1system__resources_1_1memory__metrics" ],
+    [ "kcenon::monitoring::system_resources::memory_metrics::swap_info", "dd/da1/structkcenon_1_1monitoring_1_1system__resources_1_1memory__metrics_1_1swap__info.html", "dd/da1/structkcenon_1_1monitoring_1_1system__resources_1_1memory__metrics_1_1swap__info" ],
+    [ "kcenon::monitoring::system_resources::disk_metrics", "d6/d0b/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics.html", "d6/d0b/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics" ],
+    [ "kcenon::monitoring::system_resources::disk_metrics::io_throughput", "de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput.html", "de/d36/structkcenon_1_1monitoring_1_1system__resources_1_1disk__metrics_1_1io__throughput" ],
+    [ "kcenon::monitoring::system_resources::network_metrics", "d9/d2d/structkcenon_1_1monitoring_1_1system__resources_1_1network__metrics.html", "d9/d2d/structkcenon_1_1monitoring_1_1system__resources_1_1network__metrics" ],
+    [ "kcenon::monitoring::system_resources::process_metrics", "dc/d13/structkcenon_1_1monitoring_1_1system__resources_1_1process__metrics.html", "dc/d13/structkcenon_1_1monitoring_1_1system__resources_1_1process__metrics" ],
+    [ "kcenon::monitoring::system_resources::context_switch_metrics", "db/dc5/structkcenon_1_1monitoring_1_1system__resources_1_1context__switch__metrics.html", "db/dc5/structkcenon_1_1monitoring_1_1system__resources_1_1context__switch__metrics" ],
+    [ "kcenon::monitoring::system_info_collector", "d2/d4d/classkcenon_1_1monitoring_1_1system__info__collector.html", "d2/d4d/classkcenon_1_1monitoring_1_1system__info__collector" ],
+    [ "kcenon::monitoring::system_info_collector::cpu_stats", "d2/dc5/structkcenon_1_1monitoring_1_1system__info__collector_1_1cpu__stats.html", "d2/dc5/structkcenon_1_1monitoring_1_1system__info__collector_1_1cpu__stats" ],
+    [ "kcenon::monitoring::system_info_collector::network_stats", "d3/d3d/structkcenon_1_1monitoring_1_1system__info__collector_1_1network__stats.html", "d3/d3d/structkcenon_1_1monitoring_1_1system__info__collector_1_1network__stats" ],
+    [ "kcenon::monitoring::system_info_collector::disk_stats", "de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats.html", "de/d82/structkcenon_1_1monitoring_1_1system__info__collector_1_1disk__stats" ],
+    [ "kcenon::monitoring::system_resource_collector", "d7/d5f/classkcenon_1_1monitoring_1_1system__resource__collector.html", "d7/d5f/classkcenon_1_1monitoring_1_1system__resource__collector" ],
+    [ "kcenon::monitoring::resource_threshold_monitor", "d9/d7b/classkcenon_1_1monitoring_1_1resource__threshold__monitor.html", "d9/d7b/classkcenon_1_1monitoring_1_1resource__threshold__monitor" ],
+    [ "kcenon::monitoring::resource_threshold_monitor::thresholds", "db/d23/structkcenon_1_1monitoring_1_1resource__threshold__monitor_1_1thresholds.html", "db/d23/structkcenon_1_1monitoring_1_1resource__threshold__monitor_1_1thresholds" ],
+    [ "kcenon::monitoring::resource_threshold_monitor::alert", "d2/de4/structkcenon_1_1monitoring_1_1resource__threshold__monitor_1_1alert.html", "d2/de4/structkcenon_1_1monitoring_1_1resource__threshold__monitor_1_1alert" ]
+];
