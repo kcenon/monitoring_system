@@ -46,6 +46,7 @@ vcpkg_cmake_configure(
         -DUSE_MONITORING_SYSTEM=OFF
         -DUSE_CONTAINER_SYSTEM=OFF
         -DBUILD_INTEGRATED_DATABASE=OFF
+        -DFETCHCONTENT_FULLY_DISCONNECTED=ON
 )
 
 vcpkg_cmake_install()

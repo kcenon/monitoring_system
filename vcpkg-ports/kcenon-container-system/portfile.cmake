@@ -20,6 +20,7 @@ vcpkg_cmake_configure(
         -DBUILD_DOCUMENTATION=OFF
         -DBUILD_CONTAINER_SAMPLES=OFF
         -DBUILD_CONTAINER_EXAMPLES=OFF
+        -DFETCHCONTENT_FULLY_DISCONNECTED=ON
 )
 
 vcpkg_cmake_install()

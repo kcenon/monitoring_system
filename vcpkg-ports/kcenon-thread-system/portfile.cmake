@@ -17,6 +17,7 @@ vcpkg_cmake_configure(
         -DBUILD_DOCUMENTATION=OFF
         -DTHREAD_ENABLE_LOCKFREE_QUEUE=ON
         -DTHREAD_ENABLE_WORK_STEALING=OFF
+        -DFETCHCONTENT_FULLY_DISCONNECTED=ON
 )
 
 vcpkg_cmake_install()
