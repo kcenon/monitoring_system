@@ -9,9 +9,9 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
-# Disable thread_system integration: upstream CMake does not link thread_system
-# library properly in vcpkg mode (unresolved externals for thread_pool symbols).
-# The logger falls back to its standalone executor which works correctly.
+# Enable thread_system integration: logger_system uses thread_system's optimized
+# thread pool (work stealing, lock-free queues) for async log dispatch.
+# Requires kcenon-thread-system to be installed (declared in vcpkg.json deps).
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
@@ -20,7 +20,7 @@ vcpkg_cmake_configure(
         -DBUILD_SAMPLES=OFF
         -DLOGGER_BUILD_INTEGRATION_TESTS=OFF
         -DLOGGER_ENABLE_COVERAGE=OFF
-        -DLOGGER_USE_THREAD_SYSTEM=OFF
+        -DLOGGER_USE_THREAD_SYSTEM=ON
 )
 
 vcpkg_cmake_install()
