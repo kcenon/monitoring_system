@@ -9,9 +9,14 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
-# Enable thread_system integration: logger_system uses thread_system's optimized
-# thread pool (work stealing, lock-free queues) for async log dispatch.
-# Requires kcenon-thread-system to be installed (declared in vcpkg.json deps).
+# Feature-based thread_system integration: when enabled, logger_system uses
+# thread_system's optimized thread pool (work stealing, lock-free queues) for
+# async log dispatch. Controlled by the "threading" vcpkg feature (default ON).
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        threading LOGGER_USE_THREAD_SYSTEM
+)
+
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
@@ -20,7 +25,8 @@ vcpkg_cmake_configure(
         -DBUILD_SAMPLES=OFF
         -DLOGGER_BUILD_INTEGRATION_TESTS=OFF
         -DLOGGER_ENABLE_COVERAGE=OFF
-        -DLOGGER_USE_THREAD_SYSTEM=ON
+        -DFETCHCONTENT_FULLY_DISCONNECTED=ON
+        ${FEATURE_OPTIONS}
 )
 
 vcpkg_cmake_install()
