@@ -30,6 +30,19 @@
       "dependencies": [
         "kcenon-network-system"
       ]
+    },
+    "grpc": {
+      "description": "Enable gRPC transport for OTLP trace export",
+      "dependencies": [
+        {
+          "name": "grpc",
+          "version>=": "1.51.1"
+        },
+        {
+          "name": "protobuf",
+          "version>=": "3.21.0"
+        }
+      ]
     }
   }
 }
