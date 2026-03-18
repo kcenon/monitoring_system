@@ -215,16 +215,19 @@ public:
     
     /**
      * @brief Enable or disable profiling
+     * @param enabled True to enable profiling, false to disable
      */
     void set_enabled(bool enabled) { enabled_ = enabled; }
-    
+
     /**
      * @brief Check if profiling is enabled
+     * @return True if profiling is currently enabled
      */
     bool is_enabled() const { return enabled_; }
-    
+
     /**
      * @brief Set maximum samples per operation
+     * @param max_samples Maximum number of samples to retain per operation
      */
     void set_max_samples(std::size_t max_samples) {
         max_samples_per_operation_ = max_samples;
@@ -245,7 +248,7 @@ public:
 
     /**
      * @brief Check if lock-free mode is enabled
-     * @return true if lock-free mode is active
+     * @return True if lock-free collection path is active
      */
     bool is_lock_free_mode() const {
         return use_lock_free_path_;
@@ -348,6 +351,7 @@ public:
     
     /**
      * @brief Check if monitoring is active
+     * @return True if system resource monitoring is currently running
      */
     bool is_monitoring() const;
     
@@ -404,7 +408,17 @@ public:
         : name_(name) {}
     
     // Implement metrics_collector interface
+
+    /**
+     * @brief Get the name of this performance monitor
+     * @return The monitor name string
+     */
     std::string get_name() const override { return name_; }
+
+    /**
+     * @brief Check if this performance monitor is enabled
+     * @return True if the monitor is currently enabled
+     */
     bool is_enabled() const override { return enabled_; }
     
     common::VoidResult set_enabled(bool enable) override {
@@ -440,14 +454,26 @@ public:
     
     /**
      * @brief Get performance profiler
+     * @return Reference to the internal performance profiler
      */
     performance_profiler& get_profiler() { return profiler_; }
+
+    /**
+     * @brief Get performance profiler (const)
+     * @return Const reference to the internal performance profiler
+     */
     const performance_profiler& get_profiler() const { return profiler_; }
-    
+
     /**
      * @brief Get system monitor
+     * @return Reference to the internal system monitor
      */
     system_monitor& get_system_monitor() { return system_monitor_; }
+
+    /**
+     * @brief Get system monitor (const)
+     * @return Const reference to the internal system monitor
+     */
     const system_monitor& get_system_monitor() const { return system_monitor_; }
     
     /**
@@ -635,14 +661,16 @@ public:
         : name_(name) {}
     
     /**
-     * @brief Set number of iterations
+     * @brief Set number of benchmark iterations
+     * @param iterations Number of iterations to run during the benchmark
      */
     void set_iterations(std::uint32_t iterations) {
         iterations_ = iterations;
     }
-    
+
     /**
-     * @brief Set warmup iterations
+     * @brief Set number of warmup iterations
+     * @param warmup Number of warmup iterations to run before the benchmark
      */
     void set_warmup_iterations(std::uint32_t warmup) {
         warmup_iterations_ = warmup;
