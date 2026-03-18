@@ -117,7 +117,7 @@ class collector_base {
     collector_base& operator=(collector_base&&) = delete;
 
     /**
-     * Initialize the collector with configuration
+     * @brief Initialize the collector with configuration
      * @param config Configuration options (common: "enabled")
      * @return true if initialization successful
      */
@@ -132,7 +132,7 @@ class collector_base {
     }
 
     /**
-     * Collect metrics from the data source
+     * @brief Collect metrics from the data source
      * @return Collection of metrics
      */
     std::vector<metric> collect() {
@@ -151,7 +151,7 @@ class collector_base {
     }
 
     /**
-     * Get the name of this collector
+     * @brief Get the name of this collector
      * @return Collector name from Derived::collector_name
      */
     std::string get_name() const {
@@ -159,7 +159,7 @@ class collector_base {
     }
 
     /**
-     * Get supported metric types
+     * @brief Get supported metric types
      * @return Vector of supported metric type names
      */
     std::vector<std::string> get_metric_types() const {
@@ -167,7 +167,7 @@ class collector_base {
     }
 
     /**
-     * Check if the collector is healthy
+     * @brief Check if the collector is healthy
      * @return true if collector is operational
      */
     bool is_healthy() const {
@@ -178,7 +178,7 @@ class collector_base {
     }
 
     /**
-     * Get collector statistics
+     * @brief Get collector statistics
      * @return Map of statistic name to value
      */
     stats_map get_statistics() const {
@@ -197,26 +197,26 @@ class collector_base {
     }
 
     /**
-     * Check if collector is enabled
+     * @brief Check if collector is enabled
      * @return true if enabled
      */
     bool is_enabled() const { return enabled_; }
 
     /**
-     * Get collection count
+     * @brief Get collection count
      * @return Number of successful collections
      */
     size_t get_collection_count() const { return collection_count_.load(); }
 
     /**
-     * Get error count
+     * @brief Get error count
      * @return Number of failed collections
      */
     size_t get_collection_errors() const { return collection_errors_.load(); }
 
    protected:
     /**
-     * Create a metric with common tags
+     * @brief Create a metric with common tags
      * @param name Metric name
      * @param value Metric value
      * @param tags Additional tags
@@ -245,7 +245,7 @@ class collector_base {
 
    private:
     /**
-     * Get reference to derived class (CRTP helper)
+     * @brief Get reference to derived class (CRTP helper)
      */
     Derived& derived() { return static_cast<Derived&>(*this); }
     const Derived& derived() const { return static_cast<const Derived&>(*this); }
