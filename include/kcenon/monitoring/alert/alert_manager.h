@@ -477,12 +477,30 @@ public:
     explicit log_notifier(std::string notifier_name = "log_notifier")
         : name_(std::move(notifier_name)) {}
 
+    /**
+     * @brief Get the name of this log notifier
+     * @return The notifier name string
+     */
     std::string name() const override { return name_; }
 
+    /**
+     * @brief Log an alert notification
+     * @param a Alert to log
+     * @return Result indicating success or failure
+     */
     common::VoidResult notify(const alert& a) override;
 
+    /**
+     * @brief Log a grouped alert notification
+     * @param group Alert group to log
+     * @return Result indicating success or failure
+     */
     common::VoidResult notify_group(const alert_group& group) override;
 
+    /**
+     * @brief Check if the log notifier is ready
+     * @return Always returns true since logging is always available
+     */
     bool is_ready() const override { return true; }
 
 private:
@@ -513,6 +531,10 @@ public:
         , callback_(std::move(callback))
         , group_callback_(std::move(group_callback)) {}
 
+    /**
+     * @brief Get the name of this callback notifier
+     * @return The notifier name string
+     */
     std::string name() const override { return name_; }
 
     common::VoidResult notify(const alert& a) override {
@@ -538,6 +560,10 @@ public:
         return common::ok();
     }
 
+    /**
+     * @brief Check if the callback notifier is ready
+     * @return True if a callback function has been configured
+     */
     bool is_ready() const override { return callback_ != nullptr; }
 
 private:
