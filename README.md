@@ -271,6 +271,92 @@ factory.register_collector("my_collector", []() {
 
 ---
 
+## Examples
+
+### Sample Applications
+
+| Example | Description |
+|---------|-------------|
+| [basic_monitoring_example](examples/basic_monitoring_example.cpp) | Basic metric collection and reporting |
+| [alert_pipeline_example](examples/alert_pipeline_example.cpp) | Alert trigger and notification pipeline |
+| [custom_metric_types_example](examples/custom_metric_types_example.cpp) | Defining custom metric types |
+| [distributed_tracing_example](examples/distributed_tracing_example.cpp) | Distributed tracing integration |
+| [platform_metrics_example](examples/platform_metrics_example.cpp) | Platform-specific metric collection |
+| [production_monitoring_example](examples/production_monitoring_example.cpp) | Production-ready monitoring setup |
+| [otlp_export_example](examples/otlp_export_example.cpp) | OpenTelemetry Protocol export |
+| [plugin_example](examples/plugin_example/) | Custom collector plugin development |
+
+### Running Examples
+
+```bash
+cmake -B build -DMONITORING_BUILD_EXAMPLES=ON
+cmake --build build
+./build/examples/basic_monitoring_example
+```
+
+---
+
+## Platform Support
+
+### Supported Platforms
+
+| Platform | Compilers | Status |
+|----------|-----------|--------|
+| **Linux** | GCC 13+, Clang 14+ | ✅ Fully supported |
+| **macOS** | Apple Clang 14+ | ✅ Fully supported |
+| **Windows** | MSVC 2022+ | ✅ Fully supported |
+
+### Architecture Support
+
+| Architecture | Status |
+|--------------|--------|
+| x86-64 | ✅ Fully supported |
+| ARM64 (Apple Silicon) | ✅ Fully supported |
+
+---
+
+## C++20 Module Support
+
+Monitoring System provides C++20 module support as an alternative to the header-based interface.
+
+### Requirements for Modules
+
+- **CMake 3.28+**
+- **Clang 16+, GCC 14+, or MSVC 2022 17.4+**
+- **common_system** with module support
+
+### Building with Modules
+
+```bash
+cmake -B build -DMONITORING_ENABLE_MODULES=ON
+cmake --build build
+```
+
+### Using Modules
+
+```cpp
+import kcenon.monitoring;
+
+int main() {
+    // Use monitoring components directly
+    auto monitor = kcenon::monitoring::create_monitor();
+    monitor->collect_metrics();
+}
+```
+
+### Module Structure
+
+| Module | Contents |
+|--------|----------|
+| `kcenon.monitoring` | Primary module (imports all sub-modules) |
+| `kcenon.monitoring.core` | Core monitoring infrastructure |
+| `kcenon.monitoring.collectors` | Metric collector implementations |
+| `kcenon.monitoring.adaptive` | Adaptive monitoring strategies |
+
+> **Note**: C++20 modules are experimental. The header-based interface remains the primary API.
+
+---
+
 ## Documentation
 
 ### Getting Started
