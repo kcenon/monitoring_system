@@ -162,6 +162,8 @@ private:
 public:
     /**
      * @brief Constructor with configuration
+     * @param config Metric storage configuration options
+     * @throws std::invalid_argument if configuration validation fails
      */
     explicit metric_storage(const metric_storage_config& config = {})
         : config_(config) {

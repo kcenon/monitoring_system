@@ -176,6 +176,8 @@ private:
 public:
     /**
      * @brief Constructor with configuration
+     * @param config Ring buffer configuration options
+     * @throws std::invalid_argument if configuration validation fails
      */
     explicit ring_buffer(const ring_buffer_config& config = {})
         : buffer_(std::make_unique<T[]>(config.capacity))

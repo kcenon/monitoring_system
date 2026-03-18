@@ -209,6 +209,11 @@ class time_series_ring_buffer {
     }
 
   public:
+    /**
+     * @brief Constructor with maximum sample count
+     * @param max_samples Maximum number of samples to store
+     * @throws std::invalid_argument if max_samples is zero
+     */
     explicit time_series_ring_buffer(size_t max_samples) : max_samples_(max_samples) {
         if (max_samples_ == 0) {
             throw std::invalid_argument("Max samples must be positive");
@@ -332,6 +337,11 @@ class time_series_buffer {
     detail::time_series_ring_buffer<time_series_sample<T>> buffer_;
 
   public:
+    /**
+     * @brief Constructor with configuration
+     * @param config Time series buffer configuration options
+     * @throws std::invalid_argument if configuration validation fails
+     */
     explicit time_series_buffer(const time_series_buffer_config& config = {})
         : buffer_(config.max_samples) {
         auto validation = config.validate();
