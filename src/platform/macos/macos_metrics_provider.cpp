@@ -69,11 +69,13 @@
 #include <unordered_set>
 #include <vector>
 
+extern "C" {
+extern char** environ;
+}
+
 namespace kcenon {
 namespace monitoring {
 namespace platform {
-
-extern char** environ;
 
 namespace {
 
