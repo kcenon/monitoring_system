@@ -40,14 +40,23 @@
 #include <mach/mach.h>
 #include <mach/mach_host.h>
 #include <mach/task_info.h>
+#include <net/route.h>
+#include <netinet/in.h>
+#include <netinet/in_pcb.h>
+#include <netinet/tcp.h>
+#include <netinet/tcp_fsm.h>
+#include <netinet/tcp_var.h>
+#include <spawn.h>
 #include <sys/mount.h>
 #include <sys/param.h>
 #include <sys/resource.h>
 #include <sys/socket.h>
+#include <sys/socketvar.h>
 #include <sys/statvfs.h>
 #include <sys/sysctl.h>
 #include <sys/time.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 #include <array>
@@ -58,12 +67,64 @@
 #include <sstream>
 #include <string>
 #include <unordered_set>
+#include <vector>
 
 namespace kcenon {
 namespace monitoring {
 namespace platform {
 
+extern char** environ;
+
 namespace {
+
+// =========================================================================
+// Safe command execution using posix_spawn
+// =========================================================================
+
+std::string execute_command(const char* path, const std::vector<std::string>& args) {
+    int pipe_fds[2];
+    if (pipe(pipe_fds) != 0) {
+        return {};
+    }
+
+    posix_spawn_file_actions_t actions;
+    posix_spawn_file_actions_init(&actions);
+    posix_spawn_file_actions_adddup2(&actions, pipe_fds[1], STDOUT_FILENO);
+    posix_spawn_file_actions_addclose(&actions, pipe_fds[0]);
+    posix_spawn_file_actions_addclose(&actions, pipe_fds[1]);
+    // Redirect stderr to /dev/null
+    posix_spawn_file_actions_addopen(&actions, STDERR_FILENO, "/dev/null", O_WRONLY, 0);
+
+    std::vector<const char*> argv;
+    argv.push_back(path);
+    for (const auto& arg : args) {
+        argv.push_back(arg.c_str());
+    }
+    argv.push_back(nullptr);
+
+    pid_t pid;
+    int status = posix_spawn(&pid, path,
+                             &actions, nullptr,
+                             const_cast<char* const*>(argv.data()),
+                             environ);
+
+    posix_spawn_file_actions_destroy(&actions);
+    close(pipe_fds[1]);
+
+    std::string output;
+    if (status == 0) {
+        char buffer[4096];
+        ssize_t n;
+        while ((n = read(pipe_fds[0], buffer, sizeof(buffer) - 1)) > 0) {
+            buffer[n] = '\0';
+            output += buffer;
+        }
+        waitpid(pid, &status, 0);
+    }
+
+    close(pipe_fds[0]);
+    return output;
+}
 
 // =========================================================================
 // SMC Structures and Constants
@@ -669,39 +730,44 @@ tcp_state_info macos_metrics_provider::get_tcp_states() {
     tcp_state_info info;
     info.available = true;
 
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(
-        popen("netstat -an -p tcp 2>/dev/null", "r"), pclose);
+    // Use sysctl to read TCP connection states directly instead of popen("netstat")
+    int mib[] = {CTL_NET, PF_INET, IPPROTO_TCP, TCPCTL_PCBLIST};
+    size_t len = 0;
 
-    if (!pipe) {
+    if (sysctl(mib, 4, nullptr, &len, nullptr, 0) < 0) {
         return info;
     }
 
-    std::array<char, 256> buffer;
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        std::string line(buffer.data());
+    std::vector<char> buf(len);
+    if (sysctl(mib, 4, buf.data(), &len, nullptr, 0) < 0) {
+        return info;
+    }
 
-        if (line.find("ESTABLISHED") != std::string::npos) {
-            info.established++;
-        } else if (line.find("SYN_SENT") != std::string::npos) {
-            info.syn_sent++;
-        } else if (line.find("SYN_RCVD") != std::string::npos ||
-                   line.find("SYN_RECEIVED") != std::string::npos) {
-            info.syn_recv++;
-        } else if (line.find("FIN_WAIT_1") != std::string::npos) {
-            info.fin_wait1++;
-        } else if (line.find("FIN_WAIT_2") != std::string::npos) {
-            info.fin_wait2++;
-        } else if (line.find("TIME_WAIT") != std::string::npos) {
-            info.time_wait++;
-        } else if (line.find("CLOSE_WAIT") != std::string::npos) {
-            info.close_wait++;
-        } else if (line.find("LAST_ACK") != std::string::npos) {
-            info.last_ack++;
-        } else if (line.find("LISTEN") != std::string::npos) {
-            info.listen++;
-        } else if (line.find("CLOSING") != std::string::npos) {
-            info.closing++;
+    auto* xig = reinterpret_cast<struct xinpgen*>(buf.data());
+    auto* end = reinterpret_cast<struct xinpgen*>(buf.data() + len);
+
+    // Skip the first xinpgen header
+    xig = reinterpret_cast<struct xinpgen*>(reinterpret_cast<char*>(xig) + xig->xig_len);
+
+    while (xig < end && xig->xig_len > sizeof(struct xinpgen)) {
+        auto* tp = reinterpret_cast<struct xtcpcb*>(xig);
+        int state = tp->xt_tp.t_state;
+
+        switch (state) {
+            case TCPS_ESTABLISHED: info.established++; break;
+            case TCPS_SYN_SENT:    info.syn_sent++; break;
+            case TCPS_SYN_RECEIVED: info.syn_recv++; break;
+            case TCPS_FIN_WAIT_1:  info.fin_wait1++; break;
+            case TCPS_FIN_WAIT_2:  info.fin_wait2++; break;
+            case TCPS_TIME_WAIT:   info.time_wait++; break;
+            case TCPS_CLOSE_WAIT:  info.close_wait++; break;
+            case TCPS_LAST_ACK:    info.last_ack++; break;
+            case TCPS_LISTEN:      info.listen++; break;
+            case TCPS_CLOSING:     info.closing++; break;
+            default: break;
         }
+
+        xig = reinterpret_cast<struct xinpgen*>(reinterpret_cast<char*>(xig) + xig->xig_len);
     }
 
     info.total = info.established + info.syn_sent + info.syn_recv +
@@ -719,42 +785,33 @@ socket_buffer_info macos_metrics_provider::get_socket_buffer_stats() {
     socket_buffer_info info;
     info.available = true;
 
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(
-        popen("netstat -an -p tcp 2>/dev/null", "r"), pclose);
+    // Use sysctl to read TCP socket buffer stats directly instead of popen("netstat")
+    int mib[] = {CTL_NET, PF_INET, IPPROTO_TCP, TCPCTL_PCBLIST};
+    size_t len = 0;
 
-    if (!pipe) {
+    if (sysctl(mib, 4, nullptr, &len, nullptr, 0) < 0) {
         return info;
     }
 
-    std::array<char, 256> buffer;
-    bool header_skipped = false;
+    std::vector<char> buf(len);
+    if (sysctl(mib, 4, buf.data(), &len, nullptr, 0) < 0) {
+        return info;
+    }
 
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        std::string line(buffer.data());
+    auto* xig = reinterpret_cast<struct xinpgen*>(buf.data());
+    auto* end = reinterpret_cast<struct xinpgen*>(buf.data() + len);
 
-        if (!header_skipped) {
-            if (line.find("Recv-Q") != std::string::npos ||
-                line.find("Active") != std::string::npos ||
-                line.find("Proto") != std::string::npos) {
-                header_skipped = true;
-                continue;
-            }
-        }
+    // Skip the first xinpgen header
+    xig = reinterpret_cast<struct xinpgen*>(reinterpret_cast<char*>(xig) + xig->xig_len);
 
-        if (line.empty() || line[0] == '\n') {
-            continue;
-        }
+    while (xig < end && xig->xig_len > sizeof(struct xinpgen)) {
+        auto* tp = reinterpret_cast<struct xtcpcb*>(xig);
+        auto& so = tp->xt_socket;
 
-        std::istringstream iss(line);
-        std::string proto;
-        uint64_t recv_q, send_q;
+        info.rx_buffer_used += so.so_rcv.sb_cc;
+        info.tx_buffer_used += so.so_snd.sb_cc;
 
-        if (iss >> proto >> recv_q >> send_q) {
-            if (proto.find("tcp") != std::string::npos) {
-                info.rx_buffer_used += recv_q;
-                info.tx_buffer_used += send_q;
-            }
-        }
+        xig = reinterpret_cast<struct xinpgen*>(reinterpret_cast<char*>(xig) + xig->xig_len);
     }
 
     return info;
@@ -951,30 +1008,25 @@ security_info macos_metrics_provider::get_security_info() {
     security_info info;
     info.available = true;
 
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(
-        popen("/usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate 2>/dev/null", "r"),
-        pclose);
-
-    if (pipe) {
-        std::array<char, 128> buffer;
-        if (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-            std::string output(buffer.data());
-            info.firewall_enabled = (output.find("enabled") != std::string::npos);
-        }
+    // Check firewall state using posix_spawn instead of popen
+    std::string fw_output = execute_command(
+        "/usr/libexec/ApplicationFirewall/socketfilterfw",
+        {"--getglobalstate"});
+    if (!fw_output.empty()) {
+        info.firewall_enabled = (fw_output.find("enabled") != std::string::npos);
     }
 
-    std::unique_ptr<FILE, decltype(&pclose)> who_pipe(
-        popen("who 2>/dev/null | wc -l", "r"), pclose);
-
-    if (who_pipe) {
-        std::array<char, 32> buffer;
-        if (fgets(buffer.data(), buffer.size(), who_pipe.get()) != nullptr) {
-            try {
-                info.active_sessions = std::stoull(buffer.data());
-            } catch (...) {
-                info.active_sessions = 0;
+    // Get active session count using posix_spawn instead of popen
+    std::string who_output = execute_command("/usr/bin/who", {});
+    if (!who_output.empty()) {
+        // Count lines in who output
+        size_t count = 0;
+        for (char c : who_output) {
+            if (c == '\n') {
+                count++;
             }
         }
+        info.active_sessions = count;
     }
 
     return info;
