@@ -42,8 +42,10 @@ thread_local_buffer::thread_local_buffer(size_t capacity,
     : capacity_(capacity)
     , collector_(collector)
     , stats_() {
-    // Pre-allocate buffer to avoid runtime allocations
-    buffer_.resize(capacity);
+    // Reserve capacity but defer allocation until first use.
+    // Short-lived threads that never record metrics avoid the cost
+    // of constructing `capacity` metric_sample objects up front.
+    buffer_.reserve(capacity);
 }
 
 thread_local_buffer::~thread_local_buffer() {
@@ -58,8 +60,12 @@ bool thread_local_buffer::record(const metric_sample& sample) {
         return false;  // Buffer full, caller should flush
     }
 
-    // Direct write to pre-allocated slot (no allocation)
-    buffer_[write_index_] = sample;
+    // Grow the vector lazily on first use (capacity is already reserved)
+    if (write_index_ < buffer_.size()) {
+        buffer_[write_index_] = sample;
+    } else {
+        buffer_.push_back(sample);
+    }
     ++write_index_;
     ++stats_.total_records;
     return true;

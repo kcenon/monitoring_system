@@ -81,7 +81,9 @@ struct metric_sample {
  * Each thread maintains its own buffer for recording metrics without locks.
  * When the buffer fills up, it flushes to a central collector.
  *
- * Optimized with pre-allocated ring buffer to eliminate runtime allocations.
+ * Uses lazy initialization: capacity is reserved at construction but
+ * elements are constructed on first use. This avoids wasting memory
+ * for short-lived threads that never record any metrics.
  *
  * @thread_safety NOT thread-safe across threads (thread-local use only).
  *                Thread-safe within a single thread (no concurrent access).
@@ -116,7 +118,7 @@ public:
      * @return true if recorded, false if buffer is full (caller should flush)
      *
      * @thread_safety Thread-safe (single-threaded access guaranteed by TLS)
-     * @performance O(1) - direct array write, ~5-10 ns (no allocation)
+     * @performance O(1) amortized - direct array write after initial growth
      */
     bool record(const metric_sample& sample);
 
