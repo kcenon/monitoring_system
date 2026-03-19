@@ -89,6 +89,27 @@ jobs:
       run: |
         brew install ninja pkg-config curl zip unzip autoconf automake autoconf-archive
 
+    - name: Set compiler paths
+      if: runner.os != 'Windows'
+      run: |
+        if [ "${{ matrix.compiler }}" = "gcc" ]; then
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            echo "CMAKE_C_COMP=gcc-13" >> $GITHUB_ENV
+            echo "CMAKE_CXX_COMP=g++-13" >> $GITHUB_ENV
+          else
+            echo "CMAKE_C_COMP=gcc" >> $GITHUB_ENV
+            echo "CMAKE_CXX_COMP=g++" >> $GITHUB_ENV
+          fi
+        else
+          if [ "${{ runner.os }}" = "macOS" ]; then
+            echo "CMAKE_C_COMP=/usr/bin/clang" >> $GITHUB_ENV
+            echo "CMAKE_CXX_COMP=/usr/bin/clang++" >> $GITHUB_ENV
+          else
+            echo "CMAKE_C_COMP=clang" >> $GITHUB_ENV
+            echo "CMAKE_CXX_COMP=clang++" >> $GITHUB_ENV
+          fi
+        fi
+
     - name: Setup Visual Studio (Windows)
       if: runner.os == 'Windows'
       uses: microsoft/setup-msbuild@v2
@@ -206,8 +227,8 @@ jobs:
           -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
           -DBUILD_EXAMPLES=OFF \
           -DCMAKE_TOOLCHAIN_FILE="${GITHUB_WORKSPACE}/vcpkg/scripts/buildsystems/vcpkg.cmake" \
-          -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'gcc-13' || 'gcc') || 'clang' }} \
-          -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'g++-13' || 'g++') || 'clang++' }}
+          -DCMAKE_C_COMPILER=${CMAKE_C_COMP} \
+          -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMP}
 
         cmake --build . --parallel
 
@@ -246,8 +267,8 @@ jobs:
           -DBUILD_EXAMPLES=OFF \
           -DUSE_STD_FORMAT=ON \
           -DCMAKE_TOOLCHAIN_FILE="" \
-          -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'gcc-13' || 'gcc') || 'clang' }} \
-          -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && (runner.os == 'Linux' && 'g++-13' || 'g++') || 'clang++' }}
+          -DCMAKE_C_COMPILER=${CMAKE_C_COMP} \
+          -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMP}
 
         cmake --build . --parallel
 
