@@ -139,7 +139,7 @@ All CMake options are now consistently prefixed with `MONITORING_`:
 - `MONITORING_ENABLE_UBSAN`
 - `MONITORING_ENABLE_COVERAGE`
 
-**Backward Compatibility:** Legacy option names (e.g., `BUILD_TESTS`) are still supported via `cmake/MonitoringLegacyOptions.cmake` but will emit deprecation warnings. This compatibility layer can be removed in a future major version
+**Backward Compatibility:** Legacy option names (e.g., `BUILD_TESTS`) have been removed. Use the new `MONITORING_*` prefixed options instead
 
 ---
 

@@ -98,31 +98,7 @@ int main() {
 
 ## 호환성 레이어
 
-전환 기간(v1.x) 동안 `<kcenon/monitoring/compatibility.h>`를 통해 호환성 레이어가 제공됩니다:
-
-```cpp
-// 하위 호환성 네임스페이스 별칭
-// 레거시 코드는 monitoring_system::을 사용할 수 있으며, 이는 kcenon::monitoring::에 매핑됩니다
-namespace monitoring_system = ::kcenon::monitoring;
-
-// 추가 레거시 별칭
-namespace monitoring_module = ::kcenon::monitoring;
-```
-
-### 호환성 레이어 사용하기
-
-마이그레이션 중 기존 코드와 새 코드를 모두 지원해야 하는 경우:
-
-```cpp
-#include <kcenon/monitoring/compatibility.h>  // 별칭 포함
-#include <kcenon/monitoring/core/performance_monitor.h>
-
-// v1.x에서 둘 다 동작:
-kcenon::monitoring::performance_monitor monitor1("service1");  // 권장
-monitoring_system::performance_monitor monitor2("service2");    // Deprecated
-```
-
-**참고:** 대부분의 monitoring_system 헤더에서 호환성 헤더가 자동으로 포함되지만, 명시적으로 포함하면 마이그레이션 의도를 명확히 할 수 있습니다.
+호환성 레이어(`compatibility.h`)의 네임스페이스 별칭 `monitoring_system`과 `monitoring_module`은 제거되었습니다. 모든 코드는 `kcenon::monitoring::`을 직접 사용해야 합니다.
 
 ---
 

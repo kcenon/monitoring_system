@@ -743,7 +743,7 @@ The `thread_context` provides thread-local storage for trace correlation within 
 ```cpp
 // Set up thread context with trace information
 auto& ctx = thread_context::create("req-12345");
-ctx.correlation_id = thread_context_manager::generate_correlation_id();
+ctx.correlation_id = thread_context::generate_correlation_id();
 ctx.trace_id = span->trace_id;
 ctx.span_id = span->span_id;
 ctx.add_tag("service", "order-service");
@@ -1286,7 +1286,6 @@ void handle_order_event(const Message& message) {
 | `context_metadata` | Request/correlation IDs and tags |
 | `thread_context_data` | Thread-local trace/span/request data |
 | `thread_context` | Static thread-local context management |
-| `thread_context_manager` | Legacy compatibility context manager |
 
 ### Exporters (`trace_exporters.h`)
 

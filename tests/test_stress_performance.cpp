@@ -17,20 +17,6 @@ All rights reserved.
  * - Performance degradation analysis
  */
 
-// Suppress deprecation warnings for testing legacy compatibility layer
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4996)
-#endif
-#ifdef __GNUC__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
 #include <gtest/gtest.h>
 #include <thread>
 #include <chrono>
@@ -252,15 +238,15 @@ TEST_F(StressPerformanceTest, MemoryLeakDetectionTest) {
     for (int iter = 0; iter < ITERATIONS; ++iter) {
         // Create and destroy many objects
         std::vector<std::unique_ptr<distributed_tracer>> tracers;
-        std::vector<std::unique_ptr<circuit_breaker<bool>>> breakers;
-        
+        std::vector<std::unique_ptr<circuit_breaker>> breakers;
+
         circuit_breaker_config cb_config;
         cb_config.failure_threshold = 3;
-        cb_config.reset_timeout = 100ms;
-        
+        cb_config.timeout = 100ms;
+
         for (int i = 0; i < OBJECTS_PER_ITERATION; ++i) {
             tracers.push_back(std::make_unique<distributed_tracer>());
-            breakers.push_back(std::make_unique<circuit_breaker<bool>>("breaker_" + std::to_string(i), cb_config));
+            breakers.push_back(std::make_unique<circuit_breaker>(cb_config));
             
             // Create spans
             auto span = tracers.back()->start_span("test_span_" + std::to_string(i));
@@ -670,13 +656,3 @@ TEST_F(StressPerformanceTest, PerformanceDegradationTest) {
         << "System should maintain >10K ops/sec at high load";
 }
 
-// Restore compiler warnings
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
-#ifdef __GNUC__
-#pragma GCC diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif

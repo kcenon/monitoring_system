@@ -273,40 +273,49 @@ void demonstrate_circuit_breaker() {
     // Configure circuit breaker
     circuit_breaker_config cb_config;
     cb_config.failure_threshold = 3;
-    // cb_config.failure_ratio = 0.5; // Not available in current API
-    cb_config.timeout = 100ms;
-    cb_config.reset_timeout = 2s;
+    cb_config.timeout = 2s;
     cb_config.success_threshold = 2;
-    
-    circuit_breaker<std::string> breaker("api_breaker", cb_config);
-    
+
+    circuit_breaker breaker(cb_config);
+
     std::cout << "Circuit breaker configured:" << std::endl;
     std::cout << "  Failure threshold: " << cb_config.failure_threshold << std::endl;
     std::cout << "  Reset timeout: 2s" << std::endl;
-    
+
     // Define the operation
     auto api_operation = [api_client]() -> kcenon::common::Result<std::string> {
         return api_client->call_api("/users");
     };
-    
+
     // Define fallback
     auto fallback = []() -> kcenon::common::Result<std::string> {
         return kcenon::common::ok(std::string("Cached response (fallback)"));
     };
-    
+
     // Make calls through circuit breaker
     std::cout << "\n1. Making API calls through circuit breaker:" << std::endl;
-    
+
     for (int i = 1; i <= 10; ++i) {
-        auto result = breaker.execute(api_operation, fallback);
-        
+        kcenon::common::Result<std::string> result = kcenon::common::make_error<std::string>(0, "");
+        if (breaker.allow_request()) {
+            result = api_operation();
+            if (result.is_ok()) {
+                breaker.record_success();
+            } else {
+                breaker.record_failure();
+                result = fallback();
+            }
+        } else {
+            result = fallback();
+        }
+
         std::cout << "  Call " << i << ": ";
         if (result.is_ok()) {
             std::cout << "SUCCESS - " << result.value() << std::endl;
         } else {
             std::cout << "FAILED - " << result.error().message << std::endl;
         }
-        
+
         // Check circuit state
         auto state = breaker.get_state();
         if (state == circuit_state::OPEN) {
@@ -314,28 +323,28 @@ void demonstrate_circuit_breaker() {
         } else if (state == circuit_state::HALF_OPEN) {
             std::cout << "    [Circuit HALF-OPEN - testing]" << std::endl;
         }
-        
+
         std::this_thread::sleep_for(300ms);
     }
-    
-    // Get circuit breaker metrics
-    auto metrics = breaker.get_metrics();
-    std::cout << "\n2. Circuit Breaker Metrics:" << std::endl;
-    std::cout << "  Total calls: " << metrics.total_calls << std::endl;
-    std::cout << "  Successful calls: " << metrics.successful_calls << std::endl;
-    std::cout << "  Failed calls: " << metrics.failed_calls << std::endl;
-    std::cout << "  Rejected calls: " << metrics.rejected_calls << std::endl;
-    std::cout << "  State transitions: " << metrics.state_transitions << std::endl;
-    
+
+    // Get circuit breaker stats
+    auto stats = breaker.get_stats();
+    std::cout << "\n2. Circuit Breaker Stats:" << std::endl;
+    for (const auto& [key, val] : stats) {
+        std::visit([&key](const auto& v) {
+            std::cout << "  " << key << ": " << v << std::endl;
+        }, val);
+    }
+
     // Wait for circuit to reset
     std::cout << "\n3. Waiting for circuit reset..." << std::endl;
     api_client->reset();  // Reset API client
     std::this_thread::sleep_for(3s);
-    
+
     // Try again after reset
     std::cout << "\n4. Trying after reset:" << std::endl;
     for (int i = 1; i <= 3; ++i) {
-        auto result = breaker.execute(api_operation, fallback);
+        auto result = execute_with_circuit_breaker<std::string>(breaker, "api_breaker", api_operation);
         std::cout << "  Call " << i << ": ";
         if (result.is_ok()) {
             std::cout << "SUCCESS" << std::endl;

@@ -68,36 +68,48 @@ struct fault_tolerance_config {
     bool enable_circuit_breaker = true;
     bool enable_retry = true;
     bool circuit_breaker_first = true;
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
-#endif
     circuit_breaker_config circuit_config;
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
     retry_config retry_cfg;
 
     bool validate() const {
         if (!enable_circuit_breaker && !enable_retry) {
             return false;
         }
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
-#endif
-        if (enable_circuit_breaker && !circuit_config.validate()) {
-            return false;
-        }
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
         if (enable_retry && !retry_cfg.validate()) {
             return false;
         }
         return true;
     }
 };
+
+/**
+ * @brief Execute an operation through a circuit breaker.
+ *
+ * Wraps the allow_request/record_success/record_failure pattern into
+ * a functional execute() call for convenience.
+ *
+ * @tparam T The return value type
+ * @tparam Func The function type (must return common::Result<T>)
+ * @param cb The circuit breaker instance
+ * @param name The circuit breaker name (for error messages)
+ * @param func The function to execute
+ * @return common::Result<T> containing success value or error
+ */
+template<typename T, typename Func>
+common::Result<T> execute_with_circuit_breaker(circuit_breaker& cb, const std::string& name, Func&& func) {
+    if (!cb.allow_request()) {
+        return common::make_error<T>(static_cast<int>(monitoring_error_code::circuit_breaker_open),
+                           "Circuit breaker '" + name + "' is open");
+    }
+
+    auto op_result = func();
+    if (op_result.is_ok()) {
+        cb.record_success();
+    } else {
+        cb.record_failure();
+    }
+    return op_result;
+}
 
 /**
  * @brief Fault tolerance manager template class
@@ -215,7 +227,7 @@ public:
 private:
     void initialize() {
         if (config_.enable_circuit_breaker) {
-            circuit_breaker_ = std::make_unique<circuit_breaker<T>>(name_ + "_cb", config_.circuit_config);
+            circuit_breaker_ = std::make_unique<circuit_breaker>(config_.circuit_config);
         }
         if (config_.enable_retry) {
             retry_executor_ = std::make_unique<retry_executor<T>>(name_ + "_retry", config_.retry_cfg);
@@ -234,11 +246,11 @@ private:
     common::Result<T> execute_circuit_breaker_first(Func&& func) {
         if (config_.enable_circuit_breaker && circuit_breaker_) {
             if (config_.enable_retry && retry_executor_) {
-                return circuit_breaker_->execute([this, &func]() {
+                return execute_with_circuit_breaker<T>(*circuit_breaker_, name_, [this, &func]() {
                     return retry_executor_->execute(func);
                 });
             }
-            return circuit_breaker_->execute(std::forward<Func>(func));
+            return execute_with_circuit_breaker<T>(*circuit_breaker_, name_, std::forward<Func>(func));
         }
         if (config_.enable_retry && retry_executor_) {
             return retry_executor_->execute(std::forward<Func>(func));
@@ -251,27 +263,20 @@ private:
         if (config_.enable_retry && retry_executor_) {
             if (config_.enable_circuit_breaker && circuit_breaker_) {
                 return retry_executor_->execute([this, &func]() {
-                    return circuit_breaker_->execute(func);
+                    return execute_with_circuit_breaker<T>(*circuit_breaker_, name_, func);
                 });
             }
             return retry_executor_->execute(std::forward<Func>(func));
         }
         if (config_.enable_circuit_breaker && circuit_breaker_) {
-            return circuit_breaker_->execute(std::forward<Func>(func));
+            return execute_with_circuit_breaker<T>(*circuit_breaker_, name_, std::forward<Func>(func));
         }
         return func();
     }
 
     std::string name_;
     fault_tolerance_config config_;
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
-#endif
-    std::unique_ptr<circuit_breaker<T>> circuit_breaker_;
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
+    std::unique_ptr<circuit_breaker> circuit_breaker_;
     std::unique_ptr<retry_executor<T>> retry_executor_;
     mutable fault_tolerance_metrics metrics_;
 };
@@ -281,28 +286,19 @@ private:
  */
 class circuit_breaker_registry {
 public:
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4996) // Disable deprecation warnings for internal use
-#endif
-    template<typename T>
-    void register_circuit_breaker(const std::string& name, std::shared_ptr<circuit_breaker<T>> breaker) {
+    void register_circuit_breaker(const std::string& name, std::shared_ptr<circuit_breaker> breaker) {
         std::lock_guard<std::mutex> lock(mutex_);
         registry_[name] = std::move(breaker);
     }
 
-    template<typename T>
-    std::shared_ptr<circuit_breaker<T>> get_circuit_breaker(const std::string& name) {
+    std::shared_ptr<circuit_breaker> get_circuit_breaker(const std::string& name) {
         std::lock_guard<std::mutex> lock(mutex_);
         auto it = registry_.find(name);
         if (it != registry_.end()) {
-            return std::any_cast<std::shared_ptr<circuit_breaker<T>>>(it->second);
+            return it->second;
         }
         return nullptr;
     }
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
 
     void remove_circuit_breaker(const std::string& name) {
         std::lock_guard<std::mutex> lock(mutex_);
@@ -326,7 +322,7 @@ public:
 
 private:
     mutable std::mutex mutex_;
-    std::unordered_map<std::string, std::any> registry_;
+    std::unordered_map<std::string, std::shared_ptr<circuit_breaker>> registry_;
 };
 
 /**

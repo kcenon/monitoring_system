@@ -96,9 +96,9 @@ void demonstrate_circuit_breaker() {
 
     circuit_breaker_config config;
     config.failure_threshold = 3;
-    config.reset_timeout = 5000ms;
+    config.timeout = 5000ms;
 
-    circuit_breaker<std::string> breaker("external_service", config);
+    circuit_breaker breaker(config);
 
     std::cout << "Circuit Breaker Configuration:" << std::endl;
     std::cout << "- Failure threshold: " << config.failure_threshold << std::endl;
@@ -111,7 +111,7 @@ void demonstrate_circuit_breaker() {
     for (int i = 0; i < 10; ++i) {
         std::cout << "Call " << (i + 1) << ": ";
 
-        auto result = breaker.execute([&service]() {
+        auto result = execute_with_circuit_breaker<std::string>(breaker, "external_service", [&service]() {
             return service.call();
         });
 
@@ -126,12 +126,13 @@ void demonstrate_circuit_breaker() {
 
     std::cout << std::endl;
 
-    auto metrics = breaker.get_metrics();
-    std::cout << "Circuit Breaker Metrics:" << std::endl;
-    std::cout << "- Total calls: " << metrics.total_calls << std::endl;
-    std::cout << "- Successful: " << metrics.successful_calls << std::endl;
-    std::cout << "- Failed: " << metrics.failed_calls << std::endl;
-    std::cout << "- Rejected: " << metrics.rejected_calls << std::endl;
+    auto stats = breaker.get_stats();
+    std::cout << "Circuit Breaker Stats:" << std::endl;
+    for (const auto& [key, val] : stats) {
+        std::visit([&key](const auto& v) {
+            std::cout << "- " << key << ": " << v << std::endl;
+        }, val);
+    }
     std::cout << std::endl;
 }
 
@@ -193,7 +194,7 @@ void demonstrate_combined_patterns() {
 
     circuit_breaker_config cb_config;
     cb_config.failure_threshold = 3;
-    circuit_breaker<std::string> breaker("primary", cb_config);
+    circuit_breaker breaker(cb_config);
 
     retry_config retry_cfg2;
     retry_cfg2.max_attempts = 3;
@@ -208,7 +209,7 @@ void demonstrate_combined_patterns() {
     for (int i = 0; i < 10; ++i) {
         std::cout << "Request " << (i + 1) << ": ";
 
-        auto result = breaker.execute([&]() {
+        auto result = execute_with_circuit_breaker<std::string>(breaker, "primary", [&]() {
             return policy2.execute([&]() {
                 return primary_service.call();
             });
@@ -225,10 +226,13 @@ void demonstrate_combined_patterns() {
 
     std::cout << std::endl;
 
-    auto cb_metrics = breaker.get_metrics();
-    std::cout << "Circuit Breaker:" << std::endl;
-    std::cout << "- Total calls: " << cb_metrics.total_calls << std::endl;
-    std::cout << "- Rejected calls: " << cb_metrics.rejected_calls << std::endl;
+    auto cb_stats = breaker.get_stats();
+    std::cout << "Circuit Breaker Stats:" << std::endl;
+    for (const auto& [key, val] : cb_stats) {
+        std::visit([&key](const auto& v) {
+            std::cout << "- " << key << ": " << v << std::endl;
+        }, val);
+    }
     std::cout << std::endl;
 
     auto retry_metrics = policy2.get_metrics();

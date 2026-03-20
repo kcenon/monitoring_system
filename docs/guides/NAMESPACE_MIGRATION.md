@@ -98,31 +98,7 @@ int main() {
 
 ## Compatibility Layer
 
-During the transition period (v1.x), a compatibility layer is provided via `<kcenon/monitoring/compatibility.h>`:
-
-```cpp
-// Backward compatibility namespace alias
-// Legacy code can use monitoring_system:: which maps to kcenon::monitoring::
-namespace monitoring_system = ::kcenon::monitoring;
-
-// Additional legacy alias
-namespace monitoring_module = ::kcenon::monitoring;
-```
-
-### Using the Compatibility Layer
-
-If you need to support both old and new code during migration:
-
-```cpp
-#include <kcenon/monitoring/compatibility.h>  // Includes aliases
-#include <kcenon/monitoring/core/performance_monitor.h>
-
-// Both work during v1.x:
-kcenon::monitoring::performance_monitor monitor1("service1");  // Recommended
-monitoring_system::performance_monitor monitor2("service2");    // Deprecated
-```
-
-**Note:** The compatibility header is automatically included by most monitoring_system headers, but explicitly including it makes migration intent clear.
+The compatibility layer (`compatibility.h`) with namespace aliases `monitoring_system` and `monitoring_module` has been removed. All code must use `kcenon::monitoring::` directly.
 
 ---
 

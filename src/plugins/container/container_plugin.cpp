@@ -187,7 +187,7 @@ bool container_plugin::is_healthy() const {
     }
 
     // At least one collector should be available
-    return (container_collector_ && container_collector_->is_healthy());
+    return (container_collector_ && container_collector_->is_available());
 }
 
 std::unordered_map<std::string, double> container_plugin::get_statistics() const {

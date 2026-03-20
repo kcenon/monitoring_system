@@ -232,9 +232,6 @@ class power_collector : public collector_plugin {
     void shutdown() override {}
     auto get_statistics() const -> stats_map override;
 
-    // Legacy compatibility (deprecated)
-    bool is_healthy() const;
-
     /**
      * Get last collected power readings
      * @return Vector of power readings

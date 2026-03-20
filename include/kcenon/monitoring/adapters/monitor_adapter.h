@@ -33,14 +33,14 @@
 #include <memory>
 #include <chrono>
 
-// For thread_system v3.0+ integration, use common_monitor_adapter.h which provides
+// For thread_system v3.0+ integration, use common_adapters.h which provides
 // adapters for kcenon::common::interfaces::IMonitor and IMonitorable
 
 namespace kcenon::monitoring::adapters {
 
 /**
  * @brief Standalone adapter for performance_monitor
- * @note For thread_system integration, use common_monitor_adapter.h which provides
+ * @note For thread_system integration, use common_adapters.h which provides
  *       adapters for kcenon::common::interfaces::IMonitor and IMonitorable
  *       (the unified interfaces used by thread_system v3.0+)
  */
