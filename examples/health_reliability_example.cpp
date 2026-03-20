@@ -45,6 +45,7 @@
 
 #include "kcenon/monitoring/health/health_monitor.h"
 #include "kcenon/monitoring/reliability/circuit_breaker.h"
+#include "kcenon/monitoring/reliability/fault_tolerance_manager.h"
 #include "kcenon/monitoring/reliability/retry_policy.h"
 #include "kcenon/monitoring/reliability/error_boundary.h"
 #include "kcenon/monitoring/core/result_types.h"
