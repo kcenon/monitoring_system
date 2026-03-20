@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Consolidate 8 bidirectional adapter files into 3 umbrella headers with backward-compatible includes ([#599](https://github.com/kcenon/monitoring_system/issues/599))
+
 ## [0.1.0] - 2026-03-11
 
 ### Added
