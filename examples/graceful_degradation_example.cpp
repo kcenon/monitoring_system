@@ -49,6 +49,7 @@
 #include "kcenon/monitoring/core/error_codes.h"
 #include "kcenon/monitoring/core/result_types.h"
 #include "kcenon/monitoring/reliability/circuit_breaker.h"
+#include "kcenon/monitoring/reliability/fault_tolerance_manager.h"
 #include "kcenon/monitoring/reliability/retry_policy.h"
 
 using namespace kcenon::monitoring;
