@@ -132,7 +132,7 @@ class standalone_collector_adapter : public collector_interface {
 
     [[nodiscard]] std::string get_name() const override { return collector_->get_name(); }
 
-    [[nodiscard]] bool is_healthy() const override { return collector_->is_available(); }
+    [[nodiscard]] bool is_healthy() const override { return collector_->is_healthy(); }
 
     [[nodiscard]] std::vector<std::string> get_metric_types() const override {
         return collector_->get_metric_types();

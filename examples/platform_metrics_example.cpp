@@ -184,7 +184,7 @@ void demonstrate_platform_features(platform_metrics_collector& collector) {
 
     // Display feature availability
     std::cout << "  Platform Available: " << (collector.is_platform_available() ? "Yes" : "No") << std::endl;
-    std::cout << "  Collector Health: " << (collector.is_healthy() ? "Healthy" : "Unhealthy") << std::endl;
+    std::cout << "  Collector Health: " << (collector.is_available() ? "Healthy" : "Unhealthy") << std::endl;
 
     std::cout << "\nNote: The Strategy pattern abstracts platform-specific implementations." << std::endl;
     std::cout << "      Features not supported on a platform return empty/unavailable values." << std::endl;
@@ -259,8 +259,8 @@ int main() {
             return 1;
         }
 
-        std::cout << "   Initialized: " << collector.get_name() << std::endl;
-        std::cout << "   Health: " << (collector.is_healthy() ? "OK" : "UNHEALTHY") << std::endl;
+        std::cout << "   Initialized: " << collector.name() << std::endl;
+        std::cout << "   Health: " << (collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
 
         // Step 2: Display platform information
         std::cout << "\n2. Retrieving platform information..." << std::endl;
