@@ -880,14 +880,24 @@ if(MONITORING_CAN_INSTALL)
         COMPATIBILITY SameMajorVersion
     )
 
-    # Install adapter headers if MONITORING_WITH_COMMON_SYSTEM is enabled
-    if(MONITORING_WITH_COMMON_SYSTEM)
-        install(FILES
-            ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_monitor_adapter.h
-            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
-            COMPONENT Development
-        )
-    endif()
+    # Install adapter headers
+    install(FILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_adapters.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_adapters.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_adapters.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_monitor_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_system_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_system_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_system_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_to_monitoring_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitoring_to_common_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_to_monitoring_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_to_monitoring_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitor_adapter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/performance_monitor_adapter.h
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kcenon/monitoring/adapters
+        COMPONENT Development
+    )
 
     install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/monitoring_system-config.cmake
