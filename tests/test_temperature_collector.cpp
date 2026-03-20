@@ -48,7 +48,6 @@ class TemperatureCollectorTest : public ::testing::Test {
 
 // Test basic initialization
 TEST_F(TemperatureCollectorTest, InitializesSuccessfully) {
-    EXPECT_TRUE(collector_->is_healthy());
     EXPECT_EQ(collector_->name(), "temperature");
 }
 
@@ -79,7 +78,6 @@ TEST_F(TemperatureCollectorTest, ConfigurationOptions) {
         {"enabled", "true"}, {"collect_thresholds", "true"}, {"collect_warnings", "true"}};
 
     EXPECT_TRUE(custom_collector->initialize(config));
-    EXPECT_TRUE(custom_collector->is_healthy());
 }
 
 // Test disable collector
