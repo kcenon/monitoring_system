@@ -89,7 +89,13 @@ void display_uptime_metrics(const platform_uptime& uptime) {
         if (uptime.boot_timestamp > 0) {
             auto boot_time = std::chrono::system_clock::from_time_t(uptime.boot_timestamp);
             auto boot_tt = std::chrono::system_clock::to_time_t(boot_time);
-            std::cout << "Boot Time: " << std::put_time(std::localtime(&boot_tt), "%Y-%m-%d %H:%M:%S") << std::endl;
+            std::tm boot_tm{};
+#ifdef _MSC_VER
+            localtime_s(&boot_tm, &boot_tt);
+#else
+            localtime_r(&boot_tt, &boot_tm);
+#endif
+            std::cout << "Boot Time: " << std::put_time(&boot_tm, "%Y-%m-%d %H:%M:%S") << std::endl;
         }
     } else {
         std::cout << "Uptime metrics not available on this platform" << std::endl;

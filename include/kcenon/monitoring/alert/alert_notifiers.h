@@ -38,6 +38,7 @@
  */
 
 #include <chrono>
+#include <cstring>
 #include <fstream>
 #include <functional>
 #include <memory>
@@ -361,7 +362,14 @@ private:
         auto now = std::chrono::system_clock::now();
         auto time_t_now = std::chrono::system_clock::to_time_t(now);
 
-        file << "=== " << std::ctime(&time_t_now);
+        char time_buf[26];
+#ifdef _MSC_VER
+        ctime_s(time_buf, sizeof(time_buf), &time_t_now);
+#else
+        std::strncpy(time_buf, std::ctime(&time_t_now), sizeof(time_buf) - 1);
+        time_buf[sizeof(time_buf) - 1] = '\0';
+#endif
+        file << "=== " << time_buf;
         file << content << "\n\n";
 
         return common::ok();
