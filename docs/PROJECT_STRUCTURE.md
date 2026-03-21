@@ -114,7 +114,6 @@ monitoring_system/
 │   │   ├── metric_types.h            # Metric type definitions
 │   │   ├── time_series.h             # Time series utilities
 │   │   └── time_series_buffer.h      # Time series buffer
-│   ├── compatibility.h          # Backward compatibility
 │   └── forward.h                # Forward declarations
 ├── src/                         # Implementation files
 │   ├── collectors/              # Core collector implementations
@@ -259,8 +258,7 @@ monitoring_system/
 │   └── README.md                # Documentation index
 ├── cmake/                       # CMake modules
 │   ├── monitoring_system-config.cmake.in
-│   ├── MonitoringCompatibility.cmake
-│   └── MonitoringLegacyOptions.cmake
+│   └── MonitoringCompatibility.cmake
 ├── .github/                     # GitHub configuration
 │   ├── workflows/               # CI/CD workflows
 │   └── ISSUE_TEMPLATE/          # Issue templates

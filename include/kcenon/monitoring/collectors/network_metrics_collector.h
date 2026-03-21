@@ -310,10 +310,6 @@ class network_metrics_collector : public collector_plugin {
      */
     auto get_statistics() const -> stats_map override;
 
-    // Legacy compatibility (deprecated)
-    [[nodiscard]] std::string get_name() const { return std::string(name()); }
-    [[nodiscard]] bool is_healthy() const { return is_available(); }
-
     /**
      * Get last collected network metrics
      * @return Most recent network_metrics reading

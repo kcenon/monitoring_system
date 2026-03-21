@@ -296,11 +296,11 @@ TEST_F(NetworkMetricsCollectorTest, MetricsHaveCorrectTags) {
     }
 }
 
-// Test is_healthy reflects actual state
-TEST_F(NetworkMetricsCollectorTest, IsHealthyReflectsState) {
-    bool healthy = collector_->is_healthy();
-    // Should be healthy initially (no errors yet)
-    EXPECT_TRUE(healthy);
+// Test is_available reflects actual state
+TEST_F(NetworkMetricsCollectorTest, IsAvailableReflectsState) {
+    bool available = collector_->is_available();
+    // Should be available initially (no errors yet)
+    EXPECT_TRUE(available);
 }
 
 // Test network_metrics_config default values

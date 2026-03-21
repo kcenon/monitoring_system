@@ -904,14 +904,6 @@ void system_resource_collector::set_config(const system_metrics_config& config) 
     }
 }
 
-void system_resource_collector::set_collection_filters(bool enable_cpu, bool enable_memory,
-                                                      bool enable_disk, bool enable_network) {
-    collect_cpu_metrics_ = enable_cpu;
-    collect_memory_metrics_ = enable_memory;
-    collect_disk_metrics_ = enable_disk;
-    collect_network_metrics_ = enable_network;
-}
-
 system_resources system_resource_collector::get_last_resources() const {
     if (last_resources_) {
         return *last_resources_;

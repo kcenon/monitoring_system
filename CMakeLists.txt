@@ -101,8 +101,6 @@ option(MONITORING_BUILD_HARDWARE_PLUGIN "Build hardware monitoring plugin" OFF)
 # Disabled by default for non-containerized environments
 option(MONITORING_BUILD_CONTAINER_PLUGIN "Build container monitoring plugin" OFF)
 
-# Backward compatibility for legacy option names (can be removed in future versions)
-include(MonitoringLegacyOptions OPTIONAL)
 
 # Export compile commands for tools
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -885,10 +883,6 @@ if(MONITORING_CAN_INSTALL)
         ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_adapters.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_adapters.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_adapters.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_monitor_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_system_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_system_adapter.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/logger_system_adapter.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/common_to_monitoring_adapter.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/monitoring_to_common_adapter.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/kcenon/monitoring/adapters/thread_to_monitoring_adapter.h

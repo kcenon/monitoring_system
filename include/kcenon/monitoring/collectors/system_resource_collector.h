@@ -335,18 +335,6 @@ class system_resource_collector : public metric_collector_plugin {
     void set_config(const system_metrics_config& config);
 
     /**
-     * Set collection filters
-     * @param enable_cpu Enable CPU metrics collection
-     * @param enable_memory Enable memory metrics collection
-     * @param enable_disk Enable disk metrics collection
-     * @param enable_network Enable network metrics collection
-     * @deprecated Use set_config() with system_metrics_config instead
-     */
-    [[deprecated("Use set_config() with system_metrics_config instead")]]
-    void set_collection_filters(bool enable_cpu = true, bool enable_memory = true,
-                                 bool enable_disk = true, bool enable_network = true);
-
-    /**
      * Get last collected resources
      * @return Last system resources snapshot
      */

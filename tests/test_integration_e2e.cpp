@@ -12,20 +12,6 @@ All rights reserved.
  * Tests complete workflows and interactions between all major components
  */
 
-// Suppress deprecation warnings for testing legacy compatibility layer
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4996)
-#endif
-#ifdef __GNUC__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
 #include <gtest/gtest.h>
 #include <thread>
 #include <chrono>
@@ -310,7 +296,7 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
     ft_config.enable_circuit_breaker = true;
     ft_config.enable_retry = true;
     ft_config.circuit_config.failure_threshold = 3;
-    ft_config.circuit_config.reset_timeout = std::chrono::milliseconds(100);
+    ft_config.circuit_config.timeout = std::chrono::milliseconds(100);
     ft_config.retry_cfg.max_attempts = 5;
     ft_config.retry_cfg.initial_delay = std::chrono::milliseconds(10);
 
@@ -342,12 +328,12 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
 
     circuit_breaker_config cb_config;
     cb_config.failure_threshold = 3;
-    cb_config.reset_timeout = std::chrono::milliseconds(100);
-    circuit_breaker<bool> breaker("test_breaker", cb_config);
+    cb_config.timeout = std::chrono::milliseconds(100);
+    circuit_breaker breaker(cb_config);
 
     // Trigger circuit breaker with failures
     for (int i = 0; i < 3; ++i) {
-        auto cb_result = breaker.execute(unreliable_operation);
+        auto cb_result = execute_with_circuit_breaker<bool>(breaker, "test_breaker", unreliable_operation);
         EXPECT_FALSE(cb_result.is_ok());
     }
 
@@ -355,7 +341,7 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
     EXPECT_EQ(breaker.get_state(), circuit_state::OPEN);
 
     // Further calls should fail fast (circuit open)
-    auto open_result = breaker.execute(unreliable_operation);
+    auto open_result = execute_with_circuit_breaker<bool>(breaker, "test_breaker", unreliable_operation);
     EXPECT_FALSE(open_result.is_ok());
 
     // 5. Wait for circuit recovery
@@ -366,12 +352,12 @@ TEST_F(IntegrationE2ETest, CircuitBreakerAndRetry) {
     call_count = 0;
 
     // Circuit should transition to half-open and then closed
-    auto recovery_result = breaker.execute(unreliable_operation);
+    auto recovery_result = execute_with_circuit_breaker<bool>(breaker, "test_breaker", unreliable_operation);
     EXPECT_TRUE(recovery_result.is_ok());
 
     // After several successes, circuit should be closed
     for (int i = 0; i < 5; ++i) {
-        auto stable_result = breaker.execute(unreliable_operation);
+        auto stable_result = execute_with_circuit_breaker<bool>(breaker, "test_breaker", unreliable_operation);
         EXPECT_TRUE(stable_result.is_ok());
     }
 
@@ -574,16 +560,5 @@ TEST_F(IntegrationE2ETest, CrossComponentIntegration) {
     EXPECT_TRUE(mem_metric.has_value());
     EXPECT_DOUBLE_EQ(mem_metric.value(), 60.0);
 }
-
-// Restore compiler warnings
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
-#ifdef __GNUC__
-#pragma GCC diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
 
 // Note: main() function is provided by GTest framework or other test files

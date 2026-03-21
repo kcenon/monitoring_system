@@ -204,10 +204,10 @@ public:
 
     trace_span build() {
         if (span_.span_id.empty()) {
-            span_.span_id = thread_context_manager::generate_request_id();
+            span_.span_id = thread_context::generate_request_id();
         }
         if (span_.trace_id.empty()) {
-            span_.trace_id = thread_context_manager::generate_correlation_id();
+            span_.trace_id = thread_context::generate_correlation_id();
         }
         span_.start_time = std::chrono::system_clock::now();
         return span_;

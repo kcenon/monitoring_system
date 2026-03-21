@@ -63,7 +63,7 @@ class plugin_collector_adapter : public collector_interface {
 
     [[nodiscard]] std::string get_name() const override { return std::string(collector_->name()); }
 
-    [[nodiscard]] bool is_healthy() const override { return collector_->is_healthy(); }
+    [[nodiscard]] bool is_healthy() const override { return collector_->is_available(); }
 
     [[nodiscard]] std::vector<std::string> get_metric_types() const override {
         return collector_->get_metric_types();
@@ -97,7 +97,7 @@ class crtp_collector_adapter : public collector_interface {
 
     [[nodiscard]] std::string get_name() const override { return collector_->get_name(); }
 
-    [[nodiscard]] bool is_healthy() const override { return collector_->is_healthy(); }
+    [[nodiscard]] bool is_healthy() const override { return collector_->is_available(); }
 
     [[nodiscard]] std::vector<std::string> get_metric_types() const override {
         return collector_->get_metric_types();

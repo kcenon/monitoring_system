@@ -11,10 +11,7 @@ All rights reserved.
  * @file logger_adapters.h
  * @brief Consolidated logger system adapters for monitoring_system
  *
- * This header consolidates:
- * - logger_to_monitoring_adapter.h (logger -> monitoring integration)
- * - logger_system_adapter.h (backward-compatible alias)
- *
+ * Provides logger_to_monitoring_adapter and the logger_system_adapter alias.
  * Include this header to get all logger adapter functionality.
  */
 
