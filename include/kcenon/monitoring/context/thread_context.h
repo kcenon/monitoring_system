@@ -37,9 +37,7 @@
  * correlation IDs, trace/span IDs) enabling distributed tracing and
  * per-request diagnostics across the monitoring system.
  *
- * Two APIs are provided:
- * - thread_context: Primary API using pointer-based thread-local storage
- * - thread_context_manager: Legacy API using std::optional-based storage
+ * Uses thread_context as the primary API with pointer-based thread-local storage.
  *
  * ### Thread Safety
  * Each thread has its own independent context via thread_local storage.
@@ -198,7 +196,6 @@ struct thread_context_data {
  * @endcode
  *
  * @see thread_context_data For the stored context data structure
- * @see thread_context_manager For the legacy compatibility API
  */
 class thread_context {
 public:
@@ -248,51 +245,6 @@ public:
 
 private:
     static thread_local std::unique_ptr<thread_context_data> current_context_;
-};
-
-/**
- * @brief Thread-local context storage (legacy compatibility).
- *
- * @details Provides an alternative API using std::optional-based storage.
- * Prefer thread_context for new code; this class exists for backward
- * compatibility with older consumers.
- *
- * @deprecated Prefer thread_context instead. This class may be removed in v1.0.0.
- * @see thread_context For the primary context management API
- */
-class thread_context_manager {
-public:
-    /**
-     * @brief Store a copy of the given context in thread-local storage.
-     * @param context The context data to store
-     */
-    static void set_context(const thread_context_data& context);
-
-    /**
-     * @brief Retrieve the current thread-local context, if any.
-     * @return The context data, or std::nullopt if no context is set
-     */
-    static std::optional<thread_context_data> get_context();
-
-    /**
-     * @brief Clear the current thread-local context.
-     */
-    static void clear_context();
-
-    /**
-     * @brief Generate a unique request ID.
-     * @return A new UUID-style request identifier string
-     */
-    static std::string generate_request_id();
-
-    /**
-     * @brief Generate a unique correlation ID.
-     * @return A new UUID-style correlation identifier string
-     */
-    static std::string generate_correlation_id();
-
-private:
-    static thread_local std::optional<thread_context_data> current_context_;
 };
 
 } } // namespace kcenon::monitoring

@@ -74,7 +74,12 @@ public:
 
         auto now = std::chrono::system_clock::now();
         auto time_t = std::chrono::system_clock::to_time_t(now);
-        auto tm = *std::localtime(&time_t);
+        std::tm tm{};
+#ifdef _MSC_VER
+        localtime_s(&tm, &time_t);
+#else
+        localtime_r(&time_t, &tm);
+#endif
 
         std::cout << "[" << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << "] "
                   << "[" << to_string(level) << "] "

@@ -68,20 +68,6 @@ bool thread_context::copy_from(const thread_context_data& source) {
     return true;
 }
 
-// Legacy thread_context_manager implementation
-thread_local std::optional<thread_context_data> thread_context_manager::current_context_;
-
-void thread_context_manager::set_context(const thread_context_data& context) {
-    current_context_ = context;
-}
-
-std::optional<thread_context_data> thread_context_manager::get_context() {
-    return current_context_;
-}
-
-void thread_context_manager::clear_context() {
-    current_context_.reset();
-}
 
 std::string thread_context::generate_request_id() {
     static thread_local std::random_device rd;
@@ -89,31 +75,15 @@ std::string thread_context::generate_request_id() {
     static thread_local std::uniform_int_distribution<uint64_t> dis;
     auto id = dis(gen);
     std::stringstream ss;
-    ss << std::hex << id;
-    return ss.str();
-}
-
-std::string thread_context::generate_correlation_id() {
-    return generate_request_id(); // Simple implementation for now
-}
-
-std::string thread_context_manager::generate_request_id() {
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd());
-    static thread_local std::uniform_int_distribution<uint64_t> dis;
-
-    auto id = dis(gen);
-    std::stringstream ss;
     // W3C span_id requires 16 hex characters
     ss << std::hex << std::setfill('0') << std::setw(16) << id;
     return ss.str();
 }
 
-std::string thread_context_manager::generate_correlation_id() {
+std::string thread_context::generate_correlation_id() {
     static thread_local std::random_device rd;
     static thread_local std::mt19937 gen(rd());
     static thread_local std::uniform_int_distribution<uint64_t> dis;
-
     auto id1 = dis(gen);
     auto id2 = dis(gen);
     std::stringstream ss;

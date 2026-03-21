@@ -44,7 +44,7 @@
 #include <utility>
 #include <vector>
 
-#include "../adapters/logger_system_adapter.h"
+#include "../adapters/logger_adapters.h"
 #include "../core/event_bus.h"
 #include "../core/event_types.h"
 #include "../plugins/collector_plugin.h"
@@ -149,9 +149,6 @@ class logger_system_collector : public collector_plugin {
     auto initialize(const config_map& config) -> bool override;
     void shutdown() override {}
     auto get_statistics() const -> stats_map override;
-
-    // Legacy compatibility (deprecated)
-    bool is_healthy() const;
 
     /**
      * Set the logger system adapter for metric collection

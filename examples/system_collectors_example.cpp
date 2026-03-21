@@ -199,8 +199,8 @@ int main() {
             return 1;
         }
 
-        std::cout << "   Initialized: " << net_collector.get_name() << std::endl;
-        std::cout << "   Health: " << (net_collector.is_healthy() ? "OK" : "UNHEALTHY") << std::endl;
+        std::cout << "   Initialized: " << net_collector.name() << std::endl;
+        std::cout << "   Health: " << (net_collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
 
         // Step 3: Create process_metrics_collector
         std::cout << "\n3. Creating process_metrics_collector..." << std::endl;
@@ -211,8 +211,8 @@ int main() {
             return 1;
         }
 
-        std::cout << "   Initialized: " << proc_collector.get_name() << std::endl;
-        std::cout << "   Health: " << (proc_collector.is_healthy() ? "OK" : "UNHEALTHY") << std::endl;
+        std::cout << "   Initialized: " << proc_collector.name() << std::endl;
+        std::cout << "   Health: " << (proc_collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
 
 #ifdef THREAD_SYSTEM_AVAILABLE
         // Step 4: Create thread_system_collector (if available)
@@ -224,8 +224,8 @@ int main() {
             return 1;
         }
 
-        std::cout << "   Initialized: " << thread_collector.get_name() << std::endl;
-        std::cout << "   Health: " << (thread_collector.is_healthy() ? "OK" : "UNHEALTHY") << std::endl;
+        std::cout << "   Initialized: " << thread_collector.name() << std::endl;
+        std::cout << "   Health: " << (thread_collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
 #else
         std::cout << "\n4. thread_system_collector not available (THREAD_SYSTEM_AVAILABLE not defined)" << std::endl;
 #endif
@@ -240,8 +240,8 @@ int main() {
             return 1;
         }
 
-        std::cout << "   Initialized: " << logger_collector.get_name() << std::endl;
-        std::cout << "   Health: " << (logger_collector.is_healthy() ? "OK" : "UNHEALTHY") << std::endl;
+        std::cout << "   Initialized: " << logger_collector.name() << std::endl;
+        std::cout << "   Health: " << (logger_collector.is_available() ? "OK" : "UNHEALTHY") << std::endl;
 #else
         std::cout << "\n5. logger_system_collector not available (LOGGER_SYSTEM_AVAILABLE not defined)" << std::endl;
 #endif

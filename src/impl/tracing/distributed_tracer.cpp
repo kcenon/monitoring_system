@@ -96,14 +96,14 @@ struct distributed_tracer::tracer_impl {
      * @brief Generate unique span ID
      */
     std::string generate_span_id() {
-        return thread_context_manager::generate_request_id();
+        return thread_context::generate_request_id();
     }
     
     /**
      * @brief Generate unique trace ID
      */
     std::string generate_trace_id() {
-        return thread_context_manager::generate_correlation_id();
+        return thread_context::generate_correlation_id();
     }
 
     /**
@@ -171,7 +171,7 @@ common::Result<std::shared_ptr<trace_span>> distributed_tracer::start_span(
     span->tags["service.name"] = span->service_name;
     
     // Get thread context if available
-    auto ctx = thread_context_manager::get_context();
+    auto* ctx = thread_context::current();
     if (ctx) {
         // Thread ID from current std::thread
         std::stringstream ss;

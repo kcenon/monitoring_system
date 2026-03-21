@@ -11,10 +11,7 @@ All rights reserved.
  * @file thread_adapters.h
  * @brief Consolidated thread system adapters for monitoring_system
  *
- * This header consolidates:
- * - thread_to_monitoring_adapter.h (thread_system -> monitoring integration)
- * - thread_system_adapter.h (backward-compatible alias)
- *
+ * Provides thread_to_monitoring_adapter and the thread_system_adapter alias.
  * Include this header to get all thread system adapter functionality.
  */
 

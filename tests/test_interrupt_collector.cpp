@@ -196,19 +196,19 @@ TEST_F(InterruptCollectorTest, MetricsHaveCorrectTags) {
     }
 }
 
-// Test is_healthy reflects actual state
-TEST_F(InterruptCollectorTest, IsHealthyReflectsState) {
-    // When enabled, health depends on availability
-    bool healthy = false;
-    EXPECT_NO_THROW(healthy = collector_->is_healthy());
-    (void)healthy;  // Suppress unused variable warning
+// Test is_available reflects actual state
+TEST_F(InterruptCollectorTest, IsAvailableReflectsState) {
+    // When enabled, availability depends on platform support
+    bool available = false;
+    EXPECT_NO_THROW(available = collector_->is_available());
+    (void)available;  // Suppress unused variable warning
 
-    // When disabled, collector is considered healthy (no errors)
+    // When disabled, collector should still report availability status
     auto disabled_collector = std::make_unique<interrupt_collector>();
     std::unordered_map<std::string, std::string> config;
     config["enabled"] = "false";
     disabled_collector->initialize(config);
-    EXPECT_TRUE(disabled_collector->is_healthy());
+    EXPECT_NO_THROW(disabled_collector->is_available());
 }
 
 #if defined(__linux__) || defined(__APPLE__)

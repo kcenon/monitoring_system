@@ -204,8 +204,6 @@ bool gpu_collector::is_available() const {
 #endif
 }
 
-bool gpu_collector::is_healthy() const { return enabled_; }
-
 stats_map gpu_collector::get_statistics() const {
     return {{"collection_count", static_cast<double>(collection_count_.load())},
             {"collection_errors", static_cast<double>(collection_errors_.load())},

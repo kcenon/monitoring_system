@@ -48,7 +48,6 @@ class GpuCollectorTest : public ::testing::Test {
 
 // Test basic initialization
 TEST_F(GpuCollectorTest, InitializesSuccessfully) {
-    EXPECT_TRUE(collector_->is_healthy());
     EXPECT_EQ(collector_->name(), "gpu");
 }
 
@@ -88,7 +87,6 @@ TEST_F(GpuCollectorTest, ConfigurationOptions) {
         {"collect_fan", "true"}};
 
     EXPECT_TRUE(custom_collector->initialize(config));
-    EXPECT_TRUE(custom_collector->is_healthy());
 }
 
 // Test disable collector

@@ -48,7 +48,6 @@ class PowerCollectorTest : public ::testing::Test {
 
 // Test basic initialization
 TEST_F(PowerCollectorTest, InitializesSuccessfully) {
-    EXPECT_TRUE(collector_->is_healthy());
     EXPECT_EQ(collector_->name(), "power");
 }
 
@@ -79,7 +78,6 @@ TEST_F(PowerCollectorTest, ConfigurationOptions) {
         {"enabled", "true"}, {"collect_battery", "true"}, {"collect_rapl", "true"}};
 
     EXPECT_TRUE(custom_collector->initialize(config));
-    EXPECT_TRUE(custom_collector->is_healthy());
 }
 
 // Test disable collector
@@ -259,7 +257,6 @@ TEST_F(PowerCollectorTest, BatteryConfigurationDisabled) {
         {"enabled", "true"}, {"collect_battery", "false"}};
 
     EXPECT_TRUE(custom_collector->initialize(config));
-    EXPECT_TRUE(custom_collector->is_healthy());
 
     // Collection should still work but may filter battery sources
     auto metrics = custom_collector->collect();
@@ -274,7 +271,6 @@ TEST_F(PowerCollectorTest, RaplConfigurationDisabled) {
         {"enabled", "true"}, {"collect_rapl", "false"}};
 
     EXPECT_TRUE(custom_collector->initialize(config));
-    EXPECT_TRUE(custom_collector->is_healthy());
 
     // Collection should still work but may filter RAPL sources
     auto metrics = custom_collector->collect();

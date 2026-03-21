@@ -660,7 +660,6 @@ include/kcenon/monitoring/
 ├── factory/                 # Factory patterns (3 headers)
 ├── config/                  # Feature flags (1 header)
 ├── utils/                   # Utilities (10 headers)
-├── compatibility.h          # Backward compatibility
 └── forward.h                # Forward declarations
 ```
 

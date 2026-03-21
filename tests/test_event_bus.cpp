@@ -33,8 +33,8 @@
  */
 
 #include <gtest/gtest.h>
-#include <kcenon/monitoring/adapters/logger_system_adapter.h>
-#include <kcenon/monitoring/adapters/thread_system_adapter.h>
+#include <kcenon/monitoring/adapters/logger_adapters.h>
+#include <kcenon/monitoring/adapters/thread_adapters.h>
 #include <kcenon/monitoring/core/event_bus.h>
 #include <kcenon/monitoring/core/event_types.h>
 
