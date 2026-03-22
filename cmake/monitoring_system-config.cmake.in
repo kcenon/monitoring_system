@@ -6,16 +6,27 @@ include(CMakeFindDependencyMacro)
 find_dependency(Threads REQUIRED)
 find_dependency(common_system CONFIG REQUIRED)
 
-# Optional dependencies
+# Conditional dependencies based on build configuration
 set(MONITORING_USE_THREAD_SYSTEM @MONITORING_WITH_THREAD_SYSTEM@)
 set(MONITORING_USE_LOGGER_SYSTEM @MONITORING_WITH_LOGGER_SYSTEM@)
+set(MONITORING_USE_NETWORK_SYSTEM @MONITORING_WITH_NETWORK_SYSTEM@)
+set(MONITORING_USE_GRPC @MONITORING_WITH_GRPC@)
 
 if(MONITORING_USE_THREAD_SYSTEM)
-    find_dependency(thread_system CONFIG)
+    find_dependency(thread_system CONFIG REQUIRED)
 endif()
 
 if(MONITORING_USE_LOGGER_SYSTEM)
     find_dependency(logger_system CONFIG)
+endif()
+
+if(MONITORING_USE_NETWORK_SYSTEM)
+    find_dependency(network_system CONFIG REQUIRED)
+endif()
+
+if(MONITORING_USE_GRPC)
+    find_dependency(gRPC CONFIG REQUIRED)
+    find_dependency(Protobuf CONFIG REQUIRED)
 endif()
 
 # Include targets
