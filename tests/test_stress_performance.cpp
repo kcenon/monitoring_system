@@ -120,9 +120,17 @@ protected:
  * Tests system behavior under sustained high load
  */
 TEST_F(StressPerformanceTest, HighLoadStressTest) {
+    // Windows CI runners have fewer cores and higher scheduling overhead,
+    // so use a reduced workload to avoid 30-second test timeouts.
+#if defined(_WIN32)
+    const int NUM_THREADS = 50;
+    const int OPERATIONS_PER_THREAD = 5000;
+    const auto TEST_DURATION = 60s;
+#else
     const int NUM_THREADS = 100;
     const int OPERATIONS_PER_THREAD = 10000;
     const auto TEST_DURATION = 30s;
+#endif
     
     // Setup components
     auto tracer = std::make_unique<distributed_tracer>();

@@ -58,7 +58,12 @@ TEST_F(SystemResourceCollectorTest, ContextSwitchMonitoring) {
         }
     }
 
-    EXPECT_GT(csw_total_1, 0) << "Context switches should be non-zero (unless platform stubbed)";
+    // On Windows, context switch monitoring is not implemented (returns 0)
+#if defined(_WIN32)
+    EXPECT_EQ(csw_total_1, 0u) << "Context switches are not collected on Windows";
+#else
+    EXPECT_GT(csw_total_1, 0) << "Context switches should be non-zero";
+#endif
 
     // Sleep to allow context switches to happen
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -85,8 +90,7 @@ TEST_F(SystemResourceCollectorTest, ContextSwitchMonitoring) {
             }
         }
     }
-    
-    // On stub platforms (Windows) this might be equal or zero
+
     #if defined(__linux__)
         // On Linux, system-wide context switches should be monotonically increasing
         EXPECT_GE(csw_total_2, csw_total_1);
@@ -96,6 +100,10 @@ TEST_F(SystemResourceCollectorTest, ContextSwitchMonitoring) {
         // Just verify we got valid readings
         EXPECT_GT(csw_total_1, 0u);
         EXPECT_GT(csw_total_2, 0u);
+    #elif defined(_WIN32)
+        // On Windows, context switch monitoring is not implemented
+        // Both readings should be zero
+        EXPECT_EQ(csw_total_2, 0u);
     #endif
 }
 
