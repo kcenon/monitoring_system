@@ -107,8 +107,14 @@ TEST_F(InterruptCollectorTest, TracksStatistics) {
     collector_->collect();
 
     auto stats = collector_->get_statistics();
-    EXPECT_GE(stats["collection_count"], 2.0);
-    EXPECT_GE(stats["collection_errors"], 0.0);
+    if (collector_->is_interrupt_monitoring_available()) {
+        // On platforms with interrupt monitoring, collections should succeed
+        EXPECT_GE(stats["collection_count"], 2.0);
+    } else {
+        // On platforms without interrupt monitoring (e.g. Windows),
+        // collections fail gracefully and increment error count instead
+        EXPECT_GE(stats["collection_errors"], 2.0);
+    }
 }
 
 // Test collect returns metrics (graceful degradation when unavailable)
@@ -122,10 +128,16 @@ TEST_F(InterruptCollectorTest, GetLastMetrics) {
     collector_->collect();
     auto last = collector_->get_last_metrics();
 
-    // Timestamp should be set
-    auto now = std::chrono::system_clock::now();
-    auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - last.timestamp);
-    EXPECT_LT(diff.count(), 10);  // Within 10 seconds
+    if (collector_->is_interrupt_monitoring_available()) {
+        // On platforms with interrupt monitoring, timestamp should be recent
+        auto now = std::chrono::system_clock::now();
+        auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - last.timestamp);
+        EXPECT_LT(diff.count(), 10);  // Within 10 seconds
+    } else {
+        // On platforms without interrupt monitoring (e.g. Windows),
+        // last_metrics_ is never updated so metrics_available stays false
+        EXPECT_FALSE(last.metrics_available);
+    }
 }
 
 // Test is_interrupt_monitoring_available
@@ -180,7 +192,13 @@ TEST_F(InterruptCollectorTest, MultipleCollectionsAreStable) {
     }
 
     auto stats = collector_->get_statistics();
-    EXPECT_GE(stats["collection_count"], 10.0);
+    if (collector_->is_interrupt_monitoring_available()) {
+        EXPECT_GE(stats["collection_count"], 10.0);
+    } else {
+        // On platforms without interrupt monitoring (e.g. Windows),
+        // all collections fail gracefully
+        EXPECT_GE(stats["collection_errors"], 10.0);
+    }
 }
 
 // Test that metrics have correct tags when collected
