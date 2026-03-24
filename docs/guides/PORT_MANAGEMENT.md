@@ -116,10 +116,37 @@ Update the `Version` and `Port-Version` columns in
 Create a PR targeting `main`.  The `validate-vcpkg-chain` CI workflow will
 automatically build and test the updated port on Ubuntu, macOS, and Windows.
 
-### Step 8 — Sync to vcpkg-registry (post-merge)
+### Step 8 — Sync to vcpkg-registry (automated)
 
-After the PR merges, sync the updated port to `kcenon/vcpkg-registry.git`
-so that consumers using the remote registry receive the update:
+When a release tag is created, the `sync-vcpkg-registry` workflow
+automatically opens a PR to `kcenon/vcpkg-registry` with the updated
+portfiles and version database entries.  **No manual sync is required.**
+
+The workflow performs the following steps:
+
+1. Downloads the release archive and computes the SHA512 hash
+2. Updates `portfile.cmake` with the new SHA512 and verifies the REF tag
+3. Updates `vcpkg.json` with the new version (resets `port-version` to 0)
+4. Copies the updated port files to the registry
+5. Updates `versions/<prefix>/<port-name>.json` with a new version entry
+6. Updates `versions/baseline.json` with the new baseline
+7. Opens a PR to `kcenon/vcpkg-registry` for review
+
+> **Important**: The registry PR still requires manual approval before merge.
+> This safety gate allows a maintainer to verify the changes before they
+> reach production consumers.
+
+#### Trigger
+
+The sync is triggered by the caller workflow `on-release-sync-registry.yml`,
+which fires on `release: [published]` events.  Each ecosystem repository
+adds its own caller workflow (see [Adopting the Workflow in Other
+Repositories](#adopting-the-workflow-in-other-repositories)).
+
+#### Manual fallback
+
+If the automated workflow fails or needs to be bypassed, the registry can
+still be updated manually:
 
 ```bash
 # Copy updated port files to the vcpkg-registry checkout
@@ -129,6 +156,36 @@ cp -r vcpkg-ports/kcenon-<system>-system/ \
 # Update the versions database in vcpkg-registry
 # (follow vcpkg versioning documentation for baseline/versions files)
 ```
+
+## Adopting the Workflow in Other Repositories
+
+Each ecosystem repository needs a caller workflow to trigger the reusable
+`sync-vcpkg-registry` workflow on release.  Create
+`.github/workflows/on-release-sync-registry.yml`:
+
+```yaml
+name: Sync Registry on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  sync:
+    uses: kcenon/monitoring_system/.github/workflows/sync-vcpkg-registry.yml@main
+    with:
+      port-name: kcenon-<system>-system   # e.g., kcenon-common-system
+      version: ${{ github.event.release.tag_name }}
+    secrets:
+      REGISTRY_PAT: ${{ secrets.VCPKG_REGISTRY_PAT }}
+```
+
+### Prerequisites
+
+- A fine-grained PAT (`VCPKG_REGISTRY_PAT`) with write access scoped to
+  `kcenon/vcpkg-registry`, stored as an organization or repository secret.
+- The port definition for the system must exist in
+  `monitoring_system/vcpkg-ports/kcenon-<system>-system/`.
 
 ## Consumer Repository Setup
 
@@ -190,12 +247,12 @@ update their README to point to this canonical location.
 `kcenon/vcpkg-registry.git` provides a stable, versioned view of kcenon ports
 for consumers who prefer not to use overlay ports.  It is **downstream** of
 this directory: changes land here first, then propagate to the registry on
-release.
+release via the automated `sync-vcpkg-registry` workflow.
 
 ```
 monitoring_system/vcpkg-ports/   ← source of truth (development)
          │
-         │  (synced on release)
+         │  sync-vcpkg-registry.yml (automated on release)
          ▼
 kcenon/vcpkg-registry.git        ← stable registry (production consumers)
 ```
@@ -222,4 +279,7 @@ any port will fail this check before merge.
 
 - [VCPKG_OVERLAY_PORTS.md](VCPKG_OVERLAY_PORTS.md) — installation and usage guide
 - [vcpkg-ports/README.md](../../vcpkg-ports/README.md) — port inventory
-- [#533](https://github.com/kcenon/monitoring_system/issues/533) — issue tracking this decision
+- [sync-vcpkg-registry.yml](../../.github/workflows/sync-vcpkg-registry.yml) — reusable registry sync workflow
+- [on-release-sync-registry.yml](../../.github/workflows/on-release-sync-registry.yml) — caller workflow for monitoring_system
+- [#533](https://github.com/kcenon/monitoring_system/issues/533) — issue tracking the centralization decision
+- [#607](https://github.com/kcenon/monitoring_system/issues/607) — issue tracking the automation workflow
