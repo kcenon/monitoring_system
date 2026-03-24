@@ -359,19 +359,22 @@ TEST(NetworkInfoCollectorTest, HasTcpConnectionsOnUnix) {
 #endif
 
 #if defined(_WIN32)
-// Platform-specific test: On Windows, monitoring is not yet implemented
+// Platform-specific test: On Windows, socket buffer monitoring is not available
+// but TCP state monitoring works via GetExtendedTcpTable()
 TEST_F(NetworkMetricsCollectorTest, WindowsNetworkMonitoringUnavailable) {
     EXPECT_FALSE(collector_->is_socket_buffer_monitoring_available());
-    EXPECT_FALSE(collector_->is_tcp_state_monitoring_available());
+    EXPECT_TRUE(collector_->is_tcp_state_monitoring_available());
 }
 
-// Platform-specific test: Windows metrics should indicate unavailability
+// Platform-specific test: Windows metrics reflect actual API availability
 TEST(NetworkInfoCollectorTest, WindowsReturnsUnavailableMetrics) {
     network_info_collector collector;
     network_metrics_config config;
     auto metrics = collector.collect_metrics(config);
+    // Socket buffers are not available on Windows
     EXPECT_FALSE(metrics.socket_buffer_available);
-    EXPECT_FALSE(metrics.tcp_state_available);
+    // TCP states are available via GetExtendedTcpTable()
+    EXPECT_TRUE(metrics.tcp_state_available);
 }
 #endif
 
