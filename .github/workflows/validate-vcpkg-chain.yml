@@ -43,9 +43,9 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
+        uses: kcenon/common_system/.github/actions/setup-vcpkg@main
         with:
-          vcpkgGitCommitId: d90a9b159c08169f39adcd1b0f1ac0ca12c4b96c
+          extra-cache-key: 'monitoring-system'
 
       - name: Install GCC 13 (Linux)
         if: runner.os == 'Linux'
