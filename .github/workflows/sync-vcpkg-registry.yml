@@ -27,31 +27,36 @@ jobs:
 
     steps:
     - name: Validate inputs
+      env:
+        PORT_NAME: ${{ inputs.port-name }}
+        VERSION: ${{ inputs.version }}
       run: |
-        if [[ -z "${{ inputs.port-name }}" ]]; then
+        if [[ -z "${PORT_NAME}" ]]; then
           echo "::error::port-name input is required"
           exit 1
         fi
-        if [[ -z "${{ inputs.version }}" ]]; then
+        if [[ -z "${VERSION}" ]]; then
           echo "::error::version input is required"
           exit 1
         fi
 
     - name: Derive version and repo metadata
       id: meta
+      env:
+        RAW_VERSION: ${{ inputs.version }}
+        PORT_NAME: ${{ inputs.port-name }}
       run: |
         # Strip 'v' prefix if present
-        RAW_VERSION="${{ inputs.version }}"
         VERSION="${RAW_VERSION#v}"
         echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
         # Derive GitHub repo name from port name
         # e.g., kcenon-common-system -> common_system
-        SYSTEM_NAME=$(echo "${{ inputs.port-name }}" | sed 's/^kcenon-//' | sed 's/-/_/g')
+        SYSTEM_NAME=$(echo "${PORT_NAME}" | sed 's/^kcenon-//' | sed 's/-/_/g')
         echo "repo=kcenon/${SYSTEM_NAME}" >> "$GITHUB_OUTPUT"
         echo "system-name=${SYSTEM_NAME}" >> "$GITHUB_OUTPUT"
 
-        echo "Port: ${{ inputs.port-name }}"
+        echo "Port: ${PORT_NAME}"
         echo "Version: ${VERSION}"
         echo "Repo: kcenon/${SYSTEM_NAME}"
 
@@ -62,9 +67,10 @@ jobs:
 
     - name: Download release archive and compute SHA512
       id: sha
+      env:
+        VERSION: ${{ steps.meta.outputs.version }}
+        REPO: ${{ steps.meta.outputs.repo }}
       run: |
-        VERSION="${{ steps.meta.outputs.version }}"
-        REPO="${{ steps.meta.outputs.repo }}"
         TAG="v${VERSION}"
         URL="https://github.com/${REPO}/archive/refs/tags/${TAG}.tar.gz"
 
@@ -82,11 +88,13 @@ jobs:
         rm -f /tmp/source.tar.gz
 
     - name: Update portfile.cmake with new SHA512 and REF
+      env:
+        PORT_NAME: ${{ inputs.port-name }}
+        VERSION: ${{ steps.meta.outputs.version }}
+        SHA512: ${{ steps.sha.outputs.sha512 }}
       run: |
-        PORT_DIR="source/vcpkg-ports/${{ inputs.port-name }}"
+        PORT_DIR="source/vcpkg-ports/${PORT_NAME}"
         PORTFILE="${PORT_DIR}/portfile.cmake"
-        VERSION="${{ steps.meta.outputs.version }}"
-        SHA512="${{ steps.sha.outputs.sha512 }}"
 
         if [[ ! -f "${PORTFILE}" ]]; then
           echo "::error::Portfile not found: ${PORTFILE}"
@@ -107,10 +115,12 @@ jobs:
         cat "${PORTFILE}"
 
     - name: Update vcpkg.json version
+      env:
+        PORT_NAME: ${{ inputs.port-name }}
+        VERSION: ${{ steps.meta.outputs.version }}
       run: |
-        PORT_DIR="source/vcpkg-ports/${{ inputs.port-name }}"
+        PORT_DIR="source/vcpkg-ports/${PORT_NAME}"
         VCPKG_JSON="${PORT_DIR}/vcpkg.json"
-        VERSION="${{ steps.meta.outputs.version }}"
 
         if [[ ! -f "${VCPKG_JSON}" ]]; then
           echo "::error::vcpkg.json not found: ${VCPKG_JSON}"
@@ -134,8 +144,9 @@ jobs:
         path: vcpkg-registry
 
     - name: Copy port files to registry
+      env:
+        PORT_NAME: ${{ inputs.port-name }}
       run: |
-        PORT_NAME="${{ inputs.port-name }}"
         SRC="source/vcpkg-ports/${PORT_NAME}"
         DST="vcpkg-registry/ports/${PORT_NAME}"
 
@@ -147,10 +158,10 @@ jobs:
 
     - name: Update version database
       id: versions
+      env:
+        PORT_NAME: ${{ inputs.port-name }}
+        VERSION: ${{ steps.meta.outputs.version }}
       run: |
-        PORT_NAME="${{ inputs.port-name }}"
-        VERSION="${{ steps.meta.outputs.version }}"
-
         cd vcpkg-registry
 
         # Configure git for commit
@@ -179,10 +190,18 @@ jobs:
           '{"version": $version, "port-version": 0, "git-tree": $tree}')
 
         if [[ -f "${VERSIONS_FILE}" ]]; then
-          # Prepend new version entry to existing versions array
-          jq --argjson entry "${NEW_ENTRY}" \
-            '.versions = [$entry] + .versions' \
-            "${VERSIONS_FILE}" > "${VERSIONS_FILE}.tmp"
+          # Check if this version already exists (re-run scenario)
+          if jq -e --arg v "${VERSION}" '.versions[] | select(.version == $v)' "${VERSIONS_FILE}" > /dev/null 2>&1; then
+            echo "Version ${VERSION} already exists, updating in place"
+            jq --argjson entry "${NEW_ENTRY}" --arg v "${VERSION}" \
+              '.versions = [.versions[] | if .version == $v then $entry else . end]' \
+              "${VERSIONS_FILE}" > "${VERSIONS_FILE}.tmp"
+          else
+            # Prepend new version entry to existing versions array
+            jq --argjson entry "${NEW_ENTRY}" \
+              '.versions = [$entry] + .versions' \
+              "${VERSIONS_FILE}" > "${VERSIONS_FILE}.tmp"
+          fi
           mv "${VERSIONS_FILE}.tmp" "${VERSIONS_FILE}"
         else
           # Create new versions file
@@ -230,10 +249,11 @@ jobs:
     - name: Create pull request to vcpkg-registry
       env:
         GH_TOKEN: ${{ secrets.REGISTRY_PAT }}
+        PORT_NAME: ${{ inputs.port-name }}
+        VERSION: ${{ steps.meta.outputs.version }}
+        REPO: ${{ steps.meta.outputs.repo }}
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       run: |
-        PORT_NAME="${{ inputs.port-name }}"
-        VERSION="${{ steps.meta.outputs.version }}"
-        REPO="${{ steps.meta.outputs.repo }}"
         BRANCH="auto/${PORT_NAME}-${VERSION}"
 
         cd vcpkg-registry
@@ -257,7 +277,7 @@ jobs:
           echo ""
           echo "- Repository: \`${REPO}\`"
           echo "- Release: \`v${VERSION}\`"
-          echo "- Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "- Workflow run: ${RUN_URL}"
           echo ""
           echo "## Test plan"
           echo ""
