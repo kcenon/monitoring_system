@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add reusable GitHub Actions workflow for automated vcpkg registry synchronization ([#607](https://github.com/kcenon/monitoring_system/issues/607))
+
 ### Changed
 
 - Consolidate 8 bidirectional adapter files into 3 umbrella headers with backward-compatible includes ([#599](https://github.com/kcenon/monitoring_system/issues/599))
