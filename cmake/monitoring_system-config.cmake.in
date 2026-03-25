@@ -1,5 +1,17 @@
 @PACKAGE_INIT@
 
+##################################################
+# monitoring_system Package Configuration
+#
+# Provides imported targets:
+#   monitoring_system::monitoring_system           - Core monitoring library
+#   monitoring_system::monitoring_system_interface  - Interface library
+#
+# Legacy aliases (backward compatibility):
+#   MonitoringSystem::monitoring_system           -> monitoring_system::monitoring_system
+#   MonitoringSystem::monitoring_system_interface  -> monitoring_system::monitoring_system_interface
+##################################################
+
 include(CMakeFindDependencyMacro)
 
 # Find required dependencies
@@ -29,10 +41,41 @@ if(MONITORING_USE_GRPC)
     find_dependency(Protobuf CONFIG REQUIRED)
 endif()
 
+unset(MONITORING_USE_THREAD_SYSTEM)
+unset(MONITORING_USE_LOGGER_SYSTEM)
+unset(MONITORING_USE_NETWORK_SYSTEM)
+unset(MONITORING_USE_GRPC)
+
 # Include targets
 include("${CMAKE_CURRENT_LIST_DIR}/monitoring_system-targets.cmake")
 
-# Set version information
-set(monitoring_system_VERSION @PROJECT_VERSION@)
-
+# Verify targets exist
 check_required_components(monitoring_system)
+
+# Set variables for compatibility
+set(monitoring_system_FOUND TRUE)
+
+# Provide information about the package
+set(monitoring_system_VERSION @PROJECT_VERSION@)
+set(monitoring_system_INCLUDE_DIRS "${PACKAGE_PREFIX_DIR}/include")
+set(monitoring_system_LIBRARIES monitoring_system::monitoring_system)
+
+# Backward compatibility aliases (MonitoringSystem:: -> monitoring_system::)
+if(TARGET monitoring_system::monitoring_system AND NOT TARGET MonitoringSystem::monitoring_system)
+    add_library(MonitoringSystem::monitoring_system ALIAS monitoring_system::monitoring_system)
+endif()
+if(TARGET monitoring_system::monitoring_system_interface AND NOT TARGET MonitoringSystem::monitoring_system_interface)
+    add_library(MonitoringSystem::monitoring_system_interface ALIAS monitoring_system::monitoring_system_interface)
+endif()
+
+# Legacy variables for backward compatibility
+set(MonitoringSystem_FOUND TRUE)
+set(MONITORINGSYSTEM_FOUND TRUE)
+set(MonitoringSystem_VERSION ${monitoring_system_VERSION})
+set(MonitoringSystem_INCLUDE_DIRS ${monitoring_system_INCLUDE_DIRS})
+set(MonitoringSystem_LIBRARIES ${monitoring_system_LIBRARIES})
+set(MONITORINGSYSTEM_VERSION ${monitoring_system_VERSION})
+set(MONITORINGSYSTEM_INCLUDE_DIRS ${monitoring_system_INCLUDE_DIRS})
+set(MONITORINGSYSTEM_LIBRARIES ${monitoring_system_LIBRARIES})
+
+message(STATUS "Found monitoring_system: ${monitoring_system_VERSION}")
