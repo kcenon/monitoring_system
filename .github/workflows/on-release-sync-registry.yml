@@ -6,7 +6,7 @@ on:
 
 jobs:
   sync:
-    uses: kcenon/monitoring_system/.github/workflows/sync-vcpkg-registry.yml@main
+    uses: kcenon/common_system/.github/workflows/sync-vcpkg-registry.yml@main
     with:
       port-name: kcenon-monitoring-system
       version: ${{ github.event.release.tag_name }}
