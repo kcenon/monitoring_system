@@ -127,6 +127,17 @@ jobs:
       run: |
         cd build
 
+        # Verify coverage instrumentation files exist
+        echo "=== Coverage instrumentation check ==="
+        GCNO_COUNT=$(find . -name "*.gcno" | wc -l)
+        GCDA_COUNT=$(find . -name "*.gcda" | wc -l)
+        echo "gcno files (compile-time): $GCNO_COUNT"
+        echo "gcda files (runtime): $GCDA_COUNT"
+
+        if [ "$GCDA_COUNT" -eq 0 ]; then
+          echo "::warning::No .gcda files found — tests may not have generated coverage data"
+        fi
+
         # Capture coverage data with explicit gcov-13 to match compiler version
         lcov --directory . --capture --output-file coverage.info \
           --gcov-tool gcov-13 \
@@ -150,10 +161,12 @@ jobs:
 
         # Generate HTML report
         genhtml coverage_filtered.info --output-directory coverage_html \
+          --ignore-errors inconsistent \
           --rc branch_coverage=1 || true
 
         # Print summary
-        lcov --list coverage_filtered.info || true
+        lcov --list coverage_filtered.info \
+          --rc branch_coverage=1 || true
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v6
