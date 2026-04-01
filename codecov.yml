@@ -25,6 +25,9 @@ coverage:
 # - Phase 2: 65% project, 70% patch
 # - Phase 3: 75% project, 80% patch
 
+fixes:
+  - "/home/runner/work/monitoring_system/monitoring_system/::"
+
 parsers:
   gcov:
     branch_detection:
@@ -42,9 +45,14 @@ ignore:
   - "build_*/**/*"
   - "vcpkg/**/*"
   - "vcpkg_installed/**/*"
+  - "vcpkg-ports/**/*"
+  - "cmake/**/*"
   - "common_system/**/*"
+  - "common_system_install/**/*"
   - "thread_system/**/*"
+  - "thread_system_install/**/*"
   - "logger_system/**/*"
+  - "logger_system_install/**/*"
 
 comment:
   layout: "reach,diff,flags,files"
