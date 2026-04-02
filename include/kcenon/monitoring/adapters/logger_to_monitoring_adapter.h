@@ -3,10 +3,10 @@
 #ifndef KCENON_MONITORING_ADAPTERS_LOGGER_TO_MONITORING_ADAPTER_H
 #define KCENON_MONITORING_ADAPTERS_LOGGER_TO_MONITORING_ADAPTER_H
 
-/*
- * BSD 3-Clause License
- * Copyright (c) 2025, monitoring_system contributors
- */
+// BSD 3-Clause License
+// Copyright (c) 2025, 🍀☀🌕🌥 🌊
+// See the LICENSE file in the project root for full license information.
+
 
 // Module description:
 // Logger system adapter for monitoring_system (Phase 2.3.3).

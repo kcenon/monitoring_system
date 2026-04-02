@@ -1,7 +1,8 @@
+// BSD 3-Clause License
+// Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
+// See the LICENSE file in the project root for full license information.
+
 /**
- * BSD 3-Clause License
- * Copyright (c) 2021-2025, kcenon
- *
  * Alert Manager Tests
  *
  * Tests for alert_manager.h covering:
