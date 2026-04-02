@@ -1,7 +1,6 @@
 // BSD 3-Clause License
-//
-// Copyright (c) 2021-2025, monitoring_system contributors
-// All rights reserved.
+// Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
+// See the LICENSE file in the project root for full license information.
 
 #include <gtest/gtest.h>
 #include "kcenon/monitoring/utils/metric_types.h"
