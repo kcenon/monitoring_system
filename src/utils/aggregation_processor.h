@@ -1,11 +1,9 @@
 #pragma once
 
-/*****************************************************************************
-BSD 3-Clause License
+// BSD 3-Clause License
+// Copyright (c) 2025, 🍀☀🌕🌥 🌊
+// See the LICENSE file in the project root for full license information.
 
-Copyright (c) 2025, monitoring_system contributors
-All rights reserved.
-*****************************************************************************/
 
 /**
  * @file aggregation_processor.h
