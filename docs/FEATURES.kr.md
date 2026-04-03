@@ -1,3 +1,13 @@
+---
+doc_id: "MON-FEAT-001"
+doc_title: "Monitoring System - 상세 기능"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "FEAT"
+---
+
 # Monitoring System - 상세 기능
 
 **언어:** [English](README.md) | **한국어**

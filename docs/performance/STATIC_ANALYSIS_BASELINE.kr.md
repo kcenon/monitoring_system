@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PERF-013"
+doc_title: "정적 분석 기준선 - monitoring_system"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PERF"
+---
+
 # 정적 분석 기준선 - monitoring_system
 
 > **Language:** [English](STATIC_ANALYSIS_BASELINE.md) | **한국어**

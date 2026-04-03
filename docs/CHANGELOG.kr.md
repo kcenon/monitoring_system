@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PROJ-001"
+doc_title: "변경 로그"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PROJ"
+---
+
 # 변경 로그
 
 > **Language:** [English](CHANGELOG.md) | **한국어**

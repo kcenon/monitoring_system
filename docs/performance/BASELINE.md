@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PERF-006"
+doc_title: "Baseline Performance Metrics"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PERF"
+---
+
 # Baseline Performance Metrics
 
 **Document Version**: 3.0

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-QUAL-004"
+doc_title: "Reliability Patterns Usage Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "QUAL"
+---
+
 # Reliability Patterns Usage Guide
 
 > **Version**: 1.0.0

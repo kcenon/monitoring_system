@@ -1,3 +1,13 @@
+---
+doc_id: "MON-QUAL-001"
+doc_title: "Monitoring System - 프로덕션 품질 메트릭"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "QUAL"
+---
+
 # Monitoring System - 프로덕션 품질 메트릭
 
 **언어:** [English](PRODUCTION_QUALITY.md) | **한국어**

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-005"
+doc_title: "System Current State - Phase 0 Baseline"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # System Current State - Phase 0 Baseline
 
 > **Language:** **English** | [한국어](CURRENT_STATE.kr.md)

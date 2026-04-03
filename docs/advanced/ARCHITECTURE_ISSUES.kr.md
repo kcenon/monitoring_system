@@ -1,3 +1,13 @@
+---
+doc_id: "MON-ARCH-006"
+doc_title: "Architecture Issues - Phase 0 식별"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "ARCH"
+---
+
 # Architecture Issues - Phase 0 식별
 
 > **Language:** [English](ARCHITECTURE_ISSUES.md) | **한국어**

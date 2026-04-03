@@ -1,3 +1,13 @@
+---
+doc_id: "MON-MIGR-004"
+doc_title: "네임스페이스 마이그레이션 가이드"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "MIGR"
+---
+
 # 네임스페이스 마이그레이션 가이드
 
 > **버전:** 1.0.0

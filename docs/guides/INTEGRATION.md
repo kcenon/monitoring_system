@@ -1,3 +1,13 @@
+---
+doc_id: "MON-INTR-002"
+doc_title: "Integration Guide - Monitoring System"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "INTR"
+---
+
 # Integration Guide - Monitoring System
 
 > **Language:** **English** | [한국어](INTEGRATION.kr.md)

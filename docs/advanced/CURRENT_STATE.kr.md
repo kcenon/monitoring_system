@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-004"
+doc_title: "시스템 현재 상태 - Phase 0 기준선"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # 시스템 현재 상태 - Phase 0 기준선
 
 > **Language:** [English](CURRENT_STATE.md) | **한국어**

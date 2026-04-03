@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PROJ-006"
+doc_title: "Monitoring System에 기여하기"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PROJ"
+---
+
 # Monitoring System에 기여하기
 
 > **Language:** [English](CONTRIBUTING.md) | **한국어**

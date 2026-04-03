@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-014"
+doc_title: "Monitoring System - 빠른 시작 가이드"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Monitoring System - 빠른 시작 가이드
 
 > **Language:** [English](QUICK_START.md) | **한국어**

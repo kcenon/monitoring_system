@@ -1,3 +1,13 @@
+---
+doc_id: "MON-MIGR-003"
+doc_title: "Migration Guide: Interface-Based Architecture"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "MIGR"
+---
+
 # Migration Guide: Interface-Based Architecture
 
 > **Language:** **English** | [한국어](MIGRATION_GUIDE_V2.kr.md)

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-INTR-004"
+doc_title: "OpenTelemetry Collector Sidecar Pattern"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "INTR"
+---
+
 # OpenTelemetry Collector Sidecar Pattern
 
 > **Language:** **English** | [한국어](OTEL_COLLECTOR_SIDECAR.kr.md)

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-013"
+doc_title: "vcpkg Port Management"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # vcpkg Port Management
 
 This document defines the authoritative port management strategy for the kcenon

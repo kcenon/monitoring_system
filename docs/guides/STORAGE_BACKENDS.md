@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-016"
+doc_title: "Storage Backend Implementation Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Storage Backend Implementation Guide
 
 > **Version**: 1.0.0
