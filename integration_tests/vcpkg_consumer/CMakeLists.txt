@@ -100,8 +100,8 @@ target_link_libraries(vcpkg_chain_consumer PRIVATE kcenon::common_system)
 target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_COMMON_SYSTEM)
 
 # Conditionally link available ports (using actual vcpkg exported target names)
-if(TARGET thread_system::ThreadSystem)
-    target_link_libraries(vcpkg_chain_consumer PRIVATE thread_system::ThreadSystem)
+if(TARGET thread_system::thread_system)
+    target_link_libraries(vcpkg_chain_consumer PRIVATE thread_system::thread_system)
     target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_THREAD_SYSTEM)
 endif()
 
@@ -110,8 +110,8 @@ if(TARGET ContainerSystem::container)
     target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_CONTAINER_SYSTEM)
 endif()
 
-if(TARGET LoggerSystem::LoggerSystem)
-    target_link_libraries(vcpkg_chain_consumer PRIVATE LoggerSystem::LoggerSystem)
+if(TARGET logger_system::logger_system)
+    target_link_libraries(vcpkg_chain_consumer PRIVATE logger_system::logger_system)
     target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_LOGGER_SYSTEM)
 endif()
 
@@ -125,8 +125,8 @@ if(TARGET DatabaseSystem::database)
     target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_DATABASE_SYSTEM)
 endif()
 
-if(TARGET NetworkSystem::NetworkSystem)
-    target_link_libraries(vcpkg_chain_consumer PRIVATE NetworkSystem::NetworkSystem)
+if(TARGET network_system::network_system)
+    target_link_libraries(vcpkg_chain_consumer PRIVATE network_system::network_system)
     target_compile_definitions(vcpkg_chain_consumer PRIVATE HAS_NETWORK_SYSTEM)
 endif()
 
