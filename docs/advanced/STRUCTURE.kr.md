@@ -1,3 +1,13 @@
+---
+doc_id: "MON-ARCH-009"
+doc_title: "Monitoring System - 프로젝트 구조"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "ARCH"
+---
+
 # Monitoring System - 프로젝트 구조
 
 > **언어 선택 (Language)**: [English](STRUCTURE.md) | **한국어**

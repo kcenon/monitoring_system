@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-024"
+doc_title: "Plugin Development Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Plugin Development Guide
 
 ## Table of Contents

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-SECU-002"
+doc_title: "Security Policy"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "SECU"
+---
+
 # Security Policy
 
 > **Language:** **English** | [한국어](SECURITY.kr.md)

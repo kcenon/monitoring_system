@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PERF-005"
+doc_title: "Monitoring System - 성능 기준 메트릭"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PERF"
+---
+
 <<<<<<< HEAD
 # Monitoring System - 성능 기준 메트릭
 

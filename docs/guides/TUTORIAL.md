@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-021"
+doc_title: "Monitoring System Tutorial"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Monitoring System Tutorial
 
 > **Language:** **English** | [한국어](TUTORIAL.kr.md)

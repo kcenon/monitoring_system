@@ -1,3 +1,13 @@
+---
+doc_id: "MON-QUAL-002"
+doc_title: "Monitoring System - Production Quality Metrics"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "QUAL"
+---
+
 # Monitoring System - Production Quality Metrics
 
 **Version**: 0.1.0.0

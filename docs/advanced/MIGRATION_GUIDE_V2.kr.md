@@ -1,3 +1,13 @@
+---
+doc_id: "MON-MIGR-002"
+doc_title: "마이그레이션 가이드: 인터페이스 기반 아키텍처"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "MIGR"
+---
+
 # 마이그레이션 가이드: 인터페이스 기반 아키텍처
 
 > **Language:** [English](MIGRATION_GUIDE_V2.md) | **한국어**

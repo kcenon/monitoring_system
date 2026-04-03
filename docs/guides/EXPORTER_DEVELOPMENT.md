@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-011"
+doc_title: "Exporter Development Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Exporter Development Guide
 
 > **Version**: 1.0.0

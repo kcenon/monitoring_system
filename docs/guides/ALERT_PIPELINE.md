@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-008"
+doc_title: "Alert Pipeline Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Alert Pipeline Guide
 
 This guide covers the alert pipeline feature, enabling automated alerting based on metric thresholds, patterns, and anomalies.

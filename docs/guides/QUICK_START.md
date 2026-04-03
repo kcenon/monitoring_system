@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-015"
+doc_title: "Monitoring System - Quick Start Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Monitoring System - Quick Start Guide
 
 > **Version:** 0.1.0

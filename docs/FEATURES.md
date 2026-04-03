@@ -1,3 +1,13 @@
+---
+doc_id: "MON-FEAT-002"
+doc_title: "Monitoring System - Feature Documentation"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "FEAT"
+---
+
 # Monitoring System - Feature Documentation
 
 **Version**: 0.4.0.0

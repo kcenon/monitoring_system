@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PERF-014"
+doc_title: "Static Analysis Baseline - monitoring_system"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PERF"
+---
+
 # Static Analysis Baseline - monitoring_system
 
 > **Language:** **English** | [한국어](STATIC_ANALYSIS_BASELINE.kr.md)

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-009"
+doc_title: "Monitoring System - Best Practices Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Monitoring System - Best Practices Guide
 
 > **Version:** 0.1.0

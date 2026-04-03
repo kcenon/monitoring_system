@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PERF-008"
+doc_title: "성능 튜닝 가이드"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PERF"
+---
+
 # 성능 튜닝 가이드
 
 > **Language:** [English](PERFORMANCE_TUNING.md) | **한국어**
