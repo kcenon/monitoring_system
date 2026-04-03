@@ -10,6 +10,8 @@ category: "GUID"
 
 # Monitoring System - Quick Start Guide
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - Quick Start Guide**.
+
 > **Version:** 0.1.0
 > **Last Updated:** 2025-11-11
 > **Time to Complete:** 5 minutes

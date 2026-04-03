@@ -10,6 +10,8 @@ category: "FEAT"
 
 # Monitoring System - Feature Documentation
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - Feature Documentation**.
+
 **Version**: 0.4.0.0
 **Last Updated**: 2026-02-08
 

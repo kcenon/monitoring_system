@@ -10,6 +10,8 @@ category: "GUID"
 
 # Known Issues and Limitations
 
+> **SSOT**: This document is the single source of truth for **Known Issues and Limitations**.
+
 **Version**: 0.2.0.0
 **Last Updated**: 2026-01-09
 

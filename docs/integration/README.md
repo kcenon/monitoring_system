@@ -10,6 +10,8 @@ category: "GUID"
 
 # Monitoring System Integration Guide
 
+> **SSOT**: This document is the single source of truth for **Monitoring System Integration Guide**.
+
 ## Overview
 
 This directory contains integration guides for using monitoring_system with other KCENON systems.

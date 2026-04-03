@@ -10,6 +10,8 @@ category: "GUID"
 
 # 시스템 현재 상태 - Phase 0 기준선
 
+> **SSOT**: This document is the single source of truth for **시스템 현재 상태 - Phase 0 기준선**.
+
 > **Language:** [English](CURRENT_STATE.md) | **한국어**
 
 **문서 버전**: 0.1.0

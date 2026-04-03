@@ -10,6 +10,8 @@ category: "ARCH"
 
 # Monitoring System - Project Structure
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - Project Structure**.
+
 > **Language**: **English** | [한국어](STRUCTURE.kr.md)
 
 ## 📁 Directory Layout

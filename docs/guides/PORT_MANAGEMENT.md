@@ -10,6 +10,8 @@ category: "GUID"
 
 # vcpkg Port Management
 
+> **SSOT**: This document is the single source of truth for **vcpkg Port Management**.
+
 This document defines the authoritative port management strategy for the kcenon
 ecosystem and serves as the definitive reference for all port-related work.
 

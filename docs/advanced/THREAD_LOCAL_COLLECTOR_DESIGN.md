@@ -10,6 +10,8 @@ category: "ARCH"
 
 # Thread-Local Collector Design
 
+> **SSOT**: This document is the single source of truth for **Thread-Local Collector Design**.
+
 **Date**: 2025-11-09
 **Sprint**: 3-4 (Lock-Free Path)
 **Status**: Design Phase

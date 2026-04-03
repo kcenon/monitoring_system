@@ -10,6 +10,8 @@ category: "API"
 
 # Monitoring System API 레퍼런스
 
+> **SSOT**: This document is the single source of truth for **Monitoring System API 레퍼런스**.
+
 > **Language:** [English](API_REFERENCE.md) | **한국어**
 
 **Phase 4 - 현재 구현 상태**

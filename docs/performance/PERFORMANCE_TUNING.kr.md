@@ -10,6 +10,8 @@ category: "PERF"
 
 # 성능 튜닝 가이드
 
+> **SSOT**: This document is the single source of truth for **성능 튜닝 가이드**.
+
 > **Language:** [English](PERFORMANCE_TUNING.md) | **한국어**
 
 ## 목차

@@ -10,6 +10,8 @@ category: "SECU"
 
 # 보안 정책
 
+> **SSOT**: This document is the single source of truth for **보안 정책**.
+
 > **Language:** [English](SECURITY.md) | **한국어**
 
 ## 목차

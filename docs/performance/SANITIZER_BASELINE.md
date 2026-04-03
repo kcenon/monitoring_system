@@ -10,6 +10,8 @@ category: "PERF"
 
 # monitoring_system Sanitizer Baseline
 
+> **SSOT**: This document is the single source of truth for **monitoring_system Sanitizer Baseline**.
+
 > **Language:** **English** | [한국어](SANITIZER_BASELINE.kr.md)
 
 **Phase**: 0 - Foundation and Tooling

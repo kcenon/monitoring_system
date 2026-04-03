@@ -10,6 +10,8 @@ category: "SECU"
 
 # Security Policy
 
+> **SSOT**: This document is the single source of truth for **Security Policy**.
+
 > **Language:** **English** | [한국어](SECURITY.kr.md)
 
 ## Table of Contents

@@ -10,6 +10,8 @@ category: "PERF"
 
 # Monitoring System - Performance Benchmarks
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - Performance Benchmarks**.
+
 **Version**: 0.1.0.0
 **Last Updated**: 2025-11-15
 **Platform**: Apple M1 (8-core) @ 3.2GHz, 16GB RAM, macOS Sonoma

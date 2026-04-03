@@ -10,6 +10,8 @@ category: "GUID"
 
 # Alert Pipeline Guide
 
+> **SSOT**: This document is the single source of truth for **Alert Pipeline Guide**.
+
 This guide covers the alert pipeline feature, enabling automated alerting based on metric thresholds, patterns, and anomalies.
 
 ## Overview

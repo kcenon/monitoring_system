@@ -10,6 +10,8 @@ category: "PERF"
 
 # Static Analysis Baseline - monitoring_system
 
+> **SSOT**: This document is the single source of truth for **Static Analysis Baseline - monitoring_system**.
+
 > **Language:** **English** | [한국어](STATIC_ANALYSIS_BASELINE.kr.md)
 
 **Date**: 2025-10-03

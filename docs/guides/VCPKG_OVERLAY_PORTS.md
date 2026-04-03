@@ -10,6 +10,8 @@ category: "GUID"
 
 # vcpkg Overlay Ports Guide
 
+> **SSOT**: This document is the single source of truth for **vcpkg Overlay Ports Guide**.
+
 This guide explains how to use the vcpkg overlay ports provided by the
 `monitoring_system` repository, which acts as the **canonical port registry**
 for the entire kcenon ecosystem.

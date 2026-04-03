@@ -10,6 +10,8 @@ category: "ARCH"
 
 # Architecture Issues - Phase 0 식별
 
+> **SSOT**: This document is the single source of truth for **Architecture Issues - Phase 0 식별**.
+
 > **Language:** [English](ARCHITECTURE_ISSUES.md) | **한국어**
 
 ## 목차

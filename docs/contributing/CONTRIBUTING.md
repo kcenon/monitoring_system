@@ -10,6 +10,8 @@ category: "PROJ"
 
 # Contributing to Monitoring System
 
+> **SSOT**: This document is the single source of truth for **Contributing to Monitoring System**.
+
 > **Language:** **English** | [한국어](CONTRIBUTING.kr.md)
 
 We welcome contributions to the Monitoring System! This document provides guidelines for contributing to the project.

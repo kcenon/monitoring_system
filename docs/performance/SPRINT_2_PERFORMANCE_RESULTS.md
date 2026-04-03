@@ -10,6 +10,8 @@ category: "PERF"
 
 # Sprint 2 Performance Verification Results
 
+> **SSOT**: This document is the single source of truth for **Sprint 2 Performance Verification Results**.
+
 **Date**: 2025-11-09
 **Branch**: feature/sprint-2-hot-path-optimization
 **Commits**: 4936d24 (Multiple inheritance removal), aa0c185 (LRU eviction)

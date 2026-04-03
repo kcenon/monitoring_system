@@ -10,6 +10,8 @@ category: "PERF"
 
 # Baseline Performance Metrics
 
+> **SSOT**: This document is the single source of truth for **Baseline Performance Metrics**.
+
 **Document Version**: 3.0
 **Created**: 2025-10-07
 **Updated**: 2026-02-12

@@ -10,6 +10,8 @@ category: "PERF"
 
 # Performance Profiling Guide for monitoring_system
 
+> **SSOT**: This document is the single source of truth for **Performance Profiling Guide for monitoring_system**.
+
 **Date**: 2025-11-09
 **Sprint**: Sprint 2 - Hot Path Optimization
 

@@ -10,6 +10,8 @@ category: "GUID"
 
 # Monitoring System - 빠른 시작 가이드
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - 빠른 시작 가이드**.
+
 > **Language:** [English](QUICK_START.md) | **한국어**
 
 > **버전:** 0.1.0

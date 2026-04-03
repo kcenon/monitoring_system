@@ -10,6 +10,8 @@ category: "QUAL"
 
 # Monitoring System - Production Quality Metrics
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - Production Quality Metrics**.
+
 **Version**: 0.1.0.0
 **Last Updated**: 2025-11-15
 **Grade**: **A** (Production Ready)

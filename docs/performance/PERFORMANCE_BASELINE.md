@@ -10,6 +10,8 @@ category: "PERF"
 
 # Performance Baseline Measurements
 
+> **SSOT**: This document is the single source of truth for **Performance Baseline Measurements**.
+
 **Date**: 2025-11-08
 **System**: macOS (8-core, L1D: 64 KiB, L1I: 128 KiB, L2: 4096 KiB)
 **Compiler**: Default system compiler

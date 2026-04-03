@@ -10,6 +10,8 @@ category: "ARCH"
 
 # Monitoring System Architecture Guide
 
+> **SSOT**: This document is the single source of truth for **Monitoring System Architecture Guide**.
+
 > **Language:** **English** | [한국어](ARCHITECTURE_GUIDE.kr.md)
 
 **Phase 4 - Current Implementation Architecture**
