@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file simd_aggregator.h
+ * @brief SIMD-accelerated metric aggregation (AVX2/NEON auto-detected).
+ *
+ */
+
 #pragma once
 
 #include <algorithm>

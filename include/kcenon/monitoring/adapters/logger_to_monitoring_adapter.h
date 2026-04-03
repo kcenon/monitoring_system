@@ -1,3 +1,9 @@
+/**
+ * @file logger_to_monitoring_adapter.h
+ * @brief Logger system adapter using dependency injection for monitoring integration.
+ *
+ */
+
 #pragma once
 
 #ifndef KCENON_MONITORING_ADAPTERS_LOGGER_TO_MONITORING_ADAPTER_H

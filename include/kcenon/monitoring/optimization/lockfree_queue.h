@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file lockfree_queue.h
+ * @brief Lock-free MPMC queue optimized for metric collection pipelines.
+ *
+ */
+
 #pragma once
 
 #include <atomic>

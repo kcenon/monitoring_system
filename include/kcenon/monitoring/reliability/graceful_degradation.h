@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file graceful_degradation.h
+ * @brief Service priority levels and graceful degradation strategies.
+ *
+ */
+
 #pragma once
 
 #include "error_boundary.h"

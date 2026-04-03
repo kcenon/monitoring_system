@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file monitor_adapter.h
+ * @brief Standalone adapter for performance_monitor without DI.
+ *
+ */
+
 #pragma once
 
 #include <kcenon/monitoring/core/performance_monitor.h>

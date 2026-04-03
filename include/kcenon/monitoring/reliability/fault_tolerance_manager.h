@@ -2,6 +2,14 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file fault_tolerance_manager.h
+ * @brief Fault tolerance manager coordinating circuit breakers and retries.
+ *
+ * @see error_boundary.h
+ * @see retry_policy.h
+ */
+
 #pragma once
 
 #include "circuit_breaker.h"

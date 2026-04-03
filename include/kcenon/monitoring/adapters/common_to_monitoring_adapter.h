@@ -1,3 +1,10 @@
+/**
+ * @file common_to_monitoring_adapter.h
+ * @brief Adapter exposing monitoring_system as common::interfaces::IMonitor.
+ *
+ * @see monitoring_to_common_adapter.h
+ */
+
 #pragma once
 
 // BSD 3-Clause License

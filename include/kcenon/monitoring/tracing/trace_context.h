@@ -2,6 +2,13 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file trace_context.h
+ * @brief W3C-style trace context with trace_id, span_id, and parent propagation.
+ *
+ * @see distributed_tracer
+ */
+
 #pragma once
 #include <string>
 #include <chrono>

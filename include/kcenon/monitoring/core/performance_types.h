@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file performance_types.h
+ * @brief Lightweight performance profile types for aggregated metrics.
+ *
+ */
+
 #pragma once
 
 #include <cstdint>

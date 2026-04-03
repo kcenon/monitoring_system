@@ -1,3 +1,10 @@
+/**
+ * @file thread_to_monitoring_adapter.h
+ * @brief Thread system adapter for pulling metrics from thread_system.
+ *
+ * @see thread_system_collector.h
+ */
+
 #pragma once
 
 // Define guard so compatibility shim does not try to include a non‑existent path

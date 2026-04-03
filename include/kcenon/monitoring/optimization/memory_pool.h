@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file memory_pool.h
+ * @brief Platform-specific aligned memory allocation pool for monitoring objects.
+ *
+ */
+
 #pragma once
 
 #include <atomic>
