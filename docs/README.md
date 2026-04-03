@@ -13,7 +13,7 @@ category: "GUID"
 > **SSOT**: This file is the single source of truth for the documentation index
 > of **monitoring_system**.
 
-Total documents: **77**
+Total documents: **80**
 
 ## Document Index
 
@@ -85,17 +85,20 @@ Total documents: **77**
 | 64 | MON-INTR-004 | OpenTelemetry Collector Sidecar Pattern | [OTEL_COLLECTOR_SIDECAR.md](./guides/OTEL_COLLECTOR_SIDECAR.md) | Released |
 | 65 | MON-QUAL-001 | Monitoring System - 프로덕션 품질 메트릭 | [PRODUCTION_QUALITY.kr.md](./PRODUCTION_QUALITY.kr.md) | Released |
 | 66 | MON-QUAL-002 | Monitoring System - Production Quality Metrics | [PRODUCTION_QUALITY.md](./PRODUCTION_QUALITY.md) | Released |
-| 67 | MON-QUAL-003 | Testing Guide | [TESTING_GUIDE.md](./contributing/TESTING_GUIDE.md) | Released |
-| 68 | MON-QUAL-004 | Reliability Patterns Usage Guide | [RELIABILITY_PATTERNS.md](./guides/RELIABILITY_PATTERNS.md) | Released |
-| 69 | MON-SECU-001 | 보안 정책 | [SECURITY.kr.md](./guides/SECURITY.kr.md) | Released |
-| 70 | MON-SECU-002 | Security Policy | [SECURITY.md](./guides/SECURITY.md) | Released |
-| 71 | MON-PROJ-001 | 변경 로그 | [CHANGELOG.kr.md](./CHANGELOG.kr.md) | Released |
-| 72 | MON-PROJ-002 | Changelog | [CHANGELOG.md](./CHANGELOG.md) | Released |
-| 73 | MON-PROJ-003 | Monitoring System - 프로젝트 구조 | [PROJECT_STRUCTURE.kr.md](./PROJECT_STRUCTURE.kr.md) | Released |
-| 74 | MON-PROJ-004 | Monitoring System - Project Structure | [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) | Released |
-| 75 | MON-PROJ-005 | SOUP List &mdash; monitoring_system | [SOUP.md](./SOUP.md) | Released |
-| 76 | MON-PROJ-006 | Monitoring System에 기여하기 | [CONTRIBUTING.kr.md](./contributing/CONTRIBUTING.kr.md) | Released |
-| 77 | MON-PROJ-007 | Contributing to Monitoring System | [CONTRIBUTING.md](./contributing/CONTRIBUTING.md) | Released |
+| 67 | MON-QUAL-002 | Feature-Test-Module Traceability Matrix | [TRACEABILITY.md](./TRACEABILITY.md) | Released |
+| 68 | MON-QUAL-003 | Testing Guide | [TESTING_GUIDE.md](./contributing/TESTING_GUIDE.md) | Released |
+| 69 | MON-QUAL-004 | Reliability Patterns Usage Guide | [RELIABILITY_PATTERNS.md](./guides/RELIABILITY_PATTERNS.md) | Released |
+| 70 | MON-SECU-001 | 보안 정책 | [SECURITY.kr.md](./guides/SECURITY.kr.md) | Released |
+| 71 | MON-SECU-002 | Security Policy | [SECURITY.md](./guides/SECURITY.md) | Released |
+| 72 | MON-ADR-001 | ADR-001: Collector Factory Pattern | [ADR-001-collector-factory-pattern.md](./adr/ADR-001-collector-factory-pattern.md) | Accepted |
+| 73 | MON-ADR-002 | ADR-002: Distributed Tracing Integration | [ADR-002-distributed-tracing-integration.md](./adr/ADR-002-distributed-tracing-integration.md) | Accepted |
+| 74 | MON-PROJ-001 | 변경 로그 | [CHANGELOG.kr.md](./CHANGELOG.kr.md) | Released |
+| 75 | MON-PROJ-002 | Changelog | [CHANGELOG.md](./CHANGELOG.md) | Released |
+| 76 | MON-PROJ-003 | Monitoring System - 프로젝트 구조 | [PROJECT_STRUCTURE.kr.md](./PROJECT_STRUCTURE.kr.md) | Released |
+| 77 | MON-PROJ-004 | Monitoring System - Project Structure | [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) | Released |
+| 78 | MON-PROJ-005 | SOUP List &mdash; monitoring_system | [SOUP.md](./SOUP.md) | Released |
+| 79 | MON-PROJ-006 | Monitoring System에 기여하기 | [CONTRIBUTING.kr.md](./contributing/CONTRIBUTING.kr.md) | Released |
+| 80 | MON-PROJ-007 | Contributing to Monitoring System | [CONTRIBUTING.md](./contributing/CONTRIBUTING.md) | Released |
 
 ## Documents by Category
 
@@ -198,12 +201,13 @@ Total documents: **77**
 | MON-INTR-003 | OpenTelemetry Collector 사이드카 패턴 | [OTEL_COLLECTOR_SIDECAR.kr.md](./guides/OTEL_COLLECTOR_SIDECAR.kr.md) | Released |
 | MON-INTR-004 | OpenTelemetry Collector Sidecar Pattern | [OTEL_COLLECTOR_SIDECAR.md](./guides/OTEL_COLLECTOR_SIDECAR.md) | Released |
 
-### Quality (4)
+### Quality (5)
 
 | doc_id | Topic | Document | Status |
 |--------|-------|----------|--------|
 | MON-QUAL-001 | Monitoring System - 프로덕션 품질 메트릭 | [PRODUCTION_QUALITY.kr.md](./PRODUCTION_QUALITY.kr.md) | Released |
 | MON-QUAL-002 | Monitoring System - Production Quality Metrics | [PRODUCTION_QUALITY.md](./PRODUCTION_QUALITY.md) | Released |
+| MON-QUAL-002 | Feature-Test-Module Traceability Matrix | [TRACEABILITY.md](./TRACEABILITY.md) | Released |
 | MON-QUAL-003 | Testing Guide | [TESTING_GUIDE.md](./contributing/TESTING_GUIDE.md) | Released |
 | MON-QUAL-004 | Reliability Patterns Usage Guide | [RELIABILITY_PATTERNS.md](./guides/RELIABILITY_PATTERNS.md) | Released |
 
@@ -213,6 +217,13 @@ Total documents: **77**
 |--------|-------|----------|--------|
 | MON-SECU-001 | 보안 정책 | [SECURITY.kr.md](./guides/SECURITY.kr.md) | Released |
 | MON-SECU-002 | Security Policy | [SECURITY.md](./guides/SECURITY.md) | Released |
+
+### Architecture Decision Records (2)
+
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-ADR-001 | ADR-001: Collector Factory Pattern | [ADR-001-collector-factory-pattern.md](./adr/ADR-001-collector-factory-pattern.md) | Accepted |
+| MON-ADR-002 | ADR-002: Distributed Tracing Integration | [ADR-002-distributed-tracing-integration.md](./adr/ADR-002-distributed-tracing-integration.md) | Accepted |
 
 ### Project (7)
 
