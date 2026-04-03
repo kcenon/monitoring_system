@@ -1,3 +1,13 @@
+---
+doc_id: "MON-MIGR-005"
+doc_title: "Namespace Migration Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "MIGR"
+---
+
 # Namespace Migration Guide
 
 > **Version:** 1.0.0

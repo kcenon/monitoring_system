@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-006"
+doc_title: "CI/CD Guide for Monitoring System"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # CI/CD Guide for Monitoring System
 
 > **Version:** 0.1.0

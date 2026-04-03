@@ -1,3 +1,13 @@
+---
+doc_id: "MON-SECU-001"
+doc_title: "보안 정책"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "SECU"
+---
+
 # 보안 정책
 
 > **Language:** [English](SECURITY.md) | **한국어**

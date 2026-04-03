@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PERF-009"
+doc_title: "Performance Tuning Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PERF"
+---
+
 # Performance Tuning Guide
 
 > **Language:** **English** | [한국어](PERFORMANCE_TUNING.kr.md)

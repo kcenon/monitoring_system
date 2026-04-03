@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-022"
+doc_title: "vcpkg Overlay Ports Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # vcpkg Overlay Ports Guide
 
 This guide explains how to use the vcpkg overlay ports provided by the

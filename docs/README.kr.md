@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-002"
+doc_title: "Monitoring System 문서"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Monitoring System 문서
 
 > **Language:** [English](README.md) | **한국어**

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-PERF-007"
+doc_title: "Performance Baseline Measurements"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "PERF"
+---
+
 # Performance Baseline Measurements
 
 **Date**: 2025-11-08

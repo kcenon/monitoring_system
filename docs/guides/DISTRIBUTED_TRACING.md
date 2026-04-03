@@ -1,3 +1,13 @@
+---
+doc_id: "MON-INTR-001"
+doc_title: "Distributed Tracing Deep Dive Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "INTR"
+---
+
 # Distributed Tracing Deep Dive Guide
 
 > **Version**: 0.1.0

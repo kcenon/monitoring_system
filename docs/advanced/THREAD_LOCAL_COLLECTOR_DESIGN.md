@@ -1,3 +1,13 @@
+---
+doc_id: "MON-ARCH-011"
+doc_title: "Thread-Local Collector Design"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "ARCH"
+---
+
 # Thread-Local Collector Design
 
 **Date**: 2025-11-09

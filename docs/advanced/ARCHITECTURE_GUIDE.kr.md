@@ -1,3 +1,13 @@
+---
+doc_id: "MON-ARCH-004"
+doc_title: "Monitoring System 아키텍처 가이드"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "ARCH"
+---
+
 # Monitoring System 아키텍처 가이드
 
 > **Language:** [English](ARCHITECTURE_GUIDE.md) | **한국어**

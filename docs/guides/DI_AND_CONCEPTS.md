@@ -1,3 +1,13 @@
+---
+doc_id: "MON-API-003"
+doc_title: "DI Container and C++20 Concepts Guide"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "API"
+---
+
 # DI Container and C++20 Concepts Guide
 
 > **Language:** **English** | Advanced Guide

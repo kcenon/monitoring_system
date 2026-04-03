@@ -1,3 +1,13 @@
+---
+doc_id: "MON-ARCH-008"
+doc_title: "Interface Separation Strategy"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "ARCH"
+---
+
 # Interface Separation Strategy
 
 **Version**: 0.1.0.0

@@ -1,3 +1,13 @@
+---
+doc_id: "MON-GUID-001"
+doc_title: "Known Issues and Limitations"
+doc_version: "1.0.0"
+doc_date: "2026-04-04"
+doc_status: "Released"
+project: "monitoring_system"
+category: "GUID"
+---
+
 # Known Issues and Limitations
 
 **Version**: 0.2.0.0
