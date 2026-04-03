@@ -2,6 +2,13 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file plugin_metric_collector.h
+ * @brief Plugin-based metric collector with dynamic discovery and registration.
+ *
+ * @see metric_collector_interface
+ */
+
 #pragma once
 
 #include <algorithm>

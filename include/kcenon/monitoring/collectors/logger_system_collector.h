@@ -2,6 +2,13 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file logger_system_collector.h
+ * @brief Metric collector for logger_system log statistics.
+ *
+ * @see collector_plugin
+ */
+
 #pragma once
 
 #include <algorithm>

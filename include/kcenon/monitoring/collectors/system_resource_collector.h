@@ -2,6 +2,13 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file system_resource_collector.h
+ * @brief System resource collector for CPU, memory, and disk metrics.
+ *
+ * @see metrics_provider For platform-specific implementations
+ */
+
 #pragma once
 
 #include <array>

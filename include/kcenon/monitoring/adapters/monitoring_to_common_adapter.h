@@ -1,3 +1,10 @@
+/**
+ * @file monitoring_to_common_adapter.h
+ * @brief Health status conversion between monitoring_system and common_system.
+ *
+ * @see common_to_monitoring_adapter.h
+ */
+
 #pragma once
 
 // BSD 3-Clause License

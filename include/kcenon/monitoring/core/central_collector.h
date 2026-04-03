@@ -2,6 +2,13 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file central_collector.h
+ * @brief Central collector for aggregating metrics from thread-local buffers.
+ *
+ * @see interface_metric_source
+ */
+
 #pragma once
 
 #include <kcenon/monitoring/core/thread_local_buffer.h>

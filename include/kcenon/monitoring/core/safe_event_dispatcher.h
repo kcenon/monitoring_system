@@ -3,6 +3,13 @@
 // See the LICENSE file in the project root for full license information.
 
 
+/**
+ * @file safe_event_dispatcher.h
+ * @brief Thread-safe event dispatcher with error boundary for handler failures.
+ *
+ * @see event_bus.h
+ */
+
 #pragma once
 
 #include "event_bus.h"

@@ -2,6 +2,13 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file thread_system_collector.h
+ * @brief Metric collector for thread_system pool and queue statistics.
+ *
+ * @see thread_to_monitoring_adapter.h
+ */
+
 #pragma once
 
 #include <algorithm>
