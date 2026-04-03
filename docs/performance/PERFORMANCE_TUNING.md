@@ -10,6 +10,8 @@ category: "PERF"
 
 # Performance Tuning Guide
 
+> **SSOT**: This document is the single source of truth for **Performance Tuning Guide**.
+
 > **Language:** **English** | [한국어](PERFORMANCE_TUNING.kr.md)
 
 ## Table of Contents

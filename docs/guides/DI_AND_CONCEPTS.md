@@ -10,6 +10,8 @@ category: "API"
 
 # DI Container and C++20 Concepts Guide
 
+> **SSOT**: This document is the single source of truth for **DI Container and C++20 Concepts Guide**.
+
 > **Language:** **English** | Advanced Guide
 >
 > **Source Reference**: This guide documents actual implementations from the monitoring_system codebase.

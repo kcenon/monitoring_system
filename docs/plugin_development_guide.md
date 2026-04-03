@@ -10,6 +10,8 @@ category: "GUID"
 
 # Plugin Development Guide
 
+> **SSOT**: This document is the single source of truth for **Plugin Development Guide**.
+
 ## Table of Contents
 
 - [Quick Start](#quick-start)

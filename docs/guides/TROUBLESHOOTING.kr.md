@@ -10,6 +10,8 @@ category: "GUID"
 
 # 문제 해결 가이드
 
+> **SSOT**: This document is the single source of truth for **문제 해결 가이드**.
+
 > **Language:** [English](TROUBLESHOOTING.md) | **한국어**
 
 ## 목차

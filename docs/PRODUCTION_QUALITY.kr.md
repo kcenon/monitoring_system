@@ -10,6 +10,8 @@ category: "QUAL"
 
 # Monitoring System - 프로덕션 품질 메트릭
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - 프로덕션 품질 메트릭**.
+
 **언어:** [English](PRODUCTION_QUALITY.md) | **한국어**
 
 **버전**: 0.1.0

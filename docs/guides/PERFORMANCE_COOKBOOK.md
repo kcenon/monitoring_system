@@ -10,6 +10,8 @@ category: "PERF"
 
 # Performance Optimization Cookbook
 
+> **SSOT**: This document is the single source of truth for **Performance Optimization Cookbook**.
+
 > **Language:** **English** | Advanced Guide
 >
 > **Source Reference**: This guide documents actual implementations from the monitoring_system codebase.

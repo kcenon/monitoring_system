@@ -10,6 +10,8 @@ category: "GUID"
 
 # Monitoring System 튜토리얼
 
+> **SSOT**: This document is the single source of truth for **Monitoring System 튜토리얼**.
+
 > **Language:** [English](TUTORIAL.md) | **한국어**
 
 ## 소개

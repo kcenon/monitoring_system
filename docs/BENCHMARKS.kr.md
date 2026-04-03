@@ -10,6 +10,8 @@ category: "PERF"
 
 # Monitoring System - 성능 벤치마크
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - 성능 벤치마크**.
+
 **언어:** [English](BENCHMARKS.md) | **한국어**
 
 **버전**: 0.1.0

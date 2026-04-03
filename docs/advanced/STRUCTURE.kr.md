@@ -10,6 +10,8 @@ category: "ARCH"
 
 # Monitoring System - 프로젝트 구조
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - 프로젝트 구조**.
+
 > **언어 선택 (Language)**: [English](STRUCTURE.md) | **한국어**
 
 ## 📁 디렉토리 레이아웃

@@ -10,6 +10,8 @@ category: "MIGR"
 
 # Migration Guide: Interface-Based Architecture
 
+> **SSOT**: This document is the single source of truth for **Migration Guide: Interface-Based Architecture**.
+
 > **Language:** **English** | [한국어](MIGRATION_GUIDE_V2.kr.md)
 
 **Target Audience**: Developers using logger_system and/or monitoring_system

@@ -10,6 +10,8 @@ category: "MIGR"
 
 # 마이그레이션 가이드: 인터페이스 기반 아키텍처
 
+> **SSOT**: This document is the single source of truth for **마이그레이션 가이드: 인터페이스 기반 아키텍처**.
+
 > **Language:** [English](MIGRATION_GUIDE_V2.md) | **한국어**
 
 **대상 독자**: logger_system 및/또는 monitoring_system을 사용하는 개발자

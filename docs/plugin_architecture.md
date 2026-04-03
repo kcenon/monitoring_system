@@ -10,6 +10,8 @@ category: "ARCH"
 
 # Collector Plugin Architecture
 
+> **SSOT**: This document is the single source of truth for **Collector Plugin Architecture**.
+
 ## Overview
 
 The collector plugin architecture provides a unified interface for all metric collectors in the monitoring system. It enables:

@@ -10,6 +10,8 @@ category: "GUID"
 
 # System Current State - Phase 0 Baseline
 
+> **SSOT**: This document is the single source of truth for **System Current State - Phase 0 Baseline**.
+
 > **Language:** **English** | [한국어](CURRENT_STATE.kr.md)
 
 **Document Version**: 1.0

@@ -10,6 +10,8 @@ category: "PROJ"
 
 # Monitoring System에 기여하기
 
+> **SSOT**: This document is the single source of truth for **Monitoring System에 기여하기**.
+
 > **Language:** [English](CONTRIBUTING.md) | **한국어**
 
 Monitoring System에 대한 기여를 환영합니다! 이 문서는 프로젝트에 기여하기 위한 가이드라인을 제공합니다.

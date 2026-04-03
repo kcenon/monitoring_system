@@ -10,6 +10,8 @@ category: "GUID"
 
 # Monitoring System - Best Practices Guide
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - Best Practices Guide**.
+
 > **Version:** 0.1.0
 > **Last Updated:** 2025-11-11
 > **Audience:** Developers, DevOps Engineers, SREs

@@ -10,6 +10,8 @@ category: "MIGR"
 
 # 네임스페이스 마이그레이션 가이드
 
+> **SSOT**: This document is the single source of truth for **네임스페이스 마이그레이션 가이드**.
+
 > **버전:** 1.0.0
 > **최종 업데이트:** 2025-02-05
 > **상태:** 마이그레이션 완료 (v1.0)

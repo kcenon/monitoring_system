@@ -10,6 +10,8 @@ category: "PERF"
 
 # 정적 분석 기준선 - monitoring_system
 
+> **SSOT**: This document is the single source of truth for **정적 분석 기준선 - monitoring_system**.
+
 > **Language:** [English](STATIC_ANALYSIS_BASELINE.md) | **한국어**
 
 **날짜**: 2025-10-03
