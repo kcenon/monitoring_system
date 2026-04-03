@@ -2,6 +2,13 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file error_boundary.h
+ * @brief Error boundary with degradation levels for fault isolation.
+ *
+ * @see fault_tolerance_manager.h
+ */
+
 #pragma once
 
 #include <atomic>

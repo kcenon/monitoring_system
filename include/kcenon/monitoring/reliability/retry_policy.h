@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file retry_policy.h
+ * @brief Retry strategies with backoff for monitoring operations.
+ *
+ */
+
 #pragma once
 
 #include <algorithm>

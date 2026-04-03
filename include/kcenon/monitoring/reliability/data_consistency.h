@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file data_consistency.h
+ * @brief Transaction states and consistency validation for metric storage.
+ *
+ */
+
 #pragma once
 
 #include <atomic>

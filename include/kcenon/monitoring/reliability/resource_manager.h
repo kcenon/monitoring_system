@@ -2,6 +2,12 @@
 // Copyright (c) 2021-2025, 🍀☀🌕🌥 🌊
 // See the LICENSE file in the project root for full license information.
 
+/**
+ * @file resource_manager.h
+ * @brief Resource exhaustion handling strategies and limits.
+ *
+ */
+
 #pragma once
 
 #include <atomic>
