@@ -1,6 +1,6 @@
 ---
 doc_id: "MON-GUID-003"
-doc_title: "Monitoring System Documentation"
+doc_title: "Monitoring System Documentation Registry"
 doc_version: "1.0.0"
 doc_date: "2026-04-04"
 doc_status: "Released"
@@ -8,324 +8,224 @@ project: "monitoring_system"
 category: "GUID"
 ---
 
-# Monitoring System Documentation
+# Monitoring System — Documentation Registry
 
-> **Language:** **English** | [한국어](README.kr.md)
+> **SSOT**: This file is the single source of truth for the documentation index
+> of **monitoring_system**.
 
-**Version:** 0.1.0
-**Last Updated:** 2025-11-11
-**Status:** Comprehensive
+Total documents: **77**
 
-Welcome to the monitoring_system documentation! This observability platform provides metrics collection, distributed tracing, real-time alerting, and interactive dashboards for C++20 applications.
+## Document Index
 
----
+| # | doc_id | Topic | Authority Document | Status |
+|---|--------|-------|-------------------|--------|
+| 1 | MON-ARCH-001 | Architecture | [ARCHITECTURE.kr.md](./ARCHITECTURE.kr.md) | Released |
+| 2 | MON-ARCH-002 | Architecture | [ARCHITECTURE.md](./ARCHITECTURE.md) | Released |
+| 3 | MON-ARCH-003 | Architecture Overview | [ARCHITECTURE.md](./advanced/ARCHITECTURE.md) | Released |
+| 4 | MON-ARCH-004 | Monitoring System 아키텍처 가이드 | [ARCHITECTURE_GUIDE.kr.md](./advanced/ARCHITECTURE_GUIDE.kr.md) | Released |
+| 5 | MON-ARCH-005 | Monitoring System Architecture Guide | [ARCHITECTURE_GUIDE.md](./advanced/ARCHITECTURE_GUIDE.md) | Released |
+| 6 | MON-ARCH-006 | Architecture Issues - Phase 0 식별 | [ARCHITECTURE_ISSUES.kr.md](./advanced/ARCHITECTURE_ISSUES.kr.md) | Released |
+| 7 | MON-ARCH-007 | Architecture Issues - Phase 0 Identification | [ARCHITECTURE_ISSUES.md](./advanced/ARCHITECTURE_ISSUES.md) | Released |
+| 8 | MON-ARCH-008 | Interface Separation Strategy | [INTERFACE_SEPARATION_STRATEGY.md](./advanced/INTERFACE_SEPARATION_STRATEGY.md) | Released |
+| 9 | MON-ARCH-009 | Monitoring System - 프로젝트 구조 | [STRUCTURE.kr.md](./advanced/STRUCTURE.kr.md) | Released |
+| 10 | MON-ARCH-010 | Monitoring System - Project Structure | [STRUCTURE.md](./advanced/STRUCTURE.md) | Released |
+| 11 | MON-ARCH-011 | Thread-Local Collector Design | [THREAD_LOCAL_COLLECTOR_DESIGN.md](./advanced/THREAD_LOCAL_COLLECTOR_DESIGN.md) | Released |
+| 12 | MON-ARCH-012 | Collector Plugin Architecture | [plugin_architecture.md](./plugin_architecture.md) | Released |
+| 13 | MON-API-001 | Monitoring System API 레퍼런스 | [API_REFERENCE.kr.md](./API_REFERENCE.kr.md) | Released |
+| 14 | MON-API-002 | Monitoring System API Reference | [API_REFERENCE.md](./API_REFERENCE.md) | Released |
+| 15 | MON-API-003 | DI Container and C++20 Concepts Guide | [DI_AND_CONCEPTS.md](./guides/DI_AND_CONCEPTS.md) | Released |
+| 16 | MON-API-004 | Plugin API Reference | [plugin_api_reference.md](./plugin_api_reference.md) | Released |
+| 17 | MON-FEAT-001 | Monitoring System - 상세 기능 | [FEATURES.kr.md](./FEATURES.kr.md) | Released |
+| 18 | MON-FEAT-002 | Monitoring System - Feature Documentation | [FEATURES.md](./FEATURES.md) | Released |
+| 19 | MON-GUID-001 | Known Issues and Limitations | [KNOWN_ISSUES.md](./KNOWN_ISSUES.md) | Released |
+| 20 | MON-GUID-002 | Monitoring System 문서 | [README.kr.md](./README.kr.md) | Released |
+| 21 | MON-GUID-004 | 시스템 현재 상태 - Phase 0 기준선 | [CURRENT_STATE.kr.md](./advanced/CURRENT_STATE.kr.md) | Released |
+| 22 | MON-GUID-005 | System Current State - Phase 0 Baseline | [CURRENT_STATE.md](./advanced/CURRENT_STATE.md) | Released |
+| 23 | MON-GUID-006 | CI/CD Guide for Monitoring System | [CI_CD_GUIDE.md](./contributing/CI_CD_GUIDE.md) | Released |
+| 24 | MON-GUID-007 | Advanced Alert Configuration Guide | [ADVANCED_ALERTS.md](./guides/ADVANCED_ALERTS.md) | Released |
+| 25 | MON-GUID-008 | Alert Pipeline Guide | [ALERT_PIPELINE.md](./guides/ALERT_PIPELINE.md) | Released |
+| 26 | MON-GUID-009 | Monitoring System - Best Practices Guide | [BEST_PRACTICES.md](./guides/BEST_PRACTICES.md) | Released |
+| 27 | MON-GUID-010 | Collector Development Guide | [COLLECTOR_DEVELOPMENT.md](./guides/COLLECTOR_DEVELOPMENT.md) | Released |
+| 28 | MON-GUID-011 | Exporter Development Guide | [EXPORTER_DEVELOPMENT.md](./guides/EXPORTER_DEVELOPMENT.md) | Released |
+| 29 | MON-GUID-012 | Monitoring System - Frequently Asked Questions | [FAQ.md](./guides/FAQ.md) | Released |
+| 30 | MON-GUID-013 | vcpkg Port Management | [PORT_MANAGEMENT.md](./guides/PORT_MANAGEMENT.md) | Released |
+| 31 | MON-GUID-014 | Monitoring System - 빠른 시작 가이드 | [QUICK_START.kr.md](./guides/QUICK_START.kr.md) | Released |
+| 32 | MON-GUID-015 | Monitoring System - Quick Start Guide | [QUICK_START.md](./guides/QUICK_START.md) | Released |
+| 33 | MON-GUID-016 | Storage Backend Implementation Guide | [STORAGE_BACKENDS.md](./guides/STORAGE_BACKENDS.md) | Released |
+| 34 | MON-GUID-017 | Stream Processing and Aggregation Framework | [STREAM_PROCESSING.md](./guides/STREAM_PROCESSING.md) | Released |
+| 35 | MON-GUID-018 | 문제 해결 가이드 | [TROUBLESHOOTING.kr.md](./guides/TROUBLESHOOTING.kr.md) | Released |
+| 36 | MON-GUID-019 | Troubleshooting Guide | [TROUBLESHOOTING.md](./guides/TROUBLESHOOTING.md) | Released |
+| 37 | MON-GUID-020 | Monitoring System 튜토리얼 | [TUTORIAL.kr.md](./guides/TUTORIAL.kr.md) | Released |
+| 38 | MON-GUID-021 | Monitoring System Tutorial | [TUTORIAL.md](./guides/TUTORIAL.md) | Released |
+| 39 | MON-GUID-022 | vcpkg Overlay Ports Guide | [VCPKG_OVERLAY_PORTS.md](./guides/VCPKG_OVERLAY_PORTS.md) | Released |
+| 40 | MON-GUID-023 | Monitoring System Integration Guide | [README.md](./integration/README.md) | Released |
+| 41 | MON-GUID-024 | Plugin Development Guide | [plugin_development_guide.md](./plugin_development_guide.md) | Released |
+| 42 | MON-PERF-001 | Monitoring System - 성능 벤치마크 | [BENCHMARKS.kr.md](./BENCHMARKS.kr.md) | Released |
+| 43 | MON-PERF-002 | Monitoring System - Performance Benchmarks | [BENCHMARKS.md](./BENCHMARKS.md) | Released |
+| 44 | MON-PERF-003 | Performance Profiling Guide for monitoring_system | [PROFILING_GUIDE.md](./advanced/PROFILING_GUIDE.md) | Released |
+| 45 | MON-PERF-004 | Performance Optimization Cookbook | [PERFORMANCE_COOKBOOK.md](./guides/PERFORMANCE_COOKBOOK.md) | Released |
+| 46 | MON-PERF-005 | Monitoring System - 성능 기준 메트릭 | [BASELINE.kr.md](./performance/BASELINE.kr.md) | Released |
+| 47 | MON-PERF-006 | Baseline Performance Metrics | [BASELINE.md](./performance/BASELINE.md) | Released |
+| 48 | MON-PERF-007 | Performance Baseline Measurements | [PERFORMANCE_BASELINE.md](./performance/PERFORMANCE_BASELINE.md) | Released |
+| 49 | MON-PERF-008 | 성능 튜닝 가이드 | [PERFORMANCE_TUNING.kr.md](./performance/PERFORMANCE_TUNING.kr.md) | Released |
+| 50 | MON-PERF-009 | Performance Tuning Guide | [PERFORMANCE_TUNING.md](./performance/PERFORMANCE_TUNING.md) | Released |
+| 51 | MON-PERF-010 | monitoring_system Sanitizer 기준선 | [SANITIZER_BASELINE.kr.md](./performance/SANITIZER_BASELINE.kr.md) | Released |
+| 52 | MON-PERF-011 | monitoring_system Sanitizer Baseline | [SANITIZER_BASELINE.md](./performance/SANITIZER_BASELINE.md) | Released |
+| 53 | MON-PERF-012 | Sprint 2 Performance Verification Results | [SPRINT_2_PERFORMANCE_RESULTS.md](./performance/SPRINT_2_PERFORMANCE_RESULTS.md) | Released |
+| 54 | MON-PERF-013 | 정적 분석 기준선 - monitoring_system | [STATIC_ANALYSIS_BASELINE.kr.md](./performance/STATIC_ANALYSIS_BASELINE.kr.md) | Released |
+| 55 | MON-PERF-014 | Static Analysis Baseline - monitoring_system | [STATIC_ANALYSIS_BASELINE.md](./performance/STATIC_ANALYSIS_BASELINE.md) | Released |
+| 56 | MON-MIGR-001 | Migration Guide - Monitoring System | [MIGRATION.md](./advanced/MIGRATION.md) | Released |
+| 57 | MON-MIGR-002 | 마이그레이션 가이드: 인터페이스 기반 아키텍처 | [MIGRATION_GUIDE_V2.kr.md](./advanced/MIGRATION_GUIDE_V2.kr.md) | Released |
+| 58 | MON-MIGR-003 | Migration Guide: Interface-Based Architecture | [MIGRATION_GUIDE_V2.md](./advanced/MIGRATION_GUIDE_V2.md) | Released |
+| 59 | MON-MIGR-004 | 네임스페이스 마이그레이션 가이드 | [NAMESPACE_MIGRATION.kr.md](./guides/NAMESPACE_MIGRATION.kr.md) | Released |
+| 60 | MON-MIGR-005 | Namespace Migration Guide | [NAMESPACE_MIGRATION.md](./guides/NAMESPACE_MIGRATION.md) | Released |
+| 61 | MON-INTR-001 | Distributed Tracing Deep Dive Guide | [DISTRIBUTED_TRACING.md](./guides/DISTRIBUTED_TRACING.md) | Released |
+| 62 | MON-INTR-002 | Integration Guide - Monitoring System | [INTEGRATION.md](./guides/INTEGRATION.md) | Released |
+| 63 | MON-INTR-003 | OpenTelemetry Collector 사이드카 패턴 | [OTEL_COLLECTOR_SIDECAR.kr.md](./guides/OTEL_COLLECTOR_SIDECAR.kr.md) | Released |
+| 64 | MON-INTR-004 | OpenTelemetry Collector Sidecar Pattern | [OTEL_COLLECTOR_SIDECAR.md](./guides/OTEL_COLLECTOR_SIDECAR.md) | Released |
+| 65 | MON-QUAL-001 | Monitoring System - 프로덕션 품질 메트릭 | [PRODUCTION_QUALITY.kr.md](./PRODUCTION_QUALITY.kr.md) | Released |
+| 66 | MON-QUAL-002 | Monitoring System - Production Quality Metrics | [PRODUCTION_QUALITY.md](./PRODUCTION_QUALITY.md) | Released |
+| 67 | MON-QUAL-003 | Testing Guide | [TESTING_GUIDE.md](./contributing/TESTING_GUIDE.md) | Released |
+| 68 | MON-QUAL-004 | Reliability Patterns Usage Guide | [RELIABILITY_PATTERNS.md](./guides/RELIABILITY_PATTERNS.md) | Released |
+| 69 | MON-SECU-001 | 보안 정책 | [SECURITY.kr.md](./guides/SECURITY.kr.md) | Released |
+| 70 | MON-SECU-002 | Security Policy | [SECURITY.md](./guides/SECURITY.md) | Released |
+| 71 | MON-PROJ-001 | 변경 로그 | [CHANGELOG.kr.md](./CHANGELOG.kr.md) | Released |
+| 72 | MON-PROJ-002 | Changelog | [CHANGELOG.md](./CHANGELOG.md) | Released |
+| 73 | MON-PROJ-003 | Monitoring System - 프로젝트 구조 | [PROJECT_STRUCTURE.kr.md](./PROJECT_STRUCTURE.kr.md) | Released |
+| 74 | MON-PROJ-004 | Monitoring System - Project Structure | [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) | Released |
+| 75 | MON-PROJ-005 | SOUP List &mdash; monitoring_system | [SOUP.md](./SOUP.md) | Released |
+| 76 | MON-PROJ-006 | Monitoring System에 기여하기 | [CONTRIBUTING.kr.md](./contributing/CONTRIBUTING.kr.md) | Released |
+| 77 | MON-PROJ-007 | Contributing to Monitoring System | [CONTRIBUTING.md](./contributing/CONTRIBUTING.md) | Released |
 
-## 🚀 Quick Navigation
+## Documents by Category
 
-| I want to... | Document |
-|--------------|----------|
-| ⚡ Get started in 5 minutes | [Quick Start](guides/QUICK_START.md) |
-| 🏗️ Understand the architecture | [Architecture](01-ARCHITECTURE.md) |
-| 📖 Look up an API | [API Reference](02-API_REFERENCE.md) |
-| ❓ Find answers to common questions | [FAQ](guides/FAQ.md) (25+ Q&A) |
-| 🐛 Troubleshoot an issue | [Troubleshooting](guides/TROUBLESHOOTING.md) |
-| ✨ Learn best practices | [Best Practices](guides/BEST_PRACTICES.md) |
-| 📊 Review performance benchmarks | [Baseline](performance/BASELINE.md) |
-| 🤝 Contribute to the project | [Contributing](contributing/CONTRIBUTING.md) |
+### Architecture (12)
 
----
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-ARCH-001 | Architecture | [ARCHITECTURE.kr.md](./ARCHITECTURE.kr.md) | Released |
+| MON-ARCH-002 | Architecture | [ARCHITECTURE.md](./ARCHITECTURE.md) | Released |
+| MON-ARCH-003 | Architecture Overview | [ARCHITECTURE.md](./advanced/ARCHITECTURE.md) | Released |
+| MON-ARCH-004 | Monitoring System 아키텍처 가이드 | [ARCHITECTURE_GUIDE.kr.md](./advanced/ARCHITECTURE_GUIDE.kr.md) | Released |
+| MON-ARCH-005 | Monitoring System Architecture Guide | [ARCHITECTURE_GUIDE.md](./advanced/ARCHITECTURE_GUIDE.md) | Released |
+| MON-ARCH-006 | Architecture Issues - Phase 0 식별 | [ARCHITECTURE_ISSUES.kr.md](./advanced/ARCHITECTURE_ISSUES.kr.md) | Released |
+| MON-ARCH-007 | Architecture Issues - Phase 0 Identification | [ARCHITECTURE_ISSUES.md](./advanced/ARCHITECTURE_ISSUES.md) | Released |
+| MON-ARCH-008 | Interface Separation Strategy | [INTERFACE_SEPARATION_STRATEGY.md](./advanced/INTERFACE_SEPARATION_STRATEGY.md) | Released |
+| MON-ARCH-009 | Monitoring System - 프로젝트 구조 | [STRUCTURE.kr.md](./advanced/STRUCTURE.kr.md) | Released |
+| MON-ARCH-010 | Monitoring System - Project Structure | [STRUCTURE.md](./advanced/STRUCTURE.md) | Released |
+| MON-ARCH-011 | Thread-Local Collector Design | [THREAD_LOCAL_COLLECTOR_DESIGN.md](./advanced/THREAD_LOCAL_COLLECTOR_DESIGN.md) | Released |
+| MON-ARCH-012 | Collector Plugin Architecture | [plugin_architecture.md](./plugin_architecture.md) | Released |
 
-## Table of Contents
+### API Reference (4)
 
-- [Documentation Structure](#documentation-structure)
-- [Documentation by Role](#documentation-by-role)
-- [By Feature](#by-feature)
-- [Contributing to Documentation](#contributing-to-documentation)
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-API-001 | Monitoring System API 레퍼런스 | [API_REFERENCE.kr.md](./API_REFERENCE.kr.md) | Released |
+| MON-API-002 | Monitoring System API Reference | [API_REFERENCE.md](./API_REFERENCE.md) | Released |
+| MON-API-003 | DI Container and C++20 Concepts Guide | [DI_AND_CONCEPTS.md](./guides/DI_AND_CONCEPTS.md) | Released |
+| MON-API-004 | Plugin API Reference | [plugin_api_reference.md](./plugin_api_reference.md) | Released |
 
----
+### Features (2)
 
-## Documentation Structure
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-FEAT-001 | Monitoring System - 상세 기능 | [FEATURES.kr.md](./FEATURES.kr.md) | Released |
+| MON-FEAT-002 | Monitoring System - Feature Documentation | [FEATURES.md](./FEATURES.md) | Released |
 
-### 📘 Core Documentation
+### Guides (23)
 
-Essential documents for understanding the system:
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-GUID-001 | Known Issues and Limitations | [KNOWN_ISSUES.md](./KNOWN_ISSUES.md) | Released |
+| MON-GUID-002 | Monitoring System 문서 | [README.kr.md](./README.kr.md) | Released |
+| MON-GUID-004 | 시스템 현재 상태 - Phase 0 기준선 | [CURRENT_STATE.kr.md](./advanced/CURRENT_STATE.kr.md) | Released |
+| MON-GUID-005 | System Current State - Phase 0 Baseline | [CURRENT_STATE.md](./advanced/CURRENT_STATE.md) | Released |
+| MON-GUID-006 | CI/CD Guide for Monitoring System | [CI_CD_GUIDE.md](./contributing/CI_CD_GUIDE.md) | Released |
+| MON-GUID-007 | Advanced Alert Configuration Guide | [ADVANCED_ALERTS.md](./guides/ADVANCED_ALERTS.md) | Released |
+| MON-GUID-008 | Alert Pipeline Guide | [ALERT_PIPELINE.md](./guides/ALERT_PIPELINE.md) | Released |
+| MON-GUID-009 | Monitoring System - Best Practices Guide | [BEST_PRACTICES.md](./guides/BEST_PRACTICES.md) | Released |
+| MON-GUID-010 | Collector Development Guide | [COLLECTOR_DEVELOPMENT.md](./guides/COLLECTOR_DEVELOPMENT.md) | Released |
+| MON-GUID-011 | Exporter Development Guide | [EXPORTER_DEVELOPMENT.md](./guides/EXPORTER_DEVELOPMENT.md) | Released |
+| MON-GUID-012 | Monitoring System - Frequently Asked Questions | [FAQ.md](./guides/FAQ.md) | Released |
+| MON-GUID-013 | vcpkg Port Management | [PORT_MANAGEMENT.md](./guides/PORT_MANAGEMENT.md) | Released |
+| MON-GUID-014 | Monitoring System - 빠른 시작 가이드 | [QUICK_START.kr.md](./guides/QUICK_START.kr.md) | Released |
+| MON-GUID-015 | Monitoring System - Quick Start Guide | [QUICK_START.md](./guides/QUICK_START.md) | Released |
+| MON-GUID-016 | Storage Backend Implementation Guide | [STORAGE_BACKENDS.md](./guides/STORAGE_BACKENDS.md) | Released |
+| MON-GUID-017 | Stream Processing and Aggregation Framework | [STREAM_PROCESSING.md](./guides/STREAM_PROCESSING.md) | Released |
+| MON-GUID-018 | 문제 해결 가이드 | [TROUBLESHOOTING.kr.md](./guides/TROUBLESHOOTING.kr.md) | Released |
+| MON-GUID-019 | Troubleshooting Guide | [TROUBLESHOOTING.md](./guides/TROUBLESHOOTING.md) | Released |
+| MON-GUID-020 | Monitoring System 튜토리얼 | [TUTORIAL.kr.md](./guides/TUTORIAL.kr.md) | Released |
+| MON-GUID-021 | Monitoring System Tutorial | [TUTORIAL.md](./guides/TUTORIAL.md) | Released |
+| MON-GUID-022 | vcpkg Overlay Ports Guide | [VCPKG_OVERLAY_PORTS.md](./guides/VCPKG_OVERLAY_PORTS.md) | Released |
+| MON-GUID-023 | Monitoring System Integration Guide | [README.md](./integration/README.md) | Released |
+| MON-GUID-024 | Plugin Development Guide | [plugin_development_guide.md](./plugin_development_guide.md) | Released |
 
-| Document | Description | Korean | Lines |
-|----------|-------------|--------|-------|
-| [01-ARCHITECTURE.md](01-ARCHITECTURE.md) | System architecture, event bus, integration topology | [🇰🇷](01-ARCHITECTURE.kr.md) | 50+ |
-| [02-API_REFERENCE.md](02-API_REFERENCE.md) | Complete API docs: metrics, tracing, alerting, dashboard | [🇰🇷](02-API_REFERENCE.kr.md) | 1000+ |
+### Performance (14)
 
-### 📗 User Guides
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-PERF-001 | Monitoring System - 성능 벤치마크 | [BENCHMARKS.kr.md](./BENCHMARKS.kr.md) | Released |
+| MON-PERF-002 | Monitoring System - Performance Benchmarks | [BENCHMARKS.md](./BENCHMARKS.md) | Released |
+| MON-PERF-003 | Performance Profiling Guide for monitoring_system | [PROFILING_GUIDE.md](./advanced/PROFILING_GUIDE.md) | Released |
+| MON-PERF-004 | Performance Optimization Cookbook | [PERFORMANCE_COOKBOOK.md](./guides/PERFORMANCE_COOKBOOK.md) | Released |
+| MON-PERF-005 | Monitoring System - 성능 기준 메트릭 | [BASELINE.kr.md](./performance/BASELINE.kr.md) | Released |
+| MON-PERF-006 | Baseline Performance Metrics | [BASELINE.md](./performance/BASELINE.md) | Released |
+| MON-PERF-007 | Performance Baseline Measurements | [PERFORMANCE_BASELINE.md](./performance/PERFORMANCE_BASELINE.md) | Released |
+| MON-PERF-008 | 성능 튜닝 가이드 | [PERFORMANCE_TUNING.kr.md](./performance/PERFORMANCE_TUNING.kr.md) | Released |
+| MON-PERF-009 | Performance Tuning Guide | [PERFORMANCE_TUNING.md](./performance/PERFORMANCE_TUNING.md) | Released |
+| MON-PERF-010 | monitoring_system Sanitizer 기준선 | [SANITIZER_BASELINE.kr.md](./performance/SANITIZER_BASELINE.kr.md) | Released |
+| MON-PERF-011 | monitoring_system Sanitizer Baseline | [SANITIZER_BASELINE.md](./performance/SANITIZER_BASELINE.md) | Released |
+| MON-PERF-012 | Sprint 2 Performance Verification Results | [SPRINT_2_PERFORMANCE_RESULTS.md](./performance/SPRINT_2_PERFORMANCE_RESULTS.md) | Released |
+| MON-PERF-013 | 정적 분석 기준선 - monitoring_system | [STATIC_ANALYSIS_BASELINE.kr.md](./performance/STATIC_ANALYSIS_BASELINE.kr.md) | Released |
+| MON-PERF-014 | Static Analysis Baseline - monitoring_system | [STATIC_ANALYSIS_BASELINE.md](./performance/STATIC_ANALYSIS_BASELINE.md) | Released |
 
-Step-by-step guides for users:
+### Migration (5)
 
-| Document | Description | Korean | Lines |
-|----------|-------------|--------|-------|
-| [QUICK_START.md](guides/QUICK_START.md) | 5-minute getting started guide | - | 708 |
-| [FAQ.md](guides/FAQ.md) | 25 frequently asked questions with examples | - | 991 |
-| [TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md) | Common problems and solutions | [🇰🇷](guides/TROUBLESHOOTING.kr.md) | 600+ |
-| [BEST_PRACTICES.md](guides/BEST_PRACTICES.md) | Production patterns for metrics, alerting, tracing | - | 1190 |
-| [TUTORIAL.md](guides/TUTORIAL.md) | Step-by-step tutorial with examples | [🇰🇷](guides/TUTORIAL.kr.md) | 784 |
-| [SECURITY.md](guides/SECURITY.md) | Security policy and vulnerability reporting | [🇰🇷](guides/SECURITY.kr.md) | 200+ |
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-MIGR-001 | Migration Guide - Monitoring System | [MIGRATION.md](./advanced/MIGRATION.md) | Released |
+| MON-MIGR-002 | 마이그레이션 가이드: 인터페이스 기반 아키텍처 | [MIGRATION_GUIDE_V2.kr.md](./advanced/MIGRATION_GUIDE_V2.kr.md) | Released |
+| MON-MIGR-003 | Migration Guide: Interface-Based Architecture | [MIGRATION_GUIDE_V2.md](./advanced/MIGRATION_GUIDE_V2.md) | Released |
+| MON-MIGR-004 | 네임스페이스 마이그레이션 가이드 | [NAMESPACE_MIGRATION.kr.md](./guides/NAMESPACE_MIGRATION.kr.md) | Released |
+| MON-MIGR-005 | Namespace Migration Guide | [NAMESPACE_MIGRATION.md](./guides/NAMESPACE_MIGRATION.md) | Released |
 
-### 📙 Advanced Topics
+### Integration (4)
 
-For experienced users and contributors:
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-INTR-001 | Distributed Tracing Deep Dive Guide | [DISTRIBUTED_TRACING.md](./guides/DISTRIBUTED_TRACING.md) | Released |
+| MON-INTR-002 | Integration Guide - Monitoring System | [INTEGRATION.md](./guides/INTEGRATION.md) | Released |
+| MON-INTR-003 | OpenTelemetry Collector 사이드카 패턴 | [OTEL_COLLECTOR_SIDECAR.kr.md](./guides/OTEL_COLLECTOR_SIDECAR.kr.md) | Released |
+| MON-INTR-004 | OpenTelemetry Collector Sidecar Pattern | [OTEL_COLLECTOR_SIDECAR.md](./guides/OTEL_COLLECTOR_SIDECAR.md) | Released |
 
-| Document | Description | Korean | Lines |
-|----------|-------------|--------|-------|
-| [ARCHITECTURE_GUIDE.md](advanced/ARCHITECTURE_GUIDE.md) | Detailed system design and patterns | [🇰🇷](advanced/ARCHITECTURE_GUIDE.kr.md) | 800+ |
-| [ARCHITECTURE_ISSUES.md](advanced/ARCHITECTURE_ISSUES.md) | Known architectural issues | [🇰🇷](advanced/ARCHITECTURE_ISSUES.kr.md) | 200+ |
-| [CURRENT_STATE.md](advanced/CURRENT_STATE.md) | Current implementation status | [🇰🇷](advanced/CURRENT_STATE.kr.md) | 150+ |
-| [MIGRATION_GUIDE_V2.md](advanced/MIGRATION_GUIDE_V2.md) | Migration guide to version 2 | [🇰🇷](advanced/MIGRATION_GUIDE_V2.kr.md) | 300+ |
-| [INTERFACE_SEPARATION_STRATEGY.md](advanced/INTERFACE_SEPARATION_STRATEGY.md) | Interface design strategy | - | 200+ |
-| [THREAD_LOCAL_COLLECTOR_DESIGN.md](advanced/THREAD_LOCAL_COLLECTOR_DESIGN.md) | Thread-local collection design | - | 150+ |
-| [PROFILING_GUIDE.md](advanced/PROFILING_GUIDE.md) | Performance profiling guide | - | 200+ |
+### Quality (4)
 
-### 📊 Performance
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-QUAL-001 | Monitoring System - 프로덕션 품질 메트릭 | [PRODUCTION_QUALITY.kr.md](./PRODUCTION_QUALITY.kr.md) | Released |
+| MON-QUAL-002 | Monitoring System - Production Quality Metrics | [PRODUCTION_QUALITY.md](./PRODUCTION_QUALITY.md) | Released |
+| MON-QUAL-003 | Testing Guide | [TESTING_GUIDE.md](./contributing/TESTING_GUIDE.md) | Released |
+| MON-QUAL-004 | Reliability Patterns Usage Guide | [RELIABILITY_PATTERNS.md](./guides/RELIABILITY_PATTERNS.md) | Released |
 
-Performance metrics and optimization:
+### Security (2)
 
-| Document | Description | Korean | Lines |
-|----------|-------------|--------|-------|
-| [BASELINE.md](performance/BASELINE.md) | Performance baseline: 80ns record, 5M ops/s | [🇰🇷](performance/BASELINE.kr.md) | 300+ |
-| [PERFORMANCE_BASELINE.md](performance/PERFORMANCE_BASELINE.md) | Detailed performance metrics | - | 200+ |
-| [PERFORMANCE_TUNING.md](performance/PERFORMANCE_TUNING.md) | Performance tuning strategies | [🇰🇷](performance/PERFORMANCE_TUNING.kr.md) | 400+ |
-| [SANITIZER_BASELINE.md](performance/SANITIZER_BASELINE.md) | Sanitizer results (TSan, ASan, UBSan) | [🇰🇷](performance/SANITIZER_BASELINE.kr.md) | 150+ |
-| [STATIC_ANALYSIS_BASELINE.md](performance/STATIC_ANALYSIS_BASELINE.md) | Static analysis results (Clang-Tidy, Cppcheck) | [🇰🇷](performance/STATIC_ANALYSIS_BASELINE.kr.md) | 100+ |
-| [SPRINT_2_PERFORMANCE_RESULTS.md](performance/SPRINT_2_PERFORMANCE_RESULTS.md) | Sprint 2 performance achievements | - | 100+ |
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-SECU-001 | 보안 정책 | [SECURITY.kr.md](./guides/SECURITY.kr.md) | Released |
+| MON-SECU-002 | Security Policy | [SECURITY.md](./guides/SECURITY.md) | Released |
 
-### 🤝 Contributing
+### Project (7)
 
-For contributors and maintainers:
-
-| Document | Description | Korean | Lines |
-|----------|-------------|--------|-------|
-| [CONTRIBUTING.md](contributing/CONTRIBUTING.md) | Contribution guidelines, code style, testing | [🇰🇷](contributing/CONTRIBUTING.kr.md) | 600+ |
-| [CI_CD_GUIDE.md](contributing/CI_CD_GUIDE.md) | CI/CD pipeline, sanitizers, benchmarks | - | 954 |
-| [TESTING_GUIDE.md](contributing/TESTING_GUIDE.md) | Testing strategy and procedures | - | 400+ |
-
----
-
-## Documentation by Role
-
-### 👤 For New Users
-
-**Getting Started Path**:
-1. **⚡ Quick Start** - [5-minute guide](guides/QUICK_START.md) to first program
-2. **🏗️ Architecture** - [System overview](01-ARCHITECTURE.md)
-3. **📖 API Reference** - [Complete API](02-API_REFERENCE.md) documentation
-4. **💡 Tutorial** - [Step-by-step guide](guides/TUTORIAL.md) with examples
-
-**When You Have Issues**:
-- Check [FAQ](guides/FAQ.md) first (25+ common questions)
-- Use [Troubleshooting](guides/TROUBLESHOOTING.md) for problems
-- Search [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
-
-### 💻 For Experienced Developers
-
-**Advanced Usage Path**:
-1. **🏗️ Architecture** - Understand [system design](advanced/ARCHITECTURE_GUIDE.md)
-2. **📖 API Reference** - Study [advanced APIs](02-API_REFERENCE.md)
-3. **✨ Best Practices** - Learn [production patterns](guides/BEST_PRACTICES.md)
-4. **📊 Performance** - Review [benchmarks](performance/BASELINE.md)
-
-**Deep Dive Topics**:
-- [Thread-Local Collection](advanced/THREAD_LOCAL_COLLECTOR_DESIGN.md) - Performance optimization
-- [Interface Separation](advanced/INTERFACE_SEPARATION_STRATEGY.md) - Design patterns
-- [Profiling Guide](advanced/PROFILING_GUIDE.md) - Performance analysis
-- [Architecture Issues](advanced/ARCHITECTURE_ISSUES.md) - Known limitations
-
-### 🔧 For DevOps Engineers
-
-**Deployment Path**:
-1. **📚 Quick Start** - [Installation and setup](guides/QUICK_START.md)
-2. **📊 Performance Tuning** - [Optimization strategies](performance/PERFORMANCE_TUNING.md)
-3. **✨ Best Practices** - [Production deployment](guides/BEST_PRACTICES.md#production-deployment)
-4. **🐛 Troubleshooting** - [Common issues](guides/TROUBLESHOOTING.md)
-
-**Monitoring and Tuning**:
-- [Performance Baseline](performance/BASELINE.md) - 80ns record latency, 5M ops/s
-- [Metrics Performance](performance/PERFORMANCE_BASELINE.md) - Backend-specific metrics
-- [CI/CD Pipeline](contributing/CI_CD_GUIDE.md) - Automation
-
-### 🤝 For Contributors
-
-**Contribution Path**:
-1. **🤝 Contributing** - [How to contribute](contributing/CONTRIBUTING.md)
-2. **🚀 CI/CD** - [Pipeline documentation](contributing/CI_CD_GUIDE.md)
-3. **🏗️ Architecture** - [System internals](advanced/ARCHITECTURE_GUIDE.md)
-4. **📊 Current State** - [Implementation status](advanced/CURRENT_STATE.md)
-
-**Development Resources**:
-- [Code Style](contributing/CONTRIBUTING.md#coding-standards)
-- [Testing Guide](contributing/TESTING_GUIDE.md)
-- [Current Status](advanced/CURRENT_STATE.md) - What's implemented
-
----
-
-## By Feature
-
-### 📊 Metrics Collection
-
-| Topic | Document | Section |
-|-------|----------|---------|
-| API | [API Reference](02-API_REFERENCE.md) | Metrics Collection |
-| Best Practices | [Best Practices](guides/BEST_PRACTICES.md) | Metrics Design |
-| Performance | [Baseline](performance/BASELINE.md) | 80ns record latency |
-| Examples | [FAQ](guides/FAQ.md) | Metrics Collection |
-
-### 🔍 Distributed Tracing
-
-| Topic | Document | Section |
-|-------|----------|---------|
-| API | [API Reference](02-API_REFERENCE.md) | Distributed Tracer |
-| Best Practices | [Best Practices](guides/BEST_PRACTICES.md) | Distributed Tracing |
-| Architecture | [Architecture Guide](advanced/ARCHITECTURE_GUIDE.md) | Tracing System |
-| Examples | [Quick Start](guides/QUICK_START.md) | Tracing |
-
-### 🚨 Alerting System
-
-| Topic | Document | Section |
-|-------|----------|---------|
-| API | [API Reference](02-API_REFERENCE.md) | Alerting Engine |
-| Best Practices | [Best Practices](guides/BEST_PRACTICES.md) | Alert Design |
-| FAQ | [FAQ](guides/FAQ.md) | Alerting |
-| Examples | [Quick Start](guides/QUICK_START.md) | Alerting |
-
-### 📈 Web Dashboard
-
-| Topic | Document | Section |
-|-------|----------|---------|
-| Setup | [Quick Start](guides/QUICK_START.md) | Web Dashboard |
-| API | [API Reference](02-API_REFERENCE.md) | Dashboard API |
-| Security | [Security](guides/SECURITY.md) | Dashboard Access |
-| Troubleshooting | [Troubleshooting](guides/TROUBLESHOOTING.md) | Dashboard Issues |
-
-### 🗄️ Storage
-
-| Topic | Document | Section |
-|-------|----------|---------|
-| Configuration | [Best Practices](guides/BEST_PRACTICES.md) | Storage Configuration |
-| Performance | [Performance Tuning](performance/PERFORMANCE_TUNING.md) | Storage Optimization |
-| FAQ | [FAQ](guides/FAQ.md) | Storage |
-| Architecture | [Architecture Guide](advanced/ARCHITECTURE_GUIDE.md) | Storage Backend |
-
-### 🔗 Integration
-
-| Topic | Document | Section |
-|-------|----------|---------|
-| thread_system | [FAQ](guides/FAQ.md) | Thread System Integration |
-| logger_system | [FAQ](guides/FAQ.md) | Logger System Integration |
-| Prometheus | [FAQ](guides/FAQ.md) | Export to Prometheus |
-| OpenTelemetry | [FAQ](guides/FAQ.md) | OpenTelemetry Integration |
-
----
-
-## Project Information
-
-### Current Status
-- **Version**: 0.3.0.0 (Phase 3 with Alerting & Dashboard)
-- **C++ Standard**: C++20
-- **License**: BSD 3-Clause
-- **Test Status**: Under Development
-
-### Supported Features
-- ✅ **Metrics Collection** - Counter, Gauge, Histogram, Summary
-- ✅ **Distributed Tracing** - Full trace correlation and analysis
-- ✅ **Real-time Alerting** - Rule-based alert engine
-- ✅ **Multi-channel Notifications** - Email, Slack, PagerDuty, Webhook
-- ✅ **Web Dashboard** - Interactive visualization
-- ✅ **Storage Backends** - In-memory, File-based, Custom
-- ✅ **Exporters** - Prometheus, OpenTelemetry, Jaeger
-
-### Key Features
-- 📊 **High Performance** - 80ns record latency, 5M ops/s throughput
-- 🎯 **Low Overhead** - <1% CPU, minimal memory footprint
-- 🔗 **Unified Observability** - Metrics, traces, and alerts in one system
-- 🚨 **Smart Alerting** - Multi-level severity, grouping, inhibition
-- 📈 **Real-time Dashboard** - Interactive web UI with live updates
-- 🔧 **Flexible Storage** - Multiple backends with retention policies
-- 🧵 **Thread Safe** - Concurrent operations verified with TSan
-- 🔐 **Production Ready** - Security, authentication, RBAC
+| doc_id | Topic | Document | Status |
+|--------|-------|----------|--------|
+| MON-PROJ-001 | 변경 로그 | [CHANGELOG.kr.md](./CHANGELOG.kr.md) | Released |
+| MON-PROJ-002 | Changelog | [CHANGELOG.md](./CHANGELOG.md) | Released |
+| MON-PROJ-003 | Monitoring System - 프로젝트 구조 | [PROJECT_STRUCTURE.kr.md](./PROJECT_STRUCTURE.kr.md) | Released |
+| MON-PROJ-004 | Monitoring System - Project Structure | [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) | Released |
+| MON-PROJ-005 | SOUP List &mdash; monitoring_system | [SOUP.md](./SOUP.md) | Released |
+| MON-PROJ-006 | Monitoring System에 기여하기 | [CONTRIBUTING.kr.md](./contributing/CONTRIBUTING.kr.md) | Released |
+| MON-PROJ-007 | Contributing to Monitoring System | [CONTRIBUTING.md](./contributing/CONTRIBUTING.md) | Released |
 
 ---
 
-## Contributing to Documentation
-
-### Documentation Standards
-Follow the [Documentation Standard](/Users/raphaelshin/Sources/template_document/DOCUMENTATION_STANDARD.md):
-- Front matter on all documents
-- Code examples must compile
-- Bilingual support (English/Korean)
-- Cross-references with relative links
-
-### Areas for Improvement
-- [ ] Video tutorials for alerting and dashboard
-- [ ] Interactive examples for metric design
-- [ ] More integration scenarios
-- [ ] Performance optimization cookbook
-
-### Submission Process
-1. Read [Contributing Guide](contributing/CONTRIBUTING.md)
-2. Edit markdown files
-3. Test all code examples
-4. Update Korean translations
-5. Submit pull request
-
----
-
-## 📞 Getting Help
-
-### Documentation Issues
-- **Missing info**: [Open documentation issue](https://github.com/kcenon/monitoring_system/issues/new?labels=documentation)
-- **Incorrect examples**: Report with details
-- **Unclear instructions**: Suggest improvements
-
-### Technical Support
-1. Check [FAQ](guides/FAQ.md) - 25+ common questions
-2. Read [Troubleshooting](guides/TROUBLESHOOTING.md) - Solutions to common problems
-3. Search [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
-4. Ask on [GitHub Discussions](https://github.com/kcenon/monitoring_system/discussions)
-
-### Support Resources
-- **Issues**: Bug reports and feature requests
-- **Discussions**: Questions and support
-- **Pull Requests**: Code and documentation contributions
-
----
-
-## External Resources
-
-- **GitHub Repository**: [kcenon/monitoring_system](https://github.com/kcenon/monitoring_system)
-- **Issue Tracker**: [GitHub Issues](https://github.com/kcenon/monitoring_system/issues)
-- **Main README**: [../README.md](../README.md)
-- **Changelog**: [CHANGELOG.md.bak](CHANGELOG.md.bak)
-
----
-
-## Documentation Roadmap
-
-### ✅ Current (v1.0 - 2025-11-11)
-- ✅ Complete API reference with examples
-- ✅ Comprehensive FAQ (25+ questions)
-- ✅ Detailed troubleshooting guide
-- ✅ Best practices documentation
-- ✅ Performance benchmarks
-- ✅ CI/CD documentation
-- ✅ Quick start guide
-- ✅ Tutorial with examples
-
-### 📋 Future Enhancements
-- 🎥 Video tutorials for alerting and dashboard
-- 📊 Interactive performance dashboard
-- 🌐 Multi-language support (Japanese, Chinese)
-- 📖 Migration guides for major versions
-- 🔄 Integration guides for more systems
-
----
-
-**Monitoring System Documentation** - Modern Observability for C++20
-
-**Last Updated**: 2025-11-11
-**Next Review**: 2026-02-11
+*Registry generated for issue [#563](https://github.com/kcenon/monitoring_system/issues/563).*

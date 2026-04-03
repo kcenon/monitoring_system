@@ -10,6 +10,8 @@ category: "INTR"
 
 # Distributed Tracing Deep Dive Guide
 
+> **SSOT**: This document is the single source of truth for **Distributed Tracing Deep Dive Guide**.
+
 > **Version**: 0.1.0
 > **Module**: `kcenon::monitoring::tracing`, `kcenon::monitoring::exporters`
 > **Audience**: Developers implementing distributed tracing across services

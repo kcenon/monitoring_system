@@ -10,6 +10,8 @@ category: "GUID"
 
 # Exporter Development Guide
 
+> **SSOT**: This document is the single source of truth for **Exporter Development Guide**.
+
 > **Version**: 1.0.0
 > **Last Updated**: 2026-02-09
 > **Parent Epic**: [Documentation Gap Analysis](https://github.com/kcenon/common_system/issues/325)

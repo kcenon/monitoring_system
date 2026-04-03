@@ -10,6 +10,8 @@ category: "PROJ"
 
 # 변경 로그
 
+> **SSOT**: This document is the single source of truth for **변경 로그**.
+
 > **Language:** [English](CHANGELOG.md) | **한국어**
 
 ## 목차

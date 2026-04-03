@@ -10,6 +10,8 @@ category: "GUID"
 
 # Collector Development Guide
 
+> **SSOT**: This document is the single source of truth for **Collector Development Guide**.
+
 > **Language:** **English** | [한국어](COLLECTOR_DEVELOPMENT.kr.md)
 
 **Version**: 0.4.0.0

@@ -10,6 +10,8 @@ category: "PROJ"
 
 # Changelog
 
+> **SSOT**: This document is the single source of truth for **Changelog**.
+
 > **Language:** **English** | [한국어](CHANGELOG.kr.md)
 
 ## Table of Contents

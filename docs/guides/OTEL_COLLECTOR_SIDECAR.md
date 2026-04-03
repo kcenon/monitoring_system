@@ -10,6 +10,8 @@ category: "INTR"
 
 # OpenTelemetry Collector Sidecar Pattern
 
+> **SSOT**: This document is the single source of truth for **OpenTelemetry Collector Sidecar Pattern**.
+
 > **Language:** **English** | [한국어](OTEL_COLLECTOR_SIDECAR.kr.md)
 
 ## Overview

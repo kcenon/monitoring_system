@@ -10,6 +10,8 @@ category: "PERF"
 
 # monitoring_system Sanitizer 기준선
 
+> **SSOT**: This document is the single source of truth for **monitoring_system Sanitizer 기준선**.
+
 > **Language:** [English](SANITIZER_BASELINE.md) | **한국어**
 
 **단계**: 0 - 기반 및 도구

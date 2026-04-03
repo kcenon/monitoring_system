@@ -10,6 +10,8 @@ category: "GUID"
 
 # CI/CD Guide for Monitoring System
 
+> **SSOT**: This document is the single source of truth for **CI/CD Guide for Monitoring System**.
+
 > **Version:** 0.1.0
 > **Last Updated:** 2025-11-11
 > **Audience:** Contributors, Maintainers

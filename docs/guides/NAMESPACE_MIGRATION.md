@@ -10,6 +10,8 @@ category: "MIGR"
 
 # Namespace Migration Guide
 
+> **SSOT**: This document is the single source of truth for **Namespace Migration Guide**.
+
 > **Version:** 1.0.0
 > **Last Updated:** 2025-02-05
 > **Status:** Migration Completed (v1.0)

@@ -11,6 +11,8 @@ category: "PERF"
 <<<<<<< HEAD
 # Monitoring System - 성능 기준 메트릭
 
+> **SSOT**: This document is the single source of truth for **Monitoring System - 성능 기준 메트릭**.
+
 > **언어 선택 (Language)**: [English](BASELINE.md) | **한국어**
 
 **Version**: 0.1.0.0

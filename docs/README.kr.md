@@ -10,6 +10,8 @@ category: "GUID"
 
 # Monitoring System 문서
 
+> **SSOT**: This document is the single source of truth for **Monitoring System 문서**.
+
 > **Language:** [English](README.md) | **한국어**
 
 Monitoring System - C++ 애플리케이션을 위한 개발 중인 모니터링 및 관찰성 플랫폼의 포괄적인 문서에 오신 것을 환영합니다.

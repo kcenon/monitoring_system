@@ -10,6 +10,8 @@ category: "MIGR"
 
 # Migration Guide - Monitoring System
 
+> **SSOT**: This document is the single source of truth for **Migration Guide - Monitoring System**.
+
 > **Language:** **English** | [한국어](MIGRATION.kr.md)
 
 ## Overview

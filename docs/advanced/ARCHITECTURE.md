@@ -10,6 +10,8 @@ category: "ARCH"
 
 # Architecture Overview
 
+> **SSOT**: This document is the single source of truth for **Architecture Overview**.
+
 ## Purpose
 
 The monitoring_system provides comprehensive metrics collection, storage, analysis, health checks, and event-driven observability for C++20 services. It is designed with an interface-first approach and can operate standalone or integrate seamlessly with the thread_system and logger_system ecosystem.

@@ -10,6 +10,8 @@ category: "API"
 
 # Plugin API Reference
 
+> **SSOT**: This document is the single source of truth for **Plugin API Reference**.
+
 Complete reference for the collector plugin API.
 
 ## Table of Contents
